@@ -1,0 +1,172 @@
+openapi: 3.0.1
+info:
+  title: International A2P Messaging
+  description: |-
+    API used to send International A2P SMS
+    ## Base Path
+    <code>https://bulksms.ia2p.bandwidth.com:12021</code>
+  version: 0.2.0
+  x-server-configuration:
+    default-environment: production
+    default-server: default
+    environments:
+      - name: production
+        servers:
+          - name: default
+            url: https://bulksms.ia2p.bandwidth.com:12021
+      - name: custom
+        servers:
+          - name: default
+            url: '{base_url}'
+    parameters:
+      - name: base_url
+        description: ''
+        type: string
+        example: https://www.example.com
+servers:
+  - description: Production
+    url: https://bulksms.ia2p.bandwidth.com:12021
+tags:
+  - name: Send SMS
+    description: Endpoints for sending International A2P SMS messages
+paths:
+  /bulk/sendsms:
+    post:
+      tags:
+        - Send SMS
+      summary: Create Message
+      requestBody:
+        description: Create a request to send a single SMS message.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SMSRequest'
+        required: true
+      responses:
+        '202':
+          description: SMS Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMSResponse'
+        default:
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-codegen-request-body-name: post data
+components:
+  schemas:
+    SMSRequest:
+      required:
+        - auth
+        - dcs
+        - dlrMask
+        - dlrUrl
+        - receiver
+        - sender
+        - text
+        - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of SMS (text, wsi)
+        sender:
+          type: string
+          description: SMS Sender
+        receiver:
+          type: string
+          description: |
+            SMS Receiver (mobile phone number in international format)
+        dlrMask:
+          type: integer
+          description: |
+            Delivery report mask:
+              1 - Delivered,
+              2 - Undelivered,
+              4 - Buffered
+              8 - Sent to SMSC
+              16 - Rejected.
+            Recommended value is 19.
+        dlrUrl:
+          type: string
+          description: |
+            URL where to send callbacks
+        flash:
+          type: boolean
+          description: Use true for flash message, false otherwise
+        text:
+          type: string
+          description: if type=text this is message text
+        dcs:
+          type: string
+          description: if type=text this is encoding, GSM or UCS
+        auth:
+          $ref: '#/components/schemas/Auth'
+    SMSResponse:
+      type: object
+      properties:
+        msgId:
+          type: string
+          description: If message is accepted to be sent, message ID
+        numParts:
+          type: integer
+          description: Number of message segments
+    Auth:
+      required:
+        - password
+        - username
+      type: object
+      properties:
+        username:
+          type: string
+          description: User name
+        password:
+          type: string
+          description: Password
+    Error:
+      required:
+        - code
+        - message
+      type: object
+      properties:
+        code:
+          type: string
+          description: |
+            Possible Values are:
+
+            101, Internal application error
+
+            102, Encoding not supported
+
+            103, No account with given username/password
+
+            104, Sending from client's IP not allowed
+
+            105, Throttling error
+
+            106, Blacklisted sender
+
+            107, Invalid sender
+
+            108, Message too long
+
+            109, Format of text/content parameter is wrong
+
+            110, Mandatory parameter is missing
+
+            111, Unknown message type
+
+            112, Bad parameter value
+
+            113, No credit on account balance
+
+            114, No route for given destination
+
+            115, Concatenation error
+
+            116, Loop detected
+        message:
+          type: string

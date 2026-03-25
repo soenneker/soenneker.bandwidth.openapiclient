@@ -1,0 +1,4363 @@
+openapi: 3.0.1
+info:
+  description: Bandwidth's Account Management API
+  title: Accounts API
+  version: 2.0.0
+  contact:
+    name: Bandwidth Support
+    email: support@bandwidth.com
+    url: https://support.bandwidth.com
+  termsOfService: https://www.bandwidth.com/legal/terms-of-use-bandwidthcom-web-sites/
+servers:
+  - url: https://api.bandwidth.com/api/v2
+    description: Production
+paths:
+  /accounts/{accountId}:
+    get:
+      operationId: getAccount
+      summary: Retrieve account by ID
+      tags:
+        - Account
+      description: >
+        The account is the root resource for many of the operations in the
+        Bandwidth App.
+
+        The account is represented by an account ID, which is the resource that
+        represents a Bandwidth customer, providing a root resource for all of
+        the customer's attributes and services.
+
+        The API calls that are used to manage the details of a customer account,
+        and to manage the resources that a Bandwidth customer has access to or
+        control over, are accessed through the /accounts resource.
+
+        This API call retrieves information about the account indicated by the
+        Account ID.
+
+
+        **Addresses**: `Address` and `LinkedAddresses`
+
+
+        - Address 
+          - The service address of the account. Historically only US and Canadian addresses supported.
+          - `Address` will continue to be populated as long as the address is US/ Canada based and only one linked address exists.
+        - LinkedAddresses 
+          - A list of address reference IDs that are linked at the account. 
+          - These addresses can be fully international.
+          - `LinkedAddresses` will replace `Address`, however will continue to be supported for US/ Canada addresses.  
+          - A list of **one** address will be supported initially, however this will extend as more address usages are introduced.
+          - `LinkedAddresses` can be created and managed through the /addresses resource. See: [Addresses](https://dev.bandwidth.com/apis/numbers-apis/end-user-management/#tag/Addresses/operation/createAddress) for more information.
+          - A link to the individual Address API is returned within this object, see `Link`.
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/accountResponse'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/accountNotFoundErrorResponse'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/accountSystemErrorResponse'
+  /accounts/{accountId}/sites:
+    post:
+      tags:
+        - Sub-Accounts (Sites)
+      description: Add a Sub-Account (Site) to the account
+      summary: Create Sub-Account
+      operationId: createSubAccount
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/createSubAccountRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/subAccountCreatedResponse'
+        '400':
+          $ref: '#/components/responses/subAccountBadRequestErrorResponse'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '409':
+          $ref: '#/components/responses/subAccountConflictErrorResponse'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/subAccountSystemErrorResponse'
+    get:
+      tags:
+        - Sub-Accounts (Sites)
+      description: Retrieve a list of all Sub-Accounts (Sites) associated with the account
+      summary: List Sub-Accounts
+      operationId: listSubAccounts
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/phoneNumberCounts'
+        - $ref: '#/components/parameters/locationDetails'
+        - $ref: '#/components/parameters/summary'
+      responses:
+        '200':
+          $ref: '#/components/responses/subAccountsResponse'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/subAccountsSystemErrorResponse'
+  /accounts/{accountId}/sites/{siteId}:
+    get:
+      tags:
+        - Sub-Accounts (Sites)
+      description: Retrieves the information associated with the Sub-Account (Site) ID
+      summary: Retrieve Sub-Account
+      operationId: readSubAccount
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/subAccountIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/subAccountResponse'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/subAccountNotFoundErrorResponse'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/subAccountSystemErrorResponse'
+    put:
+      tags:
+        - Sub-Accounts (Sites)
+      description: Updates the contents of Sub-Account (Site)
+      summary: Update Sub-Account
+      operationId: updateSubAccount
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/subAccountIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/createSubAccountRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/subAccountResponse'
+        '400':
+          $ref: '#/components/responses/subAccountBadRequestErrorResponsePut'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/subAccountNotFoundErrorResponse'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/subAccountSystemErrorResponse'
+    delete:
+      tags:
+        - Sub-Accounts (Sites)
+      description: >-
+        Deletes the Sub-Account (Site). Sub-Accounts (Sites) can only be deleted
+        if there are no SIP Peers attached to it
+      summary: Delete Sub-Account
+      operationId: deleteSubAccount
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/subAccountIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/successResponse200'
+        '400':
+          $ref: '#/components/responses/subAccountCantBeDeletedErrorResponse'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/subAccountNotFoundErrorResponse'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/subAccountSystemErrorResponse'
+  /accounts/{accountId}/sites/{siteId}/sippeers:
+    get:
+      tags:
+        - Locations (SIP Peers)
+      description: >-
+        Retrieve information about a location (SIP Peer) or set of locations on
+        sub-account (site)
+      summary: List Locations
+      operationId: listLocations
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/subAccountIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/locationsResponse'
+        '400':
+          $ref: '#/components/responses/locationResponseBadRequestType3'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/errorResponse404'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/errorResponse500'
+    post:
+      tags:
+        - Locations (SIP Peers)
+      description: >-
+        Create Location (SIP Peer).<br>
+
+        Possible errors in response:
+        https://dev.bandwidth.com/docs/numbers/errors/#sippeervalidationerror
+      summary: Create Location
+      operationId: createLocation
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/subAccountIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/createLocationRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/locationCreatedResponse'
+        '400':
+          $ref: '#/components/responses/locationResponseBadRequestType1'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/errorResponse404'
+        '409':
+          $ref: '#/components/responses/locationResponseConflict'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/errorResponse500'
+        '503':
+          $ref: '#/components/responses/locationResponseServiceUnavailable'
+  /accounts/{accountId}/sites/{siteId}/sippeers/{sipPeerId}:
+    get:
+      tags:
+        - Locations (SIP Peers)
+      description: Retrieves the information associated with the location (SIP Peer) ID
+      summary: Retrieve Location
+      operationId: readLocation
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/subAccountIdPathParam'
+        - $ref: '#/components/parameters/locationIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/locationResponse'
+        '400':
+          $ref: '#/components/responses/locationResponseBadRequestType3'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/locationResponseNotFound'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/errorResponse500'
+    put:
+      tags:
+        - Locations (SIP Peers)
+      description: >-
+        There are a few rules used to eliminate IP address collisions.  The
+        primary restriction is on the ability to share Term IP addresses across
+        the Bandwidth API structural elements. Essentially...
+
+        <ul>
+          <li>Term Addresses cannot be shared anywhere</li>
+          <li>VoiceHost and VoiceHostGroup addresses can be shared between locations and can be different than or the same as Term IP Addresses </li>
+        </ul>
+
+        If the CallingName field is missing from the payload, CNAM will default
+        to false on the location.<br>
+
+        Possible errors in response:
+        https://dev.bandwidth.com/docs/numbers/errors/#sippeervalidationerror
+      summary: Update Location
+      operationId: updateLocation
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/subAccountIdPathParam'
+        - $ref: '#/components/parameters/locationIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/updateLocationRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/successResponse200'
+        '400':
+          $ref: '#/components/responses/locationResponseBadRequestType1'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/locationResponseNotFound'
+        '409':
+          $ref: '#/components/responses/locationResponseConflict'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/errorResponse500'
+    delete:
+      tags:
+        - Locations (SIP Peers)
+      description: >-
+        Delete Location (SIP Peer). <br>
+
+        Possible errors in response:
+
+        <ul><li>Delete not allowed while a Location (SIP Peer) has SMS
+        feature</li></ul>
+      summary: Delete Location
+      operationId: deleteLocation
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/subAccountIdPathParam'
+        - $ref: '#/components/parameters/locationIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/locationDeleteResponse'
+        '400':
+          $ref: '#/components/responses/locationResponseBadRequestType2'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/locationResponseNotFound'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/errorResponse500'
+  /accounts/{accountId}/totalSeats:
+    get:
+      tags:
+        - Account
+      description: Retrieves the total number of seats on account
+      operationId: getAccountTotalSeats
+      summary: Retrieve the total number of seats on account
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/totalSeatsResponse'
+        '400':
+          $ref: '#/components/responses/totalSeatsBadRequestErrorResponse'
+  /accounts/{accountId}/sites/{siteId}/sippeers/{sipPeerId}/totalSeats:
+    get:
+      tags:
+        - Locations (SIP Peers)
+      description: Retrieves the total number of seats on a Location (SIP Peer)
+      operationId: getLocationTotalSeats
+      summary: Get Total Seats for Location
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/subAccountIdPathParam'
+        - $ref: '#/components/parameters/locationIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/sippeerTotalSeatsSuccessResponse'
+        '400':
+          $ref: '#/components/responses/sippeerTotalSeatsBadRequestErrorResponse'
+  /admin/data/a2pClasses:
+    get:
+      tags:
+        - Admin Data
+      description: Retrieves A2P Classes.
+      operationId: readA2pClasses
+      summary: List A2pClasses
+      responses:
+        '200':
+          $ref: '#/components/responses/a2pClassListResponse'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/adminDataErrorResponse500'
+  /admin/data/a2pClasses/{messageClass}:
+    get:
+      tags:
+        - Admin Data
+      description: Retrieve A2P Class.
+      operationId: readA2pClass
+      summary: Retrieve A2P Class
+      parameters:
+        - $ref: '#/components/parameters/messageClassPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/a2pClassResponse'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/a2pClassNotFoundResponse'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/adminDataErrorResponse500'
+  /accounts/{accountId}/sites/{siteId}/sippeers/{sipPeerId}/associatedOutboundNumbers:
+    get:
+      tags:
+        - Locations (SIP Peers)
+      description: >-
+        Retrieve list of Associated Outbound Numbers associated with the
+        Location. If none exist, an empty list is returned.
+      operationId: retrieveSipPeerAssociatedOutboundNumbers
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/subAccountIdPathParam'
+        - $ref: '#/components/parameters/locationIdPathParam'
+        - $ref: '#/components/parameters/paginationPageQueryParam'
+        - $ref: '#/components/parameters/paginationSizeQueryParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/associatedOutboundNumbersResponse'
+        '400':
+          $ref: '#/components/responses/associatedOutboundNumbersResponseBadRequest'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/errorResponse404'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/errorResponse500'
+      summary: List Outbound Numbers by Location
+    post:
+      tags:
+        - Locations (SIP Peers)
+      description: Submit a list of new Associated Outbound Numbers.
+      operationId: uploadSipPeerAssociatedOutboundNumbers
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/subAccountIdPathParam'
+        - $ref: '#/components/parameters/locationIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/associatedOutboundNumbersRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/createAssociatedOutboundNumbersResponse'
+        '400':
+          $ref: '#/components/responses/associatedOutboundNumbersResponseBadRequest'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/errorResponse404'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/errorResponse500'
+      summary: Associate Phone Numbers with a Location
+  /accounts/{accountId}/sites/{siteId}/sippeers/{sipPeerId}/associatedOutboundNumbers/{associatedOutboundNumberId}:
+    delete:
+      tags:
+        - Locations (SIP Peers)
+      description: Delete Associated Outbound Number from SIP Peer.
+      operationId: deleteSipPeerAssociatedOutboundNumbers
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/subAccountIdPathParam'
+        - $ref: '#/components/parameters/locationIdPathParam'
+        - $ref: '#/components/parameters/associatedOutboundNumberIdParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/successResponse200'
+        '400':
+          $ref: '#/components/responses/associatedOutboundNumbersResponseBadRequest'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/associatedOutboundNumbersResponseNotFound'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/errorResponse500'
+      summary: Delete Number from Location
+  /accounts/{accountId}/sites/{siteId}/totalSeats:
+    get:
+      tags:
+        - Sub-Accounts (Sites)
+      description: Retrieves the total number of seats on a Sub-Account (Site)
+      operationId: getSubAccountTotalSeats
+      summary: Retrieve count of UC trunking seats by Sub-Account (Site)
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/subAccountIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/subAccountTotalSeatsSuccessResponse'
+        '400':
+          $ref: '#/components/responses/subAccountTotalSeatsBadRequestErrorResponse'
+components:
+  parameters:
+    accountIdPathParam:
+      description: User's account ID.
+      example: '1234567'
+      in: path
+      name: accountId
+      required: true
+      schema:
+        type: string
+    phoneNumberCounts:
+      name: phoneNumberCounts
+      description: >-
+        Provides response payload with total phone number count for every
+        Sub-Account on Account if specified as true
+      in: query
+      required: false
+      schema:
+        type: boolean
+        default: false
+      example: true
+    locationDetails:
+      name: locationDetails
+      description: >
+        Provides a response payload with a list of locations for every
+        Sub-Account on Account with fields:   
+          <ul>
+            <li>LocationId (PeerId)</li>
+            <li>LocationName (PeerName)</li>
+            <li>Description</li>
+            <li>IsDefaultLocation (IsDefaultPeer)</li>
+            <li>Address</li>
+            <li>FinalDestinationUri</li>
+            <li>PremiseTrunks</li>
+            <li>CallingName</li>
+            <li>SsSendToCustomer</li>
+          </ul>  
+          <p>Also each Sub-Account will contain a count of locations on it:</p>
+          <ul>
+            <li>SipPeerCount</li>
+          </ul>
+      in: query
+      required: false
+      schema:
+        type: boolean
+        default: false
+      example: true
+    summary:
+      name: summary
+      description: >-
+        Provides response payload with list of basic information about every
+        Location for every Sub-Account on Account and overrides sipPeerDetails
+        parameter if specified as true
+      in: query
+      required: false
+      schema:
+        type: boolean
+        default: false
+      example: true
+    subAccountIdPathParam:
+      name: siteId
+      description: Sub-Account ID
+      in: path
+      required: true
+      schema:
+        type: integer
+      example: 407
+    locationIdPathParam:
+      name: sipPeerId
+      description: ID of the location
+      in: path
+      required: true
+      schema:
+        type: integer
+      example: 500017
+    messageClassPathParam:
+      name: messageClass
+      description: Message Class name
+      in: path
+      required: true
+      schema:
+        type: string
+      example: TestClass
+    paginationPageQueryParam:
+      description: >-
+        Retrievals must be paginated, using page and size indicators.  The page
+        parameter contains the page number, e.g. "1" in the case of the first
+        page
+      example: 1
+      in: query
+      name: page
+      required: true
+      schema:
+        type: integer
+    paginationSizeQueryParam:
+      description: >-
+        The size parameter indicates the number of Associated Outbound Numbers
+        to return in the payload
+      example: 10
+      in: query
+      name: size
+      required: true
+      schema:
+        type: integer
+    associatedOutboundNumberIdParam:
+      in: path
+      name: associatedOutboundNumberId
+      required: true
+      schema:
+        type: integer
+  requestBodies:
+    createSubAccountRequest:
+      description: Sub-Account (Site) Request
+      required: true
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/createSubAccountXmlRequest'
+          examples:
+            Non-UC Example:
+              $ref: '#/components/examples/createSubAccountForNonUcXmlExample'
+            UC Example:
+              $ref: '#/components/examples/createSubAccountForUcXmlExample'
+            Global Address Example:
+              $ref: '#/components/examples/createSubAccountForGlobalAddressXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/createSubAccountJsonRequest'
+          examples:
+            Non-UC Example:
+              $ref: '#/components/examples/createSubAccountForNonUcJsonExample'
+            UC Example:
+              $ref: '#/components/examples/createSubAccountForUcJsonExample'
+            Global Address Example:
+              $ref: >-
+                #/components/examples/createSubAccountForGlobalAddressJsonExample
+    createLocationRequest:
+      description: Create Location (SIP Peer) Request
+      required: true
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/createLocationXmlRequest'
+          examples:
+            createLocationWithVoiceHostsExample:
+              $ref: '#/components/examples/createLocationWithVoiceHostsXmlExample'
+            createLocationWithVoiceHostGroupsExample:
+              $ref: >-
+                #/components/examples/createLocationWithVoiceHostGroupsXmlExample
+            createLocationWithOriginationRoutePlanExample:
+              $ref: >-
+                #/components/examples/createLocationWithOriginationRoutePlanXmlExample
+        application/json:
+          schema:
+            $ref: '#/components/schemas/createLocationJsonRequest'
+          examples:
+            createLocationWithVoiceHostsExample:
+              $ref: '#/components/examples/createLocationWithVoiceHostsJsonExample'
+            createLocationWithVoiceHostGroupsExample:
+              $ref: >-
+                #/components/examples/createLocationWithVoiceHostGroupsJsonExample
+            createLocationWithOriginationRoutePlanExample:
+              $ref: >-
+                #/components/examples/createLocationWithOriginationRoutePlanJsonExample
+    updateLocationRequest:
+      description: Update Location (SIP Peer) Request
+      required: true
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/updateLocationXmlRequest'
+          examples:
+            updateLocationExample:
+              $ref: '#/components/examples/updateLocationXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/updateLocationJsonRequest'
+          examples:
+            updateLocationExample:
+              $ref: '#/components/examples/updateLocationJsonExample'
+    associatedOutboundNumbersRequest:
+      content:
+        application/xml:
+          examples:
+            associatedOutboundNumbersRequestExample:
+              $ref: >-
+                #/components/examples/createAssociatedOutboundNumbersRequestXmlExample
+          schema:
+            properties:
+              AssociatedOutboundNumbers:
+                $ref: '#/components/schemas/associatedOutboundNumberRequest'
+        application/json:
+          examples:
+            associatedOutboundNumbersRequestExample:
+              $ref: >-
+                #/components/examples/createAssociatedOutboundNumbersRequestJsonExample
+          schema:
+            properties:
+              associatedOutboundNumbers:
+                type: array
+                items:
+                  $ref: '#/components/schemas/associatedOutboundNumberRequestJson'
+      description: OK
+  responses:
+    successResponse201:
+      description: Created
+    successResponse200:
+      description: OK
+    errorResponse401:
+      description: Unauthorized
+    errorResponse403:
+      description: Forbidden
+    errorResponse404:
+      description: Not Found
+    errorResponse429:
+      description: Too Many Requests
+    errorResponse500:
+      description: Internal Server Error
+    totalSeatsResponse:
+      description: OK
+      content:
+        application/xml:
+          examples:
+            totalSeatsSuccessExample:
+              $ref: '#/components/examples/totalSeatsSuccessXmlExample'
+          schema:
+            $ref: '#/components/schemas/accountUcTrunkingSeats'
+        application/json:
+          examples:
+            totalSeatsSuccessJsonExample:
+              $ref: '#/components/examples/totalSeatsSuccessJsonExample'
+          schema:
+            $ref: '#/components/schemas/accountUcTrunkingSeatsJson'
+    totalSeatsBadRequestErrorResponse:
+      description: Bad Request
+      content:
+        application/xml:
+          examples:
+            totalSeatsErrorExample:
+              $ref: '#/components/examples/totalSeatsErrorXmlExample'
+          schema:
+            $ref: '#/components/schemas/totalSeatsBadResponse'
+        application/json:
+          examples:
+            totalSeatsErrorJsonExample:
+              $ref: '#/components/examples/totalSeatsErrorJsonExample'
+          schema:
+            $ref: '#/components/schemas/responseStatusJson'
+    sippeerTotalSeatsSuccessResponse:
+      description: OK
+      content:
+        application/xml:
+          examples:
+            sippeerTotalSeatsSuccessExample:
+              $ref: '#/components/examples/sippeerTotalSeatsSuccessXmlExample'
+          schema:
+            $ref: '#/components/schemas/sippeerUcTrunkingSeats'
+        application/json:
+          examples:
+            totalSeatsSuccessJsonExample:
+              $ref: '#/components/examples/totalSeatsSuccessJsonExample'
+          schema:
+            $ref: '#/components/schemas/accountUcTrunkingSeatsJson'
+    sippeerTotalSeatsBadRequestErrorResponse:
+      description: Bad Request
+      content:
+        application/xml:
+          examples:
+            sippeerTotalSeatsErrorExample:
+              $ref: '#/components/examples/sippeerTotalSeatsErrorXmlExample'
+          schema:
+            $ref: '#/components/schemas/sippeerTotalSeatsBadResponse'
+        application/json:
+          examples:
+            sippeerTotalSeatsErrorJsonExample:
+              $ref: '#/components/examples/totalSeatsErrorJsonExample'
+          schema:
+            $ref: '#/components/schemas/responseStatusJson'
+    accountNotFoundErrorResponse:
+      description: Not Found
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/accountErrorResponseXmlWrapper'
+          examples:
+            accountExample:
+              $ref: '#/components/examples/accountNotFoundResponseXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponseJson'
+          examples:
+            accountExample:
+              $ref: '#/components/examples/accountNotFoundResponseJsonExample'
+    accountSystemErrorResponse:
+      description: System Error
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/accountErrorResponseXmlWrapper'
+          examples:
+            accountExample:
+              $ref: '#/components/examples/accountSystemErrorResponseXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponseJson'
+          examples:
+            accountExample:
+              $ref: '#/components/examples/accountSystemErrorResponseJsonExample'
+    accountResponse:
+      description: OK
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/accountResponseXmlWrapper'
+          examples:
+            accountExample:
+              $ref: '#/components/examples/accountResponseXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/accountJson'
+          examples:
+            accountExample:
+              $ref: '#/components/examples/accountResponseJsonExample'
+    subAccountTotalSeatsSuccessResponse:
+      description: OK
+      content:
+        application/xml:
+          examples:
+            totalSeatsSuccessExample:
+              $ref: '#/components/examples/subAccountTotalSeatsSuccessXmlExample'
+          schema:
+            $ref: '#/components/schemas/subAccountUcTrunkingSeats'
+        application/json:
+          examples:
+            totalSeatsSuccessJsonExample:
+              $ref: '#/components/examples/totalSeatsSuccessJsonExample'
+          schema:
+            $ref: '#/components/schemas/accountUcTrunkingSeatsJson'
+    subAccountTotalSeatsBadRequestErrorResponse:
+      description: Bad Request
+      content:
+        application/xml:
+          examples:
+            subAccountTotalSeatsErrorExample:
+              $ref: '#/components/examples/subAccountTotalSeatsErrorXmlExample'
+          schema:
+            $ref: '#/components/schemas/subAccountTotalSeatsBadRequestResponse'
+        application/json:
+          examples:
+            subAccountTotalSeatsErrorJsonExample:
+              $ref: '#/components/examples/totalSeatsErrorJsonExample'
+          schema:
+            $ref: '#/components/schemas/responseStatusJson'
+    locationCreatedResponse:
+      description: Created
+      headers:
+        Location:
+          description: The URL of the created Location (SIP Peer)
+          schema:
+            type: string
+          example: >-
+            https://api.bandwidth.com/api/v2/accounts/1234567/sites/407/sippeers/500017
+    locationsResponse:
+      description: OK
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/tnLocationsResponse'
+          examples:
+            locationsExample:
+              $ref: '#/components/examples/locationsXmlExample'
+        application/json:
+          schema:
+            properties:
+              locations:
+                type: array
+                items:
+                  $ref: '#/components/schemas/locationJson'
+          examples:
+            locationsExample:
+              $ref: '#/components/examples/locationsJsonExample'
+    locationResponse:
+      description: OK
+      content:
+        application/xml:
+          schema:
+            type: object
+            properties:
+              SipPeerResponse:
+                $ref: '#/components/schemas/locationResponse'
+          examples:
+            locationExample:
+              $ref: '#/components/examples/locationXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/locationJson'
+          examples:
+            locationExample:
+              $ref: '#/components/examples/locationJsonExample'
+    locationDeleteResponse:
+      description: OK
+      content:
+        application/xml:
+          schema:
+            type: object
+            properties:
+              SipPeerResponse:
+                $ref: '#/components/schemas/deleteLocationXmlResponse'
+          examples:
+            locationExample:
+              $ref: '#/components/examples/deleteLocationXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/deleteLocationJsonResponse'
+          examples:
+            locationExample:
+              $ref: '#/components/examples/deleteLocationJsonExample'
+    locationResponseBadRequestType1:
+      description: Bad Request
+      content:
+        application/xml:
+          examples:
+            example:
+              value: |-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <SipPeerResponse>
+                   <ResponseStatus>
+                      <ErrorCode>13582</ErrorCode>
+                      <Description>Enforce option is missing</Description>
+                   </ResponseStatus>
+                </SipPeerResponse>
+          schema:
+            $ref: '#/components/schemas/locationResponseBadRequest'
+        application/json:
+          examples:
+            example:
+              value:
+                errorCode: 13582
+                description: Enforce option is missing
+          schema:
+            $ref: '#/components/schemas/errorResponseJson'
+    locationResponseBadRequestType2:
+      description: Bad Request
+      content:
+        application/xml:
+          examples:
+            example:
+              value: |-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <SipPeerResponse>
+                   <ResponseStatus>
+                      <ErrorCode>13613</ErrorCode>
+                      <Description>Delete not allowed while a Location (SIP Peer) has SMS feature</Description>
+                   </ResponseStatus>
+                </SipPeerResponse>
+          schema:
+            $ref: '#/components/schemas/locationResponseBadRequest'
+        application/json:
+          examples:
+            example:
+              value:
+                errorCode: 13613
+                description: Delete not allowed while a Location (SIP Peer) has SMS feature
+          schema:
+            $ref: '#/components/schemas/errorResponseJson'
+    locationResponseBadRequestType3:
+      description: Bad Request
+      content:
+        application/xml:
+          examples:
+            example:
+              value: |-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <SipPeersResponse>
+                   <ResponseStatus>
+                      <ErrorCode>4014</ErrorCode>
+                      <Description>The SiteId submitted is invalid.</Description>
+                   </ResponseStatus>
+                </SipPeersResponse>
+          schema:
+            $ref: '#/components/schemas/locationResponseBadRequest'
+        application/json:
+          examples:
+            example:
+              value:
+                errorCode: 4014
+                description: The SiteId submitted is invalid.
+          schema:
+            $ref: '#/components/schemas/errorResponseJson'
+    locationResponseNotFound:
+      description: Not Found
+      content:
+        application/xml:
+          examples:
+            example:
+              value: |-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <SipPeerResponse>
+                  <ResponseStatus>
+                     <ErrorCode>13563</ErrorCode>
+                     <Description>Location (Sip Peer) '316167' account '9999999' and sub-account (site) '45' does not exist</Description>
+                  </ResponseStatus>
+                </SipPeerResponse>
+          schema:
+            $ref: '#/components/schemas/locationResponseBadRequest'
+        application/json:
+          examples:
+            example:
+              value:
+                errorCode: 13563
+                description: >-
+                  Location (Sip Peer) '316167' account '9999999' and sub-account
+                  (site) '45' does not exist
+          schema:
+            $ref: '#/components/schemas/errorResponseJson'
+    locationResponseConflict:
+      description: Conflict
+      content:
+        application/xml:
+          examples:
+            example:
+              value: >-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+                <SipPeerResponse>
+                   <ResponseStatus>
+                      <ErrorCode>12112</ErrorCode>
+                      <Description>The verifiable address closest to the submitted access is included below. Please use that street address or another valid street address in your next request</Description>
+                   </ResponseStatus>
+                   <AddressErrorDescription>
+                      <AddressInconsistencies>Some adjustments are required to allow the address to pass geocoding:
+                Specified value - City : "WASHINGTUN" Valid value -
+                "WASHINGTON"</AddressInconsistencies>
+                      <RecommendedAddress>
+                         <AddressLine1>1600 PENNSYLVANIA AVE NW</AddressLine1>
+                         <HouseNumber>1600</HouseNumber>
+                         <StreetName>PENNSYLVANIA</StreetName>
+                         <StreetSuffix>AVE</StreetSuffix>
+                         <PostDirectional>NW</PostDirectional>
+                         <City>WASHINGTON</City>
+                         <StateCode>DC</StateCode>
+                         <Zip>20500</Zip>
+                         <Country>US</Country>
+                      </RecommendedAddress>
+                   </AddressErrorDescription>
+                </SipPeerResponse>
+          schema:
+            $ref: '#/components/schemas/locationResponseConflict'
+        application/json:
+          examples:
+            example:
+              value:
+                errorCode: 13582
+                description: Enforce option is missing
+                addressInconsistencies: >-
+                  Some adjustments are required to allow the address to pass
+                  geocoding: Specified value - City : WASHINGTUN Valid value -
+                  WASHINGTON
+                recommendedAddress:
+                  addressLine1: 1600 PENNSYLVANIA AVE NW
+                  houseNumber: '1600'
+                  streetName: PENNSYLVANIA
+                  streetSuffix: AVE
+                  postDirectional: NW
+                  city: WASHINGTON
+                  stateCode: DC
+                  zip: '20500'
+                  country: US
+          schema:
+            $ref: '#/components/schemas/locationResponseConflictJson'
+    locationResponseServiceUnavailable:
+      description: Service unavailable
+      content:
+        application/xml:
+          examples:
+            example:
+              value: |-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <SipPeerResponse>
+                   <ResponseStatus>
+                      <ErrorCode>13566</ErrorCode>
+                      <Description>Service is unavailable</Description>
+                   </ResponseStatus>
+                </SipPeerResponse>
+          schema:
+            $ref: '#/components/schemas/locationResponseBadRequest'
+        application/json:
+          examples:
+            example:
+              value:
+                errorCode: 13566
+                description: Service is unavailable
+          schema:
+            $ref: '#/components/schemas/errorResponseJson'
+    subAccountCreatedResponse:
+      description: Created
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/subAccountResponseXmlWrapper'
+          examples:
+            siteExample:
+              $ref: '#/components/examples/subAccountResponseXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/subAccountJson'
+          examples:
+            subAccountExample:
+              $ref: '#/components/examples/subAccountResponseJsonExample'
+    subAccountResponse:
+      description: OK
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/subAccountResponseXmlWrapper'
+          examples:
+            siteExample:
+              $ref: '#/components/examples/subAccountResponseXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/subAccountJson'
+          examples:
+            subAccountExample:
+              $ref: '#/components/examples/subAccountResponseJsonExample'
+    subAccountBadRequestErrorResponse:
+      description: Bad Request
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/subAccountErrorResponseXmlWrapper'
+          examples:
+            siteExample:
+              $ref: '#/components/examples/subAccountBadRequestResponseXmlExample'
+        application/json:
+          schema:
+            anyOf:
+              - $ref: '#/components/schemas/errorResponseJson'
+              - $ref: '#/components/schemas/genericJsonResponse'
+          examples:
+            subAccountExample:
+              $ref: '#/components/examples/subAccountBadRequestResponseJsonExample'
+            genericJsonErrorExample:
+              $ref: '#/components/examples/genericJsonErrorForSubAccountExamplePost'
+    subAccountBadRequestErrorResponsePut:
+      description: Bad Request
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/subAccountErrorResponseXmlWrapper'
+          examples:
+            siteExample:
+              $ref: '#/components/examples/subAccountBadRequestResponseXmlExample'
+        application/json:
+          schema:
+            anyOf:
+              - $ref: '#/components/schemas/errorResponseJson'
+              - $ref: '#/components/schemas/genericJsonResponse'
+          examples:
+            subAccountExample:
+              $ref: '#/components/examples/subAccountBadRequestResponseJsonExample'
+            genericJsonErrorExample:
+              $ref: '#/components/examples/genericJsonErrorForSubAccountExamplePut'
+    subAccountConflictErrorResponse:
+      description: Conflict
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/subAccountErrorResponseXmlWrapper'
+          examples:
+            siteExample:
+              $ref: '#/components/examples/subAccountConflictResponseXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponseJson'
+          examples:
+            subAccountExample:
+              $ref: '#/components/examples/subAccountConflictResponseJsonExample'
+    subAccountsResponse:
+      description: OK
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/subAccountsResponseXmlWrapper'
+          examples:
+            sitesExample:
+              $ref: '#/components/examples/subAccountsResponseXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/subAccountsResponseJsonObject'
+          examples:
+            subAccountsExample:
+              $ref: '#/components/examples/subAccountsResponseJsonExample'
+    subAccountNotFoundErrorResponse:
+      description: Not Found
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/subAccountErrorResponseXmlWrapper'
+          examples:
+            siteExample:
+              $ref: '#/components/examples/subAccountNotFoundResponseXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponseJson'
+          examples:
+            subAccountExample:
+              $ref: '#/components/examples/subAccountNotFoundResponseJsonExample'
+    subAccountCantBeDeletedErrorResponse:
+      description: Bad Request
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/subAccountErrorResponseXmlWrapper'
+          examples:
+            siteExample:
+              $ref: '#/components/examples/subAccountCantBeDeletedResponseXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponseJson'
+          examples:
+            subAccountExample:
+              $ref: '#/components/examples/subAccountCantBeDeletedResponseJsonExample'
+    subAccountSystemErrorResponse:
+      description: System Error
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/subAccountErrorResponseXmlWrapper'
+          examples:
+            accountExample:
+              $ref: '#/components/examples/subAccountSystemErrorResponseXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponseJson'
+          examples:
+            accountExample:
+              $ref: '#/components/examples/subAccountSystemErrorResponseJsonExample'
+    subAccountsSystemErrorResponse:
+      description: System Error
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/subAccountsErrorResponseXmlWrapper'
+          examples:
+            accountExample:
+              $ref: '#/components/examples/subAccountsSystemErrorResponseXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponseJson'
+          examples:
+            accountExample:
+              $ref: '#/components/examples/subAccountSystemErrorResponseJsonExample'
+    a2pClassListResponse:
+      description: Ok
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/a2pClassListResponse'
+          examples:
+            a2pClassListResponseExample:
+              $ref: '#/components/examples/a2pClassListResponseExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/a2pClassListResponseJson'
+          examples:
+            a2pClassListResponseExample:
+              $ref: '#/components/examples/a2pClassListResponseExampleJson'
+    a2pClassResponse:
+      description: Ok
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/a2pClassResponse'
+          examples:
+            a2pClassResponseExample:
+              $ref: '#/components/examples/a2pClassResponseExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/a2pClassJson'
+          examples:
+            a2pClassResponseExample:
+              $ref: '#/components/examples/a2pClassResponseExampleJson'
+    a2pClassNotFoundResponse:
+      description: A2P Class not found
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/adminDataErrorResponse'
+          examples:
+            a2pClassNotFoundExample:
+              $ref: '#/components/examples/a2pClassNotFoundExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/adminDataErrorResponseJson'
+          examples:
+            a2pClassNotFoundExample:
+              $ref: '#/components/examples/a2pClassNotFoundExampleJson'
+    adminDataErrorResponse500:
+      description: Internal Server Error
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/adminDataErrorResponse'
+          examples:
+            adminDataErrorResponse500:
+              $ref: '#/components/examples/adminDataErrorResponse500'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/adminDataErrorResponseJson'
+          examples:
+            adminDataErrorResponse500:
+              $ref: '#/components/examples/adminDataErrorResponse500Json'
+    associatedOutboundNumbersResponse:
+      description: OK
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/associatedOutboundNumbersResponseWrapper'
+          examples:
+            associatedOutboundNumbersExample:
+              $ref: '#/components/examples/associatedOutboundNumbersXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/associatedOutboundNumbersResponseJson'
+          examples:
+            associatedOutboundNumbersExample:
+              $ref: '#/components/examples/associatedOutboundNumbersJsonExample'
+    createAssociatedOutboundNumbersResponse:
+      description: OK
+      content:
+        application/xml:
+          schema:
+            $ref: >-
+              #/components/schemas/associatedOutboundNumbersCreateResponseWrapper
+          examples:
+            associatedOutboundNumbersExample:
+              $ref: >-
+                #/components/examples/createAssociatedOutboundNumbersResponseXmlExample
+        application/json:
+          schema:
+            $ref: '#/components/schemas/associatedOutboundNumbersCreateResponseJson'
+          examples:
+            associatedOutboundNumbersExample:
+              $ref: >-
+                #/components/examples/createAssociatedOutboundNumbersResponseJsonExample
+    associatedOutboundNumbersResponseBadRequest:
+      description: Bad Request
+      content:
+        application/xml:
+          examples:
+            example:
+              value: |-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <AssociatedOutboundNumbersResponse>
+                   <ResponseStatus>
+                      <ErrorCode>4014</ErrorCode>
+                      <Description>The SiteId submitted is invalid.</Description>
+                   </ResponseStatus>
+                </AssociatedOutboundNumbersResponse>
+          schema:
+            $ref: '#/components/schemas/associatedOutboundNumbersErrorResponse'
+        application/json:
+          examples:
+            example:
+              value:
+                errorCode: 4014
+                description: The SiteId submitted is invalid.
+          schema:
+            $ref: '#/components/schemas/errorResponseJson'
+    associatedOutboundNumbersResponseNotFound:
+      description: Not Found
+      content:
+        application/xml:
+          examples:
+            example:
+              value: |-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <AssociatedOutboundNumbersResponse>
+                   <ResponseStatus>
+                      <ErrorCode>13704</ErrorCode>
+                      <Description>Outbound Number Id 1 does not exist for location [ID: 500020].</Description>
+                   </ResponseStatus>
+                </AssociatedOutboundNumbersResponse>
+          schema:
+            $ref: '#/components/schemas/associatedOutboundNumbersErrorResponse'
+        application/json:
+          examples:
+            example:
+              value:
+                errorCode: 13704
+                description: 'Outbound Number Id 1 does not exist for location [ID: 500020].'
+          schema:
+            $ref: '#/components/schemas/errorResponseJson'
+  examples:
+    accountNotFoundResponseXmlExample:
+      description: An example of an account not found response in XML format
+      value: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <AccountResponse>
+          <ResponseStatus>
+            <ErrorCode>4022</ErrorCode>
+            <Description>Account '14353' does not exist or is locked</Description>
+          </ResponseStatus>
+        </AccountResponse>
+    accountSystemErrorResponseXmlExample:
+      description: An example of a system error response in XML format
+      value: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <AccountResponse>
+          <ResponseStatus>
+            <ErrorCode>1010</ErrorCode>
+            <Description>Something unexpected happened and has been logged (id=2e91ed6f-53af-4854-a33f-6ebd32f6e9cf). 
+              Please contact Bandwidth support with this error ID to resolve the issue with our development team.
+            </Description>
+          </ResponseStatus>
+        </AccountResponse>
+    accountResponseXmlExample:
+      description: An example of an account response in XML format
+      value: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <AccountResponse>
+          <Account>
+            <AccountId>14</AccountId>
+            <AssociatedCatapultAccount>u-ertyhgfd12dcvdhnboklk</AssociatedCatapultAccount>
+            <GlobalAccountNumber>BW-7123456</GlobalAccountNumber>
+            <CompanyName>CWI Hosting</CompanyName>
+            <AccountType>Business</AccountType>
+            <NenaId/>
+            <CustomerSegment>Trial</CustomerSegment>
+            <Status>Active</Status>
+            <Tiers>
+              <Tier>0</Tier>
+            </Tiers>
+            <Address>
+              <HouseNumber>123</HouseNumber>
+              <HouseSuffix>E</HouseSuffix>
+              <PreDirectional/>
+              <StreetName>Main</StreetName>
+              <StreetSuffix>St</StreetSuffix>
+              <PostDirectional/>
+              <AddressLine2>Apt 12B</AddressLine2>
+              <City>Raleigh</City>
+              <StateCode>NC</StateCode>
+              <Zip>27607</Zip>
+              <PlusFour>1234</PlusFour>
+              <County>Wake</County>
+              <Country>United States</Country>
+              <AddressType>Billing</AddressType>
+            </Address>
+            <LinkedAddresses>
+              <LinkedAddress>
+                <AddressId>daa9dd0f-de97-4103-8530-b31bf4be8fc0</AddressId>
+                <AddressType>Service</AddressType>
+                <Link>https://api.bandwidth.com/api/v2/accounts/14/addresses/daa9dd0f-de97-4103-8530-b31bf4be8fc0</Link>
+              </LinkedAddress>
+            </LinkedAddresses> 
+            <Contact>
+              <FirstName>Sanjay</FirstName>
+              <LastName>Rao</LastName>
+              <Phone>+19195441234</Phone>
+              <Email>srao@bandwidth.com</Email>
+            </Contact>
+            <AltSpid>X455</AltSpid>
+            <SPID>9999</SPID>
+            <PortCarrierType>WIRELINE</PortCarrierType>
+            <TestAccount>false</TestAccount>
+            <SupportLevel>Signature</SupportLevel>
+          </Account>
+        </AccountResponse>
+    accountNotFoundResponseJsonExample:
+      description: An example of an account not found response in JSON format
+      value:
+        errorCode: 4022
+        description: Account '14353' does not exist or is locked
+    accountSystemErrorResponseJsonExample:
+      description: An example of a system error response in JSON format
+      value:
+        errorCode: 1010
+        description: >
+          Something unexpected happened and has been logged
+          (id=5bdf62d9-64f5-4a67-ab32-9117e4fa3001). 
+
+          Please contact Bandwidth support with this error ID to resolve the
+          issue with our development team.
+    accountResponseJsonExample:
+      description: An example of an account response in JSON format
+      value:
+        accountId: 14
+        associatedCatapultAccount: u-ertyhgfd12dcvdhnboklk
+        globalAccountNumber: BW-7123456
+        companyName: CWI Hosting
+        accountType: Business
+        customerSegment: Trial
+        status: Active
+        tiers:
+          - 0
+        address:
+          houseNumber: '123'
+          houseSuffix: E
+          preDirectional: SE
+          streetName: Main
+          streetSuffix: St
+          postDirectional: NW
+          addressLine2: Apt 12B
+          city: Raleigh
+          stateCode: NC
+          zip: '27607'
+          plusFour: '1234'
+          county: Wake
+          country: United States
+          addressType: Billing
+        linkedAddresses:
+          - addressId: daa9dd0f-de97-4103-8530-b31bf4be8fc0
+            addressType: Service
+            link: >-
+              https://api.bandwidth.com/api/v2/accounts/14/addresses/daa9dd0f-de97-4103-8530-b31bf4be8fc0
+        contact:
+          firstName: Sanjay
+          lastName: Rao
+          phoneNumber: '+19195441234'
+          email: srao@bandwidth.com
+        altSpid: X455
+        spid: '9999'
+        portCarrierType: WIRELINE
+        testAccount: false
+        supportLevel: Signature
+    totalSeatsSuccessXmlExample:
+      description: An example of total seats displayed for an account
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <AccountTotalSeatsResponse>
+            <UcTrunkingSeats>
+                <TotalCount>12</TotalCount>
+            </UcTrunkingSeats>
+        </AccountTotalSeatsResponse>
+    totalSeatsErrorXmlExample:
+      value: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <AccountTotalSeatsResponse>
+           <ResponseStatus>
+              <ErrorCode>12017</ErrorCode>
+              <Description>Account '12346099' does not have product 'UcTrunking'</Description>
+           </ResponseStatus>
+        </AccountTotalSeatsResponse>
+    sippeerTotalSeatsSuccessXmlExample:
+      description: An example of total seats displayed for a Location (SIP Peer)
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <SipPeerTotalSeatsResponse>
+            <UcTrunkingSeats>
+                <TotalCount>12</TotalCount>
+            </UcTrunkingSeats>
+        </SipPeerTotalSeatsResponse>
+    sippeerTotalSeatsErrorXmlExample:
+      value: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <SipPeerTotalSeatsResponse>
+           <ResponseStatus>
+              <ErrorCode>12017</ErrorCode>
+              <Description>Account '12346099' does not have product 'UcTrunking'</Description>
+           </ResponseStatus>
+        </SipPeerTotalSeatsResponse>
+    totalSeatsErrorJsonExample:
+      description: example
+      value:
+        errorCode: 12017
+        description: Account '14' does not have product 'UcTrunking'
+    totalSeatsSuccessJsonExample:
+      description: example
+      value:
+        ucTrunkingSeats:
+          phoneNumberCount: 12
+    createSubAccountForNonUcXmlExample:
+      description: An example of a Sub-Account request for NON-UC accounts
+      value: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <Site>
+           <Name>Raleigh</Name>
+           <Description>Test Gateway</Description>
+           <CustomerName>BW</CustomerName>
+           <Address>
+              <HouseNumber>1600</HouseNumber>
+              <StreetName>PENNSYLVANIA</StreetName>
+              <StreetSuffix>AVE</StreetSuffix>
+              <PostDirectional>NW</PostDirectional>
+              <City>WASHINGTON</City>
+              <StateCode>DC</StateCode>
+              <Zip>20006</Zip>
+              <Country>US</Country>
+           </Address>
+           <LinkedAddresses>
+              <LinkedAddress>
+                <AddressId>daa9dd0f-de97-4103-8530-b31bf4be8fc0</AddressId>
+                <AddressType>Service</AddressType>
+                <Link>https://api.bandwidth.com/api/v2/accounts/14/addresses/daa9dd0f-de97-4103-8530-b31bf4be8fc0</Link>
+              </LinkedAddress>
+           </LinkedAddresses> 
+        </Site>
+    createSubAccountForUcXmlExample:
+      description: An example of a Sub-Account request for UC accounts
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <Site>
+           <Name>Raleigh</Name>
+           <Description>Test Gateway</Description>
+           <CustomerName>BW</CustomerName>
+           <Address>
+              <HouseNumber>1600</HouseNumber>
+              <StreetName>PENNSYLVANIA</StreetName>
+              <StreetSuffix>AVE</StreetSuffix>
+              <PostDirectional>NW</PostDirectional>
+              <City>WASHINGTON</City>
+              <StateCode>DC</StateCode>
+              <Zip>20006</Zip>
+              <Country>US</Country>
+           </Address>
+           <LinkedAddresses>
+              <LinkedAddress>
+                <AddressId>daa9dd0f-de97-4103-8530-b31bf4be8fc0</AddressId>
+                <AddressType>Service</AddressType>
+                <Link>https://api.bandwidth.com/api/v2/accounts/14/addresses/daa9dd0f-de97-4103-8530-b31bf4be8fc0</Link>
+              </LinkedAddress>
+           </LinkedAddresses> 
+           <UcTrunkingConfiguration>
+              <Type>Seats</Type>
+              <UsageCategory>UC500</UsageCategory>
+           </UcTrunkingConfiguration>
+        </Site>
+    createSubAccountForGlobalAddressXmlExample:
+      description: An example of a Sub-Account request for accounts with global addresses
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <Site>
+           <Name>Raleigh</Name>
+           <Description>Test Gateway</Description>
+           <CustomerName>BW</CustomerName>
+           <LinkedAddresses>
+             <LinkedAddress>
+               <AddressId>daa9dd0f-de97-4103-8530-b31bf4be8fc0</AddressId>
+               <AddressType>Service</AddressType>
+               <Link>https://api.bandwidth.com/api/v2/accounts/14/addresses/daa9dd0f-de97-4103-8530-b31bf4be8fc0</Link>
+             </LinkedAddress>
+           </LinkedAddresses>  
+           <UcTrunkingConfiguration>
+              <Type>Seats</Type>
+              <UsageCategory>UC500</UsageCategory>
+           </UcTrunkingConfiguration>
+        </Site>
+    createSubAccountForNonUcJsonExample:
+      description: An example of a Sub-Account request for NON-UC accounts
+      value:
+        name: Raleigh
+        description: Test Gateway
+        customerName: BW
+        customerProvidedId: '14'
+        address:
+          houseNumber: '1600'
+          streetName: PENNSYLVANIA
+          streetSuffix: AVE
+          postDirectional: NW
+          city: WASHINGTON
+          stateCode: DC
+          zip: '20006'
+          country: US
+        linkedAddresses:
+          - addressId: daa9dd0f-de97-4103-8530-b31bf4be8fc0
+            addressType: Service
+            link: >-
+              https://api.bandwidth.com/api/v2/accounts/14/addresses/daa9dd0f-de97-4103-8530-b31bf4be8fc0
+    createSubAccountForUcJsonExample:
+      description: An example of a Sub-Account request for UC accounts
+      value:
+        name: Raleigh
+        description: Test Gateway
+        customerName: BW
+        address:
+          houseNumber: '1600'
+          streetName: PENNSYLVANIA
+          streetSuffix: AVE
+          postDirectional: NW
+          city: WASHINGTON
+          stateCode: DC
+          zip: '20006'
+          country: US
+        linkedAddresses:
+          - addressId: daa9dd0f-de97-4103-8530-b31bf4be8fc0
+            addressType: Service
+            link: >-
+              https://api.bandwidth.com/api/v2/accounts/14/addresses/daa9dd0f-de97-4103-8530-b31bf4be8fc0
+        ucTrunkingConfiguration:
+          type: Seats
+          usageCategory: UC500
+    createSubAccountForGlobalAddressJsonExample:
+      description: An example of a Sub-Account request for accounts with global addresses
+      value:
+        name: Raleigh
+        description: Test Gateway
+        customerName: BW
+        linkedAddresses:
+          - addressId: daa9dd0f-de97-4103-8530-b31bf4be8fc0
+            addressType: Service
+            link: >-
+              https://api.bandwidth.com/api/v2/accounts/14/addresses/daa9dd0f-de97-4103-8530-b31bf4be8fc0
+        ucTrunkingConfiguration:
+          type: Seats
+          usageCategory: UC500
+    subAccountResponseXmlExample:
+      description: An example of a Sub-Account response
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <SiteResponse>
+           <Site>
+              <Id>3013</Id>
+              <Name>Raleigh</Name>
+              <Description>Test Gateway</Description>
+              <CustomerName>BW</CustomerName>
+              <CustomerId>14</CustomerId>
+              <Address>
+                 <HouseNumber>1600</HouseNumber>
+                 <StreetName>PENNSYLVANIA</StreetName>
+                 <StreetSuffix>AVE</StreetSuffix>
+                 <PostDirectional>NW</PostDirectional>
+                 <City>WASHINGTON</City>
+                 <StateCode>DC</StateCode>
+                 <Zip>20006</Zip>
+                 <Country>US</Country>
+                 <AddressType>Service</AddressType>
+              </Address>
+              <LinkedAddresses>
+                <LinkedAddress>
+                  <AddressId>daa9dd0f-de97-4103-8530-b31bf4be8fc0</AddressId>
+                  <AddressType>Service</AddressType>
+                  <Link>https://api.bandwidth.com/api/v2/accounts/14/addresses/daa9dd0f-de97-4103-8530-b31bf4be8fc0</Link>
+                </LinkedAddress>
+              </LinkedAddresses> 
+           </Site>
+        </SiteResponse>
+    subAccountResponseJsonExample:
+      description: An example of a Sub-Account response
+      value:
+        id: 3013
+        name: Raleigh
+        description: Test Gateway
+        customerName: BW
+        customerId: '14'
+        address:
+          houseNumber: '1600'
+          streetName: PENNSYLVANIA
+          streetSuffix: AVE
+          postDirectional: NW
+          city: WASHINGTON
+          stateCode: DC
+          zip: '20006'
+          country: US
+          addressType: Service
+        linkedAddresses:
+          - addressId: daa9dd0f-de97-4103-8530-b31bf4be8fc0
+            addressType: Service
+            link: >-
+              https://api.bandwidth.com/api/v2/accounts/14/addresses/daa9dd0f-de97-4103-8530-b31bf4be8fc0
+    subAccountBadRequestResponseXmlExample:
+      description: Response body for validation errors
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <SiteResponse>
+          <ResponseStatus>
+            <ErrorCode>1003</ErrorCode>
+            <Description>Name is required</Description>
+          </ResponseStatus>
+        </SiteResponse>
+    subAccountBadRequestResponseJsonExample:
+      description: Response body for validation errors
+      value:
+        errorCode: 12561
+        description: name is required
+    genericJsonErrorForSubAccountExamplePut:
+      description: Error response body for malformed JSON requests
+      value:
+        errors:
+          - code: '1023'
+            description: Invalid data type for field 'nme'
+            type: >-
+              The JSON request body is invalid. Please check your request and
+              try again.
+        links:
+          - href: https://api.bandwidth.com/api/v2/admin/sites/1
+            method: PUT
+            rel: self
+    genericJsonErrorForSubAccountExamplePost:
+      description: Error response body for malformed JSON requests
+      value:
+        errors:
+          - code: '1023'
+            description: Invalid data type for field 'nme'
+            type: >-
+              The JSON request body is invalid. Please check your request and
+              try again.
+        links:
+          - href: https://api.bandwidth.com/api/v2/admin/sites
+            method: POST
+            rel: self
+    subAccountConflictResponseXmlExample:
+      description: An example of a Sub-Account conflict response
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <SiteResponse>
+          <ResponseStatus>
+            <ErrorCode>12015</ErrorCode>
+            <Description>A Sub-Account (site) with id '15138' already exists</Description>
+          </ResponseStatus>
+        </SiteResponse>
+    subAccountConflictResponseJsonExample:
+      description: An example of a Sub-Account conflict response
+      value:
+        errorCode: 12015
+        description: A Sub-Account (site) with id '15138' already exists
+    subAccountsResponseXmlExample:
+      description: An example of an Sub-Accounts response
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+          <SitesResponse>
+            <Sites>
+              <Site>
+                <Id>50</Id>
+                <Name>siteName</Name>
+                <Description>siteDescription</Description>
+                <UcTrunkingConfiguration>
+                  <Type>Seats</Type>
+                </UcTrunkingConfiguration>
+                <TotalTnCount>0</TotalTnCount>
+                <SipPeerCount>0</SipPeerCount>
+              </Site>
+              <Site>
+                <Id>52</Id>
+                <Name>siteName</Name>
+                <Description>Create for 9900008</Description>
+                <UcTrunkingConfiguration>
+                  <Type>Seats</Type>
+                </UcTrunkingConfiguration>
+                <SipPeers>
+                  <SipPeer>
+                    <PeerId>500197</PeerId>
+                    <PeerName>Location 500197</PeerName>
+                    <IsDefaultPeer>true</IsDefaultPeer>
+                    <TnCount>0</TnCount>
+                  </SipPeer>
+                </SipPeers>
+                <TotalTnCount>10</TotalTnCount>
+                <SipPeerCount>1</SipPeerCount>
+              </Site>
+            </Sites>
+          </SitesResponse>
+    subAccountsResponseJsonExample:
+      description: An example of an Sub-Accounts response
+      value:
+        subAccounts:
+          - id: 399
+            name: TestSubAccount1
+            description: NewSubAccount
+            ucTrunkingConfiguration:
+              type: Seats
+            totalPhoneNumberCount: 0
+            locationCount: 0
+          - id: 403
+            name: TestSubAccount2
+            description: SomeOtherSubAccount
+            ucTrunkingConfiguration:
+              type: Seats
+            totalPhoneNumberCount: 0
+            locationCount: 1
+            locations:
+              - locationId: 500197
+                locationName: Location 500197
+                isDefaultLocation: true
+                phoneNumberCount: 0
+    subAccountNotFoundResponseXmlExample:
+      description: The Sub-Account was not found for supplied ID
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <SiteResponse>
+          <ResponseStatus>
+            <ErrorCode>12016</ErrorCode>
+            <Description>Sub-Account (Site) '50325432' does not exist</Description>
+          </ResponseStatus>
+        </SiteResponse>
+    subAccountNotFoundResponseJsonExample:
+      description: An example of a Sub-Account not found response
+      value:
+        errorCode: 12016
+        description: Sub-Account (Site) '50325432' does not exist
+    subAccountCantBeDeletedResponseXmlExample:
+      description: An example of a Sub-Account that can't be deleted response
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <SiteResponse>
+          <ResponseStatus>
+            <ErrorCode>12031</ErrorCode>
+            <Description>Please remove all locations before proceeding with this remove.</Description>
+          </ResponseStatus>
+        </SiteResponse>
+    subAccountCantBeDeletedResponseJsonExample:
+      description: An example of a Sub-Account that can't be deleted response
+      value:
+        errorCode: 12031
+        description: Please remove all locations before proceeding with this remove.
+    subAccountSystemErrorResponseXmlExample:
+      description: An example of a system error response
+      value: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <SiteResponse>
+          <ResponseStatus>
+            <ErrorCode>1010</ErrorCode>
+            <Description>Something unexpected happened and has been logged (id=2e91ed6f-53af-4854-a33f-6ebd32f6e9cf). 
+              Please contact Bandwidth support with this error ID to resolve the issue with our development team.
+            </Description>
+          </ResponseStatus>
+        </SiteResponse>
+    subAccountSystemErrorResponseJsonExample:
+      description: An example of a system error response
+      value:
+        errorCode: 1010
+        description: >-
+          Something unexpected happened and has been logged
+          (id=2e91ed6f-53af-4854-a33f-6ebd32f6e9cf). Please contact Bandwidth
+          support with this error ID to resolve the issue with our development
+          team.
+    subAccountsSystemErrorResponseXmlExample:
+      description: An example of a system error response
+      value: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <SitesResponse>
+          <ResponseStatus>
+            <ErrorCode>1010</ErrorCode>
+            <Description>Something unexpected happened and has been logged (id=2e91ed6f-53af-4854-a33f-6ebd32f6e9cf). 
+              Please contact Bandwidth support with this error ID to resolve the issue with our development team.
+            </Description>
+          </ResponseStatus>
+        </SitesResponse>
+    locationsXmlExample:
+      description: Successful response for retrieving locations.
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <TNSipPeersResponse>
+           <SipPeers>
+              <SipPeer>
+                 <PeerId>304985</PeerId>
+                 <PeerName>CNAM-TEST-778</PeerName>
+                 <Description>description</Description>
+                 <IsDefaultPeer>false</IsDefaultPeer>
+                 <VoiceHosts />
+                 <VoiceHostGroups />
+                 <TerminationHosts />
+                 <OriginationRoutePlan />
+                 <Address>
+                    <HouseNumber>1600</HouseNumber>
+                    <HouseSuffix />
+                    <PreDirectional />
+                    <StreetName>Pennsylvania Avenue Northwest</StreetName>
+                    <StreetSuffix />
+                    <PostDirectional />
+                    <AddressLine2 />
+                    <City>Washington</City>
+                    <StateCode>DC</StateCode>
+                    <Zip>20500</Zip>
+                    <PlusFour />
+                    <County />
+                    <Country>United States</Country>
+                    <AddressType>Service</AddressType>
+                 </Address>
+                 <CallingName>
+                    <Display>false</Display>
+                    <Enforced>false</Enforced>
+                 </CallingName>
+              </SipPeer>
+           </SipPeers>
+        </TNSipPeersResponse>
+    locationsJsonExample:
+      description: Successful response for retrieving locations.
+      value:
+        locations:
+          - locationId: 304985
+            locationName: CNAM-TEST-778
+            description: description
+            isDefaultLocation: false
+            voiceHosts: []
+            voiceHostGroups: []
+            terminationHosts: []
+            originationRoutePlan: {}
+            address:
+              houseNumber: '1600'
+              houseSuffix: ''
+              preDirectional: ''
+              streetName: Pennsylvania Avenue Northwest
+              streetSuffix: ''
+              postDirectional: ''
+              addressLine2: ''
+              city: Washington
+              stateCode: DC
+              zip: '20500'
+              plusFour: ''
+              county: ''
+              country: United States
+              addressType: Service
+            callingName:
+              display: false
+              enforced: false
+    createLocationWithVoiceHostsXmlExample:
+      description: Create a location with voice hosts.
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <SipPeer>
+           <PeerName>name</PeerName>
+           <Description>description</Description>
+           <IsDefaultPeer>false</IsDefaultPeer>
+           <FinalDestinationUri>uri</FinalDestinationUri>
+           <VoiceHosts>
+              <Host>
+                 <HostName>"10.10.10.1"</HostName>
+              </Host>
+              <Host>
+                 <HostName>10.10.10.2</HostName>
+              </Host>
+           </VoiceHosts>
+           <TerminationHosts>
+              <TerminationHost>
+                 <HostName>2.1.1.9</HostName>
+                 <Port>0</Port>
+                 <CustomerTrafficAllowed>DOMESTIC</CustomerTrafficAllowed>
+              </TerminationHost>
+              <TerminationHost>
+                 <HostName>2.1.1.96/30</HostName>
+                 <Port>0</Port>
+                 <CustomerTrafficAllowed>DOMESTIC</CustomerTrafficAllowed>
+              </TerminationHost>
+           </TerminationHosts>
+           <Address>
+              <HouseNumber>1600</HouseNumber>
+              <HouseSuffix />
+              <PreDirectional />
+              <StreetName>PENNSYLVANIA AVE NW</StreetName>
+              <StreetSuffix />
+              <PostDirectional />
+              <AddressLine2 />
+              <City>WASHINGTON</City>
+              <StateCode>DC</StateCode>
+              <Zip>20500</Zip>
+              <PlusFour />
+              <County />
+              <Country>United States</Country>
+              <AddressType>Service</AddressType>
+           </Address>
+           <PremiseTrunks>PremiseTrunks</PremiseTrunks>
+           <CallingName>
+              <Display>true</Display>
+              <Enforced>true</Enforced>
+           </CallingName>
+           <SsSendToCustomer>NONE</SsSendToCustomer>
+        </SipPeer>
+    createLocationWithVoiceHostsJsonExample:
+      description: Create a location with voice hosts.
+      value:
+        locationName: name
+        description: description
+        isDefaultLocation: false
+        finalDestinationUri: uri
+        voiceHosts:
+          hosts:
+            - hostName: 10.10.10.1
+            - hostName: 10.10.10.2
+        terminationHosts:
+          terminationHosts:
+            - hostName: 2.1.1.9
+              port: '0'
+              customerTrafficAllowed: DOMESTIC
+            - hostName: 2.1.1.96/30
+              port: '0'
+              customerTrafficAllowed: DOMESTIC
+        address:
+          houseNumber: '1600'
+          houseSuffix: ''
+          preDirectional: ''
+          streetName: PENNSYLVANIA AVE NW
+          streetSuffix: ''
+          postDirectional: ''
+          addressLine2: ''
+          city: WASHINGTON
+          stateCode: DC
+          zip: '20500'
+          plusFour: ''
+          county: ''
+          country: United States
+          addressType: Service
+        premiseTrunks: PremiseTrunks
+        callingName:
+          display: true
+          enforced: true
+        ssSendToCustomer: NONE
+    createLocationWithVoiceHostGroupsXmlExample:
+      description: Create a location with voice host groups.
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <SipPeer>
+           <PeerName>name</PeerName>
+           <Description>description</Description>
+           <IsDefaultPeer>false</IsDefaultPeer>
+           <FinalDestinationUri>uri</FinalDestinationUri>
+           <VoiceHostGroups>
+              <VoiceHostGroup>
+                 <Host>
+                    <HostName>10.10.10.1</HostName>
+                 </Host>
+                 <Host>
+                    <HostName>10.10.10.2</HostName>
+                 </Host>
+              </VoiceHostGroup>
+           </VoiceHostGroups>
+           <TerminationHosts>
+              <TerminationHost>
+                 <HostName>2.1.1.9</HostName>
+                 <Port>0</Port>
+                 <CustomerTrafficAllowed>DOMESTIC</CustomerTrafficAllowed>
+              </TerminationHost>
+              <TerminationHost>
+                 <HostName>2.1.1.96/30</HostName>
+                 <Port>0</Port>
+                 <CustomerTrafficAllowed>DOMESTIC</CustomerTrafficAllowed>
+              </TerminationHost>
+           </TerminationHosts>
+           <SsSendToCustomer>NONE</SsSendToCustomer>
+        </SipPeer>
+    createLocationWithVoiceHostGroupsJsonExample:
+      description: Create a location with voice host groups.
+      value:
+        locationName: name
+        description: description
+        isDefaultLocation: false
+        finalDestinationUri: uri
+        voiceHostGroups:
+          - hosts:
+              - hostName: 10.10.10.1
+        terminationHosts:
+          terminationHosts:
+            - hostName: 2.1.1.9
+              port: '0'
+              customerTrafficAllowed: DOMESTIC
+            - hostName: 2.1.1.96/30
+              port: '0'
+              customerTrafficAllowed: DOMESTIC
+        ssSendToCustomer: NONE
+    createLocationWithOriginationRoutePlanXmlExample:
+      description: Create a location with an origination route plan.
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <SipPeer>
+          <PeerName>name</PeerName>
+          <Description>description</Description>
+          <IsDefaultPeer>false</IsDefaultPeer>
+          <OriginationRoutePlan>
+              <Route>
+                  <Endpoint>6105552502</Endpoint>
+                  <Priority>1</Priority>
+                  <Weight>100</Weight>
+              </Route>
+              <Route>
+                  <Endpoint>sip:clarkkent@dailyplanet.com</Endpoint>
+                  <Priority>2</Priority>
+                  <Weight>100</Weight>
+              </Route>
+              <Route>
+                  <Endpoint>192.168.20.21</Endpoint>
+                  <Priority>3</Priority>
+                  <Weight>50</Weight>
+              </Route>
+              <Route>
+                  <Endpoint>7075552509</Endpoint>
+                  <Priority>3</Priority>
+                  <Weight>50</Weight>
+              </Route>
+              <Route>
+                  <Endpoint>myhost.bandwidth.example</Endpoint>
+                  <Priority>4</Priority>
+                  <Weight>100</Weight>
+              </Route>
+              <Action>asSpecified</Action>
+          </OriginationRoutePlan>
+          <TerminationHosts>
+              <TerminationHost>
+                  <HostName>2.1.1.9</HostName>
+                  <Port>0</Port>
+                  <CustomerTrafficAllowed>DOMESTIC</CustomerTrafficAllowed>
+              </TerminationHost>
+              <TerminationHost>
+                  <HostName>2.1.1.96/30</HostName>
+                  <Port>0</Port>
+                  <CustomerTrafficAllowed>DOMESTIC</CustomerTrafficAllowed>
+              </TerminationHost>
+          </TerminationHosts>
+        </SipPeer>
+    createLocationWithOriginationRoutePlanJsonExample:
+      description: Create a location with an origination route plan.
+      value:
+        locationName: name
+        description: description
+        isDefaultLocation: false
+        originationRoutePlan:
+          originationRoutes:
+            - endpoint: '6105552502'
+              priority: 2
+              weight: 100
+            - endpoint: sip:clarkkent@dailyplanet.com
+              priority: 2
+              weight: 100
+            - endpoint: 192.168.20.21
+              priority: 3
+              weight: 50
+            - endpoint: '7075552509'
+              priority: 3
+              weight: 50
+            - endpoint: myhost.bandwidth.example
+              priority: 4
+              weight: 100
+        terminationHosts:
+          terminationHosts:
+            - hostName: 2.1.1.9
+              port: '0'
+              customerTrafficAllowed: DOMESTIC
+            - hostName: 2.1.1.96/30
+              port: '0'
+              customerTrafficAllowed: DOMESTIC
+    locationXmlExample:
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <SipPeerResponse>
+           <SipPeer>
+              <PeerId>304985</PeerId>
+              <PeerName>CNAM-TEST-778</PeerName>
+              <Description>description</Description>
+              <IsDefaultPeer>false</IsDefaultPeer>
+              <VoiceHosts />
+              <VoiceHostGroups />
+              <TerminationHosts />
+              <OriginationRoutePlan />
+              <Address>
+                 <HouseNumber>1600</HouseNumber>
+                 <HouseSuffix />
+                 <PreDirectional />
+                 <StreetName>PENNSYLVANIA AVE NW</StreetName>
+                 <StreetSuffix />
+                 <PostDirectional />
+                 <AddressLine2 />
+                 <City>Washington</City>
+                 <StateCode>DC</StateCode>
+                 <Zip>20500</Zip>
+                 <PlusFour />
+                 <County />
+                 <Country>United States</Country>
+                 <AddressType>Service</AddressType>
+              </Address>
+              <CallingName>
+                 <Display>false</Display>
+                 <Enforced>false</Enforced>
+              </CallingName>
+           </SipPeer>
+        </SipPeerResponse>
+    locationJsonExample:
+      value:
+        locationId: 304985
+        locationName: CNAM-TEST-778
+        description: description
+        isDefaultLocation: false
+        voiceHosts: []
+        voiceHostGroups: []
+        terminationHosts: []
+        originationRoutePlan: {}
+        address:
+          houseNumber: '1600'
+          houseSuffix: ''
+          preDirectional: ''
+          streetName: PENNSYLVANIA AVE NW
+          streetSuffix: ''
+          postDirectional: ''
+          addressLine2: ''
+          city: Washington
+          stateCode: DC
+          zip: '20500'
+          plusFour: ''
+          county: ''
+          country: United States
+          addressType: Service
+        callingName:
+          display: false
+          enforced: false
+    updateLocationXmlExample:
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+          <SipPeer>
+             <PeerName>name</PeerName>
+             <Description>description</Description>
+             <IsDefaultPeer>false</IsDefaultPeer>
+             <VoiceHosts>
+                <Host>
+                   <HostName>10.10.10.1</HostName>
+                </Host>
+                <Host>
+                   <HostName>10.10.10.2</HostName>
+                </Host>
+             </VoiceHosts>
+             <VoiceHostGroups />
+             <TerminationHosts>
+                <TerminationHost>
+                   <HostName>2.1.1.9</HostName>
+                   <Port>0</Port>
+                   <CustomerTrafficAllowed>DOMESTIC</CustomerTrafficAllowed>
+                </TerminationHost>
+                <TerminationHost>
+                   <HostName>2.1.1.96/30</HostName>
+                   <Port>0</Port>
+                   <CustomerTrafficAllowed>DOMESTIC</CustomerTrafficAllowed>
+                </TerminationHost>
+             </TerminationHosts>
+             <CallingName>
+                <Display>true</Display>
+                <Enforced>true</Enforced>
+             </CallingName>
+          </SipPeer>
+    updateLocationJsonExample:
+      value:
+        locationName: name
+        description: description
+        isDefaultLocation: false
+        finalDestinationUri: uri
+        voiceHosts:
+          - hostName: 10.10.10.1
+          - hostName: 10.10.10.2
+        terminationHosts:
+          - hostName: 2.1.1.9
+            port: '0'
+            customerTrafficAllowed: DOMESTIC
+          - hostName: 2.1.1.96/30
+            port: '0'
+            customerTrafficAllowed: DOMESTIC
+        callingName:
+          display: true
+          enforced: true
+    deleteLocationXmlExample:
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <SipPeerResponse>
+           <SipPeer>
+              <PeerId>304985</PeerId>
+              <IsDefaultPeer>false</IsDefaultPeer>
+              <SsSendToCustomer>NONE</SsSendToCustomer>
+           </SipPeer>
+        </SipPeerResponse>
+    deleteLocationJsonExample:
+      value:
+        locationId: 304985
+        isDefaultLocation: false
+        ssSendToCustomer: NONE
+    a2pClassListResponseExample:
+      description: An example A2P Class list response
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <AdminDataResponse>
+          <A2pClassList>
+            <A2pClass>
+              <MessageClass>TestClass</MessageClass>
+              <ClassDescription>This is a test.</ClassDescription>
+            </A2pClass>
+            <A2pClass>
+              <MessageClass>Test_Class</MessageClass>
+              <ClassDescription>Another test.</ClassDescription>
+            </A2pClass>
+          </A2pClassList>
+        </AdminDataResponse>
+    a2pClassListResponseExampleJson:
+      description: An example A2P Class list response
+      value:
+        a2pClassList:
+          - messageClass: TestClass
+            classDescription: This is a test.
+          - messageClass: Test_Class
+            classDescription: Another test.
+    a2pClassResponseExample:
+      description: An example A2P Class response
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <AdminDataResponse>
+          <A2pClass>
+            <MessageClass>TestClass</MessageClass>
+            <ClassDescription>This is a test.</ClassDescription>
+          </A2pClass>
+        </AdminDataResponse>
+    a2pClassResponseExampleJson:
+      description: An example A2P Class response
+      value:
+        messageClass: TestClass
+        classDescription: This is a test.
+    a2pClassNotFoundExample:
+      description: An example A2P Class not found response
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <AdminDataResponse>
+          <ResponseStatus>
+            <Description>The resource does not exist</Description>
+          </ResponseStatus>
+        </AdminDataResponse>
+    a2pClassNotFoundExampleJson:
+      description: An example A2P Class not found response
+      value:
+        responseStatus:
+          description: The resource does not exist
+    adminDataErrorResponse500:
+      description: An example Internal Server Error response
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <AdminDataResponse>
+          <ResponseStatus>
+            <ErrorCode>1000</ErrorCode>
+            <Description>Internal Server Error. Please try again.</Description>
+          </ResponseStatus>
+        </AdminDataResponse>
+    adminDataErrorResponse500Json:
+      description: An example Internal Server Error response
+      value:
+        responseStatus:
+          errorCode: 1000
+          description: Internal Server Error. Please try again.
+    associatedOutboundNumbersXmlExample:
+      description: An example GET response
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <AssociatedOutboundNumbersResponse>
+          <TotalCount>2</TotalCount>
+          <AssociatedOutboundNumbers>
+            <AssociatedOutboundNumber>
+              <Number>+16175551212</Number>
+              <Id>123</Id>
+            </AssociatedOutboundNumber>
+            <AssociatedOutboundNumber>
+              <Number>+16175551213</Number>
+              <Id>124</Id>
+            </AssociatedOutboundNumber>
+          </AssociatedOutboundNumbers>
+        </AssociatedOutboundNumbersResponse>
+    associatedOutboundNumbersJsonExample:
+      value:
+        totalCount: 2
+        associatedOutboundNumbers:
+          - phoneNumber: '+16175551212'
+            id: 123
+          - phoneNumber: '+16175551213'
+            id: 124
+    createAssociatedOutboundNumbersRequestXmlExample:
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <AssociatedOutboundNumbers>
+          <AssociatedOutboundNumber>
+            <Number>+16175551212</Number>
+          </AssociatedOutboundNumber>
+          <AssociatedOutboundNumber>
+            <Number>+16175551213</Number>
+          </AssociatedOutboundNumber>
+        </AssociatedOutboundNumbers>
+    createAssociatedOutboundNumbersRequestJsonExample:
+      value:
+        associatedOutboundNumbers:
+          - phoneNumber: '+16175551212'
+          - phoneNumber: '+16175551213'
+    createAssociatedOutboundNumbersResponseXmlExample:
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <AssociatedOutboundNumbersResponse>
+          <SuccessCount>1</SuccessCount>
+          <Errors>
+            <AssociatedOutboundNumber>
+              <Number>+16175551212</Number>
+              <ErrorReason>Invalid Number Format</ErrorReason>
+            </AssociatedOutboundNumber>
+          </Errors>
+        </AssociatedOutboundNumbersResponse>
+    createAssociatedOutboundNumbersResponseJsonExample:
+      value:
+        successCount: 1
+        errors:
+          - phoneNumber: '+16175551212'
+            errorReason: Invalid Number Format
+    subAccountTotalSeatsSuccessXmlExample:
+      description: An example of total seats displayed for a Sub-Account (Site)
+      value: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <SiteTotalSeatsResponse>
+          <UcTrunkingSeats>
+            <TotalCount>16</TotalCount>
+          </UcTrunkingSeats>
+        </SiteTotalSeatsResponse>
+    subAccountTotalSeatsErrorXmlExample:
+      value: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <SiteTotalSeatsResponse>
+          <ResponseStatus>
+            <ErrorCode>12017</ErrorCode>
+            <Description>Account '12346099' does not have product 'UcTrunking'</Description>
+          </ResponseStatus>
+        </SiteTotalSeatsResponse>
+  schemas:
+    accountJson:
+      type: object
+      properties:
+        accountId:
+          $ref: '#/components/schemas/id'
+        globalAccountNumber:
+          $ref: '#/components/schemas/globalAccountNumber'
+        companyName:
+          $ref: '#/components/schemas/name'
+        contact:
+          $ref: '#/components/schemas/contactJson'
+        customerSegment:
+          $ref: '#/components/schemas/customerSegment'
+        tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/tier'
+        accountRelationship:
+          $ref: '#/components/schemas/accountRelationship'
+        accountType:
+          $ref: '#/components/schemas/accountType'
+        address:
+          $ref: '#/components/schemas/addressJson'
+        altSpid:
+          $ref: '#/components/schemas/altSpid'
+        associatedCatapultAccount:
+          $ref: '#/components/schemas/associatedCatapultAccount'
+        billingCycle:
+          $ref: '#/components/schemas/billingCycle'
+        default911Provider:
+          $ref: '#/components/schemas/default911Provider'
+        externalId:
+          $ref: '#/components/schemas/externalId'
+        linkedAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/linkedAddressJson'
+        maxTnsForAutomatedPort:
+          $ref: '#/components/schemas/maxTnsForAutomatedPort'
+        nenaId:
+          $ref: '#/components/schemas/nenaId'
+        penaltyType:
+          $ref: '#/components/schemas/penaltyType'
+        portCarrierType:
+          $ref: '#/components/schemas/portCarrierType'
+        pricing:
+          $ref: '#/components/schemas/pricing'
+        spid:
+          $ref: '#/components/schemas/spid'
+        supportLevel:
+          $ref: '#/components/schemas/supportLevel'
+    addressJson:
+      properties:
+        addressLine2:
+          $ref: '#/components/schemas/addressLine2'
+        addressType:
+          $ref: '#/components/schemas/addressType'
+        city:
+          $ref: '#/components/schemas/city'
+        country:
+          $ref: '#/components/schemas/country'
+        county:
+          $ref: '#/components/schemas/county'
+        houseNumber:
+          $ref: '#/components/schemas/houseNumber'
+        housePrefix:
+          $ref: '#/components/schemas/housePrefix'
+        houseSuffix:
+          $ref: '#/components/schemas/houseSuffix'
+        latitude:
+          $ref: '#/components/schemas/latitude'
+        longitude:
+          $ref: '#/components/schemas/longitude'
+        plusFour:
+          $ref: '#/components/schemas/plusFour'
+        postDirectional:
+          $ref: '#/components/schemas/postDirectional'
+        preDirectional:
+          $ref: '#/components/schemas/preDirectional'
+        stateCode:
+          $ref: '#/components/schemas/stateCode'
+        streetName:
+          $ref: '#/components/schemas/streetName'
+        streetSuffix:
+          $ref: '#/components/schemas/streetSuffix'
+        zip:
+          $ref: '#/components/schemas/zip'
+      type: object
+    contactJson:
+      properties:
+        firstName:
+          $ref: '#/components/schemas/firstName'
+        lastName:
+          $ref: '#/components/schemas/lastName'
+        email:
+          $ref: '#/components/schemas/email'
+        fax:
+          $ref: '#/components/schemas/fax'
+        mobile:
+          $ref: '#/components/schemas/mobile'
+        otherPhone:
+          $ref: '#/components/schemas/phone'
+        phoneNumber:
+          $ref: '#/components/schemas/phone'
+        suffix:
+          $ref: '#/components/schemas/suffix'
+        title:
+          $ref: '#/components/schemas/title'
+        websiteAddress:
+          $ref: '#/components/schemas/websiteAddress'
+      type: object
+    linkedAddressJson:
+      type: object
+      properties:
+        addressId:
+          $ref: '#/components/schemas/addressId'
+        addressType:
+          $ref: '#/components/schemas/addressType'
+        link:
+          example: >-
+            https://api.bandwidth.com/api/v2/accounts/14/addresses/daa9dd0f-de97-4103-8530-b31bf4be8fc0
+          readOnly: true
+          type: string
+    genericJsonResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/data'
+        errors:
+          $ref: '#/components/schemas/errors'
+        links:
+          $ref: '#/components/schemas/links'
+    subAccountForGlobalAddressJson:
+      properties:
+        name:
+          $ref: '#/components/schemas/name'
+        description:
+          $ref: '#/components/schemas/description'
+        linkedAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/linkedAddressJson'
+        customerProvidedId:
+          $ref: '#/components/schemas/customerProvidedId'
+        customerName:
+          $ref: '#/components/schemas/customName'
+    createSubAccountJsonRequest:
+      anyOf:
+        - $ref: '#/components/schemas/subAccountForNonUcJson'
+        - $ref: '#/components/schemas/subAccountForUcJson'
+        - $ref: '#/components/schemas/subAccountForGlobalAddressJson'
+      type: object
+      required:
+        - name
+    subAccountForNonUcJson:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/subAccountForGlobalAddressJson'
+      properties:
+        address:
+          $ref: '#/components/schemas/addressJson'
+    subAccountForUcJson:
+      allOf:
+        - $ref: '#/components/schemas/subAccountForGlobalAddressJson'
+      required:
+        - ucTrunkingConfiguration
+      properties:
+        address:
+          $ref: '#/components/schemas/addressJson'
+        ucTrunkingConfiguration:
+          description: >-
+            For UC Trunking accounts the UcTrunkingConfiguration element
+            describes the kind of UC trunking that is provided. The Type
+            parameter is one of Seats, Premise, or Cloud, and the UsageCategory
+            parameter is one of UC250, UC500 or UC1000.
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/ucType'
+            usageCategory:
+              $ref: '#/components/schemas/ucUsageCategory'
+    subAccountJson:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/subAccountForGlobalAddressJson'
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        address:
+          $ref: '#/components/schemas/addressJson'
+        ucTrunkingConfiguration:
+          description: >-
+            For UC Trunking accounts the UcTrunkingConfiguration element
+            describes the kind of UC trunking that is provided. The Type
+            parameter is one of Seats, Premise, or Cloud, and the UsageCategory
+            parameter is one of UC250, UC500 or UC1000.
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/ucType'
+            usageCategory:
+              $ref: '#/components/schemas/ucUsageCategory'
+    subAccountsResponseJsonObject:
+      type: object
+      properties:
+        subAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/subAccountsJson'
+    subAccountsJson:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        name:
+          $ref: '#/components/schemas/name'
+        description:
+          $ref: '#/components/schemas/description'
+        ucTrunkingConfiguration:
+          properties:
+            Type:
+              $ref: '#/components/schemas/ucType'
+        locations:
+          type: array
+          items:
+            $ref: '#/components/schemas/locationForSubAccountsJson'
+        totalPhoneNumberCount:
+          $ref: '#/components/schemas/count'
+        locationCount:
+          $ref: '#/components/schemas/count'
+    locationForSubAccountsJson:
+      type: object
+      properties:
+        locationId:
+          $ref: '#/components/schemas/id'
+        locationName:
+          $ref: '#/components/schemas/name'
+        description:
+          $ref: '#/components/schemas/description'
+        phoneNumberCount:
+          $ref: '#/components/schemas/count'
+        isDefaultLocation:
+          $ref: '#/components/schemas/isDefaultLocation'
+    locationJson:
+      type: object
+      properties:
+        locationId:
+          $ref: '#/components/schemas/id'
+        locationName:
+          $ref: '#/components/schemas/name'
+        description:
+          $ref: '#/components/schemas/description'
+        isDefaultLocation:
+          $ref: '#/components/schemas/isDefaultLocation'
+        finalDestinationUri:
+          $ref: '#/components/schemas/finalDestinationUri'
+        voiceHosts:
+          description: >-
+            These addresses, comprised of HostName and optional Port, are used
+            by the Bandwidth network to send calls to for Origination services.
+            The VoiceHosts list of IP addresses used for an active/standby
+            address selection mechanism, where the first address is attempted,
+            followed by the second address and so on. Except under failure
+            situations the first address in the list is preferred. Maximum of 10
+            hosts - can be IP address or Fully Qualified Domain Name
+          properties:
+            hosts:
+              type: array
+              items:
+                $ref: '#/components/schemas/hostJson'
+        voiceHostGroups:
+          description: >-
+            The VoiceHostGroups element is comprised of one VoiceHostGroup
+            element, which is used to randomly distribute traffic amongst up to
+            10 IP addresses. Failover behavior is retained within the group
+          type: array
+          items:
+            type: object
+            properties:
+              hosts:
+                type: array
+                items:
+                  $ref: '#/components/schemas/hostJson'
+        originationRoutePlan:
+          $ref: '#/components/schemas/originationRoutePlanJson'
+        terminationHosts:
+          x-internal: true
+          description: >-
+            These addresses, comprised of IP or Subnet(CIDR format) and optional
+            Port, are used by the Bandwidth network to send calls to for
+            Termination services. Maximum of 10 hosts - can be IP address or
+            subnets. In case of subnet you should specify NetworkAddress of
+            subnet as IP
+          properties:
+            terminationHosts:
+              type: array
+              items:
+                $ref: '#/components/schemas/locationTerminationHostJson'
+        products:
+          type: array
+          items:
+            type: string
+            enum:
+              - Origination
+              - Termination
+              - MESSAGING
+              - E911
+              - TollFree
+              - UcTrunking
+              - EdgeManagement
+              - CORE
+              - Iris
+              - NumberManagement
+              - Analytics
+              - CampaignManagement
+        address:
+          $ref: '#/components/schemas/addressJson'
+        premiseTrunks:
+          $ref: '#/components/schemas/premiseTrunks'
+        callingName:
+          $ref: '#/components/schemas/locationLineOptionDtoJson'
+        suggestedAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/addressJson'
+        phoneNumberCount:
+          $ref: '#/components/schemas/count'
+        ssSendToCustomer:
+          $ref: '#/components/schemas/ssSendToCustomer'
+        pindropEnabled:
+          $ref: '#/components/schemas/pindropEnabled'
+        callVerificationEnabled:
+          $ref: '#/components/schemas/callVerificationEnabled'
+    hostJson:
+      type: object
+      properties:
+        hostName:
+          $ref: '#/components/schemas/hostName'
+        port:
+          $ref: '#/components/schemas/port'
+    originationRoutePlanJson:
+      type: object
+      description: >-
+        The OriginationRoutePlan element consists of an action and a list of
+        prioritized and weighted routes that tell Bandwidth where to send phone
+        calls to phone numbers associated with the route plan.
+      properties:
+        id:
+          $ref: '#/components/schemas/originationRoutePlanId'
+        originationRoutes:
+          type: array
+          items:
+            $ref: '#/components/schemas/originationRoutePayloadJson'
+        action:
+          $ref: '#/components/schemas/originationRoutePlanAction'
+    originationRoutePayloadJson:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/originationRoutePayloadName'
+        endpoint:
+          $ref: '#/components/schemas/originationRoutePayloadEndpoint'
+        priority:
+          $ref: '#/components/schemas/originationRoutePayloadPriority'
+        weight:
+          $ref: '#/components/schemas/originationRoutePayloadWeight'
+        endpointType:
+          $ref: '#/components/schemas/originationRoutePayloadEndpointType'
+    locationTerminationHostJson:
+      type: object
+      properties:
+        hostName:
+          $ref: '#/components/schemas/hostName'
+        port:
+          $ref: '#/components/schemas/port'
+        customerTrafficAllowed:
+          $ref: '#/components/schemas/customerTrafficAllowed'
+    locationLineOptionDtoJson:
+      type: object
+      properties:
+        display:
+          $ref: '#/components/schemas/locationLineOptionDtoDisplay'
+        enforced:
+          $ref: '#/components/schemas/locationLineOptionDtoEnforced'
+    createLocationJsonRequest:
+      type: object
+      required:
+        - locationName
+      properties:
+        locationName:
+          $ref: '#/components/schemas/name'
+        description:
+          $ref: '#/components/schemas/description'
+        isDefaultLocation:
+          $ref: '#/components/schemas/isDefaultLocation'
+        finalDestinationUri:
+          $ref: '#/components/schemas/finalDestinationUri'
+        voiceHosts:
+          description: >-
+            These addresses, comprised of a `hostName` and an optional `port`,
+            are used by the Bandwidth network to send calls for origination
+            services. The voiceHosts list of IP addresses are used for an
+            active/standby address selection mechanism, where the first address
+            is attempted, followed by the second address, and so on. Except
+            under failure situations, the first address in the list is
+            preferred. Maximum of 10 hosts - can be IP address or a fully
+            qualified domain name.
+          properties:
+            hosts:
+              type: array
+              items:
+                $ref: '#/components/schemas/hostJson'
+        voiceHostGroups:
+          description: >-
+            The VoiceHostGroups element is comprised of one VoiceHostGroup
+            element, which is used to randomly distribute traffic amongst up to
+            10 IP addresses. Failover behavior is retained within the group
+          type: array
+          items:
+            type: object
+            properties:
+              hosts:
+                type: array
+                items:
+                  $ref: '#/components/schemas/hostJson'
+        originationRoutePlan:
+          properties:
+            originationRoutes:
+              type: array
+              items:
+                $ref: '#/components/schemas/originationRoutePayloadJson'
+        terminationHosts:
+          x-internal: true
+          description: >-
+            These addresses, comprised of IP or Subnet(CIDR format) and optional
+            Port, are used by the Bandwidth network to send calls to for
+            Termination services. Maximum of 10 hosts - can be IP address or
+            subnets. In case of subnet you should specify NetworkAddress of
+            subnet as IP
+          properties:
+            terminationHosts:
+              type: array
+              items:
+                $ref: '#/components/schemas/locationTerminationHostJson'
+        address:
+          $ref: '#/components/schemas/addressJson'
+        premiseTrunks:
+          $ref: '#/components/schemas/premiseTrunks'
+        callingName:
+          $ref: '#/components/schemas/locationLineOptionDto'
+        ssSendToCustomer:
+          $ref: '#/components/schemas/ssSendToCustomer'
+        pindropEnabled:
+          $ref: '#/components/schemas/pindropEnabled'
+        callVerificationEnabled:
+          $ref: '#/components/schemas/callVerificationEnabled'
+    updateLocationJsonRequest:
+      type: object
+      properties:
+        locationName:
+          $ref: '#/components/schemas/name'
+        description:
+          $ref: '#/components/schemas/description'
+        isDefaultLocation:
+          $ref: '#/components/schemas/isDefaultLocation'
+        billingIdentifier:
+          $ref: '#/components/schemas/billingIdentifier'
+        finalDestinationUri:
+          $ref: '#/components/schemas/finalDestinationUri'
+        voiceHosts:
+          properties:
+            hosts:
+              type: array
+              items:
+                $ref: '#/components/schemas/hostJson'
+        voiceHostGroups:
+          type: array
+          items:
+            type: object
+            properties:
+              hosts:
+                type: array
+                items:
+                  $ref: '#/components/schemas/hostJson'
+        originationRoutePlan:
+          properties:
+            originationRoutes:
+              type: array
+              items:
+                $ref: '#/components/schemas/originationRoutePayloadJson'
+        terminationHosts:
+          properties:
+            terminationHosts:
+              type: array
+              items:
+                $ref: '#/components/schemas/locationTerminationHostJson'
+        address:
+          $ref: '#/components/schemas/addressJson'
+        premiseTrunks:
+          $ref: '#/components/schemas/premiseTrunks'
+        callingName:
+          $ref: '#/components/schemas/locationLineOptionDto'
+        ssSendToCustomer:
+          $ref: '#/components/schemas/ssSendToCustomer'
+        pindropEnabled:
+          $ref: '#/components/schemas/pindropEnabled'
+        callVerificationEnabled:
+          $ref: '#/components/schemas/callVerificationEnabled'
+    deleteLocationJsonResponse:
+      type: object
+      properties:
+        locationId:
+          $ref: '#/components/schemas/id'
+        isDefaultLocation:
+          $ref: '#/components/schemas/isDefaultLocation'
+        ssSendToCustomer:
+          $ref: '#/components/schemas/ssSendToCustomer'
+    locationResponseConflictJson:
+      type: object
+      properties:
+        errorCode:
+          $ref: '#/components/schemas/errorCode'
+        description:
+          $ref: '#/components/schemas/errorDescription'
+        addressInconsistencies:
+          description: Indicates discrepancies found in the provided address details
+          type: string
+        recommendedAddress:
+          $ref: '#/components/schemas/addressJson'
+    a2pClassListResponseJson:
+      type: object
+      properties:
+        a2pClassList:
+          $ref: '#/components/schemas/a2pClassListJson'
+    a2pClassListJson:
+      type: array
+      items:
+        $ref: '#/components/schemas/a2pClassJson'
+    a2pClassJson:
+      properties:
+        messageClass:
+          $ref: '#/components/schemas/messageClass'
+        classDescription:
+          $ref: '#/components/schemas/classDescription'
+    adminDataErrorResponseJson:
+      type: object
+      properties:
+        responseStatus:
+          $ref: '#/components/schemas/responseStatusJson'
+    responseStatusJson:
+      type: object
+      properties:
+        description:
+          $ref: '#/components/schemas/description'
+        errorCode:
+          $ref: '#/components/schemas/errorCode'
+    associatedOutboundNumbersResponseJson:
+      type: object
+      properties:
+        associatedOutboundNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/associatedOutboundNumberJson'
+        totalCount:
+          $ref: '#/components/schemas/associatedOutboundNumbersCount'
+    associatedOutboundNumbersCreateResponseJson:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/associatedOutboundNumberCreateJson'
+        successCount:
+          $ref: '#/components/schemas/associatedOutboundNumbersCount'
+    associatedOutboundNumberJson:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/associatedOutboundNumberId'
+        phoneNumber:
+          $ref: '#/components/schemas/associatedOutboundNumberType'
+    associatedOutboundNumberCreateJson:
+      type: object
+      properties:
+        errorReason:
+          $ref: '#/components/schemas/associatedOutboundNumberErrorReason'
+        phoneNumber:
+          $ref: '#/components/schemas/associatedOutboundNumberType'
+    associatedOutboundNumberRequestJson:
+      type: object
+      properties:
+        phoneNumber:
+          $ref: '#/components/schemas/associatedOutboundNumberType'
+    accountResponseXmlWrapper:
+      properties:
+        AccountResponse:
+          $ref: '#/components/schemas/accountXmlResponse'
+      type: object
+    accountErrorResponseXmlWrapper:
+      properties:
+        AccountResponse:
+          $ref: '#/components/schemas/accountErrorXmlResponse'
+      type: object
+    accountXmlResponse:
+      type: object
+      properties:
+        Account:
+          $ref: '#/components/schemas/account'
+    accountErrorXmlResponse:
+      type: object
+      properties:
+        ResponseStatus:
+          $ref: '#/components/schemas/responseStatus'
+    responseStatus:
+      type: object
+      properties:
+        ErrorCode:
+          $ref: '#/components/schemas/errorCode'
+        Description:
+          $ref: '#/components/schemas/errorDescription'
+    account:
+      properties:
+        AccountId:
+          $ref: '#/components/schemas/id'
+        GlobalAccountNumber:
+          $ref: '#/components/schemas/globalAccountNumber'
+        CompanyName:
+          $ref: '#/components/schemas/name'
+        Contact:
+          $ref: '#/components/schemas/contact'
+        CustomerSegment:
+          $ref: '#/components/schemas/customerSegment'
+        Tiers:
+          properties:
+            Tier:
+              items:
+                $ref: '#/components/schemas/tier'
+              type: array
+          type: object
+        AccountRelationship:
+          $ref: '#/components/schemas/accountRelationship'
+        AccountType:
+          $ref: '#/components/schemas/accountType'
+        Address:
+          $ref: '#/components/schemas/address'
+        AltSpid:
+          $ref: '#/components/schemas/altSpid'
+        AssociatedCatapultAccount:
+          $ref: '#/components/schemas/associatedCatapultAccount'
+        BillingCycle:
+          $ref: '#/components/schemas/billingCycle'
+        Default911Provider:
+          $ref: '#/components/schemas/default911Provider'
+        ExternalId:
+          $ref: '#/components/schemas/externalId'
+        LinkedAddresses:
+          properties:
+            LinkedAddress:
+              items:
+                $ref: '#/components/schemas/linkedAddress'
+              type: array
+          type: object
+        MaxTnsForAutomatedPort:
+          $ref: '#/components/schemas/maxTnsForAutomatedPort'
+        NenaId:
+          $ref: '#/components/schemas/nenaId'
+        PenaltyType:
+          $ref: '#/components/schemas/penaltyType'
+        PortCarrierType:
+          $ref: '#/components/schemas/portCarrierType'
+        Pricing:
+          $ref: '#/components/schemas/pricing'
+        SPID:
+          $ref: '#/components/schemas/spid'
+        SupportLevel:
+          $ref: '#/components/schemas/supportLevel'
+      type: object
+    linkedAddress:
+      type: object
+      properties:
+        AddressId:
+          $ref: '#/components/schemas/addressId'
+        AddressType:
+          $ref: '#/components/schemas/addressType'
+        Link:
+          example: >-
+            https://api.bandwidth.com/api/v2/accounts/14/addresses/daa9dd0f-de97-4103-8530-b31bf4be8fc0
+          readOnly: true
+          type: string
+    address:
+      type: object
+      properties:
+        HousePrefix:
+          $ref: '#/components/schemas/housePrefix'
+        HouseNumber:
+          $ref: '#/components/schemas/houseNumber'
+        HouseSuffix:
+          $ref: '#/components/schemas/houseSuffix'
+        PreDirectional:
+          $ref: '#/components/schemas/preDirectional'
+        StreetName:
+          $ref: '#/components/schemas/streetName'
+        StreetSuffix:
+          $ref: '#/components/schemas/streetSuffix'
+        PostDirectional:
+          $ref: '#/components/schemas/postDirectional'
+        AddressLine2:
+          $ref: '#/components/schemas/addressLine2'
+        City:
+          $ref: '#/components/schemas/city'
+        StateCode:
+          $ref: '#/components/schemas/stateCode'
+        Zip:
+          $ref: '#/components/schemas/zip'
+        PlusFour:
+          $ref: '#/components/schemas/plusFour'
+        County:
+          $ref: '#/components/schemas/county'
+        Country:
+          $ref: '#/components/schemas/country'
+        Latitude:
+          $ref: '#/components/schemas/latitude'
+        Longitude:
+          $ref: '#/components/schemas/longitude'
+        AddressType:
+          $ref: '#/components/schemas/addressType'
+    contact:
+      type: object
+      properties:
+        FirstName:
+          $ref: '#/components/schemas/firstName'
+        LastName:
+          $ref: '#/components/schemas/lastName'
+        Email:
+          $ref: '#/components/schemas/email'
+        Suffix:
+          $ref: '#/components/schemas/suffix'
+        Title:
+          $ref: '#/components/schemas/title'
+        Phone:
+          $ref: '#/components/schemas/phone'
+        Fax:
+          $ref: '#/components/schemas/fax'
+        Mobile:
+          $ref: '#/components/schemas/mobile'
+        OtherPhone:
+          $ref: '#/components/schemas/phone'
+        WebsiteAddress:
+          $ref: '#/components/schemas/websiteAddress'
+    createSubAccountXmlRequest:
+      anyOf:
+        - $ref: '#/components/schemas/subAccountForNonUc'
+        - $ref: '#/components/schemas/subAccountForUc'
+        - $ref: '#/components/schemas/subAccountForGlobalAddress'
+      type: object
+      required:
+        - Name
+      properties:
+        Name:
+          $ref: '#/components/schemas/name'
+    subAccountForNonUc:
+      allOf:
+        - $ref: '#/components/schemas/subAccountForGlobalAddress'
+      properties:
+        Address:
+          $ref: '#/components/schemas/address'
+    subAccountForUc:
+      allOf:
+        - $ref: '#/components/schemas/subAccountForGlobalAddress'
+      required:
+        - UcTrunkingConfiguration
+      properties:
+        Address:
+          $ref: '#/components/schemas/address'
+        UcTrunkingConfiguration:
+          description: >-
+            For UC Trunking accounts the UcTrunkingConfiguration element
+            describes the kind of UC trunking that is provided. The Type
+            parameter is one of Seats, Premise, or Cloud, and the UsageCategory
+            parameter is one of UC250, UC500 or UC1000.
+          type: object
+          properties:
+            Type:
+              $ref: '#/components/schemas/ucType'
+            UsageCategory:
+              $ref: '#/components/schemas/ucUsageCategory'
+    subAccountForGlobalAddress:
+      properties:
+        Name:
+          $ref: '#/components/schemas/name'
+        Description:
+          $ref: '#/components/schemas/description'
+        LinkedAddresses:
+          properties:
+            LinkedAddress:
+              items:
+                $ref: '#/components/schemas/linkedAddress'
+              type: array
+          type: object
+        CustomerProvidedId:
+          $ref: '#/components/schemas/customerProvidedId'
+        CustomerName:
+          $ref: '#/components/schemas/customName'
+    subAccountResponseXmlWrapper:
+      properties:
+        SiteResponse:
+          properties:
+            Site:
+              $ref: '#/components/schemas/subAccount'
+      type: object
+    subAccount:
+      allOf:
+        - $ref: '#/components/schemas/subAccountForGlobalAddress'
+      type: object
+      properties:
+        Id:
+          $ref: '#/components/schemas/id'
+        Address:
+          $ref: '#/components/schemas/address'
+        UcTrunkingConfiguration:
+          description: >-
+            For UC Trunking accounts the UcTrunkingConfiguration element
+            describes the kind of UC trunking that is provided. The Type
+            parameter is one of Seats, Premise, or Cloud, and the UsageCategory
+            parameter is one of UC250, UC500 or UC1000.
+          type: object
+          properties:
+            Type:
+              $ref: '#/components/schemas/ucType'
+            UsageCategory:
+              $ref: '#/components/schemas/ucUsageCategory'
+    subAccountErrorResponseXmlWrapper:
+      properties:
+        SiteResponse:
+          $ref: '#/components/schemas/subAccountErrorResponse'
+      type: object
+    subAccountErrorResponse:
+      type: object
+      properties:
+        ResponseStatus:
+          $ref: '#/components/schemas/responseStatus'
+    subAccountsResponseXmlWrapper:
+      properties:
+        SitesResponse:
+          $ref: '#/components/schemas/subAccountsResponse'
+      type: object
+    subAccountsResponse:
+      type: object
+      properties:
+        Sites:
+          $ref: '#/components/schemas/subAccounts'
+    subAccounts:
+      type: object
+      properties:
+        Site:
+          type: array
+          items:
+            $ref: '#/components/schemas/subAccountsResponseXmlObject'
+    subAccountsResponseXmlObject:
+      properties:
+        Id:
+          $ref: '#/components/schemas/id'
+        Name:
+          $ref: '#/components/schemas/name'
+        Description:
+          $ref: '#/components/schemas/description'
+        UcTrunkingConfiguration:
+          properties:
+            Type:
+              $ref: '#/components/schemas/ucType'
+        SipPeers:
+          properties:
+            SipPeer:
+              type: array
+              items:
+                $ref: '#/components/schemas/locationForSubAccounts'
+        TotalTnCount:
+          $ref: '#/components/schemas/count'
+        SipPeerCount:
+          $ref: '#/components/schemas/count'
+    locationForSubAccounts:
+      type: object
+      properties:
+        PeerId:
+          $ref: '#/components/schemas/id'
+        PeerName:
+          $ref: '#/components/schemas/name'
+        Description:
+          $ref: '#/components/schemas/description'
+        TnCount:
+          $ref: '#/components/schemas/count'
+        IsDefaultSipPeer:
+          $ref: '#/components/schemas/isDefaultLocation'
+    subAccountsErrorResponseXmlWrapper:
+      properties:
+        SitesResponse:
+          $ref: '#/components/schemas/subAccountErrorResponse'
+      type: object
+    tnLocationsResponse:
+      type: object
+      properties:
+        TNSipPeersResponse:
+          $ref: '#/components/schemas/locationsResponse'
+    locationsResponse:
+      type: object
+      properties:
+        SipPeers:
+          $ref: '#/components/schemas/locations'
+    locationResponse:
+      type: object
+      properties:
+        SipPeer:
+          $ref: '#/components/schemas/location'
+    locations:
+      type: object
+      properties:
+        SipPeer:
+          type: array
+          items:
+            $ref: '#/components/schemas/location'
+    location:
+      type: object
+      properties:
+        PeerId:
+          $ref: '#/components/schemas/id'
+        PeerName:
+          $ref: '#/components/schemas/name'
+        Description:
+          $ref: '#/components/schemas/description'
+        IsDefaultPeer:
+          $ref: '#/components/schemas/isDefaultLocation'
+        FinalDestinationUri:
+          $ref: '#/components/schemas/finalDestinationUri'
+        VoiceHosts:
+          $ref: '#/components/schemas/hosts'
+        VoiceHostGroups:
+          description: >-
+            The VoiceHostGroups element is comprised of one VoiceHostGroup
+            element, which is used to randomly distribute traffic amongst up to
+            10 IP addresses. Failover behavior is retained within the group
+          type: array
+          items:
+            $ref: '#/components/schemas/hosts'
+        OriginationRoutePlan:
+          $ref: '#/components/schemas/originationRoutePlan'
+        TerminationHosts:
+          $ref: '#/components/schemas/locationTerminationHosts'
+        Products:
+          type: array
+          items:
+            type: string
+            xml:
+              name: Product
+            enum:
+              - Origination
+              - Termination
+              - MESSAGING
+              - E911
+              - TollFree
+              - UcTrunking
+              - EdgeManagement
+              - CORE
+              - Iris
+              - NumberManagement
+              - Analytics
+              - CampaignManagement
+        Address:
+          $ref: '#/components/schemas/address'
+        PremiseTrunks:
+          $ref: '#/components/schemas/premiseTrunks'
+        CallingName:
+          $ref: '#/components/schemas/locationLineOptionDto'
+        SuggestedAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/address'
+        TnCount:
+          $ref: '#/components/schemas/count'
+        SsSendToCustomer:
+          $ref: '#/components/schemas/ssSendToCustomer'
+        PindropEnabled:
+          $ref: '#/components/schemas/pindropEnabled'
+        CallVerificationEnabled:
+          $ref: '#/components/schemas/callVerificationEnabled'
+    hosts:
+      type: object
+      description: >-
+        These addresses, comprised of HostName and optional Port, are used by
+        the Bandwidth network to send calls to for Origination services. The
+        VoiceHosts list of IP addresses used for an active/standby address
+        selection mechanism, where the first address is attempted, followed by
+        the second address and so on. Except under failure situations the first
+        address in the list is preferred. Maximum of 10 hosts - can be IP
+        address or Fully Qualified Domain Name
+      properties:
+        Hosts:
+          type: array
+          items:
+            $ref: '#/components/schemas/host'
+    host:
+      type: object
+      properties:
+        HostName:
+          $ref: '#/components/schemas/hostName'
+        Port:
+          $ref: '#/components/schemas/port'
+    originationRoutePlan:
+      type: object
+      description: >-
+        The OriginationRoutePlan element consists of an action and a list of
+        prioritized and weighted routes that tell Bandwidth where to send phone
+        calls to phone numbers associated with the route plan.
+      properties:
+        Id:
+          $ref: '#/components/schemas/originationRoutePlanId'
+        Route:
+          type: array
+          items:
+            $ref: '#/components/schemas/originationRoutePayload'
+        Action:
+          $ref: '#/components/schemas/originationRoutePlanAction'
+    originationRoutePayload:
+      type: object
+      properties:
+        Name:
+          $ref: '#/components/schemas/originationRoutePayloadName'
+        Endpoint:
+          $ref: '#/components/schemas/originationRoutePayloadEndpoint'
+        Priority:
+          $ref: '#/components/schemas/originationRoutePayloadPriority'
+        Weight:
+          $ref: '#/components/schemas/originationRoutePayloadWeight'
+        EndpointType:
+          $ref: '#/components/schemas/originationRoutePayloadEndpointType'
+    locationTerminationHosts:
+      x-internal: true
+      description: >-
+        These addresses, comprised of IP or Subnet(CIDR format) and optional
+        Port, are used by the Bandwidth network to send calls to for Termination
+        services. Maximum of 10 hosts - can be IP address or subnets. In case of
+        subnet you should specify NetworkAddress of subnet as IP
+      type: object
+      properties:
+        TerminationHost:
+          type: array
+          items:
+            $ref: '#/components/schemas/locationTerminationHost'
+    locationTerminationHost:
+      type: object
+      properties:
+        HostName:
+          $ref: '#/components/schemas/hostName'
+        Port:
+          $ref: '#/components/schemas/port'
+        CustomerTrafficAllowed:
+          $ref: '#/components/schemas/customerTrafficAllowed'
+    locationLineOptionDto:
+      type: object
+      properties:
+        Display:
+          $ref: '#/components/schemas/locationLineOptionDtoDisplay'
+        Enforced:
+          $ref: '#/components/schemas/locationLineOptionDtoEnforced'
+    createLocationXmlRequest:
+      type: object
+      required:
+        - PeerName
+      properties:
+        PeerName:
+          $ref: '#/components/schemas/name'
+        Description:
+          $ref: '#/components/schemas/description'
+        IsDefaultPeer:
+          $ref: '#/components/schemas/isDefaultLocation'
+        FinalDestinationUri:
+          $ref: '#/components/schemas/finalDestinationUri'
+        VoiceHosts:
+          $ref: '#/components/schemas/hosts'
+        VoiceHostGroups:
+          description: >-
+            The VoiceHostGroups element is comprised of one VoiceHostGroup
+            element, which is used to randomly distribute traffic amongst up to
+            10 IP addresses. Failover behavior is retained within the group
+          type: object
+          properties:
+            VoiceHostGroup:
+              type: array
+              items:
+                $ref: '#/components/schemas/host'
+        OriginationRoutePlan:
+          type: object
+          properties:
+            Route:
+              type: array
+              items:
+                $ref: '#/components/schemas/originationRoutePayload'
+        TerminationHosts:
+          $ref: '#/components/schemas/locationTerminationHosts'
+        CustomerTrafficAllowed:
+          $ref: '#/components/schemas/customerTrafficAllowed'
+        Address:
+          $ref: '#/components/schemas/address'
+        PremiseTrunks:
+          $ref: '#/components/schemas/premiseTrunks'
+        CallingName:
+          $ref: '#/components/schemas/locationLineOptionDto'
+        SsSendToCustomer:
+          $ref: '#/components/schemas/ssSendToCustomer'
+        PindropEnabled:
+          $ref: '#/components/schemas/pindropEnabled'
+        CallVerificationEnabled:
+          $ref: '#/components/schemas/callVerificationEnabled'
+    updateLocationXmlRequest:
+      type: object
+      properties:
+        PeerName:
+          $ref: '#/components/schemas/name'
+        Description:
+          $ref: '#/components/schemas/description'
+        IsDefaultPeer:
+          $ref: '#/components/schemas/isDefaultLocation'
+        BillingIdentifier:
+          $ref: '#/components/schemas/billingIdentifier'
+        FinalDestinationUri:
+          $ref: '#/components/schemas/finalDestinationUri'
+        VoiceHosts:
+          $ref: '#/components/schemas/hosts'
+        VoiceHostGroups:
+          type: object
+          properties:
+            VoiceHostGroup:
+              type: array
+              items:
+                $ref: '#/components/schemas/host'
+        OriginationRoutePlan:
+          type: object
+          properties:
+            Route:
+              type: array
+              items:
+                $ref: '#/components/schemas/originationRoutePayload'
+        TerminationHosts:
+          $ref: '#/components/schemas/locationTerminationHosts'
+        CustomerTrafficAllowed:
+          $ref: '#/components/schemas/customerTrafficAllowed'
+        Address:
+          $ref: '#/components/schemas/address'
+        PremiseTrunks:
+          $ref: '#/components/schemas/premiseTrunks'
+        CallingName:
+          $ref: '#/components/schemas/locationLineOptionDto'
+        SsSendToCustomer:
+          $ref: '#/components/schemas/ssSendToCustomer'
+        PindropEnabled:
+          $ref: '#/components/schemas/pindropEnabled'
+        CallVerificationEnabled:
+          $ref: '#/components/schemas/callVerificationEnabled'
+    deleteLocationXmlResponse:
+      type: object
+      properties:
+        SipPeer:
+          properties:
+            PeerId:
+              $ref: '#/components/schemas/id'
+            IsDefaultPeer:
+              $ref: '#/components/schemas/isDefaultLocation'
+            SsSendToCustomer:
+              $ref: '#/components/schemas/ssSendToCustomer'
+    addressErrorDescription:
+      type: object
+      properties:
+        AddressInconsistencies:
+          type: string
+        RecommendedAddress:
+          $ref: '#/components/schemas/address'
+    locationResponseBadRequest:
+      type: object
+      properties:
+        SipPeerResponse:
+          type: object
+          properties:
+            ResponseStatus:
+              $ref: '#/components/schemas/responseStatus'
+    locationResponseConflict:
+      type: object
+      properties:
+        SipPeerResponse:
+          type: object
+          properties:
+            ResponseStatus:
+              $ref: '#/components/schemas/responseStatus'
+            AddressErrorDescription:
+              $ref: '#/components/schemas/addressErrorDescription'
+    a2pClassListResponse:
+      type: object
+      properties:
+        AdminDataResponse:
+          type: object
+          properties:
+            A2pClassList:
+              $ref: '#/components/schemas/a2pClassList'
+    a2pClassList:
+      type: array
+      items:
+        $ref: '#/components/schemas/a2pClass'
+    a2pClassResponse:
+      type: object
+      properties:
+        AdminDataResponse:
+          $ref: '#/components/schemas/a2pClass'
+    a2pClass:
+      properties:
+        A2pClass:
+          type: object
+          properties:
+            MessageClass:
+              $ref: '#/components/schemas/messageClass'
+            ClassDescription:
+              $ref: '#/components/schemas/classDescription'
+    adminDataErrorResponse:
+      type: object
+      properties:
+        AdminDataResponse:
+          type: object
+          properties:
+            ResponseStatus:
+              $ref: '#/components/schemas/responseStatus'
+    associatedOutboundNumbersResponseWrapper:
+      properties:
+        AssociatedOutboundNumbersResponse:
+          $ref: '#/components/schemas/associatedOutboundNumbersResponse'
+      type: object
+    associatedOutboundNumbersResponse:
+      properties:
+        TotalCount:
+          $ref: '#/components/schemas/associatedOutboundNumbersCount'
+        AssociatedOutboundNumbers:
+          maxItems: 250
+          type: array
+          items:
+            properties:
+              AssociatedOutboundNumber:
+                $ref: '#/components/schemas/associatedOutboundNumber'
+    associatedOutboundNumbersCreateResponseWrapper:
+      properties:
+        AssociatedOutboundNumbersResponse:
+          $ref: '#/components/schemas/associatedOutboundNumbersCreateResponse'
+      type: object
+    associatedOutboundNumbersCreateResponse:
+      properties:
+        SuccessCount:
+          $ref: '#/components/schemas/associatedOutboundNumbersCount'
+        Errors:
+          type: array
+          items:
+            properties:
+              AssociatedOutboundNumber:
+                $ref: '#/components/schemas/associatedOutboundNumberCreate'
+    associatedOutboundNumber:
+      properties:
+        Id:
+          $ref: '#/components/schemas/associatedOutboundNumberId'
+        Number:
+          $ref: '#/components/schemas/associatedOutboundNumberType'
+      type: object
+    associatedOutboundNumberCreate:
+      properties:
+        ErrorReason:
+          $ref: '#/components/schemas/associatedOutboundNumberErrorReason'
+        Number:
+          $ref: '#/components/schemas/associatedOutboundNumberType'
+      type: object
+    associatedOutboundNumberRequest:
+      type: array
+      items:
+        properties:
+          AssociatedOutboundNumber:
+            type: object
+            properties:
+              Number:
+                $ref: '#/components/schemas/associatedOutboundNumberType'
+    associatedOutboundNumbersErrorResponse:
+      properties:
+        AssociatedOutboundNumbersResponse:
+          type: object
+          properties:
+            ResponseStatus:
+              $ref: '#/components/schemas/responseStatus'
+      type: object
+    id:
+      type: integer
+      example: 12345
+    name:
+      type: string
+      example: Name of the resource
+    description:
+      type: string
+      example: Description of the resource
+    accountRelationship:
+      type: string
+      enum:
+        - BASIC_ACCOUNT
+        - SMALL_ACCOUNT
+        - MEDIUM_ACCOUNT
+        - LARGE_ACCOUNT
+        - KEY_ACCOUNT
+    accountType:
+      type: string
+      enum:
+        - Business
+        - Catapult
+        - Holding
+    altSpid:
+      type: string
+    associatedCatapultAccount:
+      type: string
+    billingCycle:
+      description: >-
+        BillingCycle is the day of the month that the account's billing cycle
+        closes. Valid values are 1, 5, 15, and 20.
+      format: int32
+      type: integer
+      enum:
+        - 1
+        - 5
+        - 15
+        - 20
+    customerSegment:
+      description: >-
+        CustomerSegment is used to classify accounts for reporting and business
+        purposes.
+      type: string
+      example: Trial
+    default911Provider:
+      description: >-
+        The Default911Provider is the 911 provider that will be used for
+        emergency services if no other 911 provider is specified on a phone
+        number or order.
+      type: string
+      example: default911_provider
+    externalId:
+      description: >-
+        An external identifier that can be used to associate the Bandwidth
+        account with an account in another system.
+      type: string
+      example: external_id_12345
+    globalAccountNumber:
+      description: >-
+        Global Account Number (GAN), A globally unique identifier for the
+        account. This value is often used when integrating with Bandwidth
+        systems.
+      type: string
+      example: BW-7123456
+    maxTnsForAutomatedPort:
+      description: >-
+        The maximum number of telephone numbers that can be included in an
+        automated port order for this account. If not specified, the system
+        default will be used. (Values greater than '49' are invalid for Manual
+        TN Overflow thresholds.)
+      format: int32
+      type: integer
+      example: 25
+    nenaId:
+      description: >-
+        NENA ID is the National Emergency Number Association (NENA) identifier
+        for the account. This value is used for E911 services.
+      type: string
+      example: '1234567'
+    penaltyType:
+      description: >-
+        The PenaltyType indicates whether or not a penalty will be applied to
+        port-in orders for this account.
+      type: string
+    portCarrierType:
+      description: The PortCarrierType indicates the type of carrier for porting purposes.
+      enum:
+        - WIRELESS
+        - WIRELINE
+      type: string
+    pricing:
+      description: Pricing is used to specify the pricing model for the account.
+      type: string
+      example: Standard
+    spid:
+      description: >-
+        SPID is the Service Provider Identifier for the account. This value is
+        used for E911 services.
+      type: string
+      example: '9999'
+    addressLine2:
+      description: >-
+        AddressLine2 is used to specify Unit, Suite, Floor, etc. in the Service
+        Address. AddressLine2 is optional when not needed to fully specify the
+        ServiceAddress.
+      type: string
+      example: Apt 12B
+    city:
+      description: City is mandatory in cases where the ServiceAddress is mandatory.
+      type: string
+      example: Raleigh
+    country:
+      description: >-
+        Country is the country of the ServiceAddress. This value will be derived
+        from the StateCode, so it should generally be omitted. If provided, it
+        must be the name of the country or country code, for example 'United
+        States' or 'US'.
+      type: string
+      example: United States
+    county:
+      description: The county where the subscriber or business is located.
+      type: string
+      example: Wake
+    houseNumber:
+      description: >-
+        The HouseNumber is the street address number of the ServiceAddress.
+        HouseNumber is mandatory for port-in orders in which the ServiceAddress
+        is mandatory.
+      type: string
+      example: '123'
+    housePrefix:
+      description: >-
+        The HousePrefix is the non-numeric address number prefix of the
+        ServiceAddress. This element is optional when not needed to fully
+        specify the ServiceAddress.
+      type: string
+      example: ABC
+    houseSuffix:
+      description: >-
+        The HouseSuffix is the non-numeric address number suffix of the
+        ServiceAddress. This element is optional when not needed to fully
+        specify the ServiceAddress.
+      type: string
+      example: E
+    latitude:
+      type: string
+      example: '41.5868'
+    longitude:
+      type: string
+      example: '93.62496'
+    plusFour:
+      description: PlusFour is the 4 digits that are sometimes suffixed to the Zip Code.
+      type: string
+      example: '1234'
+    postDirectional:
+      description: >-
+        The PostDirectional is the street name post directional of the
+        ServiceAddress. This element is optional when not needed to fully
+        specify the ServiceAddress.
+      type: string
+      example: NW
+    preDirectional:
+      description: >-
+        The PreDirectional is the non-numeric street name prefix of the
+        ServiceAddress. This element is optional when not needed to fully
+        specify the ServiceAddress.
+      type: string
+      example: SE
+    stateCode:
+      description: >-
+        StateCode is the 2-letter abbreviation of the state of the
+        ServiceAddress. StateCode is mandatory in cases where the ServiceAddress
+        is mandatory.
+      type: string
+      example: NC
+    streetName:
+      description: >-
+        The StreetName is mandatory in cases where the ServiceAddress is
+        mandatory.
+      type: string
+      example: Main
+    streetSuffix:
+      description: >-
+        The StreetSuffix is the street suffix of the ServiceAddress. This
+        element is optional when not needed to fully specify the ServiceAddress.
+      type: string
+      example: St
+    zip:
+      description: >-
+        Zip is the Zip Code of the ServiceAddress. Zip is mandatory in cases
+        where the ServiceAddress is mandatory.
+      type: string
+      example: '27607'
+    email:
+      type: string
+      example: test@bandwidth.com
+    fax:
+      type: string
+      example: '+19195554321'
+    firstName:
+      type: string
+      example: John
+    lastName:
+      type: string
+      example: Doe
+    mobile:
+      type: string
+      example: '+19195559876'
+    phone:
+      type: string
+      example: '+19195551234'
+    suffix:
+      type: string
+      example: Jr.
+    title:
+      type: string
+      example: Mr
+    websiteAddress:
+      type: string
+      example: www.bandwidth.com
+    addressId:
+      description: Address Id
+      example: daa9dd0f-de97-4103-8530-b31bf4be8fc0
+      title: Address Id
+      type: string
+    addressType:
+      type: string
+      enum:
+        - Service
+        - Billing
+        - DLDA
+        - E911
+      example: Billing
+    tier:
+      format: int32
+      type: integer
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+    isDefaultLocation:
+      description: >-
+        Value is true or false. The default location (SIP peer) is the default
+        "destination" for any phone numbers that are ordered for the subaccount
+        (site) in which the location resides.  Each subaccount can have only 1
+        default location. You can configure multiple locations on a subaccount.
+      type: boolean
+    finalDestinationUri:
+      type: string
+    hostName:
+      description: >-
+        The IP address or host name of the address to be used for the voiceHosts
+        or voiceHostGroups addresses
+      type: string
+    port:
+      description: >-
+        Optional port number for voice and termination hosts. This is an
+        optional parameter with default values that are dependent on the
+        application.
+      type: string
+    originationRoutePlanId:
+      type: string
+      format: uuid
+    originationRoutePlanAction:
+      type: string
+      enum:
+        - UNCHANGED
+        - 'OFF'
+        - ASSPECIFIED
+    originationRoutePayloadName:
+      description: >-
+        A friendly name for a route.  This is not used for any back-end call
+        routing.
+      type: string
+    originationRoutePayloadEndpoint:
+      type: string
+      description: >
+        Must be one of the following: - a NANP 10-digit telephone number - a SIP
+        URI - an IPv4 address - a Fully Qualified Domain Name (FQDN)
+    originationRoutePayloadPriority:
+      type: integer
+      format: int32
+    originationRoutePayloadWeight:
+      type: integer
+      format: int32
+    originationRoutePayloadEndpointType:
+      type: string
+      enum:
+        - TN
+        - IPv4
+        - SIP
+        - FQDN
+    accountUcTrunkingSeats:
+      type: object
+      properties:
+        AccountTotalSeatsResponse:
+          type: object
+          properties:
+            UcTrunkingSeats:
+              $ref: '#/components/schemas/ucTrunkingSeats'
+    sippeerUcTrunkingSeats:
+      type: object
+      properties:
+        SipPeerTotalSeatsResponse:
+          type: object
+          properties:
+            UcTrunkingSeats:
+              $ref: '#/components/schemas/ucTrunkingSeats'
+    ucTrunkingSeats:
+      type: object
+      properties:
+        UcTrunkingSeats:
+          type: object
+          properties:
+            TotalCount:
+              type: integer
+    accountUcTrunkingSeatsJson:
+      type: object
+      properties:
+        ucTrunkingSeats:
+          type: object
+          properties:
+            phoneNumberCount:
+              type: integer
+    totalSeatsBadResponse:
+      type: object
+      properties:
+        AccountTotalSeatsResponse:
+          $ref: '#/components/schemas/responseStatus'
+    sippeerTotalSeatsBadResponse:
+      type: object
+      properties:
+        SipPeerTotalSeatsResponse:
+          $ref: '#/components/schemas/responseStatus'
+    customerTrafficAllowed:
+      description: >-
+        A TerminationHost can be configured to allow different customer traffic
+        types.  Allowed values are LITE, DOMESTIC and ALL. This is an optional
+        parameter
+      type: string
+      enum:
+        - LITE
+        - DOMESTIC
+        - ALL
+    premiseTrunks:
+      type: string
+    locationLineOptionDtoDisplay:
+      type: boolean
+    locationLineOptionDtoEnforced:
+      type: boolean
+    count:
+      type: integer
+      format: int32
+    ssSendToCustomer:
+      type: string
+      enum:
+        - NONE
+        - VERSTAT
+        - ENH_VERSTAT
+        - VERSTAT_AND_IDENTITY
+        - ENH_VERSTAT_AND_IDENTITY
+        - IDENTITY
+    pindropEnabled:
+      type: string
+    callVerificationEnabled:
+      type: string
+    billingIdentifier:
+      type: string
+    errorCode:
+      description: Numeric designation of corresponding error
+      type: integer
+      example: 1010
+    errorDescription:
+      description: Detailed explanation about error
+      type: string
+      example: Invalid request
+    customerProvidedId:
+      description: >-
+        Customer can provide an optional id. Note that the customer can use the
+        same id across multiple orders.
+      maxLength: 10
+      type: string
+      example: '123456'
+    customName:
+      description: Customer can provide an optional name
+      type: string
+      example: Custom Name
+    ucType:
+      description: >-
+        For UC Trunking accounts the Type parameter describes the kind of UC
+        trunking that is provided. The Type parameter is one of Seats, Premise,
+        or Cloud.
+      type: string
+      enum:
+        - Seats
+        - Premise
+        - Cloud
+    ucUsageCategory:
+      description: >-
+        For UC Trunking accounts the UsageCategory parameter describes the kind
+        of UC trunking that is provided. The UsageCategory parameter is one of
+        UC250, UC500 or UC1000.
+      type: string
+      enum:
+        - UC250
+        - UC500
+        - UC1000
+    links:
+      type: array
+      items:
+        $ref: '#/components/schemas/link'
+      description: list of useful links
+    link:
+      type: object
+      properties:
+        rel:
+          $ref: '#/components/schemas/linkRel'
+        href:
+          $ref: '#/components/schemas/linkHref'
+        method:
+          $ref: '#/components/schemas/linkMethod'
+    linkRel:
+      type: string
+      description: the relationship of the link to the resource
+      example: self
+    linkHref:
+      type: string
+      description: the URI of the link
+      example: https://api.bandwidth.com/v2/accounts/14345
+    linkMethod:
+      type: string
+      description: the HTTP method to be used with the link
+      example: GET
+    data:
+      type: object
+      description: the main data payload of the response
+    errors:
+      type: array
+      items:
+        $ref: '#/components/schemas/error'
+      description: list of error objects
+    error:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/code'
+        description:
+          $ref: '#/components/schemas/errorDescription'
+        type:
+          $ref: '#/components/schemas/errorType'
+    errorType:
+      type: string
+    code:
+      type: string
+    messageClass:
+      description: A2P Message Class
+      type: string
+    classDescription:
+      description: Description of the A2P Message Class
+      type: string
+    associatedOutboundNumberId:
+      type: integer
+    associatedOutboundNumberType:
+      description: |-
+        <p> An Associated Outbound Number should:
+          <ul>
+            <li> Be a valid phone number in E.164 format. For example: +18005550123.</li>
+            <li> Not be duplicated. An Associated Outbound Number is unique within an account.
+          </ul>
+        </p>
+      maxLength: 16
+      minLength: 3
+      type: string
+    associatedOutboundNumberErrorReason:
+      description: >-
+        <p> Describes the reason an associated outbound number has failed. This
+        could be due to validation or business logic.
+
+        <br>
+
+        Possible Error Reasons include:
+          <ul>
+            <li> Invalid number format. </li>
+            <li> Number is already associated with location ${location_name} [ID: ${location_id}]. </li>
+            <li> Associated Outbound Number not found with location [ID: ${location_id}]. </li>
+          </ul>
+        </p>
+      type: string
+    associatedOutboundNumbersCount:
+      type: integer
+    errorResponseJson:
+      type: object
+      properties:
+        errorCode:
+          $ref: '#/components/schemas/errorCode'
+        description:
+          $ref: '#/components/schemas/errorDescription'
+    subAccountUcTrunkingSeats:
+      type: object
+      properties:
+        SiteTotalSeatsResponse:
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/ucTrunkingSeats'
+    subAccountTotalSeatsBadRequestResponse:
+      type: object
+      properties:
+        SiteTotalSeatsResponse:
+          $ref: '#/components/schemas/responseStatus'
+    supportLevel:
+      type: string
+      description: Support tier level for the account
+      example: Signature
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+      description: >-
+        Basic authentication is a simple authentication scheme built into the
+        HTTP protocol. To use it, send your HTTP requests with an Authorization
+        header that contains the word Basic followed by a space and a
+        base64-encoded string `username:password`.
+
+        Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        Bearer authentication (also called token authentication) is an HTTP
+        authentication scheme that involves security tokens called bearer
+        tokens. The name “Bearer authentication” can be understood as “give
+        access to the bearer of this token.” The client must send this token in
+        the `Authorization` header when making requests to protected resources.
+
+        - Example: `Authorization: Bearer <token>`
+
+        Where `<token>` should be replaced with the token string without angle
+        brackets.
+
+        For more information, see the following guide:
+        [Credentials](https://dev.bandwidth.com/docs/account/credentials/management)
+security:
+  - Basic: []
+  - Bearer: []
+tags:
+  - name: Account
+  - name: Sub-Accounts (Sites)
+  - name: Locations (SIP Peers)
+  - name: Admin Data

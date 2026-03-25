@@ -1,0 +1,1668 @@
+openapi: 3.1.0
+info:
+  title: Voice Configuration Packages
+  summary: >-
+    Define and manage voice origination features on Voice Configuration
+    Packages.
+
+    Manage voice phone numbers associated with each Voice Configuration Package
+    on an account.
+  description: >-
+    Voice configuration packages are used to define and manage voice origination
+    features
+
+    applied to a group of phone numbers. Voice origination features are managed
+    on voice
+
+    configuration packages. Assigning a phone number to a voice configuration
+    package enables
+
+    the features configured on the voice configuration package for that phone
+    number. If a
+
+    phone number being added to a voice configuration package isn't compatible
+    with all the
+
+    features currently enabled and configured, then the request to add the
+    number will be rejected.
+
+    Similarly, a request to enable a feature will only be accepted if all the
+    numbers currently
+
+    associated with the voice configuration package support the feature being
+    enabled.
+
+     ## Base URL
+
+    `https://api.bandwidth.com`
+  contact:
+    name: Bandwidth
+    url: https://support.bandwidth.com
+    email: support@bandwidth.com
+  termsOfService: https://www.bandwidth.com/legal/terms-of-use-bandwidthcom-web-sites/
+  version: 1.0.0
+servers:
+  - url: https://api.bandwidth.com
+    description: Production
+tags:
+  - name: Voice Configuration Package
+    description: Create, read, update, and delete voice configuration packages.
+  - name: Voice Configuration Package Phone Numbers
+    description: View and manage phone number assignment to voice configuration packages.
+  - name: Identity Authentication API
+    description: >-
+      Identity Authentication facilitates real-time call authentication by
+      transmitting metadata to an integrated analytics engine (AE) prior to call
+      delivery to supported terminating major US mobile carriers.
+paths:
+  /v2/accounts/{accountId}/voiceConfigurationPackages:
+    get:
+      summary: List Voice Configuration Packages
+      operationId: listVoiceConfigurationPackages
+      description: List all voice configuration packages for an account.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/nameFilter'
+        - $ref: '#/components/parameters/includePhoneNumberCount'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          $ref: '#/components/responses/listVoiceConfigurationPackagesResponse'
+        '400':
+          $ref: '#/components/responses/badRequestErrorPagedResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedErrorPagedResponse'
+        '403':
+          $ref: '#/components/responses/forbiddenErrorPagedResponse'
+        '404':
+          $ref: '#/components/responses/notFoundErrorPagedResponse'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedErrorPagedResponse'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsErrorPagedResponse'
+        5XX:
+          $ref: '#/components/responses/internalServerErrorPagedResponse'
+      tags:
+        - Voice Configuration Package
+    post:
+      summary: Create Voice Configuration Package
+      operationId: createVoiceConfigurationPackage
+      description: Create a new voice configuration package for an account.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      requestBody:
+        $ref: '#/components/requestBodies/createVoiceConfigurationPackageRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/createVoiceConfigurationPackageResponse'
+        '400':
+          $ref: '#/components/responses/badRequestErrorResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedErrorResponse'
+        '403':
+          $ref: '#/components/responses/forbiddenErrorResponse'
+        '404':
+          $ref: '#/components/responses/notFoundErrorResponse'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedErrorResponse'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsErrorResponse'
+        5XX:
+          $ref: '#/components/responses/internalServerErrorResponse'
+      tags:
+        - Voice Configuration Package
+  /v2/accounts/{accountId}/voiceConfigurationPackages/{voiceConfigurationPackageId}:
+    get:
+      summary: Get Voice Configuration Package
+      operationId: getVoiceConfigurationPackage
+      description: Get Voice Configuration Package by ID.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/voiceConfigurationPackageId'
+        - $ref: '#/components/parameters/includePhoneNumberCount'
+      responses:
+        '200':
+          $ref: '#/components/responses/getVoiceConfigurationPackageResponse'
+        '400':
+          $ref: '#/components/responses/badRequestErrorResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedErrorResponse'
+        '403':
+          $ref: '#/components/responses/forbiddenErrorResponse'
+        '404':
+          $ref: '#/components/responses/notFoundErrorResponse'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedErrorResponse'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsErrorResponse'
+        5XX:
+          $ref: '#/components/responses/internalServerErrorResponse'
+      tags:
+        - Voice Configuration Package
+    put:
+      summary: Replace Voice Configuration Package
+      operationId: replaceVoiceConfigurationPackage
+      description: Replace Voice Configuration Package by ID.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/voiceConfigurationPackageId'
+      requestBody:
+        $ref: '#/components/requestBodies/replaceVoiceConfigurationPackageRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/replaceVoiceConfigurationPackageResponse'
+        '400':
+          $ref: '#/components/responses/badRequestErrorResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedErrorResponse'
+        '403':
+          $ref: '#/components/responses/forbiddenErrorResponse'
+        '404':
+          $ref: '#/components/responses/notFoundErrorResponse'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedErrorResponse'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsErrorResponse'
+        5XX:
+          $ref: '#/components/responses/internalServerErrorResponse'
+      tags:
+        - Voice Configuration Package
+    patch:
+      summary: Update Voice Configuration Package
+      operationId: updateVoiceConfigurationPackage
+      description: Update Voice Configuration Package by ID.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/voiceConfigurationPackageId'
+      requestBody:
+        $ref: '#/components/requestBodies/updateVoiceConfigurationPackageRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/updateVoiceConfigurationPackageResponse'
+        '400':
+          $ref: '#/components/responses/badRequestErrorResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedErrorResponse'
+        '403':
+          $ref: '#/components/responses/forbiddenErrorResponse'
+        '404':
+          $ref: '#/components/responses/notFoundErrorResponse'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedErrorResponse'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsErrorResponse'
+        5XX:
+          $ref: '#/components/responses/internalServerErrorResponse'
+      tags:
+        - Voice Configuration Package
+    delete:
+      summary: Delete Voice Configuration Package
+      operationId: deleteVoiceConfigurationPackage
+      description: Delete Voice Configuration Package by ID.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/voiceConfigurationPackageId'
+      responses:
+        '204':
+          $ref: '#/components/responses/deleteVoiceConfigurationPackageResponse'
+        '400':
+          $ref: '#/components/responses/badRequestErrorResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedErrorResponse'
+        '403':
+          $ref: '#/components/responses/forbiddenErrorResponse'
+        '404':
+          $ref: '#/components/responses/notFoundErrorResponse'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedErrorResponse'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsErrorResponse'
+        5XX:
+          $ref: '#/components/responses/internalServerErrorResponse'
+      tags:
+        - Voice Configuration Package
+  /v2/accounts/{accountId}/voiceConfigurationPackages/{voiceConfigurationPackageId}/phoneNumbers/bulk:
+    post:
+      summary: Add Numbers to Voice Configuration Package
+      operationId: addNumbersToVoiceConfigurationPackage
+      description: >-
+        Bulk provisioning operations for managing phone number assignments to
+        voice configuration packages. The ADD operations works as an upsert
+        where phone numbers are ADDed to the provided voice configuration
+        package regardless of their current state.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/voiceConfigurationPackageId'
+      requestBody:
+        $ref: >-
+          #/components/requestBodies/bulkAddNumbersToVoiceConfigurationPackageRequest
+      responses:
+        '200':
+          $ref: '#/components/responses/addPhoneNumbersPartialSuccessResponse'
+        '204':
+          $ref: '#/components/responses/addPhoneNumbersSuccessResponse'
+        '400':
+          $ref: '#/components/responses/badRequestErrorResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedErrorResponse'
+        '403':
+          $ref: '#/components/responses/forbiddenErrorResponse'
+        '404':
+          $ref: '#/components/responses/notFoundErrorResponse'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedErrorResponse'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsErrorResponse'
+        5XX:
+          $ref: '#/components/responses/internalServerErrorResponse'
+      tags:
+        - Voice Configuration Package Phone Numbers
+  /v2/accounts/{accountId}/voiceConfigurationPackages/search:
+    post:
+      summary: Search Voice Configuration packages
+      operationId: searchVoiceConfigurationPackage
+      description: Search voice configuration packages for an account.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/searchLimit'
+      requestBody:
+        $ref: '#/components/requestBodies/searchVoiceConfigurationPackageRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/searchVoiceConfigurationPackageResponse'
+        '400':
+          $ref: '#/components/responses/badRequestErrorResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedErrorResponse'
+        '403':
+          $ref: '#/components/responses/forbiddenErrorResponse'
+        '404':
+          $ref: '#/components/responses/notFoundErrorResponse'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedErrorResponse'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsErrorResponse'
+        5XX:
+          $ref: '#/components/responses/internalServerErrorResponse'
+      tags:
+        - Voice Configuration Package
+  /v2/analytic-engines:
+    get:
+      summary: List Analytic Engines
+      operationId: listAnalyticEngines
+      description: Retrieve a list of available analytic engines.
+      responses:
+        '200':
+          $ref: '#/components/responses/getAnalyticEngineListResponse'
+        '400':
+          $ref: '#/components/responses/badRequestErrorResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedErrorResponse'
+        '403':
+          $ref: '#/components/responses/forbiddenErrorResponse'
+        '404':
+          $ref: '#/components/responses/notFoundErrorResponse'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedErrorResponse'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsErrorResponse'
+        5XX:
+          $ref: '#/components/responses/internalServerErrorResponse'
+      tags:
+        - Identity Authentication API
+components:
+  schemas:
+    voiceConfigurationPackageId:
+      type: string
+      format: uuid
+      description: The voice configuration package's ID.
+      example: 53638c12-7831-470a-af2f-c755389cf635
+    voiceConfigurationPackageName:
+      type: string
+      description: The voice configuration package's name.
+      example: Voice Configuration Package Name
+    voiceConfigurationPackageDescription:
+      type: string
+      description: The voice configuration package's description.
+      example: Voice Configuration Package Description
+    verstatEnum:
+      type: string
+      enum:
+        - BASIC
+        - ENHANCED
+      example: BASIC
+    cnam:
+      type: object
+      description: Calling Name (CNAM) settings.
+      properties:
+        enabled:
+          type: boolean
+          example: true
+    pindropIntegration:
+      type: object
+      description: Pindrop Integration settings.
+      properties:
+        enabled:
+          type: boolean
+          example: true
+    callVerification:
+      type: object
+      description: Call Verification settings.
+      properties:
+        enabled:
+          type: boolean
+          example: true
+    stirShakenBehavior:
+      type: object
+      description: Stir shaken behavior.
+      properties:
+        verstat:
+          $ref: '#/components/schemas/verstatEnum'
+        identity:
+          type: boolean
+          example: true
+    httpVoiceV2ApplicationId:
+      type: string
+      format: uuid
+      nullable: true
+      description: HTTP Voice V2 Application ID.
+      example: 7ea5fc7b-0b23-4e3a-8455-95544b33f212
+    analyticEngine:
+      type: string
+      nullable: true
+      description: Identity Auth Analytic Engine Name.
+      enum:
+        - FIRST_ORION
+      example: FIRST_ORION
+    voiceConfigurationPackageRequest:
+      title: Voice Configuration Package Request
+      type: object
+      description: >-
+        The request object used to create a voice configuration package and
+        update a voice configuration package.
+      properties:
+        name:
+          $ref: '#/components/schemas/voiceConfigurationPackageName'
+        description:
+          $ref: '#/components/schemas/voiceConfigurationPackageDescription'
+        cnam:
+          $ref: '#/components/schemas/cnam'
+        pindropIntegration:
+          $ref: '#/components/schemas/pindropIntegration'
+        callVerification:
+          $ref: '#/components/schemas/callVerification'
+        originationRoutePlan:
+          $ref: '#/components/schemas/originationRoutePlanRequest'
+        stirShakenBehavior:
+          $ref: '#/components/schemas/stirShakenBehavior'
+        httpVoiceV2ApplicationId:
+          $ref: '#/components/schemas/httpVoiceV2ApplicationId'
+        analyticEngine:
+          $ref: '#/components/schemas/analyticEngine'
+    searchVoiceConfigurationPackageRequest:
+      title: Search Voice Configuration Package Request
+      type: object
+      description: The request object used to search a voice configuration package.
+      properties:
+        queryCriteria:
+          $ref: '#/components/schemas/queryCriteriaList'
+      required:
+        - queryCriteria
+    queryCriteriaList:
+      type: array
+      description: List of query criteria search request api
+      items:
+        $ref: '#/components/schemas/queryCriteria'
+    queryCriteria:
+      description: Query criteria object for search request api
+      properties:
+        parameter:
+          type: string
+          description: The parameter name.
+          example: phoneNumber
+        operator:
+          type: string
+          enum:
+            - EQ
+            - STARTS_WITH
+          example: EQ
+        values:
+          $ref: '#/components/schemas/queryCriteriaValues'
+    queryCriteriaValues:
+      oneOf:
+        - type: boolean
+        - type: string
+        - type: array
+          items:
+            oneOf:
+              - type: string
+      description: The parameter value(s) for filtering.
+    voiceConfigurationPackage:
+      type: object
+      description: The response object representing a voice configuration package.
+      properties:
+        voiceConfigurationPackageId:
+          $ref: '#/components/schemas/voiceConfigurationPackageId'
+        accountId:
+          $ref: '#/components/schemas/accountId'
+        name:
+          $ref: '#/components/schemas/voiceConfigurationPackageName'
+        description:
+          $ref: '#/components/schemas/voiceConfigurationPackageDescription'
+        cnam:
+          $ref: '#/components/schemas/cnam'
+        pindropIntegration:
+          $ref: '#/components/schemas/pindropIntegration'
+        callVerification:
+          $ref: '#/components/schemas/callVerification'
+        originationRoutePlan:
+          $ref: '#/components/schemas/originationRoutePlan'
+        stirShakenBehavior:
+          $ref: '#/components/schemas/stirShakenBehavior'
+        httpVoiceV2ApplicationId:
+          $ref: '#/components/schemas/httpVoiceV2ApplicationId'
+        analyticEngine:
+          $ref: '#/components/schemas/analyticEngine'
+    voiceConfigurationPackageWithPhoneNumberCount:
+      type: object
+      description: >-
+        The response object representing a voice configuration package with
+        phone number count.
+      properties:
+        voiceConfigurationPackageId:
+          $ref: '#/components/schemas/voiceConfigurationPackageId'
+        accountId:
+          $ref: '#/components/schemas/accountId'
+        name:
+          $ref: '#/components/schemas/voiceConfigurationPackageName'
+        description:
+          $ref: '#/components/schemas/voiceConfigurationPackageDescription'
+        cnam:
+          $ref: '#/components/schemas/cnam'
+        pindropIntegration:
+          $ref: '#/components/schemas/pindropIntegration'
+        callVerification:
+          $ref: '#/components/schemas/callVerification'
+        originationRoutePlan:
+          $ref: '#/components/schemas/originationRoutePlan'
+        stirShakenBehavior:
+          $ref: '#/components/schemas/stirShakenBehavior'
+        httpVoiceV2ApplicationId:
+          $ref: '#/components/schemas/httpVoiceV2ApplicationId'
+        analyticEngine:
+          $ref: '#/components/schemas/analyticEngine'
+        phoneNumberCount:
+          $ref: '#/components/schemas/phoneNumberCount'
+    phoneNumber:
+      type: string
+      description: An E164 phone number.
+      example: '+442071838750'
+    voiceIntegrationId:
+      type: string
+      description: Voice Integration ID.
+      example: 3bc3c038-8f8c-4489-8dd2-c14063f395e2
+    name:
+      type: string
+      description: The name of the voice configuration package which it starts with.
+      example: Voice Configuration Package Name
+    phoneNumberCount:
+      type: integer
+      description: >-
+        The number of phone numbers associated with the voice configuration
+        package.
+      example: 10
+    originationRoutePlanRequest:
+      type: object
+      description: An Origination Route Plan request object.
+      properties:
+        routes:
+          type: array
+          items:
+            $ref: '#/components/schemas/originationRoutePlanRouteRequest'
+    originationRoutePlanRouteRequest:
+      type: object
+      description: A route for an Origination Route Plan.
+      properties:
+        priority:
+          type: number
+          minimum: 1
+          maximum: 10
+          example: 1
+        name:
+          type: string
+          example: primary route
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/originationRoutePlanEndpointRequest'
+    originationRoutePlanEndpointRequest:
+      description: >-
+        An endpoint for an Origination Route Plan. The `type` property is
+        optional but recommended to identify the endpoint kind. When provided,
+        it MUST match one of the values in `endpointTypeEnum`. Each sub-schema
+        is selected based on the `type` value when present.
+      oneOf:
+        - $ref: '#/components/schemas/tnEndpointRequest'
+        - $ref: '#/components/schemas/sipEndpointRequest'
+        - $ref: '#/components/schemas/ipv4EndpointRequest'
+        - $ref: '#/components/schemas/integrationEndpointRequest'
+        - $ref: '#/components/schemas/fqdnEndpointRequest'
+        - $ref: '#/components/schemas/botEndpointRequest'
+    tnEndpointRequest:
+      type: object
+      description: Telephone number (TN) endpoint request.
+      properties:
+        endpoint:
+          type: string
+          example: '+12345678910'
+        type:
+          $ref: '#/components/schemas/endpointTypeEnum'
+        weight:
+          type: integer
+          format: int32
+          example: 20
+        trunkInfo:
+          $ref: '#/components/schemas/trunkInfo'
+          nullable: true
+          description: Optional trunk selection info. May be omitted in requests.
+    sipEndpointRequest:
+      type: object
+      description: SIP endpoint request.
+      properties:
+        endpoint:
+          type: string
+          example: +sip:sara@1.1.1.1
+        type:
+          $ref: '#/components/schemas/endpointTypeEnum'
+        weight:
+          type: integer
+          format: int32
+          example: 20
+        rewriteUser:
+          type: string
+          nullable: true
+          example: rewrite-user@example.com
+        trunkInfo:
+          $ref: '#/components/schemas/trunkInfo'
+          nullable: true
+          description: Optional trunk selection info. May be omitted in requests.
+    ipv4EndpointRequest:
+      type: object
+      description: IPv4 endpoint request.
+      properties:
+        endpoint:
+          type: string
+          example: +1.1.1.1:5081
+        type:
+          $ref: '#/components/schemas/endpointTypeEnum'
+        weight:
+          type: integer
+          format: int32
+          example: 20
+        trunkInfo:
+          $ref: '#/components/schemas/trunkInfo'
+          nullable: true
+          description: Optional trunk selection info. May be omitted in requests.
+    integrationEndpointRequest:
+      type: object
+      description: Integration endpoint request.
+      properties:
+        endpoint:
+          type: string
+          example: a7e08808-129d-494c-a3af-c38d3cfd49f8
+        type:
+          $ref: '#/components/schemas/endpointTypeEnum'
+        weight:
+          type: integer
+          format: int32
+          example: 20
+        trunkInfo:
+          $ref: '#/components/schemas/trunkInfo'
+          nullable: true
+          description: Optional trunk selection info. May be omitted in requests.
+    fqdnEndpointRequest:
+      type: object
+      description: FQDN endpoint request.
+      properties:
+        endpoint:
+          type: string
+          example: +test.test.com
+        type:
+          $ref: '#/components/schemas/endpointTypeEnum'
+        weight:
+          type: integer
+          format: int32
+          example: 20
+        trunkInfo:
+          $ref: '#/components/schemas/trunkInfo'
+          nullable: true
+          description: Optional trunk selection info. May be omitted in requests.
+    botEndpointRequest:
+      type: object
+      description: Bot endpoint request.
+      properties:
+        endpoint:
+          type: string
+          example: bot-endpoint-id
+        type:
+          $ref: '#/components/schemas/endpointTypeEnum'
+        weight:
+          type: integer
+          format: int32
+          example: 20
+    trunkInfo:
+      type: object
+      description: >-
+        Trunk selection information for an endpoint. This field is optional and
+        nullable: it may be omitted in requests and responses when no trunk has
+        been selected for an endpoint. When present it contains the trunk
+        identifier and associated capability pipe id selected for this endpoint.
+      properties:
+        trunkId:
+          type: string
+          description: The trunk identifier selected for this endpoint.
+          nullable: true
+          example: 66059341226405797b14d4c1
+        capabilityPipeId:
+          type: string
+          description: The capability pipe id associated with the selected trunk.
+          nullable: true
+          example: 201954af-e0ef-494b-bf26-541a4e99904a
+    endpoint:
+      type: object
+      description: An endpoint for an Origination Route Plan.
+      properties:
+        endpoint:
+          type: string
+          example: '+12345678910'
+        type:
+          $ref: '#/components/schemas/endpointTypeEnum'
+        weight:
+          type: integer
+          format: int32
+          example: 20
+        trunkInfo:
+          $ref: '#/components/schemas/trunkInfo'
+          nullable: true
+          description: Optional trunk information selected for this endpoint.
+    route:
+      type: object
+      description: A route for an Origination Route Plan.
+      properties:
+        priority:
+          type: number
+          minimum: 1
+          maximum: 10
+          example: 1
+        name:
+          type: string
+          example: Route Name
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/endpoint'
+    originationRoutePlan:
+      type: object
+      description: Origination route plan for a voice configuration package.
+      properties:
+        routes:
+          type: array
+          items:
+            $ref: '#/components/schemas/route'
+    endpointTypeEnum:
+      type: string
+      enum:
+        - TN
+        - SIP
+        - IP_V4
+        - INTEGRATION
+        - FQDN
+        - BOT
+      example: TN
+    bulkTnActionEnum:
+      type: string
+      description: The action to take on the phone numbers.
+      enum:
+        - ADD
+      example: ADD
+    accountId:
+      type: integer
+      description: The account ID for the phone numbers.
+      example: 123456
+    bulkPhoneNumbersRequest:
+      type: object
+      description: Request object for adding phone numbers in bulk to VCS inventory.
+      properties:
+        action:
+          $ref: '#/components/schemas/bulkTnActionEnum'
+          description: >-
+            The "ADD" value functions as an "add" and/or "move" operation, so
+            phone numbers already associated with a voice configuration package
+            will be moved to the voice configuration package provided in the
+            request URI.
+        phoneNumbers:
+          type: array
+          description: List of E.164 phone numbers.
+          items:
+            $ref: '#/components/schemas/phoneNumber'
+          example:
+            - '+441234567890'
+    link:
+      title: Links
+      type: object
+      properties:
+        href:
+          type: string
+          description: URI of the link.
+          example: >-
+            https://api.bandwidth.com/v2/accounts/123456/voiceConfigurationPackages
+        rel:
+          type: string
+          description: Specifies the relationship between this link and the resource.
+          example: voiceConfigurationPackages
+        method:
+          type: string
+          description: HTTP method to be used.
+          example: GET
+      required:
+        - href
+        - rel
+        - method
+    pageMeta:
+      title: Pagination Metadata
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: The size of pages returned.
+          minimum: 1
+          example: 20
+        totalElements:
+          type: integer
+          description: The total number of elements in the collection.
+          example: 60
+        totalPages:
+          type: integer
+          description: >-
+            The total number of pages in the collection of the specified
+            pageSize.
+          example: 3
+        pageNumber:
+          type: integer
+          description: The page number for the page returned.
+          minimum: 0
+          example: 0
+      nullable: true
+    error:
+      type: object
+      description: Voice Configuration Package Service Error Schema.
+      properties:
+        code:
+          type: string
+          example: VCS-1000
+        type:
+          type: string
+          example: VALIDATION
+        description:
+          type: string
+          example: Description of the error.
+    errorMeta:
+      type: object
+      description: An instance of an Voice Configuration Package Service error.
+      properties:
+        type:
+          type: string
+          example: VoiceConfigurationPackageError
+        description:
+          type: string
+        meta:
+          type: array
+          items:
+            $ref: '#/components/schemas/phoneNumber'
+    listVoiceConfigurationPackagesResponse:
+      type: object
+      description: A response containing an array of voice configuration package objects.
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/voiceConfigurationPackageWithPhoneNumberCount'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+        page:
+          $ref: '#/components/schemas/pageMeta'
+      required:
+        - links
+        - data
+        - errors
+        - page
+    errorResponse:
+      title: Error Response
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          example: []
+        data:
+          type: object
+          nullable: true
+          example: null
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+      required:
+        - links
+        - data
+        - errors
+    voiceConfigurationPackageResponse:
+      type: object
+      description: A response containing a voice configuration package object.
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        data:
+          $ref: '#/components/schemas/voiceConfigurationPackage'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+      required:
+        - links
+        - data
+        - errors
+    voiceConfigurationPackageResponseWithPhoneNumberCount:
+      type: object
+      description: A response containing a voice configuration package object.
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        data:
+          $ref: '#/components/schemas/voiceConfigurationPackageWithPhoneNumberCount'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+      required:
+        - links
+        - data
+        - errors
+    addPhoneNumbersPartialSuccessResponse:
+      type: object
+      description: >-
+        A response containing an array of phone numbers and voice configuration
+        packages.
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        data:
+          type: object
+          nullable: true
+          example: null
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+      required:
+        - links
+        - data
+        - errors
+    searchVoiceConfigurationPackagesResponse:
+      type: object
+      description: A response containing an array of voice configuration package objects.
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/voiceConfigurationPackage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+        page:
+          $ref: '#/components/schemas/pageMeta'
+      required:
+        - links
+        - data
+        - errors
+        - page
+    analyticEngineListResponse:
+      type: object
+      description: A response containing an array of analytic engine names.
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        data:
+          type: object
+          properties:
+            analyticEngines:
+              $ref: '#/components/schemas/analyticEngines'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+      required:
+        - links
+        - data
+        - errors
+    analyticEngines:
+      type: array
+      description: List of Identity Auth Analytic Engine Names.
+      items:
+        type: string
+        enum:
+          - FIRST_ORION
+      example:
+        - FIRST_ORION
+  responses:
+    searchVoiceConfigurationPackageResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/listVoiceConfigurationPackagesResponse'
+          examples:
+            default:
+              $ref: >-
+                #/components/examples/searchVoiceConfigurationPackagesPagedExample
+    listVoiceConfigurationPackagesResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/listVoiceConfigurationPackagesResponse'
+          examples:
+            default:
+              $ref: '#/components/examples/voiceConfigurationPackagesPagedExample'
+    addPhoneNumbersSuccessResponse:
+      description: >-
+        All phone numbers successfully added to the voice configuration package.
+        No response body is returned.
+    addPhoneNumbersPartialSuccessResponse:
+      description: >-
+        Partial success. Phone numbers absent from the error meta data have been
+        successfully added to the voice configuration package.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/addPhoneNumbersPartialSuccessResponse'
+          examples:
+            default:
+              $ref: >-
+                #/components/examples/addPhoneNumbersPartialSuccessResponseExample
+    createVoiceConfigurationPackageResponse:
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/voiceConfigurationPackageResponse'
+          examples:
+            createVoiceConfigurationPackageResponseExample:
+              $ref: '#/components/examples/voiceConfigurationPackageResponseExample'
+    getVoiceConfigurationPackageResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: >-
+              #/components/schemas/voiceConfigurationPackageResponseWithPhoneNumberCount
+          examples:
+            getVoiceConfigurationPackageResponseExample:
+              $ref: '#/components/examples/voiceConfigurationPackageResponseExample'
+    replaceVoiceConfigurationPackageResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/voiceConfigurationPackageResponse'
+          examples:
+            replaceVoiceConfigurationPackageResponseExample:
+              $ref: '#/components/examples/voiceConfigurationPackageResponseExample'
+    updateVoiceConfigurationPackageResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/voiceConfigurationPackageResponse'
+          examples:
+            updateVoiceConfigurationPackageResponseExample:
+              $ref: '#/components/examples/voiceConfigurationPackageResponseExample'
+    deleteVoiceConfigurationPackageResponse:
+      description: Deleted voice configuration package successfully.
+    getAnalyticEngineListResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/analyticEngineListResponse'
+          examples:
+            getAnalyticEngineListResponse:
+              $ref: '#/components/examples/analyticEngineListResponseExample'
+    badRequestErrorResponse:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            badRequestErrorExample:
+              $ref: '#/components/examples/badRequestErrorExample'
+    badRequestErrorPagedResponse:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            badRequestErrorExample:
+              $ref: '#/components/examples/badRequestErrorPagedExample'
+    unauthorizedErrorResponse:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            unauthorizedErrorExample:
+              $ref: '#/components/examples/unauthorizedErrorExample'
+    unauthorizedErrorPagedResponse:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            unauthorizedErrorExample:
+              $ref: '#/components/examples/unauthorizedErrorPagedExample'
+    forbiddenErrorResponse:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            unauthorizedErrorExample:
+              $ref: '#/components/examples/forbiddenErrorExample'
+    forbiddenErrorPagedResponse:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            unauthorizedErrorExample:
+              $ref: '#/components/examples/forbiddenErrorPagedExample'
+    notFoundErrorResponse:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            notFoundErrorExample:
+              $ref: '#/components/examples/notFoundErrorExample'
+    notFoundErrorPagedResponse:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            notFoundErrorExample:
+              $ref: '#/components/examples/notFoundErrorPagedExample'
+    methodNotAllowedErrorResponse:
+      description: Method Not Allowed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            notAllowedErrorExample:
+              $ref: '#/components/examples/notAllowedErrorExample'
+    methodNotAllowedErrorPagedResponse:
+      description: Method Not Allowed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            notAllowedErrorExample:
+              $ref: '#/components/examples/notAllowedErrorPagedExample'
+    tooManyRequestsErrorResponse:
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            tooManyRequestsErrorExample:
+              $ref: '#/components/examples/tooManyRequestsErrorExample'
+    tooManyRequestsErrorPagedResponse:
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            tooManyRequestsErrorExample:
+              $ref: '#/components/examples/tooManyRequestsErrorPagedExample'
+    internalServerErrorResponse:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            internalServerErrorExample:
+              $ref: '#/components/examples/internalServerErrorExample'
+    internalServerErrorPagedResponse:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            internalServerErrorExample:
+              $ref: '#/components/examples/internalServerErrorPagedExample'
+  requestBodies:
+    searchVoiceConfigurationPackageRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/searchVoiceConfigurationPackageRequest'
+    createVoiceConfigurationPackageRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/voiceConfigurationPackageRequest'
+    replaceVoiceConfigurationPackageRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/voiceConfigurationPackageRequest'
+    updateVoiceConfigurationPackageRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/voiceConfigurationPackageRequest'
+    bulkAddNumbersToVoiceConfigurationPackageRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/bulkPhoneNumbersRequest'
+  examples:
+    badRequestErrorExample:
+      summary: Bad Request Error Example.
+      value:
+        links: []
+        data: null
+        errors:
+          - type: VALIDATION
+            description: There was an issue with your request.
+            code: VCS-1000
+    badRequestErrorPagedExample:
+      summary: Bad Request Error Example.
+      value:
+        links: []
+        data: null
+        errors:
+          - type: VALIDATION
+            description: There was an issue with your request.
+            code: VCS-1000
+        page: null
+    unauthorizedErrorExample:
+      summary: Unauthorized Error Example.
+      value:
+        links: []
+        data: null
+        errors:
+          - type: AUTHENTICATION
+            description: Invalid or missing credentials.
+            code: VCS-0004
+    unauthorizedErrorPagedExample:
+      summary: Unauthorized Error Example.
+      value:
+        links: []
+        data: null
+        errors:
+          - type: AUTHENTICATION
+            description: Invalid or missing credentials.
+            code: VCS-0004
+        page: null
+    forbiddenErrorExample:
+      summary: Forbidden Error Example.
+      value:
+        links: []
+        data: null
+        errors:
+          - type: AUTHORIZATION
+            description: User does not have permissions to access this resource.
+            code: VCS-1003
+    forbiddenErrorPagedExample:
+      summary: Forbidden Error Example.
+      value:
+        links: []
+        data: null
+        errors:
+          - type: AUTHORIZATION
+            description: User does not have permissions to access this resource.
+            code: VCS-1003
+        page: null
+    notFoundErrorExample:
+      summary: Not Found Error Example.
+      value:
+        links: []
+        data: null
+        errors:
+          - type: RESOURCE_NOT_FOUND
+            description: >-
+              The provided
+              voiceConfigurationPackageId=36b040e1-b464-4e6b-bc92-a6bafa7caa22
+              not found on accountId=123456.
+            code: VCS-0039
+    notFoundErrorPagedExample:
+      summary: Not Found Error Example.
+      value:
+        links: []
+        data: null
+        errors:
+          - type: RESOURCE_NOT_FOUND
+            description: >-
+              The provided
+              voiceConfigurationPackageId=36b040e1-b464-4e6b-bc92-a6bafa7caa22
+              not found on accountId=123456.
+            code: VCS-0039
+        page: null
+    notAllowedErrorExample:
+      summary: Method Not Allowed Error Example.
+      value:
+        links: []
+        data: null
+        errors:
+          - type: METHOD_NOT_ALLOWED
+            description: >-
+              The HTTP request method is not supported for the requested
+              resource.
+            code: VCS-1007
+    notAllowedErrorPagedExample:
+      summary: Method Not Allowed Error Example.
+      value:
+        links: []
+        data: null
+        errors:
+          - type: METHOD_NOT_ALLOWED
+            description: >-
+              The HTTP request method is not supported for the requested
+              resource.
+            code: VCS-1007
+        page: null
+    tooManyRequestsErrorExample:
+      summary: Too Many Requests Error Example.
+      value:
+        links: []
+        data: null
+        errors:
+          - type: TOO_MANY_REQUESTS
+            description: The user has sent too many requests in a given amount of time.
+            code: VCS-0098
+    tooManyRequestsErrorPagedExample:
+      summary: Too Many Requests Error Example.
+      value:
+        links: []
+        data: null
+        errors:
+          - type: TOO_MANY_REQUESTS
+            description: The user has sent too many requests in a given amount of time.
+            code: VCS-0098
+        page: null
+    internalServerErrorExample:
+      summary: Internal Server Error Example.
+      value:
+        links: []
+        data: null
+        errors:
+          - type: UNKNOWN
+            description: >-
+              There was an unknown error performing the request. If this issue
+              persists, please contact Bandwidth support.
+            code: VCS-0001
+    internalServerErrorPagedExample:
+      summary: Internal Server Error Example.
+      value:
+        links: []
+        data: null
+        errors:
+          - type: UNKNOWN
+            description: >-
+              There was an unknown error performing the request. If this issue
+              persists, please contact Bandwidth support.
+            code: VCS-0001
+        page: null
+    voiceConfigurationPackageResponseExample:
+      summary: An example of a voice configuration package response
+      value:
+        links:
+          - href: >-
+              https://api.bandwidth.com/v2/account/123456/voiceConfigurationPackages/b64b5e72-a850-4f38-98d4-5022cacd3f0f
+            rel: self
+            method: GET
+          - href: >-
+              https://api.bandwidth.com/v2/account/123456/voiceConfigurationPackages
+            rel: create
+            method: POST
+          - href: >-
+              https://api.bandwidth.com/v2/account/123456/voiceConfigurationPackages/b64b5e72-a850-4f38-98d4-5022cacd3f0f
+            rel: replace
+            method: PUT
+          - href: >-
+              https://api.bandwidth.com/v2/account/123456/voiceConfigurationPackages/b64b5e72-a850-4f38-98d4-5022cacd3f0f
+            rel: update
+            method: PATCH
+          - href: >-
+              https://api.bandwidth.com/v2/account/123456/voiceConfigurationPackages/b64b5e72-a850-4f38-98d4-5022cacd3f0f
+            rel: delete
+            method: DELETE
+        data:
+          voiceConfigurationPackageId: b64b5e72-a850-4f38-98d4-5022cacd3f0f
+          name: Best voice configuration package
+          description: Best voice configuration package description ever
+          cnam:
+            enabled: true
+          pindropIntegration:
+            enabled: false
+          callVerification:
+            enabled: false
+          originationRoutePlan:
+            routes:
+              - priority: 1
+                name: primary route
+                endpoints:
+                  - endpoint: '+12345678910'
+                    type: TN
+                    weight: 20
+                    trunkInfo:
+                      trunkId: 66059341226405797b14d4c1
+                      capabilityPipeId: 201954af-e0ef-494b-bf26-541a4e99904a
+                  - endpoint: '+12345678000'
+                    type: TN
+                    weight: 20
+                  - endpoint: +sip:sara@1.1.1.1
+                    type: SIP
+                    weight: 20
+                  - endpoint: +1.1.1.1:5081
+                    type: IP_V4
+                    weight: 20
+                  - endpoint: a7e08808-129d-494c-a3af-c38d3cfd49f8
+                    type: INTEGRATION
+                    weight: 20
+                  - endpoint: +test.test.com
+                    type: FQDN
+                    weight: 20
+              - priority: 2
+                name: 2nd Route
+                endpoints:
+                  - endpoint: '+12345678910'
+                    type: TN
+                    weight: 100
+          stirShakenBehavior:
+            verstat: BASIC
+            identity: true
+          httpVoiceV2ApplicationId: null
+          analyticEngine: FIRST_ORION
+        errors: []
+    analyticEngineListResponseExample:
+      summary: An example of an analytic engine list response
+      value:
+        links: []
+        data:
+          analyticEngines:
+            - FIRST_ORION
+        errors: []
+    addPhoneNumbersPartialSuccessResponseExample:
+      summary: An example of a add voice configuration package phone numbers response
+      value:
+        links: []
+        data: null
+        errors:
+          - type: VOICE_PROVISIONING_ERROR
+            code: VCS-1041
+            description: >-
+              The provided voice configuration package id was not applied
+              because some phone numbers are not compatible with the Microsoft
+              Teams Operator Connect voice product.
+            meta:
+              phoneNumbers:
+                - '+44123456789'
+    voiceConfigurationPackagesPagedExample:
+      summary: All Voice Configuration Packages by account example
+      value:
+        links:
+          - href: >-
+              https://api.bandwidth.com/v2/account/123456/voiceConfigurationPackages
+            rel: self
+            method: GET
+          - href: >-
+              https://api.bandwidth.com/v2/account/123456/voiceConfigurationPackages?offset=0&limit=25
+            rel: first
+            method: GET
+          - href: >-
+              https://api.bandwidth.com/v2/account/123456/voiceConfigurationPackages?offset=75&limit=25
+            rel: last
+            method: GET
+          - href: ''
+            rel: prev
+            method: GET
+          - href: >-
+              https://api.bandwidth.com/v2/account/123456/voiceConfigurationPackages?offset=25&limit=25
+            rel: next
+            method: GET
+        data:
+          - voiceConfigurationPackageId: 53638c12-7831-470a-af2f-c755389cf635
+            accountId: 123456
+            name: Voice Configuration Package Name
+            description: Voice Configuration Package Description
+            cnam:
+              enabled: true
+            pindropIntegration:
+              enabled: false
+            callVerification:
+              enabled: false
+            originationRoutePlan:
+              routes:
+                - priority: 1
+                  name: Route Name
+                  endpoints:
+                    - endpoint: '+12345678910'
+                      type: TN
+                      weight: 20
+                      trunkInfo:
+                        trunkId: 66059341226405797b14d4c1
+                        capabilityPipeId: 201954af-e0ef-494b-bf26-541a4e99904a
+                    - endpoint: '+12345670000'
+                      type: TN
+                      weight: 20
+            stirShakenBehavior:
+              verstat: BASIC
+              identity: true
+            httpVoiceV2ApplicationId: null
+            analyticEngine: FIRST_ORION
+        errors: []
+        page:
+          pageSize: 25
+          totalElements: 100
+          totalPages: 4
+          pageNumber: 0
+    searchVoiceConfigurationPackagesPagedExample:
+      summary: Search voice configuration packages example
+      value:
+        links:
+          - href: >-
+              https://api.bandwidth.com/v2/account/123456/voiceConfigurationPackages/search
+            rel: self
+            method: POST
+          - href: >-
+              https://api.bandwidth.com/v2/account/123456/voiceConfigurationPackages/search?offset=0&limit=25
+            rel: first
+            method: POST
+          - href: >-
+              https://api.bandwidth.com/v2/account/123456/voiceConfigurationPackages/search?offset=75&limit=25
+            rel: last
+            method: POST
+          - href: ''
+            rel: prev
+            method: POST
+          - href: >-
+              https://api.bandwidth.com/v2/account/123456/voiceConfigurationPackages/search?offset=25&limit=25
+            rel: next
+            method: POST
+        data:
+          - voiceConfigurationPackageId: 53638c12-7831-470a-af2f-c755389cf635
+            accountId: 123456
+            name: Voice Configuration Package Name
+            description: Voice Configuration Package Description
+            cnam:
+              enabled: true
+            pindropIntegration:
+              enabled: false
+            callVerification:
+              enabled: false
+            originationRoutePlan:
+              routes:
+                - priority: 1
+                  name: Route Name
+                  endpoints:
+                    - endpoint: '+12345678910'
+                      type: TN
+                      weight: 20
+                    - endpoint: +sip:john@2.2.2.2
+                      type: SIP
+                      weight: 20
+            stirShakenBehavior:
+              verstat: BASIC
+              identity: true
+            httpVoiceV2ApplicationId: null
+            analyticEngine: FIRST_ORION
+        errors: []
+        page:
+          pageSize: 25
+          totalElements: 100
+          totalPages: 4
+          pageNumber: 0
+  parameters:
+    accountId:
+      in: path
+      name: accountId
+      required: true
+      schema:
+        type: string
+      description: Your Bandwidth Account ID.
+      example: '9900000'
+    voiceConfigurationPackageId:
+      in: path
+      name: voiceConfigurationPackageId
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: Voice Configuration Package ID.
+      example: 3bc3c038-8f8c-4489-8dd2-c14063f395e2
+    nameFilter:
+      in: query
+      name: nameFilter
+      description: Voice Configuration Package Name.
+      example: Voice Configuration Package 1
+      required: false
+      schema:
+        type: string
+    includePhoneNumberCount:
+      description: Include phone number count query parameter.
+      in: query
+      name: includePhoneNumberCount
+      required: false
+      schema:
+        type: boolean
+        default: false
+        allowEmptyValue: false
+    offset:
+      description: Offset query parameter.
+      in: query
+      name: offset
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+        default: 0
+        allowEmptyValue: false
+    limit:
+      description: Limit query parameter.
+      in: query
+      name: limit
+      required: false
+      schema:
+        type: integer
+        format: int32
+        default: 500
+        maximum: 5000
+        allowEmptyValue: false
+    searchLimit:
+      description: Limit query parameter.
+      in: query
+      name: limit
+      required: false
+      schema:
+        type: integer
+        format: int32
+        default: 100
+        maximum: 500
+        allowEmptyValue: false
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+      description: >-
+        Basic authentication is a simple authentication scheme built into the
+        HTTP protocol. To use it, send your HTTP requests with an Authorization
+        header that contains the word Basic followed by a space and a
+        base64-encoded string `username:password`.
+
+        Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        Bearer authentication (also called token authentication) is an HTTP
+        authentication scheme that involves security tokens called bearer
+        tokens. The name “Bearer authentication” can be understood as “give
+        access to the bearer of this token.” The client must send this token in
+        the Authorization header when making requests to protected resources.
+
+
+        Example: `Authorization: Bearer <token>`
+security:
+  - Basic: []
+  - Bearer: []

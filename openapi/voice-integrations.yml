@@ -1,0 +1,803 @@
+openapi: 3.0.3
+info:
+  title: Voice Integrations
+  version: 2.0.0
+  contact:
+    name: Bandwidth
+    email: support@bandwidth.com
+  termsOfService: https://www.bandwidth.com/legal/terms-of-use-bandwidthcom-web-sites/
+  description: >-
+    The Voice Integration API specification defines the endpoints for managing
+    Voice Integrations at the account level. Voice Integrations allow customers
+    to create and manage their Voice Integration external IDs and options. The
+    Voice Integration API is a RESTful API that uses JSON for serialization and
+    HTTP response codes to indicate status and errors. It also defines the data
+    structures used in the requests and responses.
+
+    ## Base URL
+
+    `https://api.bandwidth.com/api/v2`
+servers:
+  - url: https://api.bandwidth.com/api/v2
+    description: Production
+  - url: https://test.api.bandwidth.com/api/v2
+    description: Test
+tags:
+  - name: Voice Integrations
+paths:
+  /accounts/{accountId}/voiceIntegrations:
+    get:
+      tags:
+        - Voice Integrations
+      summary: List All Voice Integrations
+      operationId: listVoiceIntegrations
+      description: |
+        This operation returns all Voice Integrations by account.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/nameParam'
+        - $ref: '#/components/parameters/externalIdParam'
+        - $ref: '#/components/parameters/pageNumber'
+        - $ref: '#/components/parameters/pageSize'
+      responses:
+        '200':
+          $ref: '#/components/responses/listVoiceIntegrationsResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
+    post:
+      tags:
+        - Voice Integrations
+      summary: Create Voice Integration
+      operationId: createVoiceIntegration
+      description: Create a Voice Integration.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      requestBody:
+        $ref: '#/components/requestBodies/createVoiceIntegrationRequestBody'
+      responses:
+        '201':
+          $ref: '#/components/responses/createVoiceIntegrationResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
+  /accounts/{accountId}/voiceIntegrations/{voiceIntegrationId}:
+    get:
+      tags:
+        - Voice Integrations
+      summary: Get Voice Integration by Voice Integration Id
+      operationId: getVoiceIntegration
+      description: |
+        This operation returns Voice Integration by Id.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/voiceIntegrationId'
+      responses:
+        '200':
+          $ref: '#/components/responses/getVoiceIntegrationResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
+    patch:
+      tags:
+        - Voice Integrations
+      summary: Update Voice Integration by Voice Integration Id
+      operationId: updateVoiceIntegration
+      description: Patch an existing Voice Integration by Voice Integration Id.
+      requestBody:
+        $ref: '#/components/requestBodies/updateVoiceIntegrationRequestBody'
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/voiceIntegrationId'
+      responses:
+        '200':
+          $ref: '#/components/responses/updateVoiceIntegrationResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
+    delete:
+      tags:
+        - Voice Integrations
+      summary: Delete Voice Integration by Voice Integration Id
+      operationId: deleteVoiceIntegration
+      description: Delete an existing Voice Integration by Voice Integration Id.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/voiceIntegrationId'
+      responses:
+        '202':
+          $ref: '#/components/responses/deleteVoiceIntegrationResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
+  /accounts/{accountId}/voiceIntegrations/search:
+    post:
+      tags:
+        - Voice Integrations
+      summary: Search Voice Integrations by name, type, or external id.
+      operationId: searchVoiceIntegrations
+      description: |
+        This operation returns voice integrations by name, type, or external id.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      requestBody:
+        $ref: '#/components/requestBodies/searchVoiceIntegrationsRequestBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/searchVoiceIntegrationsResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
+components:
+  parameters:
+    nameParam:
+      description: Filter parameter for name.
+      in: query
+      name: nameFilter
+      schema:
+        type: string
+        format: string
+    externalIdParam:
+      description: Filter parameter for external id.
+      in: query
+      name: externalIdFilter
+      schema:
+        type: string
+        format: string
+    accountId:
+      description: Account ID path parameter.
+      in: path
+      name: accountId
+      required: true
+      schema:
+        type: integer
+        format: int32
+    pageNumber:
+      description: Page number query parameter.
+      in: query
+      name: pageNumber
+      schema:
+        type: integer
+        format: int32
+        default: 1
+    pageSize:
+      description: Page size query parameter.
+      in: query
+      name: pageSize
+      schema:
+        type: integer
+        format: int32
+        default: 50
+        maximum: 1000
+    voiceIntegrationId:
+      description: Voice integration ID path parameter.
+      in: path
+      name: voiceIntegrationId
+      required: true
+      schema:
+        type: string
+        format: uuid
+    phoneNumber:
+      description: Number path parameter.
+      in: path
+      name: phoneNumber
+      required: true
+      schema:
+        type: string
+        format: string
+  schemas:
+    ApiResponse:
+      title: Voice Integration Response Body
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        data:
+          $ref: '#/components/schemas/voiceIntegration'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+          example: []
+      required:
+        - links
+        - data
+        - errors
+    ApiResponsePageable:
+      title: Voice Integration Pageable Response Body
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/voiceIntegration'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+        page:
+          $ref: '#/components/schemas/page'
+      required:
+        - links
+        - data
+        - errors
+        - page
+    createVoiceIntegrationRequest:
+      title: Create Voice Integration Request Body
+      type: object
+      properties:
+        name:
+          type: string
+          description: user defined field. name is unique per account.
+          example: voiceIntegration_name
+        type:
+          type: string
+          description: user defined field represents voice integration type.
+          example: msteams_oc_na
+        externalId:
+          type: string
+          description: user defined field represents voice integration tenant id.
+          example: d720cc88-shf5-4bda-98h1-0c5a31f634b9
+      required:
+        - name
+        - type
+        - externalId
+      example:
+        name: voiceIntegration_name_1
+        type: voiceIntegration_type_1
+        externalId: d720cc88-shf5-4bda-98h1-0c5a31f63400
+    searchVoiceIntegrationsRequest:
+      title: Search Voice Integrations Request Body
+      type: object
+      properties:
+        queryCriteria:
+          type: array
+          items:
+            type: object
+            properties:
+              parameter:
+                type: string
+                description: The parameter to search on.
+                example: name
+              operator:
+                type: string
+                description: The operator to use for the search.
+                example: CONTAINS
+              values:
+                type: array
+                items:
+                  type: string
+                description: The values to search for.
+                example:
+                  - voice
+        multipleCriteriaOperator:
+          type: string
+          description: The operator to use for multiple criteria.
+          format: enum
+          enum:
+            - AND
+            - OR
+          example: OR
+        pageSize:
+          type: number
+          description: Page Size parameter.
+          default: 50
+          example: 50
+        pageNumber:
+          type: number
+          description: Page number parameter.
+          default: 0
+          example: 0
+        sort:
+          type: object
+          properties:
+            parameter:
+              type: string
+              description: The parameter to sort.
+              enum:
+                - created
+                - name
+                - type
+              default: created
+              example: created
+            value:
+              type: string
+              description: The value of sorting.
+              enum:
+                - ASC
+                - DESC
+              default: DESC
+              example: DESC
+    updateVoiceIntegrationRequest:
+      title: Update Voice Integration Request Body
+      type: object
+      properties:
+        name:
+          type: string
+          description: user defined field. name is unique per account.
+          example: voiceIntegration_name
+      required:
+        - name
+      example:
+        name: voiceIntegration_name
+    voiceIntegration:
+      title: Voice Integration Model
+      type: object
+      nullable: true
+      properties:
+        id:
+          type: string
+          description: unique per integration account and of type UUID.
+          example: 685e4b7b-468d-4080-99a3-61c2d032401c
+        name:
+          type: string
+          description: User defined voice integration name.
+          example: voiceIntegration_name
+        trunkInfoId:
+          type: integer
+          description: Trunkinfo id is an unique identifier of trunkInfo.
+          example: 95
+        type:
+          type: string
+          description: User defined field that represents voice integration type.
+          example: msteams_oc_na
+        externalId:
+          type: string
+          description: User defined field that represents voice integration tenant id.
+          example: d720cc88-shf5-4bda-98h1-0c5a31f634b9
+        status:
+          $ref: '#/components/schemas/statusEnum'
+      required:
+        - id
+        - name
+        - trunkInfoId
+        - type
+        - externalId
+        - status
+    statusEnum:
+      title: Status Enum Model
+      type: string
+      description: The status of the Voice Integration.
+      enum:
+        - PROVISIONING
+        - PROVISIONED
+        - DELETING
+        - DELETED
+        - ERROR
+    error:
+      title: Error Model
+      type: object
+      properties:
+        id:
+          type: string
+          description: A unique identifier for this particular instance of this problem.
+          example: optional-error-id
+        type:
+          type: string
+          description: >-
+            A short, human-readable summary of the problem that SHOULD NOT
+            change from occurrence to occurrence of the problem.
+          example: REQUEST_ERROR
+        description:
+          type: string
+          description: >-
+            A human-readable explanation that SHOULD be specific to this
+            occurrence of the problem.
+          example: There was an issue with a field in your request body
+        code:
+          type: integer
+          format: int32
+          description: >-
+            An application-specific error code for services with extensive error
+            scenarios to supplement `description`.
+          minimum: 4
+          example: 51130
+    link:
+      title: Link Model
+      type: object
+      properties:
+        href:
+          type: string
+          description: URI of the link.
+          example: /relative/uri
+        rel:
+          type: string
+          description: Specifies the relationship between this link and the resource.
+          example: aRelatedResource
+        method:
+          type: string
+          description: HTTP method to be used.
+          example: GET
+      required:
+        - href
+        - rel
+        - method
+    page:
+      title: Page
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: Page Size parameter. Defaults to 50.
+          example: 50
+        totalElements:
+          type: integer
+          description: Total Elements parameter. Depends on size of list.
+          example: 10
+        totalPages:
+          type: integer
+          description: Total Pages parameter.
+          example: 20
+        pageNumber:
+          type: integer
+          description: Page number parameter. Default set to 1.
+          example: 1
+      required:
+        - pageSize
+        - pageNumber
+        - totalElements
+        - totalPages
+  requestBodies:
+    createVoiceIntegrationRequestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/createVoiceIntegrationRequest'
+          example:
+            name: voiceIntegration_name
+            type: voiceIntegration_type
+            externalId: e720cc88-2d20-4bda-a737-0c5a31f634b7
+    updateVoiceIntegrationRequestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/updateVoiceIntegrationRequest'
+          example:
+            name: voiceIntegration_name
+    searchVoiceIntegrationsRequestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/searchVoiceIntegrationsRequest'
+          example:
+            queryCriteria:
+              - parameter: name
+                operator: CONTAINS
+                values:
+                  - voice
+              - parameter: type
+                operator: CONTAINS
+                values:
+                  - voice
+              - parameter: externalId
+                operator: CONTAINS
+                values:
+                  - voice
+            multipleCriteriaOperator: OR
+            pageSize: 50
+            pageNumber: 1
+            sort:
+              parameter: created
+              value: DESC
+  responses:
+    createVoiceIntegrationResponse:
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+          examples:
+            default:
+              $ref: '#/components/examples/createVoiceIntegrationExample'
+    getVoiceIntegrationResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+          examples:
+            default:
+              $ref: '#/components/examples/getVoiceIntegrationExample'
+    updateVoiceIntegrationResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+          examples:
+            default:
+              $ref: '#/components/examples/updateVoiceIntegrationExample'
+    deleteVoiceIntegrationResponse:
+      description: Accepted
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+          examples:
+            default:
+              $ref: '#/components/examples/deleteVoiceIntegrationExample'
+    searchVoiceIntegrationsResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+          examples:
+            default:
+              $ref: '#/components/examples/searchVoiceIntegrationsExample'
+    listVoiceIntegrationsResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponsePageable'
+          examples:
+            default:
+              $ref: '#/components/examples/VoiceIntegrationsPageableExample'
+    noContentResponse:
+      description: No Content
+    badRequestError:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+          examples:
+            badRequestErrorExample:
+              $ref: '#/components/examples/badRequestErrorExample'
+    unauthorizedError:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+          examples:
+            unauthorizedErrorExample:
+              $ref: '#/components/examples/unauthorizedErrorExample'
+    notFoundError:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+          examples:
+            notFoundErrorExample:
+              $ref: '#/components/examples/notFoundErrorExample'
+    notAllowedError:
+      description: Method Not Allowed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+          examples:
+            notAllowedErrorExample:
+              $ref: '#/components/examples/notAllowedErrorExample'
+    internalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+          examples:
+            internalServerErrorExample:
+              $ref: '#/components/examples/internalServerErrorExample'
+  examples:
+    VoiceIntegrationsPageableExample:
+      summary: All Voice Integrations by account Example
+      value:
+        links:
+          - href: /accounts/{accountId}/voiceIntegrations
+            rel: self
+            method: GET
+          - href: /accounts/{accountId}/voiceIntegrations
+            rel: first
+            method: GET
+          - href: /accounts/{accountId}/voiceIntegrations?pageNumber=5&pageSize=2
+            rel: last
+            method: GET
+          - href: ''
+            rel: prev
+            method: GET
+          - href: /accounts/{accountId}/voiceIntegrations?pageNumber=2&pageSize=2
+            rel: next
+            method: GET
+        data:
+          - id: 685e4b7b-468d-4080-99a3-61c2d032401c
+            name: voiceIntegration_name_1
+            type: voiceIntegration_type_1
+            trunkInfoId: 2
+            externalId: d720cc88-shf5-4bda-98h1-0c5a31f63400
+            status: PROVISIONED
+          - id: f4656718-a666-417c-884d-f7c7460fd6e7
+            name: voiceIntegration_name_2
+            type: voiceIntegration_type_2
+            trunkInfoId: 3
+            externalId: rtf-0cc88-shf5-4bda-98h1-0c5a31f63500
+            status: PROVISIONED
+        errors: []
+        page:
+          pageSize: 2
+          totalElements: 10
+          totalPages: 5
+          pageNumber: 1
+    createVoiceIntegrationExample:
+      summary: Create Voice Integration Example
+      value:
+        links:
+          - href: /accounts/{accountId}/voiceIntegrations/{voiceIntegrationId}
+            rel: self
+            method: POST
+        data:
+          id: 685e4b7b-468d-4080-99a3-61c2d032401c
+          name: voiceIntegration_name
+          type: voiceIntegration_type
+          trunkInfoId: 2
+          externalId: e720cc88-2d20-4bda-a737-0c5a31f634b7
+          status: PROVISIONING
+        errors: []
+    getVoiceIntegrationExample:
+      summary: Get Voice Integration by VoiceIntegrationId Example
+      value:
+        links:
+          - href: /accounts/{accountId}/voiceIntegrations/{voiceIntegrationId}
+            rel: self
+            method: GET
+        data:
+          id: 685e4b7b-468d-4080-99a3-61c2d032401c
+          name: voiceIntegration_name
+          type: voiceIntegration_type
+          trunkInfoId: 3
+          externalId: d720cc88-shf5-4bda-98h1-0c5a31f634b9
+          status: PROVISIONED
+        errors: []
+    updateVoiceIntegrationExample:
+      summary: Update Voice Integration By VoiceIntegrationId Example
+      value:
+        links:
+          - href: /accounts/{accountId}/voiceIntegrations/{voiceIntegrationId}
+            rel: self
+            method: PATCH
+        data:
+          id: 685e4b7b-468d-4080-99a3-61c2d032401c
+          name: voiceIntegration_name
+          type: voiceIntegration_type
+          trunkInfoId: 3
+          externalId: d720cc88-shf5-4bda-98h1-0c5a31f634b9
+          status: PROVISIONING
+        errors: []
+    deleteVoiceIntegrationExample:
+      summary: Delete Voice Integration By VoiceIntegrationId Example
+      value:
+        links:
+          - href: /accounts/{accountId}/voiceIntegrations/{voiceIntegrationId}
+            rel: self
+            method: DELETE
+        data:
+          id: 685e4b7b-468d-4080-99a3-61c2d032401c
+          name: voiceIntegration_name
+          type: voiceIntegration_type
+          trunkInfoId: 3
+          externalId: d720cc88-shf5-4bda-98h1-0c5a31f634b9
+          status: DELETING
+        errors: []
+    searchVoiceIntegrationsExample:
+      summary: Search Voice Integrations Example
+      value:
+        links:
+          - href: /accounts/{accountId}/voiceIntegrations/search
+            rel: self
+            method: POST
+        data:
+          id: 685e4b7b-468d-4080-99a3-61c2d032401c
+          name: voiceIntegration_name
+          type: voiceIntegration_type
+          trunkInfoId: 3
+          externalId: d720cc88-shf5-4bda-98h1-0c5a31f634b9
+          status: PROVISIONED
+        errors: []
+        page:
+          pageSize: 50
+          totalElements: 1
+          totalPages: 1
+          pageNumber: 1
+    badRequestErrorExample:
+      summary: Generic Bad Request Error Example
+      value:
+        links: []
+        data: null
+        errors:
+          - id: optional-error-id
+            type: bad-request
+            description: There was an issue with your request
+            code: 205617
+    unauthorizedErrorExample:
+      summary: Generic Unauthorized Error Example
+      value:
+        links: []
+        data: null
+        errors:
+          - id: optional-error-id
+            type: authentication-credentials
+            description: Invalid or missing credentials.
+            code: 206401
+    notFoundErrorExample:
+      summary: Generic Not Found Error Example
+      value:
+        links: []
+        data: null
+        errors:
+          - id: optional-error-id
+            type: resource-not-found
+            description: The resource specified cannot be found.
+            code: 50420
+    notAllowedErrorExample:
+      summary: Generic Not Allowed Error Exception
+      value:
+        links: []
+        data: null
+        errors:
+          - id: optional-error-id
+            type: http-method-not-supported
+            description: The HTTP method used is not supported by this resource.
+            code: 205621
+            meta:
+              method: TRACE
+    internalServerErrorExample:
+      summary: Generic Internal Server Error Example
+      value:
+        links: []
+        data: null
+        errors:
+          - id: optional-error-id
+            type: internal-server-error
+            description: >-
+              Unexpected internal server error. Contact Bandwidth Customer
+              Support if this problem persists.
+            code: 32030
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+      description: >-
+        Basic authentication is a simple authentication scheme built into the
+        HTTP protocol. To use it, send your HTTP requests with an Authorization
+        header that contains the word Basic followed by a space and a
+        base64-encoded string `username:password`.
+
+        Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`
+security:
+  - Basic: []

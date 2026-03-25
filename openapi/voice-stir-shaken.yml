@@ -1,0 +1,1910 @@
+openapi: 3.1.0
+info:
+  title: STIR/SHAKEN Certificate Management API
+  description: >-
+    The STIR/SHAKEN Certificate Management API enables telecommunications
+    providers to manage STIR/SHAKEN certificates and profiles.
+
+    It offers secure operations for creating, updating, retrieving, and deleting
+    certificates and profiles.
+  contact:
+    name: Bandwidth
+    url: https://support.bandwidth.com
+    email: support@bandwidth.com
+  termsOfService: https://www.bandwidth.com/legal/terms-of-use-bandwidthcom-web-sites/
+  version: 1.1.0
+servers:
+  - url: https://api.bandwidth.com/api/v1
+    description: Production environment.
+tags:
+  - name: Profiles
+    description: See and provision Stir/Shaken Profiles at the Account level.
+  - name: Account Certificates
+    description: See Stir/Shaken Certificates at the Account level.
+  - name: Account Certificate SPCs
+    description: See Stir/Shaken Certificate SPCs at the Account level.
+security:
+  - Basic: []
+  - Bearer: []
+paths:
+  /accounts/{accountId}/stirShakenProfiles:
+    get:
+      summary: List Profiles
+      operationId: listStirShakenProfiles
+      description: Retrieve a list of all of the stir/shaken profiles for an account.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      responses:
+        '200':
+          $ref: '#/components/responses/stirShakenProfilesListResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+      tags:
+        - Profiles
+    post:
+      summary: Create Profile
+      operationId: createStirShakenProfile
+      description: Create a stir/shaken profile for an account.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      requestBody:
+        $ref: '#/components/requestBodies/stirShakenProfilesRequestData'
+      responses:
+        '201':
+          $ref: '#/components/responses/stirShakenProfilesPostResponse'
+        '400':
+          $ref: '#/components/responses/assignmentRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '409':
+          $ref: '#/components/responses/resourceAlreadyExistsError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+      tags:
+        - Profiles
+  /accounts/{accountId}/stirShakenProfiles/{stirShakenProfileId}:
+    get:
+      summary: Get Profile
+      operationId: getStirShakenProfile
+      description: Get a stir/shaken profile by account and stir/shaken profile id.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/stirShakenProfileId'
+      responses:
+        '200':
+          $ref: '#/components/responses/stirShakenProfilesGetResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+      tags:
+        - Profiles
+    put:
+      summary: Update Profile
+      operationId: updateStirShakenProfile
+      description: Update a stir/shaken profile by account and stir/shaken profile id.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/stirShakenProfileId'
+      requestBody:
+        $ref: '#/components/requestBodies/stirShakenProfilesRequestData'
+      responses:
+        '200':
+          $ref: '#/components/responses/stirShakenProfilesPutResponse'
+        '400':
+          $ref: '#/components/responses/assignmentRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+      tags:
+        - Profiles
+    delete:
+      summary: Delete Profile
+      operationId: deleteStirShakenProfile
+      description: >-
+        Delete an existing stir/shaken profile by account and stir/shaken
+        profile id.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/stirShakenProfileId'
+      responses:
+        '204':
+          $ref: '#/components/responses/stirShakenProfilesDeleteResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+      tags:
+        - Profiles
+  /accounts/{accountId}/stirShakenCertificates/encryptionKey:
+    get:
+      summary: Get Certificate for Encryption
+      operationId: getEncryptionKey
+      description: Get the Certificate used for encrypting sensitive data.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      responses:
+        '200':
+          $ref: '#/components/responses/encryptionKeyResponse'
+        '400':
+          $ref: '#/components/responses/encryptionBadRequestError'
+        '401':
+          $ref: '#/components/responses/encryptionUnauthorizedError'
+        '403':
+          $ref: '#/components/responses/encryptionForbiddenError'
+        '404':
+          $ref: '#/components/responses/encryptionNotFoundError'
+        '405':
+          $ref: '#/components/responses/encryptionMethodNotAllowedError'
+        '429':
+          $ref: '#/components/responses/encryptionTooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/encryptionInternalServerError'
+      tags:
+        - Account Certificates
+  /accounts/{accountId}/stirShakenCertificates:
+    get:
+      summary: List Certificates
+      operationId: listStirShakenCertificates
+      description: Retrieve a list of all stir/shaken certificates for an account.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/validFrom'
+        - $ref: '#/components/parameters/expiryDate'
+        - $ref: '#/components/parameters/region'
+        - $ref: '#/components/parameters/certificateType'
+      responses:
+        '200':
+          $ref: '#/components/responses/stirShakenCertificatesAccountListResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+      tags:
+        - Account Certificates
+    post:
+      summary: Upload Certificate
+      operationId: uploadStirShakenCertificate
+      description: >
+        Upload a STIR/SHAKEN certificate keypair for call signing. 
+
+        Supports US and CA certificates with proper validation and security
+        checks.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      requestBody:
+        $ref: '#/components/requestBodies/certificateUploadRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/certificateUploadResponse'
+        '400':
+          $ref: '#/components/responses/certificateValidationError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+      tags:
+        - Account Certificates
+  /accounts/{accountId}/stirShakenCertificates/{certificateId}:
+    get:
+      summary: Get Certificate
+      operationId: getStirShakenCertificate
+      description: Get a stir/shaken certificate by stir/shaken certificate id.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/certificateId'
+      responses:
+        '200':
+          $ref: '#/components/responses/stirShakenCertificatesAccountGetResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+      tags:
+        - Account Certificates
+    put:
+      summary: Update Certificate
+      operationId: updateStirShakenCertificate
+      description: Update a stir/shaken certificate by stir/shaken certificate id.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/certificateId'
+      requestBody:
+        $ref: '#/components/requestBodies/stirShakenCertificatesAccountPutRequestData'
+      responses:
+        '200':
+          $ref: '#/components/responses/stirShakenCertificatesAccountPutResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+      tags:
+        - Account Certificates
+    delete:
+      summary: Delete Certificate
+      operationId: deleteStirShakenCertificate
+      description: >-
+        Delete an existing stir/shaken certificate by account and stir/shaken
+        certificate id.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/certificateId'
+      responses:
+        '204':
+          $ref: '#/components/responses/stirShakenCertificatesAccountDeleteResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+      tags:
+        - Account Certificates
+  /accounts/{accountId}/stirShakenCertificates/spcs:
+    get:
+      summary: List Certificate SPCs
+      operationId: listStirShakenCertificateSpcs
+      description: Retrieve a list of all stir/shaken certificate SPCs for an account.
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      responses:
+        '200':
+          $ref: '#/components/responses/stirShakenCertificatesAccountSpcsListResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+      tags:
+        - Account Certificate SPCs
+components:
+  parameters:
+    accountId:
+      name: accountId
+      schema:
+        $ref: '#/components/schemas/accountId'
+      example: 1234567
+      in: path
+      required: true
+    stirShakenProfileId:
+      name: stirShakenProfileId
+      schema:
+        $ref: '#/components/schemas/stirShakenProfileId'
+      example: 12bae4ae-42d8-76ea-9e33-a8675309ba77
+      in: path
+      required: true
+    certificateId:
+      name: certificateId
+      schema:
+        $ref: '#/components/schemas/certificateId'
+      example: 07efa3e4-24c2-4e7f-b854-3cdf3e09b55c
+      in: path
+      required: true
+    validFrom:
+      name: validFrom
+      schema:
+        $ref: '#/components/schemas/validFromQueryParameter'
+      in: query
+      description: Filter Certificates by a date.
+      style: deepObject
+      explode: true
+    expiryDate:
+      name: expiryDate
+      schema:
+        $ref: '#/components/schemas/expiryDateQueryParameter'
+      in: query
+      description: Filter Certificates by a date.
+      style: deepObject
+      explode: true
+    region:
+      name: region
+      schema:
+        $ref: '#/components/schemas/regionQueryParameter'
+      in: query
+      description: Filter Certificates by a region.
+      style: deepObject
+      explode: true
+    certificateType:
+      name: certificateType
+      schema:
+        $ref: '#/components/schemas/certificateTypeQueryParameter'
+      in: query
+      description: Filter Certificates by a certificate type.
+      style: deepObject
+      explode: true
+  requestBodies:
+    stirShakenProfilesRequestData:
+      description: A JSON object containing the details of a stir/shaken profile.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/stirShakenProfilesRequestData'
+          examples:
+            stirShakenProfilesRequest:
+              $ref: '#/components/examples/stirShakenProfilesRequestDataExample'
+    stirShakenCertificatesAccountPutRequestData:
+      description: A JSON object containing the details of a stir/shaken certificate.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/stirShakenCertificatesAccountPutRequestData'
+          examples:
+            stirShakenCertificatesAccountPutRequest:
+              $ref: >-
+                #/components/examples/stirShakenCertificatesAccountPutRequestDataExample
+    certificateUploadRequest:
+      description: A JSON object containing the certificate details to upload.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/certificateUploadRequestData'
+          examples:
+            certificateUploadExample:
+              $ref: '#/components/examples/certificateUploadRequestExample'
+  responses:
+    stirShakenProfilesListResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/stirShakenProfilesListResponse'
+          examples:
+            stirShakenProfilesListResponseExample:
+              $ref: '#/components/examples/stirShakenProfilesListResponseExample'
+    stirShakenProfilesPostResponse:
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/stirShakenProfilesResponse'
+          examples:
+            stirShakenProfilesResponseExample:
+              $ref: '#/components/examples/stirShakenProfilesResponseExample'
+    assignmentRequestError:
+      description: Assignment request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            badAssignmentRequestError:
+              summary: An example of a generic Bad Request Error
+              value:
+                links: []
+                data: {}
+                errors:
+                  - type: bad-request
+                    description: There was an issue with your request.
+                    code: 1100
+            invalidAttestLevelLength:
+              summary: Invalid Attest Level Length
+              value:
+                links: []
+                data: {}
+                errors:
+                  - type: bad-request
+                    description: Attest level can only be one character
+                    code: 400
+            invalidAttestLevel:
+              summary: Invalid Attest Level
+              value:
+                links: []
+                data: {}
+                errors:
+                  - type: bad-request
+                    description: Attest level must be A, B, C
+                    code: 400
+            attestLevelNotBlank:
+              summary: Attest Level Not Blank
+              value:
+                links: []
+                data: {}
+                errors:
+                  - type: bad-request
+                    description: >-
+                      Attest level cannot be blank when the region is US or
+                      Canada
+                    code: 400
+            notfound:
+              summary: Certificate not associated with account id
+              value:
+                links: []
+                data: {}
+                errors:
+                  - type: not-found
+                    description: >-
+                      Stir/Shaken Certificate id does not associate with account
+                      id.
+                    code: 1007
+    stirShakenProfilesGetResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/stirShakenProfilesResponse'
+          examples:
+            stirShakenProfilesResponseExample:
+              $ref: '#/components/examples/stirShakenProfilesResponseExample'
+    stirShakenProfilesPutResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/stirShakenProfilesResponse'
+          examples:
+            stirShakenProfilesResponseExample:
+              $ref: '#/components/examples/stirShakenProfilesResponseExample'
+    stirShakenProfilesDeleteResponse:
+      description: No Content
+    stirShakenCertificatesAccountListResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/stirShakenCertificatesAccountListResponse'
+          examples:
+            stirShakenCertificatesAccountListResponseExample:
+              $ref: >-
+                #/components/examples/stirShakenCertificatesAccountListResponseExample
+    encryptionKeyResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/links'
+              data:
+                type: object
+                properties:
+                  key:
+                    type: string
+                    description: PEM-encoded public key for encryption
+                  algorithm:
+                    type: string
+                    enum:
+                      - RSA-4096
+                    description: Encryption algorithm
+                required:
+                  - key
+                  - algorithm
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+                default: []
+            required:
+              - links
+              - data
+              - errors
+          examples:
+            encryptionKeyExample:
+              $ref: '#/components/examples/encryptionKeyExample'
+    encryptionBadRequestError:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            encryptionKeyBadRequestExample:
+              $ref: '#/components/examples/encryptionKeyBadRequestExample'
+            incompleteCertificationChainExample:
+              $ref: '#/components/examples/incompleteCertificationChainExample'
+            invalidCertificateChainExample:
+              $ref: '#/components/examples/invalidCertificateChainExample'
+            untrustedCertificateChainExample:
+              $ref: '#/components/examples/untrustedCertificateChainExample'
+    encryptionUnauthorizedError:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            encryptionKeyUnauthorizedExample:
+              $ref: '#/components/examples/encryptionKeyUnauthorizedExample'
+    encryptionForbiddenError:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            encryptionKeyForbiddenExample:
+              $ref: '#/components/examples/encryptionKeyForbiddenExample'
+    encryptionNotFoundError:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            encryptionKeyNotFoundExample:
+              $ref: '#/components/examples/encryptionKeyNotFoundExample'
+    encryptionMethodNotAllowedError:
+      description: Method Not Allowed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            encryptionKeyMethodNotAllowedExample:
+              $ref: '#/components/examples/encryptionKeyMethodNotAllowedExample'
+    encryptionTooManyRequestsError:
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            encryptionKeyTooManyRequestsExample:
+              $ref: '#/components/examples/encryptionKeyTooManyRequestsExample'
+    encryptionInternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            encryptionKeyInternalServerErrorExample:
+              $ref: '#/components/examples/encryptionKeyInternalServerErrorExample'
+    certificateUploadResponse:
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/certificateUploadResponse'
+          examples:
+            successfulUpload:
+              $ref: '#/components/examples/certificateUploadResponseExample'
+    certificateValidationError:
+      description: Certificate validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            invalidCertificateFormat:
+              summary: Invalid certificate format
+              value:
+                links: []
+                data: {}
+                errors:
+                  - type: bad-request
+                    description: 'Invalid certificate format: Certificate parsing failed'
+                    code: 4009
+            invalidKeyFormat:
+              summary: Invalid private key format
+              value:
+                links: []
+                data: {}
+                errors:
+                  - type: bad-request
+                    description: 'Invalid private key format: Key parsing failed'
+                    code: 4010
+            keyMismatch:
+              summary: Key pair mismatch
+              value:
+                links: []
+                data: {}
+                errors:
+                  - type: bad-request
+                    description: >-
+                      Private key does not correspond to the certificate's
+                      public key
+                    code: 4011
+            spcNotRegistered:
+              summary: SPC not registered
+              value:
+                links: []
+                data: {}
+                errors:
+                  - type: bad-request
+                    description: No SPC registered for GAN BW-1234567 in region US
+                    code: 4012
+            certificateExpired:
+              summary: Certificate expired
+              value:
+                links: []
+                data: {}
+                errors:
+                  - type: bad-request
+                    description: Certificate has expired
+                    code: 4013
+            invalidSignatureAlgorithm:
+              summary: Invalid signature algorithm
+              value:
+                links: []
+                data: {}
+                errors:
+                  - type: bad-request
+                    description: Certificate must use SHA-256 with ECDSA
+                    code: 4014
+    stirShakenCertificatesAccountGetResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/stirShakenCertificatesAccountResponse'
+          examples:
+            stirShakenCertificatesAccountResponseExample:
+              $ref: >-
+                #/components/examples/stirShakenCertificatesAccountResponseExample
+    stirShakenCertificatesAccountPutResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/stirShakenCertificatesAccountResponse'
+          examples:
+            stirShakenCertificatesAccountResponseExample:
+              $ref: >-
+                #/components/examples/stirShakenCertificatesAccountResponseExample
+    stirShakenCertificatesAccountDeleteResponse:
+      description: No Content
+    stirShakenCertificatesAccountSpcsListResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/stirShakenCertificatesAccountSpcsListResponse'
+          examples:
+            stirShakenCertificatesAccountSpcsListResponseExample:
+              $ref: >-
+                #/components/examples/stirShakenCertificatesAccountSpcsListResponseExample
+    badRequestError:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            badRequestErrorExample:
+              $ref: '#/components/examples/badRequestErrorExample'
+    notFoundError:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            notFoundErrorExample:
+              $ref: '#/components/examples/notFoundErrorExample'
+    notAllowedError:
+      description: Method Not Allowed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            notAllowedErrorExample:
+              $ref: '#/components/examples/notAllowedErrorExample'
+    resourceAlreadyExistsError:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            resourceAlreadyExistsExample:
+              $ref: '#/components/examples/resourceAlreadyExistsErrorExample'
+    tooManyRequestsError:
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            tooManyRequestsErrorExample:
+              $ref: '#/components/examples/tooManyRequestsErrorExample'
+    internalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            internalServerErrorExample:
+              $ref: '#/components/examples/internalServerErrorExample'
+    unauthorizedError:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            unauthorizedErrorExample:
+              $ref: '#/components/examples/unauthorizedErrorExample'
+    forbiddenError:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            unauthorizedErrorExample:
+              $ref: '#/components/examples/forbiddenErrorExample'
+  schemas:
+    stirShakenProfilesListResponse:
+      title: List All Stir/Shaken Profiles Response Payload
+      type: object
+      description: Response payload for get all stir/shaken profiles information.
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/links'
+          examples:
+            - $ref: '#/components/examples/linksExample'
+        data:
+          type: object
+          properties:
+            totalCount:
+              type: integer
+              description: The total count of objects returned in the response.
+              examples:
+                - $ref: '#/components/examples/totalCountExample'
+            stirShakenProfiles:
+              type: array
+              items:
+                $ref: '#/components/schemas/stirShakenProfilesResponseData'
+              examples:
+                - $ref: '#/components/examples/stirShakenProfilesResponseDataExample'
+        errors:
+          type: array
+          default: []
+          items:
+            $ref: '#/components/schemas/error'
+          examples:
+            - $ref: '#/components/examples/errorsExample'
+      required:
+        - links
+        - data
+        - errors
+    stirShakenProfilesResponse:
+      title: Stir/Shaken Profile Response Payload
+      type: object
+      description: Response payload for stir/shaken profile information.
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/links'
+          examples:
+            - $ref: '#/components/examples/linksExample'
+        data:
+          $ref: '#/components/schemas/stirShakenProfilesResponseData'
+        errors:
+          type: array
+          default: []
+          items:
+            $ref: '#/components/schemas/error'
+          examples:
+            - $ref: '#/components/examples/errorsExample'
+      required:
+        - links
+        - data
+        - errors
+    stirShakenCertificatesAccountListResponse:
+      title: List All Stir/Shaken Certificates Response Payload
+      type: object
+      description: Response payload for stir/shaken certificates information.
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/links'
+          examples:
+            - $ref: '#/components/examples/linksExample'
+        data:
+          type: object
+          properties:
+            totalCount:
+              type: integer
+              description: The total count of objects returned in the response.
+              examples:
+                - $ref: '#/components/examples/totalCountExample'
+            stirShakenCertificates:
+              type: array
+              items:
+                $ref: '#/components/schemas/stirShakenCertificatesAccountResponseData'
+              examples:
+                - $ref: >-
+                    #/components/examples/stirShakenCertificatesAccountResponseDataExample
+        errors:
+          type: array
+          default: []
+          items:
+            $ref: '#/components/schemas/error'
+          examples:
+            - $ref: '#/components/examples/errorsExample'
+      required:
+        - links
+        - data
+        - errors
+    stirShakenCertificatesAccountResponse:
+      title: Stir/Shaken Certificate Response Payload
+      type: object
+      description: Response payload for stir/shaken certificate information.
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/links'
+          examples:
+            - $ref: '#/components/examples/linksExample'
+        data:
+          $ref: '#/components/schemas/stirShakenCertificatesAccountResponseData'
+        errors:
+          type: array
+          default: []
+          items:
+            $ref: '#/components/schemas/error'
+          examples:
+            - $ref: '#/components/examples/errorsExample'
+      required:
+        - links
+        - data
+        - errors
+    stirShakenCertificatesAccountSpcsListResponse:
+      title: Stir/Shaken Certificates SPCs Response Payload
+      type: object
+      description: Response payload for stir/shaken certificates SPCs information.
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/links'
+          examples:
+            - $ref: '#/components/examples/linksExample'
+        data:
+          type: object
+          properties:
+            totalCount:
+              type: integer
+              description: The total count of objects returned in the response.
+              examples:
+                - $ref: '#/components/examples/totalCountExample'
+            stirShakenCertificatesSpcs:
+              type: array
+              items:
+                $ref: >-
+                  #/components/schemas/stirShakenCertificatesAccountSpcsResponseData
+              examples:
+                - $ref: >-
+                    #/components/examples/stirShakenCertificatesAccountSpcsResponseDataExample
+        errors:
+          type: array
+          default: []
+          items:
+            $ref: '#/components/schemas/error'
+          examples:
+            - $ref: '#/components/examples/errorsExample'
+      required:
+        - links
+        - data
+        - errors
+    stirShakenProfilesResponseData:
+      title: Stir/Shaken Profile Properties
+      type: object
+      description: Contains stir/shaken profile information.
+      properties:
+        stirShakenProfileId:
+          $ref: '#/components/schemas/stirShakenProfileId'
+        accountId:
+          $ref: '#/components/schemas/accountId'
+        profileType:
+          $ref: '#/components/schemas/profileType'
+        region:
+          $ref: '#/components/schemas/regionAll'
+        certificateId:
+          $ref: '#/components/schemas/certificateId'
+        attestLevel:
+          $ref: '#/components/schemas/attestLevel'
+        active:
+          $ref: '#/components/schemas/active'
+        name:
+          $ref: '#/components/schemas/name'
+      examples:
+        - $ref: '#/components/examples/stirShakenProfilesResponseDataExample'
+    attestLevel:
+      type: string
+      enum:
+        - A
+        - B
+        - C
+      nullable: true
+      description: >-
+        Attestation level. A (Full), B (Partial), or C (Gateway). Required for
+        US/CAN hosted signing cert assignments. For FR hosted assignments, this
+        can be null as the 'indirect' profileType will dictate the attestLevel.
+      examples:
+        - A
+    certificateUploadResponse:
+      title: Certificate Upload Response
+      type: object
+      description: Response payload for certificate upload
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/links'
+          nullable: true
+        data:
+          $ref: '#/components/schemas/certificateResponseData'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+          nullable: true
+      required:
+        - links
+        - data
+        - errors
+    certificateResponseData:
+      title: Certificate Response Data
+      type: object
+      description: Details of the uploaded certificate
+      properties:
+        certificateId:
+          type: string
+          format: uuid
+          description: Unique identifier for the certificate
+          example: 901d1b48-122b-433c-a047-a6dc814c8011
+        name:
+          type: string
+          description: Certificate name
+          example: US Primary Certificate
+        description:
+          type: string
+          description: Certificate description
+          example: Primary signing certificate for US traffic
+        organization:
+          type: string
+          description: Organization name from certificate subject
+          example: SHAKEN 997E
+        region:
+          type: string
+          enum:
+            - US
+            - CA
+          description: Region the certificate is valid for
+          example: US
+        publicCertUrl:
+          type: string
+          format: uri
+          description: Public URL where certificate can be downloaded
+          example: https://bw-shaken-cert-pub.s3.amazonaws.com/bw-shaken_foobar.pem
+        spc:
+          type: string
+          description: Service Provider Code extracted from certificate
+          example: 997E
+        validFrom:
+          type: string
+          format: date-time
+          description: Certificate validity start date
+          example: '2024-02-20T00:00:00Z'
+        expiryDate:
+          type: string
+          format: date-time
+          description: Certificate expiration date
+          example: '2025-02-20T00:00:00Z'
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - PENDING
+            - INACTIVE
+          description: Current status of the certificate
+          example: ACTIVE
+        certificateType:
+          type: string
+          enum:
+            - DIRECT
+            - INDIRECT
+          description: Type of certificate
+          example: DIRECT
+    certificateUploadRequestData:
+      title: Certificate Upload Request Data
+      type: object
+      description: Request body for uploading a new STIR/SHAKEN certificate
+      properties:
+        name:
+          type: string
+          description: Descriptive name for the certificate
+          maxLength: 100
+          example: US Primary Certificate
+        description:
+          type: string
+          description: Detailed description of the certificate's purpose
+          maxLength: 500
+          example: Primary signing certificate for US traffic
+        certificate:
+          type: string
+          description: Base64 encoded certificate in PEM format
+          example: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0t...
+        encrypted_private_key:
+          type: string
+          description: Base64 encoded, encrypted private key in PKCS#8 format
+          example: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVkt...
+      required:
+        - name
+        - certificate
+        - encrypted_private_key
+    stirShakenCertificatesAccountResponseData:
+      title: Stir/Shaken Certificate Properties
+      type: object
+      description: Contains stir/shaken certificate information.
+      properties:
+        certificateId:
+          $ref: '#/components/schemas/certificateId'
+        name:
+          $ref: '#/components/schemas/name'
+        description:
+          $ref: '#/components/schemas/description'
+        organization:
+          $ref: '#/components/schemas/organization'
+        publicCertUrl:
+          $ref: '#/components/schemas/publicCertUrl'
+        spc:
+          $ref: '#/components/schemas/spc'
+        validFrom:
+          $ref: '#/components/schemas/validFrom'
+        expiryDate:
+          $ref: '#/components/schemas/expiryDate'
+        status:
+          $ref: '#/components/schemas/status'
+        certificateType:
+          $ref: '#/components/schemas/certificateType'
+      examples:
+        - $ref: >-
+            #/components/examples/stirShakenCertificatesAccountResponseDataExample
+    stirShakenCertificatesAccountSpcsResponseData:
+      title: Stir/Shaken Certificate SPC Properties
+      type: object
+      description: Contains stir/shaken certificate SPC information.
+      properties:
+        spc:
+          $ref: '#/components/schemas/spc'
+        region:
+          $ref: '#/components/schemas/regionAll'
+        gan:
+          $ref: '#/components/schemas/gan'
+      examples:
+        - $ref: >-
+            #/components/examples/stirShakenCertificatesAccountSpcsResponseDataExample
+    stirShakenProfilesRequestData:
+      title: Stir/Shaken Profile Request Data
+      type: object
+      description: Contains stir/shaken profile request data.
+      properties:
+        profileType:
+          $ref: '#/components/schemas/profileType'
+        region:
+          $ref: '#/components/schemas/regionAll'
+        certificateId:
+          $ref: '#/components/schemas/certificateId'
+        attestLevel:
+          $ref: '#/components/schemas/attestLevel'
+      examples:
+        - $ref: '#/components/examples/stirShakenProfilesRequestDataExample'
+      required:
+        - profileType
+        - region
+        - certificateId
+    stirShakenCertificatesAccountPutRequestData:
+      title: Stir/Shaken Certificate Request Data
+      type: object
+      description: Contains stir/shaken certificate request data.
+      properties:
+        region:
+          $ref: '#/components/schemas/regionAccountPut'
+        certificateType:
+          $ref: '#/components/schemas/certificateType'
+        regionData:
+          oneOf:
+            - type: object
+              properties:
+                region:
+                  const: FR
+                regionFr:
+                  $ref: '#/components/schemas/regionFr'
+      examples:
+        - $ref: >-
+            #/components/examples/stirShakenCertificatesAccountPutRequestDataExample
+      required:
+        - region
+        - certificateType
+        - regionData
+    regionFr:
+      title: FR
+      type: object
+      description: Contains stir/shaken certificate request data for the FR region
+      examples:
+        - $ref: >-
+            #/components/examples/stirShakenCertificatesRequestDataExampleRegionFr
+    errorResponse:
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            type: string
+          examples:
+            - []
+          default: []
+        data:
+          type: object
+          examples:
+            - {}
+          default: {}
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+          examples:
+            - $ref: '#/components/examples/errorsExample'
+      required:
+        - links
+        - data
+        - errors
+    accountId:
+      type: integer
+      description: The ID of the Bandwidth App account that the certificate is assigned to.
+      examples:
+        - 1234567
+    stirShakenProfileId:
+      type: string
+      description: The UUID for the stir/shaken profile id.
+      examples:
+        - 12bae4ae-42d8-76ea-9e33-a8675309ba77
+    profileType:
+      type: string
+      enum:
+        - INDIRECT
+      description: The attestation type.
+      examples:
+        - INDIRECT
+    certificateType:
+      type: string
+      enum:
+        - DIRECT
+        - INDIRECT
+      description: The certificate type.
+      examples:
+        - DIRECT
+    regionAll:
+      type: string
+      enum:
+        - US
+        - FR
+      description: The region for the certificate.
+      examples:
+        - US
+    regionAccountPut:
+      type: string
+      enum:
+        - FR
+      description: The region for the certificate.
+      examples:
+        - FR
+    certificateId:
+      type: string
+      description: The UUID for the certificate.
+      examples:
+        - 5ed410d5-215d-4f3e-b7b9-9a7cd50bf514
+    active:
+      type: boolean
+      description: Whether or not the assignment is active.
+      examples:
+        - true
+    name:
+      type: string
+      description: The name of the certificate.
+      examples:
+        - BW US
+    description:
+      type: string
+      description: The certificate description.
+      examples:
+        - BW US Signing Cert
+    organization:
+      type: string
+      description: The organization associated with the certificate.
+      examples:
+        - bandwidth.com
+    publicCertUrl:
+      type: string
+      description: The public URL for the certificate.
+      examples:
+        - https://bw-shaken-cert-pub.s3.amazonaws.com/bw-shaken_foobar.pem
+    spc:
+      type: string
+      description: The Service Provider Code token.
+      examples:
+        - 997E
+    validFrom:
+      type: string
+      format: date-time
+      description: The start date of the certificate.
+      examples:
+        - 2023-10-13T21:11:09.000Z
+    expiryDate:
+      type: string
+      format: date-time
+      description: The expiration date of the certificate.
+      examples:
+        - 2024-10-13T21:11:09.000Z
+    status:
+      type: string
+      enum:
+        - ACTIVE
+        - PENDING
+        - INACTIVE
+      description: The status of the certificate.
+      examples:
+        - ACTIVE
+    gan:
+      type: string
+      description: The Global Account Number.
+      examples:
+        - BW-1234567
+    validFromQueryParameter:
+      properties:
+        gte:
+          type: string
+          format: date-time
+      examples:
+        - gte: 2024-10-13T21:11:09.000Z
+    expiryDateQueryParameter:
+      properties:
+        lte:
+          type: string
+          format: date-time
+      examples:
+        - lte: 2024-10-13T21:11:09.000Z
+    regionQueryParameter:
+      properties:
+        eq:
+          type: string
+      examples:
+        - eq: US
+    certificateTypeQueryParameter:
+      properties:
+        eq:
+          type: string
+      examples:
+        - eq: INDIRECT
+    error:
+      title: Error
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/errorType'
+        description:
+          $ref: '#/components/schemas/errorDescription'
+        code:
+          $ref: '#/components/schemas/errorCode'
+    errorType:
+      type: string
+      description: >-
+        A short, human-readable summary of the problem that SHOULD NOT change
+        from occurrence to occurrence of the problem.
+      examples:
+        - REQUEST_ERROR
+    errorDescription:
+      type: string
+      description: >-
+        A human-readable explanation that SHOULD be specific to this occurrence
+        of the problem.
+      examples:
+        - There was an issue with a field in your request body
+    errorCode:
+      type: integer
+      format: int32
+      description: >-
+        An application-specific error code for services with extensive error
+        scenarios to supplement `description`.
+      minimum: 3
+      examples:
+        - 4200
+    links:
+      title: Links
+      type: object
+      properties:
+        href:
+          type: string
+          description: URI of the link.
+          examples:
+            - /relative/uri
+        rel:
+          type: string
+          description: Specifies the relationship between this link and the resource.
+          examples:
+            - aRelatedResource
+        method:
+          type: string
+          enum:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+          description: HTTP method to be used.
+          examples:
+            - GET
+      examples:
+        - $ref: '#/components/examples/linksExample'
+  examples:
+    stirShakenProfilesListResponseExample:
+      summary: An example of a list stir/shaken profiles response.
+      value:
+        links:
+          - href: /accounts/1234567/stirShakenProfiles
+            rel: self
+            method: GET
+        data:
+          totalCount: 2
+          stirShakenProfiles:
+            - stirShakenProfileId: 12bae4ae-42d8-76ea-9e33-a8675309ba77
+              accountId: 1234567
+              profileType: INDIRECT
+              region: US
+              certificateId: 07efa3e4-24c2-4e7f-b854-3cdf3e09b55c
+              active: true
+              name: BW US
+            - stirShakenProfileId: d3f0b868-120c-4ace-b0be-c7f688c8f644
+              accountId: 1234567
+              profileType: INDIRECT
+              region: FR
+              certificateId: 3c5c1098-0586-4795-9db5-da116655edc3
+              active: true
+              name: BW France
+        errors: []
+    stirShakenProfilesResponseExample:
+      summary: An example of a stir/shaken profile response.
+      value:
+        links:
+          - href: >-
+              /accounts/1234567/stirShakenProfiles/12bae4ae-42d8-76ea-9e33-a8675309ba77
+            rel: self
+            method: GET
+          - href: /accounts/1234567/stirShakenProfiles
+            rel: create
+            method: POST
+          - href: >-
+              /accounts/1234567/stirShakenProfiles/12bae4ae-42d8-76ea-9e33-a8675309ba77
+            rel: update
+            method: PUT
+          - href: >-
+              /accounts/1234567/stirShakenProfiles/12bae4ae-42d8-76ea-9e33-a8675309ba77
+            rel: delete
+            method: DELETE
+        data:
+          stirShakenProfileId: 12bae4ae-42d8-76ea-9e33-a8675309ba77
+          accountId: 1234567
+          profileType: INDIRECT
+          region: US
+          certificateId: 07efa3e4-24c2-4e7f-b854-3cdf3e09b55c
+          attestLevel: A
+          active: true
+          name: BW US
+        errors: []
+    stirShakenProfilesResponseDataExample:
+      summary: An example of a stir/shaken profile request.
+      value:
+        stirShakenProfileId: 12bae4ae-42d8-76ea-9e33-a8675309ba77
+        accountId: 1234567
+        profileType: INDIRECT
+        region: US
+        certificateId: 07efa3e4-24c2-4e7f-b854-3cdf3e09b55c
+        attestLevel: A
+        active: true
+        name: BW US
+    stirShakenProfilesRequestDataExample:
+      summary: An example of a stir/shaken profile request.
+      value:
+        profileType: INDIRECT
+        region: US
+        certificateId: 07efa3e4-24c2-4e7f-b854-3cdf3e09b55c
+        attestLevel: A
+    stirShakenCertificatesAccountListResponseExample:
+      summary: An example of a list stir/shaken account certificates response.
+      value:
+        links:
+          - href: /accounts/1234567/stirShakenCertificates
+            rel: self
+            method: GET
+        data:
+          totalCount: 2
+          stirShakenCertificates:
+            - certificateId: 07efa3e4-24c2-4e7f-b854-3cdf3e09b55c
+              name: BW US
+              description: US signing cert
+              organization: bandwidth.com
+              region: US
+              publicCertUrl: https://bw-shaken-cert-pub.s3.amazonaws.com/bw-shaken_foobar.pem
+              spc: 997E
+              validFrom: 2023-06-11T23:24:09.000Z
+              expiryDate: 2024-08-03T23:24:09.000Z
+              status: ACTIVE
+              certificateType: DIRECT
+            - certificateId: 901d1b48-122b-433c-a047-a6dc814c8011
+              name: My France Cert
+              description: My France Signing Cert from MAN Platform
+              organization: foobar.com
+              region: FR
+              publicCertUrl: https://api.man-bpco.fr/certs/SPC-01/789foobar.cer
+              spc: SPC-01
+              validFrom: 2024-01-21T12:14:57.000Z
+              expiryDate: 2025-03-31T12:14:57.000Z
+              status: ACTIVE
+              certificateType: INDIRECT
+        errors: []
+    stirShakenCertificatesAccountResponseExample:
+      summary: An example of a stir/shaken certificate get response.
+      value:
+        links:
+          - href: /stirShakenCertificates/901d1b48-122b-433c-a047-a6dc814c8011
+            rel: self
+            method: GET
+          - href: /stirShakenCertificates
+            rel: create
+            method: POST
+          - href: /stirShakenCertificates/901d1b48-122b-433c-a047-a6dc814c8011
+            rel: update
+            method: PUT
+          - href: /stirShakenCertificates/901d1b48-122b-433c-a047-a6dc814c8011
+            rel: delete
+            method: DELETE
+        data:
+          certificateId: 901d1b48-122b-433c-a047-a6dc814c8011
+          name: My France Cert
+          description: My France Signing Cert from MAN Platform
+          organization: foobar.com
+          region: FR
+          publicCertUrl: https://api.man-bpco.fr/certs/SPC-01/789foobar.cer
+          spc: SPC-01
+          validFrom: 2024-01-21T12:14:57.000Z
+          expiryDate: 2025-03-31T12:14:57.000Z
+          status: ACTIVE
+          certificateType: INDIRECT
+        errors: []
+    stirShakenCertificatesAccountResponseDataExample:
+      summary: An example of a stir/shaken account certificate request.
+      value:
+        certificateId: 901d1b48-122b-433c-a047-a6dc814c8011
+        name: My France Cert
+        description: My France Signing Cert from MAN Platform
+        organization: foobar.com
+        region: FR
+        publicCertUrl: https://api.man-bpco.fr/certs/SPC-01/789foobar.cer
+        spc: SPC-01
+        validFrom: 2024-01-21T12:14:57.000Z
+        expiryDate: 2025-03-31T12:14:57.000Z
+        status: ACTIVE
+        certificateType: DIRECT
+    encryptionKeyExample:
+      summary: An example of an encryption key response
+      value:
+        links:
+          - href: /accounts/1234567/stirShakenCertificates/encryptionKey
+            rel: self
+            method: GET
+        data:
+          key: |-
+            -----BEGIN PUBLIC KEY-----
+            MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA...
+            -----END PUBLIC KEY-----
+          algorithm: RSA-4096
+        errors: []
+    encryptionKeyBadRequestExample:
+      summary: Bad Request error for encryption key
+      value:
+        links: []
+        data: {}
+        errors:
+          - type: bad-request
+            description: There was an issue with your request.
+            code: 1100
+    incompleteCertificationChainExample:
+      summary: Incomplete Certification Chain
+      value:
+        links: []
+        data: {}
+        errors:
+          - type: bad-request
+            description: >-
+              Certificate chain is incomplete. The chain must include at least
+              one intermediate or root certificate.
+            code: 4009
+    invalidCertificateChainExample:
+      summary: Invalid Certificate Chain
+      value:
+        links: []
+        data: {}
+        errors:
+          - type: bad-request
+            description: >-
+              Invalid certificate chain: Certificates do not form a valid chain
+              of trust
+            code: 4009
+    untrustedCertificateChainExample:
+      summary: Untrusted Certificate Chain
+      value:
+        links: []
+        data: {}
+        errors:
+          - type: bad-request
+            description: Certificate chain does not terminate at a trusted root CA
+            code: 4009
+    encryptionKeyUnauthorizedExample:
+      summary: Unauthorized error
+      value:
+        links: []
+        data: {}
+        errors:
+          - type: authentication-credentials
+            description: Invalid or missing credentials.
+            code: 1200
+    encryptionKeyForbiddenExample:
+      summary: Forbidden error for encryption key
+      value:
+        links: []
+        data: {}
+        errors:
+          - type: resource-permissions
+            description: User does not have permissions to access this resource.
+            code: 1300
+    encryptionKeyNotFoundExample:
+      summary: Not Found error for encryption key
+      value:
+        links: []
+        data: {}
+        errors:
+          - type: resource-not-found
+            description: The resource specified cannot be found.
+            code: 1400
+    encryptionKeyMethodNotAllowedExample:
+      summary: Method Not Allowed error for encryption key
+      value:
+        links: []
+        data: {}
+        errors:
+          - type: method-not-allowed
+            description: >-
+              The HTTP request method is not supported for the requested
+              resource.
+            code: 1500
+    encryptionKeyTooManyRequestsExample:
+      summary: Too Many Requests error for encryption key
+      value:
+        links: []
+        data: {}
+        errors:
+          - type: too-many-requests
+            description: >-
+              The user has sent too many requests in a given amount of time
+              (rate limiting).
+            code: 1600
+    encryptionKeyInternalServerErrorExample:
+      summary: Internal Server Error for encryption key
+      value:
+        links: []
+        data: {}
+        errors:
+          - type: internal-server-error
+            description: >-
+              Unexpected internal server error. Contact Bandwidth Customer
+              Support if this problem persists.
+            code: 1700
+    certificateUploadExample:
+      summary: Example certificate upload request
+      value:
+        name: US Primary Certificate
+        description: Primary signing certificate for US traffic
+        certificate: LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0t...
+        private_key: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVkt...
+    certificateUploadRequestExample:
+      summary: Example of a certificate upload request
+      value:
+        name: US Primary Certificate
+        description: Primary signing certificate for US traffic
+        certificate: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0t...
+        encrypted_private_key: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVkt...
+    certificateUploadResponseExample:
+      summary: Example successful certificate upload response
+      value:
+        links:
+          - href: >-
+              /accounts/1234567/stirShakenCertificates/901d1b48-122b-433c-a047-a6dc814c8011
+            rel: self
+            method: GET
+          - href: >-
+              /accounts/1234567/stirShakenCertificates/901d1b48-122b-433c-a047-a6dc814c8011
+            rel: delete
+            method: DELETE
+        data:
+          certificateId: 901d1b48-122b-433c-a047-a6dc814c8011
+          name: US Primary Certificate
+          description: Primary signing certificate for US traffic
+          organization: SHAKEN 997E
+          region: US
+          publicCertUrl: https://bw-shaken-cert-pub.s3.amazonaws.com/bw-shaken_foobar.pem
+          spc: 997E
+          validFrom: '2024-02-20T00:00:00Z'
+          expiryDate: '2025-02-20T00:00:00Z'
+          status: ACTIVE
+          certificateType: DIRECT
+        errors: []
+    stirShakenCertificatesAccountPutRequestDataExample:
+      summary: An example of a stir/shaken account certificate request.
+      value:
+        region: FR
+        certificateType: INDIRECT
+        regionData: {}
+    stirShakenCertificatesAccountSpcsResponseDataExample:
+      summary: An example of a stir/shaken certificate SPC response.
+      value:
+        spc: SPC-01
+        region: FR
+        gan: BW-1234567
+    stirShakenCertificatesAccountSpcsListResponseExample:
+      summary: An example of a list stir/shaken certificates SPCs response.
+      value:
+        links:
+          - href: /accounts/1234567/stirShakenCertificates/spcs
+            rel: self
+            method: GET
+        data:
+          totalCount: 3
+          stirShakenCertificatesSpcs:
+            - spc: 997E
+              region: US
+              gan: NETWORK
+            - spc: VOXB00
+              region: FR
+              gan: NETWORK
+            - spc: SPC-01
+              region: FR
+              gan: BW-1234567
+        errors: []
+    stirShakenCertificatesRequestDataExampleRegionFr:
+      summary: An example of a stir/shaken certificate request.
+      value: {}
+    badRequestErrorExample:
+      summary: An example of a generic Bad Request Error.
+      value:
+        links: []
+        data: {}
+        errors:
+          - type: bad-request
+            description: There was an issue with your request.
+            code: 1100
+    unauthorizedErrorExample:
+      summary: An example of a generic Unauthorized Error.
+      value:
+        links: []
+        data: {}
+        errors:
+          - type: authentication-credentials
+            description: Invalid or missing credentials.
+            code: 1200
+    forbiddenErrorExample:
+      summary: An example of a generic Forbidden Error.
+      value:
+        links: []
+        data: {}
+        errors:
+          - type: resource-permissions
+            description: User does not have permissions to access this resource.
+            code: 1300
+    notFoundErrorExample:
+      summary: An example of a generic Not Found Error.
+      value:
+        links: []
+        data: {}
+        errors:
+          - type: resource-not-found
+            description: The resource specified cannot be found.
+            code: 1400
+    notAllowedErrorExample:
+      summary: An example of a Method Not Allowed error.
+      value:
+        links: []
+        data: {}
+        errors:
+          - type: method-not-allowed
+            description: >-
+              The HTTP request method is not supported for the requested
+              resource.
+            code: 1500
+    resourceAlreadyExistsErrorExample:
+      summary: An example of a Resource Already Exists error.
+      value:
+        links: []
+        data: {}
+        errors:
+          - type: resource-already-exists
+            description: The resource already exists.
+            code: 1800
+    tooManyRequestsErrorExample:
+      summary: An example of a Too Many Requests error.
+      value:
+        links: []
+        data: {}
+        errors:
+          - type: too-many-requests
+            description: >-
+              The user has sent too many requests in a given amount of time
+              (rate limiting).
+            code: 1600
+    internalServerErrorExample:
+      summary: An example of a generic Internal Server Error.
+      value:
+        links: []
+        data: {}
+        errors:
+          - type: internal-server-error
+            description: >-
+              Unexpected internal server error. Contact Bandwidth Customer
+              Support if this problem persists.
+            code: 1700
+    linksExample:
+      summary: An example of a links object in the stir/shaken profiles response.
+      value:
+        - href: >-
+            /accounts/1234567/stirShakenProfiles/12bae4ae-42d8-76ea-9e33-a8675309ba77
+          rel: self
+          method: GET
+        - href: /accounts/1234567/stirShakenProfiles
+          rel: create
+          method: POST
+        - href: >-
+            /accounts/1234567/stirShakenProfiles/12bae4ae-42d8-76ea-9e33-a8675309ba77
+          rel: update
+          method: PUT
+        - href: >-
+            /accounts/1234567/stirShakenProfiles/12bae4ae-42d8-76ea-9e33-a8675309ba77
+          rel: delete
+          method: DELETE
+    errorsExample:
+      summary: An example of an error object in a response.
+      value:
+        type: resource-not-found
+        description: The resource specified cannot be found.
+        code: 1400
+    totalCountExample:
+      summary: Example of a total count number.
+      value: 5
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+      description: >-
+        Basic authentication is a simple authentication scheme built into the
+        HTTP protocol. To use it, send your HTTP requests with an Authorization
+        header that contains the word Basic followed by a space and a
+        base64-encoded string `username:password`.
+
+        Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        Bearer authentication (also called token authentication) is an HTTP
+        authentication scheme that involves security tokens called bearer
+        tokens. The name “Bearer authentication” can be understood as “give
+        access to the bearer of this token.” The client must send this token in
+        the Authorization header when making requests to protected resources.
+
+
+        Example: `Authorization: Bearer <token>`

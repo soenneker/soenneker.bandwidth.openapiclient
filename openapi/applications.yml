@@ -1,0 +1,1063 @@
+openapi: 3.0.1
+info:
+  description: >-
+    Bandwidth's Application Management API. For more details please visit <a
+    href='/docs/account/applications'>Applications management</a>
+  title: Applications API
+  version: 2.0.0
+  contact:
+    name: Bandwidth Support
+    email: support@bandwidth.com
+    url: https://support.bandwidth.com
+  termsOfService: https://www.bandwidth.com/legal/terms-of-use-bandwidthcom-web-sites/
+servers:
+  - url: https://api.bandwidth.com/api/v2
+    description: Production
+paths:
+  /accounts/{accountId}/applications:
+    post:
+      tags:
+        - Applications
+      summary: Create application
+      description: Create an Application.
+      operationId: createApplication
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/applicationRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/applicationCreateResponse'
+        '400':
+          $ref: '#/components/responses/applicationBadRequestResponse'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '409':
+          $ref: '#/components/responses/applicationConflictResponse'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/applicationSystemErrorResponse'
+    get:
+      tags:
+        - Applications
+      summary: List applications
+      description: List applications.
+      operationId: listApplications
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/applicationsResponse'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/applicationSystemErrorResponse'
+  /accounts/{accountId}/applications/{applicationId}:
+    get:
+      tags:
+        - Applications
+      summary: Retrieve application
+      description: Retrieve an Application.
+      operationId: getApplication
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/applicationIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/applicationResponse'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/applicationNotFoundResponse'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/applicationSystemErrorResponse'
+    put:
+      tags:
+        - Applications
+      summary: Update application
+      description: <p>Update an Application.</p>
+      operationId: updateApplication
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/applicationIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/applicationRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/applicationResponse'
+        '400':
+          $ref: '#/components/responses/applicationBadRequestResponse'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/applicationNotFoundResponse'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/applicationSystemErrorResponse'
+    patch:
+      tags:
+        - Applications
+      summary: Patch application
+      description: >
+        Patch update an Application.
+
+        <ul><li>CallStatusCallbackUrl can be removed by setting its value to
+        'remove'</li></ul>
+      operationId: patchApplication
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/applicationIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/applicationRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/applicationResponse'
+        '400':
+          $ref: '#/components/responses/applicationBadRequestResponse'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/applicationNotFoundResponse'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/applicationSystemErrorResponse'
+    delete:
+      tags:
+        - Applications
+      summary: Delete application
+      description: >-
+        Delete an Application. An Application cannot be removed from an account
+        if that Application is referenced by any Location associated with the
+        account.
+      operationId: deleteApplication
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/applicationIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/successResponseOk'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/applicationNotFoundResponse'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/applicationSystemErrorResponse'
+  /accounts/{accountId}/applications/{applicationId}/associatedsippeers:
+    get:
+      tags:
+        - Applications
+      summary: List associated locations (SIP Peers)
+      description: Retrieve a list of locations (SIP Peers) associated with the application
+      operationId: listAssociatedLocations
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/applicationIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/associatedLocationsResponse'
+        '400':
+          $ref: '#/components/responses/associatedLocationsBadRequestResponse'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/associatedLocationsNotFoundResponse'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/associatedLocationsSystemErrorResponse'
+components:
+  parameters:
+    accountIdPathParam:
+      description: User's account ID.
+      example: '1234567'
+      in: path
+      name: accountId
+      required: true
+      schema:
+        type: string
+    applicationIdPathParam:
+      description: Application ID
+      in: path
+      name: applicationId
+      required: true
+      schema:
+        type: string
+  requestBodies:
+    applicationRequest:
+      description: Application Request
+      required: true
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/applicationPayload'
+          examples:
+            Messaging Example:
+              $ref: '#/components/examples/createMessagingApplicationXmlExample'
+            Voice Example:
+              $ref: '#/components/examples/createVoiceApplicationXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/applicationJson'
+          examples:
+            Messaging Example:
+              $ref: '#/components/examples/createMessagingApplicationJsonExample'
+            Voice Example:
+              $ref: '#/components/examples/createVoiceApplicationJsonExample'
+  responses:
+    successResponseOk:
+      description: OK
+    errorResponse401:
+      description: Unauthorized
+    errorResponse403:
+      description: Forbidden
+    errorResponse429:
+      description: Too Many Requests
+    applicationCreateResponse:
+      description: Created
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/applicationResponseXmlWrapper'
+          examples:
+            Messaging Example:
+              $ref: '#/components/examples/messagingApplicationResponseXmlExample'
+            Voice Example:
+              $ref: '#/components/examples/voiceApplicationResponseXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/applicationResponseJson'
+          examples:
+            Messaging Example:
+              $ref: '#/components/examples/messagingApplicationResponseJsonExample'
+            Voice Example:
+              $ref: '#/components/examples/voiceApplicationResponseJsonExample'
+    applicationResponse:
+      description: OK
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/applicationResponseXmlWrapper'
+          examples:
+            Messaging Example:
+              $ref: '#/components/examples/messagingApplicationResponseXmlExample'
+            Voice Example:
+              $ref: '#/components/examples/voiceApplicationResponseXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/applicationResponseJson'
+          examples:
+            Messaging Example:
+              $ref: '#/components/examples/messagingApplicationResponseJsonExample'
+            Voice Example:
+              $ref: '#/components/examples/voiceApplicationResponseJsonExample'
+    applicationBadRequestResponse:
+      description: Bad Request
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/applicationErrorResponseXmlWrapper'
+          examples:
+            example:
+              $ref: '#/components/examples/applicationBadRequestResponseXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            example:
+              $ref: '#/components/examples/applicationBadRequestResponseJsonExample'
+    applicationSystemErrorResponse:
+      description: System Error
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/applicationErrorResponseXmlWrapper'
+          examples:
+            example:
+              $ref: '#/components/examples/applicationSystemErrorResponseXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            example:
+              $ref: '#/components/examples/applicationSystemErrorResponseJsonExample'
+    applicationConflictResponse:
+      description: System Error
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/applicationErrorResponseXmlWrapper'
+          examples:
+            example:
+              $ref: '#/components/examples/applicationConflictResponseXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            example:
+              $ref: '#/components/examples/applicationConflictResponseJsonExample'
+    applicationNotFoundResponse:
+      description: Bad Request
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/applicationErrorResponseXmlWrapper'
+          examples:
+            example:
+              $ref: '#/components/examples/applicationNotFoundResponseXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            example:
+              $ref: '#/components/examples/applicationNotFoundResponseJsonExample'
+    applicationsResponse:
+      description: OK
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/applicationsResponseXmlWrapper'
+          examples:
+            example:
+              $ref: '#/components/examples/applicationsResponseXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/applicationsResponse'
+          examples:
+            example:
+              $ref: '#/components/examples/applicationsResponseJsonExample'
+    associatedLocationsResponse:
+      description: OK
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/associatedLocationsResponseXmlWrapper'
+          examples:
+            example:
+              $ref: '#/components/examples/associatedLocationsResponseXmlExample'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/associatedLocationsResponse'
+          examples:
+            example:
+              $ref: '#/components/examples/associatedLocationsResponseJsonExample'
+    associatedLocationsBadRequestResponse:
+      description: Bad Request
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/associatedLocationsErrorResponseXmlWrapper'
+          examples:
+            example:
+              $ref: >-
+                #/components/examples/associatedLocationsBadRequestResponseXmlExample
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            example:
+              $ref: >-
+                #/components/examples/associatedLocationsBadRequestResponseJsonExample
+    associatedLocationsNotFoundResponse:
+      description: Not Found
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/associatedLocationsErrorResponseXmlWrapper'
+          examples:
+            example:
+              $ref: >-
+                #/components/examples/associatedLocationsNotFoundResponseXmlExample
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            example:
+              $ref: >-
+                #/components/examples/associatedLocationsNotFoundResponseJsonExample
+    associatedLocationsSystemErrorResponse:
+      description: System Error
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/associatedLocationsErrorResponseXmlWrapper'
+          examples:
+            example:
+              $ref: >-
+                #/components/examples/associatedLocationsSystemErrorResponseXmlExample
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            example:
+              $ref: >-
+                #/components/examples/associatedLocationsSystemErrorResponseJsonExample
+  examples:
+    createMessagingApplicationXmlExample:
+      summary: Messaging application
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <Application>
+          <ServiceType>Messaging-V2</ServiceType>
+          <AppName>EBVICs</AppName>
+          <InboundCallbackUrl>https://example.com</InboundCallbackUrl>
+          <OutboundCallbackUrl>https://example2.com</OutboundCallbackUrl>
+          <InboundCallbackCreds>
+            <UserId>15jPWZmXdm</UserId>
+            <Password>xxv3jPsPR2</Password>
+          </InboundCallbackCreds>
+          <OutboundCallbackCreds>
+            <UserId>15jPWZmXdm</UserId>
+            <Password>xxv3jPsPR2</Password>
+          </OutboundCallbackCreds>
+          <RequestedCallbackTypes>
+            <CallbackType>message-delivered</CallbackType>
+            <CallbackType>message-failed</CallbackType>
+            <CallbackType>message-sending</CallbackType>
+          </RequestedCallbackTypes>
+        </Application>
+    createVoiceApplicationXmlExample:
+      summary: Voice application
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <Application>
+          <ServiceType>Voice-V2</ServiceType>
+          <AppName>v1</AppName>
+          <CallInitiatedCallbackUrl>https://a.com</CallInitiatedCallbackUrl>
+          <CallInitiatedMethod>GET</CallInitiatedMethod>
+          <CallStatusCallbackUrl>https://b.com</CallStatusCallbackUrl>
+          <CallStatusMethod>GET</CallStatusMethod>
+          <CallbackCreds>
+            <UserId>login123</UserId>
+            <Password>password123</Password>
+          </CallbackCreds>
+          <CallInitiatedFallbackUrl>https://fallback.com</CallInitiatedFallbackUrl>
+          <CallInitiatedFallbackMethod>POST</CallInitiatedFallbackMethod>
+          <CallInitiatedFallbackCreds>
+            <UserId>login2</UserId>
+            <Password>Password3</Password>
+          </CallInitiatedFallbackCreds>
+          <CallbackTimeout>20</CallbackTimeout>
+        </Application>
+    createMessagingApplicationJsonExample:
+      value:
+        serviceType: Messaging-V2
+        applicationName: EBVICs
+        inboundCallbackUrl: https://example.com
+        outboundCallbackUrl: https://example2.com
+        inboundCallbackCreds:
+          userId: 15jPWZmXdm
+          password: xxv3jPsPR2
+        outboundCallbackCreds:
+          userId: 15jPWZmXdm
+          password: xxv3jPsPR2
+        requestedCallbackTypes:
+          - MESSAGE_FAILED
+          - MESSAGE_DELIVERED
+          - MESSAGE_SENDING
+    createVoiceApplicationJsonExample:
+      value:
+        serviceType: Voice-V2
+        applicationName: v1
+        callInitiatedCallbackUrl: https://a.com
+        callInitiatedMethod: GET
+        callStatusCallbackUrl: https://b.com
+        callStatusMethod: GET
+        callbackCreds:
+          userId: login123
+          password: password123
+        callInitiatedFallbackUrl: https://fallback.com
+        callInitiatedFallbackMethod: POST
+        callInitiatedFallbackCreds:
+          userId: login2
+          password: Password3
+        callbackTimeout: '20'
+    messagingApplicationResponseXmlExample:
+      summary: Messaging application
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ApplicationProvisioningResponse>
+          <Application>
+            <ApplicationId>d4d1b41d-4c05-47d0-838a-34e4f14e4e3e</ApplicationId>
+              <ServiceType>Messaging-V2</ServiceType>
+              <AppName>EBVICs</AppName>
+              <InboundCallbackUrl>https://example.com</InboundCallbackUrl>
+              <OutboundCallbackUrl>https://example2.com</OutboundCallbackUrl>
+              <InboundCallbackCreds>
+                <UserId>15jPWZmXdm</UserId>
+              </InboundCallbackCreds>
+              <OutboundCallbackCreds>
+                <UserId>15jPWZmXdm</UserId>
+              </OutboundCallbackCreds>
+              <RequestedCallbackTypes>
+                <CallbackType>message-delivered</CallbackType>
+                <CallbackType>message-failed</CallbackType>
+                <CallbackType>message-sending</CallbackType>
+              </RequestedCallbackTypes>
+          </Application>
+        </ApplicationProvisioningResponse>
+    messagingApplicationResponseJsonExample:
+      value:
+        applicationId: d4d1b41d-4c05-47d0-838a-34e4f14e4e3e
+        serviceType: Messaging-V2
+        applicationName: EBVICs
+        inboundCallbackUrl: https://example.com
+        outboundCallbackUrl: https://example2.com
+        inboundCallbackCreds:
+          userId: 15jPWZmXdm
+        outboundCallbackCreds:
+          userId: 15jPWZmXdm
+        requestedCallbackTypes:
+          - MESSAGE_FAILED
+          - MESSAGE_DELIVERED
+          - MESSAGE_SENDING
+    voiceApplicationResponseXmlExample:
+      summary: Voice application
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ApplicationProvisioningResponse>
+          <Application>
+            <ApplicationId>d3e418e9-1833-49c1-b6c7-ca1700f79586</ApplicationId>
+            <ServiceType>Voice-V2</ServiceType>
+            <AppName>v1</AppName>
+            <CallInitiatedCallbackUrl>https://a.com</CallInitiatedCallbackUrl>
+            <CallInitiatedMethod>GET</CallInitiatedMethod>
+            <CallStatusCallbackUrl>https://b.com</CallStatusCallbackUrl>
+            <CallStatusMethod>GET</CallStatusMethod>
+            <CallbackCreds>
+              <UserId>login123</UserId>
+            </CallbackCreds>
+            <CallInitiatedFallbackUrl>https://fallback.com</CallInitiatedFallbackUrl>
+            <CallInitiatedFallbackMethod>POST</CallInitiatedFallbackMethod>
+            <CallInitiatedFallbackCreds>
+              <UserId>login2</UserId>
+            </CallInitiatedFallbackCreds>
+            <CallbackTimeout>20</CallbackTimeout>
+          </Application>
+        </ApplicationProvisioningResponse>
+    voiceApplicationResponseJsonExample:
+      value:
+        applicationId: d3e418e9-1833-49c1-b6c7-ca1700f79586
+        serviceType: Voice-V2
+        applicationName: v1
+        callInitiatedCallbackUrl: https://a.com
+        callInitiatedMethod: GET
+        callStatusCallbackUrl: https://b.com
+        callStatusMethod: GET
+        callbackCreds:
+          userId: login123
+        callInitiatedFallbackUrl: https://fallback.com
+        callInitiatedFallbackMethod: POST
+        callInitiatedFallbackCreds:
+          userId: login2
+        callbackTimeout: '20'
+    applicationBadRequestResponseXmlExample:
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <AssociatedSipPeersResponse>
+          <ResponseStatus>
+            <ErrorCode>12801</ErrorCode>
+            <Description>Service Type is not valid</Description>
+          </ResponseStatus>
+        </AssociatedSipPeersResponse>
+    applicationBadRequestResponseJsonExample:
+      value:
+        errorCode: 12801
+        description: Service Type is not valid
+    applicationSystemErrorResponseXmlExample:
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <AssociatedSipPeersResponse>
+          <ResponseStatus>
+            <ErrorCode>1010</ErrorCode>
+            <Description>Something unexpected happened and has been logged (id=2e91ed6f-53af-4854-a33f-6ebd32f6e9cf).Please contact Bandwidth support with this error ID to resolve the issue with our development team.
+            </Description>
+          </ResponseStatus>
+        </AssociatedSipPeersResponse>
+    applicationConflictResponseXmlExample:
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <AssociatedSipPeersResponse>
+          <ResponseStatus>
+            <ErrorCode>12130</ErrorCode>
+            <Description>The operation could not be performed because Account '1' does not have the HTTPV2 Messaging Feature enabled
+            </Description>
+          </ResponseStatus>
+        </AssociatedSipPeersResponse>
+    applicationSystemErrorResponseJsonExample:
+      value:
+        errorCode: 1010
+        description: >-
+          Something unexpected happened and has been logged
+          (id=2e91ed6f-53af-4854-a33f-6ebd32f6e9cf). Please contact Bandwidth
+          support with this error ID to resolve the issue with our development
+          team.
+    applicationConflictResponseJsonExample:
+      value:
+        errorCode: 12130
+        description: >-
+          The operation could not be performed because Account '1' does not have
+          the HTTPV2 Messaging Feature enabled
+    applicationNotFoundResponseXmlExample:
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <AssociatedSipPeersResponse>
+          <ResponseStatus>
+            <ErrorCode>13629</ErrorCode>
+            <Description>Application with id '1' not found</Description>
+          </ResponseStatus>
+        </AssociatedSipPeersResponse>
+    applicationNotFoundResponseJsonExample:
+      value:
+        errorCode: 13629
+        description: Application with id '1' not found
+    applicationsResponseXmlExample:
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ApplicationProvisioningResponse>
+          <ApplicationList>
+            <Application>
+              <ApplicationId>2cfcb382-161c-46d4-8c67-87ca09a72c85</ApplicationId>
+              <ServiceType>Messaging-V2</ServiceType>
+              <AppName>app1</AppName>
+              <!--DEPRECATED-->
+              <MsgCallbackUrl>http://a.com</MsgCallbackUrl>
+              <InboundCallbackUrl>http://a.com</InboundCallbackUrl>
+            </Application>
+            <Application>
+              <ApplicationId>0cb0112b-5998-4c81-999a-0d3fb5e3f8e2</ApplicationId>
+              <ServiceType>Voice-V2</ServiceType>
+              <AppName>app2</AppName>
+              <CallInitiatedCallbackUrl>http://b.com</CallInitiatedCallbackUrl>
+              <CallbackCreds>
+                <UserId>15jPWZmXdm</UserId>
+                </CallbackCreds>
+              <CallInitiatedFallbackUrl>https://fallback.com</CallInitiatedFallbackUrl>
+              <CallInitiatedFallbackMethod>POST</CallInitiatedFallbackMethod>
+              <CallInitiatedFallbackCreds>
+                <UserId>login2</UserId>
+              </CallInitiatedFallbackCreds>
+              <CallbackTimeout>20</CallbackTimeout>
+            </Application>
+          </ApplicationList>
+        </ApplicationProvisioningResponse>
+    applicationsResponseJsonExample:
+      value:
+        applications:
+          - applicationId: 2cfcb382-161c-46d4-8c67-87ca09a72c85
+            serviceType: Messaging-V2
+            applicationName: app1
+            msgCallbackUrl: http://a.com
+            inboundCallbackUrl: http://a.com
+          - applicationId: 0cb0112b-5998-4c81-999a-0d3fb5e3f8e2
+            serviceType: Voice-V2
+            applicationName: app2
+            callInitiatedCallbackUrl: http://b.com
+            callbackCreds:
+              userId: 15jPWZmXdm
+            callInitiatedFallbackUrl: https://fallback.com
+            callInitiatedFallbackMethod: POST
+            callInitiatedFallbackCreds:
+              userId: login2
+            callbackTimeout: '20'
+    associatedLocationsResponseXmlExample:
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <AssociatedSipPeersResponse>
+          <AssociatedSipPeers>
+            <AssociatedSipPeer>
+              <SiteId>482</SiteId>
+              <SiteName>site_e867f</SiteName>
+              <PeerId>500018</PeerId>
+              <PeerName>sippeer-e867f</PeerName>
+            </AssociatedSipPeer>
+            <AssociatedSipPeer>
+              <SiteId>483</SiteId>
+              <SiteName>site_e867d</SiteName>
+              <PeerId>500019</PeerId>
+              <PeerName>sippeer-e867d</PeerName>
+            </AssociatedSipPeer>
+          </AssociatedSipPeers>
+        </AssociatedSipPeersResponse>
+    associatedLocationsResponseJsonExample:
+      value:
+        associatedLocations:
+          - subAccountId: 482
+            subAccountName: site_e867f
+            locationId: 500018
+            locationName: location-e867f
+          - subAccountId: 483
+            subAccountName: site_e867d
+            locationId: 500019
+            locationName: location-e867d
+    associatedLocationsBadRequestResponseXmlExample:
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <AssociatedSipPeersResponse>
+          <ResponseStatus>
+            <ErrorCode>12103</ErrorCode>
+            <Description>Current 1 Account have no Catapult association</Description>
+          </ResponseStatus>
+        </AssociatedSipPeersResponse>
+    associatedLocationsBadRequestResponseJsonExample:
+      value:
+        errorCode: 12103
+        description: Current 1 Account have no Catapult association
+    associatedLocationsNotFoundResponseXmlExample:
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <AssociatedSipPeersResponse>
+          <ResponseStatus>
+            <ErrorCode>13629</ErrorCode>
+            <Description>Application with id 'non_existing' not found</Description>
+          </ResponseStatus>
+        </AssociatedSipPeersResponse>
+    associatedLocationsNotFoundResponseJsonExample:
+      value:
+        errorCode: 13629
+        description: Application with id 'non_existing' not found
+    associatedLocationsSystemErrorResponseXmlExample:
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <AssociatedSipPeersResponse>
+          <ResponseStatus>
+            <ErrorCode>1010</ErrorCode>
+            <Description>Something unexpected happened and has been logged (id=2e91ed6f-53af-4854-a33f-6ebd32f6e9cf). 
+              Please contact Bandwidth support with this error ID to resolve the issue with our development team.
+            </Description>
+          </ResponseStatus>
+        </AssociatedSipPeersResponse>
+    associatedLocationsSystemErrorResponseJsonExample:
+      value:
+        errorCode: 1010
+        description: >-
+          Something unexpected happened and has been logged
+          (id=2e91ed6f-53af-4854-a33f-6ebd32f6e9cf). Please contact Bandwidth
+          support with this error ID to resolve the issue with our development
+          team.
+  schemas:
+    errorResponse:
+      type: object
+      properties:
+        errorCode:
+          $ref: '#/components/schemas/errorCode'
+        description:
+          $ref: '#/components/schemas/errorDescription'
+    applicationJson:
+      properties:
+        applicationName:
+          $ref: '#/components/schemas/name'
+        callInitiatedCallbackUrl:
+          $ref: '#/components/schemas/url'
+        callInitiatedFallbackCreds:
+          $ref: '#/components/schemas/callbackCredsJson'
+        callInitiatedFallbackMethod:
+          type: string
+        callInitiatedFallbackUrl:
+          $ref: '#/components/schemas/url'
+        callInitiatedMethod:
+          type: string
+        callStatusCallbackUrl:
+          $ref: '#/components/schemas/url'
+        callStatusMethod:
+          type: string
+        callbackCreds:
+          $ref: '#/components/schemas/callbackCredsJson'
+        callbackTimeout:
+          type: string
+        callbackUrl:
+          deprecated: true
+          type: string
+        inboundCallbackCreds:
+          $ref: '#/components/schemas/callbackCredsJson'
+        inboundCallbackUrl:
+          $ref: '#/components/schemas/url'
+        msgCallbackUrl:
+          deprecated: true
+          type: string
+        outboundCallbackCreds:
+          $ref: '#/components/schemas/callbackCredsJson'
+        outboundCallbackUrl:
+          $ref: '#/components/schemas/url'
+        requestedCallbackTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/requestedCallbackTypesJson'
+        serviceType:
+          $ref: '#/components/schemas/serviceType'
+      type: object
+    callbackCredsJson:
+      properties:
+        password:
+          type: string
+        userId:
+          type: string
+      type: object
+    applicationResponseJson:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/applicationJson'
+      properties:
+        applicationId:
+          $ref: '#/components/schemas/stringId'
+    applicationsResponse:
+      type: object
+      properties:
+        applications:
+          type: array
+          items:
+            $ref: '#/components/schemas/applicationResponseJson'
+    associatedLocationsResponse:
+      type: object
+      properties:
+        associatedLocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/associatedLocationJson'
+    associatedLocationJson:
+      type: object
+      properties:
+        subAccountId:
+          $ref: '#/components/schemas/id'
+        subAccountName:
+          $ref: '#/components/schemas/name'
+        locationId:
+          $ref: '#/components/schemas/id'
+        locationName:
+          $ref: '#/components/schemas/name'
+    application:
+      properties:
+        AppName:
+          $ref: '#/components/schemas/name'
+        CallInitiatedCallbackUrl:
+          $ref: '#/components/schemas/url'
+        CallInitiatedFallbackCreds:
+          $ref: '#/components/schemas/callbackCreds'
+        CallInitiatedFallbackMethod:
+          type: string
+        CallInitiatedFallbackUrl:
+          $ref: '#/components/schemas/url'
+        CallInitiatedMethod:
+          type: string
+        CallStatusCallbackUrl:
+          $ref: '#/components/schemas/url'
+        CallStatusMethod:
+          type: string
+        CallbackCreds:
+          $ref: '#/components/schemas/callbackCreds'
+        CallbackTimeout:
+          type: string
+        CallbackUrl:
+          deprecated: true
+          type: string
+        InboundCallbackCreds:
+          $ref: '#/components/schemas/callbackCreds'
+        InboundCallbackUrl:
+          $ref: '#/components/schemas/url'
+        MsgCallbackUrl:
+          deprecated: true
+          type: string
+        OutboundCallbackCreds:
+          $ref: '#/components/schemas/callbackCreds'
+        OutboundCallbackUrl:
+          $ref: '#/components/schemas/url'
+        RequestedCallbackTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/requestedCallbackTypes'
+        ServiceType:
+          $ref: '#/components/schemas/serviceType'
+      type: object
+    applicationPayload:
+      properties:
+        Application:
+          $ref: '#/components/schemas/application'
+      type: object
+    callbackCreds:
+      properties:
+        Password:
+          type: string
+        UserId:
+          type: string
+      type: object
+    applicationResponseXmlWrapper:
+      properties:
+        ApplicationProvisioningResponse:
+          $ref: '#/components/schemas/applicationProvisioningXmlResponse'
+      type: object
+    applicationProvisioningXmlResponse:
+      type: object
+      properties:
+        Application:
+          $ref: '#/components/schemas/applicationResponse'
+    applicationResponse:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/application'
+      properties:
+        ApplicationId:
+          $ref: '#/components/schemas/stringId'
+    applicationsResponseXmlWrapper:
+      properties:
+        ApplicationProvisioningResponse:
+          $ref: '#/components/schemas/applicationsProvisioningXmlResponse'
+      type: object
+    applicationsProvisioningXmlResponse:
+      type: object
+      properties:
+        ApplicationList:
+          $ref: '#/components/schemas/applicationList'
+    applicationList:
+      type: object
+      properties:
+        Application:
+          type: array
+          items:
+            $ref: '#/components/schemas/applicationResponse'
+    applicationErrorResponseXmlWrapper:
+      type: object
+      properties:
+        ApplicationProvisioningResponse:
+          type: object
+          properties:
+            ResponseStatus:
+              $ref: '#/components/schemas/responseStatus'
+    associatedLocationsResponseXmlWrapper:
+      properties:
+        AssociatedSipPeersResponse:
+          $ref: '#/components/schemas/associatedLocationsXmlResponse'
+      type: object
+    associatedLocationsXmlResponse:
+      type: object
+      properties:
+        AssociatedSipPeers:
+          $ref: '#/components/schemas/associatedLocations'
+    associatedLocations:
+      type: object
+      properties:
+        AssociatedSipPeer:
+          type: array
+          items:
+            $ref: '#/components/schemas/associatedLocation'
+    associatedLocation:
+      type: object
+      properties:
+        SiteId:
+          $ref: '#/components/schemas/id'
+        SiteName:
+          $ref: '#/components/schemas/name'
+        PeerId:
+          $ref: '#/components/schemas/id'
+        PeerName:
+          $ref: '#/components/schemas/name'
+    associatedLocationsErrorResponseXmlWrapper:
+      type: object
+      properties:
+        AssociatedSipPeersResponse:
+          type: object
+          properties:
+            ResponseStatus:
+              $ref: '#/components/schemas/responseStatus'
+    id:
+      type: integer
+      example: 12345
+    stringId:
+      type: string
+    name:
+      type: string
+      example: Name of the resource
+    description:
+      type: string
+      example: Description of the resource
+    requestedCallbackTypes:
+      enum:
+        - message-delivered
+        - message-failed
+        - message-sending
+      type: string
+    requestedCallbackTypesJson:
+      enum:
+        - MESSAGE_FAILED
+        - MESSAGE_DELIVERED
+        - MESSAGE_SENDING
+      type: string
+    url:
+      type: string
+      format: uri
+      example: https://myapp.com/url
+    responseStatus:
+      type: object
+      properties:
+        ErrorCode:
+          $ref: '#/components/schemas/errorCode'
+        Description:
+          $ref: '#/components/schemas/errorDescription'
+    errorCode:
+      description: Numeric designation of corresponding error
+      type: integer
+      example: 1010
+    errorDescription:
+      description: Detailed explanation about error
+      type: string
+      example: Invalid request
+    serviceType:
+      type: string
+      enum:
+        - Voice-V2
+        - Messaging-V2
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+      description: >-
+        Basic authentication is a simple authentication scheme built into the
+        HTTP protocol. To use it, send your HTTP requests with an Authorization
+        header that contains the word Basic followed by a space and a
+        base64-encoded string `username:password`.
+
+        Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        Bearer authentication (also called token authentication) is an HTTP
+        authentication scheme that involves security tokens called bearer
+        tokens. The name “Bearer authentication” can be understood as “give
+        access to the bearer of this token.” The client must send this token in
+        the `Authorization` header when making requests to protected resources.
+
+        - Example: `Authorization: Bearer <token>`
+
+        Where `<token>` should be replaced with the token string without angle
+        brackets.
+
+        For more information, see the following guide:
+        [Credentials](https://dev.bandwidth.com/docs/credentials)
+security:
+  - Basic: []
+  - Bearer: []
+tags:
+  - name: Applications

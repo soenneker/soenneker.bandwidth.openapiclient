@@ -1,0 +1,355 @@
+openapi: 3.0.1
+info:
+  title: Global API Beta
+  description: >
+    Bandwidth's global API is an application programming interface for
+    Bandwidth's global network.
+
+
+    ## Versions
+
+
+    |API Version|Description|Documentation|
+
+    |:---:|:---:|:---|
+
+    |`v1`|Our current API, which includes number ordering, compliance,
+    configuration and inventory management to support your Voice and SMS
+    communications.| [Click
+    here](https://dev.bandwidth.com/apis/legacy-apis/global/)|
+
+    |`v2`|Our CDRs (Call Detail Records) API.|[Click
+    here](https://dev.bandwidth.com/apis/legacy-apis/global/v2/)|
+
+    |`v3`|Our Porting API in Limited Availability|[Click
+    here](https://dev.bandwidth.com/apis/legacy-apis/global/v3/)|
+
+    |`beta`|Early access to APIs under development including Number
+    Whitelisting.|Currently viewing|
+
+
+    ## Global Emergency Address and Endpoint Provisioning
+
+
+    Please refer to the [Unified Emergency Services Provisioning
+    API](https://dev.bandwidth.com/apis/emergency-provisioning/) guide to
+    automate the provisioning process for endpoints and emergency addresses on
+    the Global Portal.
+
+
+    ## Access
+
+
+    Authentication for Bandwidth's global API is done with API keys. Please
+    ensure:
+
+
+    - Your account is activated for API access. You can do so on our [Global
+    Portal](https://app.voxbone.com/home). If you have trouble, reach out to
+    your account manager or raise a support ticket.
+
+    - You've setup an API key. You can generate your API key under **Settings >
+    API**.
+
+
+    ## Environments
+
+
+    There are currently two environments for our global APIs:
+
+
+    | Environment | Base URL | Description |
+
+    | --- | --- | --- |
+
+    | Production | https://api.voxbone.com | Live production network. |
+
+    | Sandbox | https://api.sandbox.voxbone.com | Intended for simulating
+    ordering and address verification. You can test ordering without being
+    charged, service activation and more. Any API calls performed through our
+    Sandbox API can be viewed via our [Sandbox
+    Portal](https://sandbox.voxbone.com/sandbox-v3/). |
+
+
+    ## Security & Rate Limiting
+
+
+    For protecting both your apps and our systems, a __20 requests per second by
+    client IP__ is performed on your API calls. If you send more requests, your
+    requests may be rejected by an `HTTP 509 Bandwidth Limit Exceeded` or `HTTP
+    429 Too Many Requests` in the response.
+  contact:
+    name: users@cxf.apache.org
+  termsOfService: https://www.bandwidth.com/legal/terms-of-use-bandwidthcom-web-sites/
+  version: '1'
+servers:
+  - url: https://api.voxbone.com/beta
+tags:
+  - name: Number Whitelisting
+    description: >
+      Number Whitelisting let's you take advantage of Bandwidth's network, but
+      without necessarily buying Bandwidth numbers.
+paths:
+  /whitelist:
+    get:
+      tags:
+        - Number Whitelisting
+      summary: |
+        List whitelisted numbers
+      description: >
+        Allows you to retrieve your whitelisted inventory. Filters and sorting
+        parameters are supported.
+      operationId: searchExternalDidsUsingGET
+      parameters:
+        - name: countryCodeA3
+          in: query
+          description: countryCodeA3
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: offset
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: limit
+          in: query
+          description: limit
+          schema:
+            type: integer
+            format: int32
+            default: 20
+        - name: sort
+          in: query
+          description: sort
+          schema:
+            type: string
+            default: e164
+        - name: order
+          in: query
+          description: order
+          schema:
+            type: string
+            default: asc
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhitelistApiListResponse'
+      security:
+        - apiKey:
+            - yourKey
+    put:
+      tags:
+        - Number Whitelisting
+      summary: |
+        Whitelist a number
+      description: >
+        Allows you to add a number to your whitelist inventory. In case a number
+        is already present in your inventory, it will be updated.
+      operationId: uploadExternalDidUsingPUT
+      requestBody:
+        description: externalDidVO
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WhitelistDidObject'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhitelistApiResponse'
+      security:
+        - apiKey:
+            - yourKey
+      x-codegen-request-body-name: externalDidVO
+    x-summary: |
+      Create or list whitelisted numbers
+  /whitelist/{e164}:
+    get:
+      tags:
+        - Number Whitelisting
+      summary: |
+        Get a specific whitelisted number
+      description: >
+        Allows you to retrieve all info about a specific number in your
+        whitelisted inventory.
+      operationId: getByE164UsingGET
+      parameters:
+        - name: e164
+          in: path
+          description: e164
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhitelistApiResponse'
+      security:
+        - apiKey:
+            - yourKey
+    delete:
+      tags:
+        - Number Whitelisting
+      summary: |
+        Delete a whitelisted number
+      description: |
+        Allows you to remove a number from your whitelisted inventory.
+      operationId: deleteExternalDidUsingDELETE
+      parameters:
+        - name: e164
+          in: path
+          description: >-
+            The DID in its E164 format (e.g. +16469185038) with the ability to
+            provide multiple E164s.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhitelistApiResponse'
+      security:
+        - apiKey:
+            - yourKey
+    x-summary: |
+      List or delete a specific whitelisted number
+components:
+  schemas:
+    WhitelistApiResponse:
+      type: object
+      properties:
+        _links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        data:
+          $ref: '#/components/schemas/WhitelistDidObject'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/WhitelistApiResponseErrorMessage'
+        status:
+          type: string
+          description: Status of the HTTP response from the API.
+          enum:
+            - success
+            - fail
+            - error
+    WhitelistApiResponseErrorMessage:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Detailed error information.
+    WhitelistDidObject:
+      required:
+        - countryCodeA3
+        - e164
+        - zone
+      type: object
+      properties:
+        countryCodeA3:
+          type: string
+          description: >-
+            Indicates the country code of the DID in its ISO 3166-1 alpha-3
+            format (e.g. 'GBR' for United Kingdom, 'USA' for United States of
+            America, 'BEL' for Belgium, etc.).
+          example: GBR,USA,BEL
+        e164:
+          type: string
+          description: >-
+            The DID in its E164 format (e.g. +16469185038) with the ability to
+            provide multiple E164s.
+        reference:
+          type: string
+          description: The reference for the customer.
+        zone:
+          type: string
+          description: >-
+            Zone is the trunk that you would like to use with the number you are
+            activating. E.g. WORLD, A, B, C, GBR, CAN, USA, etc... If you use
+            Bandwidth on a PAYG model, you should not add the Zone field in your
+            query.
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        type:
+          type: string
+    WhitelistApiListResponse:
+      type: object
+      properties:
+        _links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        data:
+          $ref: '#/components/schemas/WhitelistDidObject'
+        filters:
+          $ref: '#/components/schemas/WhitelistPageFilters'
+        message:
+          type: string
+          description: Detailed error information.
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        status:
+          type: string
+          description: Status of the HTTP response from the API.
+          enum:
+            - success
+            - fail
+    WhitelistPageFilters:
+      type: object
+      properties:
+        countryCodeA3:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          description: A limit on the number of records to be returned.
+          format: int32
+        offset:
+          type: integer
+          description: >-
+            Indicates the number of records that have been skipped before the
+            first record is selected.
+          format: int32
+        order:
+          type: string
+        sort:
+          type: string
+        total:
+          type: integer
+          description: Total number of records.
+          format: int64
+      description: An object which contains pagination information related to the response.
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      description: >
+        Authentication to Bandwidth's global API is handled via key based
+        authentication. You can manage your API key on our [Global
+        Portal](https://www.bandwidth.com/login/) under **Settings > API**.
+      name: apikey
+      in: header
+security:
+  - KeyBasedAuthentication: []

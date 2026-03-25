@@ -1,0 +1,1136 @@
+openapi: 3.1.0
+info:
+  title: API Credential Management
+  description: >
+    ## Summary
+
+    Manage your API credentials that works within the OpenID Connect (OIDC) and
+    OAuth 2.0 protocols for delegated authentication. Create, retrieve, update,
+    and delete client credentials and their associated secrets.
+
+
+    ## Base URL
+                 
+    `https://api.bandwidth.com/api/v1`
+  version: 1.0.0
+  contact:
+    name: Bandwidth
+  termsOfService: https://www.bandwidth.com/legal/terms-of-use-bandwidthcom-web-sites/
+servers:
+  - url: https://api.bandwidth.com/api/v1
+paths:
+  /credentials:
+    post:
+      summary: Create Client Credentials
+      description: >-
+        Generates a new set of client credentials for the given client ID and
+        secret.
+      security:
+        - Bearer: []
+      operationId: createClientCredentials
+      tags:
+        - Client Credentials
+      requestBody:
+        $ref: '#/components/requestBodies/createClientCredentialsRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/createClientCredentialsResponse'
+        '400':
+          $ref: '#/components/responses/badRequestResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/forbiddenResponse'
+        '404':
+          $ref: '#/components/responses/notFoundResponse'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedResponse'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsResponse'
+        '500':
+          $ref: '#/components/responses/runtimeExceptionResponse'
+    get:
+      summary: List Client Credentials
+      description: Retrieves the full list of client credentials.
+      security:
+        - Bearer: []
+      operationId: listClientCredentials
+      tags:
+        - Client Credentials
+      parameters:
+        - $ref: '#/components/parameters/afterCursor'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/description'
+        - $ref: '#/components/parameters/roleId'
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/accountScope'
+        - $ref: '#/components/parameters/status'
+        - $ref: '#/components/parameters/createdBy'
+        - $ref: '#/components/parameters/creationDate'
+        - $ref: '#/components/parameters/soonestExpirationDate'
+        - $ref: '#/components/parameters/lastModifiedDate'
+        - $ref: '#/components/parameters/lastAuthenticationAttemptDate'
+      responses:
+        '200':
+          $ref: '#/components/responses/listClientCredentialsResponse'
+        '400':
+          $ref: '#/components/responses/badRequestResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/forbiddenResponse'
+        '404':
+          $ref: '#/components/responses/notFoundResponse'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedResponse'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsResponse'
+        '500':
+          $ref: '#/components/responses/runtimeExceptionResponse'
+  /credentials/{clientId}:
+    get:
+      summary: Get Client Credentials
+      description: Retrieves the set of client credentials for the given client ID.
+      security:
+        - Bearer: []
+      operationId: getClientCredentials
+      tags:
+        - Client Credentials
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      responses:
+        '200':
+          $ref: '#/components/responses/getClientCredentialsResponse'
+        '400':
+          $ref: '#/components/responses/badRequestResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/forbiddenResponse'
+        '404':
+          $ref: '#/components/responses/notFoundResponse'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedResponse'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsResponse'
+        '500':
+          $ref: '#/components/responses/runtimeExceptionResponse'
+    patch:
+      summary: Update Client Credentials
+      description: >-
+        Update the roles, accounts, account scope, and/or status associated with
+        a client credential.
+      security:
+        - Bearer: []
+      operationId: updateClientCredentials
+      tags:
+        - Client Credentials
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        $ref: '#/components/requestBodies/updateClientCredentialsRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/updateClientCredentialsResponse'
+        '400':
+          $ref: '#/components/responses/badRequestResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/forbiddenResponse'
+        '404':
+          $ref: '#/components/responses/notFoundResponse'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedResponse'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsResponse'
+        '500':
+          $ref: '#/components/responses/runtimeExceptionResponse'
+    delete:
+      summary: Delete Client Credentials
+      description: Permanently deletes a set of client credentials.
+      security:
+        - Bearer: []
+      operationId: deleteClientCredentials
+      tags:
+        - Client Credentials
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      responses:
+        '204':
+          $ref: '#/components/responses/noContentResponse'
+        '400':
+          $ref: '#/components/responses/badRequestResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/forbiddenResponse'
+        '404':
+          $ref: '#/components/responses/notFoundResponse'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedResponse'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsResponse'
+        '500':
+          $ref: '#/components/responses/runtimeExceptionResponse'
+  /credentials/{clientId}/secrets:
+    post:
+      summary: Create Client Secret
+      description: Generates a new client secret for the given client ID.
+      security:
+        - Bearer: []
+      operationId: createClientSecret
+      tags:
+        - Client Credentials
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        $ref: '#/components/requestBodies/createClientSecretRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/createClientSecretResponse'
+        '400':
+          $ref: '#/components/responses/badRequestResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/forbiddenResponse'
+        '404':
+          $ref: '#/components/responses/notFoundResponse'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedResponse'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsResponse'
+        '500':
+          $ref: '#/components/responses/runtimeExceptionResponse'
+  /credentials/{clientId}/secrets/{secretId}:
+    get:
+      summary: Get Client Secret
+      description: >-
+        Retrieves a specific client secret for the given client ID and secret
+        ID.
+      security:
+        - Bearer: []
+      operationId: getClientSecret
+      tags:
+        - Client Credentials
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - $ref: '#/components/parameters/secretId'
+      responses:
+        '200':
+          $ref: '#/components/responses/getClientSecretResponse'
+        '400':
+          $ref: '#/components/responses/badRequestResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/forbiddenResponse'
+        '404':
+          $ref: '#/components/responses/notFoundResponse'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedResponse'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsResponse'
+        '500':
+          $ref: '#/components/responses/runtimeExceptionResponse'
+    patch:
+      summary: Update Client Secret
+      description: >-
+        Updates the expiration date for a client secret to a user specified time
+        in the future.
+      security:
+        - Bearer: []
+      operationId: updateClientSecret
+      tags:
+        - Client Credentials
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - $ref: '#/components/parameters/secretId'
+      requestBody:
+        $ref: '#/components/requestBodies/updateClientSecretRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/updateClientSecretResponse'
+        '400':
+          $ref: '#/components/responses/badRequestResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/forbiddenResponse'
+        '404':
+          $ref: '#/components/responses/notFoundResponse'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedResponse'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsResponse'
+        '500':
+          $ref: '#/components/responses/runtimeExceptionResponse'
+    delete:
+      summary: Delete Client Secret
+      description: >-
+        Permanently deletes a specific client secret for the given client ID and
+        secret ID.
+      security:
+        - Bearer: []
+      operationId: deleteClientSecret
+      tags:
+        - Client Credentials
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - $ref: '#/components/parameters/secretId'
+      responses:
+        '204':
+          $ref: '#/components/responses/noContentResponse'
+        '400':
+          $ref: '#/components/responses/badRequestResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/forbiddenResponse'
+        '404':
+          $ref: '#/components/responses/notFoundResponse'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedResponse'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsResponse'
+        '500':
+          $ref: '#/components/responses/runtimeExceptionResponse'
+components:
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: jwt
+  requestBodies:
+    createClientCredentialsRequest:
+      description: The request body for generating a new set of client credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/createClientCredentialsRequest'
+    updateClientCredentialsRequest:
+      description: The request body for updating client credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/updateClientCredentialsRequest'
+    createClientSecretRequest:
+      description: >-
+        The request body for generating a new client secret for a given set of
+        client credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/clientSecretRequest'
+    updateClientSecretRequest:
+      description: >-
+        The request body for updating a client secret for a given set of client
+        credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/clientSecretRequest'
+  responses:
+    createClientCredentialsResponse:
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/clientCredentialsResponse'
+          examples:
+            createClientCredentialsResponseExample:
+              $ref: '#/components/examples/createClientCredentialsResponseExample'
+    listClientCredentialsResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/listClientCredentialsResponse'
+          examples:
+            listClientCredentialsResponseExample:
+              $ref: '#/components/examples/listClientCredentialsResponseExample'
+    getClientCredentialsResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/clientCredentialsResponse'
+          examples:
+            getClientCredentialsResponseExample:
+              $ref: '#/components/examples/clientCredentialsResponseExample'
+    updateClientCredentialsResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/clientCredentialsResponse'
+          examples:
+            updateClientCredentialsResponseExample:
+              $ref: '#/components/examples/clientCredentialsResponseExample'
+    createClientSecretResponse:
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/clientSecretResponse'
+          examples:
+            createClientSecretResponseExample:
+              $ref: '#/components/examples/createClientSecretResponseExample'
+    getClientSecretResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/clientSecretResponse'
+          examples:
+            getClientSecretResponseExample:
+              $ref: '#/components/examples/clientSecretResponseExample'
+    updateClientSecretResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/clientSecretResponse'
+          examples:
+            updateClientSecretResponseExample:
+              $ref: '#/components/examples/clientSecretResponseExample'
+    noContentResponse:
+      description: No Content
+    runtimeExceptionResponse:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            runtimeExceptionResponseExample:
+              $ref: '#/components/examples/runtimeExceptionResponseExample'
+    unauthorizedResponse:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            unauthorizedResponseExample:
+              $ref: '#/components/examples/unauthorizedResponseExample'
+    tooManyRequestsResponse:
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            tooManyRequestsResponseExample:
+              $ref: '#/components/examples/tooManyRequestsResponseExample'
+    methodNotAllowedResponse:
+      description: Method Not Allowed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            methodNotAllowedResponseExample:
+              $ref: '#/components/examples/methodNotAllowedResponseExample'
+    forbiddenResponse:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            forbiddenResponseExample:
+              $ref: '#/components/examples/forbiddenResponseExample'
+    notFoundResponse:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            notFoundResponseExample:
+              $ref: '#/components/examples/notFoundResponseExample'
+    badRequestResponse:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            badRequestResponseExample:
+              $ref: '#/components/examples/badRequestResponseExample'
+  schemas:
+    clientCredentialsResponse:
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        data:
+          $ref: '#/components/schemas/clientCredential'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+    listClientCredentialsResponse:
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/clientCredential'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+        page:
+          $ref: '#/components/schemas/page'
+    clientSecretResponse:
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        data:
+          $ref: '#/components/schemas/clientSecret'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+    errorResponse:
+      required:
+        - links
+        - data
+        - errors
+      type: object
+      additionalProperties: false
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          example: []
+        data:
+          type: object
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+          example: []
+    link:
+      title: link
+      type: object
+      additionalProperties: false
+      properties:
+        href:
+          type: string
+          description: The URI of the link
+          example: https://api.bandwidth.com/api/v1/credentials
+        rel:
+          type: string
+          description: The relationship of the link to the resource
+          example: self
+        method:
+          type: string
+          description: The HTTP method to use when following the link
+          example: GET
+    error:
+      title: error
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          type: string
+          description: A short human-readable summary of the problem encountered
+          example: Error
+        description:
+          type: string
+          description: >-
+            A human-readable detailed description that SHOULD be specific to the
+            problem encountered
+          example: There was a problem with your request. Please try again
+        code:
+          type: string
+          description: An Auth Service API specific error code
+          example: E0001
+        source:
+          type: object
+          description: Information about the source of the error
+          additionalProperties: false
+          properties:
+            field:
+              type: string
+              description: The field in the request that caused the error
+              example: lastName
+        meta:
+          type: object
+          description: Additional metadata about the error
+          additionalProperties: false
+          properties:
+            traceId:
+              type: string
+              description: A unique identifier for the error
+              example: '123456789'
+    clientCredential:
+      title: A set of client credentials
+      type: object
+      required:
+        - clientId
+        - clientSecrets
+        - description
+        - roles
+        - accounts
+        - accountScope
+        - createdBy
+        - creationDate
+        - status
+        - lastModifiedDate
+      properties:
+        clientId:
+          description: The unique identifier for the client.
+          type: string
+          readOnly: true
+          example: CLI-00000001-0002-0003-0004-000000000005
+        clientSecrets:
+          description: >-
+            The list of client secrets associated with the client ID.  Secret
+            values are only returned at secret creation time.
+          type: array
+          items:
+            $ref: '#/components/schemas/clientSecret'
+        description:
+          description: A description of the client credentials.
+          type: string
+          example: Client credentials for accessing the API
+        roles:
+          description: A list of roles that the client has access to.
+          $ref: '#/components/schemas/roles'
+        accounts:
+          description: A list of account IDs for which the client can access.
+          $ref: '#/components/schemas/accounts'
+        accountScope:
+          $ref: '#/components/schemas/accountScopeEnum'
+        createdBy:
+          description: The user who created the client credentials.
+          type: string
+          readOnly: true
+          example: user-1234567890abcdef
+        creationDate:
+          description: The date and time when the client credentials were created.
+          $ref: '#/components/schemas/date'
+        status:
+          $ref: '#/components/schemas/credentialStatusEnum'
+        lastAuthenticationAttemptDate:
+          description: >-
+            The date and time when the client credentials were last used to
+            authenticate.
+          $ref: '#/components/schemas/date'
+        lastModifiedDate:
+          description: The date and time when the client credentials were last modified.
+          $ref: '#/components/schemas/date'
+        soonestExpirationDate:
+          description: >-
+            The soonest expiration date of any secret within the client
+            credential set.
+          $ref: '#/components/schemas/date'
+    clientSecret:
+      title: Client Secret
+      type: object
+      required:
+        - id
+        - creationDate
+        - createdBy
+      properties:
+        secretId:
+          description: The unique identifier for the client secret.
+          type: string
+          readOnly: true
+          example: SEC-00000001-0002-0003-0004-000000000005
+        secretValue:
+          description: >-
+            The value of the client secret. This is only returned at secret
+            creation time.
+          type: string
+          readOnly: true
+          example: s3cr3tV4lu3
+        creationDate:
+          description: The date and time when the client secret was created.
+          readOnly: true
+          $ref: '#/components/schemas/date'
+        createdBy:
+          description: The user who created the client secret.
+          type: string
+          readOnly: true
+          example: user-1234567890abcdef
+        expirationDate:
+          description: The date and time when the client secret will expire.
+          $ref: '#/components/schemas/date'
+        lastUsedDate:
+          description: >-
+            The date and time when the client secret was last used to
+            authenticate.
+          readOnly: true
+          $ref: '#/components/schemas/date'
+    createClientCredentialsRequest:
+      title: Create Credential Request
+      type: object
+      required:
+        - roles
+        - accounts
+        - accountScope
+      properties:
+        description:
+          description: A description of the client credentials being generated.
+          type: string
+          default: ''
+          example: Client credentials for accessing the API
+        roles:
+          description: A list of roles that the client credentials are being generated for.
+          $ref: '#/components/schemas/roles'
+        accounts:
+          description: >-
+            A list of account IDs for which the client credentials are being
+            generated.
+          $ref: '#/components/schemas/accounts'
+        accountScope:
+          $ref: '#/components/schemas/accountScopeEnum'
+    updateClientCredentialsRequest:
+      title: Update Client Credentials Request
+      type: object
+      properties:
+        description:
+          description: The new description to assign to the client credential set.
+          type: string
+          example: Updated description for client credentials
+        roles:
+          description: The new list of roles to assign to the client credential set.
+          $ref: '#/components/schemas/roles'
+        accounts:
+          description: The new list of accounts to assign to the client credential set.
+          $ref: '#/components/schemas/accounts'
+        accountScope:
+          $ref: '#/components/schemas/accountScopeEnum'
+        status:
+          $ref: '#/components/schemas/credentialStatusEnum'
+    clientSecretRequest:
+      title: Client Secret Request
+      type: object
+      properties:
+        expirationDate:
+          description: The expiration date for this client secret.
+          $ref: '#/components/schemas/date'
+    date:
+      type: string
+      format: date-time
+      readOnly: true
+      example: '2025-02-10T17:32:28Z'
+    roles:
+      type: array
+      items:
+        type: string
+      default: []
+      description: A list of roles.
+      example:
+        - role1
+        - role2
+    accounts:
+      type: array
+      items:
+        type: string
+      default: []
+      description: A list of account IDs.
+      example:
+        - '1000000'
+        - '1000001'
+    credentialStatusEnum:
+      type: string
+      enum:
+        - ACTIVE
+        - INACTIVE
+      description: The status of the credentials.
+    accountScopeEnum:
+      type: string
+      enum:
+        - ACCOUNT
+        - ACCOUNT_ADMIN
+      description: The scope of the credentials.
+    page:
+      type: object
+      properties:
+        pageSize:
+          type: number
+          description: The number of items returned in the current page.
+          example: 50
+    descriptionQueryParam:
+      type: object
+      properties:
+        eq:
+          type: string
+          description: Equal to the specified description.
+        contains:
+          type: string
+          description: Contains the specified description.
+      example:
+        eq: Client credentials for accessing the API
+        contains: accessing the API
+    roleIdQueryParam:
+      type: object
+      properties:
+        eq:
+          type: string
+          description: Equal to the specified role ID.
+      example:
+        eq: role1
+    accountIdQueryParam:
+      type: object
+      properties:
+        eq:
+          type: string
+          description: Equal to the specified account ID.
+      example:
+        eq: '1000000'
+    accountScopeQueryParam:
+      type: object
+      properties:
+        eq:
+          $ref: '#/components/schemas/accountScopeEnum'
+      example:
+        eq: ACCOUNT
+    statusQueryParam:
+      type: object
+      properties:
+        eq:
+          $ref: '#/components/schemas/credentialStatusEnum'
+      example:
+        eq: ACTIVE
+    createdByQueryParam:
+      type: object
+      properties:
+        eq:
+          type: string
+          description: Equal to the specified user ID.
+        contains:
+          type: string
+          description: Contains the specified user ID.
+      example:
+        eq: user-1234567890abcdef
+        contains: user-123
+    dateQueryParam:
+      type: object
+      properties:
+        gte:
+          type: string
+          format: date-time
+          description: Greater than or equal to the specified date and time.
+        lte:
+          type: string
+          format: date-time
+          description: Less than or equal to the specified date and time.
+      example:
+        gte: '2025-01-01T00:00:00Z'
+        lte: '2025-12-31T23:59:59Z'
+  parameters:
+    afterCursor:
+      name: afterCursor
+      in: query
+      required: false
+      description: >-
+        The cursor to use for pagination. This is the value of the `next` link
+        from the previous response.
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return. Defaults to 100.
+      schema:
+        type: integer
+        default: 100
+    description:
+      in: query
+      name: description
+      required: false
+      description: A description of the client credential set.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/descriptionQueryParam'
+    roleId:
+      in: query
+      name: roleId
+      required: false
+      description: The ID of the role to filter the client credentials by.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/roleIdQueryParam'
+    accountId:
+      name: accountId
+      in: query
+      required: false
+      description: The account ID to retrieve the client credentials for.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/accountIdQueryParam'
+    accountScope:
+      name: accountScope
+      in: query
+      required: false
+      description: The scope of the credential set.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/accountScopeQueryParam'
+    status:
+      name: status
+      in: query
+      required: false
+      description: The status of the client credentials.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/statusQueryParam'
+    createdBy:
+      name: createdBy
+      in: query
+      required: false
+      description: The user who created the client credentials.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/createdByQueryParam'
+    creationDate:
+      $ref: '#/components/schemas/dateQueryParam'
+    soonestExpirationDate:
+      name: soonestExpirationDate
+      in: query
+      required: false
+      description: >-
+        The soonest date and time where a client secret will expire for the
+        credentials.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/dateQueryParam'
+    lastModifiedDate:
+      name: lastModifiedDate
+      in: query
+      required: false
+      description: The date and time when a credential pair was last updated.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/dateQueryParam'
+    clientId:
+      name: clientId
+      in: path
+      required: true
+      description: The client ID of interest.
+      schema:
+        type: string
+    secretId:
+      name: secretId
+      in: path
+      required: true
+      description: The secret ID of interest.
+      schema:
+        type: string
+    lastAuthenticationAttemptDate:
+      name: lastAuthenticationAttemptDate
+      in: query
+      required: false
+      description: >-
+        The date and time when the client credentials were last used to
+        authenticate.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/dateQueryParam'
+  examples:
+    createClientCredentialsResponseExample:
+      value:
+        links: []
+        data:
+          clientId: CLI-00000001-0002-0003-0004-000000000005
+          clientSecrets: []
+          description: Client credentials for accessing the API
+          roles:
+            - role1
+            - role2
+          accounts:
+            - '1000000'
+            - '1000001'
+          accountScope: ACCOUNT
+          createdBy: user-1234567890abcdef
+          creationDate: '2025-02-10T17:32:28Z'
+          status: ACTIVE
+          lastModifiedDate: '2025-02-10T17:32:28Z'
+        errors: []
+    listClientCredentialsResponseExample:
+      value:
+        links:
+          - href: https://api.bandwidth.com/api/v1/credentials?afterCursor=xyz789
+            rel: self
+            method: GET
+          - href: https://api.bandwidth.com/api/v1/credentials?afterCursor=abc123
+            rel: next
+            method: GET
+          - href: https://api.bandwidth.com/api/v1/credentials
+            rel: first
+            method: GET
+        data:
+          - clientId: CLI-00000001-0002-0003-0004-000000000005
+            clientSecrets:
+              - id: SEC-00000001-0002-0003-0004-000000000005
+                creationDate: '2025-02-10T17:32:28Z'
+                createdBy: user-1234567890abcdef
+                expirationDate: '2025-09-10T17:32:28Z'
+                description: Client credentials for accessing the API
+            roles:
+              - role1
+              - role2
+            accounts:
+              - '1000000'
+              - '1000001'
+            description: Client credentials for accessing the API
+            accountScope: ACCOUNT
+            createdBy: user-1234567890abcdef
+            creationDate: '2025-02-10T17:32:28Z'
+            status: ACTIVE
+            lastModifiedDate: '2025-02-10T17:32:28Z'
+            soonestExpirationDate: '2025-09-10T17:32:28Z'
+        errors: []
+        page:
+          pageSize: 1
+    clientCredentialsResponseExample:
+      value:
+        links: []
+        data:
+          clientId: CLI-00000001-0002-0003-0004-000000000005
+          clientSecrets:
+            - id: SEC-00000001-0002-0003-0004-000000000005
+              creationDate: '2025-02-10T17:32:28Z'
+              createdBy: user-1234567890abcdef
+              expirationDate: '2025-09-10T17:32:28Z'
+          description: Client credentials for accessing the API
+          roles:
+            - role1
+            - role2
+          accounts:
+            - '1000000'
+            - '1000001'
+          accountScope: ACCOUNT
+          createdBy: user-1234567890abcdef
+          creationDate: '2025-02-10T17:32:28Z'
+          status: ACTIVE
+          lastModifiedDate: '2025-02-10T17:32:28Z'
+          soonestExpirationDate: '2025-09-10T17:32:28Z'
+        errors: []
+    createClientSecretResponseExample:
+      value:
+        links: []
+        data:
+          id: SEC-00000001-0002-0003-0004-000000000005
+          secretValue: s3cr3tV4lu3
+          creationDate: '2025-02-10T17:32:28Z'
+          createdBy: user-1234567890abcdef
+          expirationDate: '2025-09-10T17:32:28Z'
+        errors: []
+    clientSecretResponseExample:
+      value:
+        links: []
+        data:
+          id: SEC-00000001-0002-0003-0004-000000000005
+          creationDate: '2025-02-10T17:32:28Z'
+          createdBy: user-1234567890abcdef
+          expirationDate: '2025-09-10T17:32:28Z'
+          lastUsedDate: '2025-06-15T12:00:00Z'
+        errors: []
+    badRequestResponseExample:
+      value:
+        links: []
+        data: null
+        errors:
+          - type: validation
+            description: accountScope is a required field
+            code: '1003'
+            source:
+              field: accountScope
+            meta:
+              traceId: '123456789'
+    unauthorizedResponseExample:
+      value:
+        links: []
+        data: null
+        errors:
+          - type: authentication-credentials
+            description: You are not authorized to access this resource.
+            code: '1001'
+            meta:
+              traceId: '123456789'
+    forbiddenResponseExample:
+      value:
+        links: []
+        data: null
+        errors:
+          - type: resource-permissions
+            description: You do not have permission to access this resource.
+            code: '1002'
+            meta:
+              traceId: '123456789'
+    notFoundResponseExample:
+      value:
+        links: []
+        data: null
+        errors:
+          - type: not-found
+            description: the specified resource could not be found.
+            code: '1024'
+            meta:
+              traceId: '123456789'
+    methodNotAllowedResponseExample:
+      value:
+        links: []
+        data: null
+        errors:
+          - type: http-method-not-supported
+            description: The HTTP method used is not allowed for this resource.
+            code: '1004'
+            source:
+              field: method
+            meta:
+              traceId: '123456789'
+    tooManyRequestsResponseExample:
+      value:
+        links: []
+        data: null
+        errors:
+          - type: rate-limiting
+            description: You have exceeded the rate limit for this resource.
+            code: '1005'
+            meta:
+              traceId: '123456789'
+    runtimeExceptionResponseExample:
+      value:
+        links: []
+        data: null
+        errors:
+          - type: internal-error
+            description: An unexpected error occurred. Please try again later.
+            code: '1010'
+            meta:
+              traceId: '123456789'
+security:
+  - Bearer: []
+tags:
+  - name: Client Credentials

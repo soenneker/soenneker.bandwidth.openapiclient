@@ -1,0 +1,1371 @@
+openapi: 3.0.1
+info:
+  title: Subscriptions API
+  description: >-
+    Bandwidth's Subscription API
+
+
+    The Subscriptions API allows you to manage subscription-based notifications.
+
+    With this API, you can create, update, delete, and view subscriptions.
+
+    This API can be used to integrate subscription management functionality into
+    your applications.
+
+
+    Bandwidth currently offers email and webhook notifications for events that a
+    customer has subscribed to.
+
+    These notifications can be triggered for events instantly, and emails can
+    also be sent as a daily roll-up of event history.
+
+
+    In order to receive notifications, you must first create a subscription.
+
+
+    ## Base URL
+
+
+    `https://api.bandwidth.com/v2`
+  version: 1.0.0
+  termsOfService: https://www.bandwidth.com/legal/terms-of-use-bandwidthcom-web-sites/
+  contact:
+    name: Bandwidth Support
+    email: support@bandwidth.com
+    url: https://support.bandwidth.com
+servers:
+  - url: https://api.bandwidth.com/v2
+    description: Production
+paths:
+  /subscriptions:
+    get:
+      tags:
+        - Subscriptions
+      description: List all subscriptions associated with your accounts.
+      operationId: listSubscriptions
+      summary: List Subscriptions
+      parameters:
+        - $ref: '#/components/parameters/accountIds'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/size'
+      responses:
+        '200':
+          $ref: '#/components/responses/subscriptionsListResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+    post:
+      tags:
+        - Subscriptions
+      description: Create new subscription.
+      operationId: createSubscription
+      summary: Create Subscription
+      requestBody:
+        $ref: '#/components/requestBodies/createSubscriptionRequestBody'
+      responses:
+        '201':
+          $ref: '#/components/responses/subscriptionCreatedResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '415':
+          $ref: '#/components/responses/invalidContentTypeError'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+  /subscriptions/{subscriptionId}:
+    get:
+      tags:
+        - Subscriptions
+      description: Get subscription by ID.
+      operationId: getSubscription
+      summary: Get Subscription
+      parameters:
+        - $ref: '#/components/parameters/subscriptionId'
+      responses:
+        '200':
+          $ref: '#/components/responses/subscriptionResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+    put:
+      tags:
+        - Subscriptions
+      description: Update subscription by ID.
+      operationId: updateSubscription
+      summary: Update Subscription
+      parameters:
+        - $ref: '#/components/parameters/subscriptionId'
+      requestBody:
+        $ref: '#/components/requestBodies/updateSubscriptionRequestBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/subscriptionResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '415':
+          $ref: '#/components/responses/invalidContentTypeError'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+    delete:
+      tags:
+        - Subscriptions
+      description: Delete subscription by ID.
+      operationId: deleteSubscription
+      summary: Delete Subscription
+      parameters:
+        - $ref: '#/components/parameters/subscriptionId'
+      responses:
+        '204':
+          $ref: '#/components/responses/noContentResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+  /subscriptions/{subscriptionId}/notifications:
+    post:
+      tags:
+        - Notifications
+      description: >-
+        Send a test notification for subscription by ID. Regular notifications
+        are sent 
+
+        automatically based on events and your subscription settings. This
+        endpoint allows you to
+
+        manually trigger a test notification to verify your subscription
+        configuration.
+      operationId: sendTestNotification
+      summary: Send Test Notification
+      parameters:
+        - $ref: '#/components/parameters/subscriptionId'
+      responses:
+        '201':
+          $ref: '#/components/responses/sendTestNotificationResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+    get:
+      tags:
+        - Notifications
+      description: List notifications for subscription by ID.
+      operationId: listNotifications
+      summary: List Notifications
+      parameters:
+        - $ref: '#/components/parameters/subscriptionId'
+        - $ref: '#/components/parameters/afterCursor'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          $ref: '#/components/responses/notificationListResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+  /subscriptions/{subscriptionId}/notifications/{notificationId}:
+    get:
+      tags:
+        - Notifications
+      description: Get notification  for subscription by ID.
+      operationId: getNotification
+      summary: Get Notification
+      parameters:
+        - $ref: '#/components/parameters/subscriptionId'
+        - $ref: '#/components/parameters/notificationIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/getNotificationResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+  /subscriptionDefinitions:
+    get:
+      tags:
+        - Subscriptions
+      description: List subscription definition details.
+      operationId: listSubscriptionDefinitions
+      summary: List Subscription Definitions
+      responses:
+        '200':
+          $ref: '#/components/responses/subscriptionDefinitionListResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+  /subscriptionDefinitions/{subscriptionDefinitionName}:
+    get:
+      tags:
+        - Subscriptions
+      description: Get subscription definition by name.
+      operationId: getSubscriptionDefinition
+      summary: Get Subscription Definition
+      parameters:
+        - $ref: '#/components/parameters/subscriptionDefinitionName'
+      responses:
+        '200':
+          $ref: '#/components/responses/subscriptionDefinitionResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+components:
+  schemas:
+    genericError:
+      title: Generic Error
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          example: []
+        data:
+          type: object
+          nullable: true
+          example: null
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+      required:
+        - links
+        - data
+        - errors
+    link:
+      title: Link
+      type: object
+      properties:
+        href:
+          type: string
+          description: URI of the link.
+          example: https://api.bandwidth.com/absolute/uri
+        rel:
+          type: string
+          description: Specifies the relationship between this link and the resource.
+          example: aRelatedResource
+        method:
+          type: string
+          description: HTTP method to be used.
+          example: GET
+    error:
+      title: Error
+      type: object
+      properties:
+        id:
+          type: string
+          description: A unique identifier for this particular instance of this problem.
+          example: optional-error-id
+        type:
+          type: string
+          description: >-
+            A short, human-readable summary of the problem that SHOULD NOT
+            change from occurrence to occurrence of the problem.
+          example: REQUEST_ERROR
+        description:
+          type: string
+          description: >-
+            A human-readable explanation that SHOULD be specific to this
+            occurrence of the problem.
+          example: There was an issue with a field in your request body
+        code:
+          type: integer
+          format: int32
+          description: >-
+            An application-specific error code for services with extensive error
+            scenarios to supplement `description`.
+          minimum: 4
+          example: 51130
+        source:
+          $ref: '#/components/schemas/errorSource'
+        meta:
+          $ref: '#/components/schemas/errorMeta'
+      required:
+        - description
+    errorSource:
+      title: Error Source
+      type: object
+      properties:
+        parameter:
+          type: string
+          description: A string indicating which URI query parameter caused the error.
+          example: someParameter
+        field:
+          type: string
+          description: A string indicating which request body field caused the error.
+          example: someField
+        header:
+          type: string
+          description: A string indicating which header field caused the error.
+          example: someHeader
+        reference:
+          type: string
+          description: >-
+            A string that references a resource ID or path to the resource (or
+            non-existent resource) causing the error.
+          example: /some/reference
+    errorMeta:
+      title: Error Meta
+      type: object
+      additionalProperties:
+        type: string
+    pageMeta:
+      title: Pagination Metadata
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: The size of pages returned.
+          example: 20
+        totalElements:
+          type: integer
+          description: The total number of elements in the collection.
+          example: 60
+        totalPages:
+          type: integer
+          description: >-
+            The total number of pages in the collection of the specified
+            pageSize.
+          example: 3
+        pageNumber:
+          type: integer
+          description: The page number for the page returned.
+          example: 0
+      nullable: true
+    cursorBasedPaginationPageMeta:
+      title: Cursor Based Pagination Metadata
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: The size of pages returned.
+          example: 20
+      nullable: true
+    subscriptionsListApiResponse:
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        data:
+          $ref: '#/components/schemas/subscriptionsListResponse'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+        page:
+          $ref: '#/components/schemas/pageMeta'
+    subscriptionsListResponse:
+      type: object
+      required:
+        - totalCount
+        - subscriptions
+      properties:
+        totalCount:
+          type: integer
+          description: The total number of subscriptions
+        subscriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/subscriptionResponse'
+    subscriptionsApiResponse:
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        data:
+          $ref: '#/components/schemas/subscriptionResponse'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+    subscriptionBase:
+      type: object
+      required:
+        - subscriptionDefinitionName
+        - deliveryType
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The subscription ID (Bandwidth generated)
+          example: d4cb816f-d21b-4593-87fa-4ba6bbf17e1b
+        accountId:
+          type: string
+          description: The account ID to create the subscription for
+          example: '10000001'
+          nullable: true
+        customName:
+          type: string
+          description: The custom name for the subscription
+          example: My Subscription
+          nullable: true
+        subscriptionDefinitionName:
+          type: string
+          description: The name for the subscription definition
+          example: Package_Update
+        deliveryType:
+          $ref: '#/components/schemas/deliveryTypesEnum'
+        createdBy:
+          type: string
+          description: The user who created the subscription
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp when the subscription was created
+          example: '2023-01-01T00:00:00Z'
+        updatedBy:
+          type: string
+          description: The user who last updated the subscription
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          description: The timestamp when the subscription was last updated
+          example: '2023-01-01T01:00:00Z'
+          nullable: true
+        filters:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/filterCriteria'
+          description: The filters to be applied to subscription
+          example:
+            - field: status
+              operator: IN
+              value:
+                - APPROVED
+                - PENDING
+    subscriptionResponse:
+      oneOf:
+        - $ref: '#/components/schemas/emailSubscription'
+        - $ref: '#/components/schemas/webhookSubscriptionResponse'
+    subscriptionRequest:
+      oneOf:
+        - $ref: '#/components/schemas/emailSubscription'
+        - $ref: '#/components/schemas/webhookSubscriptionRequest'
+    digestEnum:
+      type: string
+      description: The digest frequency for the subscription
+      default: INSTANT
+      enum:
+        - DAILY
+        - INSTANT
+      example: DAILY
+    filterCriteria:
+      type: object
+      description: Filter Criteria
+      required:
+        - field
+        - operator
+        - value
+      properties:
+        field:
+          type: string
+          example: status
+          description: >-
+            The field key as defined in the subscription definition filterable
+            fields
+        operator:
+          $ref: '#/components/schemas/operatorEnum'
+        value:
+          oneOf:
+            - type: number
+              description: Single number value for operators ["GT", "LT", "EQ", "NE"]
+              example: 100
+            - type: string
+              description: Single string value for operators ["EQ", "NE"]
+              example: APPROVED
+            - type: boolean
+              description: Single boolean value for operators ["EQ", "NE"]
+              example: true
+            - type: array
+              items:
+                type: number
+              description: List of number values for operator "IN"
+              example:
+                - 100
+                - 200
+            - type: array
+              items:
+                type: string
+              description: List of string values for operator "IN"
+              example:
+                - APPROVED
+                - PENDING
+            - type: array
+              items:
+                type: boolean
+              description: List of boolean values for operator "IN"
+              example:
+                - true
+                - false
+          example:
+            - APPROVED
+            - PENDING
+    subscriptionDefinitionListResponse:
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        data:
+          $ref: '#/components/schemas/subscriptionDefinitionList'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+    subscriptionDefinitionList:
+      type: array
+      items:
+        $ref: '#/components/schemas/subscriptionDefinitionBase'
+    subscriptionDefinitionResponse:
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        data:
+          $ref: '#/components/schemas/subscriptionDefinitionBase'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+    subscriptionDefinitionBase:
+      type: object
+      required:
+        - name
+        - friendlyName
+        - supportedDeliveryTypes
+        - functionalDomain
+      properties:
+        name:
+          type: string
+          example: Package_Update
+          description: The name which uniquely identifies the subscription definition
+        friendlyName:
+          type: string
+          example: Package Update
+          description: A user friendly name for the subscription definition
+        description:
+          type: string
+          example: Notifications for purchase events
+          description: A description of the subscription definition
+        accountSpecific:
+          type: boolean
+          example: true
+          description: >-
+            Indicates if the event is account specific. If true, end users will
+            be required to subscribed to specific account IDs. False is
+            considered account agnostic system events.
+        filterableFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/filterableField'
+          description: The fields that can be filtered on for the subscription definition
+        supportedDeliveryTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/deliveryTypesEnum'
+        functionalDomain:
+          type: string
+    webhookAuthenticationResponse:
+      type: object
+      description: Credentials and secrets for webhook authentication
+      nullable: true
+      properties:
+        basicAuthenticationConfigured:
+          $ref: '#/components/schemas/basicHmacAuthenticationConfigured'
+        hmacAuthenticationConfigured:
+          $ref: '#/components/schemas/basicHmacAuthenticationConfigured'
+    webhookAuthenticationRequest:
+      allOf:
+        - type: object
+          properties:
+            hmacAuthentication:
+              $ref: '#/components/schemas/hmacAuthenticationRequest'
+            basicAuthentication:
+              $ref: '#/components/schemas/basicAuthenticationRequest'
+    basicAuthenticationResponse:
+      type: object
+      description: The Username and Password to be used for basic authentication.
+      properties:
+        username:
+          $ref: '#/components/schemas/username'
+    basicAuthenticationRequest:
+      type: object
+      description: The Username and Password to be used for basic authentication.
+      properties:
+        username:
+          $ref: '#/components/schemas/username'
+        password:
+          $ref: '#/components/schemas/password'
+    basicHmacAuthenticationConfigured:
+      type: boolean
+      description: Indicates if a password or secret has been set.
+      example: true
+    password:
+      type: string
+      description: The password for basic authentication
+      example: s3cureP@ssw0rd!
+    username:
+      type: string
+      description: The username for basic authentication
+      example: apiUser
+    hmacAuthenticationRequest:
+      type: object
+      description: >-
+        The `hmacAuthentication` object determines how webhook authentication is
+        handled and captures HMAC details like the `sharedSecretKey`:
+
+        - If omitted or `null`:
+            - No HMAC authentication is applied.
+            - Any existing `hmacAuthentication` is removed during updates.
+        - If an empty object ({}) is provided:
+            - It is not valid for a create/POST request.
+            - For update/PUT requests, the existing hmacAuthentication remains unchanged.
+        - If `sharedSecretKey` is provided:
+            - It is encrypted and used for HMAC authentication.
+      properties:
+        sharedSecretKey:
+          $ref: '#/components/schemas/sharedSecretKey'
+    hmacAuthenticationResponse:
+      type: object
+      description: >-
+        The `hmacAuthentication` object in the response indicates whether HMAC
+        authentication is configured:
+
+        - If HMAC authentication has been set with a `sharedSecretKey`, the
+        `hmacAuthentication` object will be present but empty (`{}`).
+
+        - If no HMAC authentication is configured, the `hmacAuthentication`
+        object will be null or omitted.
+      example: {}
+    webhookSubscriptionResponse:
+      allOf:
+        - $ref: '#/components/schemas/subscriptionBase'
+        - type: object
+          required:
+            - webhookSubscription
+          properties:
+            webhookSubscription:
+              type: object
+              required:
+                - url
+              properties:
+                url:
+                  $ref: '#/components/schemas/url'
+                authentication:
+                  $ref: '#/components/schemas/webhookAuthenticationResponse'
+    webhookSubscriptionRequest:
+      allOf:
+        - $ref: '#/components/schemas/subscriptionBase'
+        - type: object
+          required:
+            - webhookSubscription
+          properties:
+            webhookSubscription:
+              type: object
+              required:
+                - url
+              properties:
+                url:
+                  $ref: '#/components/schemas/url'
+                authentication:
+                  $ref: '#/components/schemas/webhookAuthenticationRequest'
+    url:
+      type: string
+      format: uri
+      description: The URL to send the webhook to
+      example: https://example.com/webhook
+    emailSubscription:
+      allOf:
+        - $ref: '#/components/schemas/subscriptionBase'
+        - type: object
+          required:
+            - emailSubscription
+          properties:
+            emailSubscription:
+              type: object
+              required:
+                - emailAddress
+              properties:
+                emailAddress:
+                  $ref: '#/components/schemas/email'
+                digest:
+                  $ref: '#/components/schemas/digestEnum'
+    email:
+      type: string
+      format: email
+      pattern: ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
+      example: example@test.com
+    filterableField:
+      type: object
+      required:
+        - field
+        - friendlyName
+        - type
+        - allowedOperators
+      properties:
+        field:
+          type: string
+          example: price
+        friendlyName:
+          type: string
+          example: Price
+          description: A user friendly name for the field
+        type:
+          oneOf:
+            - type: string
+            - type: number
+            - type: boolean
+          example: number
+        selectableValues:
+          type: array
+          nullable: true
+          items:
+            oneOf:
+              - type: string
+              - type: number
+        allowedOperators:
+          type: array
+          items:
+            $ref: '#/components/schemas/operatorEnum'
+    deliveryTypesEnum:
+      type: string
+      description: The delivery mechanism of the subscription
+      enum:
+        - EMAIL
+        - WEBHOOK
+      example: EMAIL
+    operatorEnum:
+      type: string
+      description: The operator for the filter criteria
+      enum:
+        - GT
+        - LT
+        - EQ
+        - NE
+        - IN
+      example: EQ
+    sharedSecretKey:
+      description: >-
+        An ASCII string submitted by the user as a shared secret key for
+        generating an HMAC header (`X-Bandwidth-Signature-SHA-256`) for
+        callbacks.
+      example: This is my $3cret
+      maxLength: 64
+      minLength: 16
+      nullable: true
+      pattern: ^[ -~]{16,64}$
+      type: string
+    notificationListResponse:
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        data:
+          $ref: '#/components/schemas/notificationList'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+        page:
+          $ref: '#/components/schemas/cursorBasedPaginationPageMeta'
+    notificationList:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: The total number of notifications
+        notifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/notification'
+    notificationResponse:
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        data:
+          $ref: '#/components/schemas/notification'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+    notification:
+      type: object
+      properties:
+        notificationId:
+          $ref: '#/components/schemas/notificationId'
+        sentDate:
+          type: string
+          format: date-time
+          description: The timestamp when the notification was sent
+          example: '2023-01-01T00:00:00Z'
+        status:
+          $ref: '#/components/schemas/notificationStatusEnum'
+        test:
+          type: boolean
+          description: Indicates if the notification is a test notification
+          example: false
+    notificationId:
+      type: string
+      description: The ID of the sent notification
+      format: uuid
+      example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+    notificationStatusEnum:
+      type: string
+      description: The status of the notification
+      enum:
+        - PROCESSING
+        - SUCCESS
+        - FAILED
+      example: SUCCESS
+  parameters:
+    page:
+      name: page
+      description: The number of page
+      in: query
+      required: false
+      schema:
+        type: integer
+      example: 2
+    size:
+      name: size
+      description: The number of items to include in a page.
+      in: query
+      required: false
+      schema:
+        type: integer
+      example: 100
+    accountIds:
+      name: accountIds
+      in: query
+      description: The account IDs to filter subscriptions by
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      example:
+        - '10000001'
+        - '10000002'
+    subscriptionId:
+      name: subscriptionId
+      in: path
+      description: The ID of the subscription
+      required: true
+      schema:
+        type: string
+        format: uuid
+    subscriptionDefinitionName:
+      name: subscriptionDefinitionName
+      in: path
+      description: The name of the subscription definition
+      required: true
+      schema:
+        type: string
+    notificationIdPathParam:
+      name: notificationId
+      in: path
+      description: The ID of the notification
+      required: true
+      schema:
+        type: string
+        format: uuid
+    afterCursor:
+      name: afterCursor
+      in: query
+      description: Opaque string used to retrieve the next set of results.
+      schema:
+        type: string
+      example: '1701374259320946303'
+    limit:
+      name: limit
+      in: query
+      description: The maximum number of records to return.
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        default: 10
+        example: 10
+  requestBodies:
+    createSubscriptionRequestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/subscriptionRequest'
+          examples:
+            createEmailSubscriptionExample:
+              $ref: '#/components/examples/createEmailSubscriptionRequestExample'
+            createWebhookSubscriptionExample:
+              $ref: '#/components/examples/createWebhookSubscriptionRequestExample'
+    updateSubscriptionRequestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/subscriptionRequest'
+  responses:
+    noContentResponse:
+      description: No Content
+    badRequestError:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+          examples:
+            badRequestErrorExample:
+              $ref: '#/components/examples/badRequestErrorExample'
+    invalidContentTypeError:
+      description: Unsupported Media Type
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+          examples:
+            badRequestErrorExample:
+              $ref: '#/components/examples/invalidContentTypeErrorExample'
+    unauthorizedError:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+          examples:
+            unauthorizedErrorExample:
+              $ref: '#/components/examples/unauthorizedErrorExample'
+    forbiddenError:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+          examples:
+            forbiddenErrorExample:
+              $ref: '#/components/examples/forbiddenErrorExample'
+    notFoundError:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+          examples:
+            notFoundErrorExample:
+              $ref: '#/components/examples/notFoundErrorExample'
+    tooManyRequestsError:
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+          examples:
+            tooManyRequestsErrorExample:
+              $ref: '#/components/examples/tooManyRequestsErrorExample'
+    internalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+          examples:
+            internalServerErrorExample:
+              $ref: '#/components/examples/internalServerErrorExample'
+    subscriptionsListResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/subscriptionsListApiResponse'
+    subscriptionCreatedResponse:
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/subscriptionsApiResponse'
+          examples:
+            emailSubscriptionExample:
+              $ref: '#/components/examples/emailSubscriptionResponseExample'
+            webhookSubscriptionExampleWebhook:
+              $ref: '#/components/examples/subscriptionWebhookResponseExample'
+    subscriptionResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/subscriptionsApiResponse'
+          examples:
+            emailSubscriptionExample:
+              $ref: '#/components/examples/emailSubscriptionResponseExample'
+            webhookSubscriptionExample:
+              $ref: '#/components/examples/subscriptionWebhookResponseExample'
+    subscriptionDefinitionListResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/subscriptionDefinitionListResponse'
+    subscriptionDefinitionResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/subscriptionDefinitionResponse'
+    notificationListResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/notificationListResponse'
+          examples:
+            notificationListResponseExample:
+              $ref: '#/components/examples/notificationListResponseExample'
+    getNotificationResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/notificationResponse'
+          examples:
+            getNotificationResponseExample:
+              $ref: '#/components/examples/getNotificationResponseExample'
+    sendTestNotificationResponse:
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/notificationResponse'
+          examples:
+            sendTestNotificationResponseExample:
+              $ref: '#/components/examples/sendTestNotificationResponseExample'
+  examples:
+    badRequestErrorExample:
+      summary: An example of a generic Bad Request Error
+      value:
+        links: []
+        data: null
+        errors:
+          - id: optional-error-id
+            type: bad-request
+            description: There was an issue with your request
+            code: 205617
+    invalidContentTypeErrorExample:
+      summary: An example of an invalid content type Error
+      value:
+        links: []
+        data: null
+        errors:
+          - id: optional-error-id
+            type: VALIDATION_ERROR
+            description: There is an issue with your request
+            code: 1002
+            meta:
+              message: >-
+                Invalid Content Type header. Supported content type is
+                application/json
+    unauthorizedErrorExample:
+      summary: An example of a generic Unauthorized Error
+      value:
+        links: []
+        data: null
+        errors:
+          - id: optional-error-id
+            type: authentication-credentials
+            description: Invalid or missing credentials.
+            code: 206401
+    forbiddenErrorExample:
+      summary: An example of a generic Unauthorized Error
+      value:
+        links: []
+        data: null
+        errors:
+          - id: optional-error-id
+            type: resource-permissions
+            description: User does not have permissions to access this resource.
+            code: 109107
+    notFoundErrorExample:
+      summary: An example of a generic Not Found Error
+      value:
+        links: []
+        data: null
+        errors:
+          - id: optional-error-id
+            type: resource-not-found
+            description: The resource specified cannot be found.
+            code: 50420
+    tooManyRequestsErrorExample:
+      summary: An example of a generic Too Many Requests Error
+      value:
+        links: []
+        data: null
+        errors:
+          - id: optional-error-id
+            type: RATE_LIMIT_EXCEEDED
+            description: Rate limit exceeded
+            code: 1006
+    internalServerErrorExample:
+      summary: An example of a generic Internal Server Error
+      value:
+        links: []
+        data: null
+        errors:
+          - id: optional-error-id
+            type: internal-server-error
+            description: >-
+              Unexpected internal server error. Contact Bandwidth Customer
+              Support if this problem persists.
+            code: 32030
+    createEmailSubscriptionRequestExample:
+      description: example subscription creation for email notifications
+      value:
+        accountId: '10000001'
+        customName: My Subscription
+        subscriptionDefinitionName: Package_Update
+        deliveryType: EMAIL
+        emailSubscription:
+          emailAddress: example@example.com
+          digest: DAILY
+        filters:
+          - field: orderStatus
+            operator: EQ
+            value: APPROVED
+    emailSubscriptionResponseExample:
+      description: example subscription creation for email notifications
+      value:
+        links:
+          - rel: self
+            href: >-
+              https://api.bandwidth.com/v2/subscriptions/d4cb816f-d21b-4593-87fa-4ba6bbf17e1b
+            method: GET
+        data:
+          id: d4cb816f-d21b-4593-87fa-4ba6bbf17e1b
+          accountId: '10000001'
+          customName: My Subscription
+          subscriptionDefinitionName: Package_Update
+          deliveryType: EMAIL
+          emailSubscription:
+            emailAddress: example@example.com
+            digest: DAILY
+          filters:
+            - field: orderStatus
+              operator: EQ
+              value: APPROVED
+        errors: []
+    createWebhookSubscriptionRequestExample:
+      description: example subscription creation for webhook notifications
+      value:
+        accountId: '10000001'
+        customName: My Webhook Subscription
+        subscriptionDefinitionName: Package_Update
+        deliveryType: WEBHOOK
+        webhookSubscription:
+          url: https://example.com/webhook
+          authentication:
+            basicAuthentication:
+              username: apiUser
+              password: s3cureP@ssw0rd!
+            hmacAuthentication:
+              sharedSecretKey: This is my $3cret
+        filters:
+          - field: orderStatus
+            operator: EQ
+            value: APPROVED
+    subscriptionWebhookResponseExample:
+      description: >-
+        Example subscription response for webhook notifications.
+
+        If HMAC authentication has been set with a `sharedSecretKey`, the
+        `hmacAuthentication` object will be present but empty in the response.
+      value:
+        links:
+          - rel: self
+            href: >-
+              https://api.bandwidth.com/v2/subscriptions/d4cb816f-d21b-4593-87fa-4ba6bbf17e1b
+            method: GET
+        data:
+          id: d4cb816f-d21b-4593-87fa-4ba6bbf17e1b
+          accountId: '10000001'
+          customName: My Webhook Subscription
+          subscriptionDefinitionName: Package_Update
+          deliveryType: WEBHOOK
+          webhookSubscription:
+            url: https://example.com/webhook
+            authentication:
+              basicAuthentication:
+                username: apiUser
+              hmacAuthentication: {}
+        errors: []
+    sendTestNotificationResponseExample:
+      description: example response for sending a test notification
+      value:
+        links:
+          - rel: self
+            href: >-
+              https://api.bandwidth.com/v2/subscriptions/d4cb816f-d21b-4593-87fa-4ba6bbf17e1b/notifications
+            method: POST
+          - rel: notification
+            href: >-
+              https://api.bandwidth.com/v2/subscriptions/d4cb816f-d21b-4593-87fa-4ba6bbf17e1b/notifications/a1b2c3d4-e5f6-7890-abcd-ef1234567890
+            method: GET
+        data:
+          notificationId: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+          sentDate: '2023-01-01T00:00:00Z'
+          status: PROCESSING
+          test: true
+        errors: []
+    getNotificationResponseExample:
+      description: example response for getting a notification
+      value:
+        links:
+          - rel: self
+            href: >-
+              https://api.bandwidth.com/v2/subscriptions/d4cb816f-d21b-4593-87fa-4ba6bbf17e1b/notifications/a1b2c3d4-e5f6-7890-abcd-ef1234567890
+            method: GET
+          - rel: create
+            href: >-
+              https://api.bandwidth.com/v2/subscriptions/d4cb816f-d21b-4593-87fa-4ba6bbf17e1b/notifications
+            method: POST
+        data:
+          notificationId: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+          sentDate: '2023-01-01T00:00:00Z'
+          status: SUCCESS
+          test: false
+        errors: []
+    notificationListResponseExample:
+      description: example response for listing notifications
+      value:
+        links:
+          - rel: self
+            href: >-
+              https://api.bandwidth.com/v2/subscriptions/d4cb816f-d21b-4593-87fa-4ba6bbf17e1b/notifications
+            method: GET
+          - rel: first
+            href: >-
+              https://api.bandwidth.com/v2/subscriptions/d4cb816f-d21b-4593-87fa-4ba6bbf17e1b/notifications
+            method: GET
+          - rel: next
+            href: >-
+              https://api.bandwidth.com/v2/subscriptions/d4cb816f-d21b-4593-87fa-4ba6bbf17e1b/notifications?afterCursor=1701374259320946303
+            method: GET
+        data:
+          totalCount: 2
+          notifications:
+            - notificationId: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+              sentDate: '2023-01-01T00:00:00Z'
+              status: SUCCESS
+              test: false
+            - notificationId: b2c3d4e5-f678-90ab-cdef-1234567890ab
+              sentDate: '2023-01-02T00:00:00Z'
+              status: FAILED
+              test: false
+        page:
+          pageSize: 2
+        errors: []
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+      description: >-
+        Basic authentication is a simple authentication scheme built into the
+        HTTP protocol. To use it, send your HTTP requests with an
+        `Authorization` header that contains the word `Basic` followed by a
+        space and a Base64-encoded string `username:password`.
+
+
+        - Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        Bearer authentication (also called token authentication) is an HTTP
+        authentication scheme that involves security tokens called bearer
+        tokens. The name “Bearer authentication” can be understood as “give
+        access to the bearer of this token.” The client must send this token in
+        the `Authorization` header when making requests to protected resources.
+
+
+        - Example: `Authorization: Bearer <token>`
+
+
+        Where `<token>` should be replaced with the token string without angle
+        brackets.
+
+
+        For more information, see the following guide:
+        [Credentials](https://dev.bandwidth.com/docs/account/credentials/management)
+security:
+  - Basic: []
+  - Bearer: []
+tags:
+  - name: Subscriptions
