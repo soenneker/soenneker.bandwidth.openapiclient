@@ -5778,6 +5778,51 @@
             "$ref": "#/components/responses/end_user_management_internalServerError"
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "Requirements Packages"
+        ],
+        "summary": "Delete Requirements Package",
+        "description": "Delete the requirements package.\n* If any phone number is linked, you need to unlink it to delete the requirements package.\n* If there is activation history linked to a phone number in the requirements package, you cannot delete the requirements package.\n* Once deleted, the associated endUser and documents will be deleted and cannot be recovered.\n* Deletion is allowed in the `DRAFT`,`DISABLED`,`SUBMITTED`,`VERIFIED`,`VERIFICATION_FAILED`,`AUTO_VALIDATED` states.\n",
+        "operationId": "end_user_management_deleteRequirementsPackage",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/end_user_management_accountId"
+          },
+          {
+            "$ref": "#/components/parameters/requirementsPackageIdPathParam"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "$ref": "#/components/responses/end_user_management_badRequestError"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorizedEUMSError"
+          },
+          "403": {
+            "$ref": "#/components/responses/end_user_management_forbiddenError"
+          },
+          "404": {
+            "$ref": "#/components/responses/end_user_management_notFoundError"
+          },
+          "405": {
+            "$ref": "#/components/responses/methodNotAllowedError"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflictError"
+          },
+          "429": {
+            "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
+          },
+          "500": {
+            "$ref": "#/components/responses/end_user_management_internalServerError"
+          }
+        }
       }
     },
     "/end-user-management/accounts/{accountId}/compliance/requirementsPackages/{requirementsPackageId}/assets": {
