@@ -46,7 +46,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public Date? InitialMessageDeliveryStatusDate { get; set; }
         /// <summary>&quot;[DNI-Only](#section/DNI-Only). The current delivery status of the phone number.- ACTIVE: A message was successfully sent to the number (delivery code 0).- DEACTIVATED: A message was not delivered to a number (delivery code 720)- UNKNOWN: Bandwidth cannot find an delivery status entry for the number.- NOT_ENABLED: The phone number is not enabled for messaging, so there is no delivery status information.&quot;</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.LatestMessageDeliveryStatusEnum? LatestMessageDeliveryStatus { get; set; }
-        /// <summary>[DNI-Only](#section/DNI-Only). The date bandwidth last received delivery status information for this phone number. Use this field to understand how up-to-date the `latestMessageDeliveryStatus` is.Value resets every time the `latestMessageDeliveryStatus` changes.</summary>
+        /// <summary>[DNI-Only](#section/DNI-Only). The date bandwidth last received delivery status information for this phone number.Use this field to understand how up-to-date the `latestMessageDeliveryStatus` is.Value resets every time the `latestMessageDeliveryStatus` changes.</summary>
         public Date? LatestMessageDeliveryStatusDate { get; set; }
         /// <summary>The lineType property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.LineTypeEnum? LineType { get; set; }
@@ -66,6 +66,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string PhoneNumber { get; set; }
 #endif
+        /// <summary>[RCS-Only](#section/RCS-Only). Indicates whether the phone number is capable of receiving RCS messages. Value will be null if account has RCS, but no value was returned. Absent when account does not have RCS.</summary>
+        public bool? RcsEnabled { get; set; }
         /// <summary>The voice service provider of the telephone number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -109,6 +111,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "lineType", n => { LineType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LineTypeEnum>(); } },
                 { "messagingProvider", n => { MessagingProvider = n.GetStringValue(); } },
                 { "phoneNumber", n => { PhoneNumber = n.GetStringValue(); } },
+                { "rcsEnabled", n => { RcsEnabled = n.GetBoolValue(); } },
                 { "voiceProvider", n => { VoiceProvider = n.GetStringValue(); } },
             };
         }
@@ -129,6 +132,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LineTypeEnum>("lineType", LineType);
             writer.WriteStringValue("messagingProvider", MessagingProvider);
             writer.WriteStringValue("phoneNumber", PhoneNumber);
+            writer.WriteBoolValue("rcsEnabled", RcsEnabled);
             writer.WriteStringValue("voiceProvider", VoiceProvider);
             writer.WriteAdditionalData(AdditionalData);
         }

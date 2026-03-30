@@ -54661,6 +54661,11 @@
         }
       },
       "lookupErrorSchema": {
+        "required": [
+          "code",
+          "type",
+          "description"
+        ],
         "type": "object",
         "properties": {
           "code": {
@@ -54868,6 +54873,11 @@
           }
         }
       },
+      "rcsErrorEnum": {
+        "type": "string",
+        "description": "[RCS-Only](#section/RCS-Only). Error encountered during RCS capability lookup. Appears as the `code` field in the top-level `errors` array.\n\n**RCS service pass-through codes:**\n- `REQUEST_FAILED`: The RCS service returned this error code.\n- `UNKNOWN_CODE`: The RCS service returned this error code.\n- `INVALID_DESTINATION_ADDRESS`: The RCS service returned this error code.\n- `UNKNOWN_STATUS: <code>`: The RCS service returned an unrecognized status code, where `<code>` is the raw value.\n\n**Service-level errors:**\n- `MISSING_FROM_RESPONSE`: The phone number was absent from the RCS service response.\n- `RCS_SERVICE_UNAVAILABLE`: An exception was thrown during the async RCS service call.\n- `RCS_SERVICE_DISABLED`: RCS lookup is disabled in configuration.\n- `EMPTY_RESPONSE`: The RCS service returned a null or empty response body.",
+        "example": "RCS_SERVICE_UNAVAILABLE"
+      },
       "lookupResult": {
         "type": "object",
         "properties": {
@@ -54918,9 +54928,14 @@
           },
           "latestMessageDeliveryStatusDate": {
             "type": "string",
-            "description": "[DNI-Only](#section/DNI-Only). The date bandwidth last received delivery status information for this phone number. \nUse this field to understand how up-to-date the `latestMessageDeliveryStatus` is.\nValue resets every time the `latestMessageDeliveryStatus` changes.",
+            "description": "[DNI-Only](#section/DNI-Only). The date bandwidth last received delivery status information for this phone number.\nUse this field to understand how up-to-date the `latestMessageDeliveryStatus` is.\nValue resets every time the `latestMessageDeliveryStatus` changes.",
             "format": "date",
             "example": "2025-06-21"
+          },
+          "rcsEnabled": {
+            "type": "boolean",
+            "description": "[RCS-Only](#section/RCS-Only). Indicates whether the phone number is capable of receiving RCS messages. Value will be null if account has RCS, but no value was returned. Absent when account does not have RCS.\n",
+            "example": true
           }
         },
         "description": "Carrier information results for the specified telephone number."
@@ -77085,6 +77100,12 @@
               "lookupCompleteExample": {
                 "$ref": "#/components/examples/lookupCompleteExample"
               },
+              "lookupCompleteWithRcsExample": {
+                "$ref": "#/components/examples/lookupCompleteWithRcsExample"
+              },
+              "lookupCompleteWithRcsErrorExample": {
+                "$ref": "#/components/examples/lookupCompleteWithRcsErrorExample"
+              },
               "lookupPartialExample": {
                 "$ref": "#/components/examples/lookupPartialExample"
               },
@@ -77103,8 +77124,8 @@
               "$ref": "#/components/schemas/createAsyncBulkLookupResponse"
             },
             "examples": {
-              "lookupInProgressExample": {
-                "$ref": "#/components/examples/lookupInProgressExample"
+              "lookupAcceptedExample": {
+                "$ref": "#/components/examples/lookupAcceptedExample"
               }
             }
           }
@@ -94228,13 +94249,13 @@
           ]
         }
       },
-      "lookupInProgressExample": {
-        "summary": "Numbers Lookup In Progress",
+      "lookupAcceptedExample": {
+        "summary": "Numbers Lookup Accepted",
         "value": {
           "links": [
             {
-              "href": "href",
-              "rel": "rel",
+              "href": "/accounts/9912345/phoneNumberLookup/bulk/004223a0-8b17-41b1-bf81-20732adf5590",
+              "rel": "createdRequest",
               "method": "GET"
             }
           ],
@@ -94246,16 +94267,22 @@
           "errors": [ ]
         }
       },
+      "lookupInProgressExample": {
+        "summary": "Numbers Lookup In Progress",
+        "value": {
+          "links": [ ],
+          "data": {
+            "requestId": "004223a0-8b17-41b1-bf81-20732adf5590",
+            "status": "IN_PROGRESS",
+            "results": [ ]
+          },
+          "errors": [ ]
+        }
+      },
       "lookupFailedExample": {
         "summary": "Numbers Lookup Failed",
         "value": {
-          "links": [
-            {
-              "href": "href",
-              "rel": "rel",
-              "method": "GET"
-            }
-          ],
+          "links": [ ],
           "data": {
             "requestId": "004223a0-8b17-41b1-bf81-20732adf5590",
             "status": "FAILED",
@@ -94280,13 +94307,7 @@
       "lookupPartialExample": {
         "summary": "Numbers Lookup Partial Complete",
         "value": {
-          "links": [
-            {
-              "href": "href",
-              "rel": "rel",
-              "method": "GET"
-            }
-          ],
+          "links": [ ],
           "data": {
             "requestId": "004223a0-8b17-41b1-bf81-20732adf5590",
             "status": "PARTIAL_COMPLETE",
@@ -94326,13 +94347,7 @@
       "lookupCompleteExample": {
         "summary": "Numbers Lookup Complete (without DNI)",
         "value": {
-          "links": [
-            {
-              "href": "href",
-              "rel": "rel",
-              "method": "GET"
-            }
-          ],
+          "links": [ ],
           "data": {
             "requestId": "004223a0-8b17-41b1-bf81-20732adf5590",
             "status": "COMPLETE",
@@ -94359,13 +94374,7 @@
       "lookupCompleteWithDniExample": {
         "summary": "Numbers Lookup Complete (with DNI)",
         "value": {
-          "links": [
-            {
-              "href": "href",
-              "rel": "rel",
-              "method": "GET"
-            }
-          ],
+          "links": [ ],
           "data": {
             "requestId": "20732adf-bf81-8b17-41b1-004223a05590",
             "status": "COMPLETE",
@@ -94413,6 +94422,83 @@
             ]
           },
           "errors": [ ]
+        }
+      },
+      "lookupCompleteWithRcsExample": {
+        "summary": "Numbers Lookup Complete (with RCS)",
+        "value": {
+          "links": [ ],
+          "data": {
+            "requestId": "004223a0-8b17-41b1-bf81-20732adf5590",
+            "status": "COMPLETE",
+            "results": [
+              {
+                "phoneNumber": "+10072904497",
+                "lineType": "MOBILE",
+                "messagingProvider": "Verizon Wireless",
+                "voiceProvider": "Verizon Wireless",
+                "countryCodeA3": "USA",
+                "rcsEnabled": true
+              },
+              {
+                "phoneNumber": "+10072904498",
+                "lineType": "MOBILE",
+                "messagingProvider": "T-Mobile USA",
+                "voiceProvider": "T-Mobile USA",
+                "countryCodeA3": "USA",
+                "rcsEnabled": false
+              }
+            ]
+          },
+          "errors": [ ]
+        }
+      },
+      "lookupCompleteWithRcsErrorExample": {
+        "summary": "Numbers Lookup Complete (with RCS error)",
+        "value": {
+          "links": [ ],
+          "data": {
+            "requestId": "004223a0-8b17-41b1-bf81-20732adf5590",
+            "status": "COMPLETE",
+            "results": [
+              {
+                "phoneNumber": "+10072904497",
+                "lineType": "MOBILE",
+                "messagingProvider": "Verizon Wireless",
+                "voiceProvider": "Verizon Wireless",
+                "countryCodeA3": "USA"
+              },
+              {
+                "phoneNumber": "+10072904498",
+                "lineType": "MOBILE",
+                "messagingProvider": "T-Mobile USA",
+                "voiceProvider": "T-Mobile USA",
+                "countryCodeA3": "USA"
+              }
+            ]
+          },
+          "errors": [
+            {
+              "code": "RCS_SERVICE_UNAVAILABLE",
+              "type": "rcs-error",
+              "description": "An exception was thrown during the async RCS service call.",
+              "meta": {
+                "phoneNumbers": [
+                  "+10072904497"
+                ]
+              }
+            },
+            {
+              "code": "MISSING_FROM_RESPONSE",
+              "type": "rcs-error",
+              "description": "The phone number was absent from the RCS service response.",
+              "meta": {
+                "phoneNumbers": [
+                  "+10072904498"
+                ]
+              }
+            }
+          ]
         }
       },
       "badRequestExample": {
