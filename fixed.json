@@ -32605,6 +32605,10 @@
             "items": {
               "$ref": "#/components/schemas/global_v2_Link"
             }
+          },
+          "message": {
+            "type": "string",
+            "description": "The primary error message."
           }
         }
       },

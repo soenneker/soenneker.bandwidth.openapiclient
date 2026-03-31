@@ -32,7 +32,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Global_v2_Link> Links { get; set; }
 #endif
         /// <summary>The primary error message.</summary>
-        public override string Message { get => base.Message; }
+        public override string Message { get => MessageEscaped ?? string.Empty; }
+        /// <summary>The primary error message.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? MessageEscaped { get; set; }
+#nullable restore
+#else
+        public string MessageEscaped { get; set; }
+#endif
         /// <summary>Status of the HTTP response from the API.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessage_status? Status { get; set; }
         /// <summary>
@@ -62,6 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Errors>(global::Soenneker.Bandwidth.OpenApiClient.Models.Errors.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Global_v2_Link>(global::Soenneker.Bandwidth.OpenApiClient.Models.Global_v2_Link.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "message", n => { MessageEscaped = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessage_status>(); } },
             };
         }
@@ -74,6 +83,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Errors>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Global_v2_Link>("links", Links);
+            writer.WriteStringValue("message", MessageEscaped);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessage_status>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
