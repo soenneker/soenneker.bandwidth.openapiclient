@@ -14,7 +14,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The URL of a media attachment.For MMS, the API limits file size to 3.5MB. Specific carriers and channels may have a smaller limit that could cause a large file to fail, see [here](https://support.bandwidth.com/hc/en-us/articles/360014235473-What-are-the-MMS-file-size-limits) for more details.</summary>
+        /// <summary>The URL of a media attachment.For MMS, the API limits file size to 3.5MB. Specific carriers and channels may have a smaller limit that could cause a large file to fail, see more at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823216-what-are-the-mms-file-size-limits) for more details.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? FileUrl { get; set; }

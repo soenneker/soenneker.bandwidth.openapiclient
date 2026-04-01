@@ -4,8 +4,8 @@ info:
   version: 4.3.0
   contact:
     name: Bandwidth
-    url: https://support.bandwidth.com
-    email: support@bandwidth.com
+    url: https://www.bandwidth.com/support
+    email: ticketing@bandwidth.com
   termsOfService: https://www.bandwidth.com/legal/terms-of-use-bandwidthcom-web-sites/
   description: |-
     The API Specification for Bandwidth's Messaging Platform
@@ -514,8 +514,8 @@ paths:
         under this account, the previous file will be overwritten.
 
 
-        A list of supported media types can be found
-        [here](https://support.bandwidth.com/hc/en-us/articles/360014128994-What-MMS-file-types-are-supported-).
+        A list of supported media types can be found at [Bandwidth
+        Support](https://www.bandwidth.com/support/en/articles/12823220-what-mms-file-types-are-supported).
       operationId: uploadMedia
       tags:
         - Media
@@ -2698,8 +2698,8 @@ components:
 
             For MMS, the API limits file size to 3.5MB. Specific carriers and
             channels may have a smaller limit that could cause a large file to
-            fail, see
-            [here](https://support.bandwidth.com/hc/en-us/articles/360014235473-What-are-the-MMS-file-size-limits)
+            fail, see more at [Bandwidth
+            Support](https://www.bandwidth.com/support/en/articles/12823216-what-are-the-mms-file-size-limits)
             for more details.
           example: https://dev.bandwidth.com/images/bandwidth-logo.png
           maxLength: 1000

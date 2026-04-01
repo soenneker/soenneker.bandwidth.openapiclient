@@ -12688,7 +12688,7 @@
           "Media"
         ],
         "summary": "Upload Media",
-        "description": "Upload a file. You may add headers to the request in order to provide some control to your media file.\n\nIf a file is uploaded with the same name as a file that already exists under this account, the previous file will be overwritten.\n\nA list of supported media types can be found [here](https://support.bandwidth.com/hc/en-us/articles/360014128994-What-MMS-file-types-are-supported-).",
+        "description": "Upload a file. You may add headers to the request in order to provide some control to your media file.\n\nIf a file is uploaded with the same name as a file that already exists under this account, the previous file will be overwritten.\n\nA list of supported media types can be found at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823220-what-mms-file-types-are-supported).",
         "operationId": "messaging_uploadMedia",
         "parameters": [
           {
@@ -47154,7 +47154,7 @@
           "fileUrl": {
             "maxLength": 1000,
             "type": "string",
-            "description": "The URL of a media attachment.\n\nFor MMS, the API limits file size to 3.5MB. Specific carriers and channels may have a smaller limit that could cause a large file to fail, see [here](https://support.bandwidth.com/hc/en-us/articles/360014235473-What-are-the-MMS-file-size-limits) for more details.",
+            "description": "The URL of a media attachment.\n\nFor MMS, the API limits file size to 3.5MB. Specific carriers and channels may have a smaller limit that could cause a large file to fail, see more at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823216-what-are-the-mms-file-size-limits) for more details.",
             "format": "uri",
             "example": "https://dev.bandwidth.com/images/bandwidth-logo.png"
           }
