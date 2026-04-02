@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
-    /// <summary>The type of registered business.</summary>
+    /// <summary>&quot;The type of registered business.**Note: As of October 19th, 2026 submissions using a value other than `SOLE_PROPRIETOR` must provide a value for `businessRegistrationNumber`, `businessRegistrationType`, and `businessRegistrationIssuingCountry`. Submissions using `SOLE_PROPRIETOR` must _omit_ `businessRegistrationNumber`, `businessRegistrationType`, and `businessRegistrationIssuingCountry`. Failure to adhere to these constraints will result in a 400 Bad Request rejection.**&quot;</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum BusinessEntityTypeEnum
     {

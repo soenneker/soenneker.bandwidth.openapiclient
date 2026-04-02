@@ -2902,14 +2902,14 @@ components:
     region:
       name: region
       in: query
-      required: false
+      required: true
       schema:
         $ref: '#/components/schemas/region'
       description: Target region for the emergency services operation
     regionNa:
       name: region
       in: query
-      required: false
+      required: true
       schema:
         $ref: '#/components/schemas/regionNa'
       description: Target region for the emergency services operation (North America only)

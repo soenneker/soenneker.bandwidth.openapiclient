@@ -35,7 +35,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public AddressesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/emergency-provisioning/accounts/{accountId}/emergency/addresses{?id*,limit*,offset*,region*}", pathParameters)
+        public AddressesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/emergency-provisioning/accounts/{accountId}/emergency/addresses?region={region}{&id*,limit*,offset*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public AddressesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/emergency-provisioning/accounts/{accountId}/emergency/addresses{?id*,limit*,offset*,region*}", rawUrl)
+        public AddressesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/emergency-provisioning/accounts/{accountId}/emergency/addresses?region={region}{&id*,limit*,offset*}", rawUrl)
         {
         }
         /// <summary>
@@ -189,7 +189,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/emergency-provisioning/accounts/{accountId}/emergency/addresses?region={region}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

@@ -22,7 +22,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithAddressItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/emergency-provisioning/accounts/{accountId}/emergency/addresses/{addressId}{?allAddresses*,region*}", pathParameters)
+        public WithAddressItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/emergency-provisioning/accounts/{accountId}/emergency/addresses/{addressId}?region={region}{&allAddresses*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithAddressItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/emergency-provisioning/accounts/{accountId}/emergency/addresses/{addressId}{?allAddresses*,region*}", rawUrl)
+        public WithAddressItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/emergency-provisioning/accounts/{accountId}/emergency/addresses/{addressId}?region={region}{&allAddresses*}", rawUrl)
         {
         }
         /// <summary>
@@ -189,7 +189,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Addresses.Item.WithAddressItemRequestBuilder.WithAddressItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/emergency-provisioning/accounts/{accountId}/emergency/addresses/{addressId}?region={region}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -229,7 +229,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/emergency-provisioning/accounts/{accountId}/emergency/addresses/{addressId}?region={region}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

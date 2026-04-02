@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
-    /// <summary>The type of business registration number.</summary>
+    /// <summary>&quot;The type of business registration number.**Note: As of October 19th, 2026 this field will be required when `businessRegistrationNumber` is provided.**&quot;</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum BusinessRegistrationTypeEnum
     {

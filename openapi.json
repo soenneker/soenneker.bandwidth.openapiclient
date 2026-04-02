@@ -60343,7 +60343,7 @@
       "businessRegistrationNumber": {
         "maxLength": 500,
         "type": "string",
-        "description": "Government-issued business identifying number.\n\n**Note:** If this field is provided, it is strongly recommended to also provide `businessRegistrationType` and `businessRegistrationIssuingCountry`. Submissions missing these fields have a high likelihood of rejection.\n",
+        "description": "Government-issued business identifying number.\n\n**Note: As of October 19th, 2026 this field will be required when `businessEntityType` is _not_ `SOLE_PROPRIETOR`. If this field is provided, `businessRegistrationType` and `businessRegistrationIssuingCountry` are also required.**\n",
         "nullable": true,
         "example": "12-3456789"
       },
@@ -60369,32 +60369,14 @@
           "OTHER"
         ],
         "type": "string",
-        "description": "The type of business registration number.\n",
+        "description": "The type of business registration number.\n\n**Note: As of October 19th, 2026 this field will be required when `businessRegistrationNumber` is provided.**\n",
         "nullable": true,
         "example": "EIN"
       },
-      "businessRegistrationIssuingCountryEnum": {
-        "enum": [
-          "USA",
-          "CAN",
-          "HKG",
-          "GBR",
-          "IRL",
-          "BRA",
-          "NLD",
-          "AUS",
-          "FRA",
-          "NZL",
-          "DEU",
-          "ESP",
-          "CHE",
-          "CYP",
-          "IND",
-          "CHN",
-          "BGR"
-        ],
+      "businessRegistrationIssuingCountry": {
         "type": "string",
-        "description": "The country issuing the business registration in ISO-3166-1 alpha-3 format. Alpha-2 country codes are acceptable, but the application will convert them to alpha-3 when received, so alpha-3 is encouraged.\n\n**Note:** If this field is omitted but `businessRegistrationType` is provided, the application will attempt to infer the country based on the registration type. However, if the application cannot confidently infer the country, the submission may be rejected. To ensure the highest likelihood of acceptance, it is recommended to provide both `businessRegistrationType` and `businessRegistrationIssuingCountry`.\n\n| Registration Type     | Supported Countries                |\n|----------------------|------------------------------------|\n| EIN                  | USA                                |\n| CBN                  | CAN                                |\n| NEQ                  | CAN                                |\n| PROVINCIAL_NUMBER    | CAN                                |\n| CRN                  | GBR, HKG                           |\n| VAT                  | GBR, IRL, BRA, NLD                 |\n| ACN                  | AUS                                |\n| ABN                  | AUS                                |\n| BRN                  | HKG                                |\n| SIREN                | FRA                                |\n| SIRET                | FRA                                |\n| NZBN                 | NZL                                |\n| UST_IDNR             | DEU                                |\n| CIF                  | ESP                                |\n| NIF                  | ESP                                |\n| CNPJ                 | BRA                                |\n| UID                  | CHE                                |\n| OTHER                | Must Provide Country Code          |",
+        "description": "The country issuing the business registration in ISO-3166-1 alpha-3 format. Alpha-2 format is accepted by the API, but alpha-3 is highly encouraged.\n\n**Note: As of October 19th, 2026 this field will be required when `businessRegistrationNumber` is provided.**\n\n| Registration Type     | Supported Countries                |\n|----------------------|------------------------------------|\n| EIN                  | USA                                |\n| CBN                  | CAN                                |\n| NEQ                  | CAN                                |\n| PROVINCIAL_NUMBER    | CAN                                |\n| CRN                  | GBR, HKG                           |\n| VAT                  | GBR, IRL, BRA, NLD                 |\n| ACN                  | AUS                                |\n| ABN                  | AUS                                |\n| BRN                  | HKG                                |\n| SIREN                | FRA                                |\n| SIRET                | FRA                                |\n| NZBN                 | NZL                                |\n| UST_IDNR             | DEU                                |\n| CIF                  | ESP                                |\n| NIF                  | ESP                                |\n| CNPJ                 | BRA                                |\n| UID                  | CHE                                |\n| OTHER                | Must Provide Country Code          |",
+        "nullable": true,
         "example": "USA"
       },
       "businessEntityTypeEnum": {
@@ -60406,7 +60388,7 @@
           "GOVERNMENT"
         ],
         "type": "string",
-        "description": "The type of registered business.\n",
+        "description": "The type of registered business.\n\n**Note: As of October 19th, 2026 submissions using a value other than `SOLE_PROPRIETOR` must provide a value for `businessRegistrationNumber`, `businessRegistrationType`, and `businessRegistrationIssuingCountry`. \nSubmissions using `SOLE_PROPRIETOR` must _omit_ `businessRegistrationNumber`, `businessRegistrationType`, and `businessRegistrationIssuingCountry`. Failure to adhere to these constraints will result in a 400 Bad Request rejection.**\n",
         "example": "PRIVATE_PROFIT"
       },
       "helpMessageResponse": {
@@ -60531,7 +60513,7 @@
             "$ref": "#/components/schemas/businessRegistrationTypeEnum"
           },
           "businessRegistrationIssuingCountry": {
-            "$ref": "#/components/schemas/businessRegistrationIssuingCountryEnum"
+            "$ref": "#/components/schemas/businessRegistrationIssuingCountry"
           },
           "businessEntityType": {
             "$ref": "#/components/schemas/businessEntityTypeEnum"
@@ -60609,7 +60591,7 @@
             "$ref": "#/components/schemas/businessEntityTypeEnum"
           },
           "businessRegistrationIssuingCountry": {
-            "$ref": "#/components/schemas/businessRegistrationIssuingCountryEnum"
+            "$ref": "#/components/schemas/businessRegistrationIssuingCountry"
           },
           "helpMessageResponse": {
             "$ref": "#/components/schemas/helpMessageResponse"
@@ -61228,7 +61210,7 @@
             "$ref": "#/components/schemas/businessRegistrationTypeEnum"
           },
           "businessRegistrationIssuingCountry": {
-            "$ref": "#/components/schemas/businessRegistrationIssuingCountryEnum"
+            "$ref": "#/components/schemas/businessRegistrationIssuingCountry"
           },
           "businessEntityType": {
             "$ref": "#/components/schemas/businessEntityTypeEnum"
@@ -80923,6 +80905,7 @@
         "name": "region",
         "in": "query",
         "description": "Target region for the emergency services operation",
+        "required": true,
         "schema": {
           "$ref": "#/components/schemas/region"
         }
@@ -80931,6 +80914,7 @@
         "name": "region",
         "in": "query",
         "description": "Target region for the emergency services operation (North America only)",
+        "required": true,
         "schema": {
           "$ref": "#/components/schemas/regionNa"
         }

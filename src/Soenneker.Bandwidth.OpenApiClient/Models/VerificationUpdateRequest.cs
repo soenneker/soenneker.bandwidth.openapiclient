@@ -48,11 +48,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string BusinessDba { get; set; }
 #endif
-        /// <summary>The type of registered business.</summary>
+        /// <summary>&quot;The type of registered business.**Note: As of October 19th, 2026 submissions using a value other than `SOLE_PROPRIETOR` must provide a value for `businessRegistrationNumber`, `businessRegistrationType`, and `businessRegistrationIssuingCountry`. Submissions using `SOLE_PROPRIETOR` must _omit_ `businessRegistrationNumber`, `businessRegistrationType`, and `businessRegistrationIssuingCountry`. Failure to adhere to these constraints will result in a 400 Bad Request rejection.**&quot;</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessEntityTypeEnum? BusinessEntityType { get; set; }
-        /// <summary>The country issuing the business registration in ISO-3166-1 alpha-3 format. Alpha-2 country codes are acceptable, but the application will convert them to alpha-3 when received, so alpha-3 is encouraged.**Note:** If this field is omitted but `businessRegistrationType` is provided, the application will attempt to infer the country based on the registration type. However, if the application cannot confidently infer the country, the submission may be rejected. To ensure the highest likelihood of acceptance, it is recommended to provide both `businessRegistrationType` and `businessRegistrationIssuingCountry`.| Registration Type     | Supported Countries                ||----------------------|------------------------------------|| EIN                  | USA                                || CBN                  | CAN                                || NEQ                  | CAN                                || PROVINCIAL_NUMBER    | CAN                                || CRN                  | GBR, HKG                           || VAT                  | GBR, IRL, BRA, NLD                 || ACN                  | AUS                                || ABN                  | AUS                                || BRN                  | HKG                                || SIREN                | FRA                                || SIRET                | FRA                                || NZBN                 | NZL                                || UST_IDNR             | DEU                                || CIF                  | ESP                                || NIF                  | ESP                                || CNPJ                 | BRA                                || UID                  | CHE                                || OTHER                | Must Provide Country Code          |</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRegistrationIssuingCountryEnum? BusinessRegistrationIssuingCountry { get; set; }
-        /// <summary>Government-issued business identifying number.**Note:** If this field is provided, it is strongly recommended to also provide `businessRegistrationType` and `businessRegistrationIssuingCountry`. Submissions missing these fields have a high likelihood of rejection.</summary>
+        /// <summary>&quot;The country issuing the business registration in ISO-3166-1 alpha-3 format. Alpha-2 format is accepted by the API, but alpha-3 is highly encouraged.**Note: As of October 19th, 2026 this field will be required when `businessRegistrationNumber` is provided.**| Registration Type     | Supported Countries                ||----------------------|------------------------------------|| EIN                  | USA                                || CBN                  | CAN                                || NEQ                  | CAN                                || PROVINCIAL_NUMBER    | CAN                                || CRN                  | GBR, HKG                           || VAT                  | GBR, IRL, BRA, NLD                 || ACN                  | AUS                                || ABN                  | AUS                                || BRN                  | HKG                                || SIREN                | FRA                                || SIRET                | FRA                                || NZBN                 | NZL                                || UST_IDNR             | DEU                                || CIF                  | ESP                                || NIF                  | ESP                                || CNPJ                 | BRA                                || UID                  | CHE                                || OTHER                | Must Provide Country Code          |&quot;</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? BusinessRegistrationIssuingCountry { get; set; }
+#nullable restore
+#else
+        public string BusinessRegistrationIssuingCountry { get; set; }
+#endif
+        /// <summary>&quot;Government-issued business identifying number.**Note: As of October 19th, 2026 this field will be required when `businessEntityType` is _not_ `SOLE_PROPRIETOR`. If this field is provided, `businessRegistrationType` and `businessRegistrationIssuingCountry` are also required.**&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? BusinessRegistrationNumber { get; set; }
@@ -60,7 +66,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string BusinessRegistrationNumber { get; set; }
 #endif
-        /// <summary>The type of business registration number.</summary>
+        /// <summary>&quot;The type of business registration number.**Note: As of October 19th, 2026 this field will be required when `businessRegistrationNumber` is provided.**&quot;</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRegistrationTypeEnum? BusinessRegistrationType { get; set; }
         /// <summary>The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. Supplying an empty string will likely result in rejection.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -167,7 +173,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "businessContact", n => { BusinessContact = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Toll_free_verification_contact>(global::Soenneker.Bandwidth.OpenApiClient.Models.Toll_free_verification_contact.CreateFromDiscriminatorValue); } },
                 { "businessDba", n => { BusinessDba = n.GetStringValue(); } },
                 { "businessEntityType", n => { BusinessEntityType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessEntityTypeEnum>(); } },
-                { "businessRegistrationIssuingCountry", n => { BusinessRegistrationIssuingCountry = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRegistrationIssuingCountryEnum>(); } },
+                { "businessRegistrationIssuingCountry", n => { BusinessRegistrationIssuingCountry = n.GetStringValue(); } },
                 { "businessRegistrationNumber", n => { BusinessRegistrationNumber = n.GetStringValue(); } },
                 { "businessRegistrationType", n => { BusinessRegistrationType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRegistrationTypeEnum>(); } },
                 { "cvToken", n => { CvToken = n.GetStringValue(); } },
@@ -195,7 +201,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Toll_free_verification_contact>("businessContact", BusinessContact);
             writer.WriteStringValue("businessDba", BusinessDba);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessEntityTypeEnum>("businessEntityType", BusinessEntityType);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRegistrationIssuingCountryEnum>("businessRegistrationIssuingCountry", BusinessRegistrationIssuingCountry);
+            writer.WriteStringValue("businessRegistrationIssuingCountry", BusinessRegistrationIssuingCountry);
             writer.WriteStringValue("businessRegistrationNumber", BusinessRegistrationNumber);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRegistrationTypeEnum>("businessRegistrationType", BusinessRegistrationType);
             writer.WriteStringValue("cvToken", CvToken);

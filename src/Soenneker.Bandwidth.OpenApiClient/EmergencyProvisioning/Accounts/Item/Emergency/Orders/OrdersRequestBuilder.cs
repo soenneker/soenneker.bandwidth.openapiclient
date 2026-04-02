@@ -35,7 +35,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public OrdersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/emergency-provisioning/accounts/{accountId}/emergency/orders{?limit*,offset*,orderType*,region*}", pathParameters)
+        public OrdersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/emergency-provisioning/accounts/{accountId}/emergency/orders?region={region}{&limit*,offset*,orderType*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public OrdersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/emergency-provisioning/accounts/{accountId}/emergency/orders{?limit*,offset*,orderType*,region*}", rawUrl)
+        public OrdersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/emergency-provisioning/accounts/{accountId}/emergency/orders?region={region}{&limit*,offset*,orderType*}", rawUrl)
         {
         }
         /// <summary>
