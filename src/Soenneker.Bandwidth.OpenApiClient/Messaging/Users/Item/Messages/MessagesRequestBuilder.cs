@@ -271,19 +271,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Messages
             public string Location { get; set; }
 #endif
             /// <summary>The direction of the message. One of INBOUND OUTBOUND.</summary>
-            [Obsolete("This property is deprecated, use MessageDirectionAsListMessageDirectionEnum instead")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("messageDirection")]
-            public string? MessageDirection { get; set; }
-#nullable restore
-#else
-            [QueryParameter("messageDirection")]
-            public string MessageDirection { get; set; }
-#endif
-            /// <summary>The direction of the message. One of INBOUND OUTBOUND.</summary>
-            [QueryParameter("messageDirection")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.ListMessageDirectionEnum? MessageDirectionAsListMessageDirectionEnum { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.ListMessageDirectionEnum? MessageDirection { get; set; }
             /// <summary>The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -295,33 +284,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Messages
             public string MessageId { get; set; }
 #endif
             /// <summary>The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED.</summary>
-            [Obsolete("This property is deprecated, use MessageStatusAsMessageStatusEnum instead")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("messageStatus")]
-            public string? MessageStatus { get; set; }
-#nullable restore
-#else
-            [QueryParameter("messageStatus")]
-            public string MessageStatus { get; set; }
-#endif
-            /// <summary>The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED.</summary>
-            [QueryParameter("messageStatus")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.MessageStatusEnum? MessageStatusAsMessageStatusEnum { get; set; }
-            /// <summary>The type of message. Either sms or mms.</summary>
-            [Obsolete("This property is deprecated, use MessageTypeAsMessageTypeEnum instead")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            [QueryParameter("messageType")]
-            public string? MessageType { get; set; }
-#nullable restore
-#else
-            [QueryParameter("messageType")]
-            public string MessageType { get; set; }
-#endif
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.MessageStatusEnum? MessageStatus { get; set; }
             /// <summary>The type of message. Either sms or mms.</summary>
             [QueryParameter("messageType")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.MessageTypeEnum? MessageTypeAsMessageTypeEnum { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.MessageTypeEnum? MessageType { get; set; }
             /// <summary>A base64 encoded value used for pagination of results.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -333,19 +300,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Messages
             public string PageToken { get; set; }
 #endif
             /// <summary>Messaging product associated with the message.</summary>
-            [Obsolete("This property is deprecated, use ProductAsProductTypeEnum instead")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("product")]
-            public string? Product { get; set; }
-#nullable restore
-#else
-            [QueryParameter("product")]
-            public string Product { get; set; }
-#endif
-            /// <summary>Messaging product associated with the message.</summary>
-            [QueryParameter("product")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.ProductTypeEnum? ProductAsProductTypeEnum { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.ProductTypeEnum? Product { get; set; }
             /// <summary>The field and direction to sort by combined with a colon. Direction is either asc or desc.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -382,22 +338,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Messages
             /// <summary>Segment count (end range).</summary>
             [QueryParameter("toSegmentCount")]
             public int? ToSegmentCount { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class MessagesRequestBuilderGetRequestConfiguration : RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Messages.MessagesRequestBuilder.MessagesRequestBuilderGetQueryParameters>
-        {
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class MessagesRequestBuilderPostRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
-        {
         }
     }
 }

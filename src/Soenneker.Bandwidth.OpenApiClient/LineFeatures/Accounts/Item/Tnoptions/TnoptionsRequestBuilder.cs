@@ -55,11 +55,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderReportErrorResponseJson">When receiving a 400 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder.TnoptionsGetResponse?> GetAsTnoptionsGetResponseAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder.TnoptionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder.TnoptionsGetResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder.TnoptionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder.TnoptionsGetResponse> GetAsTnoptionsGetResponseAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder.TnoptionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder.TnoptionsGetResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder.TnoptionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -68,30 +68,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions
                 { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderReportErrorResponseJson.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder.TnoptionsGetResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder.TnoptionsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// Retrieve a list of the TN Options orders that are associated with the account. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter (marked by &lt;b&gt;*&lt;/b&gt; below) is provided, the order results will be limited to the last two years.
-        /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder.TnoptionsResponse"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderReportErrorResponseJson">When receiving a 400 status code</exception>
-        [Obsolete("This method is obsolete. Use GetAsTnoptionsGetResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder.TnoptionsResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder.TnoptionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder.TnoptionsResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder.TnoptionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            var requestInfo = ToGetRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderReportErrorResponseJson.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder.TnoptionsResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder.TnoptionsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Create TN Options order to assign line features to the telephone number.**The two data elements in the submission are:**- **TnOptionGroups**: A list of TnOptionGroup objects, each containing a list of telephone numbers and a set of TN Options to assign to all TNs in the list.- **CustomerOrderId**: Optional value for ID set by customer. Only alphanumeric values, dashes, and spaces are allowed. Max length is 255 characters.**Valid attributes for TnOptionGroup object:**| XML Attribute             | JSON Name               | Product     | Number Region | VCP Support        ||-------------------------- |-------------------------|-------------|---------------|--------------------|| TelephoneNumbers          | phoneNumbers            |             |               | Both               || PortOutPasscode           | portOutPasscode         | Numbers     | NANP          | Both               || Protected                 | protected               | Numbers     | NANP          | Both               || Sms                       | sms                     | Messaging   |               | Both               || A2pSettings               | a2pSettings             | Messaging   | NANP          | Both               || NNID                      | nnid                    | Messaging   | NANP          | Both               || ESPID                     | espid                   | Voice       | NANP          | VCP Disabled Only  || CallForward               | callForward             | Voice       |               | VCP Disabled Only  || CallVerificationEnabled   | callVerificationEnabled | Voice       | NANP          | VCP Disabled Only  || CallingNameDisplay        | callingNameDisplay      | Voice       | NANP          | VCP Disabled Only  || FinalDestinationUri       | finalDestinationUri     | Voice       | NANP          | VCP Disabled Only  || NumberFormat              | numberFormat            | Voice       | NANP          | VCP Disabled Only  || OriginationRoutePlan      | originationRoutePlan    | Voice       | NANP          | VCP Disabled Only  || PindropEnabled            | pindropEnabled          | Voice       | NANP          | VCP Disabled Only  || RPIDFormat                | rpidFormat              | Voice       | NANP          | VCP Disabled Only  || RewriteUser               | rewriteUser             | Voice       | NANP          | VCP Disabled Only  |**Valid attributes for A2P Settings object:**| XML Attribute             | JSON Name               | Product     | Number Region | VCP Support        ||-------------------------- |-------------------------|-------------|---------------|--------------------|| CampaignId                | campaignId              | Messaging   | NANP          | Both| Action                    | action                  | Messaging   | NANP          | Both               |**Valid attributes for Origination Route Plan object:**| XML Attribute             | JSON Name               | Product     | Number Region | VCP Support        ||-------------------------- |-------------------------|-------------|---------------|--------------------|| Id                        | id                      | Voice       | NANP          | VCP Disabled Only  || Action                    | action                  | Voice       | NANP          | VCP Disabled Only  || Route (object)            | route                   | Voice       | NANP          | VCP Disabled Only  |**Valid attributes for Route object:**| XML Attribute             | JSON Name               | Product     | Number Region | VCP Support        ||-------------------------- |-------------------------|-------------|---------------|--------------------|| Name                      | name                    | Voice       | NANP          | VCP Disabled Only  || Endpoint                  | endpoint                | Voice       | NANP          | VCP Disabled Only  || Priority                  | priority                | Voice       | NANP          | VCP Disabled Only  || Weight                    | weight                  | Voice       | NANP          | VCP Disabled Only  || EndpointType              | endpointType            | Voice       | NANP          | VCP Disabled Only  |When attributes tagged NANP are passed in the request body, only North American Numbering Plan phone numbers are allowed and updated.**Values for each TnOptionGroup object attribute:**- **TelephoneNumbers**:    - A list of telephone numbers as an array of strings.    - Each string is an E.164 formatted telephone number. If not E.164, assumes NANP 10-digit format.- **PortOutPasscode**: `[{custom string value} | UNCHANGED | SYSTEM_DEFAULT]`- **Protected**: `[true | false | UNCHANGED | SYSTEM_DEFAULT]`- **Sms**: `[ON | OFF | UNCHANGED]`- **NNID**: `[{custom integer value} | UNCHANGED | SYSTEM_DEFAULT]`- **CallForward**: `[10-digit phone number (string)  | UNCHANGED | SYSTEM_DEFAULT]`- **CallVerificationEnabled**: `[true | false]`- **CallingNameDisplay**: `[ON | OFF | UNCHANGED | SYSTEM_DEFAULT]`- **ESPID**: `[{custom string value} | UNCHANGED | SYSTEM_DEFAULT]`- **FinalDestinationUri**: `[{custom string value} | UNCHANGED | SYSTEM_DEFAULT]`- **NumberFormat**: `[10DIGIT | 11DIGIT | E164 | UNCHANGED | SYSTEM_DEFAULT]`- **OriginationRoutePlan**: `object`    - **Id**: UUID that Bandwidth generates to identify the route plan.    - **Action**: `[UNCHANGED | OFF | AS_SPECIFIED]`    - **Route**:        - **Name**: `[{custom string value} | UNCHANGED | SYSTEM_DEFAULT]`        - **Endpoint**: `[{custom string value} | UNCHANGED | SYSTEM_DEFAULT]`        - **Priority**: `[1-1000]`        - **Weight**: `[1-1000]`        - **EndpointType**: `[TN | IPv4 | SIP | FQDN]`- **A2PSettings**: `object`  - **CampaignId**: `[{custom string value} | UNCHANGED | SYSTEM_DEFAULT]`  - **Action**: `[UNCHANGED | SYSTEM_DEFAULT | OFF | DELETE | AS_SPECIFIED]`- **PindropEnabled**: `[true | false]`- **RPIDFormat**: `[10DIGIT | 11DIGIT | E164 | UNCHANGED | SYSTEM_DEFAULT]`- **RewriteUser**: `[{custom string value} | UNCHANGED | SYSTEM_DEFAULT]`- For all the above attributes:    - `SYSTEM_DEFAULT`: Removes the element profile value, reverting the TN to default system behavior.    - `UNCHANGED`: Value remains unchanged (read before write model. Leaving the element out of the payload is equivalent to `UNCHANGED`).**A2pSettings attribute actions:**| Number attribute | Action value   | Description of action                                                                                            ||------------------|----------------|------------------------------------------------------------------------------------------------------------------|| LongCode         | SYSTEM_DEFAULT | Removes the per-TN A2P attributes, and it reverts to the Location/SIP Peer characteristics.                      || LongCode         | AS_SPECIFIED   | Sets the message class and campaign ID - this is the default if unspecified.                                     || LongCode         | OFF            | Will set the TN as a &apos;P&apos; TN. Any values for Class or Campaign ID are not valid.                                  || LongCode         | DELETE         | Will delete the campaign ID from TN. Any values for Class or Campaign ID are not valid.                          || LongCode         | UNCHANGED      | Do nothing with respect to A2P.                                                                                  || TollFree         | SYSTEM_DEFAULT | Removes the per-TN A2P attributes, and it reverts to the Location/SIP Peer characteristics.                      || TollFree         | AS_SPECIFIED   | Sets the message class and campaign ID - this is the default if unspecified.                                     || TollFree         | OFF            | If set to is &apos;ON&apos;, this is valid for Toll Free numbers. If set to &apos;OFF&apos;, this is invalid for Toll Free Numbers.  || TollFree         | UNCHANGED      | Do nothing with respect to A2P.                                                                                  |&quot;
@@ -382,92 +358,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions
             public string PhoneNumber { get; set; }
 #endif
             /// <summary>The status of the TN Options order being searched for.</summary>
-            [Obsolete("This property is deprecated, use StatusAsGetStatusQueryParameterType instead")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("status")]
-            public string? Status { get; set; }
-#nullable restore
-#else
-            [QueryParameter("status")]
-            public string Status { get; set; }
-#endif
-            /// <summary>The status of the TN Options order being searched for.</summary>
-            [QueryParameter("status")]
-            public global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.GetStatusQueryParameterType? StatusAsGetStatusQueryParameterType { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class TnoptionsRequestBuilderGetRequestConfiguration : RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder.TnoptionsRequestBuilderGetQueryParameters>
-        {
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class TnoptionsRequestBuilderPostRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
-        {
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderReportDetailedJsonResponse"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderReportSummaryJsonResponse"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class TnoptionsResponse : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderReportDetailedJsonResponse"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderReportDetailedJsonResponse? TnOptionOrderReportDetailedJsonResponse { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderReportDetailedJsonResponse TnOptionOrderReportDetailedJsonResponse { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderReportSummaryJsonResponse"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderReportSummaryJsonResponse? TnOptionOrderReportSummaryJsonResponse { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderReportSummaryJsonResponse TnOptionOrderReportSummaryJsonResponse { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder.TnoptionsResponse"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder.TnoptionsResponse CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder.TnoptionsResponse();
-                result.TnOptionOrderReportDetailedJsonResponse = new global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderReportDetailedJsonResponse();
-                result.TnOptionOrderReportSummaryJsonResponse = new global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderReportSummaryJsonResponse();
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(TnOptionOrderReportDetailedJsonResponse != null || TnOptionOrderReportSummaryJsonResponse != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(TnOptionOrderReportDetailedJsonResponse, TnOptionOrderReportSummaryJsonResponse);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderReportDetailedJsonResponse>(null, TnOptionOrderReportDetailedJsonResponse, TnOptionOrderReportSummaryJsonResponse);
-            }
+            public global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.GetStatusQueryParameterType? Status { get; set; }
         }
     }
 }

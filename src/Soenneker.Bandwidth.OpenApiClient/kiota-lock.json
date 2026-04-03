@@ -1,5 +1,5 @@
 {
-  "descriptionHash": "57E18120C80635315C025182DA7D3594F46A53110B5293107B4C4A0FE753972C41DAE632194DBFFE780CDC02B3606C821DF028115CA53CA8CD4A709C9D35D0D2",
+  "descriptionHash": "02569F14F2EA1CF5D3AF64C06A27B7C1B3D02D01C45ADD527393989AC3D6469C16BA53E686A7C58D5D0AC835DD70493046B14BA428DB1C172DCE7383F9335652",
   "descriptionLocation": "../../fixed.json",
   "lockFileVersion": "1.0.0",
   "kiotaVersion": "1.30.0",
@@ -8,7 +8,7 @@
   "clientNamespaceName": "Soenneker.Bandwidth.OpenApiClient",
   "language": "CSharp",
   "usesBackingStore": false,
-  "excludeBackwardCompatible": false,
+  "excludeBackwardCompatible": true,
   "includeAdditionalData": true,
   "disableSSLValidation": false,
   "serializers": [

@@ -528,10 +528,8 @@ components:
                 resource) causing the error.
               example: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
       required:
-        - id
         - type
         - description
-        - code
     listEndpointsResponse:
       type: object
       properties:
@@ -715,6 +713,15 @@ components:
               $ref: '#/components/examples/unsupportedMediaTypeErrorExample'
     tooManyRequestsErrorResponse:
       description: Too Many Requests
+      headers:
+        Retry-After:
+          description: >-
+            The number of seconds the client should wait before making another
+            request.
+          required: true
+          schema:
+            type: integer
+            example: 900
       content:
         application/json:
           schema:
@@ -932,10 +939,10 @@ components:
         links: []
         data: null
         errors:
-          - id: 59512d87-7a92-4040-8e4a-78fb772019b9
-            type: too_many_requests
-            description: The client has sent too many requests in a given amount of time.
-            code: '429'
+          - type: too_many_endpoints
+            description: >-
+              Too many endpoints. Please delete an existing endpoint or wait 24
+              hours for an endpoint to be removed.
     serviceUnavailableErrorExample:
       summary: Service Unavailable Error Example
       value:

@@ -358,6 +358,8 @@ paths:
           $ref: '#/components/responses/errorResponse404'
         '405':
           $ref: '#/components/responses/errorResponse405'
+        '409':
+          $ref: '#/components/responses/errorResponse409'
         '429':
           $ref: '#/components/responses/noBodyResponse'
         '500':

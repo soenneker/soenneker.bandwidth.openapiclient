@@ -2,6 +2,7 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors;
 using Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportDefinitions;
 using Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports;
 using Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice;
@@ -17,6 +18,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class V1RequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The monitors property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.MonitorsRequestBuilder Monitors
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.MonitorsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The reportDefinitions property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportDefinitions.ReportDefinitionsRequestBuilder ReportDefinitions
         {

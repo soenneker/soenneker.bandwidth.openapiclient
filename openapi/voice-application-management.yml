@@ -1,0 +1,753 @@
+openapi: 3.0.3
+info:
+  title: Voice Application Management API
+  description: >-
+    Bandwidth's Voice Application Management API
+
+
+    Bandwidth's Voice Application Management API currently allows you to manage
+    SIP Authentication for inbound calls to your Voice Applications.
+
+
+    ## Base URL
+
+
+    `https://api.bandwidth.com/v2`
+  version: 1.0.0
+  termsOfService: https://www.bandwidth.com/legal/terms-of-use-bandwidthcom-web-sites/
+  contact:
+    name: Bandwidth Support
+    email: support@bandwidth.com
+    url: https://support.bandwidth.com
+servers:
+  - url: https://api.bandwidth.com/v2
+    description: Production
+paths:
+  /accounts/{accountId}/voice-applications/{applicationId}:
+    parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/applicationId'
+    get:
+      summary: Retrieve a voice application
+      operationId: getVoiceApplication
+      description: Retrieves information about a voice application.
+      tags:
+        - Voice Applications
+      responses:
+        '200':
+          $ref: '#/components/responses/getVoiceApplicationResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        default:
+          $ref: '#/components/responses/defaultError'
+    patch:
+      summary: Update a voice application
+      operationId: updateVoiceApplication
+      description: Updates SIP authentication settings for a voice application.
+      tags:
+        - Voice Applications
+      requestBody:
+        $ref: '#/components/requestBodies/updateVoiceApplicationRequestBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/updateVoiceApplicationResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        default:
+          $ref: '#/components/responses/defaultError'
+components:
+  parameters:
+    accountId:
+      in: path
+      name: accountId
+      required: true
+      schema:
+        type: string
+      description: Your Bandwidth Account ID.
+      example: '9900000'
+    applicationId:
+      name: applicationId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique ID of the application.
+      example: 15f99d57-f823-4718-80cc-5d95d5b83e59
+  requestBodies:
+    updateVoiceApplicationRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/updateVoiceApplicationRequest'
+          examples:
+            updateVoiceApplicationRequestExampleSipAuthEnable:
+              $ref: >-
+                #/components/examples/updateVoiceApplicationRequestExampleSipAuthEnable
+            updateVoiceApplicationRequestExampleSipAuthEnableWithRegions:
+              $ref: >-
+                #/components/examples/updateVoiceApplicationRequestExampleSipAuthEnableWithRegions
+            updateVoiceApplicationRequestExampleSipAuthDisable:
+              $ref: >-
+                #/components/examples/updateVoiceApplicationRequestExampleSipAuthDisable
+            updateVoiceApplicationRequestExampleUpdateRegionsOnly:
+              $ref: >-
+                #/components/examples/updateVoiceApplicationRequestExampleUpdateRegionsOnly
+  responses:
+    getVoiceApplicationResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/getVoiceApplicationResponse'
+          examples:
+            getVoiceApplicationResponseExampleSipAuthEnabled:
+              $ref: >-
+                #/components/examples/getVoiceApplicationResponseExampleSipAuthEnabled
+            getVoiceApplicationResponseExampleSipAuthDisabled:
+              $ref: >-
+                #/components/examples/getVoiceApplicationResponseExampleSipAuthDisabled
+    updateVoiceApplicationResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/updateVoiceApplicationResponse'
+          examples:
+            updateVoiceApplicationResponseExampleSipAuthEnable:
+              $ref: >-
+                #/components/examples/updateVoiceApplicationResponseExampleSipAuthEnable
+            updateVoiceApplicationResponseExampleSipAuthEnableWithRegions:
+              $ref: >-
+                #/components/examples/updateVoiceApplicationResponseExampleSipAuthEnableWithRegions
+            updateVoiceApplicationResponseExampleSipAuthDisable:
+              $ref: >-
+                #/components/examples/updateVoiceApplicationResponseExampleSipAuthDisable
+            updateVoiceApplicationResponseExampleUpdateRegionsOnly:
+              $ref: >-
+                #/components/examples/updateVoiceApplicationResponseExampleUpdateRegionsOnly
+    badRequestError:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+          examples:
+            badRequestErrorExample:
+              $ref: '#/components/examples/badRequestErrorExample'
+            applicationIsNotAVoiceApplicationErrorExample:
+              $ref: >-
+                #/components/examples/applicationIsNotAVoiceApplicationErrorExample
+    unauthorizedError:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+          examples:
+            unauthorizedErrorExample:
+              $ref: '#/components/examples/unauthorizedErrorExample'
+    forbiddenError:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+          examples:
+            forbiddenErrorExample:
+              $ref: '#/components/examples/forbiddenErrorExample'
+    notFoundError:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+          examples:
+            notFoundErrorExample:
+              $ref: '#/components/examples/notFoundErrorExample'
+            applicationDoesNotExistErrorExample:
+              $ref: '#/components/examples/applicationDoesNotExistErrorExample'
+    notAllowedError:
+      description: Method Not Allowed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+          examples:
+            notAllowedErrorExample:
+              $ref: '#/components/examples/notAllowedErrorExample'
+    tooManyRequestsError:
+      description: Too Many Requests
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+          examples:
+            tooManyRequestsErrorExample:
+              $ref: '#/components/examples/tooManyRequestsErrorExample'
+    defaultError:
+      description: Unexpected Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+  schemas:
+    link:
+      title: Link
+      type: object
+      properties:
+        href:
+          type: string
+          description: URI of the link.
+          example: https://api.bandwidth.com/absolute/uri
+        rel:
+          type: string
+          description: Specifies the relationship between this link and the resource.
+          example: aRelatedResource
+        method:
+          type: string
+          description: HTTP method to be used.
+          example: GET
+    errorSource:
+      title: Error Source
+      type: object
+      properties:
+        parameter:
+          type: string
+          description: A string indicating which URI query parameter caused the error.
+          example: someParameter
+        field:
+          type: string
+          description: A string indicating which request body field caused the error.
+          example: someField
+        header:
+          type: string
+          description: A string indicating which header field caused the error.
+          example: someHeader
+        reference:
+          type: string
+          description: >-
+            A string that references a resource ID or path to the resource (or
+            non-existent resource) causing the error.
+          example: /some/reference
+    errorMeta:
+      title: Error Meta
+      type: object
+      properties:
+        message:
+          type: string
+          example: An optional metadata field
+    error:
+      title: Error
+      type: object
+      properties:
+        id:
+          type: string
+          description: A unique identifier for this particular instance of this problem.
+          example: optional-error-id
+        type:
+          type: string
+          description: >-
+            A short, human-readable summary of the problem that SHOULD NOT
+            change from occurrence to occurrence of the problem.
+          example: REQUEST_ERROR
+        description:
+          type: string
+          description: >-
+            A human-readable explanation that SHOULD be specific to this
+            occurrence of the problem.
+          example: There was an issue with a field in your request body
+        code:
+          type: integer
+          format: int32
+          description: >-
+            An application-specific error code for services with extensive error
+            scenarios to supplement `description`.
+          minimum: 4
+          example: 51130
+        source:
+          $ref: '#/components/schemas/errorSource'
+        meta:
+          $ref: '#/components/schemas/errorMeta'
+      required:
+        - type
+        - description
+    genericError:
+      title: Generic Error
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          example: []
+        data:
+          type: object
+          nullable: true
+          example: null
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+      required:
+        - links
+        - data
+        - errors
+    sipUri:
+      title: SIP URI
+      type: string
+      nullable: true
+      description: The SIP URI for the specified application.
+      example: >-
+        sip:479fbd44-3362-45f3-bb80-284f21111be4@sip.programmable-voice.bandwidth.com
+    sipAuthEnabled:
+      title: SIP Auth Enabled
+      type: boolean
+      description: Indicates whether SIP authentication is enabled for the application.
+      example: true
+    region:
+      title: Region
+      type: string
+      description: A supported region for SIP authentication.
+      enum:
+        - US
+        - EU
+      example: US
+    allowedRegions:
+      title: Allowed Regions
+      type: array
+      nullable: true
+      description: >-
+        The list of regions where the application is permitted to authenticate.
+        When null, no regions are configured.
+      items:
+        $ref: '#/components/schemas/region'
+      example:
+        - US
+        - EU
+    callbackCreds:
+      title: Callback Credentials
+      type: object
+      nullable: true
+      properties:
+        userId:
+          type: string
+          description: The user ID for callback authentication.
+          example: myApiUser
+    voiceApplicationData:
+      title: Voice Application Data
+      type: object
+      properties:
+        applicationId:
+          type: string
+          nullable: true
+          description: The unique ID of the application.
+          example: 15f99d57-f823-4718-80cc-5d95d5b83e59
+        serviceType:
+          type: string
+          nullable: true
+          description: The service type of the application.
+          example: Voice-V2
+        applicationName:
+          type: string
+          nullable: true
+          description: The name of the application.
+          example: My Voice App
+        callInitiatedCallbackUrl:
+          type: string
+          nullable: true
+          description: The URL to receive call initiated callbacks.
+          example: https://example.com/callbacks/inbound
+        callInitiatedMethod:
+          type: string
+          nullable: true
+          description: The HTTP method used for call initiated callbacks.
+          example: POST
+        callStatusCallbackUrl:
+          type: string
+          nullable: true
+          description: The URL to receive call status callbacks.
+          example: https://example.com/callbacks/status
+        callStatusMethod:
+          type: string
+          nullable: true
+          description: The HTTP method used for call status callbacks.
+          example: POST
+        callbackCreds:
+          $ref: '#/components/schemas/callbackCreds'
+        callInitiatedFallbackUrl:
+          type: string
+          nullable: true
+          description: The fallback URL to receive call initiated callbacks.
+          example: https://fallback.example.com/callbacks/inbound
+        callInitiatedFallbackMethod:
+          type: string
+          nullable: true
+          description: The HTTP method used for the call initiated fallback callback.
+          example: POST
+        callInitiatedFallbackCreds:
+          $ref: '#/components/schemas/callbackCreds'
+        callbackTimeout:
+          type: integer
+          nullable: true
+          description: The timeout in seconds for callbacks.
+          example: 30
+        sipUri:
+          $ref: '#/components/schemas/sipUri'
+        sipAuthEnabled:
+          $ref: '#/components/schemas/sipAuthEnabled'
+        allowedRegions:
+          $ref: '#/components/schemas/allowedRegions'
+      nullable: true
+    updateVoiceApplicationRequest:
+      title: Update Voice Application Request
+      description: At least one of `sipAuthEnabled` or `allowedRegions` must be provided.
+      type: object
+      properties:
+        sipAuthEnabled:
+          $ref: '#/components/schemas/sipAuthEnabled'
+        allowedRegions:
+          $ref: '#/components/schemas/allowedRegions'
+    getVoiceApplicationResponse:
+      title: Get Voice Application Response
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        data:
+          $ref: '#/components/schemas/voiceApplicationData'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+      required:
+        - links
+        - data
+        - errors
+    updateVoiceApplicationResponse:
+      title: Update Voice Application Response
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        data:
+          allOf:
+            - $ref: '#/components/schemas/voiceApplicationData'
+            - type: object
+              properties:
+                sipAuthPassword:
+                  type: string
+                  nullable: true
+                  description: >-
+                    The password to be used for SIP authentication with the SIP
+                    URI. Null when SIP authentication is disabled.
+                  example: super_secure_password
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+          nullable: true
+      required:
+        - links
+        - data
+        - errors
+  examples:
+    getVoiceApplicationResponseExampleSipAuthEnabled:
+      summary: Example response when SIP Auth is enabled
+      value:
+        links: []
+        data:
+          applicationId: 15f99d57-f823-4718-80cc-5d95d5b83e59
+          serviceType: Voice-V2
+          applicationName: My Voice App
+          callInitiatedCallbackUrl: https://example.com/callbacks/inbound
+          callInitiatedMethod: POST
+          callStatusCallbackUrl: https://example.com/callbacks/status
+          callStatusMethod: POST
+          callbackCreds:
+            userId: myApiUser
+          callInitiatedFallbackUrl: https://fallback.example.com/callbacks/inbound
+          callInitiatedFallbackMethod: POST
+          callInitiatedFallbackCreds:
+            userId: myFallbackUser
+          callbackTimeout: 30
+          sipUri: >-
+            sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com
+          sipAuthEnabled: true
+          allowedRegions:
+            - US
+            - EU
+        errors: []
+    getVoiceApplicationResponseExampleSipAuthDisabled:
+      summary: Example response when SIP Auth is disabled
+      value:
+        links: []
+        data:
+          applicationId: 15f99d57-f823-4718-80cc-5d95d5b83e59
+          serviceType: Voice-V2
+          applicationName: My Voice App
+          callInitiatedCallbackUrl: https://example.com/callbacks/inbound
+          callInitiatedMethod: POST
+          callStatusCallbackUrl: https://example.com/callbacks/status
+          callStatusMethod: POST
+          callbackCreds:
+            userId: myApiUser
+          callInitiatedFallbackUrl: https://fallback.example.com/callbacks/inbound
+          callInitiatedFallbackMethod: POST
+          callInitiatedFallbackCreds:
+            userId: myFallbackUser
+          callbackTimeout: 30
+          sipUri: null
+          sipAuthEnabled: false
+          allowedRegions: null
+        errors: []
+    updateVoiceApplicationRequestExampleSipAuthEnable:
+      summary: Enable SIP authentication
+      value:
+        sipAuthEnabled: true
+    updateVoiceApplicationRequestExampleSipAuthEnableWithRegions:
+      summary: Enable SIP authentication with allowed regions
+      value:
+        sipAuthEnabled: true
+        allowedRegions:
+          - US
+    updateVoiceApplicationRequestExampleSipAuthDisable:
+      summary: Disable SIP authentication
+      value:
+        sipAuthEnabled: false
+    updateVoiceApplicationRequestExampleUpdateRegionsOnly:
+      summary: Update allowed regions without changing credentials
+      value:
+        allowedRegions:
+          - US
+          - EU
+    updateVoiceApplicationResponseExampleSipAuthEnable:
+      summary: Example response when enabling SIP authentication
+      value:
+        links: []
+        data:
+          applicationId: 15f99d57-f823-4718-80cc-5d95d5b83e59
+          serviceType: Voice-V2
+          applicationName: My Voice App
+          callInitiatedCallbackUrl: https://example.com/callbacks/inbound
+          callInitiatedMethod: POST
+          callStatusCallbackUrl: https://example.com/callbacks/status
+          callStatusMethod: POST
+          callbackCreds:
+            userId: myApiUser
+          callInitiatedFallbackUrl: https://fallback.example.com/callbacks/inbound
+          callInitiatedFallbackMethod: POST
+          callInitiatedFallbackCreds:
+            userId: myFallbackUser
+          callbackTimeout: 30
+          sipUri: >-
+            sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com
+          sipAuthEnabled: true
+          sipAuthPassword: super_secure_password
+        errors: []
+    updateVoiceApplicationResponseExampleSipAuthEnableWithRegions:
+      summary: Example response when enabling SIP authentication with regions
+      value:
+        links: []
+        data:
+          applicationId: 15f99d57-f823-4718-80cc-5d95d5b83e59
+          serviceType: Voice-V2
+          applicationName: My Voice App
+          callInitiatedCallbackUrl: https://example.com/callbacks/inbound
+          callInitiatedMethod: POST
+          callStatusCallbackUrl: https://example.com/callbacks/status
+          callStatusMethod: POST
+          callbackCreds:
+            userId: myApiUser
+          callInitiatedFallbackUrl: https://fallback.example.com/callbacks/inbound
+          callInitiatedFallbackMethod: POST
+          callInitiatedFallbackCreds:
+            userId: myFallbackUser
+          callbackTimeout: 30
+          sipUri: >-
+            sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com
+          sipAuthEnabled: true
+          allowedRegions:
+            - US
+          sipAuthPassword: super_secure_password
+        errors: []
+    updateVoiceApplicationResponseExampleSipAuthDisable:
+      summary: Example response when disabling SIP authentication
+      value:
+        links: []
+        data:
+          applicationId: 15f99d57-f823-4718-80cc-5d95d5b83e59
+          serviceType: Voice-V2
+          applicationName: My Voice App
+          callInitiatedCallbackUrl: https://example.com/callbacks/inbound
+          callInitiatedMethod: POST
+          callStatusCallbackUrl: https://example.com/callbacks/status
+          callStatusMethod: POST
+          callbackCreds:
+            userId: myApiUser
+          callInitiatedFallbackUrl: https://fallback.example.com/callbacks/inbound
+          callInitiatedFallbackMethod: POST
+          callInitiatedFallbackCreds:
+            userId: myFallbackUser
+          callbackTimeout: 30
+          sipUri: null
+          sipAuthEnabled: false
+          allowedRegions: null
+          sipAuthPassword: null
+        errors: []
+    updateVoiceApplicationResponseExampleUpdateRegionsOnly:
+      summary: Example response when updating regions only
+      value:
+        links: []
+        data:
+          applicationId: 15f99d57-f823-4718-80cc-5d95d5b83e59
+          serviceType: Voice-V2
+          applicationName: My Voice App
+          callInitiatedCallbackUrl: https://example.com/callbacks/inbound
+          callInitiatedMethod: POST
+          callStatusCallbackUrl: https://example.com/callbacks/status
+          callStatusMethod: POST
+          callbackCreds:
+            userId: myApiUser
+          callInitiatedFallbackUrl: https://fallback.example.com/callbacks/inbound
+          callInitiatedFallbackMethod: POST
+          callInitiatedFallbackCreds:
+            userId: myFallbackUser
+          callbackTimeout: 30
+          sipUri: >-
+            sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com
+          sipAuthEnabled: true
+          allowedRegions:
+            - US
+            - EU
+        errors: []
+    badRequestErrorExample:
+      summary: An example of a generic Bad Request Error
+      value:
+        links: []
+        data: null
+        errors:
+          - id: optional-error-id
+            type: bad-request
+            description: There was an issue with your request
+            code: 205617
+    unauthorizedErrorExample:
+      summary: An example of a generic Unauthorized Error
+      value:
+        links: []
+        data: null
+        errors:
+          - id: optional-error-id
+            type: authentication-credentials
+            description: Invalid or missing credentials.
+            code: 206401
+    forbiddenErrorExample:
+      summary: An example of a generic Forbidden Error
+      value:
+        links: []
+        data: null
+        errors:
+          - id: optional-error-id
+            type: resource-permissions
+            description: User does not have permissions to access this resource.
+            code: 109107
+    notFoundErrorExample:
+      summary: An example of a generic Not Found Error
+      value:
+        links: []
+        data: null
+        errors:
+          - id: optional-error-id
+            type: resource-not-found
+            description: The resource specified cannot be found.
+            code: 50420
+    notAllowedErrorExample:
+      summary: An example of a generic Not Allowed Error
+      value:
+        links: []
+        data: null
+        errors:
+          - id: optional-error-id
+            type: http-method-not-supported
+            description: The HTTP method used is not supported by this resource.
+            code: 205621
+            meta:
+              method: TRACE
+    tooManyRequestsErrorExample:
+      summary: An example of a generic Too Many Requests Error
+      value:
+        links: []
+        data: null
+        errors:
+          - id: optional-error-id
+            type: rate-limiting
+            description: >-
+              Rate limit exceeded. Wait for the time specified in the
+              'Retry-After' header before sending another request.
+            code: 32002
+    applicationDoesNotExistErrorExample:
+      summary: Application not found
+      description: >
+        This error occurs when there's no application with the specified
+        `applicationId`.
+      value:
+        links: []
+        data: null
+        errors:
+          - type: application-not-found
+            description: The specified application does not exist.
+            source:
+              parameter: applicationId
+    applicationIsNotAVoiceApplicationErrorExample:
+      summary: Application is not a voice application
+      description: >
+        This error occurs when the application specified by `applicationId`
+        exists but is not a voice application.
+      value:
+        links: []
+        data: null
+        errors:
+          - type: not-a-voice-application
+            description: The specified application is not a voice application.
+            source:
+              parameter: applicationId
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.bandwidth.com/api/v1/oauth2/token
+          scopes: {}
+security:
+  - OAuth2: []
+tags:
+  - name: Voice Applications

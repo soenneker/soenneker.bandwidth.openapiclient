@@ -102,39 +102,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls
             [QueryParameter("anonymized")]
             public bool? Anonymized { get; set; }
             /// <summary>The grouping for the type of DID.</summary>
-            [Obsolete("This property is deprecated, use CallTypeAsGetCallTypeQueryParameterType instead")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("callType")]
-            public string? CallType { get; set; }
-#nullable restore
-#else
-            [QueryParameter("callType")]
-            public string CallType { get; set; }
-#endif
-            /// <summary>The grouping for the type of DID.</summary>
-            [QueryParameter("callType")]
-            public global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.GetCallTypeQueryParameterType? CallTypeAsGetCallTypeQueryParameterType { get; set; }
-            /// <summary>Indicates the country code of the DID in its ISO 3166-1 alpha-3 format (e.g. &apos;GBR&apos; for United Kingdom, &apos;USA&apos; for United States of America, &apos;BEL&apos; for Belgium, etc.).</summary>
-            [Obsolete("This property is deprecated, use CountryCodeA3AsGetCountryCodeA3QueryParameterType instead")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            [QueryParameter("countryCodeA3")]
-            public string[]? CountryCodeA3 { get; set; }
-#nullable restore
-#else
-            [QueryParameter("countryCodeA3")]
-            public string[] CountryCodeA3 { get; set; }
-#endif
+            public global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.GetCallTypeQueryParameterType? CallType { get; set; }
             /// <summary>Indicates the country code of the DID in its ISO 3166-1 alpha-3 format (e.g. &apos;GBR&apos; for United Kingdom, &apos;USA&apos; for United States of America, &apos;BEL&apos; for Belgium, etc.).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("countryCodeA3")]
-            public global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.GetCountryCodeA3QueryParameterType[]? CountryCodeA3AsGetCountryCodeA3QueryParameterType { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.GetCountryCodeA3QueryParameterType[]? CountryCodeA3 { get; set; }
 #nullable restore
 #else
             [QueryParameter("countryCodeA3")]
-            public global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.GetCountryCodeA3QueryParameterType[] CountryCodeA3AsGetCountryCodeA3QueryParameterType { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.GetCountryCodeA3QueryParameterType[] CountryCodeA3 { get; set; }
 #endif
             /// <summary>&quot;Indicates the country code of the destination country in its ISO 3166-1 alpha-3 format (e.g. &apos;GBR&apos; for United Kingdom, &apos;USA&apos; for United States of America, &apos;BEL&apos; for Belgium, etc.).Note: This filter is only available when direction is OUTBOUND.&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -147,19 +125,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls
             public string[] DestinationCountryCodeA3 { get; set; }
 #endif
             /// <summary>Direction of the call.</summary>
-            [Obsolete("This property is deprecated, use DirectionAsGetDirectionQueryParameterType instead")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("direction")]
-            public string? Direction { get; set; }
-#nullable restore
-#else
-            [QueryParameter("direction")]
-            public string Direction { get; set; }
-#endif
-            /// <summary>Direction of the call.</summary>
-            [QueryParameter("direction")]
-            public global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.GetDirectionQueryParameterType? DirectionAsGetDirectionQueryParameterType { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.GetDirectionQueryParameterType? Direction { get; set; }
             /// <summary>The DID in its E164 format (e.g. “+16469185038”) with the ability to provide multiple E164s.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -171,19 +138,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls
             public string[] E164 { get; set; }
 #endif
             /// <summary>The type of CDR event.</summary>
-            [Obsolete("This property is deprecated, use EventTypeAsGetEventTypeQueryParameterType instead")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("eventType")]
-            public string? EventType { get; set; }
-#nullable restore
-#else
-            [QueryParameter("eventType")]
-            public string EventType { get; set; }
-#endif
-            /// <summary>The type of CDR event.</summary>
-            [QueryParameter("eventType")]
-            public global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.GetEventTypeQueryParameterType? EventTypeAsGetEventTypeQueryParameterType { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.GetEventTypeQueryParameterType? EventType { get; set; }
             /// <summary>Start of period where CDRs will be retrieved from.</summary>
             [QueryParameter("from")]
             public DateTimeOffset? From { get; set; }
@@ -216,14 +172,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls
             /// <summary>End of period where CDRs will be retrieved until.</summary>
             [QueryParameter("to")]
             public DateTimeOffset? To { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class CallsRequestBuilderGetRequestConfiguration : RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.CallsRequestBuilder.CallsRequestBuilderGetQueryParameters>
-        {
         }
     }
 }

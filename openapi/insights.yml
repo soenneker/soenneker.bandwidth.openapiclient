@@ -94,6 +94,685 @@ paths:
           $ref: '#/components/responses/tooManyRequestsError'
         '500':
           $ref: '#/components/responses/internalServerError'
+  /v1/monitors/voice/call-data:
+    get:
+      summary: List Call Data
+      description: >-
+        Retrieves an aggregated summary of call data based on the provided
+        filters. This api is only available for accounts with Monitoring API
+        feature.
+
+
+        The summary returned is broken down into time 'slices' depending on the
+        time range requested.
+
+        The granularity is calculated based on:
+         * 0-24 hours: hour
+         * 25 hours - 7 days: day
+         * 8 days - 30 days: week
+         * 31+ days: month
+
+        Through the use of various query parameters, users can filter the call
+        data by direction, phone numbers, sub-account, call result, SIP response
+        codes, call type, hang-up source, and country.
+
+
+        Occasionally, underlying data may take longer than expected to load. To
+        avoid connection timeouts, the API will return a `503 Service
+        Unavailable` response in these cases, with an error message indicating
+        that the data is still loading. If you receive a `503`, retry your
+        request immediately with the exact same parameters.
+      operationId: getCallData
+      tags:
+        - Voice
+      parameters:
+        - $ref: '#/components/parameters/monitorAccountId'
+        - $ref: '#/components/parameters/monitorDirection'
+        - $ref: '#/components/parameters/monitorTimestamp'
+        - $ref: '#/components/parameters/monitorFromPhoneNumber'
+        - $ref: '#/components/parameters/monitorToPhoneNumber'
+        - $ref: '#/components/parameters/monitorSubAccount'
+        - $ref: '#/components/parameters/monitorCallResult'
+        - $ref: '#/components/parameters/monitorResponseCode'
+        - $ref: '#/components/parameters/monitorCallType'
+        - $ref: '#/components/parameters/monitorHangUpSource'
+        - $ref: '#/components/parameters/monitorSourceCountryCodeA3'
+        - $ref: '#/components/parameters/monitorDestinationCountryCodeA3'
+      responses:
+        '200':
+          $ref: '#/components/responses/getMonitorTotalCallsResponseOk'
+        '400':
+          $ref: '#/components/responses/monitorBadRequestError'
+        '401':
+          $ref: '#/components/responses/monitorUnauthorizedError'
+        '403':
+          $ref: '#/components/responses/monitorForbiddenError'
+        '404':
+          $ref: '#/components/responses/monitorNotFoundError'
+        '405':
+          $ref: '#/components/responses/monitorMethodNotFoundError'
+        '429':
+          $ref: '#/components/responses/monitorTooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/monitorInternalServerError'
+        '503':
+          $ref: '#/components/responses/monitorServiceUnavailableError'
+  /v1/monitors/voice/minutes-of-use:
+    get:
+      summary: List Minutes Of Use
+      description: >-
+        Retrieves an aggregated summary of minutes of use based on the provided
+        filters. This api is only available for accounts with Monitoring API
+        feature.
+
+
+        The summary returned is broken down into time 'slices' depending on the
+        time range requested.
+
+        The granularity is calculated based on:
+         * 0-24 hours: hour
+         * 25 hours - 7 days: day
+         * 8 days - 30 days: week
+         * 31+ days: month
+
+        Through the use of various query parameters, users can filter the data
+        by direction, phone numbers, sub-account, call result, SIP response
+        codes, call type, hang-up source, and country.
+
+
+        Occasionally, underlying data may take longer than expected to load. To
+        avoid connection timeouts, the API will return a `503 Service
+        Unavailable` response in these cases, with an error message indicating
+        that the data is still loading. If you receive a `503`, retry your
+        request immediately with the exact same parameters.
+      operationId: getMinutesOfUseData
+      tags:
+        - Voice
+      parameters:
+        - $ref: '#/components/parameters/monitorAccountId'
+        - $ref: '#/components/parameters/monitorDirection'
+        - $ref: '#/components/parameters/monitorTimestamp'
+        - $ref: '#/components/parameters/monitorFromPhoneNumber'
+        - $ref: '#/components/parameters/monitorToPhoneNumber'
+        - $ref: '#/components/parameters/monitorSubAccount'
+        - $ref: '#/components/parameters/monitorCallResult'
+        - $ref: '#/components/parameters/monitorResponseCode'
+        - $ref: '#/components/parameters/monitorCallType'
+        - $ref: '#/components/parameters/monitorHangUpSource'
+        - $ref: '#/components/parameters/monitorSourceCountryCodeA3'
+        - $ref: '#/components/parameters/monitorDestinationCountryCodeA3'
+      responses:
+        '200':
+          $ref: '#/components/responses/getMonitorMinutesOfUseResponseOk'
+        '400':
+          $ref: '#/components/responses/monitorBadRequestError'
+        '401':
+          $ref: '#/components/responses/monitorUnauthorizedError'
+        '403':
+          $ref: '#/components/responses/monitorForbiddenError'
+        '404':
+          $ref: '#/components/responses/monitorNotFoundError'
+        '405':
+          $ref: '#/components/responses/monitorMethodNotFoundError'
+        '429':
+          $ref: '#/components/responses/monitorTooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/monitorInternalServerError'
+        '503':
+          $ref: '#/components/responses/monitorServiceUnavailableError'
+  /v1/monitors/voice/connection-rates:
+    get:
+      summary: List Connection Rates
+      description: >-
+        Retrieves an aggregated summary of connection rate based on the provided
+        filters. This api is only available for accounts with Monitoring API
+        feature.
+
+
+        The summary returned is broken down into time 'slices' depending on the
+        time range requested.
+
+        The granularity is calculated based on:
+         * 0-24 hours: hour
+         * 25 hours - 7 days: day
+         * 8 days - 30 days: week
+         * 31+ days: month
+
+        Through the use of various query parameters, users can filter the data
+        by direction, phone numbers, sub-account, call result, SIP response
+        codes, call type, hang-up source, and country.
+
+
+        Occasionally, underlying data may take longer than expected to load. To
+        avoid connection timeouts, the API will return a `503 Service
+        Unavailable` response in these cases, with an error message indicating
+        that the data is still loading. If you receive a `503`, retry your
+        request immediately with the exact same parameters.
+      operationId: getConnectionRateData
+      tags:
+        - Voice
+      parameters:
+        - $ref: '#/components/parameters/monitorAccountId'
+        - $ref: '#/components/parameters/monitorDirection'
+        - $ref: '#/components/parameters/monitorTimestamp'
+        - $ref: '#/components/parameters/monitorFromPhoneNumber'
+        - $ref: '#/components/parameters/monitorToPhoneNumber'
+        - $ref: '#/components/parameters/monitorSubAccount'
+        - $ref: '#/components/parameters/monitorCallResult'
+        - $ref: '#/components/parameters/monitorResponseCode'
+        - $ref: '#/components/parameters/monitorCallType'
+        - $ref: '#/components/parameters/monitorHangUpSource'
+        - $ref: '#/components/parameters/monitorSourceCountryCodeA3'
+        - $ref: '#/components/parameters/monitorDestinationCountryCodeA3'
+      responses:
+        '200':
+          $ref: '#/components/responses/getMonitorConnectionRateResponseOk'
+        '400':
+          $ref: '#/components/responses/monitorBadRequestError'
+        '401':
+          $ref: '#/components/responses/monitorUnauthorizedError'
+        '403':
+          $ref: '#/components/responses/monitorForbiddenError'
+        '404':
+          $ref: '#/components/responses/monitorNotFoundError'
+        '405':
+          $ref: '#/components/responses/monitorMethodNotFoundError'
+        '429':
+          $ref: '#/components/responses/monitorTooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/monitorInternalServerError'
+        '503':
+          $ref: '#/components/responses/monitorServiceUnavailableError'
+  /v1/monitors/voice/completed-calls:
+    get:
+      summary: List Completed Calls
+      description: >-
+        Retrieves an aggregated summary of completed calls based on the provided
+        filters. The call count is grouped by hangup source. This api is only
+        available for accounts with Monitoring API feature.
+
+
+        The summary returned is broken down into time 'slices' depending on the
+        time range requested.
+
+        The granularity is calculated based on:
+         * 0-24 hours: hour
+         * 25 hours - 7 days: day
+         * 8 days - 30 days: week
+         * 31+ days: month
+
+        Through the use of various query parameters, users can filter the data
+        by direction, phone numbers, sub-account, call result, SIP response
+        codes, call type, hang-up source, and country.
+
+
+        Occasionally, underlying data may take longer than expected to load. To
+        avoid connection timeouts, the API will return a `503 Service
+        Unavailable` response in these cases, with an error message indicating
+        that the data is still loading. If you receive a `503`, retry your
+        request immediately with the exact same parameters.
+      operationId: getCompletedCallsData
+      tags:
+        - Voice
+      parameters:
+        - $ref: '#/components/parameters/monitorAccountId'
+        - $ref: '#/components/parameters/monitorDirection'
+        - $ref: '#/components/parameters/monitorTimestamp'
+        - $ref: '#/components/parameters/monitorFromPhoneNumber'
+        - $ref: '#/components/parameters/monitorToPhoneNumber'
+        - $ref: '#/components/parameters/monitorSubAccount'
+        - $ref: '#/components/parameters/monitorCallResult'
+        - $ref: '#/components/parameters/monitorResponseCode'
+        - $ref: '#/components/parameters/monitorCallType'
+        - $ref: '#/components/parameters/monitorHangUpSource'
+        - $ref: '#/components/parameters/monitorSourceCountryCodeA3'
+        - $ref: '#/components/parameters/monitorDestinationCountryCodeA3'
+      responses:
+        '200':
+          $ref: '#/components/responses/getMonitorCompletedCallsResponseOk'
+        '400':
+          $ref: '#/components/responses/monitorBadRequestError'
+        '401':
+          $ref: '#/components/responses/monitorUnauthorizedError'
+        '403':
+          $ref: '#/components/responses/monitorForbiddenError'
+        '404':
+          $ref: '#/components/responses/monitorNotFoundError'
+        '405':
+          $ref: '#/components/responses/monitorMethodNotFoundError'
+        '429':
+          $ref: '#/components/responses/monitorTooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/monitorInternalServerError'
+        '503':
+          $ref: '#/components/responses/monitorServiceUnavailableError'
+  /v1/monitors/voice/failed-calls:
+    get:
+      summary: List Failed Calls
+      description: >-
+        Retrieves an aggregated summary of failed calls based on the provided
+        filters. This api is only available for accounts with Monitoring API
+        feature.
+
+
+        The summary returned is broken down into time 'slices' depending on the
+        time range requested.
+
+        The granularity is calculated based on:
+         * 0-24 hours: hour
+         * 25 hours - 7 days: day
+         * 8 days - 30 days: week
+         * 31+ days: month
+
+        Through the use of various query parameters, users can filter the data
+        by direction, phone numbers, sub-account, SIP response codes, call type,
+        hang-up source, and country.
+
+
+        Occasionally, underlying data may take longer than expected to load. To
+        avoid connection timeouts, the API will return a `503 Service
+        Unavailable` response in these cases, with an error message indicating
+        that the data is still loading. If you receive a `503`, retry your
+        request immediately with the exact same parameters.
+      operationId: getFailedCallsData
+      tags:
+        - Voice
+      parameters:
+        - $ref: '#/components/parameters/monitorAccountId'
+        - $ref: '#/components/parameters/monitorDirection'
+        - $ref: '#/components/parameters/monitorTimestamp'
+        - $ref: '#/components/parameters/monitorFromPhoneNumber'
+        - $ref: '#/components/parameters/monitorToPhoneNumber'
+        - $ref: '#/components/parameters/monitorSubAccount'
+        - $ref: '#/components/parameters/monitorResponseCode'
+        - $ref: '#/components/parameters/monitorCallType'
+        - $ref: '#/components/parameters/monitorHangUpSource'
+        - $ref: '#/components/parameters/monitorSourceCountryCodeA3'
+        - $ref: '#/components/parameters/monitorDestinationCountryCodeA3'
+      responses:
+        '200':
+          $ref: '#/components/responses/getMonitorFailedCallsResponseOk'
+        '400':
+          $ref: '#/components/responses/monitorBadRequestError'
+        '401':
+          $ref: '#/components/responses/monitorUnauthorizedError'
+        '403':
+          $ref: '#/components/responses/monitorForbiddenError'
+        '404':
+          $ref: '#/components/responses/monitorNotFoundError'
+        '405':
+          $ref: '#/components/responses/monitorMethodNotFoundError'
+        '429':
+          $ref: '#/components/responses/monitorTooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/monitorInternalServerError'
+        '503':
+          $ref: '#/components/responses/monitorServiceUnavailableError'
+  /v1/monitors/voice/error-percentages:
+    get:
+      summary: List Error Percentages
+      description: >-
+        Retrieves an aggregated summary of error percentage based on the
+        provided filters. This api is only available for accounts with
+        Monitoring API feature.
+
+
+        The summary returned is broken down into time 'slices' depending on the
+        time range requested.
+
+        The granularity is calculated based on:
+         * 0-24 hours: hour
+         * 25 hours - 7 days: day
+         * 8 days - 30 days: week
+         * 31+ days: month
+
+        Through the use of various query parameters, users can filter the data
+        by direction, phone numbers, sub-account, SIP response codes, call type,
+        hang-up source, and country.
+
+
+        Occasionally, underlying data may take longer than expected to load. To
+        avoid connection timeouts, the API will return a `503 Service
+        Unavailable` response in these cases, with an error message indicating
+        that the data is still loading. If you receive a `503`, retry your
+        request immediately with the exact same parameters.
+      operationId: getErrorPercentageData
+      tags:
+        - Voice
+      parameters:
+        - $ref: '#/components/parameters/monitorAccountId'
+        - $ref: '#/components/parameters/monitorDirection'
+        - $ref: '#/components/parameters/monitorTimestamp'
+        - $ref: '#/components/parameters/monitorFromPhoneNumber'
+        - $ref: '#/components/parameters/monitorToPhoneNumber'
+        - $ref: '#/components/parameters/monitorSubAccount'
+        - $ref: '#/components/parameters/monitorResponseCode'
+        - $ref: '#/components/parameters/monitorCallType'
+        - $ref: '#/components/parameters/monitorHangUpSource'
+        - $ref: '#/components/parameters/monitorSourceCountryCodeA3'
+        - $ref: '#/components/parameters/monitorDestinationCountryCodeA3'
+      responses:
+        '200':
+          $ref: '#/components/responses/getMonitorErrorPercentageResponseOk'
+        '400':
+          $ref: '#/components/responses/monitorBadRequestError'
+        '401':
+          $ref: '#/components/responses/monitorUnauthorizedError'
+        '403':
+          $ref: '#/components/responses/monitorForbiddenError'
+        '404':
+          $ref: '#/components/responses/monitorNotFoundError'
+        '405':
+          $ref: '#/components/responses/monitorMethodNotFoundError'
+        '429':
+          $ref: '#/components/responses/monitorTooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/monitorInternalServerError'
+        '503':
+          $ref: '#/components/responses/monitorServiceUnavailableError'
+  /v1/monitors/voice/average-durations:
+    get:
+      summary: List Average Call Durations
+      description: >-
+        Retrieves an aggregated summary of average call duration in seconds
+        based on the provided filters. This api is only available for accounts
+        with Monitoring API feature.
+
+
+        The summary returned is broken down into time 'slices' depending on the
+        time range requested.
+
+        The granularity is calculated based on:
+         * 0-24 hours: hour
+         * 25 hours - 7 days: day
+         * 8 days - 30 days: week
+         * 31+ days: month
+
+        Through the use of various query parameters, users can filter the data
+        by direction, phone numbers, sub-account, call type, hang-up source, and
+        country.
+
+
+        Occasionally, underlying data may take longer than expected to load. To
+        avoid connection timeouts, the API will return a `503 Service
+        Unavailable` response in these cases, with an error message indicating
+        that the data is still loading. If you receive a `503`, retry your
+        request immediately with the exact same parameters.
+      operationId: getAverageDurationData
+      tags:
+        - Voice
+      parameters:
+        - $ref: '#/components/parameters/monitorAccountId'
+        - $ref: '#/components/parameters/monitorDirection'
+        - $ref: '#/components/parameters/monitorTimestamp'
+        - $ref: '#/components/parameters/monitorFromPhoneNumber'
+        - $ref: '#/components/parameters/monitorToPhoneNumber'
+        - $ref: '#/components/parameters/monitorSubAccount'
+        - $ref: '#/components/parameters/monitorCallType'
+        - $ref: '#/components/parameters/monitorHangUpSource'
+        - $ref: '#/components/parameters/monitorSourceCountryCodeA3'
+        - $ref: '#/components/parameters/monitorDestinationCountryCodeA3'
+      responses:
+        '200':
+          $ref: '#/components/responses/getMonitorAverageDurationResponseOk'
+        '400':
+          $ref: '#/components/responses/monitorBadRequestError'
+        '401':
+          $ref: '#/components/responses/monitorUnauthorizedError'
+        '403':
+          $ref: '#/components/responses/monitorForbiddenError'
+        '404':
+          $ref: '#/components/responses/monitorNotFoundError'
+        '405':
+          $ref: '#/components/responses/monitorMethodNotFoundError'
+        '429':
+          $ref: '#/components/responses/monitorTooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/monitorInternalServerError'
+        '503':
+          $ref: '#/components/responses/monitorServiceUnavailableError'
+  /v1/monitors/voice/short-calls:
+    get:
+      summary: List Short Calls
+      description: >-
+        Retrieves an aggregated summary of short calls, including both call
+        counts and percentages, based on the provided filters. This api is only
+        available for accounts with Monitoring API feature.
+
+
+        The summary returned is broken down into time 'slices' depending on the
+        time range requested.
+
+        The granularity is calculated based on:
+         * 0-24 hours: hour
+         * 25 hours - 7 days: day
+         * 8 days - 30 days: week
+         * 31+ days: month
+
+        Through the use of various query parameters, users can filter the data
+        by direction, phone numbers, sub-account, call type, hang-up source, and
+        country.
+
+
+        Occasionally, underlying data may take longer than expected to load. To
+        avoid connection timeouts, the API will return a `503 Service
+        Unavailable` response in these cases, with an error message indicating
+        that the data is still loading. If you receive a `503`, retry your
+        request immediately with the exact same parameters.
+      operationId: getShortCallsData
+      tags:
+        - Voice
+      parameters:
+        - $ref: '#/components/parameters/monitorAccountId'
+        - $ref: '#/components/parameters/monitorDirection'
+        - $ref: '#/components/parameters/monitorTimestamp'
+        - $ref: '#/components/parameters/monitorFromPhoneNumber'
+        - $ref: '#/components/parameters/monitorToPhoneNumber'
+        - $ref: '#/components/parameters/monitorSubAccount'
+        - $ref: '#/components/parameters/monitorCallType'
+        - $ref: '#/components/parameters/monitorHangUpSource'
+        - $ref: '#/components/parameters/monitorSourceCountryCodeA3'
+        - $ref: '#/components/parameters/monitorDestinationCountryCodeA3'
+      responses:
+        '200':
+          $ref: '#/components/responses/getMonitorTotalShortCallsResponseOk'
+        '400':
+          $ref: '#/components/responses/monitorBadRequestError'
+        '401':
+          $ref: '#/components/responses/monitorUnauthorizedError'
+        '403':
+          $ref: '#/components/responses/monitorForbiddenError'
+        '404':
+          $ref: '#/components/responses/monitorNotFoundError'
+        '405':
+          $ref: '#/components/responses/monitorMethodNotFoundError'
+        '429':
+          $ref: '#/components/responses/monitorTooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/monitorInternalServerError'
+        '503':
+          $ref: '#/components/responses/monitorServiceUnavailableError'
+  /v1/monitors/voice/network-efficiency-ratios:
+    get:
+      summary: List Network Efficiency Ratios
+      description: >-
+        Retrieves an aggregated summary of Network Efficiency Ratio (NER) based
+        on the provided filters. This api is only available for accounts with
+        Monitoring API feature.
+
+
+        The summary returned is broken down into time 'slices' depending on the
+        time range requested.
+
+        The granularity is calculated based on:
+         * 0-24 hours: hour
+         * 25 hours - 7 days: day
+         * 8 days - 30 days: week
+         * 31+ days: month
+
+        Through the use of various query parameters, users can filter the data
+        by direction, phone numbers, sub-account, call result, SIP response
+        codes, call type, hang-up source, and country.
+
+
+        Occasionally, underlying data may take longer than expected to load. To
+        avoid connection timeouts, the API will return a `503 Service
+        Unavailable` response in these cases, with an error message indicating
+        that the data is still loading. If you receive a `503`, retry your
+        request immediately with the exact same parameters.
+      operationId: getNerData
+      tags:
+        - Voice
+      parameters:
+        - $ref: '#/components/parameters/monitorAccountId'
+        - $ref: '#/components/parameters/monitorDirection'
+        - $ref: '#/components/parameters/monitorTimestamp'
+        - $ref: '#/components/parameters/monitorFromPhoneNumber'
+        - $ref: '#/components/parameters/monitorToPhoneNumber'
+        - $ref: '#/components/parameters/monitorSubAccount'
+        - $ref: '#/components/parameters/monitorCallResult'
+        - $ref: '#/components/parameters/monitorResponseCode'
+        - $ref: '#/components/parameters/monitorCallType'
+        - $ref: '#/components/parameters/monitorHangUpSource'
+        - $ref: '#/components/parameters/monitorSourceCountryCodeA3'
+        - $ref: '#/components/parameters/monitorDestinationCountryCodeA3'
+      responses:
+        '200':
+          $ref: '#/components/responses/getMonitorNetworkEfficiencyRatioResponseOk'
+        '400':
+          $ref: '#/components/responses/monitorBadRequestError'
+        '401':
+          $ref: '#/components/responses/monitorUnauthorizedError'
+        '403':
+          $ref: '#/components/responses/monitorForbiddenError'
+        '404':
+          $ref: '#/components/responses/monitorNotFoundError'
+        '405':
+          $ref: '#/components/responses/monitorMethodNotFoundError'
+        '429':
+          $ref: '#/components/responses/monitorTooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/monitorInternalServerError'
+        '503':
+          $ref: '#/components/responses/monitorServiceUnavailableError'
+  /v1/monitors/voice/calls-per-second:
+    get:
+      summary: List Calls Per Second
+      description: >-
+        Retrieves an aggregated summary of calls per second based on the
+        provided filters. This api is only available for accounts with
+        Monitoring API feature.
+
+
+        The summary returned is broken down into time 'slices' depending on the
+        time range requested.
+
+        The granularity is calculated based on:
+         * 0-24 hours: hour
+         * 25 hours - 7 days: day
+         * 8 days - 30 days: week
+         * 31+ days: month
+
+        Through the use of various query parameters, users can filter the data
+        by phone numbers, sub-account, call type, hang-up source, and country.
+
+
+        Occasionally, underlying data may take longer than expected to load. To
+        avoid connection timeouts, the API will return a `503 Service
+        Unavailable` response in these cases, with an error message indicating
+        that the data is still loading. If you receive a `503`, retry your
+        request immediately with the exact same parameters.
+      operationId: getCallsPerSecondData
+      tags:
+        - Voice
+      parameters:
+        - $ref: '#/components/parameters/monitorAccountId'
+        - $ref: '#/components/parameters/monitorTimestamp'
+        - $ref: '#/components/parameters/monitorFromPhoneNumber'
+        - $ref: '#/components/parameters/monitorToPhoneNumber'
+        - $ref: '#/components/parameters/monitorSubAccount'
+        - $ref: '#/components/parameters/monitorCallType'
+        - $ref: '#/components/parameters/monitorHangUpSource'
+        - $ref: '#/components/parameters/monitorSourceCountryCodeA3'
+        - $ref: '#/components/parameters/monitorDestinationCountryCodeA3'
+      responses:
+        '200':
+          $ref: '#/components/responses/getMonitorCallsPerSecondResponseOk'
+        '400':
+          $ref: '#/components/responses/monitorBadRequestError'
+        '401':
+          $ref: '#/components/responses/monitorUnauthorizedError'
+        '403':
+          $ref: '#/components/responses/monitorForbiddenError'
+        '404':
+          $ref: '#/components/responses/monitorNotFoundError'
+        '405':
+          $ref: '#/components/responses/monitorMethodNotFoundError'
+        '429':
+          $ref: '#/components/responses/monitorTooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/monitorInternalServerError'
+        '503':
+          $ref: '#/components/responses/monitorServiceUnavailableError'
+  /v1/monitors/voice/concurrent-calls:
+    get:
+      summary: List Concurrent Calls
+      description: >-
+        Retrieves an aggregated summary of concurrent calls based on the
+        provided filters. This api is only available for accounts with
+        Monitoring API feature.
+
+
+        The summary returned is broken down into time 'slices' depending on the
+        time range requested.
+
+        The granularity is calculated based on:
+         * 0-24 hours: hour
+         * 25 hours - 7 days: day
+         * 8 days - 30 days: week
+         * 31+ days: month
+
+        Through the use of various query parameters, users can filter the data
+        by phone numbers, sub-account, call type, hang-up source, and country.
+
+
+        Occasionally, underlying data may take longer than expected to load. To
+        avoid connection timeouts, the API will return a `503 Service
+        Unavailable` response in these cases, with an error message indicating
+        that the data is still loading. If you receive a `503`, retry your
+        request immediately with the exact same parameters.
+      operationId: getConcurrentCallsData
+      tags:
+        - Voice
+      parameters:
+        - $ref: '#/components/parameters/monitorAccountId'
+        - $ref: '#/components/parameters/monitorTimestamp'
+        - $ref: '#/components/parameters/monitorFromPhoneNumber'
+        - $ref: '#/components/parameters/monitorToPhoneNumber'
+        - $ref: '#/components/parameters/monitorSubAccount'
+        - $ref: '#/components/parameters/monitorCallType'
+        - $ref: '#/components/parameters/monitorHangUpSource'
+        - $ref: '#/components/parameters/monitorSourceCountryCodeA3'
+        - $ref: '#/components/parameters/monitorDestinationCountryCodeA3'
+      responses:
+        '200':
+          $ref: '#/components/responses/getMonitorConcurrentCallsResponseOk'
+        '400':
+          $ref: '#/components/responses/monitorBadRequestError'
+        '401':
+          $ref: '#/components/responses/monitorUnauthorizedError'
+        '403':
+          $ref: '#/components/responses/monitorForbiddenError'
+        '404':
+          $ref: '#/components/responses/monitorNotFoundError'
+        '405':
+          $ref: '#/components/responses/monitorMethodNotFoundError'
+        '429':
+          $ref: '#/components/responses/monitorTooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/monitorInternalServerError'
+        '503':
+          $ref: '#/components/responses/monitorServiceUnavailableError'
   /v1/reports:
     post:
       tags:
@@ -228,6 +907,124 @@ paths:
           $ref: '#/components/responses/internalServerError'
 components:
   schemas:
+    monitorDirection:
+      type: object
+      properties:
+        eq:
+          type: string
+          enum:
+            - INBOUND
+            - OUTBOUND
+          description: Filter call data to only inbound or outbound calls.
+      example:
+        eq: INBOUND
+    monitorTimestampRange:
+      type: object
+      properties:
+        gte:
+          type: string
+          format: date-time
+          description: >-
+            Greater than or equal to the specified date and time (start of
+            range).
+        lte:
+          type: string
+          format: date-time
+          description: Less than or equal to the specified date and time (end of range).
+      example:
+        gte: '2026-02-17T14:30:00+02:00'
+        lte: '2026-02-24T14:30:00+02:00'
+    monitorPhoneNumberList:
+      type: object
+      properties:
+        eq:
+          type: string
+          description: Comma-separated list of phone numbers in E.164 format
+          example: +353123456,+353987654
+    monitorSubAccount:
+      type: object
+      properties:
+        eq:
+          type: string
+          description: Sub-Account ID
+      example:
+        eq: '1234'
+    monitorCallResult:
+      type: object
+      properties:
+        eq:
+          type: string
+          enum:
+            - COMPLETED
+            - INCOMPLETE
+          description: Filter results by call completion status.
+      example:
+        eq: COMPLETED
+    monitorResponseCode:
+      type: object
+      properties:
+        eq:
+          type: string
+          description: Comma-separated list of SIP response codes
+          example: 200,202
+    monitorCallType:
+      type: object
+      properties:
+        eq:
+          type: string
+          enum:
+            - EMERGENCY
+            - INBOUND_TFOOS
+            - INFORMATION
+            - INTERNATIONAL
+            - INTERNATIONAL_INTERNAL
+            - INTERSTATE
+            - INTRASTATE
+            - INTL_BLOCK
+            - LOCAL
+            - OPERATOR
+            - OTHER_N11
+            - SIPURI_EXT
+            - TOLLFREE_IN
+            - TOLLFREE_OUT
+            - UNDETERMINED
+          description: Filter results by call type.
+      example:
+        eq: INTERNATIONAL
+    monitorHangUpSourceResponse:
+      type: string
+      enum:
+        - CALLED_PARTY
+        - CALLING_PARTY
+        - BANDWIDTH_INTERNAL
+      example: CALLED_PARTY
+    monitorHangUpSource:
+      type: object
+      properties:
+        eq:
+          type: string
+          enum:
+            - CALLED_PARTY
+            - CALLING_PARTY
+            - BANDWIDTH_INTERNAL
+          description: Filter results by hang up source.
+      example:
+        eq: CALLED_PARTY
+    monitorCountry:
+      type: object
+      properties:
+        eq:
+          type: string
+          description: Comma-separated list of ISO A3 country codes
+          example: USA,CAN
+    monitorAccountId:
+      type: object
+      properties:
+        eq:
+          type: string
+          description: CRM ID of the account to get calls data from.
+      example:
+        eq: '1234567'
     reportStatusObject:
       title: Create Report Request
       type: object
@@ -605,6 +1402,29 @@ components:
         - links
         - data
         - errors
+    monitorGenericError:
+      title: Generic Error
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          nullable: true
+          example: null
+        data:
+          type: object
+          nullable: true
+          example: null
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/monitorError'
+          nullable: true
+      required:
+        - links
+        - data
+        - errors
     callDirection:
       type: string
       description: Direction of call.
@@ -751,7 +1571,602 @@ components:
           example: There was an issue with a field in your request body.
       required:
         - description
+    monitorError:
+      title: Error
+      type: object
+      properties:
+        type:
+          type: string
+          description: >-
+            A short, human-readable summary of the problem that SHOULD NOT
+            change from occurrence to occurrence of the problem.
+          example: REQUEST_ERROR
+        description:
+          type: string
+          description: >-
+            A human-readable explanation that SHOULD be specific to this
+            occurrence of the problem.
+          example: There was an issue with a field in your request body.
+      required:
+        - description
+    monitorSliceDataCallCount:
+      title: Monitor Slice Data - Call Count
+      type: object
+      properties:
+        callCount:
+          type: integer
+          example: 1200
+      required:
+        - callCount
+    monitorSliceDataMinutesOfUse:
+      title: Monitor Slice Data - Minutes of Use
+      type: object
+      properties:
+        minutesOfUse:
+          type: number
+          format: float
+          example: 1250.5
+      required:
+        - minutesOfUse
+    monitorSliceDataConnectionRate:
+      title: Monitor Slice Data - Connection Rate
+      type: object
+      properties:
+        connectionRate:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 100
+          example: 95.5
+          description: Connection rate as a percentage (0-100)
+      required:
+        - connectionRate
+    monitorSliceDataCompletedCalls:
+      title: Monitor Slice Data - Completed Calls
+      type: object
+      properties:
+        connectedCallCount:
+          type: integer
+          example: 1150
+          description: Number of successfully connected calls
+        hangupSource:
+          $ref: '#/components/schemas/monitorHangUpSourceResponse'
+      required:
+        - connectedCallCount
+        - hangupSource
+    monitorSliceDataFailedCalls:
+      title: Monitor Slice Data - Failed Calls
+      type: object
+      properties:
+        failedCallCount:
+          type: integer
+          example: 50
+          description: Number of failed calls
+        callRelease:
+          type: string
+          example: '486'
+          description: SIP response code indicating the reason for call failure
+      required:
+        - failedCallCount
+        - callRelease
+    monitorSliceDataErrorPercentage:
+      title: Monitor Slice Data - Error Percentage
+      type: object
+      properties:
+        errorFourXPercentage:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 100
+          example: 2.5
+          description: Percentage of 4XX errors (0-100)
+        errorFiveXPercentage:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 100
+          example: 1.2
+          description: Percentage of 5XX errors (0-100)
+        errorSixXPercentage:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 100
+          example: 0.3
+          description: Percentage of 6XX errors (0-100)
+      required:
+        - errorFourXPercentage
+        - errorFiveXPercentage
+        - errorSixXPercentage
+    monitorSliceDataAverageDuration:
+      title: Monitor Slice Data - Average Duration
+      type: object
+      properties:
+        averageDuration:
+          type: number
+          format: float
+          example: 125.5
+          description: Average call duration in seconds
+      required:
+        - averageDuration
+    monitorSliceDataTotalShortCalls:
+      title: Monitor Slice Data - Short Calls
+      type: object
+      properties:
+        callsLessThanOrEqualTo6Seconds:
+          type: integer
+          example: 45
+          description: Total number of calls less than or equal to 6 seconds
+        callsLessThanOrEqualTo60Seconds:
+          type: integer
+          example: 320
+          description: Total number of calls less than or equal to 60 seconds
+        callPercentageLessThanOrEqualTo6Seconds:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 100
+          example: 3.75
+          description: Percentage of calls less than or equal to 6 seconds (0-100)
+        callPercentageLessThanOrEqualTo60Seconds:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 100
+          example: 26.67
+          description: Percentage of calls less than or equal to 60 seconds (0-100)
+      required:
+        - callsLessThanOrEqualTo6Seconds
+        - callsLessThanOrEqualTo60Seconds
+        - callPercentageLessThanOrEqualTo6Seconds
+        - callPercentageLessThanOrEqualTo60Seconds
+    monitorSliceDataNetworkEfficiencyRatio:
+      title: Monitor Slice Data - Network Efficiency Ratio
+      type: object
+      properties:
+        networkEfficiencyRatio:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 100
+          example: 95.5
+          description: Network Efficiency Ratio (NER) percentage (0-100)
+      required:
+        - networkEfficiencyRatio
+    monitorSliceDataCallsPerSecond:
+      title: Monitor Slice Data - Calls Per Second
+      type: object
+      properties:
+        outboundCallCount:
+          type: integer
+          example: 650
+          description: Number of outbound calls per second
+        inboundCallCount:
+          type: integer
+          example: 600
+          description: Number of inbound calls per second
+      required:
+        - outboundCallCount
+        - inboundCallCount
+    monitorSliceDataConcurrentCalls:
+      title: Monitor Slice Data - Concurrent Calls
+      type: object
+      properties:
+        outboundCallCount:
+          type: integer
+          example: 25
+          description: Number of concurrent outbound calls
+        inboundCallCount:
+          type: integer
+          example: 20
+          description: Number of concurrent inbound calls
+      required:
+        - outboundCallCount
+        - inboundCallCount
+    monitorSliceBase:
+      title: Monitor Slice Base
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          example: '2024-06-01T00:00:00.000'
+        data:
+          type: object
+      required:
+        - timestamp
+        - data
+    monitorSliceCallCount:
+      title: Monitor Slice - Call Count
+      allOf:
+        - $ref: '#/components/schemas/monitorSliceBase'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/monitorSliceDataCallCount'
+    monitorSliceMinutesOfUse:
+      title: Monitor Slice - Minutes of Use
+      allOf:
+        - $ref: '#/components/schemas/monitorSliceBase'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/monitorSliceDataMinutesOfUse'
+    monitorSliceConnectionRate:
+      title: Monitor Slice - Connection Rate
+      allOf:
+        - $ref: '#/components/schemas/monitorSliceBase'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/monitorSliceDataConnectionRate'
+    monitorSliceCompletedCalls:
+      title: Monitor Slice - Completed Calls
+      allOf:
+        - $ref: '#/components/schemas/monitorSliceBase'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/monitorSliceDataCompletedCalls'
+    monitorSliceFailedCalls:
+      title: Monitor Slice - Failed Calls
+      allOf:
+        - $ref: '#/components/schemas/monitorSliceBase'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/monitorSliceDataFailedCalls'
+    monitorSliceErrorPercentage:
+      title: Monitor Slice - Error Percentage
+      allOf:
+        - $ref: '#/components/schemas/monitorSliceBase'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/monitorSliceDataErrorPercentage'
+    monitorSliceAverageDuration:
+      title: Monitor Slice - Average Duration
+      allOf:
+        - $ref: '#/components/schemas/monitorSliceBase'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/monitorSliceDataAverageDuration'
+    monitorSliceTotalShortCalls:
+      title: Monitor Slice - Total Short Calls
+      allOf:
+        - $ref: '#/components/schemas/monitorSliceBase'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/monitorSliceDataTotalShortCalls'
+    monitorSliceNetworkEfficiencyRatio:
+      title: Monitor Slice - Network Efficiency Ratio
+      allOf:
+        - $ref: '#/components/schemas/monitorSliceBase'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/monitorSliceDataNetworkEfficiencyRatio'
+    monitorSliceCallsPerSecond:
+      title: Monitor Slice - Calls Per Second
+      allOf:
+        - $ref: '#/components/schemas/monitorSliceBase'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/monitorSliceDataCallsPerSecond'
+    monitorSliceConcurrentCalls:
+      title: Monitor Slice - Concurrent Calls
+      allOf:
+        - $ref: '#/components/schemas/monitorSliceBase'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/monitorSliceDataConcurrentCalls'
+    monitorDataBase:
+      title: Monitor Data Base
+      type: object
+      properties:
+        start:
+          type: string
+          format: date-time
+          example: '2024-06-01T00:00:00.000'
+        end:
+          type: string
+          format: date-time
+          example: '2024-06-03T00:00:00.000'
+        granularity:
+          type: string
+          enum:
+            - HOUR
+            - DAY
+            - WEEK
+            - MONTH
+          example: DAY
+        slices:
+          type: array
+          items:
+            type: object
+      required:
+        - start
+        - end
+        - granularity
+        - slices
+    monitorResponseDataCallCount:
+      title: Monitor Response Data - Call Count
+      allOf:
+        - $ref: '#/components/schemas/monitorDataBase'
+        - type: object
+          properties:
+            slices:
+              type: array
+              items:
+                $ref: '#/components/schemas/monitorSliceCallCount'
+    monitorResponseDataMinutesOfUse:
+      title: Monitor Response Data - Minutes of Use
+      allOf:
+        - $ref: '#/components/schemas/monitorDataBase'
+        - type: object
+          properties:
+            slices:
+              type: array
+              items:
+                $ref: '#/components/schemas/monitorSliceMinutesOfUse'
+    monitorResponseDataConnectionRate:
+      title: Monitor Response Data - Connection Rate
+      allOf:
+        - $ref: '#/components/schemas/monitorDataBase'
+        - type: object
+          properties:
+            slices:
+              type: array
+              items:
+                $ref: '#/components/schemas/monitorSliceConnectionRate'
+    monitorResponseDataCompletedCalls:
+      title: Monitor Response Data - Completed Calls
+      allOf:
+        - $ref: '#/components/schemas/monitorDataBase'
+        - type: object
+          properties:
+            slices:
+              type: array
+              items:
+                $ref: '#/components/schemas/monitorSliceCompletedCalls'
+    monitorResponseDataFailedCalls:
+      title: Monitor Response Data - Failed Calls
+      allOf:
+        - $ref: '#/components/schemas/monitorDataBase'
+        - type: object
+          properties:
+            slices:
+              type: array
+              items:
+                $ref: '#/components/schemas/monitorSliceFailedCalls'
+    monitorResponseDataErrorPercentage:
+      title: Monitor Response Data - Error Percentage
+      allOf:
+        - $ref: '#/components/schemas/monitorDataBase'
+        - type: object
+          properties:
+            slices:
+              type: array
+              items:
+                $ref: '#/components/schemas/monitorSliceErrorPercentage'
+    monitorResponseDataAverageDuration:
+      title: Monitor Response Data - Average Duration
+      allOf:
+        - $ref: '#/components/schemas/monitorDataBase'
+        - type: object
+          properties:
+            slices:
+              type: array
+              items:
+                $ref: '#/components/schemas/monitorSliceAverageDuration'
+    monitorResponseDataTotalShortCalls:
+      title: Monitor Response Data - Total Short Calls
+      allOf:
+        - $ref: '#/components/schemas/monitorDataBase'
+        - type: object
+          properties:
+            slices:
+              type: array
+              items:
+                $ref: '#/components/schemas/monitorSliceTotalShortCalls'
+    monitorResponseDataNetworkEfficiencyRatio:
+      title: Monitor Response Data - Network Efficiency Ratio
+      allOf:
+        - $ref: '#/components/schemas/monitorDataBase'
+        - type: object
+          properties:
+            slices:
+              type: array
+              items:
+                $ref: '#/components/schemas/monitorSliceNetworkEfficiencyRatio'
+    monitorResponseDataCallsPerSecond:
+      title: Monitor Response Data - Calls Per Second
+      allOf:
+        - $ref: '#/components/schemas/monitorDataBase'
+        - type: object
+          properties:
+            slices:
+              type: array
+              items:
+                $ref: '#/components/schemas/monitorSliceCallsPerSecond'
+    monitorResponseDataConcurrentCalls:
+      title: Monitor Response Data - Concurrent Calls
+      allOf:
+        - $ref: '#/components/schemas/monitorDataBase'
+        - type: object
+          properties:
+            slices:
+              type: array
+              items:
+                $ref: '#/components/schemas/monitorSliceConcurrentCalls'
   parameters:
+    monitorDirection:
+      name: direction
+      in: query
+      description: >-
+        Filter call data to only inbound or outbound calls.
+
+        If not provided, both inbound and outbound calls are returned in the
+        results.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/monitorDirection'
+    monitorTimestamp:
+      name: timestamp
+      in: query
+      description: >-
+        Timestamp range filter for the time range to return records for.
+
+        Use `gte` for the beginning of the range (defaults to '7 days ago' if
+        not specified).
+
+        Use `lte` for the end of the range (defaults to 'now' if not specified).
+
+        Values should include timezone, else UTC will be assumed.
+
+        Note, results will only be returned going back up to one year.
+
+        A larger timespan, difference between `gte` and `lte` will make the
+        results less granular, for example a timespan of a few days, results
+        will be hourly, whilst a timespan of months, result will be monthly.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/monitorTimestampRange'
+    monitorFromPhoneNumber:
+      name: fromPhoneNumber
+      in: query
+      description: >-
+        Filter results by originating phone number(s) in E.164 format (e.g.
+        `+353123456`).
+
+        Accepts a comma-separated list of numbers.
+
+        **Warning:** Using this parameter may result in dramatically slower
+        responses.
+
+        To improve performance, use additional query parameters to reduce the
+        scope of your query.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/monitorPhoneNumberList'
+    monitorToPhoneNumber:
+      name: toPhoneNumber
+      in: query
+      description: >-
+        Filter results by destination phone number(s) in E.164 format (e.g.
+        `+353123456`).
+
+        Accepts a comma-separated list of numbers.
+
+        **Warning:** Using this parameter may result in dramatically slower
+        responses.
+
+        To improve performance, use additional query parameters to reduce the
+        scope of your query.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/monitorPhoneNumberList'
+    monitorSubAccount:
+      name: subAccount
+      in: query
+      description: >-
+        Filter results by Sub-Account ID.
+
+        The user making this API call must have access to the specified
+        sub-account.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/monitorSubAccount'
+    monitorCallResult:
+      name: callResult
+      in: query
+      description: |-
+        Filter results by call completion status.
+        Accepts a single value: `COMPLETED` or `INCOMPLETE`.
+        If not provided, results for all call results will be returned.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/monitorCallResult'
+    monitorResponseCode:
+      name: responseCode
+      in: query
+      description: |-
+        List of SIP response codes to filter for.
+        These are three digit codes, i.e. regex pattern `\d{3}`.
+        If not set, then all response codes are included.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/monitorResponseCode'
+    monitorCallType:
+      name: callType
+      in: query
+      description: |-
+        Filter results by call type.
+        Accepts a single value: `NATIONAL`, `INTERNATIONAL`, `EMERGENCY` Etc.
+        If not provided, results for all call types will be returned.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/monitorCallType'
+    monitorHangUpSource:
+      name: hangUpSource
+      in: query
+      description: |-
+        Filter results by hang up source.
+        Accepts a single value: `CALLED_PARTY` or `CALLING_PARTY`.
+        If not provided, results for all hang up sources will be returned.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/monitorHangUpSource'
+    monitorSourceCountryCodeA3:
+      name: sourceCountryCodeA3
+      in: query
+      description: >-
+        Filter results by source country.
+
+        Accepts a comma-separated list of ISO A3 country codes (e.g. `USA`,
+        `CAN`).
+
+        If not provided, results for all source countries will be returned.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/monitorCountry'
+    monitorDestinationCountryCodeA3:
+      name: destinationCountryCodeA3
+      in: query
+      description: >-
+        Filter results by destination country.
+
+        Accepts a comma-separated list of ISO A3 country codes (e.g. `USA`,
+        `CAN`).
+
+        If not provided, results for all destination countries will be returned.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/monitorCountry'
+    monitorAccountId:
+      name: accountId
+      in: query
+      required: true
+      description: CRM ID of the account to get calls data from.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/monitorAccountId'
     accountIds:
       name: accountIds
       in: query
@@ -1298,6 +2713,639 @@ components:
           examples:
             unknownAccountErrorExample:
               $ref: '#/components/examples/internalServerErrorExample'
+    monitorBadRequestError:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/monitorGenericError'
+          example:
+            links: []
+            data: null
+            errors:
+              - type: bad-request
+                description: There was an issue with your request.
+    monitorUnauthorizedError:
+      description: Unauthorized Account
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/monitorGenericError'
+          example:
+            links: []
+            data: null
+            errors:
+              - type: authentication-credentials
+                description: This is an Unauthorized Account.
+    monitorForbiddenError:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/monitorGenericError'
+          example:
+            links: []
+            data: null
+            errors:
+              - type: resource-permissions
+                description: This is an Unknown Account.
+    monitorNotFoundError:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/monitorGenericError'
+          example:
+            links: []
+            data: null
+            errors:
+              - type: resource-not-found
+                description: >-
+                  The origin server did not find a current representation for
+                  the target resource or is not willing to disclose that one
+                  exists.
+    monitorMethodNotFoundError:
+      description: Method Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/monitorGenericError'
+          example:
+            links: []
+            data: null
+            errors:
+              - type: http-method-not-supported
+                description: POST is not an allowed method. Method must be GET
+    monitorTooManyRequestsError:
+      description: Too Many Requests Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/monitorGenericError'
+          example:
+            links: []
+            data: null
+            errors:
+              - type: rate-limiting
+                description: The user has sent too many requests in a given amount of time.
+    monitorInternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/monitorGenericError'
+          example:
+            links: []
+            data: null
+            errors:
+              - type: internal-server-error
+                description: >-
+                  The server encountered an unexpected condition that prevented
+                  it from fulfilling the request.
+    monitorServiceUnavailableError:
+      description: Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/monitorGenericError'
+          example:
+            links: []
+            data: null
+            errors:
+              - type: service-unavailable
+                description: Query is still processing. Please try again.
+    getMonitorTotalCallsResponseOk:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/link'
+                example:
+                  - rel: self
+                    href: >-
+                      https://insights.bandwidth.com/api/v1/monitors/voice/call-data
+              data:
+                $ref: '#/components/schemas/monitorResponseDataCallCount'
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+                example: []
+            required:
+              - links
+              - data
+              - errors
+          example:
+            links:
+              - rel: self
+                href: https://insights.bandwidth.com/api/v1/monitors/voice/call-data
+            data:
+              start: '2024-06-01T00:00:00.000'
+              end: '2024-06-03T00:00:00.000'
+              granularity: DAY
+              slices:
+                - timestamp: '2024-06-01T00:00:00.000'
+                  data:
+                    callCount: 1200
+                - timestamp: '2024-06-02T00:00:00.000'
+                  data:
+                    callCount: 1350
+                - timestamp: '2024-06-03T00:00:00.000'
+                  data:
+                    callCount: 1100
+            errors: []
+    getMonitorMinutesOfUseResponseOk:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/link'
+                example:
+                  - rel: self
+                    href: >-
+                      https://insights.bandwidth.com/api/v1/monitors/voice/minutes-of-use
+              data:
+                $ref: '#/components/schemas/monitorResponseDataMinutesOfUse'
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+                example: []
+            required:
+              - links
+              - data
+              - errors
+          example:
+            links:
+              - rel: self
+                href: >-
+                  https://insights.bandwidth.com/api/v1/monitors/voice/minutes-of-use
+            data:
+              start: '2024-06-01T00:00:00.000'
+              end: '2024-06-03T00:00:00.000'
+              granularity: DAY
+              slices:
+                - timestamp: '2024-06-01T00:00:00.000'
+                  data:
+                    minutesOfUse: 1250.5
+                - timestamp: '2024-06-02T00:00:00.000'
+                  data:
+                    minutesOfUse: 1423.75
+                - timestamp: '2024-06-03T00:00:00.000'
+                  data:
+                    minutesOfUse: 1180.25
+            errors: []
+    getMonitorConnectionRateResponseOk:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/link'
+                example:
+                  - rel: self
+                    href: >-
+                      https://insights.bandwidth.com/api/v1/monitors/voice/connection-rates
+              data:
+                $ref: '#/components/schemas/monitorResponseDataConnectionRate'
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+                example: []
+            required:
+              - links
+              - data
+              - errors
+          example:
+            links:
+              - rel: self
+                href: >-
+                  https://insights.bandwidth.com/api/v1/monitors/voice/connection-rates
+            data:
+              start: '2024-06-01T00:00:00.000'
+              end: '2024-06-03T00:00:00.000'
+              granularity: DAY
+              slices:
+                - timestamp: '2024-06-01T00:00:00.000'
+                  data:
+                    connectionRate: 95.5
+                - timestamp: '2024-06-02T00:00:00.000'
+                  data:
+                    connectionRate: 97.3
+                - timestamp: '2024-06-03T00:00:00.000'
+                  data:
+                    connectionRate: 94.8
+            errors: []
+    getMonitorCompletedCallsResponseOk:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/link'
+                example:
+                  - rel: self
+                    href: >-
+                      https://insights.bandwidth.com/api/v1/monitors/voice/completed-calls
+              data:
+                $ref: '#/components/schemas/monitorResponseDataCompletedCalls'
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+                example: []
+            required:
+              - links
+              - data
+              - errors
+          example:
+            links:
+              - rel: self
+                href: >-
+                  https://insights.bandwidth.com/api/v1/monitors/voice/completed-calls
+            data:
+              start: '2024-06-01T00:00:00.000'
+              end: '2024-06-03T00:00:00.000'
+              granularity: DAY
+              slices:
+                - timestamp: '2024-06-01T00:00:00.000'
+                  data:
+                    connectedCallCount: 1150
+                    hangupSource: CALLING_PARTY
+                - timestamp: '2024-06-02T00:00:00.000'
+                  data:
+                    connectedCallCount: 1280
+                    hangupSource: CALLED_PARTY
+                - timestamp: '2024-06-03T00:00:00.000'
+                  data:
+                    connectedCallCount: 1050
+                    hangupSource: CALLING_PARTY
+            errors: []
+    getMonitorFailedCallsResponseOk:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/link'
+                example:
+                  - rel: self
+                    href: >-
+                      https://insights.bandwidth.com/api/v1/monitors/voice/failed-calls
+              data:
+                $ref: '#/components/schemas/monitorResponseDataFailedCalls'
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+                example: []
+            required:
+              - links
+              - data
+              - errors
+          example:
+            links:
+              - rel: self
+                href: >-
+                  https://insights.bandwidth.com/api/v1/monitors/voice/failed-calls
+            data:
+              start: '2024-06-01T00:00:00.000'
+              end: '2024-06-03T00:00:00.000'
+              granularity: DAY
+              slices:
+                - timestamp: '2024-06-01T00:00:00.000'
+                  data:
+                    failedCallCount: 50
+                    callRelease: '486'
+                - timestamp: '2024-06-02T00:00:00.000'
+                  data:
+                    failedCallCount: 70
+                    callRelease: '503'
+                - timestamp: '2024-06-03T00:00:00.000'
+                  data:
+                    failedCallCount: 50
+                    callRelease: '404'
+            errors: []
+    getMonitorErrorPercentageResponseOk:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/link'
+                example:
+                  - rel: self
+                    href: >-
+                      https://insights.bandwidth.com/api/v1/monitors/voice/error-percentages
+              data:
+                $ref: '#/components/schemas/monitorResponseDataErrorPercentage'
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+                example: []
+            required:
+              - links
+              - data
+              - errors
+          example:
+            links:
+              - rel: self
+                href: >-
+                  https://insights.bandwidth.com/api/v1/monitors/voice/error-percentages
+            data:
+              start: '2024-06-01T00:00:00.000'
+              end: '2024-06-03T00:00:00.000'
+              granularity: DAY
+              slices:
+                - timestamp: '2024-06-01T00:00:00.000'
+                  data:
+                    errorFourXPercentage: 2.5
+                    errorFiveXPercentage: 1.2
+                    errorSixXPercentage: 0.3
+                - timestamp: '2024-06-02T00:00:00.000'
+                  data:
+                    errorFourXPercentage: 3.1
+                    errorFiveXPercentage: 1.8
+                    errorSixXPercentage: 0.5
+                - timestamp: '2024-06-03T00:00:00.000'
+                  data:
+                    errorFourXPercentage: 2
+                    errorFiveXPercentage: 0.9
+                    errorSixXPercentage: 0.2
+            errors: []
+    getMonitorAverageDurationResponseOk:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/link'
+                example:
+                  - rel: self
+                    href: >-
+                      https://insights.bandwidth.com/api/v1/monitors/voice/average-durations
+              data:
+                $ref: '#/components/schemas/monitorResponseDataAverageDuration'
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+                example: []
+            required:
+              - links
+              - data
+              - errors
+          example:
+            links:
+              - rel: self
+                href: >-
+                  https://insights.bandwidth.com/api/v1/monitors/voice/average-durations
+            data:
+              start: '2024-06-01T00:00:00.000'
+              end: '2024-06-03T00:00:00.000'
+              granularity: DAY
+              slices:
+                - timestamp: '2024-06-01T00:00:00.000'
+                  data:
+                    averageDuration: 125.5
+                - timestamp: '2024-06-02T00:00:00.000'
+                  data:
+                    averageDuration: 132.8
+                - timestamp: '2024-06-03T00:00:00.000'
+                  data:
+                    averageDuration: 118.3
+            errors: []
+    getMonitorTotalShortCallsResponseOk:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/link'
+                example:
+                  - rel: self
+                    href: >-
+                      https://insights.bandwidth.com/api/v1/monitors/voice/short-calls
+              data:
+                $ref: '#/components/schemas/monitorResponseDataTotalShortCalls'
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+                example: []
+            required:
+              - links
+              - data
+              - errors
+          example:
+            links:
+              - rel: self
+                href: >-
+                  https://insights.bandwidth.com/api/v1/monitors/voice/short-calls
+            data:
+              start: '2024-06-01T00:00:00.000'
+              end: '2024-06-03T00:00:00.000'
+              granularity: DAY
+              slices:
+                - timestamp: '2024-06-01T00:00:00.000'
+                  data:
+                    callsLessThanOrEqualTo6Seconds: 45
+                    callsLessThanOrEqualTo60Seconds: 320
+                    callPercentageLessThanOrEqualTo6Seconds: 3.75
+                    callPercentageLessThanOrEqualTo60Seconds: 26.67
+                - timestamp: '2024-06-02T00:00:00.000'
+                  data:
+                    callsLessThanOrEqualTo6Seconds: 52
+                    callsLessThanOrEqualTo60Seconds: 385
+                    callPercentageLessThanOrEqualTo6Seconds: 3.85
+                    callPercentageLessThanOrEqualTo60Seconds: 28.52
+                - timestamp: '2024-06-03T00:00:00.000'
+                  data:
+                    callsLessThanOrEqualTo6Seconds: 38
+                    callsLessThanOrEqualTo60Seconds: 295
+                    callPercentageLessThanOrEqualTo6Seconds: 3.45
+                    callPercentageLessThanOrEqualTo60Seconds: 26.82
+            errors: []
+    getMonitorNetworkEfficiencyRatioResponseOk:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/link'
+                example:
+                  - rel: self
+                    href: >-
+                      https://insights.bandwidth.com/api/v1/monitors/voice/network-efficiency-ratios
+              data:
+                $ref: '#/components/schemas/monitorResponseDataNetworkEfficiencyRatio'
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+                example: []
+            required:
+              - links
+              - data
+              - errors
+          example:
+            links:
+              - rel: self
+                href: >-
+                  https://insights.bandwidth.com/api/v1/monitors/voice/network-efficiency-ratios
+            data:
+              start: '2024-06-01T00:00:00.000'
+              end: '2024-06-03T00:00:00.000'
+              granularity: DAY
+              slices:
+                - timestamp: '2024-06-01T00:00:00.000'
+                  data:
+                    networkEfficiencyRatio: 95.5
+                - timestamp: '2024-06-02T00:00:00.000'
+                  data:
+                    networkEfficiencyRatio: 96.2
+                - timestamp: '2024-06-03T00:00:00.000'
+                  data:
+                    networkEfficiencyRatio: 94.8
+            errors: []
+    getMonitorCallsPerSecondResponseOk:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/link'
+                example:
+                  - rel: self
+                    href: >-
+                      https://insights.bandwidth.com/api/v1/monitors/voice/calls-per-second
+              data:
+                $ref: '#/components/schemas/monitorResponseDataCallsPerSecond'
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+                example: []
+            required:
+              - links
+              - data
+              - errors
+          example:
+            links:
+              - rel: self
+                href: >-
+                  https://insights.bandwidth.com/api/v1/monitors/voice/calls-per-second
+            data:
+              start: '2024-06-01T00:00:00.000'
+              end: '2024-06-03T00:00:00.000'
+              granularity: DAY
+              slices:
+                - timestamp: '2024-06-01T00:00:00.000'
+                  data:
+                    outboundCallCount: 650
+                    inboundCallCount: 600
+                - timestamp: '2024-06-02T00:00:00.000'
+                  data:
+                    outboundCallCount: 720
+                    inboundCallCount: 660
+                - timestamp: '2024-06-03T00:00:00.000'
+                  data:
+                    outboundCallCount: 620
+                    inboundCallCount: 570
+            errors: []
+    getMonitorConcurrentCallsResponseOk:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/link'
+                example:
+                  - rel: self
+                    href: >-
+                      https://insights.bandwidth.com/api/v1/monitors/voice/concurrent-calls
+              data:
+                $ref: '#/components/schemas/monitorResponseDataConcurrentCalls'
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+                example: []
+            required:
+              - links
+              - data
+              - errors
+          example:
+            links:
+              - rel: self
+                href: >-
+                  https://insights.bandwidth.com/api/v1/monitors/voice/concurrent-calls
+            data:
+              start: '2024-06-01T00:00:00.000'
+              end: '2024-06-03T00:00:00.000'
+              granularity: DAY
+              slices:
+                - timestamp: '2024-06-01T00:00:00.000'
+                  data:
+                    outboundCallCount: 25
+                    inboundCallCount: 20
+                - timestamp: '2024-06-02T00:00:00.000'
+                  data:
+                    outboundCallCount: 28
+                    inboundCallCount: 24
+                - timestamp: '2024-06-03T00:00:00.000'
+                  data:
+                    outboundCallCount: 20
+                    inboundCallCount: 18
+            errors: []
   examples:
     badRequestErrorExample:
       summary: An example of a generic Bad Request Error

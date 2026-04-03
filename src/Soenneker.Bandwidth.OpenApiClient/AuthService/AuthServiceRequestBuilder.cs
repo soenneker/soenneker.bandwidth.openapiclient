@@ -2,7 +2,7 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
-using Soenneker.Bandwidth.OpenApiClient.AuthService.Credentials;
+using Soenneker.Bandwidth.OpenApiClient.AuthService.Api;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -15,10 +15,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.AuthService
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class AuthServiceRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The credentials property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.AuthService.Credentials.CredentialsRequestBuilder Credentials
+        /// <summary>The api property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.AuthService.Api.ApiRequestBuilder Api
         {
-            get => new global::Soenneker.Bandwidth.OpenApiClient.AuthService.Credentials.CredentialsRequestBuilder(PathParameters, RequestAdapter);
+            get => new global::Soenneker.Bandwidth.OpenApiClient.AuthService.Api.ApiRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.AuthService.AuthServiceRequestBuilder"/> and sets the default values.

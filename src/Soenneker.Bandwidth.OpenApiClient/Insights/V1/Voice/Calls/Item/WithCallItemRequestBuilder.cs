@@ -48,11 +48,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_genericError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallGetResponse?> GetAsWithCallGetResponseAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallItemRequestBuilder.WithCallItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallGetResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallItemRequestBuilder.WithCallItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallGetResponse> GetAsWithCallGetResponseAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallItemRequestBuilder.WithCallItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallGetResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallItemRequestBuilder.WithCallItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -67,42 +67,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_genericError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallGetResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// Returns a single call event.
-        /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallResponse"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_genericError">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_genericError">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_genericError">When receiving a 403 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_genericError">When receiving a 404 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_genericError">When receiving a 405 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_genericError">When receiving a 429 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_genericError">When receiving a 500 status code</exception>
-        [Obsolete("This method is obsolete. Use GetAsWithCallGetResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallItemRequestBuilder.WithCallItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallItemRequestBuilder.WithCallItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            var requestInfo = ToGetRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_genericError.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_genericError.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_genericError.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_genericError.CreateFromDiscriminatorValue },
-                { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_genericError.CreateFromDiscriminatorValue },
-                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_genericError.CreateFromDiscriminatorValue },
-                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_genericError.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns a single call event.
@@ -139,27 +103,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item
         public partial class WithCallItemRequestBuilderGetQueryParameters 
         {
             /// <summary>&quot;Filter Type: Exact Match, any valid region.&quot;</summary>
-            [Obsolete("This property is deprecated, use RegionAsInsightsRegion instead")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("region")]
-            public string? Region { get; set; }
-#nullable restore
-#else
-            [QueryParameter("region")]
-            public string Region { get; set; }
-#endif
-            /// <summary>&quot;Filter Type: Exact Match, any valid region.&quot;</summary>
-            [QueryParameter("region")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_region? RegionAsInsightsRegion { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class WithCallItemRequestBuilderGetRequestConfiguration : RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallItemRequestBuilder.WithCallItemRequestBuilderGetQueryParameters>
-        {
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_region? Region { get; set; }
         }
     }
 }

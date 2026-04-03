@@ -252,6 +252,7 @@ components:
       enum:
         - ADD_INTEGRATION
         - REMOVE_INTEGRATION
+        - TRANSFER_INTEGRATION
       example: ADD_INTEGRATION
     bulkProvisioningErrorCode:
       type: string
@@ -1008,7 +1009,8 @@ components:
           type: array
           description: >-
             List of voice integrations to associate phone numbers with for the
-            ADD_INTEGRATION and REMOVE_INTEGRATION actions.
+            ADD_INTEGRATION, REMOVE_INTEGRATION and TRANSFER_INTEGRATION
+            actions.
           items:
             $ref: '#/components/schemas/voiceIntegrationId'
     voicePhoneNumberSearchRequestBody:
@@ -1091,6 +1093,8 @@ components:
               $ref: '#/components/examples/bulkAddIntegrationRequestBody'
             bulkRemoveIntegrationRequestBody:
               $ref: '#/components/examples/bulkRemoveIntegrationRequestBody'
+            bulkTnTransferIntegrationRequestBody:
+              $ref: '#/components/examples/bulkTnTransferIntegrationRequestBody'
   responses:
     getPhoneNumberVoiceProvisioningDetailsResponse:
       description: OK
@@ -1238,6 +1242,15 @@ components:
       summary: Bulk remove voice integration request body
       value:
         action: REMOVE_INTEGRATION
+        phoneNumbers:
+          - '+19191234567'
+          - '+19197654321'
+        voiceIntegrations:
+          - 3bc3c038-8f8c-4489-8dd2-c14063f395e2
+    bulkTnTransferIntegrationRequestBody:
+      summary: Bulk tn transfer voice integration request body
+      value:
+        action: TRANSFER_INTEGRATION
         phoneNumbers:
           - '+19191234567'
           - '+19197654321'

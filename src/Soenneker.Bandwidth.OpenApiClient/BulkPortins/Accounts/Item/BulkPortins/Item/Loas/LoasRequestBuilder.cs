@@ -59,34 +59,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortin
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.Item.Loas.LoasPostResponse?> PostAsLoasPostResponseAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.Item.Loas.LoasRequestBuilder.LoasRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.Item.Loas.LoasPostResponse?> PostAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.Item.Loas.LoasRequestBuilder.LoasRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.Item.Loas.LoasPostResponse> PostAsLoasPostResponseAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.Item.Loas.LoasRequestBuilder.LoasRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.Item.Loas.LoasPostResponse> PostAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.Item.Loas.LoasRequestBuilder.LoasRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.Item.Loas.LoasPostResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.Item.Loas.LoasPostResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// &quot;&lt;p&gt;POSTing to the /loas resource will enable the upload of the file.  The key attribute to the POST is ensuring that the headers are correctly set to support the file upload.&lt;br&gt;Query parameter or header documentType can be used to specify type of document on upload. Possible values are: LOA, INVOICE, CSR, OTHER.    &lt;br&gt;Header settings typical of a valid upload are...&lt;br&gt;    &lt;br&gt;&lt;code&gt;Host: api.bandwidth.com &lt;br&gt;Authorization: Basic xxxxxxxxxxxxxxxxxxxx== &lt;br&gt;Content-Type: application/pdf &lt;br&gt;documentType: [LOA | INVOICE | CSR | OTHER] &lt;br&gt;Accept: &lt;em&gt;/&lt;/em&gt; &lt;br&gt;Accept-Encoding: gzip, deflate &lt;br&gt;Accept-Language: en-US,en;q=0.8 &lt;br&gt;Cache-Control: no-cache &lt;br&gt;    &lt;br&gt;----WebKitFormBoundaryE19zNvXGzXaLvS5C &lt;br&gt;Content-Disposition: form-data; name=\&quot;george\&quot;; filename=\&quot;Bandwidth App.pdf\&quot; &lt;br&gt;Content-Type: application/pdf &lt;br&gt;    &lt;br&gt;    &lt;br&gt;----WebKitFormBoundaryE19zNvXGzXaLvS5C &lt;br&gt;&lt;/code&gt;&lt;/p&gt;&lt;p&gt;When uploading documents using the /loas resource, you must specify the MIME type of the document being upload using the Content-Type HTTP header.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Information for non-toll free port-in customers:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;The LOA document must be uploaded using one of the following MIME types:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;application/pdf&lt;/li&gt;&lt;li&gt;text/plain&lt;/li&gt;&lt;li&gt;image/jpeg&lt;/li&gt;&lt;li&gt;image/png&lt;/li&gt;&lt;li&gt;image/tiff&lt;/li&gt;&lt;li&gt;text/csv&lt;/li&gt;&lt;li&gt;application/vnd.ms-excel&lt;/li&gt;&lt;li&gt;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&lt;/li&gt;&lt;li&gt;application/msword&lt;/li&gt;&lt;li&gt;application/vnd.openxmlformats-officedocument.wordprocessingml.document&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;Information for toll free port-in customers:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;If you are porting toll free numbers and either of the following are true, the port-in order requires a LOA document.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;The controlling and target RespOrg IDs have different entity values (i.e. the first two characters are different).&lt;/li&gt;&lt;li&gt;The toll free port-in will cause toll free telephone numbers to move from one Bandwidth account to another Bandwidth account.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;If a LOA is required, the LOA document must adhere to these rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;The LOA document must be uploaded using MIME type \&quot;application/pdf\&quot;, or \&quot;image/tiff\&quot;, as these are the only formats supported by our toll free porting vendor.&lt;/li&gt;&lt;li&gt;The LOA document must be annotated as a LOA document using the documentType query parameter or header value.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;If a LOA is required but a compliant LOA document has not been uploaded, the toll free port-in order will remain in the Pending Documents state until a valid LOA is provided.&lt;/p&gt;&quot;
-        /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.Item.Loas.LoasResponse"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        [Obsolete("This method is obsolete. Use PostAsLoasPostResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.Item.Loas.LoasResponse?> PostAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.Item.Loas.LoasRequestBuilder.LoasRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.Item.Loas.LoasResponse> PostAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.Item.Loas.LoasRequestBuilder.LoasRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.Item.Loas.LoasResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.Item.Loas.LoasResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves the list of the loa (and other) files associated with the order.
@@ -146,14 +127,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortin
             public bool? Metadata { get; set; }
         }
         /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class LoasRequestBuilderGetRequestConfiguration : RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.Item.Loas.LoasRequestBuilder.LoasRequestBuilderGetQueryParameters>
-        {
-        }
-        /// <summary>
         /// &quot;&lt;p&gt;POSTing to the /loas resource will enable the upload of the file.  The key attribute to the POST is ensuring that the headers are correctly set to support the file upload.&lt;br&gt;Query parameter or header documentType can be used to specify type of document on upload. Possible values are: LOA, INVOICE, CSR, OTHER.    &lt;br&gt;Header settings typical of a valid upload are...&lt;br&gt;    &lt;br&gt;&lt;code&gt;Host: api.bandwidth.com &lt;br&gt;Authorization: Basic xxxxxxxxxxxxxxxxxxxx== &lt;br&gt;Content-Type: application/pdf &lt;br&gt;documentType: [LOA | INVOICE | CSR | OTHER] &lt;br&gt;Accept: &lt;em&gt;/&lt;/em&gt; &lt;br&gt;Accept-Encoding: gzip, deflate &lt;br&gt;Accept-Language: en-US,en;q=0.8 &lt;br&gt;Cache-Control: no-cache &lt;br&gt;    &lt;br&gt;----WebKitFormBoundaryE19zNvXGzXaLvS5C &lt;br&gt;Content-Disposition: form-data; name=\&quot;george\&quot;; filename=\&quot;Bandwidth App.pdf\&quot; &lt;br&gt;Content-Type: application/pdf &lt;br&gt;    &lt;br&gt;    &lt;br&gt;----WebKitFormBoundaryE19zNvXGzXaLvS5C &lt;br&gt;&lt;/code&gt;&lt;/p&gt;&lt;p&gt;When uploading documents using the /loas resource, you must specify the MIME type of the document being upload using the Content-Type HTTP header.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Information for non-toll free port-in customers:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;The LOA document must be uploaded using one of the following MIME types:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;application/pdf&lt;/li&gt;&lt;li&gt;text/plain&lt;/li&gt;&lt;li&gt;image/jpeg&lt;/li&gt;&lt;li&gt;image/png&lt;/li&gt;&lt;li&gt;image/tiff&lt;/li&gt;&lt;li&gt;text/csv&lt;/li&gt;&lt;li&gt;application/vnd.ms-excel&lt;/li&gt;&lt;li&gt;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&lt;/li&gt;&lt;li&gt;application/msword&lt;/li&gt;&lt;li&gt;application/vnd.openxmlformats-officedocument.wordprocessingml.document&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;Information for toll free port-in customers:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;If you are porting toll free numbers and either of the following are true, the port-in order requires a LOA document.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;The controlling and target RespOrg IDs have different entity values (i.e. the first two characters are different).&lt;/li&gt;&lt;li&gt;The toll free port-in will cause toll free telephone numbers to move from one Bandwidth account to another Bandwidth account.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;If a LOA is required, the LOA document must adhere to these rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;The LOA document must be uploaded using MIME type \&quot;application/pdf\&quot;, or \&quot;image/tiff\&quot;, as these are the only formats supported by our toll free porting vendor.&lt;/li&gt;&lt;li&gt;The LOA document must be annotated as a LOA document using the documentType query parameter or header value.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;If a LOA is required but a compliant LOA document has not been uploaded, the toll free port-in order will remain in the Pending Documents state until a valid LOA is provided.&lt;/p&gt;&quot;
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
@@ -169,14 +142,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortin
             [QueryParameter("documentType")]
             public string DocumentType { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class LoasRequestBuilderPostRequestConfiguration : RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.Item.Loas.LoasRequestBuilder.LoasRequestBuilderPostQueryParameters>
-        {
         }
     }
 }

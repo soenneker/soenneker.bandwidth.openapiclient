@@ -39,19 +39,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting
                 return new global::Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.Item.WithPortInOrderItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
-        /// <summary>Gets an item from the Soenneker.Bandwidth.OpenApiClient.globalV3.porting.item collection</summary>
-        /// <param name="position">Id of a port-in order.</param>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.Item.WithPortInOrderItemRequestBuilder"/></returns>
-        [Obsolete("This indexer is deprecated and will be removed in the next major version. Use the one with the typed parameter instead.")]
-        public global::Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.Item.WithPortInOrderItemRequestBuilder this[string position]
-        {
-            get
-            {
-                var urlTplParams = new Dictionary<string, object>(PathParameters);
-                if (!string.IsNullOrWhiteSpace(position)) urlTplParams.Add("portInOrderId", position);
-                return new global::Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.Item.WithPortInOrderItemRequestBuilder(urlTplParams, RequestAdapter);
-            }
-        }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.PortingRequestBuilder"/> and sets the default values.
         /// </summary>

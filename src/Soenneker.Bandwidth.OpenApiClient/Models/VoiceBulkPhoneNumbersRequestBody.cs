@@ -25,7 +25,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public List<string> PhoneNumbers { get; set; }
 #endif
-        /// <summary>List of voice integrations to associate phone numbers with for the ADD_INTEGRATION and REMOVE_INTEGRATION actions.</summary>
+        /// <summary>List of voice integrations to associate phone numbers with for the ADD_INTEGRATION, REMOVE_INTEGRATION and TRANSFER_INTEGRATION actions.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<Guid?>? VoiceIntegrations { get; set; }

@@ -15,5 +15,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         #pragma warning disable CS1591
         REMOVE_INTEGRATION,
         #pragma warning restore CS1591
+        [EnumMember(Value = "TRANSFER_INTEGRATION")]
+        #pragma warning disable CS1591
+        TRANSFER_INTEGRATION,
+        #pragma warning restore CS1591
     }
 }

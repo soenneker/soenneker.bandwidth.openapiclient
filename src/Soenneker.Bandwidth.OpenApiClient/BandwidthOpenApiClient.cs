@@ -39,6 +39,7 @@ using Soenneker.Bandwidth.OpenApiClient.Subscriptions;
 using Soenneker.Bandwidth.OpenApiClient.Tendlc;
 using Soenneker.Bandwidth.OpenApiClient.TollFreeVerification;
 using Soenneker.Bandwidth.OpenApiClient.Voice;
+using Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement;
 using Soenneker.Bandwidth.OpenApiClient.VoiceConfigService;
 using Soenneker.Bandwidth.OpenApiClient.VoiceConfigWhitelist;
 using Soenneker.Bandwidth.OpenApiClient.VoiceIntegrations;
@@ -220,6 +221,11 @@ namespace Soenneker.Bandwidth.OpenApiClient
         public global::Soenneker.Bandwidth.OpenApiClient.Voice.VoiceRequestBuilder Voice
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Voice.VoiceRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The voiceApplicationManagement property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement.VoiceApplicationManagementRequestBuilder VoiceApplicationManagement
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement.VoiceApplicationManagementRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The voiceConfigService property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.VoiceConfigService.VoiceConfigServiceRequestBuilder VoiceConfigService

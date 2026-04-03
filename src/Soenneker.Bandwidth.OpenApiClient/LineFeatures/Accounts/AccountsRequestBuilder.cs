@@ -27,19 +27,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts
                 return new global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.WithAccountItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
-        /// <summary>Gets an item from the Soenneker.Bandwidth.OpenApiClient.lineFeatures.accounts.item collection</summary>
-        /// <param name="position">The unique account associated with the order.</param>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.WithAccountItemRequestBuilder"/></returns>
-        [Obsolete("This indexer is deprecated and will be removed in the next major version. Use the one with the typed parameter instead.")]
-        public global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.WithAccountItemRequestBuilder this[string position]
-        {
-            get
-            {
-                var urlTplParams = new Dictionary<string, object>(PathParameters);
-                if (!string.IsNullOrWhiteSpace(position)) urlTplParams.Add("accountId", position);
-                return new global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.WithAccountItemRequestBuilder(urlTplParams, RequestAdapter);
-            }
-        }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.AccountsRequestBuilder"/> and sets the default values.
         /// </summary>

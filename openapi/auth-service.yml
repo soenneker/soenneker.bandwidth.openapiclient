@@ -11,15 +11,15 @@ info:
 
     ## Base URL
                  
-    `https://api.bandwidth.com/api/v1`
+    `https://api.bandwidth.com`
   version: 1.0.0
   contact:
     name: Bandwidth
   termsOfService: https://www.bandwidth.com/legal/terms-of-use-bandwidthcom-web-sites/
 servers:
-  - url: https://api.bandwidth.com/api/v1
+  - url: https://api.bandwidth.com
 paths:
-  /credentials:
+  /api/v1/credentials:
     post:
       summary: Create Client Credentials
       description: >-
@@ -87,7 +87,7 @@ paths:
           $ref: '#/components/responses/tooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/runtimeExceptionResponse'
-  /credentials/{clientId}:
+  /api/v1/credentials/{clientId}:
     get:
       summary: Get Client Credentials
       description: Retrieves the set of client credentials for the given client ID.
@@ -173,7 +173,7 @@ paths:
           $ref: '#/components/responses/tooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/runtimeExceptionResponse'
-  /credentials/{clientId}/secrets:
+  /api/v1/credentials/{clientId}/secrets:
     post:
       summary: Create Client Secret
       description: Generates a new client secret for the given client ID.
@@ -203,7 +203,7 @@ paths:
           $ref: '#/components/responses/tooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/runtimeExceptionResponse'
-  /credentials/{clientId}/secrets/{secretId}:
+  /api/v1/credentials/{clientId}/secrets/{secretId}:
     get:
       summary: Get Client Secret
       description: >-
