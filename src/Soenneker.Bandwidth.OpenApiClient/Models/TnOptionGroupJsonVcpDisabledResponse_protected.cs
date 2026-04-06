@@ -8,14 +8,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     public enum TnOptionGroupJsonVcpDisabledResponse_protected
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "TRUE")]
-        #pragma warning disable CS1591
-        TRUE,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "FALSE")]
-        #pragma warning disable CS1591
-        FALSE,
-        #pragma warning restore CS1591
         [EnumMember(Value = "UNCHANGED")]
         #pragma warning disable CS1591
         UNCHANGED,
