@@ -351,10 +351,30 @@ components:
         Response payload containing current whitelist configuration for a
         specific trunk.
       properties:
+        trunkId:
+          type: string
+          description: Unique identifier of the trunk.
+          example: 6913a8f3c20f98441179e9b6
         capabilityName:
           type: string
           description: The capability name associated with the trunk.
-          example: DEFAULT
+          example: Default
+        capabilityPipeId:
+          type: string
+          description: Unique identifier of the associated capability pipe.
+          example: 33f0c519-ab66-4d1f-9e9f-525e3498a966
+        appliesToOrigination:
+          type: boolean
+          description: Indicates whether the capability applies to origination.
+          example: false
+        appliesToTermination:
+          type: boolean
+          description: Indicates whether the capability applies to termination.
+          example: true
+        originationDefault:
+          type: boolean
+          description: Indicates whether this trunk is the default for origination.
+          example: false
         voiceWhitelists:
           type: array
           items:
@@ -362,15 +382,13 @@ components:
           description: List of voice whitelist entries for the trunk.
           example:
             - ipAddresses:
-                - 127.127.127.127
-                - 127.127.127.128
-              subAccountId: '10001'
-              locationId: '100001'
-            - ipAddresses:
-                - 128.128.128.128
-                - 128.128.128.129
-              subAccountId: '20002'
-              locationId: '200002'
+                - 13.45.67.89
+                - 12.12.122.2
+                - 122.128.122.129
+                - 121.126.121.123
+                - 121.123.121.123
+              subAccountId: '15143'
+              locationId: '538528'
         e911Whitelists:
           type: array
           items:
@@ -378,10 +396,14 @@ components:
           description: List of E911 whitelist entries for emergency services.
           example:
             - ipAddresses:
-                - 129.129.129.129
-                - 130.130.130.130
+                - 121.123.121.123
       required:
+        - trunkId
         - capabilityName
+        - capabilityPipeId
+        - appliesToOrigination
+        - appliesToTermination
+        - originationDefault
         - voiceWhitelists
         - e911Whitelists
     trunkEntry:
@@ -389,6 +411,10 @@ components:
       type: object
       description: A trunk entry containing whitelist configuration and trunk information.
       properties:
+        trunkId:
+          type: string
+          description: Unique identifier of the trunk.
+          example: 6913a8f3c20f98441179e9b6
         trunkName:
           type: string
           description: The name of the trunk.
@@ -396,7 +422,23 @@ components:
         capabilityName:
           type: string
           description: The capability name associated with the trunk.
-          example: DEFAULT
+          example: Default
+        capabilityPipeId:
+          type: string
+          description: Unique identifier of the associated capability pipe.
+          example: 33f0c519-ab66-4d1f-9e9f-525e3498a966
+        appliesToOrigination:
+          type: boolean
+          description: Indicates whether the capability applies to origination.
+          example: false
+        appliesToTermination:
+          type: boolean
+          description: Indicates whether the capability applies to termination.
+          example: true
+        originationDefault:
+          type: boolean
+          description: Indicates whether this trunk is the default for origination.
+          example: false
         voiceWhitelists:
           type: array
           items:
@@ -408,8 +450,13 @@ components:
             $ref: '#/components/schemas/e911WhitelistEntry'
           description: List of E911 whitelist entries for emergency services.
       required:
+        - trunkId
         - trunkName
         - capabilityName
+        - capabilityPipeId
+        - appliesToOrigination
+        - appliesToTermination
+        - originationDefault
         - voiceWhitelists
         - e911Whitelists
     getAllTrunksWhitelistResponse:
@@ -423,40 +470,25 @@ components:
             $ref: '#/components/schemas/trunkEntry'
           description: List of all trunk entries with their whitelist configurations.
           example:
-            - trunkName: trunk1
-              capabilityName: DEFAULT
+            - trunkId: 6913a8f3c20f98441179e9b6
+              trunkName: IPSharingtest
+              capabilityName: Default
+              capabilityPipeId: 33f0c519-ab66-4d1f-9e9f-525e3498a966
+              appliesToOrigination: false
+              appliesToTermination: true
+              originationDefault: false
               voiceWhitelists:
                 - ipAddresses:
-                    - 127.127.127.127
-                    - 127.127.127.128
-                  subAccountId: '10001'
-                  locationId: '100001'
-                - ipAddresses:
-                    - 128.128.128.128
-                    - 128.128.128.129
-                  subAccountId: '20002'
-                  locationId: '200002'
+                    - 13.45.67.89
+                    - 12.12.122.2
+                    - 122.128.122.129
+                    - 121.126.121.123
+                    - 121.123.121.123
+                  subAccountId: '15143'
+                  locationId: '538528'
               e911Whitelists:
                 - ipAddresses:
-                    - 129.129.129.129
-                    - 130.130.130.130
-            - trunkName: trunk2
-              capabilityName: DEFAULT2
-              voiceWhitelists:
-                - ipAddresses:
-                    - 127.127.127.127
-                    - 127.127.127.128
-                  subAccountId: '10001'
-                  locationId: '100001'
-                - ipAddresses:
-                    - 128.128.128.128
-                    - 128.128.128.129
-                  subAccountId: '20002'
-                  locationId: '200002'
-              e911Whitelists:
-                - ipAddresses:
-                    - 129.129.129.129
-                    - 130.130.130.130
+                    - 121.123.121.123
       required:
         - trunks
     getTrunkWhitelistApiResponse:
@@ -605,7 +637,7 @@ components:
       description: Filter results by specific capability name.
       schema:
         type: string
-        example: DEFAULT
+        example: Default
     ipFilter:
       name: ipFilter
       in: query
@@ -839,22 +871,24 @@ components:
       summary: Successful trunk whitelist retrieval
       value:
         data:
-          capabilityName: DEFAULT
+          trunkId: 6913a8f3c20f98441179e9b6
+          capabilityName: Default
+          capabilityPipeId: 33f0c519-ab66-4d1f-9e9f-525e3498a966
+          appliesToOrigination: false
+          appliesToTermination: true
+          originationDefault: false
           voiceWhitelists:
             - ipAddresses:
-                - 127.127.127.127
-                - 127.127.127.128
-              subAccountId: '10001'
-              locationId: '100001'
-            - ipAddresses:
-                - 128.128.128.128
-                - 128.128.128.129
-              subAccountId: '20002'
-              locationId: '200002'
+                - 13.45.67.89
+                - 12.12.122.2
+                - 122.128.122.129
+                - 121.126.121.123
+                - 121.123.121.123
+              subAccountId: '15143'
+              locationId: '538528'
           e911Whitelists:
             - ipAddresses:
-                - 129.129.129.129
-                - 130.130.130.130
+                - 121.123.121.123
         links:
           - href: >-
               https://api.bandwidth.com/v2/accounts/12345/trunks/trunk1/ipAddresses
@@ -866,40 +900,25 @@ components:
       value:
         data:
           trunks:
-            - trunkName: trunk1
-              capabilityName: DEFAULT
+            - trunkId: 6913a8f3c20f98441179e9b6
+              trunkName: IPSharingtest
+              capabilityName: Default
+              capabilityPipeId: 33f0c519-ab66-4d1f-9e9f-525e3498a966
+              appliesToOrigination: false
+              appliesToTermination: true
+              originationDefault: false
               voiceWhitelists:
                 - ipAddresses:
-                    - 127.127.127.127
-                    - 127.127.127.128
-                  subAccountId: '10001'
-                  locationId: '100001'
-                - ipAddresses:
-                    - 128.128.128.128
-                    - 128.128.128.129
-                  subAccountId: '20002'
-                  locationId: '200002'
+                    - 13.45.67.89
+                    - 12.12.122.2
+                    - 122.128.122.129
+                    - 121.126.121.123
+                    - 121.123.121.123
+                  subAccountId: '15143'
+                  locationId: '538528'
               e911Whitelists:
                 - ipAddresses:
-                    - 129.129.129.129
-                    - 130.130.130.130
-            - trunkName: trunk2
-              capabilityName: DEFAULT2
-              voiceWhitelists:
-                - ipAddresses:
-                    - 127.127.127.127
-                    - 127.127.127.128
-                  subAccountId: '10001'
-                  locationId: '100001'
-                - ipAddresses:
-                    - 128.128.128.128
-                    - 128.128.128.129
-                  subAccountId: '20002'
-                  locationId: '200002'
-              e911Whitelists:
-                - ipAddresses:
-                    - 129.129.129.129
-                    - 130.130.130.130
+                    - 121.123.121.123
         links:
           - href: https://api.bandwidth.com/v2/accounts/12345/trunks
             rel: self

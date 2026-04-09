@@ -15,6 +15,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Indicates whether the capability applies to origination.</summary>
+        public bool? AppliesToOrigination { get; set; }
+        /// <summary>Indicates whether the capability applies to termination.</summary>
+        public bool? AppliesToTermination { get; set; }
         /// <summary>The capability name associated with the trunk.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -23,6 +27,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string CapabilityName { get; set; }
 #endif
+        /// <summary>Unique identifier of the associated capability pipe.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CapabilityPipeId { get; set; }
+#nullable restore
+#else
+        public string CapabilityPipeId { get; set; }
+#endif
         /// <summary>List of E911 whitelist entries for emergency services.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -30,6 +42,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #nullable restore
 #else
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.E911WhitelistEntry> E911Whitelists { get; set; }
+#endif
+        /// <summary>Indicates whether this trunk is the default for origination.</summary>
+        public bool? OriginationDefault { get; set; }
+        /// <summary>Unique identifier of the trunk.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TrunkId { get; set; }
+#nullable restore
+#else
+        public string TrunkId { get; set; }
 #endif
         /// <summary>List of voice whitelist entries for the trunk.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -64,8 +86,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "appliesToOrigination", n => { AppliesToOrigination = n.GetBoolValue(); } },
+                { "appliesToTermination", n => { AppliesToTermination = n.GetBoolValue(); } },
                 { "capabilityName", n => { CapabilityName = n.GetStringValue(); } },
+                { "capabilityPipeId", n => { CapabilityPipeId = n.GetStringValue(); } },
                 { "e911Whitelists", n => { E911Whitelists = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.E911WhitelistEntry>(global::Soenneker.Bandwidth.OpenApiClient.Models.E911WhitelistEntry.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "originationDefault", n => { OriginationDefault = n.GetBoolValue(); } },
+                { "trunkId", n => { TrunkId = n.GetStringValue(); } },
                 { "voiceWhitelists", n => { VoiceWhitelists = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceWhitelistEntry>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceWhitelistEntry.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -76,8 +103,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteBoolValue("appliesToOrigination", AppliesToOrigination);
+            writer.WriteBoolValue("appliesToTermination", AppliesToTermination);
             writer.WriteStringValue("capabilityName", CapabilityName);
+            writer.WriteStringValue("capabilityPipeId", CapabilityPipeId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.E911WhitelistEntry>("e911Whitelists", E911Whitelists);
+            writer.WriteBoolValue("originationDefault", OriginationDefault);
+            writer.WriteStringValue("trunkId", TrunkId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceWhitelistEntry>("voiceWhitelists", VoiceWhitelists);
             writer.WriteAdditionalData(AdditionalData);
         }
