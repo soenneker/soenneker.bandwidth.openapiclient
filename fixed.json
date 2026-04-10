@@ -44448,6 +44448,11 @@
             ],
             "type": "string",
             "additionalProperties": false
+          },
+          "rewriteUser": {
+            "type": "string",
+            "description": "Overrides the user part of the SIP Request-URI  (e.g. `rewrite-user@endpoint`).",
+            "example": "rewrite-user@example.com"
           }
         },
         "example": {
@@ -44478,12 +44483,18 @@
           "endpoint": {
             "type": "string",
             "format": "ipv4"
+          },
+          "rewriteUser": {
+            "type": "string",
+            "description": "Overrides the user part of the SIP Request-URI  (e.g. `rewrite-user@endpoint`).",
+            "example": "rewrite-user@example.com"
           }
         },
         "example": {
           "endpoint": "192.168.0.1",
           "weight": 1,
-          "type": "IP_V4"
+          "type": "IP_V4",
+          "rewriteUser": "rewriteUser"
         }
       },
       "lata": {
@@ -44751,12 +44762,14 @@
                 {
                   "endpoint": "192.168.2.2",
                   "weight": 2,
-                  "type": "IP_V4"
+                  "type": "IP_V4",
+                  "rewriteUser": "rewriteUser"
                 },
                 {
                   "endpoint": "www.example.com",
                   "weight": 2,
-                  "type": "FQDN"
+                  "type": "FQDN",
+                  "rewriteUser": "rewriteUser"
                 }
               ]
             }
@@ -44826,7 +44839,29 @@
           "endpoints": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/orpEndpoint"
+              "required": [
+                "type"
+              ],
+              "type": "object",
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/sipEndpoint"
+                },
+                {
+                  "$ref": "#/components/schemas/ipv4Endpoint"
+                },
+                {
+                  "$ref": "#/components/schemas/fqdnEndpoint"
+                }
+              ],
+              "properties": {
+                "type": {
+                  "type": "string"
+                }
+              },
+              "discriminator": {
+                "propertyName": "type"
+              }
             },
             "description": "An array of objects describing the endpoints in the route."
           }
@@ -44869,12 +44904,12 @@
               "endpoints": [
                 {
                   "endpoint": "192.168.0.1",
-                  "weight": 1,
+                  "weight": 50,
                   "type": "IP_V4"
                 },
                 {
                   "endpoint": "www.example.com",
-                  "weight": 3,
+                  "weight": 50,
                   "type": "FQDN"
                 }
               ]
@@ -44885,13 +44920,15 @@
               "endpoints": [
                 {
                   "endpoint": "192.168.2.2",
-                  "weight": 2,
-                  "type": "IP_V4"
+                  "weight": 50,
+                  "type": "IP_V4",
+                  "rewriteUser": "rewriteUser"
                 },
                 {
                   "endpoint": "www.example.com",
-                  "weight": 2,
-                  "type": "FQDN"
+                  "weight": 50,
+                  "type": "FQDN",
+                  "rewriteUser": "rewriteUser"
                 }
               ]
             }
@@ -44958,7 +44995,7 @@
         },
         "example": {
           "endpoint": "sip:1-999-123-4567@voip-provider.example.net",
-          "weight": 5,
+          "weight": 100,
           "type": "SIP"
         }
       },
@@ -60891,21 +60928,36 @@
             "$ref": "#/components/schemas/queryCriteriaList"
           }
         },
-        "description": "The request object used to search a voice configuration package."
+        "description": "The request object used to search voice configuration packages."
       },
       "queryCriteriaList": {
+        "maxItems": 3,
+        "minItems": 1,
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/queryCriteria"
         },
-        "description": "List of query criteria search request api"
+        "description": "List of query criteria for searching voice configuration packages. Only specific parameter combinations are allowed.\n\n**Supported `parameter` combinations:**\n\n- `phoneNumber`, `validVoiceConfig`\n- `phoneNumber`, `validVoiceConfig`, `name`\n- `phoneNumber`, `validVoiceConfigurationPackage`\n- `phoneNumber`, `validVoiceConfigurationPackage`, `name`\n- `voiceIntegrationId`\n- `voiceIntegrationId`, `name`\n- `name`\n\n> **Note:** The order of parameters in the `queryCriteria` array does not matter, but only the combinations listed above are valid.\n"
       },
       "queryCriteria": {
+        "required": [
+          "parameter",
+          "operator",
+          "values"
+        ],
         "type": "object",
         "properties": {
           "parameter": {
+            "enum": [
+              "phoneNumber",
+              "validVoiceConfig",
+              "validVoiceConfigurationPackage",
+              "voiceIntegrationId",
+              "name"
+            ],
             "type": "string",
-            "description": "The parameter name.",
+            "additionalProperties": false,
+            "description": "The parameter name to filter by.",
             "example": "phoneNumber"
           },
           "operator": {
@@ -60915,13 +60967,14 @@
             ],
             "type": "string",
             "additionalProperties": false,
+            "description": "The comparison operator to use.",
             "example": "EQ"
           },
           "values": {
             "$ref": "#/components/schemas/queryCriteriaValues"
           }
         },
-        "description": "Query criteria object for search request api"
+        "description": "Query criteria object for search request API"
       },
       "queryCriteriaValues": {
         "required": [
@@ -61133,7 +61186,11 @@
             "example": 12345678910
           },
           "type": {
-            "$ref": "#/components/schemas/voice_config_service_endpointTypeEnum"
+            "enum": [
+              "TN"
+            ],
+            "type": "string",
+            "additionalProperties": false
           },
           "weight": {
             "type": "integer",
@@ -61154,17 +61211,16 @@
             "example": "+sip:sara@1.1.1.1"
           },
           "type": {
-            "$ref": "#/components/schemas/voice_config_service_endpointTypeEnum"
+            "enum": [
+              "SIP"
+            ],
+            "type": "string",
+            "additionalProperties": false
           },
           "weight": {
             "type": "integer",
             "format": "int32",
             "example": 20
-          },
-          "rewriteUser": {
-            "type": "string",
-            "nullable": true,
-            "example": "rewrite-user@example.com"
           },
           "trunkInfo": {
             "$ref": "#/components/schemas/trunkInfo"
@@ -61180,12 +61236,22 @@
             "example": "+1.1.1.1:5081"
           },
           "type": {
-            "$ref": "#/components/schemas/voice_config_service_endpointTypeEnum"
+            "enum": [
+              "IP_V4"
+            ],
+            "type": "string",
+            "additionalProperties": false
           },
           "weight": {
             "type": "integer",
             "format": "int32",
             "example": 20
+          },
+          "rewriteUser": {
+            "type": "string",
+            "description": "Overrides the user part of the SIP Request-URI (e.g. `rewrite-user@endpoint`).",
+            "nullable": true,
+            "example": "rewrite-user@example.com"
           },
           "trunkInfo": {
             "$ref": "#/components/schemas/trunkInfo"
@@ -61201,12 +61267,22 @@
             "example": "a7e08808-129d-494c-a3af-c38d3cfd49f8"
           },
           "type": {
-            "$ref": "#/components/schemas/voice_config_service_endpointTypeEnum"
+            "enum": [
+              "INTEGRATION"
+            ],
+            "type": "string",
+            "additionalProperties": false
           },
           "weight": {
             "type": "integer",
             "format": "int32",
             "example": 20
+          },
+          "rewriteUser": {
+            "type": "string",
+            "description": "Overrides the user part of the SIP Request-URI (e.g. `rewrite-user@endpoint`).",
+            "nullable": true,
+            "example": "rewrite-user@example.com"
           },
           "trunkInfo": {
             "$ref": "#/components/schemas/trunkInfo"
@@ -61222,12 +61298,22 @@
             "example": "+test.test.com"
           },
           "type": {
-            "$ref": "#/components/schemas/voice_config_service_endpointTypeEnum"
+            "enum": [
+              "FQDN"
+            ],
+            "type": "string",
+            "additionalProperties": false
           },
           "weight": {
             "type": "integer",
             "format": "int32",
             "example": 20
+          },
+          "rewriteUser": {
+            "type": "string",
+            "description": "Overrides the user part of the SIP Request-URI (e.g. `rewrite-user@endpoint`).",
+            "nullable": true,
+            "example": "rewrite-user@example.com"
           },
           "trunkInfo": {
             "$ref": "#/components/schemas/trunkInfo"
@@ -61243,7 +61329,11 @@
             "example": "bot-endpoint-id"
           },
           "type": {
-            "$ref": "#/components/schemas/voice_config_service_endpointTypeEnum"
+            "enum": [
+              "BOT"
+            ],
+            "type": "string",
+            "additionalProperties": false
           },
           "weight": {
             "type": "integer",
@@ -62541,7 +62631,8 @@
             "$ref": "#/components/schemas/tasks"
           }
         },
-        "description": "Voice integration provisioning details."
+        "description": "Voice integration provisioning details.",
+        "nullable": true
       },
       "override": {
         "type": "object",
@@ -62550,7 +62641,8 @@
             "$ref": "#/components/schemas/voiceConfigurationPackageOriginationRoutePlanRequest"
           }
         },
-        "description": "TN override details."
+        "description": "TN override details.",
+        "nullable": true
       },
       "originationRoutePlanRoute": {
         "type": "object",
@@ -62571,19 +62663,19 @@
               "type": "object",
               "oneOf": [
                 {
-                  "$ref": "#/components/schemas/tnEndpointWithTrunk"
+                  "$ref": "#/components/schemas/tnEndpointWithoutTrunk"
                 },
                 {
-                  "$ref": "#/components/schemas/sipEndpointWithTrunk"
+                  "$ref": "#/components/schemas/sipEndpointWithoutTrunk"
                 },
                 {
-                  "$ref": "#/components/schemas/ipv4EndpointWithTrunk"
+                  "$ref": "#/components/schemas/ipv4EndpointWithoutTrunk"
                 },
                 {
-                  "$ref": "#/components/schemas/integrationEndpointWithTrunk"
+                  "$ref": "#/components/schemas/integrationEndpointWithoutTrunk"
                 },
                 {
-                  "$ref": "#/components/schemas/fqdnEndpointWithTrunk"
+                  "$ref": "#/components/schemas/fqdnEndpointWithoutTrunk"
                 },
                 {
                   "$ref": "#/components/schemas/botEndpoint"
@@ -62594,7 +62686,7 @@
         },
         "description": "A route for an Origination Route Plan."
       },
-      "tnEndpointWithTrunk": {
+      "tnEndpointWithoutTrunk": {
         "type": "object",
         "properties": {
           "endpoint": {
@@ -62610,28 +62702,11 @@
           "weight": {
             "type": "integer",
             "format": "int32"
-          },
-          "trunkInfo": {
-            "type": "object",
-            "properties": {
-              "trunkId": {
-                "type": "string",
-                "nullable": true,
-                "example": "66059341226405797b14d4c1"
-              },
-              "capabilityPipeId": {
-                "type": "string",
-                "nullable": true,
-                "example": "201954af-e0ef-494b-bf26-541a4e99904a"
-              }
-            },
-            "description": "Optional trunk selection info. May be omitted in responses.",
-            "nullable": true
           }
         },
-        "description": "TN endpoint for Origination Route Plan (with optional trunkInfo)."
+        "description": "TN endpoint for Origination Route Plan."
       },
-      "sipEndpointWithTrunk": {
+      "sipEndpointWithoutTrunk": {
         "type": "object",
         "properties": {
           "endpoint": {
@@ -62647,31 +62722,11 @@
           "weight": {
             "type": "integer",
             "format": "int32"
-          },
-          "rewriteUser": {
-            "type": "string"
-          },
-          "trunkInfo": {
-            "type": "object",
-            "properties": {
-              "trunkId": {
-                "type": "string",
-                "nullable": true,
-                "example": "66059341226405797b14d4c1"
-              },
-              "capabilityPipeId": {
-                "type": "string",
-                "nullable": true,
-                "example": "201954af-e0ef-494b-bf26-541a4e99904a"
-              }
-            },
-            "description": "Optional trunk selection info. May be omitted in responses.",
-            "nullable": true
           }
         },
-        "description": "SIP endpoint for Origination Route Plan (with optional trunkInfo)."
+        "description": "SIP endpoint for Origination Route Plan."
       },
-      "ipv4EndpointWithTrunk": {
+      "ipv4EndpointWithoutTrunk": {
         "type": "object",
         "properties": {
           "endpoint": {
@@ -62689,29 +62744,14 @@
             "format": "int32"
           },
           "rewriteUser": {
-            "type": "string"
-          },
-          "trunkInfo": {
-            "type": "object",
-            "properties": {
-              "trunkId": {
-                "type": "string",
-                "nullable": true,
-                "example": "66059341226405797b14d4c1"
-              },
-              "capabilityPipeId": {
-                "type": "string",
-                "nullable": true,
-                "example": "201954af-e0ef-494b-bf26-541a4e99904a"
-              }
-            },
-            "description": "Optional trunk selection info. May be omitted in responses.",
-            "nullable": true
+            "type": "string",
+            "description": "Overrides the user part of the SIP Request-URI (e.g. `rewrite-user@endpoint`).",
+            "example": "rewrite-user@example.com"
           }
         },
-        "description": "IPv4 endpoint for Origination Route Plan (with optional trunkInfo)."
+        "description": "IPv4 endpoint for Origination Route Plan."
       },
-      "integrationEndpointWithTrunk": {
+      "integrationEndpointWithoutTrunk": {
         "type": "object",
         "properties": {
           "endpoint": {
@@ -62729,29 +62769,14 @@
             "format": "int32"
           },
           "rewriteUser": {
-            "type": "string"
-          },
-          "trunkInfo": {
-            "type": "object",
-            "properties": {
-              "trunkId": {
-                "type": "string",
-                "nullable": true,
-                "example": "66059341226405797b14d4c1"
-              },
-              "capabilityPipeId": {
-                "type": "string",
-                "nullable": true,
-                "example": "201954af-e0ef-494b-bf26-541a4e99904a"
-              }
-            },
-            "description": "Optional trunk selection info. May be omitted in responses.",
-            "nullable": true
+            "type": "string",
+            "description": "Overrides the user part of the SIP Request-URI (e.g. `rewrite-user@endpoint`).",
+            "example": "rewrite-user@example.com"
           }
         },
-        "description": "Integration endpoint for Origination Route Plan (with optional trunkInfo)."
+        "description": "Integration endpoint for Origination Route Plan."
       },
-      "fqdnEndpointWithTrunk": {
+      "fqdnEndpointWithoutTrunk": {
         "type": "object",
         "properties": {
           "endpoint": {
@@ -62769,27 +62794,12 @@
             "format": "int32"
           },
           "rewriteUser": {
-            "type": "string"
-          },
-          "trunkInfo": {
-            "type": "object",
-            "properties": {
-              "trunkId": {
-                "type": "string",
-                "nullable": true,
-                "example": "66059341226405797b14d4c1"
-              },
-              "capabilityPipeId": {
-                "type": "string",
-                "nullable": true,
-                "example": "201954af-e0ef-494b-bf26-541a4e99904a"
-              }
-            },
-            "description": "Optional trunk selection info. May be omitted in responses.",
-            "nullable": true
+            "type": "string",
+            "description": "Overrides the user part of the SIP Request-URI (e.g. `rewrite-user@endpoint`).",
+            "example": "rewrite-user@example.com"
           }
         },
-        "description": "FQDN endpoint for Origination Route Plan (with optional trunkInfo)."
+        "description": "FQDN endpoint for Origination Route Plan."
       },
       "botEndpoint": {
         "type": "object",
@@ -80348,6 +80358,321 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/voiceProvisioningPhoneNumberUpdateResponse"
+            },
+            "examples": {
+              "updatePhoneNumbersWithOverridesResponse": {
+                "summary": "Response after updating phone numbers with overrides",
+                "description": "Shows the updated state of multiple phone numbers with mixed override configurations",
+                "value": {
+                  "links": [ ],
+                  "data": [
+                    {
+                      "phoneNumber": 19191234567,
+                      "override": {
+                        "originationRoutePlan": {
+                          "routes": [
+                            {
+                              "priority": 1,
+                              "name": "Custom Override Route",
+                              "endpoints": [
+                                {
+                                  "endpoint": 19195551234,
+                                  "type": "TN",
+                                  "weight": 50
+                                },
+                                {
+                                  "endpoint": "1.2.3.4:8080",
+                                  "type": "IP_V4",
+                                  "weight": 50,
+                                  "rewriteUser": "rewrite-user@example.com"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      },
+                      "voiceConfigurationPackage": {
+                        "voiceConfigurationPackageId": "3bc3c038-8f8c-4489-8dd2-c14063f395e2",
+                        "accountId": 1234567,
+                        "name": "Example Voice Configuration Package",
+                        "description": "Example VCP description",
+                        "originationRoutePlan": {
+                          "routes": [
+                            {
+                              "priority": 1,
+                              "name": "Primary Route",
+                              "endpoints": [
+                                {
+                                  "endpoint": "6543c038-8f8c-4489-8dd2-c14063f39321",
+                                  "type": "INTEGRATION",
+                                  "weight": 100
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "stirShakenBehavior": {
+                          "verstat": "ENHANCED",
+                          "identity": false
+                        },
+                        "cnam": {
+                          "enabled": true
+                        },
+                        "httpV2VoiceApplicationId": null,
+                        "pindropIntegration": {
+                          "enabled": false
+                        },
+                        "callVerification": {
+                          "enabled": false
+                        }
+                      },
+                      "inboundActivated": true,
+                      "outboundNationalActivated": true,
+                      "outboundInternationalActivated": true,
+                      "integrations": null
+                    },
+                    {
+                      "phoneNumber": 19197654321,
+                      "override": null,
+                      "voiceConfigurationPackage": {
+                        "voiceConfigurationPackageId": "3bc3c038-8f8c-4489-8dd2-c14063f395e2",
+                        "accountId": 1234567,
+                        "name": "Example Voice Configuration Package",
+                        "description": "Example VCP description",
+                        "originationRoutePlan": {
+                          "routes": [
+                            {
+                              "priority": 1,
+                              "name": "Primary Route",
+                              "endpoints": [
+                                {
+                                  "endpoint": "6543c038-8f8c-4489-8dd2-c14063f39321",
+                                  "type": "INTEGRATION",
+                                  "weight": 100
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "stirShakenBehavior": {
+                          "verstat": "ENHANCED",
+                          "identity": false
+                        },
+                        "cnam": {
+                          "enabled": true
+                        },
+                        "httpV2VoiceApplicationId": null,
+                        "pindropIntegration": {
+                          "enabled": false
+                        },
+                        "callVerification": {
+                          "enabled": false
+                        }
+                      },
+                      "inboundActivated": true,
+                      "outboundNationalActivated": true,
+                      "outboundInternationalActivated": true,
+                      "integrations": null
+                    },
+                    {
+                      "phoneNumber": 19198887777,
+                      "override": {
+                        "originationRoutePlan": {
+                          "routes": [
+                            {
+                              "priority": 1,
+                              "name": "Integration Override",
+                              "endpoints": [
+                                {
+                                  "endpoint": "6543c038-8f8c-4489-8dd2-c14063f39321",
+                                  "type": "INTEGRATION",
+                                  "weight": 100
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      },
+                      "voiceConfigurationPackage": {
+                        "voiceConfigurationPackageId": "3bc3c038-8f8c-4489-8dd2-c14063f395e2",
+                        "accountId": 1234567,
+                        "name": "Example Voice Configuration Package",
+                        "description": "Example VCP description",
+                        "originationRoutePlan": {
+                          "routes": [
+                            {
+                              "priority": 1,
+                              "name": "Primary Route",
+                              "endpoints": [
+                                {
+                                  "endpoint": "6543c038-8f8c-4489-8dd2-c14063f39321",
+                                  "type": "INTEGRATION",
+                                  "weight": 100
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "stirShakenBehavior": {
+                          "verstat": "ENHANCED",
+                          "identity": false
+                        },
+                        "cnam": {
+                          "enabled": true
+                        },
+                        "httpV2VoiceApplicationId": null,
+                        "pindropIntegration": {
+                          "enabled": false
+                        },
+                        "callVerification": {
+                          "enabled": false
+                        }
+                      },
+                      "inboundActivated": true,
+                      "outboundNationalActivated": true,
+                      "outboundInternationalActivated": true,
+                      "integrations": {
+                        "currentVoiceIntegrationId": "6543c038-8f8c-4489-8dd2-c14063f39321",
+                        "voiceIntegrationType": "zoom_cc_us",
+                        "tasks": [
+                          {
+                            "bulkId": "abd3c038-8f8c-4489-8dd2-c14063f39cf1",
+                            "voiceIntegrationId": "6543c038-8f8c-4489-8dd2-c14063f39321",
+                            "action": "ADD_INTEGRATION",
+                            "status": "SUCCESS",
+                            "code": null,
+                            "description": null,
+                            "statusUpdated": "2025-01-01T00:00:00Z"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "errors": [ ]
+                }
+              },
+              "removeOverrideResponse": {
+                "summary": "Response after removing override from a phone number",
+                "description": "Shows the phone number state after override was removed (set to null)",
+                "value": {
+                  "links": [ ],
+                  "data": [
+                    {
+                      "phoneNumber": 19191234567,
+                      "override": null,
+                      "voiceConfigurationPackage": {
+                        "voiceConfigurationPackageId": "3bc3c038-8f8c-4489-8dd2-c14063f395e2",
+                        "accountId": 1234567,
+                        "name": "Example Voice Configuration Package",
+                        "description": "Example VCP description",
+                        "originationRoutePlan": {
+                          "routes": [
+                            {
+                              "priority": 1,
+                              "name": "Primary Route",
+                              "endpoints": [
+                                {
+                                  "endpoint": "6543c038-8f8c-4489-8dd2-c14063f39321",
+                                  "type": "INTEGRATION",
+                                  "weight": 100
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "stirShakenBehavior": {
+                          "verstat": "ENHANCED",
+                          "identity": false
+                        },
+                        "cnam": {
+                          "enabled": true
+                        },
+                        "httpV2VoiceApplicationId": null,
+                        "pindropIntegration": {
+                          "enabled": false
+                        },
+                        "callVerification": {
+                          "enabled": false
+                        }
+                      },
+                      "inboundActivated": true,
+                      "outboundNationalActivated": true,
+                      "outboundInternationalActivated": true,
+                      "integrations": null
+                    }
+                  ],
+                  "errors": [ ]
+                }
+              },
+              "addOverrideResponse": {
+                "summary": "Response after adding override to a phone number",
+                "description": "Shows the phone number state after a new override was added",
+                "value": {
+                  "links": [ ],
+                  "data": [
+                    {
+                      "phoneNumber": 19191234567,
+                      "override": {
+                        "originationRoutePlan": {
+                          "routes": [
+                            {
+                              "priority": 1,
+                              "name": "New Override Route",
+                              "endpoints": [
+                                {
+                                  "endpoint": 19195551234,
+                                  "type": "TN",
+                                  "weight": 100
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      },
+                      "voiceConfigurationPackage": {
+                        "voiceConfigurationPackageId": "3bc3c038-8f8c-4489-8dd2-c14063f395e2",
+                        "accountId": 1234567,
+                        "name": "Example Voice Configuration Package",
+                        "description": "Example VCP description",
+                        "originationRoutePlan": {
+                          "routes": [
+                            {
+                              "priority": 1,
+                              "name": "Primary Route",
+                              "endpoints": [
+                                {
+                                  "endpoint": "6543c038-8f8c-4489-8dd2-c14063f39321",
+                                  "type": "INTEGRATION",
+                                  "weight": 100
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "stirShakenBehavior": {
+                          "verstat": "ENHANCED",
+                          "identity": false
+                        },
+                        "cnam": {
+                          "enabled": true
+                        },
+                        "httpV2VoiceApplicationId": null,
+                        "pindropIntegration": {
+                          "enabled": false
+                        },
+                        "callVerification": {
+                          "enabled": false
+                        }
+                      },
+                      "inboundActivated": true,
+                      "outboundNationalActivated": true,
+                      "outboundInternationalActivated": true,
+                      "integrations": null
+                    }
+                  ],
+                  "errors": [ ]
+                }
+              }
             }
           }
         }
@@ -98160,12 +98485,12 @@
                     {
                       "endpoint": "a7e08808-129d-494c-a3af-c38d3cfd49f8",
                       "type": "INTEGRATION",
-                      "weight": 20
+                      "weight": 10
                     },
                     {
                       "endpoint": "+test.test.com",
                       "type": "FQDN",
-                      "weight": 20
+                      "weight": 10
                     }
                   ]
                 },
@@ -98277,7 +98602,7 @@
                       {
                         "endpoint": 12345678910,
                         "type": "TN",
-                        "weight": 20,
+                        "weight": 50,
                         "trunkInfo": {
                           "trunkId": "66059341226405797b14d4c1",
                           "capabilityPipeId": "201954af-e0ef-494b-bf26-541a4e99904a"
@@ -98286,7 +98611,7 @@
                       {
                         "endpoint": 12345670000,
                         "type": "TN",
-                        "weight": 20
+                        "weight": 50
                       }
                     ]
                   }
@@ -98363,12 +98688,12 @@
                       {
                         "endpoint": 12345678910,
                         "type": "TN",
-                        "weight": 20
+                        "weight": 50
                       },
                       {
                         "endpoint": "+sip:john@2.2.2.2",
                         "type": "SIP",
-                        "weight": 20
+                        "weight": 50
                       }
                     ]
                   }
@@ -99068,6 +99393,29 @@
         "value": {
           "data": {
             "phoneNumber": 19191234567,
+            "override": {
+              "originationRoutePlan": {
+                "routes": [
+                  {
+                    "priority": 1,
+                    "name": "Override Route",
+                    "endpoints": [
+                      {
+                        "endpoint": 19195551234,
+                        "type": "TN",
+                        "weight": 50
+                      },
+                      {
+                        "endpoint": "1.2.3.4:8080",
+                        "type": "IP_V4",
+                        "weight": 50,
+                        "rewriteUser": "rewrite-user@example.com"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
             "voiceConfigurationPackage": {
               "voiceConfigurationPackageId": "3bc3c038-8f8c-4489-8dd2-c14063f395e2",
               "accountId": 1234567,
@@ -99082,16 +99430,12 @@
                       {
                         "endpoint": "6543c038-8f8c-4489-8dd2-c14063f39321",
                         "type": "INTEGRATION",
-                        "weight": 100,
-                        "trunkInfo": {
-                          "trunkId": "66059341226405797b14d4c1",
-                          "capabilityPipeId": "201954af-e0ef-494b-bf26-541a4e99904a"
-                        }
+                        "weight": 50
                       },
                       {
                         "endpoint": 19191234567,
                         "type": "TN",
-                        "weight": 100
+                        "weight": 50
                       }
                     ]
                   }
@@ -99141,6 +99485,29 @@
           "data": [
             {
               "phoneNumber": 19191234567,
+              "override": {
+                "originationRoutePlan": {
+                  "routes": [
+                    {
+                      "priority": 1,
+                      "name": "Override Route",
+                      "endpoints": [
+                        {
+                          "endpoint": 19195551234,
+                          "type": "TN",
+                          "weight": 50
+                        },
+                        {
+                          "endpoint": "1.2.3.4:8080",
+                          "type": "IP_V4",
+                          "weight": 50,
+                          "rewriteUser": "rewrite-user@example.com"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
               "voiceConfigurationPackage": {
                 "voiceConfigurationPackageId": "3bc3c038-8f8c-4489-8dd2-c14063f395e2",
                 "accountId": 1234567,
@@ -99155,16 +99522,12 @@
                         {
                           "endpoint": "6543c038-8f8c-4489-8dd2-c14063f39321",
                           "type": "INTEGRATION",
-                          "weight": 100,
-                          "trunkInfo": {
-                            "trunkId": "66059341226405797b14d4c1",
-                            "capabilityPipeId": "201954af-e0ef-494b-bf26-541a4e99904a"
-                          }
+                          "weight": 50
                         },
                         {
                           "endpoint": 19191234567,
                           "type": "TN",
-                          "weight": 100
+                          "weight": 50
                         }
                       ]
                     },
@@ -99217,11 +99580,12 @@
             },
             {
               "phoneNumber": 19197654321,
+              "override": null,
               "voiceConfigurationPackage": null,
               "inboundActivated": false,
               "outboundNationalActivated": false,
               "outboundInternationalActivated": false,
-              "integrations": [ ]
+              "integrations": null
             }
           ],
           "links": [
@@ -99248,6 +99612,29 @@
           "data": [
             {
               "phoneNumber": 19191234567,
+              "override": {
+                "originationRoutePlan": {
+                  "routes": [
+                    {
+                      "priority": 1,
+                      "name": "Override Route",
+                      "endpoints": [
+                        {
+                          "endpoint": 19195551234,
+                          "type": "TN",
+                          "weight": 50
+                        },
+                        {
+                          "endpoint": "1.2.3.4:8080",
+                          "type": "IP_V4",
+                          "weight": 50,
+                          "rewriteUser": "rewrite-user@example.com"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
               "voiceConfigurationPackage": {
                 "voiceConfigurationPackageId": "3bc3c038-8f8c-4489-8dd2-c14063f395e2",
                 "accountId": 1234567,
@@ -99262,16 +99649,12 @@
                         {
                           "endpoint": "6543c038-8f8c-4489-8dd2-c14063f39321",
                           "type": "INTEGRATION",
-                          "weight": 100,
-                          "trunkInfo": {
-                            "trunkId": "66059341226405797b14d4c1",
-                            "capabilityPipeId": "201954af-e0ef-494b-bf26-541a4e99904a"
-                          }
+                          "weight": 50
                         },
                         {
                           "endpoint": 19191234567,
                           "type": "TN",
-                          "weight": 100
+                          "weight": 50
                         }
                       ]
                     },
@@ -99324,11 +99707,12 @@
             },
             {
               "phoneNumber": 19197654321,
+              "override": null,
               "voiceConfigurationPackage": null,
               "inboundActivated": false,
               "outboundNationalActivated": false,
               "outboundInternationalActivated": false,
-              "integrations": [ ]
+              "integrations": null
             }
           ],
           "links": [
@@ -103143,6 +103527,139 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/searchVoiceConfigurationPackageRequest"
+            },
+            "examples": {
+              "phoneNumberWithValidVoiceConfig": {
+                "summary": "Search by phone number and validVoiceConfig",
+                "value": {
+                  "queryCriteria": [
+                    {
+                      "parameter": "phoneNumber",
+                      "operator": "EQ",
+                      "values": [
+                        441512100308
+                      ]
+                    },
+                    {
+                      "parameter": "validVoiceConfig",
+                      "operator": "EQ",
+                      "values": true
+                    }
+                  ]
+                }
+              },
+              "phoneNumberWithValidVoiceConfigAndName": {
+                "summary": "Search by phone number, validVoiceConfig, and name",
+                "value": {
+                  "queryCriteria": [
+                    {
+                      "parameter": "phoneNumber",
+                      "operator": "EQ",
+                      "values": [
+                        441512100308
+                      ]
+                    },
+                    {
+                      "parameter": "validVoiceConfig",
+                      "operator": "EQ",
+                      "values": true
+                    },
+                    {
+                      "parameter": "name",
+                      "operator": "STARTS_WITH",
+                      "values": "Lorem Ipsum"
+                    }
+                  ]
+                }
+              },
+              "phoneNumberWithValidVoiceConfigurationPackage": {
+                "summary": "Search by phone number and validVoiceConfigurationPackage",
+                "value": {
+                  "queryCriteria": [
+                    {
+                      "parameter": "phoneNumber",
+                      "operator": "EQ",
+                      "values": [
+                        441512100308
+                      ]
+                    },
+                    {
+                      "parameter": "validVoiceConfigurationPackage",
+                      "operator": "EQ",
+                      "values": true
+                    }
+                  ]
+                }
+              },
+              "phoneNumberWithValidVoiceConfigurationPackageAndName": {
+                "summary": "Search by phone number, validVoiceConfigurationPackage, and name",
+                "value": {
+                  "queryCriteria": [
+                    {
+                      "parameter": "phoneNumber",
+                      "operator": "EQ",
+                      "values": [
+                        441512100308
+                      ]
+                    },
+                    {
+                      "parameter": "validVoiceConfigurationPackage",
+                      "operator": "EQ",
+                      "values": true
+                    },
+                    {
+                      "parameter": "name",
+                      "operator": "STARTS_WITH",
+                      "values": "Lorem Ipsum"
+                    }
+                  ]
+                }
+              },
+              "voiceIntegrationIdOnly": {
+                "summary": "Search by voiceIntegrationId only",
+                "value": {
+                  "queryCriteria": [
+                    {
+                      "parameter": "voiceIntegrationId",
+                      "operator": "EQ",
+                      "values": [
+                        "281e5e81-5a23-4821-aef2-cfb558ca1468"
+                      ]
+                    }
+                  ]
+                }
+              },
+              "voiceIntegrationIdWithName": {
+                "summary": "Search by voiceIntegrationId and name",
+                "value": {
+                  "queryCriteria": [
+                    {
+                      "parameter": "voiceIntegrationId",
+                      "operator": "EQ",
+                      "values": [
+                        "281e5e81-5a23-4821-aef2-cfb558ca1468"
+                      ]
+                    },
+                    {
+                      "parameter": "name",
+                      "operator": "STARTS_WITH",
+                      "values": "Lorem Ipsum"
+                    }
+                  ]
+                }
+              },
+              "nameOnly": {
+                "summary": "Search by name only",
+                "value": {
+                  "queryCriteria": [
+                    {
+                      "parameter": "name",
+                      "operator": "STARTS_WITH",
+                      "values": "Lorem Ipsum"
+                    }
+                  ]
+                }
+              }
             }
           }
         }
@@ -103276,6 +103793,100 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/voicePhoneNumberUpdateList"
+            },
+            "examples": {
+              "updatePhoneNumbersWithOverrides": {
+                "summary": "Update phone numbers with overrides",
+                "description": "Example showing how to update multiple phone numbers, some with overrides and some with null overrides",
+                "value": [
+                  {
+                    "phoneNumber": 19191234567,
+                    "override": {
+                      "originationRoutePlan": {
+                        "routes": [
+                          {
+                            "priority": 1,
+                            "name": "Custom Override Route",
+                            "endpoints": [
+                              {
+                                "endpoint": 19195551234,
+                                "type": "TN",
+                                "weight": 50
+                              },
+                              {
+                                "endpoint": "1.2.3.4:8080",
+                                "type": "IP_V4",
+                                "weight": 50,
+                                "rewriteUser": "rewrite-user@example.com"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "phoneNumber": 19197654321,
+                    "override": null
+                  },
+                  {
+                    "phoneNumber": 19198887777,
+                    "override": {
+                      "originationRoutePlan": {
+                        "routes": [
+                          {
+                            "priority": 1,
+                            "name": "Integration Override",
+                            "endpoints": [
+                              {
+                                "endpoint": "6543c038-8f8c-4489-8dd2-c14063f39321",
+                                "type": "INTEGRATION",
+                                "weight": 100
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "removeOverride": {
+                "summary": "Remove override from a phone number",
+                "description": "Example showing how to remove an override by setting it to null",
+                "value": [
+                  {
+                    "phoneNumber": 19191234567,
+                    "override": null
+                  }
+                ]
+              },
+              "addOverride": {
+                "summary": "Add override to a phone number",
+                "description": "Example showing how to add an override to a phone number",
+                "value": [
+                  {
+                    "phoneNumber": 19191234567,
+                    "override": {
+                      "originationRoutePlan": {
+                        "routes": [
+                          {
+                            "priority": 1,
+                            "name": "New Override Route",
+                            "endpoints": [
+                              {
+                                "endpoint": 19195551234,
+                                "type": "TN",
+                                "weight": 100
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
             }
           }
         },

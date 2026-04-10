@@ -404,7 +404,7 @@ components:
     searchVoiceConfigurationPackageRequest:
       title: Search Voice Configuration Package Request
       type: object
-      description: The request object used to search a voice configuration package.
+      description: The request object used to search voice configuration packages.
       properties:
         queryCriteria:
           $ref: '#/components/schemas/queryCriteriaList'
@@ -412,24 +412,70 @@ components:
         - queryCriteria
     queryCriteriaList:
       type: array
-      description: List of query criteria search request api
+      description: >
+        List of query criteria for searching voice configuration packages. Only
+        specific parameter combinations are allowed.
+
+
+        **Supported `parameter` combinations:**
+
+
+        - `phoneNumber`, `validVoiceConfig`
+
+        - `phoneNumber`, `validVoiceConfig`, `name`
+
+        - `phoneNumber`, `validVoiceConfigurationPackage`
+
+        - `phoneNumber`, `validVoiceConfigurationPackage`, `name`
+
+        - `voiceIntegrationId`
+
+        - `voiceIntegrationId`, `name`
+
+        - `name`
+
+
+        > **Note:** The order of parameters in the `queryCriteria` array does
+        not matter, but only the combinations listed above are valid.
+      minItems: 1
+      maxItems: 3
       items:
         $ref: '#/components/schemas/queryCriteria'
     queryCriteria:
-      description: Query criteria object for search request api
+      description: Query criteria object for search request API
+      type: object
+      required:
+        - parameter
+        - operator
+        - values
       properties:
         parameter:
           type: string
-          description: The parameter name.
+          description: The parameter name to filter by.
+          enum:
+            - phoneNumber
+            - validVoiceConfig
+            - validVoiceConfigurationPackage
+            - voiceIntegrationId
+            - name
           example: phoneNumber
         operator:
           type: string
+          description: The comparison operator to use.
           enum:
             - EQ
             - STARTS_WITH
           example: EQ
         values:
           $ref: '#/components/schemas/queryCriteriaValues'
+          description: >-
+            The value(s) for the filter. This may be: - a boolean (e.g. for
+            `validVoiceConfig` or `validVoiceConfigurationPackage`), - a single
+            string (e.g. for `name`), or - an array of strings (e.g. for
+            `phoneNumber` or `voiceIntegrationId`).
+
+            Use the `EQ` operator for exact matches (booleans and exact values)
+            and `STARTS_WITH` for prefix matching on string values.
     queryCriteriaValues:
       oneOf:
         - type: boolean
@@ -558,7 +604,9 @@ components:
           type: string
           example: '+12345678910'
         type:
-          $ref: '#/components/schemas/endpointTypeEnum'
+          type: string
+          enum:
+            - TN
         weight:
           type: integer
           format: int32
@@ -575,15 +623,13 @@ components:
           type: string
           example: +sip:sara@1.1.1.1
         type:
-          $ref: '#/components/schemas/endpointTypeEnum'
+          type: string
+          enum:
+            - SIP
         weight:
           type: integer
           format: int32
           example: 20
-        rewriteUser:
-          type: string
-          nullable: true
-          example: rewrite-user@example.com
         trunkInfo:
           $ref: '#/components/schemas/trunkInfo'
           nullable: true
@@ -596,11 +642,20 @@ components:
           type: string
           example: +1.1.1.1:5081
         type:
-          $ref: '#/components/schemas/endpointTypeEnum'
+          type: string
+          enum:
+            - IP_V4
         weight:
           type: integer
           format: int32
           example: 20
+        rewriteUser:
+          type: string
+          nullable: true
+          description: >-
+            Overrides the user part of the SIP Request-URI (e.g.
+            `rewrite-user@endpoint`).
+          example: rewrite-user@example.com
         trunkInfo:
           $ref: '#/components/schemas/trunkInfo'
           nullable: true
@@ -613,11 +668,20 @@ components:
           type: string
           example: a7e08808-129d-494c-a3af-c38d3cfd49f8
         type:
-          $ref: '#/components/schemas/endpointTypeEnum'
+          type: string
+          enum:
+            - INTEGRATION
         weight:
           type: integer
           format: int32
           example: 20
+        rewriteUser:
+          type: string
+          nullable: true
+          description: >-
+            Overrides the user part of the SIP Request-URI (e.g.
+            `rewrite-user@endpoint`).
+          example: rewrite-user@example.com
         trunkInfo:
           $ref: '#/components/schemas/trunkInfo'
           nullable: true
@@ -630,11 +694,20 @@ components:
           type: string
           example: +test.test.com
         type:
-          $ref: '#/components/schemas/endpointTypeEnum'
+          type: string
+          enum:
+            - FQDN
         weight:
           type: integer
           format: int32
           example: 20
+        rewriteUser:
+          type: string
+          nullable: true
+          description: >-
+            Overrides the user part of the SIP Request-URI (e.g.
+            `rewrite-user@endpoint`).
+          example: rewrite-user@example.com
         trunkInfo:
           $ref: '#/components/schemas/trunkInfo'
           nullable: true
@@ -647,7 +720,9 @@ components:
           type: string
           example: bot-endpoint-id
         type:
-          $ref: '#/components/schemas/endpointTypeEnum'
+          type: string
+          enum:
+            - BOT
         weight:
           type: integer
           format: int32
@@ -1193,6 +1268,83 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/searchVoiceConfigurationPackageRequest'
+          examples:
+            phoneNumberWithValidVoiceConfig:
+              summary: Search by phone number and validVoiceConfig
+              value:
+                queryCriteria:
+                  - parameter: phoneNumber
+                    operator: EQ
+                    values:
+                      - '+441512100308'
+                  - parameter: validVoiceConfig
+                    operator: EQ
+                    values: true
+            phoneNumberWithValidVoiceConfigAndName:
+              summary: Search by phone number, validVoiceConfig, and name
+              value:
+                queryCriteria:
+                  - parameter: phoneNumber
+                    operator: EQ
+                    values:
+                      - '+441512100308'
+                  - parameter: validVoiceConfig
+                    operator: EQ
+                    values: true
+                  - parameter: name
+                    operator: STARTS_WITH
+                    values: Lorem Ipsum
+            phoneNumberWithValidVoiceConfigurationPackage:
+              summary: Search by phone number and validVoiceConfigurationPackage
+              value:
+                queryCriteria:
+                  - parameter: phoneNumber
+                    operator: EQ
+                    values:
+                      - '+441512100308'
+                  - parameter: validVoiceConfigurationPackage
+                    operator: EQ
+                    values: true
+            phoneNumberWithValidVoiceConfigurationPackageAndName:
+              summary: Search by phone number, validVoiceConfigurationPackage, and name
+              value:
+                queryCriteria:
+                  - parameter: phoneNumber
+                    operator: EQ
+                    values:
+                      - '+441512100308'
+                  - parameter: validVoiceConfigurationPackage
+                    operator: EQ
+                    values: true
+                  - parameter: name
+                    operator: STARTS_WITH
+                    values: Lorem Ipsum
+            voiceIntegrationIdOnly:
+              summary: Search by voiceIntegrationId only
+              value:
+                queryCriteria:
+                  - parameter: voiceIntegrationId
+                    operator: EQ
+                    values:
+                      - 281e5e81-5a23-4821-aef2-cfb558ca1468
+            voiceIntegrationIdWithName:
+              summary: Search by voiceIntegrationId and name
+              value:
+                queryCriteria:
+                  - parameter: voiceIntegrationId
+                    operator: EQ
+                    values:
+                      - 281e5e81-5a23-4821-aef2-cfb558ca1468
+                  - parameter: name
+                    operator: STARTS_WITH
+                    values: Lorem Ipsum
+            nameOnly:
+              summary: Search by name only
+              value:
+                queryCriteria:
+                  - parameter: name
+                    operator: STARTS_WITH
+                    values: Lorem Ipsum
     createVoiceConfigurationPackageRequest:
       content:
         application/json:
@@ -1417,10 +1569,10 @@ components:
                     weight: 20
                   - endpoint: a7e08808-129d-494c-a3af-c38d3cfd49f8
                     type: INTEGRATION
-                    weight: 20
+                    weight: 10
                   - endpoint: +test.test.com
                     type: FQDN
-                    weight: 20
+                    weight: 10
               - priority: 2
                 name: 2nd Route
                 endpoints:
@@ -1497,13 +1649,13 @@ components:
                   endpoints:
                     - endpoint: '+12345678910'
                       type: TN
-                      weight: 20
+                      weight: 50
                       trunkInfo:
                         trunkId: 66059341226405797b14d4c1
                         capabilityPipeId: 201954af-e0ef-494b-bf26-541a4e99904a
                     - endpoint: '+12345670000'
                       type: TN
-                      weight: 20
+                      weight: 50
             stirShakenBehavior:
               verstat: BASIC
               identity: true
@@ -1556,10 +1708,10 @@ components:
                   endpoints:
                     - endpoint: '+12345678910'
                       type: TN
-                      weight: 20
+                      weight: 50
                     - endpoint: +sip:john@2.2.2.2
                       type: SIP
-                      weight: 20
+                      weight: 50
             stirShakenBehavior:
               verstat: BASIC
               identity: true

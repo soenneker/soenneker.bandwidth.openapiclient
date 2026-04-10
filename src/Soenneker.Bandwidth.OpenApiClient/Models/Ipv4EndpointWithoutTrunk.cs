@@ -8,10 +8,10 @@ using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     /// <summary>
-    /// FQDN endpoint for Origination Route Plan (with optional trunkInfo).
+    /// IPv4 endpoint for Origination Route Plan.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class FqdnEndpointWithTrunk : IAdditionalDataHolder, IParsable
+    public partial class Ipv4EndpointWithoutTrunk : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -23,7 +23,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Endpoint { get; set; }
 #endif
-        /// <summary>The rewriteUser property</summary>
+        /// <summary>Overrides the user part of the SIP Request-URI (e.g. `rewrite-user@endpoint`).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? RewriteUser { get; set; }
@@ -31,34 +31,26 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string RewriteUser { get; set; }
 #endif
-        /// <summary>Optional trunk selection info. May be omitted in responses.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithTrunk_trunkInfo? TrunkInfo { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithTrunk_trunkInfo TrunkInfo { get; set; }
-#endif
         /// <summary>The type property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithTrunk_type? Type { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointWithoutTrunk_type? Type { get; set; }
         /// <summary>The weight property</summary>
         public int? Weight { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithTrunk"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointWithoutTrunk"/> and sets the default values.
         /// </summary>
-        public FqdnEndpointWithTrunk()
+        public Ipv4EndpointWithoutTrunk()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithTrunk"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointWithoutTrunk"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithTrunk CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointWithoutTrunk CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithTrunk();
+            return new global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointWithoutTrunk();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -70,8 +62,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "endpoint", n => { Endpoint = n.GetStringValue(); } },
                 { "rewriteUser", n => { RewriteUser = n.GetStringValue(); } },
-                { "trunkInfo", n => { TrunkInfo = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithTrunk_trunkInfo>(global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithTrunk_trunkInfo.CreateFromDiscriminatorValue); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithTrunk_type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointWithoutTrunk_type>(); } },
                 { "weight", n => { Weight = n.GetIntValue(); } },
             };
         }
@@ -84,8 +75,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("endpoint", Endpoint);
             writer.WriteStringValue("rewriteUser", RewriteUser);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithTrunk_trunkInfo>("trunkInfo", TrunkInfo);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithTrunk_type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointWithoutTrunk_type>("type", Type);
             writer.WriteIntValue("weight", Weight);
             writer.WriteAdditionalData(AdditionalData);
         }

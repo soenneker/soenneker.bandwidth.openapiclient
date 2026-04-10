@@ -420,6 +420,8 @@ components:
           override:
             $ref: '#/components/schemas/override'
     integrations:
+      type: object
+      nullable: true
       description: Voice integration provisioning details.
       properties:
         currentVoiceIntegrationId:
@@ -430,6 +432,7 @@ components:
           $ref: '#/components/schemas/tasks'
     override:
       type: object
+      nullable: true
       description: TN override details.
       properties:
         originationRoutePlan:
@@ -451,15 +454,15 @@ components:
           type: array
           items:
             oneOf:
-              - $ref: '#/components/schemas/tnEndpointWithTrunk'
-              - $ref: '#/components/schemas/sipEndpointWithTrunk'
-              - $ref: '#/components/schemas/ipv4EndpointWithTrunk'
-              - $ref: '#/components/schemas/integrationEndpointWithTrunk'
-              - $ref: '#/components/schemas/fqdnEndpointWithTrunk'
+              - $ref: '#/components/schemas/tnEndpointWithoutTrunk'
+              - $ref: '#/components/schemas/sipEndpointWithoutTrunk'
+              - $ref: '#/components/schemas/ipv4EndpointWithoutTrunk'
+              - $ref: '#/components/schemas/integrationEndpointWithoutTrunk'
+              - $ref: '#/components/schemas/fqdnEndpointWithoutTrunk'
               - $ref: '#/components/schemas/botEndpoint'
-    tnEndpointWithTrunk:
+    tnEndpointWithoutTrunk:
       type: object
-      description: TN endpoint for Origination Route Plan (with optional trunkInfo).
+      description: TN endpoint for Origination Route Plan.
       properties:
         endpoint:
           type: string
@@ -470,22 +473,9 @@ components:
         weight:
           type: integer
           format: int32
-        trunkInfo:
-          type: object
-          nullable: true
-          description: Optional trunk selection info. May be omitted in responses.
-          properties:
-            trunkId:
-              type: string
-              nullable: true
-              example: 66059341226405797b14d4c1
-            capabilityPipeId:
-              type: string
-              nullable: true
-              example: 201954af-e0ef-494b-bf26-541a4e99904a
-    sipEndpointWithTrunk:
+    sipEndpointWithoutTrunk:
       type: object
-      description: SIP endpoint for Origination Route Plan (with optional trunkInfo).
+      description: SIP endpoint for Origination Route Plan.
       properties:
         endpoint:
           type: string
@@ -496,24 +486,9 @@ components:
         weight:
           type: integer
           format: int32
-        rewriteUser:
-          type: string
-        trunkInfo:
-          type: object
-          nullable: true
-          description: Optional trunk selection info. May be omitted in responses.
-          properties:
-            trunkId:
-              type: string
-              nullable: true
-              example: 66059341226405797b14d4c1
-            capabilityPipeId:
-              type: string
-              nullable: true
-              example: 201954af-e0ef-494b-bf26-541a4e99904a
-    ipv4EndpointWithTrunk:
+    ipv4EndpointWithoutTrunk:
       type: object
-      description: IPv4 endpoint for Origination Route Plan (with optional trunkInfo).
+      description: IPv4 endpoint for Origination Route Plan.
       properties:
         endpoint:
           type: string
@@ -526,24 +501,13 @@ components:
           format: int32
         rewriteUser:
           type: string
-        trunkInfo:
-          type: object
-          nullable: true
-          description: Optional trunk selection info. May be omitted in responses.
-          properties:
-            trunkId:
-              type: string
-              nullable: true
-              example: 66059341226405797b14d4c1
-            capabilityPipeId:
-              type: string
-              nullable: true
-              example: 201954af-e0ef-494b-bf26-541a4e99904a
-    integrationEndpointWithTrunk:
+          description: >-
+            Overrides the user part of the SIP Request-URI (e.g.
+            `rewrite-user@endpoint`).
+          example: rewrite-user@example.com
+    integrationEndpointWithoutTrunk:
       type: object
-      description: >-
-        Integration endpoint for Origination Route Plan (with optional
-        trunkInfo).
+      description: Integration endpoint for Origination Route Plan.
       properties:
         endpoint:
           type: string
@@ -556,22 +520,13 @@ components:
           format: int32
         rewriteUser:
           type: string
-        trunkInfo:
-          type: object
-          nullable: true
-          description: Optional trunk selection info. May be omitted in responses.
-          properties:
-            trunkId:
-              type: string
-              nullable: true
-              example: 66059341226405797b14d4c1
-            capabilityPipeId:
-              type: string
-              nullable: true
-              example: 201954af-e0ef-494b-bf26-541a4e99904a
-    fqdnEndpointWithTrunk:
+          description: >-
+            Overrides the user part of the SIP Request-URI (e.g.
+            `rewrite-user@endpoint`).
+          example: rewrite-user@example.com
+    fqdnEndpointWithoutTrunk:
       type: object
-      description: FQDN endpoint for Origination Route Plan (with optional trunkInfo).
+      description: FQDN endpoint for Origination Route Plan.
       properties:
         endpoint:
           type: string
@@ -584,19 +539,10 @@ components:
           format: int32
         rewriteUser:
           type: string
-        trunkInfo:
-          type: object
-          nullable: true
-          description: Optional trunk selection info. May be omitted in responses.
-          properties:
-            trunkId:
-              type: string
-              nullable: true
-              example: 66059341226405797b14d4c1
-            capabilityPipeId:
-              type: string
-              nullable: true
-              example: 201954af-e0ef-494b-bf26-541a4e99904a
+          description: >-
+            Overrides the user part of the SIP Request-URI (e.g.
+            `rewrite-user@endpoint`).
+          example: rewrite-user@example.com
     botEndpoint:
       type: object
       description: Bot endpoint for Origination Route Plan.
@@ -1069,6 +1015,59 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/voicePhoneNumberUpdateList'
+          examples:
+            updatePhoneNumbersWithOverrides:
+              summary: Update phone numbers with overrides
+              description: >-
+                Example showing how to update multiple phone numbers, some with
+                overrides and some with null overrides
+              value:
+                - phoneNumber: '+19191234567'
+                  override:
+                    originationRoutePlan:
+                      routes:
+                        - priority: 1
+                          name: Custom Override Route
+                          endpoints:
+                            - endpoint: '+19195551234'
+                              type: TN
+                              weight: 50
+                            - endpoint: 1.2.3.4:8080
+                              type: IP_V4
+                              weight: 50
+                              rewriteUser: rewrite-user@example.com
+                - phoneNumber: '+19197654321'
+                  override: null
+                - phoneNumber: '+19198887777'
+                  override:
+                    originationRoutePlan:
+                      routes:
+                        - priority: 1
+                          name: Integration Override
+                          endpoints:
+                            - endpoint: 6543c038-8f8c-4489-8dd2-c14063f39321
+                              type: INTEGRATION
+                              weight: 100
+            removeOverride:
+              summary: Remove override from a phone number
+              description: Example showing how to remove an override by setting it to null
+              value:
+                - phoneNumber: '+19191234567'
+                  override: null
+            addOverride:
+              summary: Add override to a phone number
+              description: Example showing how to add an override to a phone number
+              value:
+                - phoneNumber: '+19191234567'
+                  override:
+                    originationRoutePlan:
+                      routes:
+                        - priority: 1
+                          name: New Override Route
+                          endpoints:
+                            - endpoint: '+19195551234'
+                              type: TN
+                              weight: 100
     searchVoicePhoneNumbersRequest:
       description: Request body supplied to the voice phone number search endpoint.
       required: true
@@ -1120,6 +1119,215 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/voiceProvisioningPhoneNumberUpdateResponse'
+          examples:
+            updatePhoneNumbersWithOverridesResponse:
+              summary: Response after updating phone numbers with overrides
+              description: >-
+                Shows the updated state of multiple phone numbers with mixed
+                override configurations
+              value:
+                links: []
+                data:
+                  - phoneNumber: '+19191234567'
+                    override:
+                      originationRoutePlan:
+                        routes:
+                          - priority: 1
+                            name: Custom Override Route
+                            endpoints:
+                              - endpoint: '+19195551234'
+                                type: TN
+                                weight: 50
+                              - endpoint: 1.2.3.4:8080
+                                type: IP_V4
+                                weight: 50
+                                rewriteUser: rewrite-user@example.com
+                    voiceConfigurationPackage:
+                      voiceConfigurationPackageId: 3bc3c038-8f8c-4489-8dd2-c14063f395e2
+                      accountId: 1234567
+                      name: Example Voice Configuration Package
+                      description: Example VCP description
+                      originationRoutePlan:
+                        routes:
+                          - priority: 1
+                            name: Primary Route
+                            endpoints:
+                              - endpoint: 6543c038-8f8c-4489-8dd2-c14063f39321
+                                type: INTEGRATION
+                                weight: 100
+                      stirShakenBehavior:
+                        verstat: ENHANCED
+                        identity: false
+                      cnam:
+                        enabled: true
+                      httpV2VoiceApplicationId: null
+                      pindropIntegration:
+                        enabled: false
+                      callVerification:
+                        enabled: false
+                    inboundActivated: true
+                    outboundNationalActivated: true
+                    outboundInternationalActivated: true
+                    integrations: null
+                  - phoneNumber: '+19197654321'
+                    override: null
+                    voiceConfigurationPackage:
+                      voiceConfigurationPackageId: 3bc3c038-8f8c-4489-8dd2-c14063f395e2
+                      accountId: 1234567
+                      name: Example Voice Configuration Package
+                      description: Example VCP description
+                      originationRoutePlan:
+                        routes:
+                          - priority: 1
+                            name: Primary Route
+                            endpoints:
+                              - endpoint: 6543c038-8f8c-4489-8dd2-c14063f39321
+                                type: INTEGRATION
+                                weight: 100
+                      stirShakenBehavior:
+                        verstat: ENHANCED
+                        identity: false
+                      cnam:
+                        enabled: true
+                      httpV2VoiceApplicationId: null
+                      pindropIntegration:
+                        enabled: false
+                      callVerification:
+                        enabled: false
+                    inboundActivated: true
+                    outboundNationalActivated: true
+                    outboundInternationalActivated: true
+                    integrations: null
+                  - phoneNumber: '+19198887777'
+                    override:
+                      originationRoutePlan:
+                        routes:
+                          - priority: 1
+                            name: Integration Override
+                            endpoints:
+                              - endpoint: 6543c038-8f8c-4489-8dd2-c14063f39321
+                                type: INTEGRATION
+                                weight: 100
+                    voiceConfigurationPackage:
+                      voiceConfigurationPackageId: 3bc3c038-8f8c-4489-8dd2-c14063f395e2
+                      accountId: 1234567
+                      name: Example Voice Configuration Package
+                      description: Example VCP description
+                      originationRoutePlan:
+                        routes:
+                          - priority: 1
+                            name: Primary Route
+                            endpoints:
+                              - endpoint: 6543c038-8f8c-4489-8dd2-c14063f39321
+                                type: INTEGRATION
+                                weight: 100
+                      stirShakenBehavior:
+                        verstat: ENHANCED
+                        identity: false
+                      cnam:
+                        enabled: true
+                      httpV2VoiceApplicationId: null
+                      pindropIntegration:
+                        enabled: false
+                      callVerification:
+                        enabled: false
+                    inboundActivated: true
+                    outboundNationalActivated: true
+                    outboundInternationalActivated: true
+                    integrations:
+                      currentVoiceIntegrationId: 6543c038-8f8c-4489-8dd2-c14063f39321
+                      voiceIntegrationType: zoom_cc_us
+                      tasks:
+                        - bulkId: abd3c038-8f8c-4489-8dd2-c14063f39cf1
+                          voiceIntegrationId: 6543c038-8f8c-4489-8dd2-c14063f39321
+                          action: ADD_INTEGRATION
+                          status: SUCCESS
+                          code: null
+                          description: null
+                          statusUpdated: '2025-01-01T00:00:00Z'
+                errors: []
+            removeOverrideResponse:
+              summary: Response after removing override from a phone number
+              description: >-
+                Shows the phone number state after override was removed (set to
+                null)
+              value:
+                links: []
+                data:
+                  - phoneNumber: '+19191234567'
+                    override: null
+                    voiceConfigurationPackage:
+                      voiceConfigurationPackageId: 3bc3c038-8f8c-4489-8dd2-c14063f395e2
+                      accountId: 1234567
+                      name: Example Voice Configuration Package
+                      description: Example VCP description
+                      originationRoutePlan:
+                        routes:
+                          - priority: 1
+                            name: Primary Route
+                            endpoints:
+                              - endpoint: 6543c038-8f8c-4489-8dd2-c14063f39321
+                                type: INTEGRATION
+                                weight: 100
+                      stirShakenBehavior:
+                        verstat: ENHANCED
+                        identity: false
+                      cnam:
+                        enabled: true
+                      httpV2VoiceApplicationId: null
+                      pindropIntegration:
+                        enabled: false
+                      callVerification:
+                        enabled: false
+                    inboundActivated: true
+                    outboundNationalActivated: true
+                    outboundInternationalActivated: true
+                    integrations: null
+                errors: []
+            addOverrideResponse:
+              summary: Response after adding override to a phone number
+              description: Shows the phone number state after a new override was added
+              value:
+                links: []
+                data:
+                  - phoneNumber: '+19191234567'
+                    override:
+                      originationRoutePlan:
+                        routes:
+                          - priority: 1
+                            name: New Override Route
+                            endpoints:
+                              - endpoint: '+19195551234'
+                                type: TN
+                                weight: 100
+                    voiceConfigurationPackage:
+                      voiceConfigurationPackageId: 3bc3c038-8f8c-4489-8dd2-c14063f395e2
+                      accountId: 1234567
+                      name: Example Voice Configuration Package
+                      description: Example VCP description
+                      originationRoutePlan:
+                        routes:
+                          - priority: 1
+                            name: Primary Route
+                            endpoints:
+                              - endpoint: 6543c038-8f8c-4489-8dd2-c14063f39321
+                                type: INTEGRATION
+                                weight: 100
+                      stirShakenBehavior:
+                        verstat: ENHANCED
+                        identity: false
+                      cnam:
+                        enabled: true
+                      httpV2VoiceApplicationId: null
+                      pindropIntegration:
+                        enabled: false
+                      callVerification:
+                        enabled: false
+                    inboundActivated: true
+                    outboundNationalActivated: true
+                    outboundInternationalActivated: true
+                    integrations: null
+                errors: []
     searchVoicePhoneNumbersResponse:
       description: OK
       content:
@@ -1261,6 +1469,19 @@ components:
       value:
         data:
           phoneNumber: '+19191234567'
+          override:
+            originationRoutePlan:
+              routes:
+                - priority: 1
+                  name: Override Route
+                  endpoints:
+                    - endpoint: '+19195551234'
+                      type: TN
+                      weight: 50
+                    - endpoint: 1.2.3.4:8080
+                      type: IP_V4
+                      weight: 50
+                      rewriteUser: rewrite-user@example.com
           voiceConfigurationPackage:
             voiceConfigurationPackageId: 3bc3c038-8f8c-4489-8dd2-c14063f395e2
             accountId: 1234567
@@ -1273,13 +1494,10 @@ components:
                   endpoints:
                     - endpoint: 6543c038-8f8c-4489-8dd2-c14063f39321
                       type: INTEGRATION
-                      weight: 100
-                      trunkInfo:
-                        trunkId: 66059341226405797b14d4c1
-                        capabilityPipeId: 201954af-e0ef-494b-bf26-541a4e99904a
+                      weight: 50
                     - endpoint: '+19191234567'
                       type: TN
-                      weight: 100
+                      weight: 50
             stirShakenBehavior:
               verstat: ENHANCED
               identity: false
@@ -1311,6 +1529,19 @@ components:
       value:
         data:
           - phoneNumber: '+19191234567'
+            override:
+              originationRoutePlan:
+                routes:
+                  - priority: 1
+                    name: Override Route
+                    endpoints:
+                      - endpoint: '+19195551234'
+                        type: TN
+                        weight: 50
+                      - endpoint: 1.2.3.4:8080
+                        type: IP_V4
+                        weight: 50
+                        rewriteUser: rewrite-user@example.com
             voiceConfigurationPackage:
               voiceConfigurationPackageId: 3bc3c038-8f8c-4489-8dd2-c14063f395e2
               accountId: 1234567
@@ -1323,13 +1554,10 @@ components:
                     endpoints:
                       - endpoint: 6543c038-8f8c-4489-8dd2-c14063f39321
                         type: INTEGRATION
-                        weight: 100
-                        trunkInfo:
-                          trunkId: 66059341226405797b14d4c1
-                          capabilityPipeId: 201954af-e0ef-494b-bf26-541a4e99904a
+                        weight: 50
                       - endpoint: '+19191234567'
                         type: TN
-                        weight: 100
+                        weight: 50
                   - priority: 2
                     name: Failover Route
                     endpoints:
@@ -1361,11 +1589,12 @@ components:
                   description: null
                   statusUpdated: '2025-01-01T00:00:00Z'
           - phoneNumber: '+19197654321'
+            override: null
             voiceConfigurationPackage: null
             inboundActivated: false
             outboundNationalActivated: false
             outboundInternationalActivated: false
-            integrations: []
+            integrations: null
         links:
           - href: >-
               https://api.bandwidth.com/v2/accounts/1234567/phoneNumbers/voice?limit=2
@@ -1383,6 +1612,19 @@ components:
       value:
         data:
           - phoneNumber: '+19191234567'
+            override:
+              originationRoutePlan:
+                routes:
+                  - priority: 1
+                    name: Override Route
+                    endpoints:
+                      - endpoint: '+19195551234'
+                        type: TN
+                        weight: 50
+                      - endpoint: 1.2.3.4:8080
+                        type: IP_V4
+                        weight: 50
+                        rewriteUser: rewrite-user@example.com
             voiceConfigurationPackage:
               voiceConfigurationPackageId: 3bc3c038-8f8c-4489-8dd2-c14063f395e2
               accountId: 1234567
@@ -1395,13 +1637,10 @@ components:
                     endpoints:
                       - endpoint: 6543c038-8f8c-4489-8dd2-c14063f39321
                         type: INTEGRATION
-                        weight: 100
-                        trunkInfo:
-                          trunkId: 66059341226405797b14d4c1
-                          capabilityPipeId: 201954af-e0ef-494b-bf26-541a4e99904a
+                        weight: 50
                       - endpoint: '+19191234567'
                         type: TN
-                        weight: 100
+                        weight: 50
                   - priority: 2
                     name: Failover Route
                     endpoints:
@@ -1433,11 +1672,12 @@ components:
                   description: null
                   statusUpdated: '2025-01-01T00:00:00Z'
           - phoneNumber: '+19197654321'
+            override: null
             voiceConfigurationPackage: null
             inboundActivated: false
             outboundNationalActivated: false
             outboundInternationalActivated: false
-            integrations: []
+            integrations: null
         links:
           - href: >-
               https://api.bandwidth.com/v2/accounts/1234567/phoneNumbers/voice/search

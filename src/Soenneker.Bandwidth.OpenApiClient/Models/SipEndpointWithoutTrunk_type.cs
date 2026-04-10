@@ -5,12 +5,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public enum Ipv4EndpointWithTrunk_type
+    public enum SipEndpointWithoutTrunk_type
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "IP_V4")]
+        [EnumMember(Value = "SIP")]
         #pragma warning disable CS1591
-        IP_V4,
+        SIP,
         #pragma warning restore CS1591
     }
 }

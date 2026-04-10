@@ -8,23 +8,17 @@ using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     /// <summary>
-    /// Query criteria object for search request api
+    /// Query criteria object for search request API
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class QueryCriteria : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The operator property</summary>
+        /// <summary>The comparison operator to use.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria_operator? Operator { get; set; }
-        /// <summary>The parameter name.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Parameter { get; set; }
-#nullable restore
-#else
-        public string Parameter { get; set; }
-#endif
+        /// <summary>The parameter name to filter by.</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria_parameter? Parameter { get; set; }
         /// <summary>The parameter value(s) for filtering.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -59,7 +53,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "operator", n => { Operator = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria_operator>(); } },
-                { "parameter", n => { Parameter = n.GetStringValue(); } },
+                { "parameter", n => { Parameter = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria_parameter>(); } },
                 { "values", n => { Values = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues>(global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues.CreateFromDiscriminatorValue); } },
             };
         }
@@ -71,7 +65,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria_operator>("operator", Operator);
-            writer.WriteStringValue("parameter", Parameter);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria_parameter>("parameter", Parameter);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues>("values", Values);
             writer.WriteAdditionalData(AdditionalData);
         }

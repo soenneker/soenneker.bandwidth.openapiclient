@@ -935,6 +935,12 @@ components:
           type: string
           enum:
             - FQDN
+        rewriteUser:
+          type: string
+          description: >-
+            Overrides the user part of the SIP Request-URI  (e.g.
+            `rewrite-user@endpoint`).
+          example: rewrite-user@example.com
       allOf:
         - $ref: '#/components/schemas/orpEndpoint'
       example:
@@ -954,12 +960,19 @@ components:
         endpoint:
           type: string
           format: ipv4
+        rewriteUser:
+          type: string
+          description: >-
+            Overrides the user part of the SIP Request-URI  (e.g.
+            `rewrite-user@endpoint`).
+          example: rewrite-user@example.com
       allOf:
         - $ref: '#/components/schemas/orpEndpoint'
       example:
         endpoint: 192.168.0.1
         weight: 1
         type: IP_V4
+        rewriteUser: rewriteUser
     lata:
       type: object
       required:
@@ -1206,9 +1219,11 @@ components:
               - endpoint: 192.168.2.2
                 weight: 2
                 type: IP_V4
+                rewriteUser: rewriteUser
               - endpoint: www.example.com
                 weight: 2
                 type: FQDN
+                rewriteUser: rewriteUser
     orpEndpoint:
       type: object
       required:
@@ -1266,7 +1281,12 @@ components:
         endpoints:
           type: array
           items:
-            $ref: '#/components/schemas/orpEndpoint'
+            oneOf:
+              - $ref: '#/components/schemas/sipEndpoint'
+              - $ref: '#/components/schemas/ipv4Endpoint'
+              - $ref: '#/components/schemas/fqdnEndpoint'
+            discriminator:
+              propertyName: type
           description: An array of objects describing the endpoints in the route.
       description: Represents one route in an ACR/ORP.
       example:
@@ -1300,20 +1320,22 @@ components:
             name: Example route
             endpoints:
               - endpoint: 192.168.0.1
-                weight: 1
+                weight: 50
                 type: IP_V4
               - endpoint: www.example.com
-                weight: 3
+                weight: 50
                 type: FQDN
           - priority: 2
             name: Another Example Route
             endpoints:
               - endpoint: 192.168.2.2
-                weight: 2
+                weight: 50
                 type: IP_V4
+                rewriteUser: rewriteUser
               - endpoint: www.example.com
-                weight: 2
+                weight: 50
                 type: FQDN
+                rewriteUser: rewriteUser
     page:
       type: object
       required:
@@ -1357,7 +1379,7 @@ components:
         - $ref: '#/components/schemas/orpEndpoint'
       example:
         endpoint: sip:1-999-123-4567@voip-provider.example.net
-        weight: 5
+        weight: 100
         type: SIP
     updateLrn:
       type: object

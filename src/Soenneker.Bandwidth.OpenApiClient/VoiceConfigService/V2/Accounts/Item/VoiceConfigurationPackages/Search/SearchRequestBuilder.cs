@@ -37,7 +37,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceConfigService.V2.Accounts.Item.
         /// Search voice configuration packages for an account.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ListVoiceConfigurationPackagesResponse"/></returns>
-        /// <param name="body">The request object used to search a voice configuration package.</param>
+        /// <param name="body">The request object used to search voice configuration packages.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_config_service_errorResponse">When receiving a 400 status code</exception>
@@ -74,7 +74,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceConfigService.V2.Accounts.Item.
         /// Search voice configuration packages for an account.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request object used to search a voice configuration package.</param>
+        /// <param name="body">The request object used to search voice configuration packages.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
