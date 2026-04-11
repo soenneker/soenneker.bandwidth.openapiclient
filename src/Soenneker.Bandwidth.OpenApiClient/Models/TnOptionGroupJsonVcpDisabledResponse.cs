@@ -25,10 +25,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The callForward property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_callForward? CallForward { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch? CallForward { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_callForward CallForward { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch CallForward { get; set; }
 #endif
         /// <summary>The callingNameDisplay property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_callingNameDisplay? CallingNameDisplay { get; set; }
@@ -37,26 +37,26 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The espid property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_espid? Espid { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch? Espid { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_espid Espid { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch Espid { get; set; }
 #endif
         /// <summary>The finalDestinationUri property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_finalDestinationUri? FinalDestinationUri { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch? FinalDestinationUri { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_finalDestinationUri FinalDestinationUri { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch FinalDestinationUri { get; set; }
 #endif
         /// <summary>The nnid property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_nnid? Nnid { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch? Nnid { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_nnid Nnid { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch Nnid { get; set; }
 #endif
         /// <summary>The numberFormat property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_numberFormat? NumberFormat { get; set; }
@@ -81,20 +81,20 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The portOutPasscode property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_portOutPasscode? PortOutPasscode { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch? PortOutPasscode { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_portOutPasscode PortOutPasscode { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch PortOutPasscode { get; set; }
 #endif
         /// <summary>The protected property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_protected? Protected { get; set; }
         /// <summary>The rewriteUser property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_rewriteUser? RewriteUser { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch? RewriteUser { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_rewriteUser RewriteUser { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch RewriteUser { get; set; }
 #endif
         /// <summary>The rpidFormat property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_rpidFormat? RpidFormat { get; set; }
@@ -126,19 +126,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "a2pSettings", n => { A2pSettings = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.A2pSettingsJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.A2pSettingsJson.CreateFromDiscriminatorValue); } },
-                { "callForward", n => { CallForward = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_callForward>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_callForward.CreateFromDiscriminatorValue); } },
+                { "callForward", n => { CallForward = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>(global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch.CreateFromDiscriminatorValue); } },
                 { "callVerificationEnabled", n => { CallVerificationEnabled = n.GetBoolValue(); } },
                 { "callingNameDisplay", n => { CallingNameDisplay = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_callingNameDisplay>(); } },
-                { "espid", n => { Espid = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_espid>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_espid.CreateFromDiscriminatorValue); } },
-                { "finalDestinationUri", n => { FinalDestinationUri = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_finalDestinationUri>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_finalDestinationUri.CreateFromDiscriminatorValue); } },
-                { "nnid", n => { Nnid = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_nnid>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_nnid.CreateFromDiscriminatorValue); } },
+                { "espid", n => { Espid = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>(global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch.CreateFromDiscriminatorValue); } },
+                { "finalDestinationUri", n => { FinalDestinationUri = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>(global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch.CreateFromDiscriminatorValue); } },
+                { "nnid", n => { Nnid = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>(global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch.CreateFromDiscriminatorValue); } },
                 { "numberFormat", n => { NumberFormat = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_numberFormat>(); } },
                 { "originationRoutePlan", n => { OriginationRoutePlan = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Line_features_originationRoutePlanJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.Line_features_originationRoutePlanJson.CreateFromDiscriminatorValue); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "pindropEnabled", n => { PindropEnabled = n.GetBoolValue(); } },
-                { "portOutPasscode", n => { PortOutPasscode = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_portOutPasscode>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_portOutPasscode.CreateFromDiscriminatorValue); } },
+                { "portOutPasscode", n => { PortOutPasscode = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>(global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch.CreateFromDiscriminatorValue); } },
                 { "protected", n => { Protected = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_protected>(); } },
-                { "rewriteUser", n => { RewriteUser = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_rewriteUser>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_rewriteUser.CreateFromDiscriminatorValue); } },
+                { "rewriteUser", n => { RewriteUser = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>(global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch.CreateFromDiscriminatorValue); } },
                 { "rpidFormat", n => { RpidFormat = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_rpidFormat>(); } },
                 { "sms", n => { Sms = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_sms>(); } },
             };
@@ -151,19 +151,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.A2pSettingsJson>("a2pSettings", A2pSettings);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_callForward>("callForward", CallForward);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>("callForward", CallForward);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_callingNameDisplay>("callingNameDisplay", CallingNameDisplay);
             writer.WriteBoolValue("callVerificationEnabled", CallVerificationEnabled);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_espid>("espid", Espid);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_finalDestinationUri>("finalDestinationUri", FinalDestinationUri);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_nnid>("nnid", Nnid);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>("espid", Espid);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>("finalDestinationUri", FinalDestinationUri);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>("nnid", Nnid);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_numberFormat>("numberFormat", NumberFormat);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Line_features_originationRoutePlanJson>("originationRoutePlan", OriginationRoutePlan);
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
             writer.WriteBoolValue("pindropEnabled", PindropEnabled);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_portOutPasscode>("portOutPasscode", PortOutPasscode);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>("portOutPasscode", PortOutPasscode);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_protected>("protected", Protected);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_rewriteUser>("rewriteUser", RewriteUser);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>("rewriteUser", RewriteUser);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_rpidFormat>("rpidFormat", RpidFormat);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse_sms>("sms", Sms);
             writer.WriteAdditionalData(AdditionalData);

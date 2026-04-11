@@ -25,10 +25,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The nnid property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled_nnid? Nnid { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch? Nnid { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled_nnid Nnid { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch Nnid { get; set; }
 #endif
         /// <summary>The phoneNumbers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -76,7 +76,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "a2pSettings", n => { A2pSettings = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.A2pSettingsJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.A2pSettingsJson.CreateFromDiscriminatorValue); } },
-                { "nnid", n => { Nnid = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled_nnid>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled_nnid.CreateFromDiscriminatorValue); } },
+                { "nnid", n => { Nnid = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>(global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch.CreateFromDiscriminatorValue); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "portOutPasscode", n => { PortOutPasscode = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled_portOutPasscode>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled_portOutPasscode.CreateFromDiscriminatorValue); } },
                 { "protected", n => { Protected = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled_protected>(); } },
@@ -91,7 +91,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.A2pSettingsJson>("a2pSettings", A2pSettings);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled_nnid>("nnid", Nnid);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>("nnid", Nnid);
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled_portOutPasscode>("portOutPasscode", PortOutPasscode);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled_protected>("protected", Protected);

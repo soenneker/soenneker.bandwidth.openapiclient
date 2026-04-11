@@ -46,10 +46,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The subscriptionStatus property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Subscription_subscriptionStatus? SubscriptionStatus { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionStatusEnum_Wrapper? SubscriptionStatus { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Subscription_subscriptionStatus SubscriptionStatus { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionStatusEnum_Wrapper SubscriptionStatus { get; set; }
 #endif
         /// <summary>Tag key and value must consist of alphanumeric characters, hyphens, and underscores</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -89,7 +89,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "notificationChannel", n => { NotificationChannel = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationChannel>(global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationChannel.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "notifyStates", n => { NotifyStates = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnum>()?.AsList(); } },
                 { "product", n => { Product = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductEnum>(); } },
-                { "subscriptionStatus", n => { SubscriptionStatus = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Subscription_subscriptionStatus>(global::Soenneker.Bandwidth.OpenApiClient.Models.Subscription_subscriptionStatus.CreateFromDiscriminatorValue); } },
+                { "subscriptionStatus", n => { SubscriptionStatus = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionStatusEnum_Wrapper>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionStatusEnum_Wrapper.CreateFromDiscriminatorValue); } },
                 { "tags", n => { Tags = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Tag>(global::Soenneker.Bandwidth.OpenApiClient.Models.Tag.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -105,7 +105,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationChannel>("notificationChannel", NotificationChannel);
             writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnum>("notifyStates", NotifyStates);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductEnum>("product", Product);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Subscription_subscriptionStatus>("subscriptionStatus", SubscriptionStatus);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionStatusEnum_Wrapper>("subscriptionStatus", SubscriptionStatus);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Tag>("tags", Tags);
             writer.WriteAdditionalData(AdditionalData);
         }
