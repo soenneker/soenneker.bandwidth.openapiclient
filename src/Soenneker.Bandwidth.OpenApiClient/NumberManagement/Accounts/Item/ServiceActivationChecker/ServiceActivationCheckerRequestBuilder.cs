@@ -36,39 +36,39 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Servi
         /// <summary>
         /// Accepts a list of phone numbers and returns the service activation status for each phone number. If service is not able to be activated, missing requirements will also be returned.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerResponse_1"/></returns>
         /// <param name="body">ServiceActivationCheckerRequest</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerBadRequestResponse">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UnauthorizedErrorSignum">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer">When receiving a 403 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Number_management_genericError">When receiving a 404 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Number_management_genericError">When receiving a 405 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Number_management_genericError">When receiving a 429 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Number_management_genericError">When receiving a 500 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerBadRequestResponse_1">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UnauthorizedErrorSignum_1">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer_1">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 405 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 429 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerResponse?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerResponse_1?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerResponse> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerResponse_1> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerBadRequestResponse.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.UnauthorizedErrorSignum.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.Number_management_genericError.CreateFromDiscriminatorValue },
-                { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.Number_management_genericError.CreateFromDiscriminatorValue },
-                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.Number_management_genericError.CreateFromDiscriminatorValue },
-                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.Number_management_genericError.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerBadRequestResponse_1.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.UnauthorizedErrorSignum_1.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer_1.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
+                { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
+                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
+                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerResponse_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerResponse_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Accepts a list of phone numbers and returns the service activation status for each phone number. If service is not able to be activated, missing requirements will also be returned.
@@ -78,11 +78,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Servi
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

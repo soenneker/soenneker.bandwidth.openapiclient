@@ -49,64 +49,64 @@ namespace Soenneker.Bandwidth.OpenApiClient.Subscriptions.Item.Notifications
         /// <summary>
         /// List notifications for subscription by ID.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationListResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationListResponse_1"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_genericError">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_genericError">When receiving a 403 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_genericError">When receiving a 404 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_genericError">When receiving a 5XX status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError">When receiving a 5XX status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationListResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Subscriptions.Item.Notifications.NotificationsRequestBuilder.NotificationsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationListResponse_1?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Subscriptions.Item.Notifications.NotificationsRequestBuilder.NotificationsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationListResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Subscriptions.Item.Notifications.NotificationsRequestBuilder.NotificationsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationListResponse_1> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Subscriptions.Item.Notifications.NotificationsRequestBuilder.NotificationsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_genericError.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_genericError.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_genericError.CreateFromDiscriminatorValue },
-                { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_genericError.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationListResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationListResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationListResponse_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationListResponse_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Send a test notification for subscription by ID. Regular notifications are sent automatically based on events and your subscription settings. This endpoint allows you tomanually trigger a test notification to verify your subscription configuration.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_notificationResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsNotificationResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_genericError">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_genericError">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_genericError">When receiving a 403 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_genericError">When receiving a 404 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_genericError">When receiving a 429 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_genericError">When receiving a 5XX status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError">When receiving a 429 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError">When receiving a 5XX status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_notificationResponse?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsNotificationResponse?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_notificationResponse> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsNotificationResponse> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_genericError.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_genericError.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_genericError.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_genericError.CreateFromDiscriminatorValue },
-                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_genericError.CreateFromDiscriminatorValue },
-                { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_genericError.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError.CreateFromDiscriminatorValue },
+                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_notificationResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.Subscriptions_notificationResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsNotificationResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsNotificationResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// List notifications for subscription by ID.

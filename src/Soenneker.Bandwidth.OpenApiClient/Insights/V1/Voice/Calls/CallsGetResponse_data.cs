@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
         /// <summary>The calls property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Call>? Calls { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Call_1>? Calls { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Call> Calls { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Call_1> Calls { get; set; }
 #endif
         /// <summary>The total count of objects returned in the response.</summary>
         public int? TotalCount { get; set; }
@@ -50,7 +50,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "calls", n => { Calls = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Call>(global::Soenneker.Bandwidth.OpenApiClient.Models.Call.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "calls", n => { Calls = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Call_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.Call_1.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "totalCount", n => { TotalCount = n.GetIntValue(); } },
             };
         }
@@ -61,7 +61,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Call>("calls", Calls);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Call_1>("calls", Calls);
             writer.WriteIntValue("totalCount", TotalCount);
             writer.WriteAdditionalData(AdditionalData);
         }

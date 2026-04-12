@@ -36,10 +36,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.PortInOrders
         /// <summary>Owner of the numbers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner? NumbersOwner { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner_1? NumbersOwner { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner NumbersOwner { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner_1 NumbersOwner { get; set; }
 #endif
         /// <summary>Array of telephone numbers in E.164 format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -78,7 +78,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.PortInOrders
             {
                 { "currentProviderName", n => { CurrentProviderName = n.GetStringValue(); } },
                 { "customerReference", n => { CustomerReference = n.GetStringValue(); } },
-                { "numbersOwner", n => { NumbersOwner = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner.CreateFromDiscriminatorValue); } },
+                { "numbersOwner", n => { NumbersOwner = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner_1.CreateFromDiscriminatorValue); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "preferredPortInDate", n => { PreferredPortInDate = n.GetDateValue(); } },
             };
@@ -92,7 +92,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.PortInOrders
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("currentProviderName", CurrentProviderName);
             writer.WriteStringValue("customerReference", CustomerReference);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner>("numbersOwner", NumbersOwner);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner_1>("numbersOwner", NumbersOwner);
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
             writer.WriteDateValue("preferredPortInDate", PreferredPortInDate);
             writer.WriteAdditionalData(AdditionalData);

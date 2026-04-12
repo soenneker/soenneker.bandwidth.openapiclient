@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports
         /// <summary>The reports property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatus>? Reports { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatus_1>? Reports { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatus> Reports { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatus_1> Reports { get; set; }
 #endif
         /// <summary>The totalCount property</summary>
         public int? TotalCount { get; set; }
@@ -50,7 +50,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "reports", n => { Reports = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatus>(global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatus.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "reports", n => { Reports = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatus_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatus_1.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "totalCount", n => { TotalCount = n.GetIntValue(); } },
             };
         }
@@ -61,7 +61,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatus>("reports", Reports);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatus_1>("reports", Reports);
             writer.WriteIntValue("totalCount", TotalCount);
             writer.WriteAdditionalData(AdditionalData);
         }

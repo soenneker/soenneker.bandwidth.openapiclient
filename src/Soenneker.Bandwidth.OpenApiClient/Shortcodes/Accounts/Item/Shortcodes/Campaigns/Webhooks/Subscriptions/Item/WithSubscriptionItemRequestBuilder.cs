@@ -38,13 +38,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Shortcodes.Accounts.Item.Shortcodes.
         /// </summary>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignErrorResponseSchema">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign401ResponseSchema">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign403ResponseSchema">When receiving a 403 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignWebhookSubscriptionId404ResponseSchema">When receiving a 404 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign405ResponseSchema">When receiving a 405 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchema">When receiving a 429 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign500ResponseSchema">When receiving a 500 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignErrorResponseSchema_1">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign401ResponseSchema_1">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign403ResponseSchema_1">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignWebhookSubscriptionId404ResponseSchema_1">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign405ResponseSchema_1">When receiving a 405 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchema_1">When receiving a 429 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign500ResponseSchema_1">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -57,52 +57,52 @@ namespace Soenneker.Bandwidth.OpenApiClient.Shortcodes.Accounts.Item.Shortcodes.
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignErrorResponseSchema.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign401ResponseSchema.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign403ResponseSchema.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignWebhookSubscriptionId404ResponseSchema.CreateFromDiscriminatorValue },
-                { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign405ResponseSchema.CreateFromDiscriminatorValue },
-                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchema.CreateFromDiscriminatorValue },
-                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign500ResponseSchema.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignErrorResponseSchema_1.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign401ResponseSchema_1.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign403ResponseSchema_1.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignWebhookSubscriptionId404ResponseSchema_1.CreateFromDiscriminatorValue },
+                { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign405ResponseSchema_1.CreateFromDiscriminatorValue },
+                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchema_1.CreateFromDiscriminatorValue },
+                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign500ResponseSchema_1.CreateFromDiscriminatorValue },
             };
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Update a webhook subscription for short code campaigns on an account.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateShortCodeCampaignWebhookSubscriptionResponseSchema"/></returns>
-        /// <param name="body">The request body for creating a webhook subscription for a short code campaign.</param>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateShortCodeCampaignWebhookSubscriptionResponseSchema_1"/></returns>
+        /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignErrorResponseSchema">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign401ResponseSchema">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign403ResponseSchema">When receiving a 403 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignWebhookSubscriptionId404ResponseSchema">When receiving a 404 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign405ResponseSchema">When receiving a 405 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchema">When receiving a 429 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign500ResponseSchema">When receiving a 500 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignErrorResponseSchema_1">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign401ResponseSchema_1">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign403ResponseSchema_1">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignWebhookSubscriptionId404ResponseSchema_1">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign405ResponseSchema_1">When receiving a 405 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchema_1">When receiving a 429 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign500ResponseSchema_1">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateShortCodeCampaignWebhookSubscriptionResponseSchema?> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateShortCodeCampaignWebhookSubscriptionRequestSchema body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateShortCodeCampaignWebhookSubscriptionResponseSchema_1?> PutAsync(string body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateShortCodeCampaignWebhookSubscriptionResponseSchema> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateShortCodeCampaignWebhookSubscriptionRequestSchema body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateShortCodeCampaignWebhookSubscriptionResponseSchema_1> PutAsync(string body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
-            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            if(string.IsNullOrEmpty(body)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignErrorResponseSchema.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign401ResponseSchema.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign403ResponseSchema.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignWebhookSubscriptionId404ResponseSchema.CreateFromDiscriminatorValue },
-                { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign405ResponseSchema.CreateFromDiscriminatorValue },
-                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchema.CreateFromDiscriminatorValue },
-                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign500ResponseSchema.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignErrorResponseSchema_1.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign401ResponseSchema_1.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign403ResponseSchema_1.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignWebhookSubscriptionId404ResponseSchema_1.CreateFromDiscriminatorValue },
+                { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign405ResponseSchema_1.CreateFromDiscriminatorValue },
+                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchema_1.CreateFromDiscriminatorValue },
+                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign500ResponseSchema_1.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateShortCodeCampaignWebhookSubscriptionResponseSchema>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateShortCodeCampaignWebhookSubscriptionResponseSchema.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateShortCodeCampaignWebhookSubscriptionResponseSchema_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateShortCodeCampaignWebhookSubscriptionResponseSchema_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Delete a webhook subscription for short code campaigns on an account.
@@ -127,22 +127,22 @@ namespace Soenneker.Bandwidth.OpenApiClient.Shortcodes.Accounts.Item.Shortcodes.
         /// Update a webhook subscription for short code campaigns on an account.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body for creating a webhook subscription for a short code campaign.</param>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateShortCodeCampaignWebhookSubscriptionRequestSchema body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(string body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateShortCodeCampaignWebhookSubscriptionRequestSchema body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(string body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            if(string.IsNullOrEmpty(body)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
+            requestInfo.SetContentFromScalar(RequestAdapter, "application/json", body);
             return requestInfo;
         }
         /// <summary>

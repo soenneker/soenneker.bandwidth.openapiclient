@@ -48,7 +48,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Upgrade.MovePhoneNumbers
         /// <summary>
         /// This endpoint facilitates the movement of phone numbers from the Legacy Global Network to the Universal Platform (UP). To initiate this process, you’ll need to provide several UP parameters, including:  - accountId  - subAccountId  - locationId  - voiceConfigurationPackageId (learn more [here](https//dev.bandwidth.com/apis/universal-platform/voice-configuration-packages/))&lt;/br&gt;To ensure proper access, the Global user must be authorized to move numbers to the specified UP account. This requires the inclusion of the &lt;b&gt;X-Bandwidth-Authorization&lt;/b&gt;  header alongside the existing authorization header. You can retrieve the necessary credentials from [this documentation](https://dev.bandwidth.com/docs/account/credentials/management).&lt;/br&gt;Please note that the phone number moving process operates asynchronously. After submitting your request, a unique reference ID will be generated for tracking each moving requestThe maximun allowed number of phone numbers to be moved in a single request is 1000.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveResponse_1"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -62,11 +62,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Upgrade.MovePhoneNumbers
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveResponse?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveResponse_1?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveResponse> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveResponse_1> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -82,7 +82,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Upgrade.MovePhoneNumbers
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "503", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveResponse_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveResponse_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This endpoint facilitates the movement of phone numbers from the Legacy Global Network to the Universal Platform (UP). To initiate this process, you’ll need to provide several UP parameters, including:  - accountId  - subAccountId  - locationId  - voiceConfigurationPackageId (learn more [here](https//dev.bandwidth.com/apis/universal-platform/voice-configuration-packages/))&lt;/br&gt;To ensure proper access, the Global user must be authorized to move numbers to the specified UP account. This requires the inclusion of the &lt;b&gt;X-Bandwidth-Authorization&lt;/b&gt;  header alongside the existing authorization header. You can retrieve the necessary credentials from [this documentation](https://dev.bandwidth.com/docs/account/credentials/management).&lt;/br&gt;Please note that the phone number moving process operates asynchronously. After submitting your request, a unique reference ID will be generated for tracking each moving requestThe maximun allowed number of phone numbers to be moved in a single request is 1000.
@@ -92,11 +92,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Upgrade.MovePhoneNumbers
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

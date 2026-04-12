@@ -49,27 +49,27 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.CoveredRateCenters
         /// <summary>
         /// The Covered Rate Centers API returns information about the Bandwidth CLEC network, including coverage data. This indicates the extent of on-net and off-net coverage, as well as number availability.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CoveredRateCenterSearchResponseJson"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CoveredRateCenterSearchResponseJson_1"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Number_acquisition_responseStatusJson">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CoveredRateCenterErrorResponseJson">When receiving a 500 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionResponseStatusJson">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CoveredRateCenterErrorResponseJson_1">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CoveredRateCenterSearchResponseJson?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.CoveredRateCenters.CoveredRateCentersRequestBuilder.CoveredRateCentersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CoveredRateCenterSearchResponseJson_1?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.CoveredRateCenters.CoveredRateCentersRequestBuilder.CoveredRateCentersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CoveredRateCenterSearchResponseJson> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.CoveredRateCenters.CoveredRateCentersRequestBuilder.CoveredRateCentersRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CoveredRateCenterSearchResponseJson_1> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.CoveredRateCenters.CoveredRateCentersRequestBuilder.CoveredRateCentersRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.Number_acquisition_responseStatusJson.CreateFromDiscriminatorValue },
-                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.CoveredRateCenterErrorResponseJson.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionResponseStatusJson.CreateFromDiscriminatorValue },
+                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.CoveredRateCenterErrorResponseJson_1.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CoveredRateCenterSearchResponseJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CoveredRateCenterSearchResponseJson.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CoveredRateCenterSearchResponseJson_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CoveredRateCenterSearchResponseJson_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// The Covered Rate Centers API returns information about the Bandwidth CLEC network, including coverage data. This indicates the extent of on-net and off-net coverage, as well as number availability.

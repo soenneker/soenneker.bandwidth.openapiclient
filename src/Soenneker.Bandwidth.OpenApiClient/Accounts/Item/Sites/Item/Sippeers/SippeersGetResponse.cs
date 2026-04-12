@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers
         /// <summary>The locations property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson>? Locations { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_1>? Locations { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson> Locations { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_1> Locations { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.SippeersGetResponse"/> and sets the default values.
@@ -48,7 +48,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "locations", n => { Locations = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "locations", n => { Locations = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_1.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson>("locations", Locations);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_1>("locations", Locations);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

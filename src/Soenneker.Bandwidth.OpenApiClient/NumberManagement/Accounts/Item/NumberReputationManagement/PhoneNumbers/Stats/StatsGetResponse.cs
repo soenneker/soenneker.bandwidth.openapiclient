@@ -26,18 +26,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Number_management_error>? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementError>? Errors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Number_management_error> Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementError> Errors { get; set; }
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Number_management_link>? Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementLink>? Links { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Number_management_link> Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementLink> Links { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumberReputationManagement.PhoneNumbers.Stats.StatsGetResponse"/> and sets the default values.
@@ -65,8 +65,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumberReputationManagement.PhoneNumbers.Stats.StatsGetResponse_data>(global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumberReputationManagement.PhoneNumbers.Stats.StatsGetResponse_data.CreateFromDiscriminatorValue); } },
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Number_management_error>(global::Soenneker.Bandwidth.OpenApiClient.Models.Number_management_error.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Number_management_link>(global::Soenneker.Bandwidth.OpenApiClient.Models.Number_management_link.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementError>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementError.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementLink.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -77,8 +77,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumberReputationManagement.PhoneNumbers.Stats.StatsGetResponse_data>("data", Data);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Number_management_error>("errors", Errors);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Number_management_link>("links", Links);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementError>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementLink>("links", Links);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

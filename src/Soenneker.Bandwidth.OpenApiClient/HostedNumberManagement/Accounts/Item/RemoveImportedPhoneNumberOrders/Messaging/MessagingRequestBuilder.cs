@@ -49,45 +49,45 @@ namespace Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item
         /// <summary>
         /// Retrieves the Remove Imported Messaging Tn Orders requests for the given account ID.A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter as required is provided, the order results will be limited to the last two years.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetRemoveImportedPhoneNumberOrdersResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetRemoveImportedPhoneNumberOrdersResponse_1"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.GetRemoveImportedPhoneNumberOrdersResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.RemoveImportedPhoneNumberOrders.Messaging.MessagingRequestBuilder.MessagingRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.GetRemoveImportedPhoneNumberOrdersResponse_1?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.RemoveImportedPhoneNumberOrders.Messaging.MessagingRequestBuilder.MessagingRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.GetRemoveImportedPhoneNumberOrdersResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.RemoveImportedPhoneNumberOrders.Messaging.MessagingRequestBuilder.MessagingRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.GetRemoveImportedPhoneNumberOrdersResponse_1> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.RemoveImportedPhoneNumberOrders.Messaging.MessagingRequestBuilder.MessagingRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.GetRemoveImportedPhoneNumberOrdersResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.GetRemoveImportedPhoneNumberOrdersResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.GetRemoveImportedPhoneNumberOrdersResponse_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.GetRemoveImportedPhoneNumberOrdersResponse_1.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Create an order to remove imported phone numbers for messaging from the given account ID. An optional customer ID can be provided in the request body to track the order. A successfully submitted order will have a status of &quot;PROCESSING&quot;. A successfully completed order will have a status of &quot;COMPLETE&quot; if all of the phone numbers were successfully removed and  &quot;PARTIAL&quot; if some of the phone numbers were removed. A failed order will have a status of &quot;FAILED&quot; and no phone numbers would have been removed.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrdersResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrdersResponse_1"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrdersResponse400Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrdersResponse_1400Error">When receiving a 400 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrdersResponse?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrderRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrdersResponse_1?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrderRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrdersResponse> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrderRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrdersResponse_1> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrderRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrdersResponse400Error.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrdersResponse_1400Error.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrdersResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrdersResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrdersResponse_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrdersResponse_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves the Remove Imported Messaging Tn Orders requests for the given account ID.A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter as required is provided, the order results will be limited to the last two years.
@@ -116,11 +116,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrderRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrderRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrderRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrderRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

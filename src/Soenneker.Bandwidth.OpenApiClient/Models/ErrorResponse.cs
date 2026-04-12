@@ -15,16 +15,24 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Detailed explanation about error</summary>
+        /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Description { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiError>? Errors { get; set; }
 #nullable restore
 #else
-        public string Description { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiError> Errors { get; set; }
 #endif
-        /// <summary>Numeric designation of corresponding error</summary>
-        public int? ErrorCode { get; set; }
+        /// <summary>The genericErrorMessage property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? GenericErrorMessage { get; set; }
+#nullable restore
+#else
+        public string GenericErrorMessage { get; set; }
+#endif
+        /// <summary>The httpStatusCode property</summary>
+        public int? HttpStatusCode { get; set; }
         /// <summary>The primary error message.</summary>
         public override string Message { get => base.Message; }
         /// <summary>
@@ -52,8 +60,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "description", n => { Description = n.GetStringValue(); } },
-                { "errorCode", n => { ErrorCode = n.GetIntValue(); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiError>(global::Soenneker.Bandwidth.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "genericErrorMessage", n => { GenericErrorMessage = n.GetStringValue(); } },
+                { "httpStatusCode", n => { HttpStatusCode = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -63,8 +72,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("description", Description);
-            writer.WriteIntValue("errorCode", ErrorCode);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiError>("errors", Errors);
+            writer.WriteStringValue("genericErrorMessage", GenericErrorMessage);
+            writer.WriteIntValue("httpStatusCode", HttpStatusCode);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

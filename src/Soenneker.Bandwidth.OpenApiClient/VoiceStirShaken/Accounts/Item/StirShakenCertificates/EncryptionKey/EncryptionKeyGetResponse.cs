@@ -26,18 +26,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceStirShaken.Accounts.Item.StirSh
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_stir_shaken_error>? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenError>? Errors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_stir_shaken_error> Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenError> Errors { get; set; }
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_stir_shaken_links>? Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenLinks>? Links { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_stir_shaken_links> Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenLinks> Links { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.VoiceStirShaken.Accounts.Item.StirShakenCertificates.EncryptionKey.EncryptionKeyGetResponse"/> and sets the default values.
@@ -65,8 +65,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceStirShaken.Accounts.Item.StirSh
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.VoiceStirShaken.Accounts.Item.StirShakenCertificates.EncryptionKey.EncryptionKeyGetResponse_data>(global::Soenneker.Bandwidth.OpenApiClient.VoiceStirShaken.Accounts.Item.StirShakenCertificates.EncryptionKey.EncryptionKeyGetResponse_data.CreateFromDiscriminatorValue); } },
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_stir_shaken_error>(global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_stir_shaken_error.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_stir_shaken_links>(global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_stir_shaken_links.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenError>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenError.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenLinks>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenLinks.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -77,8 +77,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceStirShaken.Accounts.Item.StirSh
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.VoiceStirShaken.Accounts.Item.StirShakenCertificates.EncryptionKey.EncryptionKeyGetResponse_data>("data", Data);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_stir_shaken_error>("errors", Errors);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_stir_shaken_links>("links", Links);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenError>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenLinks>("links", Links);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -18,26 +18,26 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegration? DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegration_1? DataEscaped { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegration DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegration_1 DataEscaped { get; set; }
 #endif
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_error>? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsError>? Errors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_error> Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsError> Errors { get; set; }
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_link>? Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsLink>? Links { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_link> Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsLink> Links { get; set; }
 #endif
         /// <summary>The primary error message.</summary>
         public override string Message { get => base.Message; }
@@ -66,9 +66,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegration>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegration.CreateFromDiscriminatorValue); } },
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_error>(global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_error.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_link>(global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_link.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegration_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegration_1.CreateFromDiscriminatorValue); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsError>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsError.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsLink.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -78,9 +78,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegration>("data", DataEscaped);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_error>("errors", Errors);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_link>("links", Links);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegration_1>("data", DataEscaped);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsError>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsLink>("links", Links);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

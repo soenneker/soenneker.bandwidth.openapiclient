@@ -18,26 +18,26 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.FailedCal
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataFailedCalls? Data { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataFailedCalls_1? Data { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataFailedCalls Data { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataFailedCalls_1 Data { get; set; }
 #endif
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_error>? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsError>? Errors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_error> Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsError> Errors { get; set; }
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_link>? Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsLink>? Links { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_link> Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsLink> Links { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.FailedCalls.FailedCallsGetResponse"/> and sets the default values.
@@ -64,9 +64,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.FailedCal
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataFailedCalls>(global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataFailedCalls.CreateFromDiscriminatorValue); } },
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_error>(global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_error.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_link>(global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_link.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataFailedCalls_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataFailedCalls_1.CreateFromDiscriminatorValue); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsError>(global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsError.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsLink.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -76,9 +76,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.FailedCal
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataFailedCalls>("data", Data);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_error>("errors", Errors);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Insights_link>("links", Links);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataFailedCalls_1>("data", Data);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsError>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsLink>("links", Links);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

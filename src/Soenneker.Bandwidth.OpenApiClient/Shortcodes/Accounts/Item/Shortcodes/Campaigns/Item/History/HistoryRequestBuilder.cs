@@ -36,37 +36,37 @@ namespace Soenneker.Bandwidth.OpenApiClient.Shortcodes.Accounts.Item.Shortcodes.
         /// <summary>
         /// Retrieve the full history of a short code campaign associated with an account. Optionally, use the version query parameter to retriever the history for only a specific version of the campaign.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistoryResponseSchema"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistoryResponseSchema_1"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignErrorResponseSchema">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign401ResponseSchema">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign403ResponseSchema">When receiving a 403 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign404ResponseSchema">When receiving a 404 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign405ResponseSchema">When receiving a 405 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchema">When receiving a 429 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign500ResponseSchema">When receiving a 500 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignErrorResponseSchema_1">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign401ResponseSchema_1">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign403ResponseSchema_1">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign404ResponseSchema_1">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign405ResponseSchema_1">When receiving a 405 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchema_1">When receiving a 429 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign500ResponseSchema_1">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistoryResponseSchema?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Shortcodes.Accounts.Item.Shortcodes.Campaigns.Item.History.HistoryRequestBuilder.HistoryRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistoryResponseSchema_1?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Shortcodes.Accounts.Item.Shortcodes.Campaigns.Item.History.HistoryRequestBuilder.HistoryRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistoryResponseSchema> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Shortcodes.Accounts.Item.Shortcodes.Campaigns.Item.History.HistoryRequestBuilder.HistoryRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistoryResponseSchema_1> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Shortcodes.Accounts.Item.Shortcodes.Campaigns.Item.History.HistoryRequestBuilder.HistoryRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignErrorResponseSchema.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign401ResponseSchema.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign403ResponseSchema.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign404ResponseSchema.CreateFromDiscriminatorValue },
-                { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign405ResponseSchema.CreateFromDiscriminatorValue },
-                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchema.CreateFromDiscriminatorValue },
-                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign500ResponseSchema.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignErrorResponseSchema_1.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign401ResponseSchema_1.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign403ResponseSchema_1.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign404ResponseSchema_1.CreateFromDiscriminatorValue },
+                { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign405ResponseSchema_1.CreateFromDiscriminatorValue },
+                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchema_1.CreateFromDiscriminatorValue },
+                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign500ResponseSchema_1.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistoryResponseSchema>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistoryResponseSchema.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistoryResponseSchema_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistoryResponseSchema_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieve the full history of a short code campaign associated with an account. Optionally, use the version query parameter to retriever the history for only a specific version of the campaign.

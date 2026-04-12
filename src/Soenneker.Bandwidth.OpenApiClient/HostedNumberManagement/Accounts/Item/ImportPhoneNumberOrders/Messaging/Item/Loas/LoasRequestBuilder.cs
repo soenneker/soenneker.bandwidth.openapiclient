@@ -36,47 +36,47 @@ namespace Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item
         /// <summary>
         /// Retrieves the list of the LOA files associated with the order. Only for orders involving NANP numbers.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.FileListResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.FileListResponse_1"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetImportPhoneNumberLoasErrorResponse">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetImportPhoneNumberLoasErrorResponse_1">When receiving a 400 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.FileListResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportPhoneNumberOrders.Messaging.Item.Loas.LoasRequestBuilder.LoasRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.FileListResponse_1?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportPhoneNumberOrders.Messaging.Item.Loas.LoasRequestBuilder.LoasRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.FileListResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportPhoneNumberOrders.Messaging.Item.Loas.LoasRequestBuilder.LoasRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.FileListResponse_1> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportPhoneNumberOrders.Messaging.Item.Loas.LoasRequestBuilder.LoasRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.GetImportPhoneNumberLoasErrorResponse.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.GetImportPhoneNumberLoasErrorResponse_1.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.FileListResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.FileListResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.FileListResponse_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.FileListResponse_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// POSTing to the /loas resource will enable the upload of the file.  The key attribute to the POST is ensuring that the headers are correctly set to support the file upload.&lt;br&gt;Query parameter or header documentType can be used to specify type of document on upload.&lt;p&gt;When uploading documents using the /loas resource, you must specify the MIME type of the document being upload using the Content-Type HTTP header.&lt;/p&gt;&lt;p&gt;The LOA document must be uploaded using one of the following MIME types:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;application/pdf&lt;/li&gt;&lt;li&gt;text/plain&lt;/li&gt;&lt;li&gt;image/jpeg&lt;/li&gt;&lt;li&gt;image/png&lt;/li&gt;&lt;li&gt;image/tiff&lt;/li&gt;&lt;li&gt;text/csv&lt;/li&gt;&lt;li&gt;application/vnd.ms-excel&lt;/li&gt;&lt;li&gt;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&lt;/li&gt;&lt;li&gt;application/msword&lt;/li&gt;&lt;li&gt;application/vnd.openxmlformats-officedocument.wordprocessingml.document&lt;/li&gt;&lt;/ul&gt;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.FileUploadResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.FileUploadResponse_1"/></returns>
         /// <param name="body">Binary request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="contentType">The request body content type.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.FileUploadResponse?> PostAsync(Stream body, string contentType, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportPhoneNumberOrders.Messaging.Item.Loas.LoasRequestBuilder.LoasRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.FileUploadResponse_1?> PostAsync(Stream body, string contentType, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportPhoneNumberOrders.Messaging.Item.Loas.LoasRequestBuilder.LoasRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.FileUploadResponse> PostAsync(Stream body, string contentType, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportPhoneNumberOrders.Messaging.Item.Loas.LoasRequestBuilder.LoasRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.FileUploadResponse_1> PostAsync(Stream body, string contentType, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportPhoneNumberOrders.Messaging.Item.Loas.LoasRequestBuilder.LoasRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             if(string.IsNullOrEmpty(contentType)) throw new ArgumentNullException(nameof(contentType));
             var requestInfo = ToPostRequestInformation(body, contentType, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.FileUploadResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.FileUploadResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.FileUploadResponse_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.FileUploadResponse_1.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves the list of the LOA files associated with the order. Only for orders involving NANP numbers.

@@ -18,18 +18,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.Validator
         /// <summary>The list of phone numbers included in the portability request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails>? NumbersToPort { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails_1>? NumbersToPort { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails> NumbersToPort { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails_1> NumbersToPort { get; set; }
 #endif
         /// <summary>All required information and documents needed to port the requested numbers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Global_v3_requirement>? Requirements { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Requirement>? Requirements { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Global_v3_requirement> Requirements { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Requirement> Requirements { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.Validator.ValidatorPostResponse_data"/> and sets the default values.
@@ -56,8 +56,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.Validator
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "numbersToPort", n => { NumbersToPort = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails>(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "requirements", n => { Requirements = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Global_v3_requirement>(global::Soenneker.Bandwidth.OpenApiClient.Models.Global_v3_requirement.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "numbersToPort", n => { NumbersToPort = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails_1.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "requirements", n => { Requirements = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Requirement>(global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Requirement.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -67,8 +67,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.Validator
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails>("numbersToPort", NumbersToPort);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Global_v3_requirement>("requirements", Requirements);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails_1>("numbersToPort", NumbersToPort);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Requirement>("requirements", Requirements);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

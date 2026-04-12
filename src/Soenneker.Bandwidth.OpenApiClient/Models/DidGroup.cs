@@ -57,10 +57,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The phoneNumbers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumber>? PhoneNumbers { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumber_1>? PhoneNumbers { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumber> PhoneNumbers { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumber_1> PhoneNumbers { get; set; }
 #endif
         /// <summary>The rate center can be defined as a zone (which can be equivalent to a city or the area of a city) e.g. the rate center of &apos;NEW YORK CITY ZONE 1&apos; would be &apos;NWYRCYZN01&apos;. The rate center is a notion usually used in north America.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -117,7 +117,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "didType", n => { DidType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroup_didType>(); } },
                 { "features", n => { Features = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Feature>(global::Soenneker.Bandwidth.OpenApiClient.Models.Feature.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "monthly100", n => { Monthly100 = n.GetIntValue(); } },
-                { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumber>(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumber.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumber_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumber_1.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "rateCenter", n => { RateCenter = n.GetStringValue(); } },
                 { "regulationRequirement", n => { RegulationRequirement = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModel>(global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModel.CreateFromDiscriminatorValue); } },
                 { "setup100", n => { Setup100 = n.GetIntValue(); } },
@@ -140,7 +140,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroup_didType>("didType", DidType);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Feature>("features", Features);
             writer.WriteIntValue("monthly100", Monthly100);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumber>("phoneNumbers", PhoneNumbers);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumber_1>("phoneNumbers", PhoneNumbers);
             writer.WriteStringValue("rateCenter", RateCenter);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModel>("regulationRequirement", RegulationRequirement);
             writer.WriteIntValue("setup100", Setup100);

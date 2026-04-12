@@ -17,34 +17,34 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegration>? Data { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegration_1>? Data { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegration> Data { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegration_1> Data { get; set; }
 #endif
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_error>? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsError>? Errors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_error> Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsError> Errors { get; set; }
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_link>? Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsLink>? Links { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_link> Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsLink> Links { get; set; }
 #endif
         /// <summary>The page property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_page? Page { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsPage? Page { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_page Page { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsPage Page { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ApiResponsePageable"/> and sets the default values.
@@ -71,10 +71,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegration>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegration.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_error>(global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_error.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_link>(global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_link.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "page", n => { Page = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_page>(global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_page.CreateFromDiscriminatorValue); } },
+                { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegration_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegration_1.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsError>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsError.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsLink.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "page", n => { Page = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsPage>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsPage.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -84,10 +84,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegration>("data", Data);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_error>("errors", Errors);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_link>("links", Links);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Voice_integrations_page>("page", Page);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegration_1>("data", Data);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsError>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsLink>("links", Links);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceIntegrationsPage>("page", Page);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

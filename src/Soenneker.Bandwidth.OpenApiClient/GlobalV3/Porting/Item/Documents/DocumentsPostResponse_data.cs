@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.Item.Documents
         /// <summary>Array of documents.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Document>? Documents { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Document_1>? Documents { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Document> Documents { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Document_1> Documents { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.Item.Documents.DocumentsPostResponse_data"/> and sets the default values.
@@ -48,7 +48,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.Item.Documents
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "documents", n => { Documents = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Document>(global::Soenneker.Bandwidth.OpenApiClient.Models.Document.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "documents", n => { Documents = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Document_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.Document_1.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.Item.Documents
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Document>("documents", Documents);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Document_1>("documents", Documents);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

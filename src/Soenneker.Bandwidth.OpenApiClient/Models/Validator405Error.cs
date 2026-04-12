@@ -26,18 +26,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Global_v3_error>? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Error>? Errors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Global_v3_error> Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Error> Errors { get; set; }
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Global_v3_link>? Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Link>? Links { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Global_v3_link> Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Link> Links { get; set; }
 #endif
         /// <summary>The primary error message.</summary>
         public override string Message { get => base.Message; }
@@ -67,8 +67,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Validator405Error_data>(global::Soenneker.Bandwidth.OpenApiClient.Models.Validator405Error_data.CreateFromDiscriminatorValue); } },
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Global_v3_error>(global::Soenneker.Bandwidth.OpenApiClient.Models.Global_v3_error.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Global_v3_link>(global::Soenneker.Bandwidth.OpenApiClient.Models.Global_v3_link.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Error>(global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Error.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Link>(global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Link.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -79,8 +79,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Validator405Error_data>("data", DataEscaped);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Global_v3_error>("errors", Errors);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Global_v3_link>("links", Links);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Error>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Link>("links", Links);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

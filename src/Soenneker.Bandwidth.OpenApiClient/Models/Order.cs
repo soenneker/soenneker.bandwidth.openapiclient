@@ -41,10 +41,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The didGroups property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Order_didGroups? DidGroups { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OrderDidGroups? DidGroups { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Order_didGroups DidGroups { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OrderDidGroups DidGroups { get; set; }
 #endif
         /// <summary>The ID of the order.</summary>
         public int? OrderId { get; set; }
@@ -94,7 +94,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "customerReference", n => { CustomerReference = n.GetStringValue(); } },
                 { "dateAdded", n => { DateAdded = n.GetStringValue(); } },
                 { "dateCanceled", n => { DateCanceled = n.GetStringValue(); } },
-                { "didGroups", n => { DidGroups = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Order_didGroups>(global::Soenneker.Bandwidth.OpenApiClient.Models.Order_didGroups.CreateFromDiscriminatorValue); } },
+                { "didGroups", n => { DidGroups = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OrderDidGroups>(global::Soenneker.Bandwidth.OpenApiClient.Models.OrderDidGroups.CreateFromDiscriminatorValue); } },
                 { "orderId", n => { OrderId = n.GetIntValue(); } },
                 { "reference", n => { Reference = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Order_status>(); } },
@@ -111,7 +111,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("customerReference", CustomerReference);
             writer.WriteStringValue("dateAdded", DateAdded);
             writer.WriteStringValue("dateCanceled", DateCanceled);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Order_didGroups>("didGroups", DidGroups);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OrderDidGroups>("didGroups", DidGroups);
             writer.WriteIntValue("orderId", OrderId);
             writer.WriteStringValue("reference", Reference);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Order_status>("status", Status);
