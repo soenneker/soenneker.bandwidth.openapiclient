@@ -47,10 +47,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The ucTrunkingConfiguration property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountsJson1UcTrunkingConfiguration? UcTrunkingConfiguration { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountsJson_1_ucTrunkingConfiguration? UcTrunkingConfiguration { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountsJson1UcTrunkingConfiguration UcTrunkingConfiguration { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountsJson_1_ucTrunkingConfiguration UcTrunkingConfiguration { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountsJson_1"/> and sets the default values.
@@ -83,7 +83,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "locations", n => { Locations = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationForSubAccountsJson_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.LocationForSubAccountsJson_1.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "totalPhoneNumberCount", n => { TotalPhoneNumberCount = n.GetIntValue(); } },
-                { "ucTrunkingConfiguration", n => { UcTrunkingConfiguration = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountsJson1UcTrunkingConfiguration>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountsJson1UcTrunkingConfiguration.CreateFromDiscriminatorValue); } },
+                { "ucTrunkingConfiguration", n => { UcTrunkingConfiguration = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountsJson_1_ucTrunkingConfiguration>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountsJson_1_ucTrunkingConfiguration.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -99,7 +99,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationForSubAccountsJson_1>("locations", Locations);
             writer.WriteStringValue("name", Name);
             writer.WriteIntValue("totalPhoneNumberCount", TotalPhoneNumberCount);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountsJson1UcTrunkingConfiguration>("ucTrunkingConfiguration", UcTrunkingConfiguration);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountsJson_1_ucTrunkingConfiguration>("ucTrunkingConfiguration", UcTrunkingConfiguration);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

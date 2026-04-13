@@ -25,10 +25,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The nnid property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled1Nnid? Nnid { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch? Nnid { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled1Nnid Nnid { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch Nnid { get; set; }
 #endif
         /// <summary>The phoneNumbers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -41,10 +41,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The portOutPasscode property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled1PortOutPasscode? PortOutPasscode { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled_1_portOutPasscode? PortOutPasscode { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled1PortOutPasscode PortOutPasscode { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled_1_portOutPasscode PortOutPasscode { get; set; }
 #endif
         /// <summary>The protected property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled_1_protected? Protected { get; set; }
@@ -76,9 +76,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "a2pSettings", n => { A2pSettings = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.A2pSettingsJson_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.A2pSettingsJson_1.CreateFromDiscriminatorValue); } },
-                { "nnid", n => { Nnid = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled1Nnid>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled1Nnid.CreateFromDiscriminatorValue); } },
+                { "nnid", n => { Nnid = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>(global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch.CreateFromDiscriminatorValue); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "portOutPasscode", n => { PortOutPasscode = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled1PortOutPasscode>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled1PortOutPasscode.CreateFromDiscriminatorValue); } },
+                { "portOutPasscode", n => { PortOutPasscode = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled_1_portOutPasscode>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled_1_portOutPasscode.CreateFromDiscriminatorValue); } },
                 { "protected", n => { Protected = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled_1_protected>(); } },
                 { "sms", n => { Sms = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled_1_sms>(); } },
             };
@@ -91,9 +91,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.A2pSettingsJson_1>("a2pSettings", A2pSettings);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled1Nnid>("nnid", Nnid);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>("nnid", Nnid);
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled1PortOutPasscode>("portOutPasscode", PortOutPasscode);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled_1_portOutPasscode>("portOutPasscode", PortOutPasscode);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled_1_protected>("protected", Protected);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled_1_sms>("sms", Sms);
             writer.WriteAdditionalData(AdditionalData);

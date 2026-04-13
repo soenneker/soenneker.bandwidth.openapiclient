@@ -49,10 +49,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The type property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField1Type? Type { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch? Type { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField1Type Type { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch Type { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField_1"/> and sets the default values.
@@ -83,7 +83,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "field", n => { Field = n.GetStringValue(); } },
                 { "friendlyName", n => { FriendlyName = n.GetStringValue(); } },
                 { "selectableValues", n => { SelectableValues = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>(global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "type", n => { Type = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField1Type>(global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField1Type.CreateFromDiscriminatorValue); } },
+                { "type", n => { Type = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>(global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -97,7 +97,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("field", Field);
             writer.WriteStringValue("friendlyName", FriendlyName);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>("selectableValues", SelectableValues);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField1Type>("type", Type);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

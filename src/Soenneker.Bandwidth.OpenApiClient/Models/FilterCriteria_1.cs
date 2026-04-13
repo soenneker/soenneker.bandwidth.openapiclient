@@ -28,10 +28,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria1Value? Value { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch? Value { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria1Value Value { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch Value { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria_1"/> and sets the default values.
@@ -60,7 +60,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "field", n => { Field = n.GetStringValue(); } },
                 { "operator", n => { Operator = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorEnum_1>(); } },
-                { "value", n => { Value = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria1Value>(global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria1Value.CreateFromDiscriminatorValue); } },
+                { "value", n => { Value = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>(global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -72,7 +72,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("field", Field);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorEnum_1>("operator", Operator);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria1Value>("value", Value);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

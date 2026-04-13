@@ -25,18 +25,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse1Errors? Errors { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_1_errors? Errors { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse1Errors Errors { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_1_errors Errors { get; set; }
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse1Links? Links { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_1_links? Links { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse1Links Links { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_1_links Links { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_1"/> and sets the default values.
@@ -64,8 +64,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1.CreateFromDiscriminatorValue); } },
-                { "errors", n => { Errors = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse1Errors>(global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse1Errors.CreateFromDiscriminatorValue); } },
-                { "links", n => { Links = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse1Links>(global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse1Links.CreateFromDiscriminatorValue); } },
+                { "errors", n => { Errors = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_1_errors>(global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_1_errors.CreateFromDiscriminatorValue); } },
+                { "links", n => { Links = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_1_links>(global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_1_links.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -76,8 +76,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1>("data", Data);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse1Errors>("errors", Errors);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse1Links>("links", Links);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_1_errors>("errors", Errors);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_1_links>("links", Links);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

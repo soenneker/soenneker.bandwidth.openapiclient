@@ -19,10 +19,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerBadRequestResponse1Data? DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerBadRequestResponse_1_data? DataEscaped { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerBadRequestResponse1Data DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerBadRequestResponse_1_data DataEscaped { get; set; }
 #endif
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -67,7 +67,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerBadRequestResponse1Data>(global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerBadRequestResponse1Data.CreateFromDiscriminatorValue); } },
+                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerBadRequestResponse_1_data>(global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerBadRequestResponse_1_data.CreateFromDiscriminatorValue); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementError>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementError.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementLink.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -79,7 +79,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerBadRequestResponse1Data>("data", DataEscaped);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerBadRequestResponse_1_data>("data", DataEscaped);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementError>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementLink>("links", Links);
             writer.WriteAdditionalData(AdditionalData);

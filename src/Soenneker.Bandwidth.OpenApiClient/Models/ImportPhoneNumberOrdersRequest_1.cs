@@ -47,10 +47,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Subscriber information.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersRequest1Subscriber? Subscriber { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersRequest_1_subscriber? Subscriber { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersRequest1Subscriber Subscriber { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersRequest_1_subscriber Subscriber { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersRequest_1"/> and sets the default values.
@@ -84,7 +84,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "locationId", n => { LocationId = n.GetIntValue(); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "subAccountId", n => { SubAccountId = n.GetIntValue(); } },
-                { "subscriber", n => { Subscriber = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersRequest1Subscriber>(global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersRequest1Subscriber.CreateFromDiscriminatorValue); } },
+                { "subscriber", n => { Subscriber = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersRequest_1_subscriber>(global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersRequest_1_subscriber.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -100,7 +100,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteIntValue("locationId", LocationId);
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
             writer.WriteIntValue("subAccountId", SubAccountId);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersRequest1Subscriber>("subscriber", Subscriber);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersRequest_1_subscriber>("subscriber", Subscriber);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

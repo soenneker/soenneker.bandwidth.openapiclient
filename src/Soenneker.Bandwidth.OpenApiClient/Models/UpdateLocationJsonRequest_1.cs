@@ -75,10 +75,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The originationRoutePlan property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest1OriginationRoutePlan? OriginationRoutePlan { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest_1_originationRoutePlan? OriginationRoutePlan { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest1OriginationRoutePlan OriginationRoutePlan { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest_1_originationRoutePlan OriginationRoutePlan { get; set; }
 #endif
         /// <summary>The pindropEnabled property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -101,10 +101,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The terminationHosts property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest1TerminationHosts? TerminationHosts { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest_1_terminationHosts? TerminationHosts { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest1TerminationHosts TerminationHosts { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest_1_terminationHosts TerminationHosts { get; set; }
 #endif
         /// <summary>The voiceHostGroups property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -117,10 +117,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The voiceHosts property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest1VoiceHosts? VoiceHosts { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest_1_voiceHosts? VoiceHosts { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest1VoiceHosts VoiceHosts { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest_1_voiceHosts VoiceHosts { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest_1"/> and sets the default values.
@@ -155,13 +155,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "finalDestinationUri", n => { FinalDestinationUri = n.GetStringValue(); } },
                 { "isDefaultLocation", n => { IsDefaultLocation = n.GetBoolValue(); } },
                 { "locationName", n => { LocationName = n.GetStringValue(); } },
-                { "originationRoutePlan", n => { OriginationRoutePlan = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest1OriginationRoutePlan>(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest1OriginationRoutePlan.CreateFromDiscriminatorValue); } },
+                { "originationRoutePlan", n => { OriginationRoutePlan = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest_1_originationRoutePlan>(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest_1_originationRoutePlan.CreateFromDiscriminatorValue); } },
                 { "pindropEnabled", n => { PindropEnabled = n.GetStringValue(); } },
                 { "premiseTrunks", n => { PremiseTrunks = n.GetStringValue(); } },
                 { "ssSendToCustomer", n => { SsSendToCustomer = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SsSendToCustomer_1>(); } },
-                { "terminationHosts", n => { TerminationHosts = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest1TerminationHosts>(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest1TerminationHosts.CreateFromDiscriminatorValue); } },
+                { "terminationHosts", n => { TerminationHosts = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest_1_terminationHosts>(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest_1_terminationHosts.CreateFromDiscriminatorValue); } },
                 { "voiceHostGroups", n => { VoiceHostGroups = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest_1_voiceHostGroups>(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest_1_voiceHostGroups.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "voiceHosts", n => { VoiceHosts = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest1VoiceHosts>(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest1VoiceHosts.CreateFromDiscriminatorValue); } },
+                { "voiceHosts", n => { VoiceHosts = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest_1_voiceHosts>(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest_1_voiceHosts.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -179,13 +179,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("finalDestinationUri", FinalDestinationUri);
             writer.WriteBoolValue("isDefaultLocation", IsDefaultLocation);
             writer.WriteStringValue("locationName", LocationName);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest1OriginationRoutePlan>("originationRoutePlan", OriginationRoutePlan);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest_1_originationRoutePlan>("originationRoutePlan", OriginationRoutePlan);
             writer.WriteStringValue("pindropEnabled", PindropEnabled);
             writer.WriteStringValue("premiseTrunks", PremiseTrunks);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SsSendToCustomer_1>("ssSendToCustomer", SsSendToCustomer);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest1TerminationHosts>("terminationHosts", TerminationHosts);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest_1_terminationHosts>("terminationHosts", TerminationHosts);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest_1_voiceHostGroups>("voiceHostGroups", VoiceHostGroups);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest1VoiceHosts>("voiceHosts", VoiceHosts);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateLocationJsonRequest_1_voiceHosts>("voiceHosts", VoiceHosts);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

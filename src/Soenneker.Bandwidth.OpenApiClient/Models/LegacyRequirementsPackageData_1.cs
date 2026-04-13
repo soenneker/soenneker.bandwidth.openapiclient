@@ -42,10 +42,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The createdDateTime property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData1CreatedDateTime? CreatedDateTime { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1_createdDateTime? CreatedDateTime { get; private set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData1CreatedDateTime CreatedDateTime { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1_createdDateTime CreatedDateTime { get; private set; }
 #endif
         /// <summary>Customer username from BWI/legacy platform.It can be used for your own reference to the item to easily identify one of your customers, requirements package, enduser etc.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -82,34 +82,34 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The remarks property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData1Remarks? Remarks { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1_remarks? Remarks { get; private set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData1Remarks Remarks { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1_remarks Remarks { get; private set; }
 #endif
         /// <summary>The requirementsPackageId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData1RequirementsPackageId? RequirementsPackageId { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1_requirementsPackageId? RequirementsPackageId { get; private set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData1RequirementsPackageId RequirementsPackageId { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1_requirementsPackageId RequirementsPackageId { get; private set; }
 #endif
         /// <summary>The status property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData1Status? Status { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1_status? Status { get; private set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData1Status Status { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1_status Status { get; private set; }
 #endif
         /// <summary>The updatedDateTime property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData1UpdatedDateTime? UpdatedDateTime { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1_updatedDateTime? UpdatedDateTime { get; private set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData1UpdatedDateTime UpdatedDateTime { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1_updatedDateTime UpdatedDateTime { get; private set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1"/> and sets the default values.
@@ -139,15 +139,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "acknowledgements", n => { Acknowledgements = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements_1.CreateFromDiscriminatorValue); } },
                 { "callback", n => { Callback = n.GetStringValue(); } },
                 { "countryCodeA3", n => { CountryCodeA3 = n.GetStringValue(); } },
-                { "createdDateTime", n => { CreatedDateTime = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData1CreatedDateTime>(global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData1CreatedDateTime.CreateFromDiscriminatorValue); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1_createdDateTime>(global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1_createdDateTime.CreateFromDiscriminatorValue); } },
                 { "customReference", n => { CustomReference = n.GetStringValue(); } },
                 { "email", n => { Email = n.GetStringValue(); } },
                 { "endUserType", n => { EndUserType = n.GetStringValue(); } },
                 { "phoneNumberType", n => { PhoneNumberType = n.GetStringValue(); } },
-                { "remarks", n => { Remarks = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData1Remarks>(global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData1Remarks.CreateFromDiscriminatorValue); } },
-                { "requirementsPackageId", n => { RequirementsPackageId = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData1RequirementsPackageId>(global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData1RequirementsPackageId.CreateFromDiscriminatorValue); } },
-                { "status", n => { Status = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData1Status>(global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData1Status.CreateFromDiscriminatorValue); } },
-                { "updatedDateTime", n => { UpdatedDateTime = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData1UpdatedDateTime>(global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData1UpdatedDateTime.CreateFromDiscriminatorValue); } },
+                { "remarks", n => { Remarks = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1_remarks>(global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1_remarks.CreateFromDiscriminatorValue); } },
+                { "requirementsPackageId", n => { RequirementsPackageId = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1_requirementsPackageId>(global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1_requirementsPackageId.CreateFromDiscriminatorValue); } },
+                { "status", n => { Status = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1_status>(global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1_status.CreateFromDiscriminatorValue); } },
+                { "updatedDateTime", n => { UpdatedDateTime = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1_updatedDateTime>(global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1_updatedDateTime.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
