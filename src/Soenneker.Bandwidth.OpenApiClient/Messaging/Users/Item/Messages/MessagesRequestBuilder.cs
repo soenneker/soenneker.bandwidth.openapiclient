@@ -42,80 +42,80 @@ namespace Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Messages
         /// <summary>
         /// Returns a list of messages based on query parameters.**Rate Limit:** This endpoint is rate limited to 3500 requests per 5 minutes per Source IP address. Exceeding the limit returns HTTP 429 with a `Retry-After` header.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagesList_1"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagesList"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1">When receiving a 403 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1">When receiving a 404 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1">When receiving a 405 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1">When receiving a 415 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1">When receiving a 429 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1">When receiving a 500 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError">When receiving a 405 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError">When receiving a 415 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError">When receiving a 429 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MessagesList_1?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Messages.MessagesRequestBuilder.MessagesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MessagesList?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Messages.MessagesRequestBuilder.MessagesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MessagesList_1> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Messages.MessagesRequestBuilder.MessagesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MessagesList> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Messages.MessagesRequestBuilder.MessagesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1.CreateFromDiscriminatorValue },
-                { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1.CreateFromDiscriminatorValue },
-                { "415", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1.CreateFromDiscriminatorValue },
-                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1.CreateFromDiscriminatorValue },
-                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError.CreateFromDiscriminatorValue },
+                { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError.CreateFromDiscriminatorValue },
+                { "415", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError.CreateFromDiscriminatorValue },
+                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError.CreateFromDiscriminatorValue },
+                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.MessagesList_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.MessagesList_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.MessagesList>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.MessagesList.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Endpoint for sending text messages and picture messages using V2 messaging.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Message_1"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Message"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMessageRequestError_1">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1">When receiving a 403 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1">When receiving a 404 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1">When receiving a 405 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1">When receiving a 406 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1">When receiving a 415 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1">When receiving a 429 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1">When receiving a 500 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMessageRequestError">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError">When receiving a 405 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError">When receiving a 406 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError">When receiving a 415 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError">When receiving a 429 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.Message_1?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.MessageRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.Message?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.MessageRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.Message_1> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.MessageRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.Message> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.MessageRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMessageRequestError_1.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1.CreateFromDiscriminatorValue },
-                { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1.CreateFromDiscriminatorValue },
-                { "406", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1.CreateFromDiscriminatorValue },
-                { "415", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1.CreateFromDiscriminatorValue },
-                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1.CreateFromDiscriminatorValue },
-                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError_1.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMessageRequestError.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError.CreateFromDiscriminatorValue },
+                { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError.CreateFromDiscriminatorValue },
+                { "406", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError.CreateFromDiscriminatorValue },
+                { "415", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError.CreateFromDiscriminatorValue },
+                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError.CreateFromDiscriminatorValue },
+                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.Message_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.Message_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.Message>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.Message.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns a list of messages based on query parameters.**Rate Limit:** This endpoint is rate limited to 3500 requests per 5 minutes per Source IP address. Exceeding the limit returns HTTP 429 with a `Retry-After` header.
@@ -144,11 +144,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Messages
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.MessageRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.MessageRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.MessageRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.MessageRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -272,7 +272,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Messages
 #endif
             /// <summary>The direction of the message. One of INBOUND OUTBOUND.</summary>
             [QueryParameter("messageDirection")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.ListMessageDirectionEnum_1? MessageDirection { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.ListMessageDirectionEnum? MessageDirection { get; set; }
             /// <summary>The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -285,10 +285,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Messages
 #endif
             /// <summary>The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED.</summary>
             [QueryParameter("messageStatus")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.MessageStatusEnum_1? MessageStatus { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.MessageStatusEnum? MessageStatus { get; set; }
             /// <summary>The type of message. Either sms or mms.</summary>
             [QueryParameter("messageType")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.MessageTypeEnum_1? MessageType { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.MessageTypeEnum? MessageType { get; set; }
             /// <summary>A base64 encoded value used for pagination of results.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -301,7 +301,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Messages
 #endif
             /// <summary>Messaging product associated with the message.</summary>
             [QueryParameter("product")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.ProductTypeEnum_1? Product { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.ProductTypeEnum? Product { get; set; }
             /// <summary>The field and direction to sort by combined with a colon. Direction is either asc or desc.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

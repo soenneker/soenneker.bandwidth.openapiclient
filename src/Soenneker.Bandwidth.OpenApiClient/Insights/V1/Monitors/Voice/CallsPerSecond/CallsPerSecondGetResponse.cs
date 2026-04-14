@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.CallsPerS
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataCallsPerSecond_1? Data { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataCallsPerSecond? Data { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataCallsPerSecond_1 Data { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataCallsPerSecond Data { get; set; }
 #endif
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -64,7 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.CallsPerS
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataCallsPerSecond_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataCallsPerSecond_1.CreateFromDiscriminatorValue); } },
+                { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataCallsPerSecond>(global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataCallsPerSecond.CreateFromDiscriminatorValue); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsError>(global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsError.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsLink.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -76,7 +76,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.CallsPerS
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataCallsPerSecond_1>("data", Data);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataCallsPerSecond>("data", Data);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsError>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsLink>("links", Links);
             writer.WriteAdditionalData(AdditionalData);

@@ -55,45 +55,45 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveT
         /// <summary>
         /// Retrieves the moveTns orders for the given account ID. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsJsonOrders_1"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsJsonOrders"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsJsonOrders_1?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveTns.MoveTnsRequestBuilder.MoveTnsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsJsonOrders?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveTns.MoveTnsRequestBuilder.MoveTnsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsJsonOrders_1> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveTns.MoveTnsRequestBuilder.MoveTnsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsJsonOrders> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveTns.MoveTnsRequestBuilder.MoveTnsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsJsonOrders_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsJsonOrders_1.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsJsonOrders>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsJsonOrders.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a MoveTnsOrder request to move numbers to the given site/sub-account ID and SIP peer/location ID as specified in the body. A successfully submitted order will have a status of &quot;RECEIVED&quot;.A successfully completed order will have a status of &quot;COMPLETE&quot; if all of the telephone numbers were successfully moved and &quot;PARTIAL&quot; if some of the telephone numbers were moved. A failed order will have a status of &quot;FAILED&quot; and no telephone numbers would have been moved.&lt;/p&gt;&lt;p&gt;Numbers can be moved to sub-accounts (or sites) and locations (or SIP peers) of a different account (if the user has access to both accounts and the proper roles). This can be done by specifying the SourceAccountId parameter. The user can also specify how to handle E911 service on the number (if it exists) using the optional e911ServiceAction parameter
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload_1"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload_1400Error">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload400Error">When receiving a 400 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload_1?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload_1> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload_1400Error.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload400Error.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves the moveTns orders for the given account ID. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years
@@ -122,11 +122,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveT
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

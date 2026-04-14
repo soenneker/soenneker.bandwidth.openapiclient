@@ -49,50 +49,50 @@ namespace Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Dldas
         /// <summary>
         /// Retrieve a list of the DLDA orders that are associated with the account. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years. Results can be sorted by a specified field.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseSelectWrapperJson_1"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseSelectWrapperJson"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderReportErrorResponse_1">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderReportErrorResponse">When receiving a 400 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseSelectWrapperJson_1?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Dldas.DldasRequestBuilder.DldasRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseSelectWrapperJson?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Dldas.DldasRequestBuilder.DldasRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseSelectWrapperJson_1> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Dldas.DldasRequestBuilder.DldasRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseSelectWrapperJson> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Dldas.DldasRequestBuilder.DldasRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderReportErrorResponse_1.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderReportErrorResponse.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseSelectWrapperJson_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseSelectWrapperJson_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseSelectWrapperJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseSelectWrapperJson.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Business Listings: Sorted starting from the beginning of the business name. Enter the full business name in the LastName field.Leave the FirstName field blank unless there is a non-sorting part of the name, which can be placed in FirstName. Example: For \&quot;Joe&apos;s Pizza, the best pizza in town\&quot;, use LastName: \&quot;Joe&apos;s Pizza\&quot;, FirstName: \&quot;the best pizza in town\&quot;. Residential Listings: Sorted by the LastName field as usual.&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponse_1"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponse"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderErrorResponse_1">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderErrorResponse">When receiving a 400 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponse_1?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrder_1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponse?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrder body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponse_1> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrder_1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponse> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrder body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderErrorResponse_1.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderErrorResponse.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponse_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponse_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieve a list of the DLDA orders that are associated with the account. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years. Results can be sorted by a specified field.
@@ -121,11 +121,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Dldas
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrder_1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrder body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrder_1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrder body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

@@ -15,7 +15,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Possible Values are:101, Internal application error102, Encoding not supported103, No account with given username/password104, Sending from client&apos;s IP not allowed105, Throttling error106, Blacklisted sender107, Invalid sender108, Message too long109, Format of text/content parameter is wrong110, Mandatory parameter is missing111, Unknown message type112, Bad parameter value113, No credit on account balance114, No route for given destination115, Concatenation error116, Loop detected</summary>
+        /// <summary>The code property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Code { get; set; }
@@ -23,15 +23,23 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Code { get; set; }
 #endif
-        /// <summary>The primary error message.</summary>
-        public override string Message { get => MessageEscaped ?? string.Empty; }
-        /// <summary>The message property</summary>
+        /// <summary>Detailed explanation about error</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? MessageEscaped { get; set; }
+        public string? Description { get; set; }
 #nullable restore
 #else
-        public string MessageEscaped { get; set; }
+        public string Description { get; set; }
+#endif
+        /// <summary>The primary error message.</summary>
+        public override string Message { get => base.Message; }
+        /// <summary>The type property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Type { get; set; }
+#nullable restore
+#else
+        public string Type { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Error"/> and sets the default values.
@@ -59,7 +67,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "code", n => { Code = n.GetStringValue(); } },
-                { "message", n => { MessageEscaped = n.GetStringValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -70,7 +79,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("code", Code);
-            writer.WriteStringValue("message", MessageEscaped);
+            writer.WriteStringValue("description", Description);
+            writer.WriteStringValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

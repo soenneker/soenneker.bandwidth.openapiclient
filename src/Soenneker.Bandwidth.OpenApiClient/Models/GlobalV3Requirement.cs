@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>All required documents and end user&apos;s information that you have to provide for porting-in a number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRequirement_1? Business { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRequirement? Business { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRequirement_1 Business { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRequirement Business { get; set; }
 #endif
         /// <summary>ISO 3166-1 standard 3-letter country code.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -34,10 +34,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>All requirements (documents and end user&apos;s information) customers have to provide for porting-in a number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PersonalRequirement_1? Personal { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PersonalRequirement? Personal { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PersonalRequirement_1 Personal { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PersonalRequirement Personal { get; set; }
 #endif
         /// <summary>&quot;This is the list of supported phone number types:- National numbers: is a phone number designated to be reachable from the entire country at the same price anywhere in the country as a local phone call.- Geographic number: is a fixed-line telephone numbers beginning with a geographically assigned area code.- Mobile number: a telephone number which is registered to a mobile phone/mobile network.- Shared cost number: is a premium number in the UK, Australia, Germany, Switzerland, France, Portugal and the Netherlands, often used by businesses and other institutions.- Toll-free number: is a telephone number that is billed for all arriving calls. For the calling party, a call to a toll-free number from a landline is free of charge.- Special number: is a telephone number that can be used by a business as contact numbers for a number of reasons, including improving the callers experience through the use of network intelligent routing of calls (call recording, calls being automatically delivered to the nearest office, etc,), sharing the cost paid by the caller.&quot;</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3PhoneNumberTypeEnum? PhoneNumberType { get; set; }
@@ -66,9 +66,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "business", n => { Business = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRequirement_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRequirement_1.CreateFromDiscriminatorValue); } },
+                { "business", n => { Business = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRequirement>(global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRequirement.CreateFromDiscriminatorValue); } },
                 { "countryCodeA3", n => { CountryCodeA3 = n.GetStringValue(); } },
-                { "personal", n => { Personal = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PersonalRequirement_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.PersonalRequirement_1.CreateFromDiscriminatorValue); } },
+                { "personal", n => { Personal = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PersonalRequirement>(global::Soenneker.Bandwidth.OpenApiClient.Models.PersonalRequirement.CreateFromDiscriminatorValue); } },
                 { "phoneNumberType", n => { PhoneNumberType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3PhoneNumberTypeEnum>(); } },
             };
         }
@@ -79,9 +79,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRequirement_1>("business", Business);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRequirement>("business", Business);
             writer.WriteStringValue("countryCodeA3", CountryCodeA3);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PersonalRequirement_1>("personal", Personal);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PersonalRequirement>("personal", Personal);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3PhoneNumberTypeEnum>("phoneNumberType", PhoneNumberType);
             writer.WriteAdditionalData(AdditionalData);
         }

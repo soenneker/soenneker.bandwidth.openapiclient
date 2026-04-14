@@ -138,11 +138,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("callDirection")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CallDirection_1[]? CallDirection { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.CallDirection[]? CallDirection { get; set; }
 #nullable restore
 #else
             [QueryParameter("callDirection")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CallDirection_1[] CallDirection { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.CallDirection[] CallDirection { get; set; }
 #endif
             /// <summary>&quot;Short number exact match, Short number Multimatch, Short number prefix match, E.164 exact match, E.164 Multimatch, E.164 prefix match, Alphanumeric exact match, Alphanumeric Multimatch, Alphanumeric prefix match.Example:* Short number exact match: 15555551234* Short number Multimatch: 1555*,1234*,15555551234,15555554567* Short number prefix match: 1555** E.164 exact match: +15555551234* E.164 Multimatch: +1555*,+1234*,+15555551234,+15555554567* E.164 prefix match: +1555** Alphanumeric exact match: WO1234567* Alphanumeric Multimatch: WO1234567, PO4567891, WO*, PO** Alphanumeric prefix match: WO*Alphanumeric string of length 1 to 15 characters with optional leading &apos;+&apos; (URL encoded as %2B) and optional trailing &apos;*&apos; (indicating prefix search)&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -176,10 +176,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
 #endif
             /// <summary>&quot;Filter Type: Exact Match, any valid call result type.&quot;</summary>
             [QueryParameter("callResult")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CallResult_1? CallResult { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.CallResult? CallResult { get; set; }
             /// <summary>&quot;Filter Type: Exact Match, any valid call type.&quot;</summary>
             [QueryParameter("callType")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CallType_1? CallType { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.CallType? CallType { get; set; }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("destinationCountryCodeA3")]
@@ -210,7 +210,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
 #endif
             /// <summary>&quot;Filter Type: Exact Match, any valid hang up source.&quot;</summary>
             [QueryParameter("hangUpSource")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.HangUpSource_1? HangUpSource { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.HangUpSource? HangUpSource { get; set; }
             /// <summary>The maximum records to return per page.</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
@@ -228,7 +228,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
             [QueryParameter("offset")]
             public int? Offset { get; set; }
             [QueryParameter("qualityStatus")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.QualityStatus_1? QualityStatus { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.QualityStatus? QualityStatus { get; set; }
             /// <summary>&quot;Filter Type: Exact Match, any valid region.&quot;</summary>
             [QueryParameter("region")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsRegion? Region { get; set; }

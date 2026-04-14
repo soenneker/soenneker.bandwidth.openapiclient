@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.PortInOrders
         /// <summary>Port-in order details for a number or a set of numbers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrder_1? PortIn { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrder? PortIn { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrder_1 PortIn { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrder PortIn { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.PortInOrders.PortInOrdersPatchResponse_data"/> and sets the default values.
@@ -48,7 +48,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.PortInOrders
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "portIn", n => { PortIn = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrder_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrder_1.CreateFromDiscriminatorValue); } },
+                { "portIn", n => { PortIn = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrder>(global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrder.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.PortInOrders
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrder_1>("portIn", PortIn);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrder>("portIn", PortIn);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

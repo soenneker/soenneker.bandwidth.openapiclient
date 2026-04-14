@@ -19,10 +19,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.Item
         /// <summary>Subscription Response Object</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse_1? Data { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse? Data { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse_1 Data { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse Data { get; set; }
 #endif
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -65,7 +65,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.Item
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse_1.CreateFromDiscriminatorValue); } },
+                { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse.CreateFromDiscriminatorValue); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.Item.WithSubscriptionPutResponse_errors>(global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.Item.WithSubscriptionPutResponse_errors.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.Item.WithSubscriptionPutResponse_links>(global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.Item.WithSubscriptionPutResponse_links.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -77,7 +77,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.Item
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse_1>("data", Data);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse>("data", Data);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.Item.WithSubscriptionPutResponse_errors>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.Item.WithSubscriptionPutResponse_links>("links", Links);
             writer.WriteAdditionalData(AdditionalData);

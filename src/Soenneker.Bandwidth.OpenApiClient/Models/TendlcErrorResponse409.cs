@@ -26,10 +26,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseLink_1>? Links { get; private set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseLink>? Links { get; private set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseLink_1> Links { get; private set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseLink> Links { get; private set; }
 #endif
         /// <summary>The primary error message.</summary>
         public override string Message { get => base.Message; }
@@ -59,7 +59,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorEntry>(global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorEntry.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseLink_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseLink_1.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseLink.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>

@@ -67,8 +67,7 @@
       "description": "Production"
     },
     {
-      "url": "https://api.bandwidth.com/api/v1",
-      "description": "Production environment."
+      "url": "https://api.bandwidth.com/api/v1"
     },
     {
       "url": "https://voice.bandwidth.com/api/v2",
@@ -18946,6 +18945,500 @@
             "source": "import {\n    TollFreeVerificationApi,\n    Configuration\n} from 'bandwidth-sdk';\n\nconst configuration = new Configuration();\nconst apiInstance = new TollFreeVerificationApi(configuration);\n\nconst { status, data } = await apiInstance.listTollFreeUseCases();\n"
           }
         ]
+      }
+    },
+    "/user-management/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "List Users",
+        "description": "Returns all the users that the requesting user has access to.\n\nUse the `Accept` request header to specify the response format:\n- `application/json` (default) — paginated JSON response\n- `text/csv` — CSV file download\n- `application/pdf` — PDF file download\n- `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet` — Excel file download",
+        "operationId": "user_management_listUsers",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/user_management_limit"
+          },
+          {
+            "$ref": "#/components/parameters/user_management_afterCursor"
+          },
+          {
+            "$ref": "#/components/parameters/email"
+          },
+          {
+            "$ref": "#/components/parameters/firstName"
+          },
+          {
+            "$ref": "#/components/parameters/lastName"
+          },
+          {
+            "$ref": "#/components/parameters/user_management_phoneNumber"
+          },
+          {
+            "$ref": "#/components/parameters/user_management_roleId"
+          },
+          {
+            "$ref": "#/components/parameters/user_management_accountId"
+          },
+          {
+            "$ref": "#/components/parameters/globalAccountNumber"
+          },
+          {
+            "$ref": "#/components/parameters/user_management_accountScope"
+          },
+          {
+            "$ref": "#/components/parameters/user_management_status"
+          },
+          {
+            "$ref": "#/components/parameters/isExpress"
+          },
+          {
+            "$ref": "#/components/parameters/user_management_createdBy"
+          },
+          {
+            "$ref": "#/components/parameters/credentialSource"
+          },
+          {
+            "$ref": "#/components/parameters/user_management_creationDate"
+          },
+          {
+            "$ref": "#/components/parameters/lastModificationDate"
+          },
+          {
+            "$ref": "#/components/parameters/lastAuthenticationDate"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/listUsersResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/genericBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/genericUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/genericForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/genericNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/genericMethodNotAllowedResponse"
+          },
+          "415": {
+            "$ref": "#/components/responses/genericUnsupportedMediaTypeResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/genericTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/genericRuntimeExceptionResponse"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create User",
+        "description": "Creates a new user.",
+        "operationId": "user_management_createUser",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/createUserRequest"
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/createUserResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/genericBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/genericUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/genericForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/genericNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/genericMethodNotAllowedResponse"
+          },
+          "409": {
+            "$ref": "#/components/responses/genericConflictResponse"
+          },
+          "415": {
+            "$ref": "#/components/responses/genericUnsupportedMediaTypeResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/genericTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/genericRuntimeExceptionResponse"
+          }
+        }
+      }
+    },
+    "/user-management/users/{userId}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get User",
+        "description": "Returns the user with the given ID.",
+        "operationId": "user_management_getUser",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/userId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/getUserResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/genericBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/genericUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/genericForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/genericNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/genericMethodNotAllowedResponse"
+          },
+          "415": {
+            "$ref": "#/components/responses/genericUnsupportedMediaTypeResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/genericTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/genericRuntimeExceptionResponse"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update User",
+        "description": "Updates the user with the given ID.",
+        "operationId": "user_management_updateUser",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/userId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/updateUserRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/updateUserResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/genericBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/genericUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/genericForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/genericNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/genericMethodNotAllowedResponse"
+          },
+          "409": {
+            "$ref": "#/components/responses/genericConflictResponse"
+          },
+          "415": {
+            "$ref": "#/components/responses/genericUnsupportedMediaTypeResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/genericTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/genericRuntimeExceptionResponse"
+          }
+        }
+      }
+    },
+    "/user-management/users/{userId}/reset-password": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Reset User Password",
+        "description": "Triggers a password reset flow for the specified user.  The user will receive an email with instructions to reset their password.",
+        "operationId": "user_management_resetUserPassword",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/userId"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/user_management_noContentResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/genericBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/genericUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/genericForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/genericNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/genericMethodNotAllowedResponse"
+          },
+          "415": {
+            "$ref": "#/components/responses/genericUnsupportedMediaTypeResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/genericTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/genericRuntimeExceptionResponse"
+          }
+        }
+      }
+    },
+    "/user-management/users/{userId}/factors": {
+      "get": {
+        "tags": [
+          "MFA"
+        ],
+        "summary": "List User MFA Factors",
+        "description": "List available MFA factors for the user",
+        "operationId": "user_management_listUserMfaFactors",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/userId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/listUserMfaFactorsResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/genericBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/genericUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/genericForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/genericNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/genericMethodNotAllowedResponse"
+          },
+          "415": {
+            "$ref": "#/components/responses/genericUnsupportedMediaTypeResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/genericTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/genericRuntimeExceptionResponse"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "MFA"
+        ],
+        "summary": "Enroll User MFA Factor",
+        "description": "Starts the enrollment process for the specified MFA factor",
+        "operationId": "user_management_enrollUserMfaFactor",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/userId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/enrollUserMfaFactorRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/enrollUserMfaFactorResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/genericBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/genericUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/genericForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/genericNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/genericMethodNotAllowedResponse"
+          },
+          "415": {
+            "$ref": "#/components/responses/genericUnsupportedMediaTypeResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/genericTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/genericRuntimeExceptionResponse"
+          }
+        }
+      }
+    },
+    "/user-management/users/{userId}/factors/{factorId}": {
+      "delete": {
+        "tags": [
+          "MFA"
+        ],
+        "summary": "Reset User MFA Factor",
+        "description": "Unenrolls user from specified MFA Factor",
+        "operationId": "user_management_resetUserMfaFactor",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/userId"
+          },
+          {
+            "$ref": "#/components/parameters/factorId"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/user_management_noContentResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/genericBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/genericUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/genericForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/genericNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/genericMethodNotAllowedResponse"
+          },
+          "415": {
+            "$ref": "#/components/responses/genericUnsupportedMediaTypeResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/genericTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/genericRuntimeExceptionResponse"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "MFA"
+        ],
+        "summary": "Activate User MFA factor",
+        "description": "Activates the specified MFA factor",
+        "operationId": "user_management_activateUserMfaFactor",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/userId"
+          },
+          {
+            "$ref": "#/components/parameters/factorId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/activateUserMfaFactorRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/activateUserMfaFactorResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/genericBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/genericUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/genericForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/genericNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/genericMethodNotAllowedResponse"
+          },
+          "415": {
+            "$ref": "#/components/responses/genericUnsupportedMediaTypeResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/genericTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/genericRuntimeExceptionResponse"
+          }
+        }
+      }
+    },
+    "/user-management/roles": {
+      "get": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "List Roles",
+        "description": "Returns all the roles.",
+        "operationId": "user_management_listRoles",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/listRolesResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/genericBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/genericUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/genericForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/genericNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/genericMethodNotAllowedResponse"
+          },
+          "415": {
+            "$ref": "#/components/responses/genericUnsupportedMediaTypeResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/genericTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/genericRuntimeExceptionResponse"
+          }
+        }
       }
     },
     "/voice-application-management/accounts/{accountId}/voice-applications/{applicationId}": {
@@ -60839,6 +61332,7 @@
           "displayName",
           "phone",
           "country",
+          "countryCodeA3",
           "brandRelationship"
         ],
         "properties": {
@@ -60898,8 +61392,16 @@
             "description": "Government assigned corporate tax ID, EIN is 9-digits in U.S. Not required for Sole_Proprietor."
           },
           "einIssuingCountry": {
+            "maxLength": 2,
+            "minLength": 2,
             "type": "string",
-            "description": "ISO 2 character country code."
+            "description": "ISO 2 character country code of the country that issued the EIN."
+          },
+          "einIssuingCountryCodeA3": {
+            "maxLength": 3,
+            "minLength": 3,
+            "type": "string",
+            "description": "ISO 3 character country code of the country that issued the EIN."
           },
           "email": {
             "maxLength": 100,
@@ -60926,6 +61428,18 @@
             "maxLength": 5,
             "type": "string",
             "description": "Postal codes. Use 5 digit zipcode for United States."
+          },
+          "country": {
+            "maxLength": 2,
+            "minLength": 2,
+            "type": "string",
+            "description": "ISO 2 character country code."
+          },
+          "countryCodeA3": {
+            "maxLength": 3,
+            "minLength": 3,
+            "type": "string",
+            "description": "ISO 3 character country code."
           },
           "russell3000": {
             "type": "boolean",
@@ -60971,7 +61485,7 @@
             "description": "Date when business email address was verified. This will be after TCR sends a 2FA email verification to the business email provided in businessContactEmail field. This will only be populated for PUBLIC_PROFIT brands after the verification is completed."
           }
         },
-        "description": "The properties needed to create or update a TCR brand."
+        "description": "The properties of a TCR brand."
       },
       "brandAccount": {
         "required": [
@@ -61615,7 +62129,8 @@
           "VERIZON",
           "US_CELLULAR",
           "INTEROP",
-          "CLEAR_SKY"
+          "CLEAR_SKY",
+          "LIBERTY"
         ],
         "type": "string",
         "description": "The carrier"
@@ -61636,6 +62151,7 @@
           "US_CELLULAR",
           "INTEROP",
           "CLEAR_SKY",
+          "LIBERTY",
           "DCA2_ACCEPTED",
           "DCA2_READY",
           "PROXY",
@@ -63041,6 +63557,1007 @@
         "description": "The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. Supplying an empty string will likely result in rejection.",
         "nullable": true,
         "example": "cv.user123|sess456|mno|tfree|read_write|X7yZ9aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVw"
+      },
+      "createUserRequest": {
+        "required": [
+          "userId",
+          "email",
+          "firstName",
+          "lastName",
+          "roles",
+          "accounts",
+          "accountScope"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "$ref": "#/components/schemas/user_management_userId"
+          },
+          "email": {
+            "$ref": "#/components/schemas/user_management_email"
+          },
+          "firstName": {
+            "$ref": "#/components/schemas/user_management_firstName"
+          },
+          "lastName": {
+            "$ref": "#/components/schemas/user_management_lastName"
+          },
+          "phoneNumber": {
+            "$ref": "#/components/schemas/user_management_phoneNumber"
+          },
+          "roles": {
+            "$ref": "#/components/schemas/user_management_roles"
+          },
+          "accounts": {
+            "$ref": "#/components/schemas/user_management_accounts"
+          },
+          "accountScope": {
+            "$ref": "#/components/schemas/user_management_accountScopeEnum"
+          }
+        },
+        "additionalProperties": false
+      },
+      "updateUserRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "$ref": "#/components/schemas/user_management_email"
+          },
+          "firstName": {
+            "$ref": "#/components/schemas/user_management_firstName"
+          },
+          "lastName": {
+            "$ref": "#/components/schemas/user_management_lastName"
+          },
+          "phoneNumber": {
+            "$ref": "#/components/schemas/user_management_phoneNumber"
+          },
+          "roles": {
+            "$ref": "#/components/schemas/user_management_roles"
+          },
+          "accounts": {
+            "$ref": "#/components/schemas/user_management_accounts"
+          },
+          "accountScope": {
+            "$ref": "#/components/schemas/user_management_accountScopeEnum"
+          },
+          "status": {
+            "$ref": "#/components/schemas/statusTransitionsEnum"
+          }
+        },
+        "additionalProperties": false
+      },
+      "enrollUserMfaOtpRequest": {
+        "type": "object",
+        "properties": {
+          "factorType": {
+            "$ref": "#/components/schemas/mfaFactorTypeEnum"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/mfaProviderEnum"
+          }
+        },
+        "additionalProperties": false
+      },
+      "enrollUserMfaEmailRequest": {
+        "required": [
+          "factorType",
+          "provider",
+          "profile"
+        ],
+        "type": "object",
+        "properties": {
+          "factorType": {
+            "$ref": "#/components/schemas/mfaFactorTypeEnum"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/mfaProviderEnum"
+          },
+          "profile": {
+            "$ref": "#/components/schemas/enrollMfaEmailProfile"
+          }
+        },
+        "additionalProperties": false
+      },
+      "activateUserMfaFactorRequest": {
+        "required": [
+          "passCode"
+        ],
+        "type": "object",
+        "properties": {
+          "passCode": {
+            "$ref": "#/components/schemas/mfaPassCode"
+          }
+        },
+        "additionalProperties": false
+      },
+      "userResponse": {
+        "required": [
+          "links",
+          "data",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/user_management_link"
+            },
+            "example": [ ]
+          },
+          "data": {
+            "$ref": "#/components/schemas/user"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/user_management_error"
+            },
+            "example": [ ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "listUsersResponse": {
+        "required": [
+          "links",
+          "data",
+          "errors",
+          "page"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/user_management_link"
+            },
+            "example": [ ]
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/user"
+            }
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/user_management_error"
+            },
+            "example": [ ]
+          },
+          "page": {
+            "$ref": "#/components/schemas/user_management_page"
+          }
+        },
+        "additionalProperties": false
+      },
+      "listUserMfaFactorsResponse": {
+        "required": [
+          "links",
+          "data",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/user_management_link"
+            },
+            "example": [ ]
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mfaFactor"
+            }
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/user_management_error"
+            },
+            "example": [ ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "enrollUserMfaFactorResponse": {
+        "required": [
+          "links",
+          "data",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/user_management_link"
+            },
+            "example": [ ]
+          },
+          "data": {
+            "required": [
+              "id",
+              "status"
+            ],
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/components/schemas/mfaFactorId"
+              },
+              "status": {
+                "$ref": "#/components/schemas/mfaFactorStatusEnum"
+              },
+              "qrCode": {
+                "$ref": "#/components/schemas/mfaQrCode"
+              },
+              "sharedSecret": {
+                "$ref": "#/components/schemas/mfaSharedSecret"
+              },
+              "factorType": {
+                "$ref": "#/components/schemas/mfaFactorTypeEnum"
+              },
+              "provider": {
+                "$ref": "#/components/schemas/mfaProviderEnum"
+              }
+            },
+            "additionalProperties": false
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/user_management_error"
+            },
+            "example": [ ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "activateUserMfaFactorResponse": {
+        "required": [
+          "links",
+          "data",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/user_management_link"
+            },
+            "example": [ ]
+          },
+          "data": {
+            "$ref": "#/components/schemas/mfaFactor"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/user_management_error"
+            },
+            "example": [ ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "listRolesResponse": {
+        "required": [
+          "links",
+          "data",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/user_management_link"
+            },
+            "example": [ ]
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/role"
+            }
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/user_management_error"
+            },
+            "example": [ ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "user_management_errorResponse": {
+        "required": [
+          "links",
+          "data",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/user_management_link"
+            },
+            "example": [ ]
+          },
+          "data": {
+            "type": "object",
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/user_management_error"
+            },
+            "example": [ ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "user_management_link": {
+        "title": "link",
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string",
+            "description": "The URI of the link",
+            "example": "/api/v1/users"
+          },
+          "rel": {
+            "type": "string",
+            "description": "The relationship of the link to the resource",
+            "example": "self"
+          },
+          "method": {
+            "type": "string",
+            "description": "The HTTP method to use when following the link",
+            "example": "GET"
+          }
+        },
+        "additionalProperties": false
+      },
+      "user_management_error": {
+        "title": "error",
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "A short human-readable summary of the problem encountered",
+            "example": "Error"
+          },
+          "description": {
+            "type": "string",
+            "description": "A human-readable detailed description that SHOULD be specific to the problem encountered",
+            "example": "There was a problem with your request. Please try again"
+          },
+          "code": {
+            "type": "string",
+            "description": "A User Management API specific error code",
+            "example": "E0001"
+          },
+          "source": {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "description": "The field in the request that caused the error",
+                "example": "lastName"
+              },
+              "parameter": {
+                "type": "string",
+                "description": "The parameter in the query that caused the error",
+                "example": "firstName"
+              }
+            },
+            "additionalProperties": false,
+            "description": "Information about the source of the error"
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "traceId": {
+                "type": "string",
+                "description": "A unique identifier for the error",
+                "example": 123456789
+              }
+            },
+            "additionalProperties": false,
+            "description": "Additional metadata about the error"
+          }
+        },
+        "additionalProperties": false
+      },
+      "user_management_page": {
+        "type": "object",
+        "properties": {
+          "pageSize": {
+            "type": "number",
+            "description": "The number of items returned in the current page.",
+            "example": 50
+          }
+        }
+      },
+      "user": {
+        "required": [
+          "userId",
+          "email",
+          "firstName",
+          "lastName",
+          "roles",
+          "accounts",
+          "accountScope",
+          "status",
+          "createdBy",
+          "creationDate",
+          "lastModificationDate",
+          "credentialSource"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "$ref": "#/components/schemas/user_management_userId"
+          },
+          "email": {
+            "$ref": "#/components/schemas/user_management_email"
+          },
+          "firstName": {
+            "$ref": "#/components/schemas/user_management_firstName"
+          },
+          "lastName": {
+            "$ref": "#/components/schemas/user_management_lastName"
+          },
+          "phoneNumber": {
+            "$ref": "#/components/schemas/user_management_phoneNumber"
+          },
+          "roles": {
+            "$ref": "#/components/schemas/user_management_roles"
+          },
+          "accounts": {
+            "$ref": "#/components/schemas/user_management_accounts"
+          },
+          "globalAccountNumbers": {
+            "$ref": "#/components/schemas/globalAccountNumbers"
+          },
+          "accountScope": {
+            "$ref": "#/components/schemas/user_management_accountScopeEnum"
+          },
+          "status": {
+            "$ref": "#/components/schemas/user_management_statusEnum"
+          },
+          "isExpress": {
+            "$ref": "#/components/schemas/isExpress"
+          },
+          "createdBy": {
+            "$ref": "#/components/schemas/createdBy"
+          },
+          "credentialSource": {
+            "$ref": "#/components/schemas/credentialSourceEnum"
+          },
+          "creationDate": {
+            "$ref": "#/components/schemas/creationDate"
+          },
+          "lastModificationDate": {
+            "$ref": "#/components/schemas/lastModificationDate"
+          },
+          "lastAuthenticationDate": {
+            "$ref": "#/components/schemas/lastAuthenticationDate"
+          }
+        },
+        "additionalProperties": false
+      },
+      "user_management_userId": {
+        "maxLength": 45,
+        "minLength": 4,
+        "pattern": "^[A-Za-z0-9@._+-]*$",
+        "type": "string",
+        "description": "Unique identifier of the user",
+        "example": "testUser"
+      },
+      "user_management_email": {
+        "maxLength": 100,
+        "minLength": 5,
+        "type": "string",
+        "description": "The email of the user",
+        "format": "email",
+        "example": "kstone@bandwidth.com"
+      },
+      "user_management_firstName": {
+        "type": "string",
+        "description": "The first name of the user",
+        "example": "Nicolas"
+      },
+      "user_management_lastName": {
+        "type": "string",
+        "description": "The last name of the user",
+        "example": "Cage"
+      },
+      "user_management_phoneNumber": {
+        "type": "string",
+        "description": "User's phone number in E.164 `+19195551234` format",
+        "example": 19195551234
+      },
+      "user_management_accountScopeEnum": {
+        "enum": [
+          "ACCOUNT",
+          "ACCOUNT_ADMIN"
+        ],
+        "type": "string",
+        "description": "The scope of the user",
+        "example": "ACCOUNT_ADMIN"
+      },
+      "isExpress": {
+        "type": "boolean",
+        "description": "Whether or not the user is a Bandwidth Express user",
+        "example": true
+      },
+      "user_management_globalAccountNumber": {
+        "pattern": "BW-[0-9]{7}",
+        "type": "string",
+        "description": "A unique identifier for a global account",
+        "example": "BW-1234567"
+      },
+      "globalAccountNumbers": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/user_management_globalAccountNumber"
+        },
+        "description": "The global account numbers associated with the user"
+      },
+      "user_management_statusEnum": {
+        "enum": [
+          "STAGED",
+          "PROVISIONED",
+          "ACTIVE",
+          "PASSWORD_EXPIRED",
+          "LOCKED_OUT",
+          "RECOVERY",
+          "SUSPENDED",
+          "DEPROVISIONED"
+        ],
+        "type": "string",
+        "description": "The status of the user",
+        "example": "ACTIVE"
+      },
+      "statusTransitionsEnum": {
+        "enum": [
+          "ACTIVE",
+          "SUSPENDED",
+          "DEPROVISIONED"
+        ],
+        "type": "string",
+        "description": "Valid statuses that a user can transition to",
+        "example": "ACTIVE"
+      },
+      "createdBy": {
+        "type": "string",
+        "description": "The principal that created this user (Username or Client ID)",
+        "example": "adminUser"
+      },
+      "creationDate": {
+        "type": "string",
+        "description": "The date and time the user was created",
+        "format": "date-time",
+        "example": "2026-01-01T12:00:00Z"
+      },
+      "lastModificationDate": {
+        "type": "string",
+        "description": "The date and time the user was last modified",
+        "format": "date-time",
+        "example": "2026-01-02T12:00:00Z"
+      },
+      "lastAuthenticationDate": {
+        "type": "string",
+        "description": "The date and time of the last authentication",
+        "format": "date-time",
+        "example": "2026-01-02T12:00:00Z"
+      },
+      "credentialSourceEnum": {
+        "enum": [
+          "PASSWORD",
+          "SSO",
+          "SSO_PASSWORD"
+        ],
+        "type": "string",
+        "description": "The credential source for the user",
+        "example": "PASSWORD"
+      },
+      "user_management_accountId": {
+        "pattern": "^[A-Za-z0-9]{1,15}$",
+        "type": "string",
+        "description": "A unique identifier for an account",
+        "example": 1232131
+      },
+      "user_management_accounts": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/user_management_accountId"
+        }
+      },
+      "roleId": {
+        "pattern": "^[A-Za-z0-9 _-]{4,60}$",
+        "type": "string",
+        "description": "Identifier of the role",
+        "example": "testRole"
+      },
+      "user_management_roles": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/roleId"
+        }
+      },
+      "role": {
+        "required": [
+          "id",
+          "name",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/roleId"
+          },
+          "name": {
+            "$ref": "#/components/schemas/roleName"
+          },
+          "description": {
+            "$ref": "#/components/schemas/roleDescription"
+          }
+        },
+        "additionalProperties": false
+      },
+      "roleName": {
+        "type": "string",
+        "description": "Name of the role",
+        "example": "Test Role"
+      },
+      "roleDescription": {
+        "type": "string",
+        "description": "Description of the role",
+        "example": "This role gives you testing abilities"
+      },
+      "mfaFactorId": {
+        "type": "string",
+        "description": "The unique identifier of the MFA Factor",
+        "example": "chf20l33Ks8U2Zjba0g4"
+      },
+      "mfaFactorTypeEnum": {
+        "enum": [
+          "TOTP",
+          "EMAIL"
+        ],
+        "type": "string",
+        "description": "The MFA factor type",
+        "example": "TOTP"
+      },
+      "mfaProviderEnum": {
+        "enum": [
+          "OKTA",
+          "GOOGLE"
+        ],
+        "type": "string",
+        "description": "The MFA factor provider",
+        "example": "OKTA"
+      },
+      "mfaFactorDisplayName": {
+        "type": "string",
+        "description": "The display name of the MFA factor",
+        "example": "Authenticator App"
+      },
+      "mfaFactorStatusEnum": {
+        "enum": [
+          "NOT_SETUP",
+          "PENDING_ACTIVATION",
+          "ENROLLED",
+          "ACTIVE",
+          "INACTIVE",
+          "EXPIRED"
+        ],
+        "type": "string",
+        "description": "The enrollment status of the MFA factor",
+        "example": "NOT_SETUP"
+      },
+      "mfaSharedSecret": {
+        "type": "string",
+        "description": "The MFA factor's unique secret key for prover",
+        "example": "JBTWGV22G4ZGKV3N"
+      },
+      "mfaQrCodeHref": {
+        "type": "string",
+        "description": "The location to find the QR Code image",
+        "example": "https://upload.wikimedia.org/wikipedia/commons/5/5e/QR_Code_example.png"
+      },
+      "mfaQrCodeType": {
+        "type": "string",
+        "description": "The type of image the QR Code will be",
+        "example": "image/png"
+      },
+      "mfaQrCode": {
+        "required": [
+          "href",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "href": {
+            "$ref": "#/components/schemas/mfaQrCodeHref"
+          },
+          "type": {
+            "$ref": "#/components/schemas/mfaQrCodeType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "mfaFactorRequired": {
+        "type": "boolean",
+        "description": "Whether or not the mfa is required to be enrolled",
+        "example": true
+      },
+      "mfaFactor": {
+        "required": [
+          "displayName",
+          "factorType",
+          "provider",
+          "status",
+          "required"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/mfaFactorId"
+          },
+          "factorType": {
+            "$ref": "#/components/schemas/mfaFactorTypeEnum"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/mfaProviderEnum"
+          },
+          "status": {
+            "$ref": "#/components/schemas/mfaFactorStatusEnum"
+          },
+          "required": {
+            "$ref": "#/components/schemas/mfaFactorRequired"
+          },
+          "displayName": {
+            "$ref": "#/components/schemas/mfaFactorDisplayName"
+          }
+        },
+        "additionalProperties": false
+      },
+      "enrollMfaEmailProfile": {
+        "required": [
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "$ref": "#/components/schemas/user_management_email"
+          }
+        },
+        "additionalProperties": false
+      },
+      "mfaPassCode": {
+        "type": "string",
+        "description": "One Time PassCode",
+        "example": 123456
+      },
+      "user_management_sort": {
+        "enum": [
+          "ASC",
+          "DESC"
+        ],
+        "type": "string",
+        "description": "Sort order, either ascending (ASC) or descending (DESC)"
+      },
+      "emailQueryParam": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "Equal to the specified email address."
+          },
+          "startsWith": {
+            "type": "string",
+            "description": "Starts with the specified string."
+          },
+          "contains": {
+            "type": "string",
+            "description": "Contains the specified string."
+          },
+          "sort": {
+            "$ref": "#/components/schemas/user_management_sort"
+          }
+        },
+        "example": {
+          "startsWith": "mike"
+        }
+      },
+      "nameQueryParam": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "Equal to the specified name."
+          },
+          "startsWith": {
+            "type": "string",
+            "description": "Starts with the specified string."
+          },
+          "contains": {
+            "type": "string",
+            "description": "Contains the specified string."
+          },
+          "sort": {
+            "$ref": "#/components/schemas/user_management_sort"
+          }
+        },
+        "example": {
+          "startsWith": "John"
+        }
+      },
+      "phoneNumberQueryParam": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "Equal to the specified phone number."
+          },
+          "startsWith": {
+            "type": "string",
+            "description": "Starts with the specified string."
+          },
+          "sort": {
+            "$ref": "#/components/schemas/user_management_sort"
+          }
+        },
+        "example": {
+          "startsWith": 123
+        }
+      },
+      "user_management_roleIdQueryParam": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "Equal to the specified role ID."
+          }
+        },
+        "example": {
+          "eq": "httpVoice"
+        }
+      },
+      "user_management_accountIdQueryParam": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "Equal to the specified account ID."
+          }
+        },
+        "example": {
+          "eq": 1232131
+        }
+      },
+      "globalAccountNumberQueryParam": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "Equal to the specified global account number."
+          },
+          "sort": {
+            "$ref": "#/components/schemas/user_management_sort"
+          }
+        },
+        "example": {
+          "eq": "BW-1234567"
+        }
+      },
+      "user_management_accountScopeQueryParam": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "$ref": "#/components/schemas/user_management_accountScopeEnum"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/user_management_sort"
+          }
+        },
+        "example": {
+          "eq": "ACCOUNT_ADMIN"
+        }
+      },
+      "user_management_statusQueryParam": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "$ref": "#/components/schemas/user_management_statusEnum"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/user_management_sort"
+          }
+        },
+        "example": {
+          "eq": "ACTIVE"
+        }
+      },
+      "isExpressQueryParam": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "boolean",
+            "description": "Equal to the specified isExpress value."
+          }
+        },
+        "example": {
+          "eq": true
+        }
+      },
+      "user_management_createdByQueryParam": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "Equal to the specified creator."
+          },
+          "startsWith": {
+            "type": "string",
+            "description": "Starts with the specified string."
+          },
+          "sort": {
+            "$ref": "#/components/schemas/user_management_sort"
+          }
+        },
+        "example": {
+          "startsWith": "mike"
+        }
+      },
+      "credentialSourceQueryParam": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "$ref": "#/components/schemas/credentialSourceEnum"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/user_management_sort"
+          }
+        },
+        "example": {
+          "eq": "PASSWORD"
+        }
+      },
+      "user_management_dateQueryParam": {
+        "type": "object",
+        "properties": {
+          "gte": {
+            "type": "string",
+            "description": "Greater than or equal to the specified date and time.",
+            "format": "date-time"
+          },
+          "lte": {
+            "type": "string",
+            "description": "Less than or equal to the specified date and time.",
+            "format": "date-time"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/user_management_sort"
+          }
+        },
+        "example": {
+          "gte": "2025-01-01T00:00:00Z",
+          "lte": "2025-12-31T23:59:59Z"
+        }
       },
       "voice_application_management_link": {
         "title": "Link",
@@ -81621,6 +83138,299 @@
       "verifyPutResponse": {
         "description": "Accepted"
       },
+      "listUsersResponse": {
+        "description": "OK",
+        "headers": {
+          "Content-Disposition": {
+            "description": "Present when the response is a file download. Contains the suggested filename for the report.",
+            "schema": {
+              "type": "string",
+              "example": "attachment; filename=\"user-report.csv\""
+            }
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/listUsersResponse"
+            },
+            "examples": {
+              "listUsersResponseExample": {
+                "$ref": "#/components/examples/listUsersResponseExample"
+              }
+            }
+          },
+          "text/csv": {
+            "schema": {
+              "type": "string",
+              "description": "CSV file containing user data. Array fields (roles, accounts) are serialized as semicolon-delimited values within a single column.",
+              "format": "binary"
+            },
+            "examples": {
+              "listUsersCsvResponseExample": {
+                "$ref": "#/components/examples/listUsersCsvResponseExample"
+              }
+            }
+          },
+          "application/pdf": {
+            "schema": {
+              "type": "string",
+              "description": "PDF file containing user data",
+              "format": "binary"
+            }
+          },
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+            "schema": {
+              "type": "string",
+              "description": "Excel file containing user data",
+              "format": "binary"
+            }
+          }
+        }
+      },
+      "getUserResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/userResponse"
+            },
+            "examples": {
+              "getUserResponseExample": {
+                "$ref": "#/components/examples/userResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "createUserResponse": {
+        "description": "Created",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/userResponse"
+            },
+            "examples": {
+              "createUserResponseExample": {
+                "$ref": "#/components/examples/userResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "updateUserResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/userResponse"
+            },
+            "examples": {
+              "updateUserResponseExample": {
+                "$ref": "#/components/examples/userResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "listUserMfaFactorsResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/listUserMfaFactorsResponse"
+            },
+            "examples": {
+              "listMfaFactorsResponseExample": {
+                "$ref": "#/components/examples/listUserMfaFactorsResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "activateUserMfaFactorResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/activateUserMfaFactorResponse"
+            },
+            "examples": {
+              "activateUserMfaFactorResponseExample": {
+                "$ref": "#/components/examples/activateUserMfaFactorResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "enrollUserMfaFactorResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/enrollUserMfaFactorResponse"
+            },
+            "examples": {
+              "enrollUserMfaFactorResponseExample": {
+                "$ref": "#/components/examples/enrollUserMfaFactorResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "listRolesResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/listRolesResponse"
+            },
+            "examples": {
+              "listRolesResponseExample": {
+                "$ref": "#/components/examples/listRolesResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "user_management_noContentResponse": {
+        "description": "No Content"
+      },
+      "genericBadRequestResponse": {
+        "description": "Bad Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/user_management_errorResponse"
+            },
+            "examples": {
+              "genericBadRequestResponseExample": {
+                "$ref": "#/components/examples/genericBadRequestResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "genericUnauthorizedResponse": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/user_management_errorResponse"
+            },
+            "examples": {
+              "genericUnauthorizedResponseExample": {
+                "$ref": "#/components/examples/genericUnauthorizedResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "genericForbiddenResponse": {
+        "description": "Forbidden",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/user_management_errorResponse"
+            },
+            "examples": {
+              "genericForbiddenResponseExample": {
+                "$ref": "#/components/examples/genericForbiddenResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "genericNotFoundResponse": {
+        "description": "Not Found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/user_management_errorResponse"
+            },
+            "examples": {
+              "GenericNotFoundResponseExample": {
+                "$ref": "#/components/examples/genericNotFoundResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "genericMethodNotAllowedResponse": {
+        "description": "Method Not Allowed",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/user_management_errorResponse"
+            },
+            "examples": {
+              "genericMethodNotAllowedResponseExample": {
+                "$ref": "#/components/examples/genericMethodNotAllowedResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "genericConflictResponse": {
+        "description": "Conflict",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/user_management_errorResponse"
+            },
+            "examples": {
+              "genericConflictResponseExample": {
+                "$ref": "#/components/examples/genericConflictResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "genericUnsupportedMediaTypeResponse": {
+        "description": "Unsupported Media Type",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/user_management_errorResponse"
+            },
+            "examples": {
+              "genericUnsupportedMediaTypeResponseExample": {
+                "$ref": "#/components/examples/genericUnsupportedMediaTypeResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "genericTooManyRequestsResponse": {
+        "description": "Too Many Requests",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/user_management_errorResponse"
+            },
+            "examples": {
+              "genericTooManyRequestsResponseExample": {
+                "$ref": "#/components/examples/genericTooManyRequestsResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "genericRuntimeExceptionResponse": {
+        "description": "Internal Server Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/user_management_errorResponse"
+            },
+            "examples": {
+              "genericRuntimeExceptionResponseExample": {
+                "$ref": "#/components/examples/genericRuntimeExceptionResponseExample"
+              }
+            }
+          }
+        }
+      },
       "getVoiceApplicationResponse": {
         "description": "OK",
         "content": {
@@ -88513,6 +90323,176 @@
           "type": "string"
         },
         "example": "7bt57JcsVYJrN9K1OcV1Nu"
+      },
+      "userId": {
+        "name": "userId",
+        "in": "path",
+        "description": "Unique identifier of the user",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/user_management_userId"
+        }
+      },
+      "factorId": {
+        "name": "factorId",
+        "in": "path",
+        "description": "Unique identifier of the MFA Factor",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/mfaFactorId"
+        }
+      },
+      "user_management_afterCursor": {
+        "name": "afterCursor",
+        "in": "query",
+        "description": "The cursor to use for pagination. This is the value of the `next` link from the previous response.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "user_management_limit": {
+        "name": "limit",
+        "in": "query",
+        "description": "The maximum number of items to return. Defaults to 100.",
+        "schema": {
+          "type": "integer",
+          "default": 100
+        }
+      },
+      "email": {
+        "name": "email",
+        "in": "query",
+        "description": "The email address of the user.",
+        "style": "deepObject",
+        "schema": {
+          "$ref": "#/components/schemas/emailQueryParam"
+        }
+      },
+      "firstName": {
+        "name": "firstName",
+        "in": "query",
+        "description": "The first name of the user.",
+        "style": "deepObject",
+        "schema": {
+          "$ref": "#/components/schemas/nameQueryParam"
+        }
+      },
+      "lastName": {
+        "name": "lastName",
+        "in": "query",
+        "description": "The last name of the user.",
+        "style": "deepObject",
+        "schema": {
+          "$ref": "#/components/schemas/nameQueryParam"
+        }
+      },
+      "user_management_phoneNumber": {
+        "name": "phoneNumber",
+        "in": "query",
+        "description": "The phone number of the user.",
+        "style": "deepObject",
+        "schema": {
+          "$ref": "#/components/schemas/phoneNumberQueryParam"
+        }
+      },
+      "user_management_roleId": {
+        "name": "roleId",
+        "in": "query",
+        "description": "A role id assigned to a user.",
+        "style": "deepObject",
+        "schema": {
+          "$ref": "#/components/schemas/user_management_roleIdQueryParam"
+        }
+      },
+      "user_management_accountId": {
+        "name": "accountId",
+        "in": "query",
+        "description": "An account id assigned to a user.",
+        "style": "deepObject",
+        "schema": {
+          "$ref": "#/components/schemas/user_management_accountIdQueryParam"
+        }
+      },
+      "globalAccountNumber": {
+        "name": "globalAccountNumber",
+        "in": "query",
+        "description": "The global account number assigned to a user.",
+        "style": "deepObject",
+        "schema": {
+          "$ref": "#/components/schemas/globalAccountNumberQueryParam"
+        }
+      },
+      "user_management_accountScope": {
+        "name": "accountScope",
+        "in": "query",
+        "description": "The account scope assigned to a user.",
+        "style": "deepObject",
+        "schema": {
+          "$ref": "#/components/schemas/user_management_accountScopeQueryParam"
+        }
+      },
+      "user_management_status": {
+        "name": "status",
+        "in": "query",
+        "description": "The status of the user.",
+        "style": "deepObject",
+        "schema": {
+          "$ref": "#/components/schemas/user_management_statusQueryParam"
+        }
+      },
+      "isExpress": {
+        "name": "isExpress",
+        "in": "query",
+        "description": "Whether the user is a Bandwidth Express user.",
+        "style": "deepObject",
+        "schema": {
+          "$ref": "#/components/schemas/isExpressQueryParam"
+        }
+      },
+      "user_management_createdBy": {
+        "name": "createdBy",
+        "in": "query",
+        "description": "The principal that created the user.",
+        "style": "deepObject",
+        "schema": {
+          "$ref": "#/components/schemas/user_management_createdByQueryParam"
+        }
+      },
+      "credentialSource": {
+        "name": "credentialSource",
+        "in": "query",
+        "description": "The source of the user's credentials.",
+        "style": "deepObject",
+        "schema": {
+          "$ref": "#/components/schemas/credentialSourceQueryParam"
+        }
+      },
+      "user_management_creationDate": {
+        "name": "creationDate",
+        "in": "query",
+        "description": "The date and time when the user was created.",
+        "style": "deepObject",
+        "schema": {
+          "$ref": "#/components/schemas/user_management_dateQueryParam"
+        }
+      },
+      "lastModificationDate": {
+        "name": "lastModificationDate",
+        "in": "query",
+        "description": "The date and time when the user was last modified.",
+        "style": "deepObject",
+        "schema": {
+          "$ref": "#/components/schemas/user_management_dateQueryParam"
+        }
+      },
+      "lastAuthenticationDate": {
+        "name": "lastAuthenticationDate",
+        "in": "query",
+        "description": "The date and time when the user last authenticated.",
+        "style": "deepObject",
+        "schema": {
+          "$ref": "#/components/schemas/user_management_dateQueryParam"
+        }
       },
       "voice_application_management_accountId": {
         "name": "accountId",
@@ -99976,6 +101956,324 @@
           "errors": [ ]
         }
       },
+      "userResponseExample": {
+        "value": {
+          "links": [ ],
+          "data": {
+            "userId": "testUser",
+            "email": "mike@bandwidth.com",
+            "firstName": "Mike",
+            "lastName": "Wazowski",
+            "phoneNumber": 1234567890,
+            "roles": [
+              "httpVoice"
+            ],
+            "accounts": [
+              1232131
+            ],
+            "globalAccountNumbers": [
+              "BW-1234567"
+            ],
+            "accountScope": "ACCOUNT_ADMIN",
+            "status": "ACTIVE",
+            "createdBy": "adminUser",
+            "creationDate": "2026-01-01T12:00:00Z",
+            "lastModificationDate": "2026-01-02T12:00:00Z",
+            "lastAuthenticationDate": "2026-01-02T12:00:00Z",
+            "credentialSource": "PASSWORD"
+          },
+          "errors": [ ]
+        }
+      },
+      "listUsersResponseExample": {
+        "value": {
+          "links": [ ],
+          "data": [
+            {
+              "userId": "mikew",
+              "email": "mike@bandwidth.com",
+              "firstName": "Mike",
+              "lastName": "Wazowski",
+              "phoneNumber": 11112223333,
+              "roles": [
+                "httpVoice"
+              ],
+              "accounts": [
+                1232131
+              ],
+              "globalAccountNumbers": [
+                "BW-1234567"
+              ],
+              "accountScope": "ACCOUNT_ADMIN",
+              "status": "ACTIVE",
+              "createdBy": "adminUser",
+              "creationDate": "2026-01-01T12:00:00Z",
+              "lastModificationDate": "2026-01-02T12:00:00Z",
+              "lastAuthenticationDate": "2026-01-02T12:00:00Z",
+              "credentialSource": "PASSWORD"
+            },
+            {
+              "userId": "sully",
+              "email": "sully@bandwidth.com",
+              "firstName": "James",
+              "lastName": "Sullivan",
+              "phoneNumber": 19998887777,
+              "roles": [
+                "httpVoice"
+              ],
+              "accounts": [
+                1232131
+              ],
+              "globalAccountNumbers": [
+                "BW-1234567"
+              ],
+              "accountScope": "ACCOUNT",
+              "status": "ACTIVE",
+              "createdBy": "mikew",
+              "creationDate": "2026-01-03T12:00:00Z",
+              "lastModificationDate": "2026-01-04T12:00:00Z",
+              "lastAuthenticationDate": "2026-01-04T12:00:00Z",
+              "credentialSource": "PASSWORD"
+            }
+          ],
+          "errors": [ ],
+          "page": {
+            "pageSize": 2
+          }
+        }
+      },
+      "listUsersCsvResponseExample": {
+        "value": "userId,email,firstName,lastName,phoneNumber,roles,accounts,gan,accountScope,status,isExpress,createdBy,credentialSource,creationDate,lastModificationDate,lastAuthenticationDate\nmikew,mike@bandwidth.com,Mike,Wazowski,+11112223333,httpVoice;adminRole,1232131;9876543,GAN123456,ACCOUNT_ADMIN,ACTIVE,false,adminUser,PASSWORD,2026-01-01T12:00:00Z,2026-01-02T12:00:00Z,2026-01-02T12:00:00Z\n"
+      },
+      "listUserMfaFactorsResponseExample": {
+        "value": {
+          "links": [ ],
+          "data": [
+            {
+              "factorType": "TOTP",
+              "provider": "OKTA",
+              "status": "NOT_SETUP",
+              "required": false,
+              "displayName": "Okta Verify"
+            },
+            {
+              "factorType": "TOTP",
+              "provider": "GOOGLE",
+              "status": "NOT_SETUP",
+              "required": false,
+              "displayName": "Authenticator App"
+            },
+            {
+              "id": "chf20l33Ks8U2Zjba0g4",
+              "factorType": "EMAIL",
+              "provider": "OKTA",
+              "status": "ACTIVE",
+              "required": true,
+              "displayName": "Email"
+            }
+          ],
+          "errors": [ ]
+        }
+      },
+      "enrollUserMfaFactorResponseExample": {
+        "value": {
+          "links": [ ],
+          "data": {
+            "id": "chf20l33Ks8U2Zjba0g4",
+            "factorType": "TOTP",
+            "provider": "GOOGLE",
+            "status": "PENDING_ACTIVATION",
+            "qrCode": {
+              "href": "https://upload.wikimedia.org/wikipedia/commons/5/5e/QR_Code_example.png",
+              "type": "image/png"
+            },
+            "sharedSecret": "JBTWGV22G4ZGKV3N"
+          },
+          "errors": [ ]
+        }
+      },
+      "activateUserMfaFactorResponseExample": {
+        "value": {
+          "links": [ ],
+          "data": {
+            "id": "chf20l33Ks8U2Zjba0g4",
+            "factorType": "TOTP",
+            "provider": "GOOGLE",
+            "status": "ACTIVE",
+            "required": true,
+            "displayName": "Google Authenticator"
+          },
+          "errors": [ ]
+        }
+      },
+      "listRolesResponseExample": {
+        "value": {
+          "links": [ ],
+          "data": [
+            {
+              "id": "adminRole",
+              "name": "Administrator",
+              "description": "This role gives you full access to all resources"
+            },
+            {
+              "id": "httpVoice",
+              "name": "HTTP Voice Role",
+              "description": "This role gives you access to HTTP Voice resources"
+            }
+          ],
+          "errors": [ ]
+        }
+      },
+      "genericBadRequestResponseExample": {
+        "value": {
+          "links": [ ],
+          "data": null,
+          "errors": [
+            {
+              "type": "validation",
+              "description": "lastName is a required field",
+              "code": "4ALL0001",
+              "source": {
+                "field": "lastName"
+              },
+              "meta": {
+                "traceId": 123456789
+              }
+            }
+          ]
+        }
+      },
+      "genericUnauthorizedResponseExample": {
+        "value": {
+          "links": [ ],
+          "data": null,
+          "errors": [
+            {
+              "type": "unauthorized",
+              "description": "Authentication credentials are missing or invalid",
+              "code": "4ALL0002",
+              "meta": {
+                "traceId": 123456789
+              }
+            }
+          ]
+        }
+      },
+      "genericForbiddenResponseExample": {
+        "value": {
+          "links": [ ],
+          "data": null,
+          "errors": [
+            {
+              "type": "forbidden",
+              "description": "You do not have permission to access this resource",
+              "code": "4ALL0003",
+              "meta": {
+                "traceId": 123456789
+              }
+            }
+          ]
+        }
+      },
+      "genericNotFoundResponseExample": {
+        "value": {
+          "links": [ ],
+          "data": null,
+          "errors": [
+            {
+              "type": "not-found",
+              "description": "The specified resource could not be found",
+              "code": "4ALL0004",
+              "meta": {
+                "traceId": 123456789
+              }
+            }
+          ]
+        }
+      },
+      "genericMethodNotAllowedResponseExample": {
+        "value": {
+          "links": [ ],
+          "data": null,
+          "errors": [
+            {
+              "type": "method-not-allowed",
+              "description": "The HTTP method used is not allowed for this resource",
+              "code": "4ALL0005",
+              "meta": {
+                "traceId": 123456789
+              }
+            }
+          ]
+        }
+      },
+      "genericConflictResponseExample": {
+        "value": {
+          "links": [ ],
+          "data": null,
+          "errors": [
+            {
+              "type": "conflict",
+              "description": "The request could not be completed due to a conflict with the current state of the resource",
+              "code": "4ALL0008",
+              "source": {
+                "field": "userId"
+              },
+              "meta": {
+                "traceId": 123456789
+              }
+            }
+          ]
+        }
+      },
+      "genericUnsupportedMediaTypeResponseExample": {
+        "value": {
+          "links": [ ],
+          "data": null,
+          "errors": [
+            {
+              "type": "unsupported-media-type",
+              "description": "The media type of the request is not supported",
+              "code": "4ALL0006",
+              "meta": {
+                "traceId": 123456789
+              }
+            }
+          ]
+        }
+      },
+      "genericTooManyRequestsResponseExample": {
+        "value": {
+          "links": [ ],
+          "data": null,
+          "errors": [
+            {
+              "type": "too-many-requests",
+              "description": "You have exceeded the rate limit for this resource",
+              "code": "4ALL0007",
+              "meta": {
+                "traceId": 123456789
+              }
+            }
+          ]
+        }
+      },
+      "genericRuntimeExceptionResponseExample": {
+        "value": {
+          "links": [ ],
+          "data": null,
+          "errors": [
+            {
+              "type": "internal-error",
+              "description": "An unexpected error occurred, please try again later",
+              "code": "5ALL0001",
+              "meta": {
+                "traceId": 123456789
+              }
+            }
+          ]
+        }
+      },
       "getVoiceApplicationResponseExampleSipAuthEnabled": {
         "summary": "Example response when SIP Auth is enabled",
         "value": {
@@ -105194,6 +107492,51 @@
         },
         "required": true
       },
+      "createUserRequest": {
+        "description": "Create user request body",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/createUserRequest"
+            }
+          }
+        }
+      },
+      "updateUserRequest": {
+        "description": "Update user request body",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/updateUserRequest"
+            }
+          }
+        }
+      },
+      "enrollUserMfaFactorRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/enrollUserMfaOtpRequest"
+                },
+                {
+                  "$ref": "#/components/schemas/enrollUserMfaEmailRequest"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "activateUserMfaFactorRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/activateUserMfaFactorRequest"
+            }
+          }
+        }
+      },
       "updateVoiceApplicationRequestBody": {
         "content": {
           "application/json": {
@@ -106060,6 +108403,11 @@
           }
         }
       },
+      "user_management_Bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "jwt"
+      },
       "voice_application_management_OAuth2": {
         "type": "oauth2",
         "flows": {
@@ -106632,6 +108980,12 @@
     },
     {
       "name": "Toll-Free Verification"
+    },
+    {
+      "name": "Users"
+    },
+    {
+      "name": "Roles"
     },
     {
       "name": "Voice Applications"

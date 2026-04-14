@@ -1225,7 +1225,7 @@ components:
           readOnly: true
           type: array
     brand:
-      description: The properties needed to create or update a TCR brand.
+      description: The properties of a TCR brand.
       required:
         - bandwidthId
         - customerProfileId
@@ -1233,6 +1233,7 @@ components:
         - displayName
         - phone
         - country
+        - countryCodeA3
         - brandRelationship
       properties:
         brandId:
@@ -1308,10 +1309,19 @@ components:
           examples:
             - 214573154
         einIssuingCountry:
-          description: ISO 2 character country code.
+          description: ISO 2 character country code of the country that issued the EIN.
           type: string
+          minLength: 2
+          maxLength: 2
           examples:
             - US
+        einIssuingCountryCodeA3:
+          description: ISO 3 character country code of the country that issued the EIN.
+          type: string
+          minLength: 3
+          maxLength: 3
+          examples:
+            - USA
         email:
           description: Valid email address of brand support contact.
           type: string
@@ -1340,6 +1350,20 @@ components:
           maxLength: 5
           examples:
             - '12345'
+        country:
+          description: ISO 2 character country code.
+          type: string
+          minLength: 2
+          maxLength: 2
+          examples:
+            - US
+        countryCodeA3:
+          description: ISO 3 character country code.
+          type: string
+          minLength: 3
+          maxLength: 3
+          examples:
+            - USA
         russell3000:
           description: Is this a publicly-traded company in the Russell 3000 index?
           type: boolean
@@ -2056,6 +2080,7 @@ components:
         - US_CELLULAR
         - INTEROP
         - CLEAR_SKY
+        - LIBERTY
     enumHistorySourceType:
       description: The source of an audit record
       type: string
@@ -2074,6 +2099,7 @@ components:
         - US_CELLULAR
         - INTEROP
         - CLEAR_SKY
+        - LIBERTY
         - DCA2_ACCEPTED
         - DCA2_READY
         - PROXY

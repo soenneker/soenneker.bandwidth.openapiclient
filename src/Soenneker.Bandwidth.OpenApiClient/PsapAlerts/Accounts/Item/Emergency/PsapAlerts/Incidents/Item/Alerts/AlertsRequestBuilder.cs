@@ -49,7 +49,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.PsapAlerts.Accounts.Item.Emergency.P
         /// <summary>
         /// Create a new alert for an existing incident A new alert can only be created if the incident has a status of ACTIVE.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateAlertResponse_1"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateAlertResponse"/></returns>
         /// <param name="body">Create a new alert for an existing incident</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -62,11 +62,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.PsapAlerts.Accounts.Item.Emergency.P
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PsapAlertsErrorResponse">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateAlertResponse_1?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.AlertRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateAlertResponse?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.AlertRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateAlertResponse_1> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.AlertRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateAlertResponse> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.AlertRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -81,7 +81,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.PsapAlerts.Accounts.Item.Emergency.P
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.PsapAlertsErrorResponse.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.PsapAlertsErrorResponse.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateAlertResponse_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CreateAlertResponse_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateAlertResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CreateAlertResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Create a new alert for an existing incident A new alert can only be created if the incident has a status of ACTIVE.
@@ -91,11 +91,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.PsapAlerts.Accounts.Item.Emergency.P
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.AlertRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.AlertRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.AlertRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.AlertRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

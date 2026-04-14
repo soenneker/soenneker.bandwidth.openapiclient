@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The routes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Route_1>? Routes { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Route>? Routes { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Route_1> Routes { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Route> Routes { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceOriginationRoutePlan"/> and sets the default values.
@@ -48,7 +48,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "routes", n => { Routes = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Route_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.Route_1.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "routes", n => { Routes = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Route>(global::Soenneker.Bandwidth.OpenApiClient.Models.Route.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Route_1>("routes", Routes);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Route>("routes", Routes);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

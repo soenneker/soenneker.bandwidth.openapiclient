@@ -36,7 +36,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceConfigWhitelist.Accounts.Item.T
         /// <summary>
         /// Retrieve all IP addresses currently whitelisted for a specific trunk&apos;s voice services and E911 emergency services configuration.This operation returns the complete whitelist configuration for the specified trunk, including voice whitelists organized by service identifiers and E911 whitelists for emergency services.## Response StructureThe response contains separate arrays for `voiceWhitelists` and `e911Whitelists` along with the trunk&apos;s `capabilityName`.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetTrunkWhitelistApiResponse_1"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetTrunkWhitelistApiResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistGenericError">When receiving a 400 status code</exception>
@@ -48,11 +48,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceConfigWhitelist.Accounts.Item.T
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistGenericError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.GetTrunkWhitelistApiResponse_1?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.VoiceConfigWhitelist.Accounts.Item.Trunks.Item.IpAddresses.IpAddressesRequestBuilder.IpAddressesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.GetTrunkWhitelistApiResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.VoiceConfigWhitelist.Accounts.Item.Trunks.Item.IpAddresses.IpAddressesRequestBuilder.IpAddressesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.GetTrunkWhitelistApiResponse_1> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.VoiceConfigWhitelist.Accounts.Item.Trunks.Item.IpAddresses.IpAddressesRequestBuilder.IpAddressesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.GetTrunkWhitelistApiResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.VoiceConfigWhitelist.Accounts.Item.Trunks.Item.IpAddresses.IpAddressesRequestBuilder.IpAddressesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -66,12 +66,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceConfigWhitelist.Accounts.Item.T
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistGenericError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistGenericError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.GetTrunkWhitelistApiResponse_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.GetTrunkWhitelistApiResponse_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.GetTrunkWhitelistApiResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.GetTrunkWhitelistApiResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Add IP addresses to a trunk&apos;s whitelist configuration for voice services and E911 emergency services. Contact support for assistance in removing IP addresses from your trunk&apos;s configuration.## Operation: ADDThis operation allows you to specify which IP addresses should be whitelisted for voice communications and E911 emergency services. The operation will merge the provided IP addresses with any existing whitelisted addresses.## Whitelist StructureThe request uses separate `voiceWhitelists` and `e911Whitelists` arrays. Voice whitelist entries must include `subAccountId` and `locationId` to identify the specific service configuration. E911 whitelist entries contain only IP addresses for emergency services.&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistApiResponse_1"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistApiResponse"/></returns>
         /// <param name="body">Request payload for updating IP address whitelist configuration for a trunk.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -84,11 +84,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceConfigWhitelist.Accounts.Item.T
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistGenericError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistApiResponse_1?> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistApiResponse?> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistApiResponse_1> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistApiResponse> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -103,7 +103,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceConfigWhitelist.Accounts.Item.T
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistGenericError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistGenericError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistApiResponse_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistApiResponse_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistApiResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistApiResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieve all IP addresses currently whitelisted for a specific trunk&apos;s voice services and E911 emergency services configuration.This operation returns the complete whitelist configuration for the specified trunk, including voice whitelists organized by service identifiers and E911 whitelists for emergency services.## Response StructureThe response contains separate arrays for `voiceWhitelists` and `e911Whitelists` along with the trunk&apos;s `capabilityName`.
@@ -132,11 +132,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceConfigWhitelist.Accounts.Item.T
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistRequest_1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

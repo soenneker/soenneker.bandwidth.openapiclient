@@ -20,10 +20,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The routes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRoute_1>? Routes { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRoute>? Routes { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRoute_1> Routes { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRoute> Routes { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersVoiceConfigurationPackageOriginationRoutePlan"/> and sets the default values.
@@ -51,7 +51,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "routePlanId", n => { RoutePlanId = n.GetGuidValue(); } },
-                { "routes", n => { Routes = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRoute_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRoute_1.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "routes", n => { Routes = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRoute>(global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRoute.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -62,7 +62,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteGuidValue("routePlanId", RoutePlanId);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRoute_1>("routes", Routes);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRoute>("routes", Routes);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

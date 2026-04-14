@@ -62,11 +62,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningGenericError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsDeleteResponse?> DeleteAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.DeleteEndpoints_1 body, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder.EndpointsRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsDeleteResponse?> DeleteAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.DeleteEndpoints body, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder.EndpointsRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsDeleteResponse> DeleteAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.DeleteEndpoints_1 body, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder.EndpointsRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsDeleteResponse> DeleteAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.DeleteEndpoints body, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder.EndpointsRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -86,7 +86,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         /// <summary>
         /// List all emergency provisioned endpoints.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndpoints_1"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndpoints"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningGenericError">When receiving a 400 status code</exception>
@@ -98,11 +98,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningGenericError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndpoints_1?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder.EndpointsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndpoints?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder.EndpointsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndpoints_1> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder.EndpointsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndpoints> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder.EndpointsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -116,7 +116,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningGenericError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningGenericError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndpoints_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndpoints_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndpoints>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndpoints.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Update endpoints. Only supported in the North America (NA) region.
@@ -134,11 +134,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningGenericError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsPatchResponse?> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpoints_1 body, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder.EndpointsRequestBuilderPatchQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsPatchResponse?> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpoints body, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder.EndpointsRequestBuilderPatchQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsPatchResponse> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpoints_1 body, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder.EndpointsRequestBuilderPatchQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsPatchResponse> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpoints body, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder.EndpointsRequestBuilderPatchQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -200,11 +200,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.DeleteEndpoints_1 body, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder.EndpointsRequestBuilderDeleteQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.DeleteEndpoints body, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder.EndpointsRequestBuilderDeleteQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.DeleteEndpoints_1 body, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder.EndpointsRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.DeleteEndpoints body, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder.EndpointsRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -241,11 +241,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpoints_1 body, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder.EndpointsRequestBuilderPatchQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpoints body, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder.EndpointsRequestBuilderPatchQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpoints_1 body, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder.EndpointsRequestBuilderPatchQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpoints body, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder.EndpointsRequestBuilderPatchQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -287,58 +287,58 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
             return new global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithAddressId_1"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithFullAddress_1"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithAddressId_1"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithFullAddress_1"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressId_1"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithFullAddress_1"/>
+        /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithAddressId"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithFullAddress"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithAddressId"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithFullAddress"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressId"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithFullAddress"/>
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class EndpointsPostRequestBody : IComposedTypeWrapper, IParsable
         {
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithAddressId_1"/></summary>
+            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithAddressId"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithAddressId_1? AddNomadicNorthAmericaEndpointsWithAddressId1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithAddressId? AddNomadicNorthAmericaEndpointsWithAddressId { get; set; }
 #nullable restore
 #else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithAddressId_1 AddNomadicNorthAmericaEndpointsWithAddressId1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithAddressId AddNomadicNorthAmericaEndpointsWithAddressId { get; set; }
 #endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithFullAddress_1"/></summary>
+            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithFullAddress"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithFullAddress_1? AddNomadicNorthAmericaEndpointsWithFullAddress1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithFullAddress? AddNomadicNorthAmericaEndpointsWithFullAddress { get; set; }
 #nullable restore
 #else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithFullAddress_1 AddNomadicNorthAmericaEndpointsWithFullAddress1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithFullAddress AddNomadicNorthAmericaEndpointsWithFullAddress { get; set; }
 #endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithAddressId_1"/></summary>
+            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithAddressId"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithAddressId_1? AddRowEndpointsWithAddressId1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithAddressId? AddRowEndpointsWithAddressId { get; set; }
 #nullable restore
 #else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithAddressId_1 AddRowEndpointsWithAddressId1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithAddressId AddRowEndpointsWithAddressId { get; set; }
 #endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithFullAddress_1"/></summary>
+            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithFullAddress"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithFullAddress_1? AddRowEndpointsWithFullAddress1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithFullAddress? AddRowEndpointsWithFullAddress { get; set; }
 #nullable restore
 #else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithFullAddress_1 AddRowEndpointsWithFullAddress1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithFullAddress AddRowEndpointsWithFullAddress { get; set; }
 #endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressId_1"/></summary>
+            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressId"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressId_1? AddStandardNorthAmericaEndpointsWithAddressId1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressId? AddStandardNorthAmericaEndpointsWithAddressId { get; set; }
 #nullable restore
 #else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressId_1 AddStandardNorthAmericaEndpointsWithAddressId1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressId AddStandardNorthAmericaEndpointsWithAddressId { get; set; }
 #endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithFullAddress_1"/></summary>
+            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithFullAddress"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithFullAddress_1? AddStandardNorthAmericaEndpointsWithFullAddress1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithFullAddress? AddStandardNorthAmericaEndpointsWithFullAddress { get; set; }
 #nullable restore
 #else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithFullAddress_1 AddStandardNorthAmericaEndpointsWithFullAddress1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithFullAddress AddStandardNorthAmericaEndpointsWithFullAddress { get; set; }
 #endif
             /// <summary>
             /// Creates a new instance of the appropriate class based on discriminator value
@@ -350,29 +350,29 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
                 if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
                 var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
                 var result = new global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder.EndpointsPostRequestBody();
-                if("AddNomadicNorthAmericaEndpointsWithAddressId_1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+                if("AddNomadicNorthAmericaEndpointsWithAddressId".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
                 {
-                    result.AddNomadicNorthAmericaEndpointsWithAddressId1 = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithAddressId_1();
+                    result.AddNomadicNorthAmericaEndpointsWithAddressId = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithAddressId();
                 }
-                else if("AddNomadicNorthAmericaEndpointsWithFullAddress_1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+                else if("AddNomadicNorthAmericaEndpointsWithFullAddress".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
                 {
-                    result.AddNomadicNorthAmericaEndpointsWithFullAddress1 = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithFullAddress_1();
+                    result.AddNomadicNorthAmericaEndpointsWithFullAddress = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithFullAddress();
                 }
-                else if("AddRowEndpointsWithAddressId_1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+                else if("AddRowEndpointsWithAddressId".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
                 {
-                    result.AddRowEndpointsWithAddressId1 = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithAddressId_1();
+                    result.AddRowEndpointsWithAddressId = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithAddressId();
                 }
-                else if("AddRowEndpointsWithFullAddress_1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+                else if("AddRowEndpointsWithFullAddress".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
                 {
-                    result.AddRowEndpointsWithFullAddress1 = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithFullAddress_1();
+                    result.AddRowEndpointsWithFullAddress = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithFullAddress();
                 }
-                else if("AddStandardNorthAmericaEndpointsWithAddressId_1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+                else if("AddStandardNorthAmericaEndpointsWithAddressId".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
                 {
-                    result.AddStandardNorthAmericaEndpointsWithAddressId1 = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressId_1();
+                    result.AddStandardNorthAmericaEndpointsWithAddressId = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressId();
                 }
-                else if("AddStandardNorthAmericaEndpointsWithFullAddress_1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+                else if("AddStandardNorthAmericaEndpointsWithFullAddress".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
                 {
-                    result.AddStandardNorthAmericaEndpointsWithFullAddress1 = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithFullAddress_1();
+                    result.AddStandardNorthAmericaEndpointsWithFullAddress = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithFullAddress();
                 }
                 return result;
             }
@@ -382,29 +382,29 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
             /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
             public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
             {
-                if(AddNomadicNorthAmericaEndpointsWithAddressId1 != null)
+                if(AddNomadicNorthAmericaEndpointsWithAddressId != null)
                 {
-                    return AddNomadicNorthAmericaEndpointsWithAddressId1.GetFieldDeserializers();
+                    return AddNomadicNorthAmericaEndpointsWithAddressId.GetFieldDeserializers();
                 }
-                else if(AddNomadicNorthAmericaEndpointsWithFullAddress1 != null)
+                else if(AddNomadicNorthAmericaEndpointsWithFullAddress != null)
                 {
-                    return AddNomadicNorthAmericaEndpointsWithFullAddress1.GetFieldDeserializers();
+                    return AddNomadicNorthAmericaEndpointsWithFullAddress.GetFieldDeserializers();
                 }
-                else if(AddRowEndpointsWithAddressId1 != null)
+                else if(AddRowEndpointsWithAddressId != null)
                 {
-                    return AddRowEndpointsWithAddressId1.GetFieldDeserializers();
+                    return AddRowEndpointsWithAddressId.GetFieldDeserializers();
                 }
-                else if(AddRowEndpointsWithFullAddress1 != null)
+                else if(AddRowEndpointsWithFullAddress != null)
                 {
-                    return AddRowEndpointsWithFullAddress1.GetFieldDeserializers();
+                    return AddRowEndpointsWithFullAddress.GetFieldDeserializers();
                 }
-                else if(AddStandardNorthAmericaEndpointsWithAddressId1 != null)
+                else if(AddStandardNorthAmericaEndpointsWithAddressId != null)
                 {
-                    return AddStandardNorthAmericaEndpointsWithAddressId1.GetFieldDeserializers();
+                    return AddStandardNorthAmericaEndpointsWithAddressId.GetFieldDeserializers();
                 }
-                else if(AddStandardNorthAmericaEndpointsWithFullAddress1 != null)
+                else if(AddStandardNorthAmericaEndpointsWithFullAddress != null)
                 {
-                    return AddStandardNorthAmericaEndpointsWithFullAddress1.GetFieldDeserializers();
+                    return AddStandardNorthAmericaEndpointsWithFullAddress.GetFieldDeserializers();
                 }
                 return new Dictionary<string, Action<IParseNode>>();
             }
@@ -415,29 +415,29 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
             public virtual void Serialize(ISerializationWriter writer)
             {
                 if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(AddNomadicNorthAmericaEndpointsWithAddressId1 != null)
+                if(AddNomadicNorthAmericaEndpointsWithAddressId != null)
                 {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithAddressId_1>(null, AddNomadicNorthAmericaEndpointsWithAddressId1);
+                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithAddressId>(null, AddNomadicNorthAmericaEndpointsWithAddressId);
                 }
-                else if(AddNomadicNorthAmericaEndpointsWithFullAddress1 != null)
+                else if(AddNomadicNorthAmericaEndpointsWithFullAddress != null)
                 {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithFullAddress_1>(null, AddNomadicNorthAmericaEndpointsWithFullAddress1);
+                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithFullAddress>(null, AddNomadicNorthAmericaEndpointsWithFullAddress);
                 }
-                else if(AddRowEndpointsWithAddressId1 != null)
+                else if(AddRowEndpointsWithAddressId != null)
                 {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithAddressId_1>(null, AddRowEndpointsWithAddressId1);
+                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithAddressId>(null, AddRowEndpointsWithAddressId);
                 }
-                else if(AddRowEndpointsWithFullAddress1 != null)
+                else if(AddRowEndpointsWithFullAddress != null)
                 {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithFullAddress_1>(null, AddRowEndpointsWithFullAddress1);
+                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithFullAddress>(null, AddRowEndpointsWithFullAddress);
                 }
-                else if(AddStandardNorthAmericaEndpointsWithAddressId1 != null)
+                else if(AddStandardNorthAmericaEndpointsWithAddressId != null)
                 {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressId_1>(null, AddStandardNorthAmericaEndpointsWithAddressId1);
+                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressId>(null, AddStandardNorthAmericaEndpointsWithAddressId);
                 }
-                else if(AddStandardNorthAmericaEndpointsWithFullAddress1 != null)
+                else if(AddStandardNorthAmericaEndpointsWithFullAddress != null)
                 {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithFullAddress_1>(null, AddStandardNorthAmericaEndpointsWithFullAddress1);
+                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithFullAddress>(null, AddStandardNorthAmericaEndpointsWithFullAddress);
                 }
             }
         }
@@ -449,7 +449,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         {
             /// <summary>Target region for the emergency services operation</summary>
             [QueryParameter("region")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.Region_1? Region { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.Region? Region { get; set; }
         }
         /// <summary>
         /// List all emergency provisioned endpoints.
@@ -502,7 +502,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
 #endif
             /// <summary>Target region for the emergency services operation</summary>
             [QueryParameter("region")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.Region_1? Region { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.Region? Region { get; set; }
         }
         /// <summary>
         /// Update endpoints. Only supported in the North America (NA) region.
@@ -512,7 +512,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         {
             /// <summary>Target region for the emergency services operation (North America only)</summary>
             [QueryParameter("region")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.RegionNa_1? Region { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.RegionNa? Region { get; set; }
         }
         /// <summary>
         /// Provision new emergency endpoints.
@@ -522,7 +522,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         {
             /// <summary>Target region for the emergency services operation</summary>
             [QueryParameter("region")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.Region_1? Region { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.Region? Region { get; set; }
         }
     }
 }

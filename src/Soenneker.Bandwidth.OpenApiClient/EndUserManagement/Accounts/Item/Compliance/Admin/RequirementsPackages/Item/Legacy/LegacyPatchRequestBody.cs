@@ -10,7 +10,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class LegacyPatchRequestBody : global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_1, IParsable
+    public partial class LegacyPatchRequestBody : global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>

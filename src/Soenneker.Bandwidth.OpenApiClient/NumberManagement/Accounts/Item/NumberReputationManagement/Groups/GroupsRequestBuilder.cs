@@ -54,7 +54,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 400 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer_1">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer">When receiving a 403 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 404 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 405 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 429 status code</exception>
@@ -73,7 +73,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             {
                 { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
                 { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer_1.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
@@ -90,7 +90,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 400 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer_1">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer">When receiving a 403 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 404 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 405 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 429 status code</exception>
@@ -110,7 +110,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             {
                 { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
                 { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer_1.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
@@ -169,26 +169,26 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             return new global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumberReputationManagement.Groups.GroupsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsEnterprise200Response_1"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsReseller200Response_1"/>
+        /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsEnterprise200Response"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsReseller200Response"/>
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class GroupsGetResponse : IComposedTypeWrapper, IParsable
         {
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsEnterprise200Response_1"/></summary>
+            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsEnterprise200Response"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsEnterprise200Response_1? GetListOfGroupsEnterprise200Response1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsEnterprise200Response? GetListOfGroupsEnterprise200Response { get; set; }
 #nullable restore
 #else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsEnterprise200Response_1 GetListOfGroupsEnterprise200Response1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsEnterprise200Response GetListOfGroupsEnterprise200Response { get; set; }
 #endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsReseller200Response_1"/></summary>
+            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsReseller200Response"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsReseller200Response_1? GetListOfGroupsReseller200Response1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsReseller200Response? GetListOfGroupsReseller200Response { get; set; }
 #nullable restore
 #else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsReseller200Response_1 GetListOfGroupsReseller200Response1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsReseller200Response GetListOfGroupsReseller200Response { get; set; }
 #endif
             /// <summary>
             /// Creates a new instance of the appropriate class based on discriminator value
@@ -199,8 +199,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             {
                 if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
                 var result = new global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumberReputationManagement.Groups.GroupsRequestBuilder.GroupsGetResponse();
-                result.GetListOfGroupsEnterprise200Response1 = new global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsEnterprise200Response_1();
-                result.GetListOfGroupsReseller200Response1 = new global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsReseller200Response_1();
+                result.GetListOfGroupsEnterprise200Response = new global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsEnterprise200Response();
+                result.GetListOfGroupsReseller200Response = new global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsReseller200Response();
                 return result;
             }
             /// <summary>
@@ -209,9 +209,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
             public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
             {
-                if(GetListOfGroupsEnterprise200Response1 != null || GetListOfGroupsReseller200Response1 != null)
+                if(GetListOfGroupsEnterprise200Response != null || GetListOfGroupsReseller200Response != null)
                 {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(GetListOfGroupsEnterprise200Response1, GetListOfGroupsReseller200Response1);
+                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(GetListOfGroupsEnterprise200Response, GetListOfGroupsReseller200Response);
                 }
                 return new Dictionary<string, Action<IParseNode>>();
             }
@@ -222,30 +222,30 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             public virtual void Serialize(ISerializationWriter writer)
             {
                 if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsEnterprise200Response_1>(null, GetListOfGroupsEnterprise200Response1, GetListOfGroupsReseller200Response1);
+                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GetListOfGroupsEnterprise200Response>(null, GetListOfGroupsEnterprise200Response, GetListOfGroupsReseller200Response);
             }
         }
         /// <summary>
-        /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestEnterprise_1"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestReseller_1"/>
+        /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestEnterprise"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestReseller"/>
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class GroupsPostRequestBody : IComposedTypeWrapper, IParsable
         {
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestEnterprise_1"/></summary>
+            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestEnterprise"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestEnterprise_1? CreateGroupRequestEnterprise1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestEnterprise? CreateGroupRequestEnterprise { get; set; }
 #nullable restore
 #else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestEnterprise_1 CreateGroupRequestEnterprise1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestEnterprise CreateGroupRequestEnterprise { get; set; }
 #endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestReseller_1"/></summary>
+            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestReseller"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestReseller_1? CreateGroupRequestReseller1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestReseller? CreateGroupRequestReseller { get; set; }
 #nullable restore
 #else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestReseller_1 CreateGroupRequestReseller1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestReseller CreateGroupRequestReseller { get; set; }
 #endif
             /// <summary>
             /// Creates a new instance of the appropriate class based on discriminator value
@@ -256,8 +256,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             {
                 if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
                 var result = new global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumberReputationManagement.Groups.GroupsRequestBuilder.GroupsPostRequestBody();
-                result.CreateGroupRequestEnterprise1 = new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestEnterprise_1();
-                result.CreateGroupRequestReseller1 = new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestReseller_1();
+                result.CreateGroupRequestEnterprise = new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestEnterprise();
+                result.CreateGroupRequestReseller = new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestReseller();
                 return result;
             }
             /// <summary>
@@ -266,9 +266,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
             public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
             {
-                if(CreateGroupRequestEnterprise1 != null || CreateGroupRequestReseller1 != null)
+                if(CreateGroupRequestEnterprise != null || CreateGroupRequestReseller != null)
                 {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(CreateGroupRequestEnterprise1, CreateGroupRequestReseller1);
+                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(CreateGroupRequestEnterprise, CreateGroupRequestReseller);
                 }
                 return new Dictionary<string, Action<IParseNode>>();
             }
@@ -279,30 +279,30 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             public virtual void Serialize(ISerializationWriter writer)
             {
                 if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestEnterprise_1>(null, CreateGroupRequestEnterprise1, CreateGroupRequestReseller1);
+                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupRequestEnterprise>(null, CreateGroupRequestEnterprise, CreateGroupRequestReseller);
             }
         }
         /// <summary>
-        /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupEnterprise201Response_1"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupReseller201Response_1"/>
+        /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupEnterprise201Response"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupReseller201Response"/>
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class GroupsPostResponse : IComposedTypeWrapper, IParsable
         {
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupEnterprise201Response_1"/></summary>
+            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupEnterprise201Response"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupEnterprise201Response_1? CreateGroupEnterprise201Response1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupEnterprise201Response? CreateGroupEnterprise201Response { get; set; }
 #nullable restore
 #else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupEnterprise201Response_1 CreateGroupEnterprise201Response1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupEnterprise201Response CreateGroupEnterprise201Response { get; set; }
 #endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupReseller201Response_1"/></summary>
+            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupReseller201Response"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupReseller201Response_1? CreateGroupReseller201Response1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupReseller201Response? CreateGroupReseller201Response { get; set; }
 #nullable restore
 #else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupReseller201Response_1 CreateGroupReseller201Response1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupReseller201Response CreateGroupReseller201Response { get; set; }
 #endif
             /// <summary>
             /// Creates a new instance of the appropriate class based on discriminator value
@@ -313,8 +313,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             {
                 if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
                 var result = new global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumberReputationManagement.Groups.GroupsRequestBuilder.GroupsPostResponse();
-                result.CreateGroupEnterprise201Response1 = new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupEnterprise201Response_1();
-                result.CreateGroupReseller201Response1 = new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupReseller201Response_1();
+                result.CreateGroupEnterprise201Response = new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupEnterprise201Response();
+                result.CreateGroupReseller201Response = new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupReseller201Response();
                 return result;
             }
             /// <summary>
@@ -323,9 +323,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
             public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
             {
-                if(CreateGroupEnterprise201Response1 != null || CreateGroupReseller201Response1 != null)
+                if(CreateGroupEnterprise201Response != null || CreateGroupReseller201Response != null)
                 {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(CreateGroupEnterprise201Response1, CreateGroupReseller201Response1);
+                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(CreateGroupEnterprise201Response, CreateGroupReseller201Response);
                 }
                 return new Dictionary<string, Action<IParseNode>>();
             }
@@ -336,7 +336,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             public virtual void Serialize(ISerializationWriter writer)
             {
                 if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupEnterprise201Response_1>(null, CreateGroupEnterprise201Response1, CreateGroupReseller201Response1);
+                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupEnterprise201Response>(null, CreateGroupEnterprise201Response, CreateGroupReseller201Response);
             }
         }
     }

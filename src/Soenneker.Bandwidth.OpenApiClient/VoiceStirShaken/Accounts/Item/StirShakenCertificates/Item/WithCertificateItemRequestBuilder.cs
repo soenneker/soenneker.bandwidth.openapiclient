@@ -70,7 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceStirShaken.Accounts.Item.StirSh
         /// <summary>
         /// Get a stir/shaken certificate by stir/shaken certificate id.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountResponse_1"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponse">When receiving a 400 status code</exception>
@@ -82,11 +82,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceStirShaken.Accounts.Item.StirSh
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponse">When receiving a 5XX status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountResponse_1?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountResponse_1> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountResponse> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -100,12 +100,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceStirShaken.Accounts.Item.StirSh
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponse.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponse.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountResponse_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountResponse_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Update a stir/shaken certificate by stir/shaken certificate id.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountResponse_1"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountResponse"/></returns>
         /// <param name="body">Contains stir/shaken certificate request data.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -118,11 +118,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceStirShaken.Accounts.Item.StirSh
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponse">When receiving a 5XX status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountResponse_1?> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestData_1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountResponse?> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestData body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountResponse_1> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestData_1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountResponse> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestData body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -137,7 +137,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceStirShaken.Accounts.Item.StirSh
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponse.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponse.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountResponse_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountResponse_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Delete an existing stir/shaken certificate by account and stir/shaken certificate id.
@@ -185,11 +185,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceStirShaken.Accounts.Item.StirSh
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestData_1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestData body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestData_1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestData body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

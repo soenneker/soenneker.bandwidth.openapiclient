@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.It
         /// <summary>The associatedOutboundNumbers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumberRequestJson_1>? AssociatedOutboundNumbers { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumberRequestJson>? AssociatedOutboundNumbers { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumberRequestJson_1> AssociatedOutboundNumbers { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumberRequestJson> AssociatedOutboundNumbers { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.Item.AssociatedOutboundNumbers.AssociatedOutboundNumbersPostRequestBody"/> and sets the default values.
@@ -48,7 +48,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.It
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "associatedOutboundNumbers", n => { AssociatedOutboundNumbers = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumberRequestJson_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumberRequestJson_1.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "associatedOutboundNumbers", n => { AssociatedOutboundNumbers = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumberRequestJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumberRequestJson.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.It
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumberRequestJson_1>("associatedOutboundNumbers", AssociatedOutboundNumbers);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumberRequestJson>("associatedOutboundNumbers", AssociatedOutboundNumbers);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

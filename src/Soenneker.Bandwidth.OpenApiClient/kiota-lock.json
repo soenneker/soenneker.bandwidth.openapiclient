@@ -1,8 +1,8 @@
 {
-  "descriptionHash": "D94DD0554965A54AA6C666AC0A95CE475C8A76BDB604A80E195C375B3AAF36D6BA1340606E7CBF33C95DA4892CA7CA61F72F6A87E94C6099D61480C5351E4242",
+  "descriptionHash": "1E6B845D4B47BA9DFF904380E984374F7DF7FF8CE46230F3FD269C7365BBD66470E89005990601FC92B7680EE4EDB8F0CC05D0366D9BA444B026A650D6A0EBED",
   "descriptionLocation": "../../fixed.json",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.31.0",
+  "kiotaVersion": "1.31.1",
   "clientClassName": "BandwidthOpenApiClient",
   "typeAccessModifier": "Public",
   "clientNamespaceName": "Soenneker.Bandwidth.OpenApiClient",

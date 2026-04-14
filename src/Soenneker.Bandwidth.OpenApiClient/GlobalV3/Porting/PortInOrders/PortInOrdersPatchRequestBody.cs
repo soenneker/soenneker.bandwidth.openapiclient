@@ -28,10 +28,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.PortInOrders
         /// <summary>Owner of the numbers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner_1? NumbersOwner { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner? NumbersOwner { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner_1 NumbersOwner { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner NumbersOwner { get; set; }
 #endif
         /// <summary>Array of telephone numbers in E.164 format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -44,7 +44,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.PortInOrders
         /// <summary>Date that you prefer to have numbers become available in Bandwidth, must be in RFC 3339 format.</summary>
         public Date? PreferredPortInDate { get; set; }
         /// <summary>Possible statuses of a port-in order| Status                    | Description  || ------------------------- | ------------ || SUBMITTED                 | Your port-in order has been submitted, and our LNP team will take care of it shortly. If you need to change your order, you will need  to request a cancellation or ask our LNP team to return your order. || PROCESSING_CANCELLATION   | You are requesting the cancellation of your order. Our LNP team will get back to you shortly|</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrderRequestStatusTypeEnum_1? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrderRequestStatusTypeEnum? Status { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.PortInOrders.PortInOrdersPatchRequestBody"/> and sets the default values.
         /// </summary>
@@ -71,10 +71,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.PortInOrders
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "currentProviderName", n => { CurrentProviderName = n.GetStringValue(); } },
-                { "numbersOwner", n => { NumbersOwner = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner_1.CreateFromDiscriminatorValue); } },
+                { "numbersOwner", n => { NumbersOwner = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner.CreateFromDiscriminatorValue); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "preferredPortInDate", n => { PreferredPortInDate = n.GetDateValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrderRequestStatusTypeEnum_1>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrderRequestStatusTypeEnum>(); } },
             };
         }
         /// <summary>
@@ -85,10 +85,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.PortInOrders
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("currentProviderName", CurrentProviderName);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner_1>("numbersOwner", NumbersOwner);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner>("numbersOwner", NumbersOwner);
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
             writer.WriteDateValue("preferredPortInDate", PreferredPortInDate);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrderRequestStatusTypeEnum_1>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrderRequestStatusTypeEnum>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

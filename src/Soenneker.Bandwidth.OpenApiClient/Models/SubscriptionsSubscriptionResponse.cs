@@ -8,26 +8,26 @@ using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscription_1"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponse_1"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscription"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponse"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SubscriptionsSubscriptionResponse : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscription_1"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscription"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscription_1? EmailSubscription1 { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscription? EmailSubscription { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscription_1 EmailSubscription1 { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscription EmailSubscription { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponse_1"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponse"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponse_1? WebhookSubscriptionResponse1 { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponse? WebhookSubscriptionResponse { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponse_1 WebhookSubscriptionResponse1 { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponse WebhookSubscriptionResponse { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -39,13 +39,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsSubscriptionResponse();
-            if("EmailSubscription_1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("EmailSubscription".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.EmailSubscription1 = new global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscription_1();
+                result.EmailSubscription = new global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscription();
             }
-            else if("WebhookSubscriptionResponse_1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("WebhookSubscriptionResponse".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.WebhookSubscriptionResponse1 = new global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponse_1();
+                result.WebhookSubscriptionResponse = new global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponse();
             }
             return result;
         }
@@ -55,13 +55,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(EmailSubscription1 != null)
+            if(EmailSubscription != null)
             {
-                return EmailSubscription1.GetFieldDeserializers();
+                return EmailSubscription.GetFieldDeserializers();
             }
-            else if(WebhookSubscriptionResponse1 != null)
+            else if(WebhookSubscriptionResponse != null)
             {
-                return WebhookSubscriptionResponse1.GetFieldDeserializers();
+                return WebhookSubscriptionResponse.GetFieldDeserializers();
             }
             return new Dictionary<string, Action<IParseNode>>();
         }
@@ -72,13 +72,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            if(EmailSubscription1 != null)
+            if(EmailSubscription != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscription_1>(null, EmailSubscription1);
+                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscription>(null, EmailSubscription);
             }
-            else if(WebhookSubscriptionResponse1 != null)
+            else if(WebhookSubscriptionResponse != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponse_1>(null, WebhookSubscriptionResponse1);
+                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponse>(null, WebhookSubscriptionResponse);
             }
         }
     }

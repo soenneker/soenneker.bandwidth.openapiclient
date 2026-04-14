@@ -36,7 +36,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
         /// <summary>
         /// Update Requirements package status to `VERIFIED` to submit a legacy address.This will execute the validations and store the failures but will not fail the update. Only an admin can perform this operation.* &apos;acknowledgements&apos; is required for submitting the package with &apos;allDetailsAccurate&apos; set to true.* Once submitted, all associated assets will be locked and cannot be modified.Update custom reference, email, or callback.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_1"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -49,11 +49,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementGenericError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_1?> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Compliance.Admin.RequirementsPackages.Item.Legacy.LegacyPatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse?> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Compliance.Admin.RequirementsPackages.Item.Legacy.LegacyPatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_1> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Compliance.Admin.RequirementsPackages.Item.Legacy.LegacyPatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Compliance.Admin.RequirementsPackages.Item.Legacy.LegacyPatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -68,7 +68,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementGenericError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementGenericError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Update Requirements package status to `VERIFIED` to submit a legacy address.This will execute the validations and store the failures but will not fail the update. Only an admin can perform this operation.* &apos;acknowledgements&apos; is required for submitting the package with &apos;allDetailsAccurate&apos; set to true.* Once submitted, all associated assets will be locked and cannot be modified.Update custom reference, email, or callback.

@@ -24,9 +24,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string Href { get; set; }
 #endif
         /// <summary>Reference of the action.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RelTypeEnum_1? Rel { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RelTypeEnum? Rel { get; set; }
         /// <summary>Type of link.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LinkTypeEnum_1? Type { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LinkTypeEnum? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Link"/> and sets the default values.
         /// </summary>
@@ -53,8 +53,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "href", n => { Href = n.GetStringValue(); } },
-                { "rel", n => { Rel = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RelTypeEnum_1>(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LinkTypeEnum_1>(); } },
+                { "rel", n => { Rel = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RelTypeEnum>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LinkTypeEnum>(); } },
             };
         }
         /// <summary>
@@ -65,8 +65,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("href", Href);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RelTypeEnum_1>("rel", Rel);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LinkTypeEnum_1>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RelTypeEnum>("rel", Rel);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LinkTypeEnum>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

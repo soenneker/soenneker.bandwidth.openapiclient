@@ -38,6 +38,7 @@ using Soenneker.Bandwidth.OpenApiClient.Shortcodes;
 using Soenneker.Bandwidth.OpenApiClient.Subscriptions;
 using Soenneker.Bandwidth.OpenApiClient.Tendlc;
 using Soenneker.Bandwidth.OpenApiClient.TollFreeVerification;
+using Soenneker.Bandwidth.OpenApiClient.UserManagement;
 using Soenneker.Bandwidth.OpenApiClient.Voice;
 using Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement;
 using Soenneker.Bandwidth.OpenApiClient.VoiceConfigService;
@@ -216,6 +217,11 @@ namespace Soenneker.Bandwidth.OpenApiClient
         public global::Soenneker.Bandwidth.OpenApiClient.TollFreeVerification.TollFreeVerificationRequestBuilder TollFreeVerification
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.TollFreeVerification.TollFreeVerificationRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The userManagement property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.UserManagement.UserManagementRequestBuilder UserManagement
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.UserManagement.UserManagementRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The voice property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Voice.VoiceRequestBuilder Voice

@@ -46,7 +46,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Message { get; set; }
 #endif
-        /// <summary>An object which contains pagination information related to the response.</summary>
+        /// <summary>Pagination of port-in orders.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Bandwidth.OpenApiClient.Models.Pagination? Pagination { get; set; }

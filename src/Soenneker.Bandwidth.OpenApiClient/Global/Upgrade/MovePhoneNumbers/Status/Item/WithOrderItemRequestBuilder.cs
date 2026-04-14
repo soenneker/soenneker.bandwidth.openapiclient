@@ -36,7 +36,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Upgrade.MovePhoneNumbers.Stat
         /// <summary>
         /// Return the status of the phone number move request for the given move order ID.  The move order ID is the unique reference ID returned when the move request is made. The status returned reflects the state of the specific move request and does not indicate the current status of the phone numbers involved. The response contains the overall status of move, total count of phone numbers requested to be moved, count of phone numbers moved successfully, count of phone number in progress and count of phone numbers failed to move, status of each phone number. If move had failed at some point for a number, the error message will also be returned
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MoveStatusResponse_1"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MoveStatusResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse">When receiving a 401 status code</exception>
@@ -46,11 +46,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Upgrade.MovePhoneNumbers.Stat
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveStatusResponse_1?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveStatusResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveStatusResponse_1> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveStatusResponse> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -62,7 +62,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Upgrade.MovePhoneNumbers.Stat
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "503", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveStatusResponse_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.MoveStatusResponse_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveStatusResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.MoveStatusResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Return the status of the phone number move request for the given move order ID.  The move order ID is the unique reference ID returned when the move request is made. The status returned reflects the state of the specific move request and does not indicate the current status of the phone numbers involved. The response contains the overall status of move, total count of phone numbers requested to be moved, count of phone numbers moved successfully, count of phone number in progress and count of phone numbers failed to move, status of each phone number. If move had failed at some point for a number, the error message will also be returned

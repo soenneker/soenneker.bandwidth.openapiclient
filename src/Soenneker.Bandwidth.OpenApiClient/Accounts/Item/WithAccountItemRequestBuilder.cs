@@ -48,27 +48,27 @@ namespace Soenneker.Bandwidth.OpenApiClient.Accounts.Item
         /// <summary>
         /// &quot;The account is the root resource for many of the operations in the Bandwidth App.The account is represented by an account ID, which is the resource that represents a Bandwidth customer, providing a root resource for all of the customer&apos;s attributes and services.The API calls that are used to manage the details of a customer account, and to manage the resources that a Bandwidth customer has access to or control over, are accessed through the /accounts resource.This API call retrieves information about the account indicated by the Account ID.**Addresses**: `Address` and `LinkedAddresses`- Address   - The service address of the account. Historically only US and Canadian addresses supported.  - `Address` will continue to be populated as long as the address is US/ Canada based and only one linked address exists.- LinkedAddresses   - A list of address reference IDs that are linked at the account.   - These addresses can be fully international.  - `LinkedAddresses` will replace `Address`, however will continue to be supported for US/ Canada addresses.    - A list of **one** address will be supported initially, however this will extend as more address usages are introduced.  - `LinkedAddresses` can be created and managed through the /addresses resource. See: [Addresses](https://dev.bandwidth.com/apis/numbers-apis/end-user-management/#tag/Addresses/operation/createAddress) for more information.  - A link to the individual Address API is returned within this object, see `Link`.&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AccountJson_1"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AccountJson"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponseJson_1">When receiving a 404 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponseJson_1">When receiving a 500 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponseJson">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponseJson">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.AccountJson_1?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.AccountJson?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.AccountJson_1> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.AccountJson> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponseJson_1.CreateFromDiscriminatorValue },
-                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponseJson_1.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponseJson.CreateFromDiscriminatorValue },
+                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponseJson.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.AccountJson_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.AccountJson_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.AccountJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.AccountJson.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;The account is the root resource for many of the operations in the Bandwidth App.The account is represented by an account ID, which is the resource that represents a Bandwidth customer, providing a root resource for all of the customer&apos;s attributes and services.The API calls that are used to manage the details of a customer account, and to manage the resources that a Bandwidth customer has access to or control over, are accessed through the /accounts resource.This API call retrieves information about the account indicated by the Account ID.**Addresses**: `Address` and `LinkedAddresses`- Address   - The service address of the account. Historically only US and Canadian addresses supported.  - `Address` will continue to be populated as long as the address is US/ Canada based and only one linked address exists.- LinkedAddresses   - A list of address reference IDs that are linked at the account.   - These addresses can be fully international.  - `LinkedAddresses` will replace `Address`, however will continue to be supported for US/ Canada addresses.    - A list of **one** address will be supported initially, however this will extend as more address usages are introduced.  - `LinkedAddresses` can be created and managed through the /addresses resource. See: [Addresses](https://dev.bandwidth.com/apis/numbers-apis/end-user-management/#tag/Addresses/operation/createAddress) for more information.  - A link to the individual Address API is returned within this object, see `Link`.&quot;

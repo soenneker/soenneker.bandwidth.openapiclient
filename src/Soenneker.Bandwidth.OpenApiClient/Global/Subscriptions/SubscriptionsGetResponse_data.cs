@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions
         /// <summary>The subscriptions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse_1>? Subscriptions { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse>? Subscriptions { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse_1> Subscriptions { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse> Subscriptions { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.SubscriptionsGetResponse_data"/> and sets the default values.
@@ -48,7 +48,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "subscriptions", n => { Subscriptions = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse_1.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "subscriptions", n => { Subscriptions = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse_1>("subscriptions", Subscriptions);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse>("subscriptions", Subscriptions);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

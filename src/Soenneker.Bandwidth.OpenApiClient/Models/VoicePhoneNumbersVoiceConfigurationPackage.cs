@@ -20,18 +20,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Call Verification settings associated with the voice configuration package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageCallVerification_1? CallVerification { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageCallVerification? CallVerification { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageCallVerification_1 CallVerification { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageCallVerification CallVerification { get; set; }
 #endif
         /// <summary>Calling Name (CNAM) settings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageCnam_1? Cnam { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageCnam? Cnam { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageCnam_1 Cnam { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageCnam Cnam { get; set; }
 #endif
         /// <summary>A description of the voice configuration package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -64,18 +64,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Pindrop Integration settings associated with the voice configuration package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackagePindropIntegration_1? PindropIntegration { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackagePindropIntegration? PindropIntegration { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackagePindropIntegration_1 PindropIntegration { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackagePindropIntegration PindropIntegration { get; set; }
 #endif
         /// <summary>Stir shaken behavior.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageStirShakenBehavior_1? StirShakenBehavior { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageStirShakenBehavior? StirShakenBehavior { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageStirShakenBehavior_1 StirShakenBehavior { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageStirShakenBehavior StirShakenBehavior { get; set; }
 #endif
         /// <summary>A unique identifier referencing a voice configuration package.</summary>
         public Guid? VoiceConfigurationPackageId { get; set; }
@@ -105,15 +105,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "accountId", n => { AccountId = n.GetIntValue(); } },
-                { "callVerification", n => { CallVerification = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageCallVerification_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageCallVerification_1.CreateFromDiscriminatorValue); } },
-                { "cnam", n => { Cnam = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageCnam_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageCnam_1.CreateFromDiscriminatorValue); } },
+                { "callVerification", n => { CallVerification = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageCallVerification>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageCallVerification.CreateFromDiscriminatorValue); } },
+                { "cnam", n => { Cnam = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageCnam>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageCnam.CreateFromDiscriminatorValue); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "httpVoiceV2ApplicationId", n => { HttpVoiceV2ApplicationId = n.GetGuidValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "originationRoutePlan", n => { OriginationRoutePlan = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersVoiceConfigurationPackageOriginationRoutePlan>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersVoiceConfigurationPackageOriginationRoutePlan.CreateFromDiscriminatorValue); } },
                 { "phoneNumberCount", n => { PhoneNumberCount = n.GetIntValue(); } },
-                { "pindropIntegration", n => { PindropIntegration = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackagePindropIntegration_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackagePindropIntegration_1.CreateFromDiscriminatorValue); } },
-                { "stirShakenBehavior", n => { StirShakenBehavior = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageStirShakenBehavior_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageStirShakenBehavior_1.CreateFromDiscriminatorValue); } },
+                { "pindropIntegration", n => { PindropIntegration = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackagePindropIntegration>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackagePindropIntegration.CreateFromDiscriminatorValue); } },
+                { "stirShakenBehavior", n => { StirShakenBehavior = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageStirShakenBehavior>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageStirShakenBehavior.CreateFromDiscriminatorValue); } },
                 { "voiceConfigurationPackageId", n => { VoiceConfigurationPackageId = n.GetGuidValue(); } },
             };
         }
@@ -125,15 +125,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("accountId", AccountId);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageCallVerification_1>("callVerification", CallVerification);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageCnam_1>("cnam", Cnam);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageCallVerification>("callVerification", CallVerification);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageCnam>("cnam", Cnam);
             writer.WriteStringValue("description", Description);
             writer.WriteGuidValue("httpVoiceV2ApplicationId", HttpVoiceV2ApplicationId);
             writer.WriteStringValue("name", Name);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersVoiceConfigurationPackageOriginationRoutePlan>("originationRoutePlan", OriginationRoutePlan);
             writer.WriteIntValue("phoneNumberCount", PhoneNumberCount);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackagePindropIntegration_1>("pindropIntegration", PindropIntegration);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageStirShakenBehavior_1>("stirShakenBehavior", StirShakenBehavior);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackagePindropIntegration>("pindropIntegration", PindropIntegration);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageStirShakenBehavior>("stirShakenBehavior", StirShakenBehavior);
             writer.WriteGuidValue("voiceConfigurationPackageId", VoiceConfigurationPackageId);
             writer.WriteAdditionalData(AdditionalData);
         }

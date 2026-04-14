@@ -21,10 +21,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The phoneNumbers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberInCart_1>? PhoneNumbers { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberInCart>? PhoneNumbers { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberInCart_1> PhoneNumbers { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberInCart> PhoneNumbers { get; set; }
 #endif
         /// <summary>Description of product added to cart.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -65,7 +65,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "didgroupId", n => { DidgroupId = n.GetIntValue(); } },
                 { "orderProductId", n => { OrderProductId = n.GetIntValue(); } },
-                { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberInCart_1>(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberInCart_1.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberInCart>(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberInCart.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "productDescription", n => { ProductDescription = n.GetStringValue(); } },
                 { "productType", n => { ProductType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OrderProduct_productType>(); } },
                 { "quantity", n => { Quantity = n.GetIntValue(); } },
@@ -80,7 +80,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("didgroupId", DidgroupId);
             writer.WriteIntValue("orderProductId", OrderProductId);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberInCart_1>("phoneNumbers", PhoneNumbers);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberInCart>("phoneNumbers", PhoneNumbers);
             writer.WriteStringValue("productDescription", ProductDescription);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OrderProduct_productType>("productType", ProductType);
             writer.WriteIntValue("quantity", Quantity);

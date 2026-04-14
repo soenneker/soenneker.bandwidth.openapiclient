@@ -17,10 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The countries property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Country>? Countries { get; set; }
+        public List<string>? Countries { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Country> Countries { get; set; }
+        public List<string> Countries { get; set; }
 #endif
         /// <summary>The resultCount property</summary>
         public int? ResultCount { get; set; }
@@ -49,7 +49,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "countries", n => { Countries = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Country>(global::Soenneker.Bandwidth.OpenApiClient.Models.Country.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "countries", n => { Countries = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "resultCount", n => { ResultCount = n.GetIntValue(); } },
             };
         }
@@ -60,7 +60,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Country>("countries", Countries);
+            writer.WriteCollectionOfPrimitiveValues<string>("countries", Countries);
             writer.WriteIntValue("resultCount", ResultCount);
             writer.WriteAdditionalData(AdditionalData);
         }

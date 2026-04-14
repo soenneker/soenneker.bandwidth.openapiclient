@@ -72,20 +72,20 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orde
         /// <summary>
         /// Get all of the details associated with an identified order. &lt;p&gt;Please visit &lt;a href=&apos;/docs/numbers/guides/searchingForNumbers/&apos;&gt;Guides and Tutorials&lt;/a&gt; to learn more.&lt;/p&gt;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson_1"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson_1?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orders.Item.WithOrderItemRequestBuilder.WithOrderItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orders.Item.WithOrderItemRequestBuilder.WithOrderItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson_1> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orders.Item.WithOrderItemRequestBuilder.WithOrderItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orders.Item.WithOrderItemRequestBuilder.WithOrderItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson_1.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// For orders that support Backorder capabilities, new number orders may stay in backordered state while the order is filled. While in this state it is possible to update the modifiable fields in the record, as well as to request that backorder processing of the order be ended.The fields that can be updated are...&lt;ul&gt;&lt;li&gt;The order name&lt;/li&gt;&lt;li&gt;The customer order ID&lt;/li&gt;&lt;li&gt;The backordered state.&lt;/li&gt;&lt;/ul&gt;Specifying a &amp;lt;CloseOrder&amp;gt; element (XML) or &quot;closeOrder&quot; key (JSON) with a value of true will cancel the backorder request, leaving the currently ordered numbers on the account.  No further numbers will be added to the account as a result of the order.
@@ -94,21 +94,21 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orde
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateNewPhoneNumberOrder404ResponseSchemaJson_1">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateNewPhoneNumberOrder404ResponseSchemaJson">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateNewPhoneNumberOrderJson_1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream?> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateNewPhoneNumberOrderJson body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateNewPhoneNumberOrderJson_1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateNewPhoneNumberOrderJson body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateNewPhoneNumberOrder404ResponseSchemaJson_1.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateNewPhoneNumberOrder404ResponseSchemaJson.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -139,11 +139,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orde
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateNewPhoneNumberOrderJson_1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateNewPhoneNumberOrderJson body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateNewPhoneNumberOrderJson_1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateNewPhoneNumberOrderJson body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

@@ -36,33 +36,33 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls
         /// <summary>
         /// List CDRs with filters
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalCdrResourceHolder_1"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalCdrResourceHolder"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessage_1">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessage_1">When receiving a 402 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ForbiddenErrorResponseSchema_1">When receiving a 403 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessage_1">When receiving a 405 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.InternalServerErrorResponseSchema_1">When receiving a 500 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessage">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessage">When receiving a 402 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ForbiddenErrorResponseSchema">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessage">When receiving a 405 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.InternalServerErrorResponseSchema">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalCdrResourceHolder_1?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.CallsRequestBuilder.CallsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalCdrResourceHolder?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.CallsRequestBuilder.CallsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalCdrResourceHolder_1> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.CallsRequestBuilder.CallsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalCdrResourceHolder> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.CallsRequestBuilder.CallsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessage_1.CreateFromDiscriminatorValue },
-                { "402", global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessage_1.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.ForbiddenErrorResponseSchema_1.CreateFromDiscriminatorValue },
-                { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessage_1.CreateFromDiscriminatorValue },
-                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.InternalServerErrorResponseSchema_1.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessage.CreateFromDiscriminatorValue },
+                { "402", global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessage.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.ForbiddenErrorResponseSchema.CreateFromDiscriminatorValue },
+                { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessage.CreateFromDiscriminatorValue },
+                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.InternalServerErrorResponseSchema.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalCdrResourceHolder_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalCdrResourceHolder_1.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalCdrResourceHolder>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalCdrResourceHolder.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// List CDRs with filters

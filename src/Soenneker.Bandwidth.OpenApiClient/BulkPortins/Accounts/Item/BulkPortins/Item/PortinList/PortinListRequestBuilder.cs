@@ -36,40 +36,40 @@ namespace Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortin
         /// <summary>
         /// Retrieves a list of Port-in Orders that are all associated with the identified Bulk Port-in.   This response is not paginated due to its inherently limited size. Please visit &lt;a href=&apos;/docs/numbers/porting/port-ins/bulkPortIns&apos;&gt;Guides and Tutorials&lt;/a&gt;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse_1"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse_1?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse_1> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse_1.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &lt;p&gt;A PUT on a PortinList resource will cause replacement of the list of port-in orders associated with the specified bulk port-in.&lt;/p&gt;&lt;p&gt;This PUT will completely replace the existing list of port-in orders associated with the bulk port-in.  If all port-in orders in the list are not valid, the PUT request will fail, due to the potential for losing the port-in to bulk port-in relationships.&lt;/p&gt;&lt;p&gt;Only port-in orders in a draft status may be associated with a bulk port-in order.  And port-in orders may only be added to a bulk port-in order while that bulk port-in order is still in a draft state.&lt;/p&gt;&lt;p&gt;Child port-in orders may be dissociated from the bulk port-in at any time. &lt;/p&gt; &lt;p&gt;Please visit &lt;a href=&apos;/docs/numbers/porting/port-ins/bulkPortIns&apos;&gt;Guides and Tutorials&lt;/a&gt;&lt;/p&gt;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse_1"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse"/></returns>
         /// <param name="body">The list of child, or subtending, orders associated with a bulk port-in.  The bulk port-in will have an empty PortinList until telephone numbers are added using the /tnList endpoint.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse_1?> PutAsync(List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdJson_1> body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse?> PutAsync(List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdJson> body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse_1> PutAsync(List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdJson_1> body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse> PutAsync(List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdJson> body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse_1>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse_1.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a list of Port-in Orders that are all associated with the identified Bulk Port-in.   This response is not paginated due to its inherently limited size. Please visit &lt;a href=&apos;/docs/numbers/porting/port-ins/bulkPortIns&apos;&gt;Guides and Tutorials&lt;/a&gt;
@@ -98,11 +98,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortin
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdJson_1> body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdJson> body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdJson_1> body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdJson> body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

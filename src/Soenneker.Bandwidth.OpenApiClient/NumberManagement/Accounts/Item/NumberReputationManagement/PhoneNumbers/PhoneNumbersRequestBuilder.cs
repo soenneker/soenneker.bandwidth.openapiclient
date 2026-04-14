@@ -66,7 +66,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 400 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer_1">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer">When receiving a 403 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 404 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 405 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 429 status code</exception>
@@ -85,7 +85,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             {
                 { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
                 { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer_1.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
@@ -122,42 +122,42 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             return new global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumberReputationManagement.PhoneNumbers.PhoneNumbersRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response_1"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response_1"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsResellerDailyChecks200Response_1"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response_1"/>
+        /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsResellerDailyChecks200Response"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response"/>
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class PhoneNumbersGetResponse : IComposedTypeWrapper, IParsable
         {
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response_1"/></summary>
+            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response_1? GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response? GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response { get; set; }
 #nullable restore
 #else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response_1 GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response { get; set; }
 #endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response_1"/></summary>
+            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response_1? GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response? GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response { get; set; }
 #nullable restore
 #else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response_1 GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response { get; set; }
 #endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsResellerDailyChecks200Response_1"/></summary>
+            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsResellerDailyChecks200Response"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsResellerDailyChecks200Response_1? GetPhoneNumberReputationDetailsResellerDailyChecks200Response1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsResellerDailyChecks200Response? GetPhoneNumberReputationDetailsResellerDailyChecks200Response { get; set; }
 #nullable restore
 #else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsResellerDailyChecks200Response_1 GetPhoneNumberReputationDetailsResellerDailyChecks200Response1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsResellerDailyChecks200Response GetPhoneNumberReputationDetailsResellerDailyChecks200Response { get; set; }
 #endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response_1"/></summary>
+            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response_1? GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response? GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response { get; set; }
 #nullable restore
 #else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response_1 GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response1 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response { get; set; }
 #endif
             /// <summary>
             /// Creates a new instance of the appropriate class based on discriminator value
@@ -168,10 +168,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             {
                 if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
                 var result = new global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumberReputationManagement.PhoneNumbers.PhoneNumbersRequestBuilder.PhoneNumbersGetResponse();
-                result.GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response1 = new global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response_1();
-                result.GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response1 = new global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response_1();
-                result.GetPhoneNumberReputationDetailsResellerDailyChecks200Response1 = new global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsResellerDailyChecks200Response_1();
-                result.GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response1 = new global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response_1();
+                result.GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response = new global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response();
+                result.GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response = new global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response();
+                result.GetPhoneNumberReputationDetailsResellerDailyChecks200Response = new global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsResellerDailyChecks200Response();
+                result.GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response = new global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response();
                 return result;
             }
             /// <summary>
@@ -180,9 +180,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
             public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
             {
-                if(GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response1 != null || GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response1 != null || GetPhoneNumberReputationDetailsResellerDailyChecks200Response1 != null || GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response1 != null)
+                if(GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response != null || GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response != null || GetPhoneNumberReputationDetailsResellerDailyChecks200Response != null || GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response != null)
                 {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response1, GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response1, GetPhoneNumberReputationDetailsResellerDailyChecks200Response1, GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response1);
+                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response, GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response, GetPhoneNumberReputationDetailsResellerDailyChecks200Response, GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response);
                 }
                 return new Dictionary<string, Action<IParseNode>>();
             }
@@ -193,7 +193,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             public virtual void Serialize(ISerializationWriter writer)
             {
                 if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response_1>(null, GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response1, GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response1, GetPhoneNumberReputationDetailsResellerDailyChecks200Response1, GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response1);
+                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response>(null, GetPhoneNumberReputationDetailsEnterpriseDailyChecks200Response, GetPhoneNumberReputationDetailsEnterpriseWeeklyChecks200Response, GetPhoneNumberReputationDetailsResellerDailyChecks200Response, GetPhoneNumberReputationDetailsResellerWeeklyChecks200Response);
             }
         }
         /// <summary>
