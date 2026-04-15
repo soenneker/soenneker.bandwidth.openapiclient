@@ -5,7 +5,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     /// <summary>The billing type of the short code. Either standard SMS or free to end user.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum BillingType
+    public enum ShortcodesBillingType
     {
         [EnumMember(Value = "STANDARD_SMS")]
         #pragma warning disable CS1591

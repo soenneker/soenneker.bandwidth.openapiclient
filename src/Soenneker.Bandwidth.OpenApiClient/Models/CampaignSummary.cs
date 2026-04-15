@@ -31,6 +31,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string BandwidthId { get; set; }
 #endif
+        /// <summary>The display name of the brand associated with this campaign.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? BrandDisplayName { get; private set; }
+#nullable restore
+#else
+        public string BrandDisplayName { get; private set; }
+#endif
         /// <summary>The TCR-generated identifier for this brand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -110,6 +118,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "attMessageClass", n => { AttMessageClass = n.GetStringValue(); } },
                 { "bandwidthId", n => { BandwidthId = n.GetStringValue(); } },
+                { "brandDisplayName", n => { BrandDisplayName = n.GetStringValue(); } },
                 { "brandId", n => { BrandId = n.GetStringValue(); } },
                 { "campaignId", n => { CampaignId = n.GetStringValue(); } },
                 { "campaignName", n => { CampaignName = n.GetStringValue(); } },

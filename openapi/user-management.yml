@@ -46,7 +46,6 @@ paths:
         - $ref: '#/components/parameters/globalAccountNumber'
         - $ref: '#/components/parameters/accountScope'
         - $ref: '#/components/parameters/status'
-        - $ref: '#/components/parameters/isExpress'
         - $ref: '#/components/parameters/createdBy'
         - $ref: '#/components/parameters/credentialSource'
         - $ref: '#/components/parameters/creationDate'
@@ -889,8 +888,6 @@ components:
           $ref: '#/components/schemas/accountScopeEnum'
         status:
           $ref: '#/components/schemas/statusEnum'
-        isExpress:
-          $ref: '#/components/schemas/isExpress'
         createdBy:
           $ref: '#/components/schemas/createdBy'
         credentialSource:
@@ -934,10 +931,6 @@ components:
       enum:
         - ACCOUNT
         - ACCOUNT_ADMIN
-    isExpress:
-      type: boolean
-      description: Whether or not the user is a Bandwidth Express user
-      example: true
     globalAccountNumber:
       type: string
       description: A unique identifier for a global account
@@ -1225,14 +1218,6 @@ components:
           $ref: '#/components/schemas/sort'
       example:
         eq: ACTIVE
-    isExpressQueryParam:
-      type: object
-      properties:
-        eq:
-          type: boolean
-          description: Equal to the specified isExpress value.
-      example:
-        eq: true
     createdByQueryParam:
       type: object
       properties:
@@ -1375,14 +1360,6 @@ components:
       style: deepObject
       schema:
         $ref: '#/components/schemas/statusQueryParam'
-    isExpress:
-      name: isExpress
-      in: query
-      required: false
-      description: Whether the user is a Bandwidth Express user.
-      style: deepObject
-      schema:
-        $ref: '#/components/schemas/isExpressQueryParam'
     createdBy:
       name: createdBy
       in: query
@@ -1497,9 +1474,9 @@ components:
           pageSize: 2
     listUsersCsvResponseExample:
       value: >
-        userId,email,firstName,lastName,phoneNumber,roles,accounts,gan,accountScope,status,isExpress,createdBy,credentialSource,creationDate,lastModificationDate,lastAuthenticationDate
+        userId,email,firstName,lastName,phoneNumber,roles,accounts,gan,accountScope,status,createdBy,credentialSource,creationDate,lastModificationDate,lastAuthenticationDate
 
-        mikew,mike@bandwidth.com,Mike,Wazowski,+11112223333,httpVoice;adminRole,1232131;9876543,GAN123456,ACCOUNT_ADMIN,ACTIVE,false,adminUser,PASSWORD,2026-01-01T12:00:00Z,2026-01-02T12:00:00Z,2026-01-02T12:00:00Z
+        mikew,mike@bandwidth.com,Mike,Wazowski,+11112223333,httpVoice;adminRole,1232131;9876543,GAN123456,ACCOUNT_ADMIN,ACTIVE,adminUser,PASSWORD,2026-01-01T12:00:00Z,2026-01-02T12:00:00Z,2026-01-02T12:00:00Z
     listUserMfaFactorsResponseExample:
       value:
         links: []

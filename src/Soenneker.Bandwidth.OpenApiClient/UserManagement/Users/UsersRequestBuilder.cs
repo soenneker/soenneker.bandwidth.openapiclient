@@ -35,7 +35,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.UserManagement.Users
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public UsersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/user-management/users{?accountId,accountScope,afterCursor*,createdBy,creationDate,credentialSource,email,firstName,globalAccountNumber,isExpress,lastAuthenticationDate,lastModificationDate,lastName,limit*,phoneNumber,roleId,status}", pathParameters)
+        public UsersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/user-management/users{?accountId,accountScope,afterCursor*,createdBy,creationDate,credentialSource,email,firstName,globalAccountNumber,lastAuthenticationDate,lastModificationDate,lastName,limit*,phoneNumber,roleId,status}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.UserManagement.Users
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public UsersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/user-management/users{?accountId,accountScope,afterCursor*,createdBy,creationDate,credentialSource,email,firstName,globalAccountNumber,isExpress,lastAuthenticationDate,lastModificationDate,lastName,limit*,phoneNumber,roleId,status}", rawUrl)
+        public UsersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/user-management/users{?accountId,accountScope,afterCursor*,createdBy,creationDate,credentialSource,email,firstName,globalAccountNumber,lastAuthenticationDate,lastModificationDate,lastName,limit*,phoneNumber,roleId,status}", rawUrl)
         {
         }
         /// <summary>
@@ -269,16 +269,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.UserManagement.Users
 #else
             [QueryParameter("globalAccountNumber")]
             public string GlobalAccountNumber { get; set; }
-#endif
-            /// <summary>Whether the user is a Bandwidth Express user.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            [QueryParameter("isExpress")]
-            public string? IsExpress { get; set; }
-#nullable restore
-#else
-            [QueryParameter("isExpress")]
-            public string IsExpress { get; set; }
 #endif
             /// <summary>The date and time when the user last authenticated.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

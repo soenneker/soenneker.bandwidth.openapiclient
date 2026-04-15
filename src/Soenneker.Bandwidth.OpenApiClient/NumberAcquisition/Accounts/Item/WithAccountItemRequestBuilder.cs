@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.AvailableNpaNxx;
+using Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.ImportToAccount;
 using Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orders;
 using System.Collections.Generic;
 using System.IO;
@@ -20,6 +21,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item
         public global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.AvailableNpaNxx.AvailableNpaNxxRequestBuilder AvailableNpaNxx
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.AvailableNpaNxx.AvailableNpaNxxRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The importToAccount property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.ImportToAccount.ImportToAccountRequestBuilder ImportToAccount
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.ImportToAccount.ImportToAccountRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The orders property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orders.OrdersRequestBuilder Orders

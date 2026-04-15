@@ -15,7 +15,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The billing type of the short code. Either standard SMS or free to end user.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingType? BillingType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortcodesBillingType? BillingType { get; set; }
         /// <summary>The type of brand that is applying for the short code campaign.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.BrandTypeEnum? BrandType { get; set; }
         /// <summary>A sample of the call to action message that the short code uses.</summary>
@@ -357,7 +357,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "billingType", n => { BillingType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingType>(); } },
+                { "billingType", n => { BillingType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortcodesBillingType>(); } },
                 { "brandType", n => { BrandType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandTypeEnum>(); } },
                 { "callToActionSample", n => { CallToActionSample = n.GetStringValue(); } },
                 { "callToActionType", n => { CallToActionType = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CallToActionTypeEnum>()?.AsList(); } },
@@ -414,7 +414,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingType>("billingType", BillingType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortcodesBillingType>("billingType", BillingType);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandTypeEnum>("brandType", BrandType);
             writer.WriteStringValue("callToActionSample", CallToActionSample);
             writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CallToActionTypeEnum>("callToActionType", CallToActionType);

@@ -58,8 +58,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public List<string> GlobalAccountNumbers { get; set; }
 #endif
-        /// <summary>Whether or not the user is a Bandwidth Express user</summary>
-        public bool? IsExpress { get; set; }
         /// <summary>The date and time of the last authentication</summary>
         public DateTimeOffset? LastAuthenticationDate { get; set; }
         /// <summary>The date and time the user was last modified</summary>
@@ -124,7 +122,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "email", n => { Email = n.GetStringValue(); } },
                 { "firstName", n => { FirstName = n.GetStringValue(); } },
                 { "globalAccountNumbers", n => { GlobalAccountNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "isExpress", n => { IsExpress = n.GetBoolValue(); } },
                 { "lastAuthenticationDate", n => { LastAuthenticationDate = n.GetDateTimeOffsetValue(); } },
                 { "lastModificationDate", n => { LastModificationDate = n.GetDateTimeOffsetValue(); } },
                 { "lastName", n => { LastName = n.GetStringValue(); } },
@@ -149,7 +146,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("email", Email);
             writer.WriteStringValue("firstName", FirstName);
             writer.WriteCollectionOfPrimitiveValues<string>("globalAccountNumbers", GlobalAccountNumbers);
-            writer.WriteBoolValue("isExpress", IsExpress);
             writer.WriteDateTimeOffsetValue("lastAuthenticationDate", LastAuthenticationDate);
             writer.WriteDateTimeOffsetValue("lastModificationDate", LastModificationDate);
             writer.WriteStringValue("lastName", LastName);

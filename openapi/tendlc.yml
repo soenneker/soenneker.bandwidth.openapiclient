@@ -1661,6 +1661,12 @@ components:
           type: string
           examples:
             - B1DER2J
+        brandDisplayName:
+          description: The display name of the brand associated with this campaign.
+          type: string
+          readOnly: true
+          examples:
+            - Acme, Inc.
         campaignName:
           description: >-
             A user-supplied name for this campaign. Because this name is not
@@ -1928,6 +1934,12 @@ components:
           type: string
           examples:
             - B1DER2J
+        brandDisplayName:
+          description: The display name of the brand associated with this campaign.
+          type: string
+          readOnly: true
+          examples:
+            - Acme, Inc.
         attMessageClass:
           type: string
           examples:

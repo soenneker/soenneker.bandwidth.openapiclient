@@ -5,8 +5,9 @@ info:
     Bandwidth's Number Acquisition API
 
 
-    This API currently provides endpoints to order phone numbers via a New
-    Number Order.
+    This API provides endpoints to order phone numbers via a New Number Order
+    and to import previously acquired telephone numbers into an account via an
+    Import to Account Orders order.
   contact:
     name: Bandwidth
     url: https://dev.bandwidth.com/apis/numbers-apis/number-acquisition/
@@ -487,6 +488,160 @@ paths:
       summary: List Available NPA-NXX Phone Numbers [NANP]
       tags:
         - Coverage
+  /accounts/{accountId}/importToAccount:
+    get:
+      tags:
+        - Import to Account Orders
+      description: >
+        Retrieve a list of the Import to Account orders that have previously
+        been performed on the account. The query must always specify pagination
+        parameters (size, page). The results can also be optionally limited with
+        start date and end date. Returns a 204 if no results are found.
+      summary: List Import to Account Orders
+      operationId: listImportToAccountOrders
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/requiredPageQueryParam'
+        - $ref: '#/components/parameters/requiredSizeQueryParam'
+        - $ref: '#/components/parameters/startDateQueryParam'
+        - $ref: '#/components/parameters/endDateQueryParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/listImportToAccountOrders200Response'
+        '204':
+          $ref: '#/components/responses/importToAccount204Response'
+        '400':
+          $ref: '#/components/responses/listImportToAccountOrders400Response'
+        '401':
+          $ref: '#/components/responses/importToAccountUnauthorized401Response'
+        '403':
+          $ref: '#/components/responses/importToAccountForbidden403Response'
+        '404':
+          $ref: '#/components/responses/importToAccountNotFound404Response'
+        '405':
+          $ref: '#/components/responses/importToAccount405Response'
+        '429':
+          $ref: '#/components/responses/importToAccountTooManyRequests429Response'
+        '500':
+          $ref: '#/components/responses/importToAccount500Response'
+  /accounts/{accountId}/importToAccount/{orderId}:
+    get:
+      tags:
+        - Import to Account Orders
+      description: >-
+        Retrieve information about an Import to Account order with the specified
+        ID.
+      summary: Fetch Import to Account Order Status
+      operationId: getImportToAccountOrder
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/importToAccountOrderIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/importToAccountNumberOrderResponseForGet'
+        '401':
+          $ref: '#/components/responses/importToAccountUnauthorized401Response'
+        '403':
+          $ref: '#/components/responses/importToAccountForbidden403Response'
+        '404':
+          $ref: '#/components/responses/getImportToAccountOrder404Response'
+        '405':
+          $ref: '#/components/responses/importToAccount405Response'
+        '429':
+          $ref: '#/components/responses/importToAccountTooManyRequests429Response'
+        '500':
+          $ref: '#/components/responses/importToAccount500Response'
+  /accounts/{accountId}/importToAccount/{orderId}/history:
+    get:
+      tags:
+        - Import to Account Orders
+      description: Retrieves the history of the specified Import to Account order.
+      summary: Fetch Import to Account Order History
+      operationId: getImportToAccountOrderHistory
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/importToAccountOrderIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/getImportToAccountOrderHistory200Response'
+        '401':
+          $ref: '#/components/responses/importToAccountUnauthorized401Response'
+        '403':
+          $ref: '#/components/responses/importToAccountForbidden403Response'
+        '404':
+          $ref: '#/components/responses/importToAccountNotFound404Response'
+        '405':
+          $ref: '#/components/responses/importToAccount405Response'
+        '429':
+          $ref: '#/components/responses/importToAccountTooManyRequests429Response'
+        '500':
+          $ref: '#/components/responses/importToAccount500Response'
+  /accounts/{accountId}/importToAccount/batches:
+    get:
+      tags:
+        - Import to Account Orders
+      description: >-
+        The batches resource enumerates all of the batches that have been used
+        for importing numbers into an account.
+
+        If there is the need to import a large number of telephone numbers into
+        an account, the import is submitted as a <b>batch</b>, which is a
+        collection of submissions that are held together by a batch ID. This
+        batch of orders can subsequently be retrieved by retrieving all of the
+        orders that share a batch ID. Returns a 204 if no results are found.
+      summary: List Import to Account Order Batches
+      operationId: listImportToAccountOrderBatches
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/listImportToAccountOrderBatches200Response'
+        '204':
+          $ref: '#/components/responses/importToAccount204Response'
+        '401':
+          $ref: '#/components/responses/importToAccountUnauthorized401Response'
+        '403':
+          $ref: '#/components/responses/importToAccountForbidden403Response'
+        '404':
+          $ref: '#/components/responses/importToAccountNotFound404Response'
+        '405':
+          $ref: '#/components/responses/importToAccount405Response'
+        '429':
+          $ref: '#/components/responses/importToAccountTooManyRequests429Response'
+        '500':
+          $ref: '#/components/responses/importToAccount500Response'
+  /accounts/{accountId}/importToAccount/batches/{batchId}:
+    get:
+      tags:
+        - Import to Account Orders
+      description: >-
+        A batch ID identifies a specific batch of one or more orders that
+        constitute a complete import of a (potentially large number of)
+        telephone numbers. Retrieving the information associated with a specific
+        batch ID describes the orders that were included in that batch, and the
+        status and ID of those orders. Returns a 204 if no results are found.
+      summary: Fetch Import to Account Orders Status by Batch ID
+      operationId: listImportToAccountOrdersByBatchId
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/batchIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/getImportToAccountOrdersByBatchId200Response'
+        '204':
+          $ref: '#/components/responses/importToAccount204Response'
+        '401':
+          $ref: '#/components/responses/importToAccountUnauthorized401Response'
+        '403':
+          $ref: '#/components/responses/importToAccountForbidden403Response'
+        '404':
+          $ref: '#/components/responses/importToAccountNotFound404Response'
+        '405':
+          $ref: '#/components/responses/importToAccount405Response'
+        '429':
+          $ref: '#/components/responses/importToAccountTooManyRequests429Response'
+        '500':
+          $ref: '#/components/responses/importToAccount500Response'
 components:
   parameters:
     accountIdPathParam:
@@ -569,6 +724,22 @@ components:
       required: true
       schema:
         type: string
+    importToAccountOrderIdPathParam:
+      description: Import to Account order's ID.
+      in: path
+      name: orderId
+      required: true
+      schema:
+        type: string
+      example: 093a9f9b-1a78-4e47-b6e2-776a484596f4
+    batchIdPathParam:
+      description: Import to Account order's batch ID.
+      in: path
+      name: batchId
+      required: true
+      schema:
+        type: string
+      example: 093a9f9b-1a78-4e47-b6e2-776a484596f4
     newPhoneNumberOrderPhoneNumberDetailQueryParam:
       description: >-
         if true, an extended payload describing details about the ordered phone
@@ -2883,6 +3054,191 @@ components:
                 <Description>Account '12345' does not exist or is locked</Description>
             </Error>
         </SearchResultForAvailableNpaNxx>
+    listImportToAccountOrders400XmlExample:
+      description: Bad request error response for listing Import to Account orders.
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ResponseSelectWrapper>
+            <ListOrderIdUserIdDate>
+                <ErrorMessage>End date must be greater than start date</ErrorMessage>
+            </ListOrderIdUserIdDate>
+        </ResponseSelectWrapper>
+    listImportToAccountOrdersXmlExample:
+      description: A list of Import to Account orders.
+      value: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <ResponseSelectWrapper>
+            <ListOrderIdUserIdDate>
+                <TotalCount>3</TotalCount>
+                <OrderIdUserIdDate>
+                    <accountId>14</accountId>
+                    <CountOfTNs>2</CountOfTNs>
+                    <userId>team_ua</userId>
+                    <lastModifiedDate>2014-07-07T10:06:43.427Z</lastModifiedDate>
+                    <OrderType>import_to_account</OrderType>
+                    <OrderDate>2014-07-07T10:06:43.427Z</OrderDate>
+                    <orderId>37a6447c-1a0b-4be9-ba89-3f5cb0aea142</orderId>
+                    <OrderStatus>FAILED</OrderStatus>
+                </OrderIdUserIdDate>
+                <OrderIdUserIdDate>
+                    <accountId>14</accountId>
+                    <CountOfTNs>2</CountOfTNs>
+                    <userId>team_ua</userId>
+                    <lastModifiedDate>2014-07-07T10:05:56.595Z</lastModifiedDate>
+                    <OrderType>import_to_account</OrderType>
+                    <OrderDate>2014-07-07T10:05:56.595Z</OrderDate>
+                    <orderId>743b0e64-3350-42e4-baa6-406dac7f4a85</orderId>
+                    <OrderStatus>RECEIVED</OrderStatus>
+                </OrderIdUserIdDate>
+                <OrderIdUserIdDate>
+                    <accountId>14</accountId>
+                    <CountOfTNs>2</CountOfTNs>
+                    <userId>team_ua</userId>
+                    <lastModifiedDate>2014-07-07T09:32:17.234Z</lastModifiedDate>
+                    <OrderType>import_to_account</OrderType>
+                    <OrderDate>2014-07-07T09:32:17.234Z</OrderDate>
+                    <orderId>f71eb4d2-bfef-4384-957f-45cd6321185e</orderId>
+                    <OrderStatus>RECEIVED</OrderStatus>
+                </OrderIdUserIdDate>
+            </ListOrderIdUserIdDate>
+        </ResponseSelectWrapper>
+    getImportToAccountOrderXmlExample:
+      description: An Import to Account order with completed status.
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ImportToAccountNumberOrderResponse>
+            <ImportedTelephoneNumberList>
+                <TelephoneNumber>+19199918393</TelephoneNumber>
+                <TelephoneNumber>+19199918394</TelephoneNumber>
+            </ImportedTelephoneNumberList>
+            <OrderRequest>
+                <id>c5986599-3a7c-4eed-a5c4-9121c17d54ab</id>
+                <OrderCreateDate>2014-04-18T16:38:05.001Z</OrderCreateDate>
+                <PeerId>303716</PeerId>
+                <ImportToAccountNumberOrderType>
+                    <BillingType>NOCHARGE</BillingType>
+                    <InitialStatus>Available</InitialStatus>
+                    <TnAttributes>
+                        <TnAttribute>Protected</TnAttribute>
+                    </TnAttributes>
+                    <TelephoneNumberList>
+                        <TelephoneNumber>+19199918393</TelephoneNumber>
+                        <TelephoneNumber>+19199918394</TelephoneNumber>
+                    </TelephoneNumberList>
+                    <Origin>UNDEFINED</Origin>
+                    <VendorName>Bandwidth CLEC</VendorName>
+                </ImportToAccountNumberOrderType>
+                <OverrideFeatureRestrictions>false</OverrideFeatureRestrictions>
+                <SiteId>743</SiteId>
+                <VoiceConfigurationPackageId>d21315af-9b5b-4b45-a6f4-9106cbfe87d1</VoiceConfigurationPackageId>
+                <RequirementsPackageId>3fa85f64-5717-4562-b3fc-2c963f66afa6</RequirementsPackageId>
+                <AutoActivate>true</AutoActivate>
+                <ImportExternalTnsAsShared>false</ImportExternalTnsAsShared>
+            </OrderRequest>
+            <OrderStatus>COMPLETE</OrderStatus>
+            <ImportedTelephoneNumberDetailList>
+                <TelephoneNumberDetail>
+                    <FullNumber>+19199918393</FullNumber>
+                </TelephoneNumberDetail>
+                <TelephoneNumberDetail>
+                    <FullNumber>+19199918394</FullNumber>
+                </TelephoneNumberDetail>
+            </ImportedTelephoneNumberDetailList>
+        </ImportToAccountNumberOrderResponse>
+    getImportToAccountOrder404XmlExample:
+      description: Order not found error response.
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ErrorResponse>
+            <irisStatus>
+                <Code>404</Code>
+                <Description>Order with such id was not found.</Description>
+            </irisStatus>
+        </ErrorResponse>
+    getImportToAccountOrderHistoryXmlExample:
+      description: Order history for an Import to Account order.
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <OrderHistoryWrapper>
+            <OrderHistory>
+                <OrderDate>2015-06-16T14:03:10.225Z</OrderDate>
+                <Note>Import to Account is received.</Note>
+                <Author>admin</Author>
+                <Status>RECEIVED</Status>
+            </OrderHistory>
+            <OrderHistory>
+                <OrderDate>2015-06-16T14:03:10.789Z</OrderDate>
+                <Note>Import to Account is partial.</Note>
+                <Author>admin</Author>
+                <Status>PARTIAL</Status>
+            </OrderHistory>
+        </OrderHistoryWrapper>
+    listImportToAccountOrderBatchesXmlExample:
+      description: A list of Import to Account order batches.
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <Batches>
+            <Batch>
+                <BatchId>phnpwrblk4</BatchId>
+                <OrderCreateDate>2014-05-02T15-27-25.090Z</OrderCreateDate>
+                <OrderId>4928ab9d-6bf6-4035-ac01-38a061d0f5d9</OrderId>
+                <OrderStatus>IMPORT_COMPLETE</OrderStatus>
+                <SubmittedTnCount>5000</SubmittedTnCount>
+                <SuccessfulTnCount>5000</SuccessfulTnCount>
+                <BatchSize>5000</BatchSize>
+            </Batch>
+            <Batch>
+                <BatchId>+11111111111</BatchId>
+                <OrderCreateDate>2013-10-10T15-25-16.952Z</OrderCreateDate>
+                <OrderId>8ce7c80b-d1ce-46f1-a3a1-56a08373b576</OrderId>
+                <OrderStatus>VALIDATION_FAILED</OrderStatus>
+                <SubmittedTnCount>4670</SubmittedTnCount>
+                <SuccessfulTnCount>0</SuccessfulTnCount>
+                <BatchSize>4670</BatchSize>
+            </Batch>
+            <Batch>
+                <BatchId>+18177974679</BatchId>
+                <OrderCreateDate>2014-04-10T16-54-04.001Z</OrderCreateDate>
+                <OrderId>26afaae3-2a8b-4405-96aa-1c38fe1fb74b</OrderId>
+                <OrderStatus>IMPORT_COMPLETE</OrderStatus>
+                <SubmittedTnCount>2358</SubmittedTnCount>
+                <SuccessfulTnCount>2358</SuccessfulTnCount>
+                <BatchSize>2358</BatchSize>
+            </Batch>
+        </Batches>
+    getImportToAccountOrdersByBatchIdXmlExample:
+      description: Import to Account orders for a specific batch ID.
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <Batches>
+            <Batch>
+                <BatchId>+11111111111</BatchId>
+                <OrderCreateDate>2014-05-02T15-27-25.090Z</OrderCreateDate>
+                <OrderId>4928ab9d-6bf6-4035-ac01-38a061d0f5d9</OrderId>
+                <OrderStatus>IMPORT_COMPLETE</OrderStatus>
+                <SubmittedTnCount>5000</SubmittedTnCount>
+                <SuccessfulTnCount>5000</SuccessfulTnCount>
+                <BatchSize>5000</BatchSize>
+            </Batch>
+            <Batch>
+                <BatchId>+11111111111</BatchId>
+                <OrderCreateDate>2013-10-10T15-25-16.952Z</OrderCreateDate>
+                <OrderId>8ce7c80b-d1ce-46f1-a3a1-56a08373b576</OrderId>
+                <OrderStatus>VALIDATION_FAILED</OrderStatus>
+                <SubmittedTnCount>4670</SubmittedTnCount>
+                <SuccessfulTnCount>0</SuccessfulTnCount>
+                <BatchSize>4670</BatchSize>
+            </Batch>
+            <Batch>
+                <BatchId>+11111111111</BatchId>
+                <OrderCreateDate>2014-04-10T16-54-04.001Z</OrderCreateDate>
+                <OrderId>26afaae3-2a8b-4405-96aa-1c38fe1fb74b</OrderId>
+                <OrderStatus>IMPORT_COMPLETE</OrderStatus>
+                <SubmittedTnCount>2358</SubmittedTnCount>
+                <SuccessfulTnCount>2358</SuccessfulTnCount>
+                <BatchSize>2358</BatchSize>
+            </Batch>
+        </Batches>
   responses:
     listNewPhoneNumberOrders200Response:
       content:
@@ -3383,6 +3739,90 @@ components:
               $ref: '#/components/examples/getAvailableNpaNxx404ResponseXmlExample'
           schema:
             $ref: '#/components/schemas/searchResultForAvailableNpaNxxErrorWrapper'
+    listImportToAccountOrders400Response:
+      description: Bad Request
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/listImportToAccountOrders400ResponseSchema'
+          examples:
+            example:
+              $ref: '#/components/examples/listImportToAccountOrders400XmlExample'
+    listImportToAccountOrders200Response:
+      description: OK
+      content:
+        application/xml:
+          examples:
+            example:
+              $ref: '#/components/examples/listImportToAccountOrdersXmlExample'
+          schema:
+            $ref: '#/components/schemas/responseSelectWrapper'
+    getImportToAccountOrderHistory200Response:
+      description: OK
+      content:
+        application/xml:
+          examples:
+            example:
+              $ref: '#/components/examples/getImportToAccountOrderHistoryXmlExample'
+          schema:
+            $ref: '#/components/schemas/orderHistoryWrapper'
+    listImportToAccountOrderBatches200Response:
+      description: OK
+      content:
+        application/xml:
+          examples:
+            example:
+              $ref: '#/components/examples/listImportToAccountOrderBatchesXmlExample'
+          schema:
+            $ref: '#/components/schemas/batches'
+    getImportToAccountOrdersByBatchId200Response:
+      description: OK
+      content:
+        application/xml:
+          examples:
+            example:
+              $ref: >-
+                #/components/examples/getImportToAccountOrdersByBatchIdXmlExample
+          schema:
+            $ref: '#/components/schemas/batches'
+    importToAccountUnauthorized401Response:
+      description: Unauthorized
+    importToAccountForbidden403Response:
+      description: Forbidden
+    importToAccountNotFound404Response:
+      description: Not Found
+    getImportToAccountOrder404Response:
+      description: Not Found
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/importToAccountErrorResponse'
+          examples:
+            example:
+              $ref: '#/components/examples/getImportToAccountOrder404XmlExample'
+    importToAccountTooManyRequests429Response:
+      description: Too Many Requests
+      headers:
+        x-ratelimit-reset:
+          description: The Unix timestamp (in seconds) at which the rate limit will reset.
+          schema:
+            type: integer
+          example: 1775749577
+    importToAccount500Response:
+      description: Internal Server Error
+    importToAccount405Response:
+      description: Method Not Allowed
+    importToAccount204Response:
+      description: No Content
+    importToAccountNumberOrderResponseForGet:
+      description: OK
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/importToAccountNumberOrderResponseForGet'
+          examples:
+            example:
+              $ref: '#/components/examples/getImportToAccountOrderXmlExample'
   schemas:
     visibleOrderStatusJson:
       enum:
@@ -5550,6 +5990,350 @@ components:
               type: integer
             Description:
               type: string
+    importToAccountNumberOrderType:
+      type: object
+      required:
+        - TelephoneNumberList
+        - BillingType
+        - VendorName
+      properties:
+        TelephoneNumberList:
+          $ref: '#/components/schemas/telephoneNumberList'
+        BatchId:
+          $ref: '#/components/schemas/batchId'
+        BatchSize:
+          $ref: '#/components/schemas/batchSize'
+        Origin:
+          $ref: '#/components/schemas/origin'
+        VendorName:
+          $ref: '#/components/schemas/vendorName'
+        PhoneNumberInventoryGroupId:
+          $ref: '#/components/schemas/phoneNumberInventoryGroupId'
+        BillingType:
+          $ref: '#/components/schemas/billingType'
+        TnAttributes:
+          $ref: '#/components/schemas/tnAttributes'
+        InitialStatus:
+          $ref: '#/components/schemas/initialStatus'
+    telephoneNumberList:
+      description: List of telephone numbers to be imported.
+      type: array
+      minItems: 1
+      items:
+        type: object
+        properties:
+          TelephoneNumber:
+            description: Phone number in E.164 format.
+            type: string
+    importedTelephoneNumberList:
+      description: List of telephone numbers that were imported.
+      type: array
+      minItems: 1
+      items:
+        type: object
+        properties:
+          TelephoneNumber:
+            description: Phone number in E.164 format.
+            type: string
+    importedTelephoneNumberDetailList:
+      description: List of telephone number details that were imported.
+      type: array
+      minItems: 1
+      items:
+        type: object
+        properties:
+          TelephoneNumberDetail:
+            type: object
+            properties:
+              FullNumber:
+                description: Phone number in E.164 format.
+                type: string
+    importToAccountNumberOrderResponseForGet:
+      title: ImportToAccountNumberOrderResponse
+      properties:
+        ImportToAccountNumberOrderResponse:
+          type: object
+          properties:
+            ImportedTelephoneNumberList:
+              $ref: '#/components/schemas/importedTelephoneNumberList'
+            OrderRequest:
+              $ref: '#/components/schemas/importToAccountOrderResponseOrderRequest'
+            OrderStatus:
+              $ref: '#/components/schemas/importToAccountOrderStatus'
+            ImportedTelephoneNumberDetailList:
+              $ref: '#/components/schemas/importedTelephoneNumberDetailList'
+            ErrorList:
+              type: array
+              items:
+                $ref: '#/components/schemas/error'
+    importToAccountOrderResponseOrderRequest:
+      title: OrderRequest
+      properties:
+        id:
+          description: Assigned order ID.
+          type: string
+          format: uuid
+        ImportToAccountNumberOrderType:
+          $ref: '#/components/schemas/importToAccountNumberOrderType'
+        SiteId:
+          description: The site ID to which the telephone numbers will be imported.
+          type: integer
+        PeerId:
+          description: >-
+            The SIP peer ID of the provided site to which the telephone numbers
+            will be imported.
+          type: integer
+        VoiceConfigurationPackageId:
+          $ref: '#/components/schemas/voiceConfigurationPackageId'
+        RequirementsPackageId:
+          $ref: '#/components/schemas/requirementsPackageId'
+        AutoActivate:
+          description: >-
+            Indicates whether the service should be activated upon completion of
+            the order. If not specified, the default value is true.
+          type: boolean
+        OrderCreatedDate:
+          $ref: '#/components/schemas/orderCreatedDate'
+        OverrideFeatureRestrictions:
+          description: Used to override the account's purchase restrictions.
+          type: boolean
+        ImportExternalTnsAsShared:
+          $ref: '#/components/schemas/importExternalTnsAsShared'
+    listImportToAccountOrders400ResponseSchema:
+      type: object
+      properties:
+        ResponseSelectWrapper:
+          type: object
+          properties:
+            ListOrderIdUserIdDate:
+              type: object
+              properties:
+                ErrorMessage:
+                  type: string
+    responseSelectWrapper:
+      type: object
+      properties:
+        ResponseSelectWrapper:
+          type: object
+          properties:
+            ListOrderIdUserIdDate:
+              type: object
+              properties:
+                TotalCount:
+                  type: integer
+                Links:
+                  $ref: '#/components/schemas/links'
+                OrderIdUserIdDate:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/orderIdUserIdDate'
+    orderIdUserIdDate:
+      type: object
+      properties:
+        CountOfTNs:
+          type: integer
+        userId:
+          type: string
+        lastModifiedDate:
+          type: string
+        orderId:
+          type: string
+        OrderType:
+          type: string
+        OrderDate:
+          type: string
+        OrderStatus:
+          $ref: '#/components/schemas/importToAccountOrderStatus'
+        TelephoneNumberDetails:
+          $ref: '#/components/schemas/telephoneNumberDetails'
+    batches:
+      type: object
+      properties:
+        Batches:
+          type: object
+          properties:
+            Batch:
+              type: array
+              minItems: 1
+              items:
+                $ref: '#/components/schemas/batch'
+    batch:
+      type: object
+      properties:
+        BatchId:
+          type: string
+        OrderId:
+          $ref: '#/components/schemas/orderId'
+        OrderCreateDate:
+          $ref: '#/components/schemas/orderCreatedDate'
+        OrderStatus:
+          type: string
+        SubmittedTnCount:
+          type: integer
+        SuccessfulTnCount:
+          type: integer
+        BatchSize:
+          type: integer
+    batchId:
+      description: >-
+        A user-chosen ID for the batch of phone numbers. This batch ID can span
+        multiple number submissions. Up to 10 alphanumeric characters. If the
+        submission is not intended to be grouped into a batch of submissions
+        then the batch ID must be globally unique. It is recommended that the
+        batch IDs be globally unique, and that imports not be grouped together
+        in batches by use of a common batch ID.
+      type: string
+    batchSize:
+      description: >-
+        The number of TNs in the batch, aggregated across all of the orders in
+        the batch. This total spans API calls, so if 3 calls are necessary to
+        import 15000 numbers, this value would be 15000. It is recommended to
+        use a batch size equal to the number of telephone numbers in the API
+        call, and use a different batch name for each API call - essentially
+        limiting a batch to a single API call.
+      type: integer
+    origin:
+      description: >-
+        The origin type of numbers, defaulting to 'UNDEFINED' if not ported into
+        IRIS.
+      type: string
+      enum:
+        - UNDEFINED
+        - PORTED_IN
+    vendorName:
+      description: >-
+        The vendor that owns the number that is being ported in. If the number
+        is manually ported to a partner's network then this would reflect that
+        partner.
+      type: string
+    phoneNumberInventoryGroupId:
+      description: >-
+        Relevant for international numbers only. The PhoneNumberInventoryGroupId
+        denotes a specific category for an international phone number to belong
+        to. An international number requires a PhoneNumberInventoryGroup
+        similarly to how a NANP number requires a valid rate center association.
+      type: integer
+    billingType:
+      description: Type of billing rules to be applied.
+      type: string
+      enum:
+        - NOCHARGE
+        - PORTIN
+        - NEWNUMBER
+        - PROJECTPORT
+    tnAttributes:
+      description: List of phone number attributes to be assigned.
+      type: object
+      properties:
+        TnAttribute:
+          type: string
+          enum:
+            - Protected
+    initialStatus:
+      description: >-
+        TN status to be assigned to imported telephone numbers. Requires the
+        "Protected" TnAttribute.
+      type: string
+      enum:
+        - Available
+    orderId:
+      description: The identifier that uniquely identifies an order.
+      type: string
+      maxLength: 255
+    orderCreatedDate:
+      description: Creation date of the order.
+      type: string
+    error:
+      title: Error
+      type: object
+      properties:
+        id:
+          type: string
+          description: A unique identifier for this particular instance of this problem.
+          example: optional-error-id
+        type:
+          $ref: '#/components/schemas/errorType'
+        description:
+          $ref: '#/components/schemas/errorDescription'
+        code:
+          $ref: '#/components/schemas/errorCode'
+        meta:
+          type: object
+          description: >-
+            A meta object containing application-specific information or
+            non-standard metadata about the error.
+        source:
+          $ref: '#/components/schemas/errorSource'
+      required:
+        - code
+        - description
+    errorCode:
+      type: integer
+      format: int32
+      description: >-
+        An application-specific error code for services with extensive error
+        scenarios to supplement `description`.
+      minimum: 4
+      example: 51130
+    errorDescription:
+      type: string
+      description: >-
+        A human-readable explanation that SHOULD be specific to this occurrence
+        of the problem.
+      example: There was an issue with a field in your request body
+    errorType:
+      type: string
+      description: >-
+        A short, human-readable summary of the problem that SHOULD NOT change
+        from occurrence to occurrence of the problem.
+      example: REQUEST_ERROR
+    errorSource:
+      title: Error Source
+      type: object
+      properties:
+        parameter:
+          type: string
+          description: A string indicating which URI query parameter caused the error.
+          example: someParameter
+        field:
+          type: string
+          description: A string indicating which request body field caused the error.
+          example: someField
+        header:
+          type: string
+          description: A string indicating which header field caused the error.
+    importExternalTnsAsShared:
+      description: >-
+        If set to true, the order will import any external numbers as shared
+        numbers, adding voice service to the destination account without
+        affecting existing messaging configuration or provisioning. If the
+        numbers are being imported to the same account as their existing
+        messaging service, they must be imported to the same SIP peer where
+        messaging is already active. If omitted or set to false, the order will
+        reject importing any external numbers.
+      type: boolean
+      default: false
+    importToAccountErrorResponse:
+      type: object
+      properties:
+        ErrorResponse:
+          type: object
+          properties:
+            irisStatus:
+              type: object
+              properties:
+                Code:
+                  type: integer
+                Description:
+                  type: string
+    importToAccountOrderStatus:
+      description: The status of an Import to Account order.
+      type: string
+      enum:
+        - RECEIVED
+        - COMPLETE
+        - PARTIAL
+        - FAILED
   securitySchemes:
     Basic:
       type: http
@@ -5619,3 +6403,10 @@ tags:
       These APIs provide information related to Bandwidth's geographic coverage
       and phone number types supported, as well as the availability of phone
       number inventory.
+  - name: Import to Account Orders
+    description: >-
+      The Import to Account Order API allows users to import previously ported
+      or otherwise acquired telephone numbers into their Bandwidth account.
+      Import orders can be submitted individually or as part of a batch for
+      large-scale imports. Users can track order status, view order history, and
+      manage batches of import orders.
