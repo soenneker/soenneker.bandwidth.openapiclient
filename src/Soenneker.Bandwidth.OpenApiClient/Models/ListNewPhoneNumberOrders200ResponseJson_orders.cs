@@ -18,7 +18,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Adding voice integrations to the phone number(s) being ordered automatically kicks off an asynchronous bulk provisioning task. Use this ID to check the status of the provisioning request [here](https://dev.bandwidth.com/apis/universal-platform/voice-provisioning/#tag/Bulk-Voice-Phone-Number-Provisioning/operation/getBulkVoicePhoneNumbers).</summary>
         public Guid? BulkNumberSyncId { get; set; }
-        /// <summary>The customerOrderId property</summary>
+        /// <summary>The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CustomerOrderId { get; set; }

@@ -22,7 +22,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public Guid? BulkNumberSyncId { get; set; }
         /// <summary>Applicable to new phone number orders where backOrderRequested=true and the order is still in progress. Setting this property to true will close the backorder process and set the order to a terminal state.</summary>
         public bool? CloseOrder { get; set; }
-        /// <summary>Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters.</summary>
+        /// <summary>Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CustomerOrderId { get; set; }

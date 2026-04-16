@@ -16,7 +16,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public int? AccountId { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The customerOrderId property</summary>
+        /// <summary>The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CustomerOrderId { get; set; }

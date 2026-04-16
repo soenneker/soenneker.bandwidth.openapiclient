@@ -434,6 +434,8 @@ components:
 
         - `name`
 
+        - `trunkId`
+
 
         > **Note:** The order of parameters in the `queryCriteria` array does
         not matter, but only the combinations listed above are valid.
@@ -458,6 +460,7 @@ components:
             - validVoiceConfigurationPackage
             - voiceIntegrationId
             - name
+            - trunkId
           example: phoneNumber
         operator:
           type: string
@@ -471,8 +474,8 @@ components:
           description: >-
             The value(s) for the filter. This may be: - a boolean (e.g. for
             `validVoiceConfig` or `validVoiceConfigurationPackage`), - a single
-            string (e.g. for `name`), or - an array of strings (e.g. for
-            `phoneNumber` or `voiceIntegrationId`).
+            string (e.g. for `name` or `trunkId`), or - an array of strings
+            (e.g. for `phoneNumber` or `voiceIntegrationId`).
 
             Use the `EQ` operator for exact matches (booleans and exact values)
             and `STARTS_WITH` for prefix matching on string values.
@@ -1063,6 +1066,8 @@ components:
             default:
               $ref: >-
                 #/components/examples/searchVoiceConfigurationPackagesPagedExample
+            searchByTrunkId:
+              $ref: '#/components/examples/searchByTrunkIdPagedExample'
     listVoiceConfigurationPackagesResponse:
       description: OK
       content:
@@ -1345,6 +1350,13 @@ components:
                   - parameter: name
                     operator: STARTS_WITH
                     values: Lorem Ipsum
+            trunkIdOnly:
+              summary: Search by trunkId only
+              value:
+                queryCriteria:
+                  - parameter: trunkId
+                    operator: EQ
+                    values: 69a5bd88a4ba9759b450e48a
     createVoiceConfigurationPackageRequest:
       content:
         application/json:
@@ -1722,6 +1734,69 @@ components:
           pageSize: 25
           totalElements: 100
           totalPages: 4
+          pageNumber: 0
+    searchByTrunkIdPagedExample:
+      summary: Search voice configuration packages by trunkId
+      value:
+        links:
+          - href: >-
+              https://api.bandwidth.com/v2/account/123456/voiceConfigurationPackages/search
+            rel: self
+            method: POST
+          - href: >-
+              https://api.bandwidth.com/v2/account/123456/voiceConfigurationPackages/search?offset=0&limit=25
+            rel: first
+            method: POST
+          - href: ''
+            rel: prev
+            method: POST
+          - href: ''
+            rel: next
+            method: POST
+        data:
+          - voiceConfigurationPackageId: 53638c12-7831-470a-af2f-c755389cf635
+            accountId: 123456
+            name: Voice Configuration Package Name
+            description: Voice Configuration Package Description
+            cnam:
+              enabled: true
+            pindropIntegration:
+              enabled: false
+            callVerification:
+              enabled: false
+            originationRoutePlan:
+              routes:
+                - priority: 1
+                  name: Primary Route
+                  endpoints:
+                    - endpoint: '+12345678910'
+                      type: TN
+                      weight: 50
+                      trunkInfo:
+                        trunkId: 69a5bd88a4ba9759b450e48a
+                        capabilityPipeId: 201954af-e0ef-494b-bf26-541a4e99904a
+                    - endpoint: '+12345670000'
+                      type: TN
+                      weight: 50
+                      trunkInfo:
+                        trunkId: 69a5bd88a4ba9759b450e48a
+                        capabilityPipeId: 301954af-e0ef-494b-bf26-541a4e99904b
+                - priority: 2
+                  name: Failover Route
+                  endpoints:
+                    - endpoint: +sip:sara@1.1.1.1
+                      type: SIP
+                      weight: 100
+            stirShakenBehavior:
+              verstat: BASIC
+              identity: true
+            httpVoiceV2ApplicationId: null
+            analyticEngine: FIRST_ORION
+        errors: []
+        page:
+          pageSize: 25
+          totalElements: 1
+          totalPages: 1
           pageNumber: 0
   parameters:
     accountId:

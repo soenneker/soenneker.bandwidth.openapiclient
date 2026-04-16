@@ -38,7 +38,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string BillingTelephoneNumber { get; set; }
 #endif
-        /// <summary>Internal customer order id for tracking the order.</summary>
+        /// <summary>Optional customer-defined reference ID for this order. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CustomerOrderId { get; set; }

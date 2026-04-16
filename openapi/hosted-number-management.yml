@@ -24,7 +24,6 @@ security:
   - Basic: []
   - Bearer: []
 tags:
-  - name: Hosted Number Management
   - name: Hosted Messaging
 paths:
   /accounts/{accountId}/importPhoneNumberOrders/messaging:
@@ -672,8 +671,11 @@ components:
       properties:
         customerOrderId:
           description: >-
-            Internal customer order id for tracking the order. Only alphanumeric
-            values, dashes and spaces are allowed. Max length is 255 characters.
+            Optional customer-defined reference ID for this order. Only
+            alphanumeric values, dashes and spaces are allowed. Max length is
+            255 characters. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            receives its own unique Bandwidth-assigned `orderId`.
           type: string
           example: CustomerOrderId
         phoneNumberCount:
@@ -734,8 +736,11 @@ components:
           type: integer
         customerOrderId:
           description: >-
-            Internal customer order id for tracking the order. Only alphanumeric
-            values, dashes and spaces are allowed. Max length is 40 characters
+            Optional customer-defined reference ID for this order. Only
+            alphanumeric values, dashes and spaces are allowed. Max length is 40
+            characters. Not unique — Bandwidth applies no uniqueness constraint,
+            so multiple orders may share the same value. Each order receives its
+            own unique Bandwidth-assigned `orderId`.
           type: string
         locationId:
           description: >-
@@ -798,6 +803,11 @@ components:
       properties:
         customerOrderId:
           type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            has a distinct Bandwidth-assigned `orderId`.
         orderCreateDate:
           type: string
         accountId:
@@ -905,6 +915,11 @@ components:
       properties:
         CustomerOrderId:
           type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            has a distinct Bandwidth-assigned `orderId`.
         OrderCreateDate:
           type: string
         AccountId:
@@ -1018,9 +1033,11 @@ components:
               type: integer
             CustomerOrderId:
               description: >-
-                Internal customer order id for tracking the order. Only
+                Optional customer-defined reference ID for this order. Only
                 alphanumeric values, dashes and spaces are allowed. Max length
-                is 40 characters
+                is 40 characters. Not unique — Bandwidth applies no uniqueness
+                constraint, so multiple orders may share the same value. Each
+                order receives its own unique Bandwidth-assigned `orderId`.
               type: string
             SipPeerId:
               description: >-
@@ -1106,6 +1123,11 @@ components:
       properties:
         CustomerOrderId:
           type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            has a distinct Bandwidth-assigned `orderId`.
         CountsOfTNs:
           type: integer
         OrderId:
@@ -1135,6 +1157,11 @@ components:
       properties:
         customerOrderId:
           type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            has a distinct Bandwidth-assigned `orderId`.
         phoneNumberCount:
           type: integer
         orderId:
@@ -1164,6 +1191,11 @@ components:
       properties:
         CustomerOrderId:
           type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            has a distinct Bandwidth-assigned `orderId`.
         CountsOfTNs:
           type: integer
         OrderId:
@@ -1312,6 +1344,11 @@ components:
           type: string
         CustomerOrderId:
           type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            has a distinct Bandwidth-assigned `orderId`.
         Errors:
           type: array
           items:
@@ -1343,6 +1380,11 @@ components:
           type: string
         customerOrderId:
           type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            has a distinct Bandwidth-assigned `orderId`.
         errors:
           type: array
           items:
@@ -1395,8 +1437,11 @@ components:
             $ref: '#/components/schemas/phoneNumber'
         customerOrderId:
           description: >-
-            Internal customer order ID for tracking the order. Only alphanumeric
-            values, dashes and spaces are allowed. Max length is 40 characters
+            Optional customer-defined reference ID for this order. Only
+            alphanumeric values, dashes and spaces are allowed. Max length is 40
+            characters. Not unique — Bandwidth applies no uniqueness constraint,
+            so multiple orders may share the same value. Each order receives its
+            own unique Bandwidth-assigned `orderId`.
           type: string
     removeImportedTnOrderRequest:
       title: RemoveImportedTnOrder
@@ -1411,8 +1456,11 @@ components:
             $ref: '#/components/schemas/phoneNumber'
         customerOrderId:
           description: >-
-            Internal customer order ID for tracking the order. Only alphanumeric
-            values, dashes and spaces are allowed. Max length is 40 characters
+            Optional customer-defined reference ID for this order. Only
+            alphanumeric values, dashes and spaces are allowed. Max length is 40
+            characters. Not unique — Bandwidth applies no uniqueness constraint,
+            so multiple orders may share the same value. Each order receives its
+            own unique Bandwidth-assigned `orderId`.
           type: string
     removeImportedTnOrdersResponse:
       properties:
@@ -1456,6 +1504,11 @@ components:
           type: string
         customerOrderId:
           type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            has a distinct Bandwidth-assigned `orderId`.
         errors:
           type: array
           items:
@@ -1510,9 +1563,13 @@ components:
       example: '2013-10-25'
     customerOrderIdQueryParam:
       name: customerOrderId
-      description: >-
-        The Customer Order ID is an ID assigned by the account owner to provide
-        a reference number for the order.
+      description: >
+        Filter orders by a customer-assigned reference ID. Because
+        `customerOrderId` is not unique — Bandwidth applies no uniqueness
+        constraint — this query may return multiple orders if the same value was
+        used across multiple orders. Each result will have a distinct
+        Bandwidth-assigned `orderId`. To retrieve a single specific order, use
+        its `orderId` instead.
       in: query
       schema:
         type: string

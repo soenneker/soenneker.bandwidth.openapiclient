@@ -11672,7 +11672,7 @@
           "TN Options"
         ],
         "summary": "Create TN Options order",
-        "description": "\"Create TN Options order to assign line features to the telephone number.\n\n**The two data elements in the submission are:**\n- **TnOptionGroups**: A list of TnOptionGroup objects, each containing a list of telephone numbers and a set of TN Options to assign to all TNs in the list.\n- **CustomerOrderId**: Optional value for ID set by customer. Only alphanumeric values, dashes, and spaces are allowed. Max length is 255 characters.\n\n**Valid attributes for TnOptionGroup object:**\n\n| XML Attribute             | JSON Name               | Product     | Number Region | VCP Support        |\n|-------------------------- |-------------------------|-------------|---------------|--------------------|\n| TelephoneNumbers          | phoneNumbers            |             |               | Both               |\n| PortOutPasscode           | portOutPasscode         | Numbers     | NANP          | Both               |\n| Protected                 | protected               | Numbers     | NANP          | Both               |\n| Sms                       | sms                     | Messaging   |               | Both               |\n| A2pSettings               | a2pSettings             | Messaging   | NANP          | Both               |\n| NNID                      | nnid                    | Messaging   | NANP          | Both               |\n| ESPID                     | espid                   | Voice       | NANP          | VCP Disabled Only  |\n| CallForward               | callForward             | Voice       |               | VCP Disabled Only  |\n| CallVerificationEnabled   | callVerificationEnabled | Voice       | NANP          | VCP Disabled Only  |\n| CallingNameDisplay        | callingNameDisplay      | Voice       | NANP          | VCP Disabled Only  |\n| FinalDestinationUri       | finalDestinationUri     | Voice       | NANP          | VCP Disabled Only  |\n| NumberFormat              | numberFormat            | Voice       | NANP          | VCP Disabled Only  |\n| OriginationRoutePlan      | originationRoutePlan    | Voice       | NANP          | VCP Disabled Only  |\n| PindropEnabled            | pindropEnabled          | Voice       | NANP          | VCP Disabled Only  |\n| RPIDFormat                | rpidFormat              | Voice       | NANP          | VCP Disabled Only  |\n| RewriteUser               | rewriteUser             | Voice       | NANP          | VCP Disabled Only  |\n\n**Valid attributes for A2P Settings object:**\n\n| XML Attribute             | JSON Name               | Product     | Number Region | VCP Support        |\n|-------------------------- |-------------------------|-------------|---------------|--------------------|\n| CampaignId                | campaignId              | Messaging   | NANP          | Both\n| Action                    | action                  | Messaging   | NANP          | Both               |\n\n**Valid attributes for Origination Route Plan object:**\n\n| XML Attribute             | JSON Name               | Product     | Number Region | VCP Support        |\n|-------------------------- |-------------------------|-------------|---------------|--------------------|\n| Id                        | id                      | Voice       | NANP          | VCP Disabled Only  |\n| Action                    | action                  | Voice       | NANP          | VCP Disabled Only  |\n| Route (object)            | route                   | Voice       | NANP          | VCP Disabled Only  |\n\n**Valid attributes for Route object:**\n\n| XML Attribute             | JSON Name               | Product     | Number Region | VCP Support        |\n|-------------------------- |-------------------------|-------------|---------------|--------------------|\n| Name                      | name                    | Voice       | NANP          | VCP Disabled Only  |\n| Endpoint                  | endpoint                | Voice       | NANP          | VCP Disabled Only  |\n| Priority                  | priority                | Voice       | NANP          | VCP Disabled Only  |\n| Weight                    | weight                  | Voice       | NANP          | VCP Disabled Only  |\n| EndpointType              | endpointType            | Voice       | NANP          | VCP Disabled Only  |\n\n\nWhen attributes tagged NANP are passed in the request body, only North American Numbering Plan phone numbers are allowed and updated.\n\n**Values for each TnOptionGroup object attribute:**\n- **TelephoneNumbers**:  \n  - A list of telephone numbers as an array of strings.  \n  - Each string is an E.164 formatted telephone number. If not E.164, assumes NANP 10-digit format.\n- **PortOutPasscode**: `[{custom string value} | UNCHANGED | SYSTEM_DEFAULT]`\n- **Protected**: `[true | false | UNCHANGED | SYSTEM_DEFAULT]`\n- **Sms**: `[ON | OFF | UNCHANGED]`\n- **NNID**: `[{custom integer value} | UNCHANGED | SYSTEM_DEFAULT]`\n- **CallForward**: `[10-digit phone number (string)  | UNCHANGED | SYSTEM_DEFAULT]`\n- **CallVerificationEnabled**: `[true | false]`\n- **CallingNameDisplay**: `[ON | OFF | UNCHANGED | SYSTEM_DEFAULT]`\n- **ESPID**: `[{custom string value} | UNCHANGED | SYSTEM_DEFAULT]`\n- **FinalDestinationUri**: `[{custom string value} | UNCHANGED | SYSTEM_DEFAULT]`\n- **NumberFormat**: `[10DIGIT | 11DIGIT | E164 | UNCHANGED | SYSTEM_DEFAULT]`\n- **OriginationRoutePlan**: `object`\n    - **Id**: UUID that Bandwidth generates to identify the route plan.\n    - **Action**: `[UNCHANGED | OFF | AS_SPECIFIED]`\n    - **Route**:\n        - **Name**: `[{custom string value} | UNCHANGED | SYSTEM_DEFAULT]`\n        - **Endpoint**: `[{custom string value} | UNCHANGED | SYSTEM_DEFAULT]`\n        - **Priority**: `[1-1000]`\n        - **Weight**: `[1-1000]`\n        - **EndpointType**: `[TN | IPv4 | SIP | FQDN]`\n- **A2PSettings**: `object`\n  - **CampaignId**: `[{custom string value} | UNCHANGED | SYSTEM_DEFAULT]`\n  - **Action**: `[UNCHANGED | SYSTEM_DEFAULT | OFF | DELETE | AS_SPECIFIED]`\n- **PindropEnabled**: `[true | false]`\n- **RPIDFormat**: `[10DIGIT | 11DIGIT | E164 | UNCHANGED | SYSTEM_DEFAULT]`\n- **RewriteUser**: `[{custom string value} | UNCHANGED | SYSTEM_DEFAULT]`\n- For all the above attributes:  \n  - `SYSTEM_DEFAULT`: Removes the element profile value, reverting the TN to default system behavior.  \n  - `UNCHANGED`: Value remains unchanged (read before write model. Leaving the element out of the payload is equivalent to `UNCHANGED`).\n\n**A2pSettings attribute actions:**\n\n| Number attribute | Action value   | Description of action                                                                                            |\n|------------------|----------------|------------------------------------------------------------------------------------------------------------------|\n| LongCode         | SYSTEM_DEFAULT | Removes the per-TN A2P attributes, and it reverts to the Location/SIP Peer characteristics.                      |\n| LongCode         | AS_SPECIFIED   | Sets the message class and campaign ID - this is the default if unspecified.                                     |\n| LongCode         | OFF            | Will set the TN as a 'P' TN. Any values for Class or Campaign ID are not valid.                                  |\n| LongCode         | DELETE         | Will delete the campaign ID from TN. Any values for Class or Campaign ID are not valid.                          |\n| LongCode         | UNCHANGED      | Do nothing with respect to A2P.                                                                                  |\n| TollFree         | SYSTEM_DEFAULT | Removes the per-TN A2P attributes, and it reverts to the Location/SIP Peer characteristics.                      |\n| TollFree         | AS_SPECIFIED   | Sets the message class and campaign ID - this is the default if unspecified.                                     |\n| TollFree         | OFF            | If set to is 'ON', this is valid for Toll Free numbers. If set to 'OFF', this is invalid for Toll Free Numbers.  |\n| TollFree         | UNCHANGED      | Do nothing with respect to A2P.                                                                                  |\n\"",
+        "description": "\"Create TN Options order to assign line features to the telephone number.\n\n**The two data elements in the submission are:**\n- **TnOptionGroups**: A list of TnOptionGroup objects, each containing a list of telephone numbers and a set of TN Options to assign to all TNs in the list.\n- **CustomerOrderId**: Optional customer-defined reference ID for this order. Only alphanumeric values, dashes, and spaces are allowed. Max length is 255 characters (JSON) or 40 characters (XML). Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`.\n\n**Valid attributes for TnOptionGroup object:**\n\n| XML Attribute             | JSON Name               | Product     | Number Region | VCP Support        |\n|-------------------------- |-------------------------|-------------|---------------|--------------------|\n| TelephoneNumbers          | phoneNumbers            |             |               | Both               |\n| PortOutPasscode           | portOutPasscode         | Numbers     | NANP          | Both               |\n| Protected                 | protected               | Numbers     | NANP          | Both               |\n| Sms                       | sms                     | Messaging   |               | Both               |\n| A2pSettings               | a2pSettings             | Messaging   | NANP          | Both               |\n| NNID                      | nnid                    | Messaging   | NANP          | Both               |\n| ESPID                     | espid                   | Voice       | NANP          | VCP Disabled Only  |\n| CallForward               | callForward             | Voice       |               | VCP Disabled Only  |\n| CallVerificationEnabled   | callVerificationEnabled | Voice       | NANP          | VCP Disabled Only  |\n| CallingNameDisplay        | callingNameDisplay      | Voice       | NANP          | VCP Disabled Only  |\n| FinalDestinationUri       | finalDestinationUri     | Voice       | NANP          | VCP Disabled Only  |\n| NumberFormat              | numberFormat            | Voice       | NANP          | VCP Disabled Only  |\n| OriginationRoutePlan      | originationRoutePlan    | Voice       | NANP          | VCP Disabled Only  |\n| PindropEnabled            | pindropEnabled          | Voice       | NANP          | VCP Disabled Only  |\n| RPIDFormat                | rpidFormat              | Voice       | NANP          | VCP Disabled Only  |\n| RewriteUser               | rewriteUser             | Voice       | NANP          | VCP Disabled Only  |\n\n**Valid attributes for A2P Settings object:**\n\n| XML Attribute             | JSON Name               | Product     | Number Region | VCP Support        |\n|-------------------------- |-------------------------|-------------|---------------|--------------------|\n| CampaignId                | campaignId              | Messaging   | NANP          | Both\n| Action                    | action                  | Messaging   | NANP          | Both               |\n\n**Valid attributes for Origination Route Plan object:**\n\n| XML Attribute             | JSON Name               | Product     | Number Region | VCP Support        |\n|-------------------------- |-------------------------|-------------|---------------|--------------------|\n| Id                        | id                      | Voice       | NANP          | VCP Disabled Only  |\n| Action                    | action                  | Voice       | NANP          | VCP Disabled Only  |\n| Route (object)            | route                   | Voice       | NANP          | VCP Disabled Only  |\n\n**Valid attributes for Route object:**\n\n| XML Attribute             | JSON Name               | Product     | Number Region | VCP Support        |\n|-------------------------- |-------------------------|-------------|---------------|--------------------|\n| Name                      | name                    | Voice       | NANP          | VCP Disabled Only  |\n| Endpoint                  | endpoint                | Voice       | NANP          | VCP Disabled Only  |\n| Priority                  | priority                | Voice       | NANP          | VCP Disabled Only  |\n| Weight                    | weight                  | Voice       | NANP          | VCP Disabled Only  |\n| EndpointType              | endpointType            | Voice       | NANP          | VCP Disabled Only  |\n\n\nWhen attributes tagged NANP are passed in the request body, only North American Numbering Plan phone numbers are allowed and updated.\n\n**Values for each TnOptionGroup object attribute:**\n- **TelephoneNumbers**:  \n  - A list of telephone numbers as an array of strings.  \n  - Each string is an E.164 formatted telephone number. If not E.164, assumes NANP 10-digit format.\n- **PortOutPasscode**: `[{custom string value} | UNCHANGED | SYSTEM_DEFAULT]`\n- **Protected**: `[true | false | UNCHANGED | SYSTEM_DEFAULT]`\n- **Sms**: `[ON | OFF | UNCHANGED]`\n- **NNID**: `[{custom integer value} | UNCHANGED | SYSTEM_DEFAULT]`\n- **CallForward**: `[10-digit phone number (string)  | UNCHANGED | SYSTEM_DEFAULT]`\n- **CallVerificationEnabled**: `[true | false]`\n- **CallingNameDisplay**: `[ON | OFF | UNCHANGED | SYSTEM_DEFAULT]`\n- **ESPID**: `[{custom string value} | UNCHANGED | SYSTEM_DEFAULT]`\n- **FinalDestinationUri**: `[{custom string value} | UNCHANGED | SYSTEM_DEFAULT]`\n- **NumberFormat**: `[10DIGIT | 11DIGIT | E164 | UNCHANGED | SYSTEM_DEFAULT]`\n- **OriginationRoutePlan**: `object`\n    - **Id**: UUID that Bandwidth generates to identify the route plan.\n    - **Action**: `[UNCHANGED | OFF | AS_SPECIFIED]`\n    - **Route**:\n        - **Name**: `[{custom string value} | UNCHANGED | SYSTEM_DEFAULT]`\n        - **Endpoint**: `[{custom string value} | UNCHANGED | SYSTEM_DEFAULT]`\n        - **Priority**: `[1-1000]`\n        - **Weight**: `[1-1000]`\n        - **EndpointType**: `[TN | IPv4 | SIP | FQDN]`\n- **A2PSettings**: `object`\n  - **CampaignId**: `[{custom string value} | UNCHANGED | SYSTEM_DEFAULT]`\n  - **Action**: `[UNCHANGED | SYSTEM_DEFAULT | OFF | DELETE | AS_SPECIFIED]`\n- **PindropEnabled**: `[true | false]`\n- **RPIDFormat**: `[10DIGIT | 11DIGIT | E164 | UNCHANGED | SYSTEM_DEFAULT]`\n- **RewriteUser**: `[{custom string value} | UNCHANGED | SYSTEM_DEFAULT]`\n- For all the above attributes:  \n  - `SYSTEM_DEFAULT`: Removes the element profile value, reverting the TN to default system behavior.  \n  - `UNCHANGED`: Value remains unchanged (read before write model. Leaving the element out of the payload is equivalent to `UNCHANGED`).\n\n**A2pSettings attribute actions:**\n\n| Number attribute | Action value   | Description of action                                                                                            |\n|------------------|----------------|------------------------------------------------------------------------------------------------------------------|\n| LongCode         | SYSTEM_DEFAULT | Removes the per-TN A2P attributes, and it reverts to the Location/SIP Peer characteristics.                      |\n| LongCode         | AS_SPECIFIED   | Sets the message class and campaign ID - this is the default if unspecified.                                     |\n| LongCode         | OFF            | Will set the TN as a 'P' TN. Any values for Class or Campaign ID are not valid.                                  |\n| LongCode         | DELETE         | Will delete the campaign ID from TN. Any values for Class or Campaign ID are not valid.                          |\n| LongCode         | UNCHANGED      | Do nothing with respect to A2P.                                                                                  |\n| TollFree         | SYSTEM_DEFAULT | Removes the per-TN A2P attributes, and it reverts to the Location/SIP Peer characteristics.                      |\n| TollFree         | AS_SPECIFIED   | Sets the message class and campaign ID - this is the default if unspecified.                                     |\n| TollFree         | OFF            | If set to is 'ON', this is valid for Toll Free numbers. If set to 'OFF', this is invalid for Toll Free Numbers.  |\n| TollFree         | UNCHANGED      | Do nothing with respect to A2P.                                                                                  |\n\"",
         "operationId": "line-features-createTnOptionOrder",
         "parameters": [
           {
@@ -26010,7 +26010,7 @@
         "properties": {
           "CustomerOrderId": {
             "type": "string",
-            "description": "The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Order. Only alphanumeric values, dashes and spaces are allowed."
+            "description": "Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`."
           },
           "RequestedFocDate": {
             "type": "string",
@@ -26167,7 +26167,7 @@
                 "$ref": "#/components/schemas/StringPatch"
               }
             ],
-            "description": "Internal customer order id for tracking the order.",
+            "description": "Optional customer-defined reference ID for this order. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`.",
             "example": "CUST12345"
           },
           "RequestedFocDate": {
@@ -26297,7 +26297,7 @@
         "properties": {
           "customerOrderId": {
             "type": "string",
-            "description": "Internal customer order id for tracking the order.",
+            "description": "Optional customer-defined reference ID for this order. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`.",
             "example": "CUST12345"
           },
           "requestedFocDate": {
@@ -26675,7 +26675,7 @@
         "properties": {
           "customerOrderId": {
             "type": "string",
-            "description": "The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Order. Only alphanumeric values, dashes and spaces are allowed."
+            "description": "Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`."
           },
           "requestedFocDate": {
             "type": "string",
@@ -37774,7 +37774,7 @@
         "properties": {
           "customerOrderId": {
             "type": "string",
-            "description": "Internal customer order id for tracking the order. Only alphanumeric values, dashes and spaces are allowed. Max length is 255 characters.",
+            "description": "Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Max length is 255 characters. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`.",
             "example": "CustomerOrderId"
           },
           "phoneNumberCount": {
@@ -37851,7 +37851,7 @@
           },
           "customerOrderId": {
             "type": "string",
-            "description": "Internal customer order id for tracking the order. Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters"
+            "description": "Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`."
           },
           "locationId": {
             "type": "integer",
@@ -37937,7 +37937,8 @@
         "type": "object",
         "properties": {
           "customerOrderId": {
-            "type": "string"
+            "type": "string",
+            "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`."
           },
           "orderCreateDate": {
             "type": "string"
@@ -38059,7 +38060,8 @@
         "type": "object",
         "properties": {
           "CustomerOrderId": {
-            "type": "string"
+            "type": "string",
+            "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`."
           },
           "OrderCreateDate": {
             "type": "string"
@@ -38214,7 +38216,8 @@
         "type": "object",
         "properties": {
           "CustomerOrderId": {
-            "type": "string"
+            "type": "string",
+            "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`."
           },
           "CountsOfTNs": {
             "type": "integer"
@@ -38258,7 +38261,8 @@
         "type": "object",
         "properties": {
           "customerOrderId": {
-            "type": "string"
+            "type": "string",
+            "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`."
           },
           "phoneNumberCount": {
             "type": "integer"
@@ -38302,7 +38306,8 @@
         "type": "object",
         "properties": {
           "CustomerOrderId": {
-            "type": "string"
+            "type": "string",
+            "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`."
           },
           "CountsOfTNs": {
             "type": "integer"
@@ -38487,7 +38492,8 @@
             "type": "string"
           },
           "CustomerOrderId": {
-            "type": "string"
+            "type": "string",
+            "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`."
           },
           "Errors": {
             "type": "array",
@@ -38533,7 +38539,8 @@
             "type": "string"
           },
           "customerOrderId": {
-            "type": "string"
+            "type": "string",
+            "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`."
           },
           "errors": {
             "type": "array",
@@ -38611,7 +38618,7 @@
           },
           "customerOrderId": {
             "type": "string",
-            "description": "Internal customer order ID for tracking the order. Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters"
+            "description": "Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`."
           }
         }
       },
@@ -38633,7 +38640,7 @@
           },
           "customerOrderId": {
             "type": "string",
-            "description": "Internal customer order ID for tracking the order. Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters"
+            "description": "Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`."
           }
         }
       },
@@ -38655,7 +38662,8 @@
             "type": "string"
           },
           "customerOrderId": {
-            "type": "string"
+            "type": "string",
+            "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`."
           },
           "errors": {
             "type": "array",
@@ -40208,7 +40216,7 @@
           "customerOrderId": {
             "maxLength": 255,
             "type": "string",
-            "description": "Optional value for ID set by customer. Only alphanumeric values, dashes and spaces are allowed."
+            "description": "Optional customer-defined reference ID for this order. Only alphanumeric values, dashes, and spaces are allowed. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`."
           },
           "tnOptionGroups": {
             "type": "array",
@@ -40226,7 +40234,7 @@
           "customerOrderId": {
             "maxLength": 255,
             "type": "string",
-            "description": "Optional value for ID set by customer. Only alphanumeric values, dashes and spaces are allowed."
+            "description": "Optional customer-defined reference ID for this order. Only alphanumeric values, dashes, and spaces are allowed. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`."
           },
           "tnOptionGroups": {
             "type": "array",
@@ -40642,7 +40650,8 @@
             "type": "string"
           },
           "customerOrderId": {
-            "type": "string"
+            "type": "string",
+            "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`."
           },
           "orderCreateDate": {
             "type": "string"
@@ -40696,7 +40705,8 @@
             "type": "string"
           },
           "customerOrderId": {
-            "type": "string"
+            "type": "string",
+            "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`."
           },
           "orderCreateDate": {
             "type": "string"
@@ -41131,7 +41141,8 @@
             "type": "string"
           },
           "CustomerOrderId": {
-            "type": "string"
+            "type": "string",
+            "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`."
           },
           "OrderCreateDate": {
             "type": "string"
@@ -41408,7 +41419,8 @@
             "type": "string"
           },
           "CustomerOrderId": {
-            "type": "string"
+            "type": "string",
+            "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`."
           },
           "OrderDate": {
             "type": "string"
@@ -41687,9 +41699,9 @@
         "type": "object",
         "properties": {
           "CustomerOrderId": {
-            "maxLength": 40,
+            "maxLength": 255,
             "type": "string",
-            "description": "Optional value for ID set by customer. Only alphanumeric values, dashes and spaces are allowed"
+            "description": "Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`."
           },
           "TnOptionGroups": {
             "$ref": "#/components/schemas/TnOptionOrderXmlPayloadVcpEnabledTnOptionGroups"
@@ -41710,9 +41722,9 @@
         "type": "object",
         "properties": {
           "CustomerOrderId": {
-            "maxLength": 40,
+            "maxLength": 255,
             "type": "string",
-            "description": "Optional value for ID set by customer. Only alphanumeric values, dashes and spaces are allowed."
+            "description": "Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`."
           },
           "TnOptionGroups": {
             "$ref": "#/components/schemas/TnOptionOrderXmlPayloadVcpDisabledTnOptionGroups"
@@ -41942,9 +41954,9 @@
             "type": "string"
           },
           "customerOrderId": {
-            "maxLength": 40,
+            "maxLength": 255,
             "type": "string",
-            "description": "The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Order. The element is optional. Only alphanumeric values, dashes and spaces are allowed."
+            "description": "Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`."
           },
           "processingStatus": {
             "enum": [
@@ -42055,9 +42067,9 @@
         "type": "object",
         "properties": {
           "CustomerOrderId": {
-            "maxLength": 40,
+            "maxLength": 255,
             "type": "string",
-            "description": "The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Order. The element is optional. Only alphanumeric values, dashes and spaces are allowed."
+            "description": "Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`."
           },
           "LidbTnGroups": {
             "type": "array",
@@ -42161,9 +42173,9 @@
         "type": "object",
         "properties": {
           "customerOrderId": {
-            "maxLength": 40,
+            "maxLength": 255,
             "type": "string",
-            "description": "The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Order. The element is optional. Only alphanumeric values, dashes and spaces are allowed."
+            "description": "Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`."
           },
           "lidbPhoneNumberGroups": {
             "type": "array",
@@ -42417,7 +42429,7 @@
         "type": "object",
         "properties": {
           "customerOrderId": {
-            "maxLength": 40,
+            "maxLength": 255,
             "type": "string",
             "description": "The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Order. Only alphanumeric values, dashes and spaces are allowed."
           },
@@ -42436,7 +42448,7 @@
         "type": "object",
         "properties": {
           "CustomerOrderId": {
-            "maxLength": 40,
+            "maxLength": 255,
             "type": "string",
             "description": "The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Order. Only alphanumeric values, dashes and spaces are allowed."
           },
@@ -42776,7 +42788,7 @@
             "type": "string"
           },
           "CustomerOrderId": {
-            "maxLength": 40,
+            "maxLength": 255,
             "type": "string",
             "description": "The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Order. Only alphanumeric values, dashes and spaces are allowed."
           },
@@ -42828,7 +42840,7 @@
         "type": "object",
         "properties": {
           "customerOrderId": {
-            "maxLength": 40,
+            "maxLength": 255,
             "type": "string",
             "description": "The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Order. Only alphanumeric values, dashes and spaces are allowed."
           },
@@ -46753,7 +46765,8 @@
             "type": "integer"
           },
           "CustomerOrderId": {
-            "type": "string"
+            "type": "string",
+            "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`."
           },
           "LastModifiedNote": {
             "$ref": "#/components/schemas/NumberAcquisitionNote"
@@ -46929,7 +46942,8 @@
                   "type": "integer"
                 },
                 "customerOrderId": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`."
                 },
                 "lastModifiedDate": {
                   "type": "string",
@@ -47166,7 +47180,8 @@
             "type": "boolean"
           },
           "CustomerOrderId": {
-            "type": "string"
+            "type": "string",
+            "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`."
           },
           "Name": {
             "type": "string"
@@ -47226,7 +47241,8 @@
             "type": "boolean"
           },
           "CustomerOrderId": {
-            "type": "string"
+            "type": "string",
+            "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`."
           },
           "Name": {
             "type": "string"
@@ -47861,10 +47877,10 @@
             "nullable": true
           },
           "customerOrderId": {
-            "maxLength": 40,
-            "pattern": "^[a-zA-Z0-9\\-\\ ]{1,40}$",
+            "maxLength": 255,
+            "pattern": "^[a-zA-Z0-9\\-\\ ]{1,255}$",
             "type": "string",
-            "description": "Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters."
+            "description": "Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`."
           },
           "id": {
             "type": "string",
@@ -47959,10 +47975,10 @@
             "nullable": true
           },
           "customerOrderId": {
-            "maxLength": 40,
-            "pattern": "^[a-zA-Z0-9\\-\\ ]{1,40}$",
+            "maxLength": 255,
+            "pattern": "^[a-zA-Z0-9\\-\\ ]{1,255}$",
             "type": "string",
-            "description": "Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters."
+            "description": "Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`."
           },
           "id": {
             "type": "string",
@@ -48461,10 +48477,10 @@
             "description": "Request that the order be closed (cancel backorder process)."
           },
           "customerOrderId": {
-            "maxLength": 40,
-            "pattern": "^[a-zA-Z0-9\\-\\ ]{1,40}$",
+            "maxLength": 255,
+            "pattern": "^[a-zA-Z0-9\\-\\ ]{1,255}$",
             "type": "string",
-            "description": "The CustomerOrderId is an optional field that may be provided by the customer and will remain with the order. Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters. The value is opaque to Bandwidth."
+            "description": "Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`."
           },
           "name": {
             "type": "string"
@@ -50625,7 +50641,8 @@
             "type": "string"
           },
           "CustomerOrderId": {
-            "type": "string"
+            "type": "string",
+            "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`."
           },
           "OrderDate": {
             "type": "string"
@@ -50684,7 +50701,8 @@
             "type": "string"
           },
           "customerOrderId": {
-            "type": "string"
+            "type": "string",
+            "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`."
           },
           "subAccountId": {
             "type": "integer"
@@ -50780,7 +50798,7 @@
           "CustomerOrderId": {
             "pattern": "^[a-zA-Z0-9 -]{1,255}$",
             "type": "string",
-            "description": "Internal customer order id for tracking the order. Only alphanumeric values, dashes and spaces are allowed. Max length is 255 characters"
+            "description": "Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Max length is 255 characters. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`."
           },
           "SipPeerId": {
             "type": "integer",
@@ -50835,7 +50853,8 @@
             "type": "string"
           },
           "CustomerOrderId": {
-            "type": "string"
+            "type": "string",
+            "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`."
           },
           "SiteId": {
             "type": "integer"
@@ -51020,7 +51039,7 @@
           "customerOrderId": {
             "pattern": "^[a-zA-Z0-9 -]{1,255}$",
             "type": "string",
-            "description": "Internal customer order id for tracking the order. Only alphanumeric values, dashes and spaces are allowed. Max length is 255 characters"
+            "description": "Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Max length is 255 characters. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`."
           },
           "locationId": {
             "type": "integer",
@@ -51113,7 +51132,7 @@
           "customerOrderId": {
             "maxLength": 255,
             "type": "string",
-            "description": "An optional customer-defined order identifier that is stored with the Bandwidth order. This value is opaque to Bandwidth."
+            "description": "An optional customer-defined reference ID for this order. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`. Only alphanumeric values, dashes, and spaces are allowed. Max length is 255 characters."
           },
           "migrateCampaign": {
             "type": "boolean",
@@ -52543,7 +52562,7 @@
           "customerOrderId": {
             "maxLength": 255,
             "type": "string",
-            "description": "An optional customer-defined order identifier that is stored with the Bandwidth order. This value is opaque to Bandwidth."
+            "description": "An optional customer-defined reference ID for this order. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`. Only alphanumeric values, dashes, and spaces are allowed. Max length is 255 characters."
           },
           "phoneNumbers": {
             "type": "array",
@@ -54940,7 +54959,7 @@
                 "customerOrderId": {
                   "maxLength": 255,
                   "type": "string",
-                  "description": "An optional customer-defined order identifier that is stored with the Bandwidth order. This value is opaque to Bandwidth."
+                  "description": "An optional customer-defined reference ID for this order. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`. Only alphanumeric values, dashes, and spaces are allowed. Max length is 255 characters."
                 },
                 "orderId": {
                   "type": "string"
@@ -55058,7 +55077,7 @@
                 "customerOrderId": {
                   "maxLength": 255,
                   "type": "string",
-                  "description": "An optional customer-defined order identifier that is stored with the Bandwidth order. This value is opaque to Bandwidth."
+                  "description": "An optional customer-defined reference ID for this order. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`. Only alphanumeric values, dashes, and spaces are allowed. Max length is 255 characters."
                 },
                 "orderId": {
                   "type": "string"
@@ -55096,7 +55115,7 @@
           "customerOrderId": {
             "maxLength": 255,
             "type": "string",
-            "description": "An optional customer-defined order identifier that is stored with the Bandwidth order. This value is opaque to Bandwidth."
+            "description": "An optional customer-defined reference ID for this order. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`. Only alphanumeric values, dashes, and spaces are allowed. Max length is 255 characters."
           },
           "userId": {
             "type": "string"
@@ -55614,7 +55633,7 @@
           "customerOrderId": {
             "maxLength": 255,
             "type": "string",
-            "description": "An optional customer-defined order identifier that is stored with the Bandwidth order. This value is opaque to Bandwidth."
+            "description": "An optional customer-defined reference ID for this order. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`. Only alphanumeric values, dashes, and spaces are allowed. Max length is 255 characters."
           },
           "lastModifiedDate": {
             "type": "string",
@@ -55715,7 +55734,7 @@
           "customerOrderId": {
             "maxLength": 255,
             "type": "string",
-            "description": "An optional customer-defined order identifier that is stored with the Bandwidth order. This value is opaque to Bandwidth."
+            "description": "An optional customer-defined reference ID for this order. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`. Only alphanumeric values, dashes, and spaces are allowed. Max length is 255 characters."
           },
           "errors": {
             "$ref": "#/components/schemas/BulkMoveTnsErrors"
@@ -60569,7 +60588,7 @@
             "type": "string"
           },
           "CustomerOrderId": {
-            "maxLength": 40,
+            "maxLength": 255,
             "type": "string",
             "description": "The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Order. The element is optional. Only alphanumeric values, dashes and spaces are allowed."
           },
@@ -61661,7 +61680,7 @@
           },
           "CustomerOrderId": {
             "type": "string",
-            "description": "Internal customer order id for tracking the order. Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters"
+            "description": "Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`."
           },
           "SipPeerId": {
             "type": "integer",
@@ -62620,7 +62639,7 @@
         "items": {
           "$ref": "#/components/schemas/QueryCriteria"
         },
-        "description": "List of query criteria for searching voice configuration packages. Only specific parameter combinations are allowed.\n\n**Supported `parameter` combinations:**\n\n- `phoneNumber`, `validVoiceConfig`\n- `phoneNumber`, `validVoiceConfig`, `name`\n- `phoneNumber`, `validVoiceConfigurationPackage`\n- `phoneNumber`, `validVoiceConfigurationPackage`, `name`\n- `voiceIntegrationId`\n- `voiceIntegrationId`, `name`\n- `name`\n\n> **Note:** The order of parameters in the `queryCriteria` array does not matter, but only the combinations listed above are valid.\n"
+        "description": "List of query criteria for searching voice configuration packages. Only specific parameter combinations are allowed.\n\n**Supported `parameter` combinations:**\n\n- `phoneNumber`, `validVoiceConfig`\n- `phoneNumber`, `validVoiceConfig`, `name`\n- `phoneNumber`, `validVoiceConfigurationPackage`\n- `phoneNumber`, `validVoiceConfigurationPackage`, `name`\n- `voiceIntegrationId`\n- `voiceIntegrationId`, `name`\n- `name`\n- `trunkId`\n\n> **Note:** The order of parameters in the `queryCriteria` array does not matter, but only the combinations listed above are valid.\n"
       },
       "QueryCriteria": {
         "required": [
@@ -62636,7 +62655,8 @@
               "validVoiceConfig",
               "validVoiceConfigurationPackage",
               "voiceIntegrationId",
-              "name"
+              "name",
+              "trunkId"
             ],
             "type": "string",
             "additionalProperties": false,
@@ -64727,7 +64747,7 @@
         "properties": {
           "customerOrderId": {
             "type": "string",
-            "description": "Internal customer order id for tracking the order."
+            "description": "Optional customer-defined reference ID for this order. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`."
           },
           "requestedFocDate": {
             "type": "string",
@@ -64807,7 +64827,7 @@
         "properties": {
           "CustomerOrderId": {
             "type": "string",
-            "description": "Internal customer order id for tracking the order."
+            "description": "Optional customer-defined reference ID for this order. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`."
           },
           "RequestedFocDate": {
             "type": "string",
@@ -82394,6 +82414,9 @@
             "examples": {
               "default": {
                 "$ref": "#/components/examples/searchVoiceConfigurationPackagesPagedExample"
+              },
+              "searchByTrunkId": {
+                "$ref": "#/components/examples/searchByTrunkIdPagedExample"
               }
             }
           }
@@ -86239,7 +86262,7 @@
       "customerOrderIdQueryParam": {
         "name": "customerOrderId",
         "in": "query",
-        "description": "The Customer Order ID is an ID assigned by the account owner to provide a reference number for the order.",
+        "description": "Filter orders by a customer-assigned reference ID. Because `customerOrderId` is not unique — Bandwidth applies no uniqueness constraint — this query may return multiple orders if the same value was used across multiple orders. Each result will have a distinct Bandwidth-assigned `orderId`. To retrieve a single specific order, use its `orderId` instead.\n",
         "schema": {
           "type": "string"
         },
@@ -86815,7 +86838,7 @@
       "line_features_customerOrderIdQueryParam": {
         "name": "customerOrderId",
         "in": "query",
-        "description": "<b>*</b> The Customer Order ID is an ID assigned by the account owner to provide a reference number for the TN Options order.\n",
+        "description": "Filter orders by a customer-assigned reference ID. Because `customerOrderId` is not unique — Bandwidth applies no uniqueness constraint — this query may return multiple orders if the same value was used across multiple orders. Each result will have a distinct Bandwidth-assigned `orderId`. To retrieve a single specific order, use its `orderId` instead.\n",
         "schema": {
           "type": "string"
         },
@@ -87546,7 +87569,7 @@
       "number_acquisition_customerOrderIdQueryParam": {
         "name": "customerOrderId",
         "in": "query",
-        "description": "The Customer Order ID is an ID assigned by the account owner to provide a reference number for the order.",
+        "description": "Filter orders by a customer-assigned reference ID. Because `customerOrderId` is not unique — Bandwidth applies no uniqueness constraint — this query may return multiple orders if the same value was used across multiple orders. Each result will have a distinct Bandwidth-assigned `orderId`. To retrieve a single specific order, use its `orderId` instead.\n",
         "schema": {
           "type": "string"
         },
@@ -87991,7 +88014,7 @@
       "number_management_customerOrderIdQueryParam": {
         "name": "customerOrderId",
         "in": "query",
-        "description": "The Customer Order ID is an ID assigned by the account owner to provide a reference number for the importTnOrder.",
+        "description": "Filter orders by a customer-assigned reference ID. Because `customerOrderId` is not unique — Bandwidth applies no uniqueness constraint — this query may return multiple orders if the same value was used across multiple orders. Each result will have a distinct Bandwidth-assigned `orderId`. To retrieve a single specific order, use its `orderId` instead.\n",
         "schema": {
           "type": "string"
         },
@@ -101986,6 +102009,102 @@
           }
         }
       },
+      "searchByTrunkIdPagedExample": {
+        "summary": "Search voice configuration packages by trunkId",
+        "value": {
+          "links": [
+            {
+              "href": "https://api.bandwidth.com/v2/account/123456/voiceConfigurationPackages/search",
+              "rel": "self",
+              "method": "POST"
+            },
+            {
+              "href": "https://api.bandwidth.com/v2/account/123456/voiceConfigurationPackages/search?offset=0&limit=25",
+              "rel": "first",
+              "method": "POST"
+            },
+            {
+              "href": "",
+              "rel": "prev",
+              "method": "POST"
+            },
+            {
+              "href": "",
+              "rel": "next",
+              "method": "POST"
+            }
+          ],
+          "data": [
+            {
+              "voiceConfigurationPackageId": "53638c12-7831-470a-af2f-c755389cf635",
+              "accountId": 123456,
+              "name": "Voice Configuration Package Name",
+              "description": "Voice Configuration Package Description",
+              "cnam": {
+                "enabled": true
+              },
+              "pindropIntegration": {
+                "enabled": false
+              },
+              "callVerification": {
+                "enabled": false
+              },
+              "originationRoutePlan": {
+                "routes": [
+                  {
+                    "priority": 1,
+                    "name": "Primary Route",
+                    "endpoints": [
+                      {
+                        "endpoint": 12345678910,
+                        "type": "TN",
+                        "weight": 50,
+                        "trunkInfo": {
+                          "trunkId": "69a5bd88a4ba9759b450e48a",
+                          "capabilityPipeId": "201954af-e0ef-494b-bf26-541a4e99904a"
+                        }
+                      },
+                      {
+                        "endpoint": 12345670000,
+                        "type": "TN",
+                        "weight": 50,
+                        "trunkInfo": {
+                          "trunkId": "69a5bd88a4ba9759b450e48a",
+                          "capabilityPipeId": "301954af-e0ef-494b-bf26-541a4e99904b"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "priority": 2,
+                    "name": "Failover Route",
+                    "endpoints": [
+                      {
+                        "endpoint": "+sip:sara@1.1.1.1",
+                        "type": "SIP",
+                        "weight": 100
+                      }
+                    ]
+                  }
+                ]
+              },
+              "stirShakenBehavior": {
+                "verstat": "BASIC",
+                "identity": true
+              },
+              "httpVoiceV2ApplicationId": null,
+              "analyticEngine": "FIRST_ORION"
+            }
+          ],
+          "errors": [ ],
+          "page": {
+            "pageSize": 25,
+            "totalElements": 1,
+            "totalPages": 1,
+            "pageNumber": 0
+          }
+        }
+      },
       "voice_config_whitelist_notFoundErrorExample": {
         "summary": "Resource not found",
         "value": {
@@ -106974,6 +107093,18 @@
                     }
                   ]
                 }
+              },
+              "trunkIdOnly": {
+                "summary": "Search by trunkId only",
+                "value": {
+                  "queryCriteria": [
+                    {
+                      "parameter": "trunkId",
+                      "operator": "EQ",
+                      "values": "69a5bd88a4ba9759b450e48a"
+                    }
+                  ]
+                }
               }
             }
           }
@@ -108152,9 +108283,6 @@
     {
       "name": "Move Phone Numbers",
       "description": "Handles the phone numbers move from Legacy Global Network to Universal Platform.\n\nThe process involves following steps\n - Validate that all move conditions are satisfied\n - Create automatically the needed Requirement Package and Emergency Address\n - Move the phone number to the Universal Platform\n - Activate voice, emergency and messaging services\n\nAs soon as the move is done, all inbound calls to your phone number will be routed as per the Voice Configuration Package settings on your Universal Platform account. Ongoing calls are not interrupted and will be accounted for by the platform on which they were started.\n\nOnce the move is performed and during an agreed transition period, Outbound traffic will continue to be accepted on the Legacy Global Network as well as on the Universal Platform, allowing you for a smooth transition of your traffic from one network to another. \nNote that during this transition period changes to the Emergency address will not be permitted on either platforms.\n\nIf you want to fast forward to close the transition period sooner than the agreed timeline, you can confirm the move by using the completion endpoint.\nWe recommend completing the move as early as possible.\n\nAfter the agreed period, the move operation will be completed automatically.\n\nTo access these endpoints, your account needs to be enabled. Please contact your account manager to facilitate the activation process.\n"
-    },
-    {
-      "name": "Hosted Number Management"
     },
     {
       "name": "Hosted Messaging"

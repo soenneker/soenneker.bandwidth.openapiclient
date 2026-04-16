@@ -1340,6 +1340,11 @@ components:
           type: string
         CustomerOrderId:
           type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            has a distinct Bandwidth-assigned `orderId`.
         OrderDate:
           type: string
         OrderStatus:
@@ -1379,6 +1384,11 @@ components:
           type: string
         customerOrderId:
           type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            has a distinct Bandwidth-assigned `orderId`.
         subAccountId:
           type: integer
         sourceAccountId:
@@ -1447,8 +1457,11 @@ components:
         CustomerOrderId:
           pattern: ^[a-zA-Z0-9 -]{1,255}$
           description: >-
-            Internal customer order id for tracking the order. Only alphanumeric
-            values, dashes and spaces are allowed. Max length is 255 characters
+            Optional customer-defined reference ID for this order. Only
+            alphanumeric values, dashes and spaces are allowed. Max length is
+            255 characters. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            receives its own unique Bandwidth-assigned `orderId`.
           type: string
         SipPeerId:
           description: >-
@@ -1493,6 +1506,11 @@ components:
           type: string
         CustomerOrderId:
           type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            has a distinct Bandwidth-assigned `orderId`.
         SiteId:
           type: integer
         SourceAccountId:
@@ -1652,8 +1670,11 @@ components:
         customerOrderId:
           pattern: ^[a-zA-Z0-9 -]{1,255}$
           description: >-
-            Internal customer order id for tracking the order. Only alphanumeric
-            values, dashes and spaces are allowed. Max length is 255 characters
+            Optional customer-defined reference ID for this order. Only
+            alphanumeric values, dashes and spaces are allowed. Max length is
+            255 characters. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            receives its own unique Bandwidth-assigned `orderId`.
           type: string
         locationId:
           description: >-
@@ -3164,8 +3185,11 @@ components:
         - DEACTIVATE
     customerOrderId:
       description: >-
-        An optional customer-defined order identifier that is stored with the
-        Bandwidth order. This value is opaque to Bandwidth.
+        An optional customer-defined reference ID for this order. Not unique —
+        Bandwidth applies no uniqueness constraint, so multiple orders may share
+        the same value. Each order receives its own unique Bandwidth-assigned
+        `orderId`. Only alphanumeric values, dashes, and spaces are allowed. Max
+        length is 255 characters.
       type: string
       maxLength: 255
     voiceActivationSubtypes:
@@ -4232,9 +4256,13 @@ components:
       example: '+19199918388'
     customerOrderIdQueryParam:
       name: customerOrderId
-      description: >-
-        The Customer Order ID is an ID assigned by the account owner to provide
-        a reference number for the importTnOrder.
+      description: >
+        Filter orders by a customer-assigned reference ID. Because
+        `customerOrderId` is not unique — Bandwidth applies no uniqueness
+        constraint — this query may return multiple orders if the same value was
+        used across multiple orders. Each result will have a distinct
+        Bandwidth-assigned `orderId`. To retrieve a single specific order, use
+        its `orderId` instead.
       in: query
       required: false
       schema:

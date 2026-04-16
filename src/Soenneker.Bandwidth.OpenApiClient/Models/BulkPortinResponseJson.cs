@@ -24,7 +24,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string CreatedByUser { get; set; }
 #endif
-        /// <summary>The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Order. Only alphanumeric values, dashes and spaces are allowed.</summary>
+        /// <summary>Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CustomerOrderId { get; set; }

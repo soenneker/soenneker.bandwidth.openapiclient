@@ -24,7 +24,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string CreatedByUser { get; set; }
 #endif
-        /// <summary>The customerOrderId property</summary>
+        /// <summary>The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CustomerOrderId { get; set; }

@@ -156,7 +156,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item
             /// <summary>Checks the order&apos;s creation date against this value. Orders that have a creation date before this date will be included. Format is yyyy-MM-dd</summary>
             [QueryParameter("createdDateTo")]
             public Date? CreatedDateTo { get; set; }
-            /// <summary>The Customer Order ID is an ID assigned by the account owner to provide a reference number for the order.</summary>
+            /// <summary>Filter orders by a customer-assigned reference ID. Because `customerOrderId` is not unique — Bandwidth applies no uniqueness constraint — this query may return multiple orders if the same value was used across multiple orders. Each result will have a distinct Bandwidth-assigned `orderId`. To retrieve a single specific order, use its `orderId` instead.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("customerOrderId")]

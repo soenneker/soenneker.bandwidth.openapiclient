@@ -27,5 +27,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         #pragma warning disable CS1591
         Name,
         #pragma warning restore CS1591
+        [EnumMember(Value = "trunkId")]
+        #pragma warning disable CS1591
+        TrunkId,
+        #pragma warning restore CS1591
     }
 }

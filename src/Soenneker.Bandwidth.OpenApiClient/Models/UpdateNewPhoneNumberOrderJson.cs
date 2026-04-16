@@ -16,7 +16,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Request that the order be closed (cancel backorder process).</summary>
         public bool? CloseOrder { get; set; }
-        /// <summary>The CustomerOrderId is an optional field that may be provided by the customer and will remain with the order. Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters. The value is opaque to Bandwidth.</summary>
+        /// <summary>Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CustomerOrderId { get; set; }

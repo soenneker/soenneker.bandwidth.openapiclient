@@ -693,9 +693,13 @@ components:
         example: 23-10-31
         type: string
     customerOrderIdQueryParam:
-      description: >-
-        The Customer Order ID is an ID assigned by the account owner to provide
-        a reference number for the order.
+      description: >
+        Filter orders by a customer-assigned reference ID. Because
+        `customerOrderId` is not unique — Bandwidth applies no uniqueness
+        constraint — this query may return multiple orders if the same value was
+        used across multiple orders. Each result will have a distinct
+        Bandwidth-assigned `orderId`. To retrieve a single specific order, use
+        its `orderId` instead.
       example: ABCCorp12345
       in: query
       name: customerOrderId
@@ -3878,6 +3882,11 @@ components:
           type: integer
         CustomerOrderId:
           type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            has a distinct Bandwidth-assigned `orderId`.
         LastModifiedNote:
           $ref: '#/components/schemas/note'
         OrderDate:
@@ -4009,6 +4018,11 @@ components:
                 type: integer
               customerOrderId:
                 type: string
+                description: >-
+                  The customer-defined reference ID for this order, if one was
+                  provided at creation. Not unique — Bandwidth applies no
+                  uniqueness constraint, so multiple orders may share the same
+                  value. Each order has a distinct Bandwidth-assigned `orderId`.
               lastModifiedDate:
                 format: date-time
                 type: string
@@ -4172,6 +4186,11 @@ components:
           type: boolean
         CustomerOrderId:
           type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            has a distinct Bandwidth-assigned `orderId`.
         Name:
           type: string
         OrderCreateDate:
@@ -4214,6 +4233,11 @@ components:
           type: boolean
         CustomerOrderId:
           type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            has a distinct Bandwidth-assigned `orderId`.
         Name:
           type: string
         OrderCreateDate:
@@ -4640,10 +4664,13 @@ components:
           type: boolean
         customerOrderId:
           description: >-
-            Only alphanumeric values, dashes and spaces are allowed. Max length
-            is 40 characters.
-          maxLength: 40
-          pattern: ^[a-zA-Z0-9\-\ ]{1,40}$
+            Optional customer-defined reference ID for this order. Only
+            alphanumeric values, dashes and spaces are allowed. Not unique —
+            Bandwidth applies no uniqueness constraint, so multiple orders may
+            share the same value. Each order receives its own unique
+            Bandwidth-assigned `orderId`.
+          maxLength: 255
+          pattern: ^[a-zA-Z0-9\-\ ]{1,255}$
           type: string
         id:
           example: c1b34921-ed73-4732-8a08-168e815514ec
@@ -4722,10 +4749,13 @@ components:
           type: boolean
         customerOrderId:
           description: >-
-            Only alphanumeric values, dashes and spaces are allowed. Max length
-            is 40 characters.
-          maxLength: 40
-          pattern: ^[a-zA-Z0-9\-\ ]{1,40}$
+            Optional customer-defined reference ID for this order. Only
+            alphanumeric values, dashes and spaces are allowed. Not unique —
+            Bandwidth applies no uniqueness constraint, so multiple orders may
+            share the same value. Each order receives its own unique
+            Bandwidth-assigned `orderId`.
+          maxLength: 255
+          pattern: ^[a-zA-Z0-9\-\ ]{1,255}$
           type: string
         id:
           example: c1b34921-ed73-4732-8a08-168e815514ec
@@ -5131,12 +5161,13 @@ components:
           type: boolean
         customerOrderId:
           description: >-
-            The CustomerOrderId is an optional field that may be provided by the
-            customer and will remain with the order. Only alphanumeric values,
-            dashes and spaces are allowed. Max length is 40 characters. The
-            value is opaque to Bandwidth.
-          maxLength: 40
-          pattern: ^[a-zA-Z0-9\-\ ]{1,40}$
+            Optional customer-defined reference ID for this order. Only
+            alphanumeric values, dashes and spaces are allowed. Not unique —
+            Bandwidth applies no uniqueness constraint, so multiple orders may
+            share the same value. Each order receives its own unique
+            Bandwidth-assigned `orderId`.
+          maxLength: 255
+          pattern: ^[a-zA-Z0-9\-\ ]{1,255}$
           type: string
         name:
           type: string

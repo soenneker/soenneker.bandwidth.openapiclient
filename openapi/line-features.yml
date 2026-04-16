@@ -8,7 +8,7 @@ info:
     This API provides endpoints to manage TN Options orders for phone number
     information as well as Line Information Database (LIDB) and 
 
-    Directory Listing/Directory Assistance (DLDA) orders. 
+    Directory Listing/Directory Assistance (DLDA) orders.
   contact:
     name: Bandwidth
     url: https://dev.bandwidth.com/apis/numbers-apis/line-features/
@@ -64,9 +64,12 @@ paths:
         list of telephone numbers and a set of TN Options to assign to all TNs
         in the list.
 
-        - **CustomerOrderId**: Optional value for ID set by customer. Only
-        alphanumeric values, dashes, and spaces are allowed. Max length is 255
-        characters.
+        - **CustomerOrderId**: Optional customer-defined reference ID for this
+        order. Only alphanumeric values, dashes, and spaces are allowed. Max
+        length is 255 characters (JSON) or 40 characters (XML). Not unique —
+        Bandwidth applies no uniqueness constraint, so multiple orders may share
+        the same value. Each order receives its own unique Bandwidth-assigned
+        `orderId`.
 
 
         **Valid attributes for TnOptionGroup object:**
@@ -681,8 +684,12 @@ components:
     customerOrderIdQueryParam:
       name: customerOrderId
       description: >
-        <b>*</b> The Customer Order ID is an ID assigned by the account owner to
-        provide a reference number for the TN Options order.
+        Filter orders by a customer-assigned reference ID. Because
+        `customerOrderId` is not unique — Bandwidth applies no uniqueness
+        constraint — this query may return multiple orders if the same value was
+        used across multiple orders. Each result will have a distinct
+        Bandwidth-assigned `orderId`. To retrieve a single specific order, use
+        its `orderId` instead.
       in: query
       required: false
       schema:
@@ -861,8 +868,11 @@ components:
         customerOrderId:
           type: string
           description: >-
-            Optional value for ID set by customer. Only alphanumeric values,
-            dashes and spaces are allowed.
+            Optional customer-defined reference ID for this order. Only
+            alphanumeric values, dashes, and spaces are allowed. Not unique —
+            Bandwidth applies no uniqueness constraint, so multiple orders may
+            share the same value. Each order receives its own unique
+            Bandwidth-assigned `orderId`.
           maxLength: 255
         tnOptionGroups:
           type: array
@@ -878,8 +888,11 @@ components:
         customerOrderId:
           type: string
           description: >-
-            Optional value for ID set by customer. Only alphanumeric values,
-            dashes and spaces are allowed.
+            Optional customer-defined reference ID for this order. Only
+            alphanumeric values, dashes, and spaces are allowed. Not unique —
+            Bandwidth applies no uniqueness constraint, so multiple orders may
+            share the same value. Each order receives its own unique
+            Bandwidth-assigned `orderId`.
           maxLength: 255
         tnOptionGroups:
           type: array
@@ -1307,6 +1320,11 @@ components:
           type: string
         customerOrderId:
           type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            has a distinct Bandwidth-assigned `orderId`.
         orderCreateDate:
           type: string
         processingStatus:
@@ -1344,6 +1362,11 @@ components:
           type: string
         customerOrderId:
           type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            has a distinct Bandwidth-assigned `orderId`.
         orderCreateDate:
           type: string
         processingStatus:
@@ -1683,6 +1706,11 @@ components:
           type: string
         CustomerOrderId:
           type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            has a distinct Bandwidth-assigned `orderId`.
         OrderCreateDate:
           type: string
         ProcessingStatus:
@@ -1947,6 +1975,11 @@ components:
           type: string
         CustomerOrderId:
           type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            has a distinct Bandwidth-assigned `orderId`.
         OrderDate:
           type: string
         OrderStatus:
@@ -2159,9 +2192,12 @@ components:
         CustomerOrderId:
           type: string
           description: >-
-            Optional value for ID set by customer. Only alphanumeric values,
-            dashes and spaces are allowed
-          maxLength: 40
+            Optional customer-defined reference ID for this order. Only
+            alphanumeric values, dashes and spaces are allowed. Not unique —
+            Bandwidth applies no uniqueness constraint, so multiple orders may
+            share the same value. Each order receives its own unique
+            Bandwidth-assigned `orderId`.
+          maxLength: 255
         TnOptionGroups:
           description: >-
             Each group contains list of telephone numbers and set of TN options
@@ -2183,9 +2219,12 @@ components:
         CustomerOrderId:
           type: string
           description: >-
-            Optional value for ID set by customer. Only alphanumeric values,
-            dashes and spaces are allowed.
-          maxLength: 40
+            Optional customer-defined reference ID for this order. Only
+            alphanumeric values, dashes and spaces are allowed. Not unique —
+            Bandwidth applies no uniqueness constraint, so multiple orders may
+            share the same value. Each order receives its own unique
+            Bandwidth-assigned `orderId`.
+          maxLength: 255
         TnOptionGroups:
           description: >-
             Each group contains list of telephone numbers and set of TN options
@@ -2386,10 +2425,12 @@ components:
           type: string
         customerOrderId:
           description: >-
-            The Customer Order ID is an ID assigned by the account owner to
-            provide a reference number for the Order. The element is optional.
-            Only alphanumeric values, dashes and spaces are allowed.
-          maxLength: 40
+            Optional customer-defined reference ID for this order. Only
+            alphanumeric values, dashes and spaces are allowed. Not unique —
+            Bandwidth applies no uniqueness constraint, so multiple orders may
+            share the same value. Each order receives its own unique
+            Bandwidth-assigned `orderId`.
+          maxLength: 255
           type: string
         processingStatus:
           description: Order status.
@@ -2474,7 +2515,7 @@ components:
                 provide a reference number for the Order. The element is
                 optional. Only alphanumeric values, dashes and spaces are
                 allowed.
-              maxLength: 40
+              maxLength: 255
               type: string
             ProcessingStatus:
               type: string
@@ -2492,10 +2533,12 @@ components:
       properties:
         CustomerOrderId:
           description: >-
-            The Customer Order ID is an ID assigned by the account owner to
-            provide a reference number for the Order. The element is optional.
-            Only alphanumeric values, dashes and spaces are allowed.
-          maxLength: 40
+            Optional customer-defined reference ID for this order. Only
+            alphanumeric values, dashes and spaces are allowed. Not unique —
+            Bandwidth applies no uniqueness constraint, so multiple orders may
+            share the same value. Each order receives its own unique
+            Bandwidth-assigned `orderId`.
+          maxLength: 255
           type: string
         LidbTnGroups:
           items:
@@ -2573,10 +2616,12 @@ components:
       properties:
         customerOrderId:
           description: >-
-            The Customer Order ID is an ID assigned by the account owner to
-            provide a reference number for the Order. The element is optional.
-            Only alphanumeric values, dashes and spaces are allowed.
-          maxLength: 40
+            Optional customer-defined reference ID for this order. Only
+            alphanumeric values, dashes and spaces are allowed. Not unique —
+            Bandwidth applies no uniqueness constraint, so multiple orders may
+            share the same value. Each order receives its own unique
+            Bandwidth-assigned `orderId`.
+          maxLength: 255
           type: string
         lidbPhoneNumberGroups:
           items:
@@ -2789,7 +2834,7 @@ components:
             The Customer Order ID is an ID assigned by the account owner to
             provide a reference number for the Order. Only alphanumeric values,
             dashes and spaces are allowed.
-          maxLength: 40
+          maxLength: 255
           type: string
         deleteDldaPhoneNumberGroups:
           type: string
@@ -2805,7 +2850,7 @@ components:
             The Customer Order ID is an ID assigned by the account owner to
             provide a reference number for the Order. Only alphanumeric values,
             dashes and spaces are allowed.
-          maxLength: 40
+          maxLength: 255
           type: string
         DeleteDldaTnGroups:
           type: string
@@ -3117,7 +3162,7 @@ components:
             The Customer Order ID is an ID assigned by the account owner to
             provide a reference number for the Order. Only alphanumeric values,
             dashes and spaces are allowed.
-          maxLength: 40
+          maxLength: 255
           type: string
         DldaTnGroups:
           items:
@@ -3154,7 +3199,7 @@ components:
             The Customer Order ID is an ID assigned by the account owner to
             provide a reference number for the Order. Only alphanumeric values,
             dashes and spaces are allowed.
-          maxLength: 40
+          maxLength: 255
           type: string
         orderCreateDate:
           type: string
