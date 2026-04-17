@@ -34,7 +34,7 @@ tags:
 paths:
   /accounts/{accountId}/latas:
     get:
-      operationId: listLata
+      operationId: listLatas
       summary: >-
         List all LATAs on the account, and which products are enabled on each
         LATA.
@@ -69,7 +69,7 @@ paths:
         - LATAs
   /accounts/{accountId}/lrnConfigurations:
     get:
-      operationId: listLrnConfig
+      operationId: listLrnConfigs
       summary: List all LRN Configurations on the account.
       description: List all LRN Configurations on the account.
       parameters:
@@ -125,7 +125,7 @@ paths:
         $ref: '#/components/requestBodies/lrnConfigPost'
   /accounts/{accountId}/lrnConfigurations/{lrnConfiguration}:
     get:
-      operationId: readLrnConfig
+      operationId: getLrnConfig
       summary: Read one LRN Configuration.
       description: Read one LRN Configuration.
       parameters:
@@ -179,7 +179,7 @@ paths:
       tags:
         - LRN Configurations
     put:
-      operationId: upsertLrnConfig
+      operationId: replaceLrnConfig
       summary: Update or create an LRN Configuration.
       description: >-
         If the specified LRN Configuration exists, replace it with the one
@@ -243,17 +243,101 @@ paths:
         $ref: '#/components/requestBodies/lrnConfigPatch'
   /accounts/{accountId}/lrns:
     get:
-      operationId: listLrn
-      summary: List the LRNs on the account.
-      description: List the LRNs on the account.
+      operationId: listLrns
+      summary: List and search LRNs on the account.
+      description: >-
+        List the LRNs on the account. This endpoint also supports search/filter
+
+        behaviour — any combination of the optional filter parameters below may
+        be
+
+        provided to narrow the result set.
+
+
+        **Filter parameters** — pass using bracket notation, e.g.
+        `lrn[eq]=+12345`:
+
+        | Query parameter | Operator | Type | Description |
+
+        |---|---|---|---|
+
+        | `lrn[eq]` | EQ | string | Exact match on the LRN value. Also supports
+        `lrn[sort]` — see sort parameters below. |
+
+        | `operatingCompanyName[eq]` | EQ | string | Exact match on the
+        Operating Company Name (OCN). Also supports `operatingCompanyName[sort]`
+        — see sort parameters below. |
+
+        | `lataId[eq]` | EQ | integer | Exact match on the LATA ID. |
+
+        | `lataName[eq]` | EQ | string | Exact match on the LATA name. |
+
+        | `lataRegion[eq]` | EQ | string | Exact match on the LATA region. |
+
+        | `hostedVoice[eq]` | EQ | boolean | Exact match — `true` or `false`. |
+
+        | `tandem[eq]` | EQ | boolean | Exact match on access homing tandem —
+        `true` or `false`. |
+
+        | `routingConfigurationName[eq]` | EQ | string | Exact match on the
+        assigned LRN Configuration name. |
+
+        | `added[gte]` | GTE | ISO 8601 date-time | Lower bound (inclusive) on
+        the date the LRN was added. |
+
+        | `added[lte]` | LTE | ISO 8601 date-time | Upper bound (inclusive) on
+        the date the LRN was added. |
+
+
+        All filter parameters are optional and may be combined freely.
+
+        `added[gte]` and `added[lte]` may be used independently or together as a
+        range.
+
+
+        **Sort parameters** — pass using bracket notation, e.g. `lrn[sort]=ASC`:
+
+        | Query parameter | Sorts by |
+
+        |---|---|
+
+        | `lrn[sort]` | LRN value. Also supports `lrn[eq]` filter — both may be
+        combined in one parameter. |
+
+        | `added[sort]` | Date and time the LRN was added. Also supports
+        `added[gte]` and `added[lte]` — all may be combined in one parameter. |
+
+        | `operatingCompanyName[sort]` | Operating Company Name (OCN). Also
+        supports `operatingCompanyName[eq]` filter — both may be combined in one
+        parameter. |
+
+        | `lata[sort]` | LATA ID. Sort-only parameter — no filter sub-property
+        is supported. Example: `lata[sort]=ASC`. |
+
+
+        All sort parameters are optional. When multiple sort parameters are
+        provided,
+
+        results are ordered by each in the sequence they appear in the request.
+
+        Accepted values: `ASC` (ascending, default) or `DESC` (descending).
+
+
+        Pagination is controlled with `offset` and `limit`.
       parameters:
         - $ref: '#/components/parameters/accountParams'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/added'
-        - $ref: '#/components/parameters/operatingCompanyName'
+        - $ref: '#/components/parameters/addedParam'
         - $ref: '#/components/parameters/lata'
-        - $ref: '#/components/parameters/lrns'
+        - $ref: '#/components/parameters/lrnParam'
+        - $ref: '#/components/parameters/operatingCompanyNameParam'
+        - $ref: '#/components/parameters/filterLataId'
+        - $ref: '#/components/parameters/filterLataName'
+        - $ref: '#/components/parameters/filterLataRegion'
+        - $ref: '#/components/parameters/filterHostedVoice'
+        - $ref: '#/components/parameters/filterTandem'
+        - $ref: '#/components/parameters/filterRoutingConfigurationName'
       responses:
         '200':
           $ref: '#/components/responses/lrnOk'
@@ -399,9 +483,15 @@ components:
     lata:
       name: lata
       in: query
-      description: Query param for sorting by LATA.
+      description: >-
+        Query param for sorting by LATA. Pass as `lata[sort]=ASC` or
+        `lata[sort]=DESC`.
       schema:
         $ref: '#/components/schemas/sortable'
+      style: deepObject
+      explode: true
+      example:
+        sort: ASC
     hostedVoice:
       name: hostedVoice
       in: query
@@ -449,6 +539,129 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/e164'
+    lrnParam:
+      name: lrn
+      in: query
+      required: false
+      description: >-
+        Filter and/or sort by LRN value. Use `lrn[eq]` for an exact value filter
+        and `lrn[sort]` to control sort order.
+      schema:
+        $ref: '#/components/schemas/lrnFilterSortParam'
+      style: deepObject
+      explode: true
+      example:
+        eq: '+12345'
+        sort: ASC
+    operatingCompanyNameParam:
+      name: operatingCompanyName
+      in: query
+      required: false
+      description: >-
+        Filter and/or sort by Operating Company Name (OCN). Use
+        `operatingCompanyName[eq]` for an exact value filter and
+        `operatingCompanyName[sort]` to control sort order.
+      schema:
+        $ref: '#/components/schemas/operatingCompanyNameFilterSortParam'
+      style: deepObject
+      explode: true
+      example:
+        eq: Telecom
+        sort: ASC
+    filterLataId:
+      name: lataId
+      in: query
+      required: false
+      description: Filter by LATA ID using an exact match. Pass as `lataId[eq]=<value>`.
+      schema:
+        $ref: '#/components/schemas/eqIntegerFilter'
+      style: deepObject
+      explode: true
+      example:
+        eq: 426
+    filterLataName:
+      name: lataName
+      in: query
+      required: false
+      description: >-
+        Filter by LATA name using an exact match. Pass as
+        `lataName[eq]=<value>`.
+      schema:
+        $ref: '#/components/schemas/eqStringFilter'
+      style: deepObject
+      explode: true
+      example:
+        eq: Raleigh
+    filterLataRegion:
+      name: lataRegion
+      in: query
+      required: false
+      description: >-
+        Filter by LATA region using an exact match. Pass as
+        `lataRegion[eq]=<value>`.
+      schema:
+        $ref: '#/components/schemas/eqStringFilter'
+      style: deepObject
+      explode: true
+      example:
+        eq: North Carolina
+    filterHostedVoice:
+      name: hostedVoice
+      in: query
+      required: false
+      description: >-
+        Filter by whether hosted voice is enabled on the LRN. Exact match. Pass
+        as `hostedVoice[eq]=true` or `hostedVoice[eq]=false`.
+      schema:
+        $ref: '#/components/schemas/eqBooleanFilter'
+      style: deepObject
+      explode: true
+      example:
+        eq: true
+    filterTandem:
+      name: tandem
+      in: query
+      required: false
+      description: >-
+        Filter by whether access homing tandem is enabled on the LRN. Exact
+        match. Pass as `tandem[eq]=true` or `tandem[eq]=false`.
+      schema:
+        $ref: '#/components/schemas/eqBooleanFilter'
+      style: deepObject
+      explode: true
+      example:
+        eq: true
+    filterRoutingConfigurationName:
+      name: routingConfigurationName
+      in: query
+      required: false
+      description: >-
+        Filter by LRN Configuration name using an exact match. Pass as
+        `routingConfigurationName[eq]=<value>`.
+      schema:
+        $ref: '#/components/schemas/eqStringFilter'
+      style: deepObject
+      explode: true
+      example:
+        eq: Primary
+    addedParam:
+      name: added
+      in: query
+      required: false
+      description: >-
+        Filter and/or sort by the date the LRN was added to the account. Use
+        `added[gte]` for a lower bound (inclusive),  `added[lte]` for an upper
+        bound (inclusive),  and `added[sort]` to control sort order.  All
+        sub-properties are optional and may be combined freely.  Timestamps must
+        be ISO 8601 UTC format.
+      schema:
+        $ref: '#/components/schemas/addedFilterSortParam'
+      style: deepObject
+      explode: true
+      example:
+        gte: '2025-01-01T00:00:00Z'
+        lte: '2025-12-31T23:59:59Z'
+        sort: ASC
   requestBodies:
     lrnPatch:
       required: true
@@ -816,6 +1029,81 @@ components:
         - ASC
         - DESC
       default: ASC
+    eqStringFilter:
+      type: object
+      description: >-
+        A filter param using an exact string match. Pass as
+        `<paramName>[eq]=<value>`.
+      properties:
+        eq:
+          type: string
+          description: The value to match against.
+          example: someValue
+    eqIntegerFilter:
+      type: object
+      description: >-
+        A filter param using an exact integer match. Pass as
+        `<paramName>[eq]=<value>`.
+      properties:
+        eq:
+          type: integer
+          description: The value to match against.
+          example: 42
+    eqBooleanFilter:
+      type: object
+      description: >-
+        A filter param using an exact boolean match. Pass as
+        `<paramName>[eq]=true` or `<paramName>[eq]=false`.
+      properties:
+        eq:
+          type: boolean
+          description: The boolean value to match.
+          example: true
+    addedFilterSortParam:
+      type: object
+      description: >-
+        Consolidated filter and sort parameter for the date the LRN was added.
+        Use `added[gte]` for lower bound (inclusive), `added[lte]` for upper
+        bound (inclusive), and `added[sort]` to control sort order. All
+        sub-properties are optional and may be combined freely.
+      properties:
+        gte:
+          type: string
+          format: date-time
+          description: Lower bound (inclusive) ISO 8601 UTC timestamp.
+          example: '2025-01-01T00:00:00Z'
+        lte:
+          type: string
+          format: date-time
+          description: Upper bound (inclusive) ISO 8601 UTC timestamp.
+          example: '2025-12-31T23:59:59Z'
+        sort:
+          $ref: '#/components/schemas/sort'
+    lrnFilterSortParam:
+      type: object
+      description: >-
+        Consolidated filter and sort parameter for the LRN value. Use `lrn[eq]`
+        to filter by exact value and `lrn[sort]` to sort.
+      properties:
+        eq:
+          type: string
+          description: Exact match on the LRN value.
+          example: '+12345'
+        sort:
+          $ref: '#/components/schemas/sort'
+    operatingCompanyNameFilterSortParam:
+      type: object
+      description: >-
+        Consolidated filter and sort parameter for the Operating Company Name
+        (OCN). Use `operatingCompanyName[eq]` to filter by exact value and
+        `operatingCompanyName[sort]` to sort.
+      properties:
+        eq:
+          type: string
+          description: Exact match on the Operating Company Name (OCN).
+          example: Telecom
+        sort:
+          $ref: '#/components/schemas/sort'
     createLrn:
       type: object
       required:

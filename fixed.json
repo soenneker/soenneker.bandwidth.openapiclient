@@ -12135,7 +12135,7 @@
         ],
         "summary": "List all LATAs on the account, and which products are enabled on each LATA.",
         "description": "This endpoint will return a list of all LATAs, including ones that are not used on this account.",
-        "operationId": "lrn-config-service-listLata",
+        "operationId": "lrn-config-service-listLatas",
         "parameters": [
           {
             "$ref": "#/components/parameters/accountParams"
@@ -12191,7 +12191,7 @@
         ],
         "summary": "List all LRN Configurations on the account.",
         "description": "List all LRN Configurations on the account.",
-        "operationId": "lrn-config-service-listLrnConfig",
+        "operationId": "lrn-config-service-listLrnConfigs",
         "parameters": [
           {
             "$ref": "#/components/parameters/accountParams"
@@ -12283,7 +12283,7 @@
         ],
         "summary": "Read one LRN Configuration.",
         "description": "Read one LRN Configuration.",
-        "operationId": "lrn-config-service-readLrnConfig",
+        "operationId": "lrn-config-service-getLrnConfig",
         "parameters": [
           {
             "$ref": "#/components/parameters/accountParams"
@@ -12367,7 +12367,7 @@
         ],
         "summary": "Update or create an LRN Configuration.",
         "description": "If the specified LRN Configuration exists, replace it with the one provided in the request body. If not, create it. LRNs are assigned and unassigned from LRN Configurations by updating the \"lrn\" array.",
-        "operationId": "lrn-config-service-upsertLrnConfig",
+        "operationId": "lrn-config-service-replaceLrnConfig",
         "parameters": [
           {
             "$ref": "#/components/parameters/accountParams"
@@ -12457,9 +12457,9 @@
         "tags": [
           "LRNs"
         ],
-        "summary": "List the LRNs on the account.",
-        "description": "List the LRNs on the account.",
-        "operationId": "lrn-config-service-listLrn",
+        "summary": "List and search LRNs on the account.",
+        "description": "\"List the LRNs on the account. This endpoint also supports search/filter\nbehaviour — any combination of the optional filter parameters below may be\nprovided to narrow the result set.\n\n**Filter parameters** — pass using bracket notation, e.g. `lrn[eq]=+12345`:\n| Query parameter | Operator | Type | Description |\n|---|---|---|---|\n| `lrn[eq]` | EQ | string | Exact match on the LRN value. Also supports `lrn[sort]` — see sort parameters below. |\n| `operatingCompanyName[eq]` | EQ | string | Exact match on the Operating Company Name (OCN). Also supports `operatingCompanyName[sort]` — see sort parameters below. |\n| `lataId[eq]` | EQ | integer | Exact match on the LATA ID. |\n| `lataName[eq]` | EQ | string | Exact match on the LATA name. |\n| `lataRegion[eq]` | EQ | string | Exact match on the LATA region. |\n| `hostedVoice[eq]` | EQ | boolean | Exact match — `true` or `false`. |\n| `tandem[eq]` | EQ | boolean | Exact match on access homing tandem — `true` or `false`. |\n| `routingConfigurationName[eq]` | EQ | string | Exact match on the assigned LRN Configuration name. |\n| `added[gte]` | GTE | ISO 8601 date-time | Lower bound (inclusive) on the date the LRN was added. |\n| `added[lte]` | LTE | ISO 8601 date-time | Upper bound (inclusive) on the date the LRN was added. |\n\nAll filter parameters are optional and may be combined freely.\n`added[gte]` and `added[lte]` may be used independently or together as a range.\n\n**Sort parameters** — pass using bracket notation, e.g. `lrn[sort]=ASC`:\n| Query parameter | Sorts by |\n|---|---|\n| `lrn[sort]` | LRN value. Also supports `lrn[eq]` filter — both may be combined in one parameter. |\n| `added[sort]` | Date and time the LRN was added. Also supports `added[gte]` and `added[lte]` — all may be combined in one parameter. |\n| `operatingCompanyName[sort]` | Operating Company Name (OCN). Also supports `operatingCompanyName[eq]` filter — both may be combined in one parameter. |\n| `lata[sort]` | LATA ID. Sort-only parameter — no filter sub-property is supported. Example: `lata[sort]=ASC`. |\n\nAll sort parameters are optional. When multiple sort parameters are provided,\nresults are ordered by each in the sequence they appear in the request.\nAccepted values: `ASC` (ascending, default) or `DESC` (descending).\n\nPagination is controlled with `offset` and `limit`.\"",
+        "operationId": "lrn-config-service-listLrns",
         "parameters": [
           {
             "$ref": "#/components/parameters/accountParams"
@@ -12471,16 +12471,34 @@
             "$ref": "#/components/parameters/lrn_config_service_limit"
           },
           {
-            "$ref": "#/components/parameters/added"
-          },
-          {
-            "$ref": "#/components/parameters/operatingCompanyName"
+            "$ref": "#/components/parameters/addedParam"
           },
           {
             "$ref": "#/components/parameters/lata"
           },
           {
-            "$ref": "#/components/parameters/lrns"
+            "$ref": "#/components/parameters/lrnParam"
+          },
+          {
+            "$ref": "#/components/parameters/operatingCompanyNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/filterLataId"
+          },
+          {
+            "$ref": "#/components/parameters/filterLataName"
+          },
+          {
+            "$ref": "#/components/parameters/filterLataRegion"
+          },
+          {
+            "$ref": "#/components/parameters/filterHostedVoice"
+          },
+          {
+            "$ref": "#/components/parameters/filterTandem"
+          },
+          {
+            "$ref": "#/components/parameters/filterRoutingConfigurationName"
           }
         ],
         "responses": {
@@ -43350,6 +43368,88 @@
         "additionalProperties": false,
         "description": "Sorting order in ascending or descending order",
         "default": "ASC"
+      },
+      "EqStringFilter": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "The value to match against.",
+            "example": "someValue"
+          }
+        },
+        "description": "A filter param using an exact string match. Pass as `<paramName>[eq]=<value>`."
+      },
+      "EqIntegerFilter": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "integer",
+            "description": "The value to match against.",
+            "example": 42
+          }
+        },
+        "description": "A filter param using an exact integer match. Pass as `<paramName>[eq]=<value>`."
+      },
+      "EqBooleanFilter": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "boolean",
+            "description": "The boolean value to match.",
+            "example": true
+          }
+        },
+        "description": "A filter param using an exact boolean match. Pass as `<paramName>[eq]=true` or `<paramName>[eq]=false`."
+      },
+      "AddedFilterSortParam": {
+        "type": "object",
+        "properties": {
+          "gte": {
+            "type": "string",
+            "description": "Lower bound (inclusive) ISO 8601 UTC timestamp.",
+            "format": "date-time",
+            "example": "2025-01-01T00:00:00Z"
+          },
+          "lte": {
+            "type": "string",
+            "description": "Upper bound (inclusive) ISO 8601 UTC timestamp.",
+            "format": "date-time",
+            "example": "2025-12-31T23:59:59Z"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/LrnConfigServiceSort"
+          }
+        },
+        "description": "Consolidated filter and sort parameter for the date the LRN was added. Use `added[gte]` for lower bound (inclusive), `added[lte]` for upper bound (inclusive), and `added[sort]` to control sort order. All sub-properties are optional and may be combined freely."
+      },
+      "LrnFilterSortParam": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "Exact match on the LRN value.",
+            "example": 12345
+          },
+          "sort": {
+            "$ref": "#/components/schemas/LrnConfigServiceSort"
+          }
+        },
+        "description": "Consolidated filter and sort parameter for the LRN value. Use `lrn[eq]` to filter by exact value and `lrn[sort]` to sort."
+      },
+      "OperatingCompanyNameFilterSortParam": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "Exact match on the Operating Company Name (OCN).",
+            "example": "Telecom"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/LrnConfigServiceSort"
+          }
+        },
+        "description": "Consolidated filter and sort parameter for the Operating Company Name (OCN). Use `operatingCompanyName[eq]` to filter by exact value and `operatingCompanyName[sort]` to sort."
       },
       "CreateLrn": {
         "required": [
@@ -87044,9 +87144,14 @@
       "lata": {
         "name": "lata",
         "in": "query",
-        "description": "Query param for sorting by LATA.",
+        "description": "Query param for sorting by LATA. Pass as `lata[sort]=ASC` or `lata[sort]=DESC`.",
+        "style": "deepObject",
+        "explode": true,
         "schema": {
           "$ref": "#/components/schemas/Sortable"
+        },
+        "example": {
+          "sort": "ASC"
         }
       },
       "hostedVoice": {
@@ -87108,6 +87213,127 @@
         "required": true,
         "schema": {
           "type": "string"
+        }
+      },
+      "lrnParam": {
+        "name": "lrn",
+        "in": "query",
+        "description": "Filter and/or sort by LRN value. Use `lrn[eq]` for an exact value filter and `lrn[sort]` to control sort order.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/LrnFilterSortParam"
+        },
+        "example": {
+          "eq": 12345,
+          "sort": "ASC"
+        }
+      },
+      "operatingCompanyNameParam": {
+        "name": "operatingCompanyName",
+        "in": "query",
+        "description": "Filter and/or sort by Operating Company Name (OCN). Use `operatingCompanyName[eq]` for an exact value filter and `operatingCompanyName[sort]` to control sort order.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/OperatingCompanyNameFilterSortParam"
+        },
+        "example": {
+          "eq": "Telecom",
+          "sort": "ASC"
+        }
+      },
+      "filterLataId": {
+        "name": "lataId",
+        "in": "query",
+        "description": "Filter by LATA ID using an exact match. Pass as `lataId[eq]=<value>`.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/EqIntegerFilter"
+        },
+        "example": {
+          "eq": 426
+        }
+      },
+      "filterLataName": {
+        "name": "lataName",
+        "in": "query",
+        "description": "Filter by LATA name using an exact match. Pass as `lataName[eq]=<value>`.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/EqStringFilter"
+        },
+        "example": {
+          "eq": "Raleigh"
+        }
+      },
+      "filterLataRegion": {
+        "name": "lataRegion",
+        "in": "query",
+        "description": "Filter by LATA region using an exact match. Pass as `lataRegion[eq]=<value>`.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/EqStringFilter"
+        },
+        "example": {
+          "eq": "North Carolina"
+        }
+      },
+      "filterHostedVoice": {
+        "name": "hostedVoice",
+        "in": "query",
+        "description": "Filter by whether hosted voice is enabled on the LRN. Exact match. Pass as `hostedVoice[eq]=true` or `hostedVoice[eq]=false`.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/EqBooleanFilter"
+        },
+        "example": {
+          "eq": true
+        }
+      },
+      "filterTandem": {
+        "name": "tandem",
+        "in": "query",
+        "description": "Filter by whether access homing tandem is enabled on the LRN. Exact match. Pass as `tandem[eq]=true` or `tandem[eq]=false`.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/EqBooleanFilter"
+        },
+        "example": {
+          "eq": true
+        }
+      },
+      "filterRoutingConfigurationName": {
+        "name": "routingConfigurationName",
+        "in": "query",
+        "description": "Filter by LRN Configuration name using an exact match. Pass as `routingConfigurationName[eq]=<value>`.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/EqStringFilter"
+        },
+        "example": {
+          "eq": "Primary"
+        }
+      },
+      "addedParam": {
+        "name": "added",
+        "in": "query",
+        "description": "Filter and/or sort by the date the LRN was added to the account. Use `added[gte]` for a lower bound (inclusive),  `added[lte]` for an upper bound (inclusive),  and `added[sort]` to control sort order.  All sub-properties are optional and may be combined freely.  Timestamps must be ISO 8601 UTC format.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/AddedFilterSortParam"
+        },
+        "example": {
+          "gte": "2025-01-01T00:00:00Z",
+          "lte": "2025-12-31T23:59:59Z",
+          "sort": "ASC"
         }
       },
       "messaging_transfer_accountIdPathParam": {

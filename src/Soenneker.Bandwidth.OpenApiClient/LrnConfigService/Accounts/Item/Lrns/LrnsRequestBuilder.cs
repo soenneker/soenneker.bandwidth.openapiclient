@@ -35,7 +35,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Lrns
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public LrnsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/lrn-config-service/accounts/{accountId}/lrns?limit={limit}&offset={offset}{&added*,lata*,lrn*,operatingCompanyName*}", pathParameters)
+        public LrnsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/lrn-config-service/accounts/{accountId}/lrns?limit={limit}&offset={offset}{&added*,hostedVoice*,lata*,lataId*,lataName*,lataRegion*,lrn*,operatingCompanyName*,routingConfigurationName*,tandem*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,11 +43,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Lrns
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public LrnsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/lrn-config-service/accounts/{accountId}/lrns?limit={limit}&offset={offset}{&added*,lata*,lrn*,operatingCompanyName*}", rawUrl)
+        public LrnsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/lrn-config-service/accounts/{accountId}/lrns?limit={limit}&offset={offset}{&added*,hostedVoice*,lata*,lataId*,lataName*,lataRegion*,lrn*,operatingCompanyName*,routingConfigurationName*,tandem*}", rawUrl)
         {
         }
         /// <summary>
-        /// List the LRNs on the account.
+        /// &quot;List the LRNs on the account. This endpoint also supports search/filterbehaviour — any combination of the optional filter parameters below may beprovided to narrow the result set.**Filter parameters** — pass using bracket notation, e.g. `lrn[eq]=+12345`:| Query parameter | Operator | Type | Description ||---|---|---|---|| `lrn[eq]` | EQ | string | Exact match on the LRN value. Also supports `lrn[sort]` — see sort parameters below. || `operatingCompanyName[eq]` | EQ | string | Exact match on the Operating Company Name (OCN). Also supports `operatingCompanyName[sort]` — see sort parameters below. || `lataId[eq]` | EQ | integer | Exact match on the LATA ID. || `lataName[eq]` | EQ | string | Exact match on the LATA name. || `lataRegion[eq]` | EQ | string | Exact match on the LATA region. || `hostedVoice[eq]` | EQ | boolean | Exact match — `true` or `false`. || `tandem[eq]` | EQ | boolean | Exact match on access homing tandem — `true` or `false`. || `routingConfigurationName[eq]` | EQ | string | Exact match on the assigned LRN Configuration name. || `added[gte]` | GTE | ISO 8601 date-time | Lower bound (inclusive) on the date the LRN was added. || `added[lte]` | LTE | ISO 8601 date-time | Upper bound (inclusive) on the date the LRN was added. |All filter parameters are optional and may be combined freely.`added[gte]` and `added[lte]` may be used independently or together as a range.**Sort parameters** — pass using bracket notation, e.g. `lrn[sort]=ASC`:| Query parameter | Sorts by ||---|---|| `lrn[sort]` | LRN value. Also supports `lrn[eq]` filter — both may be combined in one parameter. || `added[sort]` | Date and time the LRN was added. Also supports `added[gte]` and `added[lte]` — all may be combined in one parameter. || `operatingCompanyName[sort]` | Operating Company Name (OCN). Also supports `operatingCompanyName[eq]` filter — both may be combined in one parameter. || `lata[sort]` | LATA ID. Sort-only parameter — no filter sub-property is supported. Example: `lata[sort]=ASC`. |All sort parameters are optional. When multiple sort parameters are provided,results are ordered by each in the sequence they appear in the request.Accepted values: `ASC` (ascending, default) or `DESC` (descending).Pagination is controlled with `offset` and `limit`.&quot;
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LrnOkResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -82,7 +82,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Lrns
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnOkResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.LrnOkResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// List the LRNs on the account.
+        /// &quot;List the LRNs on the account. This endpoint also supports search/filterbehaviour — any combination of the optional filter parameters below may beprovided to narrow the result set.**Filter parameters** — pass using bracket notation, e.g. `lrn[eq]=+12345`:| Query parameter | Operator | Type | Description ||---|---|---|---|| `lrn[eq]` | EQ | string | Exact match on the LRN value. Also supports `lrn[sort]` — see sort parameters below. || `operatingCompanyName[eq]` | EQ | string | Exact match on the Operating Company Name (OCN). Also supports `operatingCompanyName[sort]` — see sort parameters below. || `lataId[eq]` | EQ | integer | Exact match on the LATA ID. || `lataName[eq]` | EQ | string | Exact match on the LATA name. || `lataRegion[eq]` | EQ | string | Exact match on the LATA region. || `hostedVoice[eq]` | EQ | boolean | Exact match — `true` or `false`. || `tandem[eq]` | EQ | boolean | Exact match on access homing tandem — `true` or `false`. || `routingConfigurationName[eq]` | EQ | string | Exact match on the assigned LRN Configuration name. || `added[gte]` | GTE | ISO 8601 date-time | Lower bound (inclusive) on the date the LRN was added. || `added[lte]` | LTE | ISO 8601 date-time | Upper bound (inclusive) on the date the LRN was added. |All filter parameters are optional and may be combined freely.`added[gte]` and `added[lte]` may be used independently or together as a range.**Sort parameters** — pass using bracket notation, e.g. `lrn[sort]=ASC`:| Query parameter | Sorts by ||---|---|| `lrn[sort]` | LRN value. Also supports `lrn[eq]` filter — both may be combined in one parameter. || `added[sort]` | Date and time the LRN was added. Also supports `added[gte]` and `added[lte]` — all may be combined in one parameter. || `operatingCompanyName[sort]` | Operating Company Name (OCN). Also supports `operatingCompanyName[eq]` filter — both may be combined in one parameter. || `lata[sort]` | LATA ID. Sort-only parameter — no filter sub-property is supported. Example: `lata[sort]=ASC`. |All sort parameters are optional. When multiple sort parameters are provided,results are ordered by each in the sequence they appear in the request.Accepted values: `ASC` (ascending, default) or `DESC` (descending).Pagination is controlled with `offset` and `limit`.&quot;
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -110,12 +110,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Lrns
             return new global::Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Lrns.LrnsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// List the LRNs on the account.
+        /// &quot;List the LRNs on the account. This endpoint also supports search/filterbehaviour — any combination of the optional filter parameters below may beprovided to narrow the result set.**Filter parameters** — pass using bracket notation, e.g. `lrn[eq]=+12345`:| Query parameter | Operator | Type | Description ||---|---|---|---|| `lrn[eq]` | EQ | string | Exact match on the LRN value. Also supports `lrn[sort]` — see sort parameters below. || `operatingCompanyName[eq]` | EQ | string | Exact match on the Operating Company Name (OCN). Also supports `operatingCompanyName[sort]` — see sort parameters below. || `lataId[eq]` | EQ | integer | Exact match on the LATA ID. || `lataName[eq]` | EQ | string | Exact match on the LATA name. || `lataRegion[eq]` | EQ | string | Exact match on the LATA region. || `hostedVoice[eq]` | EQ | boolean | Exact match — `true` or `false`. || `tandem[eq]` | EQ | boolean | Exact match on access homing tandem — `true` or `false`. || `routingConfigurationName[eq]` | EQ | string | Exact match on the assigned LRN Configuration name. || `added[gte]` | GTE | ISO 8601 date-time | Lower bound (inclusive) on the date the LRN was added. || `added[lte]` | LTE | ISO 8601 date-time | Upper bound (inclusive) on the date the LRN was added. |All filter parameters are optional and may be combined freely.`added[gte]` and `added[lte]` may be used independently or together as a range.**Sort parameters** — pass using bracket notation, e.g. `lrn[sort]=ASC`:| Query parameter | Sorts by ||---|---|| `lrn[sort]` | LRN value. Also supports `lrn[eq]` filter — both may be combined in one parameter. || `added[sort]` | Date and time the LRN was added. Also supports `added[gte]` and `added[lte]` — all may be combined in one parameter. || `operatingCompanyName[sort]` | Operating Company Name (OCN). Also supports `operatingCompanyName[eq]` filter — both may be combined in one parameter. || `lata[sort]` | LATA ID. Sort-only parameter — no filter sub-property is supported. Example: `lata[sort]=ASC`. |All sort parameters are optional. When multiple sort parameters are provided,results are ordered by each in the sequence they appear in the request.Accepted values: `ASC` (ascending, default) or `DESC` (descending).Pagination is controlled with `offset` and `limit`.&quot;
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class LrnsRequestBuilderGetQueryParameters 
         {
-            /// <summary>Query param for sorting by the timestamp an LRN was added.</summary>
+            /// <summary>Filter and/or sort by the date the LRN was added to the account. Use `added[gte]` for a lower bound (inclusive),  `added[lte]` for an upper bound (inclusive),  and `added[sort]` to control sort order.  All sub-properties are optional and may be combined freely.  Timestamps must be ISO 8601 UTC format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("added")]
@@ -125,7 +125,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Lrns
             [QueryParameter("added")]
             public string Added { get; set; }
 #endif
-            /// <summary>Query param for sorting by LATA.</summary>
+            /// <summary>Filter by whether hosted voice is enabled on the LRN. Exact match. Pass as `hostedVoice[eq]=true` or `hostedVoice[eq]=false`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("hostedVoice")]
+            public string? HostedVoice { get; set; }
+#nullable restore
+#else
+            [QueryParameter("hostedVoice")]
+            public string HostedVoice { get; set; }
+#endif
+            /// <summary>Query param for sorting by LATA. Pass as `lata[sort]=ASC` or `lata[sort]=DESC`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("lata")]
@@ -135,10 +145,40 @@ namespace Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Lrns
             [QueryParameter("lata")]
             public string Lata { get; set; }
 #endif
+            /// <summary>Filter by LATA ID using an exact match. Pass as `lataId[eq]=&lt;value&gt;`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("lataId")]
+            public string? LataId { get; set; }
+#nullable restore
+#else
+            [QueryParameter("lataId")]
+            public string LataId { get; set; }
+#endif
+            /// <summary>Filter by LATA name using an exact match. Pass as `lataName[eq]=&lt;value&gt;`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("lataName")]
+            public string? LataName { get; set; }
+#nullable restore
+#else
+            [QueryParameter("lataName")]
+            public string LataName { get; set; }
+#endif
+            /// <summary>Filter by LATA region using an exact match. Pass as `lataRegion[eq]=&lt;value&gt;`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("lataRegion")]
+            public string? LataRegion { get; set; }
+#nullable restore
+#else
+            [QueryParameter("lataRegion")]
+            public string LataRegion { get; set; }
+#endif
             /// <summary>The number of items to include in the current page.</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
-            /// <summary>Query param for soring by LRN value.</summary>
+            /// <summary>Filter and/or sort by LRN value. Use `lrn[eq]` for an exact value filter and `lrn[sort]` to control sort order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("lrn")]
@@ -151,7 +191,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Lrns
             /// <summary>How many items to skip before the current page of data.</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }
-            /// <summary>Query param for sorting by OCN.</summary>
+            /// <summary>Filter and/or sort by Operating Company Name (OCN). Use `operatingCompanyName[eq]` for an exact value filter and `operatingCompanyName[sort]` to control sort order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("operatingCompanyName")]
@@ -160,6 +200,26 @@ namespace Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Lrns
 #else
             [QueryParameter("operatingCompanyName")]
             public string OperatingCompanyName { get; set; }
+#endif
+            /// <summary>Filter by LRN Configuration name using an exact match. Pass as `routingConfigurationName[eq]=&lt;value&gt;`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("routingConfigurationName")]
+            public string? RoutingConfigurationName { get; set; }
+#nullable restore
+#else
+            [QueryParameter("routingConfigurationName")]
+            public string RoutingConfigurationName { get; set; }
+#endif
+            /// <summary>Filter by whether access homing tandem is enabled on the LRN. Exact match. Pass as `tandem[eq]=true` or `tandem[eq]=false`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("tandem")]
+            public string? Tandem { get; set; }
+#nullable restore
+#else
+            [QueryParameter("tandem")]
+            public string Tandem { get; set; }
 #endif
         }
     }
