@@ -7550,8 +7550,8 @@ components:
             May be cleared by setting `tag=""`
 
 
-            Max length 256 characters.
-          maxLength: 256
+            Max length 4096 characters.
+          maxLength: 4096
           example: arbitrary text here
     createCallResponse:
       type: object
@@ -7928,11 +7928,11 @@ components:
             May be cleared by setting `tag=""`.
 
 
-            Max length 256 characters.
+            Max length 4096 characters.
 
 
             Not allowed if `state` is `completed`.
-          maxLength: 256
+          maxLength: 4096
           example: My Custom Tag
     updateCallRecording:
       type: object

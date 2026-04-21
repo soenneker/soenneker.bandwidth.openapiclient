@@ -60,7 +60,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>The call state. Possible values:&lt;br&gt;`active` to redirect thecall (default)&lt;br&gt;`completed` to hang up the call if it is answered, cancelit if it is an unanswered outbound call, or reject it if it an unansweredinbound call</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.CallStateEnum? State { get; set; }
-        /// <summary>A custom string that will be sent with this and all futurecallbacks unless overwritten by a future `tag` attribute or [`&lt;Tag&gt;`](/docs/voice/bxml/tag)verb, or cleared.May be cleared by setting `tag=&quot;&quot;`.Max length 256 characters.Not allowed if `state` is `completed`.</summary>
+        /// <summary>A custom string that will be sent with this and all futurecallbacks unless overwritten by a future `tag` attribute or [`&lt;Tag&gt;`](/docs/voice/bxml/tag)verb, or cleared.May be cleared by setting `tag=&quot;&quot;`.Max length 4096 characters.Not allowed if `state` is `completed`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Tag { get; set; }

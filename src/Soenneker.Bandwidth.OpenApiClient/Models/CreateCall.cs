@@ -108,7 +108,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public int? Priority { get; set; }
         /// <summary>Hide the calling number. The `displayName` field can be used to customize the displayed name.</summary>
         public bool? Privacy { get; set; }
-        /// <summary>A custom string that will be sent with all webhooks for thiscall unless overwritten by a future &lt;a href=&apos;/docs/voice/bxml/tag&apos;&gt;`&lt;Tag&gt;`&lt;/a&gt;verb or `tag` attribute on another verb, or cleared.May be cleared by setting `tag=&quot;&quot;`Max length 256 characters.</summary>
+        /// <summary>A custom string that will be sent with all webhooks for thiscall unless overwritten by a future &lt;a href=&apos;/docs/voice/bxml/tag&apos;&gt;`&lt;Tag&gt;`&lt;/a&gt;verb or `tag` attribute on another verb, or cleared.May be cleared by setting `tag=&quot;&quot;`Max length 4096 characters.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Tag { get; set; }

@@ -66788,9 +66788,9 @@
             "example": 5
           },
           "tag": {
-            "maxLength": 256,
+            "maxLength": 4096,
             "type": "string",
-            "description": "A custom string that will be sent with all webhooks for this\ncall unless overwritten by a future <a href='/docs/voice/bxml/tag'>`<Tag>`</a>\nverb or `tag` attribute on another verb, or cleared.\n\nMay be cleared by setting `tag=\"\"`\n\nMax length 256 characters.",
+            "description": "A custom string that will be sent with all webhooks for this\ncall unless overwritten by a future <a href='/docs/voice/bxml/tag'>`<Tag>`</a>\nverb or `tag` attribute on another verb, or cleared.\n\nMay be cleared by setting `tag=\"\"`\n\nMax length 4096 characters.",
             "nullable": true,
             "example": "arbitrary text here"
           }
@@ -67100,9 +67100,9 @@
             "example": "mySecretPassword1!"
           },
           "tag": {
-            "maxLength": 256,
+            "maxLength": 4096,
             "type": "string",
-            "description": "A custom string that will be sent with this and all future\ncallbacks unless overwritten by a future `tag` attribute or [`<Tag>`](/docs/voice/bxml/tag)\nverb, or cleared.\n\nMay be cleared by setting `tag=\"\"`.\n\nMax length 256 characters.\n\nNot allowed if `state` is `completed`.",
+            "description": "A custom string that will be sent with this and all future\ncallbacks unless overwritten by a future `tag` attribute or [`<Tag>`](/docs/voice/bxml/tag)\nverb, or cleared.\n\nMay be cleared by setting `tag=\"\"`.\n\nMax length 4096 characters.\n\nNot allowed if `state` is `completed`.",
             "nullable": true,
             "example": "My Custom Tag"
           }
