@@ -1,16 +1,15 @@
-using Soenneker.Tests.FixturedUnit;
-using Xunit;
+using Soenneker.Tests.HostedUnit;
 
 namespace Soenneker.Bandwidth.OpenApiClient.Tests;
 
-[Collection("Collection")]
-public sealed class BandwidthOpenApiClientTests : FixturedUnitTest
+[ClassDataSource<Host>(Shared = SharedType.PerTestSession)]
+public sealed class BandwidthOpenApiClientTests : HostedUnitTest
 {
-    public BandwidthOpenApiClientTests(Fixture fixture, ITestOutputHelper output) : base(fixture, output)
+    public BandwidthOpenApiClientTests(Host host) : base(host)
     {
     }
 
-    [Fact]
+    [Test]
     public void Default()
     {
 
