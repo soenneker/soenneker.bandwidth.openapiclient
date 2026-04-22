@@ -2008,6 +2008,8 @@ components:
               tagValue: 11111111-1111-1111-1111-111111111111
         orderCompleteDate: '2025-05-06T18:00:13.408Z'
         orderStatus: COMPLETE
+        serviceActivationOrderId: efc3d704-6dfa-4c9d-a43a-3f0e59d2c591
+        serviceActivationOrderStatus: COMPLETE
         summary: 3 numbers ordered in (201)
     retrieveNewPhoneNumberOrder200ResponseCombinedSearchAndOrderUnsuccessfulJsonExample:
       description: >-
@@ -2077,6 +2079,8 @@ components:
               tagValue: 11111111-1111-1111-1111-111111111111
         orderCompleteDate: '2025-05-06T15:52:19.038Z'
         orderStatus: COMPLETE
+        serviceActivationOrderId: efc3d704-6dfa-4c9d-a43a-3f0e59d2c591
+        serviceActivationOrderStatus: COMPLETE
         summary: 1 number ordered in (989)
     retrieveNewPhoneNumberOrder200ResponseXmlExample:
       description: Ok response example for retrieving a New Phone Number Order using XML
@@ -2126,6 +2130,7 @@ components:
                 </TelephoneNumber>
             </CompletedNumbers>
             <ServiceActivationOrderId>efc3d704-6dfa-4c9d-a43a-3f0e59d2c591</ServiceActivationOrderId>
+            <ServiceActivationOrderStatus>COMPLETE</ServiceActivationOrderStatus>
             <FailedQuantity>0</FailedQuantity>
         </OrderResponse>
     retrieveNewPhoneNumberOrder404ResponseJsonExample:
@@ -3828,6 +3833,18 @@ components:
             example:
               $ref: '#/components/examples/getImportToAccountOrderXmlExample'
   schemas:
+    serviceActivationOrderStatusEnum:
+      description: >-
+        The status of the related Service Activation order if this New Number
+        order had autoActivate set to true.
+      type: string
+      enum:
+        - RECEIVED
+        - PROCESSING
+        - COMPLETE
+        - PARTIAL
+        - FAILED
+        - MISSING_REQUIREMENTS
     visibleOrderStatusJson:
       enum:
         - RECEIVED
@@ -5210,6 +5227,8 @@ components:
           $ref: '#/components/schemas/voiceIntegrationIdsJson'
         bulkNumberSyncId:
           $ref: '#/components/schemas/bulkNumberSyncId'
+        serviceActivationOrderStatus:
+          $ref: '#/components/schemas/serviceActivationOrderStatusEnum'
         orderType:
           discriminator:
             propertyName: type

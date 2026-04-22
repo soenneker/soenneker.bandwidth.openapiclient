@@ -80,6 +80,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string ServiceActivationOrderId { get; set; }
 #endif
+        /// <summary>The status of the related Service Activation order if this New Number order had autoActivate set to true.</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderStatusEnum? ServiceActivationOrderStatus { get; set; }
         /// <summary>The summary property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -141,6 +143,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "orderType", n => { OrderType = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson.RetrieveNewPhoneNumberOrder200ResponseSchemaJson_orderType>(global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson.RetrieveNewPhoneNumberOrder200ResponseSchemaJson_orderType.CreateFromDiscriminatorValue); } },
                 { "pendingQuantity", n => { PendingQuantity = n.GetIntValue(); } },
                 { "serviceActivationOrderId", n => { ServiceActivationOrderId = n.GetStringValue(); } },
+                { "serviceActivationOrderStatus", n => { ServiceActivationOrderStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderStatusEnum>(); } },
                 { "summary", n => { Summary = n.GetStringValue(); } },
                 { "tags", n => { Tags = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag>(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "voiceIntegrationIds", n => { VoiceIntegrationIds = n.GetCollectionOfPrimitiveValues<Guid?>()?.AsList(); } },
@@ -165,6 +168,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson.RetrieveNewPhoneNumberOrder200ResponseSchemaJson_orderType>("orderType", OrderType);
             writer.WriteIntValue("pendingQuantity", PendingQuantity);
             writer.WriteStringValue("serviceActivationOrderId", ServiceActivationOrderId);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderStatusEnum>("serviceActivationOrderStatus", ServiceActivationOrderStatus);
             writer.WriteStringValue("summary", Summary);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag>("tags", Tags);
             writer.WriteCollectionOfPrimitiveValues<Guid?>("voiceIntegrationIds", VoiceIntegrationIds);
