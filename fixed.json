@@ -46805,6 +46805,19 @@
           }
         }
       },
+      "ServiceActivationOrderStatusEnum": {
+        "enum": [
+          "RECEIVED",
+          "PROCESSING",
+          "COMPLETE",
+          "PARTIAL",
+          "FAILED",
+          "MISSING_REQUIREMENTS"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The status of the related Service Activation order if this New Number order had autoActivate set to true."
+      },
       "VisibleOrderStatusJson": {
         "enum": [
           "RECEIVED",
@@ -48635,6 +48648,9 @@
             "type": "string",
             "description": "Adding voice integrations to the phone number(s) being ordered automatically kicks off an asynchronous bulk provisioning task. Use this ID to check the status of the provisioning request [here](https://dev.bandwidth.com/apis/universal-platform/voice-provisioning/#tag/Bulk-Voice-Phone-Number-Provisioning/operation/getBulkVoicePhoneNumbers).",
             "format": "uuid"
+          },
+          "serviceActivationOrderStatus": {
+            "$ref": "#/components/schemas/ServiceActivationOrderStatusEnum"
           },
           "orderType": {
             "required": [
@@ -96130,6 +96146,8 @@
           },
           "orderCompleteDate": "2025-05-06T18:00:13.408Z",
           "orderStatus": "COMPLETE",
+          "serviceActivationOrderId": "efc3d704-6dfa-4c9d-a43a-3f0e59d2c591",
+          "serviceActivationOrderStatus": "COMPLETE",
           "summary": "3 numbers ordered in (201)"
         }
       },
@@ -96216,12 +96234,14 @@
           },
           "orderCompleteDate": "2025-05-06T15:52:19.038Z",
           "orderStatus": "COMPLETE",
+          "serviceActivationOrderId": "efc3d704-6dfa-4c9d-a43a-3f0e59d2c591",
+          "serviceActivationOrderStatus": "COMPLETE",
           "summary": "1 number ordered in (989)"
         }
       },
       "retrieveNewPhoneNumberOrder200ResponseXmlExample": {
         "description": "Ok response example for retrieving a New Phone Number Order using XML",
-        "value": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<OrderResponse>\n    <CompletedQuantity>1</CompletedQuantity>\n    <CreatedByUser>jbm</CreatedByUser>\n    <LastModifiedDate>2014-01-06T19:09:44.027Z</LastModifiedDate>\n    <OrderCompleteDate>2014-01-06T19:09:44.041Z</OrderCompleteDate>\n    <Order>\n        <CustomerOrderId>123456789</CustomerOrderId>\n        <Name>Area Code Order</Name>\n        <OrderCreateDate>2014-01-06T19:09:43.695Z</OrderCreateDate>\n        <PeerId>303716</PeerId>\n        <BackOrderRequested>false</BackOrderRequested>\n        <AreaCodeSearchAndOrderType>\n            <AreaCode>804</AreaCode>\n            <Quantity>1</Quantity>\n        </AreaCodeSearchAndOrderType>\n        <TnAttributes>\n                <TnAttribute>Protected</TnAttribute>\n                <TnAttribute>External</TnAttribute>\n                <TnAttribute>Imported</TnAttribute>\n        </TnAttributes>\n        <PartialAllowed>true</PartialAllowed>\n        <SiteId>743</SiteId>\n        <VoiceConfigurationPackageId>d21315af-9b5b-4b45-a6f4-9106cbfe87d1</VoiceConfigurationPackageId>\n        <RequirementsPackageId>3fa85f64-5717-4562-b3fc-2c963f66afa6</RequirementsPackageId>\n        <VoiceIntegrationIds>\n          <VoiceIntegrationId>5fa85f64-5717-4562-b3fc-2c963f66afa6</VoiceIntegrationId>\n          <VoiceIntegrationId>5fa85f64-5717-4562-b3fc-2c963f66afa7</VoiceIntegrationId>\n        </VoiceIntegrationIds>\n        <BulkNumberSyncId>d21315af-9b5b-4b45-a6f4-9106cbfe87d1</BulkNumberSyncId>\n        <AutoActivate>true</AutoActivate>\n        <Tags>\n          <Tag>\n            <TagName>customerId</TagName>\n            <TagValue>11111111-1111-1111-1111-111111111111</TagValue>\n          </Tag>\n        </Tags>\n    </Order>\n    <OrderStatus>COMPLETE</OrderStatus>\n    <CompletedNumbers>\n        <TelephoneNumber>\n            <FullNumber>+18042105666</FullNumber>\n        </TelephoneNumber>\n    </CompletedNumbers>\n    <ServiceActivationOrderId>efc3d704-6dfa-4c9d-a43a-3f0e59d2c591</ServiceActivationOrderId>\n    <FailedQuantity>0</FailedQuantity>\n</OrderResponse>"
+        "value": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<OrderResponse>\n    <CompletedQuantity>1</CompletedQuantity>\n    <CreatedByUser>jbm</CreatedByUser>\n    <LastModifiedDate>2014-01-06T19:09:44.027Z</LastModifiedDate>\n    <OrderCompleteDate>2014-01-06T19:09:44.041Z</OrderCompleteDate>\n    <Order>\n        <CustomerOrderId>123456789</CustomerOrderId>\n        <Name>Area Code Order</Name>\n        <OrderCreateDate>2014-01-06T19:09:43.695Z</OrderCreateDate>\n        <PeerId>303716</PeerId>\n        <BackOrderRequested>false</BackOrderRequested>\n        <AreaCodeSearchAndOrderType>\n            <AreaCode>804</AreaCode>\n            <Quantity>1</Quantity>\n        </AreaCodeSearchAndOrderType>\n        <TnAttributes>\n                <TnAttribute>Protected</TnAttribute>\n                <TnAttribute>External</TnAttribute>\n                <TnAttribute>Imported</TnAttribute>\n        </TnAttributes>\n        <PartialAllowed>true</PartialAllowed>\n        <SiteId>743</SiteId>\n        <VoiceConfigurationPackageId>d21315af-9b5b-4b45-a6f4-9106cbfe87d1</VoiceConfigurationPackageId>\n        <RequirementsPackageId>3fa85f64-5717-4562-b3fc-2c963f66afa6</RequirementsPackageId>\n        <VoiceIntegrationIds>\n          <VoiceIntegrationId>5fa85f64-5717-4562-b3fc-2c963f66afa6</VoiceIntegrationId>\n          <VoiceIntegrationId>5fa85f64-5717-4562-b3fc-2c963f66afa7</VoiceIntegrationId>\n        </VoiceIntegrationIds>\n        <BulkNumberSyncId>d21315af-9b5b-4b45-a6f4-9106cbfe87d1</BulkNumberSyncId>\n        <AutoActivate>true</AutoActivate>\n        <Tags>\n          <Tag>\n            <TagName>customerId</TagName>\n            <TagValue>11111111-1111-1111-1111-111111111111</TagValue>\n          </Tag>\n        </Tags>\n    </Order>\n    <OrderStatus>COMPLETE</OrderStatus>\n    <CompletedNumbers>\n        <TelephoneNumber>\n            <FullNumber>+18042105666</FullNumber>\n        </TelephoneNumber>\n    </CompletedNumbers>\n    <ServiceActivationOrderId>efc3d704-6dfa-4c9d-a43a-3f0e59d2c591</ServiceActivationOrderId>\n    <ServiceActivationOrderStatus>COMPLETE</ServiceActivationOrderStatus>\n    <FailedQuantity>0</FailedQuantity>\n</OrderResponse>"
       },
       "retrieveNewPhoneNumberOrder404ResponseJsonExample": {
         "description": "Not found response example for retrieving a New Phone Number Order using Json",
