@@ -101,18 +101,17 @@ components:
           schema:
             $ref: '#/components/schemas/updateVoiceApplicationRequest'
           examples:
-            updateVoiceApplicationRequestExampleSipAuthEnable:
+            enableWithPasswordAuth:
+              $ref: '#/components/examples/updateRequestEnableWithPasswordAuth'
+            enableWithPasswordAuthAndIpAcl:
               $ref: >-
-                #/components/examples/updateVoiceApplicationRequestExampleSipAuthEnable
-            updateVoiceApplicationRequestExampleSipAuthEnableWithRegions:
-              $ref: >-
-                #/components/examples/updateVoiceApplicationRequestExampleSipAuthEnableWithRegions
-            updateVoiceApplicationRequestExampleSipAuthDisable:
-              $ref: >-
-                #/components/examples/updateVoiceApplicationRequestExampleSipAuthDisable
-            updateVoiceApplicationRequestExampleUpdateRegionsOnly:
-              $ref: >-
-                #/components/examples/updateVoiceApplicationRequestExampleUpdateRegionsOnly
+                #/components/examples/updateRequestEnableWithPasswordAuthAndIpAcl
+            enableWithIpAclOnly:
+              $ref: '#/components/examples/updateRequestEnableWithIpAclOnly'
+            disableInboundSipCalls:
+              $ref: '#/components/examples/updateRequestDisableInboundSipCalls'
+            updateRegionsOnly:
+              $ref: '#/components/examples/updateRequestUpdateRegionsOnly'
   responses:
     getVoiceApplicationResponse:
       description: OK
@@ -121,12 +120,12 @@ components:
           schema:
             $ref: '#/components/schemas/getVoiceApplicationResponse'
           examples:
-            getVoiceApplicationResponseExampleSipAuthEnabled:
-              $ref: >-
-                #/components/examples/getVoiceApplicationResponseExampleSipAuthEnabled
-            getVoiceApplicationResponseExampleSipAuthDisabled:
-              $ref: >-
-                #/components/examples/getVoiceApplicationResponseExampleSipAuthDisabled
+            passwordAuthEnabled:
+              $ref: '#/components/examples/getResponsePasswordAuthEnabled'
+            ipAclOnly:
+              $ref: '#/components/examples/getResponseIpAclOnly'
+            inboundSipDisabled:
+              $ref: '#/components/examples/getResponseInboundSipDisabled'
     updateVoiceApplicationResponse:
       description: OK
       content:
@@ -134,18 +133,17 @@ components:
           schema:
             $ref: '#/components/schemas/updateVoiceApplicationResponse'
           examples:
-            updateVoiceApplicationResponseExampleSipAuthEnable:
+            enableWithPasswordAuth:
+              $ref: '#/components/examples/updateResponseEnableWithPasswordAuth'
+            enableWithPasswordAuthAndIpAcl:
               $ref: >-
-                #/components/examples/updateVoiceApplicationResponseExampleSipAuthEnable
-            updateVoiceApplicationResponseExampleSipAuthEnableWithRegions:
-              $ref: >-
-                #/components/examples/updateVoiceApplicationResponseExampleSipAuthEnableWithRegions
-            updateVoiceApplicationResponseExampleSipAuthDisable:
-              $ref: >-
-                #/components/examples/updateVoiceApplicationResponseExampleSipAuthDisable
-            updateVoiceApplicationResponseExampleUpdateRegionsOnly:
-              $ref: >-
-                #/components/examples/updateVoiceApplicationResponseExampleUpdateRegionsOnly
+                #/components/examples/updateResponseEnableWithPasswordAuthAndIpAcl
+            enableWithIpAclOnly:
+              $ref: '#/components/examples/updateResponseEnableWithIpAclOnly'
+            disableInboundSipCalls:
+              $ref: '#/components/examples/updateResponseDisableInboundSipCalls'
+            updateRegionsOnly:
+              $ref: '#/components/examples/updateResponseUpdateRegionsOnly'
     badRequestError:
       description: Bad Request
       content:
@@ -325,11 +323,32 @@ components:
       description: The SIP URI for the specified application.
       example: >-
         sip:479fbd44-3362-45f3-bb80-284f21111be4@sip.programmable-voice.bandwidth.com
-    sipAuthEnabled:
-      title: SIP Auth Enabled
+    inboundSipCallsEnabled:
+      title: Inbound SIP Calls Enabled
       type: boolean
-      description: Indicates whether SIP authentication is enabled for the application.
+      description: Indicates whether the application can receive inbound SIP calls.
       example: true
+    passwordAuthEnabled:
+      title: Password Auth Enabled
+      type: boolean
+      description: >-
+        Controls whether SIP digest authentication (407 challenge) is required
+        for inbound SIP calls.
+      example: true
+    allowedSourceIps:
+      title: Allowed Source IPs
+      type: array
+      description: >-
+        List of CIDR blocks allowed to send SIP traffic to this application. An
+        empty array means no IP restriction is applied. Maximum 25 entries.
+      items:
+        type: string
+        pattern: ^(\d{1,3}\.){3}\d{1,3}/\d{1,2}$
+      maxItems: 25
+      default: []
+      example:
+        - 203.0.113.0/24
+        - 198.51.100.0/32
     region:
       title: Region
       type: string
@@ -419,18 +438,29 @@ components:
           example: 30
         sipUri:
           $ref: '#/components/schemas/sipUri'
-        sipAuthEnabled:
-          $ref: '#/components/schemas/sipAuthEnabled'
+        inboundSipCallsEnabled:
+          $ref: '#/components/schemas/inboundSipCallsEnabled'
+        passwordAuthEnabled:
+          $ref: '#/components/schemas/passwordAuthEnabled'
+        allowedSourceIps:
+          $ref: '#/components/schemas/allowedSourceIps'
         allowedRegions:
           $ref: '#/components/schemas/allowedRegions'
       nullable: true
     updateVoiceApplicationRequest:
       title: Update Voice Application Request
-      description: At least one of `sipAuthEnabled` or `allowedRegions` must be provided.
+      description: >-
+        At least one field must be provided. When `inboundSipCallsEnabled` is
+        `true`, at least one auth mechanism must be active:
+        `passwordAuthEnabled: true` OR a non-empty `allowedSourceIps` array.
       type: object
       properties:
-        sipAuthEnabled:
-          $ref: '#/components/schemas/sipAuthEnabled'
+        inboundSipCallsEnabled:
+          $ref: '#/components/schemas/inboundSipCallsEnabled'
+        passwordAuthEnabled:
+          $ref: '#/components/schemas/passwordAuthEnabled'
+        allowedSourceIps:
+          $ref: '#/components/schemas/allowedSourceIps'
         allowedRegions:
           $ref: '#/components/schemas/allowedRegions'
     getVoiceApplicationResponse:
@@ -468,8 +498,9 @@ components:
                   type: string
                   nullable: true
                   description: >-
-                    The password to be used for SIP authentication with the SIP
-                    URI. Null when SIP authentication is disabled.
+                    The password to be used for SIP digest authentication. Only
+                    returned when `passwordAuthEnabled` is set to `true`. Null
+                    otherwise.
                   example: super_secure_password
         errors:
           type: array
@@ -481,8 +512,8 @@ components:
         - data
         - errors
   examples:
-    getVoiceApplicationResponseExampleSipAuthEnabled:
-      summary: Example response when SIP Auth is enabled
+    getResponsePasswordAuthEnabled:
+      summary: Password auth enabled with IP ACL
       value:
         links: []
         data:
@@ -502,13 +533,45 @@ components:
           callbackTimeout: 30
           sipUri: >-
             sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com
-          sipAuthEnabled: true
+          inboundSipCallsEnabled: true
+          passwordAuthEnabled: true
+          allowedSourceIps:
+            - 203.0.113.0/24
           allowedRegions:
             - US
             - EU
         errors: []
-    getVoiceApplicationResponseExampleSipAuthDisabled:
-      summary: Example response when SIP Auth is disabled
+    getResponseIpAclOnly:
+      summary: IP ACL only (no password auth)
+      value:
+        links: []
+        data:
+          applicationId: 15f99d57-f823-4718-80cc-5d95d5b83e59
+          serviceType: Voice-V2
+          applicationName: My Voice App
+          callInitiatedCallbackUrl: https://example.com/callbacks/inbound
+          callInitiatedMethod: POST
+          callStatusCallbackUrl: https://example.com/callbacks/status
+          callStatusMethod: POST
+          callbackCreds:
+            userId: myApiUser
+          callInitiatedFallbackUrl: https://fallback.example.com/callbacks/inbound
+          callInitiatedFallbackMethod: POST
+          callInitiatedFallbackCreds:
+            userId: myFallbackUser
+          callbackTimeout: 30
+          sipUri: >-
+            sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com
+          inboundSipCallsEnabled: true
+          passwordAuthEnabled: false
+          allowedSourceIps:
+            - 203.0.113.0/24
+            - 198.51.100.0/32
+          allowedRegions:
+            - US
+        errors: []
+    getResponseInboundSipDisabled:
+      summary: Inbound SIP calls disabled
       value:
         links: []
         data:
@@ -527,31 +590,45 @@ components:
             userId: myFallbackUser
           callbackTimeout: 30
           sipUri: null
-          sipAuthEnabled: false
+          inboundSipCallsEnabled: false
+          passwordAuthEnabled: false
+          allowedSourceIps: []
           allowedRegions: null
         errors: []
-    updateVoiceApplicationRequestExampleSipAuthEnable:
-      summary: Enable SIP authentication
+    updateRequestEnableWithPasswordAuth:
+      summary: Enable inbound SIP with password auth only
       value:
-        sipAuthEnabled: true
-    updateVoiceApplicationRequestExampleSipAuthEnableWithRegions:
-      summary: Enable SIP authentication with allowed regions
+        inboundSipCallsEnabled: true
+        passwordAuthEnabled: true
+    updateRequestEnableWithPasswordAuthAndIpAcl:
+      summary: Enable inbound SIP with password auth and IP ACL
       value:
-        sipAuthEnabled: true
+        inboundSipCallsEnabled: true
+        passwordAuthEnabled: true
+        allowedSourceIps:
+          - 203.0.113.0/24
         allowedRegions:
           - US
-    updateVoiceApplicationRequestExampleSipAuthDisable:
-      summary: Disable SIP authentication
+    updateRequestEnableWithIpAclOnly:
+      summary: Enable inbound SIP with IP ACL only (no password)
       value:
-        sipAuthEnabled: false
-    updateVoiceApplicationRequestExampleUpdateRegionsOnly:
-      summary: Update allowed regions without changing credentials
+        inboundSipCallsEnabled: true
+        passwordAuthEnabled: false
+        allowedSourceIps:
+          - 203.0.113.0/24
+          - 198.51.100.0/32
+    updateRequestDisableInboundSipCalls:
+      summary: Disable inbound SIP calls
+      value:
+        inboundSipCallsEnabled: false
+    updateRequestUpdateRegionsOnly:
+      summary: Update allowed regions only
       value:
         allowedRegions:
           - US
           - EU
-    updateVoiceApplicationResponseExampleSipAuthEnable:
-      summary: Example response when enabling SIP authentication
+    updateResponseEnableWithPasswordAuth:
+      summary: Response after enabling with password auth
       value:
         links: []
         data:
@@ -571,11 +648,14 @@ components:
           callbackTimeout: 30
           sipUri: >-
             sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com
-          sipAuthEnabled: true
+          inboundSipCallsEnabled: true
+          passwordAuthEnabled: true
+          allowedSourceIps: []
+          allowedRegions: null
           sipAuthPassword: super_secure_password
         errors: []
-    updateVoiceApplicationResponseExampleSipAuthEnableWithRegions:
-      summary: Example response when enabling SIP authentication with regions
+    updateResponseEnableWithPasswordAuthAndIpAcl:
+      summary: Response after enabling with password auth and IP ACL
       value:
         links: []
         data:
@@ -595,13 +675,45 @@ components:
           callbackTimeout: 30
           sipUri: >-
             sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com
-          sipAuthEnabled: true
+          inboundSipCallsEnabled: true
+          passwordAuthEnabled: true
+          allowedSourceIps:
+            - 203.0.113.0/24
           allowedRegions:
             - US
           sipAuthPassword: super_secure_password
         errors: []
-    updateVoiceApplicationResponseExampleSipAuthDisable:
-      summary: Example response when disabling SIP authentication
+    updateResponseEnableWithIpAclOnly:
+      summary: Response after enabling with IP ACL only
+      value:
+        links: []
+        data:
+          applicationId: 15f99d57-f823-4718-80cc-5d95d5b83e59
+          serviceType: Voice-V2
+          applicationName: My Voice App
+          callInitiatedCallbackUrl: https://example.com/callbacks/inbound
+          callInitiatedMethod: POST
+          callStatusCallbackUrl: https://example.com/callbacks/status
+          callStatusMethod: POST
+          callbackCreds:
+            userId: myApiUser
+          callInitiatedFallbackUrl: https://fallback.example.com/callbacks/inbound
+          callInitiatedFallbackMethod: POST
+          callInitiatedFallbackCreds:
+            userId: myFallbackUser
+          callbackTimeout: 30
+          sipUri: >-
+            sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com
+          inboundSipCallsEnabled: true
+          passwordAuthEnabled: false
+          allowedSourceIps:
+            - 203.0.113.0/24
+            - 198.51.100.0/32
+          allowedRegions: null
+          sipAuthPassword: null
+        errors: []
+    updateResponseDisableInboundSipCalls:
+      summary: Response after disabling inbound SIP calls
       value:
         links: []
         data:
@@ -620,12 +732,14 @@ components:
             userId: myFallbackUser
           callbackTimeout: 30
           sipUri: null
-          sipAuthEnabled: false
+          inboundSipCallsEnabled: false
+          passwordAuthEnabled: false
+          allowedSourceIps: []
           allowedRegions: null
           sipAuthPassword: null
         errors: []
-    updateVoiceApplicationResponseExampleUpdateRegionsOnly:
-      summary: Example response when updating regions only
+    updateResponseUpdateRegionsOnly:
+      summary: Response after updating regions only
       value:
         links: []
         data:
@@ -645,7 +759,9 @@ components:
           callbackTimeout: 30
           sipUri: >-
             sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com
-          sipAuthEnabled: true
+          inboundSipCallsEnabled: true
+          passwordAuthEnabled: true
+          allowedSourceIps: []
           allowedRegions:
             - US
             - EU

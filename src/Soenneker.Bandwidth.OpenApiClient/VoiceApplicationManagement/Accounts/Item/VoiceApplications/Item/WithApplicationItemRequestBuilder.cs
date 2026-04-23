@@ -72,7 +72,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement.Accounts.
         /// Updates SIP authentication settings for a voice application.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateVoiceApplicationResponse"/></returns>
-        /// <param name="body">At least one of `sipAuthEnabled` or `allowedRegions` must be provided.</param>
+        /// <param name="body">&quot;At least one field must be provided. When `inboundSipCallsEnabled` is `true`, at least one auth mechanism must be active: `passwordAuthEnabled: true` OR a non-empty `allowedSourceIps` array.&quot;</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementGenericError">When receiving a 400 status code</exception>
@@ -128,7 +128,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement.Accounts.
         /// Updates SIP authentication settings for a voice application.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">At least one of `sipAuthEnabled` or `allowedRegions` must be provided.</param>
+        /// <param name="body">&quot;At least one field must be provided. When `inboundSipCallsEnabled` is `true`, at least one auth mechanism must be active: `passwordAuthEnabled: true` OR a non-empty `allowedSourceIps` array.&quot;</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -12,7 +12,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     public partial class UpdateVoiceApplicationResponseData : global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationData, IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>The password to be used for SIP authentication with the SIP URI. Null when SIP authentication is disabled.</summary>
+        /// <summary>The password to be used for SIP digest authentication. Only returned when `passwordAuthEnabled` is set to `true`. Null otherwise.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SipAuthPassword { get; set; }

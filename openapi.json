@@ -65470,11 +65470,32 @@
         "nullable": true,
         "example": "sip:479fbd44-3362-45f3-bb80-284f21111be4@sip.programmable-voice.bandwidth.com"
       },
-      "sipAuthEnabled": {
-        "title": "SIP Auth Enabled",
+      "inboundSipCallsEnabled": {
+        "title": "Inbound SIP Calls Enabled",
         "type": "boolean",
-        "description": "Indicates whether SIP authentication is enabled for the application.",
+        "description": "Indicates whether the application can receive inbound SIP calls.",
         "example": true
+      },
+      "passwordAuthEnabled": {
+        "title": "Password Auth Enabled",
+        "type": "boolean",
+        "description": "Controls whether SIP digest authentication (407 challenge) is required for inbound SIP calls.",
+        "example": true
+      },
+      "allowedSourceIps": {
+        "title": "Allowed Source IPs",
+        "maxItems": 25,
+        "type": "array",
+        "items": {
+          "pattern": "^(\\d{1,3}\\.){3}\\d{1,3}/\\d{1,2}$",
+          "type": "string"
+        },
+        "description": "List of CIDR blocks allowed to send SIP traffic to this application. An empty array means no IP restriction is applied. Maximum 25 entries.",
+        "default": [ ],
+        "example": [
+          "203.0.113.0/24",
+          "198.51.100.0/32"
+        ]
       },
       "voice_application_management_region": {
         "title": "Region",
@@ -65584,8 +65605,14 @@
           "sipUri": {
             "$ref": "#/components/schemas/sipUri"
           },
-          "sipAuthEnabled": {
-            "$ref": "#/components/schemas/sipAuthEnabled"
+          "inboundSipCallsEnabled": {
+            "$ref": "#/components/schemas/inboundSipCallsEnabled"
+          },
+          "passwordAuthEnabled": {
+            "$ref": "#/components/schemas/passwordAuthEnabled"
+          },
+          "allowedSourceIps": {
+            "$ref": "#/components/schemas/allowedSourceIps"
           },
           "allowedRegions": {
             "$ref": "#/components/schemas/allowedRegions"
@@ -65597,14 +65624,20 @@
         "title": "Update Voice Application Request",
         "type": "object",
         "properties": {
-          "sipAuthEnabled": {
-            "$ref": "#/components/schemas/sipAuthEnabled"
+          "inboundSipCallsEnabled": {
+            "$ref": "#/components/schemas/inboundSipCallsEnabled"
+          },
+          "passwordAuthEnabled": {
+            "$ref": "#/components/schemas/passwordAuthEnabled"
+          },
+          "allowedSourceIps": {
+            "$ref": "#/components/schemas/allowedSourceIps"
           },
           "allowedRegions": {
             "$ref": "#/components/schemas/allowedRegions"
           }
         },
-        "description": "At least one of `sipAuthEnabled` or `allowedRegions` must be provided."
+        "description": "At least one field must be provided. When `inboundSipCallsEnabled` is `true`, at least one auth mechanism must be active: `passwordAuthEnabled: true` OR a non-empty `allowedSourceIps` array."
       },
       "getVoiceApplicationResponse": {
         "title": "Get Voice Application Response",
@@ -65657,7 +65690,7 @@
                 "properties": {
                   "sipAuthPassword": {
                     "type": "string",
-                    "description": "The password to be used for SIP authentication with the SIP URI. Null when SIP authentication is disabled.",
+                    "description": "The password to be used for SIP digest authentication. Only returned when `passwordAuthEnabled` is set to `true`. Null otherwise.",
                     "nullable": true,
                     "example": "super_secure_password"
                   }
@@ -84355,11 +84388,14 @@
               "$ref": "#/components/schemas/getVoiceApplicationResponse"
             },
             "examples": {
-              "getVoiceApplicationResponseExampleSipAuthEnabled": {
-                "$ref": "#/components/examples/getVoiceApplicationResponseExampleSipAuthEnabled"
+              "passwordAuthEnabled": {
+                "$ref": "#/components/examples/getResponsePasswordAuthEnabled"
               },
-              "getVoiceApplicationResponseExampleSipAuthDisabled": {
-                "$ref": "#/components/examples/getVoiceApplicationResponseExampleSipAuthDisabled"
+              "ipAclOnly": {
+                "$ref": "#/components/examples/getResponseIpAclOnly"
+              },
+              "inboundSipDisabled": {
+                "$ref": "#/components/examples/getResponseInboundSipDisabled"
               }
             }
           }
@@ -84373,17 +84409,20 @@
               "$ref": "#/components/schemas/updateVoiceApplicationResponse"
             },
             "examples": {
-              "updateVoiceApplicationResponseExampleSipAuthEnable": {
-                "$ref": "#/components/examples/updateVoiceApplicationResponseExampleSipAuthEnable"
+              "enableWithPasswordAuth": {
+                "$ref": "#/components/examples/updateResponseEnableWithPasswordAuth"
               },
-              "updateVoiceApplicationResponseExampleSipAuthEnableWithRegions": {
-                "$ref": "#/components/examples/updateVoiceApplicationResponseExampleSipAuthEnableWithRegions"
+              "enableWithPasswordAuthAndIpAcl": {
+                "$ref": "#/components/examples/updateResponseEnableWithPasswordAuthAndIpAcl"
               },
-              "updateVoiceApplicationResponseExampleSipAuthDisable": {
-                "$ref": "#/components/examples/updateVoiceApplicationResponseExampleSipAuthDisable"
+              "enableWithIpAclOnly": {
+                "$ref": "#/components/examples/updateResponseEnableWithIpAclOnly"
               },
-              "updateVoiceApplicationResponseExampleUpdateRegionsOnly": {
-                "$ref": "#/components/examples/updateVoiceApplicationResponseExampleUpdateRegionsOnly"
+              "disableInboundSipCalls": {
+                "$ref": "#/components/examples/updateResponseDisableInboundSipCalls"
+              },
+              "updateRegionsOnly": {
+                "$ref": "#/components/examples/updateResponseUpdateRegionsOnly"
               }
             }
           }
@@ -103362,8 +103401,8 @@
           ]
         }
       },
-      "getVoiceApplicationResponseExampleSipAuthEnabled": {
-        "summary": "Example response when SIP Auth is enabled",
+      "getResponsePasswordAuthEnabled": {
+        "summary": "Password auth enabled with IP ACL",
         "value": {
           "links": [ ],
           "data": {
@@ -103384,7 +103423,11 @@
             },
             "callbackTimeout": 30,
             "sipUri": "sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com",
-            "sipAuthEnabled": true,
+            "inboundSipCallsEnabled": true,
+            "passwordAuthEnabled": true,
+            "allowedSourceIps": [
+              "203.0.113.0/24"
+            ],
             "allowedRegions": [
               "US",
               "EU"
@@ -103393,8 +103436,43 @@
           "errors": [ ]
         }
       },
-      "getVoiceApplicationResponseExampleSipAuthDisabled": {
-        "summary": "Example response when SIP Auth is disabled",
+      "getResponseIpAclOnly": {
+        "summary": "IP ACL only (no password auth)",
+        "value": {
+          "links": [ ],
+          "data": {
+            "applicationId": "15f99d57-f823-4718-80cc-5d95d5b83e59",
+            "serviceType": "Voice-V2",
+            "applicationName": "My Voice App",
+            "callInitiatedCallbackUrl": "https://example.com/callbacks/inbound",
+            "callInitiatedMethod": "POST",
+            "callStatusCallbackUrl": "https://example.com/callbacks/status",
+            "callStatusMethod": "POST",
+            "callbackCreds": {
+              "userId": "myApiUser"
+            },
+            "callInitiatedFallbackUrl": "https://fallback.example.com/callbacks/inbound",
+            "callInitiatedFallbackMethod": "POST",
+            "callInitiatedFallbackCreds": {
+              "userId": "myFallbackUser"
+            },
+            "callbackTimeout": 30,
+            "sipUri": "sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com",
+            "inboundSipCallsEnabled": true,
+            "passwordAuthEnabled": false,
+            "allowedSourceIps": [
+              "203.0.113.0/24",
+              "198.51.100.0/32"
+            ],
+            "allowedRegions": [
+              "US"
+            ]
+          },
+          "errors": [ ]
+        }
+      },
+      "getResponseInboundSipDisabled": {
+        "summary": "Inbound SIP calls disabled",
         "value": {
           "links": [ ],
           "data": {
@@ -103415,35 +103493,53 @@
             },
             "callbackTimeout": 30,
             "sipUri": null,
-            "sipAuthEnabled": false,
+            "inboundSipCallsEnabled": false,
+            "passwordAuthEnabled": false,
+            "allowedSourceIps": [ ],
             "allowedRegions": null
           },
           "errors": [ ]
         }
       },
-      "updateVoiceApplicationRequestExampleSipAuthEnable": {
-        "summary": "Enable SIP authentication",
+      "updateRequestEnableWithPasswordAuth": {
+        "summary": "Enable inbound SIP with password auth only",
         "value": {
-          "sipAuthEnabled": true
+          "inboundSipCallsEnabled": true,
+          "passwordAuthEnabled": true
         }
       },
-      "updateVoiceApplicationRequestExampleSipAuthEnableWithRegions": {
-        "summary": "Enable SIP authentication with allowed regions",
+      "updateRequestEnableWithPasswordAuthAndIpAcl": {
+        "summary": "Enable inbound SIP with password auth and IP ACL",
         "value": {
-          "sipAuthEnabled": true,
+          "inboundSipCallsEnabled": true,
+          "passwordAuthEnabled": true,
+          "allowedSourceIps": [
+            "203.0.113.0/24"
+          ],
           "allowedRegions": [
             "US"
           ]
         }
       },
-      "updateVoiceApplicationRequestExampleSipAuthDisable": {
-        "summary": "Disable SIP authentication",
+      "updateRequestEnableWithIpAclOnly": {
+        "summary": "Enable inbound SIP with IP ACL only (no password)",
         "value": {
-          "sipAuthEnabled": false
+          "inboundSipCallsEnabled": true,
+          "passwordAuthEnabled": false,
+          "allowedSourceIps": [
+            "203.0.113.0/24",
+            "198.51.100.0/32"
+          ]
         }
       },
-      "updateVoiceApplicationRequestExampleUpdateRegionsOnly": {
-        "summary": "Update allowed regions without changing credentials",
+      "updateRequestDisableInboundSipCalls": {
+        "summary": "Disable inbound SIP calls",
+        "value": {
+          "inboundSipCallsEnabled": false
+        }
+      },
+      "updateRequestUpdateRegionsOnly": {
+        "summary": "Update allowed regions only",
         "value": {
           "allowedRegions": [
             "US",
@@ -103451,8 +103547,8 @@
           ]
         }
       },
-      "updateVoiceApplicationResponseExampleSipAuthEnable": {
-        "summary": "Example response when enabling SIP authentication",
+      "updateResponseEnableWithPasswordAuth": {
+        "summary": "Response after enabling with password auth",
         "value": {
           "links": [ ],
           "data": {
@@ -103473,14 +103569,17 @@
             },
             "callbackTimeout": 30,
             "sipUri": "sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com",
-            "sipAuthEnabled": true,
+            "inboundSipCallsEnabled": true,
+            "passwordAuthEnabled": true,
+            "allowedSourceIps": [ ],
+            "allowedRegions": null,
             "sipAuthPassword": "super_secure_password"
           },
           "errors": [ ]
         }
       },
-      "updateVoiceApplicationResponseExampleSipAuthEnableWithRegions": {
-        "summary": "Example response when enabling SIP authentication with regions",
+      "updateResponseEnableWithPasswordAuthAndIpAcl": {
+        "summary": "Response after enabling with password auth and IP ACL",
         "value": {
           "links": [ ],
           "data": {
@@ -103501,7 +103600,11 @@
             },
             "callbackTimeout": 30,
             "sipUri": "sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com",
-            "sipAuthEnabled": true,
+            "inboundSipCallsEnabled": true,
+            "passwordAuthEnabled": true,
+            "allowedSourceIps": [
+              "203.0.113.0/24"
+            ],
             "allowedRegions": [
               "US"
             ],
@@ -103510,37 +103613,8 @@
           "errors": [ ]
         }
       },
-      "updateVoiceApplicationResponseExampleSipAuthDisable": {
-        "summary": "Example response when disabling SIP authentication",
-        "value": {
-          "links": [ ],
-          "data": {
-            "applicationId": "15f99d57-f823-4718-80cc-5d95d5b83e59",
-            "serviceType": "Voice-V2",
-            "applicationName": "My Voice App",
-            "callInitiatedCallbackUrl": "https://example.com/callbacks/inbound",
-            "callInitiatedMethod": "POST",
-            "callStatusCallbackUrl": "https://example.com/callbacks/status",
-            "callStatusMethod": "POST",
-            "callbackCreds": {
-              "userId": "myApiUser"
-            },
-            "callInitiatedFallbackUrl": "https://fallback.example.com/callbacks/inbound",
-            "callInitiatedFallbackMethod": "POST",
-            "callInitiatedFallbackCreds": {
-              "userId": "myFallbackUser"
-            },
-            "callbackTimeout": 30,
-            "sipUri": null,
-            "sipAuthEnabled": false,
-            "allowedRegions": null,
-            "sipAuthPassword": null
-          },
-          "errors": [ ]
-        }
-      },
-      "updateVoiceApplicationResponseExampleUpdateRegionsOnly": {
-        "summary": "Example response when updating regions only",
+      "updateResponseEnableWithIpAclOnly": {
+        "summary": "Response after enabling with IP ACL only",
         "value": {
           "links": [ ],
           "data": {
@@ -103561,7 +103635,74 @@
             },
             "callbackTimeout": 30,
             "sipUri": "sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com",
-            "sipAuthEnabled": true,
+            "inboundSipCallsEnabled": true,
+            "passwordAuthEnabled": false,
+            "allowedSourceIps": [
+              "203.0.113.0/24",
+              "198.51.100.0/32"
+            ],
+            "allowedRegions": null,
+            "sipAuthPassword": null
+          },
+          "errors": [ ]
+        }
+      },
+      "updateResponseDisableInboundSipCalls": {
+        "summary": "Response after disabling inbound SIP calls",
+        "value": {
+          "links": [ ],
+          "data": {
+            "applicationId": "15f99d57-f823-4718-80cc-5d95d5b83e59",
+            "serviceType": "Voice-V2",
+            "applicationName": "My Voice App",
+            "callInitiatedCallbackUrl": "https://example.com/callbacks/inbound",
+            "callInitiatedMethod": "POST",
+            "callStatusCallbackUrl": "https://example.com/callbacks/status",
+            "callStatusMethod": "POST",
+            "callbackCreds": {
+              "userId": "myApiUser"
+            },
+            "callInitiatedFallbackUrl": "https://fallback.example.com/callbacks/inbound",
+            "callInitiatedFallbackMethod": "POST",
+            "callInitiatedFallbackCreds": {
+              "userId": "myFallbackUser"
+            },
+            "callbackTimeout": 30,
+            "sipUri": null,
+            "inboundSipCallsEnabled": false,
+            "passwordAuthEnabled": false,
+            "allowedSourceIps": [ ],
+            "allowedRegions": null,
+            "sipAuthPassword": null
+          },
+          "errors": [ ]
+        }
+      },
+      "updateResponseUpdateRegionsOnly": {
+        "summary": "Response after updating regions only",
+        "value": {
+          "links": [ ],
+          "data": {
+            "applicationId": "15f99d57-f823-4718-80cc-5d95d5b83e59",
+            "serviceType": "Voice-V2",
+            "applicationName": "My Voice App",
+            "callInitiatedCallbackUrl": "https://example.com/callbacks/inbound",
+            "callInitiatedMethod": "POST",
+            "callStatusCallbackUrl": "https://example.com/callbacks/status",
+            "callStatusMethod": "POST",
+            "callbackCreds": {
+              "userId": "myApiUser"
+            },
+            "callInitiatedFallbackUrl": "https://fallback.example.com/callbacks/inbound",
+            "callInitiatedFallbackMethod": "POST",
+            "callInitiatedFallbackCreds": {
+              "userId": "myFallbackUser"
+            },
+            "callbackTimeout": 30,
+            "sipUri": "sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com",
+            "inboundSipCallsEnabled": true,
+            "passwordAuthEnabled": true,
+            "allowedSourceIps": [ ],
             "allowedRegions": [
               "US",
               "EU"
@@ -108728,17 +108869,20 @@
               "$ref": "#/components/schemas/updateVoiceApplicationRequest"
             },
             "examples": {
-              "updateVoiceApplicationRequestExampleSipAuthEnable": {
-                "$ref": "#/components/examples/updateVoiceApplicationRequestExampleSipAuthEnable"
+              "enableWithPasswordAuth": {
+                "$ref": "#/components/examples/updateRequestEnableWithPasswordAuth"
               },
-              "updateVoiceApplicationRequestExampleSipAuthEnableWithRegions": {
-                "$ref": "#/components/examples/updateVoiceApplicationRequestExampleSipAuthEnableWithRegions"
+              "enableWithPasswordAuthAndIpAcl": {
+                "$ref": "#/components/examples/updateRequestEnableWithPasswordAuthAndIpAcl"
               },
-              "updateVoiceApplicationRequestExampleSipAuthDisable": {
-                "$ref": "#/components/examples/updateVoiceApplicationRequestExampleSipAuthDisable"
+              "enableWithIpAclOnly": {
+                "$ref": "#/components/examples/updateRequestEnableWithIpAclOnly"
               },
-              "updateVoiceApplicationRequestExampleUpdateRegionsOnly": {
-                "$ref": "#/components/examples/updateVoiceApplicationRequestExampleUpdateRegionsOnly"
+              "disableInboundSipCalls": {
+                "$ref": "#/components/examples/updateRequestDisableInboundSipCalls"
+              },
+              "updateRegionsOnly": {
+                "$ref": "#/components/examples/updateRequestUpdateRegionsOnly"
               }
             }
           }

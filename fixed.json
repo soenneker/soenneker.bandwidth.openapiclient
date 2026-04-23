@@ -45550,17 +45550,6 @@
         "description": "The channel of the multi-channel message.",
         "example": "RBM"
       },
-      "NumberManagementPhoneNumbers_Wrapper": {
-        "required": [
-          "value"
-        ],
-        "type": "object",
-        "properties": {
-          "value": {
-            "$ref": "#/components/schemas/NumberManagementPhoneNumbers"
-          }
-        }
-      },
       "MultiChannelDestinations": {
         "uniqueItems": true,
         "type": "array",
@@ -45849,6 +45838,17 @@
         "additionalProperties": false,
         "description": "Defines the layout of the WebView on a mobile device. It must be defined when application is set to `WEBVIEW`\n- `FULL` WebView takes the full screen. \n- `HALF` WebView takes half of the screen.\n- `TALL` WebView takes three-quarters of the screen."
       },
+      "NumberManagementPhoneNumbers_Wrapper": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/NumberManagementPhoneNumbers"
+          }
+        }
+      },
       "UnionBranch": {
         "required": [
           "value"
@@ -45863,17 +45863,6 @@
             ],
             "type": "string",
             "additionalProperties": false
-          }
-        }
-      },
-      "SubscriptionStatusEnum_Wrapper": {
-        "required": [
-          "value"
-        ],
-        "type": "object",
-        "properties": {
-          "value": {
-            "$ref": "#/components/schemas/SubscriptionStatusEnum"
           }
         }
       },
@@ -47405,14 +47394,14 @@
           "name": "Order"
         }
       },
-      "CreateUpdateLinks_Wrapper": {
+      "SubscriptionStatusEnum_Wrapper": {
         "required": [
           "value"
         ],
         "type": "object",
         "properties": {
           "value": {
-            "$ref": "#/components/schemas/CreateUpdateLinks"
+            "$ref": "#/components/schemas/SubscriptionStatusEnum"
           }
         }
       },
@@ -47425,9 +47414,16 @@
         },
         "description": "The TnAttributes field specifies line attributes that will apply to the ported in phone numbers. If present, TnAttributes may have a value of PROTECTED. This element is not applicable for off-net and toll free port-types."
       },
-      "ExamplePayload": {
+      "CreateUpdateLinks_Wrapper": {
+        "required": [
+          "value"
+        ],
         "type": "object",
-        "description": "Placeholder schema for path example refs"
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/CreateUpdateLinks"
+          }
+        }
       },
       "VoiceIntegrationIdsJson": {
         "title": "Voice Integrations",
@@ -47461,6 +47457,10 @@
           "format": "uuid"
         }
       },
+      "ExamplePayload": {
+        "type": "object",
+        "description": "Placeholder schema for path example refs"
+      },
       "QueryCriteriaValues_Branch3": {
         "required": [
           "value"
@@ -47488,17 +47488,6 @@
         "properties": {
           "value": {
             "type": "string"
-          }
-        }
-      },
-      "QueryCriteriaValues_Branch1": {
-        "required": [
-          "value"
-        ],
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "boolean"
           }
         }
       },
@@ -49163,14 +49152,16 @@
           }
         }
       },
-      "SearchVoiceIntegrationsRequestSort_value": {
-        "title": "SearchVoiceIntegrationsRequestSort_value",
-        "enum": [
-          "ASC",
-          "DESC"
+      "QueryCriteriaValues_Branch1": {
+        "required": [
+          "value"
         ],
-        "type": "string",
-        "additionalProperties": false
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "boolean"
+          }
+        }
       },
       "ReservationIdList": {
         "type": "array",
@@ -49864,6 +49855,15 @@
           }
         }
       },
+      "SearchVoiceIntegrationsRequestSort_value": {
+        "title": "SearchVoiceIntegrationsRequestSort_value",
+        "enum": [
+          "ASC",
+          "DESC"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
       "GlobalUnlinkRegulationAddress": {
         "type": "object",
         "properties": {
@@ -49882,6 +49882,15 @@
             78901
           ]
         }
+      },
+      "Origin": {
+        "enum": [
+          "UNDEFINED",
+          "PORTED_IN"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The origin type of numbers, defaulting to 'UNDEFINED' if not ported into IRIS."
       },
       "GlobalLinkRegulationAddress": {
         "type": "object",
@@ -49902,15 +49911,6 @@
           ]
         }
       },
-      "Origin": {
-        "enum": [
-          "UNDEFINED",
-          "PORTED_IN"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The origin type of numbers, defaulting to 'UNDEFINED' if not ported into IRIS."
-      },
       "GlobalUploadProofOfAddress": {
         "type": "object",
         "properties": {
@@ -49923,6 +49923,38 @@
             "description": "List of documents - the first one will be set as proof of address."
           }
         }
+      },
+      "BillingType": {
+        "enum": [
+          "NOCHARGE",
+          "PORTIN",
+          "NEWNUMBER",
+          "PROJECTPORT"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Type of billing rules to be applied."
+      },
+      "TnAttributes": {
+        "type": "object",
+        "properties": {
+          "TnAttribute": {
+            "enum": [
+              "Protected"
+            ],
+            "type": "string",
+            "additionalProperties": false
+          }
+        },
+        "description": "List of phone number attributes to be assigned."
+      },
+      "InitialStatus": {
+        "enum": [
+          "Available"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "TN status to be assigned to imported telephone numbers. Requires the \"Protected\" TnAttribute."
       },
       "GlobalAddToCart": {
         "required": [
@@ -49959,38 +49991,6 @@
           }
         }
       },
-      "BillingType": {
-        "enum": [
-          "NOCHARGE",
-          "PORTIN",
-          "NEWNUMBER",
-          "PROJECTPORT"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "Type of billing rules to be applied."
-      },
-      "TnAttributes": {
-        "type": "object",
-        "properties": {
-          "TnAttribute": {
-            "enum": [
-              "Protected"
-            ],
-            "type": "string",
-            "additionalProperties": false
-          }
-        },
-        "description": "List of phone number attributes to be assigned."
-      },
-      "InitialStatus": {
-        "enum": [
-          "Available"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "TN status to be assigned to imported telephone numbers. Requires the \"Protected\" TnAttribute."
-      },
       "GlobalRemoveFromCart": {
         "required": [
           "type"
@@ -50015,17 +50015,6 @@
           "mapping": {
             "RemoveQuantityFromCartRequest": "#/components/schemas/RemoveQuantityFromCartRequest",
             "RemovePhoneNumbersFromCartRequest": "#/components/schemas/RemovePhoneNumbersFromCartRequest"
-          }
-        }
-      },
-      "UpdateNewPhoneNumberOrder404ResponseSchemaXmlOrderResponseErrorListError": {
-        "type": "object",
-        "properties": {
-          "Code": {
-            "type": "integer"
-          },
-          "Description": {
-            "type": "string"
           }
         }
       },
@@ -50065,6 +50054,17 @@
           }
         }
       },
+      "UpdateNewPhoneNumberOrder404ResponseSchemaXmlOrderResponseErrorListError": {
+        "type": "object",
+        "properties": {
+          "Code": {
+            "type": "integer"
+          },
+          "Description": {
+            "type": "string"
+          }
+        }
+      },
       "TnListResponseTnListResponseChildPortinOrderListChildPortinOrder": {
         "type": "object",
         "properties": {
@@ -50087,15 +50087,6 @@
           }
         }
       },
-      "TnListResponseTnListResponseChildPortinOrderList": {
-        "type": "object",
-        "properties": {
-          "ChildPortinOrder": {
-            "$ref": "#/components/schemas/TnListResponseTnListResponseChildPortinOrderListChildPortinOrder"
-          }
-        },
-        "description": "This is a list of any telephone numbers from the tnList that have not yet been validated."
-      },
       "NumberAcquisitionErrorSource": {
         "title": "Error Source",
         "type": "object",
@@ -50116,18 +50107,14 @@
           }
         }
       },
-      "UrisResponseURIsUris": {
+      "TnListResponseTnListResponseChildPortinOrderList": {
         "type": "object",
         "properties": {
-          "callername": {
-            "type": "string",
-            "description": "Name of subscriber for the endpoint"
-          },
-          "uri": {
-            "type": "string",
-            "description": "Effectively the phone number of the subscriber. The URI can include the \"tel:\" prefix, but it's not required."
+          "ChildPortinOrder": {
+            "$ref": "#/components/schemas/TnListResponseTnListResponseChildPortinOrderListChildPortinOrder"
           }
-        }
+        },
+        "description": "This is a list of any telephone numbers from the tnList that have not yet been validated."
       },
       "ImportToAccountErrorResponse": {
         "type": "object",
@@ -50205,6 +50192,19 @@
         "additionalProperties": false,
         "description": "The MOVE action moves phone numbers to a specific tag. The REMOVE action removes phone numbers from a specific tag."
       },
+      "UrisResponseURIsUris": {
+        "type": "object",
+        "properties": {
+          "callername": {
+            "type": "string",
+            "description": "Name of subscriber for the endpoint"
+          },
+          "uri": {
+            "type": "string",
+            "description": "Effectively the phone number of the subscriber. The URI can include the \"tel:\" prefix, but it's not required."
+          }
+        }
+      },
       "NotificationChannelCallbackCredentialsBasicAuthentication": {
         "type": "object",
         "properties": {
@@ -50220,21 +50220,6 @@
           }
         },
         "description": "Basic Authentication callback credentials"
-      },
-      "GetImportPhoneNumberLoasErrorResponseXmlErrorResponseIrisStatus": {
-        "type": "object",
-        "properties": {
-          "Code": {
-            "type": "integer",
-            "description": "The Bandwidth-defined error code.",
-            "example": 7200
-          },
-          "Description": {
-            "type": "string",
-            "description": "A description of the error.",
-            "example": "The order ID was not found"
-          }
-        }
       },
       "NumberManagementPaginationLinks": {
         "title": "Links",
@@ -50383,6 +50368,21 @@
           }
         }
       },
+      "GetImportPhoneNumberLoasErrorResponseXmlErrorResponseIrisStatus": {
+        "type": "object",
+        "properties": {
+          "Code": {
+            "type": "integer",
+            "description": "The Bandwidth-defined error code.",
+            "example": 7200
+          },
+          "Description": {
+            "type": "string",
+            "description": "A description of the error.",
+            "example": "The order ID was not found"
+          }
+        }
+      },
       "TnOptionOrderReportSummaryResponseTnOptionOrderReportResponseTnOptionOrders": {
         "type": "object",
         "properties": {
@@ -50391,17 +50391,6 @@
           },
           "TnOptionOrderSummary": {
             "$ref": "#/components/schemas/OrderSummary"
-          }
-        }
-      },
-      "TnOptionOrderReportDetailedResponseTnOptionOrderReportResponseTnOptionOrders": {
-        "type": "object",
-        "properties": {
-          "TotalCount": {
-            "type": "integer"
-          },
-          "TnOptionOrder": {
-            "$ref": "#/components/schemas/TnOptionOrderResponsePayload"
           }
         }
       },
@@ -50433,6 +50422,17 @@
         "additionalProperties": false,
         "description": "The action to be taken on the messaging service when moving numbers. This field\nensures that the destination account has compatible messaging settings to support moving numbers. If the \nvalidation passes, the numbers are moved without altering their existing messaging settings. However, \nif the validation fails, the order will be rejected with an error messaging indicating incompatible settings.\n\nIf set to `useDestinationSettings`, this will apply the destination location's messaging settings to the number.\n\nIf set to `useCurrentNumberSettings`, this will validate and apply whether the destination location \ncan accept the numbers' existing messaging settings.",
         "default": "USE_DESTINATION_SETTINGS"
+      },
+      "TnOptionOrderReportDetailedResponseTnOptionOrderReportResponseTnOptionOrders": {
+        "type": "object",
+        "properties": {
+          "TotalCount": {
+            "type": "integer"
+          },
+          "TnOptionOrder": {
+            "$ref": "#/components/schemas/TnOptionOrderResponsePayload"
+          }
+        }
       },
       "LidbOrderHistoryResponseResponseSelectWrapperListOrderIdUserIdDate": {
         "type": "object",
@@ -50525,14 +50525,6 @@
           }
         }
       },
-      "TelephoneDetailsTotalsTelephoneDetailsReportsTelephoneDetailsReport": {
-        "type": "object",
-        "properties": {
-          "Count": {
-            "type": "integer"
-          }
-        }
-      },
       "OrderIds": {
         "type": "array",
         "items": {
@@ -50541,18 +50533,15 @@
         },
         "description": "A list of order IDs for child orders generated from this group of phone number configurations. If there were more than 5000\nphone numbers for one grouping of bulk order details, multiple child orders will be created."
       },
-      "CityErrorResponseXmlCityResponseError": {
+      "TelephoneDetailsTotalsTelephoneDetailsReportsTelephoneDetailsReport": {
         "type": "object",
         "properties": {
-          "Code": {
+          "Count": {
             "type": "integer"
-          },
-          "Description": {
-            "type": "string"
           }
         }
       },
-      "RateCenterErrorResponseXmlRateCenterResponseError": {
+      "CityErrorResponseXmlCityResponseError": {
         "type": "object",
         "properties": {
           "Code": {
@@ -50603,9 +50592,12 @@
         "description": "The action to take with the specified phone numbers.",
         "example": "ADD"
       },
-      "CoveredRateCenterErrorResponseXmlCoveredRateCentersResponseStatus": {
+      "RateCenterErrorResponseXmlRateCenterResponseError": {
         "type": "object",
         "properties": {
+          "Code": {
+            "type": "integer"
+          },
           "Description": {
             "type": "string"
           }
@@ -51331,6 +51323,14 @@
         "nullable": true,
         "example": null
       },
+      "CoveredRateCenterErrorResponseXmlCoveredRateCentersResponseStatus": {
+        "type": "object",
+        "properties": {
+          "Description": {
+            "type": "string"
+          }
+        }
+      },
       "ListImportToAccountOrders400ResponseSchemaResponseSelectWrapperListOrderIdUserIdDate": {
         "type": "object",
         "properties": {
@@ -51353,17 +51353,6 @@
             "items": {
               "$ref": "#/components/schemas/NumberAcquisitionOrderIdUserIdDate"
             }
-          }
-        }
-      },
-      "ImportToAccountErrorResponseErrorResponseIrisStatus": {
-        "type": "object",
-        "properties": {
-          "Code": {
-            "type": "integer"
-          },
-          "Description": {
-            "type": "string"
           }
         }
       },
@@ -51550,12 +51539,14 @@
           }
         }
       },
-      "ImportedTelephoneNumberDetailListItemTelephoneNumberDetail": {
+      "ImportToAccountErrorResponseErrorResponseIrisStatus": {
         "type": "object",
         "properties": {
-          "FullNumber": {
-            "type": "string",
-            "description": "Phone number in E.164 format."
+          "Code": {
+            "type": "integer"
+          },
+          "Description": {
+            "type": "string"
           }
         }
       },
@@ -52788,15 +52779,12 @@
         "type": "string",
         "additionalProperties": false
       },
-      "BulkMoveTnsErrorsItemMeta": {
+      "ImportedTelephoneNumberDetailListItemTelephoneNumberDetail": {
         "type": "object",
         "properties": {
-          "phoneNumbers": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "List of phone numbers for which the error occurred."
+          "FullNumber": {
+            "type": "string",
+            "description": "Phone number in E.164 format."
           }
         }
       },
@@ -52961,17 +52949,15 @@
         "additionalProperties": false,
         "example": "MOBILE"
       },
-      "ServiceActivationOrderPhoneNumberObjectItemServices": {
+      "BulkMoveTnsErrorsItemMeta": {
         "type": "object",
         "properties": {
-          "voice": {
-            "$ref": "#/components/schemas/ServiceActivationCheckerVoiceServices"
-          },
-          "messaging": {
-            "$ref": "#/components/schemas/ServiceActivationCheckerServiceType"
-          },
-          "emergency": {
-            "$ref": "#/components/schemas/ServiceActivationCheckerServiceType"
+          "phoneNumbers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of phone numbers for which the error occurred."
           }
         }
       },
@@ -53145,38 +53131,18 @@
           }
         }
       },
-      "StirShakenCertificatesAccountPutRequestDataRegionData": {
-        "required": [
-          "type"
-        ],
+      "ServiceActivationOrderPhoneNumberObjectItemServices": {
         "type": "object",
-        "oneOf": [
-          {
-            "type": "object",
-            "properties": {
-              "region": {
-                "enum": [
-                  "FR"
-                ],
-                "type": "string",
-                "additionalProperties": false
-              },
-              "regionFr": {
-                "type": "object",
-                "description": "Contains stir/shaken certificate request data for the FR region"
-              }
-            }
-          }
-        ],
         "properties": {
-          "type": {
-            "title": "type",
-            "type": "string",
-            "description": "Union discriminator"
+          "voice": {
+            "$ref": "#/components/schemas/ServiceActivationCheckerVoiceServices"
+          },
+          "messaging": {
+            "$ref": "#/components/schemas/ServiceActivationCheckerServiceType"
+          },
+          "emergency": {
+            "$ref": "#/components/schemas/ServiceActivationCheckerServiceType"
           }
-        },
-        "discriminator": {
-          "propertyName": "type"
         }
       },
       "LookupResult": {
@@ -53241,19 +53207,38 @@
         },
         "description": "Carrier information results for the specified telephone number."
       },
-      "StirShakenCertificatesAccountSpcsListResponseData": {
+      "StirShakenCertificatesAccountPutRequestDataRegionData": {
+        "required": [
+          "type"
+        ],
         "type": "object",
-        "properties": {
-          "totalCount": {
-            "type": "integer",
-            "description": "The total count of objects returned in the response."
-          },
-          "stirShakenCertificatesSpcs": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StirShakenCertificatesAccountSpcsResponseData"
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "region": {
+                "enum": [
+                  "FR"
+                ],
+                "type": "string",
+                "additionalProperties": false
+              },
+              "regionFr": {
+                "type": "object",
+                "description": "Contains stir/shaken certificate request data for the FR region"
+              }
             }
           }
+        ],
+        "properties": {
+          "type": {
+            "title": "type",
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "discriminator": {
+          "propertyName": "type"
         }
       },
       "AlertRequest": {
@@ -53316,17 +53301,17 @@
         },
         "description": "The areas affected by the outage. This can be either a list of FCC IDs, two-letter state codes, or USA if the outage is nationwide.\nOnce an alert has been triggered, the areas affected cannot be updated. In the case that additional areas are impacted after an alert\nhas been triggered, a new incident should be created with the additional areas affected.\n"
       },
-      "StirShakenCertificatesAccountListResponseData": {
+      "StirShakenCertificatesAccountSpcsListResponseData": {
         "type": "object",
         "properties": {
           "totalCount": {
             "type": "integer",
             "description": "The total count of objects returned in the response."
           },
-          "stirShakenCertificates": {
+          "stirShakenCertificatesSpcs": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/StirShakenCertificatesAccountResponseData"
+              "$ref": "#/components/schemas/StirShakenCertificatesAccountSpcsResponseData"
             }
           }
         }
@@ -53425,6 +53410,21 @@
           }
         }
       },
+      "StirShakenCertificatesAccountListResponseData": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "description": "The total count of objects returned in the response."
+          },
+          "stirShakenCertificates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StirShakenCertificatesAccountResponseData"
+            }
+          }
+        }
+      },
       "StirShakenProfilesListResponseData": {
         "type": "object",
         "properties": {
@@ -53439,15 +53439,6 @@
             }
           }
         }
-      },
-      "VoiceProvisioningPhoneNumberErrorMeta": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "object"
-          }
-        },
-        "description": "An optional object which is a map of key value pair, provided to give more information around context, details, or additional information about the error that only applies to specific errors encountered."
       },
       "IncidentResponse": {
         "title": "Get Incident Response",
@@ -53820,15 +53811,14 @@
         },
         "nullable": true
       },
-      "BulkVoicePhoneNumbersAcceptedResponseData": {
+      "VoiceProvisioningPhoneNumberErrorMeta": {
         "type": "object",
         "properties": {
-          "bulkId": {
-            "type": "string",
-            "description": "UUID associated with async task for bulk provisioning voice phone numbers.",
-            "format": "uuid"
+          "items": {
+            "type": "object"
           }
-        }
+        },
+        "description": "An optional object which is a map of key value pair, provided to give more information around context, details, or additional information about the error that only applies to specific errors encountered."
       },
       "TriggerPsapOutage": {
         "title": "Trigger a PSAP Outage Alert",
@@ -54115,6 +54105,16 @@
         },
         "description": "Update a PSAP Outage Alert Incident"
       },
+      "BulkVoicePhoneNumbersAcceptedResponseData": {
+        "type": "object",
+        "properties": {
+          "bulkId": {
+            "type": "string",
+            "description": "UUID associated with async task for bulk provisioning voice phone numbers.",
+            "format": "uuid"
+          }
+        }
+      },
       "VoicePhoneNumbersVoiceConfigurationPackageOriginationRoutePlan": {
         "type": "object",
         "properties": {
@@ -54131,26 +54131,6 @@
           }
         },
         "description": "Origination route plan associated with a voice configuration package."
-      },
-      "SearchVoiceIntegrationsRequestSort": {
-        "type": "object",
-        "properties": {
-          "parameter": {
-            "enum": [
-              "created",
-              "name",
-              "type"
-            ],
-            "type": "string",
-            "additionalProperties": false,
-            "description": "The parameter to sort.",
-            "default": "created",
-            "example": "created"
-          },
-          "value": {
-            "$ref": "#/components/schemas/SearchVoiceIntegrationsRequestSort_value"
-          }
-        }
       },
       "AdminFeedbackSchema": {
         "type": "object",
@@ -54338,11 +54318,23 @@
         "description": "The billing type of the short code. Either standard SMS or free to end user.",
         "example": "STANDARD_SMS"
       },
-      "AnalyticEngineListResponseData": {
+      "SearchVoiceIntegrationsRequestSort": {
         "type": "object",
         "properties": {
-          "analyticEngines": {
-            "$ref": "#/components/schemas/AnalyticEngines"
+          "parameter": {
+            "enum": [
+              "created",
+              "name",
+              "type"
+            ],
+            "type": "string",
+            "additionalProperties": false,
+            "description": "The parameter to sort.",
+            "default": "created",
+            "example": "created"
+          },
+          "value": {
+            "$ref": "#/components/schemas/SearchVoiceIntegrationsRequestSort_value"
           }
         }
       },
@@ -54365,6 +54357,14 @@
         "additionalProperties": false,
         "description": "The type of call to action that the short code uses."
       },
+      "AnalyticEngineListResponseData": {
+        "type": "object",
+        "properties": {
+          "analyticEngines": {
+            "$ref": "#/components/schemas/AnalyticEngines"
+          }
+        }
+      },
       "UpdateVoiceApplicationResponseData": {
         "type": "object",
         "allOf": [
@@ -54376,7 +54376,7 @@
             "properties": {
               "sipAuthPassword": {
                 "type": "string",
-                "description": "The password to be used for SIP authentication with the SIP URI. Null when SIP authentication is disabled.",
+                "description": "The password to be used for SIP digest authentication. Only returned when `passwordAuthEnabled` is set to `true`. Null otherwise.",
                 "nullable": true,
                 "example": "super_secure_password"
               }
@@ -54412,36 +54412,6 @@
         },
         "additionalProperties": false,
         "description": "Information about the source of the error"
-      },
-      "EnrollUserMfaFactorResponseData": {
-        "required": [
-          "id",
-          "status"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The unique identifier of the MFA Factor"
-          },
-          "status": {
-            "$ref": "#/components/schemas/MfaFactorStatusEnum"
-          },
-          "qrCode": {
-            "$ref": "#/components/schemas/MfaQrCode"
-          },
-          "sharedSecret": {
-            "type": "string",
-            "description": "The MFA factor's unique secret key for prover"
-          },
-          "factorType": {
-            "$ref": "#/components/schemas/MfaFactorTypeEnum"
-          },
-          "provider": {
-            "$ref": "#/components/schemas/MfaProviderEnum"
-          }
-        },
-        "additionalProperties": false
       },
       "CampaignResponseSchema": {
         "type": "object",
@@ -54618,23 +54588,35 @@
         },
         "description": "This webhook may be sent out when a campaign status is updated, a short code is assigned to a campaign, or there is an update from the carrier on the status of a campaign."
       },
-      "WebhookSubscriptionBasicAuthentication": {
+      "EnrollUserMfaFactorResponseData": {
         "required": [
-          "username",
-          "password"
+          "id",
+          "status"
         ],
         "type": "object",
         "properties": {
-          "username": {
-            "maxLength": 100,
-            "type": "string"
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the MFA Factor"
           },
-          "password": {
-            "maxLength": 200,
-            "type": "string"
+          "status": {
+            "$ref": "#/components/schemas/MfaFactorStatusEnum"
+          },
+          "qrCode": {
+            "$ref": "#/components/schemas/MfaQrCode"
+          },
+          "sharedSecret": {
+            "type": "string",
+            "description": "The MFA factor's unique secret key for prover"
+          },
+          "factorType": {
+            "$ref": "#/components/schemas/MfaFactorTypeEnum"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/MfaProviderEnum"
           }
         },
-        "description": "Basic authentication credentials are not required, but if present, both username and password must be provided."
+        "additionalProperties": false
       },
       "CommonCampaignFields": {
         "required": [
@@ -54885,20 +54867,30 @@
           }
         }
       },
+      "WebhookSubscriptionBasicAuthentication": {
+        "required": [
+          "username",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "maxLength": 100,
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 200,
+            "type": "string"
+          }
+        },
+        "description": "Basic authentication credentials are not required, but if present, both username and password must be provided."
+      },
       "TendlcErrorEntrySource": {
         "type": "object",
         "additionalProperties": {
           "type": "string"
         },
         "description": "\"A map from the type of source to a value for that type. The supported keys are: 1) POINTER (the value is a RFC6901 JSON pointer to a field in the request body); 2) PARAMETER (the value is a query parameter name); and 3) PATH (the value is a parameter name in the URI of the request). There will only be one entry in the source property, as each error is recorded separately in the errors array.\n\""
-      },
-      "ShortCodeCampaign404ResponseErrorSource": {
-        "type": "object",
-        "properties": {
-          "reference": {
-            "type": "string"
-          }
-        }
       },
       "CreateCampaignRequestSchema": {
         "type": "object",
@@ -54950,6 +54942,14 @@
           },
           "links": {
             "$ref": "#/components/schemas/ShortCodeLinkSchema"
+          }
+        }
+      },
+      "ShortCodeCampaign404ResponseErrorSource": {
+        "type": "object",
+        "properties": {
+          "reference": {
+            "type": "string"
           }
         }
       },
@@ -55123,27 +55123,6 @@
           }
         }
       },
-      "ServiceActivationOrderSearchResponsePage": {
-        "type": "object",
-        "properties": {
-          "pageSize": {
-            "type": "integer",
-            "description": "The number of items per page."
-          },
-          "totalElements": {
-            "type": "integer",
-            "description": "The total number of elements across all pages."
-          },
-          "totalPages": {
-            "type": "integer",
-            "description": "The total number of pages."
-          },
-          "pageNumber": {
-            "type": "integer",
-            "description": "The current page number."
-          }
-        }
-      },
       "EstimatedDailyVolumeMms": {
         "enum": [
           "0-10,000",
@@ -55169,6 +55148,27 @@
         "additionalProperties": false,
         "description": "The estimated daily volume of SMS messages that the short code will send.",
         "example": "0-10,000"
+      },
+      "ServiceActivationOrderSearchResponsePage": {
+        "type": "object",
+        "properties": {
+          "pageSize": {
+            "type": "integer",
+            "description": "The number of items per page."
+          },
+          "totalElements": {
+            "type": "integer",
+            "description": "The total number of elements across all pages."
+          },
+          "totalPages": {
+            "type": "integer",
+            "description": "The total number of pages."
+          },
+          "pageNumber": {
+            "type": "integer",
+            "description": "The current page number."
+          }
+        }
       },
       "ServiceActivationOrderSearchResponseData": {
         "type": "object",
@@ -55289,17 +55289,6 @@
         }
       },
       "ServiceActivationCheckerVoiceServicesOutboundInternational": {
-        "type": "object",
-        "properties": {
-          "reasons": {
-            "$ref": "#/components/schemas/Reasons"
-          },
-          "status": {
-            "$ref": "#/components/schemas/PhoneNumberServiceStatus"
-          }
-        }
-      },
-      "ServiceActivationCheckerVoiceServicesOutboundNational": {
         "type": "object",
         "properties": {
           "reasons": {
@@ -55565,7 +55554,7 @@
           }
         }
       },
-      "ServiceActivationCheckerVoiceServicesInbound": {
+      "ServiceActivationCheckerVoiceServicesOutboundNational": {
         "type": "object",
         "properties": {
           "reasons": {
@@ -55600,6 +55589,17 @@
           "$ref": "#/components/schemas/FeedbackItem"
         },
         "description": "The feedback provided for the short code campaign by a Bandwidth reviewer."
+      },
+      "ServiceActivationCheckerVoiceServicesInbound": {
+        "type": "object",
+        "properties": {
+          "reasons": {
+            "$ref": "#/components/schemas/Reasons"
+          },
+          "status": {
+            "$ref": "#/components/schemas/PhoneNumberServiceStatus"
+          }
+        }
       },
       "ServiceActivationCheckerResponseData": {
         "required": [
@@ -55681,27 +55681,6 @@
           }
         ]
       },
-      "CreateGroupReseller201ResponseData": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/GroupData"
-          },
-          {
-            "required": [
-              "customerId"
-            ],
-            "type": "object",
-            "properties": {
-              "customerId": {
-                "type": "integer",
-                "description": "The ID of the customer the group belongs to",
-                "example": 42
-              }
-            }
-          }
-        ]
-      },
       "JsonPatch": {
         "type": "array",
         "items": {
@@ -55742,6 +55721,27 @@
             "example": "REPLACE"
           }
         }
+      },
+      "CreateGroupReseller201ResponseData": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GroupData"
+          },
+          {
+            "required": [
+              "customerId"
+            ],
+            "type": "object",
+            "properties": {
+              "customerId": {
+                "type": "integer",
+                "description": "The ID of the customer the group belongs to",
+                "example": 42
+              }
+            }
+          }
+        ]
       },
       "CreateMoveTnsBulkOrder202ResponseData": {
         "type": "object",
@@ -55879,14 +55879,6 @@
           }
         }
       },
-      "NumberManagementOrderHistoryWrapperOrderHistoryWrapper": {
-        "type": "object",
-        "properties": {
-          "OrderHistory": {
-            "$ref": "#/components/schemas/NumberManagementOrderHistory"
-          }
-        }
-      },
       "ListCampaignsResponseSchema": {
         "type": "object",
         "properties": {
@@ -55913,6 +55905,31 @@
           }
         }
       },
+      "NumberManagementOrderHistoryWrapperOrderHistoryWrapper": {
+        "type": "object",
+        "properties": {
+          "OrderHistory": {
+            "$ref": "#/components/schemas/NumberManagementOrderHistory"
+          }
+        }
+      },
+      "MessageType": {
+        "enum": [
+          "SMS",
+          "SMS_MMS"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The type of message that the short code is used for. Either SMS only or SMS and MMS.",
+        "example": "SMS"
+      },
+      "MigrationLetterAttachmentUrl": {
+        "maximum": 2048,
+        "type": "object",
+        "description": "The URL for the migration letter attachment.",
+        "format": "uri",
+        "example": "https://www.example.com/migrationLetter"
+      },
       "NumberManagementNoteNote": {
         "type": "object",
         "properties": {
@@ -55933,23 +55950,6 @@
             "description": "This is the date when Order Note was last modified."
           }
         }
-      },
-      "MessageType": {
-        "enum": [
-          "SMS",
-          "SMS_MMS"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The type of message that the short code is used for. Either SMS only or SMS and MMS.",
-        "example": "SMS"
-      },
-      "MigrationLetterAttachmentUrl": {
-        "maximum": 2048,
-        "type": "object",
-        "description": "The URL for the migration letter attachment.",
-        "format": "uri",
-        "example": "https://www.example.com/migrationLetter"
       },
       "MoveTnsCheckerPayloadJsonData": {
         "type": "object",
@@ -55981,6 +55981,26 @@
           }
         }
       },
+      "OptInType": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/OptInTypeEnum"
+        },
+        "description": "The type of opt-in methods that the short code uses. For \"other\", the optInTypeOther field is required."
+      },
+      "OptInTypeEnum": {
+        "enum": [
+          "WEB",
+          "POINT_OF_SALE",
+          "KEYWORD",
+          "IVR",
+          "VERBAL",
+          "OTHER"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The type of opt-in methods that the short code uses."
+      },
       "GetPhoneNumbersTagsResponseData": {
         "type": "object",
         "properties": {
@@ -56008,26 +56028,6 @@
             }
           }
         }
-      },
-      "OptInType": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/OptInTypeEnum"
-        },
-        "description": "The type of opt-in methods that the short code uses. For \"other\", the optInTypeOther field is required."
-      },
-      "OptInTypeEnum": {
-        "enum": [
-          "WEB",
-          "POINT_OF_SALE",
-          "KEYWORD",
-          "IVR",
-          "VERBAL",
-          "OTHER"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The type of opt-in methods that the short code uses."
       },
       "ImportToAccountErrorResponseErrorResponse": {
         "type": "object",
@@ -56062,29 +56062,6 @@
         "properties": {
           "ListOrderIdUserIdDate": {
             "$ref": "#/components/schemas/ListImportToAccountOrders400ResponseSchemaResponseSelectWrapperListOrderIdUserIdDate"
-          }
-        }
-      },
-      "ImportToAccountNumberOrderResponseForGetImportToAccountNumberOrderResponse": {
-        "type": "object",
-        "properties": {
-          "ImportedTelephoneNumberList": {
-            "$ref": "#/components/schemas/ImportedTelephoneNumberList"
-          },
-          "OrderRequest": {
-            "$ref": "#/components/schemas/ImportToAccountOrderResponseOrderRequest"
-          },
-          "OrderStatus": {
-            "$ref": "#/components/schemas/ImportToAccountOrderStatus"
-          },
-          "ImportedTelephoneNumberDetailList": {
-            "$ref": "#/components/schemas/ImportedTelephoneNumberDetailList"
-          },
-          "ErrorList": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/NumberAcquisitionError"
-            }
           }
         }
       },
@@ -56596,14 +56573,26 @@
         },
         "description": "Internal field, list of carrier to provider mappings (direct binds)."
       },
-      "SearchResultErrorResponseXmlError": {
+      "ImportToAccountNumberOrderResponseForGetImportToAccountNumberOrderResponse": {
         "type": "object",
         "properties": {
-          "Code": {
-            "type": "integer"
+          "ImportedTelephoneNumberList": {
+            "$ref": "#/components/schemas/ImportedTelephoneNumberList"
           },
-          "Description": {
-            "type": "string"
+          "OrderRequest": {
+            "$ref": "#/components/schemas/ImportToAccountOrderResponseOrderRequest"
+          },
+          "OrderStatus": {
+            "$ref": "#/components/schemas/ImportToAccountOrderStatus"
+          },
+          "ImportedTelephoneNumberDetailList": {
+            "$ref": "#/components/schemas/ImportedTelephoneNumberDetailList"
+          },
+          "ErrorList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NumberAcquisitionError"
+            }
           }
         }
       },
@@ -57010,11 +56999,14 @@
         },
         "description": "The lease information for the short code number. This information only applies to Bandwidth managed short code leases (customerManagedLease set to false)."
       },
-      "CoveredRateCenterErrorResponseXmlCoveredRateCenters": {
+      "SearchResultErrorResponseXmlError": {
         "type": "object",
         "properties": {
-          "ResponseStatus": {
-            "$ref": "#/components/schemas/CoveredRateCenterErrorResponseXmlCoveredRateCentersResponseStatus"
+          "Code": {
+            "type": "integer"
+          },
+          "Description": {
+            "type": "string"
           }
         }
       },
@@ -57050,21 +57042,11 @@
         },
         "description": "Pagination object that represents the current page."
       },
-      "CoveredRateCenterSearchResponseCoveredRateCenters": {
+      "CoveredRateCenterErrorResponseXmlCoveredRateCenters": {
         "type": "object",
         "properties": {
-          "Links": {
-            "$ref": "#/components/schemas/NumberAcquisitionPaginationLinks"
-          },
-          "TotalCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "CoveredRateCenter": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CoveredRateCenter"
-            }
+          "ResponseStatus": {
+            "$ref": "#/components/schemas/CoveredRateCenterErrorResponseXmlCoveredRateCentersResponseStatus"
           }
         }
       },
@@ -57109,6 +57091,24 @@
       "UpdateShortCodeCampaignWebhookSubscriptionRequestSchema": {
         "type": "string"
       },
+      "CoveredRateCenterSearchResponseCoveredRateCenters": {
+        "type": "object",
+        "properties": {
+          "Links": {
+            "$ref": "#/components/schemas/NumberAcquisitionPaginationLinks"
+          },
+          "TotalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "CoveredRateCenter": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CoveredRateCenter"
+            }
+          }
+        }
+      },
       "RateCenterErrorResponseXmlRateCenterResponse": {
         "type": "object",
         "properties": {
@@ -57117,21 +57117,6 @@
           },
           "ResultCount": {
             "type": "integer"
-          }
-        }
-      },
-      "RateCenterSearchResultsRateCenterResponse": {
-        "type": "object",
-        "properties": {
-          "RateCenters": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RateCenterSearchResult"
-            }
-          },
-          "ResultCount": {
-            "type": "integer",
-            "format": "int32"
           }
         }
       },
@@ -57158,14 +57143,18 @@
         },
         "description": "Basic authentication credentials are not required, but if present, both username and password must be provided."
       },
-      "CityErrorResponseXmlCityResponse": {
+      "RateCenterSearchResultsRateCenterResponse": {
         "type": "object",
         "properties": {
-          "Error": {
-            "$ref": "#/components/schemas/CityErrorResponseXmlCityResponseError"
+          "RateCenters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RateCenterSearchResult"
+            }
           },
           "ResultCount": {
-            "type": "integer"
+            "type": "integer",
+            "format": "int32"
           }
         }
       },
@@ -57178,6 +57167,17 @@
         "nullable": true,
         "writeOnly": true,
         "example": "This is my $3cret"
+      },
+      "CityErrorResponseXmlCityResponse": {
+        "type": "object",
+        "properties": {
+          "Error": {
+            "$ref": "#/components/schemas/CityErrorResponseXmlCityResponseError"
+          },
+          "ResultCount": {
+            "type": "integer"
+          }
+        }
       },
       "CitySearchResultsCityResponse": {
         "type": "object",
@@ -57202,14 +57202,6 @@
           },
           "TelephoneNumber": {
             "type": "string"
-          }
-        }
-      },
-      "TelephoneDetailsTotalsTelephoneDetailsReports": {
-        "type": "object",
-        "properties": {
-          "TelephoneDetailsReport": {
-            "$ref": "#/components/schemas/TelephoneDetailsTotalsTelephoneDetailsReportsTelephoneDetailsReport"
           }
         }
       },
@@ -57249,19 +57241,19 @@
           "$ref": "#/components/schemas/DocumentLinkSchemaItem"
         }
       },
+      "TelephoneDetailsTotalsTelephoneDetailsReports": {
+        "type": "object",
+        "properties": {
+          "TelephoneDetailsReport": {
+            "$ref": "#/components/schemas/TelephoneDetailsTotalsTelephoneDetailsReportsTelephoneDetailsReport"
+          }
+        }
+      },
       "TelephoneDetailsNpaNxxTelephoneDetailsReports": {
         "type": "object",
         "properties": {
           "TelephoneDetailsReport": {
             "$ref": "#/components/schemas/TelephoneDetailsNpaNxxTelephoneDetailsReportsTelephoneDetailsReport"
-          }
-        }
-      },
-      "NumberAcquisitionOrderHistoryWrapperOrderHistoryWrapper": {
-        "type": "object",
-        "properties": {
-          "OrderHistory": {
-            "$ref": "#/components/schemas/NumberAcquisitionOrderHistory"
           }
         }
       },
@@ -57288,19 +57280,19 @@
         "description": "The type of legal entity that is applying for the short code campaign.",
         "example": "CORPORATION"
       },
+      "NumberAcquisitionOrderHistoryWrapperOrderHistoryWrapper": {
+        "type": "object",
+        "properties": {
+          "OrderHistory": {
+            "$ref": "#/components/schemas/NumberAcquisitionOrderHistory"
+          }
+        }
+      },
       "TelephoneDetailsAreaCodesTelephoneDetailsReports": {
         "type": "object",
         "properties": {
           "TelephoneDetailsReport": {
             "$ref": "#/components/schemas/TelephoneDetailsAreaCodesTelephoneDetailsReportsTelephoneDetailsReport"
-          }
-        }
-      },
-      "UpdateNewPhoneNumberOrder404ResponseSchemaXmlOrderResponse": {
-        "type": "object",
-        "properties": {
-          "ErrorList": {
-            "$ref": "#/components/schemas/UpdateNewPhoneNumberOrder404ResponseSchemaXmlOrderResponseErrorList"
           }
         }
       },
@@ -57311,6 +57303,92 @@
         "description": "The stock market symbol for the organization that is applying for the short code campaign.",
         "nullable": true,
         "example": "BAND"
+      },
+      "UpdateNewPhoneNumberOrder404ResponseSchemaXmlOrderResponse": {
+        "type": "object",
+        "properties": {
+          "ErrorList": {
+            "$ref": "#/components/schemas/UpdateNewPhoneNumberOrder404ResponseSchemaXmlOrderResponseErrorList"
+          }
+        }
+      },
+      "DunsNumber": {
+        "maxLength": 12,
+        "minLength": 9,
+        "type": "string",
+        "description": "The 9-digit Dun & Bradstreet number, with or without dashes, for the organization that is applying for the short code campaign.",
+        "nullable": true,
+        "example": "12-345-6789"
+      },
+      "GiinNumber": {
+        "maxLength": 19,
+        "minLength": 19,
+        "pattern": "^[A-Za-z0-9]{6}\\.[A-Za-z0-9]{5}\\.[A-Za-z0-9]{2}\\.[A-Za-z0-9]{3}$",
+        "type": "string",
+        "description": "The Global Intermediary Identification Number for the organization that is applying for the short code campaign.",
+        "nullable": true,
+        "example": "A1B2C3.00000.LE.124"
+      },
+      "LegalEntityId": {
+        "maxLength": 20,
+        "minLength": 20,
+        "type": "string",
+        "description": "The Legal Entity Identifier (LEI) of the organization that is applying for the short code campaign.",
+        "nullable": true,
+        "example": "506700GE1G29325QX363"
+      },
+      "SubsidiariesAndLegalAffiliates": {
+        "maxLength": 1000,
+        "minLength": 1,
+        "type": "string",
+        "description": "Free-form text list of subsidiaries and legal affiliates for the organization that is applying for the short code campaign - no enforced constraints beyond string length.",
+        "nullable": true,
+        "example": "Subsidiary 1, Subsidiary 2, Legal Affiliate 1"
+      },
+      "UpdateCampaignRequestSchema": {
+        "type": "object",
+        "allOf": [
+          {
+            "required": [
+              "customerProfileId"
+            ],
+            "type": "object",
+            "properties": {
+              "addressId": {
+                "type": "string",
+                "description": "Address Id"
+              },
+              "customerProfileId": {
+                "maxLength": 36,
+                "type": "string",
+                "description": "The unique identifier of the customer profile associated with this short code campaign."
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/CommonCampaignFields"
+          }
+        ]
+      },
+      "UpdateShortCodeCampaignWebhookSubscriptionResponseSchema": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ShortCodeCampaignWebhookSubscriptionSchema"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "nullable": true
+            },
+            "description": "The errors array will always be empty for successful responses.",
+            "example": [ ]
+          },
+          "links": {
+            "$ref": "#/components/schemas/ShortCodeLinkSchema"
+          }
+        }
       },
       "TnOrderUpdatedResponseOrderResponse": {
         "type": "object",
@@ -57400,84 +57478,6 @@
           }
         }
       },
-      "DunsNumber": {
-        "maxLength": 12,
-        "minLength": 9,
-        "type": "string",
-        "description": "The 9-digit Dun & Bradstreet number, with or without dashes, for the organization that is applying for the short code campaign.",
-        "nullable": true,
-        "example": "12-345-6789"
-      },
-      "GiinNumber": {
-        "maxLength": 19,
-        "minLength": 19,
-        "pattern": "^[A-Za-z0-9]{6}\\.[A-Za-z0-9]{5}\\.[A-Za-z0-9]{2}\\.[A-Za-z0-9]{3}$",
-        "type": "string",
-        "description": "The Global Intermediary Identification Number for the organization that is applying for the short code campaign.",
-        "nullable": true,
-        "example": "A1B2C3.00000.LE.124"
-      },
-      "LegalEntityId": {
-        "maxLength": 20,
-        "minLength": 20,
-        "type": "string",
-        "description": "The Legal Entity Identifier (LEI) of the organization that is applying for the short code campaign.",
-        "nullable": true,
-        "example": "506700GE1G29325QX363"
-      },
-      "SubsidiariesAndLegalAffiliates": {
-        "maxLength": 1000,
-        "minLength": 1,
-        "type": "string",
-        "description": "Free-form text list of subsidiaries and legal affiliates for the organization that is applying for the short code campaign - no enforced constraints beyond string length.",
-        "nullable": true,
-        "example": "Subsidiary 1, Subsidiary 2, Legal Affiliate 1"
-      },
-      "UpdateCampaignRequestSchema": {
-        "type": "object",
-        "allOf": [
-          {
-            "required": [
-              "customerProfileId"
-            ],
-            "type": "object",
-            "properties": {
-              "addressId": {
-                "type": "string",
-                "description": "Address Id"
-              },
-              "customerProfileId": {
-                "maxLength": 36,
-                "type": "string",
-                "description": "The unique identifier of the customer profile associated with this short code campaign."
-              }
-            }
-          },
-          {
-            "$ref": "#/components/schemas/CommonCampaignFields"
-          }
-        ]
-      },
-      "UpdateShortCodeCampaignWebhookSubscriptionResponseSchema": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "$ref": "#/components/schemas/ShortCodeCampaignWebhookSubscriptionSchema"
-          },
-          "errors": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "nullable": true
-            },
-            "description": "The errors array will always be empty for successful responses.",
-            "example": [ ]
-          },
-          "links": {
-            "$ref": "#/components/schemas/ShortCodeLinkSchema"
-          }
-        }
-      },
       "OrderUpdateOrder": {
         "type": "object",
         "properties": {
@@ -57490,25 +57490,6 @@
           "Name": {
             "type": "string"
           }
-        }
-      },
-      "CombinedSearchAndOrderResponseOrder": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/OrderResponseMetadata"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "CombinedSearchAndOrderType": {
-                "$ref": "#/components/schemas/CombinedSearchAndOrderTypeXml"
-              }
-            }
-          }
-        ],
-        "xml": {
-          "name": "Order"
         }
       },
       "SubscriptionsGenericError": {
@@ -58040,6 +58021,25 @@
         },
         "description": "The Username and Password to be used for basic authentication."
       },
+      "CombinedSearchAndOrderResponseOrder": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/OrderResponseMetadata"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "CombinedSearchAndOrderType": {
+                "$ref": "#/components/schemas/CombinedSearchAndOrderTypeXml"
+              }
+            }
+          }
+        ],
+        "xml": {
+          "name": "Order"
+        }
+      },
       "StateSearchAndOrderResponseOrder": {
         "type": "object",
         "allOf": [
@@ -58070,25 +58070,6 @@
             "properties": {
               "CitySearchAndOrderType": {
                 "$ref": "#/components/schemas/CitySearchAndOrderTypeXml"
-              }
-            }
-          }
-        ],
-        "xml": {
-          "name": "Order"
-        }
-      },
-      "ZipSearchAndOrderResponseOrder": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/OrderResponseMetadata"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "ZIPSearchAndOrderType": {
-                "$ref": "#/components/schemas/ZipSearchAndOrderTypeXml"
               }
             }
           }
@@ -58174,7 +58155,7 @@
           }
         ]
       },
-      "LataSearchAndOrderResponseOrder": {
+      "ZipSearchAndOrderResponseOrder": {
         "type": "object",
         "allOf": [
           {
@@ -58183,8 +58164,8 @@
           {
             "type": "object",
             "properties": {
-              "LATASearchAndOrderType": {
-                "$ref": "#/components/schemas/LataSearchAndOrderTypeXml"
+              "ZIPSearchAndOrderType": {
+                "$ref": "#/components/schemas/ZipSearchAndOrderTypeXml"
               }
             }
           }
@@ -58225,7 +58206,7 @@
           }
         ]
       },
-      "TollFreeVanitySearchAndOrderResponseOrder": {
+      "LataSearchAndOrderResponseOrder": {
         "type": "object",
         "allOf": [
           {
@@ -58234,8 +58215,8 @@
           {
             "type": "object",
             "properties": {
-              "TollFreeVanitySearchAndOrderType": {
-                "$ref": "#/components/schemas/TollFreeVanitySearchAndOrderTypeXml"
+              "LATASearchAndOrderType": {
+                "$ref": "#/components/schemas/LataSearchAndOrderTypeXml"
               }
             }
           }
@@ -58405,7 +58386,7 @@
           }
         }
       },
-      "TollFreeWildCharSearchAndOrderResponseOrder": {
+      "TollFreeVanitySearchAndOrderResponseOrder": {
         "type": "object",
         "allOf": [
           {
@@ -58414,8 +58395,8 @@
           {
             "type": "object",
             "properties": {
-              "TollFreeWildCharSearchAndOrderType": {
-                "$ref": "#/components/schemas/TollFreeWildCharSearchAndOrderTypeXml"
+              "TollFreeVanitySearchAndOrderType": {
+                "$ref": "#/components/schemas/TollFreeVanitySearchAndOrderTypeXml"
               }
             }
           }
@@ -59209,6 +59190,25 @@
         },
         "description": "A summary description of a campaign."
       },
+      "TollFreeWildCharSearchAndOrderResponseOrder": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/OrderResponseMetadata"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "TollFreeWildCharSearchAndOrderType": {
+                "$ref": "#/components/schemas/TollFreeWildCharSearchAndOrderTypeXml"
+              }
+            }
+          }
+        ],
+        "xml": {
+          "name": "Order"
+        }
+      },
       "NpaNxxSearchAndOrderResponseOrder": {
         "type": "object",
         "allOf": [
@@ -59220,25 +59220,6 @@
             "properties": {
               "NPANXXSearchAndOrderType": {
                 "$ref": "#/components/schemas/NpaNxxSearchAndOrderTypeXml"
-              }
-            }
-          }
-        ],
-        "xml": {
-          "name": "Order"
-        }
-      },
-      "AreaCodeSearchAndOrderResponseOrder": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/OrderResponseMetadata"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "AreaCodeSearchAndOrderType": {
-                "$ref": "#/components/schemas/AreaCodeSearchAndOrderTypeXml"
               }
             }
           }
@@ -59834,6 +59815,25 @@
         "type": "string",
         "additionalProperties": false
       },
+      "AreaCodeSearchAndOrderResponseOrder": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/OrderResponseMetadata"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "AreaCodeSearchAndOrderType": {
+                "$ref": "#/components/schemas/AreaCodeSearchAndOrderTypeXml"
+              }
+            }
+          }
+        ],
+        "xml": {
+          "name": "Order"
+        }
+      },
       "RateCenterSearchAndOrderResponseOrder": {
         "type": "object",
         "allOf": [
@@ -59845,25 +59845,6 @@
             "properties": {
               "RateCenterSearchAndOrderType": {
                 "$ref": "#/components/schemas/RateCenterSearchAndOrderTypeXml"
-              }
-            }
-          }
-        ],
-        "xml": {
-          "name": "Order"
-        }
-      },
-      "ExistingTelephoneNumberOrderResponseOrder": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/OrderResponseMetadata"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "ExistingTelephoneNumberOrderType": {
-                "$ref": "#/components/schemas/ExistingTelephoneNumberOrderTypeXml"
               }
             }
           }
@@ -59888,6 +59869,25 @@
         "type": "string",
         "additionalProperties": false,
         "example": "VERIFIED"
+      },
+      "ExistingTelephoneNumberOrderResponseOrder": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/OrderResponseMetadata"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "ExistingTelephoneNumberOrderType": {
+                "$ref": "#/components/schemas/ExistingTelephoneNumberOrderTypeXml"
+              }
+            }
+          }
+        ],
+        "xml": {
+          "name": "Order"
+        }
       },
       "CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder": {
         "type": "object",
@@ -59993,28 +59993,6 @@
         },
         "description": "\"A map from the type of source to a value for that type. The supported keys are: 1) POINTER (the value is a RFC6901 JSON pointer to a field in the request body); 2) PARAMETER (the value is a query parameter name); and 3) PATH (the value is a parameter name in the URI of the request). There will only be one entry in the source property, as each error is recorded separately in the errors array.\n\""
       },
-      "JsonOrderHistoryWrapperOrderHistory": {
-        "type": "object",
-        "properties": {
-          "orderDate": {
-            "type": "string",
-            "description": "This is the date/time when the order history entry was created.",
-            "format": "date-time"
-          },
-          "note": {
-            "type": "string",
-            "description": "This is the order note that accompanied the order history entry."
-          },
-          "author": {
-            "type": "string",
-            "description": "This is the user that initiated the event that caused the order history to be updated."
-          },
-          "status": {
-            "type": "string",
-            "description": "This is the state that the order was in when the order history event occurred."
-          }
-        }
-      },
       "BusinessRegistrationNumber": {
         "maxLength": 500,
         "type": "string",
@@ -60075,11 +60053,25 @@
         "nullable": true,
         "example": "Please contact support for assistance."
       },
-      "LineFeaturesOrderHistoryWrapperOrderHistoryWrapper": {
+      "JsonOrderHistoryWrapperOrderHistory": {
         "type": "object",
         "properties": {
-          "OrderHistory": {
-            "$ref": "#/components/schemas/LineFeaturesOrderHistory"
+          "orderDate": {
+            "type": "string",
+            "description": "This is the date/time when the order history entry was created.",
+            "format": "date-time"
+          },
+          "note": {
+            "type": "string",
+            "description": "This is the order note that accompanied the order history entry."
+          },
+          "author": {
+            "type": "string",
+            "description": "This is the user that initiated the event that caused the order history to be updated."
+          },
+          "status": {
+            "type": "string",
+            "description": "This is the state that the order was in when the order history event occurred."
           }
         }
       },
@@ -60105,6 +60097,14 @@
           }
         }
       },
+      "LineFeaturesOrderHistoryWrapperOrderHistoryWrapper": {
+        "type": "object",
+        "properties": {
+          "OrderHistory": {
+            "$ref": "#/components/schemas/LineFeaturesOrderHistory"
+          }
+        }
+      },
       "DldaOrderErrorResponseDldaOrderResponse": {
         "type": "object",
         "properties": {
@@ -60121,14 +60121,6 @@
         "properties": {
           "dldaOrder": {
             "$ref": "#/components/schemas/JsonDldaOrderResponsePayload"
-          }
-        }
-      },
-      "DldaOrderResponseDldaOrderResponse": {
-        "type": "object",
-        "properties": {
-          "DldaOrder": {
-            "$ref": "#/components/schemas/DldaOrderResponsePayload"
           }
         }
       },
@@ -60653,6 +60645,20 @@
           }
         }
       },
+      "DldaOrderResponseDldaOrderResponse": {
+        "type": "object",
+        "properties": {
+          "DldaOrder": {
+            "$ref": "#/components/schemas/DldaOrderResponsePayload"
+          }
+        }
+      },
+      "UseCases": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
       "LidbOrderErrorResponseLidbOrderResponse": {
         "type": "object",
         "properties": {
@@ -60668,12 +60674,6 @@
           "Status": {
             "$ref": "#/components/schemas/LidbOrderErrorResponseLidbOrderResponseStatus"
           }
-        }
-      },
-      "UseCases": {
-        "type": "array",
-        "items": {
-          "type": "string"
         }
       },
       "JsonLidbOrderErrorResponseStatus": {
@@ -60694,34 +60694,6 @@
         "properties": {
           "ListOrderIdUserIdDate": {
             "$ref": "#/components/schemas/ResponseSelectWrapperResponseSelectWrapperListOrderIdUserIdDate"
-          }
-        }
-      },
-      "LidbOrderResponsePayloadLidbOrder": {
-        "type": "object",
-        "properties": {
-          "OrderId": {
-            "type": "string"
-          },
-          "CustomerOrderId": {
-            "maxLength": 255,
-            "type": "string",
-            "description": "The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Order. The element is optional. Only alphanumeric values, dashes and spaces are allowed."
-          },
-          "ProcessingStatus": {
-            "type": "string"
-          },
-          "ErrorList": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LidbOrderError"
-            }
-          },
-          "LidbTnGroups": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LidbDetailTnGroup"
-            }
           }
         }
       },
@@ -61003,11 +60975,31 @@
         "additionalProperties": false,
         "example": "VERIFIED"
       },
-      "LidbOrderHistoryResponseResponseSelectWrapper": {
+      "LidbOrderResponsePayloadLidbOrder": {
         "type": "object",
         "properties": {
-          "ListOrderIdUserIdDate": {
-            "$ref": "#/components/schemas/LidbOrderHistoryResponseResponseSelectWrapperListOrderIdUserIdDate"
+          "OrderId": {
+            "type": "string"
+          },
+          "CustomerOrderId": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Order. The element is optional. Only alphanumeric values, dashes and spaces are allowed."
+          },
+          "ProcessingStatus": {
+            "type": "string"
+          },
+          "ErrorList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LidbOrderError"
+            }
+          },
+          "LidbTnGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LidbDetailTnGroup"
+            }
           }
         }
       },
@@ -61499,6 +61491,14 @@
         },
         "additionalProperties": false
       },
+      "LidbOrderHistoryResponseResponseSelectWrapper": {
+        "type": "object",
+        "properties": {
+          "ListOrderIdUserIdDate": {
+            "$ref": "#/components/schemas/LidbOrderHistoryResponseResponseSelectWrapperListOrderIdUserIdDate"
+          }
+        }
+      },
       "TnOptionOrderResponseTnOptionOrderResponse": {
         "type": "object",
         "properties": {
@@ -61533,14 +61533,6 @@
           }
         }
       },
-      "TnOptionOrderResponsePayloadTnOptionGroups": {
-        "type": "object",
-        "properties": {
-          "TnOptionGroup": {
-            "$ref": "#/components/schemas/TnOptionGroupVcpDisabledXml"
-          }
-        }
-      },
       "UserManagementAccountScopeEnum": {
         "enum": [
           "ACCOUNT",
@@ -61551,11 +61543,11 @@
         "description": "The scope of the user",
         "example": "ACCOUNT_ADMIN"
       },
-      "TnOptionOrderReportDetailedResponseTnOptionOrderReportResponse": {
+      "TnOptionOrderResponsePayloadTnOptionGroups": {
         "type": "object",
         "properties": {
-          "TnOptionOrders": {
-            "$ref": "#/components/schemas/TnOptionOrderReportDetailedResponseTnOptionOrderReportResponseTnOptionOrders"
+          "TnOptionGroup": {
+            "$ref": "#/components/schemas/TnOptionGroupVcpDisabledXml"
           }
         }
       },
@@ -61594,6 +61586,14 @@
         "additionalProperties": false,
         "description": "Valid statuses that a user can transition to",
         "example": "ACTIVE"
+      },
+      "TnOptionOrderReportDetailedResponseTnOptionOrderReportResponse": {
+        "type": "object",
+        "properties": {
+          "TnOptionOrders": {
+            "$ref": "#/components/schemas/TnOptionOrderReportDetailedResponseTnOptionOrderReportResponseTnOptionOrders"
+          }
+        }
       },
       "TnOptionOrderReportSummaryResponseTnOptionOrderReportResponse": {
         "type": "object",
@@ -61645,6 +61645,17 @@
           }
         }
       },
+      "CredentialSourceEnum": {
+        "enum": [
+          "PASSWORD",
+          "SSO",
+          "SSO_PASSWORD"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The credential source for the user",
+        "example": "PASSWORD"
+      },
       "RemoveImportedTnOrdersResponseRemoveImportedTnOrder": {
         "type": "object",
         "properties": {
@@ -61691,25 +61702,6 @@
           }
         }
       },
-      "CredentialSourceEnum": {
-        "enum": [
-          "PASSWORD",
-          "SSO",
-          "SSO_PASSWORD"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The credential source for the user",
-        "example": "PASSWORD"
-      },
-      "OrderHistoryWrapperOrderHistoryWrapper": {
-        "type": "object",
-        "properties": {
-          "OrderHistory": {
-            "$ref": "#/components/schemas/OrderHistoryXml"
-          }
-        }
-      },
       "UserManagementAccounts": {
         "type": "array",
         "items": {
@@ -61718,14 +61710,11 @@
           "description": "A unique identifier for an account"
         }
       },
-      "ImportTnOrdersResponseListImportTnOrders": {
+      "OrderHistoryWrapperOrderHistoryWrapper": {
         "type": "object",
         "properties": {
-          "TotalCount": {
-            "type": "integer"
-          },
-          "ImportTnOrderSummary": {
-            "$ref": "#/components/schemas/ImportTnOrderSummary"
+          "OrderHistory": {
+            "$ref": "#/components/schemas/OrderHistoryXml"
           }
         }
       },
@@ -61760,6 +61749,17 @@
           }
         },
         "additionalProperties": false
+      },
+      "ImportTnOrdersResponseListImportTnOrders": {
+        "type": "object",
+        "properties": {
+          "TotalCount": {
+            "type": "integer"
+          },
+          "ImportTnOrderSummary": {
+            "$ref": "#/components/schemas/ImportTnOrderSummary"
+          }
+        }
       },
       "ImportTnOrdersResponseImportTnOrdersResponse": {
         "type": "object",
@@ -61855,14 +61855,6 @@
           }
         }
       },
-      "GetImportPhoneNumberLoasErrorResponseXmlErrorResponse": {
-        "type": "object",
-        "properties": {
-          "irisStatus": {
-            "$ref": "#/components/schemas/GetImportPhoneNumberLoasErrorResponseXmlErrorResponseIrisStatus"
-          }
-        }
-      },
       "MfaFactorTypeEnum": {
         "enum": [
           "TOTP",
@@ -61883,20 +61875,11 @@
         "description": "The MFA factor provider",
         "example": "OKTA"
       },
-      "FileUploadResponseXmlFileUploadResponse": {
+      "GetImportPhoneNumberLoasErrorResponseXmlErrorResponse": {
         "type": "object",
         "properties": {
-          "fileName": {
-            "type": "integer",
-            "description": "The (optional) name that was associated with the file when it was uploaded."
-          },
-          "resultCode": {
-            "type": "integer",
-            "description": "Result code of fetching the list of files from AWS."
-          },
-          "resultMessage": {
-            "type": "string",
-            "description": "Results of the attempt to fetch the list of files."
+          "irisStatus": {
+            "$ref": "#/components/schemas/GetImportPhoneNumberLoasErrorResponseXmlErrorResponseIrisStatus"
           }
         }
       },
@@ -61913,6 +61896,23 @@
         "additionalProperties": false,
         "description": "The enrollment status of the MFA factor",
         "example": "NOT_SETUP"
+      },
+      "FileUploadResponseXmlFileUploadResponse": {
+        "type": "object",
+        "properties": {
+          "fileName": {
+            "type": "integer",
+            "description": "The (optional) name that was associated with the file when it was uploaded."
+          },
+          "resultCode": {
+            "type": "integer",
+            "description": "Result code of fetching the list of files from AWS."
+          },
+          "resultMessage": {
+            "type": "string",
+            "description": "Results of the attempt to fetch the list of files."
+          }
+        }
       },
       "FileListResponseXmlFileListResponse": {
         "type": "object",
@@ -61941,6 +61941,24 @@
             "$ref": "#/components/schemas/NotificationChannelCallbackCredentialsBasicAuthentication"
           }
         }
+      },
+      "MfaQrCode": {
+        "required": [
+          "href",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string",
+            "description": "The location to find the QR Code image"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of image the QR Code will be"
+          }
+        },
+        "additionalProperties": false
       },
       "OrderDidGroups": {
         "type": "object",
@@ -61973,36 +61991,6 @@
             }
           }
         }
-      },
-      "MfaQrCode": {
-        "required": [
-          "href",
-          "type"
-        ],
-        "type": "object",
-        "properties": {
-          "href": {
-            "type": "string",
-            "description": "The location to find the QR Code image"
-          },
-          "type": {
-            "type": "string",
-            "description": "The type of image the QR Code will be"
-          }
-        },
-        "additionalProperties": false
-      },
-      "GlobalV3ErrorSource": {
-        "type": "object",
-        "properties": {
-          "field": {
-            "minLength": 1,
-            "type": "string",
-            "description": "Missing field or field having the issue.",
-            "example": "documentType"
-          }
-        },
-        "description": "Contains references to the source of the error."
       },
       "MfaFactor": {
         "required": [
@@ -62053,29 +62041,17 @@
         },
         "additionalProperties": false
       },
-      "ExternalCdrResourceHolderPagination": {
+      "GlobalV3ErrorSource": {
         "type": "object",
         "properties": {
-          "limit": {
-            "type": "integer",
-            "description": "A limit on the number of records to be returned.",
-            "format": "int32",
-            "example": 10000
-          },
-          "offset": {
-            "type": "integer",
-            "description": "Indicates if the DID has been anonymised due to GDPR regulations.",
-            "format": "int32",
-            "example": 20
-          },
-          "total": {
-            "type": "integer",
-            "description": "Total number of records.",
-            "format": "int64",
-            "example": 9000
+          "field": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Missing field or field having the issue.",
+            "example": "documentType"
           }
         },
-        "description": "An object which contains pagination information related to the response."
+        "description": "Contains references to the source of the error."
       },
       "UserManagementSort": {
         "enum": [
@@ -62404,6 +62380,30 @@
         "nullable": true,
         "example": "sip:479fbd44-3362-45f3-bb80-284f21111be4@sip.programmable-voice.bandwidth.com"
       },
+      "ExternalCdrResourceHolderPagination": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "description": "A limit on the number of records to be returned.",
+            "format": "int32",
+            "example": 10000
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Indicates if the DID has been anonymised due to GDPR regulations.",
+            "format": "int32",
+            "example": 20
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total number of records.",
+            "format": "int64",
+            "example": 9000
+          }
+        },
+        "description": "An object which contains pagination information related to the response."
+      },
       "ComplianceRequirementsPaginationResponseData": {
         "type": "object",
         "properties": {
@@ -62419,6 +62419,17 @@
             }
           }
         }
+      },
+      "AllowedSourceIps": {
+        "title": "Allowed Source IPs",
+        "maxItems": 25,
+        "type": "array",
+        "items": {
+          "pattern": "^(\\d{1,3}\\.){3}\\d{1,3}/\\d{1,2}$",
+          "type": "string"
+        },
+        "description": "List of CIDR blocks allowed to send SIP traffic to this application. An empty array means no IP restriction is applied. Maximum 25 entries.",
+        "default": [ ]
       },
       "VoiceApplicationManagementRegion": {
         "title": "Region",
@@ -62525,9 +62536,16 @@
           "sipUri": {
             "$ref": "#/components/schemas/SipUri"
           },
-          "sipAuthEnabled": {
+          "inboundSipCallsEnabled": {
             "type": "boolean",
-            "description": "Indicates whether SIP authentication is enabled for the application."
+            "description": "Indicates whether the application can receive inbound SIP calls."
+          },
+          "passwordAuthEnabled": {
+            "type": "boolean",
+            "description": "Controls whether SIP digest authentication (407 challenge) is required for inbound SIP calls."
+          },
+          "allowedSourceIps": {
+            "$ref": "#/components/schemas/AllowedSourceIps"
           },
           "allowedRegions": {
             "$ref": "#/components/schemas/AllowedRegions"
@@ -62539,15 +62557,22 @@
         "title": "Update Voice Application Request",
         "type": "object",
         "properties": {
-          "sipAuthEnabled": {
+          "inboundSipCallsEnabled": {
             "type": "boolean",
-            "description": "Indicates whether SIP authentication is enabled for the application."
+            "description": "Indicates whether the application can receive inbound SIP calls."
+          },
+          "passwordAuthEnabled": {
+            "type": "boolean",
+            "description": "Controls whether SIP digest authentication (407 challenge) is required for inbound SIP calls."
+          },
+          "allowedSourceIps": {
+            "$ref": "#/components/schemas/AllowedSourceIps"
           },
           "allowedRegions": {
             "$ref": "#/components/schemas/AllowedRegions"
           }
         },
-        "description": "At least one of `sipAuthEnabled` or `allowedRegions` must be provided."
+        "description": "\"At least one field must be provided. When `inboundSipCallsEnabled` is `true`, at least one auth mechanism must be active: `passwordAuthEnabled: true` OR a non-empty `allowedSourceIps` array.\""
       },
       "GetVoiceApplicationResponse": {
         "title": "Get Voice Application Response",
@@ -82372,11 +82397,14 @@
               "$ref": "#/components/schemas/GetVoiceApplicationResponse"
             },
             "examples": {
-              "getVoiceApplicationResponseExampleSipAuthEnabled": {
-                "$ref": "#/components/examples/getVoiceApplicationResponseExampleSipAuthEnabled"
+              "passwordAuthEnabled": {
+                "$ref": "#/components/examples/getResponsePasswordAuthEnabled"
               },
-              "getVoiceApplicationResponseExampleSipAuthDisabled": {
-                "$ref": "#/components/examples/getVoiceApplicationResponseExampleSipAuthDisabled"
+              "ipAclOnly": {
+                "$ref": "#/components/examples/getResponseIpAclOnly"
+              },
+              "inboundSipDisabled": {
+                "$ref": "#/components/examples/getResponseInboundSipDisabled"
               }
             }
           }
@@ -82390,17 +82418,20 @@
               "$ref": "#/components/schemas/UpdateVoiceApplicationResponse"
             },
             "examples": {
-              "updateVoiceApplicationResponseExampleSipAuthEnable": {
-                "$ref": "#/components/examples/updateVoiceApplicationResponseExampleSipAuthEnable"
+              "enableWithPasswordAuth": {
+                "$ref": "#/components/examples/updateResponseEnableWithPasswordAuth"
               },
-              "updateVoiceApplicationResponseExampleSipAuthEnableWithRegions": {
-                "$ref": "#/components/examples/updateVoiceApplicationResponseExampleSipAuthEnableWithRegions"
+              "enableWithPasswordAuthAndIpAcl": {
+                "$ref": "#/components/examples/updateResponseEnableWithPasswordAuthAndIpAcl"
               },
-              "updateVoiceApplicationResponseExampleSipAuthDisable": {
-                "$ref": "#/components/examples/updateVoiceApplicationResponseExampleSipAuthDisable"
+              "enableWithIpAclOnly": {
+                "$ref": "#/components/examples/updateResponseEnableWithIpAclOnly"
               },
-              "updateVoiceApplicationResponseExampleUpdateRegionsOnly": {
-                "$ref": "#/components/examples/updateVoiceApplicationResponseExampleUpdateRegionsOnly"
+              "disableInboundSipCalls": {
+                "$ref": "#/components/examples/updateResponseDisableInboundSipCalls"
+              },
+              "updateRegionsOnly": {
+                "$ref": "#/components/examples/updateResponseUpdateRegionsOnly"
               }
             }
           }
@@ -101410,8 +101441,8 @@
           ]
         }
       },
-      "getVoiceApplicationResponseExampleSipAuthEnabled": {
-        "summary": "Example response when SIP Auth is enabled",
+      "getResponsePasswordAuthEnabled": {
+        "summary": "Password auth enabled with IP ACL",
         "value": {
           "links": [ ],
           "data": {
@@ -101432,7 +101463,11 @@
             },
             "callbackTimeout": 30,
             "sipUri": "sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com",
-            "sipAuthEnabled": true,
+            "inboundSipCallsEnabled": true,
+            "passwordAuthEnabled": true,
+            "allowedSourceIps": [
+              "203.0.113.0/24"
+            ],
             "allowedRegions": [
               "US",
               "EU"
@@ -101441,8 +101476,43 @@
           "errors": [ ]
         }
       },
-      "getVoiceApplicationResponseExampleSipAuthDisabled": {
-        "summary": "Example response when SIP Auth is disabled",
+      "getResponseIpAclOnly": {
+        "summary": "IP ACL only (no password auth)",
+        "value": {
+          "links": [ ],
+          "data": {
+            "applicationId": "15f99d57-f823-4718-80cc-5d95d5b83e59",
+            "serviceType": "Voice-V2",
+            "applicationName": "My Voice App",
+            "callInitiatedCallbackUrl": "https://example.com/callbacks/inbound",
+            "callInitiatedMethod": "POST",
+            "callStatusCallbackUrl": "https://example.com/callbacks/status",
+            "callStatusMethod": "POST",
+            "callbackCreds": {
+              "userId": "myApiUser"
+            },
+            "callInitiatedFallbackUrl": "https://fallback.example.com/callbacks/inbound",
+            "callInitiatedFallbackMethod": "POST",
+            "callInitiatedFallbackCreds": {
+              "userId": "myFallbackUser"
+            },
+            "callbackTimeout": 30,
+            "sipUri": "sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com",
+            "inboundSipCallsEnabled": true,
+            "passwordAuthEnabled": false,
+            "allowedSourceIps": [
+              "203.0.113.0/24",
+              "198.51.100.0/32"
+            ],
+            "allowedRegions": [
+              "US"
+            ]
+          },
+          "errors": [ ]
+        }
+      },
+      "getResponseInboundSipDisabled": {
+        "summary": "Inbound SIP calls disabled",
         "value": {
           "links": [ ],
           "data": {
@@ -101463,35 +101533,53 @@
             },
             "callbackTimeout": 30,
             "sipUri": null,
-            "sipAuthEnabled": false,
+            "inboundSipCallsEnabled": false,
+            "passwordAuthEnabled": false,
+            "allowedSourceIps": [ ],
             "allowedRegions": null
           },
           "errors": [ ]
         }
       },
-      "updateVoiceApplicationRequestExampleSipAuthEnable": {
-        "summary": "Enable SIP authentication",
+      "updateRequestEnableWithPasswordAuth": {
+        "summary": "Enable inbound SIP with password auth only",
         "value": {
-          "sipAuthEnabled": true
+          "inboundSipCallsEnabled": true,
+          "passwordAuthEnabled": true
         }
       },
-      "updateVoiceApplicationRequestExampleSipAuthEnableWithRegions": {
-        "summary": "Enable SIP authentication with allowed regions",
+      "updateRequestEnableWithPasswordAuthAndIpAcl": {
+        "summary": "Enable inbound SIP with password auth and IP ACL",
         "value": {
-          "sipAuthEnabled": true,
+          "inboundSipCallsEnabled": true,
+          "passwordAuthEnabled": true,
+          "allowedSourceIps": [
+            "203.0.113.0/24"
+          ],
           "allowedRegions": [
             "US"
           ]
         }
       },
-      "updateVoiceApplicationRequestExampleSipAuthDisable": {
-        "summary": "Disable SIP authentication",
+      "updateRequestEnableWithIpAclOnly": {
+        "summary": "Enable inbound SIP with IP ACL only (no password)",
         "value": {
-          "sipAuthEnabled": false
+          "inboundSipCallsEnabled": true,
+          "passwordAuthEnabled": false,
+          "allowedSourceIps": [
+            "203.0.113.0/24",
+            "198.51.100.0/32"
+          ]
         }
       },
-      "updateVoiceApplicationRequestExampleUpdateRegionsOnly": {
-        "summary": "Update allowed regions without changing credentials",
+      "updateRequestDisableInboundSipCalls": {
+        "summary": "Disable inbound SIP calls",
+        "value": {
+          "inboundSipCallsEnabled": false
+        }
+      },
+      "updateRequestUpdateRegionsOnly": {
+        "summary": "Update allowed regions only",
         "value": {
           "allowedRegions": [
             "US",
@@ -101499,8 +101587,8 @@
           ]
         }
       },
-      "updateVoiceApplicationResponseExampleSipAuthEnable": {
-        "summary": "Example response when enabling SIP authentication",
+      "updateResponseEnableWithPasswordAuth": {
+        "summary": "Response after enabling with password auth",
         "value": {
           "links": [ ],
           "data": {
@@ -101521,14 +101609,17 @@
             },
             "callbackTimeout": 30,
             "sipUri": "sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com",
-            "sipAuthEnabled": true,
+            "inboundSipCallsEnabled": true,
+            "passwordAuthEnabled": true,
+            "allowedSourceIps": [ ],
+            "allowedRegions": null,
             "sipAuthPassword": "super_secure_password"
           },
           "errors": [ ]
         }
       },
-      "updateVoiceApplicationResponseExampleSipAuthEnableWithRegions": {
-        "summary": "Example response when enabling SIP authentication with regions",
+      "updateResponseEnableWithPasswordAuthAndIpAcl": {
+        "summary": "Response after enabling with password auth and IP ACL",
         "value": {
           "links": [ ],
           "data": {
@@ -101549,7 +101640,11 @@
             },
             "callbackTimeout": 30,
             "sipUri": "sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com",
-            "sipAuthEnabled": true,
+            "inboundSipCallsEnabled": true,
+            "passwordAuthEnabled": true,
+            "allowedSourceIps": [
+              "203.0.113.0/24"
+            ],
             "allowedRegions": [
               "US"
             ],
@@ -101558,37 +101653,8 @@
           "errors": [ ]
         }
       },
-      "updateVoiceApplicationResponseExampleSipAuthDisable": {
-        "summary": "Example response when disabling SIP authentication",
-        "value": {
-          "links": [ ],
-          "data": {
-            "applicationId": "15f99d57-f823-4718-80cc-5d95d5b83e59",
-            "serviceType": "Voice-V2",
-            "applicationName": "My Voice App",
-            "callInitiatedCallbackUrl": "https://example.com/callbacks/inbound",
-            "callInitiatedMethod": "POST",
-            "callStatusCallbackUrl": "https://example.com/callbacks/status",
-            "callStatusMethod": "POST",
-            "callbackCreds": {
-              "userId": "myApiUser"
-            },
-            "callInitiatedFallbackUrl": "https://fallback.example.com/callbacks/inbound",
-            "callInitiatedFallbackMethod": "POST",
-            "callInitiatedFallbackCreds": {
-              "userId": "myFallbackUser"
-            },
-            "callbackTimeout": 30,
-            "sipUri": null,
-            "sipAuthEnabled": false,
-            "allowedRegions": null,
-            "sipAuthPassword": null
-          },
-          "errors": [ ]
-        }
-      },
-      "updateVoiceApplicationResponseExampleUpdateRegionsOnly": {
-        "summary": "Example response when updating regions only",
+      "updateResponseEnableWithIpAclOnly": {
+        "summary": "Response after enabling with IP ACL only",
         "value": {
           "links": [ ],
           "data": {
@@ -101609,7 +101675,74 @@
             },
             "callbackTimeout": 30,
             "sipUri": "sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com",
-            "sipAuthEnabled": true,
+            "inboundSipCallsEnabled": true,
+            "passwordAuthEnabled": false,
+            "allowedSourceIps": [
+              "203.0.113.0/24",
+              "198.51.100.0/32"
+            ],
+            "allowedRegions": null,
+            "sipAuthPassword": null
+          },
+          "errors": [ ]
+        }
+      },
+      "updateResponseDisableInboundSipCalls": {
+        "summary": "Response after disabling inbound SIP calls",
+        "value": {
+          "links": [ ],
+          "data": {
+            "applicationId": "15f99d57-f823-4718-80cc-5d95d5b83e59",
+            "serviceType": "Voice-V2",
+            "applicationName": "My Voice App",
+            "callInitiatedCallbackUrl": "https://example.com/callbacks/inbound",
+            "callInitiatedMethod": "POST",
+            "callStatusCallbackUrl": "https://example.com/callbacks/status",
+            "callStatusMethod": "POST",
+            "callbackCreds": {
+              "userId": "myApiUser"
+            },
+            "callInitiatedFallbackUrl": "https://fallback.example.com/callbacks/inbound",
+            "callInitiatedFallbackMethod": "POST",
+            "callInitiatedFallbackCreds": {
+              "userId": "myFallbackUser"
+            },
+            "callbackTimeout": 30,
+            "sipUri": null,
+            "inboundSipCallsEnabled": false,
+            "passwordAuthEnabled": false,
+            "allowedSourceIps": [ ],
+            "allowedRegions": null,
+            "sipAuthPassword": null
+          },
+          "errors": [ ]
+        }
+      },
+      "updateResponseUpdateRegionsOnly": {
+        "summary": "Response after updating regions only",
+        "value": {
+          "links": [ ],
+          "data": {
+            "applicationId": "15f99d57-f823-4718-80cc-5d95d5b83e59",
+            "serviceType": "Voice-V2",
+            "applicationName": "My Voice App",
+            "callInitiatedCallbackUrl": "https://example.com/callbacks/inbound",
+            "callInitiatedMethod": "POST",
+            "callStatusCallbackUrl": "https://example.com/callbacks/status",
+            "callStatusMethod": "POST",
+            "callbackCreds": {
+              "userId": "myApiUser"
+            },
+            "callInitiatedFallbackUrl": "https://fallback.example.com/callbacks/inbound",
+            "callInitiatedFallbackMethod": "POST",
+            "callInitiatedFallbackCreds": {
+              "userId": "myFallbackUser"
+            },
+            "callbackTimeout": 30,
+            "sipUri": "sip:479fbd44-3362-45f3-bb80-284f21111be4@sip-uri.voice-api.bandwidth.com",
+            "inboundSipCallsEnabled": true,
+            "passwordAuthEnabled": true,
+            "allowedSourceIps": [ ],
             "allowedRegions": [
               "US",
               "EU"
@@ -107185,17 +107318,20 @@
               "$ref": "#/components/schemas/UpdateVoiceApplicationRequest"
             },
             "examples": {
-              "updateVoiceApplicationRequestExampleSipAuthEnable": {
-                "$ref": "#/components/examples/updateVoiceApplicationRequestExampleSipAuthEnable"
+              "enableWithPasswordAuth": {
+                "$ref": "#/components/examples/updateRequestEnableWithPasswordAuth"
               },
-              "updateVoiceApplicationRequestExampleSipAuthEnableWithRegions": {
-                "$ref": "#/components/examples/updateVoiceApplicationRequestExampleSipAuthEnableWithRegions"
+              "enableWithPasswordAuthAndIpAcl": {
+                "$ref": "#/components/examples/updateRequestEnableWithPasswordAuthAndIpAcl"
               },
-              "updateVoiceApplicationRequestExampleSipAuthDisable": {
-                "$ref": "#/components/examples/updateVoiceApplicationRequestExampleSipAuthDisable"
+              "enableWithIpAclOnly": {
+                "$ref": "#/components/examples/updateRequestEnableWithIpAclOnly"
               },
-              "updateVoiceApplicationRequestExampleUpdateRegionsOnly": {
-                "$ref": "#/components/examples/updateVoiceApplicationRequestExampleUpdateRegionsOnly"
+              "disableInboundSipCalls": {
+                "$ref": "#/components/examples/updateRequestDisableInboundSipCalls"
+              },
+              "updateRegionsOnly": {
+                "$ref": "#/components/examples/updateRequestUpdateRegionsOnly"
               }
             }
           }

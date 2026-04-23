@@ -22,6 +22,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?> AllowedRegions { get; set; }
 #endif
+        /// <summary>List of CIDR blocks allowed to send SIP traffic to this application. An empty array means no IP restriction is applied. Maximum 25 entries.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? AllowedSourceIps { get; set; }
+#nullable restore
+#else
+        public List<string> AllowedSourceIps { get; set; }
+#endif
         /// <summary>The unique ID of the application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -104,6 +112,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string CallStatusMethod { get; set; }
 #endif
+        /// <summary>Indicates whether the application can receive inbound SIP calls.</summary>
+        public bool? InboundSipCallsEnabled { get; set; }
+        /// <summary>Controls whether SIP digest authentication (407 challenge) is required for inbound SIP calls.</summary>
+        public bool? PasswordAuthEnabled { get; set; }
         /// <summary>The service type of the application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -112,8 +124,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string ServiceType { get; set; }
 #endif
-        /// <summary>Indicates whether SIP authentication is enabled for the application.</summary>
-        public bool? SipAuthEnabled { get; set; }
         /// <summary>The SIP URI for the specified application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -148,6 +158,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "allowedRegions", n => { AllowedRegions = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion>()?.AsList(); } },
+                { "allowedSourceIps", n => { AllowedSourceIps = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "applicationId", n => { ApplicationId = n.GetStringValue(); } },
                 { "applicationName", n => { ApplicationName = n.GetStringValue(); } },
                 { "callInitiatedCallbackUrl", n => { CallInitiatedCallbackUrl = n.GetStringValue(); } },
@@ -159,8 +170,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "callStatusMethod", n => { CallStatusMethod = n.GetStringValue(); } },
                 { "callbackCreds", n => { CallbackCreds = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds.CreateFromDiscriminatorValue); } },
                 { "callbackTimeout", n => { CallbackTimeout = n.GetIntValue(); } },
+                { "inboundSipCallsEnabled", n => { InboundSipCallsEnabled = n.GetBoolValue(); } },
+                { "passwordAuthEnabled", n => { PasswordAuthEnabled = n.GetBoolValue(); } },
                 { "serviceType", n => { ServiceType = n.GetStringValue(); } },
-                { "sipAuthEnabled", n => { SipAuthEnabled = n.GetBoolValue(); } },
                 { "sipUri", n => { SipUri = n.GetStringValue(); } },
             };
         }
@@ -172,6 +184,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion>("allowedRegions", AllowedRegions);
+            writer.WriteCollectionOfPrimitiveValues<string>("allowedSourceIps", AllowedSourceIps);
             writer.WriteStringValue("applicationId", ApplicationId);
             writer.WriteStringValue("applicationName", ApplicationName);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds>("callbackCreds", CallbackCreds);
@@ -183,8 +196,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("callInitiatedMethod", CallInitiatedMethod);
             writer.WriteStringValue("callStatusCallbackUrl", CallStatusCallbackUrl);
             writer.WriteStringValue("callStatusMethod", CallStatusMethod);
+            writer.WriteBoolValue("inboundSipCallsEnabled", InboundSipCallsEnabled);
+            writer.WriteBoolValue("passwordAuthEnabled", PasswordAuthEnabled);
             writer.WriteStringValue("serviceType", ServiceType);
-            writer.WriteBoolValue("sipAuthEnabled", SipAuthEnabled);
             writer.WriteStringValue("sipUri", SipUri);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     /// <summary>
-    /// At least one of `sipAuthEnabled` or `allowedRegions` must be provided.
+    /// &quot;At least one field must be provided. When `inboundSipCallsEnabled` is `true`, at least one auth mechanism must be active: `passwordAuthEnabled: true` OR a non-empty `allowedSourceIps` array.&quot;
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UpdateVoiceApplicationRequest : IAdditionalDataHolder, IParsable
@@ -23,8 +23,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?> AllowedRegions { get; set; }
 #endif
-        /// <summary>Indicates whether SIP authentication is enabled for the application.</summary>
-        public bool? SipAuthEnabled { get; set; }
+        /// <summary>List of CIDR blocks allowed to send SIP traffic to this application. An empty array means no IP restriction is applied. Maximum 25 entries.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? AllowedSourceIps { get; set; }
+#nullable restore
+#else
+        public List<string> AllowedSourceIps { get; set; }
+#endif
+        /// <summary>Indicates whether the application can receive inbound SIP calls.</summary>
+        public bool? InboundSipCallsEnabled { get; set; }
+        /// <summary>Controls whether SIP digest authentication (407 challenge) is required for inbound SIP calls.</summary>
+        public bool? PasswordAuthEnabled { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateVoiceApplicationRequest"/> and sets the default values.
         /// </summary>
@@ -51,7 +61,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "allowedRegions", n => { AllowedRegions = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion>()?.AsList(); } },
-                { "sipAuthEnabled", n => { SipAuthEnabled = n.GetBoolValue(); } },
+                { "allowedSourceIps", n => { AllowedSourceIps = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "inboundSipCallsEnabled", n => { InboundSipCallsEnabled = n.GetBoolValue(); } },
+                { "passwordAuthEnabled", n => { PasswordAuthEnabled = n.GetBoolValue(); } },
             };
         }
         /// <summary>
@@ -62,7 +74,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion>("allowedRegions", AllowedRegions);
-            writer.WriteBoolValue("sipAuthEnabled", SipAuthEnabled);
+            writer.WriteCollectionOfPrimitiveValues<string>("allowedSourceIps", AllowedSourceIps);
+            writer.WriteBoolValue("inboundSipCallsEnabled", InboundSipCallsEnabled);
+            writer.WriteBoolValue("passwordAuthEnabled", PasswordAuthEnabled);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
