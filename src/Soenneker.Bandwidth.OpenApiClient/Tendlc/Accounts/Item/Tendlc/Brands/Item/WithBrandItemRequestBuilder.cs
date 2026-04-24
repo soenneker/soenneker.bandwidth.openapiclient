@@ -40,7 +40,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Brands.I
         {
         }
         /// <summary>
-        /// Get details for this TCR brand (the actual details available to Bandwidth will differ substantially between import and direct customers).
+        /// **All customers.** Get details for this TCR brand (the actual details available to Bandwidth will differ substantially between import and direct customers). The ID used for the brand can either be the TCR assigned brand ID, or the customer profile ID associated to this brand if the brand has yet to be saved to TCR.        
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BrandResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -75,7 +75,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Brands.I
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.BrandResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get details for this TCR brand (the actual details available to Bandwidth will differ substantially between import and direct customers).
+        /// **All customers.** Get details for this TCR brand (the actual details available to Bandwidth will differ substantially between import and direct customers). The ID used for the brand can either be the TCR assigned brand ID, or the customer profile ID associated to this brand if the brand has yet to be saved to TCR.        
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

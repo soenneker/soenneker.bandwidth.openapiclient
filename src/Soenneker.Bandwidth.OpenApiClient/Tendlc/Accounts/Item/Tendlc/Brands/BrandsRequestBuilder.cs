@@ -19,7 +19,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Brands
     public partial class BrandsRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Bandwidth.OpenApiClient.tendlc.accounts.item.tendlc.brands.item collection</summary>
-        /// <param name="position">This can be the TCR-assigned brand ID or the Bandwidth-assigned identifier for this brand, even before it is submitted to TCR.</param>
+        /// <param name="position">This can be the TCR-assigned brand ID, the Bandwidth-assigned identifier for this brand, or the customer profile ID that is associated to the brand in the given account (the last two IDs can be used even before the brand is successfully submitted to TCR).</param>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Brands.Item.WithBrandItemRequestBuilder"/></returns>
         public global::Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Brands.Item.WithBrandItemRequestBuilder this[string position]
         {

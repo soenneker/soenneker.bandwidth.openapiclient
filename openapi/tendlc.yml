@@ -245,9 +245,11 @@ paths:
       operationId: getBrand
       summary: Get details about a brand
       description: >
-        Get details for this TCR brand (the actual details available to
-        Bandwidth will differ substantially between import and direct
-        customers).
+        **All customers.** Get details for this TCR brand (the actual details
+        available to Bandwidth will differ substantially between import and
+        direct customers). The ID used for the brand can either be the TCR
+        assigned brand ID, or the customer profile ID associated to this brand
+        if the brand has yet to be saved to TCR.        
       parameters:
         - $ref: '#/components/parameters/accountIdPathParam'
         - $ref: '#/components/parameters/brandIdPathParam'
@@ -734,8 +736,10 @@ components:
     brandIdPathParam:
       name: brandId
       description: >-
-        This can be the TCR-assigned brand ID or the Bandwidth-assigned
-        identifier for this brand, even before it is submitted to TCR.
+        This can be the TCR-assigned brand ID, the Bandwidth-assigned identifier
+        for this brand, or the customer profile ID that is associated to the
+        brand in the given account (the last two IDs can be used even before the
+        brand is successfully submitted to TCR).
       in: path
       required: true
       schema:
@@ -2233,6 +2237,11 @@ components:
           examples:
             - []
           readOnly: true
+        data:
+          type: object
+          nullable: true
+          examples:
+            - null
         errors:
           type: array
           items:
@@ -2246,6 +2255,11 @@ components:
           examples:
             - []
           readOnly: true
+        data:
+          type: object
+          nullable: true
+          examples:
+            - null
         errors:
           type: array
           items:
@@ -2262,6 +2276,11 @@ components:
           examples:
             - []
           readOnly: true
+        data:
+          type: object
+          nullable: true
+          examples:
+            - null
         errors:
           type: array
           items:
@@ -2278,6 +2297,11 @@ components:
           examples:
             - []
           readOnly: true
+        data:
+          type: object
+          nullable: true
+          examples:
+            - null
         errors:
           type: array
           items:
@@ -2294,6 +2318,11 @@ components:
           examples:
             - []
           readOnly: true
+        data:
+          type: object
+          nullable: true
+          examples:
+            - null
         errors:
           type: array
           items:
@@ -2310,6 +2339,11 @@ components:
           examples:
             - []
           readOnly: true
+        data:
+          type: object
+          nullable: true
+          examples:
+            - null
         errors:
           type: array
           items:
@@ -2326,6 +2360,11 @@ components:
           examples:
             - []
           readOnly: true
+        data:
+          type: object
+          nullable: true
+          examples:
+            - null
         errors:
           type: array
           items:
@@ -2342,6 +2381,11 @@ components:
           examples:
             - []
           readOnly: true
+        data:
+          type: object
+          nullable: true
+          examples:
+            - null
         errors:
           type: array
           items:

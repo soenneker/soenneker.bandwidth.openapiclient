@@ -17210,7 +17210,7 @@
           "Brands"
         ],
         "summary": "Get details about a brand",
-        "description": "Get details for this TCR brand (the actual details available to Bandwidth will differ substantially between import and direct customers).\n",
+        "description": "**All customers.** Get details for this TCR brand (the actual details available to Bandwidth will differ substantially between import and direct customers). The ID used for the brand can either be the TCR assigned brand ID, or the customer profile ID associated to this brand if the brand has yet to be saved to TCR.        \n",
         "operationId": "tendlc-getBrand",
         "parameters": [
           {
@@ -46634,6 +46634,11 @@
               "content": {
                 "$ref": "#/components/schemas/MultiChannelMessageContent"
               },
+              "pairedMessageId": {
+                "type": "string",
+                "description": "Corresponding parent message ID (MT).",
+                "example": "1752697342534u24xerqdukke523x"
+              },
               "suggestionResponse": {
                 "$ref": "#/components/schemas/RbmSuggestionResponse"
               },
@@ -59492,6 +59497,10 @@
             },
             "readOnly": true
           },
+          "data": {
+            "type": "object",
+            "nullable": true
+          },
           "errors": {
             "type": "array",
             "items": {
@@ -59509,6 +59518,10 @@
               "$ref": "#/components/schemas/ResponseLink"
             },
             "readOnly": true
+          },
+          "data": {
+            "type": "object",
+            "nullable": true
           },
           "errors": {
             "type": "array",
@@ -59528,6 +59541,10 @@
             },
             "readOnly": true
           },
+          "data": {
+            "type": "object",
+            "nullable": true
+          },
           "errors": {
             "type": "array",
             "items": {
@@ -59545,6 +59562,10 @@
               "$ref": "#/components/schemas/ResponseLink"
             },
             "readOnly": true
+          },
+          "data": {
+            "type": "object",
+            "nullable": true
           },
           "errors": {
             "type": "array",
@@ -59564,6 +59585,10 @@
             },
             "readOnly": true
           },
+          "data": {
+            "type": "object",
+            "nullable": true
+          },
           "errors": {
             "type": "array",
             "items": {
@@ -59581,6 +59606,10 @@
               "$ref": "#/components/schemas/ResponseLink"
             },
             "readOnly": true
+          },
+          "data": {
+            "type": "object",
+            "nullable": true
           },
           "errors": {
             "type": "array",
@@ -59600,6 +59629,10 @@
             },
             "readOnly": true
           },
+          "data": {
+            "type": "object",
+            "nullable": true
+          },
           "errors": {
             "type": "array",
             "items": {
@@ -59617,6 +59650,10 @@
               "$ref": "#/components/schemas/ResponseLink"
             },
             "readOnly": true
+          },
+          "data": {
+            "type": "object",
+            "nullable": true
           },
           "errors": {
             "type": "array",
@@ -89150,7 +89187,7 @@
       "brandIdPathParam": {
         "name": "brandId",
         "in": "path",
-        "description": "This can be the TCR-assigned brand ID or the Bandwidth-assigned identifier for this brand, even before it is submitted to TCR.",
+        "description": "This can be the TCR-assigned brand ID, the Bandwidth-assigned identifier for this brand, or the customer profile ID that is associated to the brand in the given account (the last two IDs can be used even before the brand is successfully submitted to TCR).",
         "required": true,
         "schema": {
           "type": "string"
