@@ -46634,11 +46634,6 @@
               "content": {
                 "$ref": "#/components/schemas/MultiChannelMessageContent"
               },
-              "pairedMessageId": {
-                "type": "string",
-                "description": "Corresponding parent message ID (MT).",
-                "example": "1752697342534u24xerqdukke523x"
-              },
               "suggestionResponse": {
                 "$ref": "#/components/schemas/RbmSuggestionResponse"
               },

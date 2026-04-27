@@ -3387,10 +3387,6 @@ components:
           properties:
             content:
               $ref: '#/components/schemas/multiChannelMessageContent'
-            pairedMessageId:
-              type: string
-              description: Corresponding parent message ID (MT).
-              example: 1752697342534u24xerqdukke523x
             suggestionResponse:
               $ref: '#/components/schemas/rbmSuggestionResponse'
             locationResponse:
