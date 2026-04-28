@@ -55,7 +55,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string FallbackUsername { get; set; }
 #endif
-        /// <summary>When an answering machine is detected, the amount of silence (in seconds) before assuming the message has finished playing. If not provided it will default to the speechEndThreshold value.</summary>
+        /// <summary>When an answering machine is detected, the amount of silence (in seconds) before assuming the message has finished playing.If not provided it will default to the speechEndThreshold value.</summary>
         public double? MachineSpeechEndThreshold { get; set; }
         /// <summary>The machine detection mode. If set to &apos;async&apos;, the detectionresult will be sent in a &apos;machineDetectionComplete&apos; callback. If set to&apos;sync&apos;, the &apos;answer&apos; callback will wait for the machine detection to completeand will include its result.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.MachineDetectionModeEnum? Mode { get; set; }

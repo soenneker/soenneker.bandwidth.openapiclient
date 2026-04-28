@@ -23,7 +23,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string Href { get; set; }
 #endif
         /// <summary>The HTTP method to use when making the request.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BrtcLink_method? Method { get; set; }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Method { get; set; }
+#nullable restore
+#else
+        public string Method { get; set; }
+#endif
         /// <summary>The relationship of the link to the current resource.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -58,7 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "href", n => { Href = n.GetStringValue(); } },
-                { "method", n => { Method = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BrtcLink_method>(); } },
+                { "method", n => { Method = n.GetStringValue(); } },
                 { "rel", n => { Rel = n.GetStringValue(); } },
             };
         }
@@ -70,7 +76,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("href", Href);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BrtcLink_method>("method", Method);
+            writer.WriteStringValue("method", Method);
             writer.WriteStringValue("rel", Rel);
             writer.WriteAdditionalData(AdditionalData);
         }

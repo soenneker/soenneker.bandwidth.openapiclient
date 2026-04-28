@@ -42,7 +42,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string DeactivationReporter { get; set; }
 #endif
-        /// <summary>[DNI-Only](#section/DNI-Only). The date the phone number entered the status described in `latestMessageDeliveryStatus`. Think of this as the &quot;start time&quot; for that status.Value resets every time the `latestMessageDeliveryStatus` changes.</summary>
+        /// <summary>[DNI-Only](#section/DNI-Only). The date the phone number entered the status described in `latestMessageDeliveryStatus`.Think of this as the &quot;start time&quot; for that status.Value resets every time the `latestMessageDeliveryStatus` changes.</summary>
         public Date? InitialMessageDeliveryStatusDate { get; set; }
         /// <summary>&quot;[DNI-Only](#section/DNI-Only). The current delivery status of the phone number.- ACTIVE: A message was successfully sent to the number (delivery code 0).- DEACTIVATED: A message was not delivered to a number (delivery code 720)- UNKNOWN: Bandwidth cannot find an delivery status entry for the number.- NOT_ENABLED: The phone number is not enabled for messaging, so there is no delivery status information.&quot;</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.LatestMessageDeliveryStatusEnum? LatestMessageDeliveryStatus { get; set; }

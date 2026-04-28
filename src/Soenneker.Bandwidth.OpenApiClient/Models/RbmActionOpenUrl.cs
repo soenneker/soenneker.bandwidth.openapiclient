@@ -12,7 +12,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     public partial class RbmActionOpenUrl : global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionBase, IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>Specifies how the URL should be opened on a mobile device.- `BROWSER` Opens the URL in the device&apos;s default browser. If application is not set or the device doesn’t support WebView, this option is used by default. - `WEBVIEW` Opens the URL in an in-app WebView.</summary>
+        /// <summary>Specifies how the URL should be opened on a mobile device.- `BROWSER` Opens the URL in the device&apos;s default browser. If application is not set or the device doesn&apos;t support WebView, this option is used by default.- `WEBVIEW` Opens the URL in an in-app WebView.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.RbmOpenUrlEnum? Application { get; set; }
         /// <summary>The URL to open in browser.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -22,7 +22,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Url { get; set; }
 #endif
-        /// <summary>Defines the layout of the WebView on a mobile device. It must be defined when application is set to `WEBVIEW`- `FULL` WebView takes the full screen. - `HALF` WebView takes half of the screen.- `TALL` WebView takes three-quarters of the screen.</summary>
+        /// <summary>Defines the layout of the WebView on a mobile device. It must be defined when application is set to `WEBVIEW`- `FULL` WebView takes the full screen.- `HALF` WebView takes half of the screen.- `TALL` WebView takes three-quarters of the screen.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.RbmWebViewEnum? WebviewViewMode { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

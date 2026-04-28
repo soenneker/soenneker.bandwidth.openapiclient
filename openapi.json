@@ -28178,7 +28178,7 @@
         ],
         "description": "An event that occurred on an endpoint."
       },
-      "brtc_link": {
+      "brtcLink": {
         "type": "object",
         "properties": {
           "href": {
@@ -28192,11 +28192,6 @@
             "example": "self"
           },
           "method": {
-            "enum": [
-              "GET",
-              "POST",
-              "DELETE"
-            ],
             "type": "string",
             "description": "The HTTP method to use when making the request.",
             "example": "GET"
@@ -28235,7 +28230,7 @@
           }
         }
       },
-      "brtc_error": {
+      "brtcError": {
         "required": [
           "type",
           "description"
@@ -28264,29 +28259,32 @@
             "example": 404
           },
           "source": {
-            "type": "object",
-            "properties": {
-              "parameter": {
-                "type": "string",
-                "description": "The URI parameter that caused the error.",
-                "example": "accountId"
-              },
-              "field": {
-                "type": "string",
-                "description": "The request body field that caused the error.",
-                "example": "accountId"
-              },
-              "header": {
-                "type": "string",
-                "description": "The header that caused the error.",
-                "example": "Authorization"
-              },
-              "reference": {
-                "type": "string",
-                "description": "The resource ID or path to the resource (or non-existent resource) causing the error.",
-                "example": "e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85"
-              }
-            }
+            "$ref": "#/components/schemas/brtcErrorSource"
+          }
+        }
+      },
+      "brtcErrorSource": {
+        "type": "object",
+        "properties": {
+          "parameter": {
+            "type": "string",
+            "description": "The URI parameter that caused the error.",
+            "example": "accountId"
+          },
+          "field": {
+            "type": "string",
+            "description": "The request body field that caused the error.",
+            "example": "accountId"
+          },
+          "header": {
+            "type": "string",
+            "description": "The header that caused the error.",
+            "example": "Authorization"
+          },
+          "reference": {
+            "type": "string",
+            "description": "The resource ID or path to the resource (or non-existent resource) causing the error.",
+            "example": "e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85"
           }
         }
       },
@@ -28301,7 +28299,7 @@
           "links": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/brtc_link"
+              "$ref": "#/components/schemas/brtcLink"
             }
           },
           "page": {
@@ -28316,7 +28314,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/brtc_error"
+              "$ref": "#/components/schemas/brtcError"
             }
           }
         }
@@ -28332,7 +28330,7 @@
           "links": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/brtc_link"
+              "$ref": "#/components/schemas/brtcLink"
             }
           },
           "data": {
@@ -28341,7 +28339,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/brtc_error"
+              "$ref": "#/components/schemas/brtcError"
             }
           }
         }
@@ -28357,7 +28355,7 @@
           "links": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/brtc_link"
+              "$ref": "#/components/schemas/brtcLink"
             }
           },
           "data": {
@@ -28366,12 +28364,12 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/brtc_error"
+              "$ref": "#/components/schemas/brtcError"
             }
           }
         }
       },
-      "brtc_errorResponse": {
+      "brtcErrorResponse": {
         "required": [
           "links",
           "data",
@@ -28382,7 +28380,7 @@
           "links": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/brtc_link"
+              "$ref": "#/components/schemas/brtcLink"
             }
           },
           "data": {
@@ -28393,7 +28391,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/brtc_error"
+              "$ref": "#/components/schemas/brtcError"
             }
           }
         }
@@ -49447,7 +49445,7 @@
       },
       "carrierName": {
         "type": "string",
-        "description": "The name of the Authorized Message Provider (AMP) that handled this message. \nIn the US, this is the carrier that the message was sent to.\nThis field is present only when this account feature has been enabled.",
+        "description": "The name of the Authorized Message Provider (AMP) that handled this message.\nIn the US, this is the carrier that the message was sent to.\nThis field is present only when this account feature has been enabled.",
         "example": "AT&T"
       },
       "message": {
@@ -49548,7 +49546,7 @@
           },
           "from": {
             "type": "string",
-            "description": "Either an alphanumeric sender ID or the sender's Bandwidth phone number in E.164 format, which must be hosted within Bandwidth and linked to the account that is generating the message. \nAlphanumeric Sender IDs can contain up to 11 characters, upper-case letters A-Z, lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore _ and ampersand &. Alphanumeric Sender IDs must contain at least one letter.",
+            "description": "Either an alphanumeric sender ID or the sender's Bandwidth phone number in E.164 format, which must be hosted within Bandwidth and linked to the account that is generating the message.\nAlphanumeric Sender IDs can contain up to 11 characters, upper-case letters A-Z, lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore _ and ampersand &. Alphanumeric Sender IDs must contain at least one letter.",
             "example": 15551113333
           },
           "text": {
@@ -49973,7 +49971,7 @@
           "WEBVIEW"
         ],
         "type": "string",
-        "description": "Specifies how the URL should be opened on a mobile device.\n- `BROWSER` Opens the URL in the device's default browser. If application is not set or the device doesn’t support WebView, this option is used by default. \n- `WEBVIEW` Opens the URL in an in-app WebView.",
+        "description": "Specifies how the URL should be opened on a mobile device.\n- `BROWSER` Opens the URL in the device's default browser. If application is not set or the device doesn't support WebView, this option is used by default.\n- `WEBVIEW` Opens the URL in an in-app WebView.",
         "example": "WEBVIEW"
       },
       "rbmWebViewEnum": {
@@ -49983,7 +49981,7 @@
           "TALL"
         ],
         "type": "string",
-        "description": "Defines the layout of the WebView on a mobile device. It must be defined when application is set to `WEBVIEW`\n- `FULL` WebView takes the full screen. \n- `HALF` WebView takes half of the screen.\n- `TALL` WebView takes three-quarters of the screen."
+        "description": "Defines the layout of the WebView on a mobile device. It must be defined when application is set to `WEBVIEW`\n- `FULL` WebView takes the full screen.\n- `HALF` WebView takes half of the screen.\n- `TALL` WebView takes three-quarters of the screen."
       },
       "rbmActionText": {
         "title": "Text",
@@ -50562,7 +50560,7 @@
           },
           "to": {
             "type": "string",
-            "description": "The destination phone number the message was sent to. \nFor inbound callbacks, this is the Bandwidth number or alphanumeric identifier that received the message.\n",
+            "description": "The destination phone number the message was sent to.\nFor inbound callbacks, this is the Bandwidth number or alphanumeric identifier that received the message.\n",
             "example": 15552223333
           },
           "description": {
@@ -50597,7 +50595,7 @@
           "suggestion-response"
         ],
         "type": "string",
-        "description": "The possible inbound callback types originating from MO messages or multichannel message client responses:\n- `message-received` indicates an MO message from a Bandwidth user's client to a Bandwidth number.\n- `request-location-response` indicates a response to a location request sent by the Bandwidth user's client after receiving an RBM message. \n- `suggestion-response` indicates a response to a suggestion sent by the Bandwidth user's client after receiving an RBM message.",
+        "description": "The possible inbound callback types originating from MO messages or multichannel message client responses:\n- `message-received` indicates an MO message from a Bandwidth user's client to a Bandwidth number.\n- `request-location-response` indicates a response to a location request sent by the Bandwidth user's client after receiving an RBM message.\n- `suggestion-response` indicates a response to a suggestion sent by the Bandwidth user's client after receiving an RBM message.",
         "example": "message-received"
       },
       "statusCallbackMessage": {
@@ -58005,7 +58003,7 @@
           },
           "initialMessageDeliveryStatusDate": {
             "type": "string",
-            "description": "[DNI-Only](#section/DNI-Only). The date the phone number entered the status described in `latestMessageDeliveryStatus`. \nThink of this as the \"start time\" for that status.\nValue resets every time the `latestMessageDeliveryStatus` changes.",
+            "description": "[DNI-Only](#section/DNI-Only). The date the phone number entered the status described in `latestMessageDeliveryStatus`.\nThink of this as the \"start time\" for that status.\nValue resets every time the `latestMessageDeliveryStatus` changes.",
             "format": "date",
             "example": "2025-06-20"
           },
@@ -64115,7 +64113,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/toll_free_verification_error"
+              "$ref": "#/components/schemas/webhookSubscriptionError"
             }
           },
           "data": {
@@ -64148,7 +64146,7 @@
           }
         }
       },
-      "toll_free_verification_error": {
+      "webhookSubscriptionError": {
         "type": "object",
         "properties": {
           "code": {
@@ -69297,7 +69295,7 @@
           "displayName": {
             "maxLength": 256,
             "type": "string",
-            "description": "The caller display name to use when the call is created. \nMay not exceed 256 characters nor contain control characters such as new lines.\nIf `privacy` is true, only the following values are valid: `Restricted`, `Anonymous`, `Private`, or `Unavailable`.",
+            "description": "The caller display name to use when the call is created.\nMay not exceed 256 characters nor contain control characters such as new lines.\nIf `privacy` is true, only the following values are valid: `Restricted`, `Anonymous`, `Private`, or `Unavailable`.",
             "nullable": true,
             "example": "John Doe"
           },
@@ -70066,7 +70064,7 @@
           },
           "machineSpeechEndThreshold": {
             "type": "number",
-            "description": "When an answering machine is detected, the amount of silence (in seconds) before assuming the message has finished playing. \nIf not provided it will default to the speechEndThreshold value.",
+            "description": "When an answering machine is detected, the amount of silence (in seconds) before assuming the message has finished playing.\nIf not provided it will default to the speechEndThreshold value.",
             "format": "double",
             "nullable": true,
             "example": 5
@@ -73609,7 +73607,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/brtc_errorResponse"
+              "$ref": "#/components/schemas/brtcErrorResponse"
             },
             "examples": {
               "badRequestErrorExample": {
@@ -73624,7 +73622,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/brtc_errorResponse"
+              "$ref": "#/components/schemas/brtcErrorResponse"
             },
             "examples": {
               "unauthorizedErrorExample": {
@@ -73639,7 +73637,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/brtc_errorResponse"
+              "$ref": "#/components/schemas/brtcErrorResponse"
             },
             "examples": {
               "forbiddenErrorExample": {
@@ -73654,7 +73652,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/brtc_errorResponse"
+              "$ref": "#/components/schemas/brtcErrorResponse"
             },
             "examples": {
               "notFoundErrorExample": {
@@ -73669,7 +73667,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/brtc_errorResponse"
+              "$ref": "#/components/schemas/brtcErrorResponse"
             },
             "examples": {
               "methodNotAllowedErrorExample": {
@@ -73684,7 +73682,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/brtc_errorResponse"
+              "$ref": "#/components/schemas/brtcErrorResponse"
             },
             "examples": {
               "unsuppotedMediaTypeErrorExample": {
@@ -73709,7 +73707,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/brtc_errorResponse"
+              "$ref": "#/components/schemas/brtcErrorResponse"
             },
             "examples": {
               "tooManyRequestsErrorExample": {
@@ -73724,7 +73722,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/brtc_errorResponse"
+              "$ref": "#/components/schemas/brtcErrorResponse"
             },
             "examples": {
               "serviceUnavailableErrorExample": {
@@ -109938,7 +109936,7 @@
         "{inboundCallbackUrl}": {
           "post": {
             "requestBody": {
-              "description": "<p>This Inbound Message Webhook is an envelope containing either a received (MO) message to your \nmessage-enabled Bandwidth telephone number or a multichannel client's response to a suggestion response \nor location request. \n<p>The payload type will be one of <code>message-received</code>, <code>suggestion-response</code>, or <code>location-request-response</code>.\n<p>Note that <code>suggestion-response</code> and <code>location-request-response</code> callback types are pertinent only for RBM messages sent from the <code>/messages/multiChannel</code> endpoint.\n</p><p>Please visit <a href='/docs/messaging/webhooks/'>Webhooks</a></p>",
+              "description": "<p>This Inbound Message Webhook is an envelope containing either a received (MO) message to your\nmessage-enabled Bandwidth telephone number or a multichannel client's response to a suggestion response\nor location request.\n<p>The payload type will be one of <code>message-received</code>, <code>suggestion-response</code>, or <code>location-request-response</code>.\n<p>Note that <code>suggestion-response</code> and <code>location-request-response</code> callback types are pertinent only for RBM messages sent from the <code>/messages/multiChannel</code> endpoint.\n</p><p>Please visit <a href='/docs/messaging/webhooks/'>Webhooks</a></p>",
               "content": {
                 "application/json": {
                   "schema": {

@@ -441,7 +441,7 @@ components:
           required:
             - eventType
             - eventTime
-    link:
+    brtcLink:
       type: object
       properties:
         href:
@@ -455,10 +455,6 @@ components:
           example: self
         method:
           type: string
-          enum:
-            - GET
-            - POST
-            - DELETE
           description: The HTTP method to use when making the request.
           example: GET
     page:
@@ -486,7 +482,7 @@ components:
           example: 0
       required:
         - pageSize
-    error:
+    brtcError:
       type: object
       properties:
         id:
@@ -507,36 +503,38 @@ components:
           description: A code that uniquely identifies the error.
           example: '404'
         source:
-          type: object
-          properties:
-            parameter:
-              type: string
-              description: The URI parameter that caused the error.
-              example: accountId
-            field:
-              type: string
-              description: The request body field that caused the error.
-              example: accountId
-            header:
-              type: string
-              description: The header that caused the error.
-              example: Authorization
-            reference:
-              type: string
-              description: >-
-                The resource ID or path to the resource (or non-existent
-                resource) causing the error.
-              example: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          $ref: '#/components/schemas/brtcErrorSource'
       required:
         - type
         - description
+    brtcErrorSource:
+      type: object
+      properties:
+        parameter:
+          type: string
+          description: The URI parameter that caused the error.
+          example: accountId
+        field:
+          type: string
+          description: The request body field that caused the error.
+          example: accountId
+        header:
+          type: string
+          description: The header that caused the error.
+          example: Authorization
+        reference:
+          type: string
+          description: >-
+            The resource ID or path to the resource (or non-existent resource)
+            causing the error.
+          example: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
     listEndpointsResponse:
       type: object
       properties:
         links:
           type: array
           items:
-            $ref: '#/components/schemas/link'
+            $ref: '#/components/schemas/brtcLink'
         page:
           $ref: '#/components/schemas/page'
         data:
@@ -546,7 +544,7 @@ components:
         errors:
           type: array
           items:
-            $ref: '#/components/schemas/error'
+            $ref: '#/components/schemas/brtcError'
       required:
         - links
         - data
@@ -557,13 +555,13 @@ components:
         links:
           type: array
           items:
-            $ref: '#/components/schemas/link'
+            $ref: '#/components/schemas/brtcLink'
         data:
           $ref: '#/components/schemas/endpoint'
         errors:
           type: array
           items:
-            $ref: '#/components/schemas/error'
+            $ref: '#/components/schemas/brtcError'
       required:
         - links
         - data
@@ -574,24 +572,24 @@ components:
         links:
           type: array
           items:
-            $ref: '#/components/schemas/link'
+            $ref: '#/components/schemas/brtcLink'
         data:
           $ref: '#/components/schemas/createEndpointResponseData'
         errors:
           type: array
           items:
-            $ref: '#/components/schemas/error'
+            $ref: '#/components/schemas/brtcError'
       required:
         - links
         - data
         - errors
-    errorResponse:
+    brtcErrorResponse:
       type: object
       properties:
         links:
           type: array
           items:
-            $ref: '#/components/schemas/link'
+            $ref: '#/components/schemas/brtcLink'
         data:
           type: object
           nullable: true
@@ -599,7 +597,7 @@ components:
         errors:
           type: array
           items:
-            $ref: '#/components/schemas/error'
+            $ref: '#/components/schemas/brtcError'
       required:
         - links
         - data
@@ -662,7 +660,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/errorResponse'
+            $ref: '#/components/schemas/brtcErrorResponse'
           examples:
             badRequestErrorExample:
               $ref: '#/components/examples/badRequestErrorExample'
@@ -671,7 +669,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/errorResponse'
+            $ref: '#/components/schemas/brtcErrorResponse'
           examples:
             unauthorizedErrorExample:
               $ref: '#/components/examples/unauthorizedErrorExample'
@@ -680,7 +678,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/errorResponse'
+            $ref: '#/components/schemas/brtcErrorResponse'
           examples:
             forbiddenErrorExample:
               $ref: '#/components/examples/forbiddenErrorExample'
@@ -689,7 +687,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/errorResponse'
+            $ref: '#/components/schemas/brtcErrorResponse'
           examples:
             notFoundErrorExample:
               $ref: '#/components/examples/notFoundErrorExample'
@@ -698,7 +696,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/errorResponse'
+            $ref: '#/components/schemas/brtcErrorResponse'
           examples:
             methodNotAllowedErrorExample:
               $ref: '#/components/examples/methodNotAllowedErrorExample'
@@ -707,7 +705,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/errorResponse'
+            $ref: '#/components/schemas/brtcErrorResponse'
           examples:
             unsuppotedMediaTypeErrorExample:
               $ref: '#/components/examples/unsupportedMediaTypeErrorExample'
@@ -725,7 +723,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/errorResponse'
+            $ref: '#/components/schemas/brtcErrorResponse'
           examples:
             tooManyRequestsErrorExample:
               $ref: '#/components/examples/tooManyRequestsErrorExample'
@@ -734,7 +732,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/errorResponse'
+            $ref: '#/components/schemas/brtcErrorResponse'
           examples:
             serviceUnavailableErrorExample:
               $ref: '#/components/examples/serviceUnavailableErrorExample'

@@ -26,10 +26,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeVerificationError>? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionError>? Errors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeVerificationError> Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionError> Errors { get; set; }
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -65,7 +65,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscription>(global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscription.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeVerificationError>(global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeVerificationError.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionError>(global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionError.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LinksObject>(global::Soenneker.Bandwidth.OpenApiClient.Models.LinksObject.CreateFromDiscriminatorValue); } },
             };
         }
@@ -77,7 +77,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscription>("data", Data);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeVerificationError>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionError>("errors", Errors);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LinksObject>("links", Links);
             writer.WriteAdditionalData(AdditionalData);
         }

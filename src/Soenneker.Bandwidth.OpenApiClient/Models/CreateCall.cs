@@ -56,7 +56,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string DisconnectUrl { get; set; }
 #endif
-        /// <summary>&quot;The caller display name to use when the call is created. May not exceed 256 characters nor contain control characters such as new lines.If `privacy` is true, only the following values are valid: `Restricted`, `Anonymous`, `Private`, or `Unavailable`.&quot;</summary>
+        /// <summary>&quot;The caller display name to use when the call is created.May not exceed 256 characters nor contain control characters such as new lines.If `privacy` is true, only the following values are valid: `Restricted`, `Anonymous`, `Private`, or `Unavailable`.&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }

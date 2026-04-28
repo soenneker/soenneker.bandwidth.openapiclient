@@ -24,7 +24,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future.</summary>
         public DateTimeOffset? Expiration { get; set; }
-        /// <summary>Either an alphanumeric sender ID or the sender&apos;s Bandwidth phone number in E.164 format, which must be hosted within Bandwidth and linked to the account that is generating the message. Alphanumeric Sender IDs can contain up to 11 characters, upper-case letters A-Z, lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore _ and ampersand &amp;. Alphanumeric Sender IDs must contain at least one letter.</summary>
+        /// <summary>Either an alphanumeric sender ID or the sender&apos;s Bandwidth phone number in E.164 format, which must be hosted within Bandwidth and linked to the account that is generating the message.Alphanumeric Sender IDs can contain up to 11 characters, upper-case letters A-Z, lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore _ and ampersand &amp;. Alphanumeric Sender IDs must contain at least one letter.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? From { get; set; }

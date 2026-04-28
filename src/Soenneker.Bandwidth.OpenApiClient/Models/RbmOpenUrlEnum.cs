@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
-    /// <summary>Specifies how the URL should be opened on a mobile device.- `BROWSER` Opens the URL in the device&apos;s default browser. If application is not set or the device doesn’t support WebView, this option is used by default. - `WEBVIEW` Opens the URL in an in-app WebView.</summary>
+    /// <summary>Specifies how the URL should be opened on a mobile device.- `BROWSER` Opens the URL in the device&apos;s default browser. If application is not set or the device doesn&apos;t support WebView, this option is used by default.- `WEBVIEW` Opens the URL in an in-app WebView.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum RbmOpenUrlEnum
     {

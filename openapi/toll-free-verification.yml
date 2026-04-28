@@ -2748,7 +2748,7 @@ components:
         errors:
           type: array
           items:
-            $ref: '#/components/schemas/error'
+            $ref: '#/components/schemas/webhookSubscriptionError'
         data:
           items:
             $ref: '#/components/schemas/webhookSubscription'
@@ -2774,7 +2774,7 @@ components:
             If more results exist than specified by 'size', this link return the
             last page of result.
           type: string
-    error:
+    webhookSubscriptionError:
       type: object
       properties:
         code:

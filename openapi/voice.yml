@@ -7372,7 +7372,7 @@ components:
           nullable: true
           type: string
           description: >-
-            The caller display name to use when the call is created. 
+            The caller display name to use when the call is created.
 
             May not exceed 256 characters nor contain control characters such as
             new lines.
@@ -8309,7 +8309,7 @@ components:
           format: double
           description: >-
             When an answering machine is detected, the amount of silence (in
-            seconds) before assuming the message has finished playing. 
+            seconds) before assuming the message has finished playing.
 
             If not provided it will default to the speechEndThreshold value.
           example: 5
