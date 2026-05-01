@@ -2008,13 +2008,7 @@
           "500": {
             "$ref": "#/components/responses/serviceUnavailableErrorResponse"
           }
-        },
-        "x-badges": [
-          {
-            "name": "Beta",
-            "color": "#076EA8"
-          }
-        ]
+        }
       },
       "post": {
         "tags": [
@@ -2064,13 +2058,7 @@
           "endpointEventCallback": {
             "$ref": "#/components/callbacks/endpointEvent"
           }
-        },
-        "x-badges": [
-          {
-            "name": "Beta",
-            "color": "#076EA8"
-          }
-        ]
+        }
       }
     },
     "/brtc/accounts/{accountId}/endpoints/{endpointId}": {
@@ -2117,13 +2105,7 @@
           "500": {
             "$ref": "#/components/responses/serviceUnavailableErrorResponse"
           }
-        },
-        "x-badges": [
-          {
-            "name": "Beta",
-            "color": "#076EA8"
-          }
-        ]
+        }
       },
       "delete": {
         "tags": [
@@ -2168,13 +2150,7 @@
           "500": {
             "$ref": "#/components/responses/serviceUnavailableErrorResponse"
           }
-        },
-        "x-badges": [
-          {
-            "name": "Beta",
-            "color": "#076EA8"
-          }
-        ]
+        }
       }
     },
     "/brtc/accounts/{accountId}/endpoints/{endpointId}/bxml": {
@@ -2224,13 +2200,7 @@
           "500": {
             "$ref": "#/components/responses/serviceUnavailableErrorResponse"
           }
-        },
-        "x-badges": [
-          {
-            "name": "Beta",
-            "color": "#076EA8"
-          }
-        ]
+        }
       }
     },
     "/bulk-portins/accounts/{accountId}/bulkPortins/{orderId}/history": {
@@ -86967,7 +86937,14 @@
         }
       },
       "creationDate": {
-        "$ref": "#/components/parameters/dateQueryParam"
+        "name": "creationDate",
+        "in": "query",
+        "description": "The date and time when the client credentials were created.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/dateQueryParam"
+        }
       },
       "soonestExpirationDate": {
         "name": "soonestExpirationDate",

@@ -84973,7 +84973,14 @@
         }
       },
       "creationDate": {
-        "$ref": "#/components/parameters/dateQueryParam"
+        "name": "creationDate",
+        "in": "query",
+        "description": "The date and time when the client credentials were created.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/DateQueryParam"
+        }
       },
       "soonestExpirationDate": {
         "name": "soonestExpirationDate",

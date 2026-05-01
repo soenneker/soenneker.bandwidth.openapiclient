@@ -910,7 +910,14 @@ components:
       schema:
         $ref: '#/components/schemas/createdByQueryParam'
     creationDate:
-      $ref: '#/components/schemas/dateQueryParam'
+      name: creationDate
+      in: query
+      required: false
+      description: The date and time when the client credentials were created.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/dateQueryParam'
     soonestExpirationDate:
       name: soonestExpirationDate
       in: query

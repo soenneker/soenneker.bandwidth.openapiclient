@@ -7,17 +7,10 @@ info:
     url: https://support.bandwidth.com
     email: support@bandwidth.com
   termsOfService: https://www.bandwidth.com/legal/terms-of-use-bandwidthcom-web-sites/
-  description: >-
+  description: |-
     The API Specification for Bandwidth's RTC API.
 
-
-    This API is currently in **Beta**. Features and functionality may change as
-    we continue development. Please report any issues or feedback to
-    support@bandwidth.com.
-
-
     ## Base URL
-
 
     `https://api.bandwidth.com/v2`
 servers:
@@ -56,9 +49,6 @@ paths:
           $ref: '#/components/responses/tooManyRequestsErrorResponse'
         '500':
           $ref: '#/components/responses/serviceUnavailableErrorResponse'
-      x-badges:
-        - name: Beta
-          color: '#076EA8'
     post:
       tags:
         - Endpoints
@@ -91,9 +81,6 @@ paths:
       callbacks:
         endpointEventCallback:
           $ref: '#/components/callbacks/endpointEvent'
-      x-badges:
-        - name: Beta
-          color: '#076EA8'
   /accounts/{accountId}/endpoints/{endpointId}:
     get:
       tags:
@@ -123,9 +110,6 @@ paths:
           $ref: '#/components/responses/tooManyRequestsErrorResponse'
         '500':
           $ref: '#/components/responses/serviceUnavailableErrorResponse'
-      x-badges:
-        - name: Beta
-          color: '#076EA8'
     delete:
       tags:
         - Endpoints
@@ -156,9 +140,6 @@ paths:
           $ref: '#/components/responses/tooManyRequestsErrorResponse'
         '500':
           $ref: '#/components/responses/serviceUnavailableErrorResponse'
-      x-badges:
-        - name: Beta
-          color: '#076EA8'
   /accounts/{accountId}/endpoints/{endpointId}/bxml:
     put:
       tags:
@@ -190,9 +171,6 @@ paths:
           $ref: '#/components/responses/tooManyRequestsErrorResponse'
         '500':
           $ref: '#/components/responses/serviceUnavailableErrorResponse'
-      x-badges:
-        - name: Beta
-          color: '#076EA8'
 components:
   parameters:
     accountId:

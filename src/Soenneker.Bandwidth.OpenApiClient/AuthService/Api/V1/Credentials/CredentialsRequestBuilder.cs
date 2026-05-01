@@ -35,7 +35,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.AuthService.Api.V1.Credentials
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CredentialsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/auth-service/api/v1/credentials{?accountId*,accountScope*,afterCursor*,createdBy*,description*,lastAuthenticationAttemptDate*,lastModifiedDate*,limit*,roleId*,soonestExpirationDate*,status*}", pathParameters)
+        public CredentialsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/auth-service/api/v1/credentials{?accountId*,accountScope*,afterCursor*,createdBy*,creationDate*,description*,lastAuthenticationAttemptDate*,lastModifiedDate*,limit*,roleId*,soonestExpirationDate*,status*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.AuthService.Api.V1.Credentials
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CredentialsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/auth-service/api/v1/credentials{?accountId*,accountScope*,afterCursor*,createdBy*,description*,lastAuthenticationAttemptDate*,lastModifiedDate*,limit*,roleId*,soonestExpirationDate*,status*}", rawUrl)
+        public CredentialsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/auth-service/api/v1/credentials{?accountId*,accountScope*,afterCursor*,createdBy*,creationDate*,description*,lastAuthenticationAttemptDate*,lastModifiedDate*,limit*,roleId*,soonestExpirationDate*,status*}", rawUrl)
         {
         }
         /// <summary>
@@ -213,6 +213,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.AuthService.Api.V1.Credentials
 #else
             [QueryParameter("createdBy")]
             public string CreatedBy { get; set; }
+#endif
+            /// <summary>The date and time when the client credentials were created.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("creationDate")]
+            public string? CreationDate { get; set; }
+#nullable restore
+#else
+            [QueryParameter("creationDate")]
+            public string CreationDate { get; set; }
 #endif
             /// <summary>A description of the client credential set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
