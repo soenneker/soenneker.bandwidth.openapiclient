@@ -33,6 +33,7 @@ using Soenneker.Bandwidth.OpenApiClient.MultiFactorAuth;
 using Soenneker.Bandwidth.OpenApiClient.NumberAcquisition;
 using Soenneker.Bandwidth.OpenApiClient.NumberManagement;
 using Soenneker.Bandwidth.OpenApiClient.PhoneNumberLookupV2;
+using Soenneker.Bandwidth.OpenApiClient.Portins;
 using Soenneker.Bandwidth.OpenApiClient.PsapAlerts;
 using Soenneker.Bandwidth.OpenApiClient.Shortcodes;
 using Soenneker.Bandwidth.OpenApiClient.Subscriptions;
@@ -192,6 +193,11 @@ namespace Soenneker.Bandwidth.OpenApiClient
         public global::Soenneker.Bandwidth.OpenApiClient.PhoneNumberLookupV2.PhoneNumberLookupV2RequestBuilder PhoneNumberLookupV2
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.PhoneNumberLookupV2.PhoneNumberLookupV2RequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The portins property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Portins.PortinsRequestBuilder Portins
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.Portins.PortinsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The psapAlerts property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.PsapAlerts.PsapAlertsRequestBuilder PsapAlerts

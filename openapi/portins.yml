@@ -1,0 +1,338 @@
+openapi: 3.0.1
+info:
+  title: Porting
+  description: >-
+    Bandwidth's Porting API
+
+
+    This API provides endpoints to manage port-in orders, including retrieving
+    and updating activation status for telephone numbers being ported into the
+    Bandwidth network.
+  contact:
+    name: Bandwidth
+    url: https://dev.bandwidth.com/apis/numbers-apis/porting/portins/
+    email: support@bandwidth.com
+  version: 2.0.0
+  termsOfService: https://www.bandwidth.com/legal/terms-of-service/
+servers:
+  - url: https://api.bandwidth.com/api/v2
+    description: Production
+security:
+  - Basic: []
+  - Bearer: []
+paths:
+  /accounts/{accountId}/portins/{orderId}/activationStatus:
+    get:
+      tags:
+        - Porting
+      operationId: retrievePortinActivationStatus
+      summary: Retrieve port-in order activation status
+      description: >-
+        Retrieve the status (activated or not activated) of TNs associated with
+        the customer activated (triggered) order. <br><br>
+
+        At this time all phone numbers associated with a PON will be activated
+        at the same time.
+      parameters:
+        - $ref: '#/components/parameters/AccountIdPathParam'
+        - $ref: '#/components/parameters/OrderIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/activationStatusResponse200'
+        '400':
+          $ref: '#/components/responses/activationStatusResponse400'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/activationStatusResponse404'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        5XX:
+          $ref: '#/components/responses/errorResponse500'
+    put:
+      tags:
+        - Porting
+      operationId: updatePortinActivationStatus
+      summary: Update port-in order activation status
+      description: >
+        Sets the activation time for the port-in order.  <br> <br>
+
+        This API call is used to set the Activation time of the customer
+        activated (triggered) port.</p>
+
+
+        <ul>
+
+        <li>If the time is in the past all of the TNs in the port-in request
+        will be activated 'immediately'.</li>
+
+        <li>For automated on-net port-ins, if the time is within three days
+        after the approved FoC date, the auto-activation time for the port will
+        be set to that time.</li>
+
+        <li>For automated off-net port-ins, if the date matches the actual FOC
+        date and the time is between 6:00 AM ET and 10:00 PM ET, the
+        auto-activation time for the port will be set to that time.</li>
+
+        </ul>
+      parameters:
+        - $ref: '#/components/parameters/AccountIdPathParam'
+        - $ref: '#/components/parameters/OrderIdPathParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/activationStatusJson'
+            examples:
+              example:
+                value:
+                  autoActivationDate: '2014-08-30T18:30:00+03:00'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/activationStatus'
+            examples:
+              example:
+                value: |-
+                  <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                  <ActivationStatus>
+                      <AutoActivationDate>2014-08-30T18:30:00+03:00</AutoActivationDate>
+                  </ActivationStatus>
+      responses:
+        '200':
+          $ref: '#/components/responses/activationStatusPutResponse200'
+        '400':
+          $ref: '#/components/responses/activationStatusResponse400'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/activationStatusResponse404'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        5XX:
+          $ref: '#/components/responses/errorResponse500'
+components:
+  responses:
+    activationStatusResponse200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/activationStatusJson'
+          examples:
+            example:
+              value:
+                autoActivationDate: '2014-08-29T18:30:00+03:00'
+                activatedPhoneNumbers:
+                  - '+16052609021'
+                notYetActivatedPhoneNumbers: []
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/activationStatusResponse'
+          examples:
+            example:
+              value: |-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <ActivationStatusResponse>
+                    <ActivationStatus>
+                        <AutoActivationDate>2014-08-29T18:30:00+03:00</AutoActivationDate>
+                        <ActivatedTelephoneNumbersList>
+                            <TelephoneNumber>+16052609021</TelephoneNumber>
+                        </ActivatedTelephoneNumbersList>
+                        <NotYetActivatedTelephoneNumbersList/>
+                    </ActivationStatus>
+                </ActivationStatusResponse>
+    activationStatusPutResponse200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/activationStatusJson'
+          examples:
+            example:
+              value:
+                autoActivationDate: '2014-08-30T18:30:00+03:00'
+        application/xml:
+          examples:
+            example:
+              value: |-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <ActivationStatusResponse>
+                    <ActivationStatus>
+                        <AutoActivationDate>2014-08-30T18:30:00+03:00</AutoActivationDate>
+                    </ActivationStatus>
+                </ActivationStatusResponse>
+    activationStatusResponse400:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/activationStatusErrorResponseJson'
+          examples:
+            example:
+              value:
+                code: '7342'
+                description: On demand port-in activation not yet allowed.
+        application/xml:
+          examples:
+            example:
+              value: |-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <ActivationStatusResponse>
+                    <ResponseStatus>
+                        <ErrorCode>7342</ErrorCode>
+                        <Description>On demand port-in activation not yet allowed.</Description>
+                    </ResponseStatus>
+                </ActivationStatusResponse>
+    activationStatusResponse404:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/activationStatusErrorResponseJson'
+          examples:
+            example:
+              value:
+                code: '7348'
+                description: The order is already complete
+        application/xml:
+          examples:
+            example:
+              value: |-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <ActivationStatusResponse>
+                    <ResponseStatus>
+                        <ErrorCode>7348</ErrorCode>
+                        <Description>The order is already complete</Description>
+                    </ResponseStatus>
+                </ActivationStatusResponse>
+    errorResponse401:
+      description: Unauthorized
+    errorResponse403:
+      description: Forbidden
+    errorResponse429:
+      description: Too Many Requests
+    errorResponse500:
+      description: Internal Server Error
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+      description: >-
+        Basic authentication is a simple authentication scheme built into the
+        HTTP protocol. To use it, send your HTTP requests with an Authorization
+        header that contains the word Basic followed by a space and a
+        base64-encoded string `username:password`.
+
+        Example: `Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=`
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        Bearer authentication (also called token authentication) is an HTTP
+        authentication scheme that involves security 
+
+        tokens called bearer tokens. The name "Bearer authentication" can be
+        understood as "give access to the bearer
+
+        of this token." The client must send this token in the `Authorization`
+        header when making requests to
+
+        protected resources.
+
+
+        - Example: `Authorization: Bearer <token>`
+
+
+        Where `<token>` should be replaced with the token string without angle
+        brackets.
+
+
+        For more information, see the following guide:
+        [Credentials](https://dev.bandwidth.com/docs/account/credentials/management)
+  parameters:
+    AccountIdPathParam:
+      name: accountId
+      description: User's account ID.
+      in: path
+      required: true
+      schema:
+        type: string
+      example: '1234567'
+    OrderIdPathParam:
+      name: orderId
+      description: The port-in order ID.
+      in: path
+      required: true
+      schema:
+        type: string
+      example: d28f4d00-4af1-4b03-b1d4-fc0a9e9ef6b3
+  schemas:
+    activationStatus:
+      type: object
+      properties:
+        ActivationStatus:
+          type: object
+          properties:
+            AutoActivationDate:
+              description: >-
+                The date when auto activation is requested. It can be a
+                date/time in the past, if immediate activation is desired.
+              type: string
+              format: date-time
+            ActivatedTelephoneNumbersList:
+              description: >-
+                This is the list of TNs that have been activated for the port-in
+                order.
+              type: array
+              items:
+                type: string
+            NotYetActivatedTelephoneNumbersList:
+              description: >-
+                This is the list of TNs that have not yet been activated for the
+                port-in order.
+              type: array
+              items:
+                type: string
+    activationStatusResponse:
+      type: object
+      properties:
+        ActivationStatusResponse:
+          $ref: '#/components/schemas/activationStatus'
+    activationStatusJson:
+      type: object
+      properties:
+        activatedPhoneNumbers:
+          description: >-
+            List of phone numbers that have been activated for the port-in
+            order.
+          type: array
+          items:
+            type: string
+        notYetActivatedPhoneNumbers:
+          description: >-
+            List of phone numbers that have not yet been activated for the
+            port-in order.
+          type: array
+          items:
+            type: string
+        autoActivationDate:
+          description: The date when auto activation is requested. RFC 3339 format.
+          type: string
+          format: date-time
+    activationStatusErrorResponseJson:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code.
+        description:
+          type: string
+          description: Error description.
+tags:
+  - name: Porting
+    description: Manage port-in orders and their activation status.
