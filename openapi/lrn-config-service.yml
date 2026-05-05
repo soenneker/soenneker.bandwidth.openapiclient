@@ -262,17 +262,36 @@ paths:
         |---|---|---|---|
 
         | `lrn[eq]` | EQ | string | Exact match on the LRN value. Also supports
-        `lrn[sort]` — see sort parameters below. |
+        `lrn[contains]` and `lrn[sort]`. |
+
+        | `lrn[contains]` | CONTAINS | string | Case-insensitive substring match
+        on the LRN value. Also supports `lrn[eq]` and `lrn[sort]`. |
 
         | `operatingCompanyName[eq]` | EQ | string | Exact match on the
-        Operating Company Name (OCN). Also supports `operatingCompanyName[sort]`
-        — see sort parameters below. |
+        Operating Company Name (OCN). Also supports
+        `operatingCompanyName[contains]` and `operatingCompanyName[sort]`. |
 
-        | `lataId[eq]` | EQ | integer | Exact match on the LATA ID. |
+        | `operatingCompanyName[contains]` | CONTAINS | string |
+        Case-insensitive substring match on the OCN. Also supports
+        `operatingCompanyName[eq]` and `operatingCompanyName[sort]`. |
 
-        | `lataName[eq]` | EQ | string | Exact match on the LATA name. |
+        | `lataId[eq]` | EQ | integer | Exact match on the LATA ID. Also
+        supports `lataId[contains]`. |
 
-        | `lataRegion[eq]` | EQ | string | Exact match on the LATA region. |
+        | `lataId[contains]` | CONTAINS | string | Substring match on the LATA
+        ID. Also supports `lataId[eq]`. |
+
+        | `lataName[eq]` | EQ | string | Exact match on the LATA name. Also
+        supports `lataName[contains]`. |
+
+        | `lataName[contains]` | CONTAINS | string | Case-insensitive substring
+        match on the LATA name. Also supports `lataName[eq]`. |
+
+        | `lataRegion[eq]` | EQ | string | Exact match on the LATA region. Also
+        supports `lataRegion[contains]`. |
+
+        | `lataRegion[contains]` | CONTAINS | string | Case-insensitive
+        substring match on the LATA region. Also supports `lataRegion[eq]`. |
 
         | `hostedVoice[eq]` | EQ | boolean | Exact match — `true` or `false`. |
 
@@ -280,7 +299,12 @@ paths:
         `true` or `false`. |
 
         | `routingConfigurationName[eq]` | EQ | string | Exact match on the
-        assigned LRN Configuration name. |
+        assigned LRN Configuration name. Also supports
+        `routingConfigurationName[contains]`. |
+
+        | `routingConfigurationName[contains]` | CONTAINS | string |
+        Case-insensitive substring match on the LRN Configuration name. Also
+        supports `routingConfigurationName[eq]`. |
 
         | `added[gte]` | GTE | ISO 8601 date-time | Lower bound (inclusive) on
         the date the LRN was added. |
@@ -301,15 +325,15 @@ paths:
 
         |---|---|
 
-        | `lrn[sort]` | LRN value. Also supports `lrn[eq]` filter — both may be
-        combined in one parameter. |
+        | `lrn[sort]` | LRN value. Also supports `lrn[eq]` and `lrn[contains]`
+        filters — all may be combined in one parameter. |
 
         | `added[sort]` | Date and time the LRN was added. Also supports
         `added[gte]` and `added[lte]` — all may be combined in one parameter. |
 
         | `operatingCompanyName[sort]` | Operating Company Name (OCN). Also
-        supports `operatingCompanyName[eq]` filter — both may be combined in one
-        parameter. |
+        supports `operatingCompanyName[eq]` and `operatingCompanyName[contains]`
+        filters — all may be combined in one parameter. |
 
         | `lata[sort]` | LATA ID. Sort-only parameter — no filter sub-property
         is supported. Example: `lata[sort]=ASC`. |
@@ -544,14 +568,15 @@ components:
       in: query
       required: false
       description: >-
-        Filter and/or sort by LRN value. Use `lrn[eq]` for an exact value filter
-        and `lrn[sort]` to control sort order.
+        Filter and/or sort by LRN value. Use `lrn[eq]` for an exact match,
+        `lrn[contains]` for a case-insensitive substring match, and `lrn[sort]`
+        to control sort order.
       schema:
         $ref: '#/components/schemas/lrnFilterSortParam'
       style: deepObject
       explode: true
       example:
-        eq: '+12345'
+        contains: '+1234'
         sort: ASC
     operatingCompanyNameParam:
       name: operatingCompanyName
@@ -559,52 +584,58 @@ components:
       required: false
       description: >-
         Filter and/or sort by Operating Company Name (OCN). Use
-        `operatingCompanyName[eq]` for an exact value filter and
-        `operatingCompanyName[sort]` to control sort order.
+        `operatingCompanyName[eq]` for an exact match,
+        `operatingCompanyName[contains]` for a case-insensitive substring match,
+        and `operatingCompanyName[sort]` to control sort order.
       schema:
         $ref: '#/components/schemas/operatingCompanyNameFilterSortParam'
       style: deepObject
       explode: true
       example:
-        eq: Telecom
+        contains: Tele
         sort: ASC
     filterLataId:
       name: lataId
       in: query
       required: false
-      description: Filter by LATA ID using an exact match. Pass as `lataId[eq]=<value>`.
+      description: >-
+        Filter by LATA ID. Use `lataId[eq]` for an exact integer match or
+        `lataId[contains]` for a substring match. Pass as `lataId[eq]=426` or
+        `lataId[contains]=42`.
       schema:
-        $ref: '#/components/schemas/eqIntegerFilter'
+        $ref: '#/components/schemas/lataIdFilterParam'
       style: deepObject
       explode: true
       example:
-        eq: 426
+        contains: '42'
     filterLataName:
       name: lataName
       in: query
       required: false
       description: >-
-        Filter by LATA name using an exact match. Pass as
-        `lataName[eq]=<value>`.
+        Filter by LATA name. Use `lataName[eq]` for an exact match or
+        `lataName[contains]` for a case-insensitive substring match. Pass as
+        `lataName[eq]=Raleigh` or `lataName[contains]=Rale`.
       schema:
-        $ref: '#/components/schemas/eqStringFilter'
+        $ref: '#/components/schemas/lataNameFilterParam'
       style: deepObject
       explode: true
       example:
-        eq: Raleigh
+        contains: Rale
     filterLataRegion:
       name: lataRegion
       in: query
       required: false
       description: >-
-        Filter by LATA region using an exact match. Pass as
-        `lataRegion[eq]=<value>`.
+        Filter by LATA region. Use `lataRegion[eq]` for an exact match or
+        `lataRegion[contains]` for a case-insensitive substring match. Pass as
+        `lataRegion[eq]=North Carolina` or `lataRegion[contains]=Carolina`.
       schema:
-        $ref: '#/components/schemas/eqStringFilter'
+        $ref: '#/components/schemas/lataRegionFilterParam'
       style: deepObject
       explode: true
       example:
-        eq: North Carolina
+        contains: Carolina
     filterHostedVoice:
       name: hostedVoice
       in: query
@@ -636,14 +667,17 @@ components:
       in: query
       required: false
       description: >-
-        Filter by LRN Configuration name using an exact match. Pass as
-        `routingConfigurationName[eq]=<value>`.
+        Filter by LRN Configuration name. Use `routingConfigurationName[eq]` for
+        an exact match or `routingConfigurationName[contains]` for a
+        case-insensitive substring match. Pass as
+        `routingConfigurationName[eq]=Primary` or
+        `routingConfigurationName[contains]=Pri`.
       schema:
-        $ref: '#/components/schemas/eqStringFilter'
+        $ref: '#/components/schemas/routingConfigurationNameFilterParam'
       style: deepObject
       explode: true
       example:
-        eq: Primary
+        contains: Pri
     addedParam:
       name: added
       in: query
@@ -1083,27 +1117,99 @@ components:
       type: object
       description: >-
         Consolidated filter and sort parameter for the LRN value. Use `lrn[eq]`
-        to filter by exact value and `lrn[sort]` to sort.
+        for an exact match, `lrn[contains]` for a case-insensitive substring
+        match, and `lrn[sort]` to control sort order. All sub-properties are
+        optional and may be combined.
       properties:
         eq:
           type: string
           description: Exact match on the LRN value.
           example: '+12345'
+        contains:
+          type: string
+          description: Case-insensitive substring match on the LRN value.
+          example: '+1234'
         sort:
           $ref: '#/components/schemas/sort'
     operatingCompanyNameFilterSortParam:
       type: object
       description: >-
         Consolidated filter and sort parameter for the Operating Company Name
-        (OCN). Use `operatingCompanyName[eq]` to filter by exact value and
-        `operatingCompanyName[sort]` to sort.
+        (OCN). Use `operatingCompanyName[eq]` for an exact match,
+        `operatingCompanyName[contains]` for a case-insensitive substring match,
+        and `operatingCompanyName[sort]` to control sort order. All
+        sub-properties are optional and may be combined.
       properties:
         eq:
           type: string
           description: Exact match on the Operating Company Name (OCN).
           example: Telecom
+        contains:
+          type: string
+          description: >-
+            Case-insensitive substring match on the Operating Company Name
+            (OCN).
+          example: Tele
         sort:
           $ref: '#/components/schemas/sort'
+    lataIdFilterParam:
+      type: object
+      description: >-
+        Filter parameter for LATA ID. Use `lataId[eq]` for an exact integer
+        match or `lataId[contains]` for a substring match.
+      properties:
+        eq:
+          type: integer
+          description: Exact match on the LATA ID.
+          example: 426
+        contains:
+          type: string
+          description: Substring match on the LATA ID.
+          example: '42'
+    lataNameFilterParam:
+      type: object
+      description: >-
+        Filter parameter for LATA name. Use `lataName[eq]` for an exact match or
+        `lataName[contains]` for a case-insensitive substring match.
+      properties:
+        eq:
+          type: string
+          description: Exact match on the LATA name.
+          example: Raleigh
+        contains:
+          type: string
+          description: Case-insensitive substring match on the LATA name.
+          example: Rale
+    lataRegionFilterParam:
+      type: object
+      description: >-
+        Filter parameter for LATA region. Use `lataRegion[eq]` for an exact
+        match or `lataRegion[contains]` for a case-insensitive substring match.
+      properties:
+        eq:
+          type: string
+          description: Exact match on the LATA region.
+          example: North Carolina
+        contains:
+          type: string
+          description: Case-insensitive substring match on the LATA region.
+          example: Carolina
+    routingConfigurationNameFilterParam:
+      type: object
+      description: >-
+        Filter parameter for LRN Configuration name. Use
+        `routingConfigurationName[eq]` for an exact match or
+        `routingConfigurationName[contains]` for a case-insensitive substring
+        match.
+      properties:
+        eq:
+          type: string
+          description: Exact match on the LRN Configuration name.
+          example: Primary
+        contains:
+          type: string
+          description: Case-insensitive substring match on the LRN Configuration name.
+          example: Pri
     createLrn:
       type: object
       required:
