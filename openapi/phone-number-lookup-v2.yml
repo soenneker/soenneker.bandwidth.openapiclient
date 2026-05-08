@@ -237,6 +237,19 @@ components:
           items:
             type: string
             pattern: ^\+[1-9]\d{1,14}$
+        rcsAgent:
+          type: string
+          description: >-
+            Override the default RCS sender/agent ID used when checking RCS
+            capabilities.
+
+            When provided, this value is used as the `sender` in the RCS
+            capability-check request instead of the account default.
+
+            Must be 1–40 characters and contain only letters, digits,
+            underscores, or hyphens.
+          pattern: ^[A-Za-z0-9_-]{1,40}$
+          example: MyCustomRcsAgent
       required:
         - phoneNumbers
     asyncLookupRequest:
@@ -544,6 +557,13 @@ components:
         phoneNumbers:
           - '+19196104423'
           - '+19196104424'
+    rcsAgentRequestExample:
+      summary: Number Lookup Request with Custom RCS Agent
+      value:
+        phoneNumbers:
+          - '+19196104423'
+          - '+19196104424'
+        rcsAgent: MyCustomRcsAgent
     lookupAcceptedExample:
       summary: Numbers Lookup Accepted
       value:
@@ -807,6 +827,8 @@ components:
               $ref: '#/components/examples/singleNumberRequestExample'
             multipleNumberRequestExample:
               $ref: '#/components/examples/multipleNumberRequestExample'
+            rcsAgentRequestExample:
+              $ref: '#/components/examples/rcsAgentRequestExample'
     createAsyncBulkLookupRequest:
       description: Asynchronous bulk phone number lookup request.
       required: true

@@ -22,6 +22,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public List<string> PhoneNumbers { get; set; }
 #endif
+        /// <summary>Override the default RCS sender/agent ID used when checking RCS capabilities.When provided, this value is used as the `sender` in the RCS capability-check request instead of the account default.Must be 1–40 characters and contain only letters, digits, underscores, or hyphens.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? RcsAgent { get; set; }
+#nullable restore
+#else
+        public string RcsAgent { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SyncLookupRequest"/> and sets the default values.
         /// </summary>
@@ -48,6 +56,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "rcsAgent", n => { RcsAgent = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -58,6 +67,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
+            writer.WriteStringValue("rcsAgent", RcsAgent);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
