@@ -58,6 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orde
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ListNewPhoneNumberOrders200ResponseJson"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionErrorResponseJson">When receiving a 400 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNewPhoneNumberOrders200ResponseJson?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orders.OrdersRequestBuilder.OrdersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -68,7 +69,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orde
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNewPhoneNumberOrders200ResponseJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ListNewPhoneNumberOrders200ResponseJson.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionErrorResponseJson.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNewPhoneNumberOrders200ResponseJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ListNewPhoneNumberOrders200ResponseJson.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &lt;span&gt;A POST to the /orders resource is used to request that the system provide one or more phone number(s) for use by the account. The post creates a new number order record to preserve the request, as well as the response of the Bandwidth App API to the request.  A well-formed POST on the /orders resource will create an order record, and return an order ID string that can be used to uniquely identify the new number order request. Capabilities that are not universally available are defined in the table below. The following request schemas and parameters are only allowed for numbers from specific region/country:| Number Region | Request Object Type | Request Parameter ||:--------------|:------------------|------------------||NANP|rateCenterSearchAndOrderType|-||NANP|areaCodeSearchAndOrderType|-||NANP|npaNxxSearchAndOrderType|-||NANP|tollFreeWildCharSearchAndOrderType|-||NANP|tollFreeVanitySearchAndOrderType|-||NANP|lataSearchAndOrderType|-||NANP|zipSearchAndOrderType|-||NANP|citySearchAndOrderType|-||NANP|stateSearchAndOrderType|-||NANP|combinedSearchAndOrderType|-||NANP|-|backOrderRequested||NANP|-|closeOrder||NANP|-|protected TnAttribute||NANP|-|reservationIdList in ExistingTelephoneNumberOrderType schema|&lt;p&gt;Please visit &lt;a href=&apos;/docs/numbers/guides/searchingForNumbers/&apos;&gt;Guides and Tutorials&lt;/a&gt; to learn more.&lt;/p&gt;
@@ -80,14 +85,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orde
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder400ResponseSchemaJson">When receiving a 400 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJson?> PostAsync(string body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJson?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrderRequestSchemaJson body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJson> PostAsync(string body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJson> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrderRequestSchemaJson body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
-            if(string.IsNullOrEmpty(body)) throw new ArgumentNullException(nameof(body));
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
@@ -122,18 +127,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orde
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(string body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrderRequestSchemaJson body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(string body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrderRequestSchemaJson body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            if(string.IsNullOrEmpty(body)) throw new ArgumentNullException(nameof(body));
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/number-acquisition/accounts/{accountId}/orders", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
-            requestInfo.SetContentFromScalar(RequestAdapter, "application/json", body);
+            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
         /// <summary>

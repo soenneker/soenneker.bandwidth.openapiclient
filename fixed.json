@@ -41264,7 +41264,7 @@
         }
       },
       "RetrieveTnOptionOrderJsonResponse": {
-        "type": "string"
+        "$ref": "#/components/schemas/TnOptionOrderJsonResponsePayload"
       },
       "TnOptionOrderResponsePayload": {
         "title": "TnOptionOrder",
@@ -47412,7 +47412,7 @@
         }
       },
       "NumberAcquisitionErrorResponseJson": {
-        "type": "string"
+        "$ref": "#/components/schemas/IrisStatusJson"
       },
       "IrisStatusJson": {
         "type": "object",
@@ -48153,7 +48153,7 @@
         }
       },
       "CreateNewPhoneNumberOrderRequestSchemaJson": {
-        "type": "string"
+        "$ref": "#/components/schemas/NewPhoneNumberOrder"
       },
       "NewPhoneNumberOrder": {
         "required": [
@@ -55181,7 +55181,7 @@
         ]
       },
       "CreateShortCodeCampaignWebhookSubscriptionRequestSchema": {
-        "type": "string"
+        "$ref": "#/components/schemas/ShortCodeCampaignWebhookSubscriptionSchema"
       },
       "CreateShortCodeCampaignWebhookSubscriptionResponseSchema": {
         "type": "object",
@@ -57363,7 +57363,7 @@
         }
       },
       "UpdateShortCodeCampaignWebhookSubscriptionRequestSchema": {
-        "type": "string"
+        "$ref": "#/components/schemas/ShortCodeCampaignWebhookSubscriptionSchema"
       },
       "CoveredRateCenterErrorResponseXmlCoveredRateCenters": {
         "type": "object",
@@ -77482,7 +77482,7 @@
           },
           "application/json": {
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/RetrieveTnOptionOrderJsonResponse"
             },
             "examples": {
               "getTnOptionOrderDetailedJsonResponseExample": {
@@ -78972,7 +78972,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/NumberAcquisitionErrorResponseJson"
             },
             "examples": {
               "example": {
@@ -79081,7 +79081,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/NumberAcquisitionErrorResponseJson"
             },
             "examples": {
               "example": {
@@ -79382,7 +79382,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/NumberAcquisitionErrorResponseJson"
             },
             "examples": {
               "example": {
@@ -79407,7 +79407,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/NumberAcquisitionErrorResponseJson"
             },
             "examples": {
               "example": {
@@ -79463,7 +79463,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/NumberAcquisitionErrorResponseJson"
             },
             "examples": {
               "example": {
@@ -79488,7 +79488,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/NumberAcquisitionErrorResponseJson"
             },
             "examples": {
               "example": {
@@ -79647,7 +79647,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/NumberAcquisitionErrorResponseJson"
             },
             "examples": {
               "example": {
@@ -79672,7 +79672,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/NumberAcquisitionErrorResponseJson"
             },
             "examples": {
               "example": {
@@ -107108,7 +107108,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/CreateNewPhoneNumberOrderRequestSchemaJson"
             },
             "examples": {
               "combinedSearchAndOrderType (local vanity) [NANP]": {
@@ -107582,7 +107582,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/CreateShortCodeCampaignWebhookSubscriptionRequestSchema"
             }
           }
         },
@@ -107613,7 +107613,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/UpdateShortCodeCampaignWebhookSubscriptionRequestSchema"
             }
           }
         },

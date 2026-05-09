@@ -39,6 +39,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Avai
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AvailableNpaNxxSearchResponseJson"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionErrorResponseJson">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionErrorResponseJson">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.AvailableNpaNxxSearchResponseJson?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.AvailableNpaNxx.AvailableNpaNxxRequestBuilder.AvailableNpaNxxRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -49,7 +51,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Avai
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.AvailableNpaNxxSearchResponseJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.AvailableNpaNxxSearchResponseJson.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionErrorResponseJson.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionErrorResponseJson.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.AvailableNpaNxxSearchResponseJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.AvailableNpaNxxSearchResponseJson.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a list of available Npa-Nxx phone numbers.

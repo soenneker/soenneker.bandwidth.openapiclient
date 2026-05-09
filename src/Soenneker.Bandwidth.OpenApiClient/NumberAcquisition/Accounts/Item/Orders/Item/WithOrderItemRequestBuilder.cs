@@ -75,6 +75,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orde
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionErrorResponseJson">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orders.Item.WithOrderItemRequestBuilder.WithOrderItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -85,7 +86,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orde
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionErrorResponseJson.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// For orders that support Backorder capabilities, new number orders may stay in backordered state while the order is filled. While in this state it is possible to update the modifiable fields in the record, as well as to request that backorder processing of the order be ended.The fields that can be updated are...&lt;ul&gt;&lt;li&gt;The order name&lt;/li&gt;&lt;li&gt;The customer order ID&lt;/li&gt;&lt;li&gt;The backordered state.&lt;/li&gt;&lt;/ul&gt;Specifying a &amp;lt;CloseOrder&amp;gt; element (XML) or &quot;closeOrder&quot; key (JSON) with a value of true will cancel the backorder request, leaving the currently ordered numbers on the account.  No further numbers will be added to the account as a result of the order.
