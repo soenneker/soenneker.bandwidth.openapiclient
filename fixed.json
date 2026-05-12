@@ -15330,6 +15330,193 @@
         }
       }
     },
+    "/portins/accounts/{accountId}/csrs": {
+      "get": {
+        "tags": [
+          "Porting"
+        ],
+        "summary": "List CSR orders",
+        "description": "Retrieves the CSR orders for the given account ID.\nPlease visit <a href='/docs/numbers/porting/port-ins/csrs'>Guides and Tutorials</a>",
+        "operationId": "portins-readCsrOrders",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/portins_AccountIdPathParam"
+          },
+          {
+            "$ref": "#/components/parameters/portins_modifiedDateFromQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/portins_modifiedDateToQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/portins_pageQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/portins_sizeQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/portins_statusQueryParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/csrListResponse200"
+          },
+          "400": {
+            "$ref": "#/components/responses/csrBadRequestError"
+          },
+          "401": {
+            "$ref": "#/components/responses/portins_errorResponse401"
+          },
+          "403": {
+            "$ref": "#/components/responses/portins_errorResponse403"
+          },
+          "404": {
+            "$ref": "#/components/responses/portins_errorResponse404"
+          },
+          "405": {
+            "$ref": "#/components/responses/portins_errorResponse405"
+          },
+          "429": {
+            "$ref": "#/components/responses/portins_errorResponse429"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/portins_errorResponse500"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Porting"
+        ],
+        "summary": "Create CSR order",
+        "description": "Creates the CSR order",
+        "operationId": "portins-createCsrOrder",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/portins_AccountIdPathParam"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/csrCreateRequestBody"
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/csrCreateResponse201"
+          },
+          "400": {
+            "$ref": "#/components/responses/csrBadRequestError"
+          },
+          "401": {
+            "$ref": "#/components/responses/portins_errorResponse401"
+          },
+          "403": {
+            "$ref": "#/components/responses/portins_errorResponse403"
+          },
+          "404": {
+            "$ref": "#/components/responses/portins_errorResponse404"
+          },
+          "405": {
+            "$ref": "#/components/responses/portins_errorResponse405"
+          },
+          "429": {
+            "$ref": "#/components/responses/portins_errorResponse429"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/portins_errorResponse500"
+          }
+        }
+      }
+    },
+    "/portins/accounts/{accountId}/csrs/{orderId}": {
+      "get": {
+        "tags": [
+          "Porting"
+        ],
+        "summary": "Get CSR order",
+        "description": "Retrieves the CSR order for the given account ID by order ID.",
+        "operationId": "portins-readCsrOrder",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/portins_AccountIdPathParam"
+          },
+          {
+            "$ref": "#/components/parameters/portins_OrderIdPathParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/csrGetResponse200"
+          },
+          "400": {
+            "$ref": "#/components/responses/csrBadRequestError"
+          },
+          "401": {
+            "$ref": "#/components/responses/portins_errorResponse401"
+          },
+          "403": {
+            "$ref": "#/components/responses/portins_errorResponse403"
+          },
+          "404": {
+            "$ref": "#/components/responses/portins_errorResponse404"
+          },
+          "405": {
+            "$ref": "#/components/responses/portins_errorResponse405"
+          },
+          "429": {
+            "$ref": "#/components/responses/portins_errorResponse429"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/portins_errorResponse500"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Porting"
+        ],
+        "summary": "Update CSR order",
+        "description": "Update CSR order",
+        "operationId": "portins-updateCsrOrder",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/portins_AccountIdPathParam"
+          },
+          {
+            "$ref": "#/components/parameters/portins_OrderIdPathParam"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/csrUpdateRequestBody"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/csrUpdateResponse200"
+          },
+          "400": {
+            "$ref": "#/components/responses/csrBadRequestError"
+          },
+          "401": {
+            "$ref": "#/components/responses/portins_errorResponse401"
+          },
+          "403": {
+            "$ref": "#/components/responses/portins_errorResponse403"
+          },
+          "404": {
+            "$ref": "#/components/responses/portins_errorResponse404"
+          },
+          "405": {
+            "$ref": "#/components/responses/portins_errorResponse405"
+          },
+          "429": {
+            "$ref": "#/components/responses/portins_errorResponse429"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/portins_errorResponse500"
+          }
+        }
+      }
+    },
     "/portins/accounts/{accountId}/portins/{orderId}/activationStatus": {
       "get": {
         "tags": [
@@ -45510,6 +45697,17 @@
           }
         }
       },
+      "NumberManagementPhoneNumbers_Wrapper": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/NumberManagementPhoneNumbers"
+          }
+        }
+      },
       "Message": {
         "title": "Message",
         "type": "object",
@@ -45626,6 +45824,23 @@
             "type": "string",
             "description": "A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future.",
             "format": "date-time"
+          }
+        }
+      },
+      "UnionBranch": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "title": "Enum Values",
+            "enum": [
+              "UNCHANGED",
+              "SYSTEM_DEFAULT"
+            ],
+            "type": "string",
+            "additionalProperties": false
           }
         }
       },
@@ -45748,6 +45963,28 @@
         "additionalProperties": false,
         "description": "The channel of the multi-channel message.",
         "example": "RBM"
+      },
+      "SubscriptionStatusEnum_Wrapper": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/SubscriptionStatusEnum"
+          }
+        }
+      },
+      "CreateUpdateLinks_Wrapper": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/CreateUpdateLinks"
+          }
+        }
       },
       "MultiChannelDestinations": {
         "uniqueItems": true,
@@ -46037,31 +46274,26 @@
         "additionalProperties": false,
         "description": "Defines the layout of the WebView on a mobile device. It must be defined when application is set to `WEBVIEW`\n- `FULL` WebView takes the full screen.\n- `HALF` WebView takes half of the screen.\n- `TALL` WebView takes three-quarters of the screen."
       },
-      "NumberManagementPhoneNumbers_Wrapper": {
-        "required": [
-          "value"
-        ],
+      "ExamplePayload": {
         "type": "object",
-        "properties": {
-          "value": {
-            "$ref": "#/components/schemas/NumberManagementPhoneNumbers"
-          }
-        }
+        "description": "Placeholder schema for path example refs"
       },
-      "UnionBranch": {
+      "QueryCriteriaValues_Branch3": {
         "required": [
           "value"
         ],
         "type": "object",
         "properties": {
           "value": {
-            "title": "Enum Values",
-            "enum": [
-              "UNCHANGED",
-              "SYSTEM_DEFAULT"
-            ],
-            "type": "string",
-            "additionalProperties": false
+            "type": "array",
+            "items": {
+              "type": "object",
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/UnionBranch"
+                }
+              ]
+            }
           }
         }
       },
@@ -47593,14 +47825,14 @@
           "name": "Order"
         }
       },
-      "SubscriptionStatusEnum_Wrapper": {
+      "QueryCriteriaValues_Branch2": {
         "required": [
           "value"
         ],
         "type": "object",
         "properties": {
           "value": {
-            "$ref": "#/components/schemas/SubscriptionStatusEnum"
+            "type": "string"
           }
         }
       },
@@ -47613,14 +47845,14 @@
         },
         "description": "The TnAttributes field specifies line attributes that will apply to the ported in phone numbers. If present, TnAttributes may have a value of PROTECTED. This element is not applicable for off-net and toll free port-types."
       },
-      "CreateUpdateLinks_Wrapper": {
+      "QueryCriteriaValues_Branch1": {
         "required": [
           "value"
         ],
         "type": "object",
         "properties": {
           "value": {
-            "$ref": "#/components/schemas/CreateUpdateLinks"
+            "type": "boolean"
           }
         }
       },
@@ -47656,38 +47888,51 @@
           "format": "uuid"
         }
       },
-      "ExamplePayload": {
-        "type": "object",
-        "description": "Placeholder schema for path example refs"
-      },
-      "QueryCriteriaValues_Branch3": {
-        "required": [
-          "value"
+      "SearchVoiceIntegrationsRequestSort_value": {
+        "title": "SearchVoiceIntegrationsRequestSort_value",
+        "enum": [
+          "ASC",
+          "DESC"
         ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "GlobalUnlinkRegulationAddress": {
         "type": "object",
         "properties": {
-          "value": {
+          "didIds": {
             "type": "array",
             "items": {
-              "type": "object",
-              "oneOf": [
-                {
-                  "$ref": "#/components/schemas/UnionBranch"
-                }
-              ]
-            }
+              "minimum": 1,
+              "type": "integer"
+            },
+            "description": "list of numbers to be unlinked from their local address requirement (LAR) documents."
           }
+        },
+        "x-example": {
+          "didIds": [
+            123456,
+            78901
+          ]
         }
       },
-      "QueryCriteriaValues_Branch2": {
-        "required": [
-          "value"
-        ],
+      "GlobalLinkRegulationAddress": {
         "type": "object",
         "properties": {
-          "value": {
-            "type": "string"
+          "didIds": {
+            "type": "array",
+            "items": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "description": "list of numbers to be linked to the address. An array of didId values of the numbers to be assigned to this address for activation."
           }
+        },
+        "x-example": {
+          "didIds": [
+            123456,
+            78901
+          ]
         }
       },
       "PhoneNumberTag": {
@@ -49351,14 +49596,16 @@
           }
         }
       },
-      "QueryCriteriaValues_Branch1": {
-        "required": [
-          "value"
-        ],
+      "GlobalUploadProofOfAddress": {
         "type": "object",
         "properties": {
-          "value": {
-            "type": "boolean"
+          "proofOfAddress": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "binary"
+            },
+            "description": "List of documents - the first one will be set as proof of address."
           }
         }
       },
@@ -50054,107 +50301,6 @@
           }
         }
       },
-      "SearchVoiceIntegrationsRequestSort_value": {
-        "title": "SearchVoiceIntegrationsRequestSort_value",
-        "enum": [
-          "ASC",
-          "DESC"
-        ],
-        "type": "string",
-        "additionalProperties": false
-      },
-      "GlobalUnlinkRegulationAddress": {
-        "type": "object",
-        "properties": {
-          "didIds": {
-            "type": "array",
-            "items": {
-              "minimum": 1,
-              "type": "integer"
-            },
-            "description": "list of numbers to be unlinked from their local address requirement (LAR) documents."
-          }
-        },
-        "x-example": {
-          "didIds": [
-            123456,
-            78901
-          ]
-        }
-      },
-      "Origin": {
-        "enum": [
-          "UNDEFINED",
-          "PORTED_IN"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The origin type of numbers, defaulting to 'UNDEFINED' if not ported into IRIS."
-      },
-      "GlobalLinkRegulationAddress": {
-        "type": "object",
-        "properties": {
-          "didIds": {
-            "type": "array",
-            "items": {
-              "minimum": 1,
-              "type": "integer"
-            },
-            "description": "list of numbers to be linked to the address. An array of didId values of the numbers to be assigned to this address for activation."
-          }
-        },
-        "x-example": {
-          "didIds": [
-            123456,
-            78901
-          ]
-        }
-      },
-      "GlobalUploadProofOfAddress": {
-        "type": "object",
-        "properties": {
-          "proofOfAddress": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "binary"
-            },
-            "description": "List of documents - the first one will be set as proof of address."
-          }
-        }
-      },
-      "BillingType": {
-        "enum": [
-          "NOCHARGE",
-          "PORTIN",
-          "NEWNUMBER",
-          "PROJECTPORT"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "Type of billing rules to be applied."
-      },
-      "TnAttributes": {
-        "type": "object",
-        "properties": {
-          "TnAttribute": {
-            "enum": [
-              "Protected"
-            ],
-            "type": "string",
-            "additionalProperties": false
-          }
-        },
-        "description": "List of phone number attributes to be assigned."
-      },
-      "InitialStatus": {
-        "enum": [
-          "Available"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "TN status to be assigned to imported telephone numbers. Requires the \"Protected\" TnAttribute."
-      },
       "GlobalAddToCart": {
         "required": [
           "type"
@@ -50217,6 +50363,89 @@
           }
         }
       },
+      "Origin": {
+        "enum": [
+          "UNDEFINED",
+          "PORTED_IN"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The origin type of numbers, defaulting to 'UNDEFINED' if not ported into IRIS."
+      },
+      "UpdateNewPhoneNumberOrder404ResponseSchemaXmlOrderResponseErrorListError": {
+        "type": "object",
+        "properties": {
+          "Code": {
+            "type": "integer"
+          },
+          "Description": {
+            "type": "string"
+          }
+        }
+      },
+      "TnListResponseTnListResponseChildPortinOrderListChildPortinOrder": {
+        "type": "object",
+        "properties": {
+          "OrderId": {
+            "type": "string",
+            "description": "The unique identifier string created by Bandwidth to refer to the order.  This value is returned in the synchronous response to the POST."
+          },
+          "TnList": {
+            "$ref": "#/components/schemas/TnList"
+          }
+        },
+        "description": "The list of child, or subtending, orders associated with a bulk port-in.  The bulk port-in will have an empty ChildPortinOrderList if none of the telephone numbers included in the /tnList are portable."
+      },
+      "BillingType": {
+        "enum": [
+          "NOCHARGE",
+          "PORTIN",
+          "NEWNUMBER",
+          "PROJECTPORT"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Type of billing rules to be applied."
+      },
+      "TnAttributes": {
+        "type": "object",
+        "properties": {
+          "TnAttribute": {
+            "enum": [
+              "Protected"
+            ],
+            "type": "string",
+            "additionalProperties": false
+          }
+        },
+        "description": "List of phone number attributes to be assigned."
+      },
+      "InitialStatus": {
+        "enum": [
+          "Available"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "TN status to be assigned to imported telephone numbers. Requires the \"Protected\" TnAttribute."
+      },
+      "BulkPortinPatchErrorResponseBulkPortinResponseResponseStatus": {
+        "type": "object",
+        "properties": {
+          "Description": {
+            "type": "string",
+            "description": "Detailed explanation about error"
+          }
+        }
+      },
+      "TnListResponseTnListResponseChildPortinOrderList": {
+        "type": "object",
+        "properties": {
+          "ChildPortinOrder": {
+            "$ref": "#/components/schemas/TnListResponseTnListResponseChildPortinOrderListChildPortinOrder"
+          }
+        },
+        "description": "This is a list of any telephone numbers from the tnList that have not yet been validated."
+      },
       "NumberAcquisitionError": {
         "title": "Error",
         "required": [
@@ -50253,36 +50482,47 @@
           }
         }
       },
-      "UpdateNewPhoneNumberOrder404ResponseSchemaXmlOrderResponseErrorListError": {
+      "UrisResponseURIsUris": {
         "type": "object",
         "properties": {
-          "Code": {
-            "type": "integer"
+          "callername": {
+            "type": "string",
+            "description": "Name of subscriber for the endpoint"
           },
-          "Description": {
-            "type": "string"
+          "uri": {
+            "type": "string",
+            "description": "Effectively the phone number of the subscriber. The URI can include the \"tel:\" prefix, but it's not required."
           }
         }
       },
-      "TnListResponseTnListResponseChildPortinOrderListChildPortinOrder": {
+      "NotificationChannelCallbackCredentialsBasicAuthentication": {
         "type": "object",
         "properties": {
-          "OrderId": {
+          "username": {
             "type": "string",
-            "description": "The unique identifier string created by Bandwidth to refer to the order.  This value is returned in the synchronous response to the POST."
+            "description": "Basic authentication username.",
+            "example": "myUsername"
           },
-          "TnList": {
-            "$ref": "#/components/schemas/TnList"
+          "password": {
+            "type": "string",
+            "description": "Basic authentication password.",
+            "example": "myPassword1!"
           }
         },
-        "description": "The list of child, or subtending, orders associated with a bulk port-in.  The bulk port-in will have an empty ChildPortinOrderList if none of the telephone numbers included in the /tnList are portable."
+        "description": "Basic Authentication callback credentials"
       },
-      "BulkPortinPatchErrorResponseBulkPortinResponseResponseStatus": {
+      "GetImportPhoneNumberLoasErrorResponseXmlErrorResponseIrisStatus": {
         "type": "object",
         "properties": {
+          "Code": {
+            "type": "integer",
+            "description": "The Bandwidth-defined error code.",
+            "example": 7200
+          },
           "Description": {
             "type": "string",
-            "description": "Detailed explanation about error"
+            "description": "A description of the error.",
+            "example": "The order ID was not found"
           }
         }
       },
@@ -50306,14 +50546,16 @@
           }
         }
       },
-      "TnListResponseTnListResponseChildPortinOrderList": {
+      "TnOptionOrderReportSummaryResponseTnOptionOrderReportResponseTnOptionOrders": {
         "type": "object",
         "properties": {
-          "ChildPortinOrder": {
-            "$ref": "#/components/schemas/TnListResponseTnListResponseChildPortinOrderListChildPortinOrder"
+          "TotalCount": {
+            "type": "integer"
+          },
+          "TnOptionOrderSummary": {
+            "$ref": "#/components/schemas/OrderSummary"
           }
-        },
-        "description": "This is a list of any telephone numbers from the tnList that have not yet been validated."
+        }
       },
       "ImportToAccountErrorResponse": {
         "type": "object",
@@ -50391,34 +50633,30 @@
         "additionalProperties": false,
         "description": "The MOVE action moves phone numbers to a specific tag. The REMOVE action removes phone numbers from a specific tag."
       },
-      "UrisResponseURIsUris": {
+      "TnOptionOrderReportDetailedResponseTnOptionOrderReportResponseTnOptionOrders": {
         "type": "object",
         "properties": {
-          "callername": {
-            "type": "string",
-            "description": "Name of subscriber for the endpoint"
+          "TotalCount": {
+            "type": "integer"
           },
-          "uri": {
-            "type": "string",
-            "description": "Effectively the phone number of the subscriber. The URI can include the \"tel:\" prefix, but it's not required."
+          "TnOptionOrder": {
+            "$ref": "#/components/schemas/TnOptionOrderResponsePayload"
           }
         }
       },
-      "NotificationChannelCallbackCredentialsBasicAuthentication": {
+      "LidbOrderHistoryResponseResponseSelectWrapperListOrderIdUserIdDate": {
         "type": "object",
         "properties": {
-          "username": {
-            "type": "string",
-            "description": "Basic authentication username.",
-            "example": "myUsername"
+          "OrderIdUserIdDate": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderSummary"
+            }
           },
-          "password": {
-            "type": "string",
-            "description": "Basic authentication password.",
-            "example": "myPassword1!"
+          "TotalCount": {
+            "type": "integer"
           }
-        },
-        "description": "Basic Authentication callback credentials"
+        }
       },
       "NumberManagementPaginationLinks": {
         "title": "Links",
@@ -50567,29 +50805,33 @@
           }
         }
       },
-      "GetImportPhoneNumberLoasErrorResponseXmlErrorResponseIrisStatus": {
+      "ResponseSelectWrapperResponseSelectWrapperListOrderIdUserIdDate": {
+        "type": "object",
+        "properties": {
+          "Links": {
+            "$ref": "#/components/schemas/LineFeaturesLinks"
+          },
+          "OrderIdUserIdDate": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderIdUserIdDate"
+            }
+          },
+          "TotalCount": {
+            "type": "integer"
+          }
+        }
+      },
+      "LidbOrderErrorResponseLidbOrderResponseStatus": {
         "type": "object",
         "properties": {
           "Code": {
             "type": "integer",
-            "description": "The Bandwidth-defined error code.",
-            "example": 7200
+            "description": "Numeric designation of corresponding error"
           },
           "Description": {
             "type": "string",
-            "description": "A description of the error.",
-            "example": "The order ID was not found"
-          }
-        }
-      },
-      "TnOptionOrderReportSummaryResponseTnOptionOrderReportResponseTnOptionOrders": {
-        "type": "object",
-        "properties": {
-          "TotalCount": {
-            "type": "integer"
-          },
-          "TnOptionOrderSummary": {
-            "$ref": "#/components/schemas/OrderSummary"
+            "description": "Detailed explanation about error "
           }
         }
       },
@@ -50621,61 +50863,6 @@
         "additionalProperties": false,
         "description": "The action to be taken on the messaging service when moving numbers. This field\nensures that the destination account has compatible messaging settings to support moving numbers. If the \nvalidation passes, the numbers are moved without altering their existing messaging settings. However, \nif the validation fails, the order will be rejected with an error messaging indicating incompatible settings.\n\nIf set to `useDestinationSettings`, this will apply the destination location's messaging settings to the number.\n\nIf set to `useCurrentNumberSettings`, this will validate and apply whether the destination location \ncan accept the numbers' existing messaging settings.",
         "default": "USE_DESTINATION_SETTINGS"
-      },
-      "TnOptionOrderReportDetailedResponseTnOptionOrderReportResponseTnOptionOrders": {
-        "type": "object",
-        "properties": {
-          "TotalCount": {
-            "type": "integer"
-          },
-          "TnOptionOrder": {
-            "$ref": "#/components/schemas/TnOptionOrderResponsePayload"
-          }
-        }
-      },
-      "LidbOrderHistoryResponseResponseSelectWrapperListOrderIdUserIdDate": {
-        "type": "object",
-        "properties": {
-          "OrderIdUserIdDate": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/OrderSummary"
-            }
-          },
-          "TotalCount": {
-            "type": "integer"
-          }
-        }
-      },
-      "ResponseSelectWrapperResponseSelectWrapperListOrderIdUserIdDate": {
-        "type": "object",
-        "properties": {
-          "Links": {
-            "$ref": "#/components/schemas/LineFeaturesLinks"
-          },
-          "OrderIdUserIdDate": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/OrderIdUserIdDate"
-            }
-          },
-          "TotalCount": {
-            "type": "integer"
-          }
-        }
-      },
-      "LidbOrderErrorResponseLidbOrderResponseStatus": {
-        "type": "object",
-        "properties": {
-          "Code": {
-            "type": "integer",
-            "description": "Numeric designation of corresponding error"
-          },
-          "Description": {
-            "type": "string",
-            "description": "Detailed explanation about error "
-          }
-        }
       },
       "TnOrderHistoryResponseResponseSelectWrapperListOrderIdUserIdDate": {
         "type": "object",
@@ -50724,14 +50911,6 @@
           }
         }
       },
-      "OrderIds": {
-        "type": "array",
-        "items": {
-          "type": "string",
-          "format": "uuid"
-        },
-        "description": "A list of order IDs for child orders generated from this group of phone number configurations. If there were more than 5000\nphone numbers for one grouping of bulk order details, multiple child orders will be created."
-      },
       "TelephoneDetailsTotalsTelephoneDetailsReportsTelephoneDetailsReport": {
         "type": "object",
         "properties": {
@@ -50748,6 +50927,58 @@
           },
           "Description": {
             "type": "string"
+          }
+        }
+      },
+      "RateCenterErrorResponseXmlRateCenterResponseError": {
+        "type": "object",
+        "properties": {
+          "Code": {
+            "type": "integer"
+          },
+          "Description": {
+            "type": "string"
+          }
+        }
+      },
+      "CoveredRateCenterErrorResponseXmlCoveredRateCentersResponseStatus": {
+        "type": "object",
+        "properties": {
+          "Description": {
+            "type": "string"
+          }
+        }
+      },
+      "OrderIds": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "description": "A list of order IDs for child orders generated from this group of phone number configurations. If there were more than 5000\nphone numbers for one grouping of bulk order details, multiple child orders will be created."
+      },
+      "ListImportToAccountOrders400ResponseSchemaResponseSelectWrapperListOrderIdUserIdDate": {
+        "type": "object",
+        "properties": {
+          "ErrorMessage": {
+            "type": "string"
+          }
+        }
+      },
+      "NumberAcquisitionResponseSelectWrapperResponseSelectWrapperListOrderIdUserIdDate": {
+        "type": "object",
+        "properties": {
+          "TotalCount": {
+            "type": "integer"
+          },
+          "Links": {
+            "$ref": "#/components/schemas/NumberAcquisitionLinks"
+          },
+          "OrderIdUserIdDate": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NumberAcquisitionOrderIdUserIdDate"
+            }
           }
         }
       },
@@ -50791,7 +51022,7 @@
         "description": "The action to take with the specified phone numbers.",
         "example": "ADD"
       },
-      "RateCenterErrorResponseXmlRateCenterResponseError": {
+      "ImportToAccountErrorResponseErrorResponseIrisStatus": {
         "type": "object",
         "properties": {
           "Code": {
@@ -51522,36 +51753,41 @@
         "nullable": true,
         "example": null
       },
-      "CoveredRateCenterErrorResponseXmlCoveredRateCentersResponseStatus": {
+      "CsrGetResponseJsonCsrDataServiceAddress": {
         "type": "object",
         "properties": {
-          "Description": {
+          "unparsedAddress": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "zip": {
             "type": "string"
           }
         }
       },
-      "ListImportToAccountOrders400ResponseSchemaResponseSelectWrapperListOrderIdUserIdDate": {
+      "ImportedTelephoneNumberDetailListItemTelephoneNumberDetail": {
         "type": "object",
         "properties": {
-          "ErrorMessage": {
-            "type": "string"
+          "FullNumber": {
+            "type": "string",
+            "description": "Phone number in E.164 format."
           }
         }
       },
-      "NumberAcquisitionResponseSelectWrapperResponseSelectWrapperListOrderIdUserIdDate": {
+      "BulkMoveTnsErrorsItemMeta": {
         "type": "object",
         "properties": {
-          "TotalCount": {
-            "type": "integer"
-          },
-          "Links": {
-            "$ref": "#/components/schemas/NumberAcquisitionLinks"
-          },
-          "OrderIdUserIdDate": {
+          "phoneNumbers": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/NumberAcquisitionOrderIdUserIdDate"
-            }
+              "type": "string"
+            },
+            "description": "List of phone numbers for which the error occurred."
           }
         }
       },
@@ -51738,14 +51974,17 @@
           }
         }
       },
-      "ImportToAccountErrorResponseErrorResponseIrisStatus": {
+      "ServiceActivationOrderPhoneNumberObjectItemServices": {
         "type": "object",
         "properties": {
-          "Code": {
-            "type": "integer"
+          "voice": {
+            "$ref": "#/components/schemas/ServiceActivationCheckerVoiceServices"
           },
-          "Description": {
-            "type": "string"
+          "messaging": {
+            "$ref": "#/components/schemas/ServiceActivationCheckerServiceType"
+          },
+          "emergency": {
+            "$ref": "#/components/schemas/ServiceActivationCheckerServiceType"
           }
         }
       },
@@ -52978,13 +53217,38 @@
         "type": "string",
         "additionalProperties": false
       },
-      "ImportedTelephoneNumberDetailListItemTelephoneNumberDetail": {
+      "StirShakenCertificatesAccountPutRequestDataRegionData": {
+        "required": [
+          "type"
+        ],
         "type": "object",
-        "properties": {
-          "FullNumber": {
-            "type": "string",
-            "description": "Phone number in E.164 format."
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "region": {
+                "enum": [
+                  "FR"
+                ],
+                "type": "string",
+                "additionalProperties": false
+              },
+              "regionFr": {
+                "type": "object",
+                "description": "Contains stir/shaken certificate request data for the FR region"
+              }
+            }
           }
+        ],
+        "properties": {
+          "type": {
+            "title": "type",
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "discriminator": {
+          "propertyName": "type"
         }
       },
       "VoiceActivationSubtypes": {
@@ -53148,15 +53412,18 @@
         "additionalProperties": false,
         "example": "MOBILE"
       },
-      "BulkMoveTnsErrorsItemMeta": {
+      "StirShakenCertificatesAccountSpcsListResponseData": {
         "type": "object",
         "properties": {
-          "phoneNumbers": {
+          "totalCount": {
+            "type": "integer",
+            "description": "The total count of objects returned in the response."
+          },
+          "stirShakenCertificatesSpcs": {
             "type": "array",
             "items": {
-              "type": "string"
-            },
-            "description": "List of phone numbers for which the error occurred."
+              "$ref": "#/components/schemas/StirShakenCertificatesAccountSpcsResponseData"
+            }
           }
         }
       },
@@ -53336,17 +53603,18 @@
           }
         }
       },
-      "ServiceActivationOrderPhoneNumberObjectItemServices": {
+      "StirShakenCertificatesAccountListResponseData": {
         "type": "object",
         "properties": {
-          "voice": {
-            "$ref": "#/components/schemas/ServiceActivationCheckerVoiceServices"
+          "totalCount": {
+            "type": "integer",
+            "description": "The total count of objects returned in the response."
           },
-          "messaging": {
-            "$ref": "#/components/schemas/ServiceActivationCheckerServiceType"
-          },
-          "emergency": {
-            "$ref": "#/components/schemas/ServiceActivationCheckerServiceType"
+          "stirShakenCertificates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StirShakenCertificatesAccountResponseData"
+            }
           }
         }
       },
@@ -53412,6 +53680,430 @@
         },
         "description": "Carrier information results for the specified telephone number."
       },
+      "CsrRequestJson": {
+        "required": [
+          "workingOrBillingTelephoneNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "customerOrderId": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "Optional customer-defined reference ID for this order."
+          },
+          "workingOrBillingTelephoneNumber": {
+            "type": "string",
+            "description": "Working or Billing telephone number in E.164 format."
+          },
+          "accountNumber": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "The main account number on the bill."
+          },
+          "accountTelephoneNumber": {
+            "maxLength": 12,
+            "type": "string",
+            "description": "The account telephone number assigned by the current service provider."
+          },
+          "endUserName": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "The name of the end user associated with the telephone number."
+          },
+          "authorizingUserName": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "The name of the end user who signed the authorization."
+          },
+          "customerCode": {
+            "maxLength": 3,
+            "type": "string",
+            "description": "The customer code associated with the service provider."
+          },
+          "endUserPin": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "The end user personal identification number (PIN)."
+          },
+          "endUserPassword": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "The end user password to access the CSR, if applicable."
+          },
+          "addressLine1": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Address line 1 portion of the service address."
+          },
+          "city": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "City where the telephone number is being serviced."
+          },
+          "state": {
+            "maxLength": 2,
+            "type": "string",
+            "description": "State or province abbreviation (XX format)."
+          },
+          "zipCode": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "ZIP code or postal code where the telephone number is being serviced."
+          },
+          "typeOfService": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "The type of service identifying the end user account."
+          },
+          "status": {
+            "type": "string",
+            "description": "The order status."
+          },
+          "workingTelephoneNumber": {
+            "type": "string",
+            "description": "Working telephone number in E.164 format."
+          },
+          "billingTelephoneNumber": {
+            "type": "string",
+            "description": "Billing telephone number in E.164 format."
+          },
+          "customerName": {
+            "type": "string",
+            "description": "The subscriber name associated with the telephone number."
+          },
+          "authorizingPersonName": {
+            "type": "string",
+            "description": "The name of the person authorizing the CSR request."
+          },
+          "workingTelephoneNumbersOnAccount": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of all telephone numbers on the account."
+          },
+          "csrServiceAddress": {
+            "$ref": "#/components/schemas/CsrRequestJsonCsrServiceAddress"
+          }
+        },
+        "description": "JSON request body for creating or updating a CSR order."
+      },
+      "CsrOrderStatus": {
+        "enum": [
+          "RECEIVED",
+          "PROCESSING",
+          "ACTION_REQUIRED",
+          "COMPLETE",
+          "FAILED",
+          "REQUESTED_CANCEL",
+          "CANCELLED"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The current status of the CSR order."
+      },
+      "CsrOrderResponseJson": {
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "description": "The Bandwidth-assigned identifier for this CSR order."
+          },
+          "status": {
+            "$ref": "#/components/schemas/CsrOrderStatus"
+          }
+        },
+        "description": "JSON response for a created CSR order."
+      },
+      "CsrOrderResponse": {
+        "type": "object",
+        "properties": {
+          "OrderId": {
+            "type": "string"
+          },
+          "Status": {
+            "type": "string"
+          }
+        }
+      },
+      "CsrGetResponseJson": {
+        "type": "object",
+        "properties": {
+          "customerOrderId": {
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "type": "string"
+          },
+          "orderCreateDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2019-10-25T09:51:17Z"
+          },
+          "accountId": {
+            "type": "integer"
+          },
+          "orderId": {
+            "type": "string"
+          },
+          "lastModifiedDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2019-10-25T12:51:22Z"
+          },
+          "status": {
+            "$ref": "#/components/schemas/CsrOrderStatus"
+          },
+          "accountNumber": {
+            "type": "string"
+          },
+          "accountTelephoneNumber": {
+            "type": "string"
+          },
+          "endUserName": {
+            "type": "string"
+          },
+          "authorizingUserName": {
+            "type": "string"
+          },
+          "customerCode": {
+            "type": "string"
+          },
+          "endUserPin": {
+            "type": "string"
+          },
+          "addressLine1": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "zipCode": {
+            "type": "string"
+          },
+          "typeOfService": {
+            "type": "string"
+          },
+          "csrData": {
+            "$ref": "#/components/schemas/CsrGetResponseJsonCsrData"
+          }
+        },
+        "description": "JSON representation of a single CSR order."
+      },
+      "CsrResponsesJson": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer"
+          },
+          "csrOrders": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "customerOrderId": {
+                  "type": "string"
+                },
+                "lastModifiedBy": {
+                  "type": "string"
+                },
+                "orderCreateDate": {
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2019-10-25T09:51:17Z"
+                },
+                "accountId": {
+                  "type": "integer"
+                },
+                "orderId": {
+                  "type": "string"
+                },
+                "lastModifiedDate": {
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2019-10-25T12:51:22Z"
+                },
+                "status": {
+                  "$ref": "#/components/schemas/CsrOrderStatus"
+                },
+                "accountNumber": {
+                  "type": "string"
+                },
+                "accountTelephoneNumber": {
+                  "type": "string"
+                },
+                "endUserName": {
+                  "type": "string"
+                },
+                "authorizingUserName": {
+                  "type": "string"
+                },
+                "customerCode": {
+                  "type": "string"
+                },
+                "endUserPin": {
+                  "type": "string"
+                },
+                "addressLine1": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "state": {
+                  "type": "string"
+                },
+                "zipCode": {
+                  "type": "string"
+                },
+                "typeOfService": {
+                  "type": "string"
+                },
+                "csrData": {
+                  "type": "object",
+                  "properties": {
+                    "accountNumber": {
+                      "type": "string"
+                    },
+                    "customerName": {
+                      "type": "string"
+                    },
+                    "serviceAddress": {
+                      "type": "object",
+                      "properties": {
+                        "unparsedAddress": {
+                          "type": "string"
+                        },
+                        "city": {
+                          "type": "string"
+                        },
+                        "state": {
+                          "type": "string"
+                        },
+                        "zip": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "workingTelephoneNumber": {
+                      "type": "string"
+                    },
+                    "workingTelephoneNumbersOnAccount": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "JSON representation of a list of CSR orders for an account."
+      },
+      "CsrResponses": {
+        "type": "object",
+        "properties": {
+          "TotalCount": {
+            "type": "integer"
+          },
+          "CsrResponse": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "CsrGetResponse": {
+        "type": "object",
+        "properties": {
+          "CustomerOrderId": {
+            "type": "string"
+          },
+          "OrderId": {
+            "type": "string"
+          },
+          "Status": {
+            "type": "string"
+          }
+        }
+      },
+      "CsrErrorResponseJson": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "CsrErrorResponse": {
+        "type": "object",
+        "properties": {
+          "CsrOrderResponse": {
+            "$ref": "#/components/schemas/CsrErrorResponseCsrOrderResponse"
+          }
+        }
+      },
+      "Csr": {
+        "type": "object",
+        "properties": {
+          "WorkingOrBillingTelephoneNumber": {
+            "type": "string"
+          },
+          "AccountNumber": {
+            "type": "string"
+          },
+          "AccountTelephoneNumber": {
+            "type": "string"
+          },
+          "EndUserName": {
+            "type": "string"
+          },
+          "AuthorizingUserName": {
+            "type": "string"
+          },
+          "CustomerCode": {
+            "type": "string"
+          },
+          "EndUserPIN": {
+            "type": "string"
+          },
+          "EndUserPassword": {
+            "type": "string"
+          },
+          "AddressLine1": {
+            "type": "string"
+          },
+          "City": {
+            "type": "string"
+          },
+          "State": {
+            "type": "string"
+          },
+          "ZIPCode": {
+            "type": "string"
+          },
+          "TypeOfService": {
+            "type": "string"
+          }
+        }
+      },
       "ActivationStatus": {
         "type": "object",
         "properties": {
@@ -53465,38 +54157,19 @@
           }
         }
       },
-      "StirShakenCertificatesAccountPutRequestDataRegionData": {
-        "required": [
-          "type"
-        ],
+      "StirShakenProfilesListResponseData": {
         "type": "object",
-        "oneOf": [
-          {
-            "type": "object",
-            "properties": {
-              "region": {
-                "enum": [
-                  "FR"
-                ],
-                "type": "string",
-                "additionalProperties": false
-              },
-              "regionFr": {
-                "type": "object",
-                "description": "Contains stir/shaken certificate request data for the FR region"
-              }
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "description": "The total count of objects returned in the response."
+          },
+          "stirShakenProfiles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StirShakenProfilesResponseData"
             }
           }
-        ],
-        "properties": {
-          "type": {
-            "title": "type",
-            "type": "string",
-            "description": "Union discriminator"
-          }
-        },
-        "discriminator": {
-          "propertyName": "type"
         }
       },
       "AlertRequest": {
@@ -53559,20 +54232,14 @@
         },
         "description": "The areas affected by the outage. This can be either a list of FCC IDs, two-letter state codes, or USA if the outage is nationwide.\nOnce an alert has been triggered, the areas affected cannot be updated. In the case that additional areas are impacted after an alert\nhas been triggered, a new incident should be created with the additional areas affected.\n"
       },
-      "StirShakenCertificatesAccountSpcsListResponseData": {
+      "VoiceProvisioningPhoneNumberErrorMeta": {
         "type": "object",
         "properties": {
-          "totalCount": {
-            "type": "integer",
-            "description": "The total count of objects returned in the response."
-          },
-          "stirShakenCertificatesSpcs": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StirShakenCertificatesAccountSpcsResponseData"
-            }
+          "items": {
+            "type": "object"
           }
-        }
+        },
+        "description": "An optional object which is a map of key value pair, provided to give more information around context, details, or additional information about the error that only applies to specific errors encountered."
       },
       "CreateAlertResponse": {
         "title": "Create Alert Response",
@@ -53668,35 +54335,32 @@
           }
         }
       },
-      "StirShakenCertificatesAccountListResponseData": {
+      "BulkVoicePhoneNumbersAcceptedResponseData": {
         "type": "object",
         "properties": {
-          "totalCount": {
-            "type": "integer",
-            "description": "The total count of objects returned in the response."
-          },
-          "stirShakenCertificates": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StirShakenCertificatesAccountResponseData"
-            }
+          "bulkId": {
+            "type": "string",
+            "description": "UUID associated with async task for bulk provisioning voice phone numbers.",
+            "format": "uuid"
           }
         }
       },
-      "StirShakenProfilesListResponseData": {
+      "VoicePhoneNumbersVoiceConfigurationPackageOriginationRoutePlan": {
         "type": "object",
         "properties": {
-          "totalCount": {
-            "type": "integer",
-            "description": "The total count of objects returned in the response."
+          "routePlanId": {
+            "type": "string",
+            "format": "uuid",
+            "example": "3bc3c038-8f8c-4489-8dd2-c14063f395e2"
           },
-          "stirShakenProfiles": {
+          "routes": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/StirShakenProfilesResponseData"
+              "$ref": "#/components/schemas/OriginationRoutePlanRoute"
             }
           }
-        }
+        },
+        "description": "Origination route plan associated with a voice configuration package."
       },
       "IncidentResponse": {
         "title": "Get Incident Response",
@@ -54069,14 +54733,25 @@
         },
         "nullable": true
       },
-      "VoiceProvisioningPhoneNumberErrorMeta": {
+      "SearchVoiceIntegrationsRequestSort": {
         "type": "object",
         "properties": {
-          "items": {
-            "type": "object"
+          "parameter": {
+            "enum": [
+              "created",
+              "name",
+              "type"
+            ],
+            "type": "string",
+            "additionalProperties": false,
+            "description": "The parameter to sort.",
+            "default": "created",
+            "example": "created"
+          },
+          "value": {
+            "$ref": "#/components/schemas/SearchVoiceIntegrationsRequestSort_value"
           }
-        },
-        "description": "An optional object which is a map of key value pair, provided to give more information around context, details, or additional information about the error that only applies to specific errors encountered."
+        }
       },
       "TriggerPsapOutage": {
         "title": "Trigger a PSAP Outage Alert",
@@ -54363,32 +55038,32 @@
         },
         "description": "Update a PSAP Outage Alert Incident"
       },
-      "BulkVoicePhoneNumbersAcceptedResponseData": {
+      "AnalyticEngineListResponseData": {
         "type": "object",
         "properties": {
-          "bulkId": {
-            "type": "string",
-            "description": "UUID associated with async task for bulk provisioning voice phone numbers.",
-            "format": "uuid"
+          "analyticEngines": {
+            "$ref": "#/components/schemas/AnalyticEngines"
           }
         }
       },
-      "VoicePhoneNumbersVoiceConfigurationPackageOriginationRoutePlan": {
+      "UpdateVoiceApplicationResponseData": {
         "type": "object",
-        "properties": {
-          "routePlanId": {
-            "type": "string",
-            "format": "uuid",
-            "example": "3bc3c038-8f8c-4489-8dd2-c14063f395e2"
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/VoiceApplicationData"
           },
-          "routes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/OriginationRoutePlanRoute"
+          {
+            "type": "object",
+            "properties": {
+              "sipAuthPassword": {
+                "type": "string",
+                "description": "The password to be used for SIP digest authentication. Only returned when `passwordAuthEnabled` is set to `true`. Null otherwise.",
+                "nullable": true,
+                "example": "super_secure_password"
+              }
             }
           }
-        },
-        "description": "Origination route plan associated with a voice configuration package."
+        ]
       },
       "AdminFeedbackSchema": {
         "type": "object",
@@ -54576,25 +55251,17 @@
         "description": "The billing type of the short code. Either standard SMS or free to end user.",
         "example": "STANDARD_SMS"
       },
-      "SearchVoiceIntegrationsRequestSort": {
+      "UserManagementErrorMeta": {
         "type": "object",
         "properties": {
-          "parameter": {
-            "enum": [
-              "created",
-              "name",
-              "type"
-            ],
+          "traceId": {
             "type": "string",
-            "additionalProperties": false,
-            "description": "The parameter to sort.",
-            "default": "created",
-            "example": "created"
-          },
-          "value": {
-            "$ref": "#/components/schemas/SearchVoiceIntegrationsRequestSort_value"
+            "description": "A unique identifier for the error",
+            "example": 123456789
           }
-        }
+        },
+        "additionalProperties": false,
+        "description": "Additional metadata about the error"
       },
       "CallToActionType": {
         "type": "array",
@@ -54615,45 +55282,6 @@
         "additionalProperties": false,
         "description": "The type of call to action that the short code uses."
       },
-      "AnalyticEngineListResponseData": {
-        "type": "object",
-        "properties": {
-          "analyticEngines": {
-            "$ref": "#/components/schemas/AnalyticEngines"
-          }
-        }
-      },
-      "UpdateVoiceApplicationResponseData": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/VoiceApplicationData"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "sipAuthPassword": {
-                "type": "string",
-                "description": "The password to be used for SIP digest authentication. Only returned when `passwordAuthEnabled` is set to `true`. Null otherwise.",
-                "nullable": true,
-                "example": "super_secure_password"
-              }
-            }
-          }
-        ]
-      },
-      "UserManagementErrorMeta": {
-        "type": "object",
-        "properties": {
-          "traceId": {
-            "type": "string",
-            "description": "A unique identifier for the error",
-            "example": 123456789
-          }
-        },
-        "additionalProperties": false,
-        "description": "Additional metadata about the error"
-      },
       "UserManagementErrorSource": {
         "type": "object",
         "properties": {
@@ -54670,6 +55298,61 @@
         },
         "additionalProperties": false,
         "description": "Information about the source of the error"
+      },
+      "EnrollUserMfaFactorResponseData": {
+        "required": [
+          "id",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the MFA Factor"
+          },
+          "status": {
+            "$ref": "#/components/schemas/MfaFactorStatusEnum"
+          },
+          "qrCode": {
+            "$ref": "#/components/schemas/MfaQrCode"
+          },
+          "sharedSecret": {
+            "type": "string",
+            "description": "The MFA factor's unique secret key for prover"
+          },
+          "factorType": {
+            "$ref": "#/components/schemas/MfaFactorTypeEnum"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/MfaProviderEnum"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WebhookSubscriptionBasicAuthentication": {
+        "required": [
+          "username",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "maxLength": 100,
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 200,
+            "type": "string"
+          }
+        },
+        "description": "Basic authentication credentials are not required, but if present, both username and password must be provided."
+      },
+      "TendlcErrorEntrySource": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "\"A map from the type of source to a value for that type. The supported keys are: 1) POINTER (the value is a RFC6901 JSON pointer to a field in the request body); 2) PARAMETER (the value is a query parameter name); and 3) PATH (the value is a parameter name in the URI of the request). There will only be one entry in the source property, as each error is recorded separately in the errors array.\n\""
       },
       "CampaignResponseSchema": {
         "type": "object",
@@ -54846,35 +55529,13 @@
         },
         "description": "This webhook may be sent out when a campaign status is updated, a short code is assigned to a campaign, or there is an update from the carrier on the status of a campaign."
       },
-      "EnrollUserMfaFactorResponseData": {
-        "required": [
-          "id",
-          "status"
-        ],
+      "ShortCodeCampaign404ResponseErrorSource": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "description": "The unique identifier of the MFA Factor"
-          },
-          "status": {
-            "$ref": "#/components/schemas/MfaFactorStatusEnum"
-          },
-          "qrCode": {
-            "$ref": "#/components/schemas/MfaQrCode"
-          },
-          "sharedSecret": {
-            "type": "string",
-            "description": "The MFA factor's unique secret key for prover"
-          },
-          "factorType": {
-            "$ref": "#/components/schemas/MfaFactorTypeEnum"
-          },
-          "provider": {
-            "$ref": "#/components/schemas/MfaProviderEnum"
+          "reference": {
+            "type": "string"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CommonCampaignFields": {
         "required": [
@@ -55125,30 +55786,48 @@
           }
         }
       },
-      "WebhookSubscriptionBasicAuthentication": {
-        "required": [
-          "username",
-          "password"
-        ],
+      "ActivationStatusActivationStatus": {
         "type": "object",
         "properties": {
-          "username": {
-            "maxLength": 100,
-            "type": "string"
+          "AutoActivationDate": {
+            "type": "string",
+            "description": "The date when auto activation is requested. It can be a date/time in the past, if immediate activation is desired.",
+            "format": "date-time"
           },
-          "password": {
-            "maxLength": 200,
-            "type": "string"
+          "ActivatedTelephoneNumbersList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "This is the list of TNs that have been activated for the port-in order."
+          },
+          "NotYetActivatedTelephoneNumbersList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "This is the list of TNs that have not yet been activated for the port-in order."
           }
-        },
-        "description": "Basic authentication credentials are not required, but if present, both username and password must be provided."
+        }
       },
-      "TendlcErrorEntrySource": {
+      "CsrErrorResponseCsrOrderResponse": {
         "type": "object",
-        "additionalProperties": {
-          "type": "string"
-        },
-        "description": "\"A map from the type of source to a value for that type. The supported keys are: 1) POINTER (the value is a RFC6901 JSON pointer to a field in the request body); 2) PARAMETER (the value is a query parameter name); and 3) PATH (the value is a parameter name in the URI of the request). There will only be one entry in the source property, as each error is recorded separately in the errors array.\n\""
+        "properties": {
+          "Errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Code": {
+                  "type": "integer"
+                },
+                "Description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
       },
       "CreateCampaignRequestSchema": {
         "type": "object",
@@ -55203,37 +55882,55 @@
           }
         }
       },
-      "ShortCodeCampaign404ResponseErrorSource": {
+      "CsrGetResponseJsonCsrData": {
         "type": "object",
         "properties": {
-          "reference": {
+          "accountNumber": {
             "type": "string"
+          },
+          "customerName": {
+            "type": "string"
+          },
+          "serviceAddress": {
+            "$ref": "#/components/schemas/CsrGetResponseJsonCsrDataServiceAddress"
+          },
+          "workingTelephoneNumber": {
+            "type": "string"
+          },
+          "workingTelephoneNumbersOnAccount": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
-      "ActivationStatusActivationStatus": {
+      "CsrRequestJsonCsrServiceAddress": {
         "type": "object",
         "properties": {
-          "AutoActivationDate": {
-            "type": "string",
-            "description": "The date when auto activation is requested. It can be a date/time in the past, if immediate activation is desired.",
-            "format": "date-time"
+          "houseNumber": {
+            "type": "string"
           },
-          "ActivatedTelephoneNumbersList": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "This is the list of TNs that have been activated for the port-in order."
+          "streetName": {
+            "type": "string"
           },
-          "NotYetActivatedTelephoneNumbersList": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "This is the list of TNs that have not yet been activated for the port-in order."
+          "city": {
+            "type": "string"
+          },
+          "stateCode": {
+            "type": "string"
+          },
+          "zip": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "addressType": {
+            "type": "string"
           }
-        }
+        },
+        "description": "The service address for the CSR."
       },
       "GetAsyncBulkLookupResponseData": {
         "type": "object",
@@ -81064,6 +81761,137 @@
           }
         }
       },
+      "csrListResponse200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CsrResponsesJson"
+            },
+            "examples": {
+              "example": {
+                "$ref": "#/components/examples/csrListResponseJsonExample"
+              }
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/CsrResponses"
+            },
+            "examples": {
+              "example": {
+                "$ref": "#/components/examples/csrListResponseXmlExample"
+              }
+            }
+          }
+        }
+      },
+      "csrCreateResponse201": {
+        "description": "Created",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CsrOrderResponseJson"
+            },
+            "examples": {
+              "example": {
+                "$ref": "#/components/examples/csrCreateResponseJsonExample"
+              }
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/CsrOrderResponse"
+            },
+            "examples": {
+              "example": {
+                "$ref": "#/components/examples/csrCreateResponseXmlExample"
+              }
+            }
+          }
+        }
+      },
+      "csrGetResponse200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CsrGetResponseJson"
+            },
+            "examples": {
+              "example": {
+                "$ref": "#/components/examples/csrGetResponseJsonExample"
+              }
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/CsrGetResponse"
+            },
+            "examples": {
+              "example": {
+                "$ref": "#/components/examples/csrGetResponseXmlExample"
+              }
+            }
+          }
+        }
+      },
+      "csrUpdateResponse200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CsrGetResponseJson"
+            },
+            "examples": {
+              "example": {
+                "$ref": "#/components/examples/csrGetResponseJsonExample"
+              }
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/CsrGetResponse"
+            },
+            "examples": {
+              "example": {
+                "$ref": "#/components/examples/csrGetResponseXmlExample"
+              }
+            }
+          }
+        }
+      },
+      "csrBadRequestError": {
+        "description": "Bad Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CsrErrorResponseJson"
+            },
+            "examples": {
+              "example": {
+                "$ref": "#/components/examples/csrBadRequestErrorJsonExample"
+              }
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/CsrErrorResponse"
+            },
+            "examples": {
+              "example": {
+                "$ref": "#/components/examples/csrBadRequestErrorXmlExample"
+              }
+            }
+          }
+        }
+      },
+      "portins_errorResponse404": {
+        "description": "Not Found"
+      },
+      "portins_errorResponse405": {
+        "description": "Method Not Allowed"
+      },
       "activationStatusResponse200": {
         "description": "OK",
         "content": {
@@ -88964,6 +89792,52 @@
           "type": "string"
         },
         "example": "d28f4d00-4af1-4b03-b1d4-fc0a9e9ef6b3"
+      },
+      "portins_modifiedDateFromQueryParam": {
+        "name": "modifiedDateFrom",
+        "in": "query",
+        "description": "The earliest date that the order was last modified.",
+        "schema": {
+          "type": "string"
+        },
+        "example": "2014-08-05 00:00:00+00:00"
+      },
+      "portins_modifiedDateToQueryParam": {
+        "name": "modifiedDateTo",
+        "in": "query",
+        "description": "The latest date that the order was last modified. If no modifiedDateTo is specified when a modifiedDateFrom is specified then 'now' will be presumed to be the modifiedDateTo.",
+        "schema": {
+          "type": "string"
+        },
+        "example": "2014-08-05 00:00:00+00:00"
+      },
+      "portins_pageQueryParam": {
+        "name": "page",
+        "in": "query",
+        "description": "The CSR order id corresponding to the page that you want to start from. \"1\" is used as a convention for the first CSR order for the account. Defaults to 1, if not provided.",
+        "schema": {
+          "type": "string"
+        },
+        "example": "ca8065d1-ec1a-43da-af40-1dcee43becb5"
+      },
+      "portins_sizeQueryParam": {
+        "name": "size",
+        "in": "query",
+        "description": "The maximum number of results to retrieve.",
+        "schema": {
+          "type": "integer",
+          "default": 300
+        },
+        "example": 30
+      },
+      "portins_statusQueryParam": {
+        "name": "status",
+        "in": "query",
+        "description": "Displays the CSR orders with a given order status.",
+        "schema": {
+          "type": "string"
+        },
+        "example": "complete"
       },
       "psap_alerts_accountId": {
         "name": "accountId",
@@ -99920,6 +100794,170 @@
           ]
         }
       },
+      "csrCreateRequestJsonExample": {
+        "summary": "JSON example for creating a CSR order",
+        "value": {
+          "workingOrBillingTelephoneNumber": 19196191211,
+          "accountNumber": 987654321,
+          "accountTelephoneNumber": 19196194444,
+          "endUserName": "bandwidthGuy",
+          "authorizingUserName": "authorizingUserName",
+          "customerCode": 123,
+          "endUserPin": 12345,
+          "endUserPassword": "password",
+          "addressLine1": "900 Main Campus Dr",
+          "city": "Raleigh",
+          "state": "NC",
+          "zipCode": 27612,
+          "typeOfService": "residential"
+        }
+      },
+      "csrUpdateRequestJsonExample": {
+        "summary": "JSON example for updating a CSR order",
+        "value": {
+          "workingOrBillingTelephoneNumber": 19196191211,
+          "workingTelephoneNumber": 19196191211,
+          "billingTelephoneNumber": 19196191211,
+          "customerName": "name",
+          "authorizingPersonName": "name",
+          "accountNumber": 987654321,
+          "workingTelephoneNumbersOnAccount": [
+            19196191211
+          ],
+          "accountTelephoneNumber": 19196194444,
+          "endUserName": "bandwidthGuy",
+          "authorizingUserName": "authorizingUserName",
+          "customerCode": 123,
+          "endUserPin": 12345,
+          "endUserPassword": "password",
+          "addressLine1": "900 Main Campus Dr",
+          "city": "Raleigh",
+          "state": "NC",
+          "zipCode": 27612,
+          "typeOfService": "residential"
+        }
+      },
+      "csrListResponseJsonExample": {
+        "summary": "JSON example for listing CSR orders",
+        "value": {
+          "totalCount": 3,
+          "csrOrders": [
+            {
+              "customerOrderId": "someValue",
+              "lastModifiedBy": "systemUser",
+              "orderCreateDate": "2019-10-25T09:51:17Z",
+              "accountId": 1,
+              "orderId": "a2f55ebe-782a-4242-983b-6ae6cfa97833",
+              "lastModifiedDate": "2019-10-25T12:51:22Z",
+              "status": "COMPLETE",
+              "accountNumber": 987654321,
+              "accountTelephoneNumber": 19196194444,
+              "endUserName": "bandwidthGuy",
+              "authorizingUserName": "importantAuthGuy",
+              "customerCode": 123,
+              "endUserPin": 12345,
+              "addressLine1": "900 Main Campus Dr",
+              "city": "Raleigh",
+              "state": "NC",
+              "zipCode": 27612,
+              "typeOfService": "residential",
+              "csrData": {
+                "accountNumber": 123456789,
+                "customerName": "JOHN SMITH",
+                "serviceAddress": {
+                  "unparsedAddress": "900 MAIN CAMPUS DR",
+                  "city": "RALEIGH",
+                  "state": "NC",
+                  "zip": 27616
+                },
+                "workingTelephoneNumber": 19196191211,
+                "workingTelephoneNumbersOnAccount": [
+                  19196191211
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "csrCreateResponseJsonExample": {
+        "summary": "JSON example for created CSR order response",
+        "value": {
+          "orderId": "93118edd-9874-41b6-89a3-d8c783fe83cf",
+          "status": "RECEIVED"
+        }
+      },
+      "csrGetResponseJsonExample": {
+        "summary": "JSON example for a single CSR order",
+        "value": {
+          "customerOrderId": "someValue",
+          "lastModifiedBy": "systemUser",
+          "orderCreateDate": "2019-10-25T09:51:17Z",
+          "accountId": 1,
+          "orderId": "a2f55ebe-782a-4242-983b-6ae6cfa97833",
+          "lastModifiedDate": "2019-10-25T12:51:22Z",
+          "status": "COMPLETE",
+          "accountNumber": 987654321,
+          "accountTelephoneNumber": 19196194444,
+          "endUserName": "bandwidthGuy",
+          "authorizingUserName": "importantAuthGuy",
+          "customerCode": 123,
+          "endUserPin": 12345,
+          "addressLine1": "900 Main Campus Dr",
+          "city": "Raleigh",
+          "state": "NC",
+          "zipCode": 27612,
+          "typeOfService": "residential",
+          "csrData": {
+            "accountNumber": 123456789,
+            "customerName": "JOHN SMITH",
+            "serviceAddress": {
+              "unparsedAddress": "900 MAIN CAMPUS DR",
+              "city": "RALEIGH",
+              "state": "NC",
+              "zip": 27616
+            },
+            "workingTelephoneNumber": 19196191211,
+            "workingTelephoneNumbersOnAccount": [
+              19196191211
+            ]
+          }
+        }
+      },
+      "csrBadRequestErrorJsonExample": {
+        "summary": "JSON example for CSR bad request error",
+        "value": {
+          "errors": [
+            {
+              "code": 54321,
+              "description": "Some error description"
+            }
+          ]
+        }
+      },
+      "csrListResponseXmlExample": {
+        "summary": "XML example for listing CSR orders",
+        "value": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<CsrResponses>\n    <TotalCount>3</TotalCount>\n    <CsrResponse>\n        <CustomerOrderId>someValue</CustomerOrderId>\n        <LastModifiedBy>systemUser</LastModifiedBy>\n        <OrderCreateDate>2019-10-25T09:51:17Z</OrderCreateDate>\n        <AccountId>1</AccountId>\n        <OrderId>a2f55ebe-782a-4242-983b-6ae6cfa97833</OrderId>\n        <LastModifiedDate>2019-10-25T12:51:22.139Z</LastModifiedDate>\n        <Status>COMPLETE</Status>\n        <AccountNumber>987654321</AccountNumber>\n        <AccountTelephoneNumber>+19196194444</AccountTelephoneNumber>\n        <EndUserName>bandwidthGuy</EndUserName>\n        <AuthorizingUserName>importantAuthGuy</AuthorizingUserName>\n        <CustomerCode>123</CustomerCode>\n        <EndUserPIN>12345</EndUserPIN>\n        <AddressLine1>900 Main Campus Dr</AddressLine1>\n        <City>Raleigh</City>\n        <State>NC</State>\n        <ZIPCode>27612</ZIPCode>\n        <TypeOfService>residential</TypeOfService>\n    </CsrResponse>\n</CsrResponses>"
+      },
+      "csrCreateRequestXmlExample": {
+        "summary": "XML example for creating a CSR order",
+        "value": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Csr>\n      <WorkingOrBillingTelephoneNumber>+19196191211</WorkingOrBillingTelephoneNumber>\n      <AccountNumber>987654321</AccountNumber>\n      <AccountTelephoneNumber>+19196194444</AccountTelephoneNumber>\n      <EndUserName>bandwidthGuy</EndUserName>\n      <AuthorizingUserName>authorizingUserName</AuthorizingUserName>\n      <CustomerCode>123</CustomerCode>\n      <EndUserPIN>12345</EndUserPIN>\n      <EndUserPassword>password</EndUserPassword>\n      <AddressLine1>900 Main Campus Dr</AddressLine1>\n      <City>Raleigh</City>\n      <State>NC</State>\n      <ZIPCode>27612</ZIPCode>\n      <TypeOfService>residential</TypeOfService>\n</Csr>"
+      },
+      "csrCreateResponseXmlExample": {
+        "summary": "XML example for created CSR order response",
+        "value": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<CsrResponse>\n    <OrderId>93118edd-9874-41b6-89a3-d8c783fe83cf</OrderId>\n    <Status>RECEIVED</Status>\n</CsrResponse>"
+      },
+      "csrGetResponseXmlExample": {
+        "summary": "XML example for a single CSR order",
+        "value": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<CsrResponse>\n    <CustomerOrderId>someValue</CustomerOrderId>\n    <LastModifiedBy>systemUser</LastModifiedBy>\n    <OrderCreateDate>2019-10-25T09:51:17Z</OrderCreateDate>\n    <AccountId>1</AccountId>\n    <OrderId>a2f55ebe-782a-4242-983b-6ae6cfa97833</OrderId>\n    <LastModifiedDate>2019-10-25T12:51:22.139Z</LastModifiedDate>\n    <Status>COMPLETE</Status>\n    <AccountNumber>987654321</AccountNumber>\n    <AccountTelephoneNumber>+19196194444</AccountTelephoneNumber>\n    <EndUserName>bandwidthGuy</EndUserName>\n    <AuthorizingUserName>importantAuthGuy</AuthorizingUserName>\n    <CustomerCode>123</CustomerCode>\n    <EndUserPIN>12345</EndUserPIN>\n    <AddressLine1>900 Main Campus Dr</AddressLine1>\n    <City>Raleigh</City>\n    <State>NC</State>\n    <ZIPCode>27612</ZIPCode>\n    <TypeOfService>residential</TypeOfService>\n</CsrResponse>"
+      },
+      "csrUpdateRequestXmlExample": {
+        "summary": "XML example for updating a CSR order",
+        "value": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Csr>\n      <WorkingOrBillingTelephoneNumber>+19196191211</WorkingOrBillingTelephoneNumber>\n      <WorkingTelephoneNumber>+19196191211</WorkingTelephoneNumber>\n      <BillingTelephoneNumber>+19196191211</BillingTelephoneNumber>\n      <CustomerName>name</CustomerName>\n      <AuthorizingPersonName>name</AuthorizingPersonName>\n      <AccountNumber>987654321</AccountNumber>\n      <WorkingTelephoneNumbersOnAccount>\n              <TelephoneNumber>+19196191211</TelephoneNumber>\n      </WorkingTelephoneNumbersOnAccount>\n      <AccountTelephoneNumber>+19196194444</AccountTelephoneNumber>\n      <EndUserName>bandwidthGuy</EndUserName>\n      <AuthorizingUserName>authorizingUserName</AuthorizingUserName>\n      <CustomerCode>123</CustomerCode>\n      <EndUserPIN>12345</EndUserPIN>\n      <EndUserPassword>password</EndUserPassword>\n      <AddressLine1>900 Main Campus Dr</AddressLine1>\n      <City>Raleigh</City>\n      <State>NC</State>\n      <ZIPCode>27612</ZIPCode>\n      <TypeOfService>residential</TypeOfService>\n</Csr>"
+      },
+      "csrBadRequestErrorXmlExample": {
+        "summary": "XML example for CSR bad request error",
+        "value": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<CsrOrderResponse>\n    <Errors>\n        <Error>\n            <Code>54321</Code>\n            <Description>Some error description</Description>\n        </Error>\n    </Errors>\n</CsrOrderResponse>"
+      },
       "listTriggersExample": {
         "value": {
           "links": [
@@ -107467,6 +108505,54 @@
           }
         },
         "required": true
+      },
+      "csrCreateRequestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CsrRequestJson"
+            },
+            "examples": {
+              "example": {
+                "$ref": "#/components/examples/csrCreateRequestJsonExample"
+              }
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/Csr"
+            },
+            "examples": {
+              "example": {
+                "$ref": "#/components/examples/csrCreateRequestXmlExample"
+              }
+            }
+          }
+        }
+      },
+      "csrUpdateRequestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CsrRequestJson"
+            },
+            "examples": {
+              "example": {
+                "$ref": "#/components/examples/csrUpdateRequestJsonExample"
+              }
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/Csr"
+            },
+            "examples": {
+              "example": {
+                "$ref": "#/components/examples/csrUpdateRequestXmlExample"
+              }
+            }
+          }
+        }
       },
       "alertRequestBody": {
         "content": {

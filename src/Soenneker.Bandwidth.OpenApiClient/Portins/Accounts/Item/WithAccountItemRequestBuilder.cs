@@ -2,6 +2,7 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Csrs;
 using Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins;
 using System.Collections.Generic;
 using System.IO;
@@ -15,6 +16,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithAccountItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The csrs property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Csrs.CsrsRequestBuilder Csrs
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Csrs.CsrsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The portins property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.PortinsRequestBuilder Portins
         {
