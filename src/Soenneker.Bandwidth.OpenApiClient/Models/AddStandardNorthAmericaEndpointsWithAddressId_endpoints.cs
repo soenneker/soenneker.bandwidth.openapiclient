@@ -14,12 +14,39 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The country property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Country { get; set; }
+#nullable restore
+#else
+        public string Country { get; set; }
+#endif
+        /// <summary>The lang property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressId_endpoints_lang? Lang { get; set; }
+        /// <summary>The name property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
+        public string Name { get; set; }
+#endif
+        /// <summary>The phoneNumber property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PhoneNumber { get; set; }
+#nullable restore
+#else
+        public string PhoneNumber { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressId_endpoints"/> and sets the default values.
         /// </summary>
         public AddStandardNorthAmericaEndpointsWithAddressId_endpoints()
         {
             AdditionalData = new Dictionary<string, object>();
+            Lang = global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressId_endpoints_lang.En;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -39,6 +66,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "country", n => { Country = n.GetStringValue(); } },
+                { "lang", n => { Lang = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressId_endpoints_lang>(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "phoneNumber", n => { PhoneNumber = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -48,6 +79,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("country", Country);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressId_endpoints_lang>("lang", Lang);
+            writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("phoneNumber", PhoneNumber);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

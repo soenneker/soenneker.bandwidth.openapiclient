@@ -9,17 +9,50 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class CreateGroupReseller201ResponseData : global::Soenneker.Bandwidth.OpenApiClient.Models.GroupData, IParsable
+    public partial class CreateGroupReseller201ResponseData : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The date and time the group was created.</summary>
+        public DateTimeOffset? CreatedAt { get; set; }
         /// <summary>The ID of the customer the group belongs to</summary>
         public int? CustomerId { get; set; }
+        /// <summary>The description of the group.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
+        public string Description { get; set; }
+#endif
+        /// <summary>The ID of the group.</summary>
+        public double? GroupId { get; set; }
+        /// <summary>The name of the group.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? GroupName { get; set; }
+#nullable restore
+#else
+        public string GroupName { get; set; }
+#endif
+        /// <summary>&quot;The intent or purpose of the group. This indicates how the phone numbers in the group will be used.- GOVN: Government- SATE: Sales/Telemarketing- ACCS: Account Services- SURV: Survey- POLI: Political- FUND: Fundraising- DEBC: Debt Collection- APPR: Appointment Reminder- INFO: Information- CUSE: Customer Services- APPS: Appointment Setting- BILL: Billing- EMER: Emergency- ATTO: Attorney/Law- FSER: Financial Service- FRES: First Responder- HOSP: Health Care/Hospital- INSU: Insurance- PHAR: Pharmacy- REST: Real Estate- COLL: School/College- NPF: Non-Profit- MUL: Multi use line&quot;</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.GroupIntentEnum? Intent { get; set; }
+        /// <summary>The number of phone numbers associated with the group.</summary>
+        public int? PhoneNumberCount { get; set; }
+        /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupReseller201ResponseData"/> and sets the default values.
+        /// </summary>
+        public CreateGroupReseller201ResponseData()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupReseller201ResponseData"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupReseller201ResponseData CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupReseller201ResponseData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateGroupReseller201ResponseData();
@@ -28,22 +61,34 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// The deserialization information for the current model
         /// </summary>
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            return new Dictionary<string, Action<IParseNode>>
             {
+                { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "customerId", n => { CustomerId = n.GetIntValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "groupId", n => { GroupId = n.GetDoubleValue(); } },
+                { "groupName", n => { GroupName = n.GetStringValue(); } },
+                { "intent", n => { Intent = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GroupIntentEnum>(); } },
+                { "phoneNumberCount", n => { PhoneNumberCount = n.GetIntValue(); } },
             };
         }
         /// <summary>
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer)
+        public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            base.Serialize(writer);
+            writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
             writer.WriteIntValue("customerId", CustomerId);
+            writer.WriteStringValue("description", Description);
+            writer.WriteDoubleValue("groupId", GroupId);
+            writer.WriteStringValue("groupName", GroupName);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GroupIntentEnum>("intent", Intent);
+            writer.WriteIntValue("phoneNumberCount", PhoneNumberCount);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

@@ -14,6 +14,40 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The connectionMetadata property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequest_connectionMetadata? ConnectionMetadata { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequest_connectionMetadata ConnectionMetadata { get; set; }
+#endif
+        /// <summary>The direction property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointDirectionEnum? Direction { get; set; }
+        /// <summary>The URL to send event callbacks to.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EventCallbackUrl { get; set; }
+#nullable restore
+#else
+        public string EventCallbackUrl { get; set; }
+#endif
+        /// <summary>The URL to send event fallbacks to.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EventFallbackUrl { get; set; }
+#nullable restore
+#else
+        public string EventFallbackUrl { get; set; }
+#endif
+        /// <summary>A tag for the endpoint.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Tag { get; set; }
+#nullable restore
+#else
+        public string Tag { get; set; }
+#endif
         /// <summary>Union discriminator</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -47,6 +81,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "connectionMetadata", n => { ConnectionMetadata = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequest_connectionMetadata>(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequest_connectionMetadata.CreateFromDiscriminatorValue); } },
+                { "direction", n => { Direction = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointDirectionEnum>(); } },
+                { "eventCallbackUrl", n => { EventCallbackUrl = n.GetStringValue(); } },
+                { "eventFallbackUrl", n => { EventFallbackUrl = n.GetStringValue(); } },
+                { "tag", n => { Tag = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetStringValue(); } },
             };
         }
@@ -57,6 +96,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequest_connectionMetadata>("connectionMetadata", ConnectionMetadata);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointDirectionEnum>("direction", Direction);
+            writer.WriteStringValue("eventCallbackUrl", EventCallbackUrl);
+            writer.WriteStringValue("eventFallbackUrl", EventFallbackUrl);
+            writer.WriteStringValue("tag", Tag);
             writer.WriteStringValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }

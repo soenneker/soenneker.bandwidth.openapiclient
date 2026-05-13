@@ -9,9 +9,67 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class WebhookSubscriptionResponse : global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionBase, IParsable
+    public partial class WebhookSubscriptionResponse : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>The account ID to create the subscription for</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AccountId { get; set; }
+#nullable restore
+#else
+        public string AccountId { get; set; }
+#endif
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The timestamp when the subscription was created</summary>
+        public DateTimeOffset? CreatedAt { get; set; }
+        /// <summary>The user who created the subscription</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CreatedBy { get; set; }
+#nullable restore
+#else
+        public string CreatedBy { get; set; }
+#endif
+        /// <summary>The custom name for the subscription</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CustomName { get; set; }
+#nullable restore
+#else
+        public string CustomName { get; set; }
+#endif
+        /// <summary>The delivery mechanism of the subscription</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.DeliveryTypesEnum? DeliveryType { get; set; }
+        /// <summary>The filters to be applied to subscription</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria>? Filters { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria> Filters { get; set; }
+#endif
+        /// <summary>The subscription ID (Bandwidth generated)</summary>
+        public Guid? Id { get; set; }
+        /// <summary>The name for the subscription definition</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SubscriptionDefinitionName { get; set; }
+#nullable restore
+#else
+        public string SubscriptionDefinitionName { get; set; }
+#endif
+        /// <summary>The timestamp when the subscription was last updated</summary>
+        public DateTimeOffset? UpdatedAt { get; set; }
+        /// <summary>The user who last updated the subscription</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UpdatedBy { get; set; }
+#nullable restore
+#else
+        public string UpdatedBy { get; set; }
+#endif
         /// <summary>The webhookSubscription property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -21,11 +79,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponse_webhookSubscription WebhookSubscription { get; set; }
 #endif
         /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponse"/> and sets the default values.
+        /// </summary>
+        public WebhookSubscriptionResponse()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponse();
@@ -34,10 +99,20 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// The deserialization information for the current model
         /// </summary>
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            return new Dictionary<string, Action<IParseNode>>
             {
+                { "accountId", n => { AccountId = n.GetStringValue(); } },
+                { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
+                { "createdBy", n => { CreatedBy = n.GetStringValue(); } },
+                { "customName", n => { CustomName = n.GetStringValue(); } },
+                { "deliveryType", n => { DeliveryType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DeliveryTypesEnum>(); } },
+                { "filters", n => { Filters = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria>(global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "id", n => { Id = n.GetGuidValue(); } },
+                { "subscriptionDefinitionName", n => { SubscriptionDefinitionName = n.GetStringValue(); } },
+                { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
+                { "updatedBy", n => { UpdatedBy = n.GetStringValue(); } },
                 { "webhookSubscription", n => { WebhookSubscription = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponse_webhookSubscription>(global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponse_webhookSubscription.CreateFromDiscriminatorValue); } },
             };
         }
@@ -45,11 +120,21 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer)
+        public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            base.Serialize(writer);
+            writer.WriteStringValue("accountId", AccountId);
+            writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
+            writer.WriteStringValue("createdBy", CreatedBy);
+            writer.WriteStringValue("customName", CustomName);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DeliveryTypesEnum>("deliveryType", DeliveryType);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria>("filters", Filters);
+            writer.WriteGuidValue("id", Id);
+            writer.WriteStringValue("subscriptionDefinitionName", SubscriptionDefinitionName);
+            writer.WriteDateTimeOffsetValue("updatedAt", UpdatedAt);
+            writer.WriteStringValue("updatedBy", UpdatedBy);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponse_webhookSubscription>("webhookSubscription", WebhookSubscription);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

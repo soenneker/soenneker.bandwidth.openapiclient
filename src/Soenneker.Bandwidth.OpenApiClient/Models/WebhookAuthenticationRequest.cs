@@ -14,6 +14,22 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The Username and Password to be used for basic authentication.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BasicAuthenticationRequest? BasicAuthentication { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BasicAuthenticationRequest BasicAuthentication { get; set; }
+#endif
+        /// <summary>The `hmacAuthentication` object determines how webhook authentication is handled and captures HMAC details like the `sharedSecretKey`:- If omitted or `null`:    - No HMAC authentication is applied.    - Any existing `hmacAuthentication` is removed during updates.- If an empty object ({}) is provided:    - It is not valid for a create/POST request.    - For update/PUT requests, the existing hmacAuthentication remains unchanged.- If `sharedSecretKey` is provided:    - It is encrypted and used for HMAC authentication.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.HmacAuthenticationRequest? HmacAuthentication { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.HmacAuthenticationRequest HmacAuthentication { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookAuthenticationRequest"/> and sets the default values.
         /// </summary>
@@ -39,6 +55,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "basicAuthentication", n => { BasicAuthentication = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BasicAuthenticationRequest>(global::Soenneker.Bandwidth.OpenApiClient.Models.BasicAuthenticationRequest.CreateFromDiscriminatorValue); } },
+                { "hmacAuthentication", n => { HmacAuthentication = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HmacAuthenticationRequest>(global::Soenneker.Bandwidth.OpenApiClient.Models.HmacAuthenticationRequest.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -48,6 +66,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BasicAuthenticationRequest>("basicAuthentication", BasicAuthentication);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HmacAuthenticationRequest>("hmacAuthentication", HmacAuthentication);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -25,10 +25,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PaginationLinksJson? Links { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionPaginationLinksJson? Links { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PaginationLinksJson Links { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionPaginationLinksJson Links { get; set; }
 #endif
         /// <summary>The totalCount property</summary>
         public int? TotalCount { get; set; }
@@ -58,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "coveredRateCenters", n => { CoveredRateCenters = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CoveredRateCenterJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.CoveredRateCenterJson.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "links", n => { Links = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginationLinksJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.PaginationLinksJson.CreateFromDiscriminatorValue); } },
+                { "links", n => { Links = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionPaginationLinksJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionPaginationLinksJson.CreateFromDiscriminatorValue); } },
                 { "totalCount", n => { TotalCount = n.GetIntValue(); } },
             };
         }
@@ -70,7 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CoveredRateCenterJson>("coveredRateCenters", CoveredRateCenters);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginationLinksJson>("links", Links);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionPaginationLinksJson>("links", Links);
             writer.WriteIntValue("totalCount", TotalCount);
             writer.WriteAdditionalData(AdditionalData);
         }

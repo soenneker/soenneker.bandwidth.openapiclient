@@ -9,9 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class ComplianceDocumentResponseData : global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentData, IParsable
+    public partial class ComplianceDocumentResponseData : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The date and time this object was created in ISO 8601 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -20,8 +22,32 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string CreatedDateTime { get; set; }
 #endif
+        /// <summary>A custom reference name.It can be used for your own reference to the item to easily identify one of your customers,requirements package, enduser etc.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CustomReference { get; set; }
+#nullable restore
+#else
+        public string CustomReference { get; set; }
+#endif
+        /// <summary>Description about the document</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
+        public string Description { get; set; }
+#endif
         /// <summary>Unique identifier of the document</summary>
         public Guid? DocumentId { get; set; }
+        /// <summary>Field is a key value pair of attribute name and value. All Date or Number type values should be provided as a &apos;string&apos;. Format for the Date type is YYYY-MM-DD.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData_fields? Fields { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData_fields Fields { get; set; }
+#endif
         /// <summary>Indicates if file exists on system</summary>
         public bool? FileContentExists { get; set; }
         /// <summary>The fileName property</summary>
@@ -34,6 +60,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>Document Statuses</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentStatusEnum? Status { get; set; }
+        /// <summary>Unique name representing the type of document</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Type { get; set; }
+#nullable restore
+#else
+        public string Type { get; set; }
+#endif
         /// <summary>The date and time this object was last updated in ISO 8601 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -43,11 +77,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string UpdatedDateTime { get; set; }
 #endif
         /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData"/> and sets the default values.
+        /// </summary>
+        public ComplianceDocumentResponseData()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData();
@@ -56,15 +97,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// The deserialization information for the current model
         /// </summary>
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            return new Dictionary<string, Action<IParseNode>>
             {
                 { "createdDateTime", n => { CreatedDateTime = n.GetStringValue(); } },
+                { "customReference", n => { CustomReference = n.GetStringValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
                 { "documentId", n => { DocumentId = n.GetGuidValue(); } },
+                { "fields", n => { Fields = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData_fields>(global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData_fields.CreateFromDiscriminatorValue); } },
                 { "fileContentExists", n => { FileContentExists = n.GetBoolValue(); } },
                 { "fileName", n => { FileName = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentStatusEnum>(); } },
+                { "type", n => { Type = n.GetStringValue(); } },
                 { "updatedDateTime", n => { UpdatedDateTime = n.GetStringValue(); } },
             };
         }
@@ -72,16 +117,20 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer)
+        public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            base.Serialize(writer);
             writer.WriteStringValue("createdDateTime", CreatedDateTime);
+            writer.WriteStringValue("customReference", CustomReference);
+            writer.WriteStringValue("description", Description);
             writer.WriteGuidValue("documentId", DocumentId);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData_fields>("fields", Fields);
             writer.WriteBoolValue("fileContentExists", FileContentExists);
             writer.WriteStringValue("fileName", FileName);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentStatusEnum>("status", Status);
+            writer.WriteStringValue("type", Type);
             writer.WriteStringValue("updatedDateTime", UpdatedDateTime);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

@@ -1,0 +1,4964 @@
+openapi: 3.1.0
+info:
+  title: My Numbers
+  description: >-
+    Bandwidth's My Numbers API - Read-only inventory and reporting endpoints for
+    phone numbers in your account.
+  contact:
+    name: Bandwidth
+    url: https://dev.bandwidth.com/apis/numbers-apis/my-numbers
+    email: support@bandwidth.com
+  version: 1.0.0
+  termsOfService: https://www.bandwidth.com/legal/terms-of-service/
+servers:
+  - url: https://api.bandwidth.com/api/v2
+    description: Production
+security:
+  - Basic: []
+  - Bearer: []
+paths:
+  /accounts/{accountId}/inserviceNumbers:
+    get:
+      description: >-
+        Retrieves a list of in-service phone numbers associated with the account
+        ID.
+
+
+        In this table are presented capabilities that are not universally
+        available. The following request query parameters are only allowed for
+        numbers from specific region/country:
+
+        | Number Region | Request Query Parameter |
+
+        |:--------------|:------------------------|
+
+        |NANP|city|
+
+        |NANP|tier|
+
+        |NANP|npaNxx|
+
+        |NANP|npaNxxx|
+
+        |NANP|lata|
+
+        |NANP|state|
+
+        |NANP|ratecenter|
+
+
+        When the  query parameters listed in the table above are passed, only in
+        service North American Numbering Plan phone numbers are returned.
+      operationId: ReadInserviceTns
+      parameters:
+        - $ref: '#/components/parameters/AccountIdPathParam'
+        - $ref: '#/components/parameters/pageQueryParam'
+        - $ref: '#/components/parameters/sizeQueryParam'
+        - $ref: '#/components/parameters/startDateQueryParam'
+        - $ref: '#/components/parameters/endDateQueryParam'
+        - $ref: '#/components/parameters/countryCodeA3QueryParam'
+        - $ref: '#/components/parameters/phoneNumberTypeQueryParam'
+        - $ref: '#/components/parameters/areaCodeQueryParam'
+        - $ref: '#/components/parameters/cityQueryParam'
+        - $ref: '#/components/parameters/tierQueryParam'
+        - description: >-
+            <p>The 6-digit prefix associated with the TN.</p><ul><li>Allowed
+            number ranges for NPA are [2-9] for the first digit and [0-9] for
+            both the second and third digits.</li><li>Allowed number ranges for
+            NXX are [2-9] for the first digit and [0-9] for both the second and
+            third digits.</li></ul>
+          example: 919859
+          in: query
+          name: npaNxx
+          required: false
+          schema:
+            type: integer
+        - description: >-
+            <p>The 7-digit prefix associated with the TN.</p><ul><li>Allowed
+            number ranges for NPA are [2-9] for the first digit and [0-9] for
+            both the second and third digits.</li><li>Allowed number ranges for
+            NXXX are [2-9] for the first digit and [0-9] the rest of the (X)
+            digits.</li></ul>
+          in: query
+          name: npaNxxx
+          required: false
+          schema:
+            type: integer
+        - description: >-
+            A Rate Center search filter - all returned TNs will be in the
+            entered Rate Center.  Typically this is a 3 or 5 digit value.
+          example: 435
+          in: query
+          name: lata
+          required: false
+          schema:
+            type: integer
+        - description: >-
+            A State search filter - all returned TNs will be in the entered
+            State.  This is a 2-character State or Province abbreviation.
+          example: TX
+          in: query
+          name: state
+          required: false
+          schema:
+            type: string
+        - description: >-
+            A Rate Center search filter - all returned TNs will be in the
+            entered Rate Center.  This `ratecenter` must be combined with a
+            `state` in the query.  If State is not included in the query then
+            the query will fail.
+          example: PLANO
+          in: query
+          name: ratecenter
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/phoneNumberListResponse'
+              example:
+                totalCount: 59
+                links:
+                  first: >-
+                    https://api.bandwidth.com/api/v2/accounts/12345/inserviceNumbers?page=1&size=15
+                  next: >-
+                    https://api.bandwidth.com/api/v2/accounts/12345/inserviceNumbers?page=%2B18043814905&size=15
+                phoneNumbers:
+                  - '+18043024183'
+                  - '+18042121778'
+                  - '+18042146066'
+                  - '+18043814903'
+                  - '+18043814905'
+            application/xml:
+              examples:
+                example:
+                  description: example
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <TNs>
+                       <TotalCount>59</TotalCount>
+                       <Links>
+                          <first>( a link goes here )</first>
+                          <next>( a link goes here )</next>
+                       </Links>
+                       <TelephoneNumbers>
+                          <Count>15</Count>
+                          <TelephoneNumber>+18043024183</TelephoneNumber>
+                          <TelephoneNumber>+18042121778</TelephoneNumber>
+                          <TelephoneNumber>+18042146066</TelephoneNumber>
+                          <TelephoneNumber>+18043814903</TelephoneNumber>
+                          <TelephoneNumber>+18043814905</TelephoneNumber>
+                          <TelephoneNumber>+18043814864</TelephoneNumber>
+                          <TelephoneNumber>+18043326094</TelephoneNumber>
+                          <TelephoneNumber>+18042121771</TelephoneNumber>
+                          <TelephoneNumber>+18043024182</TelephoneNumber>
+                          <TelephoneNumber>+18043814900</TelephoneNumber>
+                          <TelephoneNumber>+18047672642</TelephoneNumber>
+                          <TelephoneNumber>+18043024368</TelephoneNumber>
+                          <TelephoneNumber>+18042147950</TelephoneNumber>
+                          <TelephoneNumber>+18043169931</TelephoneNumber>
+                          <TelephoneNumber>+18043325302</TelephoneNumber>
+                       </TelephoneNumbers>
+                    </TNs>
+              schema:
+                $ref: '#/components/schemas/accountTelephoneNumbersHistoryResponse'
+          description: OK
+        '204':
+          content:
+            application/xml: {}
+          description: No Content
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INVALID_REQUEST
+                message: Bad request
+                description: The request parameters are invalid.
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          content:
+            application/xml: {}
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INTERNAL_ERROR
+                message: Internal server error
+                description: An unexpected error occurred.
+          description: Internal Server Error
+      summary: List in-service phone numbers
+      tags:
+        - My Numbers
+  /accounts/{accountId}/inserviceNumbers/totals:
+    get:
+      description: Returns the total number of in-service numbers for the given account.
+      operationId: ReadInserviceTnsCount
+      parameters:
+        - $ref: '#/components/parameters/AccountIdPathParam'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/phoneNumberCountResponse'
+              example:
+                count: 62
+            application/xml:
+              examples:
+                example:
+                  description: example
+                  value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Quantity>\n\t    <Count>62</Count>\n</Quantity>"
+              schema:
+                $ref: '#/components/schemas/telephoneNumberTotalsHistory'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INVALID_REQUEST
+                message: Bad request
+                description: The request parameters are invalid.
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: NOT_FOUND
+                message: Resource not found
+                description: The requested resource was not found.
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INTERNAL_ERROR
+                message: Internal server error
+                description: An unexpected error occurred.
+          description: Internal Server Error
+      summary: Get in-service phone number count
+      tags:
+        - My Numbers
+  /accounts/{accountId}/inserviceNumbers/{tn}:
+    get:
+      description: >-
+        Check if a given phone number is in service. Returns a 200 OK with no
+        body if the number is in-service on the account, and a 404 Not Found if
+        the number is not in-service on the account.
+      operationId: ReadInserviceTn
+      parameters:
+        - $ref: '#/components/parameters/AccountIdPathParam'
+        - description: The telephone number to check
+          example: '+18043024183'
+          in: path
+          name: tn
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+      summary: Get in-service phone number
+      tags:
+        - My Numbers
+  /accounts/{accountId}/discnumbers:
+    get:
+      description: >-
+        Retrieves a list of disconnected numbers associated with the account.
+        There are optional search parameters to limit the discNumbers payload
+      operationId: GetDisconnectedTns
+      parameters:
+        - $ref: '#/components/parameters/AccountIdPathParam'
+        - $ref: '#/components/parameters/pageQueryParam'
+        - $ref: '#/components/parameters/sizeQueryParam'
+        - $ref: '#/components/parameters/startDateQueryParam'
+        - $ref: '#/components/parameters/endDateQueryParam'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/phoneNumberListResponse'
+              example:
+                totalCount: 2
+                phoneNumbers:
+                  - '+14158714245'
+                  - '+14352154439'
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <TNs>
+                      <TotalCount>2</TotalCount>
+                      <TelephoneNumbers>
+                        <Count>2</Count>
+                        <TelephoneNumber>+14158714245</TelephoneNumber>
+                        <TelephoneNumber>+14352154439</TelephoneNumber>
+                      </TelephoneNumbers>
+                    </TNs>
+              schema:
+                $ref: '#/components/schemas/tNs'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INVALID_REQUEST
+                message: Bad request
+                description: The request parameters are invalid.
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: NOT_FOUND
+                message: Resource not found
+                description: The requested resource was not found.
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INTERNAL_ERROR
+                message: Internal server error
+                description: An unexpected error occurred.
+          description: Internal Server Error
+      summary: List disconnected phone numbers
+      tags:
+        - My Numbers
+  /accounts/{accountId}/discnumbers/totals:
+    get:
+      description: Retrieves a total number of disconnects.
+      operationId: GetTotalNumberDisconnects
+      parameters:
+        - $ref: '#/components/parameters/AccountIdPathParam'
+        - $ref: '#/components/parameters/startDateQueryParam'
+        - $ref: '#/components/parameters/endDateQueryParam'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/phoneNumberCountResponse'
+              example:
+                count: 4
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <Quantity>
+                      <Count>4</Count>
+                    </Quantity>
+              schema:
+                $ref: '#/components/schemas/quantity'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INVALID_REQUEST
+                message: Bad request
+                description: The request parameters are invalid.
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: NOT_FOUND
+                message: Resource not found
+                description: The requested resource was not found.
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INTERNAL_ERROR
+                message: Internal server error
+                description: An unexpected error occurred.
+          description: Internal Server Error
+      summary: Get disconnected phone number count
+      tags:
+        - My Numbers
+  /accounts/{accountId}/sites/{siteId}/inserviceNumbers:
+    get:
+      description: >-
+        Retrieves all the telephone numbers currently in-service for the given
+        Site.
+
+
+        In this table are presented capabilities that are not universally
+        available. The following request query parameters are only allowed for
+        numbers from specific region/country:
+
+        | Number Region | Request Query Parameter |
+
+        |:--------------|:------------------------|
+
+        |NANP|city|
+
+        |NANP|tier|
+
+        |NANP|npaNxx|
+
+        |NANP|npaNxxx|
+
+        |NANP|lata|
+
+        |NANP|state|
+
+        |NANP|ratecenter|
+
+
+        When the  query parameters listed in the table above are passed, only in
+        service North American Numbering Plan phone numbers are returned.
+      operationId: RetrieveSiteInserviceNumbers
+      parameters:
+        - $ref: '#/components/parameters/AccountIdPathParam'
+        - $ref: '#/components/parameters/SiteIdPathParam'
+        - $ref: '#/components/parameters/pageQueryParam'
+        - $ref: '#/components/parameters/sizeQueryParam'
+        - $ref: '#/components/parameters/startDateQueryParam'
+        - $ref: '#/components/parameters/endDateQueryParam'
+        - $ref: '#/components/parameters/countryCodeA3QueryParam'
+        - $ref: '#/components/parameters/phoneNumberTypeQueryParam'
+        - $ref: '#/components/parameters/areaCodeQueryParam'
+        - $ref: '#/components/parameters/cityQueryParam'
+        - $ref: '#/components/parameters/tierQueryParam'
+        - description: >-
+            <p>The 6-digit prefix associated with the TN.</p><ul><li>Allowed
+            number ranges for NPA are [2-9] for the first digit and [0-9] for
+            both the second and third digits.</li><li>Allowed number ranges for
+            NXX are [2-9] for the first digit and [0-9] for both the second and
+            third digits.</li></ul>
+          example: 919859
+          in: query
+          name: npaNxx
+          required: false
+          schema:
+            type: integer
+        - description: >-
+            <p>The 7-digit prefix associated with the TN.</p><ul><li>Allowed
+            number ranges for NPA are [2-9] for the first digit and [0-9] for
+            both the second and third digits.</li><li>Allowed number ranges for
+            NXXX are [2-9] for the first digit and [0-9] the rest of the (X)
+            digits.</li></ul>
+          in: query
+          name: npaNxxx
+          required: false
+          schema:
+            type: integer
+        - description: >-
+            A Rate Center search filter - all returned TNs will be in the
+            entered Rate Center.  Typically this is a 3 or 5 digit value.
+          example: 435
+          in: query
+          name: lata
+          required: false
+          schema:
+            type: integer
+        - description: >-
+            A Rate Center search filter - all returned TNs will be in the
+            entered Rate Center.  This `ratecenter` must be combined with a
+            `state` in the query.  If State is not included in the query then
+            the query will fail.
+          example: PLANO
+          in: query
+          name: rateCenter
+          required: false
+          schema:
+            type: string
+        - description: >-
+            A State search filter - all returned TNs will be in the entered
+            State.  This is a 2-character State or Province abbreviation.
+          example: TX
+          in: query
+          name: state
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/phoneNumberListResponse'
+              example:
+                totalCount: 54
+                links:
+                  first: >-
+                    https://api.bandwidth.com/api/v2/accounts/12345/sites/407/inserviceNumbers?page=1&size=3
+                  next: >-
+                    https://api.bandwidth.com/api/v2/accounts/12345/sites/407/inserviceNumbers?page=%2B14352161523&size=3
+                phoneNumbers:
+                  - '+14352154855'
+                  - '+14352154870'
+                  - '+14352161523'
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <TNs>
+                       <TotalCount>54</TotalCount>
+                       <Links>
+                          <first>
+                             <!-- SNIP -->
+                          </first>
+                          <next>
+                             <!-- SNIP -->
+                          </next>
+                       </Links>
+                       <TelephoneNumbers>
+                          <Count>3</Count>
+                          <TelephoneNumber>+14352154855</TelephoneNumber>
+                          <!-- SNIP -->
+                          <TelephoneNumber>+14352161523</TelephoneNumber>
+                       </TelephoneNumbers>
+                    </TNs>
+              schema:
+                $ref: '#/components/schemas/accountTelephoneNumbersHistoryResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INVALID_REQUEST
+                message: Bad request
+                description: The request parameters are invalid.
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: NOT_FOUND
+                message: Resource not found
+                description: The requested resource was not found.
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INTERNAL_ERROR
+                message: Internal server error
+                description: An unexpected error occurred.
+          description: Internal Server Error
+      summary: List sub-account in-service phone numbers
+      tags:
+        - My Numbers
+  /accounts/{accountId}/sites/{siteId}/totaltns:
+    get:
+      description: Retrieves Site telephone numbers total count
+      operationId: RetrieveSiteTnsCount
+      parameters:
+        - $ref: '#/components/parameters/AccountIdPathParam'
+        - description: ID of the Site to retrieve count of TNs
+          example: '407'
+          in: path
+          name: siteId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/subAccountPhoneNumberCountResponse'
+              example:
+                totalCount: 26
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <SiteTNsResponse>
+                       <SiteTNs>
+                          <TotalCount>26</TotalCount>
+                       </SiteTNs>
+                    </SiteTNsResponse>
+              schema:
+                $ref: '#/components/schemas/siteTNsResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INVALID_REQUEST
+                message: Bad request
+                description: The request parameters are invalid.
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: NOT_FOUND
+                message: Resource not found
+                description: The requested resource was not found.
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INTERNAL_ERROR
+                message: Internal server error
+                description: An unexpected error occurred.
+          description: Internal Server Error
+      summary: Get sub-account phone number count
+      tags:
+        - My Numbers
+  /accounts/{accountId}/sites/{siteId}/sippeers/{sippeerId}/tns:
+    get:
+      description: >-
+        Retrieve information about a Telephone number or set of Telephone
+        numbers
+      operationId: ReadSipPeerTns
+      parameters:
+        - $ref: '#/components/parameters/AccountIdPathParam'
+        - $ref: '#/components/parameters/SiteIdPathParam'
+        - $ref: '#/components/parameters/SipPeerTnsPageQueryParam'
+        - $ref: '#/components/parameters/SipPeerTnsSizeQueryParam'
+        - description: ID of the Sip Peer to retrieve TNs information
+          example: '500017'
+          in: path
+          name: sippeerId
+          required: true
+          schema:
+            type: string
+        - description: >-
+            If the value is false SipPeerTelephoneNumber will contain FullNumber
+            tags only. This makes processing faster
+          example: false
+          in: query
+          name: includeAttributes
+          required: false
+          schema:
+            default: true
+            type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/locationPhoneNumbersResponse'
+              example:
+                links:
+                  first: >-
+                    https://api.bandwidth.com/api/v2/accounts/12345/sites/407/sippeers/500017/tns?page=1&size=3
+                  next: >-
+                    https://api.bandwidth.com/api/v2/accounts/12345/sites/407/sippeers/500017/tns?page=%2B12053161118&size=3
+                phoneNumbers:
+                  - phoneNumber: '+12052160148'
+                    callingNameDisplay: true
+                    phoneNumberAttributes:
+                      - Protected
+                      - External
+                      - Imported
+                    messagingSettings:
+                      smsEnabled: true
+                  - phoneNumber: '+12053161118'
+                    callingNameDisplay: false
+                    messagingSettings:
+                      smsEnabled: true
+                  - phoneNumber: '+12053160118'
+                    callForward: '+12014563025'
+                    callingNameDisplay: false
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <SipPeerTelephoneNumbersResponse>
+                       <Links>
+                          <first>( a link goes here )</first>
+                          <next>( a link goes here )</next>
+                       </Links>
+                       <SipPeerTelephoneNumbers>
+                          <SipPeerTelephoneNumber>
+                             <FullNumber>+12052160148</FullNumber>
+                             <CallingNameDisplay>true</CallingNameDisplay>
+                             <TnAttributes>
+                                <TnAttribute>Protected</TnAttribute>
+                                <TnAttribute>External</TnAttribute>
+                                <TnAttribute>Imported</TnAttribute>
+                             </TnAttributes>
+                             <MessagingSettings>
+                                <SmsEnabled>true</SmsEnabled>
+                             </MessagingSettings>
+                          </SipPeerTelephoneNumber>
+                          <SipPeerTelephoneNumber>
+                             <FullNumber>+12053161118</FullNumber>
+                             <CallingNameDisplay>false</CallingNameDisplay>
+                             <MessagingSettings>
+                                <SmsEnabled>true</SmsEnabled>
+                             </MessagingSettings>
+                          </SipPeerTelephoneNumber>
+                          <SipPeerTelephoneNumber>
+                             <FullNumber>+12053160118</FullNumber>
+                             <CallForward>+12014563025</CallForward>
+                             <CallingNameDisplay>false</CallingNameDisplay>
+                          </SipPeerTelephoneNumber>
+                       </SipPeerTelephoneNumbers>
+                    </SipPeerTelephoneNumbersResponse>
+              schema:
+                $ref: '#/components/schemas/sipPeerTelephoneNumbersResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INVALID_REQUEST
+                message: Bad request
+                description: The request parameters are invalid.
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: NOT_FOUND
+                message: Resource not found
+                description: The requested resource was not found.
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INTERNAL_ERROR
+                message: Internal server error
+                description: An unexpected error occurred.
+          description: Internal Server Error
+      summary: List location phone numbers
+      tags:
+        - My Numbers
+  /accounts/{accountId}/sites/{siteId}/sippeers/{sippeerId}/tns/{tn}:
+    get:
+      description: Retrieve information about telephone number on Sip Peer.
+      operationId: ReadSipPeerTn
+      parameters:
+        - $ref: '#/components/parameters/AccountIdPathParam'
+        - $ref: '#/components/parameters/SiteIdPathParam'
+        - description: ID of the Sip Peer to retrieve TN information
+          example: '500017'
+          in: path
+          name: sippeerId
+          required: true
+          schema:
+            type: string
+        - description: A E.164 Telephone Number
+          example: '+15209072451'
+          in: path
+          name: tn
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/locationPhoneNumberItem'
+              example:
+                phoneNumber: '+15209072451'
+                callForward: '+17042661720'
+                callingNameDisplay: true
+                phoneNumberAttributes:
+                  - Protected
+                  - External
+                  - Imported
+                messagingSettings:
+                  smsEnabled: true
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <SipPeerTelephoneNumberResponse>
+                        <SipPeerTelephoneNumber>
+                            <FullNumber>+15209072451</FullNumber>
+                            <CallForward>+17042661720</CallForward>
+                            <CallingNameDisplay>true</CallingNameDisplay>
+                            <TnAttributes>
+                                <TnAttribute>Protected</TnAttribute>
+                                <TnAttribute>External</TnAttribute>
+                                <TnAttribute>Imported</TnAttribute>
+                            </TnAttributes>
+                            <MessagingSettings>
+                                <SmsEnabled>true</SmsEnabled>
+                            </MessagingSettings>
+                        </SipPeerTelephoneNumber>
+                    </SipPeerTelephoneNumberResponse>
+              schema:
+                $ref: '#/components/schemas/sipPeerTelephoneNumberResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INVALID_REQUEST
+                message: Bad request
+                description: The request parameters are invalid.
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: NOT_FOUND
+                message: Resource not found
+                description: The requested resource was not found.
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INTERNAL_ERROR
+                message: Internal server error
+                description: An unexpected error occurred.
+          description: Internal Server Error
+      summary: Get location phone number
+      tags:
+        - My Numbers
+  /accounts/{accountId}/sites/{siteId}/sippeers/{sippeerId}/totaltns:
+    get:
+      description: Retrieve count of Telephone numbers for Sip Peer
+      operationId: RetrieveSipPeerTnsCount
+      parameters:
+        - $ref: '#/components/parameters/AccountIdPathParam'
+        - $ref: '#/components/parameters/SiteIdPathParam'
+        - description: ID of the Sip Peer to retrieve TNs count
+          example: '500017'
+          in: path
+          name: sippeerId
+          required: true
+          schema:
+            type: string
+        - description: Telephone number feature
+          example:
+            - DLDA
+          in: query
+          name: feature
+          required: false
+          schema:
+            items:
+              enum:
+                - LIDB
+                - DLDA
+                - DA
+              type: string
+            type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/locationPhoneNumbersCountResponse'
+              example:
+                totalCount: 10004
+                cnamCount: 4
+                lidbCount: 0
+                dldaCount: 9999
+                daCount: 0
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <SipPeerTelephoneNumbersCountResponse>
+                       <SipPeerTelephoneNumbersCount>
+                          <SipPeerTelephoneNumbersCount>10004</SipPeerTelephoneNumbersCount>
+                          <CnamTelephoneNumbersCount>4</CnamTelephoneNumbersCount>
+                          <LidbTelephoneNumbersCount>0</LidbTelephoneNumbersCount>
+                          <DldaTelephoneNumbersCount>9999</DldaTelephoneNumbersCount>
+                          <DaTelephoneNumbersCount>0</DaTelephoneNumbersCount>
+                       </SipPeerTelephoneNumbersCount>
+                    </SipPeerTelephoneNumbersCountResponse>
+              schema:
+                $ref: '#/components/schemas/sipPeerTelephoneNumbersCountResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INVALID_REQUEST
+                message: Bad request
+                description: The request parameters are invalid.
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: NOT_FOUND
+                message: Resource not found
+                description: The requested resource was not found.
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INTERNAL_ERROR
+                message: Internal server error
+                description: An unexpected error occurred.
+          description: Internal Server Error
+      summary: Get location phone number count
+      tags:
+        - My Numbers
+  /tns:
+    get:
+      description: >-
+        Retrieve information about one or more Telephone Numbers (TNs), where
+        the TNs are chosen based on the search parameters provided in the API
+        Call.
+
+
+        In this table are presented capabilities that are not universally
+        available. The following request query parameters are only allowed for
+        numbers from specific region/country:
+
+        | Number Region | Request Query Parameter |
+
+        |:--------------|:------------------------|
+
+        |NANP|city|
+
+        |NANP|tier|
+
+        |NANP|npaNxx|
+
+        |NANP|npaNxxx|
+
+        |NANP|lata|
+
+        |NANP|state|
+
+        |NANP|ratecenter|
+
+
+        When the  query parameters listed in the table above are passed, only in
+        service North American Numbering Plan phone numbers are returned.
+      operationId: ListTnsByGet
+      parameters:
+        - $ref: '#/components/parameters/pageQueryParam'
+        - $ref: '#/components/parameters/sizeQueryParam'
+        - $ref: '#/components/parameters/countryCodeA3QueryParam'
+        - $ref: '#/components/parameters/phoneNumberTypeQueryParam'
+        - $ref: '#/components/parameters/areaCodeQueryParam'
+        - $ref: '#/components/parameters/cityQueryParam'
+        - $ref: '#/components/parameters/tierQueryParam'
+        - description: The internal account id assigned to the customer that "owns" the TN.
+          example: 5000125
+          in: query
+          name: accountId
+          required: false
+          schema:
+            type: integer
+        - description: A E.164 TN.
+          example: '+19199918388'
+          in: query
+          name: fullNumber
+          required: false
+          schema:
+            type: string
+        - description: >-
+            An IP address or subnet (CIDR format) associated with the TN. Filter
+            for subnet applies by exact match.
+          example: 47.16.211.63 or 69.22.181.68/30
+          in: query
+          name: host
+          required: false
+          schema:
+            type: string
+        - description: A service type value to filter the TNs returned in the payload.
+          example: E911
+          in: query
+          name: service
+          required: false
+          schema:
+            enum:
+              - E911
+              - Voice
+              - Hosted_E911
+            type: string
+        - description: >-
+            <p>The 6-digit prefix associated with the TN.</p><ul><li>Allowed
+            number ranges for NPA are [2-9] for the first digit and [0-9] for
+            both the second and third digits.</li><li>Allowed number ranges for
+            NXX are [2-9] for the first digit and [0-9] for both the second and
+            third digits.</li></ul>
+          example: 919859
+          in: query
+          name: npaNxx
+          required: false
+          schema:
+            type: integer
+        - description: >-
+            <p>The 7-digit prefix associated with the TN.</p><ul><li>Allowed
+            number ranges for NPA are [2-9] for the first digit and [0-9] for
+            both the second and third digits.</li><li>Allowed number ranges for
+            NXXX are [2-9] for the first digit and [0-9] the rest of the (X)
+            digits.</li></ul>
+          in: query
+          name: npaNxxx
+          required: false
+          schema:
+            type: integer
+        - description: >-
+            A Rate Center search filter - all returned TNs will be in the
+            entered Rate Center.  Typically this is a 3 or 5 digit value.
+          example: 435
+          in: query
+          name: lata
+          required: false
+          schema:
+            type: integer
+        - description: >-
+            A Rate Center search filter - all returned TNs will be in the
+            entered Rate Center.  This `ratecenter` must be combined with a
+            `state` in the query.  If State is not included in the query then
+            the query will fail.
+          example: PLANO
+          in: query
+          name: rateCenter
+          required: false
+          schema:
+            type: string
+        - description: >-
+            A State search filter - all returned TNs will be in the entered
+            State.  This is a 2-character State or Province abbreviation.
+          example: TX
+          in: query
+          name: state
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Domestic and international phone numbers:
+                  value:
+                    links:
+                      first: https://api.bandwidth.com:443/api/v2/tns?page=1&size=2
+                      next: >-
+                        https://api.bandwidth.com:443/api/v2/tns?page=%2B390541605183&size=2
+                    phoneNumberCount: 2
+                    phoneNumbers:
+                      - accountId: 12346158
+                        country: FRA
+                        countryCodeA3: FRA
+                        isHostedVoice: false
+                        isOnNetVendor: true
+                        lastModified: '2020-03-03T15:30:07.000Z'
+                        phoneNumber: '+33140289561'
+                        phoneNumberType: GEOGRAPHIC
+                        status: Inservice
+                      - accountId: 101
+                        city: JERSEY CITY
+                        countryCodeA3: USA
+                        isHostedVoice: false
+                        isOnNetVendor: true
+                        lastModified: '2019-01-02T20:00:42.000Z'
+                        lata: 224
+                        phoneNumber: '+12018391002'
+                        phoneNumberType: GEOGRAPHIC
+                        rateCenter: JERSEYCITY
+                        state: NJ
+                        status: Inservice
+                        tier: 0
+                        vendorId: 49
+                        vendorName: Bandwidth CLEC
+                Phone number with hosted E911:
+                  value:
+                    links:
+                      first: >-
+                        https://localhost:8443/api/v2/tns?page=1&size=2500&fullNumber=2019721155
+                    phoneNumberCount: 1
+                    phoneNumbers:
+                      - accountId: 12346186
+                        city: RIDGEWOOD
+                        countryCodeA3: USA
+                        features:
+                          - accountId: 12346186
+                            address:
+                              addressType: E911
+                              city: RALEIGH
+                              houseNumber: '3670613170'
+                              houseSuffix: ''
+                              latitude: '35.848359'
+                              longitude: '-75.000000'
+                              plusFour: '5244'
+                              stateCode: NC
+                              streetName: MAIN CAMPUS
+                              streetSuffix: DR
+                              zip: '27606'
+                            callerName: EWBurM9hG4
+                            featureType: e911
+                            lastE911OrderOutcome: SUCCESS
+                            locationAddress: false
+                            phoneNumber: '+12019721155'
+                            status: Success
+                        isHostedVoice: false
+                        isOnNetVendor: true
+                        lastModified: '2019-01-02T20:00:42.000Z'
+                        lata: 224
+                        phoneNumber: '+12019721155'
+                        phoneNumberType: GEOGRAPHIC
+                        rateCenter: RIDGEWOOD
+                        state: NJ
+                        status: Inservice
+                        tier: 0
+                        vendorId: 49
+                        vendorName: Bandwidth CLEC
+              schema:
+                $ref: '#/components/schemas/telephoneNumbersHistoryResponseJson'
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <TelephoneNumbersResponse>
+                        <TelephoneNumberCount>5</TelephoneNumberCount>
+                        <Links>
+                            <first>Link=&lt;https://api.bandwidth.com:443/v1.0/tns?account=9500012&amp;page=1&amp;size=500&gt;;rel="first";</first>
+                            <next>Link=&lt;https://api.bandwidth.com:443/v1.0/tns?account=9500012&amp;page=+12012082912&amp;size=500&gt;;rel="next";</next>
+                        </Links>
+                        <TelephoneNumbers>
+                            <TelephoneNumber>
+                                <City>CARY</City>
+                                <Lata>426</Lata>
+                                <State>NC</State>
+                                <FullNumber>+19192381138</FullNumber>
+                                <Tier>0</Tier>
+                                <VendorId>49</VendorId>
+                                <VendorName>Bandwidth CLEC</VendorName>
+                              <RateCenter>CARY</RateCenter>
+                                <Status>Inservice</Status>
+                                <AccountId>9900008</AccountId>
+                                <LastModified>2013-12-05T05:58:27.000Z</LastModified>
+                                <InServiceDate>2013-12-05T05:58:27.000Z</InServiceDate>
+                            </TelephoneNumber>
+                            <TelephoneNumber>
+                                <City>CARY</City>
+                                <Lata>426</Lata>
+                                <State>NC</State>
+                                <FullNumber>+19192381139</FullNumber>
+                                <Tier>0</Tier>
+                                <VendorId>49</VendorId>
+                                <VendorName>Bandwidth CLEC</VendorName>
+                                <RateCenter>CARY</RateCenter>
+                                <Status>Inservice</Status>
+                                <AccountId>9900000</AccountId>
+                                <LastModified>2013-12-05T05:58:27.000Z</LastModified>
+                                <InServiceDate>2013-12-05T05:58:27.000Z</InServiceDate>
+                            </TelephoneNumber>
+                            <TelephoneNumber>
+                                <City>CARY</City>
+                                <Lata>426</Lata>
+                                <State>NC</State>
+                                <FullNumber>+19192381141</FullNumber>
+                                <Tier>0</Tier>
+                                <VendorId>49</VendorId>
+                                <VendorName>Bandwidth CLEC</VendorName>
+                                <RateCenter>CARY</RateCenter>
+                                <Status>Inservice</Status>
+                                <AccountId>9900000</AccountId>
+                                <LastModified>2013-12-05T05:58:27.000Z</LastModified>
+                                <InServiceDate>2013-12-05T05:58:27.000Z</InServiceDate>
+                            </TelephoneNumber>
+                            <TelephoneNumber>
+                                <City>CARY</City>
+                                <Lata>426</Lata>
+                                <State>NC</State>
+                                <FullNumber>+19192381142</FullNumber>
+                                <Tier>0</Tier>
+                                <VendorId>49</VendorId>
+                                <VendorName>Bandwidth CLEC</VendorName>
+                                <RateCenter>CARY</RateCenter>
+                                <Status>Inservice</Status>
+                                <AccountId>9900000</AccountId>
+                                <LastModified>2013-12-05T05:58:27.000Z</LastModified>
+                                <InServiceDate>2013-12-05T05:58:27.000Z</InServiceDate>
+                            </TelephoneNumber>
+                            <TelephoneNumber>
+                                <City>CARY</City>
+                                <Lata>426</Lata>
+                                <State>NC</State>
+                                <FullNumber>+19192381144</FullNumber>
+                                <Tier>0</Tier>
+                                <VendorId>49</VendorId>
+                                <VendorName>Bandwidth CLEC</VendorName>
+                                <RateCenter>CARY</RateCenter>
+                                <Status>Aging</Status>
+                                <AccountId>753</AccountId>
+                                <LastModified>2013-12-05T05:58:27.000Z</LastModified>
+                                <InServiceDate>2013-12-05T05:58:27.000Z</InServiceDate>
+                            </TelephoneNumber>
+                        </TelephoneNumbers>
+                    </TelephoneNumbersResponse>
+              schema:
+                $ref: '#/components/schemas/telephoneNumbersHistoryResponse'
+          description: >-
+            The descriptive payload for the TNs query provides information about
+            the TN(s) that were found in the Query. Links to assist in
+            pagination are also provided.
+        '400':
+          content:
+            application/json:
+              examples:
+                InvalidNpaNxxQueryParamExample:
+                  value:
+                    description: The NPA_NXX '876345' is invalid
+                    errorCode: 15511
+              schema:
+                $ref: '#/components/schemas/telephoneNumbersErrorResponseJson'
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <TelephoneNumbersResponse>
+                        <ResponseStatus>
+                            <ErrorCode>15511</ErrorCode>
+                            <Description>The NPA_NXX '9192384' is invalid</Description>
+                        </ResponseStatus>
+                    </TelephoneNumbersResponse>
+              schema:
+                $ref: '#/components/schemas/telephoneNumbersErrorResponse'
+          description: Bad Request
+      summary: List phone numbers
+      tags:
+        - My Numbers
+    post:
+      description: >-
+        Retrieve information about one or more Telephone Numbers (TNs), where
+        the TNs are specified in POST body.
+
+
+        In this table are presented capabilities that are not universally
+        available. The following request query parameters are only allowed for
+        numbers from specific region/country:
+
+        | Number Region | Request Query Parameter |
+
+        |:--------------|:------------------------|
+
+        |NANP|city|
+
+        |NANP|tier|
+
+        |NANP|npaNxx|
+
+        |NANP|npaNxxx|
+
+        |NANP|lata|
+
+        |NANP|state|
+
+        |NANP|ratecenter|
+
+
+        When the  query parameters listed in the table above are passed, only in
+        service North American Numbering Plan phone numbers are returned.
+      operationId: ListTnsByPost
+      parameters:
+        - description: A service type value to filter the TNs returned in the payload.
+          example: Voice
+          in: query
+          name: service
+          required: false
+          schema:
+            enum:
+              - Voice
+              - Hosted_Voice
+              - Messaging
+              - Hosted_Messaging
+              - E911
+              - Hosted_E911
+            type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              phoneNumbers:
+                - '+13172000285'
+                - '+13172000207'
+                - '+13172000000'
+                - '+13172000100'
+                - '+13172110285'
+                - '+13172100285'
+                - '+199999999999'
+                - '+111111111111'
+            schema:
+              $ref: '#/components/schemas/tnsPostJson'
+          application/xml:
+            examples:
+              example:
+                value: |-
+                  <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                  <TnList>
+                      <Tn>+13172000285</Tn>
+                      <Tn>+13172000207</Tn>
+                      <Tn>+13172000000</Tn>
+                      <Tn>+13172000100</Tn>
+                      <Tn>+13172110285</Tn>
+                      <Tn>+13172100285</Tn>
+                      <Tn>+199999999999</Tn>
+                      <Tn>+111111111111</Tn>
+                  </TnList>
+            schema:
+              $ref: '#/components/schemas/tnListRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                errors:
+                  - code: 15608
+                    description: Input contains invalid Telephone Numbers
+                    phoneNumbers:
+                      - '+111111111111'
+                      - '+199999999999'
+                  - code: 15610
+                    description: Telephone Numbers cannot be found on accounts
+                    phoneNumbers:
+                      - '+13172110285'
+                      - '+13172100285'
+                links:
+                  first: https://api.bandwidth.com/api/tns
+                phoneNumberCount: 5
+                phoneNumbers:
+                  - accountId: 753
+                    city: INDIANAPOLIS
+                    countryCodeA3: USA
+                    isHostedVoice: false
+                    lastModified: '2016-11-16T19:34:22Z'
+                    lata: 336
+                    phoneNumber: '+13172000000'
+                    phoneNumberType: GEOGRAPHIC
+                    rateCenter: INDIANAPLS
+                    state: IN
+                    status: Available
+                    tier: 0
+                    vendorId: 49
+                    vendorName: Bandwidth CLEC
+                  - accountId: 14
+                    city: INDIANAPOLIS
+                    countryCodeA3: USA
+                    isHostedVoice: false
+                    lastModified: '2016-11-16T19:34:22Z'
+                    lata: 336
+                    phoneNumber: '+13172000500'
+                    phoneNumberType: GEOGRAPHIC
+                    rateCenter: INDIANAPLS
+                    state: IN
+                    status: Aging
+                    tier: 0
+                    vendorId: 49
+                    vendorName: Bandwidth CLEC
+                  - accountId: 753
+                    city: INDIANAPOLIS
+                    countryCodeA3: USA
+                    isHostedVoice: false
+                    lastModified: '2016-11-16T19:34:22Z'
+                    lata: 336
+                    phoneNumber: '+13172000100'
+                    phoneNumberType: GEOGRAPHIC
+                    rateCenter: INDIANAPLS
+                    state: IN
+                    status: Available
+                    tier: 0
+                    vendorId: 49
+                    vendorName: Bandwidth CLEC
+                  - accountId: 753
+                    city: INDIANAPOLIS
+                    countryCodeA3: USA
+                    isHostedVoice: false
+                    lastModified: '2016-11-16T19:34:22Z'
+                    lata: 336
+                    phoneNumber: '+13172000207'
+                    phoneNumberType: GEOGRAPHIC
+                    rateCenter: INDIANAPLS
+                    state: IN
+                    status: Available
+                    tier: 0
+                    vendorId: 49
+                    vendorName: Bandwidth CLEC
+                  - accountId: 753
+                    city: INDIANAPOLIS
+                    countryCodeA3: USA
+                    isHostedVoice: false
+                    lastModified: '2016-11-16T19:34:22Z'
+                    lata: 336
+                    phoneNumber: '+13172000285'
+                    phoneNumberType: GEOGRAPHIC
+                    rateCenter: INDIANAPLS
+                    state: IN
+                    status: Available
+                    tier: 0
+                    vendorId: 49
+                    vendorName: Bandwidth CLEC
+              schema:
+                $ref: '#/components/schemas/telephoneNumbersHistoryResponseJson'
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <TelephoneNumbersResponse>
+                        <TelephoneNumberCount>4</TelephoneNumberCount>
+                        <Links>
+                            <first>https://api.bandwidth.com/api/tns</first>
+                        </Links>
+                        <TelephoneNumbers>
+                            <TelephoneNumber>
+                                <City>INDIANAPOLIS</City>
+                                <Lata>336</Lata>
+                                <State>IN</State>
+                                <FullNumber>+13172000000</FullNumber>
+                                <Tier>0</Tier>
+                                <VendorId>49</VendorId>
+                                <VendorName>Bandwidth CLEC</VendorName>
+                                <RateCenter>INDIANAPLS</RateCenter>
+                                <Status>Available</Status>
+                                <AccountId>753</AccountId>
+                                <LastModified>2016-11-16T19:34:22.000Z</LastModified>
+                            </TelephoneNumber>
+                            <TelephoneNumber>
+                                <City>INDIANAPOLIS</City>
+                                <Lata>336</Lata>
+                                <State>IN</State>
+                                <FullNumber>+13172000500</FullNumber>
+                                <Tier>0</Tier>
+                                <VendorId>49</VendorId>
+                                <VendorName>Bandwidth CLEC</VendorName>
+                                <RateCenter>INDIANAPLS</RateCenter>
+                                <Status>Aging</Status>
+                                <AccountId>14</AccountId>
+                                <LastModified>2016-11-16T19:34:22.000Z</LastModified>
+                            </TelephoneNumber>
+                            <TelephoneNumber>
+                                <City>INDIANAPOLIS</City>
+                                <Lata>336</Lata>
+                                <State>IN</State>
+                                <FullNumber>+13172000100</FullNumber>
+                                <Tier>0</Tier>
+                                <VendorId>49</VendorId>
+                                <VendorName>Bandwidth CLEC</VendorName>
+                                <RateCenter>INDIANAPLS</RateCenter>
+                                <Status>Available</Status>
+                                <AccountId>753</AccountId>
+                                <LastModified>2016-11-16T19:34:22.000Z</LastModified>
+                            </TelephoneNumber>
+                            <TelephoneNumber>
+                                <City>INDIANAPOLIS</City>
+                                <Lata>336</Lata>
+                                <State>IN</State>
+                                <FullNumber>+13172000207</FullNumber>
+                                <Tier>0</Tier>
+                                <VendorId>49</VendorId>
+                                <VendorName>Bandwidth CLEC</VendorName>
+                                <RateCenter>INDIANAPLS</RateCenter>
+                                <Status>Available</Status>
+                                <AccountId>753</AccountId>
+                                <LastModified>2016-11-16T19:34:22.000Z</LastModified>
+                            </TelephoneNumber>
+                            <TelephoneNumber>
+                                <City>INDIANAPOLIS</City>
+                                <Lata>336</Lata>
+                                <State>IN</State>
+                                <FullNumber>+13172000285</FullNumber>
+                                <Tier>0</Tier>
+                                <VendorId>49</VendorId>
+                                <VendorName>Bandwidth CLEC</VendorName>
+                                <RateCenter>INDIANAPLS</RateCenter>
+                                <Status>Available</Status>
+                                <AccountId>753</AccountId>
+                                <LastModified>2016-11-16T19:34:22.000Z</LastModified>
+                            </TelephoneNumber>
+                        </TelephoneNumbers>
+                        <ErrorList>
+                            <Error>
+                                <Code>15608</Code>
+                                <Description>Input contains invalid Telephone Numbers</Description>
+                                <TelephoneNumbers>
+                                    <TelephoneNumber>+111111111111</TelephoneNumber>
+                                    <TelephoneNumber>+199999999999</TelephoneNumber>
+                                </TelephoneNumbers>
+                            </Error>
+                            <Error>
+                                <Code>15610</Code>
+                                <Description>Telephone Numbers cannot be found on accounts</Description>
+                                <TelephoneNumbers>
+                                    <TelephoneNumber>+13172110285</TelephoneNumber>
+                                    <TelephoneNumber>+13172100285</TelephoneNumber>
+                                </TelephoneNumbers>
+                            </Error>
+                        </ErrorList>
+                    </TelephoneNumbersResponse>
+              schema:
+                $ref: '#/components/schemas/telephoneNumbersHistoryResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              example:
+                responseStatus:
+                  description: >-
+                    The count of Telephone numbers in POST body exceeds the
+                    maximum size of 20
+                  errorCode: 15607
+              schema:
+                $ref: '#/components/schemas/telephoneNumbersErrorResponseJson'
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <TelephoneNumbersResponse>
+                        <ResponseStatus>
+                            <ErrorCode>15607</ErrorCode>
+                            <Description>The count of Telephone numbers in POST body exceeds the maximum size of 2500</Description>
+                        </ResponseStatus>
+                    </TelephoneNumbersResponse>
+              schema:
+                $ref: '#/components/schemas/telephoneNumbersErrorResponse'
+          description: Bad Request
+      summary: List phone numbers
+      tags:
+        - My Numbers
+  /tns/{tn}:
+    get:
+      description: Retrieves the telephone number's information.
+      operationId: RetrieveTn
+      parameters:
+        - description: ''
+          example: '+19199918388'
+          in: path
+          name: tn
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/phoneNumberStatusResponse'
+              example:
+                phoneNumber: '+12012035013'
+                status: Inservice
+                lastModifiedDate: '2014-03-25T12:55:11Z'
+                orderCreateDate: '2014-03-25T12:55:11.810Z'
+                orderId: cf79d3c3-21b7-4db7-9867-273a1867f934
+                orderType: NEW_NUMBER_ORDER
+                inServiceDate: '2014-03-25T12:55:11.810Z'
+                subAccountId: '2409'
+                accountId: '8000273'
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <TelephoneNumberResponse>
+                      <TelephoneNumber>+12012035013</TelephoneNumber>
+                      <Status>Inservice</Status>
+                      <LastModifiedDate>2014-03-25 12:55:11.0</LastModifiedDate>
+                      <OrderCreateDate>2014-03-25T12:55:11.810Z</OrderCreateDate>
+                      <OrderId>cf79d3c3-21b7-4db7-9867-273a1867f934</OrderId>
+                      <OrderType>NEW_NUMBER_ORDER</OrderType>
+                      <InServiceDate>2014-03-25T12:55:11.810Z</InServiceDate>
+                      <SiteId>2409</SiteId>
+                      <AccountId>8000273</AccountId>
+                    </TelephoneNumberResponse>
+              schema:
+                $ref: '#/components/schemas/telephoneNumberStatusShortWrapper'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INVALID_REQUEST
+                message: Bad request
+                description: The request parameters are invalid.
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: NOT_FOUND
+                message: Resource not found
+                description: The requested resource was not found.
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INTERNAL_ERROR
+                message: Internal server error
+                description: An unexpected error occurred.
+          description: Internal Server Error
+      summary: Get phone number
+      tags:
+        - My Numbers
+  /tns/{tn}/availableNnRoutes:
+    get:
+      description: Retrieves information about available NnRoutes for the phone number.
+      operationId: RetrieveRouteForThatTn
+      parameters:
+        - description: ''
+          example: '+19199918388'
+          in: path
+          name: tn
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/availableNnRoutesResponse'
+              example:
+                nnRoutes:
+                  - nnid: '101601'
+                    name: USA Mobility
+                  - nnid: '102787'
+                    name: Globe Wireless - Bandwidth.com - SVR
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <AvailableNnRoutes>
+                      <NNRoute>
+                        <Nnid>101601</Nnid>
+                        <Name>USA Mobility</Name>
+                      </NNRoute>
+                      <NNRoute>
+                        <Nnid>102787</Nnid>
+                        <Name>Globe Wireless - Bandwidth.com - SVR</Name>
+                      </NNRoute>
+                    </AvailableNnRoutes>
+              schema:
+                $ref: '#/components/schemas/telephoneNumberAvailableNnRoutesResponse'
+          description: OK
+        '400':
+          content:
+            application/xml:
+              examples:
+                example:
+                  description: example
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <AvailableNnRoutes>
+                      <ResponseStatus>
+                        <ErrorCode>12512</ErrorCode>
+                        <Description>Telephone number '123456789' is not valid</Description>
+                      </ResponseStatus>
+                    </AvailableNnRoutes>
+              schema:
+                $ref: >-
+                  #/components/schemas/telephoneNumberAvailableNnRoutesErrorResponse
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: NOT_FOUND
+                message: Resource not found
+                description: The requested resource was not found.
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INTERNAL_ERROR
+                message: Internal server error
+                description: An unexpected error occurred.
+          description: Internal Server Error
+      summary: List NN routes for phone number
+      tags:
+        - My Numbers
+  /tns/{tn}/e911:
+    get:
+      description: Retrieves the e911 information associated with that telephone number
+      operationId: RetrieveTnE911Info
+      parameters:
+        - description: A 10 Digit TN
+          example: '+19199918388'
+          in: path
+          name: tn
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tnE911Response'
+              example:
+                address:
+                  name: Test address
+                  houseNumber: '900'
+                  streetName: MAIN CAMPUS DR
+                  city: RALEIGH
+                  stateCode: NC
+                  zip: '27606'
+                  plusFour: '5214'
+                emergencyNotificationGroup:
+                  identifier: 63865500-0904-46b1-9b4f-7bd237a26363
+                  description: Building 5, 5th Floor.
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <TnE911AddressResponse>
+                       <Address>
+                          <Name>Test address</Name>
+                          <City>RALEIGH</City>
+                          <HouseNumber>900</HouseNumber>
+                          <StateCode>NC</StateCode>
+                          <StreetName>MAIN CAMPUS DR</StreetName>
+                          <Zip>27606</Zip>
+                          <PlusFour>5214</PlusFour>
+                       </Address>
+                       <EmergencyNotificationGroup>
+                          <Identifier>63865500-0904-46b1-9b4f-7bd237a26363</Identifier>
+                          <Description>Building 5, 5th Floor.</Description>
+                       </EmergencyNotificationGroup>
+                    </TnE911AddressResponse>
+              schema:
+                $ref: '#/components/schemas/tnE911AddressResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INVALID_REQUEST
+                message: Bad request
+                description: The request parameters are invalid.
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: NOT_FOUND
+                message: Resource not found
+                description: The requested resource was not found.
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INTERNAL_ERROR
+                message: Internal server error
+                description: An unexpected error occurred.
+          description: Internal Server Error
+      summary: Get E911 address for phone number
+      tags:
+        - My Numbers
+  /tns/{tn}/lata:
+    get:
+      description: Retrieves the lata associated with that telephone number.
+      operationId: RetrieveLataForThatTn
+      parameters:
+        - description: ''
+          example: '+19199918388'
+          in: path
+          name: tn
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tnLataResponse'
+              example:
+                lata: '224'
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <TelephoneNumberResponse>
+                      <TelephoneNumberDetails>
+                        <Lata>224</Lata>
+                      </TelephoneNumberDetails>
+                    </TelephoneNumberResponse>
+              schema:
+                $ref: '#/components/schemas/telephoneNumberLataResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INVALID_REQUEST
+                message: Bad request
+                description: The request parameters are invalid.
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: NOT_FOUND
+                message: Resource not found
+                description: The requested resource was not found.
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INTERNAL_ERROR
+                message: Internal server error
+                description: An unexpected error occurred.
+          description: Internal Server Error
+      summary: Get LATA for phone number
+      tags:
+        - My Numbers
+  /tns/{tn}/lca:
+    get:
+      description: Retrieves the LCAs associated with that telephone number.
+      operationId: RetrieveLCAForThatTn
+      parameters:
+        - description: ''
+          example: '+19199918388'
+          in: path
+          name: tn
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tnLcaResponse'
+              example:
+                npaNxx:
+                  - '201202'
+                  - '201203'
+                  - '201206'
+                  - '973930'
+                  - '973931'
+                  - '973955'
+                location:
+                  rateCenters:
+                    - state: NJ
+                      rateCenters:
+                        - CLIFFSIDE
+                        - DUMONT
+                        - UNION CITY
+                        - WESTWOOD
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <SearchResult>
+                      <ListofNPANXX>
+                        <NPANXX>201202</NPANXX>
+                        <NPANXX>201203</NPANXX>
+                        <NPANXX>201206</NPANXX>
+                        <!-- SNIP -->
+                        <NPANXX>973930</NPANXX>
+                        <NPANXX>973931</NPANXX>
+                        <NPANXX>973955</NPANXX>
+                      </ListofNPANXX>
+                      <Location>
+                        <RateCenters>
+                         <State>NJ</State>
+                          <RCs>
+                           <RC>CLIFFSIDE</RC>
+                           <RC>DUMONT</RC>
+                           <!-- SNIP -->
+                           <RC>UNION CITY</RC>
+                           <RC>WESTWOOD</RC>
+                         </RCs>
+                        </RateCenters>
+                      </Location>
+                    </SearchResult>
+              schema:
+                $ref: '#/components/schemas/npaNxxRcLcaSearchResult'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INVALID_REQUEST
+                message: Bad request
+                description: The request parameters are invalid.
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: NOT_FOUND
+                message: Resource not found
+                description: The requested resource was not found.
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INTERNAL_ERROR
+                message: Internal server error
+                description: An unexpected error occurred.
+          description: Internal Server Error
+      summary: Get LCA for phone number
+      tags:
+        - My Numbers
+  /tns/{tn}/ratecenter:
+    get:
+      description: Retrieves the rate centers associated with that telephone number.
+      operationId: RetrieveRateCenterForThatTn
+      parameters:
+        - description: ''
+          example: '+19199918388'
+          in: path
+          name: tn
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tnRateCenterResponse'
+              example:
+                state: NJ
+                rateCenter: HACKENSACK
+            application/xml:
+              examples:
+                example:
+                  description: example
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <TelephoneNumberResponse>
+                      <TelephoneNumberDetails>
+                        <State>NJ</State>
+                        <RateCenter>HACKENSACK</RateCenter>
+                      </TelephoneNumberDetails>
+                    </TelephoneNumberResponse>
+              schema:
+                $ref: '#/components/schemas/telephoneNumberRateCenterResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INVALID_REQUEST
+                message: Bad request
+                description: The request parameters are invalid.
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: NOT_FOUND
+                message: Resource not found
+                description: The requested resource was not found.
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INTERNAL_ERROR
+                message: Internal server error
+                description: An unexpected error occurred.
+          description: Internal Server Error
+      summary: Get rate center for phone number
+      tags:
+        - My Numbers
+  /tns/{tn}/sippeers:
+    get:
+      description: Retrieves the sippeers associated with that telephone number.
+      operationId: RetrieveSippeerForThatTn
+      parameters:
+        - description: ''
+          example: '+19199918388'
+          in: path
+          name: tn
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tnLocationResponse'
+              example:
+                locationId: 305643
+                locationName: PeerOneSiteThree
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <SipPeer>
+                      <Id>305643</Id>
+                      <Name>PeerOneSiteThree</Name>
+                    </SipPeer>
+              schema:
+                $ref: '#/components/schemas/tnSipPeer'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INVALID_REQUEST
+                message: Bad request
+                description: The request parameters are invalid.
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: NOT_FOUND
+                message: Resource not found
+                description: The requested resource was not found.
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INTERNAL_ERROR
+                message: Internal server error
+                description: An unexpected error occurred.
+          description: Internal Server Error
+      summary: Get location for phone number
+      tags:
+        - My Numbers
+  /tns/{tn}/sites:
+    get:
+      description: Retrieves the sites associated with that telephone number
+      operationId: RetrieveSiteForThatTn
+      parameters:
+        - description: ''
+          example: '+19199918388'
+          in: path
+          name: tn
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tnSubAccountResponse'
+              example:
+                subAccountId: 2409
+                subAccountName: siteName
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <Site>
+                        <Id>2409</Id>
+                        <Name>siteName</Name>
+                      </Site>
+              schema:
+                $ref: '#/components/schemas/tnSite'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INVALID_REQUEST
+                message: Bad request
+                description: The request parameters are invalid.
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: NOT_FOUND
+                message: Resource not found
+                description: The requested resource was not found.
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myNumbersErrorResponse'
+              example:
+                code: INTERNAL_ERROR
+                message: Internal server error
+                description: An unexpected error occurred.
+          description: Internal Server Error
+      summary: Get sub-account for phone number
+      tags:
+        - My Numbers
+  /tns/{tn}/tndetails:
+    get:
+      description: >-
+        Retrieves detailed information about the phone number.
+
+
+        In this table are presented capabilities that are not universally
+        available. The following response body attributes are only returned for
+        numbers from specific region/country:
+
+        | Number Region | Response Body Attributes |
+
+        |:--------------|:------------------------|
+
+        |NANP|LATA|
+
+        |NANP|State|
+
+        |NANP|RateCenter|
+
+        |NANP|E911|
+
+
+        These parameters are only applicable and hence returned in response body
+        for North American Numbering Plan phone numbers.
+      operationId: RetrieveTnDetails
+      parameters:
+        - description: ''
+          example: '+19199918388'
+          in: path
+          name: tn
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Non-NANP details:
+                  value:
+                    accountId: 12345678
+                    country: FR
+                    countryCodeA3: FRA
+                    inServiceDate: '2020-03-03T15:30:07.518Z'
+                    isOnNetVendor: true
+                    lastModified: '2020-03-03T15:30:07Z'
+                    location:
+                      isDefaultLocation: false
+                      locationId: 500001
+                      locationName: location01
+                    phoneNumber: '+33140289562'
+                    phoneNumberType: GEOGRAPHIC
+                    requirementsPackageId: 55f9f932-6136-48cf-a724-401ec8fe5ff2
+                    serviceTypes:
+                      - Voice
+                    status: Inservice
+                    subAccount:
+                      id: 123
+                      name: subAccount
+                    vendorId: 49
+                    vendorName: Bandwidth CLEC
+                Phone Number details with Hosted Voice, Hosted Messaging, and Hosted E911:
+                  description: >-
+                    Phone Number details with Voice, Hosted messaging and Hosted
+                    E911 on different accounts
+                  value:
+                    accountId: 12346167
+                    city: GUSTINE
+                    countryCodeA3: USA
+                    hostedPhoneNumberDetails:
+                      - accountId: 12346168
+                        location:
+                          isDefaultLocation: true
+                          locationId: 500034
+                          locationName: locatione0fDdHYzRb
+                        messagingSettings:
+                          a2pState: SYSTEM_DEFAULT
+                          phoneNumberDetailsNnRoute:
+                            name: 9417
+                            nnid: 112233
+                          smsEnabled: true
+                        phoneNumberAttributes:
+                          - Hosted
+                        serviceTypes:
+                          - Hosted Messaging
+                        subAccount:
+                          id: 495
+                          name: subAccount_1KU9l
+                      - accountId: 12346169
+                        features:
+                          - accountId: 12346169
+                            address:
+                              addressType: E911
+                              city: RALEIGH
+                              houseNumber: 6518
+                              houseSuffix: ''
+                              latitude: 35.848359
+                              longitude: -75
+                              plusFour: 5244
+                              stateCode: NC
+                              streetName: MAIN CAMPUS
+                              streetSuffix: DR
+                              zip: 27606
+                            callerName: ojjucTKANd
+                            featureType: e911
+                            lastE911OrderOutcome: SUCCESS
+                            locationAddress: false
+                            status: Success
+                        phoneNumberAttributes:
+                          - Hosted
+                        serviceTypes:
+                          - Hosted E911
+                    isOnNetVendor: true
+                    lastModified: '2021-02-10T11:22:57Z'
+                    lata: 738
+                    location:
+                      isDefaultLocation: true
+                      locationId: 500033
+                      locationName: locationBxxygpCJrw
+                    phoneNumber: '+12092151016'
+                    phoneNumberAttributes:
+                      - Hosted
+                    phoneNumberType: GEOGRAPHIC
+                    rateCenter: GUSTINE
+                    serviceTypes:
+                      - Voice
+                    state: CA
+                    status: Inservice
+                    subAccount:
+                      id: 494
+                      name: subAccount_WDSZl
+                    tier: 0
+                    vendorId: 49
+                    vendorName: Bandwidth CLEC
+                Phone Number details with Voice and OperatorId and OperatorCode:
+                  value:
+                    accountId: 12346167
+                    city: London
+                    countryCodeA3: FRA
+                    hostedPhoneNumberDetails:
+                      - accountId: 12346168
+                        location:
+                          isDefaultLocation: true
+                          locationId: 500034
+                          locationName: locatione0fDdHYzRb
+                        messagingSettings:
+                          a2pState: SYSTEM_DEFAULT
+                          phoneNumberDetailsNnRoute:
+                            name: 9417
+                            nnid: 112233
+                          smsEnabled: true
+                        phoneNumberAttributes:
+                          - Hosted
+                        serviceTypes:
+                          - Hosted Messaging
+                        subAccount:
+                          id: 495
+                          name: subAccount_1KU9l
+                      - accountId: 12346168
+                        location:
+                          isDefaultLocation: true
+                          locationId: 500034
+                          locationName: locatione0fDdHYzRb
+                        phoneNumberAttributes:
+                          - Hosted
+                        serviceTypes:
+                          - Hosted Voice
+                        subAccount:
+                          id: 495
+                          name: subAccount_1KU9l
+                      - accountId: 12346169
+                        features:
+                          - accountId: 12346169
+                            address:
+                              addressType: E911
+                              city: RALEIGH
+                              houseNumber: 6518
+                              houseSuffix: ''
+                              latitude: 35.848359
+                              longitude: -75
+                              plusFour: 5244
+                              stateCode: NC
+                              streetName: MAIN CAMPUS
+                              streetSuffix: DR
+                              zip: 27606
+                            callerName: ojjucTKANd
+                            featureType: e911
+                            lastE911OrderOutcome: SUCCESS
+                            locationAddress: false
+                            phoneNumberAttributes:
+                              - Hosted
+                            status: Success
+                        serviceTypes:
+                          - Hosted E911
+                    isHostedVoice: true
+                    isOnNetVendor: true
+                    lastModified: '2021-02-10T11:22:57Z'
+                    location:
+                      isDefaultLocation: true
+                      locationId: 500033
+                      locationName: locationBxxygpCJrw
+                    operatorCode: VOXB
+                    operatorId: '12345'
+                    phoneNumber: '+33575210286'
+                    phoneNumberAttributes:
+                      - Hosted
+                    phoneNumberType: GEOGRAPHIC
+                    rateCenter: GUSTINE
+                    serviceTypes:
+                      - Voice
+                    status: Inservice
+                    subAccount:
+                      id: 494
+                      name: subAccount_WDSZl
+                    tier: 0
+                    vendorId: 49
+                    vendorName: Bandwidth CLEC
+                Shared Phone Number details:
+                  value:
+                    accountId: 14
+                    city: JERSEY CITY
+                    countryCodeA3: USA
+                    features:
+                      - accountId: 14
+                        address:
+                          city: RALEIGH
+                          country: United States
+                          emergencyNotificationGroup:
+                            description: Building A
+                            identifier: 625e3ad9-c95e-4148-b2f7-d47a8dbdd0d9
+                          houseNumber: 901
+                          plusFour: 5244
+                          stateCode: NC
+                          streetName: MAIN CAMPUS
+                          streetSuffix: DR
+                          zip: 27606
+                        callerName: Test CallerName
+                        featureType: e911
+                        locationAddress: false
+                        status: Success
+                      - featureType: lidb
+                        status: Pending
+                        subscriberInformation: Fred
+                        useType: BUSINESS
+                        visibility: PUBLIC
+                      - address:
+                          addressType: Dlda
+                          city: New York
+                          country: United States
+                          houseNumber: 12
+                          stateCode: NY
+                          streetName: ELM
+                          zip: 10007
+                        featureType: dlda
+                        listAddress: true
+                        listingName:
+                          firstName: Joe
+                          lastName: Smith
+                        listingType: LISTED
+                        status: Success
+                        subscriberType: BUSINESS
+                    hostedPhoneNumberDetails:
+                      - accountId: 12346160
+                        location:
+                          isDefaultLocation: true
+                          locationId: 500026
+                          locationName: locationemhlO
+                        messagingSettings:
+                          a2pState: OVERRIDDEN
+                          campaignFullyProvisioned: true
+                          campaignId: CVWGTGE
+                          messageClass: A
+                          phoneNumberDetailsNnRoute:
+                            name: 7ae5LXMn
+                            nnid: 2183991
+                          smsEnabled: true
+                        phoneNumberAttributes:
+                          - Hosted
+                        serviceTypes:
+                          - Hosted Messaging
+                        subAccount:
+                          id: 487
+                          name: subAccount_Mw4FX
+                    inServiceDate: '2014-07-30T11:29:37Z'
+                    isOnNetVendor: true
+                    lastModified: '2014-07-30T11:29:37Z'
+                    lata: 224
+                    location:
+                      isDefaultLocation: true
+                      locationId: 500014
+                      locationName: a2750fad-3
+                    phoneNumber: '+12018981023'
+                    phoneNumberAttributes:
+                      - Hosted
+                    phoneNumberType: GEOGRAPHIC
+                    rateCenter: JERSEYCITY
+                    serviceTypes:
+                      - Voice
+                    state: NJ
+                    status: Inservice
+                    subAccount:
+                      id: 479
+                      name: subAccount_9b08f
+                    tier: 0
+                    vendorId: 49
+                    vendorName: Bandwidth CLEC
+                Simple response:
+                  value:
+                    accountId: 14
+                    city: JERSEY CITY
+                    countryCodeA3: USA
+                    features:
+                      - acountId: 14
+                        address:
+                          addressType: E911
+                          city: RALEIGH
+                          houseNumber: 901
+                          houseSuffix: ''
+                          plusFour: 5244
+                          stateCode: NC
+                          streetName: MAIN CAMPUS
+                          streetSuffix: DR
+                          zip: 27606
+                        callerName: Test CallerName
+                        featureType: e911
+                        locationAddress: false
+                        status: Success
+                    inServiceDate: '2014-07-30T11:29:37Z'
+                    isOnNetVendor: true
+                    lastModified: '2014-07-30T11:29:37Z'
+                    lata: 224
+                    location:
+                      isDefaultLocation: true
+                      locationId: 500014
+                      locationName: a2750fad-3
+                    phoneNumber: '+12018981023'
+                    phoneNumberType: GEOGRAPHIC
+                    rateCenter: JERSEYCITY
+                    serviceTypes:
+                      - Voice
+                      - Messaging
+                    state: NJ
+                    status: Inservice
+                    subAccount:
+                      id: 479
+                      name: subAccount_9b08f
+                    tier: 0
+                    vendorId: 49
+                    vendorName: Bandwidth CLEC
+              schema:
+                $ref: '#/components/schemas/telephoneNumberDetailHistoryResponseJson'
+            application/xml:
+              examples:
+                Non-NANP details:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <TelephoneNumberResponse>
+                      <TelephoneNumberDetails>
+                        <FullNumber>+33140289562</FullNumber>
+                        <Country>FR</Country>
+                        <TnType>geographic</TnType>
+                        <VendorId>49</VendorId>
+                        <VendorName>Bandwidth CLEC</VendorName>
+                        <OnNetVendor>true</OnNetVendor>
+                        <Status>Inservice</Status>
+                        <AccountId>12345678</AccountId>
+                        <Site>
+                          <Id>123</Id>
+                          <Name>site</Name>
+                        </Site>
+                        <SipPeer>
+                          <PeerId>500001</PeerId>
+                          <PeerName>sippeer</PeerName>
+                          <IsDefaultPeer>false</IsDefaultPeer>
+                        </SipPeer>
+                        <ServiceTypes>
+                          <ServiceType>Voice</ServiceType>
+                        </ServiceTypes>
+                        <LastModified>2020-03-03T15:30:07.000Z</LastModified>
+                        <InServiceDate>2020-03-03T15:30:07.518Z</InServiceDate>
+                        <RequirementsPackageId>55f9f932-6136-48cf-a724-401ec8fe5ff2</RequirementsPackageId>
+                      </TelephoneNumberDetails>
+                    </TelephoneNumberResponse>
+                Shared TN details:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <TelephoneNumberResponse>
+                      <TelephoneNumberDetails>
+                        <City>JERSEY CITY</City>
+                        <Lata>224</Lata>
+                        <State>NJ</State>
+                        <FullNumber>+12018981023</FullNumber>
+                        <Tier>0</Tier>
+                        <VendorId>49</VendorId>
+                        <VendorName>Bandwidth CLEC</VendorName>
+                        <RateCenter>JERSEYCITY</RateCenter>
+                        <Status>Inservice</Status>
+                        <AccountId>14</AccountId>
+                        <Site>
+                          <Id>479</Id>
+                          <Name>site_9b08f</Name>
+                        </Site>
+                        <SipPeer>
+                          <PeerId>500014</PeerId>
+                          <PeerName>a2750fad-3</PeerName>
+                        </SipPeer>
+                        <ServiceTypes>
+                          <ServiceType>Voice</ServiceType>
+                        </ServiceTypes>
+                        <LastModified>2014-07-30T11:29:37.000Z</LastModified>
+                        <InServiceDate>2014-07-30T11:29:37.000Z</InServiceDate>
+                        <Features>
+                          <E911>
+                            <AccountId>14</AccountId>
+                            <LastE911OrderOutcome>SUCCESS</LastE911OrderOutcome>
+                            <SipPeerAddress>false</SipPeerAddress>
+                            <CallerName>Test CallerName</CallerName>
+                            <Address>
+                              <HouseNumber>901</HouseNumber>
+                              <StreetName>MAIN CAMPUS</StreetName>
+                              <StreetSuffix>DR</StreetSuffix>
+                              <City>RALEIGH</City>
+                              <StateCode>NC</StateCode>
+                              <Zip>27606</Zip>
+                              <PlusFour>5244</PlusFour>
+                              <Country>United States</Country>
+                            </Address>
+                            <EmergencyNotificationGroup>
+                              <Identifier>625e3ad9-c95e-4148-b2f7-d47a8dbdd0d9</Identifier>
+                              <Description>Building A</Description>
+                            </EmergencyNotificationGroup>
+                          </E911>
+                          <Lidb>
+                            <Status>Pending</Status>
+                            <SubscriberInformation>Fred</SubscriberInformation>
+                            <UseType>BUSINESS</UseType>
+                            <Visibility>PUBLIC</Visibility>
+                          </Lidb>
+                          <Dlda>
+                            <Status>Success</Status>
+                            <SubscriberType>BUSINESS</SubscriberType>
+                            <ListingType>LISTED</ListingType>
+                            <ListingName>
+                              <FirstName>Joe</FirstName>
+                              <LastName>Smith</LastName>
+                            </ListingName>
+                            <ListAddress>true</ListAddress>
+                            <Address>
+                            <HouseNumber>12</HouseNumber>
+                            <StreetName>ELM</StreetName>
+                            <City>New York</City>
+                            <StateCode>NY</StateCode>
+                             <Zip>10007</Zip>
+                            <Country>United States</Country>
+                            <AddressType>Dlda</AddressType>
+                            </Address>
+                          </Dlda>
+                        </Features>
+                        <TnAttributes>
+                          <TnAttribute>Hosted</TnAttribute>
+                        </TnAttributes>
+                        <HostedTelephoneNumberDetails>
+                          <HostedTelephoneNumberDetail>
+                            <AccountId>12346160</AccountId>
+                            <Site>
+                              <Id>487</Id>
+                              <Name>site_Mw4FX</Name>
+                            </Site>
+                            <SipPeer>
+                              <PeerId>500026</PeerId>
+                              <PeerName>sippeeremhlO</PeerName>
+                              <IsDefaultPeer>true</IsDefaultPeer>
+                            </SipPeer>
+                            <ServiceTypes>
+                              <ServiceType>Hosted Messaging</ServiceType>
+                            </ServiceTypes>
+                            <MessagingSettings>
+                              <SmsEnabled>true</SmsEnabled>
+                              <CampaignId>CVWGTGE</CampaignId>
+                              <CampaignFullyProvisioned>true</CampaignFullyProvisioned>
+                              <MessageClass>A</MessageClass>
+                              <A2pState>overridden</A2pState>
+                              <AssignedNnRoute>
+                              <Nnid>2183991</Nnid>
+                              <Name>7ae5LXMn</Name>
+                              </AssignedNnRoute>
+                            </MessagingSettings>
+                            <TnAttributes>
+                              <TnAttribute>Hosted</TnAttribute>
+                            </TnAttributes>
+                         </HostedTelephoneNumberDetail>
+                        </HostedTelephoneNumberDetails>
+                      </TelephoneNumberDetails></TelephoneNumberResponse>
+                Simple response:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <TelephoneNumberResponse>
+                      <TelephoneNumberDetails>
+                        <City>JERSEY CITY</City>
+                        <Lata>224</Lata>
+                        <State>NJ</State>
+                        <FullNumber>+12018981023</FullNumber>
+                        <Tier>0</Tier>
+                        <VendorId>49</VendorId>
+                        <VendorName>Bandwidth CLEC</VendorName>
+                        <OnNetVendor>true</OnNetVendor>
+                        <RateCenter>JERSEYCITY</RateCenter>
+                        <Status>Inservice</Status>
+                        <AccountId>14</AccountId>
+                        <Site>
+                          <Id>479</Id>
+                          <Name>site_9b08f</Name>
+                        </Site>
+                        <SipPeer>
+                          <PeerId>500014</PeerId>
+                          <PeerName>a2750fad-3</PeerName>
+                        </SipPeer>
+                        <ServiceTypes>
+                          <ServiceType>Voice</ServiceType>
+                          <ServiceType>Messaging</ServiceType>
+                        </ServiceTypes>
+                        <LastModified>2014-07-30T11:29:37.000Z</LastModified>
+                        <InServiceDate>2014-07-30T11:29:37.000Z</InServiceDate>
+                        <Features>
+                          <E911>
+                            <AccountId>14</AccountId>
+                            <LastE911OrderOutcome>SUCCESS</LastE911OrderOutcome>
+                            <SipPeerAddress>false</SipPeerAddress>
+                            <CallerName>Test CallerName</CallerName>
+                            <Address>
+                              <HouseNumber>901</HouseNumber>
+                              <StreetName>MAIN CAMPUS</StreetName>
+                              <StreetSuffix>DR</StreetSuffix>
+                              <City>RALEIGH</City>
+                              <StateCode>NC</StateCode>
+                              <Zip>27606</Zip>
+                              <PlusFour>5244</PlusFour>
+                              <Country>United States</Country>
+                            </Address>
+                            <EmergencyNotificationGroup>
+                              <Identifier>625e3ad9-c95e-4148-b2f7-d47a8dbdd0d9</Identifier>
+                              <Description>Building A</Description>
+                            </EmergencyNotificationGroup>
+                          </E911>
+                          <Lidb>
+                            <Status>Pending</Status>
+                            <SubscriberInformation>Fred</SubscriberInformation>
+                            <UseType>BUSINESS</UseType>
+                            <Visibility>PUBLIC</Visibility>
+                          </Lidb>
+                          <Dlda>
+                            <Status>Success</Status>
+                            <SubscriberType>BUSINESS</SubscriberType>
+                            <ListingType>LISTED</ListingType>
+                            <ListingName>
+                              <FirstName>Joe</FirstName>
+                              <LastName>Smith</LastName>
+                            </ListingName>
+                            <ListAddress>true</ListAddress>
+                            <Address>
+                              <HouseNumber>12</HouseNumber>
+                              <StreetName>ELM</StreetName>
+                             <City>New York</City>
+                              <StateCode>NY</StateCode>
+                              <Zip>10007</Zip>
+                              <Country>United States</Country>
+                              <AddressType>Dlda</AddressType>
+                            </Address>
+                          </Dlda>
+                        </Features>
+                        <OriginationRoutePlan>
+                          <Id>cfa6ef74-4944-47c2-b112-0cf4360b1fa5</Id>
+                          <Route>
+                            <Endpoint>6107622689</Endpoint>
+                            <Priority>1</Priority>
+                            <Weight>100</Weight>
+                            <EndpointType>TN</EndpointType>
+                          </Route>
+                          <Route>
+                            <Endpoint>sip:abcd@domain.com</Endpoint>
+                            <Priority>2</Priority>
+                            <Weight>100</Weight>
+                            <EndpointType>SIP</EndpointType>
+                          </Route>
+                          <Route>
+                            <Endpoint>7610762269</Endpoint>
+                            <Priority>3</Priority>
+                            <Weight>50</Weight>
+                            <EndpointType>TN</EndpointType>
+                          </Route>
+                          <Route>
+                            <Endpoint>192.0.2.0/24</Endpoint>
+                            <Priority>3</Priority>
+                            <Weight>50</Weight>
+                            <EndpointType>Ipv4</EndpointType>
+                          </Route>
+                          <Route>
+                            <Endpoint>myhost.bandwidth.example</Endpoint>
+                            <Priority>4</Priority>
+                            <Weight>100</Weight>
+                            <EndpointType>FQDN</EndpointType>
+                          </Route>
+                        </OriginationRoutePlan>
+                        <MessagingSettings>
+                          <SmsEnabled>true</SmsEnabled>
+                          <AssignedNNRoute>
+                          <Nnid>101601</Nnid>
+                          <Name>USA Mobility</Name>
+                          </AssignedNNRoute>
+                        </MessagingSettings>
+                        <TnAttributes>
+                          <TnAttribute>Protected</TnAttribute>
+                          <TnAttribute>External</TnAttribute>
+                        </TnAttributes>
+                      </TelephoneNumberDetails>
+                    </TelephoneNumberResponse>
+                Tn details with Voice:
+                  description: >-
+                    Tn details with Voice, Hosted messaging and Hosted E911 on
+                    different accounts
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <TelephoneNumberResponse>
+                      <TelephoneNumberDetails>
+                        <City>GUSTINE</City>
+                        <Lata>738</Lata>
+                        <State>CA</State>
+                        <FullNumber>+12092151016</FullNumber>
+                        <Tier>0</Tier>
+                        <VendorId>49</VendorId>
+                        <VendorName>Bandwidth CLEC</VendorName>
+                        <OnNetVendor>true</OnNetVendor>
+                        <RateCenter>GUSTINE</RateCenter>
+                        <Status>Inservice</Status>
+                        <AccountId>12346167</AccountId>
+                        <Site>
+                          <Id>494</Id>
+                          <Name>site_WDSZl</Name>
+                        </Site>
+                        <SipPeer>
+                          <PeerId>500033</PeerId>
+                          <PeerName>sippeerBxxygpCJrw</PeerName>
+                          <IsDefaultPeer>true</IsDefaultPeer>
+                        </SipPeer>
+                        <ServiceTypes>
+                          <ServiceType>Voice</ServiceType>
+                        </ServiceTypes>
+                        <LastModified>2021-02-10T11:22:57.000Z</LastModified>
+                        <Features/>
+                        <TnAttributes>
+                           <TnAttribute>Hosted</TnAttribute>
+                        </TnAttributes>
+                        <HostedTelephoneNumberDetails>
+                          <HostedTelephoneNumberDetail>
+                            <AccountId>12346168</AccountId>
+                            <Site>
+                              <Id>495</Id>
+                              <Name>site_1KU9l</Name>
+                            </Site>
+                            <SipPeer>
+                              <PeerId>500034</PeerId>
+                              <PeerName>sippeere0fDdHYzRb</PeerName>
+                              <IsDefaultPeer>true</IsDefaultPeer>
+                            </SipPeer>
+                            <ServiceTypes>
+                              <ServiceType>Hosted Messaging</ServiceType>
+                            </ServiceTypes>
+                            <MessagingSettings>
+                              <SmsEnabled>true</SmsEnabled>
+                              <A2pState>system_default</A2pState>
+                              <AssignedNnRoute>
+                                <Nnid>112233</Nnid>
+                                <Name>9417</Name>
+                              </AssignedNnRoute>
+                            </MessagingSettings>
+                            <TnAttributes>
+                              <TnAttribute>Hosted</TnAttribute>
+                            </TnAttributes>
+                        </HostedTelephoneNumberDetail>
+                        <HostedTelephoneNumberDetail>
+                          <AccountId>12346169</AccountId>
+                          <ServiceTypes>
+                            <ServiceType>Hosted E911</ServiceType>
+                          </ServiceTypes>
+                          <Features>
+                            <E911>
+                              <Status>Success</Status>
+                              <AccountId>12346169</AccountId>
+                              <LastE911OrderOutcome>SUCCESS</LastE911OrderOutcome>
+                              <SipPeerAddress>false</SipPeerAddress>
+                              <CallerName>ojjucTKANd</CallerName>
+                              <Address>
+                                <HouseNumber>6518</HouseNumber>
+                                <HouseSuffix/>
+                                <StreetName>MAIN CAMPUS</StreetName>
+                                <StreetSuffix>DR</StreetSuffix>
+                                <City>RALEIGH</City>
+                                <StateCode>NC</StateCode>
+                                <Zip>27606</Zip>
+                                <PlusFour>5244</PlusFour>
+                                <AddressType>E911</AddressType>
+                                <Latitude>35.848359</Latitude>
+                                <Longitude>-75.000000</Longitude>
+                              </Address>
+                            </E911>
+                          </Features>
+                          <TnAttributes>
+                            <TnAttribute>Hosted</TnAttribute>
+                          </TnAttributes>
+                        </HostedTelephoneNumberDetail>
+                        </HostedTelephoneNumberDetails>
+                      </TelephoneNumberDetails>
+                    </TelephoneNumberResponse>
+                Tn details with Voice and OperatorId and OperatorCode:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <TelephoneNumberResponse>
+                      <TelephoneNumberDetails>
+                        <City>London</City>
+                        <FullNumber>+33575210286</FullNumber>
+                        <CountryCodeA3>FRA</CountryCodeA3>
+                        <Tier>0</Tier>
+                        <VendorId>49</VendorId>
+                        <VendorName>Bandwidth CLEC</VendorName>
+                        <OnNetVendor>true</OnNetVendor>
+                        <RateCenter>GUSTINE</RateCenter>
+                        <Status>Inservice</Status>
+                        <AccountId>12346167</AccountId>
+                        <OperatorId>1</OperatorId>
+                        <OperatorCode>VOXB</OperatorCode>
+                        <Site>
+                          <Id>494</Id>
+                          <Name>site_WDSZl</Name>
+                        </Site>
+                        <SipPeer>
+                          <PeerId>500033</PeerId>
+                          <PeerName>sippeerBxxygpCJrw</PeerName>
+                          <IsDefaultPeer>true</IsDefaultPeer>
+                        </SipPeer>
+                        <ServiceTypes>
+                          <ServiceType>Voice</ServiceType>
+                        </ServiceTypes>
+                        <IsHostedVoice>true</IsHostedVoice>
+                        <LastModified>2021-02-10T11:22:57.000Z</LastModified>
+                        <Features/>
+                        <TnAttributes>
+                           <TnAttribute>Hosted</TnAttribute>
+                        </TnAttributes>
+                        <HostedTelephoneNumberDetails>
+                          <HostedTelephoneNumberDetail>
+                            <AccountId>12346168</AccountId>
+                            <Site>
+                              <Id>495</Id>
+                              <Name>site_1KU9l</Name>
+                            </Site>
+                            <SipPeer>
+                              <PeerId>500034</PeerId>
+                              <PeerName>sippeere0fDdHYzRb</PeerName>
+                              <IsDefaultPeer>true</IsDefaultPeer>
+                            </SipPeer>
+                            <ServiceTypes>
+                              <ServiceType>Hosted Messaging</ServiceType>
+                            </ServiceTypes>
+                            <MessagingSettings>
+                              <SmsEnabled>true</SmsEnabled>
+                              <A2pState>system_default</A2pState>
+                              <AssignedNnRoute>
+                                <Nnid>112233</Nnid>
+                                <Name>9417</Name>
+                              </AssignedNnRoute>
+                            </MessagingSettings>
+                            <TnAttributes>
+                              <TnAttribute>Hosted</TnAttribute>
+                            </TnAttributes>
+                          </HostedTelephoneNumberDetail>
+                          <HostedTelephoneNumberDetail>
+                            <AccountId>12346168</AccountId>
+                            <Site>
+                              <Id>495</Id>
+                              <Name>site_1KU9l</Name>
+                            </Site>
+                            <SipPeer>
+                              <PeerId>500034</PeerId>
+                              <PeerName>sippeere0fDdHYzRb</PeerName>
+                              <IsDefaultPeer>true</IsDefaultPeer>
+                            </SipPeer>
+                            <ServiceTypes>
+                              <ServiceType>Hosted Voice</ServiceType>
+                            </ServiceTypes>
+                            <TnAttributes>
+                              <TnAttribute>Hosted</TnAttribute>
+                            </TnAttributes>
+                          </HostedTelephoneNumberDetail>
+                          <HostedTelephoneNumberDetail>
+                           <AccountId>12346169</AccountId>
+                           <ServiceTypes>
+                              <ServiceType>Hosted E911</ServiceType>
+                           </ServiceTypes>
+                           <Features>
+                             <E911>
+                              <Status>Success</Status>
+                              <AccountId>12346169</AccountId>
+                              <LastE911OrderOutcome>SUCCESS</LastE911OrderOutcome>
+                              <SipPeerAddress>false</SipPeerAddress>
+                              <CallerName>ojjucTKANd</CallerName>
+                              <Address>
+                                <HouseNumber>6518</HouseNumber>
+                                <HouseSuffix/>
+                                <StreetName>MAIN CAMPUS</StreetName>
+                                <StreetSuffix>DR</StreetSuffix>
+                                <City>RALEIGH</City>
+                                <StateCode>NC</StateCode>
+                                <Zip>27606</Zip>
+                                <PlusFour>5244</PlusFour>
+                                <AddressType>E911</AddressType>
+                                <Latitude>35.848359</Latitude>
+                                <Longitude>-75.000000</Longitude>
+                              </Address>
+                            </E911>
+                           </Features>
+                           <TnAttributes>
+                            <TnAttribute>Hosted</TnAttribute>
+                           </TnAttributes>
+                          </HostedTelephoneNumberDetail>
+                        </HostedTelephoneNumberDetails>
+                      </TelephoneNumberDetails>
+                    </TelephoneNumberResponse>
+              schema:
+                $ref: '#/components/schemas/telephoneNumberDetailHistoryResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              example:
+                description: Telephone number '123456789' is not valid
+                errorCode: 12512
+              schema:
+                $ref: '#/components/schemas/telephoneNumbersErrorResponseJson'
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <TelephoneNumberResponse>
+                     <ResponseStatus>
+                     <ErrorCode>12512</ErrorCode>
+                     <Description>Telephone number '123456789' is not valid</Description>
+                     </ResponseStatus>
+                     </TelephoneNumberResponse>
+              schema:
+                $ref: '#/components/schemas/telephoneNumbersErrorResponse'
+          description: Bad Request
+      summary: Get phone number details
+      tags:
+        - My Numbers
+components:
+  schemas:
+    siteTNsResponse:
+      properties:
+        SiteTNs:
+          properties:
+            TotalCount:
+              type: integer
+          type: object
+      type: object
+    telephoneNumbersHistoryResponse:
+      properties:
+        TelephoneNumbersResponse:
+          properties:
+            ErrorList:
+              items:
+                $ref: '#/components/schemas/telephoneNumberGroupError'
+              type: array
+            Links:
+              $ref: '#/components/schemas/paginationLinks'
+            TelephoneNumberCount:
+              format: int32
+              type: integer
+            TelephoneNumbers:
+              items:
+                $ref: '#/components/schemas/telephoneNumberDetailHistoryPayload'
+              type: array
+          type: object
+      type: object
+    telephoneNumberDetailHistoryPayloadJson:
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        city:
+          type: string
+        country:
+          type: string
+        countryCodeA3:
+          $ref: '#/components/schemas/countryCodeA3Json'
+        features:
+          items:
+            $ref: '#/components/schemas/featureJson'
+          type: array
+        hostedPhoneNumberDetails:
+          items:
+            $ref: '#/components/schemas/hostedTelephoneNumberDetailHistoryJson'
+          type: array
+        hostedVoiceAccountId:
+          type: integer
+        isHostedVoice:
+          type: boolean
+        isOnNetVendor:
+          type: boolean
+        isTollFree:
+          type: boolean
+        lastModified:
+          type: string
+        lata:
+          format: int32
+          type: integer
+        location:
+          $ref: '#/components/schemas/locationJson'
+        messagingSettings:
+          $ref: '#/components/schemas/tnDetailsMessagingSettingsJson'
+        operatorCode:
+          type: string
+        operatorId:
+          type: string
+        originationRoutePlan:
+          $ref: '#/components/schemas/originationRoutePlanJson'
+        phoneNumber:
+          type: string
+        phoneNumberAttributes:
+          items:
+            $ref: '#/components/schemas/phoneNumberAttributeJson'
+          type: array
+        phoneNumberOptions:
+          $ref: '#/components/schemas/phoneNumberOptionsJson'
+        phoneNumberType:
+          $ref: '#/components/schemas/phoneNumberTypeJson'
+        rateCenter:
+          type: string
+        requirementsPackageId:
+          type: string
+        serviceTypes:
+          $ref: '#/components/schemas/serviceTypesJson'
+        state:
+          type: string
+        status:
+          type: string
+        subAccount:
+          $ref: '#/components/schemas/subAccountJson'
+        tier:
+          format: int32
+          type: integer
+        vendorId:
+          format: int32
+          type: integer
+        vendorName:
+          type: string
+      title: PhoneNumber
+      type: object
+    emergencyNotificationRecipientsPayload:
+      properties:
+        EmergencyNotificationRecipient:
+          items:
+            $ref: '#/components/schemas/emergencyNotificationRecipientPayload'
+          type: array
+      type: object
+    npaNxxRcLcaSearchResult:
+      properties:
+        SearchResult:
+          properties:
+            ListofNPANXX:
+              items:
+                properties:
+                  NPANXX:
+                    type: string
+                type: object
+              type: array
+            Location:
+              properties:
+                RateCenters:
+                  $ref: '#/components/schemas/tnRateCenters'
+              type: object
+          type: object
+      type: object
+    tnsPostJson:
+      properties:
+        phoneNumbers:
+          $ref: '#/components/schemas/phoneNumbersJson'
+    tnDetailsMessagingSettings:
+      properties:
+        A2pState:
+          enum:
+            - false
+            - SYSTEM_DEFAULT
+            - OVERRIDDEN
+          type: string
+        AssignedNnRoute:
+          $ref: '#/components/schemas/tnDetailsNnRoute'
+        CampaignFullyProvisioned:
+          type: boolean
+        CampaignId:
+          type: string
+        MessageClass:
+          type: string
+        SmsEnabled:
+          type: string
+      type: object
+    sipPeerTerminationHosts:
+      properties:
+        TerminationHost:
+          items:
+            $ref: '#/components/schemas/sipPeerTerminationHost'
+          type: array
+      type: object
+    siteUcTrunkingConfigurationPayloadJson:
+      properties:
+        type:
+          type: string
+        usageCategory:
+          type: string
+      type: object
+    phoneNumberAttributeJson:
+      description: >-
+        The PhoneNumberAttributes field specifies line attributes that will
+        apply to the ported in telephone numbers. If present,
+        PhoneNumberAttributes may have a value of PROTECTED. This element is not
+        applicable for off-net and toll free port-types.
+      type: string
+    tnSipPeer:
+      properties:
+        SipPeer:
+          properties:
+            Id:
+              format: int32
+              type: integer
+            Name:
+              type: string
+          type: object
+      type: object
+    addressJson:
+      properties:
+        addressLine2:
+          description: >-
+            AddressLine2 is used to specify Unit, Suite, Floor, etc. in the
+            Service Address. AddressLine2 is optional when not needed to fully
+            specify the ServiceAddress.
+          type: string
+        addressType:
+          $ref: '#/components/schemas/addressTypeJson'
+        city:
+          description: City is mandatory in cases where the ServiceAddress is mandatory.
+          type: string
+        country:
+          description: >-
+            Country is the country of the ServiceAddress. This value will be
+            derived from the StateCode, so it should generally be omitted.
+          type: string
+        county:
+          description: The county where the subscriber or business is located.
+          type: string
+        houseNumber:
+          description: >-
+            The HouseNumber is the street address number of the ServiceAddress.
+            HouseNumber is mandatory for port-in orders in which the
+            ServiceAddress is mandatory.
+          type: string
+        housePrefix:
+          description: >-
+            The HousePrefix is the non-numeric address number prefix of the
+            ServiceAddress. This element is optional when not needed to fully
+            specify the ServiceAddress.
+          type: string
+        houseSuffix:
+          description: >-
+            The HouseSuffix is the non-numeric address number suffix of the
+            ServiceAddress. This element is optional when not needed to fully
+            specify the ServiceAddress.
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+        plusFour:
+          description: >-
+            PlusFour is the 4 digits that are sometimes suffixed to the Zip
+            Code.
+          type: string
+        postDirectional:
+          description: >-
+            The PostDirectional is the street name post directional of the
+            ServiceAddress. This element is optional when not needed to fully
+            specify the ServiceAddress.
+          type: string
+        preDirectional:
+          description: >-
+            The PreDirectional is the non-numeric street name prefix of the
+            ServiceAddress. This element is optional when not needed to fully
+            specify the ServiceAddress.
+          type: string
+        resetAddressFields:
+          type: boolean
+        stateCode:
+          description: >-
+            StateCode is the 2-letter abbreviation of the state of the
+            ServiceAddress. StateCode is mandatory in cases where the
+            ServiceAddress is mandatory.
+          type: string
+        streetName:
+          description: >-
+            The StreetName is mandatory in cases where the ServiceAddress is
+            mandatory.
+          type: string
+        streetSuffix:
+          description: >-
+            The StreetSuffix is the street suffix of the ServiceAddress. This
+            element is optional when not needed to fully specify the
+            ServiceAddress.
+          type: string
+        zip:
+          description: >-
+            Zip is the Zip Code of the ServiceAddress. Zip is mandatory in cases
+            where the ServiceAddress is mandatory.
+          type: string
+      type: object
+    host:
+      properties:
+        HostName:
+          type: string
+        Port:
+          type: string
+      type: object
+    quantity:
+      properties:
+        Quantity:
+          properties:
+            Count:
+              description: >-
+                Total count of telephone numbers associated with the specified
+                port-in number.
+              type: integer
+          type: object
+      type: object
+    feature:
+      properties:
+        Status:
+          type: string
+      type: object
+    callbackPayload:
+      properties:
+        Url:
+          type: string
+      type: object
+    tnE911AddressPayload:
+      properties:
+        AccountId:
+          type: integer
+        Address:
+          $ref: '#/components/schemas/tnE911Address'
+        EmergencyNotificationGroup:
+          $ref: '#/components/schemas/emergencyNotificationGroupPayload'
+      type: object
+    telephoneNumberGroupErrorJson:
+      properties:
+        code:
+          type: integer
+        description:
+          type: string
+        phoneNumbers:
+          $ref: '#/components/schemas/phoneNumbersJson'
+      type: object
+    phoneNumberJson:
+      description: Telephone Number in E.164 format.
+      type: string
+    tnDetailsNnRoute:
+      properties:
+        Name:
+          type: string
+        Nnid:
+          format: int32
+          type: integer
+      title: NNRoute
+      type: object
+    telephoneNumberLataResponse:
+      properties:
+        TelephoneNumberResponse:
+          properties:
+            TelephoneNumberDetails:
+              properties:
+                Lata:
+                  format: int32
+                  type: integer
+              type: object
+          type: object
+      type: object
+    accountTelephoneNumbersHistoryResponse:
+      properties:
+        TNs:
+          properties:
+            Links:
+              $ref: '#/components/schemas/paginationLinks'
+            TelephoneNumbers:
+              $ref: '#/components/schemas/telephoneNumbers'
+            TotalCount:
+              format: int32
+              type: integer
+          type: object
+      type: object
+    tnDetailsMessagingSettingsJson:
+      properties:
+        a2pState:
+          enum:
+            - false
+            - SYSTEM_DEFAULT
+            - OVERRIDDEN
+          type: string
+        phoneNumberDetailsNnRoute:
+          $ref: '#/components/schemas/tnDetailsNnRouteJson'
+        campaignFullyProvisioned:
+          type: boolean
+        campaignId:
+          type: string
+        messageClass:
+          type: string
+        smsEnabled:
+          type: string
+      type: object
+    addressId:
+      description: Address Id
+      example: daa9dd0f-de97-4103-8530-b31bf4be8fc0
+      title: Address Id
+      type: string
+    telephoneNumbersErrorResponse:
+      properties:
+        TelephoneNumbersResponse:
+          $ref: '#/components/schemas/responseStatus'
+      title: TelephoneNumbersResponse
+      type: object
+    originationRoutePlanJson:
+      description: >-
+        The OriginationRoutePlan element consists of an action and a list of
+        prioritized and weighted routes that tell Bandwidth where to send phone
+        calls to phone numbers associated with the route plan.
+      properties:
+        action:
+          enum:
+            - UNCHANGED
+            - false
+            - ASSPECIFIED
+          type: string
+        id:
+          format: uuid
+          type: string
+        routes:
+          items:
+            $ref: '#/components/schemas/originationRoutePayloadJson'
+          type: array
+      type: object
+    sipPeerTerminationHost:
+      properties:
+        CustomerTrafficAllowed:
+          type: string
+        HostName:
+          type: string
+        Port:
+          type: string
+      type: object
+    address:
+      properties:
+        AddressLine2:
+          description: >-
+            AddressLine2 is used to specify Unit, Suite, Floor, etc. in the
+            Service Address. AddressLine2 is optional when not needed to fully
+            specify the ServiceAddress.
+          type: string
+        AddressType:
+          $ref: '#/components/schemas/addressType'
+        City:
+          description: City is mandatory in cases where the ServiceAddress is mandatory.
+          type: string
+        Country:
+          description: >-
+            Country is the country of the ServiceAddress. This value will be
+            derived from the StateCode, so it should generally be omitted.
+          type: string
+        County:
+          description: The county where the subscriber or business is located.
+          type: string
+        HouseNumber:
+          description: >-
+            The HouseNumber is the street address number of the ServiceAddress.
+            HouseNumber is mandatory for port-in orders in which the
+            ServiceAddress is mandatory.
+          type: string
+        HousePrefix:
+          description: >-
+            The HousePrefix is the non-numeric address number prefix of the
+            ServiceAddress. This element is optional when not needed to fully
+            specify the ServiceAddress.
+          type: string
+        HouseSuffix:
+          description: >-
+            The HouseSuffix is the non-numeric address number suffix of the
+            ServiceAddress. This element is optional when not needed to fully
+            specify the ServiceAddress.
+          type: string
+        Latitude:
+          type: string
+        Longitude:
+          type: string
+        PlusFour:
+          description: >-
+            PlusFour is the 4 digits that are sometimes suffixed to the Zip
+            Code.
+          type: string
+        PostDirectional:
+          description: >-
+            The PostDirectional is the street name post directional of the
+            ServiceAddress. This element is optional when not needed to fully
+            specify the ServiceAddress.
+          type: string
+        PreDirectional:
+          description: >-
+            The PreDirectional is the non-numeric street name prefix of the
+            ServiceAddress. This element is optional when not needed to fully
+            specify the ServiceAddress.
+          type: string
+        ResetAddressFields:
+          type: boolean
+        StateCode:
+          description: >-
+            StateCode is the 2-letter abbreviation of the state of the
+            ServiceAddress. StateCode is mandatory in cases where the
+            ServiceAddress is mandatory.
+          type: string
+        StreetName:
+          description: >-
+            The StreetName is mandatory in cases where the ServiceAddress is
+            mandatory.
+          type: string
+        StreetSuffix:
+          description: >-
+            The StreetSuffix is the street suffix of the ServiceAddress. This
+            element is optional when not needed to fully specify the
+            ServiceAddress.
+          type: string
+        Zip:
+          description: >-
+            Zip is the Zip Code of the ServiceAddress. Zip is mandatory in cases
+            where the ServiceAddress is mandatory.
+          type: string
+      type: object
+    hostedTelephoneNumberDetailHistory:
+      properties:
+        AccountId:
+          format: int32
+          type: integer
+        Features:
+          items:
+            $ref: '#/components/schemas/feature'
+          type: array
+        LastModified:
+          type: string
+        MessagingSettings:
+          $ref: '#/components/schemas/tnDetailsMessagingSettings'
+        ServiceTypes:
+          items:
+            type: string
+            xml:
+              name: TnAttribute
+          type: array
+        SipPeer:
+          $ref: '#/components/schemas/sipPeer'
+        Site:
+          $ref: '#/components/schemas/site'
+        TnAttributes:
+          items:
+            type: string
+            xml:
+              name: TnAttribute
+          type: array
+        TnOptions:
+          $ref: '#/components/schemas/tnOptions'
+      type: object
+    siteUcTrunkingConfigurationPayload:
+      properties:
+        Type:
+          type: string
+        UsageCategory:
+          type: string
+      type: object
+    tnE911Address:
+      properties:
+        AddressLine2:
+          type: string
+        City:
+          type: string
+        Country:
+          type: string
+        HouseNumber:
+          type: string
+        HouseSuffix:
+          type: string
+        Latitude:
+          type: string
+        Longitude:
+          type: string
+        Name:
+          type: string
+        PlusFour:
+          type: string
+        PostDirectional:
+          type: string
+        PreDirectional:
+          type: string
+        StateCode:
+          type: string
+        StreetName:
+          type: string
+        Zip:
+          type: string
+      type: object
+    sipPeerTelephoneNumberResponse:
+      properties:
+        SipPeerTelephoneNumber:
+          $ref: '#/components/schemas/sipPeerTelephoneNumber'
+      type: object
+    telephoneNumberDetailHistoryPayload:
+      properties:
+        AccountId:
+          format: int32
+          type: integer
+        City:
+          type: string
+        Country:
+          type: string
+        FullNumber:
+          type: string
+        HostedTelephoneNumberDetails:
+          items:
+            $ref: '#/components/schemas/hostedTelephoneNumberDetailHistory'
+          type: array
+        InServiceDate:
+          type: string
+        LastModified:
+          type: string
+        Lata:
+          format: int32
+          type: integer
+        MessagingSettings:
+          $ref: '#/components/schemas/tnDetailsMessagingSettings'
+        OriginationRoutePlan:
+          $ref: '#/components/schemas/originationRoutePlan'
+        RateCenter:
+          type: string
+        RequirementsPackageId:
+          type: string
+        ServiceTypes:
+          items:
+            type: string
+            xml:
+              name: ServiceType
+          type: array
+        SipPeer:
+          $ref: '#/components/schemas/sipPeer'
+        Site:
+          $ref: '#/components/schemas/site'
+        State:
+          type: string
+        Status:
+          type: string
+        Tier:
+          format: int32
+          type: integer
+        TnAttributes:
+          items:
+            type: string
+            xml:
+              name: TnAttribute
+          type: array
+        TnOptions:
+          $ref: '#/components/schemas/tnOptions'
+        TnType:
+          type: string
+        VendorId:
+          format: int32
+          type: integer
+        VendorName:
+          type: string
+      title: TelephoneNumber
+      type: object
+    originationRoutePlan:
+      description: >-
+        The OriginationRoutePlan element consists of an action and a list of
+        prioritized and weighted routes that tell Bandwidth where to send phone
+        calls to phone numbers associated with the route plan.
+      properties:
+        Action:
+          enum:
+            - UNCHANGED
+            - false
+            - ASSPECIFIED
+          type: string
+        Id:
+          format: uuid
+          type: string
+        Route:
+          items:
+            $ref: '#/components/schemas/originationRoutePayload'
+          type: array
+      type: object
+    telephoneNumberDetailHistoryResponseJson:
+      $ref: '#/components/schemas/telephoneNumberDetailHistoryPayloadJson'
+    telephoneNumber:
+      properties:
+        TelephoneNumber:
+          description: Telephone Number in E.164 format.
+          type: string
+      type: object
+    originationRoutePayload:
+      properties:
+        Endpoint:
+          description: >
+            Must be one of the following: - a NANP 10-digit telephone number - a
+            SIP URI - an IPv4 address - a Fully Qualified Domain Name (FQDN)
+          type: string
+        EndpointType:
+          enum:
+            - TN
+            - IPv4
+            - SIP
+            - FQDN
+          type: string
+        Name:
+          description: >-
+            A friendly name for a route.  This is not used for any back-end call
+            routing.
+          type: string
+        Priority:
+          format: int32
+          type: integer
+        Weight:
+          format: int32
+          type: integer
+      type: object
+    locationTerminationHostJson:
+      properties:
+        customerTrafficAllowed:
+          type: string
+        hostName:
+          type: string
+        port:
+          type: string
+      type: object
+    tnE911AddressResponse:
+      properties:
+        Address:
+          $ref: '#/components/schemas/tnE911Address'
+        EmergencyNotificationGroup:
+          $ref: '#/components/schemas/emergencyNotificationGroupPayload'
+        TnE911Address:
+          items:
+            $ref: '#/components/schemas/tnE911AddressPayload'
+          type: array
+      type: object
+    linkedAddressJson:
+      properties:
+        AddressId:
+          $ref: '#/components/schemas/addressId'
+        AddressType:
+          $ref: '#/components/schemas/addressType'
+      type: object
+    tn:
+      properties:
+        Tn:
+          type: string
+      type: object
+    sipPeerLineOptionDto:
+      properties:
+        Display:
+          type: boolean
+        Enforced:
+          type: boolean
+      type: object
+    telephoneNumberGroupError:
+      properties:
+        Code:
+          type: integer
+        Description:
+          type: string
+        TelephoneNumbers:
+          items:
+            type: string
+            xml:
+              name: TelephoneNumber
+          type: array
+          xml:
+            wrapped: true
+      title: Error
+      type: object
+    telephoneNumberRateCenterResponse:
+      properties:
+        TelephoneNumberResponse:
+          properties:
+            TelephoneNumberDetails:
+              properties:
+                RateCenter:
+                  type: string
+                State:
+                  type: string
+              type: object
+          type: object
+      type: object
+    locationsJson:
+      items:
+        $ref: '#/components/schemas/locationJson'
+      type: array
+    site:
+      properties:
+        Address:
+          $ref: '#/components/schemas/address'
+        CustomerName:
+          type: string
+        CustomerProvidedId:
+          type: string
+        Description:
+          type: string
+        Id:
+          format: int32
+          type: integer
+        Name:
+          type: string
+        SipPeerCount:
+          format: int32
+          type: integer
+        SipPeers:
+          $ref: '#/components/schemas/sipPeers'
+        TotalTnCount:
+          format: int32
+          type: integer
+        UcTrunkingConfiguration:
+          $ref: '#/components/schemas/siteUcTrunkingConfigurationPayload'
+      type: object
+    telephoneNumberAvailableNnRoutesResponse:
+      properties:
+        AvailableNnRoutes:
+          $ref: '#/components/schemas/telephoneNumberAvailableNnRoutes'
+      type: object
+    phoneNumberTypeJson:
+      description: Phone number type
+      enum:
+        - GEOGRAPHIC
+        - NATIONAL
+        - MOBILE
+        - TOLL_FREE
+        - SHARED_COST
+      example: MOBILE
+      title: Phone Number Type
+      type: string
+    sipPeerTelephoneNumbersCountResponse:
+      properties:
+        SipPeerTelephoneNumbersCount:
+          properties:
+            CnamCount:
+              description: Telephone numbers count with activated CNAM on provided sipPeer
+              type: integer
+            LidbCount:
+              description: Telephone numbers count with activated Lidb on provided sipPeer
+              type: integer
+            SipPeerTelephoneNumbersCount:
+              description: Telephone numbers count on provided sipPeer
+              type: integer
+          type: object
+      type: object
+    serviceTypesJson:
+      items:
+        type: string
+      type: array
+    sipPeers:
+      properties:
+        SipPeer:
+          items:
+            $ref: '#/components/schemas/sipPeer'
+          type: array
+      type: object
+    locationLineOptionDtoJson:
+      properties:
+        display:
+          type: boolean
+        enforced:
+          type: boolean
+      type: object
+    emergencyNotificationGroupPayload:
+      properties:
+        CreatedDate:
+          type: string
+        Description:
+          type: string
+        EepToEngAssociations:
+          $ref: '#/components/schemas/eepToEngAssociationsPayload'
+        EmergencyNotificationRecipients:
+          $ref: '#/components/schemas/emergencyNotificationRecipientsPayload'
+        EndpointCount:
+          type: integer
+        Identifier:
+          $ref: '#/components/schemas/identifier'
+        ModifiedBy:
+          type: string
+        ModifiedDate:
+          type: string
+      type: object
+    telephoneNumbersHistoryResponseJson:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/telephoneNumberGroupErrorJson'
+          type: array
+        links:
+          $ref: '#/components/schemas/paginationLinksJson'
+        phoneNumberCount:
+          format: int32
+          type: integer
+        phoneNumbers:
+          items:
+            $ref: '#/components/schemas/telephoneNumberDetailHistoryPayloadJson'
+          type: array
+      type: object
+    originationRoutePayloadJson:
+      properties:
+        botId:
+          type: string
+        endpoint:
+          description: >-
+            Must be one of the following: - a NANP 10 digit telephone number, or
+            - a SIP URI, or - a IPv4 address, or - a Fully Qualified Domain
+            name(FQDN)
+          type: string
+        endpointType:
+          enum:
+            - TN
+            - IPV4
+            - SIP
+            - FQDN
+          type: string
+        name:
+          description: >-
+            A friendly name for a route.  This is not used for any back-end call
+            routing.
+          type: string
+        priority:
+          format: int32
+          type: integer
+        weight:
+          format: int32
+          type: integer
+      type: object
+    telephoneNumberAvailableNnRoutesErrorResponse:
+      properties:
+        AvailableNnRoutes:
+          $ref: '#/components/schemas/responseStatus'
+      title: AvailableNnRoutes
+      type: object
+    telephoneNumberTotalsHistory:
+      properties:
+        Quantity:
+          properties:
+            Count:
+              format: int32
+              type: integer
+          type: object
+      title: Quantity
+      type: object
+    tnOptions:
+      properties:
+        CallForward:
+          $ref: '#/components/schemas/telephoneNumber'
+        CallVerificationEnabled:
+          type: string
+        CallingNameDisplay:
+          type: string
+        FinalDestinationUri:
+          type: string
+        NumberFormat:
+          type: string
+        PindropEnabled:
+          type: string
+        PortOutPasscode:
+          type: string
+        RPIDFormat:
+          type: string
+        RewriteUser:
+          type: string
+      type: object
+    sipPeer:
+      properties:
+        Address:
+          $ref: '#/components/schemas/address'
+        CallVerificationEnabled:
+          type: boolean
+        CallingName:
+          $ref: '#/components/schemas/sipPeerLineOptionDto'
+        Description:
+          type: string
+        FinalDestinationUri:
+          type: string
+        IsDefaultPeer:
+          type: boolean
+        OriginationRoutePlan:
+          $ref: '#/components/schemas/originationRoutePlan'
+        PeerId:
+          format: int32
+          type: integer
+        PeerName:
+          type: string
+        PindropEnabled:
+          type: boolean
+        PremiseTrunks:
+          type: string
+        Products:
+          items:
+            enum:
+              - Origination
+              - Termination
+              - MESSAGING
+              - E911
+              - TollFree
+              - UcTrunking
+              - EdgeManagement
+              - CORE
+              - Iris
+              - NumberManagement
+              - Analytics
+              - CampaignManagement
+            type: string
+            xml:
+              name: Product
+          type: array
+        SsSendToCustomer:
+          enum:
+            - NONE
+            - VERSTAT
+            - ENH_VERSTAT
+            - VERSTAT_AND_IDENTITY
+            - ENH_VERSTAT_AND_IDENTITY
+            - IDENTITY
+          type: string
+        SuggestedAddresses:
+          items:
+            $ref: '#/components/schemas/address'
+          type: array
+        TerminationHosts:
+          $ref: '#/components/schemas/sipPeerTerminationHosts'
+        TnCount:
+          format: int32
+          type: integer
+        VoiceHostGroups:
+          items:
+            $ref: '#/components/schemas/hosts'
+          type: array
+        VoiceHosts:
+          $ref: '#/components/schemas/hosts'
+      type: object
+    telephoneNumberDetailHistoryResponse:
+      properties:
+        TelephoneNumberResponse:
+          properties:
+            TelephoneNumberDetails:
+              $ref: '#/components/schemas/telephoneNumberDetailHistoryPayload'
+          type: object
+      type: object
+    phoneNumbersJson:
+      description: >-
+        An array of phone numbers, formatted as E164 phone numbers with no dots
+        or dashes. At least one phone number must be provided.
+      items:
+        description: One or more phone numbers is required.
+        example: '+33109753127'
+        type: string
+      type: array
+    responseStatus:
+      properties:
+        Description:
+          description: Detailed explanation about error
+          type: string
+        ErrorCode:
+          description: Numeric designation of corresponding error
+          type: integer
+      type: object
+    locationTerminationHostsJson:
+      properties:
+        terminationHost:
+          items:
+            $ref: '#/components/schemas/locationTerminationHostJson'
+          type: array
+      type: object
+    tnDetailsNnRouteJson:
+      properties:
+        name:
+          type: string
+        nnid:
+          format: int32
+          type: integer
+      title: NNRoute
+      type: object
+    sipPeerTelephoneNumber:
+      properties:
+        CallForward:
+          description: Does this telephone number have call forwarding or not
+          type: string
+        CallingNameDisplay:
+          description: >-
+            Calling Name of the caller is available to the user or not on
+            incoming calls
+          type: string
+        FullNumber:
+          description: A 10 Digit Telephone Number
+          type: string
+        MessagingSettings:
+          description: Does this telephone number have any messaging system configured
+          type: string
+        RPIDFormat:
+          description: Telephone number RPID format
+          enum:
+            - 10digit
+            - 11digit
+            - e164
+            - 'false'
+          type: string
+        RewriteUser:
+          maxLength: 25
+          type: string
+        TnAttributes:
+          description: Is this telephone number protected or not
+          items:
+            properties:
+              TnAttribute:
+                type: string
+          type: array
+      type: object
+    paginationLinksJson:
+      properties:
+        first:
+          type: string
+        last:
+          type: string
+        next:
+          type: string
+        previous:
+          type: string
+      title: Links
+      type: object
+    identifier:
+      type: string
+    paginationLinks:
+      properties:
+        first:
+          type: string
+        last:
+          type: string
+        next:
+          type: string
+        previous:
+          type: string
+      title: Links
+      type: object
+    eepToEngAssociationsPayload:
+      properties:
+        EepAeuiIds:
+          items:
+            $ref: '#/components/schemas/identifier'
+          type: array
+        EepTns:
+          items:
+            $ref: '#/components/schemas/telephoneNumber'
+          type: array
+        Endpoints:
+          items:
+            $ref: '#/components/schemas/identifier'
+          type: array
+      type: object
+    addressType:
+      enum:
+        - SERVICE
+        - BILLING
+        - DLDA
+        - E911
+      type: string
+    tnRateCenters:
+      properties:
+        RCs:
+          items:
+            properties:
+              RC:
+                type: string
+            type: object
+          type: array
+        State:
+          format: int32
+          type: integer
+      title: RateCenters
+      type: object
+    emergencyNotificationRecipientPayload:
+      properties:
+        Callback:
+          $ref: '#/components/schemas/callbackPayload'
+        CreatedDate:
+          type: string
+        Description:
+          type: string
+        EmailAddress:
+          type: string
+        GroupCount:
+          type: string
+        Identifier:
+          $ref: '#/components/schemas/identifier'
+        LastModifiedDate:
+          type: string
+        Sms:
+          items:
+            $ref: '#/components/schemas/telephoneNumber'
+          type: array
+        Tts:
+          items:
+            $ref: '#/components/schemas/telephoneNumber'
+          type: array
+        Type:
+          type: string
+        UpdatedBy:
+          type: string
+      type: object
+    hosts:
+      properties:
+        Hosts:
+          items:
+            $ref: '#/components/schemas/host'
+          type: array
+      type: object
+    hostJson:
+      properties:
+        hostName:
+          type: string
+        port:
+          type: string
+      type: object
+    hostsJson:
+      properties:
+        hosts:
+          items:
+            $ref: '#/components/schemas/hostJson'
+          type: array
+      type: object
+    addressTypeJson:
+      enum:
+        - SERVICE
+        - BILLING
+        - DLDA
+        - E911
+      type: string
+    countryCodeA3Json:
+      description: Country code of the address in ISO 3166-1 alpha-3 format.
+      example: USA
+      title: Country Code
+      type: string
+    featureJson:
+      properties:
+        featureType:
+          type: string
+        status:
+          type: string
+      type: object
+    locationJson:
+      properties:
+        address:
+          $ref: '#/components/schemas/addressJson'
+        billingIdentifier:
+          type: string
+        callVerificationEnabled:
+          type: boolean
+        callingName:
+          $ref: '#/components/schemas/locationLineOptionDtoJson'
+        description:
+          type: string
+        finalDestinationUri:
+          type: string
+        isDefaultLocation:
+          type: boolean
+        locationId:
+          format: int32
+          type: integer
+        locationName:
+          type: string
+        originationRoutePlan:
+          $ref: '#/components/schemas/originationRoutePlanJson'
+        phoneNumberCount:
+          format: int32
+          type: integer
+        pindropEnabled:
+          type: boolean
+        premiseTrunks:
+          type: string
+        products:
+          items:
+            enum:
+              - ORIGINATION
+              - TERMINATION
+              - MESSAGING
+              - E911
+              - TOLLFREE
+              - UCTRUNKING
+              - EDGEMANAGEMENT
+              - CORE
+              - IRIS
+              - NUMBERMANAGEMENT
+              - ANALYTICS
+              - CAMPAIGNMANAGEMENT
+            type: string
+          type: array
+        ssSendToCustomer:
+          enum:
+            - NONE
+            - VERSTAT
+            - ENH_VERSTAT
+            - VERSTAT_AND_IDENTITY
+            - ENH_VERSTAT_AND_IDENTITY
+            - IDENTITY
+          type: string
+        suggestedAddresses:
+          items:
+            $ref: '#/components/schemas/addressJson'
+          type: array
+        terminationHosts:
+          $ref: '#/components/schemas/locationTerminationHostsJson'
+        voiceHostGroups:
+          items:
+            $ref: '#/components/schemas/hostsJson'
+          type: array
+        voiceHosts:
+          $ref: '#/components/schemas/hostsJson'
+      type: object
+    phoneNumberOptionsJson:
+      properties:
+        callForward:
+          $ref: '#/components/schemas/phoneNumberJson'
+        callVerificationEnabled:
+          type: string
+        callingNameDisplay:
+          type: string
+        finalDestinationUri:
+          type: string
+        numberFormat:
+          type: string
+        pindropEnabled:
+          type: string
+        portOutPasscode:
+          type: string
+        rewriteUser:
+          type: string
+        rpidFormat:
+          type: string
+      type: object
+    telephoneNumbers:
+      properties:
+        TelephoneNumbers:
+          properties:
+            Count:
+              description: >-
+                Total count of telephone numbers associated with the specified
+                port-in number.
+              type: integer
+            TelephoneNumber:
+              description: >-
+                ListOfPhoneNumbers is an array of PhoneNumber. At least one
+                PhoneNumber must be provided for all port-types.
+              items:
+                $ref: '#/components/schemas/telephoneNumber'
+              type: array
+          type: object
+      type: object
+    telephoneNumberStatusShortWrapper:
+      properties:
+        TelephoneNumberResponse:
+          properties:
+            AccountId:
+              format: int32
+              type: integer
+            InServiceDate:
+              type: string
+            LastModifiedDate:
+              type: string
+            OrderCreateDate:
+              type: string
+            OrderId:
+              type: string
+            OrderType:
+              type: string
+            PeerGroup:
+              type: string
+            SiteId:
+              format: int32
+              type: integer
+            Status:
+              type: string
+            TelephoneNumber:
+              type: string
+          type: object
+      type: object
+    responseStatusJson:
+      properties:
+        description:
+          description: Detailed explanation about error
+          type: string
+        errorCode:
+          description: Numeric designation of corresponding error
+          type: integer
+    hostedTelephoneNumberDetailHistoryJson:
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        features:
+          items:
+            $ref: '#/components/schemas/featureJson'
+          type: array
+        lastModified:
+          type: string
+        location:
+          $ref: '#/components/schemas/locationJson'
+        messagingSettings:
+          $ref: '#/components/schemas/tnDetailsMessagingSettingsJson'
+        phoneNumberAttributes:
+          items:
+            type: string
+          type: array
+        phoneNumberOptions:
+          $ref: '#/components/schemas/phoneNumberOptionsJson'
+        serviceTypes:
+          $ref: '#/components/schemas/serviceTypesJson'
+        subAccount:
+          $ref: '#/components/schemas/subAccountJson'
+      type: object
+    telephoneNumbersErrorResponseJson:
+      $ref: '#/components/schemas/responseStatusJson'
+    tnListRequest:
+      properties:
+        TnList:
+          items:
+            $ref: '#/components/schemas/tn'
+          type: array
+      type: object
+    tNs:
+      properties:
+        TNs:
+          properties:
+            TelephoneNumbers:
+              properties:
+                Count:
+                  type: integer
+                TelephoneNumber:
+                  items:
+                    $ref: '#/components/schemas/telephoneNumber'
+                  type: array
+              type: object
+            TotalCount:
+              type: integer
+          type: object
+      type: object
+    subAccountJson:
+      properties:
+        address:
+          $ref: '#/components/schemas/addressJson'
+        customerName:
+          type: string
+        customerProvidedId:
+          type: string
+        description:
+          type: string
+        id:
+          format: int32
+          type: integer
+        linkedAddresses:
+          items:
+            $ref: '#/components/schemas/linkedAddressJson'
+          type: array
+        locationCount:
+          format: int32
+          type: integer
+        locations:
+          $ref: '#/components/schemas/locationsJson'
+        name:
+          type: string
+        totalPhoneNumberCount:
+          format: int32
+          type: integer
+        ucTrunkingConfiguration:
+          $ref: '#/components/schemas/siteUcTrunkingConfigurationPayloadJson'
+      type: object
+    tnSite:
+      properties:
+        Site:
+          properties:
+            Id:
+              format: int32
+              type: integer
+            Name:
+              type: string
+          type: object
+      type: object
+    sipPeerTelephoneNumbersResponse:
+      properties:
+        SipPeerTelephoneNumbers:
+          properties:
+            SipPeerTelephoneNumber:
+              items:
+                $ref: '#/components/schemas/sipPeerTelephoneNumber'
+              type: array
+          type: object
+      type: object
+    telephoneNumberAvailableNnRoutes:
+      properties:
+        NNRoute:
+          items:
+            $ref: '#/components/schemas/tnDetailsNnRoute'
+          type: array
+      title: AvailableNnRoutes
+      type: object
+    myNumbersErrorResponse:
+      type: object
+      description: Standard error response.
+      properties:
+        code:
+          type: string
+          description: Error code identifier.
+        message:
+          type: string
+          description: Short error message.
+        description:
+          type: string
+          description: Detailed error description.
+      required:
+        - code
+        - message
+    phoneNumberListResponse:
+      type: object
+      description: Paginated list of phone numbers.
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of phone numbers matching the criteria.
+        links:
+          $ref: '#/components/schemas/paginationLinksJson'
+        phoneNumbers:
+          type: array
+          items:
+            type: string
+          description: Phone numbers in E.164 format.
+    phoneNumberCountResponse:
+      type: object
+      description: Total count of phone numbers.
+      properties:
+        count:
+          type: integer
+          description: Total number of phone numbers.
+    subAccountPhoneNumberCountResponse:
+      type: object
+      description: Total count of phone numbers in a sub-account.
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of phone numbers in the sub-account.
+    locationPhoneNumberMessagingSettings:
+      type: object
+      properties:
+        smsEnabled:
+          type: boolean
+          description: Whether SMS is enabled for this phone number.
+    locationPhoneNumberItem:
+      type: object
+      description: Phone number details on a location (SIP peer).
+      properties:
+        phoneNumber:
+          type: string
+          description: Phone number in E.164 format.
+        callForward:
+          type: string
+          description: Call-forward number in E.164 format.
+        callingNameDisplay:
+          type: boolean
+          description: Whether CNAM display is enabled.
+        phoneNumberAttributes:
+          type: array
+          items:
+            type: string
+          description: Attributes associated with the phone number.
+        messagingSettings:
+          $ref: '#/components/schemas/locationPhoneNumberMessagingSettings'
+    locationPhoneNumbersResponse:
+      type: object
+      description: Paginated list of phone numbers on a location (SIP peer).
+      properties:
+        links:
+          $ref: '#/components/schemas/paginationLinksJson'
+        phoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/locationPhoneNumberItem'
+    locationPhoneNumbersCountResponse:
+      type: object
+      description: Count of phone numbers on a location, broken down by feature.
+      properties:
+        totalCount:
+          type: integer
+          description: Total phone numbers on the location.
+        cnamCount:
+          type: integer
+          description: Phone numbers with CNAM enabled.
+        lidbCount:
+          type: integer
+          description: Phone numbers with LIDB enabled.
+        dldaCount:
+          type: integer
+          description: Phone numbers with DLDA enabled.
+        daCount:
+          type: integer
+          description: Phone numbers with DA enabled.
+    phoneNumberStatusResponse:
+      type: object
+      description: Status and metadata for a single phone number.
+      properties:
+        phoneNumber:
+          type: string
+          description: Phone number in E.164 format.
+        status:
+          type: string
+          description: Lifecycle status of the phone number.
+        lastModifiedDate:
+          type: string
+          format: date-time
+        orderCreateDate:
+          type: string
+          format: date-time
+        orderId:
+          type: string
+          format: uuid
+        orderType:
+          type: string
+        inServiceDate:
+          type: string
+          format: date-time
+        subAccountId:
+          type: string
+          description: ID of the sub-account (site) that owns this number.
+        accountId:
+          type: string
+          description: ID of the account that owns this number.
+    nnRouteItem:
+      type: object
+      properties:
+        nnid:
+          type: string
+        name:
+          type: string
+    availableNnRoutesResponse:
+      type: object
+      description: Available NN routes for a phone number.
+      properties:
+        nnRoutes:
+          type: array
+          items:
+            $ref: '#/components/schemas/nnRouteItem'
+          description: List of available NN routes.
+    tnE911AddressItem:
+      type: object
+      properties:
+        name:
+          type: string
+        houseNumber:
+          type: string
+        streetName:
+          type: string
+        city:
+          type: string
+        stateCode:
+          type: string
+        zip:
+          type: string
+        plusFour:
+          type: string
+    tnE911EmergencyNotificationGroup:
+      type: object
+      properties:
+        identifier:
+          type: string
+          format: uuid
+        description:
+          type: string
+    tnE911Response:
+      type: object
+      description: E911 address associated with a phone number.
+      properties:
+        address:
+          $ref: '#/components/schemas/tnE911AddressItem'
+        emergencyNotificationGroup:
+          $ref: '#/components/schemas/tnE911EmergencyNotificationGroup'
+    tnLataResponse:
+      type: object
+      description: LATA associated with a phone number.
+      properties:
+        lata:
+          type: string
+          description: Local Access and Transport Area code.
+    tnLcaRateCenterGroup:
+      type: object
+      properties:
+        state:
+          type: string
+        rateCenters:
+          type: array
+          items:
+            type: string
+    tnLcaResponse:
+      type: object
+      description: Local Calling Area information for a phone number.
+      properties:
+        npaNxx:
+          type: array
+          items:
+            type: string
+          description: NPA-NXX codes in the local calling area.
+        location:
+          type: object
+          properties:
+            rateCenters:
+              type: array
+              items:
+                $ref: '#/components/schemas/tnLcaRateCenterGroup'
+    tnRateCenterResponse:
+      type: object
+      description: Rate center information for a phone number.
+      properties:
+        state:
+          type: string
+          description: Two-letter state abbreviation.
+        rateCenter:
+          type: string
+          description: Rate center name.
+    tnLocationResponse:
+      type: object
+      description: Location (SIP peer) associated with a phone number.
+      properties:
+        locationId:
+          type: integer
+          description: ID of the location (SIP peer).
+        locationName:
+          type: string
+          description: Name of the location (SIP peer).
+    tnSubAccountResponse:
+      type: object
+      description: Sub-account (site) associated with a phone number.
+      properties:
+        subAccountId:
+          type: integer
+          description: ID of the sub-account (site).
+        subAccountName:
+          type: string
+          description: Name of the sub-account (site).
+    tnHistoryStatusItem:
+      type: object
+      properties:
+        accountId:
+          type: string
+        lastModifiedDate:
+          type: string
+          format: date-time
+        orderCreateDate:
+          type: string
+          format: date-time
+        orderId:
+          type: string
+          format: uuid
+        status:
+          type: string
+        userId:
+          type: string
+        orderType:
+          type: string
+        orderStatus:
+          type: string
+    tnHistoryResponse:
+      type: object
+      description: History of status changes for a phone number.
+      properties:
+        phoneNumber:
+          type: string
+          description: Phone number in E.164 format.
+        statuses:
+          type: array
+          items:
+            $ref: '#/components/schemas/tnHistoryStatusItem'
+  parameters:
+    endDateQueryParam:
+      description: >-
+        The ending date of a search in yy-mm-dd format. startdate and enddate
+        <strong>must</strong> be used as a pair.
+      in: query
+      name: endDate
+      required: false
+      schema:
+        example: 23-10-31
+        type: string
+    phoneNumberTypeQueryParam:
+      description: >-
+        The type of phone number. The system defaults to return phone numbers of
+        all types when the query parameter is not passed. The countryCodeA3 is a
+        required parameter with phone number type.
+      in: query
+      name: phoneNumberType
+      required: false
+      schema:
+        enum:
+          - GEOGRAPHIC
+          - NATIONAL
+          - MOBILE
+          - TOLL_FREE
+          - SHARED_COST
+        example: GEOGRAPHIC
+        type: string
+    tierQueryParam:
+      description: >-
+        A service tier indicating the the vendor class that the TN is associated
+        with.  Tier indicates whether the TN is on-net, domestic offnet,
+        Canadian, etc.
+      in: query
+      name: tier
+      required: false
+      schema:
+        example: 5
+        type: integer
+    cityQueryParam:
+      description: >-
+        The name of the city. The system defaults to return all cities when the
+        query parameter is not passed. The countryCodeA3 is a required parameter
+        with city. Some phone number types like TOLL_FREE may not have any
+        associated cities.
+      in: query
+      name: city
+      required: false
+      schema:
+        example: Raleigh
+        type: string
+    areaCodeQueryParam:
+      description: >-
+        The 1 to 6 digit area code associated with the phone number. The system
+        defaults to return all area codes when the query parameter is not
+        passed. The countryCodeA3 is a required parameter with areaCode.
+      in: query
+      name: areaCode
+      required: false
+      schema:
+        example: '435'
+        type: string
+    countryCodeA3QueryParam:
+      description: Country code of the address in ISO 3166-1 alpha-3 format.
+      in: query
+      name: countryCodeA3
+      required: false
+      schema:
+        example: GBR
+        type: string
+    AccountIdPathParam:
+      description: User's account ID.
+      example: '1234567'
+      in: path
+      name: accountId
+      required: true
+      schema:
+        type: string
+    pageQueryParam:
+      description: >-
+        An ID of the first element in a page.  This value will indicate the
+        first value, not the page number, of the initial entry in the page being
+        requested. The initial page is tagged with the ID `1` as a convention.
+      in: query
+      name: page
+      required: false
+      schema:
+        default: 1
+        example: 1
+        type: integer
+    SiteIdPathParam:
+      description: Site ID, also known as Sub-Account
+      example: '407'
+      in: path
+      name: siteId
+      required: true
+      schema:
+        type: string
+    sizeQueryParam:
+      description: The number of elements to retrieve
+      in: query
+      name: size
+      required: false
+      schema:
+        example: 30
+        type: integer
+    SipPeerTnsPageQueryParam:
+      description: The number of the paged results to be displayed.
+      example: 4
+      in: query
+      name: page
+      required: false
+      schema:
+        default: 1
+        type: integer
+    SipPeerTnsSizeQueryParam:
+      description: The quantity of results displayed for each page.
+      example: 200
+      in: query
+      name: size
+      required: false
+      schema:
+        default: 5000
+        type: integer
+    startDateQueryParam:
+      description: >-
+        The starting date of a search in yy-mm-dd format. startdate and enddate
+        <strong>must</strong> be used as a pair.
+      in: query
+      name: startDate
+      required: false
+      schema:
+        example: 22-10-31
+        type: string

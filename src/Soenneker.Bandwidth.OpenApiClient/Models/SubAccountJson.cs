@@ -9,9 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class SubAccountJson : global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountForGlobalAddressJson, IParsable
+    public partial class SubAccountJson : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The address property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -20,8 +22,48 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public global::Soenneker.Bandwidth.OpenApiClient.Models.AddressJson Address { get; set; }
 #endif
+        /// <summary>Customer can provide an optional name</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CustomerName { get; set; }
+#nullable restore
+#else
+        public string CustomerName { get; set; }
+#endif
+        /// <summary>Customer can provide an optional id. Note that the customer can use the same id across multiple orders.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CustomerProvidedId { get; set; }
+#nullable restore
+#else
+        public string CustomerProvidedId { get; set; }
+#endif
+        /// <summary>The description property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
+        public string Description { get; set; }
+#endif
         /// <summary>The id property</summary>
         public int? Id { get; set; }
+        /// <summary>The linkedAddresses property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LinkedAddressJson>? LinkedAddresses { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LinkedAddressJson> LinkedAddresses { get; set; }
+#endif
+        /// <summary>The name property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
+        public string Name { get; set; }
+#endif
         /// <summary>For UC Trunking accounts the UcTrunkingConfiguration element describes the kind of UC trunking that is provided. The Type parameter is one of Seats, Premise, or Cloud, and the UsageCategory parameter is one of UC250, UC500 or UC1000.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -31,11 +73,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountJsonUcTrunkingConfiguration UcTrunkingConfiguration { get; set; }
 #endif
         /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountJson"/> and sets the default values.
+        /// </summary>
+        public SubAccountJson()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountJson"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountJson CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountJson CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountJson();
@@ -44,12 +93,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// The deserialization information for the current model
         /// </summary>
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            return new Dictionary<string, Action<IParseNode>>
             {
                 { "address", n => { Address = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.AddressJson.CreateFromDiscriminatorValue); } },
+                { "customerName", n => { CustomerName = n.GetStringValue(); } },
+                { "customerProvidedId", n => { CustomerProvidedId = n.GetStringValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
+                { "linkedAddresses", n => { LinkedAddresses = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LinkedAddressJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.LinkedAddressJson.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
                 { "ucTrunkingConfiguration", n => { UcTrunkingConfiguration = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountJsonUcTrunkingConfiguration>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountJsonUcTrunkingConfiguration.CreateFromDiscriminatorValue); } },
             };
         }
@@ -57,13 +111,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer)
+        public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            base.Serialize(writer);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressJson>("address", Address);
+            writer.WriteStringValue("customerName", CustomerName);
+            writer.WriteStringValue("customerProvidedId", CustomerProvidedId);
+            writer.WriteStringValue("description", Description);
             writer.WriteIntValue("id", Id);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LinkedAddressJson>("linkedAddresses", LinkedAddresses);
+            writer.WriteStringValue("name", Name);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountJsonUcTrunkingConfiguration>("ucTrunkingConfiguration", UcTrunkingConfiguration);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

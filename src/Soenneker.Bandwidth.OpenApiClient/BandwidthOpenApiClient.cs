@@ -30,6 +30,7 @@ using Soenneker.Bandwidth.OpenApiClient.Messaging;
 using Soenneker.Bandwidth.OpenApiClient.MessagingInternational;
 using Soenneker.Bandwidth.OpenApiClient.MessagingTransfer;
 using Soenneker.Bandwidth.OpenApiClient.MultiFactorAuth;
+using Soenneker.Bandwidth.OpenApiClient.MyNumbers;
 using Soenneker.Bandwidth.OpenApiClient.NumberAcquisition;
 using Soenneker.Bandwidth.OpenApiClient.NumberManagement;
 using Soenneker.Bandwidth.OpenApiClient.PhoneNumberLookupV2;
@@ -178,6 +179,11 @@ namespace Soenneker.Bandwidth.OpenApiClient
         public global::Soenneker.Bandwidth.OpenApiClient.MultiFactorAuth.MultiFactorAuthRequestBuilder MultiFactorAuth
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.MultiFactorAuth.MultiFactorAuthRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The myNumbers property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.MyNumbersRequestBuilder MyNumbers
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.MyNumbersRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The numberAcquisition property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.NumberAcquisitionRequestBuilder NumberAcquisition

@@ -9,9 +9,45 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class NumberActivationValidatorResult_requirementsSets : global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationRequirementsData, IParsable
+    public partial class NumberActivationValidatorResult_requirementsSets : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The areaCodes property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? AreaCodes { get; set; }
+#nullable restore
+#else
+        public List<string> AreaCodes { get; set; }
+#endif
+        /// <summary>Country code in ISO 3166-1 alpha-3 format</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CountryCodeA3 { get; set; }
+#nullable restore
+#else
+        public string CountryCodeA3 { get; set; }
+#endif
+        /// <summary>The type of phone number.</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum? PhoneNumberType { get; set; }
+        /// <summary>A unique reference ID to the requirement set</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ReferenceId { get; set; }
+#nullable restore
+#else
+        public string ReferenceId { get; set; }
+#endif
+        /// <summary>Unique identifier for requirements package</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? RequirementsPackageId { get; set; }
+#nullable restore
+#else
+        public string RequirementsPackageId { get; set; }
+#endif
         /// <summary>Details of results of number activation validation</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -23,11 +59,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Status of the Requirements package</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStatusEnum? Status { get; set; }
         /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResult_requirementsSets"/> and sets the default values.
+        /// </summary>
+        public NumberActivationValidatorResult_requirementsSets()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResult_requirementsSets"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResult_requirementsSets CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResult_requirementsSets CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResult_requirementsSets();
@@ -36,10 +79,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// The deserialization information for the current model
         /// </summary>
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            return new Dictionary<string, Action<IParseNode>>
             {
+                { "areaCodes", n => { AreaCodes = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "countryCodeA3", n => { CountryCodeA3 = n.GetStringValue(); } },
+                { "phoneNumberType", n => { PhoneNumberType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum>(); } },
+                { "referenceId", n => { ReferenceId = n.GetStringValue(); } },
+                { "requirementsPackageId", n => { RequirementsPackageId = n.GetStringValue(); } },
                 { "result", n => { Result = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResult_requirementsSets_result>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResult_requirementsSets_result.CreateFromDiscriminatorValue); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStatusEnum>(); } },
             };
@@ -48,12 +96,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer)
+        public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            base.Serialize(writer);
+            writer.WriteCollectionOfPrimitiveValues<string>("areaCodes", AreaCodes);
+            writer.WriteStringValue("countryCodeA3", CountryCodeA3);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum>("phoneNumberType", PhoneNumberType);
+            writer.WriteStringValue("referenceId", ReferenceId);
+            writer.WriteStringValue("requirementsPackageId", RequirementsPackageId);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResult_requirementsSets_result>("result", Result);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStatusEnum>("status", Status);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

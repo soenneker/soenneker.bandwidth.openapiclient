@@ -9,11 +9,31 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class RbmActionOpenUrl : global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionBase, IParsable
+    public partial class RbmActionOpenUrl : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Specifies how the URL should be opened on a mobile device.- `BROWSER` Opens the URL in the device&apos;s default browser. If application is not set or the device doesn&apos;t support WebView, this option is used by default.- `WEBVIEW` Opens the URL in an in-app WebView.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.RbmOpenUrlEnum? Application { get; set; }
+        /// <summary>Base64 payload the customer receives when the reply is clicked.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public byte[]? PostbackData { get; set; }
+#nullable restore
+#else
+        public byte[] PostbackData { get; set; }
+#endif
+        /// <summary>Displayed text for user to click</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Text { get; set; }
+#nullable restore
+#else
+        public string Text { get; set; }
+#endif
+        /// <summary>The type property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionTypeEnum? Type { get; set; }
         /// <summary>The URL to open in browser.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -25,11 +45,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Defines the layout of the WebView on a mobile device. It must be defined when application is set to `WEBVIEW`- `FULL` WebView takes the full screen.- `HALF` WebView takes half of the screen.- `TALL` WebView takes three-quarters of the screen.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.RbmWebViewEnum? WebviewViewMode { get; set; }
         /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionOpenUrl"/> and sets the default values.
+        /// </summary>
+        public RbmActionOpenUrl()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionOpenUrl"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionOpenUrl CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionOpenUrl CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionOpenUrl();
@@ -38,11 +65,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// The deserialization information for the current model
         /// </summary>
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            return new Dictionary<string, Action<IParseNode>>
             {
                 { "application", n => { Application = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RbmOpenUrlEnum>(); } },
+                { "postbackData", n => { PostbackData = n.GetByteArrayValue(); } },
+                { "text", n => { Text = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionTypeEnum>(); } },
                 { "url", n => { Url = n.GetStringValue(); } },
                 { "webviewViewMode", n => { WebviewViewMode = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RbmWebViewEnum>(); } },
             };
@@ -51,13 +81,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer)
+        public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            base.Serialize(writer);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RbmOpenUrlEnum>("application", Application);
+            writer.WriteByteArrayValue("postbackData", PostbackData);
+            writer.WriteStringValue("text", Text);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionTypeEnum>("type", Type);
             writer.WriteStringValue("url", Url);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RbmWebViewEnum>("webviewViewMode", WebviewViewMode);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

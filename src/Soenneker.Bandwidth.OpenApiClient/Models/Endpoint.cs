@@ -9,9 +9,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class Endpoint : global::Soenneker.Bandwidth.OpenApiClient.Models.Endpoints, IParsable
+    public partial class Endpoint : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The time the endpoint was created. In ISO-8601 format.</summary>
+        public DateTimeOffset? CreationTimestamp { get; set; }
         /// <summary>The devices property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -20,12 +24,41 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Device> Devices { get; set; }
 #endif
+        /// <summary>The unique ID of the endpoint.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EndpointId { get; set; }
+#nullable restore
+#else
+        public string EndpointId { get; set; }
+#endif
+        /// <summary>The time the endpoint token will expire. In ISO-8601 format. Tokens last 24 hours.</summary>
+        public DateTimeOffset? ExpirationTimestamp { get; set; }
+        /// <summary>The status property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointStatusEnum? Status { get; set; }
+        /// <summary>A tag for the endpoint.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Tag { get; set; }
+#nullable restore
+#else
+        public string Tag { get; set; }
+#endif
+        /// <summary>The type property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointTypeEnum? Type { get; set; }
+        /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Endpoint"/> and sets the default values.
+        /// </summary>
+        public Endpoint()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Endpoint"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new global::Soenneker.Bandwidth.OpenApiClient.Models.Endpoint CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.Endpoint CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::Soenneker.Bandwidth.OpenApiClient.Models.Endpoint();
@@ -34,22 +67,34 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// The deserialization information for the current model
         /// </summary>
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            return new Dictionary<string, Action<IParseNode>>
             {
+                { "creationTimestamp", n => { CreationTimestamp = n.GetDateTimeOffsetValue(); } },
                 { "devices", n => { Devices = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Device>(global::Soenneker.Bandwidth.OpenApiClient.Models.Device.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "endpointId", n => { EndpointId = n.GetStringValue(); } },
+                { "expirationTimestamp", n => { ExpirationTimestamp = n.GetDateTimeOffsetValue(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointStatusEnum>(); } },
+                { "tag", n => { Tag = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointTypeEnum>(); } },
             };
         }
         /// <summary>
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer)
+        public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            base.Serialize(writer);
+            writer.WriteDateTimeOffsetValue("creationTimestamp", CreationTimestamp);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Device>("devices", Devices);
+            writer.WriteStringValue("endpointId", EndpointId);
+            writer.WriteDateTimeOffsetValue("expirationTimestamp", ExpirationTimestamp);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointStatusEnum>("status", Status);
+            writer.WriteStringValue("tag", Tag);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointTypeEnum>("type", Type);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

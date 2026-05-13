@@ -22,6 +22,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string First { get; set; }
 #endif
+        /// <summary>The last property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Last { get; set; }
+#nullable restore
+#else
+        public string Last { get; set; }
+#endif
         /// <summary>The next property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -29,6 +37,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #nullable restore
 #else
         public string Next { get; set; }
+#endif
+        /// <summary>The previous property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Previous { get; set; }
+#nullable restore
+#else
+        public string Previous { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PaginationLinksJson"/> and sets the default values.
@@ -56,7 +72,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "first", n => { First = n.GetStringValue(); } },
+                { "last", n => { Last = n.GetStringValue(); } },
                 { "next", n => { Next = n.GetStringValue(); } },
+                { "previous", n => { Previous = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -67,7 +85,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("first", First);
+            writer.WriteStringValue("last", Last);
             writer.WriteStringValue("next", Next);
+            writer.WriteStringValue("previous", Previous);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

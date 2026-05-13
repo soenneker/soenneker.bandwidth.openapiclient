@@ -15,6 +15,168 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The full address</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Address { get; set; }
+#nullable restore
+#else
+        public string Address { get; set; }
+#endif
+        /// <summary>The addressLine1 property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AddressLine1 { get; set; }
+#nullable restore
+#else
+        public string AddressLine1 { get; set; }
+#endif
+        /// <summary>The addressLine2 property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AddressLine2 { get; set; }
+#nullable restore
+#else
+        public string AddressLine2 { get; set; }
+#endif
+        /// <summary>The city property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? City { get; set; }
+#nullable restore
+#else
+        public string City { get; set; }
+#endif
+        /// <summary>The country property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Country { get; set; }
+#nullable restore
+#else
+        public string Country { get; set; }
+#endif
+        /// <summary>when was created</summary>
+        public DateTimeOffset? Created { get; set; }
+        /// <summary>The description property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
+        public string Description { get; set; }
+#endif
+        /// <summary>The address as originally entered.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnteredAddress? Entered { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnteredAddress Entered { get; set; }
+#endif
+        /// <summary>The full formatted validated address</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? FormattedAddress { get; set; }
+#nullable restore
+#else
+        public string FormattedAddress { get; set; }
+#endif
+        /// <summary>The houseNumber property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? HouseNumber { get; set; }
+#nullable restore
+#else
+        public string HouseNumber { get; set; }
+#endif
+        /// <summary>Unique identifier for an address</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Id { get; set; }
+#nullable restore
+#else
+        public string Id { get; set; }
+#endif
+        /// <summary>The latitude property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Latitude { get; set; }
+#nullable restore
+#else
+        public string Latitude { get; set; }
+#endif
+        /// <summary>The longitude property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Longitude { get; set; }
+#nullable restore
+#else
+        public string Longitude { get; set; }
+#endif
+        /// <summary>Location Validation Function (LVF) address.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LvfAddress? Lvf { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LvfAddress Lvf { get; set; }
+#endif
+        /// <summary>Master Street Address Guide (MSAG) validated address.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MsagAddress? Msag { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MsagAddress Msag { get; set; }
+#endif
+        /// <summary>The postalCode property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PostalCode { get; set; }
+#nullable restore
+#else
+        public string PostalCode { get; set; }
+#endif
+        /// <summary>A word following the street name that indicates the directional taken by the thoroughfare from an arbitrary strating point, or the sector where it is located</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Postdirectional { get; set; }
+#nullable restore
+#else
+        public string Postdirectional { get; set; }
+#endif
+        /// <summary>A word preceding the street name that indicates the directional taken by the thoroughfare</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Predirectional { get; set; }
+#nullable restore
+#else
+        public string Predirectional { get; set; }
+#endif
+        /// <summary>The state property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? State { get; set; }
+#nullable restore
+#else
+        public string State { get; set; }
+#endif
+        /// <summary>The streetName property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? StreetName { get; set; }
+#nullable restore
+#else
+        public string StreetName { get; set; }
+#endif
+        /// <summary>The streetSuffix property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? StreetSuffix { get; set; }
+#nullable restore
+#else
+        public string StreetSuffix { get; set; }
+#endif
         /// <summary>Union discriminator</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -23,6 +185,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Type { get; set; }
 #endif
+        /// <summary>when was updated last</summary>
+        public DateTimeOffset? Updated { get; set; }
+        /// <summary>Address is valid and represents a location</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ValidationStatus? ValidationStatus { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddressResponseNorthAmericaWithAllAddresses"/> and sets the default values.
         /// </summary>
@@ -48,7 +214,30 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "address", n => { Address = n.GetStringValue(); } },
+                { "addressLine1", n => { AddressLine1 = n.GetStringValue(); } },
+                { "addressLine2", n => { AddressLine2 = n.GetStringValue(); } },
+                { "city", n => { City = n.GetStringValue(); } },
+                { "country", n => { Country = n.GetStringValue(); } },
+                { "created", n => { Created = n.GetDateTimeOffsetValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "entered", n => { Entered = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnteredAddress>(global::Soenneker.Bandwidth.OpenApiClient.Models.EnteredAddress.CreateFromDiscriminatorValue); } },
+                { "formattedAddress", n => { FormattedAddress = n.GetStringValue(); } },
+                { "houseNumber", n => { HouseNumber = n.GetStringValue(); } },
+                { "id", n => { Id = n.GetStringValue(); } },
+                { "latitude", n => { Latitude = n.GetStringValue(); } },
+                { "longitude", n => { Longitude = n.GetStringValue(); } },
+                { "lvf", n => { Lvf = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LvfAddress>(global::Soenneker.Bandwidth.OpenApiClient.Models.LvfAddress.CreateFromDiscriminatorValue); } },
+                { "msag", n => { Msag = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MsagAddress>(global::Soenneker.Bandwidth.OpenApiClient.Models.MsagAddress.CreateFromDiscriminatorValue); } },
+                { "postalCode", n => { PostalCode = n.GetStringValue(); } },
+                { "postdirectional", n => { Postdirectional = n.GetStringValue(); } },
+                { "predirectional", n => { Predirectional = n.GetStringValue(); } },
+                { "state", n => { State = n.GetStringValue(); } },
+                { "streetName", n => { StreetName = n.GetStringValue(); } },
+                { "streetSuffix", n => { StreetSuffix = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetStringValue(); } },
+                { "updated", n => { Updated = n.GetDateTimeOffsetValue(); } },
+                { "validationStatus", n => { ValidationStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ValidationStatus>(); } },
             };
         }
         /// <summary>
@@ -58,7 +247,30 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("address", Address);
+            writer.WriteStringValue("addressLine1", AddressLine1);
+            writer.WriteStringValue("addressLine2", AddressLine2);
+            writer.WriteStringValue("city", City);
+            writer.WriteStringValue("country", Country);
+            writer.WriteDateTimeOffsetValue("created", Created);
+            writer.WriteStringValue("description", Description);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnteredAddress>("entered", Entered);
+            writer.WriteStringValue("formattedAddress", FormattedAddress);
+            writer.WriteStringValue("houseNumber", HouseNumber);
+            writer.WriteStringValue("id", Id);
+            writer.WriteStringValue("latitude", Latitude);
+            writer.WriteStringValue("longitude", Longitude);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LvfAddress>("lvf", Lvf);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MsagAddress>("msag", Msag);
+            writer.WriteStringValue("postalCode", PostalCode);
+            writer.WriteStringValue("postdirectional", Postdirectional);
+            writer.WriteStringValue("predirectional", Predirectional);
+            writer.WriteStringValue("state", State);
+            writer.WriteStringValue("streetName", StreetName);
+            writer.WriteStringValue("streetSuffix", StreetSuffix);
             writer.WriteStringValue("type", Type);
+            writer.WriteDateTimeOffsetValue("updated", Updated);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ValidationStatus>("validationStatus", ValidationStatus);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
