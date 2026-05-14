@@ -386,38 +386,6 @@ paths:
           $ref: '#/components/responses/errorResponse429'
         '500':
           $ref: '#/components/responses/errorResponse500'
-  /accounts/{accountId}/lidbRemovalOrders:
-    post:
-      tags:
-        - LIDB Orders
-      operationId: createLidbRemovalOrder
-      summary: Create LIDB removal order
-      description: >
-        This endpoint triggers an overwrite action with our CNAM vendors. The
-        overwrite sets the CNAM value to Unknown for the specified phone
-        number(s).
-
-        This operation is typically used when the existing CNAM data needs to be
-        deleted.
-      parameters:
-        - $ref: '#/components/parameters/accountIdPathParam'
-      requestBody:
-        $ref: '#/components/requestBodies/lidbRemovalOrderRequest'
-      responses:
-        '201':
-          $ref: '#/components/responses/lidbRemovalOrderPostSuccessResponse'
-        '400':
-          $ref: '#/components/responses/lidbRemovalOrderPostErrorResponse'
-        '401':
-          $ref: '#/components/responses/errorResponse401'
-        '403':
-          $ref: '#/components/responses/errorResponse403'
-        '404':
-          $ref: '#/components/responses/errorResponse404'
-        '429':
-          $ref: '#/components/responses/errorResponse429'
-        '500':
-          $ref: '#/components/responses/errorResponse500'
   /accounts/{accountId}/lidbs/{lidbId}:
     get:
       tags:
@@ -2400,24 +2368,6 @@ components:
         lidbOrderResponse:
           $ref: '#/components/schemas/jsonLidbOrderResponsePayload'
       type: object
-    jsonLidbRemovalOrderResponse:
-      properties:
-        orderId:
-          type: string
-        processingStatus:
-          description: Order status.
-          enum:
-            - RECEIVED
-            - PROCESSING
-            - COMPLETE
-            - PARTIAL
-            - FAILED
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/jsonLidbOrderError'
-      type: object
     jsonLidbOrderResponsePayload:
       type: object
       properties:
@@ -2605,13 +2555,6 @@ components:
         lidbOrder:
           $ref: '#/components/schemas/jsonLidbOrderPayload'
       type: object
-    jsonLidbRemovalOrder:
-      properties:
-        phoneNumbers:
-          type: array
-          items:
-            type: string
-      type: object
     jsonLidbOrderPayload:
       properties:
         customerOrderId:
@@ -2793,13 +2736,6 @@ components:
               description: Detailed explanation about error
               type: string
           type: object
-      type: object
-    jsonLidbRemovalOrderErrorResponse:
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/jsonLidbOrderError'
       type: object
     lidbOrderErrorResponse:
       properties:
@@ -3379,14 +3315,6 @@ components:
               $ref: '#/components/examples/lidbOrderPostJsonPayloadExample'
           schema:
             $ref: '#/components/schemas/jsonLidbOrder'
-    lidbRemovalOrderRequest:
-      content:
-        application/json:
-          examples:
-            lidbRemovalOrderJsonPayloadExample:
-              $ref: '#/components/examples/lidbRemovalOrderJsonPayloadExample'
-          schema:
-            $ref: '#/components/schemas/jsonLidbRemovalOrder'
     dldaCreateOrderRequest:
       content:
         application/xml:
@@ -3677,15 +3605,6 @@ components:
           schema:
             $ref: '#/components/schemas/lidbOrderResponse'
       description: Created
-    lidbRemovalOrderPostSuccessResponse:
-      content:
-        application/json:
-          examples:
-            lidbRemovalOrderExample:
-              $ref: '#/components/examples/lidbRemovalOrderJsonResponseExample'
-          schema:
-            $ref: '#/components/schemas/jsonLidbRemovalOrderResponse'
-      description: Created
     lidbOrderPostErrorResponse:
       content:
         application/json:
@@ -3700,15 +3619,6 @@ components:
               $ref: '#/components/examples/lidbOrderCreatedXmlErrorResponseExample'
           schema:
             $ref: '#/components/schemas/lidbOrderErrorResponse'
-      description: Bad Request
-    lidbRemovalOrderPostErrorResponse:
-      content:
-        application/json:
-          examples:
-            lidbRemovalOrderJsonErrorResponseExample:
-              $ref: '#/components/examples/lidbRemovalOrderJsonErrorResponseExample'
-          schema:
-            $ref: '#/components/schemas/jsonLidbRemovalOrderErrorResponse'
       description: Bad Request
     lidbOrderGetIdResponse:
       description: OK
@@ -4887,31 +4797,6 @@ components:
               </LidbTnGroups>
             </LidbOrder>
         </LidbOrderResponse>
-    lidbRemovalOrderJsonPayloadExample:
-      summary: >-
-        Example JSON request payload to remove LIDB information from phone
-        numbers
-      value:
-        phoneNumbers:
-          - '+18045030097'
-          - '+18045030098'
-    lidbRemovalOrderJsonResponseExample:
-      summary: Example JSON response for LIDB information removal from phone numbers
-      value:
-        orderId: 1d863522-c9bf-430c-8e79-cc63cad04a1d
-        processingStatus: RECEIVED
-        errors:
-          - code: 11020
-            description: >-
-              Cannot remove a phone number from LIDB if the number already has
-              an order in process
-            phoneNumber: '+18888595935'
-    lidbRemovalOrderJsonErrorResponseExample:
-      value:
-        errors:
-          - code: 5213
-            description: The phone number is not valid for ordering.
-            phoneNumber: '+1888595935'
     dldaOrderGetXmlExampleResponse:
       description: example
       value: |-

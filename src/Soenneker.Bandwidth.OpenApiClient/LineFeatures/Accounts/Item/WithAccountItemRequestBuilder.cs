@@ -3,7 +3,6 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Dldas;
-using Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.LidbRemovalOrders;
 using Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Lidbs;
 using Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions;
 using System.Collections.Generic;
@@ -22,11 +21,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item
         public global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Dldas.DldasRequestBuilder Dldas
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Dldas.DldasRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The lidbRemovalOrders property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.LidbRemovalOrders.LidbRemovalOrdersRequestBuilder LidbRemovalOrders
-        {
-            get => new global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.LidbRemovalOrders.LidbRemovalOrdersRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The lidbs property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Lidbs.LidbsRequestBuilder Lidbs
