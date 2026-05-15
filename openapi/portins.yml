@@ -231,6 +231,61 @@ paths:
           $ref: '#/components/responses/errorResponse429'
         5XX:
           $ref: '#/components/responses/errorResponse500'
+  /accounts/{accountId}/tnPortoutPasscodes:
+    get:
+      tags:
+        - Porting
+      operationId: getTnPortOutPasscode
+      summary: Retrieve tn port-out passcode
+      description: >-
+        Retrieve information about one or more Telephone Numbers (TNs) with port
+        out passcode.
+      parameters:
+        - $ref: '#/components/parameters/AccountIdPathParam'
+        - $ref: '#/components/parameters/tnPortoutPasscodesPageQueryParam'
+        - $ref: '#/components/parameters/tnPortoutPasscodesSizeQueryParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/tnPortOutPasscodesGet200Response'
+        '400':
+          $ref: '#/components/responses/tnPortOutPasscodesGet400Response'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/errorResponse404'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        5XX:
+          $ref: '#/components/responses/errorResponse500'
+    post:
+      tags:
+        - Porting
+      operationId: retrieveTnPortOutPasscodes
+      summary: Retrieve tn port-out passcodes
+      description: >-
+        Retrieve information about one or more Telephone Numbers (TNs), where
+        the TNs are specified in the POST body.
+      parameters:
+        - $ref: '#/components/parameters/AccountIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/tnPortOutPasscodesRequestBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/tnPortOutPasscodesPost200Response'
+        '400':
+          $ref: '#/components/responses/tnPortOutPasscodesPost400Response'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/errorResponse404'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        5XX:
+          $ref: '#/components/responses/errorResponse500'
 components:
   examples:
     csrCreateRequestJsonExample:
@@ -464,7 +519,128 @@ components:
                 </Error>
             </Errors>
         </CsrOrderResponse>
+    tnPortOutPasscodesRequestBodyJsonExample:
+      summary: JSON example for tn port-out passcodes request
+      value:
+        phoneNumbers:
+          - '+13172000285'
+          - '+13172000207'
+          - '+13172000000'
+    tnPortOutPasscodesRequestBodyXmlExample:
+      summary: XML example for tn port-out passcodes request
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <TnList>
+          <Tn>+13172000285</Tn>
+          <Tn>+13172000207</Tn>
+          <Tn>+13172000000</Tn>
+          <Tn>+13172000100</Tn>
+          <Tn>+13172110285</Tn>
+          <Tn>+13172100285</Tn>
+          <Tn>+199999999999</Tn>
+          <Tn>+111111111111</Tn>
+        </TnList>
+    tnPortOutPasscodesGet200JsonExample:
+      summary: JSON example for GET tn port-out passcodes 200 response
+      value:
+        phoneNumbers:
+          - fullNumber: '+12018391000'
+            passcode: '1234'
+          - fullNumber: '+12024551000'
+            passcode: '1234'
+    tnPortOutPasscodesGet200XmlExample:
+      summary: XML example for GET tn port-out passcodes 200 response
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <TelephoneNumbersResponse>
+          <TelephoneNumbers>
+            <TelephoneNumber>
+              <FullNumber>+12018391000</FullNumber>
+              <Passcode>1234</Passcode>
+            </TelephoneNumber>
+            <TelephoneNumber>
+              <FullNumber>+12024551000</FullNumber>
+              <Passcode>1234</Passcode>
+            </TelephoneNumber>
+          </TelephoneNumbers>
+        </TelephoneNumbersResponse>
+    tnPortOutPasscodesGet400JsonExample:
+      summary: JSON example for GET tn port-out passcodes 400 response
+      value:
+        errors:
+          - code: '15610'
+            description: Telephone Numbers cannot be found on account(s) 2002013
+    tnPortOutPasscodesGet400XmlExample:
+      summary: XML example for GET tn port-out passcodes 400 response
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <TelephoneNumbersResponse>
+          <ResponseStatus>
+            <ErrorCode>15610</ErrorCode>
+            <Description>Telephone Numbers cannot be found on account(s) 2002013</Description>
+            <TelephoneNumbers>
+              <TelephoneNumber>+12012035088</TelephoneNumber>
+            </TelephoneNumbers>
+          </ResponseStatus>
+        </TelephoneNumbersResponse>
+    tnPortOutPasscodesPost200JsonExample:
+      summary: JSON example for POST tn port-out passcodes 200 response
+      value:
+        phoneNumbers:
+          - fullNumber: '+13172000285'
+            passcode: '1234'
+          - fullNumber: '+13172000207'
+            passcode: '1234'
+    tnPortOutPasscodesPost200XmlExample:
+      summary: XML example for POST tn port-out passcodes 200 response
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <TelephoneNumbersResponse>
+          <TelephoneNumberCount>4</TelephoneNumberCount>
+          <TelephoneNumbers>
+            <TelephoneNumber>
+              <FullNumber>+13172000285</FullNumber>
+              <Passcode>1234</Passcode>
+            </TelephoneNumber>
+            <TelephoneNumber>
+              <FullNumber>+13172000207</FullNumber>
+              <Passcode>1234</Passcode>
+            </TelephoneNumber>
+          </TelephoneNumbers>
+        </TelephoneNumbersResponse>
+    tnPortOutPasscodesPost400JsonExample:
+      summary: JSON example for POST tn port-out passcodes 400 response
+      value:
+        errors:
+          - code: '15607'
+            description: >-
+              The count of Telephone numbers in POST body exceeds the maximum
+              size of 2500
+    tnPortOutPasscodesPost400XmlExample:
+      summary: XML example for POST tn port-out passcodes 400 response
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <TelephoneNumbersResponse>
+          <ResponseStatus>
+            <ErrorCode>15607</ErrorCode>
+            <Description>The count of Telephone numbers in POST body exceeds the maximum size of 2500</Description>
+          </ResponseStatus>
+        </TelephoneNumbersResponse>
   requestBodies:
+    tnPortOutPasscodesRequestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/tnListRequestJson'
+          examples:
+            example:
+              $ref: '#/components/examples/tnPortOutPasscodesRequestBodyJsonExample'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/tnListRequest'
+          examples:
+            example:
+              $ref: '#/components/examples/tnPortOutPasscodesRequestBodyXmlExample'
     csrCreateRequestBody:
       content:
         application/json:
@@ -672,6 +848,62 @@ components:
       description: Forbidden
     errorResponse429:
       description: Too Many Requests
+    tnPortOutPasscodesGet200Response:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/tnPortOutPasscodesResponseJson'
+          examples:
+            example:
+              $ref: '#/components/examples/tnPortOutPasscodesGet200JsonExample'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/tnPortOutPasscodesResponse'
+          examples:
+            example:
+              $ref: '#/components/examples/tnPortOutPasscodesGet200XmlExample'
+    tnPortOutPasscodesGet400Response:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/tnPortOutPasscodesErrorResponseJson'
+          examples:
+            example:
+              $ref: '#/components/examples/tnPortOutPasscodesGet400JsonExample'
+        application/xml:
+          examples:
+            example:
+              $ref: '#/components/examples/tnPortOutPasscodesGet400XmlExample'
+    tnPortOutPasscodesPost200Response:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/tnPortOutPasscodesResponseJson'
+          examples:
+            example:
+              $ref: '#/components/examples/tnPortOutPasscodesPost200JsonExample'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/tnPortOutPasscodesResponse'
+          examples:
+            example:
+              $ref: '#/components/examples/tnPortOutPasscodesPost200XmlExample'
+    tnPortOutPasscodesPost400Response:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/tnPortOutPasscodesErrorResponseJson'
+          examples:
+            example:
+              $ref: '#/components/examples/tnPortOutPasscodesPost400JsonExample'
+        application/xml:
+          examples:
+            example:
+              $ref: '#/components/examples/tnPortOutPasscodesPost400XmlExample'
     errorResponse500:
       description: Internal Server Error
   securitySchemes:
@@ -712,6 +944,28 @@ components:
         For more information, see the following guide:
         [Credentials](https://dev.bandwidth.com/docs/account/credentials/management)
   parameters:
+    tnPortoutPasscodesPageQueryParam:
+      name: page
+      description: >-
+        An ID of the first element in a page. This value will indicate the first
+        value, not the count, of the initial entry in the page being requested.
+        Note in the example that the page is the TN that begins the page. The
+        initial page is tagged with the ID `1`.
+      in: query
+      required: true
+      schema:
+        type: string
+        default: '1'
+      example: '1'
+    tnPortoutPasscodesSizeQueryParam:
+      name: size
+      description: The number of items to include in a page.
+      in: query
+      required: true
+      schema:
+        type: integer
+        default: 500
+      example: 250
     AccountIdPathParam:
       name: accountId
       description: User's account ID.
@@ -1183,6 +1437,96 @@ components:
         description:
           type: string
           description: Error description.
+    tnPortOutPasscodesResponseJson:
+      type: object
+      properties:
+        phoneNumbers:
+          type: array
+          description: List of phone numbers with their associated port-out passcodes.
+          items:
+            type: object
+            properties:
+              fullNumber:
+                type: string
+                description: >-
+                  Phone number in E.164 format starting with '+'. Example:
+                  +15551234567
+              passcode:
+                type: string
+                description: Port-out passcode for the phone number.
+    tnPortOutPasscodesResponse:
+      type: object
+      properties:
+        TelephoneNumbersResponse:
+          type: object
+          properties:
+            TelephoneNumberCount:
+              type: integer
+            TelephoneNumbers:
+              $ref: '#/components/schemas/tnPortOutPasscodesPayload'
+            ErrorList:
+              type: array
+              items:
+                type: object
+                properties:
+                  Code:
+                    type: string
+                  Description:
+                    type: string
+                  TelephoneNumbers:
+                    type: object
+                    properties:
+                      TelephoneNumber:
+                        type: array
+                        items:
+                          type: string
+    tnPortOutPasscodesPayload:
+      type: object
+      properties:
+        TelephoneNumber:
+          type: array
+          items:
+            $ref: '#/components/schemas/tnPortOutPasscodePayload'
+    tnPortOutPasscodePayload:
+      type: object
+      properties:
+        FullNumber:
+          type: string
+        Passcode:
+          type: string
+    tnPortOutPasscodesErrorResponseJson:
+      type: object
+      properties:
+        errors:
+          type: array
+          description: List of errors.
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                description: Error code.
+              description:
+                type: string
+                description: Error description.
+    tnListRequestJson:
+      type: object
+      properties:
+        phoneNumbers:
+          type: array
+          items:
+            type: string
+          description: List of phone numbers in E.164 format.
+    tnListRequest:
+      type: object
+      properties:
+        TnList:
+          type: object
+          properties:
+            Tn:
+              type: array
+              items:
+                type: string
 tags:
   - name: Porting
     description: Manage port-in orders and their activation status.
