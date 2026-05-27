@@ -57,6 +57,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaign
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse403">When receiving a 403 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse404">When receiving a 404 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse405">When receiving a 405 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse429">When receiving a 429 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse500">When receiving a 500 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse503">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -76,6 +77,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaign
                 { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse403.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse404.CreateFromDiscriminatorValue },
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse405.CreateFromDiscriminatorValue },
+                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse429.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse500.CreateFromDiscriminatorValue },
                 { "503", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse503.CreateFromDiscriminatorValue },
             };
@@ -84,7 +86,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaign
         /// <summary>
         /// The manual import of a campaign only requires the `campaignId` field and optionally, the `campaignName` field. If a campaign name is not provided, the campaign’s ID will be used as the campaign’s name. All of the rest of the campaign will be retrieved from TCR. The `campaignName` is not stored in TCR’s system.The campaign will be associated to this account. A campaign cannot be imported into more than one account (though the brand it is associated to can span accounts). If the campaign has already been imported or is in the process of being imported (which can take some time), this endpoint will return a 409 (CONFLICT). If necessary, the campaign’s brand will be associated to this account (and it will be created if necessary). If the brand is created, it will be created with an accompanying customer profile to represent the brand (the profile can be edited after it is created). If a campaign is changed outside of Bandwidth’s systems, we will receive notification and update the campaign, however, it is safe to re-import manually at any time.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignCreatedResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignAcceptedResponseObject"/></returns>
         /// <param name="body">The properties needed to create or update a TCR campaign.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -94,15 +96,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaign
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse404">When receiving a 404 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse405">When receiving a 405 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse409">When receiving a 409 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse429">When receiving a 429 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse500">When receiving a 500 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse503">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignCreatedResponse?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.NewCampaign body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignAcceptedResponseObject?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.NewCampaign body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignCreatedResponse> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.NewCampaign body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignAcceptedResponseObject> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.NewCampaign body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -115,10 +118,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaign
                 { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse404.CreateFromDiscriminatorValue },
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse405.CreateFromDiscriminatorValue },
                 { "409", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse409.CreateFromDiscriminatorValue },
+                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse429.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse500.CreateFromDiscriminatorValue },
                 { "503", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse503.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignCreatedResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignCreatedResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignAcceptedResponseObject>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignAcceptedResponseObject.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// **All customers.** Get all campaigns that have been created for this account. This is a paginated API that can be sorted and filtered by a number of the fields in the campaign record. For example, it accepts a customer profile ID to filter to those campaigns that have been assigned to that customer profile.

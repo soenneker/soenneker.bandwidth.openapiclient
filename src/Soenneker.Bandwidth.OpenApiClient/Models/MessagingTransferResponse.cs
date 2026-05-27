@@ -24,22 +24,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Comment { get; set; }
 #endif
-        /// <summary>The business name of the account requesting the messaging on the phone number</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? NewAccountBusinessName { get; set; }
-#nullable restore
-#else
-        public string NewAccountBusinessName { get; set; }
-#endif
-        /// <summary>The Bandwidth account ID of the new account requesting the messaging on the phone number</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? NewAccountId { get; set; }
-#nullable restore
-#else
-        public string NewAccountId { get; set; }
-#endif
         /// <summary>The NetNumber ID to be assigned to the phone number if the request is approved</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -111,8 +95,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "activationDate", n => { ActivationDate = n.GetDateTimeOffsetValue(); } },
                 { "comment", n => { Comment = n.GetStringValue(); } },
-                { "newAccountBusinessName", n => { NewAccountBusinessName = n.GetStringValue(); } },
-                { "newAccountId", n => { NewAccountId = n.GetStringValue(); } },
                 { "newNnid", n => { NewNnid = n.GetStringValue(); } },
                 { "oldNnid", n => { OldNnid = n.GetStringValue(); } },
                 { "overwritingCarrier", n => { OverwritingCarrier = n.GetStringValue(); } },
@@ -131,8 +113,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("activationDate", ActivationDate);
             writer.WriteStringValue("comment", Comment);
-            writer.WriteStringValue("newAccountBusinessName", NewAccountBusinessName);
-            writer.WriteStringValue("newAccountId", NewAccountId);
             writer.WriteStringValue("newNnid", NewNnid);
             writer.WriteStringValue("oldNnid", OldNnid);
             writer.WriteStringValue("overwritingCarrier", OverwritingCarrier);

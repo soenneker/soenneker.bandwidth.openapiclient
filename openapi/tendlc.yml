@@ -59,8 +59,8 @@ info:
     - `X-Rate-Limit-Remaining` - the number of remaining requests in this second
     (will be less than 3)
 
-    - `X-Rate-Limit-Retry-After-Seconds` - the time to wait before further
-    requests can be made (currently one second)
+    - `X-Rate-Limit-Retry-After-Seconds` and `Retry-After` - the time to wait
+    before further requests can be made (currently one second)
 
 
     In extraordinary circumstances, rate limits may need to change, so
@@ -115,7 +115,7 @@ paths:
         '409':
           $ref: '#/components/responses/errorResponse409'
         '429':
-          $ref: '#/components/responses/noBodyResponse'
+          $ref: '#/components/responses/errorResponse429'
         '500':
           $ref: '#/components/responses/errorResponse500'
         '503':
@@ -149,7 +149,7 @@ paths:
         '409':
           $ref: '#/components/responses/errorResponse409'
         '429':
-          $ref: '#/components/responses/noBodyResponse'
+          $ref: '#/components/responses/errorResponse429'
         '500':
           $ref: '#/components/responses/errorResponse500'
         '503':
@@ -189,7 +189,7 @@ paths:
         '409':
           $ref: '#/components/responses/errorResponse409'
         '429':
-          $ref: '#/components/responses/noBodyResponse'
+          $ref: '#/components/responses/errorResponse429'
         '500':
           $ref: '#/components/responses/errorResponse500'
         '503':
@@ -233,7 +233,7 @@ paths:
         '405':
           $ref: '#/components/responses/errorResponse405'
         '429':
-          $ref: '#/components/responses/noBodyResponse'
+          $ref: '#/components/responses/errorResponse429'
         '500':
           $ref: '#/components/responses/errorResponse500'
         '503':
@@ -267,7 +267,7 @@ paths:
         '405':
           $ref: '#/components/responses/errorResponse405'
         '429':
-          $ref: '#/components/responses/noBodyResponse'
+          $ref: '#/components/responses/errorResponse429'
         '500':
           $ref: '#/components/responses/errorResponse500'
         '503':
@@ -311,7 +311,7 @@ paths:
         '405':
           $ref: '#/components/responses/errorResponse405'
         '429':
-          $ref: '#/components/responses/noBodyResponse'
+          $ref: '#/components/responses/errorResponse429'
         '500':
           $ref: '#/components/responses/errorResponse500'
         '503':
@@ -349,7 +349,7 @@ paths:
         $ref: '#/components/requestBodies/newCampaignRequest'
       responses:
         '202':
-          $ref: '#/components/responses/campaignCreatedResponse'
+          $ref: '#/components/responses/campaignAcceptedResponse'
         '400':
           $ref: '#/components/responses/errorResponse400'
         '401':
@@ -363,7 +363,7 @@ paths:
         '409':
           $ref: '#/components/responses/errorResponse409'
         '429':
-          $ref: '#/components/responses/noBodyResponse'
+          $ref: '#/components/responses/errorResponse429'
         '500':
           $ref: '#/components/responses/errorResponse500'
         '503':
@@ -393,7 +393,7 @@ paths:
         '405':
           $ref: '#/components/responses/errorResponse405'
         '429':
-          $ref: '#/components/responses/noBodyResponse'
+          $ref: '#/components/responses/errorResponse429'
         '500':
           $ref: '#/components/responses/errorResponse500'
         '503':
@@ -415,7 +415,7 @@ paths:
         $ref: '#/components/requestBodies/updatedCampaignRequest'
       responses:
         '202':
-          $ref: '#/components/responses/noBodyResponse'
+          $ref: '#/components/responses/campaignAcceptedResponse'
         '400':
           $ref: '#/components/responses/errorResponse400'
         '401':
@@ -427,7 +427,7 @@ paths:
         '405':
           $ref: '#/components/responses/errorResponse405'
         '429':
-          $ref: '#/components/responses/noBodyResponse'
+          $ref: '#/components/responses/errorResponse429'
         '500':
           $ref: '#/components/responses/errorResponse500'
         '503':
@@ -461,7 +461,7 @@ paths:
         '409':
           $ref: '#/components/responses/errorResponse409'
         '429':
-          $ref: '#/components/responses/noBodyResponse'
+          $ref: '#/components/responses/errorResponse429'
         '500':
           $ref: '#/components/responses/errorResponse500'
         '503':
@@ -488,7 +488,7 @@ paths:
         - $ref: '#/components/parameters/campaignIdPathParam'
       responses:
         '202':
-          $ref: '#/components/responses/noBodyResponse'
+          $ref: '#/components/responses/campaignAcceptedResponse'
         '400':
           $ref: '#/components/responses/errorResponse400'
         '401':
@@ -500,7 +500,7 @@ paths:
         '405':
           $ref: '#/components/responses/errorResponse405'
         '429':
-          $ref: '#/components/responses/noBodyResponse'
+          $ref: '#/components/responses/errorResponse429'
         '500':
           $ref: '#/components/responses/errorResponse500'
         '503':
@@ -539,7 +539,7 @@ paths:
         '405':
           $ref: '#/components/responses/errorResponse405'
         '429':
-          $ref: '#/components/responses/noBodyResponse'
+          $ref: '#/components/responses/errorResponse429'
         '500':
           $ref: '#/components/responses/errorResponse500'
         '503':
@@ -576,7 +576,7 @@ paths:
         '405':
           $ref: '#/components/responses/errorResponse405'
         '429':
-          $ref: '#/components/responses/noBodyResponse'
+          $ref: '#/components/responses/errorResponse429'
         '500':
           $ref: '#/components/responses/errorResponse500'
         '503':
@@ -615,7 +615,7 @@ paths:
         '405':
           $ref: '#/components/responses/errorResponse405'
         '429':
-          $ref: '#/components/responses/noBodyResponse'
+          $ref: '#/components/responses/errorResponse429'
         '500':
           $ref: '#/components/responses/errorResponse500'
         '503':
@@ -1063,6 +1063,12 @@ components:
       description: >-
         An accepted response containing the Bandwidth ID that can be used to
         track the campaign's creation.
+    campaignAcceptedResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/campaignAcceptedResponseObject'
+      description: An accepted response containing the campaign and Bandwidth IDs.
     campaignCustomerResponse:
       content:
         application/json:
@@ -1119,6 +1125,17 @@ components:
           schema:
             $ref: '#/components/schemas/errorResponse409'
       description: Conflict. A resource has been changed or already exists.
+    errorResponse429:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse429'
+      description: Too Many Requests.
+      headers:
+        Retry-After:
+          description: How long to wait before retrying in seconds.
+          schema:
+            type: integer
     errorResponse500:
       content:
         application/json:
@@ -1565,6 +1582,56 @@ components:
     campaignCreatedObject:
       description: The properties needed to create or update a TCR campaign.
       properties:
+        bandwidthId:
+          description: >-
+            The Bandwidth-generated identifier for this campaign. The TCR and
+            Bandwidth identifiers are interchangeable in the Bandwidth APIs and
+            either can be used to retrieve information about the campaign.
+          type: string
+          examples:
+            - WEPTN2N2T5
+      required:
+        - bandwidthId
+    campaignAcceptedResponseObject:
+      description: An accepted response containing the campaign and Bandwidth IDs.
+      type: object
+      required:
+        - links
+        - data
+        - errors
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/responseLink'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/campaignAcceptedObject'
+          readOnly: true
+          nullable: true
+        errors:
+          description: The errors array will always be empty for successful responses.
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/errorEntry'
+          examples:
+            - []
+    campaignAcceptedObject:
+      description: >-
+        The campaign and Bandwidth IDs. The campaignId is only present when the
+        campaign has been registered with TCR (i.e. not present for newly
+        created direct campaigns awaiting TCR registration).
+      properties:
+        campaignId:
+          description: >-
+            The TCR-generated identifier for the campaign. The TCR and Bandwidth
+            identifiers are interchangeable in the Bandwidth APIs and either can
+            be used to retrieve information about the campaign.
+          type: string
+          nullable: true
+          examples:
+            - CA9D2FS
         bandwidthId:
           description: >-
             The Bandwidth-generated identifier for this campaign. The TCR and
@@ -2351,6 +2418,27 @@ components:
           examples:
             - - type: conflict
                 description: submitted entity already exists
+    errorResponse429:
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/responseLink'
+          examples:
+            - []
+          readOnly: true
+        data:
+          type: object
+          nullable: true
+          examples:
+            - null
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/errorEntry'
+          examples:
+            - - type: too many requests
+                description: too many requests
     errorResponse500:
       properties:
         links:

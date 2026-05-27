@@ -22,7 +22,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Label { get; set; }
 #endif
-        /// <summary>The latitude of the location.</summary>
+        /// <summary>The latitude of the location. Must be in range [-90.000000, 90.000000].</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Latitude { get; set; }
@@ -30,7 +30,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Latitude { get; set; }
 #endif
-        /// <summary>The longitude of the location.</summary>
+        /// <summary>The longitude of the location. Must be in range [-180.000000, 180.000000].</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Longitude { get; set; }

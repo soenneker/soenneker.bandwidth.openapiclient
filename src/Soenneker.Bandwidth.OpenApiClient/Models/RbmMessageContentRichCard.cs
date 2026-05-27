@@ -14,7 +14,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The cardContent property</summary>
+        /// <summary>Must contain at least one of title, description, or media to be valid.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Bandwidth.OpenApiClient.Models.RbmCardContent? CardContent { get; set; }
@@ -42,7 +42,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelAction> Suggestions { get; set; }
 #endif
-        /// <summary>The alignment of the thumbnail image in the card. Only applicable if the card using horizontal orientation.</summary>
+        /// <summary>The alignment of the thumbnail image in the card. Required when orientation is HORIZONTAL.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.ThumbnailAlignmentEnum? ThumbnailImageAlignment { get; set; }
         /// <summary>Union discriminator</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

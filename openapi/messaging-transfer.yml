@@ -431,8 +431,6 @@ components:
           newNnid: '963852'
           overwritingCarrier: bandwidth
           activationDate: '2023-05-15T13:56:39.965Z'
-          newAccountId: '5001234'
-          newAccountBusinessName: New Account Business Name
           status: APPROVED
           source: BANDWIDTH
         links:
@@ -506,18 +504,6 @@ components:
           description: The date and time the overwrite was requested
           example: '2023-05-15T13:56:39.965Z'
           format: date-time
-          type: string
-        newAccountId:
-          description: >-
-            The Bandwidth account ID of the new account requesting the messaging
-            on the phone number
-          example: '5001234'
-          type: string
-        newAccountBusinessName:
-          description: >-
-            The business name of the account requesting the messaging on the
-            phone number
-          example: New Account Business Name
           type: string
         status:
           $ref: '#/components/schemas/enumStatus'
@@ -1021,18 +1007,6 @@ components:
           example: '2023-05-15T13:56:39.965Z'
           format: date-time
           type: string
-        newAccountId:
-          description: >-
-            The Bandwidth account ID of the new account requesting the messaging
-            on the phone number
-          example: '5001234'
-          type: string
-        newAccountBusinessName:
-          description: >-
-            The business name of the account requesting the messaging on the
-            phone number
-          example: New Account Business Name
-          type: string
       required:
         - requestId
         - phoneNumber
@@ -1041,8 +1015,6 @@ components:
         - newNnid
         - overwriterCarrier
         - activation
-        - newAccountId
-        - newAccountBusinessName
       type: object
     requestId:
       description: The unique ID assigned to the request

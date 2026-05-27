@@ -22,7 +22,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>The end time of the event.</summary>
+        /// <summary>The end time of the event. Must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00.</summary>
         public DateTimeOffset? EndTime { get; set; }
         /// <summary>Base64 payload the customer receives when the reply is clicked.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -32,7 +32,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public byte[] PostbackData { get; set; }
 #endif
-        /// <summary>The start time of the event.</summary>
+        /// <summary>The start time of the event. Must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00.</summary>
         public DateTimeOffset? StartTime { get; set; }
         /// <summary>Displayed text for user to click</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

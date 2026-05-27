@@ -138,6 +138,36 @@ paths:
           $ref: '#/components/responses/errorResponse429'
         5XX:
           $ref: '#/components/responses/errorResponse500'
+  /accounts/{accountId}/portins/statistics:
+    get:
+      tags:
+        - Port-in Statistics
+      summary: Retrieve port-in order statistics
+      description: >-
+        Fetches the statistics of port-in orders for a specific account ID,
+        including status counts and total orders.
+      operationId: getPortinStatistics
+      parameters:
+        - $ref: '#/components/parameters/AccountIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/portinStatisticsResponse200'
+        '400':
+          $ref: '#/components/responses/errorResponse400'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/portinStatisticsForbiddenError'
+        '404':
+          $ref: '#/components/responses/errorResponse404'
+        '405':
+          $ref: '#/components/responses/errorResponse405'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/errorResponse500'
+        '502':
+          $ref: '#/components/responses/errorResponse500'
   /accounts/{accountId}/portins/{orderId}/activationStatus:
     get:
       tags:
@@ -282,6 +312,33 @@ paths:
           $ref: '#/components/responses/errorResponse403'
         '404':
           $ref: '#/components/responses/errorResponse404'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        5XX:
+          $ref: '#/components/responses/errorResponse500'
+  /accounts/{accountId}/portins/{orderId}/tns:
+    get:
+      tags:
+        - Porting
+      description: >-
+        Retrieves a list of telephone numbers associated with the specified
+        port-in and displays them in the payload.
+      operationId: listPortinTns
+      summary: List port-in tns
+      parameters:
+        - $ref: '#/components/parameters/AccountIdPathParam'
+        - $ref: '#/components/parameters/OrderIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/listPortinTns200Response'
+        '400':
+          $ref: '#/components/responses/listPortinTns400Response'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/listPortinTns404Response'
         '429':
           $ref: '#/components/responses/errorResponse429'
         5XX:
@@ -507,6 +564,11 @@ components:
               <ZIPCode>27612</ZIPCode>
               <TypeOfService>residential</TypeOfService>
         </Csr>
+    portinStatisticsForbiddenExample:
+      summary: Forbidden - API version not supported
+      value:
+        description: This API version does not support the current operation.
+        code: 7746
     csrBadRequestErrorXmlExample:
       summary: XML example for CSR bad request error
       value: |-
@@ -519,6 +581,50 @@ components:
                 </Error>
             </Errors>
         </CsrOrderResponse>
+    listPortinTns200JsonExample:
+      summary: JSON example for list port-in TNs 200 response
+      value:
+        count: 1
+        phoneNumbers:
+          - '+19192809870'
+    listPortinTns200XmlExample:
+      summary: XML example for list port-in TNs 200 response
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <TelephoneNumbers>
+            <Count>1</Count>
+            <TelephoneNumber>+19192809870</TelephoneNumber>
+        </TelephoneNumbers>
+    listPortinTns400JsonExample:
+      summary: JSON example for list port-in TNs 400 response
+      value:
+        code: '7304'
+        description: Invalid order ID format.
+    listPortinTns400XmlExample:
+      summary: XML example for list port-in TNs 400 response
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <Errors>
+            <Error>
+                <Code>7304</Code>
+                <Description>Invalid order ID format.</Description>
+            </Error>
+        </Errors>
+    listPortinTns404JsonExample:
+      summary: JSON example for list port-in TNs 404 response
+      value:
+        code: '7005'
+        description: The specified port-in order was not found.
+    listPortinTns404XmlExample:
+      summary: XML example for list port-in TNs 404 response
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <Errors>
+            <Error>
+                <Code>7005</Code>
+                <Description>The specified port-in order was not found.</Description>
+            </Error>
+        </Errors>
     tnPortOutPasscodesRequestBodyJsonExample:
       summary: JSON example for tn port-out passcodes request
       value:
@@ -745,6 +851,69 @@ components:
           examples:
             example:
               $ref: '#/components/examples/csrBadRequestErrorXmlExample'
+    listPortinTns200Response:
+      description: 200 OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/portinTnsResponseJson'
+          examples:
+            example:
+              $ref: '#/components/examples/listPortinTns200JsonExample'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/telephoneNumbers'
+          examples:
+            example:
+              $ref: '#/components/examples/listPortinTns200XmlExample'
+    listPortinTns400Response:
+      description: 400 Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericErrorResponseJson'
+          examples:
+            example:
+              $ref: '#/components/examples/listPortinTns400JsonExample'
+        application/xml:
+          examples:
+            example:
+              $ref: '#/components/examples/listPortinTns400XmlExample'
+    listPortinTns404Response:
+      description: 404 Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericErrorResponseJson'
+          examples:
+            example:
+              $ref: '#/components/examples/listPortinTns404JsonExample'
+        application/xml:
+          examples:
+            example:
+              $ref: '#/components/examples/listPortinTns404XmlExample'
+    portinStatisticsResponse200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/portinStatistics'
+    portinStatisticsForbiddenError:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              description:
+                type: string
+              code:
+                type: integer
+          examples:
+            example:
+              $ref: '#/components/examples/portinStatisticsForbiddenExample'
+    errorResponse400:
+      description: Bad Request
     errorResponse404:
       description: Not Found
     errorResponse405:
@@ -1030,6 +1199,95 @@ components:
         type: string
       example: complete
   schemas:
+    genericErrorResponseJson:
+      type: object
+      description: Generic JSON error response.
+      properties:
+        code:
+          type: string
+          description: Error code.
+        description:
+          type: string
+          description: Human-readable error description.
+    portinTnsResponseJson:
+      type: object
+      description: >-
+        Response containing a list of telephone numbers associated with a
+        port-in order.
+      properties:
+        count:
+          description: >-
+            Total count of telephone numbers associated with the specified
+            port-in order.
+          type: integer
+          example: 1
+        phoneNumbers:
+          description: >-
+            List of telephone numbers in E.164 format (E.164), e.g.
+            +19192809870.
+          type: array
+          items:
+            type: string
+            maxLength: 12
+          example:
+            - '+19192809870'
+    telephoneNumbers:
+      type: object
+      properties:
+        TelephoneNumbers:
+          type: object
+          properties:
+            Count:
+              description: >-
+                Total count of telephone numbers associated with the specified
+                port-in number.
+              type: integer
+            TelephoneNumber:
+              description: List of telephone numbers in E.164 format.
+              type: array
+              items:
+                type: string
+    portinStatistics:
+      type: object
+      description: Statistics of port-in orders for an account.
+      properties:
+        statusCounts:
+          type: object
+          description: Count of port-in orders by status.
+          properties:
+            EXCEPTION:
+              type: integer
+              example: 45
+            FOC:
+              type: integer
+              example: 120
+            PENDING_DOCUMENTS:
+              type: integer
+              example: 30
+            SUBMITTED:
+              type: integer
+              example: 200
+            REQUESTED_CANCEL:
+              type: integer
+              example: 15
+            REQUESTED_SUPP:
+              type: integer
+              example: 25
+            MISSING_REQUIREMENT:
+              type: integer
+              example: 30
+            PENDING_CARRIER_APPROVAL:
+              type: integer
+              example: 20
+        totalOrders:
+          type: integer
+          description: Total number of port-in orders.
+          example: 435
+        timestamp:
+          type: string
+          format: date-time
+          description: The timestamp of when the statistics were generated.
+          example: '2024-08-22T14:00:00Z'
     csrRequestJson:
       type: object
       description: JSON request body for creating or updating a CSR order.
@@ -1530,3 +1788,5 @@ components:
 tags:
   - name: Porting
     description: Manage port-in orders and their activation status.
+  - name: Port-in Statistics
+    description: Retrieve statistics for port-in orders.

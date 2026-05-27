@@ -22,6 +22,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Indicates if the subscription is blocked. Webhook subscriptions that are blocked will not receive notifications until unblocked. A subscription can be unblocked by triggering a test notification which completes successfully. See Send Test Notification.</summary>
+        public bool? Blocked { get; set; }
         /// <summary>The timestamp when the subscription was created</summary>
         public DateTimeOffset? CreatedAt { get; set; }
         /// <summary>The user who created the subscription</summary>
@@ -104,6 +106,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "accountId", n => { AccountId = n.GetStringValue(); } },
+                { "blocked", n => { Blocked = n.GetBoolValue(); } },
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "createdBy", n => { CreatedBy = n.GetStringValue(); } },
                 { "customName", n => { CustomName = n.GetStringValue(); } },
@@ -124,6 +127,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("accountId", AccountId);
+            writer.WriteBoolValue("blocked", Blocked);
             writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
             writer.WriteStringValue("createdBy", CreatedBy);
             writer.WriteStringValue("customName", CustomName);

@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item;
+using Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Statistics;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -15,6 +16,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PortinsRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The statistics property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Statistics.StatisticsRequestBuilder Statistics
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Statistics.StatisticsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the Soenneker.Bandwidth.OpenApiClient.portins.accounts.item.portins.item collection</summary>
         /// <param name="position">The port-in order ID.</param>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.WithOrderItemRequestBuilder"/></returns>

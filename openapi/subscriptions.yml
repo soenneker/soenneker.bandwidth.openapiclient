@@ -498,6 +498,14 @@ components:
               value:
                 - APPROVED
                 - PENDING
+        blocked:
+          type: boolean
+          description: >-
+            Indicates if the subscription is blocked. Webhook subscriptions that
+            are blocked will not receive notifications until unblocked. A
+            subscription can be unblocked by triggering a test notification
+            which completes successfully. See Send Test Notification.
+          example: false
     subscriptionResponse:
       oneOf:
         - $ref: '#/components/schemas/emailSubscription'
@@ -1220,6 +1228,7 @@ components:
             - field: orderStatus
               operator: EQ
               value: APPROVED
+          blocked: false
         errors: []
     createWebhookSubscriptionRequestExample:
       description: example subscription creation for webhook notifications
@@ -1264,6 +1273,7 @@ components:
               basicAuthentication:
                 username: apiUser
               hmacAuthentication: {}
+          blocked: false
         errors: []
     sendTestNotificationResponseExample:
       description: example response for sending a test notification

@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
-    /// <summary>The alignment of the thumbnail image in the card. Only applicable if the card using horizontal orientation.</summary>
+    /// <summary>The alignment of the thumbnail image in the card. Required when orientation is HORIZONTAL.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum ThumbnailAlignmentEnum
     {

@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.ActivationStatus;
+using Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.Tns;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -19,6 +20,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item
         public global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.ActivationStatus.ActivationStatusRequestBuilder ActivationStatus
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.ActivationStatus.ActivationStatusRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The tns property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.Tns.TnsRequestBuilder Tns
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.Tns.TnsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.WithOrderItemRequestBuilder"/> and sets the default values.

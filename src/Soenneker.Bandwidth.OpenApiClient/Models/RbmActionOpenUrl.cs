@@ -34,7 +34,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>The type property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionTypeEnum? Type { get; set; }
-        /// <summary>The URL to open in browser.</summary>
+        /// <summary>The URL to open in browser. Must use http:// or https:// scheme.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Url { get; set; }
@@ -42,7 +42,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Url { get; set; }
 #endif
-        /// <summary>Defines the layout of the WebView on a mobile device. It must be defined when application is set to `WEBVIEW`- `FULL` WebView takes the full screen.- `HALF` WebView takes half of the screen.- `TALL` WebView takes three-quarters of the screen.</summary>
+        /// <summary>Defines the layout of the WebView on a mobile device. It must be definedwhen application is set to `WEBVIEW` and must not be set when applicationis set to `BROWSER`.- `FULL` WebView takes the full screen.- `HALF` WebView takes half of the screen.- `TALL` WebView takes three-quarters of the screen.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.RbmWebViewEnum? WebviewViewMode { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionOpenUrl"/> and sets the default values.
