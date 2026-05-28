@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.ActivationStatus;
+using Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.Loas;
 using Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.Tns;
 using System.Collections.Generic;
 using System.IO;
@@ -20,6 +21,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item
         public global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.ActivationStatus.ActivationStatusRequestBuilder ActivationStatus
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.ActivationStatus.ActivationStatusRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The loas property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.Loas.LoasRequestBuilder Loas
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.Loas.LoasRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The tns property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.Tns.TnsRequestBuilder Tns

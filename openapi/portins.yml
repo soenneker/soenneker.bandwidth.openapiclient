@@ -316,6 +316,85 @@ paths:
           $ref: '#/components/responses/errorResponse429'
         5XX:
           $ref: '#/components/responses/errorResponse500'
+  /accounts/{accountId}/portins/{orderId}/loas/{fileid}/metadata:
+    get:
+      tags:
+        - LOA Metadata
+      operationId: retrievePortinLoaMetadata
+      summary: Retrieve port-in LOA file metadata
+      description: Retrieves the metadata associated with the file.
+      parameters:
+        - $ref: '#/components/parameters/AccountIdPathParam'
+        - $ref: '#/components/parameters/loaOrderIdPathParam'
+        - $ref: '#/components/parameters/loaFileIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/portinLoaMetadataGet200Response'
+        '400':
+          $ref: '#/components/responses/portinLoaMetadataBadRequestResponse'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/portinLoaMetadataNotFoundResponse'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        5XX:
+          $ref: '#/components/responses/errorResponse500'
+    put:
+      tags:
+        - LOA Metadata
+      operationId: updatePortinLoaMetadata
+      summary: Update port-in LOA file metadata
+      description: >-
+        Associate metadata with the file named in the resource path. This will
+        describe the file, and declare the data that is contained in the file,
+        selected from a list of [LOA  INVOICE  CSR  OTHER].
+      parameters:
+        - $ref: '#/components/parameters/AccountIdPathParam'
+        - $ref: '#/components/parameters/loaOrderIdPathParam'
+        - $ref: '#/components/parameters/loaFileIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/portinLoaMetadataPutRequestBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/portinLoaMetadataPut200Response'
+        '400':
+          $ref: '#/components/responses/portinLoaMetadataBadRequestResponse'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/portinLoaMetadataNotFoundResponse'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        5XX:
+          $ref: '#/components/responses/errorResponse500'
+    delete:
+      tags:
+        - LOA Metadata
+      operationId: deletePortinLoaMetadata
+      summary: Delete port-in LOA file metadata
+      description: Deletes the metadata previously associated with the identified file.
+      parameters:
+        - $ref: '#/components/parameters/AccountIdPathParam'
+        - $ref: '#/components/parameters/loaOrderIdPathParam'
+        - $ref: '#/components/parameters/loaFileIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/portinLoaMetadataDelete200Response'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/portinLoaMetadataNotFoundResponse'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        5XX:
+          $ref: '#/components/responses/errorResponse500'
   /accounts/{accountId}/portins/{orderId}/tns:
     get:
       tags:
@@ -732,7 +811,75 @@ components:
             <Description>The count of Telephone numbers in POST body exceeds the maximum size of 2500</Description>
           </ResponseStatus>
         </TelephoneNumbersResponse>
+    portinLoaMetadataPutRequestJsonExample:
+      summary: JSON example for PUT LOA file metadata request
+      value:
+        documentName: LOA_signed.pdf
+        documentType: LOA
+    portinLoaMetadataPutRequestXmlExample:
+      summary: XML example for PUT LOA file metadata request
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <FileMetaData>
+          <DocumentName>LOA_signed.pdf</DocumentName>
+          <DocumentType>LOA</DocumentType>
+        </FileMetaData>
+    portinLoaMetadataGet200JsonExample:
+      summary: JSON example for GET LOA file metadata 200 response
+      value:
+        documentName: LOA_signed.pdf
+        documentType: LOA
+    portinLoaMetadataGet200XmlExample:
+      summary: XML example for GET LOA file metadata 200 response
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <FileMetaData>
+          <DocumentName>LOA_signed.pdf</DocumentName>
+          <DocumentType>LOA</DocumentType>
+        </FileMetaData>
+    portinLoaMetadataBadRequestJsonExample:
+      summary: JSON example for LOA metadata 400 response
+      value:
+        errors:
+          - code: '15000'
+            description: Invalid document type specified.
+    portinLoaMetadataBadRequestXmlExample:
+      summary: XML example for LOA metadata 400 response
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ErrorResponse>
+          <ErrorCode>15000</ErrorCode>
+          <Description>Invalid document type specified.</Description>
+        </ErrorResponse>
+    portinLoaMetadataNotFoundJsonExample:
+      summary: JSON example for LOA metadata 404 response
+      value:
+        errors:
+          - code: '15000'
+            description: The indicated file was not found in conjunction with the order id.
+    portinLoaMetadataNotFoundXmlExample:
+      summary: XML example for LOA metadata 404 response
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ErrorResponse>
+          <ErrorCode>15000</ErrorCode>
+          <Description>The indicated file was not found in conjunction with the order id.</Description>
+        </ErrorResponse>
   requestBodies:
+    portinLoaMetadataPutRequestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/fileMetaDataJson'
+          examples:
+            example:
+              $ref: '#/components/examples/portinLoaMetadataPutRequestJsonExample'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/fileMetaData'
+          examples:
+            example:
+              $ref: '#/components/examples/portinLoaMetadataPutRequestXmlExample'
     tnPortOutPasscodesRequestBody:
       content:
         application/json:
@@ -1073,6 +1220,55 @@ components:
           examples:
             example:
               $ref: '#/components/examples/tnPortOutPasscodesPost400XmlExample'
+    portinLoaMetadataGet200Response:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/fileMetaDataJson'
+          examples:
+            example:
+              $ref: '#/components/examples/portinLoaMetadataGet200JsonExample'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/fileMetaData'
+          examples:
+            example:
+              $ref: '#/components/examples/portinLoaMetadataGet200XmlExample'
+    portinLoaMetadataPut200Response:
+      description: OK
+    portinLoaMetadataDelete200Response:
+      description: OK
+    portinLoaMetadataBadRequestResponse:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/portinLoaErrorResponseJson'
+          examples:
+            example:
+              $ref: '#/components/examples/portinLoaMetadataBadRequestJsonExample'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/portinLoaErrorResponse'
+          examples:
+            example:
+              $ref: '#/components/examples/portinLoaMetadataBadRequestXmlExample'
+    portinLoaMetadataNotFoundResponse:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/portinLoaErrorResponseJson'
+          examples:
+            example:
+              $ref: '#/components/examples/portinLoaMetadataNotFoundJsonExample'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/portinLoaErrorResponse'
+          examples:
+            example:
+              $ref: '#/components/examples/portinLoaMetadataNotFoundXmlExample'
     errorResponse500:
       description: Internal Server Error
   securitySchemes:
@@ -1143,6 +1339,22 @@ components:
       schema:
         type: string
       example: '1234567'
+    loaOrderIdPathParam:
+      name: orderId
+      description: The port-in order ID.
+      in: path
+      required: true
+      schema:
+        type: string
+      example: d28f4d00-4af1-4b03-b1d4-fc0a9e9ef6b3
+    loaFileIdPathParam:
+      name: fileid
+      description: The LOA file ID.
+      in: path
+      required: true
+      schema:
+        type: string
+      example: file123
     OrderIdPathParam:
       name: orderId
       description: The port-in order ID.
@@ -1785,8 +1997,60 @@ components:
               type: array
               items:
                 type: string
+    loaDocumentType:
+      type: string
+      description: Enum of possible file type.
+      enum:
+        - LOA
+        - INVOICE
+        - CSR
+        - OTHER
+    fileMetaData:
+      type: object
+      properties:
+        DocumentName:
+          description: Name of particular document.
+          type: string
+        DocumentType:
+          $ref: '#/components/schemas/loaDocumentType'
+    fileMetaDataJson:
+      type: object
+      properties:
+        documentName:
+          description: Name of particular document.
+          type: string
+        documentType:
+          $ref: '#/components/schemas/loaDocumentType'
+    portinLoaErrorResponseJson:
+      type: object
+      description: JSON error response for LOA metadata operations.
+      properties:
+        errors:
+          type: array
+          description: List of errors.
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                description: Error code.
+              description:
+                type: string
+                description: Error description.
+    portinLoaErrorResponse:
+      type: object
+      description: XML error response for LOA metadata operations.
+      properties:
+        ErrorCode:
+          type: string
+          description: Error code.
+        Description:
+          type: string
+          description: Error description.
 tags:
   - name: Porting
     description: Manage port-in orders and their activation status.
   - name: Port-in Statistics
     description: Retrieve statistics for port-in orders.
+  - name: LOA Metadata
+    description: Manage LOA file metadata for port-in orders.
