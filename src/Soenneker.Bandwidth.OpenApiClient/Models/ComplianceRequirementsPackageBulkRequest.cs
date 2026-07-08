@@ -14,7 +14,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     public partial class ComplianceRequirementsPackageBulkRequest : IAdditionalDataHolder, IParsable
     {
         /// <summary>The action to perform on the phone numbers in this request.- `ADD` - Add the specified phone numbers to this requirements package.  You can only add phone numbers to a requirements package if they are  In-Account and not already part of another requirements package.- `REMOVE` - Remove the specified phone numbers from this requirements package.  You can only remove phone numbers from the requirements package specified  in the request URL if they are In-Account and they exist on the requirements package.- `MOVE` - Move the specified phone numbers to the requirements package  in the request URL. Both In-Service and In-Account numbers are supported.  **In-Service numbers:** The destination requirements package must be in `VERIFIED`  or `AUTO_VALIDATED` status.  - If already linked to a requirements package, numbers are moved to    the destination requirements package and removed from the old one.  - If not linked to any requirements package, numbers are linked to    the destination requirements package.  **In-Account numbers:** No status check is required on the destination  requirements package.  - If already linked to a requirements package, numbers are moved to    the destination requirements package and removed from the old one.  - If not linked to any requirements package, numbers are linked to    the destination requirements package.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceRequirementsPackageBulkRequest_action? Action { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceRequirementsPackageBulkRequestAction? Action { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Confirms that all provided information is accurate and valid for the end user attached to the requirements package.</summary>
@@ -33,6 +33,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public ComplianceRequirementsPackageBulkRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            AllDetailsAccurate = true;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -52,7 +53,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "action", n => { Action = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceRequirementsPackageBulkRequest_action>(); } },
+                { "action", n => { Action = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceRequirementsPackageBulkRequestAction>(); } },
                 { "allDetailsAccurate", n => { AllDetailsAccurate = n.GetBoolValue(); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
@@ -64,7 +65,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceRequirementsPackageBulkRequest_action>("action", Action);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceRequirementsPackageBulkRequestAction>("action", Action);
             writer.WriteBoolValue("allDetailsAccurate", AllDetailsAccurate);
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
             writer.WriteAdditionalData(AdditionalData);

@@ -39,9 +39,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Applications.Accounts.Item.Applicati
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedLocationsResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse">When receiving a 404 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse">When receiving a 500 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedLocationsResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -54,9 +54,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Applications.Accounts.Item.Applicati
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
-                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2.CreateFromDiscriminatorValue },
+                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedLocationsResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedLocationsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

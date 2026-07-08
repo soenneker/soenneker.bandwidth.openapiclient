@@ -35,7 +35,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Faxuri
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public FaxuriRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/global/configuration/faxuri?pageNumber={pageNumber}&pageSize={pageSize}{&csid*,deliveryMethod*,faxFileFormat*,faxUriId*,uri*}", pathParameters)
+        public FaxuriRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/global/configuration/faxuri{?csid*,deliveryMethod*,faxFileFormat*,faxUriId*,uri*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Faxuri
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public FaxuriRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/global/configuration/faxuri?pageNumber={pageNumber}&pageSize={pageSize}{&csid*,deliveryMethod*,faxFileFormat*,faxUriId*,uri*}", rawUrl)
+        public FaxuriRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/global/configuration/faxuri{?csid*,deliveryMethod*,faxFileFormat*,faxUriId*,uri*}", rawUrl)
         {
         }
         /// <summary>
@@ -98,7 +98,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Faxuri
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Faxuri.FaxuriRequestBuilder.FaxuriRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/global/configuration/faxuri?pageNumber={pageNumber}&pageSize={pageSize}{&csid*,deliveryMethod*,faxFileFormat*,faxUriId*,uri*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -119,7 +119,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Faxuri
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PUT, "{+baseurl}/global/configuration/faxuri", PathParameters);
+            var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
@@ -152,10 +152,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Faxuri
 #endif
             /// <summary>This is the delivery method on which you want to filter your list of Fax URIs. The possible values are SMTP and HTTP_POST.</summary>
             [QueryParameter("deliveryMethod")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Faxuri.GetDeliveryMethodQueryParameterType? DeliveryMethod { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalListFaxUriDeliveryMethodParameter? DeliveryMethod { get; set; }
             /// <summary>This is the file format on which you want to filter your list of Fax URIs. The possible values are Tiff and Pdf.</summary>
             [QueryParameter("faxFileFormat")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Faxuri.GetFaxFileFormatQueryParameterType? FaxFileFormat { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalListFaxUriFaxFileFormatParameter? FaxFileFormat { get; set; }
             /// <summary>The identifier of the fax uri.</summary>
             [QueryParameter("faxUriId")]
             public int? FaxUriId { get; set; }

@@ -8,21 +8,35 @@ using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     /// <summary>
-    /// Pagination of port-in orders.
+    /// An object which contains pagination information related to the response.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Pagination : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Represents going to the “next” page. This parameter will be absent if there isn&apos;t any next pagination.</summary>
+        /// <summary>A limit on the number of records to be returned.</summary>
+        public int? Limit { get; set; }
+        /// <summary>Indicates the number of records that have been skipped before the first record is selected.</summary>
+        public int? Offset { get; set; }
+        /// <summary>The order property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Link>? Links { get; set; }
+        public string? Order { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Link> Links { get; set; }
+        public string Order { get; set; }
 #endif
+        /// <summary>The sort property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Sort { get; set; }
+#nullable restore
+#else
+        public string Sort { get; set; }
+#endif
+        /// <summary>Total number of records.</summary>
+        public long? Total { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Pagination"/> and sets the default values.
         /// </summary>
@@ -48,7 +62,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Link>(global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Link.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "limit", n => { Limit = n.GetIntValue(); } },
+                { "offset", n => { Offset = n.GetIntValue(); } },
+                { "order", n => { Order = n.GetStringValue(); } },
+                { "sort", n => { Sort = n.GetStringValue(); } },
+                { "total", n => { Total = n.GetLongValue(); } },
             };
         }
         /// <summary>
@@ -58,7 +76,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Link>("links", Links);
+            writer.WriteIntValue("limit", Limit);
+            writer.WriteIntValue("offset", Offset);
+            writer.WriteStringValue("order", Order);
+            writer.WriteStringValue("sort", Sort);
+            writer.WriteLongValue("total", Total);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

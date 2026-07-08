@@ -9,15 +9,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "LITE")]
         #pragma warning disable CS1591
-        LITE,
+        Lite,
         #pragma warning restore CS1591
         [EnumMember(Value = "DOMESTIC")]
         #pragma warning disable CS1591
-        DOMESTIC,
+        Domestic,
         #pragma warning restore CS1591
         [EnumMember(Value = "ALL")]
         #pragma warning disable CS1591
-        ALL,
+        All,
         #pragma warning restore CS1591
     }
 }

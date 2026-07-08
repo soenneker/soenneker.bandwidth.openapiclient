@@ -20,6 +20,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public List<string> ActivatedPhoneNumbers { get; set; }
 #endif
+        /// <summary>Indicates whether toll-free on-demand activation has been triggered but is not yet complete. When `true`, a duplicate activation request via PUT will be rejected with a 400 response.</summary>
+        public bool? ActivationInProgress { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The date when auto activation is requested. RFC 3339 format.</summary>
@@ -58,6 +60,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "activatedPhoneNumbers", n => { ActivatedPhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "activationInProgress", n => { ActivationInProgress = n.GetBoolValue(); } },
                 { "autoActivationDate", n => { AutoActivationDate = n.GetDateTimeOffsetValue(); } },
                 { "notYetActivatedPhoneNumbers", n => { NotYetActivatedPhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
@@ -70,6 +73,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("activatedPhoneNumbers", ActivatedPhoneNumbers);
+            writer.WriteBoolValue("activationInProgress", ActivationInProgress);
             writer.WriteDateTimeOffsetValue("autoActivationDate", AutoActivationDate);
             writer.WriteCollectionOfPrimitiveValues<string>("notYetActivatedPhoneNumbers", NotYetActivatedPhoneNumbers);
             writer.WriteAdditionalData(AdditionalData);

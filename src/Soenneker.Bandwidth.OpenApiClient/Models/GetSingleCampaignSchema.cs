@@ -267,10 +267,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The URL for the migration letter attachment.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignSchema_migrationLetterAttachmentUrl? MigrationLetterAttachmentUrl { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignSchemaMigrationLetterAttachmentUrl? MigrationLetterAttachmentUrl { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignSchema_migrationLetterAttachmentUrl MigrationLetterAttachmentUrl { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignSchemaMigrationLetterAttachmentUrl MigrationLetterAttachmentUrl { get; set; }
 #endif
         /// <summary>The message that is sent to the customer to confirm that they have opted in to receive messages from the short code.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -396,6 +396,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string SubsidiariesAndLegalAffiliates { get; set; }
 #endif
+        /// <summary>A list of Intercom support tickets associated with the campaign&apos;s brand name.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortcodesSupportTicket>? SupportTickets { get; private set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortcodesSupportTicket> SupportTickets { get; private set; }
+#endif
         /// <summary>The attachment URL for the SMS terms and conditions.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -480,7 +488,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "legalEntityType", n => { LegalEntityType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegalEntityTypeEnum>(); } },
                 { "messageSenderUrl", n => { MessageSenderUrl = n.GetStringValue(); } },
                 { "messageType", n => { MessageType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MessageType>(); } },
-                { "migrationLetterAttachmentUrl", n => { MigrationLetterAttachmentUrl = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignSchema_migrationLetterAttachmentUrl>(global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignSchema_migrationLetterAttachmentUrl.CreateFromDiscriminatorValue); } },
+                { "migrationLetterAttachmentUrl", n => { MigrationLetterAttachmentUrl = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignSchemaMigrationLetterAttachmentUrl>(global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignSchemaMigrationLetterAttachmentUrl.CreateFromDiscriminatorValue); } },
                 { "optInConfirmationMessage", n => { OptInConfirmationMessage = n.GetStringValue(); } },
                 { "optInExplanation", n => { OptInExplanation = n.GetStringValue(); } },
                 { "optInType", n => { OptInType = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.OptInTypeEnum>()?.AsList(); } },
@@ -498,6 +506,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "shortCodeType", n => { ShortCodeType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeType>(); } },
                 { "stockMarketSymbol", n => { StockMarketSymbol = n.GetStringValue(); } },
                 { "subsidiariesAndLegalAffiliates", n => { SubsidiariesAndLegalAffiliates = n.GetStringValue(); } },
+                { "supportTickets", n => { SupportTickets = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortcodesSupportTicket>(global::Soenneker.Bandwidth.OpenApiClient.Models.ShortcodesSupportTicket.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "termsAndConditionsAttachmentUrl", n => { TermsAndConditionsAttachmentUrl = n.GetStringValue(); } },
                 { "termsAndConditionsUrl", n => { TermsAndConditionsUrl = n.GetStringValue(); } },
                 { "version", n => { Version = n.GetIntValue(); } },
@@ -551,7 +560,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegalEntityTypeEnum>("legalEntityType", LegalEntityType);
             writer.WriteStringValue("messageSenderUrl", MessageSenderUrl);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MessageType>("messageType", MessageType);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignSchema_migrationLetterAttachmentUrl>("migrationLetterAttachmentUrl", MigrationLetterAttachmentUrl);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignSchemaMigrationLetterAttachmentUrl>("migrationLetterAttachmentUrl", MigrationLetterAttachmentUrl);
             writer.WriteStringValue("optInConfirmationMessage", OptInConfirmationMessage);
             writer.WriteStringValue("optInExplanation", OptInExplanation);
             writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.OptInTypeEnum>("optInType", OptInType);

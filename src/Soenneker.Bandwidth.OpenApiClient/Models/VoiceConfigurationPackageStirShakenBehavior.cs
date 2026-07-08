@@ -18,7 +18,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The identity property</summary>
         public bool? Identity { get; set; }
         /// <summary>The verstat property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageStirShakenBehavior_verstat? Verstat { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageStirShakenBehaviorVerstat? Verstat { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageStirShakenBehavior"/> and sets the default values.
         /// </summary>
@@ -45,7 +45,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "identity", n => { Identity = n.GetBoolValue(); } },
-                { "verstat", n => { Verstat = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageStirShakenBehavior_verstat>(); } },
+                { "verstat", n => { Verstat = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageStirShakenBehaviorVerstat>(); } },
             };
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("identity", Identity);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageStirShakenBehavior_verstat>("verstat", Verstat);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageStirShakenBehaviorVerstat>("verstat", Verstat);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

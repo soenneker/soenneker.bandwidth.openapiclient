@@ -9,47 +9,47 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "ATT")]
         #pragma warning disable CS1591
-        ATT,
+        Att,
         #pragma warning restore CS1591
         [EnumMember(Value = "TMOBILE")]
         #pragma warning disable CS1591
-        TMOBILE,
+        Tmobile,
         #pragma warning restore CS1591
         [EnumMember(Value = "VERIZON")]
         #pragma warning disable CS1591
-        VERIZON,
+        Verizon,
         #pragma warning restore CS1591
         [EnumMember(Value = "US_CELLULAR")]
         #pragma warning disable CS1591
-        US_CELLULAR,
+        UsCellular,
         #pragma warning restore CS1591
         [EnumMember(Value = "INTEROP")]
         #pragma warning disable CS1591
-        INTEROP,
+        Interop,
         #pragma warning restore CS1591
         [EnumMember(Value = "CLEAR_SKY")]
         #pragma warning disable CS1591
-        CLEAR_SKY,
+        ClearSky,
         #pragma warning restore CS1591
         [EnumMember(Value = "LIBERTY")]
         #pragma warning disable CS1591
-        LIBERTY,
+        Liberty,
         #pragma warning restore CS1591
         [EnumMember(Value = "DCA2_ACCEPTED")]
         #pragma warning disable CS1591
-        DCA2_ACCEPTED,
+        Dca2Accepted,
         #pragma warning restore CS1591
         [EnumMember(Value = "DCA2_READY")]
         #pragma warning disable CS1591
-        DCA2_READY,
+        Dca2Ready,
         #pragma warning restore CS1591
         [EnumMember(Value = "PROXY")]
         #pragma warning disable CS1591
-        PROXY,
+        Proxy,
         #pragma warning restore CS1591
         [EnumMember(Value = "BANDWIDTH_DCA")]
         #pragma warning disable CS1591
-        BANDWIDTH_DCA,
+        BandwidthDca,
         #pragma warning restore CS1591
     }
 }

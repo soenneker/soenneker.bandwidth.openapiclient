@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The addresses property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListAddressesWithEndpointCount_addresses>? Addresses { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListAddressesAddressesItem>? Addresses { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListAddressesWithEndpointCount_addresses> Addresses { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListAddressesAddressesItem> Addresses { get; set; }
 #endif
         /// <summary>The number of endpoints associated with the address.</summary>
         public int? EndpointCount { get; set; }
@@ -58,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "addresses", n => { Addresses = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListAddressesWithEndpointCount_addresses>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListAddressesWithEndpointCount_addresses.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "addresses", n => { Addresses = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListAddressesAddressesItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListAddressesAddressesItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "endpointCount", n => { EndpointCount = n.GetIntValue(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningLinks>(global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningLinks.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -70,7 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListAddressesWithEndpointCount_addresses>("addresses", Addresses);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListAddressesAddressesItem>("addresses", Addresses);
             writer.WriteIntValue("endpointCount", EndpointCount);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningLinks>("links", Links);
             writer.WriteAdditionalData(AdditionalData);

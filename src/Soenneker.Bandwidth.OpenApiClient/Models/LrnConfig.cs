@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfig_id? Id { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigId? Id { get; private set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfig_id Id { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigId Id { get; private set; }
 #endif
         /// <summary>The list of LRNs assigned to the LRN Configuration. LRNs may be assigned or unassigned by modifying this array, usually with a PATCH request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -42,10 +42,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The Origination Route Plan (ORP), also known as the Advanced Call Route (ACR),that describes the routing strategy for LRNs assigned to the config.Only a subset of the endpoint types available on a Voice Config Package (VCP) are available on an LRN Configuration.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfig_originationRoutePlan? OriginationRoutePlan { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigOriginationRoutePlan? OriginationRoutePlan { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfig_originationRoutePlan OriginationRoutePlan { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigOriginationRoutePlan OriginationRoutePlan { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfig"/> and sets the default values.
@@ -72,10 +72,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "id", n => { Id = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfig_id>(global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfig_id.CreateFromDiscriminatorValue); } },
+                { "id", n => { Id = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigId>(global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigId.CreateFromDiscriminatorValue); } },
                 { "lrns", n => { Lrns = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "originationRoutePlan", n => { OriginationRoutePlan = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfig_originationRoutePlan>(global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfig_originationRoutePlan.CreateFromDiscriminatorValue); } },
+                { "originationRoutePlan", n => { OriginationRoutePlan = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigOriginationRoutePlan>(global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigOriginationRoutePlan.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -87,7 +87,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("lrns", Lrns);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfig_originationRoutePlan>("originationRoutePlan", OriginationRoutePlan);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigOriginationRoutePlan>("originationRoutePlan", OriginationRoutePlan);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

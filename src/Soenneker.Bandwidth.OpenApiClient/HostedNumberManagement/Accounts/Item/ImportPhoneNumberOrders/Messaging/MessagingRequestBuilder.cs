@@ -168,7 +168,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item
 #endif
             /// <summary>Indentify the LoaType on phone numbers.</summary>
             [QueryParameter("loaType")]
-            public global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportPhoneNumberOrders.Messaging.GetLoaTypeQueryParameterType? LoaType { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.LoaTypeQueryParam? LoaType { get; set; }
             /// <summary>For Date-based searches, the starting date of a date range (inclusive) that will be used to find Import Phone Number Orders that were modified within the date range. It is in the form yyyy-MM-dd.</summary>
             [QueryParameter("modifiedDateFrom")]
             public Date? ModifiedDateFrom { get; set; }
@@ -189,11 +189,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("status")]
-            public global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportPhoneNumberOrders.Messaging.GetStatusQueryParameterType[]? Status { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.StatusQueryParamItem[]? Status { get; set; }
 #nullable restore
 #else
             [QueryParameter("status")]
-            public global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportPhoneNumberOrders.Messaging.GetStatusQueryParameterType[] Status { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.StatusQueryParamItem[] Status { get; set; }
 #endif
         }
     }

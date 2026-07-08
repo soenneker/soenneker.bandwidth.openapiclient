@@ -65,10 +65,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The orderType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson.RetrieveNewPhoneNumberOrder200ResponseSchemaJson_orderType? OrderType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJsonOrderType? OrderType { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson.RetrieveNewPhoneNumberOrder200ResponseSchemaJson_orderType OrderType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJsonOrderType OrderType { get; set; }
 #endif
         /// <summary>The pendingQuantity property</summary>
         public int? PendingQuantity { get; set; }
@@ -140,7 +140,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "lastModifiedDate", n => { LastModifiedDate = n.GetStringValue(); } },
                 { "orderCompleteDate", n => { OrderCompleteDate = n.GetStringValue(); } },
                 { "orderStatus", n => { OrderStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VisibleOrderStatusJson>(); } },
-                { "orderType", n => { OrderType = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson.RetrieveNewPhoneNumberOrder200ResponseSchemaJson_orderType>(global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson.RetrieveNewPhoneNumberOrder200ResponseSchemaJson_orderType.CreateFromDiscriminatorValue); } },
+                { "orderType", n => { OrderType = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJsonOrderType>(global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJsonOrderType.CreateFromDiscriminatorValue); } },
                 { "pendingQuantity", n => { PendingQuantity = n.GetIntValue(); } },
                 { "serviceActivationOrderId", n => { ServiceActivationOrderId = n.GetStringValue(); } },
                 { "serviceActivationOrderStatus", n => { ServiceActivationOrderStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderStatusEnum>(); } },
@@ -165,7 +165,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("lastModifiedDate", LastModifiedDate);
             writer.WriteStringValue("orderCompleteDate", OrderCompleteDate);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VisibleOrderStatusJson>("orderStatus", OrderStatus);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson.RetrieveNewPhoneNumberOrder200ResponseSchemaJson_orderType>("orderType", OrderType);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJsonOrderType>("orderType", OrderType);
             writer.WriteIntValue("pendingQuantity", PendingQuantity);
             writer.WriteStringValue("serviceActivationOrderId", ServiceActivationOrderId);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderStatusEnum>("serviceActivationOrderStatus", ServiceActivationOrderStatus);
@@ -173,261 +173,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag>("tags", Tags);
             writer.WriteCollectionOfPrimitiveValues<Guid?>("voiceIntegrationIds", VoiceIntegrationIds);
             writer.WriteAdditionalData(AdditionalData);
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AreaCodeSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CitySearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LataSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NpaNxxSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RateCenterSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.StateSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeVanitySearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeWildCharSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ZipSearchAndOrderType"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class RetrieveNewPhoneNumberOrder200ResponseSchemaJson_orderType : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AreaCodeSearchAndOrderType"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.AreaCodeSearchAndOrderType? AreaCodeSearchAndOrderType { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.AreaCodeSearchAndOrderType AreaCodeSearchAndOrderType { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CitySearchAndOrderType"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CitySearchAndOrderType? CitySearchAndOrderType { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CitySearchAndOrderType CitySearchAndOrderType { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType? CombinedSearchAndOrderType { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType CombinedSearchAndOrderType { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType? ExistingPhoneNumberOrderType { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType ExistingPhoneNumberOrderType { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LataSearchAndOrderType"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.LataSearchAndOrderType? LataSearchAndOrderType { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.LataSearchAndOrderType LataSearchAndOrderType { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NpaNxxSearchAndOrderType"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.NpaNxxSearchAndOrderType? NpaNxxSearchAndOrderType { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.NpaNxxSearchAndOrderType NpaNxxSearchAndOrderType { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RateCenterSearchAndOrderType"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.RateCenterSearchAndOrderType? RateCenterSearchAndOrderType { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.RateCenterSearchAndOrderType RateCenterSearchAndOrderType { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.StateSearchAndOrderType"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.StateSearchAndOrderType? StateSearchAndOrderType { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.StateSearchAndOrderType StateSearchAndOrderType { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeVanitySearchAndOrderType"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeVanitySearchAndOrderType? TollFreeVanitySearchAndOrderType { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeVanitySearchAndOrderType TollFreeVanitySearchAndOrderType { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeWildCharSearchAndOrderType"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeWildCharSearchAndOrderType? TollFreeWildCharSearchAndOrderType { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeWildCharSearchAndOrderType TollFreeWildCharSearchAndOrderType { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ZipSearchAndOrderType"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.ZipSearchAndOrderType? ZipSearchAndOrderType { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.ZipSearchAndOrderType ZipSearchAndOrderType { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson.RetrieveNewPhoneNumberOrder200ResponseSchemaJson_orderType"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson.RetrieveNewPhoneNumberOrder200ResponseSchemaJson_orderType CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
-                var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.RetrieveNewPhoneNumberOrder200ResponseSchemaJson.RetrieveNewPhoneNumberOrder200ResponseSchemaJson_orderType();
-                if("AreaCodeSearchAndOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.AreaCodeSearchAndOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.AreaCodeSearchAndOrderType();
-                }
-                else if("CitySearchAndOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.CitySearchAndOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.CitySearchAndOrderType();
-                }
-                else if("CombinedSearchAndOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.CombinedSearchAndOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType();
-                }
-                else if("ExistingPhoneNumberOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.ExistingPhoneNumberOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType();
-                }
-                else if("LataSearchAndOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.LataSearchAndOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.LataSearchAndOrderType();
-                }
-                else if("NpaNxxSearchAndOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.NpaNxxSearchAndOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.NpaNxxSearchAndOrderType();
-                }
-                else if("RateCenterSearchAndOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.RateCenterSearchAndOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.RateCenterSearchAndOrderType();
-                }
-                else if("StateSearchAndOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.StateSearchAndOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.StateSearchAndOrderType();
-                }
-                else if("TollFreeVanitySearchAndOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.TollFreeVanitySearchAndOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeVanitySearchAndOrderType();
-                }
-                else if("TollFreeWildCharSearchAndOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.TollFreeWildCharSearchAndOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeWildCharSearchAndOrderType();
-                }
-                else if("ZipSearchAndOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.ZipSearchAndOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.ZipSearchAndOrderType();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(AreaCodeSearchAndOrderType != null)
-                {
-                    return AreaCodeSearchAndOrderType.GetFieldDeserializers();
-                }
-                else if(CitySearchAndOrderType != null)
-                {
-                    return CitySearchAndOrderType.GetFieldDeserializers();
-                }
-                else if(CombinedSearchAndOrderType != null)
-                {
-                    return CombinedSearchAndOrderType.GetFieldDeserializers();
-                }
-                else if(ExistingPhoneNumberOrderType != null)
-                {
-                    return ExistingPhoneNumberOrderType.GetFieldDeserializers();
-                }
-                else if(LataSearchAndOrderType != null)
-                {
-                    return LataSearchAndOrderType.GetFieldDeserializers();
-                }
-                else if(NpaNxxSearchAndOrderType != null)
-                {
-                    return NpaNxxSearchAndOrderType.GetFieldDeserializers();
-                }
-                else if(RateCenterSearchAndOrderType != null)
-                {
-                    return RateCenterSearchAndOrderType.GetFieldDeserializers();
-                }
-                else if(StateSearchAndOrderType != null)
-                {
-                    return StateSearchAndOrderType.GetFieldDeserializers();
-                }
-                else if(TollFreeVanitySearchAndOrderType != null)
-                {
-                    return TollFreeVanitySearchAndOrderType.GetFieldDeserializers();
-                }
-                else if(TollFreeWildCharSearchAndOrderType != null)
-                {
-                    return TollFreeWildCharSearchAndOrderType.GetFieldDeserializers();
-                }
-                else if(ZipSearchAndOrderType != null)
-                {
-                    return ZipSearchAndOrderType.GetFieldDeserializers();
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(AreaCodeSearchAndOrderType != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AreaCodeSearchAndOrderType>(null, AreaCodeSearchAndOrderType);
-                }
-                else if(CitySearchAndOrderType != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CitySearchAndOrderType>(null, CitySearchAndOrderType);
-                }
-                else if(CombinedSearchAndOrderType != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType>(null, CombinedSearchAndOrderType);
-                }
-                else if(ExistingPhoneNumberOrderType != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType>(null, ExistingPhoneNumberOrderType);
-                }
-                else if(LataSearchAndOrderType != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LataSearchAndOrderType>(null, LataSearchAndOrderType);
-                }
-                else if(NpaNxxSearchAndOrderType != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NpaNxxSearchAndOrderType>(null, NpaNxxSearchAndOrderType);
-                }
-                else if(RateCenterSearchAndOrderType != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RateCenterSearchAndOrderType>(null, RateCenterSearchAndOrderType);
-                }
-                else if(StateSearchAndOrderType != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.StateSearchAndOrderType>(null, StateSearchAndOrderType);
-                }
-                else if(TollFreeVanitySearchAndOrderType != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeVanitySearchAndOrderType>(null, TollFreeVanitySearchAndOrderType);
-                }
-                else if(TollFreeWildCharSearchAndOrderType != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeWildCharSearchAndOrderType>(null, TollFreeWildCharSearchAndOrderType);
-                }
-                else if(ZipSearchAndOrderType != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ZipSearchAndOrderType>(null, ZipSearchAndOrderType);
-                }
-            }
         }
     }
 }

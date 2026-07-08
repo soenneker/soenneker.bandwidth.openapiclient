@@ -8,34 +8,28 @@ using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues_Branch1"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues_Branch2"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues_Branch3"/>
+    /// Composed type wrapper for classes <see cref="bool"/>, <see cref="string"/>, List&lt;global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValuesOneOf3Item&gt;
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class QueryCriteriaValues : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues_Branch1"/></summary>
+        /// <summary>Composed type representation for type <see cref="bool"/></summary>
+        public bool? Boolean { get; set; }
+        /// <summary>Composed type representation for type List&lt;global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValuesOneOf3Item&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues_Branch1? QueryCriteriaValuesBranch1 { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValuesOneOf3Item>? QueryCriteriaValuesOneOf3Item { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues_Branch1 QueryCriteriaValuesBranch1 { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValuesOneOf3Item> QueryCriteriaValuesOneOf3Item { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues_Branch2"/></summary>
+        /// <summary>Composed type representation for type <see cref="string"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues_Branch2? QueryCriteriaValuesBranch2 { get; set; }
+        public string? String { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues_Branch2 QueryCriteriaValuesBranch2 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues_Branch3"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues_Branch3? QueryCriteriaValuesBranch3 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues_Branch3 QueryCriteriaValuesBranch3 { get; set; }
+        public string String { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -45,19 +39,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues();
-            if("QueryCriteriaValues_1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if(parseNode.GetBoolValue() is bool booleanValue)
             {
-                result.QueryCriteriaValuesBranch1 = new global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues_Branch1();
+                result.Boolean = booleanValue;
             }
-            else if("QueryCriteriaValues_2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if(parseNode.GetStringValue() is string stringValue)
             {
-                result.QueryCriteriaValuesBranch2 = new global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues_Branch2();
+                result.String = stringValue;
             }
-            else if("QueryCriteriaValues_3".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if(parseNode.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValuesOneOf3Item>(global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValuesOneOf3Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValuesOneOf3Item> queryCriteriaValuesOneOf3ItemValue)
             {
-                result.QueryCriteriaValuesBranch3 = new global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues_Branch3();
+                result.QueryCriteriaValuesOneOf3Item = queryCriteriaValuesOneOf3ItemValue;
             }
             return result;
         }
@@ -67,18 +61,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(QueryCriteriaValuesBranch1 != null)
-            {
-                return QueryCriteriaValuesBranch1.GetFieldDeserializers();
-            }
-            else if(QueryCriteriaValuesBranch2 != null)
-            {
-                return QueryCriteriaValuesBranch2.GetFieldDeserializers();
-            }
-            else if(QueryCriteriaValuesBranch3 != null)
-            {
-                return QueryCriteriaValuesBranch3.GetFieldDeserializers();
-            }
             return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
@@ -88,17 +70,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            if(QueryCriteriaValuesBranch1 != null)
+            if(Boolean != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues_Branch1>(null, QueryCriteriaValuesBranch1);
+                writer.WriteBoolValue(null, Boolean);
             }
-            else if(QueryCriteriaValuesBranch2 != null)
+            else if(String != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues_Branch2>(null, QueryCriteriaValuesBranch2);
+                writer.WriteStringValue(null, String);
             }
-            else if(QueryCriteriaValuesBranch3 != null)
+            else if(QueryCriteriaValuesOneOf3Item != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues_Branch3>(null, QueryCriteriaValuesBranch3);
+                writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValuesOneOf3Item>(null, QueryCriteriaValuesOneOf3Item);
             }
         }
     }

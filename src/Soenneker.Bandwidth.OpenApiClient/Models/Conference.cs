@@ -66,7 +66,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public Conference()
         {
             AdditionalData = new Dictionary<string, object>();
-            ConferenceEventMethod = global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum.POST;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

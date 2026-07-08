@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The data being returned, depends on the operation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LrnUpdateResponse_data? Data { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LrnUpdateResponseData? Data { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LrnUpdateResponse_data Data { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LrnUpdateResponseData Data { get; set; }
 #endif
         /// <summary>An array of errors thrown during this request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -64,7 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnUpdateResponse_data>(global::Soenneker.Bandwidth.OpenApiClient.Models.LrnUpdateResponse_data.CreateFromDiscriminatorValue); } },
+                { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnUpdateResponseData>(global::Soenneker.Bandwidth.OpenApiClient.Models.LrnUpdateResponseData.CreateFromDiscriminatorValue); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServiceError>(global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServiceError.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServiceLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServiceLink.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -76,7 +76,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnUpdateResponse_data>("data", Data);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnUpdateResponseData>("data", Data);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServiceError>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServiceLink>("links", Links);
             writer.WriteAdditionalData(AdditionalData);

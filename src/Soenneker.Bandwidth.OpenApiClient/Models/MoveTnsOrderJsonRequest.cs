@@ -23,7 +23,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string CustomerOrderId { get; set; }
 #endif
         /// <summary>Only valid when moving to a different account using SourceAccountId. When set to move (default) the E911 service information (if applied to the number) will be moved with the number to the new account. When set to delete the E911 service will be removed from the number</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonRequest_e911ServiceAction? E911ServiceAction { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonRequestE911ServiceAction? E911ServiceAction { get; set; }
         /// <summary>A locationId id of provided subAccount to which telephone number will be moved</summary>
         public int? LocationId { get; set; }
         /// <summary>List of telephone numbers to be moved. Maximum of 5,000 allowed per POST</summary>
@@ -44,7 +44,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public MoveTnsOrderJsonRequest()
         {
             AdditionalData = new Dictionary<string, object>();
-            E911ServiceAction = global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonRequest_e911ServiceAction.MOVE;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -65,7 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "customerOrderId", n => { CustomerOrderId = n.GetStringValue(); } },
-                { "e911ServiceAction", n => { E911ServiceAction = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonRequest_e911ServiceAction>(); } },
+                { "e911ServiceAction", n => { E911ServiceAction = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonRequestE911ServiceAction>(); } },
                 { "locationId", n => { LocationId = n.GetIntValue(); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "sourceAccountId", n => { SourceAccountId = n.GetIntValue(); } },
@@ -80,7 +79,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("customerOrderId", CustomerOrderId);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonRequest_e911ServiceAction>("e911ServiceAction", E911ServiceAction);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonRequestE911ServiceAction>("e911ServiceAction", E911ServiceAction);
             writer.WriteIntValue("locationId", LocationId);
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
             writer.WriteIntValue("sourceAccountId", SourceAccountId);

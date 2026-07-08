@@ -103,16 +103,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls
             public bool? Anonymized { get; set; }
             /// <summary>The grouping for the type of DID.</summary>
             [QueryParameter("callType")]
-            public global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.GetCallTypeQueryParameterType? CallType { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.CallTypeEnum? CallType { get; set; }
             /// <summary>Indicates the country code of the DID in its ISO 3166-1 alpha-3 format (e.g. &apos;GBR&apos; for United Kingdom, &apos;USA&apos; for United States of America, &apos;BEL&apos; for Belgium, etc.).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("countryCodeA3")]
-            public global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.GetCountryCodeA3QueryParameterType[]? CountryCodeA3 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.CountryCodeA3Item[]? CountryCodeA3 { get; set; }
 #nullable restore
 #else
             [QueryParameter("countryCodeA3")]
-            public global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.GetCountryCodeA3QueryParameterType[] CountryCodeA3 { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.CountryCodeA3Item[] CountryCodeA3 { get; set; }
 #endif
             /// <summary>&quot;Indicates the country code of the destination country in its ISO 3166-1 alpha-3 format (e.g. &apos;GBR&apos; for United Kingdom, &apos;USA&apos; for United States of America, &apos;BEL&apos; for Belgium, etc.).Note: This filter is only available when direction is OUTBOUND.&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -126,7 +126,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls
 #endif
             /// <summary>Direction of the call.</summary>
             [QueryParameter("direction")]
-            public global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.GetDirectionQueryParameterType? Direction { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.Direction? Direction { get; set; }
             /// <summary>The DID in its E164 format (e.g. “+16469185038”) with the ability to provide multiple E164s.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -139,7 +139,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls
 #endif
             /// <summary>The type of CDR event.</summary>
             [QueryParameter("eventType")]
-            public global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.GetEventTypeQueryParameterType? EventType { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.EventType? EventType { get; set; }
             /// <summary>Start of period where CDRs will be retrieved from.</summary>
             [QueryParameter("from")]
             public DateTimeOffset? From { get; set; }

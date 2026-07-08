@@ -41,7 +41,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The identifier of the voice uri.</summary>
         public int? VoiceUriId { get; set; }
         /// <summary>The protocol to use with this voice uri. Supported protocols are `SIP` and `TEL`.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUri_voiceUriProtocol? VoiceUriProtocol { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUriVoiceUriProtocol? VoiceUriProtocol { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUri"/> and sets the default values.
         /// </summary>
@@ -71,7 +71,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "uri", n => { Uri = n.GetStringValue(); } },
                 { "voiceUriId", n => { VoiceUriId = n.GetIntValue(); } },
-                { "voiceUriProtocol", n => { VoiceUriProtocol = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUri_voiceUriProtocol>(); } },
+                { "voiceUriProtocol", n => { VoiceUriProtocol = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUriVoiceUriProtocol>(); } },
             };
         }
         /// <summary>
@@ -85,7 +85,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("uri", Uri);
             writer.WriteIntValue("voiceUriId", VoiceUriId);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUri_voiceUriProtocol>("voiceUriProtocol", VoiceUriProtocol);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUriVoiceUriProtocol>("voiceUriProtocol", VoiceUriProtocol);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

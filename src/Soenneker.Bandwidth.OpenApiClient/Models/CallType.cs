@@ -9,63 +9,63 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "EMERGENCY")]
         #pragma warning disable CS1591
-        EMERGENCY,
+        Emergency,
         #pragma warning restore CS1591
         [EnumMember(Value = "INBOUND-TFOOS")]
         #pragma warning disable CS1591
-        INBOUNDTFOOS,
+        InboundTfoos,
         #pragma warning restore CS1591
         [EnumMember(Value = "INFORMATION")]
         #pragma warning disable CS1591
-        INFORMATION,
+        Information,
         #pragma warning restore CS1591
         [EnumMember(Value = "INTERNATIONAL")]
         #pragma warning disable CS1591
-        INTERNATIONAL,
+        International,
         #pragma warning restore CS1591
         [EnumMember(Value = "INTERNATIONAL-INTERNAL")]
         #pragma warning disable CS1591
-        INTERNATIONALINTERNAL,
+        InternationalInternal,
         #pragma warning restore CS1591
         [EnumMember(Value = "INTERSTATE")]
         #pragma warning disable CS1591
-        INTERSTATE,
+        Interstate,
         #pragma warning restore CS1591
         [EnumMember(Value = "INTRASTATE")]
         #pragma warning disable CS1591
-        INTRASTATE,
+        Intrastate,
         #pragma warning restore CS1591
         [EnumMember(Value = "INTL-BLOCK")]
         #pragma warning disable CS1591
-        INTLBLOCK,
+        IntlBlock,
         #pragma warning restore CS1591
         [EnumMember(Value = "LOCAL")]
         #pragma warning disable CS1591
-        LOCAL,
+        Local,
         #pragma warning restore CS1591
         [EnumMember(Value = "OPERATOR")]
         #pragma warning disable CS1591
-        OPERATOR,
+        OperatorValue,
         #pragma warning restore CS1591
         [EnumMember(Value = "OTHER-N11")]
         #pragma warning disable CS1591
-        OTHERN11,
+        OtherN11,
         #pragma warning restore CS1591
         [EnumMember(Value = "SIPURI-EXT")]
         #pragma warning disable CS1591
-        SIPURIEXT,
+        SipuriExt,
         #pragma warning restore CS1591
         [EnumMember(Value = "TOLLFREE-IN")]
         #pragma warning disable CS1591
-        TOLLFREEIN,
+        TollfreeIn,
         #pragma warning restore CS1591
         [EnumMember(Value = "TOLLFREE-OUT")]
         #pragma warning disable CS1591
-        TOLLFREEOUT,
+        TollfreeOut,
         #pragma warning restore CS1591
         [EnumMember(Value = "UNDETERMINED")]
         #pragma warning disable CS1591
-        UNDETERMINED,
+        Undetermined,
         #pragma warning restore CS1591
     }
 }

@@ -9,23 +9,23 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "GT")]
         #pragma warning disable CS1591
-        GT,
+        Gt,
         #pragma warning restore CS1591
         [EnumMember(Value = "LT")]
         #pragma warning disable CS1591
-        LT,
+        Lt,
         #pragma warning restore CS1591
         [EnumMember(Value = "EQ")]
         #pragma warning disable CS1591
-        EQ,
+        Eq,
         #pragma warning restore CS1591
         [EnumMember(Value = "NE")]
         #pragma warning disable CS1591
-        NE,
+        Ne,
         #pragma warning restore CS1591
         [EnumMember(Value = "IN")]
         #pragma warning disable CS1591
-        IN,
+        InValue,
         #pragma warning restore CS1591
     }
 }

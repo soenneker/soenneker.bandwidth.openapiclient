@@ -75,10 +75,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The webhookSubscription property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionRequest_webhookSubscription? WebhookSubscription { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionRequestAllOf2WebhookSubscription? WebhookSubscription { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionRequest_webhookSubscription WebhookSubscription { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionRequestAllOf2WebhookSubscription WebhookSubscription { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionRequest"/> and sets the default values.
@@ -116,7 +116,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "subscriptionDefinitionName", n => { SubscriptionDefinitionName = n.GetStringValue(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
                 { "updatedBy", n => { UpdatedBy = n.GetStringValue(); } },
-                { "webhookSubscription", n => { WebhookSubscription = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionRequest_webhookSubscription>(global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionRequest_webhookSubscription.CreateFromDiscriminatorValue); } },
+                { "webhookSubscription", n => { WebhookSubscription = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionRequestAllOf2WebhookSubscription>(global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionRequestAllOf2WebhookSubscription.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -137,7 +137,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("subscriptionDefinitionName", SubscriptionDefinitionName);
             writer.WriteDateTimeOffsetValue("updatedAt", UpdatedAt);
             writer.WriteStringValue("updatedBy", UpdatedBy);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionRequest_webhookSubscription>("webhookSubscription", WebhookSubscription);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionRequestAllOf2WebhookSubscription>("webhookSubscription", WebhookSubscription);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

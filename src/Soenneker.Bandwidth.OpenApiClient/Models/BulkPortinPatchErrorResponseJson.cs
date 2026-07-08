@@ -20,10 +20,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The portinErrors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchErrorResponseJson_portinErrors>? PortinErrors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchErrorResponseJsonPortinErrorsItem>? PortinErrors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchErrorResponseJson_portinErrors> PortinErrors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchErrorResponseJsonPortinErrorsItem> PortinErrors { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchErrorResponseJson"/> and sets the default values.
@@ -50,7 +50,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "portinErrors", n => { PortinErrors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchErrorResponseJson_portinErrors>(global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchErrorResponseJson_portinErrors.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "portinErrors", n => { PortinErrors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchErrorResponseJsonPortinErrorsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchErrorResponseJsonPortinErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -60,7 +60,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchErrorResponseJson_portinErrors>("portinErrors", PortinErrors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchErrorResponseJsonPortinErrorsItem>("portinErrors", PortinErrors);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

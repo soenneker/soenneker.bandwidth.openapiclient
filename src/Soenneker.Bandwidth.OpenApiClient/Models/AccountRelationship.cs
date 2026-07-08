@@ -10,23 +10,23 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "BASIC_ACCOUNT")]
         #pragma warning disable CS1591
-        BASIC_ACCOUNT,
+        BasicAccount,
         #pragma warning restore CS1591
         [EnumMember(Value = "SMALL_ACCOUNT")]
         #pragma warning disable CS1591
-        SMALL_ACCOUNT,
+        SmallAccount,
         #pragma warning restore CS1591
         [EnumMember(Value = "MEDIUM_ACCOUNT")]
         #pragma warning disable CS1591
-        MEDIUM_ACCOUNT,
+        MediumAccount,
         #pragma warning restore CS1591
         [EnumMember(Value = "LARGE_ACCOUNT")]
         #pragma warning disable CS1591
-        LARGE_ACCOUNT,
+        LargeAccount,
         #pragma warning restore CS1591
         [EnumMember(Value = "KEY_ACCOUNT")]
         #pragma warning disable CS1591
-        KEY_ACCOUNT,
+        KeyAccount,
         #pragma warning restore CS1591
     }
 }

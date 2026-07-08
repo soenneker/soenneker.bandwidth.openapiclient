@@ -27,10 +27,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Each key of this errors object refers to a field of the submitted object (using dot notation for nested objects), with the field being a key to an array of one or more errors for that field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError_errors? Errors { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TfvErrorErrorsProperty? Errors { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError_errors Errors { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TfvErrorErrorsProperty Errors { get; set; }
 #endif
         /// <summary>The primary error message.</summary>
         public override string Message { get => base.Message; }
@@ -68,7 +68,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "errors", n => { Errors = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError_errors>(global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError_errors.CreateFromDiscriminatorValue); } },
+                { "errors", n => { Errors = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TfvErrorErrorsProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.TfvErrorErrorsProperty.CreateFromDiscriminatorValue); } },
                 { "type", n => { Type = n.GetStringValue(); } },
             };
         }
@@ -80,7 +80,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError_errors>("errors", Errors);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TfvErrorErrorsProperty>("errors", Errors);
             writer.WriteStringValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }

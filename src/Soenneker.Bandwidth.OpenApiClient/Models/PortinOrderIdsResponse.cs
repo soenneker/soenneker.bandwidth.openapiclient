@@ -17,10 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The portinErrors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse_portinErrors>? PortinErrors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponsePortinErrorsItem>? PortinErrors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse_portinErrors> PortinErrors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponsePortinErrorsItem> PortinErrors { get; set; }
 #endif
         /// <summary>The list of child, or subtending, orders associated with a bulk port-in.  The bulk port-in will have an empty PortinList until telephone numbers are added using the /tnList endpoint.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -55,7 +55,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "portinErrors", n => { PortinErrors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse_portinErrors>(global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse_portinErrors.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "portinErrors", n => { PortinErrors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponsePortinErrorsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponsePortinErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "portinOrderIds", n => { PortinOrderIds = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdJson.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -66,7 +66,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponse_portinErrors>("portinErrors", PortinErrors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdsResponsePortinErrorsItem>("portinErrors", PortinErrors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinOrderIdJson>("portinOrderIds", PortinOrderIds);
             writer.WriteAdditionalData(AdditionalData);
         }

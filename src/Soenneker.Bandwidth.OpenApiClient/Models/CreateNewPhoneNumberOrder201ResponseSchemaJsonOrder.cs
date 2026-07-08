@@ -63,20 +63,20 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The orderType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder_orderType? OrderType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.NewPhoneNumberOrderResponseOrderType? OrderType { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder_orderType OrderType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.NewPhoneNumberOrderResponseOrderType OrderType { get; set; }
 #endif
         /// <summary>The partialAllowed property</summary>
         public bool? PartialAllowed { get; set; }
         /// <summary>The phoneNumberAttributes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder_phoneNumberAttributes?>? PhoneNumberAttributes { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrderPhoneNumberAttributesItem?>? PhoneNumberAttributes { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder_phoneNumberAttributes?> PhoneNumberAttributes { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrderPhoneNumberAttributesItem?> PhoneNumberAttributes { get; set; }
 #endif
         /// <summary>The requirementsPackageId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -118,6 +118,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder()
         {
             AdditionalData = new Dictionary<string, object>();
+            AutoActivate = true;
+            CloseOrder = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -148,9 +150,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "orderCreateDate", n => { OrderCreateDate = n.GetDateTimeOffsetValue(); } },
                 { "orderStatus", n => { OrderStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VisibleOrderStatusJson>(); } },
-                { "orderType", n => { OrderType = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder_orderType>(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder_orderType.CreateFromDiscriminatorValue); } },
+                { "orderType", n => { OrderType = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NewPhoneNumberOrderResponseOrderType>(global::Soenneker.Bandwidth.OpenApiClient.Models.NewPhoneNumberOrderResponseOrderType.CreateFromDiscriminatorValue); } },
                 { "partialAllowed", n => { PartialAllowed = n.GetBoolValue(); } },
-                { "phoneNumberAttributes", n => { PhoneNumberAttributes = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder_phoneNumberAttributes>()?.AsList(); } },
+                { "phoneNumberAttributes", n => { PhoneNumberAttributes = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrderPhoneNumberAttributesItem>()?.AsList(); } },
                 { "requirementsPackageId", n => { RequirementsPackageId = n.GetStringValue(); } },
                 { "subAccountId", n => { SubAccountId = n.GetIntValue(); } },
                 { "tags", n => { Tags = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag>(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -173,90 +175,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteIntValue("locationId", LocationId);
             writer.WriteStringValue("name", Name);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VisibleOrderStatusJson>("orderStatus", OrderStatus);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder_orderType>("orderType", OrderType);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NewPhoneNumberOrderResponseOrderType>("orderType", OrderType);
             writer.WriteBoolValue("partialAllowed", PartialAllowed);
-            writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder_phoneNumberAttributes>("phoneNumberAttributes", PhoneNumberAttributes);
+            writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrderPhoneNumberAttributesItem>("phoneNumberAttributes", PhoneNumberAttributes);
             writer.WriteStringValue("requirementsPackageId", RequirementsPackageId);
             writer.WriteIntValue("subAccountId", SubAccountId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag>("tags", Tags);
             writer.WriteStringValue("voiceConfigurationPackageId", VoiceConfigurationPackageId);
             writer.WriteCollectionOfPrimitiveValues<Guid?>("voiceIntegrationIds", VoiceIntegrationIds);
             writer.WriteAdditionalData(AdditionalData);
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder_orderType : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType? CombinedSearchAndOrderType { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType CombinedSearchAndOrderType { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType? ExistingPhoneNumberOrderType { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType ExistingPhoneNumberOrderType { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder_orderType"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder_orderType CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
-                var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder_orderType();
-                if("CombinedSearchAndOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.CombinedSearchAndOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType();
-                }
-                else if("ExistingPhoneNumberOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.ExistingPhoneNumberOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(CombinedSearchAndOrderType != null)
-                {
-                    return CombinedSearchAndOrderType.GetFieldDeserializers();
-                }
-                else if(ExistingPhoneNumberOrderType != null)
-                {
-                    return ExistingPhoneNumberOrderType.GetFieldDeserializers();
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(CombinedSearchAndOrderType != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType>(null, CombinedSearchAndOrderType);
-                }
-                else if(ExistingPhoneNumberOrderType != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType>(null, ExistingPhoneNumberOrderType);
-                }
-            }
         }
     }
 }

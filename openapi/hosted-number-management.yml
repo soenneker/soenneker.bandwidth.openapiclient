@@ -25,6 +25,10 @@ security:
   - Bearer: []
 tags:
   - name: Hosted Messaging
+  - name: Import TN Checker
+  - name: Operator Information
+  - name: Hosted Voice
+  - name: External TN Orders
 paths:
   /accounts/{accountId}/importPhoneNumberOrders/messaging:
     get:
@@ -275,6 +279,1370 @@ paths:
         '400':
           $ref: >-
             #/components/responses/getRemoveImportedMessagingPhoneNumberOrder400ErrorResponse
+  /accounts/{accountId}/importTnChecker:
+    post:
+      tags:
+        - Import TN Checker
+      description: >-
+        Request importability information on a set of TNs. SipPeerId is an
+        optional value. If SipPeerId is not specified, the id of the default
+        Sip-Peer for the provided SiteId will be used.
+      operationId: createRequestImportTnChecker
+      summary: Check Tns importability
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+      requestBody:
+        content:
+          application/xml:
+            examples:
+              example:
+                description: example
+                value: |-
+                  <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                  <ImportTnCheckerPayload>
+                    <TelephoneNumbers>
+                      <TelephoneNumber>+13032281000</TelephoneNumber>
+                      <TelephoneNumber>+14109235436</TelephoneNumber>
+                      <TelephoneNumber>+14104685864</TelephoneNumber>
+                    </TelephoneNumbers>
+                    <SiteId>486</SiteId>
+                    <SipPeerId>500025</SipPeerId>
+                  </ImportTnCheckerPayload>
+            schema:
+              $ref: '#/components/schemas/importTnCheckerPayload'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/importTnCheckerRequest'
+            examples:
+              example:
+                value:
+                  phoneNumbers:
+                    - '+13032281000'
+                    - '+14109235436'
+                    - '+14104685864'
+                  subAccountId: 486
+                  locationId: 500025
+      responses:
+        '200':
+          description: <p>A successful check has been performed.</p>
+          content:
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <ImportTnCheckerResponse>
+                      <ImportTnCheckerPayload>
+                        <TelephoneNumbers>
+                          <TelephoneNumber>+13032281000</TelephoneNumber>
+                        </TelephoneNumbers>
+                        <ImportTnErrors>
+                          <ImportTnError>
+                            <Code>19006</Code>
+                            <Description>Bandwidth numbers cannot be imported by this account at this time.</Description>
+                            <TelephoneNumbers>
+                              <TelephoneNumber>+14109235436</TelephoneNumber>
+                              <TelephoneNumber>+14104685864</TelephoneNumber>
+                            </TelephoneNumbers>
+                          </ImportTnError>
+                        </ImportTnErrors>
+                      </ImportTnCheckerPayload>
+                    </ImportTnCheckerResponse>
+              schema:
+                $ref: '#/components/schemas/importTnCheckerResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/importTnCheckerJsonResponse'
+              examples:
+                example:
+                  value:
+                    phoneNumbers:
+                      - '+13032281000'
+                    errors:
+                      - code: 19006
+                        description: >-
+                          Bandwidth numbers cannot be imported by this account
+                          at this time.
+                        phoneNumbers:
+                          - '+14109235436'
+                          - '+14104685864'
+        '400':
+          description: >-
+            <p>Bad Response - there were errors in evaluating the body of the
+            request.</p> <p>Potential errors include:</p><ul><li> List of TNs is
+            empty.<li> List of TNs is more than 5000 TNs.<li> The account does
+            not have the necessary (IMPORT_TNS) flag.<li> TNs are invalid (they
+            are not actual TNs, and there are duplicates).</ul>
+          content:
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <ImportTnCheckerResponse>
+                    <Errors>
+                      <Code>7201</Code>
+                        <Description>+161746052083 is not a valid NANP telephone number.</Description>
+                      </Errors>
+                      <Errors>
+                        <Code>7201</Code>
+                        <Description>+161746052082 is not a valid NANP telephone number.</Description>
+                      </Errors>
+                    </ImportTnCheckerResponse>
+              schema:
+                $ref: '#/components/schemas/importTnCheckerErrorResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/importTnCheckerErrorJsonResponse'
+              examples:
+                example:
+                  value:
+                    errors:
+                      - code: 7201
+                        description: +161746052083 is not a valid NANP telephone number.
+                      - code: 7201
+                        description: +161746052082 is not a valid NANP telephone number.
+  /accounts/{accountId}/operators:
+    post:
+      tags:
+        - Operator Information
+      description: |
+        <p>Store an  operator information</p>
+      operationId: createOperators
+      summary: Create Operator
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/operatorRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/operatorSuccessfulResponse'
+        '400':
+          $ref: '#/components/responses/operatorBadRequestError'
+        '401':
+          $ref: '#/components/responses/operatorUnauthorizedError'
+        '403':
+          $ref: '#/components/responses/operatorForbiddenError'
+        '404':
+          $ref: '#/components/responses/operatorNotFoundError'
+        '405':
+          $ref: '#/components/responses/methodNotSupportedError'
+        '415':
+          $ref: '#/components/responses/operatorInvalidMediaTypeError'
+        '429':
+          $ref: '#/components/responses/operatorTooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/operatorsInternalServerError'
+    get:
+      tags:
+        - Operator Information
+      description: |
+        <p>Store an operator information</p>
+      operationId: listOperators
+      summary: List Operators
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/operatorCountryCodeA3QueryParam'
+        - $ref: '#/components/parameters/operatorSizeQueryParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/listOperatorsResponse'
+        '400':
+          $ref: '#/components/responses/operatorBadRequestError'
+        '401':
+          $ref: '#/components/responses/operatorUnauthorizedError'
+        '403':
+          $ref: '#/components/responses/operatorForbiddenError'
+        '404':
+          $ref: '#/components/responses/operatorNotFoundError'
+        '405':
+          $ref: '#/components/responses/methodNotSupportedError'
+        '415':
+          $ref: '#/components/responses/operatorInvalidMediaTypeError'
+        '429':
+          $ref: '#/components/responses/operatorTooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/operatorsInternalServerError'
+  /accounts/{accountId}/operators/{operatorId}:
+    patch:
+      tags:
+        - Operator Information
+      description: |
+        Update the name and/or routing prefixes for an operator by ID.
+      operationId: updateOperator
+      summary: Update Operator
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/operatorId'
+      requestBody:
+        $ref: '#/components/requestBodies/operatorPatchRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/operatorSuccessfulResponse'
+        '400':
+          $ref: '#/components/responses/operatorBadRequestError'
+        '401':
+          $ref: '#/components/responses/operatorUnauthorizedError'
+        '403':
+          $ref: '#/components/responses/operatorForbiddenError'
+        '404':
+          $ref: '#/components/responses/operatorNotFoundError'
+        '405':
+          $ref: '#/components/responses/methodNotSupportedError'
+        '415':
+          $ref: '#/components/responses/operatorInvalidMediaTypeError'
+        '429':
+          $ref: '#/components/responses/operatorTooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/operatorsInternalServerError'
+    get:
+      tags:
+        - Operator Information
+      description: |
+        <p>Retrieve an operator information</p>
+      operationId: getOperator
+      summary: Get Operator
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/operatorId'
+      responses:
+        '200':
+          $ref: '#/components/responses/operatorSuccessfulResponse'
+        '400':
+          $ref: '#/components/responses/operatorBadRequestError'
+        '401':
+          $ref: '#/components/responses/operatorUnauthorizedError'
+        '403':
+          $ref: '#/components/responses/operatorForbiddenError'
+        '404':
+          $ref: '#/components/responses/operatorNotFoundError'
+        '405':
+          $ref: '#/components/responses/methodNotSupportedError'
+        '415':
+          $ref: '#/components/responses/operatorInvalidMediaTypeError'
+        '429':
+          $ref: '#/components/responses/operatorTooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/operatorsInternalServerError'
+  /accounts/{accountId}/importTnOrders/voice:
+    get:
+      tags:
+        - Hosted Voice
+      description: >
+        Retrieves the ImportVoiceTnOrder requests for the given account ID. A
+        maximum of 1,000 orders can be retrieved per request. If no date range
+        or specific query parameter (marked by <b class="required">*</b> below)
+        is provided, the order results will be limited to the last two years.
+      summary: List Import Voice Tn orders
+      operationId: readImportVoiceTnOrders
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/statusQueryParam'
+        - $ref: '#/components/parameters/tnQueryParam'
+        - $ref: '#/components/parameters/customerOrderIdQueryParam'
+        - $ref: '#/components/parameters/createdDateFromQueryParam'
+        - $ref: '#/components/parameters/createdDateToQueryParam'
+        - $ref: '#/components/parameters/modifiedDateFromQueryParam'
+        - $ref: '#/components/parameters/modifiedDateToQueryParam'
+      responses:
+        '200':
+          description: >-
+            The descriptive payload for the importVoiceTnOrders query provides
+            information about the orders found by the query, including the data
+            associated with the order, the state of the order, and a list of the
+            successfully imported Telephone Numbers, and descriptions of any
+            encountered errors.
+          content:
+            application/xml:
+              examples:
+                example:
+                  value: |
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <ImportVoiceTnOrders>
+                       <TotalCount>2</TotalCount>
+                       <ImportVoiceTnOrderSummary>
+                          <accountId>14</accountId>
+                          <CountOfTNs>1</CountOfTNs>
+                          <CustomerOrderId>CustomerOrderId</CustomerOrderId>
+                          <userId>systemUser</userId>
+                          <lastModifiedDate>2019-01-24T11:08:09.770Z</lastModifiedDate>
+                          <OrderDate>2019-01-24T11:08:09.770Z</OrderDate>
+                          <OrderType>import_voice_tn_orders</OrderType>
+                          <OrderStatus>COMPLETE</OrderStatus>
+                          <OrderId>211a103c-5f9c-4117-8833-c574bdc390fd</OrderId>
+                       </ImportVoiceTnOrderSummary>
+                       <ImportVoiceTnOrderSummary>
+                          <accountId>14</accountId>
+                          <CountOfTNs>2</CountOfTNs>
+                          <CustomerOrderId>CustomerOrderId</CustomerOrderId>
+                          <userId>systemUser</userId>
+                          <lastModifiedDate>2019-01-24T10:43:16.934Z</lastModifiedDate>
+                          <OrderDate>2019-01-24T10:43:16.934Z</OrderDate>
+                          <OrderType>import_voice_tn_orders</OrderType>
+                          <OrderStatus>PARTIAL</OrderStatus>
+                          <OrderId>8dc32f09-2329-4c73-b702-526f46b02712</OrderId>
+                       </ImportVoiceTnOrderSummary>
+                    </ImportVoiceTnOrders>
+              schema:
+                $ref: '#/components/schemas/importVoiceTnOrdersResponseList'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/importVoiceTnOrdersJsonResponseList'
+              examples:
+                example:
+                  value:
+                    totalCount: 2
+                    orders:
+                      - accountId: 14
+                        phoneNumberCount: 1
+                        customerOrderId: CustomerOrderId
+                        userId: systemUser
+                        lastModifiedDate: '2019-01-24T11:08:09.770Z'
+                        orderDate: '2019-01-24T11:08:09.770Z'
+                        orderType: import_voice_tn_orders
+                        orderStatus: COMPLETE
+                        orderId: 211a103c-5f9c-4117-8833-c574bdc390fd
+                      - accountId: 14
+                        phoneNumberCount: 2
+                        customerOrderId: CustomerOrderId
+                        userId: systemUser
+                        lastModifiedDate: '2019-01-24T10:43:16.934Z'
+                        orderDate: '2019-01-24T10:43:16.934Z'
+                        orderType: import_voice_tn_orders
+                        orderStatus: PARTIAL
+                        orderId: 8dc32f09-2329-4c73-b702-526f46b02712
+    post:
+      tags:
+        - Hosted Voice
+      description: >-
+        Creates an ImportVoiceTnOrders request to add numbers under the given
+        site ID and sipPeer ID as specified in the body.
+
+        We can either provide the list of telephone numbers or the range(s) of
+        telephone numbers in the request.
+
+        A successfully submitted order will have a status of "RECEIVED". A
+        successfully completed order will have a status of "COMPLETE" if all of
+        the telephone numbers were successfully imported and  "PARTIAL" if some
+        of the telephone numbers were imported. A failed order with will have a
+        staus of "FAILED" and no telephone numbers would have been imported.
+      summary: Import Voice Tn order
+      operationId: createImportVoiceTnOrder
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+      requestBody:
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/importVoiceTnOrderRequest'
+            examples:
+              With telephone numbers list:
+                value: |
+                  <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                  <ImportVoiceTnOrder>
+                     <CustomerOrderId>ICPA123ABC</CustomerOrderId>
+                     <SiteId>743</SiteId>
+                     <SipPeerId>303716</SipPeerId>
+                     <VoiceConfigurationPackageId>8826e9fe-1f0a-4cb0-be37-85cad742686c</VoiceConfigurationPackageId>
+                     <OperatorId>1</OperatorId>
+                     <TelephoneNumbers>
+                        <TelephoneNumber>+19199918388</TelephoneNumber>
+                        <TelephoneNumber>+14158714245</TelephoneNumber>
+                        <TelephoneNumber>+14352154439</TelephoneNumber>
+                        <TelephoneNumber>+14352154466</TelephoneNumber>
+                     </TelephoneNumbers>
+                  </ImportVoiceTnOrder>
+              With telephone numbers range:
+                value: |
+                  <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                  <ImportVoiceTnOrder>
+                     <CustomerOrderId>ICPA123ABC</CustomerOrderId>
+                     <SiteId>743</SiteId>
+                     <SipPeerId>303716</SipPeerId>
+                     <VoiceConfigurationPackageId>8826e9fe-1f0a-4cb0-be37-85cad742686c</VoiceConfigurationPackageId>
+                     <OperatorId>1</OperatorId>
+                     <TelephoneNumbersRanges>
+                        <TelephoneNumbersRange>
+                          <From>+19199918388</From>
+                          <To>+19199918400</To>
+                        </TelephoneNumbersRange>
+                        <TelephoneNumbersRange>
+                          <From>+14158714245</From>
+                          <To>+14158714252</To>
+                        </TelephoneNumbersRange>
+                     </TelephoneNumbersRanges>
+                  </ImportVoiceTnOrder>
+          application/json:
+            schema:
+              $ref: '#/components/schemas/importVoiceTnOrderJsonRequest'
+            examples:
+              With telephone numbers list:
+                value:
+                  customerOrderId: ICPA123ABC
+                  subAccountId: 743
+                  locationId: 303716
+                  voiceConfigurationPackageId: 8826e9fe-1f0a-4cb0-be37-85cad742686c
+                  operatorId: 1
+                  phoneNumbers:
+                    - '+19199918388'
+                    - '+14158714245'
+                    - '+14352154439'
+                    - '+14352154466'
+              With telephone numbers range:
+                value:
+                  customerOrderId: ICPA123ABC
+                  subAccountId: 743
+                  locationId: 303716
+                  voiceConfigurationPackageId: 8826e9fe-1f0a-4cb0-be37-85cad742686c
+                  operatorId: 1
+                  phoneNumberRanges:
+                    - from: '+19199918388'
+                      to: '+19199918400'
+                    - from: '+14158714245'
+                      to: '+14158714252'
+      responses:
+        '201':
+          description: >-
+            The order has been created and an order ID will be specified in the
+            payload and in the header.
+          content:
+            application/xml:
+              examples:
+                With telephone numbers list:
+                  value: |
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                      <ImportVoiceTnOrderResponse>
+                         <ImportVoiceTnOrder>
+                            <CustomerOrderId>SJM000001</CustomerOrderId>
+                            <OrderCreateDate>2018-01-20T02:59:54.000Z</OrderCreateDate>
+                            <AccountId>9900012</AccountId>
+                            <CreatedByUser>smckinnon</CreatedByUser>
+                            <OrderId>b05de7e6-0cab-4c83-81bb-9379cba8efd0</OrderId>
+                            <LastModifiedDate>2018-01-20T02:59:54.000Z</LastModifiedDate>
+                            <SiteId>202</SiteId>
+                            <SipPeerId>520565</SipPeerId>
+                            <VoiceConfigurationPackageId>8826e9fe-1f0a-4cb0-be37-85cad742686c</VoiceConfigurationPackageId>
+                            <OperatorId>1</OperatorId>
+                            <TelephoneNumbers>
+                               <TelephoneNumber>+19199918388</TelephoneNumber>
+                               <TelephoneNumber>+14158714245</TelephoneNumber>
+                               <TelephoneNumber>+14352154439</TelephoneNumber>
+                               <TelephoneNumber>+14352154466</TelephoneNumber>
+                            </TelephoneNumbers>
+                            <ProcessingStatus>PROCESSING</ProcessingStatus>
+                            <Errors/>
+                         </ImportVoiceTnOrder>
+                      </ImportVoiceTnOrderResponse>
+                With telephone numbers range along with list:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                      <ImportVoiceTnOrderResponse>
+                        <ImportVoiceTnOrder>
+                           <CustomerOrderId>ICPA123ABC</CustomerOrderId>
+                           <SiteId>743</SiteId>
+                           <SipPeerId>303716</SipPeerId>
+                           <VoiceConfigurationPackageId>8826e9fe-1f0a-4cb0-be37-85cad742686c</VoiceConfigurationPackageId>
+                           <OperatorId>1</OperatorId>
+                           <TelephoneNumbersRanges>
+                              <TelephoneNumbersRange>
+                                <From>+12106078250</From>
+                                <To>+12109678253</To>
+                              </TelephoneNumbersRange>
+                              <TelephoneNumbersRange>
+                                <From>+12106078910</From>
+                                <To>+12109678912</To>
+                              </TelephoneNumbersRange>
+                           </TelephoneNumbersRanges>
+                           <TelephoneNumbers>
+                              <TelephoneNumber>+12106078250</TelephoneNumber>
+                              <TelephoneNumber>+12106078251</TelephoneNumber>
+                              <TelephoneNumber>+12106078252</TelephoneNumber>
+                              <TelephoneNumber>+12106078253</TelephoneNumber>
+                              <TelephoneNumber>+12106078910</TelephoneNumber>
+                              <TelephoneNumber>+12106078911</TelephoneNumber>
+                              <TelephoneNumber>+12106078912</TelephoneNumber>
+                           </TelephoneNumbers>
+                        </ImportVoiceTnOrder>
+                    </ImportVoiceTnOrderResponse>
+              schema:
+                $ref: '#/components/schemas/importVoiceTnOrderResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/importVoiceTnOrderJsonResponse'
+              examples:
+                example:
+                  value:
+                    customerOrderId: SJM000001
+                    orderCreateDate: '2018-01-20T02:59:54.000Z'
+                    accountId: 9900012
+                    createdByUser: smckinnon
+                    orderId: b05de7e6-0cab-4c83-81bb-9379cba8efd0
+                    lastModifiedDate: '2018-01-20T02:59:54.000Z'
+                    subAccountId: 202
+                    locationId: 520565
+                    voiceConfigurationPackageId: 8826e9fe-1f0a-4cb0-be37-85cad742686c
+                    operatorId: 1
+                    phoneNumbers:
+                      - '+19199918388'
+                      - '+14158714245'
+                      - '+14352154439'
+                      - '+14352154466'
+                    processingStatus: PROCESSING
+                    errors: []
+        '400':
+          description: The order failed; one of the input parameters is invalid.
+          content:
+            application/xml:
+              examples:
+                example:
+                  value: |
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <ImportVoiceTnOrderResponse>
+                       <ProcessingStatus>FAILED</ProcessingStatus>
+                       <Errors>
+                          <Code>7309</Code>
+                          <Description>The site id was not supplied or is invalid.</Description>
+                       </Errors>
+                    </ImportVoiceTnOrderResponse>
+              schema:
+                $ref: '#/components/schemas/importVoiceTnOrderError'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/importVoiceTnOrderJsonError'
+              examples:
+                example:
+                  value:
+                    processingStatus: FAILED
+                    errorCode: 7309
+                    description: The site id was not supplied or is invalid.
+        '404':
+          description: The order failed; one of the input parameters is invalid.
+          content:
+            application/xml:
+              examples:
+                example:
+                  value: |
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <ImportVoiceTnOrderResponse>
+                       <ProcessingStatus>FAILED</ProcessingStatus>
+                       <Errors>
+                          <Code>8000</Code>
+                          <Description>Operator Info Not Found</Description>
+                       </Errors>
+                    </ImportVoiceTnOrderResponse>
+              schema:
+                $ref: '#/components/schemas/importVoiceTnOrderError'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/importVoiceTnOrderJsonError'
+              examples:
+                example:
+                  value:
+                    processingStatus: FAILED
+                    errorCode: 8000
+                    description: Operator Info Not Found
+  /accounts/{accountId}/importTnOrders/voice/{orderId}:
+    get:
+      tags:
+        - Hosted Voice
+      description: Retrieve information about a importVoiceTnOrder with specified ID.
+      summary: Fetch Import Voice Tn order status
+      operationId: readImportVoiceTnOrder
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/orderIdPathParam'
+      responses:
+        '200':
+          description: >-
+            The information has been successfully retrieved and displayed in the
+            payload.
+          content:
+            application/xml:
+              examples:
+                example when order is created with list of telephone numbers:
+                  value: |
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <ImportTnOrder>
+                       <OrderCreateDate>2018-01-09T02:58:04.615Z</OrderCreateDate>
+                       <AccountId>9900012</AccountId>
+                       <CreatedByUser>sjm</CreatedByUser>
+                       <OrderId>bf1305b8-8998-1111-2222-51ba3ce52d4e</OrderId>
+                       <LastModifiedDate>2018-01-09T02:58:05.298Z</LastModifiedDate>
+                       <SiteId>65487</SiteId>
+                       <SipPeerId>885544</SipPeerId>
+                       <TelephoneNumbers>
+                          <TelephoneNumber>+12106078250</TelephoneNumber>
+                          <TelephoneNumber>+12109678273</TelephoneNumber>
+                       </TelephoneNumbers>
+                       <ProcessingStatus>PARTIAL</ProcessingStatus>
+                       <Errors>
+                          <Error>
+                             <Code>19013</Code>
+                             <Description>Numbers already exist</Description>
+                             <TelephoneNumbers>
+                                <TelephoneNumber>+12262665583</TelephoneNumber>
+                             </TelephoneNumbers>
+                          </Error>
+                       </Errors>
+                    </ImportTnOrder>
+              schema:
+                $ref: '#/components/schemas/importVoiceTnOrderResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/importVoiceTnOrderJsonResponse'
+              examples:
+                example:
+                  value:
+                    orderCreateDate: '2018-01-09T02:58:04.615Z'
+                    accountId: 9900012
+                    createdByUser: sjm
+                    orderId: bf1305b8-8998-1111-2222-51ba3ce52d4e
+                    lastModifiedDate: '2018-01-09T02:58:05.298Z'
+                    subAccountId: 65487
+                    locationId: 885544
+                    phoneNumbers:
+                      - '+12106078250'
+                      - '+12109678273'
+                    processingStatus: PARTIAL
+                    errors:
+                      - code: 19013
+                        description: Numbers already exist
+                        phoneNumbers:
+                          - '+12262665583'
+    patch:
+      tags:
+        - Hosted Voice
+      description: >-
+        Update the status of a Hosted Voice order, as specified in the body.
+
+        The status can be changed from "SUBMITTED" to either
+        "MISSING_REQUIREMENTS" or "APPROVED"
+      summary: Update Import Voice Tn order
+      operationId: updateImportVoiceTnOrder
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/orderIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/importVoiceTnOrdersPatchRequest'
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/importVoiceTnOrdersPatchBadRequestError'
+        '403':
+          $ref: '#/components/responses/importVoiceTnOrdersPatchForbiddenError'
+  /accounts/{accountId}/importTnOrders/voice/{orderId}/history:
+    get:
+      tags:
+        - Hosted Voice
+      description: Retrieves the history of the specified importVoiceTnOrder.
+      summary: Fetch Import Voice Tn order history
+      operationId: readImportVoiceTnOrderHistory
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/orderIdPathParam'
+      responses:
+        '200':
+          description: >-
+            The history has been successfully retrieved and displayed in the
+            payload.
+          content:
+            application/xml:
+              examples:
+                example:
+                  value: |
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <OrderHistoryWrapper>
+                       <OrderHistory>
+                          <OrderDate>2015-06-16T14:03:10.225Z</OrderDate>
+                          <Note>Import Voice TN order is received.</Note>
+                          <Author>admin</Author>
+                          <Status>RECEIVED</Status>
+                        </OrderHistory>
+                        <OrderHistory>
+                          <OrderDate>2015-06-16T14:03:10.330Z</OrderDate>
+                          <Note>Import TN order is processing.</Note>
+                          <Author>admin</Author>
+                          <Status>PROCESSING</Status>
+                       </OrderHistory>
+                       <OrderHistory>
+                          <OrderDate>2015-06-16T14:03:10.789Z</OrderDate>
+                          <Note>Import Voice TN order is partial.</Note>
+                          <Author>admin</Author>
+                          <Status>PARTIAL</Status>
+                       </OrderHistory>
+                    </OrderHistoryWrapper>
+              schema:
+                $ref: '#/components/schemas/orderHistoryWrapper'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/orderHistory'
+              examples:
+                example:
+                  value:
+                    orderHistory:
+                      - orderDate: '2015-06-16T14:03:10.225Z'
+                        note: Import Voice TN order is received.
+                        author: admin
+                        status: RECEIVED
+                      - orderDate: '2015-06-16T14:03:10.330Z'
+                        note: Import TN order is processing.
+                        author: admin
+                        status: PROCESSING
+                      - orderDate: '2015-06-16T14:03:10.789Z'
+                        note: Import Voice TN order is partial.
+                        author: admin
+                        status: PARTIAL
+  /importTnOrders/voice:
+    get:
+      tags:
+        - Hosted Voice
+      description: Retrieves all importvoicetnorders requests.
+      operationId: listImportVoiceTnOrders
+      summary: List All Import Voice TN Orders
+      parameters:
+        - $ref: '#/components/parameters/statusQueryParam'
+        - $ref: '#/components/parameters/tnQueryParam'
+        - $ref: '#/components/parameters/accountIdQueryParam'
+        - $ref: '#/components/parameters/customerOrderIdQueryParam'
+        - $ref: '#/components/parameters/createdDateFromQueryParam'
+        - $ref: '#/components/parameters/createdDateToQueryParam'
+        - $ref: '#/components/parameters/modifiedDateFromQueryParam'
+        - $ref: '#/components/parameters/modifiedDateToQueryParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/importVoiceTnOrdersResponse'
+  /accounts/{accountId}/removeImportedTnOrders/voice:
+    get:
+      tags:
+        - Hosted Voice
+      description: >-
+        Retrieves the Remove Imported Voice Tn Orders requests for the given
+        account ID.
+
+        A maximum of 1,000 orders can be retrieved per request. If no date range
+        or specific query parameter as required is provided, the order results
+        will be limited to the last two years.
+      summary: List Remove Imported Voice Tn Orders
+      operationId: listRemoveImportedVoiceTnOrders
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/statusQueryParam'
+        - $ref: '#/components/parameters/tnQueryParam'
+        - $ref: '#/components/parameters/customerOrderIdQueryParam'
+        - $ref: '#/components/parameters/createdDateFromQueryParam'
+        - $ref: '#/components/parameters/createdDateToQueryParam'
+        - $ref: '#/components/parameters/modifiedDateFromQueryParam'
+        - $ref: '#/components/parameters/modifiedDateToQueryParam'
+      responses:
+        '200':
+          description: >-
+            The descriptive payload for the Remove Imported Voice Tn Orders
+            query provides information about the orders found by the query,
+            including the data associated with the order, the state of the
+            order, and a list of the successfully removed Telephone Numbers, and
+            descriptions of any encountered errors
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/removeImportedVoiceTnOrders'
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <RemoveImportedVoiceTnOrders>
+                       <TotalCount>2</TotalCount>
+                       <RemoveImportedVoiceTnOrderSummary>
+                          <accountId>14</accountId>
+                          <CountOfTNs>1</CountOfTNs>
+                          <CustomerOrderId>DemoOrder</CustomerOrderId>
+                          <userId>systemUser</userId>
+                          <lastModifiedDate>2019-01-24T10:40:12.908Z</lastModifiedDate>
+                          <OrderDate>2019-01-24T10:40:12.907Z</OrderDate>
+                          <OrderType>remove_imported_voice_tn_orders</OrderType>
+                          <OrderStatus>COMPLETE</OrderStatus>
+                          <OrderId>4f2d090b-ece7-49ab-9c40-06d1425c39c3</OrderId>
+                       </RemoveImportedVoiceTnOrderSummary>
+                       <RemoveImportedVoiceTnOrderSummary>
+                          <accountId>14</accountId>
+                          <CountOfTNs>1</CountOfTNs>
+                          <CustomerOrderId>DemoOrder</CustomerOrderId>
+                          <userId>systemUser</userId>
+                          <lastModifiedDate>2019-01-24T09:38:24.028Z</lastModifiedDate>
+                          <OrderDate>2019-01-24T09:38:24.028Z</OrderDate>
+                          <OrderType>remove_imported_voice_tn_orders</OrderType>
+                          <OrderStatus>PARTIAL</OrderStatus>
+                          <OrderId>ca30ea6a-018a-4cae-9d49-3d419fefdbe3</OrderId>
+                       </RemoveImportedVoiceTnOrderSummary>
+                    </RemoveImportedVoiceTnOrders>
+            application/json:
+              schema:
+                $ref: '#/components/schemas/removeImportedVoiceTnOrdersJsonList'
+              examples:
+                example:
+                  value:
+                    totalCount: 2
+                    orders:
+                      - accountId: 14
+                        phoneNumberCount: 1
+                        customerOrderId: DemoOrder
+                        userId: systemUser
+                        lastModifiedDate: '2019-01-24T10:40:12.908Z'
+                        orderDate: '2019-01-24T10:40:12.907Z'
+                        orderType: remove_imported_voice_tn_orders
+                        orderStatus: COMPLETE
+                        orderId: 4f2d090b-ece7-49ab-9c40-06d1425c39c3
+                      - accountId: 14
+                        phoneNumberCount: 1
+                        customerOrderId: DemoOrder
+                        userId: systemUser
+                        lastModifiedDate: '2019-01-24T09:38:24.028Z'
+                        orderDate: '2019-01-24T09:38:24.028Z'
+                        orderType: remove_imported_voice_tn_orders
+                        orderStatus: PARTIAL
+                        orderId: ca30ea6a-018a-4cae-9d49-3d419fefdbe3
+    post:
+      tags:
+        - Hosted Voice
+      description: >-
+        Creates a Remove Imported Voice Tn Orders request to remove imported
+        telephone numbers from the given site ID and sippeer ID as specified in
+        the body. A successfully submitted order will have a status of
+        "PROCESSING". A successfully completed order will have a status of
+        "COMPLETE" if all of the telephone numbers were successfully removed
+        and  "PARTIAL" if some of the telephone numbers were removed. A failed
+        order with will have a status of "FAILED" and no telephone numbers would
+        have been removed
+      summary: Create Remove Imported Voice Tn Order
+      operationId: createRemoveImportedVoiceTnOrder
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+      requestBody:
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/removeImportedVoiceTnOrderRequest'
+            examples:
+              example:
+                value: |-
+                  <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                  <RemoveImportedVoiceTnOrder>
+                     <CustomerOrderId>ICPA123ABC</CustomerOrderId>
+                     <TelephoneNumbers>
+                        <TelephoneNumber>+19199918388</TelephoneNumber>
+                        <TelephoneNumber>+14158714245</TelephoneNumber>
+                        <TelephoneNumber>+14352154439</TelephoneNumber>
+                        <TelephoneNumber>+14352154466</TelephoneNumber>
+                     </TelephoneNumbers>
+                  </RemoveImportedVoiceTnOrder>
+          application/json:
+            schema:
+              $ref: '#/components/schemas/removeImportedVoiceTnOrderJsonRequest'
+            examples:
+              example:
+                value:
+                  customerOrderId: ICPA123ABC
+                  phoneNumbers:
+                    - '+19199918388'
+                    - '+14158714245'
+                    - '+14352154439'
+                    - '+14352154466'
+      responses:
+        '201':
+          description: >-
+            The order has been created and an order ID will be specified in the
+            payload and in the header
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/removeImportedVoiceTnOrderResponse'
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <RemoveImportedVoiceTnOrderResponse>
+                       <RemoveImportedVoiceTnOrder>
+                          <CustomerOrderId>SJM000001</CustomerOrderId>
+                          <OrderCreateDate>2018-01-20T02:59:54.000Z</OrderCreateDate>
+                          <AccountId>9900012</AccountId>
+                          <CreatedByUser>smckinnon</CreatedByUser>
+                          <OrderId>b05de7e6-0cab-4c83-81bb-9379cba8efd0</OrderId>
+                          <LastModifiedDate>2018-01-20T02:59:54.000Z</LastModifiedDate>
+                          <TelephoneNumbers>
+                             <TelephoneNumber>+19199918388</TelephoneNumber>
+                             <TelephoneNumber>+14158714245</TelephoneNumber>
+                             <TelephoneNumber>+14352154439</TelephoneNumber>
+                             <TelephoneNumber>+14352154466</TelephoneNumber>
+                          </TelephoneNumbers>
+                          <ProcessingStatus>PROCESSING</ProcessingStatus>
+                          <Errors />
+                       </RemoveImportedVoiceTnOrder>
+                    </RemoveImportedVoiceTnOrderResponse>
+            application/json:
+              schema:
+                $ref: '#/components/schemas/removeImportedVoiceTnOrderJsonResponse'
+              examples:
+                example:
+                  value:
+                    customerOrderId: SJM000001
+                    orderCreateDate: '2018-01-20T02:59:54.000Z'
+                    accountId: 9900012
+                    createdByUser: smckinnon
+                    orderId: b05de7e6-0cab-4c83-81bb-9379cba8efd0
+                    lastModifiedDate: '2018-01-20T02:59:54.000Z'
+                    phoneNumbers:
+                      - '+19199918388'
+                      - '+14158714245'
+                      - '+14352154439'
+                      - '+14352154466'
+                    processingStatus: PROCESSING
+                    errors: []
+        '400':
+          description: The order failed. One of the input parameters is invalid.
+          content:
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <RemoveImportedVoiceTnOrderResponse>
+                       <ProcessingStatus>FAILED</ProcessingStatus>
+                       <Errors>
+                          <Code>1234</Code>
+                          <Description>The customer order id is invalid.</Description>
+                       </Errors>
+                    </RemoveImportedVoiceTnOrderResponse>
+            application/json:
+              schema:
+                $ref: '#/components/schemas/removeImportedVoiceTnOrderJsonError'
+              examples:
+                example:
+                  value:
+                    processingStatus: FAILED
+                    errorCode: 1234
+                    description: The customer order id is invalid.
+  /accounts/{accountId}/removeImportedTnOrders/voice/{orderId}:
+    get:
+      tags:
+        - Hosted Voice
+      description: >-
+        Retrieve information about a removeImportedVoiceTnOrder with specified
+        ID
+      summary: Retrieve Remove Imported Voice Tn Order
+      operationId: retrieveRemoveImportedVoiceTnOrder
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/orderIdPathParam'
+      responses:
+        '200':
+          description: >-
+            The information has been successfully retrieved and displayed in the
+            payload.
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/removeImportedVoiceTnOrderResponse'
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <RemoveImportedVoiceTnOrder>
+                       <OrderCreateDate>2018-01-09T02:58:04.615Z</OrderCreateDate>
+                       <AccountId>9900012</AccountId>
+                       <CreatedByUser>sjm</CreatedByUser>
+                       <OrderId>bf1305b8-8998-1111-2222-51ba3ce52d4e</OrderId>
+                       <LastModifiedDate>2018-01-09T02:58:05.298Z</LastModifiedDate>
+                       <TelephoneNumbers>
+                          <TelephoneNumber>+12106078250</TelephoneNumber>
+                          <TelephoneNumber>+12109678273</TelephoneNumber>
+                          <TelephoneNumber>+12109678331</TelephoneNumber>
+                          <TelephoneNumber>+12109678337</TelephoneNumber>
+                          <TelephoneNumber>+12266401468</TelephoneNumber>
+                       </TelephoneNumbers>
+                       <ProcessingStatus>PARTIAL</ProcessingStatus>
+                       <Errors>
+                          <Error>
+                             <Code>7518</Code>
+                             <Description>Telephone Number Not Active.</Description>
+                             <TelephoneNumbers>
+                                <TelephoneNumber>+12262665583</TelephoneNumber>
+                             </TelephoneNumbers>
+                          </Error>
+                       </Errors>
+                    </RemoveImportedVoiceTnOrder>
+            application/json:
+              schema:
+                $ref: '#/components/schemas/removeImportedVoiceTnOrderJsonResponse'
+              examples:
+                example:
+                  value:
+                    orderCreateDate: '2018-01-09T02:58:04.615Z'
+                    accountId: 9900012
+                    createdByUser: sjm
+                    orderId: bf1305b8-8998-1111-2222-51ba3ce52d4e
+                    lastModifiedDate: '2018-01-09T02:58:05.298Z'
+                    phoneNumbers:
+                      - '+12106078250'
+                      - '+12109678273'
+                      - '+12109678331'
+                      - '+12109678337'
+                      - '+12266401468'
+                    processingStatus: PARTIAL
+                    errors:
+                      - code: 7518
+                        description: Telephone Number Not Active.
+                        phoneNumbers:
+                          - '+12262665583'
+  /accounts/{accountId}/removeImportedTnOrders/voice/{orderId}/history:
+    get:
+      tags:
+        - Hosted Voice
+      description: Retrieves the history of the specified Remove Imported Voice Tn Order
+      summary: Retrieve Remove Imported Voice Tn Order history
+      operationId: retrieveRemoveImportedVoiceTnOrderHistory
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/orderIdPathParam'
+      responses:
+        '200':
+          description: >-
+            The history has been successfully retrieved and displayed in the
+            payload
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/orderHistoryWrapper'
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <OrderHistoryWrapper>
+                       <OrderHistory>
+                          <OrderDate>2015-06-16T14:03:10.225Z</OrderDate>
+                          <Note>Remove Imported Voice TN order is received.</Note>
+                          <Author>admin</Author>
+                          <Status>RECEIVED</Status>
+                       </OrderHistory>
+                       <OrderHistory>
+                          <OrderDate>2015-06-16T14:03:10.330Z</OrderDate>
+                          <Note>Remove Imported TN order is processing.</Note>
+                          <Author>admin</Author>
+                          <Status>PROCESSING</Status>
+                       </OrderHistory>
+                       <OrderHistory>
+                          <OrderDate>2015-06-16T14:03:10.789Z</OrderDate>
+                          <Note>Remove Imported Voice TN order is partial.</Note>
+                          <Author>admin</Author>
+                          <Status>PARTIAL</Status>
+                       </OrderHistory>
+                    </OrderHistoryWrapper>
+            application/json:
+              schema:
+                $ref: '#/components/schemas/orderHistory'
+              examples:
+                example:
+                  value:
+                    orderHistory:
+                      - orderDate: '2015-06-16T14:03:10.225Z'
+                        note: Remove Imported Voice TN order is received.
+                        author: admin
+                        status: RECEIVED
+                      - orderDate: '2015-06-16T14:03:10.330Z'
+                        note: Remove Imported TN order is processing.
+                        author: admin
+                        status: PROCESSING
+                      - orderDate: '2015-06-16T14:03:10.789Z'
+                        note: Remove Imported Voice TN order is partial.
+                        author: admin
+                        status: PARTIAL
+  /removeImportedTnOrders/voice:
+    get:
+      tags:
+        - Hosted Voice
+      description: Retrieves all removeimportedvoicetnorders requests.
+      operationId: listAllRemoveImportedVoiceTnOrders
+      summary: List All Remove Imported Voice TN Orders
+      parameters:
+        - $ref: '#/components/parameters/statusQueryParam'
+        - $ref: '#/components/parameters/tnQueryParam'
+        - $ref: '#/components/parameters/accountIdQueryParam'
+        - $ref: '#/components/parameters/customerOrderIdQueryParam'
+        - $ref: '#/components/parameters/createdDateFromQueryParam'
+        - $ref: '#/components/parameters/createdDateToQueryParam'
+        - $ref: '#/components/parameters/modifiedDateFromQueryParam'
+        - $ref: '#/components/parameters/modifiedDateToQueryParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/removeImportedVoiceTnOrdersResponse'
+  /accounts/{accountId}/importTnOrders/voice/{orderId}/documents:
+    get:
+      summary: List Import Voice Tn order Documents
+      operationId: listImportTnOrdersVoiceDocuments
+      description: >-
+        List all import voice tn order documents. The results are sorted by last
+        updated time in reverse chronological order by default without any query
+        filters.
+      tags:
+        - Hosted Voice
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/orderIdPathParam'
+        - $ref: '#/components/parameters/customReferenceQueryParamEqStartsWith'
+      responses:
+        '200':
+          $ref: '#/components/responses/listHostedVoiceDocumentsSuccess'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
+    post:
+      summary: Add Import Voice Tn order Documents
+      operationId: addImportTnOrdersVoiceDocuments
+      description: Create an import voice tn order document.
+      tags:
+        - Hosted Voice
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/orderIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/addHostedVoiceDocumentRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/createHostedVoiceDocumentSuccess'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
+  /accounts/{accountId}/importTnOrders/voice/{orderId}/documents/{documentId}:
+    get:
+      summary: Get Import Voice Tn order Documents
+      operationId: getImportTnOrdersVoiceDocuments
+      description: Get an import voice tn order document.
+      tags:
+        - Hosted Voice
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/orderIdPathParam'
+        - $ref: '#/components/parameters/documentIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/getHostedVoiceDocumentSuccess'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
+    put:
+      summary: Update Import Voice Tn order Documents
+      operationId: updateImportTnOrdersVoiceDocuments
+      description: Update an import voice tn order document.
+      tags:
+        - Hosted Voice
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/orderIdPathParam'
+        - $ref: '#/components/parameters/documentIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/addHostedVoiceDocumentRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/createHostedVoiceDocumentSuccess'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
+    patch:
+      summary: Update Import Voice Tn order Document Attributes
+      operationId: updateImportTnOrdersVoiceDocumentAttributes
+      description: Update an import voice tn order document attributes.
+      tags:
+        - Hosted Voice
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/orderIdPathParam'
+        - $ref: '#/components/parameters/documentIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/updateHostedVoiceDocumentRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/updateHostedVoiceDocumentSuccess'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
+    delete:
+      summary: Delete Import Voice Tn order Documents
+      operationId: deleteImportTnOrdersVoiceDocuments
+      description: delete an import voice tn order documents.
+      tags:
+        - Hosted Voice
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/orderIdPathParam'
+        - $ref: '#/components/parameters/documentIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/deleteHostedVoiceDocumentSuccess'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
+  /accounts/{accountId}/externalTns:
+    get:
+      tags:
+        - External TN Orders
+      summary: List External TN Orders
+      description: >
+        Retrieve a list of the External TN orders associated with the account. A
+        maximum of 1,000 orders can be retrieved per request. If no date range
+        or specific query parameter is provided, the order results will be
+        limited to the last two years.
+      operationId: listExternalTnOrders
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/statusQueryParam'
+        - $ref: '#/components/parameters/tnQueryParam'
+        - $ref: '#/components/parameters/customerOrderIdQueryParam'
+        - $ref: '#/components/parameters/createdDateFromQueryParam'
+        - $ref: '#/components/parameters/createdDateToQueryParam'
+        - $ref: '#/components/parameters/orderIdFragmentQueryParam'
+        - $ref: '#/components/parameters/actionQueryParam'
+        - $ref: '#/components/parameters/loaTypeQueryParam'
+        - $ref: '#/components/parameters/modifiedDateFromQueryParam'
+        - $ref: '#/components/parameters/modifiedDateToQueryParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/listExternalTnOrdersResponse'
+        '404':
+          $ref: '#/components/responses/listExternalTnOrders404ErrorResponse'
+    post:
+      tags:
+        - External TN Orders
+      summary: Create External TN Order
+      description: >
+        Create an External TN order to add or remove telephone numbers provided
+        by the customer from the Bandwidth network.
+
+
+        Note: attempting to import a telephone number that is already present in
+        the account will not create an error, but will reset all of the
+        attributes of that telephone number in the system as if the telephone
+        number was being imported for the first time.
+      operationId: createExternalTnOrder
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/postExternalTnOrderRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/createExternalTnOrderResponse'
+        '400':
+          $ref: '#/components/responses/createExternalTnOrder400ErrorResponse'
+  /accounts/{accountId}/externalTns/{orderId}:
+    get:
+      tags:
+        - External TN Orders
+      summary: Get External TN Order
+      description: Retrieve information about an External TN order with the specified ID.
+      operationId: getExternalTnOrder
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/orderIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/getExternalTnOrderResponse'
+        '404':
+          $ref: '#/components/responses/getExternalTnOrder404ErrorResponse'
+  /accounts/{accountId}/externalTns/{orderId}/history:
+    get:
+      tags:
+        - External TN Orders
+      summary: Get External TN Order History
+      description: Retrieve the history of the specified External TN order.
+      operationId: getExternalTnOrderHistory
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/orderIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/getExternalTnOrderHistoryResponse'
+        '404':
+          $ref: '#/components/responses/getExternalTnOrder404ErrorResponse'
+  /accounts/{accountId}/removeImportedTnOrders/{orderId}/history:
+    get:
+      tags:
+        - Hosted Messaging
+      summary: Get Remove Imported TN Order History
+      description: Retrieve the history of the specified Remove Imported TN order.
+      operationId: getRemoveImportedTnOrderHistory
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/orderIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/getRemoveImportedTnOrderHistoryResponse'
+        '400':
+          $ref: >-
+            #/components/responses/getRemoveImportedTnOrderHistory400ErrorResponse
 components:
   securitySchemes:
     Basic:
@@ -314,6 +1682,74 @@ components:
         For more information, see the following guide:
         [Credentials](https://dev.bandwidth.com/docs/account/credentials/management)
   schemas:
+    orderStatus:
+      type: string
+      description: The status of an order.
+      enum:
+        - RECEIVED
+        - PROCESSING
+        - COMPLETE
+        - PARTIAL
+        - FAILED
+      example: COMPLETE
+    importVoiceProcessingStatus:
+      type: string
+      description: The processing status of an import voice TN order.
+      enum:
+        - RECEIVED
+        - PROCESSING
+        - COMPLETE
+        - PARTIAL
+        - FAILED
+        - MISSING_REQUIREMENTS
+      example: PROCESSING
+    importVoicePatchStatus:
+      type: string
+      description: The processing status to set on an import voice TN order.
+      enum:
+        - APPROVED
+        - MISSING_REQUIREMENTS
+        - SUBMITTED
+      example: APPROVED
+    hostedVoiceRequirement:
+      type: string
+      description: A missing requirement type for a hosted voice order.
+      enum:
+        - HOSTED_VOICE_DOCUMENTS
+      example: HOSTED_VOICE_DOCUMENTS
+    hostedVoiceDocumentStatus:
+      type: string
+      description: The status of a hosted voice document.
+      enum:
+        - DRAFT
+        - SUBMITTED
+        - PROCESSING
+        - VERIFIED
+        - VERIFICATION_FAILED
+      example: SUBMITTED
+    loaType:
+      type: string
+      description: The type of LOA authorization.
+      enum:
+        - CARRIER
+        - SUBSCRIBER
+      example: CARRIER
+    externalTnAction:
+      type: string
+      description: Whether the order imports or removes telephone numbers.
+      enum:
+        - IMPORT
+        - REMOVE
+      example: IMPORT
+    documentType:
+      type: string
+      description: The type of document.
+      enum:
+        - LOA
+        - INVOICE
+        - CSR
+        - OTHER
+      example: LOA
     addressXml:
       type: object
       properties:
@@ -585,13 +2021,7 @@ components:
           description: Name of particular document.
           type: string
         documentType:
-          description: Enum of possible file type.
-          enum:
-            - LOA
-            - INVOICE
-            - CSR
-            - OTHER
-          type: string
+          $ref: '#/components/schemas/documentType'
       type: object
     fileMetaDataXml:
       properties:
@@ -599,13 +2029,7 @@ components:
           description: Name of particular document.
           type: string
         DocumentType:
-          description: Enum of possible file type.
-          enum:
-            - LOA
-            - INVOICE
-            - CSR
-            - OTHER
-          type: string
+          $ref: '#/components/schemas/documentType'
       type: object
     fileUploadResponse:
       properties:
@@ -712,13 +2136,7 @@ components:
           type: string
           example: '2025-04-22T20:24:11Z'
         orderStatus:
-          type: string
-          enum:
-            - RECEIVED
-            - PROCESSING
-            - COMPLETE
-            - PARTIAL
-            - FAILED
+          $ref: '#/components/schemas/orderStatus'
     importPhoneNumberOrdersRequest:
       title: ImportTnOrder
       required:
@@ -777,10 +2195,8 @@ components:
           type: string
         loaType:
           description: Identify the LoaType on TNs.
-          type: string
-          enum:
-            - SUBSCRIBER
-            - CARRIER
+          allOf:
+            - $ref: '#/components/schemas/loaType'
           default: SUBSCRIBER
     importPhoneNumberOrdersErrorResponse:
       type: object
@@ -827,10 +2243,7 @@ components:
         loaAuthorizingPerson:
           type: string
         loaType:
-          type: string
-          enum:
-            - CARRIER
-            - SUBSCRIBER
+          $ref: '#/components/schemas/loaType'
         warnings:
           type: array
           items:
@@ -838,39 +2251,7 @@ components:
         subscriber:
           $ref: '#/components/schemas/importPhoneNumberSubscriber'
         processingStatus:
-          description: >-
-            Status of the Hosted Messaging Order request.
-
-
-            RECEIVED - Order has been received without errors and will be
-            processed through further validation.
-
-
-            PROCESSING - The order has passed initial validation and is now
-            being processed.Order will remain in processing status if any of the
-            requested telphone numbers remain pending processing.
-
-
-            COMPLETE - This implies that this order has been successfully
-            processed and hosted messaging has been enabled on all requested
-            telephone numbers.
-
-
-            PARTIAL - This implies that this order has been successfully
-            processed and hosted messaging was enabled on all except few of the
-            numbers, reasons for same can be found in  Warning section.
-
-
-            FAILED - This implies that this order has been failed. None of the
-            telphone numbers requested were enabled for hosted messaging,
-            reasons for same can be found in Errors and Warning section.
-          type: string
-          enum:
-            - RECEIVED
-            - PROCESSING
-            - COMPLETE
-            - PARTIAL
-            - FAILED
+          $ref: '#/components/schemas/orderStatus'
         errors:
           type: array
           items:
@@ -939,10 +2320,7 @@ components:
         LoaAuthorizingPerson:
           type: string
         LoaType:
-          type: string
-          enum:
-            - CARRIER
-            - SUBSCRIBER
+          $ref: '#/components/schemas/loaType'
         Warnings:
           type: array
           items:
@@ -950,39 +2328,7 @@ components:
         Subscriber:
           $ref: '#/components/schemas/importTnSubscriber'
         ProcessingStatus:
-          description: >-
-            Status of the Hosted Messaging Order request.
-
-
-            RECEIVED - Order has been received without errors and will be
-            processed through further validation.
-
-
-            PROCESSING - The order has passed initial validation and is now
-            being processed.Order will remain in processing status if any of the
-            requested telphone numbers remain pending processing.
-
-
-            COMPLETE - This implies that this order has been successfully
-            processed and hosted messaging has been enabled on all requested
-            telephone numbers.
-
-
-            PARTIAL - This implies that this order has been successfully
-            processed and hosted messaging was enabled on all except few of the
-            numbers, reasons for same can be found in  Warning section.
-
-
-            FAILED - This implies that this order has been failed. None of the
-            telphone numbers requested were enabled for hosted messaging,
-            reasons for same can be found in Errors and Warning section.
-          type: string
-          enum:
-            - RECEIVED
-            - PROCESSING
-            - COMPLETE
-            - PARTIAL
-            - FAILED
+          $ref: '#/components/schemas/orderStatus'
         Errors:
           type: array
           items:
@@ -1145,13 +2491,7 @@ components:
         LastModifiedDate:
           type: string
         ProcessingStatus:
-          type: string
-          enum:
-            - RECEIVED
-            - PROCESSING
-            - COMPLETE
-            - PARTIAL
-            - FAILED
+          $ref: '#/components/schemas/orderStatus'
     removeImportedPhoneNumberOrderSummary:
       type: object
       properties:
@@ -1179,13 +2519,7 @@ components:
         lastModifiedDate:
           type: string
         orderStatus:
-          type: string
-          enum:
-            - RECEIVED
-            - PROCESSING
-            - COMPLETE
-            - PARTIAL
-            - FAILED
+          $ref: '#/components/schemas/orderStatus'
     removeImportedTnOrderSummary:
       type: object
       properties:
@@ -1213,13 +2547,7 @@ components:
         LastModifiedDate:
           type: string
         ProcessingStatus:
-          type: string
-          enum:
-            - RECEIVED
-            - PROCESSING
-            - COMPLETE
-            - PARTIAL
-            - FAILED
+          $ref: '#/components/schemas/orderStatus'
     importTnSubscriber:
       type: object
       properties:
@@ -1250,16 +2578,7 @@ components:
                   order history to be updated.
                 type: string
               status:
-                description: >-
-                  This is the state that the order was in when the order history
-                  event occurred.
-                type: string
-                enum:
-                  - RECEIVED
-                  - PROCESSING
-                  - COMPLETE
-                  - PARTIAL
-                  - FAILED
+                $ref: '#/components/schemas/orderStatus'
     orderHistoryWrapper:
       type: object
       properties:
@@ -1360,13 +2679,7 @@ components:
         OrderId:
           type: string
         ProcessingStatus:
-          enum:
-            - RECEIVED
-            - PROCESSING
-            - COMPLETE
-            - PARTIAL
-            - FAILED
-          type: string
+          $ref: '#/components/schemas/orderStatus'
         TelephoneNumbers:
           items:
             $ref: '#/components/schemas/telephoneNumber'
@@ -1396,13 +2709,7 @@ components:
         orderId:
           type: string
         processingStatus:
-          enum:
-            - RECEIVED
-            - PROCESSING
-            - COMPLETE
-            - PARTIAL
-            - FAILED
-          type: string
+          $ref: '#/components/schemas/orderStatus'
         phoneNumbers:
           items:
             $ref: '#/components/schemas/phoneNumber'
@@ -1483,13 +2790,7 @@ components:
             OrderId:
               type: string
             ProcessingStatus:
-              enum:
-                - RECEIVED
-                - PROCESSING
-                - COMPLETE
-                - PARTIAL
-                - FAILED
-              type: string
+              $ref: '#/components/schemas/orderStatus'
             TelephoneNumbers:
               items:
                 $ref: '#/components/schemas/telephoneNumber'
@@ -1520,18 +2821,1501 @@ components:
         orderId:
           type: string
         processingStatus:
-          enum:
-            - RECEIVED
-            - PROCESSING
-            - COMPLETE
-            - PARTIAL
-            - FAILED
-          type: string
+          $ref: '#/components/schemas/orderStatus'
         phoneNumbers:
           items:
             $ref: '#/components/schemas/phoneNumber'
           type: array
       type: object
+    importTnCheckerPayload:
+      type: object
+      properties:
+        ImportTnCheckerPayload:
+          type: object
+          properties:
+            SiteId:
+              type: integer
+              format: int32
+            SipPeerId:
+              type: integer
+              format: int32
+            TelephoneNumbers:
+              type: array
+              items:
+                $ref: '#/components/schemas/telephoneNumber'
+    importTnCheckerResponse:
+      type: object
+      properties:
+        ImportTnCheckerResponse:
+          type: object
+          properties:
+            ImportTnCheckerPayload:
+              type: object
+              properties:
+                TelephoneNumbers:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/telephoneNumber'
+                ImportTnErrors:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/importTnError'
+    importTnError:
+      type: object
+      properties:
+        Code:
+          type: integer
+        Description:
+          type: string
+        TelephoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/telephoneNumber'
+    importTnCheckerErrorResponse:
+      type: object
+      properties:
+        ImportTnCheckerResponse:
+          type: object
+          properties:
+            Errors:
+              type: array
+              items:
+                title: Error
+                properties:
+                  Code:
+                    type: integer
+                  Description:
+                    type: string
+    importVoiceTnOrdersResponseList:
+      type: object
+      properties:
+        ImportVoiceTnOrders:
+          type: object
+          properties:
+            TotalCount:
+              type: integer
+            ImportVoiceTnOrderSummary:
+              $ref: '#/components/schemas/importVoiceTnOrderSummary'
+    importVoiceTnOrderSummary:
+      type: object
+      properties:
+        CustomerOrderId:
+          type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            has a distinct Bandwidth-assigned `orderId`.
+        CountsOfTNs:
+          type: integer
+        OrderType:
+          type: string
+          enum:
+            - import_voice_tn_orders
+        OrderDate:
+          type: string
+        AccountId:
+          type: string
+        UserId:
+          type: string
+        LastModifiedDate:
+          type: string
+        ProcessingStatus:
+          $ref: '#/components/schemas/orderStatus'
+    importVoiceTnOrderRequest:
+      title: ImportVoiceTnOrder
+      properties:
+        ImportVoiceTnOrder:
+          type: object
+          required:
+            - SiteId
+          properties:
+            TelephoneNumbers:
+              description: List of telephone numbers to be moved
+              type: array
+              minItems: 1
+              items:
+                type: object
+                properties:
+                  TelephoneNumber:
+                    description: Ten digit phone number with no dots or dashes
+                    type: integer
+            TelephoneNumbersRanges:
+              description: Ranges of telephone numbers to be moved
+              type: array
+              minItems: 1
+              items:
+                type: object
+                properties:
+                  TelephoneNumbersRange:
+                    description: Range of telephone numbers
+                    properties:
+                      From:
+                        description: >-
+                          First phone number of the range. Ten digit with no
+                          dots or dashes
+                        type: integer
+                      To:
+                        description: >-
+                          Last phone number of the range. Ten digit with no dots
+                          or dashes
+                        type: integer
+            SiteId:
+              description: A site id to which telephone number will be moved
+              type: integer
+            CustomerOrderId:
+              description: >-
+                Optional customer-defined reference ID for this order. Only
+                alphanumeric values, dashes and spaces are allowed. Not unique —
+                Bandwidth applies no uniqueness constraint, so multiple orders
+                may share the same value. Each order receives its own unique
+                Bandwidth-assigned `orderId`.
+              type: string
+            SipPeerId:
+              description: >-
+                A sippeer id of provided site to which telephone number will be
+                moved
+              type: integer
+            OperatorId:
+              description: An operator id to link the request with the operator info.
+              type: integer
+            VoiceConfigurationPackageId:
+              description: The voice config's id to accept vcp in request.
+              type: string
+    importVoiceTnOrderResponse:
+      type: object
+      properties:
+        ImportVoiceTnOrderResponse:
+          type: object
+          properties:
+            ImportVoiceTnOrder:
+              $ref: '#/components/schemas/importVoiceTnOrder'
+    importVoiceTnOrder:
+      type: object
+      properties:
+        CustomerOrderId:
+          type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            has a distinct Bandwidth-assigned `orderId`.
+        OrderCreateDate:
+          type: string
+        AccountId:
+          type: string
+        CreatedByUser:
+          type: string
+        LastModifiedDate:
+          type: string
+        SiteId:
+          type: string
+        SipPeerId:
+          type: string
+        OperatorId:
+          type: integer
+        VoiceConfigurationPackageId:
+          type: string
+        TelephoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/telephoneNumber'
+        ProcessingStatus:
+          $ref: '#/components/schemas/importVoiceProcessingStatus'
+        MissingRequirements:
+          type: array
+          description: >-
+            List of Missing Requirements, needed to be fulfilled by the user
+            before this voice order can be submitted.
+          items:
+            $ref: '#/components/schemas/hostedVoiceMissingRequirement'
+        Errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+    hostedVoiceMissingRequirement:
+      type: object
+      properties:
+        Requirement:
+          $ref: '#/components/schemas/hostedVoiceRequirement'
+        Description:
+          description: Additional data describing the nature of the missing requirement
+          type: string
+    importVoiceTnOrdersPatchRequest:
+      title: UpdateImportVoiceTnOrder
+      properties:
+        ImportVoiceTnOrder:
+          type: object
+          required:
+            - ProcessingStatus
+          properties:
+            ProcessingStatus:
+              $ref: '#/components/schemas/importVoicePatchStatus'
+    importVoiceTnOrderError:
+      type: object
+      properties:
+        ImportVoiceTnOrderResponse:
+          $ref: '#/components/schemas/responseStatus'
+    removeImportedVoiceTnOrders:
+      type: object
+      properties:
+        TotalCount:
+          type: integer
+        Links:
+          $ref: '#/components/schemas/paginationLinks'
+        RemoveImportedVoiceTnOrderSummary:
+          type: array
+          items:
+            $ref: '#/components/schemas/voiceOrderSummary'
+    paginationLinks:
+      type: object
+      title: Links
+      properties:
+        first:
+          type: string
+        next:
+          type: string
+        previous:
+          type: string
+        last:
+          type: string
+    voiceOrderSummary:
+      type: object
+      properties:
+        accountId:
+          type: integer
+        userId:
+          type: string
+        OrderId:
+          type: string
+        lastModifiedDate:
+          type: string
+        CountOfTNs:
+          type: integer
+        OrderType:
+          type: string
+        CustomerOrderId:
+          type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            has a distinct Bandwidth-assigned `orderId`.
+        OrderDate:
+          type: string
+        OrderStatus:
+          type: string
+    removeImportedVoiceTnOrderRequest:
+      required:
+        - TelephoneNumbers
+      title: RemoveImportedVoiceTnOrder
+      properties:
+        CustomerOrderId:
+          type: string
+          description: >-
+            Optional customer-defined reference ID for this order. Only
+            alphanumeric values, dashes and spaces are allowed. Not unique —
+            Bandwidth applies no uniqueness constraint, so multiple orders may
+            share the same value. Each order receives its own unique
+            Bandwidth-assigned `orderId`.
+          maxLength: 255
+        TelephoneNumbers:
+          description: >-
+            Ten digit phone number with no dots or dashes. One or more is
+            required. Use a PhoneNumber tag for each phone number in the list
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/telephoneNumber'
+    removeImportedVoiceTnOrderResponse:
+      type: object
+      properties:
+        RemoveImportedVoiceTnOrder:
+          type: object
+          properties:
+            CustomerOrderId:
+              type: string
+              description: >-
+                The customer-defined reference ID for this order, if one was
+                provided at creation. Not unique — Bandwidth applies no
+                uniqueness constraint, so multiple orders may share the same
+                value. Each order has a distinct Bandwidth-assigned `orderId`.
+            OrderCreateDate:
+              type: string
+            AccountId:
+              type: integer
+            CreatedByUser:
+              type: string
+            OrderId:
+              type: string
+            LastModifiedDate:
+              type: string
+            ProcessingStatus:
+              $ref: '#/components/schemas/orderStatus'
+            TelephoneNumbers:
+              type: array
+              items:
+                $ref: '#/components/schemas/telephoneNumber'
+            Errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  Code:
+                    type: integer
+                  Description:
+                    type: string
+                  TelephoneNumbers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/telephoneNumber'
+    operatorRequestPayload:
+      title: operatorRequestPayload
+      type: object
+      required:
+        - countryCodeA3
+        - operatorName
+        - operatorCode
+        - routingPrefixes
+      properties:
+        countryCodeA3:
+          type: string
+          description: It used to store country code.
+          example: FRA
+        operatorName:
+          type: string
+          description: It used to store operator name.
+          example: Operator1
+        operatorCode:
+          type: string
+          description: It used to store operator code.
+          example: VOX
+        routingPrefixes:
+          type: array
+          description: It used to store routing prefixes.
+          items:
+            $ref: '#/components/schemas/routingPrefixRequestPayload'
+    operatorPatchRequestPayload:
+      title: operatorPatchRequestPayload
+      type: object
+      properties:
+        operatorName:
+          type: string
+          description: Update the name of the operator.
+          example: operator5
+        routingPrefixes:
+          type: array
+          description: Update the routing prefixes of the operator.
+          items:
+            $ref: '#/components/schemas/routingPrefixRequestPayload'
+    routingPrefixRequestPayload:
+      title: routingPrefixRequestPayload
+      type: object
+      required:
+        - code
+        - phoneNumberTypes
+      properties:
+        code:
+          type: string
+          description: The name of the field that contains the code
+          example: R01
+        phoneNumberTypes:
+          $ref: '#/components/schemas/phoneNumberTypes'
+    phoneNumberTypes:
+      description: >-
+        A list of Phone number type GEOGRAPHIC, NATIONAL, MOBILE, TOLL_FREE,
+        SHARED_COST.
+      enum:
+        - GEOGRAPHIC
+        - NATIONAL
+        - TOLLFREE
+        - MOBILE
+        - SHARED_COST
+      example:
+        - GEOGRAPHIC
+        - TOLL-FREE
+      items:
+        type: string
+      type: array
+    operatorResponse:
+      title: operatorResponse
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/operatorResponsePayload'
+        links:
+          $ref: '#/components/schemas/links'
+    operatorResponsePayload:
+      title: operatorResponsePayload
+      type: object
+      properties:
+        operatorId:
+          type: integer
+          description: It used to store operator id.
+          example: 1
+        countryCodeA3:
+          type: string
+          description: It used to store country code.
+          example: FRA
+        operatorName:
+          type: string
+          description: It used to store operator name.
+          example: Operator1
+        operatorCode:
+          type: string
+          description: It used to store operator code.
+          example: VOX
+        routingPrefixes:
+          type: array
+          items:
+            $ref: '#/components/schemas/routingPrefixResponsePayload'
+    routingPrefixResponsePayload:
+      title: routingPrefixResponsePayload
+      type: object
+      properties:
+        code:
+          type: string
+          description: The name of the field that contains the code
+          example: R01
+        phoneNumberTypes:
+          $ref: '#/components/schemas/phoneNumberTypes'
+    links:
+      title: Links
+      type: array
+      items:
+        oneOf:
+          - $ref: '#/components/schemas/selfLink'
+    selfLink:
+      title: Self Link
+      type: object
+      properties:
+        href:
+          type: string
+          description: URI of the link
+          example: /self/uri
+        rel:
+          type: string
+          description: Specifies the relationship between this link and the resource.
+          example: SelfResource
+        method:
+          type: string
+          description: HTTP method to be used
+          example: GET
+    createBadRequestError:
+      title: createBadRequestError
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                description: Error code
+                example: '205617'
+              description:
+                type: string
+                description: Error description.
+                example: There was an issue with your request
+              id:
+                type: string
+                description: Error id.
+                example: optional-error-id
+              type:
+                type: string
+                description: Error type.
+                example: bad-request
+    operatorUnauthorizedRequestError:
+      title: operatorUnauthorizedRequestError
+      type: object
+      properties:
+        links:
+          $ref: '#/components/schemas/links'
+        data:
+          default: null
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                description: Error code
+                example: '205619'
+              description:
+                type: string
+                description: Error description.
+                example: Invalid or missing credentials.
+              id:
+                type: string
+                description: Error id.
+                example: optional-error-id
+              type:
+                type: string
+                description: Error type.
+                example: authentication-credentials
+    operatorForbiddenRequestError:
+      title: operatorForbiddenRequestError
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                description: Error code
+                example: '205620'
+              description:
+                type: string
+                description: Error description.
+                example: User does not have permissions to access this resource.
+              id:
+                type: string
+                description: Error id.
+                example: optional-error-id
+              type:
+                type: string
+                description: Error type.
+                example: resource-permissions
+    operatorNotFoundRequestError:
+      title: operatorNotFoundRequestError
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                description: Error code
+                example: '205621'
+              description:
+                type: string
+                description: Error description.
+                example: The resource specified cannot be found.
+              id:
+                type: string
+                description: Error id.
+                example: optional-error-id
+              type:
+                type: string
+                description: Error type.
+                example: resource-not-found
+    methodNotSupportError:
+      title: methodNotSupportError
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                description: Error code
+                example: '205623'
+              description:
+                type: string
+                description: Error description.
+                example: The HTTP method used is not supported by this resource.
+              id:
+                type: string
+                description: Error id.
+                example: optional-error-id
+              type:
+                type: string
+                description: Error type.
+                example: http-method-not-supported
+    operatorInvalidMediaTypeRequestError:
+      title: operatorInvalidMediaTypeRequestError
+      type: object
+      properties:
+        links:
+          $ref: '#/components/schemas/links'
+        data:
+          default: null
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                description: Error code
+                example: '205621'
+              description:
+                type: string
+                description: Error description.
+                example: Content-Type must be application/json.
+              id:
+                type: string
+                description: Error id.
+                example: optional-error-id
+              type:
+                type: string
+                description: Error type.
+                example: Unsupported Media Type
+    operatorTooManyRequestError:
+      title: operatorTooManyRequestsError
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                description: Error code
+                example: '205622'
+              description:
+                type: string
+                description: Error description.
+                example: >-
+                  Rate limit exceeded. Wait for the time specified in the
+                  Retry-After header before sending another request.
+              id:
+                type: string
+                description: Error id.
+                example: optional-error-id
+              type:
+                type: string
+                description: Error type.
+                example: rate-limiting
+    operatorInternalRequestError:
+      title: operatorInternalRequestError
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                description: Error code
+                example: '205618'
+              description:
+                type: string
+                description: Error description.
+                example: >-
+                  Unexpected internal server error. Contact Bandwidth Customer
+                  Support if this problem persists.
+              id:
+                type: string
+                description: Error id.
+                example: optional-error-id
+              type:
+                type: string
+                description: Error type.
+                example: internal-server-error
+    listOperatorsResponse:
+      title: listOperatorsResponse
+      type: object
+      properties:
+        links:
+          $ref: '#/components/schemas/links'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/operatorResponsePayload'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+          example: []
+    genericError:
+      title: Generic Error
+      type: object
+      properties:
+        data:
+          type: object
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+      required:
+        - data
+        - errors
+        - links
+    link:
+      title: Link
+      description: The URI link details to self or a related resource with the relation
+      type: object
+      properties:
+        href:
+          type: string
+          description: URI of the link
+          example: /resource/uri
+        rel:
+          type: string
+          description: Specifies the relationship between this link and the resource
+          example: self
+        method:
+          type: string
+          description: HTTP method to be used
+          example: GET
+      required:
+        - href
+        - rel
+        - method
+    queryParamStringEqStartsWith:
+      type: object
+      properties:
+        eq:
+          type: string
+        startsWith:
+          type: string
+    importTnCheckerRequest:
+      title: ImportTnCheckerRequest
+      type: object
+      required:
+        - phoneNumbers
+        - subAccountId
+      properties:
+        phoneNumbers:
+          description: List of phone numbers to check importability, in E.164 format.
+          type: array
+          minItems: 1
+          maxItems: 5000
+          items:
+            type: string
+          example:
+            - '+13032281000'
+            - '+14109235436'
+            - '+14104685864'
+        subAccountId:
+          description: The sub-account ID to which the phone numbers will be imported.
+          type: integer
+          example: 486
+        locationId:
+          description: >-
+            The location ID of the provided sub-account. If not specified, the
+            default location for the sub-account will be used.
+          type: integer
+          example: 500025
+    importTnCheckerJsonResponse:
+      title: ImportTnCheckerResponse
+      type: object
+      properties:
+        phoneNumbers:
+          description: List of phone numbers that can be imported.
+          type: array
+          items:
+            type: string
+          example:
+            - '+13032281000'
+        errors:
+          description: List of import errors for phone numbers that cannot be imported.
+          type: array
+          items:
+            $ref: '#/components/schemas/importTnCheckerJsonError'
+    importTnCheckerJsonError:
+      title: ImportTnCheckerError
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code.
+          example: 19006
+        description:
+          type: string
+          description: Human-readable error description.
+          example: Bandwidth numbers cannot be imported by this account at this time.
+        phoneNumbers:
+          description: List of phone numbers associated with this error.
+          type: array
+          items:
+            type: string
+          example:
+            - '+14109235436'
+            - '+14104685864'
+    importTnCheckerErrorJsonResponse:
+      title: ImportTnCheckerErrorResponse
+      type: object
+      properties:
+        errors:
+          description: List of errors encountered while validating the request.
+          type: array
+          items:
+            $ref: '#/components/schemas/importTnCheckerJsonError'
+    importVoiceTnOrdersJsonResponseList:
+      title: ImportVoiceTnOrdersResponseList
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: The total number of orders matching the query.
+          example: 2
+        orders:
+          type: array
+          description: List of order summaries.
+          items:
+            $ref: '#/components/schemas/importVoiceTnOrderJsonSummary'
+    importVoiceTnOrderJsonSummary:
+      title: ImportVoiceTnOrderSummary
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: The account ID associated with the order.
+          example: 14
+        phoneNumberCount:
+          type: integer
+          description: The count of phone numbers in the order.
+          example: 1
+        customerOrderId:
+          type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation.
+          example: CustomerOrderId
+        userId:
+          type: string
+          description: The ID of the user who created the order.
+          example: systemUser
+        lastModifiedDate:
+          type: string
+          description: The date and time the order was last modified.
+          example: '2019-01-24T11:08:09.770Z'
+        orderDate:
+          type: string
+          description: The date and time the order was created.
+          example: '2019-01-24T11:08:09.770Z'
+        orderType:
+          type: string
+          description: The type of order.
+          example: import_voice_tn_orders
+        orderStatus:
+          $ref: '#/components/schemas/orderStatus'
+        orderId:
+          type: string
+          description: The unique Bandwidth-assigned identifier for the order.
+          example: 211a103c-5f9c-4117-8833-c574bdc390fd
+    importVoiceTnOrderJsonRequest:
+      title: ImportVoiceTnOrderRequest
+      type: object
+      required:
+        - subAccountId
+      properties:
+        customerOrderId:
+          type: string
+          description: >-
+            Optional customer-defined reference ID for this order. Only
+            alphanumeric values, dashes and spaces are allowed. Not unique —
+            Bandwidth applies no uniqueness constraint, so multiple orders may
+            share the same value. Each order receives its own unique
+            Bandwidth-assigned `orderId`.
+          example: ICPA123ABC
+        subAccountId:
+          type: integer
+          description: The sub-account ID to which telephone numbers will be imported.
+          example: 743
+        locationId:
+          type: integer
+          description: >-
+            The location ID of provided sub-account to which telephone numbers
+            will be imported.
+          example: 303716
+        voiceConfigurationPackageId:
+          type: string
+          description: The voice configuration package ID to accept VCP in the request.
+          example: 8826e9fe-1f0a-4cb0-be37-85cad742686c
+        operatorId:
+          type: integer
+          description: An operator ID to link the request with the operator info.
+          example: 1
+        phoneNumbers:
+          description: List of phone numbers to be imported, in E.164 format.
+          type: array
+          minItems: 1
+          items:
+            type: string
+          example:
+            - '+19199918388'
+            - '+14158714245'
+            - '+14352154439'
+            - '+14352154466'
+        phoneNumberRanges:
+          description: Ranges of phone numbers to be imported.
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/importVoiceTnOrderPhoneNumberRange'
+    importVoiceTnOrderPhoneNumberRange:
+      title: ImportVoiceTnOrderPhoneNumberRange
+      type: object
+      properties:
+        from:
+          type: string
+          description: First phone number of the range in E.164 format.
+          example: '+19199918388'
+        to:
+          type: string
+          description: Last phone number of the range in E.164 format.
+          example: '+19199918400'
+    importVoiceTnOrderJsonResponse:
+      title: ImportVoiceTnOrderResponse
+      type: object
+      properties:
+        customerOrderId:
+          type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation.
+          example: SJM000001
+        orderCreateDate:
+          type: string
+          description: The date and time the order was created.
+          example: '2018-01-20T02:59:54.000Z'
+        accountId:
+          type: integer
+          description: The account ID associated with the order.
+          example: 9900012
+        createdByUser:
+          type: string
+          description: The user who created the order.
+          example: smckinnon
+        orderId:
+          type: string
+          description: The unique Bandwidth-assigned identifier for the order.
+          example: b05de7e6-0cab-4c83-81bb-9379cba8efd0
+        lastModifiedDate:
+          type: string
+          description: The date and time the order was last modified.
+          example: '2018-01-20T02:59:54.000Z'
+        subAccountId:
+          type: integer
+          description: The sub-account ID to which telephone numbers were imported.
+          example: 202
+        locationId:
+          type: integer
+          description: The location ID to which telephone numbers were imported.
+          example: 520565
+        voiceConfigurationPackageId:
+          type: string
+          description: The voice configuration package ID used in this order.
+          example: 8826e9fe-1f0a-4cb0-be37-85cad742686c
+        operatorId:
+          type: integer
+          description: The operator ID linked to this order.
+          example: 1
+        phoneNumbers:
+          type: array
+          description: List of phone numbers in the order, in E.164 format.
+          items:
+            type: string
+          example:
+            - '+19199918388'
+            - '+14158714245'
+        processingStatus:
+          $ref: '#/components/schemas/importVoiceProcessingStatus'
+        missingRequirements:
+          type: array
+          description: >-
+            List of missing requirements needed before this voice order can be
+            submitted.
+          items:
+            $ref: '#/components/schemas/importVoiceTnOrderJsonMissingRequirement'
+        errors:
+          type: array
+          description: List of errors encountered during order processing.
+          items:
+            $ref: '#/components/schemas/importVoiceTnOrderJsonErrorItem'
+    importVoiceTnOrderJsonMissingRequirement:
+      title: ImportVoiceTnOrderMissingRequirement
+      type: object
+      properties:
+        requirement:
+          $ref: '#/components/schemas/hostedVoiceRequirement'
+        description:
+          type: string
+          description: Additional data describing the nature of the missing requirement.
+          example: A Letter of Authorization document is required.
+    importVoiceTnOrderJsonErrorItem:
+      title: ImportVoiceTnOrderError
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code.
+          example: 19013
+        description:
+          type: string
+          description: Human-readable error description.
+          example: Numbers already exist
+        phoneNumbers:
+          type: array
+          description: List of phone numbers associated with this error.
+          items:
+            type: string
+          example:
+            - '+12262665583'
+    importVoiceTnOrderJsonError:
+      title: ImportVoiceTnOrderError
+      type: object
+      properties:
+        processingStatus:
+          type: string
+          description: The processing status when the error occurred.
+          example: FAILED
+        errorCode:
+          type: integer
+          description: Numeric error code.
+          example: 7309
+        description:
+          type: string
+          description: Human-readable error description.
+          example: The site id was not supplied or is invalid.
+    importVoiceTnOrdersPatchJsonRequest:
+      title: ImportVoiceTnOrdersPatchRequest
+      type: object
+      required:
+        - processingStatus
+      properties:
+        processingStatus:
+          $ref: '#/components/schemas/importVoicePatchStatus'
+    removeImportedVoiceTnOrdersJsonList:
+      title: RemoveImportedVoiceTnOrdersResponseList
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: The total number of orders matching the query.
+          example: 2
+        orders:
+          type: array
+          description: List of order summaries.
+          items:
+            $ref: '#/components/schemas/removeImportedVoiceTnOrderJsonSummary'
+    removeImportedVoiceTnOrderJsonSummary:
+      title: RemoveImportedVoiceTnOrderSummary
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: The account ID associated with the order.
+          example: 14
+        phoneNumberCount:
+          type: integer
+          description: The count of phone numbers in the order.
+          example: 1
+        customerOrderId:
+          type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation.
+          example: DemoOrder
+        userId:
+          type: string
+          description: The ID of the user who created the order.
+          example: systemUser
+        lastModifiedDate:
+          type: string
+          description: The date and time the order was last modified.
+          example: '2019-01-24T10:40:12.908Z'
+        orderDate:
+          type: string
+          description: The date and time the order was created.
+          example: '2019-01-24T10:40:12.907Z'
+        orderType:
+          type: string
+          description: The type of order.
+          example: remove_imported_voice_tn_orders
+        orderStatus:
+          $ref: '#/components/schemas/orderStatus'
+        orderId:
+          type: string
+          description: The unique Bandwidth-assigned identifier for the order.
+          example: 4f2d090b-ece7-49ab-9c40-06d1425c39c3
+    removeImportedVoiceTnOrderJsonRequest:
+      title: RemoveImportedVoiceTnOrderRequest
+      type: object
+      required:
+        - phoneNumbers
+      properties:
+        customerOrderId:
+          type: string
+          description: >-
+            Optional customer-defined reference ID for this order. Only
+            alphanumeric values, dashes and spaces are allowed. Max length is
+            255 characters. Not unique — Bandwidth applies no uniqueness
+            constraint, so multiple orders may share the same value. Each order
+            receives its own unique Bandwidth-assigned `orderId`.
+          maxLength: 255
+          example: ICPA123ABC
+        phoneNumbers:
+          description: List of phone numbers to be removed, in E.164 format.
+          type: array
+          minItems: 1
+          items:
+            type: string
+          example:
+            - '+19199918388'
+            - '+14158714245'
+            - '+14352154439'
+            - '+14352154466'
+    removeImportedVoiceTnOrderJsonResponse:
+      title: RemoveImportedVoiceTnOrderResponse
+      type: object
+      properties:
+        customerOrderId:
+          type: string
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation.
+          example: SJM000001
+        orderCreateDate:
+          type: string
+          description: The date and time the order was created.
+          example: '2018-01-20T02:59:54.000Z'
+        accountId:
+          type: integer
+          description: The account ID associated with the order.
+          example: 9900012
+        createdByUser:
+          type: string
+          description: The user who created the order.
+          example: smckinnon
+        orderId:
+          type: string
+          description: The unique Bandwidth-assigned identifier for the order.
+          example: b05de7e6-0cab-4c83-81bb-9379cba8efd0
+        lastModifiedDate:
+          type: string
+          description: The date and time the order was last modified.
+          example: '2018-01-20T02:59:54.000Z'
+        phoneNumbers:
+          type: array
+          description: List of phone numbers in the order, in E.164 format.
+          items:
+            type: string
+          example:
+            - '+19199918388'
+            - '+14158714245'
+        processingStatus:
+          $ref: '#/components/schemas/orderStatus'
+        errors:
+          type: array
+          description: List of errors encountered during order processing.
+          items:
+            $ref: '#/components/schemas/importVoiceTnOrderJsonErrorItem'
+    removeImportedVoiceTnOrderJsonError:
+      title: RemoveImportedVoiceTnOrderError
+      type: object
+      properties:
+        processingStatus:
+          type: string
+          description: The processing status when the error occurred.
+          example: FAILED
+        errorCode:
+          type: integer
+          description: Numeric error code.
+          example: 1234
+        description:
+          type: string
+          description: Human-readable error description.
+          example: The customer order id is invalid.
+    hostedVoiceDocumentData:
+      properties:
+        customReference:
+          type: string
+          minLength: 1
+          maxLength: 100
+          example: home_office
+          description: A custom reference name.
+        type:
+          type: string
+          description: Unique name representing the type of document
+          example: LOA
+        description:
+          type: string
+          description: Description about the document
+          example: Letter of Authorization
+        fields:
+          title: Fields
+          description: Field is a key value pair of attribute name and value.
+          type: object
+          additionalProperties:
+            anyOf:
+              - type: string
+          example:
+            firstName: First Name
+            issueDate: '2020-11-23'
+      required:
+        - type
+    hostedVoiceDocumentResponseData:
+      allOf:
+        - $ref: '#/components/schemas/hostedVoiceDocumentData'
+      properties:
+        documentId:
+          description: Unique identifier of the document
+          type: string
+          format: uuid
+          example: daa9dd0f-de97-4103-8530-b31bf4be8fc0
+        status:
+          $ref: '#/components/schemas/hostedVoiceDocumentStatus'
+        createdDateTime:
+          type: string
+          example: '2024-03-11T04:09:25.399Z'
+          description: The date and time this object was created in ISO 8601 format
+        updatedDateTime:
+          type: string
+          example: '2024-03-11T04:09:25.399Z'
+          description: The date and time this object was last updated in ISO 8601 format
+    listHostedVoiceDocumentsResponse:
+      title: List Documents Response
+      type: object
+      properties:
+        links:
+          $ref: '#/components/schemas/listLinks'
+        data:
+          title: Data
+          type: array
+          items:
+            $ref: '#/components/schemas/hostedVoiceDocumentResponseData'
+        errors:
+          nullable: true
+          title: Errors
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+          example: []
+    getHostedVoiceDocumentResponse:
+      title: Document Response
+      type: object
+      properties:
+        links:
+          $ref: '#/components/schemas/getLinks'
+        data:
+          $ref: '#/components/schemas/hostedVoiceDocumentResponseData'
+        errors:
+          nullable: true
+          title: Errors
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+          example: []
+    createUpdateHostedVoiceDocumentResponse:
+      title: Document Response
+      type: object
+      properties:
+        links:
+          $ref: '#/components/schemas/createUpdateLinks'
+        data:
+          $ref: '#/components/schemas/hostedVoiceDocumentResponseData'
+        errors:
+          nullable: true
+          title: Errors
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+          example: []
+    getLinks:
+      title: Links
+      type: array
+      items:
+        $ref: '#/components/schemas/link'
+      example:
+        - href: /self-resource/{id}
+          rel: self
+          method: GET
+        - href: /accounts/{accountId}/self-resource/rel-resource/{id}
+          rel: get-rel-resource
+          method: GET
+    createUpdateLinks:
+      title: Links
+      type: array
+      items:
+        $ref: '#/components/schemas/link'
+      example:
+        - href: /self-resource/{id}
+          rel: self
+          method: GET
+        - href: /accounts/{accountId}/self-resource/{id}
+          rel: update
+          method: PUT
+    listLinks:
+      title: Links
+      type: array
+      items:
+        $ref: '#/components/schemas/link'
+      example:
+        - href: /self-resource
+          rel: self
+          method: GET
+        - href: /accounts/{accountId}/{resource}?beforeCursor={cursorId}
+          rel: prev-resources
+          method: GET
+        - href: /accounts/{accountId}/{resource}?afterCursor={cursorId}
+          rel: next-resources
+          method: GET
+    externalTnOrderError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code.
+          example: 13552
+        description:
+          type: string
+          description: Error description.
+          example: Telephone numbers already exist.
+        phoneNumbers:
+          type: array
+          items:
+            type: string
+          description: Phone numbers associated with the error.
+          example:
+            - '+12262665583'
+    externalTnOrderItem:
+      type: object
+      properties:
+        orderId:
+          type: string
+          description: The unique Bandwidth-assigned order ID.
+          example: bf1305b8-8998-1111-2222-51ba3ce52d4e
+        customerOrderId:
+          type: string
+          description: Customer-assigned reference ID for the order.
+          example: ICPA123ABC
+        accountId:
+          type: string
+          description: The account ID.
+          example: '9900012'
+        createdByUser:
+          type: string
+          description: The user who created the order.
+          example: sjm
+        orderCreateDate:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the order was created.
+          example: '2018-01-09T02:58:04.615Z'
+        lastModifiedDate:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the order was last modified.
+          example: '2018-01-09T02:58:05.298Z'
+        subAccountId:
+          type: string
+          description: The sub-account (site) ID.
+          example: '65487'
+        locationId:
+          type: string
+          description: The location (SIP peer) ID.
+          example: '885544'
+        action:
+          description: Whether the order imports or removes telephone numbers.
+          allOf:
+            - $ref: '#/components/schemas/externalTnAction'
+          example: IMPORT
+        loaType:
+          description: The type of Letter of Authorization for NANP numbers.
+          allOf:
+            - $ref: '#/components/schemas/loaType'
+          example: SUBSCRIBER
+        processingStatus:
+          description: The processing status of the order.
+          allOf:
+            - $ref: '#/components/schemas/orderStatus'
+          example: PARTIAL
+        phoneNumbers:
+          type: array
+          items:
+            type: string
+          description: Phone numbers associated with the order.
+          example:
+            - '+12106078250'
+            - '+12109678273'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/externalTnOrderError'
+          description: Errors encountered during order processing.
+    externalTnOrdersListResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of orders matching the query.
+          example: 2
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/externalTnOrderItem'
+    externalTnOrderRequest:
+      type: object
+      required:
+        - subAccountId
+        - action
+        - phoneNumbers
+      properties:
+        customerOrderId:
+          type: string
+          description: Customer-assigned reference ID for the order.
+          example: ICPA123ABC
+        subAccountId:
+          type: string
+          description: The sub-account (site) ID.
+          example: '743'
+        locationId:
+          type: string
+          description: >-
+            The location (SIP peer) ID. If not specified, the default location
+            for the sub-account is used.
+          example: '303716'
+        action:
+          description: Whether to import or remove the telephone numbers.
+          allOf:
+            - $ref: '#/components/schemas/externalTnAction'
+          example: IMPORT
+        loaType:
+          description: The type of Letter of Authorization for NANP numbers.
+          allOf:
+            - $ref: '#/components/schemas/loaType'
+          example: CARRIER
+        phoneNumbers:
+          type: array
+          items:
+            type: string
+          description: The phone numbers to import or remove, in E.164 format.
+          example:
+            - '+19199918388'
+            - '+14158714245'
+            - '+14352154439'
+            - '+14352154466'
+    externalTnOrder400ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code.
+          example: '5081'
+        description:
+          type: string
+          description: Error description.
+          example: Action is absent or invalid. Possible values IMPORT, REMOVE
+    externalTnOrder404ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code.
+          example: '404'
+        description:
+          type: string
+          description: Error description.
+          example: The resource does not exist
   parameters:
     accountIdPathParam:
       description: User's account ID.
@@ -1582,12 +4366,7 @@ components:
       in: query
       required: false
       schema:
-        enum:
-          - LOA
-          - INVOICE
-          - CSR
-          - OTHER
-        type: string
+        $ref: '#/components/schemas/documentType'
       example: LOA
     loaTypeQueryParam:
       name: loaType
@@ -1685,6 +4464,93 @@ components:
             - COMPLETE
             - PARTIAL
             - FAILED
+    tnQueryParam:
+      name: tn
+      description: A Telephone Number (TN) that is referenced in the order
+      in: query
+      schema:
+        type: string
+      example: '+19199918388'
+    accountIdQueryParam:
+      name: accountID
+      description: >
+        This is the account that the searched-for order will be contributing to.
+        Specifying this parameter will restrict the search to imported voice
+        orders within the specified account.
+      in: query
+      schema:
+        type: integer
+      example: 5000125
+    customReferenceQueryParamEqStartsWith:
+      in: query
+      name: customReference
+      required: false
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/queryParamStringEqStartsWith'
+      examples:
+        eq:
+          value:
+            eq: home_office
+        startsWith:
+          value:
+            startsWith: home
+      description: Customer reference. It cannot be combined with any other query filter.
+    documentIdPathParam:
+      in: path
+      name: documentId
+      required: true
+      schema:
+        type: string
+        example: ArAnD0m1d
+      description: Document Id.
+    operatorCountryCodeA3QueryParam:
+      in: query
+      name: countryCodeA3
+      required: false
+      schema:
+        type: object
+        properties:
+          eq:
+            type: string
+            example: FRA
+      description: Country code of the address in ISO 3166-1 alpha-3 format.
+    operatorSizeQueryParam:
+      name: size
+      description: The quantity of results displayed for each page.
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 10
+      example: 10
+    operatorId:
+      in: path
+      name: operatorId
+      required: true
+      schema:
+        type: integer
+      description: Your Bandwidth Operator ID.
+      example: 99006700
+    orderIdFragmentQueryParam:
+      name: orderIdFragment
+      description: >-
+        The first few characters of a Bandwidth-assigned order ID. Used to
+        search for orders by partial ID.
+      in: query
+      required: false
+      schema:
+        type: string
+      example: ed1c0bed-e2
+    actionQueryParam:
+      name: action
+      description: Filter orders by action type.
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/externalTnAction'
+      example: REMOVE
   requestBodies:
     postImportMessagingPhoneNumberOrdersLoasRequest:
       content:
@@ -1780,6 +4646,122 @@ components:
                       <TelephoneNumber>+14352154466</TelephoneNumber>
                    </TelephoneNumbers>
                 </RemoveImportedTnOrder>
+    addHostedVoiceDocumentRequest:
+      description: Add a document with any metadata
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/hostedVoiceDocumentData'
+              file:
+                type: string
+                format: binary
+                example: >-
+                  H4sICPsdulsCAHJlYWRtZS50eHQAC0/NSc7PTVUoyVdISixONTPRSy8tKlUEAPCdUNYXAAAA
+          encoding:
+            file:
+              contentType: >-
+                application/pdf, image/jpeg, image/jpg, image/png,
+                application/msword,
+                application/vnd.openxmlformats-officedocument.wordprocessingml.document
+              style: deepObject
+              explode: true
+            metadata:
+              contentType: application/json
+    updateHostedVoiceDocumentRequest:
+      description: Update document.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/hostedVoiceDocumentData'
+    operatorRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/operatorRequestPayload'
+      required: true
+    operatorPatchRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/operatorPatchRequestPayload'
+      required: true
+    importVoiceTnOrdersPatchRequest:
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/importVoiceTnOrdersPatchRequest'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/importVoiceTnOrdersPatchJsonRequest'
+          examples:
+            example:
+              value:
+                processingStatus: APPROVED
+    postExternalTnOrderRequest:
+      content:
+        application/xml:
+          schema:
+            type: object
+            xml:
+              name: ExternalTnsOrder
+            properties:
+              CustomerOrderId:
+                type: string
+              SiteId:
+                type: string
+                description: |
+                  The sub-account (site) ID. (JSON: `subAccountId`)
+              SipPeerId:
+                type: string
+                description: |
+                  The location (SIP peer) ID. (JSON: `locationId`)
+              Action:
+                $ref: '#/components/schemas/externalTnAction'
+              LoaType:
+                $ref: '#/components/schemas/loaType'
+              TelephoneNumbers:
+                type: object
+                properties:
+                  TelephoneNumber:
+                    type: array
+                    items:
+                      type: string
+          examples:
+            example:
+              value: |-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <ExternalTnsOrder>
+                  <CustomerOrderId>ICPA123ABC</CustomerOrderId>
+                  <SiteId>743</SiteId>
+                  <SipPeerId>303716</SipPeerId>
+                  <Action>IMPORT</Action>
+                  <LoaType>CARRIER</LoaType>
+                  <TelephoneNumbers>
+                    <TelephoneNumber>9199918388</TelephoneNumber>
+                    <TelephoneNumber>4158714245</TelephoneNumber>
+                    <TelephoneNumber>4352154439</TelephoneNumber>
+                    <TelephoneNumber>4352154466</TelephoneNumber>
+                  </TelephoneNumbers>
+                </ExternalTnsOrder>
+        application/json:
+          schema:
+            $ref: '#/components/schemas/externalTnOrderRequest'
+          examples:
+            example:
+              value:
+                customerOrderId: ICPA123ABC
+                subAccountId: '743'
+                locationId: '303716'
+                action: IMPORT
+                loaType: CARRIER
+                phoneNumbers:
+                  - '+19199918388'
+                  - '+14158714245'
+                  - '+14352154439'
+                  - '+14352154466'
   responses:
     getImportMessagingPhoneNumberOrdersHistoryResponse:
       description: OK
@@ -2491,3 +5473,598 @@ components:
                 </RemoveImportedTnOrdersResponse>
           schema:
             $ref: '#/components/schemas/removeImportedPhoneNumberOrdersErrorResponse'
+    importVoiceTnOrdersResponse:
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/importVoiceTnOrdersResponseList'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/importVoiceTnOrdersJsonResponseList'
+          examples:
+            example:
+              value:
+                totalCount: 2
+                orders:
+                  - accountId: 14
+                    phoneNumberCount: 1
+                    customerOrderId: CustomerOrderId
+                    userId: systemUser
+                    lastModifiedDate: '2019-01-24T11:08:09.770Z'
+                    orderDate: '2019-01-24T11:08:09.770Z'
+                    orderType: import_voice_tn_orders
+                    orderStatus: COMPLETE
+                    orderId: 211a103c-5f9c-4117-8833-c574bdc390fd
+      description: >
+        The descriptive payload for the importTnOrders query provides
+        information about the orders found by the query, including the data
+        associated with the order, the state of the order, and a list of the
+        successfully imported Telephone Numbers, and descriptions of any
+        encountered errors.
+    removeImportedVoiceTnOrdersResponse:
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/removeImportedVoiceTnOrders'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/removeImportedVoiceTnOrdersJsonList'
+          examples:
+            example:
+              value:
+                totalCount: 2
+                orders:
+                  - accountId: 14
+                    phoneNumberCount: 1
+                    customerOrderId: DemoOrder
+                    userId: systemUser
+                    lastModifiedDate: '2019-01-24T10:40:12.908Z'
+                    orderDate: '2019-01-24T10:40:12.907Z'
+                    orderType: remove_imported_voice_tn_orders
+                    orderStatus: COMPLETE
+                    orderId: 4f2d090b-ece7-49ab-9c40-06d1425c39c3
+      description: >
+        The descriptive payload for the removeImportedVoiceTnOrders query
+        provides information about the orders found by the query, including the
+        data associated with the order, the state of the order, and a list of
+        the successfully removed Hosted Voice Telephone Numbers, and
+        descriptions of any encountered errors.
+    listHostedVoiceDocumentsSuccess:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/listHostedVoiceDocumentsResponse'
+    getHostedVoiceDocumentSuccess:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/getHostedVoiceDocumentResponse'
+    createHostedVoiceDocumentSuccess:
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/createUpdateHostedVoiceDocumentResponse'
+    updateHostedVoiceDocumentSuccess:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/createUpdateHostedVoiceDocumentResponse'
+    deleteHostedVoiceDocumentSuccess:
+      description: >-
+        The 200 OK indicates a successful deletion of import voice tn order
+        documents.
+    downloadDocumentSuccess:
+      description: OK
+      content:
+        application/octet-stream:
+          schema:
+            type: string
+            format: binary
+    badRequestError:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+    unauthorizedError:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+    forbiddenError:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+    notFoundError:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+    notAllowedError:
+      description: Method Not Allowed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+    tooManyRequestsError:
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+    internalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+    importVoiceTnOrdersPatchBadRequestError:
+      description: Bad Request
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/importVoiceTnOrderError'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/importVoiceTnOrderJsonError'
+          examples:
+            example:
+              value:
+                processingStatus: FAILED
+                errorCode: 7309
+                description: The processing status transition is invalid.
+    importVoiceTnOrdersPatchForbiddenError:
+      description: Forbidden
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/importVoiceTnOrderError'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/importVoiceTnOrderJsonError'
+          examples:
+            example:
+              value:
+                processingStatus: FAILED
+                errorCode: 7310
+                description: You do not have permission to perform this action.
+    operatorSuccessfulResponse:
+      description: Created.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/operatorResponse'
+    operatorBadRequestError:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/createBadRequestError'
+    operatorUnauthorizedError:
+      description: Unauthorized Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/operatorUnauthorizedRequestError'
+    operatorForbiddenError:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/operatorForbiddenRequestError'
+    operatorNotFoundError:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/operatorNotFoundRequestError'
+    methodNotSupportedError:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/methodNotSupportError'
+    operatorInvalidMediaTypeError:
+      description: Unsupported Media Type
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/operatorInvalidMediaTypeRequestError'
+    operatorTooManyRequestsError:
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/operatorTooManyRequestError'
+    operatorsInternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/operatorInternalRequestError'
+    listOperatorsResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/listOperatorsResponse'
+    listExternalTnOrdersResponse:
+      description: OK
+      content:
+        application/xml:
+          schema:
+            type: object
+            xml:
+              name: ExternalTnsOrders
+          examples:
+            example:
+              value: |-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <ExternalTnsOrders>
+                  <TotalCount>2</TotalCount>
+                  <ExternalTnsOrder>
+                    <OrderCreateDate>2018-01-09T02:58:04.615Z</OrderCreateDate>
+                    <AccountId>9900012</AccountId>
+                    <CreatedByUser>sjm</CreatedByUser>
+                    <OrderId>bf1305b8-8998-1111-2222-51ba3ce52d4e</OrderId>
+                    <LastModifiedDate>2018-01-09T02:58:05.298Z</LastModifiedDate>
+                    <SiteId>65487</SiteId>
+                    <TelephoneNumbers>
+                      <TelephoneNumber>2106078250</TelephoneNumber>
+                      <TelephoneNumber>2109678273</TelephoneNumber>
+                    </TelephoneNumbers>
+                    <Action>IMPORT</Action>
+                    <LoaType>SUBSCRIBER</LoaType>
+                    <ProcessingStatus>PARTIAL</ProcessingStatus>
+                    <Errors>
+                      <Error>
+                        <Code>13552</Code>
+                        <Description>Telephone numbers already exist.</Description>
+                        <TelephoneNumbers>
+                          <TelephoneNumber>2262665583</TelephoneNumber>
+                        </TelephoneNumbers>
+                      </Error>
+                    </Errors>
+                    <SipPeerId>885544</SipPeerId>
+                  </ExternalTnsOrder>
+                </ExternalTnsOrders>
+        application/json:
+          schema:
+            $ref: '#/components/schemas/externalTnOrdersListResponse'
+          examples:
+            example:
+              value:
+                totalCount: 2
+                orders:
+                  - orderId: bf1305b8-8998-1111-2222-51ba3ce52d4e
+                    accountId: '9900012'
+                    createdByUser: sjm
+                    orderCreateDate: '2018-01-09T02:58:04.615Z'
+                    lastModifiedDate: '2018-01-09T02:58:05.298Z'
+                    subAccountId: '65487'
+                    locationId: '885544'
+                    action: IMPORT
+                    loaType: SUBSCRIBER
+                    processingStatus: PARTIAL
+                    phoneNumbers:
+                      - '+12106078250'
+                      - '+12109678273'
+                    errors:
+                      - code: 13552
+                        description: Telephone numbers already exist.
+                        phoneNumbers:
+                          - '+12262665583'
+    listExternalTnOrders404ErrorResponse:
+      description: Not Found
+      content:
+        application/xml:
+          examples:
+            example:
+              value: |-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <ExternalTnsOrders>
+                  <TotalCount>0</TotalCount>
+                </ExternalTnsOrders>
+        application/json:
+          schema:
+            $ref: '#/components/schemas/externalTnOrder404ErrorResponse'
+          examples:
+            example:
+              value:
+                code: '404'
+                description: >-
+                  No externalTns orders can be found that match the query
+                  parameters.
+    createExternalTnOrderResponse:
+      description: Created
+      content:
+        application/xml:
+          schema:
+            type: object
+            xml:
+              name: ExternalTnsOrderResponse
+          examples:
+            example:
+              value: |-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <ExternalTnsOrderResponse>
+                  <ExternalTnsOrder>
+                    <CustomerOrderId>SJM000001</CustomerOrderId>
+                    <OrderCreateDate>2018-01-20T02:59:54.000Z</OrderCreateDate>
+                    <AccountId>9900012</AccountId>
+                    <CreatedByUser>smckinnon</CreatedByUser>
+                    <OrderId>b05de7e6-0cab-4c83-81bb-9379cba8efd0</OrderId>
+                    <LastModifiedDate>2018-01-20T02:59:54.000Z</LastModifiedDate>
+                    <SiteId>202</SiteId>
+                    <SipPeerId>520565</SipPeerId>
+                    <TelephoneNumbers>
+                      <TelephoneNumber>9199918388</TelephoneNumber>
+                      <TelephoneNumber>4158714245</TelephoneNumber>
+                      <TelephoneNumber>4352154439</TelephoneNumber>
+                      <TelephoneNumber>4352154466</TelephoneNumber>
+                    </TelephoneNumbers>
+                    <Action>IMPORT</Action>
+                    <LoaType>CARRIER</LoaType>
+                    <ProcessingStatus>RECEIVED</ProcessingStatus>
+                  </ExternalTnsOrder>
+                </ExternalTnsOrderResponse>
+        application/json:
+          schema:
+            $ref: '#/components/schemas/externalTnOrderItem'
+          examples:
+            example:
+              value:
+                customerOrderId: SJM000001
+                orderCreateDate: '2018-01-20T02:59:54.000Z'
+                accountId: '9900012'
+                createdByUser: smckinnon
+                orderId: b05de7e6-0cab-4c83-81bb-9379cba8efd0
+                lastModifiedDate: '2018-01-20T02:59:54.000Z'
+                subAccountId: '202'
+                locationId: '520565'
+                phoneNumbers:
+                  - '+19199918388'
+                  - '+14158714245'
+                  - '+14352154439'
+                  - '+14352154466'
+                action: IMPORT
+                loaType: CARRIER
+                processingStatus: RECEIVED
+    createExternalTnOrder400ErrorResponse:
+      description: Bad Request
+      content:
+        application/xml:
+          examples:
+            example:
+              value: |-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <ExternalTnsOrderResponse>
+                  <ResponseStatus>
+                    <ErrorCode>5081</ErrorCode>
+                    <Description>Action is absent or invalid. Possible values IMPORT, REMOVE</Description>
+                  </ResponseStatus>
+                </ExternalTnsOrderResponse>
+        application/json:
+          schema:
+            $ref: '#/components/schemas/externalTnOrder400ErrorResponse'
+          examples:
+            example:
+              value:
+                code: '5081'
+                description: Action is absent or invalid. Possible values IMPORT, REMOVE
+    getExternalTnOrderResponse:
+      description: OK
+      content:
+        application/xml:
+          schema:
+            type: object
+            xml:
+              name: ExternalTnsOrder
+          examples:
+            example:
+              value: |-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <ExternalTnsOrder>
+                  <OrderCreateDate>2016-01-15T11:36:52.727Z</OrderCreateDate>
+                  <AccountId>1</AccountId>
+                  <CreatedByUser>jbm</CreatedByUser>
+                  <OrderId>65e03a35-6b97-48a5-8126-f47bad02df2a</OrderId>
+                  <LastModifiedDate>2018-01-10T05:20:47.661Z</LastModifiedDate>
+                  <ProcessingStatus>PARTIAL</ProcessingStatus>
+                  <CustomerOrderId>ICPA123ABC</CustomerOrderId>
+                  <SiteId>743</SiteId>
+                  <SipPeerId>303716</SipPeerId>
+                  <Action>IMPORT</Action>
+                  <LoaType>CARRIER</LoaType>
+                  <TelephoneNumbers>
+                    <TelephoneNumber>9199918388</TelephoneNumber>
+                    <TelephoneNumber>4158714245</TelephoneNumber>
+                    <TelephoneNumber>4352154439</TelephoneNumber>
+                    <TelephoneNumber>4352154466</TelephoneNumber>
+                  </TelephoneNumbers>
+                  <Errors>
+                    <Error>
+                      <Code>13552</Code>
+                      <Description>Telephone numbers already exist.</Description>
+                      <TelephoneNumbers>
+                        <TelephoneNumber>9199918388</TelephoneNumber>
+                      </TelephoneNumbers>
+                    </Error>
+                  </Errors>
+                </ExternalTnsOrder>
+        application/json:
+          schema:
+            $ref: '#/components/schemas/externalTnOrderItem'
+          examples:
+            example:
+              value:
+                orderCreateDate: '2016-01-15T11:36:52.727Z'
+                accountId: '1'
+                createdByUser: jbm
+                orderId: 65e03a35-6b97-48a5-8126-f47bad02df2a
+                lastModifiedDate: '2018-01-10T05:20:47.661Z'
+                processingStatus: PARTIAL
+                customerOrderId: ICPA123ABC
+                subAccountId: '743'
+                locationId: '303716'
+                action: IMPORT
+                loaType: CARRIER
+                phoneNumbers:
+                  - '+19199918388'
+                  - '+14158714245'
+                  - '+14352154439'
+                  - '+14352154466'
+                errors:
+                  - code: 13552
+                    description: Telephone numbers already exist.
+                    phoneNumbers:
+                      - '+19199918388'
+    getExternalTnOrder404ErrorResponse:
+      description: Not Found
+      content:
+        application/xml:
+          examples:
+            example:
+              value: |-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <ExternalTnsOrderResponse>
+                  <ResponseStatus>
+                    <Description>The resource does not exist</Description>
+                  </ResponseStatus>
+                </ExternalTnsOrderResponse>
+        application/json:
+          schema:
+            $ref: '#/components/schemas/externalTnOrder404ErrorResponse'
+          examples:
+            example:
+              value:
+                code: '404'
+                description: The resource does not exist
+    getExternalTnOrderHistoryResponse:
+      description: OK
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/orderHistoryWrapper'
+          examples:
+            example:
+              value: |-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <OrderHistoryWrapper>
+                   <OrderHistory>
+                      <OrderDate>2018-01-09T02:58:04.615Z</OrderDate>
+                      <Note>External TN order is received.</Note>
+                      <Author>admin</Author>
+                      <Status>RECEIVED</Status>
+                   </OrderHistory>
+                   <OrderHistory>
+                      <OrderDate>2018-01-09T02:58:05.298Z</OrderDate>
+                      <Note>External TN order is processing.</Note>
+                      <Author>admin</Author>
+                      <Status>PROCESSING</Status>
+                   </OrderHistory>
+                   <OrderHistory>
+                      <OrderDate>2018-01-09T02:58:10.789Z</OrderDate>
+                      <Note>External TN order is complete.</Note>
+                      <Author>admin</Author>
+                      <Status>COMPLETE</Status>
+                   </OrderHistory>
+                </OrderHistoryWrapper>
+        application/json:
+          schema:
+            $ref: '#/components/schemas/orderHistory'
+          examples:
+            example:
+              value:
+                orderHistory:
+                  - orderDate: '2018-01-09T02:58:04.615Z'
+                    note: External TN order is received.
+                    author: admin
+                    status: RECEIVED
+                  - orderDate: '2018-01-09T02:58:05.298Z'
+                    note: External TN order is processing.
+                    author: admin
+                    status: PROCESSING
+                  - orderDate: '2018-01-09T02:58:10.789Z'
+                    note: External TN order is complete.
+                    author: admin
+                    status: COMPLETE
+    getRemoveImportedTnOrderHistoryResponse:
+      description: OK
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/orderHistoryWrapper'
+          examples:
+            example:
+              value: |-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <OrderHistoryWrapper>
+                   <OrderHistory>
+                      <OrderDate>2015-06-16T14:03:10.225Z</OrderDate>
+                      <Note>Remove Imported TN order is received.</Note>
+                      <Author>admin</Author>
+                      <Status>RECEIVED</Status>
+                   </OrderHistory>
+                   <OrderHistory>
+                      <OrderDate>2015-06-16T14:03:10.330Z</OrderDate>
+                      <Note>Remove Imported TN order is processing.</Note>
+                      <Author>admin</Author>
+                      <Status>PROCESSING</Status>
+                   </OrderHistory>
+                   <OrderHistory>
+                      <OrderDate>2015-06-16T14:03:10.789Z</OrderDate>
+                      <Note>Remove Imported TN order is partial.</Note>
+                      <Author>admin</Author>
+                      <Status>PARTIAL</Status>
+                   </OrderHistory>
+                </OrderHistoryWrapper>
+        application/json:
+          schema:
+            $ref: '#/components/schemas/orderHistory'
+          examples:
+            example:
+              value:
+                orderHistory:
+                  - orderDate: '2015-06-16T14:03:10.225Z'
+                    note: Remove Imported TN order is received.
+                    author: admin
+                    status: RECEIVED
+                  - orderDate: '2015-06-16T14:03:10.330Z'
+                    note: Remove Imported TN order is processing.
+                    author: admin
+                    status: PROCESSING
+                  - orderDate: '2015-06-16T14:03:10.789Z'
+                    note: Remove Imported TN order is partial.
+                    author: admin
+                    status: PARTIAL
+    getRemoveImportedTnOrderHistory400ErrorResponse:
+      description: Bad Request
+      content:
+        application/xml:
+          examples:
+            example:
+              value: |-
+                <?xml version="1.0" encoding="UTF-8"?>
+                <RemoveImportedTnOrdersReportResponse>
+                   <ResponseStatus>
+                      <ErrorCode>1008</ErrorCode>
+                      <Description>'some_invalid_uuid' is not a valid UUID</Description>
+                   </ResponseStatus>
+                </RemoveImportedTnOrdersReportResponse>
+        application/json:
+          schema:
+            $ref: '#/components/schemas/externalTnOrder400ErrorResponse'
+          examples:
+            example:
+              value:
+                code: '1008'
+                description: '''some_invalid_uuid'' is not a valid UUID'

@@ -165,7 +165,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.InserviceNum
             public int? Page { get; set; }
             /// <summary>The type of phone number. The system defaults to return phone numbers of all types when the query parameter is not passed. The countryCodeA3 is a required parameter with phone number type.</summary>
             [QueryParameter("phoneNumberType")]
-            public global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.InserviceNumbers.GetPhoneNumberTypeQueryParameterType? PhoneNumberType { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeQueryParam? PhoneNumberType { get; set; }
             /// <summary>A Rate Center search filter - all returned TNs will be in the entered Rate Center.  This `ratecenter` must be combined with a `state` in the query.  If State is not included in the query then the query will fail.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

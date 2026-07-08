@@ -179,7 +179,12 @@ paths:
         the customer activated (triggered) order. <br><br>
 
         At this time all phone numbers associated with a PON will be activated
-        at the same time.
+        at the same time. <br><br>
+
+        The response includes an `activationInProgress` boolean field that is
+        `true` when toll-free on-demand activation has been triggered but is not
+        yet complete, allowing callers to detect an in-flight activation and
+        prevent duplicate triggers.
       parameters:
         - $ref: '#/components/parameters/AccountIdPathParam'
         - $ref: '#/components/parameters/OrderIdPathParam'
@@ -206,8 +211,9 @@ paths:
       description: >
         Sets the activation time for the port-in order.  <br> <br>
 
-        This API call is used to set the Activation time of the customer
-        activated (triggered) port.</p>
+        This API call is used to set the activation time of the customer
+        activated (triggered) port. This endpoint also supports Toll Free
+        on-demand activation.
 
 
         <ul>
@@ -222,6 +228,16 @@ paths:
         <li>For automated off-net port-ins, if the date matches the actual FOC
         date and the time is between 6:00 AM ET and 10:00 PM ET, the
         auto-activation time for the port will be set to that time.</li>
+
+        <li>For automated toll-free port-ins, the auto-activation time is set to
+        the FOC date/time, even if that date is in the future. The FOC time must
+        fall within the Toll Free on-demand activation window (8:00 AM–6:00 PM
+        ET).</li>
+
+        <li>If toll-free activation is already in progress
+        (`activationInProgress` is `true` on the GET response), a second PUT
+        request will be rejected with a 400 Bad Request to prevent duplicate
+        activation.</li>
 
         </ul>
       parameters:
@@ -239,13 +255,6 @@ paths:
           application/xml:
             schema:
               $ref: '#/components/schemas/activationStatus'
-            examples:
-              example:
-                value: |-
-                  <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-                  <ActivationStatus>
-                      <AutoActivationDate>2014-08-30T18:30:00+03:00</AutoActivationDate>
-                  </ActivationStatus>
       responses:
         '200':
           $ref: '#/components/responses/activationStatusPutResponse200'
@@ -421,6 +430,34 @@ paths:
         '429':
           $ref: '#/components/responses/errorResponse429'
         5XX:
+          $ref: '#/components/responses/errorResponse500'
+  /accounts/{accountId}/sites/{siteId}/portins:
+    get:
+      tags:
+        - Porting
+      description: Retrieves Port-in orders associated with the given Site.
+      operationId: retrieveSitePortins
+      summary: Retrieve Site Port-In orders
+      parameters:
+        - $ref: '#/components/parameters/AccountIdPathParam'
+        - $ref: '#/components/parameters/siteIdPathParam'
+        - $ref: '#/components/parameters/sitePortinsPageQueryParam'
+        - $ref: '#/components/parameters/sitePortinsSizeQueryParam'
+        - $ref: '#/components/parameters/sitePortinsStatusQueryParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/sitePortinsGetResponse'
+        '400':
+          $ref: '#/components/responses/errorResponse400'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/errorResponse404'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
           $ref: '#/components/responses/errorResponse500'
 components:
   examples:
@@ -865,6 +902,48 @@ components:
           <ErrorCode>15000</ErrorCode>
           <Description>The indicated file was not found in conjunction with the order id.</Description>
         </ErrorResponse>
+    sitePortinsGetResponseExample:
+      value:
+        totalCount: 1
+        portins:
+          - orderId: ca8065d1-ec1a-43da-af40-1dcee43becb5
+            orderType: port_in
+            orderDate: '2024-05-20T14:43:32.828Z'
+            lastModifiedDate: '2024-05-20T14:43:19.222Z'
+            requestedFocDate: '2025-05-15T20:00:00.000Z'
+            processingStatus: CANCELLED
+            billingPhoneNumber: '+19192803466'
+            countOfPhoneNumbers: 1
+            userId: jbm
+            losingCarrierId: '1537'
+            losingCarrierName: Mock Carrier
+            vendorId: '49'
+            vendorName: Bandwidth CLEC
+    sitePortinsGetResponseXmlExample:
+      value: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <LNPResponseWrapper>
+           <TotalCount>7</TotalCount>
+           <Links>
+              <first><!-- SNIP --></first>
+              <next><!-- SNIP --></next>
+           </Links>
+           <lnpPortInfoForGivenStatus>
+              <CountOfTNs>1</CountOfTNs>
+              <userId>jbm</userId>
+              <OrderId>ca8065d1-ec1a-43da-af40-1dcee43becb5</OrderId>
+              <OrderType>port_in</OrderType>
+              <BillingTelephoneNumber>+19192803466</BillingTelephoneNumber>
+              <lastModifiedDate>2014-05-20T14:43:19.222Z</lastModifiedDate>
+              <LNPLosingCarrierId>1537</LNPLosingCarrierId>
+              <LNPLosingCarrierName>Mock Carrier</LNPLosingCarrierName>
+              <OrderDate>2014-05-20T14:43:32.828Z</OrderDate>
+              <ProcessingStatus>CANCELLED</ProcessingStatus>
+              <RequestedFOCDate>2015-05-15T20:00:00.000Z</RequestedFOCDate>
+              <VendorId>49</VendorId>
+              <VendorName>Bandwidth CLEC</VendorName>
+           </lnpPortInfoForGivenStatus>
+        </LNPResponseWrapper>
   requestBodies:
     portinLoaMetadataPutRequestBody:
       content:
@@ -1078,22 +1157,18 @@ components:
                 activatedPhoneNumbers:
                   - '+16052609021'
                 notYetActivatedPhoneNumbers: []
+                activationInProgress: false
+            activationInProgressExample:
+              summary: Activation triggered but not yet complete
+              value:
+                autoActivationDate: '2014-08-29T18:30:00+03:00'
+                activatedPhoneNumbers: []
+                notYetActivatedPhoneNumbers:
+                  - '+16052609021'
+                activationInProgress: true
         application/xml:
           schema:
             $ref: '#/components/schemas/activationStatusResponse'
-          examples:
-            example:
-              value: |-
-                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-                <ActivationStatusResponse>
-                    <ActivationStatus>
-                        <AutoActivationDate>2014-08-29T18:30:00+03:00</AutoActivationDate>
-                        <ActivatedTelephoneNumbersList>
-                            <TelephoneNumber>+16052609021</TelephoneNumber>
-                        </ActivatedTelephoneNumbersList>
-                        <NotYetActivatedTelephoneNumbersList/>
-                    </ActivationStatus>
-                </ActivationStatusResponse>
     activationStatusPutResponse200:
       description: OK
       content:
@@ -1125,6 +1200,11 @@ components:
               value:
                 code: '7342'
                 description: On demand port-in activation not yet allowed.
+            activationAlreadyInProgress:
+              summary: Activation already in progress
+              value:
+                code: '7350'
+                description: Activation is already in progress for this order.
         application/xml:
           examples:
             example:
@@ -1134,6 +1214,16 @@ components:
                     <ResponseStatus>
                         <ErrorCode>7342</ErrorCode>
                         <Description>On demand port-in activation not yet allowed.</Description>
+                    </ResponseStatus>
+                </ActivationStatusResponse>
+            activationAlreadyInProgress:
+              summary: Activation already in progress
+              value: |-
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                <ActivationStatusResponse>
+                    <ResponseStatus>
+                        <ErrorCode>7350</ErrorCode>
+                        <Description>Activation is already in progress for this order.</Description>
                     </ResponseStatus>
                 </ActivationStatusResponse>
     activationStatusResponse404:
@@ -1271,6 +1361,21 @@ components:
               $ref: '#/components/examples/portinLoaMetadataNotFoundXmlExample'
     errorResponse500:
       description: Internal Server Error
+    sitePortinsGetResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/lnpResponseWrapperJson'
+          examples:
+            example:
+              $ref: '#/components/examples/sitePortinsGetResponseExample'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/lnpResponseWrapper'
+          examples:
+            example:
+              $ref: '#/components/examples/sitePortinsGetResponseXmlExample'
   securitySchemes:
     Basic:
       type: http
@@ -1410,6 +1515,42 @@ components:
       schema:
         type: string
       example: complete
+    siteIdPathParam:
+      name: siteId
+      description: The Site ID associated with the port-in orders.
+      in: path
+      required: true
+      schema:
+        type: string
+      example: '407'
+    sitePortinsPageQueryParam:
+      name: page
+      description: >-
+        The port-in ID of the first order of the page. "1" is used as a
+        convention for the first port-in in the Site ID.
+      in: query
+      required: true
+      schema:
+        type: string
+        default: '1'
+      example: ca8065d1-ec1a-43da-af40-1dcee43becb5
+    sitePortinsSizeQueryParam:
+      name: size
+      description: The number of port-ins to retrieve per page.
+      in: query
+      required: true
+      schema:
+        type: integer
+        default: 300
+      example: 30
+    sitePortinsStatusQueryParam:
+      name: status
+      description: Displays the port-ins with the given status.
+      in: query
+      required: false
+      schema:
+        type: string
+      example: completed
   schemas:
     genericErrorResponseJson:
       type: object
@@ -1872,6 +2013,12 @@ components:
               type: array
               items:
                 type: string
+            ActivationInProgress:
+              description: >-
+                Indicates whether toll-free on-demand activation has been
+                triggered but is not yet complete. When true, a duplicate
+                activation request via PUT will be rejected with a 400 response.
+              type: boolean
     activationStatusResponse:
       type: object
       properties:
@@ -1898,6 +2045,12 @@ components:
           description: The date when auto activation is requested. RFC 3339 format.
           type: string
           format: date-time
+        activationInProgress:
+          description: >-
+            Indicates whether toll-free on-demand activation has been triggered
+            but is not yet complete. When `true`, a duplicate activation request
+            via PUT will be rejected with a 400 response.
+          type: boolean
     activationStatusErrorResponseJson:
       type: object
       properties:
@@ -2047,6 +2200,82 @@ components:
         Description:
           type: string
           description: Error description.
+    lnpResponseWrapperJson:
+      type: object
+      description: JSON wrapper for site port-in orders list.
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of port-in orders.
+          example: 1
+        portins:
+          type: array
+          items:
+            type: object
+            properties:
+              orderId:
+                type: string
+                description: The port-in order ID.
+                example: ca8065d1-ec1a-43da-af40-1dcee43becb5
+              orderType:
+                type: string
+                description: The type of order.
+                example: port_in
+              orderDate:
+                type: string
+                description: The date the order was created.
+                example: '2024-05-20T14:43:32.828Z'
+              lastModifiedDate:
+                type: string
+                description: The date the order was last modified.
+                example: '2024-05-20T14:43:19.222Z'
+              requestedFocDate:
+                type: string
+                description: The requested FOC date.
+                example: '2025-05-15T20:00:00.000Z'
+              processingStatus:
+                type: string
+                description: The processing status of the order.
+                example: CANCELLED
+              billingPhoneNumber:
+                type: string
+                description: The billing telephone number.
+                example: '+19192803466'
+              countOfPhoneNumbers:
+                type: integer
+                description: The count of telephone numbers in the order.
+                example: 1
+              userId:
+                type: string
+                description: The user ID of the order creator.
+                example: jbm
+              losingCarrierId:
+                type: string
+                description: The ID of the losing carrier.
+                example: '1537'
+              losingCarrierName:
+                type: string
+                description: The name of the losing carrier.
+                example: Mock Carrier
+              vendorId:
+                type: string
+                description: The vendor ID.
+                example: '49'
+              vendorName:
+                type: string
+                description: The vendor name.
+                example: Bandwidth CLEC
+    lnpResponseWrapper:
+      type: object
+      description: XML wrapper for site port-in orders list (legacy XML schema).
+      properties:
+        lnpResponseWrapper:
+          type: object
+          properties:
+            totalCount:
+              type: integer
+            lnpPortInfoForGivenStatus:
+              type: object
 tags:
   - name: Porting
     description: Manage port-in orders and their activation status.

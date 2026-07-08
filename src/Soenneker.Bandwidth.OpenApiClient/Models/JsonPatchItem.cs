@@ -23,7 +23,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string From { get; set; }
 #endif
         /// <summary>The op property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonPatchItem_op? Op { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonPatchItemOp? Op { get; set; }
         /// <summary>The path property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -66,7 +66,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "from", n => { From = n.GetStringValue(); } },
-                { "op", n => { Op = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonPatchItem_op>(); } },
+                { "op", n => { Op = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonPatchItemOp>(); } },
                 { "path", n => { Path = n.GetStringValue(); } },
                 { "value", n => { Value = n.GetStringValue(); } },
             };
@@ -79,7 +79,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("from", From);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonPatchItem_op>("op", Op);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonPatchItemOp>("op", Op);
             writer.WriteStringValue("path", Path);
             writer.WriteStringValue("value", Value);
             writer.WriteAdditionalData(AdditionalData);

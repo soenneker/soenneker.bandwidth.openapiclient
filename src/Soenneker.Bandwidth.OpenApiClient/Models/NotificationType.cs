@@ -10,19 +10,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "HTTP")]
         #pragma warning disable CS1591
-        HTTP,
+        Http,
         #pragma warning restore CS1591
         [EnumMember(Value = "SMS")]
         #pragma warning disable CS1591
-        SMS,
+        Sms,
         #pragma warning restore CS1591
         [EnumMember(Value = "EMAIL")]
         #pragma warning disable CS1591
-        EMAIL,
+        Email,
         #pragma warning restore CS1591
         [EnumMember(Value = "VOICE")]
         #pragma warning disable CS1591
-        VOICE,
+        Voice,
         #pragma warning restore CS1591
     }
 }

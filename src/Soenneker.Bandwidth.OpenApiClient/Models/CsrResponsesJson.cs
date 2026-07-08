@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The csrOrders property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CsrResponsesJson_csrOrders>? CsrOrders { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CsrResponsesJsonCsrOrdersItem>? CsrOrders { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CsrResponsesJson_csrOrders> CsrOrders { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CsrResponsesJsonCsrOrdersItem> CsrOrders { get; set; }
 #endif
         /// <summary>The totalCount property</summary>
         public int? TotalCount { get; set; }
@@ -50,7 +50,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "csrOrders", n => { CsrOrders = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CsrResponsesJson_csrOrders>(global::Soenneker.Bandwidth.OpenApiClient.Models.CsrResponsesJson_csrOrders.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "csrOrders", n => { CsrOrders = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CsrResponsesJsonCsrOrdersItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.CsrResponsesJsonCsrOrdersItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "totalCount", n => { TotalCount = n.GetIntValue(); } },
             };
         }
@@ -61,7 +61,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CsrResponsesJson_csrOrders>("csrOrders", CsrOrders);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CsrResponsesJsonCsrOrdersItem>("csrOrders", CsrOrders);
             writer.WriteIntValue("totalCount", TotalCount);
             writer.WriteAdditionalData(AdditionalData);
         }

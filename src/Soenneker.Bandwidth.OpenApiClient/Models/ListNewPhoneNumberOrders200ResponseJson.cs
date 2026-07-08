@@ -25,10 +25,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The orders property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNewPhoneNumberOrders200ResponseJson_orders>? Orders { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNewPhoneNumberOrders200ResponseJsonOrdersItem>? Orders { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNewPhoneNumberOrders200ResponseJson_orders> Orders { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNewPhoneNumberOrders200ResponseJsonOrdersItem> Orders { get; set; }
 #endif
         /// <summary>The totalCount property</summary>
         public int? TotalCount { get; set; }
@@ -58,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "links", n => { Links = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionLinksJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionLinksJson.CreateFromDiscriminatorValue); } },
-                { "orders", n => { Orders = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNewPhoneNumberOrders200ResponseJson_orders>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListNewPhoneNumberOrders200ResponseJson_orders.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "orders", n => { Orders = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNewPhoneNumberOrders200ResponseJsonOrdersItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListNewPhoneNumberOrders200ResponseJsonOrdersItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "totalCount", n => { TotalCount = n.GetIntValue(); } },
             };
         }
@@ -70,7 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionLinksJson>("links", Links);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNewPhoneNumberOrders200ResponseJson_orders>("orders", Orders);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNewPhoneNumberOrders200ResponseJsonOrdersItem>("orders", Orders);
             writer.WriteIntValue("totalCount", TotalCount);
             writer.WriteAdditionalData(AdditionalData);
         }

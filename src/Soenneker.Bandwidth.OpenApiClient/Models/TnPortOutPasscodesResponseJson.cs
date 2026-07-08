@@ -17,10 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>List of phone numbers with their associated port-out passcodes.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnPortOutPasscodesResponseJson_phoneNumbers>? PhoneNumbers { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnPortOutPasscodesResponseJsonPhoneNumbersItem>? PhoneNumbers { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnPortOutPasscodesResponseJson_phoneNumbers> PhoneNumbers { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnPortOutPasscodesResponseJsonPhoneNumbersItem> PhoneNumbers { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnPortOutPasscodesResponseJson"/> and sets the default values.
@@ -47,7 +47,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnPortOutPasscodesResponseJson_phoneNumbers>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnPortOutPasscodesResponseJson_phoneNumbers.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnPortOutPasscodesResponseJsonPhoneNumbersItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnPortOutPasscodesResponseJsonPhoneNumbersItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnPortOutPasscodesResponseJson_phoneNumbers>("phoneNumbers", PhoneNumbers);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnPortOutPasscodesResponseJsonPhoneNumbersItem>("phoneNumbers", PhoneNumbers);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -9,7 +9,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "EQ")]
         #pragma warning disable CS1591
-        EQ,
+        Eq,
         #pragma warning restore CS1591
     }
 }

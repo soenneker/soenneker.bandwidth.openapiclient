@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     /// <summary>
-    /// A route for an Origination Route Plan.
+    /// A route for an Origination Route Plan response. For `ANI` routes, `endpoints` are not returned.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Route : IAdditionalDataHolder, IParsable
@@ -33,6 +33,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>The priority property</summary>
         public double? Priority { get; set; }
+        /// <summary>Server-generated identifier for ANI routes.</summary>
+        public Guid? ReferenceId { get; set; }
+        /// <summary>Route evaluation mode. This route type determines endpoint semantics (`WEIGHTED` routes use weighted endpoints; `ANI` routes use prefixed endpoints).</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RouteType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Route"/> and sets the default values.
         /// </summary>
@@ -61,6 +65,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "endpoints", n => { Endpoints = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceEndpoint>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceEndpoint.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "priority", n => { Priority = n.GetDoubleValue(); } },
+                { "referenceId", n => { ReferenceId = n.GetGuidValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RouteType>(); } },
             };
         }
         /// <summary>
@@ -73,6 +79,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceEndpoint>("endpoints", Endpoints);
             writer.WriteStringValue("name", Name);
             writer.WriteDoubleValue("priority", Priority);
+            writer.WriteGuidValue("referenceId", ReferenceId);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RouteType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

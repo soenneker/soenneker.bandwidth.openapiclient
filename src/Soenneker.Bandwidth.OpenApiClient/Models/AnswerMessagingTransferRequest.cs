@@ -24,7 +24,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string Comment { get; set; }
 #endif
         /// <summary>New request status</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AnswerMessagingTransferRequest_status? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AnswerMessagingTransferRequestStatus? Status { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AnswerMessagingTransferRequest"/> and sets the default values.
         /// </summary>
@@ -51,7 +51,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "comment", n => { Comment = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AnswerMessagingTransferRequest_status>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AnswerMessagingTransferRequestStatus>(); } },
             };
         }
         /// <summary>
@@ -62,7 +62,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("comment", Comment);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AnswerMessagingTransferRequest_status>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AnswerMessagingTransferRequestStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

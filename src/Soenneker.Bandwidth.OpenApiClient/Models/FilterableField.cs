@@ -41,18 +41,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The selectableValues property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>? SelectableValues { get; set; }
+        public List<string>? SelectableValues { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch> SelectableValues { get; set; }
+        public List<string> SelectableValues { get; set; }
 #endif
         /// <summary>The type property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch? Type { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableFieldType? Type { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch Type { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableFieldType Type { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField"/> and sets the default values.
@@ -82,8 +82,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "allowedOperators", n => { AllowedOperators = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorEnum>()?.AsList(); } },
                 { "field", n => { Field = n.GetStringValue(); } },
                 { "friendlyName", n => { FriendlyName = n.GetStringValue(); } },
-                { "selectableValues", n => { SelectableValues = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>(global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "type", n => { Type = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>(global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch.CreateFromDiscriminatorValue); } },
+                { "selectableValues", n => { SelectableValues = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "type", n => { Type = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableFieldType>(global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableFieldType.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -96,8 +96,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorEnum>("allowedOperators", AllowedOperators);
             writer.WriteStringValue("field", Field);
             writer.WriteStringValue("friendlyName", FriendlyName);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>("selectableValues", SelectableValues);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UnionBranch>("type", Type);
+            writer.WriteCollectionOfPrimitiveValues<string>("selectableValues", SelectableValues);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableFieldType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

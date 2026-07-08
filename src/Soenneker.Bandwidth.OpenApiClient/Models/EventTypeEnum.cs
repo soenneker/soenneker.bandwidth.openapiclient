@@ -9,7 +9,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "PORTIN_ORDER_STATUS")]
         #pragma warning disable CS1591
-        PORTIN_ORDER_STATUS,
+        PortinOrderStatus,
         #pragma warning restore CS1591
     }
 }

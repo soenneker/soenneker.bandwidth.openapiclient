@@ -9,11 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "OKTA")]
         #pragma warning disable CS1591
-        OKTA,
+        Okta,
         #pragma warning restore CS1591
         [EnumMember(Value = "GOOGLE")]
         #pragma warning disable CS1591
-        GOOGLE,
+        Google,
         #pragma warning restore CS1591
     }
 }

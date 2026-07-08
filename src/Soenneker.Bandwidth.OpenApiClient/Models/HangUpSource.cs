@@ -9,15 +9,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "BANDWIDTH_INTERNAL")]
         #pragma warning disable CS1591
-        BANDWIDTH_INTERNAL,
+        BandwidthInternal,
         #pragma warning restore CS1591
         [EnumMember(Value = "CALLED_PARTY")]
         #pragma warning disable CS1591
-        CALLED_PARTY,
+        CalledParty,
         #pragma warning restore CS1591
         [EnumMember(Value = "CALLING_PARTY")]
         #pragma warning disable CS1591
-        CALLING_PARTY,
+        CallingParty,
         #pragma warning restore CS1591
     }
 }

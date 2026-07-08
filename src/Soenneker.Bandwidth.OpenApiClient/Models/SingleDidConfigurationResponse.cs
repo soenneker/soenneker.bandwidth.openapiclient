@@ -17,13 +17,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Type of configuration performed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationResponse_failedDidConfigurations?>? FailedDidConfigurations { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationResponseFailedDidConfigurationsItem?>? FailedDidConfigurations { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationResponse_failedDidConfigurations?> FailedDidConfigurations { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationResponseFailedDidConfigurationsItem?> FailedDidConfigurations { get; set; }
 #endif
         /// <summary>PARTIAL, FAILURE, SUCCESS.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationResponse_status? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationResponseStatus? Status { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationResponse"/> and sets the default values.
         /// </summary>
@@ -49,8 +49,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "failedDidConfigurations", n => { FailedDidConfigurations = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationResponse_failedDidConfigurations>()?.AsList(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationResponse_status>(); } },
+                { "failedDidConfigurations", n => { FailedDidConfigurations = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationResponseFailedDidConfigurationsItem>()?.AsList(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationResponseStatus>(); } },
             };
         }
         /// <summary>
@@ -60,8 +60,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationResponse_failedDidConfigurations>("failedDidConfigurations", FailedDidConfigurations);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationResponse_status>("status", Status);
+            writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationResponseFailedDidConfigurationsItem>("failedDidConfigurations", FailedDidConfigurations);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationResponseStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

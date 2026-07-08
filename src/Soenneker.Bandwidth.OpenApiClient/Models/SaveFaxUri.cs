@@ -31,9 +31,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string Csid { get; set; }
 #endif
         /// <summary>This is the delivery method on which you want to filter your list of Fax URIs. The possible values are SMTP and HTTP_POST.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUri_deliveryMethod? DeliveryMethod { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriDeliveryMethod? DeliveryMethod { get; set; }
         /// <summary>This is the file format on which you want to filter your list of Fax URIs. The possible values are Tiff and Pdf.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUri_faxFileFormat? FaxFileFormat { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriFaxFileFormat? FaxFileFormat { get; set; }
         /// <summary>The identifier of the fax uri.</summary>
         public int? FaxUriId { get; set; }
         /// <summary>The content of the subject field of the email if you use SMTP as a deliveyr method. Not used for HTTP_POST.</summary>
@@ -87,8 +87,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "body", n => { Body = n.GetStringValue(); } },
                 { "csid", n => { Csid = n.GetStringValue(); } },
-                { "deliveryMethod", n => { DeliveryMethod = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUri_deliveryMethod>(); } },
-                { "faxFileFormat", n => { FaxFileFormat = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUri_faxFileFormat>(); } },
+                { "deliveryMethod", n => { DeliveryMethod = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriDeliveryMethod>(); } },
+                { "faxFileFormat", n => { FaxFileFormat = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriFaxFileFormat>(); } },
                 { "faxUriId", n => { FaxUriId = n.GetIntValue(); } },
                 { "subject", n => { Subject = n.GetStringValue(); } },
                 { "uri", n => { Uri = n.GetStringValue(); } },
@@ -104,8 +104,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("body", Body);
             writer.WriteStringValue("csid", Csid);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUri_deliveryMethod>("deliveryMethod", DeliveryMethod);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUri_faxFileFormat>("faxFileFormat", FaxFileFormat);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriDeliveryMethod>("deliveryMethod", DeliveryMethod);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriFaxFileFormat>("faxFileFormat", FaxFileFormat);
             writer.WriteIntValue("faxUriId", FaxUriId);
             writer.WriteStringValue("subject", Subject);
             writer.WriteStringValue("uri", Uri);

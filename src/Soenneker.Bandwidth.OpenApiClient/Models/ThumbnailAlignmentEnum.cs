@@ -9,11 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "LEFT")]
         #pragma warning disable CS1591
-        LEFT,
+        Left,
         #pragma warning restore CS1591
         [EnumMember(Value = "RIGHT")]
         #pragma warning disable CS1591
-        RIGHT,
+        Right,
         #pragma warning restore CS1591
     }
 }

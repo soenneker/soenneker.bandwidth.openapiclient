@@ -41,7 +41,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Regulation.Address
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public AddressRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/global/regulation/address?pageNumber={pageNumber}&pageSize={pageSize}{&buildingNumber*,city*,companyName*,countryCodeA3*,customerReference*,firstName*,lastName*,linked*,regulationAddressId*,status*,streetName*,zipCode*}", pathParameters)
+        public AddressRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/global/regulation/address{?buildingNumber*,city*,companyName*,countryCodeA3*,customerReference*,firstName*,lastName*,linked*,regulationAddressId*,status*,streetName*,zipCode*}", pathParameters)
         {
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Regulation.Address
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public AddressRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/global/regulation/address?pageNumber={pageNumber}&pageSize={pageSize}{&buildingNumber*,city*,companyName*,countryCodeA3*,customerReference*,firstName*,lastName*,linked*,regulationAddressId*,status*,streetName*,zipCode*}", rawUrl)
+        public AddressRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/global/regulation/address{?buildingNumber*,city*,companyName*,countryCodeA3*,customerReference*,firstName*,lastName*,linked*,regulationAddressId*,status*,streetName*,zipCode*}", rawUrl)
         {
         }
         /// <summary>
@@ -104,7 +104,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Regulation.Address
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Global.Regulation.Address.AddressRequestBuilder.AddressRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/global/regulation/address?pageNumber={pageNumber}&pageSize={pageSize}{&buildingNumber*,city*,companyName*,countryCodeA3*,customerReference*,firstName*,lastName*,linked*,regulationAddressId*,status*,streetName*,zipCode*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -125,7 +125,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Regulation.Address
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PUT, "{+baseurl}/global/regulation/address", PathParameters);
+            var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "multipart/form-data", body);
@@ -230,7 +230,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Regulation.Address
             public int? RegulationAddressId { get; set; }
             /// <summary>The status of the regulation address.</summary>
             [QueryParameter("status")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Global.Regulation.Address.GetStatusQueryParameterType? Status { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalListRegulationAddressStatusParameter? Status { get; set; }
             /// <summary>The street for the address.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

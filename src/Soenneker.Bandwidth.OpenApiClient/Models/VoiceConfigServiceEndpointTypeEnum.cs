@@ -10,27 +10,27 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "TN")]
         #pragma warning disable CS1591
-        TN,
+        Tn,
         #pragma warning restore CS1591
         [EnumMember(Value = "SIP")]
         #pragma warning disable CS1591
-        SIP,
+        Sip,
         #pragma warning restore CS1591
         [EnumMember(Value = "IP_V4")]
         #pragma warning disable CS1591
-        IP_V4,
+        IpV4,
         #pragma warning restore CS1591
         [EnumMember(Value = "INTEGRATION")]
         #pragma warning disable CS1591
-        INTEGRATION,
+        Integration,
         #pragma warning restore CS1591
         [EnumMember(Value = "FQDN")]
         #pragma warning disable CS1591
-        FQDN,
+        Fqdn,
         #pragma warning restore CS1591
         [EnumMember(Value = "BOT")]
         #pragma warning disable CS1591
-        BOT,
+        Bot,
         #pragma warning restore CS1591
     }
 }

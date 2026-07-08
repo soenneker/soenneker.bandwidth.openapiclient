@@ -9,71 +9,71 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "REAL_ESTATE")]
         #pragma warning disable CS1591
-        REAL_ESTATE,
+        RealEstate,
         #pragma warning restore CS1591
         [EnumMember(Value = "ENERGY")]
         #pragma warning disable CS1591
-        ENERGY,
+        Energy,
         #pragma warning restore CS1591
         [EnumMember(Value = "HEALTHCARE")]
         #pragma warning disable CS1591
-        HEALTHCARE,
+        Healthcare,
         #pragma warning restore CS1591
         [EnumMember(Value = "ENTERTAINMENT")]
         #pragma warning disable CS1591
-        ENTERTAINMENT,
+        Entertainment,
         #pragma warning restore CS1591
         [EnumMember(Value = "RETAIL")]
         #pragma warning disable CS1591
-        RETAIL,
+        Retail,
         #pragma warning restore CS1591
         [EnumMember(Value = "AGRICULTURE")]
         #pragma warning disable CS1591
-        AGRICULTURE,
+        Agriculture,
         #pragma warning restore CS1591
         [EnumMember(Value = "INSURANCE")]
         #pragma warning disable CS1591
-        INSURANCE,
+        Insurance,
         #pragma warning restore CS1591
         [EnumMember(Value = "EDUCATION")]
         #pragma warning disable CS1591
-        EDUCATION,
+        Education,
         #pragma warning restore CS1591
         [EnumMember(Value = "HOSPITALITY")]
         #pragma warning disable CS1591
-        HOSPITALITY,
+        Hospitality,
         #pragma warning restore CS1591
         [EnumMember(Value = "FINANCIAL")]
         #pragma warning disable CS1591
-        FINANCIAL,
+        Financial,
         #pragma warning restore CS1591
         [EnumMember(Value = "GAMBLING")]
         #pragma warning disable CS1591
-        GAMBLING,
+        Gambling,
         #pragma warning restore CS1591
         [EnumMember(Value = "CONSTRUCTION")]
         #pragma warning disable CS1591
-        CONSTRUCTION,
+        Construction,
         #pragma warning restore CS1591
         [EnumMember(Value = "NGO")]
         #pragma warning disable CS1591
-        NGO,
+        Ngo,
         #pragma warning restore CS1591
         [EnumMember(Value = "MANUFACTURING")]
         #pragma warning disable CS1591
-        MANUFACTURING,
+        Manufacturing,
         #pragma warning restore CS1591
         [EnumMember(Value = "GOVERNMENT")]
         #pragma warning disable CS1591
-        GOVERNMENT,
+        Government,
         #pragma warning restore CS1591
         [EnumMember(Value = "TECHNOLOGY")]
         #pragma warning disable CS1591
-        TECHNOLOGY,
+        Technology,
         #pragma warning restore CS1591
         [EnumMember(Value = "COMMUNICATION")]
         #pragma warning disable CS1591
-        COMMUNICATION,
+        Communication,
         #pragma warning restore CS1591
     }
 }

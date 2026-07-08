@@ -17,10 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>This childOrders list is returned when at least one child order has been created from the original bulk order request.The full details for each child order can be retrieved from the [Fetch MoveTNs Order Status API](#tag/Move-TNs/operation/readMoveTnsOrder).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseData_childOrders>? ChildOrders { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseDataChildOrdersItem>? ChildOrders { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseData_childOrders> ChildOrders { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseDataChildOrdersItem> ChildOrders { get; set; }
 #endif
         /// <summary>An optional customer-defined reference ID for this order. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`. Only alphanumeric values, dashes, and spaces are allowed. Max length is 255 characters.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -47,10 +47,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>This `orderDetails` list is only returned in the response if the user includes the `verbose=true` query parameter in the request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseData_orderDetails>? OrderDetails { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseDataOrderDetailsItem>? OrderDetails { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseData_orderDetails> OrderDetails { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseDataOrderDetailsItem> OrderDetails { get; set; }
 #endif
         /// <summary>Unique identifier for the order that was created.</summary>
         public Guid? OrderId { get; set; }
@@ -89,13 +89,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "childOrders", n => { ChildOrders = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseData_childOrders>(global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseData_childOrders.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "childOrders", n => { ChildOrders = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseDataChildOrdersItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseDataChildOrdersItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "customerOrderId", n => { CustomerOrderId = n.GetStringValue(); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkMoveTnsErrorsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.BulkMoveTnsErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "lastModifiedDate", n => { LastModifiedDate = n.GetDateTimeOffsetValue(); } },
                 { "migrateCampaign", n => { MigrateCampaign = n.GetBoolValue(); } },
                 { "orderDate", n => { OrderDate = n.GetDateTimeOffsetValue(); } },
-                { "orderDetails", n => { OrderDetails = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseData_orderDetails>(global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseData_orderDetails.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "orderDetails", n => { OrderDetails = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseDataOrderDetailsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseDataOrderDetailsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "orderId", n => { OrderId = n.GetGuidValue(); } },
                 { "orderStatus", n => { OrderStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkMoveTnsOrderStatus>(); } },
                 { "userId", n => { UserId = n.GetStringValue(); } },
@@ -108,13 +108,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseData_childOrders>("childOrders", ChildOrders);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseDataChildOrdersItem>("childOrders", ChildOrders);
             writer.WriteStringValue("customerOrderId", CustomerOrderId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkMoveTnsErrorsItem>("errors", Errors);
             writer.WriteDateTimeOffsetValue("lastModifiedDate", LastModifiedDate);
             writer.WriteBoolValue("migrateCampaign", MigrateCampaign);
             writer.WriteDateTimeOffsetValue("orderDate", OrderDate);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseData_orderDetails>("orderDetails", OrderDetails);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseDataOrderDetailsItem>("orderDetails", OrderDetails);
             writer.WriteGuidValue("orderId", OrderId);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkMoveTnsOrderStatus>("orderStatus", OrderStatus);
             writer.WriteStringValue("userId", UserId);

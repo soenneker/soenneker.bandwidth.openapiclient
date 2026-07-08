@@ -34,7 +34,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Avai
         {
         }
         /// <summary>
-        /// Retrieves a list of available Npa-Nxx phone numbers.
+        /// Retrieves the quantity of available phone numbers, grouped by NPA-NXX.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AvailableNpaNxxSearchResponseJson"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -59,7 +59,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Avai
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.AvailableNpaNxxSearchResponseJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.AvailableNpaNxxSearchResponseJson.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieves a list of available Npa-Nxx phone numbers.
+        /// Retrieves the quantity of available phone numbers, grouped by NPA-NXX.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -87,7 +87,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Avai
             return new global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.AvailableNpaNxx.AvailableNpaNxxRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieves a list of available Npa-Nxx phone numbers.
+        /// Retrieves the quantity of available phone numbers, grouped by NPA-NXX.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class AvailableNpaNxxRequestBuilderGetQueryParameters 

@@ -9,103 +9,103 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "2FA")]
         #pragma warning disable CS1591
-        TwoFA,
+        Value2Fa,
         #pragma warning restore CS1591
         [EnumMember(Value = "ACCOUNT_NOTIFICATION")]
         #pragma warning disable CS1591
-        ACCOUNT_NOTIFICATION,
+        AccountNotification,
         #pragma warning restore CS1591
         [EnumMember(Value = "CARRIER_EXEMPT")]
         #pragma warning disable CS1591
-        CARRIER_EXEMPT,
+        CarrierExempt,
         #pragma warning restore CS1591
         [EnumMember(Value = "CHARITY")]
         #pragma warning disable CS1591
-        CHARITY,
+        Charity,
         #pragma warning restore CS1591
         [EnumMember(Value = "CONVERSATIONAL")]
         #pragma warning disable CS1591
-        CONVERSATIONAL,
+        Conversational,
         #pragma warning restore CS1591
         [EnumMember(Value = "CUSTOMER_CARE")]
         #pragma warning disable CS1591
-        CUSTOMER_CARE,
+        CustomerCare,
         #pragma warning restore CS1591
         [EnumMember(Value = "DELIVERY_NOTIFICATION")]
         #pragma warning disable CS1591
-        DELIVERY_NOTIFICATION,
+        DeliveryNotification,
         #pragma warning restore CS1591
         [EnumMember(Value = "EMERGENCY")]
         #pragma warning disable CS1591
-        EMERGENCY,
+        Emergency,
         #pragma warning restore CS1591
         [EnumMember(Value = "FRAUD_ALERT")]
         #pragma warning disable CS1591
-        FRAUD_ALERT,
+        FraudAlert,
         #pragma warning restore CS1591
         [EnumMember(Value = "HIGHER_EDUCATION")]
         #pragma warning disable CS1591
-        HIGHER_EDUCATION,
+        HigherEducation,
         #pragma warning restore CS1591
         [EnumMember(Value = "K12_EDUCATION")]
         #pragma warning disable CS1591
-        K12_EDUCATION,
+        K12Education,
         #pragma warning restore CS1591
         [EnumMember(Value = "LOW_VOLUME")]
         #pragma warning disable CS1591
-        LOW_VOLUME,
+        LowVolume,
         #pragma warning restore CS1591
         [EnumMember(Value = "MARKETING")]
         #pragma warning disable CS1591
-        MARKETING,
+        Marketing,
         #pragma warning restore CS1591
         [EnumMember(Value = "MIXED")]
         #pragma warning disable CS1591
-        MIXED,
+        Mixed,
         #pragma warning restore CS1591
         [EnumMember(Value = "POLITICAL")]
         #pragma warning disable CS1591
-        POLITICAL,
+        Political,
         #pragma warning restore CS1591
         [EnumMember(Value = "POLLING_VOTING")]
         #pragma warning disable CS1591
-        POLLING_VOTING,
+        PollingVoting,
         #pragma warning restore CS1591
         [EnumMember(Value = "PUBLIC_SERVICE_ANNOUNCEMENT")]
         #pragma warning disable CS1591
-        PUBLIC_SERVICE_ANNOUNCEMENT,
+        PublicServiceAnnouncement,
         #pragma warning restore CS1591
         [EnumMember(Value = "SECURITY_ALERT")]
         #pragma warning disable CS1591
-        SECURITY_ALERT,
+        SecurityAlert,
         #pragma warning restore CS1591
         [EnumMember(Value = "SOCIAL")]
         #pragma warning disable CS1591
-        SOCIAL,
+        Social,
         #pragma warning restore CS1591
         [EnumMember(Value = "SWEEPSTAKE")]
         #pragma warning disable CS1591
-        SWEEPSTAKE,
+        Sweepstake,
         #pragma warning restore CS1591
         [EnumMember(Value = "TRIAL")]
         #pragma warning disable CS1591
-        TRIAL,
+        Trial,
         #pragma warning restore CS1591
         [EnumMember(Value = "AGENTS_FRANCHISES")]
         #pragma warning disable CS1591
-        AGENTS_FRANCHISES,
+        AgentsFranchises,
         #pragma warning restore CS1591
         [EnumMember(Value = "PROXY")]
         #pragma warning disable CS1591
-        PROXY,
+        Proxy,
         #pragma warning restore CS1591
         [EnumMember(Value = "UCAAS_HIGH")]
         #pragma warning disable CS1591
-        UCAAS_HIGH,
+        UcaasHigh,
         #pragma warning restore CS1591
         [EnumMember(Value = "UCAAS_LOW")]
         #pragma warning disable CS1591
-        UCAAS_LOW,
+        UcaasLow,
         #pragma warning restore CS1591
         [EnumMember(Value = "M2M")]
         #pragma warning disable CS1591

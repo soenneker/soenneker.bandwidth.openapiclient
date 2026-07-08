@@ -31,9 +31,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string SubscriberInformation { get; set; }
 #endif
         /// <summary>The useType property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroup_useType? UseType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroupUseType? UseType { get; set; }
         /// <summary> If it is tagged as PRIVATE then the data will be provided, but the display will not be provided on a standard phone call.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroup_visibility? Visibility { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroupVisibility? Visibility { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroup"/> and sets the default values.
         /// </summary>
@@ -61,8 +61,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonPhoneNumber>(global::Soenneker.Bandwidth.OpenApiClient.Models.JsonPhoneNumber.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "subscriberInformation", n => { SubscriberInformation = n.GetStringValue(); } },
-                { "useType", n => { UseType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroup_useType>(); } },
-                { "visibility", n => { Visibility = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroup_visibility>(); } },
+                { "useType", n => { UseType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroupUseType>(); } },
+                { "visibility", n => { Visibility = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroupVisibility>(); } },
             };
         }
         /// <summary>
@@ -74,8 +74,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonPhoneNumber>("phoneNumbers", PhoneNumbers);
             writer.WriteStringValue("subscriberInformation", SubscriberInformation);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroup_useType>("useType", UseType);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroup_visibility>("visibility", Visibility);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroupUseType>("useType", UseType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroupVisibility>("visibility", Visibility);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

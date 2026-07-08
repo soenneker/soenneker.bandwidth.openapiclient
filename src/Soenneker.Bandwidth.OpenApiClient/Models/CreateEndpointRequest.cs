@@ -17,10 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The connectionMetadata property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequest_connectionMetadata? ConnectionMetadata { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateWebRtcConnectionRequestConnectionMetadata? ConnectionMetadata { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequest_connectionMetadata ConnectionMetadata { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateWebRtcConnectionRequestConnectionMetadata ConnectionMetadata { get; set; }
 #endif
         /// <summary>The direction property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointDirectionEnum? Direction { get; set; }
@@ -81,7 +81,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "connectionMetadata", n => { ConnectionMetadata = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequest_connectionMetadata>(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequest_connectionMetadata.CreateFromDiscriminatorValue); } },
+                { "connectionMetadata", n => { ConnectionMetadata = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateWebRtcConnectionRequestConnectionMetadata>(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateWebRtcConnectionRequestConnectionMetadata.CreateFromDiscriminatorValue); } },
                 { "direction", n => { Direction = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointDirectionEnum>(); } },
                 { "eventCallbackUrl", n => { EventCallbackUrl = n.GetStringValue(); } },
                 { "eventFallbackUrl", n => { EventFallbackUrl = n.GetStringValue(); } },
@@ -96,7 +96,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequest_connectionMetadata>("connectionMetadata", ConnectionMetadata);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateWebRtcConnectionRequestConnectionMetadata>("connectionMetadata", ConnectionMetadata);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointDirectionEnum>("direction", Direction);
             writer.WriteStringValue("eventCallbackUrl", EventCallbackUrl);
             writer.WriteStringValue("eventFallbackUrl", EventFallbackUrl);

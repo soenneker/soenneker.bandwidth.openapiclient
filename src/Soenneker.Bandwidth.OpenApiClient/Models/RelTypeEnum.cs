@@ -9,35 +9,35 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "SELF")]
         #pragma warning disable CS1591
-        SELF,
+        Self,
         #pragma warning restore CS1591
         [EnumMember(Value = "LAST")]
         #pragma warning disable CS1591
-        LAST,
+        Last,
         #pragma warning restore CS1591
         [EnumMember(Value = "FIRST")]
         #pragma warning disable CS1591
-        FIRST,
+        First,
         #pragma warning restore CS1591
         [EnumMember(Value = "PREV")]
         #pragma warning disable CS1591
-        PREV,
+        Prev,
         #pragma warning restore CS1591
         [EnumMember(Value = "NEXT")]
         #pragma warning disable CS1591
-        NEXT,
+        Next,
         #pragma warning restore CS1591
         [EnumMember(Value = "SUPPORT")]
         #pragma warning disable CS1591
-        SUPPORT,
+        Support,
         #pragma warning restore CS1591
         [EnumMember(Value = "CANCEL")]
         #pragma warning disable CS1591
-        CANCEL,
+        Cancel,
         #pragma warning restore CS1591
         [EnumMember(Value = "DOWNLOAD")]
         #pragma warning disable CS1591
-        DOWNLOAD,
+        Download,
         #pragma warning restore CS1591
     }
 }

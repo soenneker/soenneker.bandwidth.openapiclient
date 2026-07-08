@@ -37,10 +37,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Use the Get Report Definitions endpoint to see the filters available for a report.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusObject_filters? Filters { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusObjectFilters? Filters { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusObject_filters Filters { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusObjectFilters Filters { get; set; }
 #endif
         /// <summary>The region where the report will run. Defaults to the only available region. Required if multiple regions are available.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.ReportRegion? Region { get; set; }
@@ -81,7 +81,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "breakdown", n => { Breakdown = n.GetStringValue(); } },
                 { "category", n => { Category = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Category>(); } },
                 { "domain", n => { Domain = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Domain>(); } },
-                { "filters", n => { Filters = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusObject_filters>(global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusObject_filters.CreateFromDiscriminatorValue); } },
+                { "filters", n => { Filters = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusObjectFilters>(global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusObjectFilters.CreateFromDiscriminatorValue); } },
                 { "region", n => { Region = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportRegion>(); } },
                 { "reportName", n => { ReportName = n.GetStringValue(); } },
             };
@@ -97,7 +97,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("breakdown", Breakdown);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Category>("category", Category);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Domain>("domain", Domain);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusObject_filters>("filters", Filters);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusObjectFilters>("filters", Filters);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportRegion>("region", Region);
             writer.WriteStringValue("reportName", ReportName);
             writer.WriteAdditionalData(AdditionalData);

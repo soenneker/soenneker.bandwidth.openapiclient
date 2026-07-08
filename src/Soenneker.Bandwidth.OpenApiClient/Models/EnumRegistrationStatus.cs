@@ -9,15 +9,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "PROCESSING")]
         #pragma warning disable CS1591
-        PROCESSING,
+        Processing,
         #pragma warning restore CS1591
         [EnumMember(Value = "SUCCESS")]
         #pragma warning disable CS1591
-        SUCCESS,
+        Success,
         #pragma warning restore CS1591
         [EnumMember(Value = "FAILURE")]
         #pragma warning disable CS1591
-        FAILURE,
+        Failure,
         #pragma warning restore CS1591
     }
 }

@@ -9,23 +9,23 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "APPROVED")]
         #pragma warning disable CS1591
-        APPROVED,
+        Approved,
         #pragma warning restore CS1591
         [EnumMember(Value = "PENDING")]
         #pragma warning disable CS1591
-        PENDING,
+        Pending,
         #pragma warning restore CS1591
         [EnumMember(Value = "REJECTED")]
         #pragma warning disable CS1591
-        REJECTED,
+        Rejected,
         #pragma warning restore CS1591
         [EnumMember(Value = "UNKNOWN")]
         #pragma warning disable CS1591
-        UNKNOWN,
+        Unknown,
         #pragma warning restore CS1591
         [EnumMember(Value = "SUSPENDED")]
         #pragma warning disable CS1591
-        SUSPENDED,
+        Suspended,
         #pragma warning restore CS1591
     }
 }

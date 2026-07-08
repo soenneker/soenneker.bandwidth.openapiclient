@@ -10,11 +10,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "HORIZONTAL")]
         #pragma warning disable CS1591
-        HORIZONTAL,
+        Horizontal,
         #pragma warning restore CS1591
         [EnumMember(Value = "VERTICAL")]
         #pragma warning disable CS1591
-        VERTICAL,
+        Vertical,
         #pragma warning restore CS1591
     }
 }

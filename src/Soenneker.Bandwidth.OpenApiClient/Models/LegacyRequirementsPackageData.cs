@@ -39,13 +39,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string CountryCodeA3 { get; set; }
 #endif
-        /// <summary>The createdDateTime property</summary>
+        /// <summary>The date and time this object was created in ISO 8601 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_createdDateTime? CreatedDateTime { get; private set; }
+        public string? CreatedDateTime { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_createdDateTime CreatedDateTime { get; private set; }
+        public string CreatedDateTime { get; set; }
 #endif
         /// <summary>Customer username from BWI/legacy platform.It can be used for your own reference to the item to easily identify one of your customers, requirements package, enduser etc.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -79,37 +79,37 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string PhoneNumberType { get; set; }
 #endif
-        /// <summary>The remarks property</summary>
+        /// <summary>Remarks provided by the user or admin</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_remarks? Remarks { get; private set; }
+        public string? Remarks { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_remarks Remarks { get; private set; }
+        public string Remarks { get; set; }
 #endif
-        /// <summary>The requirementsPackageId property</summary>
+        /// <summary>Unique identifier for requirements package</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_requirementsPackageId? RequirementsPackageId { get; private set; }
+        public string? RequirementsPackageId { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_requirementsPackageId RequirementsPackageId { get; private set; }
+        public string RequirementsPackageId { get; set; }
 #endif
-        /// <summary>The status property</summary>
+        /// <summary>Statuses. Values - DRAFT, SUBMITTED, VERIFIED, VERIFICATION_FAILED, DISABLED</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_status? Status { get; private set; }
+        public string? Status { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_status Status { get; private set; }
+        public string Status { get; set; }
 #endif
-        /// <summary>The updatedDateTime property</summary>
+        /// <summary>The date and time this object was last updated in ISO 8601 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_updatedDateTime? UpdatedDateTime { get; private set; }
+        public string? UpdatedDateTime { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_updatedDateTime UpdatedDateTime { get; private set; }
+        public string UpdatedDateTime { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData"/> and sets the default values.
@@ -139,15 +139,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "acknowledgements", n => { Acknowledgements = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements>(global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements.CreateFromDiscriminatorValue); } },
                 { "callback", n => { Callback = n.GetStringValue(); } },
                 { "countryCodeA3", n => { CountryCodeA3 = n.GetStringValue(); } },
-                { "createdDateTime", n => { CreatedDateTime = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_createdDateTime>(global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_createdDateTime.CreateFromDiscriminatorValue); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetStringValue(); } },
                 { "customReference", n => { CustomReference = n.GetStringValue(); } },
                 { "email", n => { Email = n.GetStringValue(); } },
                 { "endUserType", n => { EndUserType = n.GetStringValue(); } },
                 { "phoneNumberType", n => { PhoneNumberType = n.GetStringValue(); } },
-                { "remarks", n => { Remarks = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_remarks>(global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_remarks.CreateFromDiscriminatorValue); } },
-                { "requirementsPackageId", n => { RequirementsPackageId = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_requirementsPackageId>(global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_requirementsPackageId.CreateFromDiscriminatorValue); } },
-                { "status", n => { Status = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_status>(global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_status.CreateFromDiscriminatorValue); } },
-                { "updatedDateTime", n => { UpdatedDateTime = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_updatedDateTime>(global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData_updatedDateTime.CreateFromDiscriminatorValue); } },
+                { "remarks", n => { Remarks = n.GetStringValue(); } },
+                { "requirementsPackageId", n => { RequirementsPackageId = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetStringValue(); } },
+                { "updatedDateTime", n => { UpdatedDateTime = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -160,10 +160,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements>("acknowledgements", Acknowledgements);
             writer.WriteStringValue("callback", Callback);
             writer.WriteStringValue("countryCodeA3", CountryCodeA3);
+            writer.WriteStringValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("customReference", CustomReference);
             writer.WriteStringValue("email", Email);
             writer.WriteStringValue("endUserType", EndUserType);
             writer.WriteStringValue("phoneNumberType", PhoneNumberType);
+            writer.WriteStringValue("remarks", Remarks);
+            writer.WriteStringValue("requirementsPackageId", RequirementsPackageId);
+            writer.WriteStringValue("status", Status);
+            writer.WriteStringValue("updatedDateTime", UpdatedDateTime);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

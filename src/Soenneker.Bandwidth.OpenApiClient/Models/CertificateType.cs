@@ -9,11 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "DIRECT")]
         #pragma warning disable CS1591
-        DIRECT,
+        Direct,
         #pragma warning restore CS1591
         [EnumMember(Value = "INDIRECT")]
         #pragma warning disable CS1591
-        INDIRECT,
+        Indirect,
         #pragma warning restore CS1591
     }
 }

@@ -9,11 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "SUBMITTED")]
         #pragma warning disable CS1591
-        SUBMITTED,
+        Submitted,
         #pragma warning restore CS1591
         [EnumMember(Value = "PROCESSING_CANCELLATION")]
         #pragma warning disable CS1591
-        PROCESSING_CANCELLATION,
+        ProcessingCancellation,
         #pragma warning restore CS1591
     }
 }

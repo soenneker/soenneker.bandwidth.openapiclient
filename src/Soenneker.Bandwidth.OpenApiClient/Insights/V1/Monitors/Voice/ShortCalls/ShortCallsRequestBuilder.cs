@@ -36,7 +36,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.ShortCall
         /// <summary>
         /// &quot;Retrieves an aggregated summary of short calls, including both call counts and percentages, based on the provided filters. This api is only available for accounts with Monitoring API feature.The summary returned is broken down into time &apos;slices&apos; depending on the time range requested.The granularity is calculated based on: * 0-24 hours: hour * 25 hours - 7 days: day * 8 days - 30 days: week * 31+ days: monthThrough the use of various query parameters, users can filter the data by direction, phone numbers, sub-account, call type, hang-up source, and country.Occasionally, underlying data may take longer than expected to load. To avoid connection timeouts, the API will return a `503 Service Unavailable` response in these cases, with an error message indicating that the data is still loading. If you receive a `503`, retry your request immediately with the exact same parameters.&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.ShortCalls.ShortCallsGetResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetMonitorTotalShortCallsResponseOkResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorGenericError">When receiving a 400 status code</exception>
@@ -49,11 +49,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.ShortCall
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorGenericError">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.ShortCalls.ShortCallsGetResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.ShortCalls.ShortCallsRequestBuilder.ShortCallsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMonitorTotalShortCallsResponseOkResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.ShortCalls.ShortCallsRequestBuilder.ShortCallsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.ShortCalls.ShortCallsGetResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.ShortCalls.ShortCallsRequestBuilder.ShortCallsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMonitorTotalShortCallsResponseOkResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.ShortCalls.ShortCallsRequestBuilder.ShortCallsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -68,7 +68,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.ShortCall
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorGenericError.CreateFromDiscriminatorValue },
                 { "503", global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorGenericError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.ShortCalls.ShortCallsGetResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.ShortCalls.ShortCallsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMonitorTotalShortCallsResponseOkResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.GetMonitorTotalShortCallsResponseOkResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Retrieves an aggregated summary of short calls, including both call counts and percentages, based on the provided filters. This api is only available for accounts with Monitoring API feature.The summary returned is broken down into time &apos;slices&apos; depending on the time range requested.The granularity is calculated based on: * 0-24 hours: hour * 25 hours - 7 days: day * 8 days - 30 days: week * 31+ days: monthThrough the use of various query parameters, users can filter the data by direction, phone numbers, sub-account, call type, hang-up source, and country.Occasionally, underlying data may take longer than expected to load. To avoid connection timeouts, the API will return a `503 Service Unavailable` response in these cases, with an error message indicating that the data is still loading. If you receive a `503`, retry your request immediately with the exact same parameters.&quot;

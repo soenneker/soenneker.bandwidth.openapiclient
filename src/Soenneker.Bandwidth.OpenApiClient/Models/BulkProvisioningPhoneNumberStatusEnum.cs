@@ -9,23 +9,23 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "ACCEPTED")]
         #pragma warning disable CS1591
-        ACCEPTED,
+        Accepted,
         #pragma warning restore CS1591
         [EnumMember(Value = "IN_PROGRESS")]
         #pragma warning disable CS1591
-        IN_PROGRESS,
+        InProgress,
         #pragma warning restore CS1591
         [EnumMember(Value = "SUCCESS")]
         #pragma warning disable CS1591
-        SUCCESS,
+        Success,
         #pragma warning restore CS1591
         [EnumMember(Value = "CANCELED")]
         #pragma warning disable CS1591
-        CANCELED,
+        Canceled,
         #pragma warning restore CS1591
         [EnumMember(Value = "ERROR")]
         #pragma warning disable CS1591
-        ERROR,
+        Error,
         #pragma warning restore CS1591
     }
 }

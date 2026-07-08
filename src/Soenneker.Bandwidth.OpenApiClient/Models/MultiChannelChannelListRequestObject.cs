@@ -8,34 +8,34 @@ using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListMMSObject"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListRBMObject"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListSMSObject"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListMmsObject"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListRbmObject"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListSmsObject"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class MultiChannelChannelListRequestObject : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListMMSObject"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListMmsObject"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListMMSObject? MultiChannelChannelListMMSObject { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListMmsObject? MultiChannelChannelListMmsObject { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListMMSObject MultiChannelChannelListMMSObject { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListMmsObject MultiChannelChannelListMmsObject { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListRBMObject"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListRbmObject"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListRBMObject? MultiChannelChannelListRBMObject { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListRbmObject? MultiChannelChannelListRbmObject { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListRBMObject MultiChannelChannelListRBMObject { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListRbmObject MultiChannelChannelListRbmObject { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListSMSObject"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListSmsObject"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListSMSObject? MultiChannelChannelListSMSObject { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListSmsObject? MultiChannelChannelListSmsObject { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListSMSObject MultiChannelChannelListSMSObject { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListSmsObject MultiChannelChannelListSmsObject { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -46,9 +46,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListRequestObject();
-            result.MultiChannelChannelListMMSObject = new global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListMMSObject();
-            result.MultiChannelChannelListRBMObject = new global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListRBMObject();
-            result.MultiChannelChannelListSMSObject = new global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListSMSObject();
+            result.MultiChannelChannelListMmsObject = new global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListMmsObject();
+            result.MultiChannelChannelListRbmObject = new global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListRbmObject();
+            result.MultiChannelChannelListSmsObject = new global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListSmsObject();
             return result;
         }
         /// <summary>
@@ -57,9 +57,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(MultiChannelChannelListMMSObject != null || MultiChannelChannelListRBMObject != null || MultiChannelChannelListSMSObject != null)
+            if(MultiChannelChannelListMmsObject != null || MultiChannelChannelListRbmObject != null || MultiChannelChannelListSmsObject != null)
             {
-                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(MultiChannelChannelListMMSObject, MultiChannelChannelListRBMObject, MultiChannelChannelListSMSObject);
+                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(MultiChannelChannelListMmsObject, MultiChannelChannelListRbmObject, MultiChannelChannelListSmsObject);
             }
             return new Dictionary<string, Action<IParseNode>>();
         }
@@ -70,7 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListMMSObject>(null, MultiChannelChannelListMMSObject, MultiChannelChannelListRBMObject, MultiChannelChannelListSMSObject);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListMmsObject>(null, MultiChannelChannelListMmsObject, MultiChannelChannelListRbmObject, MultiChannelChannelListSmsObject);
         }
     }
 }

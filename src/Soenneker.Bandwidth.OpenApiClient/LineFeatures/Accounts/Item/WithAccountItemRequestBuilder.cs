@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Dldas;
 using Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Lidbs;
+using Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Linefeatures;
 using Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +27,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item
         public global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Lidbs.LidbsRequestBuilder Lidbs
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Lidbs.LidbsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The linefeatures property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Linefeatures.LinefeaturesRequestBuilder Linefeatures
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Linefeatures.LinefeaturesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The tnoptions property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Tnoptions.TnoptionsRequestBuilder Tnoptions

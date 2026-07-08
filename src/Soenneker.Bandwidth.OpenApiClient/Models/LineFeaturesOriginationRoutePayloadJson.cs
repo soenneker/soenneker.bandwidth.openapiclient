@@ -23,7 +23,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string Endpoint { get; set; }
 #endif
         /// <summary>The endpointType property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesOriginationRoutePayloadJson_endpointType? EndpointType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesOriginationRoutePayloadJsonEndpointType? EndpointType { get; set; }
         /// <summary>A friendly name for a route. This is not used for any back-end call routing.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -62,7 +62,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "endpoint", n => { Endpoint = n.GetStringValue(); } },
-                { "endpointType", n => { EndpointType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesOriginationRoutePayloadJson_endpointType>(); } },
+                { "endpointType", n => { EndpointType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesOriginationRoutePayloadJsonEndpointType>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "priority", n => { Priority = n.GetIntValue(); } },
                 { "weight", n => { Weight = n.GetIntValue(); } },
@@ -76,7 +76,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("endpoint", Endpoint);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesOriginationRoutePayloadJson_endpointType>("endpointType", EndpointType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesOriginationRoutePayloadJsonEndpointType>("endpointType", EndpointType);
             writer.WriteStringValue("name", Name);
             writer.WriteIntValue("priority", Priority);
             writer.WriteIntValue("weight", Weight);

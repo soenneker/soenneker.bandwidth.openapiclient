@@ -41,7 +41,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orde
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public OrdersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/number-acquisition/accounts/{accountId}/orders?page={page}&size={size}{&customerOrderId*,endDate*,startDate*,status*,userId*}", pathParameters)
+        public OrdersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/number-acquisition/accounts/{accountId}/orders{?customerOrderId*,endDate*,startDate*,status*,userId*}", pathParameters)
         {
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orde
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public OrdersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/number-acquisition/accounts/{accountId}/orders?page={page}&size={size}{&customerOrderId*,endDate*,startDate*,status*,userId*}", rawUrl)
+        public OrdersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/number-acquisition/accounts/{accountId}/orders{?customerOrderId*,endDate*,startDate*,status*,userId*}", rawUrl)
         {
         }
         /// <summary>
@@ -114,7 +114,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orde
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orders.OrdersRequestBuilder.OrdersRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/number-acquisition/accounts/{accountId}/orders?page={page}&size={size}{&customerOrderId*,endDate*,startDate*,status*,userId*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -135,7 +135,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orde
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/number-acquisition/accounts/{accountId}/orders", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

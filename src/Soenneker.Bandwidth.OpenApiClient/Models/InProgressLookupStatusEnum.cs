@@ -10,19 +10,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "IN_PROGRESS")]
         #pragma warning disable CS1591
-        IN_PROGRESS,
+        InProgress,
         #pragma warning restore CS1591
         [EnumMember(Value = "COMPLETE")]
         #pragma warning disable CS1591
-        COMPLETE,
+        Complete,
         #pragma warning restore CS1591
         [EnumMember(Value = "PARTIAL_COMPLETE")]
         #pragma warning disable CS1591
-        PARTIAL_COMPLETE,
+        PartialComplete,
         #pragma warning restore CS1591
         [EnumMember(Value = "FAILED")]
         #pragma warning disable CS1591
-        FAILED,
+        Failed,
         #pragma warning restore CS1591
     }
 }

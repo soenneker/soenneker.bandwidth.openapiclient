@@ -5,8 +5,11 @@ using Microsoft.Kiota.Abstractions;
 using Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveTns;
 using Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveTnsChecker;
 using Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumberReputationManagement;
+using Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumbersAssignment;
+using Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Products;
 using Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.ServiceActivationChecker;
 using Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.ServiceActivationOrders;
+using Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Sites;
 using Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Tags;
 using System.Collections.Generic;
 using System.IO;
@@ -35,6 +38,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumberReputationManagement.NumberReputationManagementRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The numbersAssignment property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumbersAssignment.NumbersAssignmentRequestBuilder NumbersAssignment
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumbersAssignment.NumbersAssignmentRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The products property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Products.ProductsRequestBuilder Products
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Products.ProductsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The serviceActivationChecker property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.ServiceActivationChecker.ServiceActivationCheckerRequestBuilder ServiceActivationChecker
         {
@@ -44,6 +57,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item
         public global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.ServiceActivationOrders.ServiceActivationOrdersRequestBuilder ServiceActivationOrders
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.ServiceActivationOrders.ServiceActivationOrdersRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The sites property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Sites.SitesRequestBuilder Sites
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Sites.SitesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The tags property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Tags.TagsRequestBuilder Tags

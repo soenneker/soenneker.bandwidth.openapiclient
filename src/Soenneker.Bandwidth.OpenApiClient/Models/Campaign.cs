@@ -33,14 +33,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Approval> Approvals { get; set; }
 #endif
-        /// <summary>The attMessageClass property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? AttMessageClass { get; set; }
-#nullable restore
-#else
-        public string AttMessageClass { get; set; }
-#endif
+        /// <summary>Campaign subscription auto-renewal status. If true, the campaign will automatically renew at the end of the billing cycle.</summary>
+        public bool? AutoRenewal { get; set; }
         /// <summary>The Bandwidth-generated identifier for this campaign. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the campaign.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -83,7 +77,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>The time the brand was created in the TCR system.</summary>
         public DateTimeOffset? CreatedDate { get; set; }
-        /// <summary>For import accounts, the CSP ID of their CSP account with TCR. Otherwise it&apos;s the Bandwidth CSP ID.</summary>
+        /// <summary>The CSP ID of the campaign&apos;s CSP account with TCR. This field is only returned for import customers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CspId { get; set; }
@@ -275,6 +269,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public Campaign()
         {
             AdditionalData = new Dictionary<string, object>();
+            AgeGated = false;
+            DirectLending = false;
+            EmbeddedLink = false;
+            EmbeddedPhone = false;
+            NumberPool = false;
+            SubscriberHelp = false;
+            SubscriberOptIn = false;
+            SubscriberOptOut = false;
+            TermsAndConditions = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -297,7 +300,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "accountId", n => { AccountId = n.GetStringValue(); } },
                 { "ageGated", n => { AgeGated = n.GetBoolValue(); } },
                 { "approvals", n => { Approvals = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Approval>(global::Soenneker.Bandwidth.OpenApiClient.Models.Approval.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "attMessageClass", n => { AttMessageClass = n.GetStringValue(); } },
+                { "autoRenewal", n => { AutoRenewal = n.GetBoolValue(); } },
                 { "bandwidthId", n => { BandwidthId = n.GetStringValue(); } },
                 { "brandDisplayName", n => { BrandDisplayName = n.GetStringValue(); } },
                 { "brandId", n => { BrandId = n.GetStringValue(); } },
@@ -349,7 +352,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("accountId", AccountId);
             writer.WriteBoolValue("ageGated", AgeGated);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Approval>("approvals", Approvals);
-            writer.WriteStringValue("attMessageClass", AttMessageClass);
+            writer.WriteBoolValue("autoRenewal", AutoRenewal);
             writer.WriteStringValue("bandwidthId", BandwidthId);
             writer.WriteStringValue("brandId", BrandId);
             writer.WriteStringValue("campaignId", CampaignId);

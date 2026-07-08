@@ -9,39 +9,39 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "PENDING_USE_CASE_REVIEW")]
         #pragma warning disable CS1591
-        PENDING_USE_CASE_REVIEW,
+        PendingUseCaseReview,
         #pragma warning restore CS1591
         [EnumMember(Value = "PENDING_BW_REVIEW")]
         #pragma warning disable CS1591
-        PENDING_BW_REVIEW,
+        PendingBwReview,
         #pragma warning restore CS1591
         [EnumMember(Value = "PROVISIONING_SHORTCODE")]
         #pragma warning disable CS1591
-        PROVISIONING_SHORTCODE,
+        ProvisioningShortcode,
         #pragma warning restore CS1591
         [EnumMember(Value = "ACTION_REQUIRED")]
         #pragma warning disable CS1591
-        ACTION_REQUIRED,
+        ActionRequired,
         #pragma warning restore CS1591
         [EnumMember(Value = "PENDING_CARRIER_REVIEW")]
         #pragma warning disable CS1591
-        PENDING_CARRIER_REVIEW,
+        PendingCarrierReview,
         #pragma warning restore CS1591
         [EnumMember(Value = "APPROVED")]
         #pragma warning disable CS1591
-        APPROVED,
+        Approved,
         #pragma warning restore CS1591
         [EnumMember(Value = "DENIED")]
         #pragma warning disable CS1591
-        DENIED,
+        Denied,
         #pragma warning restore CS1591
         [EnumMember(Value = "ABANDONED")]
         #pragma warning disable CS1591
-        ABANDONED,
+        Abandoned,
         #pragma warning restore CS1591
         [EnumMember(Value = "DELETED")]
         #pragma warning disable CS1591
-        DELETED,
+        Deleted,
         #pragma warning restore CS1591
     }
 }

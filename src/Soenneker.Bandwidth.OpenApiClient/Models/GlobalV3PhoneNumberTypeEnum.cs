@@ -9,27 +9,27 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "NATIONAL")]
         #pragma warning disable CS1591
-        NATIONAL,
+        National,
         #pragma warning restore CS1591
         [EnumMember(Value = "GEOGRAPHIC")]
         #pragma warning disable CS1591
-        GEOGRAPHIC,
+        Geographic,
         #pragma warning restore CS1591
         [EnumMember(Value = "MOBILE")]
         #pragma warning disable CS1591
-        MOBILE,
+        Mobile,
         #pragma warning restore CS1591
         [EnumMember(Value = "SHARED_COST")]
         #pragma warning disable CS1591
-        SHARED_COST,
+        SharedCost,
         #pragma warning restore CS1591
         [EnumMember(Value = "TOLL_FREE")]
         #pragma warning disable CS1591
-        TOLL_FREE,
+        TollFree,
         #pragma warning restore CS1591
         [EnumMember(Value = "SPECIAL")]
         #pragma warning disable CS1591
-        SPECIAL,
+        Special,
         #pragma warning restore CS1591
     }
 }

@@ -9,31 +9,31 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "RECEIVED")]
         #pragma warning disable CS1591
-        RECEIVED,
+        Received,
         #pragma warning restore CS1591
         [EnumMember(Value = "PROCESSING")]
         #pragma warning disable CS1591
-        PROCESSING,
+        Processing,
         #pragma warning restore CS1591
         [EnumMember(Value = "ACTION_REQUIRED")]
         #pragma warning disable CS1591
-        ACTION_REQUIRED,
+        ActionRequired,
         #pragma warning restore CS1591
         [EnumMember(Value = "COMPLETE")]
         #pragma warning disable CS1591
-        COMPLETE,
+        Complete,
         #pragma warning restore CS1591
         [EnumMember(Value = "FAILED")]
         #pragma warning disable CS1591
-        FAILED,
+        Failed,
         #pragma warning restore CS1591
         [EnumMember(Value = "REQUESTED_CANCEL")]
         #pragma warning disable CS1591
-        REQUESTED_CANCEL,
+        RequestedCancel,
         #pragma warning restore CS1591
         [EnumMember(Value = "CANCELLED")]
         #pragma warning disable CS1591
-        CANCELLED,
+        Cancelled,
         #pragma warning restore CS1591
     }
 }

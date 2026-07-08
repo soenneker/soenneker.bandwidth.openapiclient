@@ -3,6 +3,8 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts;
+using Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.ImportTnOrders;
+using Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.RemoveImportedTnOrders;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -19,6 +21,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement
         public global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.AccountsRequestBuilder Accounts
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.AccountsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The importTnOrders property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.ImportTnOrders.ImportTnOrdersRequestBuilder ImportTnOrders
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.ImportTnOrders.ImportTnOrdersRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The removeImportedTnOrders property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.RemoveImportedTnOrders.RemoveImportedTnOrdersRequestBuilder RemoveImportedTnOrders
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.RemoveImportedTnOrders.RemoveImportedTnOrdersRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.HostedNumberManagementRequestBuilder"/> and sets the default values.

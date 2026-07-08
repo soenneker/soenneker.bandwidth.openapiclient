@@ -22,8 +22,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string DocumentName { get; set; }
 #endif
-        /// <summary>Enum of possible file type.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementFileMetaData_documentType? DocumentType { get; set; }
+        /// <summary>The type of document.</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentType? DocumentType { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementFileMetaData"/> and sets the default values.
         /// </summary>
@@ -50,7 +50,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "documentName", n => { DocumentName = n.GetStringValue(); } },
-                { "documentType", n => { DocumentType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementFileMetaData_documentType>(); } },
+                { "documentType", n => { DocumentType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentType>(); } },
             };
         }
         /// <summary>
@@ -61,7 +61,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("documentName", DocumentName);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementFileMetaData_documentType>("documentType", DocumentType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentType>("documentType", DocumentType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

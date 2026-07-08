@@ -9,11 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "ADDRESS")]
         #pragma warning disable CS1591
-        ADDRESS,
+        Address,
         #pragma warning restore CS1591
         [EnumMember(Value = "IDENTITY")]
         #pragma warning disable CS1591
-        IDENTITY,
+        Identity,
         #pragma warning restore CS1591
     }
 }

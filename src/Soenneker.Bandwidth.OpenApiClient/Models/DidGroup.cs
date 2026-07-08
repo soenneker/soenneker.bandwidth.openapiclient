@@ -43,7 +43,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The ID of the DID group.</summary>
         public int? DidGroupId { get; set; }
         /// <summary>The DID type of the DID group.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroup_didType? DidType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroupDidType? DidType { get; set; }
         /// <summary>The features property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -90,6 +90,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public DidGroup()
         {
             AdditionalData = new Dictionary<string, object>();
+            Available = true;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -114,7 +115,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "cityName", n => { CityName = n.GetStringValue(); } },
                 { "countryCodeA3", n => { CountryCodeA3 = n.GetStringValue(); } },
                 { "didGroupId", n => { DidGroupId = n.GetIntValue(); } },
-                { "didType", n => { DidType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroup_didType>(); } },
+                { "didType", n => { DidType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroupDidType>(); } },
                 { "features", n => { Features = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Feature>(global::Soenneker.Bandwidth.OpenApiClient.Models.Feature.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "monthly100", n => { Monthly100 = n.GetIntValue(); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumber>(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumber.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -137,7 +138,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("cityName", CityName);
             writer.WriteStringValue("countryCodeA3", CountryCodeA3);
             writer.WriteIntValue("didGroupId", DidGroupId);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroup_didType>("didType", DidType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroupDidType>("didType", DidType);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Feature>("features", Features);
             writer.WriteIntValue("monthly100", Monthly100);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumber>("phoneNumbers", PhoneNumbers);

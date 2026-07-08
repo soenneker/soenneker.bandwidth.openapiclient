@@ -10,27 +10,27 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "NONE")]
         #pragma warning disable CS1591
-        NONE,
+        None,
         #pragma warning restore CS1591
         [EnumMember(Value = "VERSTAT")]
         #pragma warning disable CS1591
-        VERSTAT,
+        Verstat,
         #pragma warning restore CS1591
         [EnumMember(Value = "ENH_VERSTAT")]
         #pragma warning disable CS1591
-        ENH_VERSTAT,
+        EnhVerstat,
         #pragma warning restore CS1591
         [EnumMember(Value = "VERSTAT_AND_IDENTITY")]
         #pragma warning disable CS1591
-        VERSTAT_AND_IDENTITY,
+        VerstatAndIdentity,
         #pragma warning restore CS1591
         [EnumMember(Value = "ENH_VERSTAT_AND_IDENTITY")]
         #pragma warning disable CS1591
-        ENH_VERSTAT_AND_IDENTITY,
+        EnhVerstatAndIdentity,
         #pragma warning restore CS1591
         [EnumMember(Value = "IDENTITY")]
         #pragma warning disable CS1591
-        IDENTITY,
+        Identity,
         #pragma warning restore CS1591
     }
 }

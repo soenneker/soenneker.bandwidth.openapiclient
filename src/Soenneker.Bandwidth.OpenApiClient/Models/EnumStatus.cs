@@ -9,19 +9,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "APPROVED")]
         #pragma warning disable CS1591
-        APPROVED,
+        Approved,
         #pragma warning restore CS1591
         [EnumMember(Value = "DENIED")]
         #pragma warning disable CS1591
-        DENIED,
+        Denied,
         #pragma warning restore CS1591
         [EnumMember(Value = "REQUESTED")]
         #pragma warning disable CS1591
-        REQUESTED,
+        Requested,
         #pragma warning restore CS1591
         [EnumMember(Value = "FORWARDED_TO_CUSTOMER")]
         #pragma warning disable CS1591
-        FORWARDED_TO_CUSTOMER,
+        ForwardedToCustomer,
         #pragma warning restore CS1591
     }
 }

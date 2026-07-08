@@ -25,10 +25,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The errors array will always be empty for successful responses.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignResponseSchema_errors>? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignResponseSchemaErrorsItem>? Errors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignResponseSchema_errors> Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignResponseSchemaErrorsItem> Errors { get; set; }
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -64,7 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignSchema>(global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignSchema.CreateFromDiscriminatorValue); } },
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignResponseSchema_errors>(global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignResponseSchema_errors.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignResponseSchemaErrorsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignResponseSchemaErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLinkSchemaItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLinkSchemaItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -76,7 +76,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignSchema>("data", Data);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignResponseSchema_errors>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignResponseSchemaErrorsItem>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLinkSchemaItem>("links", Links);
             writer.WriteAdditionalData(AdditionalData);
         }

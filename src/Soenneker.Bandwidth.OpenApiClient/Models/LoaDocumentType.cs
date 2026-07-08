@@ -9,19 +9,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "LOA")]
         #pragma warning disable CS1591
-        LOA,
+        Loa,
         #pragma warning restore CS1591
         [EnumMember(Value = "INVOICE")]
         #pragma warning disable CS1591
-        INVOICE,
+        Invoice,
         #pragma warning restore CS1591
         [EnumMember(Value = "CSR")]
         #pragma warning disable CS1591
-        CSR,
+        Csr,
         #pragma warning restore CS1591
         [EnumMember(Value = "OTHER")]
         #pragma warning disable CS1591
-        OTHER,
+        Other,
         #pragma warning restore CS1591
     }
 }

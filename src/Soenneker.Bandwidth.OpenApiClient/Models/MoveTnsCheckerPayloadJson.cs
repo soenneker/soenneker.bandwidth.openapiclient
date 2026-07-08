@@ -25,18 +25,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJson_errors>? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJsonErrorsItem>? Errors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJson_errors> Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJsonErrorsItem> Errors { get; set; }
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJson_links>? Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJsonLinksItem>? Links { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJson_links> Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJsonLinksItem> Links { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJson"/> and sets the default values.
@@ -64,8 +64,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJsonData>(global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJsonData.CreateFromDiscriminatorValue); } },
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJson_errors>(global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJson_errors.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJson_links>(global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJson_links.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJsonErrorsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJsonErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJsonLinksItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJsonLinksItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -76,8 +76,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJsonData>("data", Data);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJson_errors>("errors", Errors);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJson_links>("links", Links);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJsonErrorsItem>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJsonLinksItem>("links", Links);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

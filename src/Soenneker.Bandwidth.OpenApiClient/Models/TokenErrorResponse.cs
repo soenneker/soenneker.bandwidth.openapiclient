@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The err property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOauthError? Err { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthError? Err { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOauthError Err { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthError Err { get; set; }
 #endif
         /// <summary>The type of token error</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -74,7 +74,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "err", n => { Err = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOauthError>(global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOauthError.CreateFromDiscriminatorValue); } },
+                { "err", n => { Err = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthError>(global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthError.CreateFromDiscriminatorValue); } },
                 { "error", n => { Error = n.GetStringValue(); } },
                 { "error_description", n => { ErrorDescription = n.GetStringValue(); } },
                 { "error_uri", n => { ErrorUri = n.GetStringValue(); } },
@@ -87,7 +87,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOauthError>("err", Err);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthError>("err", Err);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

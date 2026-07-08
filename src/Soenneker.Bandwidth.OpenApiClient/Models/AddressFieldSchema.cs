@@ -55,10 +55,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The usedBy property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressFieldSchema_usedBy>? UsedBy { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressFieldSchemaUsedByItem>? UsedBy { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressFieldSchema_usedBy> UsedBy { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressFieldSchemaUsedByItem> UsedBy { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddressFieldSchema"/> and sets the default values.
@@ -92,7 +92,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "maxLength", n => { MaxLength = n.GetIntValue(); } },
                 { "required", n => { Required = n.GetBoolValue(); } },
                 { "type", n => { Type = n.GetStringValue(); } },
-                { "usedBy", n => { UsedBy = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressFieldSchema_usedBy>(global::Soenneker.Bandwidth.OpenApiClient.Models.AddressFieldSchema_usedBy.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "usedBy", n => { UsedBy = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressFieldSchemaUsedByItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.AddressFieldSchemaUsedByItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -109,7 +109,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteIntValue("maxLength", MaxLength);
             writer.WriteBoolValue("required", Required);
             writer.WriteStringValue("type", Type);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressFieldSchema_usedBy>("usedBy", UsedBy);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressFieldSchemaUsedByItem>("usedBy", UsedBy);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

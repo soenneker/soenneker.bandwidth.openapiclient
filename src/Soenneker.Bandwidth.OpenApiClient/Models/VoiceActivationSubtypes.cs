@@ -10,19 +10,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "ALL")]
         #pragma warning disable CS1591
-        ALL,
+        All,
         #pragma warning restore CS1591
         [EnumMember(Value = "INBOUND")]
         #pragma warning disable CS1591
-        INBOUND,
+        Inbound,
         #pragma warning restore CS1591
         [EnumMember(Value = "OUTBOUND_NATIONAL")]
         #pragma warning disable CS1591
-        OUTBOUND_NATIONAL,
+        OutboundNational,
         #pragma warning restore CS1591
         [EnumMember(Value = "OUTBOUND_INTERNATIONAL")]
         #pragma warning disable CS1591
-        OUTBOUND_INTERNATIONAL,
+        OutboundInternational,
         #pragma warning restore CS1591
     }
 }

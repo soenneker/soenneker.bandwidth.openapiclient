@@ -9,15 +9,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "ACTIVE")]
         #pragma warning disable CS1591
-        ACTIVE,
+        Active,
         #pragma warning restore CS1591
         [EnumMember(Value = "SUSPENDED")]
         #pragma warning disable CS1591
-        SUSPENDED,
+        Suspended,
         #pragma warning restore CS1591
         [EnumMember(Value = "DEPROVISIONED")]
         #pragma warning disable CS1591
-        DEPROVISIONED,
+        Deprovisioned,
         #pragma warning restore CS1591
     }
 }

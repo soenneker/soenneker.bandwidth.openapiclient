@@ -16,10 +16,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceErrorResponse_data? DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceErrorResponseData? DataEscaped { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceErrorResponse_data DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceErrorResponseData DataEscaped { get; set; }
 #endif
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -57,7 +57,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceErrorResponse_data>(global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceErrorResponse_data.CreateFromDiscriminatorValue); } },
+                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceErrorResponseData>(global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceErrorResponseData.CreateFromDiscriminatorValue); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceError>(global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceError.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceLink.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -69,7 +69,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceErrorResponse_data>("data", DataEscaped);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceErrorResponseData>("data", DataEscaped);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceError>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceLink>("links", Links);
         }

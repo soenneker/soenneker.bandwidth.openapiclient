@@ -19,18 +19,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseProperties_data? DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesData? DataEscaped { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseProperties_data DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesData DataEscaped { get; set; }
 #endif
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseProperties_errors>? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesErrorsItem>? Errors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseProperties_errors> Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesErrorsItem> Errors { get; set; }
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -67,8 +67,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseProperties_data>(global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseProperties_data.CreateFromDiscriminatorValue); } },
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseProperties_errors>(global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseProperties_errors.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesData>(global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesData.CreateFromDiscriminatorValue); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesErrorsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -79,8 +79,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseProperties_data>("data", DataEscaped);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseProperties_errors>("errors", Errors);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesData>("data", DataEscaped);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesErrorsItem>("errors", Errors);
             writer.WriteCollectionOfPrimitiveValues<string>("links", Links);
             writer.WriteAdditionalData(AdditionalData);
         }

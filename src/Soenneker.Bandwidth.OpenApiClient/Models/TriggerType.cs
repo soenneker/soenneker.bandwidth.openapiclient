@@ -10,11 +10,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "SEND_PSAP_OUTAGE_ALERT")]
         #pragma warning disable CS1591
-        SEND_PSAP_OUTAGE_ALERT,
+        SendPsapOutageAlert,
         #pragma warning restore CS1591
         [EnumMember(Value = "TEST_SEND_PSAP_OUTAGE_ALERT")]
         #pragma warning disable CS1591
-        TEST_SEND_PSAP_OUTAGE_ALERT,
+        TestSendPsapOutageAlert,
         #pragma warning restore CS1591
     }
 }

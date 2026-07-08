@@ -9,35 +9,35 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "STAGED")]
         #pragma warning disable CS1591
-        STAGED,
+        Staged,
         #pragma warning restore CS1591
         [EnumMember(Value = "PROVISIONED")]
         #pragma warning disable CS1591
-        PROVISIONED,
+        Provisioned,
         #pragma warning restore CS1591
         [EnumMember(Value = "ACTIVE")]
         #pragma warning disable CS1591
-        ACTIVE,
+        Active,
         #pragma warning restore CS1591
         [EnumMember(Value = "PASSWORD_EXPIRED")]
         #pragma warning disable CS1591
-        PASSWORD_EXPIRED,
+        PasswordExpired,
         #pragma warning restore CS1591
         [EnumMember(Value = "LOCKED_OUT")]
         #pragma warning disable CS1591
-        LOCKED_OUT,
+        LockedOut,
         #pragma warning restore CS1591
         [EnumMember(Value = "RECOVERY")]
         #pragma warning disable CS1591
-        RECOVERY,
+        Recovery,
         #pragma warning restore CS1591
         [EnumMember(Value = "SUSPENDED")]
         #pragma warning disable CS1591
-        SUSPENDED,
+        Suspended,
         #pragma warning restore CS1591
         [EnumMember(Value = "DEPROVISIONED")]
         #pragma warning disable CS1591
-        DEPROVISIONED,
+        Deprovisioned,
         #pragma warning restore CS1591
     }
 }

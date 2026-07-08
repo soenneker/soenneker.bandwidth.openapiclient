@@ -23,7 +23,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string OrderId { get; set; }
 #endif
         /// <summary>&quot;The processing status of this order. Values may be: PROCESSING, COMPLETED, FAILED. PROCESSING means that the system is still processing the order. COMPLETED means that the order has been successfully completed. FAILED means that errors occurred while processing the order, and that the order did not make any changes to the system.&quot;</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateResponseJson_processingStatus? ProcessingStatus { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateResponseJsonProcessingStatus? ProcessingStatus { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateResponseJson"/> and sets the default values.
         /// </summary>
@@ -50,7 +50,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "orderId", n => { OrderId = n.GetStringValue(); } },
-                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateResponseJson_processingStatus>(); } },
+                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateResponseJsonProcessingStatus>(); } },
             };
         }
         /// <summary>
@@ -61,7 +61,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("orderId", OrderId);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateResponseJson_processingStatus>("processingStatus", ProcessingStatus);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateResponseJsonProcessingStatus>("processingStatus", ProcessingStatus);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

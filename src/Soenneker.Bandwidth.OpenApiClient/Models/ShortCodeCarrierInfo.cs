@@ -19,11 +19,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Carrier identifier  (possible values ATT, TMOBILE, VERIZON).</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo_carrierId? CarrierId { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoCarrierId? CarrierId { get; set; }
         /// <summary>The date the status was modified for this carrier</summary>
         public Date? ModifiedDate { get; set; }
         /// <summary>The status property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo_status? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoStatus? Status { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo"/> and sets the default values.
         /// </summary>
@@ -50,9 +50,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "activatedDate", n => { ActivatedDate = n.GetDateValue(); } },
-                { "carrierId", n => { CarrierId = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo_carrierId>(); } },
+                { "carrierId", n => { CarrierId = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoCarrierId>(); } },
                 { "modifiedDate", n => { ModifiedDate = n.GetDateValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo_status>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoStatus>(); } },
             };
         }
         /// <summary>
@@ -63,9 +63,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateValue("activatedDate", ActivatedDate);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo_carrierId>("carrierId", CarrierId);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoCarrierId>("carrierId", CarrierId);
             writer.WriteDateValue("modifiedDate", ModifiedDate);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo_status>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

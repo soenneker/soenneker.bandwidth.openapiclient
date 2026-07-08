@@ -14,6 +14,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>A list of individual speech clips with speaker, timing, and confidence information.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RecordingTranscriptionClip>? Clips { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RecordingTranscriptionClip> Clips { get; set; }
+#endif
         /// <summary>The transcripts property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -47,6 +55,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "clips", n => { Clips = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.RecordingTranscriptionClip>(global::Soenneker.Bandwidth.OpenApiClient.Models.RecordingTranscriptionClip.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "transcripts", n => { Transcripts = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Transcription>(global::Soenneker.Bandwidth.OpenApiClient.Models.Transcription.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -57,6 +66,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.RecordingTranscriptionClip>("clips", Clips);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Transcription>("transcripts", Transcripts);
             writer.WriteAdditionalData(AdditionalData);
         }

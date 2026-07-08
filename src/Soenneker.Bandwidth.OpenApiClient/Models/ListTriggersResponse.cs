@@ -17,10 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ListTriggersResponse_data? Data { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ListTriggersResponseData? Data { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ListTriggersResponse_data Data { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ListTriggersResponseData Data { get; set; }
 #endif
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -71,7 +71,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ListTriggersResponse_data>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListTriggersResponse_data.CreateFromDiscriminatorValue); } },
+                { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ListTriggersResponseData>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListTriggersResponseData.CreateFromDiscriminatorValue); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PsapAlertsError>(global::Soenneker.Bandwidth.OpenApiClient.Models.PsapAlertsError.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PsapAlertsLinks>(global::Soenneker.Bandwidth.OpenApiClient.Models.PsapAlertsLinks.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "page", n => { Page = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PsapAlertsPageMeta>(global::Soenneker.Bandwidth.OpenApiClient.Models.PsapAlertsPageMeta.CreateFromDiscriminatorValue); } },
@@ -84,7 +84,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ListTriggersResponse_data>("data", Data);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ListTriggersResponseData>("data", Data);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PsapAlertsError>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PsapAlertsLinks>("links", Links);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PsapAlertsPageMeta>("page", Page);

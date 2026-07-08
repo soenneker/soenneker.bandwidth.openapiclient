@@ -9,11 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "in")]
         #pragma warning disable CS1591
-        In,
+        InValue,
         #pragma warning restore CS1591
         [EnumMember(Value = "out")]
         #pragma warning disable CS1591
-        Out,
+        OutValue,
         #pragma warning restore CS1591
     }
 }

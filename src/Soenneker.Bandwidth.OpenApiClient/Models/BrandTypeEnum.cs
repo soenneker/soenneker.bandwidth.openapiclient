@@ -9,11 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "STANDARD")]
         #pragma warning disable CS1591
-        STANDARD,
+        Standard,
         #pragma warning restore CS1591
         [EnumMember(Value = "POLITICAL")]
         #pragma warning disable CS1591
-        POLITICAL,
+        Political,
         #pragma warning restore CS1591
     }
 }

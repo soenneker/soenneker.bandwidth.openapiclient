@@ -9,55 +9,55 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "ALLO")]
         #pragma warning disable CS1591
-        ALLO,
+        Allo,
         #pragma warning restore CS1591
         [EnumMember(Value = "CAN")]
         #pragma warning disable CS1591
-        CAN,
+        Can,
         #pragma warning restore CS1591
         [EnumMember(Value = "COB")]
         #pragma warning disable CS1591
-        COB,
+        Cob,
         #pragma warning restore CS1591
         [EnumMember(Value = "COURT")]
         #pragma warning disable CS1591
-        COURT,
+        Court,
         #pragma warning restore CS1591
         [EnumMember(Value = "CSR")]
         #pragma warning disable CS1591
-        CSR,
+        Csr,
         #pragma warning restore CS1591
         [EnumMember(Value = "DIREC")]
         #pragma warning disable CS1591
-        DIREC,
+        Direc,
         #pragma warning restore CS1591
         [EnumMember(Value = "FORM")]
         #pragma warning disable CS1591
-        FORM,
+        Form,
         #pragma warning restore CS1591
         [EnumMember(Value = "INCORP")]
         #pragma warning disable CS1591
-        INCORP,
+        Incorp,
         #pragma warning restore CS1591
         [EnumMember(Value = "LEG_ID")]
         #pragma warning disable CS1591
-        LEG_ID,
+        LegId,
         #pragma warning restore CS1591
         [EnumMember(Value = "LOA")]
         #pragma warning disable CS1591
-        LOA,
+        Loa,
         #pragma warning restore CS1591
         [EnumMember(Value = "OFF_SGN")]
         #pragma warning disable CS1591
-        OFF_SGN,
+        OffSgn,
         #pragma warning restore CS1591
         [EnumMember(Value = "POA")]
         #pragma warning disable CS1591
-        POA,
+        Poa,
         #pragma warning restore CS1591
         [EnumMember(Value = "TAX")]
         #pragma warning disable CS1591
-        TAX,
+        Tax,
         #pragma warning restore CS1591
     }
 }

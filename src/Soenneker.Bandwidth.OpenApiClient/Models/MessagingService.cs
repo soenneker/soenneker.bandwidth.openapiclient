@@ -9,11 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "USE_DESTINATION_SETTINGS")]
         #pragma warning disable CS1591
-        USE_DESTINATION_SETTINGS,
+        UseDestinationSettings,
         #pragma warning restore CS1591
         [EnumMember(Value = "USE_CURRENT_NUMBER_SETTINGS")]
         #pragma warning disable CS1591
-        USE_CURRENT_NUMBER_SETTINGS,
+        UseCurrentNumberSettings,
         #pragma warning restore CS1591
     }
 }

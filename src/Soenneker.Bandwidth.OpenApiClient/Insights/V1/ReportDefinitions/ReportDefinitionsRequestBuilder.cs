@@ -36,7 +36,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportDefinitions
         /// <summary>
         /// Get a list of report definitions.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportDefinitions.ReportDefinitionsGetResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionsResponseResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError">When receiving a 400 status code</exception>
@@ -48,11 +48,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportDefinitions
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportDefinitions.ReportDefinitionsGetResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportDefinitions.ReportDefinitionsRequestBuilder.ReportDefinitionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionsResponseResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportDefinitions.ReportDefinitionsRequestBuilder.ReportDefinitionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportDefinitions.ReportDefinitionsGetResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportDefinitions.ReportDefinitionsRequestBuilder.ReportDefinitionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionsResponseResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportDefinitions.ReportDefinitionsRequestBuilder.ReportDefinitionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -66,7 +66,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportDefinitions
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportDefinitions.ReportDefinitionsGetResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportDefinitions.ReportDefinitionsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionsResponseResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionsResponseResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Get a list of report definitions.
@@ -103,9 +103,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportDefinitions
         public partial class ReportDefinitionsRequestBuilderGetQueryParameters 
         {
             [QueryParameter("category")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportDefinitions.GetCategoryQueryParameterType? Category { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.CategoryEnum? Category { get; set; }
             [QueryParameter("domain")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportDefinitions.GetDomainQueryParameterType? Domain { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.DomainEnum? Domain { get; set; }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("reportName")]

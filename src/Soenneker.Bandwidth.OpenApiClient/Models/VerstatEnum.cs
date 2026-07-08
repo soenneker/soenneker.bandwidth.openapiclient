@@ -10,11 +10,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "BASIC")]
         #pragma warning disable CS1591
-        BASIC,
+        Basic,
         #pragma warning restore CS1591
         [EnumMember(Value = "ENHANCED")]
         #pragma warning disable CS1591
-        ENHANCED,
+        Enhanced,
         #pragma warning restore CS1591
     }
 }

@@ -55,7 +55,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinsAddress ServiceAddress { get; set; }
 #endif
         /// <summary>If residential, order will be rejected if a BusinessName is entered.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberJson_subscriberType? SubscriberType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberJsonSubscriberType? SubscriberType { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberJson"/> and sets the default values.
         /// </summary>
@@ -86,7 +86,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "lastName", n => { LastName = n.GetStringValue(); } },
                 { "middleInitial", n => { MiddleInitial = n.GetStringValue(); } },
                 { "serviceAddress", n => { ServiceAddress = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinsAddress>(global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinsAddress.CreateFromDiscriminatorValue); } },
-                { "subscriberType", n => { SubscriberType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberJson_subscriberType>(); } },
+                { "subscriberType", n => { SubscriberType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberJsonSubscriberType>(); } },
             };
         }
         /// <summary>
@@ -101,7 +101,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("lastName", LastName);
             writer.WriteStringValue("middleInitial", MiddleInitial);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinsAddress>("serviceAddress", ServiceAddress);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberJson_subscriberType>("subscriberType", SubscriberType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberJsonSubscriberType>("subscriberType", SubscriberType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

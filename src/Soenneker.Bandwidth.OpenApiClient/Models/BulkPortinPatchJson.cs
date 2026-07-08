@@ -57,10 +57,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>This is the SIP Peer / Location ID made visible in the /accounts/{accountId}/sites/{siteId}/sipPeers</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchJson_locationId? LocationId { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchJsonLocationId? LocationId { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchJson_locationId LocationId { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchJsonLocationId LocationId { get; set; }
 #endif
         /// <summary>PIN Number, often required for wireless ports.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -112,7 +112,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "billingTelephoneNumber", n => { BillingTelephoneNumber = n.GetStringValue(); } },
                 { "customerOrderId", n => { CustomerOrderId = n.GetStringValue(); } },
                 { "loaAuthorizingPerson", n => { LoaAuthorizingPerson = n.GetStringValue(); } },
-                { "locationId", n => { LocationId = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchJson_locationId>(global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchJson_locationId.CreateFromDiscriminatorValue); } },
+                { "locationId", n => { LocationId = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchJsonLocationId>(global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchJsonLocationId.CreateFromDiscriminatorValue); } },
                 { "pinNumber", n => { PinNumber = n.GetStringValue(); } },
                 { "requestedFocDate", n => { RequestedFocDate = n.GetDateTimeOffsetValue(); } },
                 { "subAccountId", n => { SubAccountId = n.GetIntValue(); } },
@@ -131,7 +131,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("billingTelephoneNumber", BillingTelephoneNumber);
             writer.WriteStringValue("customerOrderId", CustomerOrderId);
             writer.WriteStringValue("loaAuthorizingPerson", LoaAuthorizingPerson);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchJson_locationId>("locationId", LocationId);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchJsonLocationId>("locationId", LocationId);
             writer.WriteStringValue("pinNumber", PinNumber);
             writer.WriteDateTimeOffsetValue("requestedFocDate", RequestedFocDate);
             writer.WriteIntValue("subAccountId", SubAccountId);

@@ -39,7 +39,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalCdrResourceHolderPagination Pagination { get; set; }
 #endif
         /// <summary>Status of the HTTP response from the API.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalCdrResourceHolder_status? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalCdrResourceHolderStatus? Status { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalCdrResourceHolder"/> and sets the default values.
         /// </summary>
@@ -68,7 +68,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalVoiceResource>(global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalVoiceResource.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV2Link>(global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV2Link.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "pagination", n => { Pagination = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalCdrResourceHolderPagination>(global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalCdrResourceHolderPagination.CreateFromDiscriminatorValue); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalCdrResourceHolder_status>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalCdrResourceHolderStatus>(); } },
             };
         }
         /// <summary>
@@ -81,7 +81,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalVoiceResource>("data", Data);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV2Link>("links", Links);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalCdrResourceHolderPagination>("pagination", Pagination);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalCdrResourceHolder_status>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalCdrResourceHolderStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -9,11 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "EMAIL")]
         #pragma warning disable CS1591
-        EMAIL,
+        Email,
         #pragma warning restore CS1591
         [EnumMember(Value = "WEBHOOK")]
         #pragma warning disable CS1591
-        WEBHOOK,
+        Webhook,
         #pragma warning restore CS1591
     }
 }

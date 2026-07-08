@@ -24,7 +24,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string IdentityDocumentNumber { get; set; }
 #endif
         /// <summary>Mandatory for South Africa and Italy. Only BUSINESS_REGISTRATION is applicable for ZAF</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.IdentityDocumentProof_identityDocumentType? IdentityDocumentType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.IdentityDocumentProofIdentityDocumentType? IdentityDocumentType { get; set; }
         /// <summary>&quot;Name of the issuing authority as seen on the ID proof document attached. Maximum length: 60. Mandatory for Italy.&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -75,7 +75,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "identityDocumentNumber", n => { IdentityDocumentNumber = n.GetStringValue(); } },
-                { "identityDocumentType", n => { IdentityDocumentType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.IdentityDocumentProof_identityDocumentType>(); } },
+                { "identityDocumentType", n => { IdentityDocumentType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.IdentityDocumentProofIdentityDocumentType>(); } },
                 { "issuingAuthority", n => { IssuingAuthority = n.GetStringValue(); } },
                 { "issuingDate", n => { IssuingDate = n.GetStringValue(); } },
                 { "nationality", n => { Nationality = n.GetStringValue(); } },
@@ -89,7 +89,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("identityDocumentNumber", IdentityDocumentNumber);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.IdentityDocumentProof_identityDocumentType>("identityDocumentType", IdentityDocumentType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.IdentityDocumentProofIdentityDocumentType>("identityDocumentType", IdentityDocumentType);
             writer.WriteStringValue("issuingAuthority", IssuingAuthority);
             writer.WriteStringValue("issuingDate", IssuingDate);
             writer.WriteStringValue("nationality", Nationality);

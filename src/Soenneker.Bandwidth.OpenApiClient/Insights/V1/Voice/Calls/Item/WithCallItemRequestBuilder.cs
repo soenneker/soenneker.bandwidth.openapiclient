@@ -22,7 +22,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithCallItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/insights/v1/voice/calls/{callId}{?region*}", pathParameters)
+        public WithCallItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/insights/v1/voice/calls/{callId}{?callIdEncoding*,region*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,13 +30,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithCallItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/insights/v1/voice/calls/{callId}{?region*}", rawUrl)
+        public WithCallItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/insights/v1/voice/calls/{callId}{?callIdEncoding*,region*}", rawUrl)
         {
         }
         /// <summary>
         /// Returns a single call event.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallGetResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetCallResponseResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError">When receiving a 400 status code</exception>
@@ -48,11 +48,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallGetResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallItemRequestBuilder.WithCallItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.GetCallResponseResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallItemRequestBuilder.WithCallItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallGetResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallItemRequestBuilder.WithCallItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.GetCallResponseResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallItemRequestBuilder.WithCallItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -66,7 +66,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallGetResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.GetCallResponseResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.GetCallResponseResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns a single call event.
@@ -102,6 +102,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithCallItemRequestBuilderGetQueryParameters 
         {
+            /// <summary>Opt-in encoding applied to the `callId` path parameter. When set to `BASE64_URL`, the`callId` is decoded as a base64url (RFC 4648 §5) string before lookup. This allows call IDscontaining characters that are not permitted in a URL path (notably `/`) to be passed safely.When omitted or set to `RAW`, the `callId` is used verbatim. Standard Base64 is not supported because its`+` and `/` characters would reintroduce the path-encoding problem.</summary>
+            [QueryParameter("callIdEncoding")]
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.CallIdEncoding? CallIdEncoding { get; set; }
             /// <summary>&quot;Filter Type: Exact Match, any valid region.&quot;</summary>
             [QueryParameter("region")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsRegion? Region { get; set; }

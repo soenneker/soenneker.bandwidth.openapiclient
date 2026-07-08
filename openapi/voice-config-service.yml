@@ -376,6 +376,24 @@ components:
       enum:
         - FIRST_ORION
       example: FIRST_ORION
+    routeType:
+      type: string
+      nullable: true
+      description: >-
+        Route evaluation mode. This route type determines endpoint semantics
+        (`WEIGHTED` routes use weighted endpoints; `ANI` routes use prefixed
+        endpoints).
+      enum:
+        - WEIGHTED
+        - ANI
+      default: WEIGHTED
+      example: WEIGHTED
+    routeReferenceId:
+      type: string
+      nullable: true
+      format: uuid
+      description: Server-generated identifier for ANI routes.
+      example: f8d2e9b3-7a4c-4d11-9e85-1f0c66d8a2b1
     voiceConfigurationPackageRequest:
       title: Voice Configuration Package Request
       type: object
@@ -443,6 +461,24 @@ components:
       maxItems: 3
       items:
         $ref: '#/components/schemas/queryCriteria'
+    queryParameterEnum:
+      type: string
+      description: The parameter name to filter by.
+      enum:
+        - phoneNumber
+        - validVoiceConfig
+        - validVoiceConfigurationPackage
+        - voiceIntegrationId
+        - name
+        - trunkId
+      example: phoneNumber
+    queryOperatorEnum:
+      type: string
+      description: The comparison operator to use.
+      enum:
+        - EQ
+        - STARTS_WITH
+      example: EQ
     queryCriteria:
       description: Query criteria object for search request API
       type: object
@@ -452,23 +488,9 @@ components:
         - values
       properties:
         parameter:
-          type: string
-          description: The parameter name to filter by.
-          enum:
-            - phoneNumber
-            - validVoiceConfig
-            - validVoiceConfigurationPackage
-            - voiceIntegrationId
-            - name
-            - trunkId
-          example: phoneNumber
+          $ref: '#/components/schemas/queryParameterEnum'
         operator:
-          type: string
-          description: The comparison operator to use.
-          enum:
-            - EQ
-            - STARTS_WITH
-          example: EQ
+          $ref: '#/components/schemas/queryOperatorEnum'
         values:
           $ref: '#/components/schemas/queryCriteriaValues'
           description: >-
@@ -582,6 +604,8 @@ components:
         name:
           type: string
           example: primary route
+        type:
+          $ref: '#/components/schemas/routeType'
         endpoints:
           type: array
           items:
@@ -607,13 +631,18 @@ components:
           type: string
           example: '+12345678910'
         type:
-          type: string
-          enum:
-            - TN
+          const: TN
         weight:
           type: integer
           format: int32
+          nullable: true
+          description: Weighted-routing weight.
           example: 20
+        prefix:
+          type: string
+          nullable: true
+          description: ANI routing prefix for this endpoint (for example, `212`).
+          example: '212'
         trunkInfo:
           $ref: '#/components/schemas/trunkInfo'
           nullable: true
@@ -626,13 +655,18 @@ components:
           type: string
           example: +sip:sara@1.1.1.1
         type:
-          type: string
-          enum:
-            - SIP
+          const: SIP
         weight:
           type: integer
           format: int32
+          nullable: true
+          description: Weighted-routing weight.
           example: 20
+        prefix:
+          type: string
+          nullable: true
+          description: ANI routing prefix for this endpoint (for example, `212`).
+          example: '212'
         trunkInfo:
           $ref: '#/components/schemas/trunkInfo'
           nullable: true
@@ -645,13 +679,18 @@ components:
           type: string
           example: +1.1.1.1:5081
         type:
-          type: string
-          enum:
-            - IP_V4
+          const: IP_V4
         weight:
           type: integer
           format: int32
+          nullable: true
+          description: Weighted-routing weight.
           example: 20
+        prefix:
+          type: string
+          nullable: true
+          description: ANI routing prefix for this endpoint (for example, `212`).
+          example: '212'
         rewriteUser:
           type: string
           nullable: true
@@ -671,13 +710,18 @@ components:
           type: string
           example: a7e08808-129d-494c-a3af-c38d3cfd49f8
         type:
-          type: string
-          enum:
-            - INTEGRATION
+          const: INTEGRATION
         weight:
           type: integer
           format: int32
+          nullable: true
+          description: Weighted-routing weight.
           example: 20
+        prefix:
+          type: string
+          nullable: true
+          description: ANI routing prefix for this endpoint (for example, `212`).
+          example: '212'
         rewriteUser:
           type: string
           nullable: true
@@ -697,13 +741,18 @@ components:
           type: string
           example: +test.test.com
         type:
-          type: string
-          enum:
-            - FQDN
+          const: FQDN
         weight:
           type: integer
           format: int32
+          nullable: true
+          description: Weighted-routing weight.
           example: 20
+        prefix:
+          type: string
+          nullable: true
+          description: ANI routing prefix for this endpoint (for example, `212`).
+          example: '212'
         rewriteUser:
           type: string
           nullable: true
@@ -723,13 +772,18 @@ components:
           type: string
           example: bot-endpoint-id
         type:
-          type: string
-          enum:
-            - BOT
+          const: BOT
         weight:
           type: integer
           format: int32
+          nullable: true
+          description: Weighted-routing weight.
           example: 20
+        prefix:
+          type: string
+          nullable: true
+          description: ANI routing prefix for this endpoint (for example, `212`).
+          example: '212'
     trunkInfo:
       type: object
       description: >-
@@ -748,26 +802,70 @@ components:
           description: The capability pipe id associated with the selected trunk.
           nullable: true
           example: 201954af-e0ef-494b-bf26-541a4e99904a
-    endpoint:
+    weightedEndpoint:
       type: object
-      description: An endpoint for an Origination Route Plan.
+      description: An endpoint for a WEIGHTED route. Contains an integer weight.
       properties:
         endpoint:
           type: string
+          description: >-
+            The endpoint address — an E.164 phone number, SIP URI, IPv4:port,
+            FQDN, or integration ID depending on the endpoint type.
           example: '+12345678910'
         type:
           $ref: '#/components/schemas/endpointTypeEnum'
         weight:
           type: integer
           format: int32
+          nullable: true
+          description: Weighted-routing weight.
           example: 20
         trunkInfo:
           $ref: '#/components/schemas/trunkInfo'
           nullable: true
           description: Optional trunk information selected for this endpoint.
+      required:
+        - endpoint
+      example:
+        endpoint: '+12345678910'
+        type: TN
+        weight: 20
+    prefixedEndpoint:
+      type: object
+      description: An endpoint for an ANI route. Contains a prefix.
+      properties:
+        endpoint:
+          type: string
+          description: >-
+            The endpoint address — an E.164 phone number, SIP URI, IPv4:port,
+            FQDN, or integration ID depending on the endpoint type.
+          example: '+12345678910'
+        type:
+          $ref: '#/components/schemas/endpointTypeEnum'
+        prefix:
+          type: string
+          description: ANI routing prefix for this endpoint (for example, `212`).
+          example: '212'
+      required:
+        - endpoint
+        - prefix
+      example:
+        endpoint: '+12345678910'
+        type: TN
+        prefix: '212'
+    endpoint:
+      description: >-
+        An endpoint for an Origination Route Plan. The parent route `type`
+        selects the applicable variant (`WEIGHTED` => `weightedEndpoint`, `ANI`
+        => `prefixedEndpoint`).
+      oneOf:
+        - $ref: '#/components/schemas/weightedEndpoint'
+        - $ref: '#/components/schemas/prefixedEndpoint'
     route:
       type: object
-      description: A route for an Origination Route Plan.
+      description: >-
+        A route for an Origination Route Plan response. For `ANI` routes,
+        `endpoints` are not returned.
       properties:
         priority:
           type: number
@@ -777,6 +875,10 @@ components:
         name:
           type: string
           example: Route Name
+        type:
+          $ref: '#/components/schemas/routeType'
+        referenceId:
+          $ref: '#/components/schemas/routeReferenceId'
         endpoints:
           type: array
           items:
@@ -791,6 +893,7 @@ components:
             $ref: '#/components/schemas/route'
     endpointTypeEnum:
       type: string
+      nullable: true
       enum:
         - TN
         - SIP
@@ -1050,9 +1153,7 @@ components:
       type: array
       description: List of Identity Auth Analytic Engine Names.
       items:
-        type: string
-        enum:
-          - FIRST_ORION
+        $ref: '#/components/schemas/analyticEngine'
       example:
         - FIRST_ORION
   responses:
@@ -1362,22 +1463,71 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/voiceConfigurationPackageRequest'
+          examples:
+            weightedRouteRequest:
+              $ref: '#/components/examples/weightedRouteRequestExample'
+            aniRouteRequest:
+              $ref: '#/components/examples/aniRouteRequestExample'
     replaceVoiceConfigurationPackageRequest:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/voiceConfigurationPackageRequest'
+          examples:
+            weightedRouteRequest:
+              $ref: '#/components/examples/weightedRouteRequestExample'
+            aniRouteRequest:
+              $ref: '#/components/examples/aniRouteRequestExample'
     updateVoiceConfigurationPackageRequest:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/voiceConfigurationPackageRequest'
+          examples:
+            weightedRouteRequest:
+              $ref: '#/components/examples/weightedRouteRequestExample'
+            aniRouteRequest:
+              $ref: '#/components/examples/aniRouteRequestExample'
     bulkAddNumbersToVoiceConfigurationPackageRequest:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/bulkPhoneNumbersRequest'
   examples:
+    weightedRouteRequestExample:
+      summary: Request with a WEIGHTED route and weighted endpoints
+      value:
+        name: Weighted Route Example
+        description: Weighted route configuration
+        originationRoutePlan:
+          routes:
+            - priority: 1
+              type: WEIGHTED
+              name: Primary Route
+              endpoints:
+                - endpoint: '+12345678910'
+                  type: TN
+                  weight: 80
+                - endpoint: +sip:sara@1.1.1.1
+                  type: SIP
+                  weight: 20
+    aniRouteRequestExample:
+      summary: Request with an ANI route and prefixed endpoints
+      value:
+        name: ANI Route Example
+        description: ANI route configuration
+        originationRoutePlan:
+          routes:
+            - priority: 2
+              type: ANI
+              name: ANI Route
+              endpoints:
+                - endpoint: '+15553334444'
+                  type: TN
+                  prefix: '212'
+                - endpoint: fallback.example.com
+                  type: FQDN
+                  prefix: '213'
     badRequestErrorExample:
       summary: Bad Request Error Example.
       value:
@@ -1562,6 +1712,7 @@ components:
           originationRoutePlan:
             routes:
               - priority: 1
+                type: WEIGHTED
                 name: primary route
                 endpoints:
                   - endpoint: '+12345678910'
@@ -1586,11 +1737,9 @@ components:
                     type: FQDN
                     weight: 10
               - priority: 2
+                type: ANI
+                referenceId: f8d2e9b3-7a4c-4d11-9e85-1f0c66d8a2b1
                 name: 2nd Route
-                endpoints:
-                  - endpoint: '+12345678910'
-                    type: TN
-                    weight: 100
           stirShakenBehavior:
             verstat: BASIC
             identity: true
@@ -1657,6 +1806,7 @@ components:
             originationRoutePlan:
               routes:
                 - priority: 1
+                  type: WEIGHTED
                   name: Route Name
                   endpoints:
                     - endpoint: '+12345678910'
@@ -1716,6 +1866,7 @@ components:
             originationRoutePlan:
               routes:
                 - priority: 1
+                  type: WEIGHTED
                   name: Route Name
                   endpoints:
                     - endpoint: '+12345678910'
@@ -1767,6 +1918,7 @@ components:
             originationRoutePlan:
               routes:
                 - priority: 1
+                  type: WEIGHTED
                   name: Primary Route
                   endpoints:
                     - endpoint: '+12345678910'
@@ -1782,6 +1934,7 @@ components:
                         trunkId: 69a5bd88a4ba9759b450e48a
                         capabilityPipeId: 301954af-e0ef-494b-bf26-541a4e99904b
                 - priority: 2
+                  type: WEIGHTED
                   name: Failover Route
                   endpoints:
                     - endpoint: +sip:sara@1.1.1.1

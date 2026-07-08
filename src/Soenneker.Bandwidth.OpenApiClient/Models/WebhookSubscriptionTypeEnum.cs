@@ -10,11 +10,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "TOLLFREE_VERIFICATION_STATUS")]
         #pragma warning disable CS1591
-        TOLLFREE_VERIFICATION_STATUS,
+        TollfreeVerificationStatus,
         #pragma warning restore CS1591
         [EnumMember(Value = "MESSAGING_PORTOUT_APPROVAL_STATUS")]
         #pragma warning disable CS1591
-        MESSAGING_PORTOUT_APPROVAL_STATUS,
+        MessagingPortoutApprovalStatus,
         #pragma warning restore CS1591
     }
 }

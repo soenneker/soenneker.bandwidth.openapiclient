@@ -10,15 +10,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "UNCHANGED")]
         #pragma warning disable CS1591
-        UNCHANGED,
+        Unchanged,
         #pragma warning restore CS1591
         [EnumMember(Value = "OFF")]
         #pragma warning disable CS1591
-        OFF,
+        Off,
         #pragma warning restore CS1591
         [EnumMember(Value = "ASSPECIFIED")]
         #pragma warning disable CS1591
-        ASSPECIFIED,
+        Asspecified,
         #pragma warning restore CS1591
     }
 }

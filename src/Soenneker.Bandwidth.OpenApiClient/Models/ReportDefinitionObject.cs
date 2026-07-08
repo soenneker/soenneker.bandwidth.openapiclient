@@ -17,10 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The breakdowns property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionObject_breakdowns>? Breakdowns { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionObjectBreakdownsItem>? Breakdowns { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionObject_breakdowns> Breakdowns { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionObjectBreakdownsItem> Breakdowns { get; set; }
 #endif
         /// <summary>The category property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.Category? Category { get; set; }
@@ -85,7 +85,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "breakdowns", n => { Breakdowns = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionObject_breakdowns>(global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionObject_breakdowns.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "breakdowns", n => { Breakdowns = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionObjectBreakdownsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionObjectBreakdownsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "category", n => { Category = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Category>(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "domain", n => { Domain = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Domain>(); } },
@@ -102,7 +102,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionObject_breakdowns>("breakdowns", Breakdowns);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionObjectBreakdownsItem>("breakdowns", Breakdowns);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Category>("category", Category);
             writer.WriteStringValue("description", Description);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Domain>("domain", Domain);

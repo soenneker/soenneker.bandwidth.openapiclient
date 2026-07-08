@@ -34,10 +34,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Field is a key value pair of attribute name and value. All Date or Number type values should be provided as a &apos;string&apos;. Format for the Date type is YYYY-MM-DD.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentUpdateData_fields? Fields { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentUpdateDataFields? Fields { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentUpdateData_fields Fields { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentUpdateDataFields Fields { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentUpdateData"/> and sets the default values.
@@ -66,7 +66,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "customReference", n => { CustomReference = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "fields", n => { Fields = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentUpdateData_fields>(global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentUpdateData_fields.CreateFromDiscriminatorValue); } },
+                { "fields", n => { Fields = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentUpdateDataFields>(global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentUpdateDataFields.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -78,7 +78,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("customReference", CustomReference);
             writer.WriteStringValue("description", Description);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentUpdateData_fields>("fields", Fields);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentUpdateDataFields>("fields", Fields);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

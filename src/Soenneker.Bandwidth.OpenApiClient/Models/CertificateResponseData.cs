@@ -18,7 +18,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Unique identifier for the certificate</summary>
         public Guid? CertificateId { get; set; }
         /// <summary>Type of certificate</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateResponseData_certificateType? CertificateType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateResponseDataCertificateType? CertificateType { get; set; }
         /// <summary>Certificate description</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -54,7 +54,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string PublicCertUrl { get; set; }
 #endif
         /// <summary>Region the certificate is valid for</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateResponseData_region? Region { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateResponseDataRegion? Region { get; set; }
         /// <summary>Service Provider Code extracted from certificate</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -64,7 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string Spc { get; set; }
 #endif
         /// <summary>Current status of the certificate</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateResponseData_status? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateResponseDataStatus? Status { get; set; }
         /// <summary>Certificate validity start date</summary>
         public DateTimeOffset? ValidFrom { get; set; }
         /// <summary>
@@ -93,15 +93,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "certificateId", n => { CertificateId = n.GetGuidValue(); } },
-                { "certificateType", n => { CertificateType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateResponseData_certificateType>(); } },
+                { "certificateType", n => { CertificateType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateResponseDataCertificateType>(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "expiryDate", n => { ExpiryDate = n.GetDateTimeOffsetValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "organization", n => { Organization = n.GetStringValue(); } },
                 { "publicCertUrl", n => { PublicCertUrl = n.GetStringValue(); } },
-                { "region", n => { Region = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateResponseData_region>(); } },
+                { "region", n => { Region = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateResponseDataRegion>(); } },
                 { "spc", n => { Spc = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateResponseData_status>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateResponseDataStatus>(); } },
                 { "validFrom", n => { ValidFrom = n.GetDateTimeOffsetValue(); } },
             };
         }
@@ -113,15 +113,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteGuidValue("certificateId", CertificateId);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateResponseData_certificateType>("certificateType", CertificateType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateResponseDataCertificateType>("certificateType", CertificateType);
             writer.WriteStringValue("description", Description);
             writer.WriteDateTimeOffsetValue("expiryDate", ExpiryDate);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("organization", Organization);
             writer.WriteStringValue("publicCertUrl", PublicCertUrl);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateResponseData_region>("region", Region);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateResponseDataRegion>("region", Region);
             writer.WriteStringValue("spc", Spc);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateResponseData_status>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateResponseDataStatus>("status", Status);
             writer.WriteDateTimeOffsetValue("validFrom", ValidFrom);
             writer.WriteAdditionalData(AdditionalData);
         }

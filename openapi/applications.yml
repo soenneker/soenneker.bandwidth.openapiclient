@@ -474,9 +474,10 @@ components:
           userId: 15jPWZmXdm
           password: xxv3jPsPR2
         requestedCallbackTypes:
+          - MESSAGE_SENDING
+          - MESSAGE_SENT
           - MESSAGE_FAILED
           - MESSAGE_DELIVERED
-          - MESSAGE_SENDING
     createVoiceApplicationJsonExample:
       value:
         serviceType: Voice-V2
@@ -530,9 +531,10 @@ components:
         outboundCallbackCreds:
           userId: 15jPWZmXdm
         requestedCallbackTypes:
+          - MESSAGE_SENDING
+          - MESSAGE_SENT
           - MESSAGE_FAILED
           - MESSAGE_DELIVERED
-          - MESSAGE_SENDING
     voiceApplicationResponseXmlExample:
       summary: Voice application
       value: |-
@@ -993,15 +995,17 @@ components:
       example: Description of the resource
     requestedCallbackTypes:
       enum:
+        - message-sending
+        - message-sent
         - message-delivered
         - message-failed
-        - message-sending
       type: string
     requestedCallbackTypesJson:
       enum:
+        - MESSAGE_SENDING
+        - MESSAGE_SENT
         - MESSAGE_FAILED
         - MESSAGE_DELIVERED
-        - MESSAGE_SENDING
       type: string
     url:
       type: string

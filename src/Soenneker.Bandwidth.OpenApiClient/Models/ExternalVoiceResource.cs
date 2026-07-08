@@ -16,7 +16,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>STIR/SHAKEN attestation.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalVoiceResource_attestationIndicator? AttestationIndicator { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalVoiceResourceAttestationIndicator? AttestationIndicator { get; set; }
         /// <summary>Whether the call has been forwarded.</summary>
         public bool? CallForwarded { get; set; }
         /// <summary>The grouping for the type of DID.</summary>
@@ -40,7 +40,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Number of calls that were happening at the same time to this DID.</summary>
         public int? CountDidCalls { get; set; }
         /// <summary>Calling Party Category.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalVoiceResource_cpc? Cpc { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalVoiceResourceCpc? Cpc { get; set; }
         /// <summary>Currency at which you will be charged.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -284,13 +284,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "attestationIndicator", n => { AttestationIndicator = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalVoiceResource_attestationIndicator>(); } },
+                { "attestationIndicator", n => { AttestationIndicator = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalVoiceResourceAttestationIndicator>(); } },
                 { "callForwarded", n => { CallForwarded = n.GetBoolValue(); } },
                 { "callType", n => { CallType = n.GetStringValue(); } },
                 { "capacityGroupId", n => { CapacityGroupId = n.GetIntValue(); } },
                 { "capacityGroupName", n => { CapacityGroupName = n.GetStringValue(); } },
                 { "countDidCalls", n => { CountDidCalls = n.GetIntValue(); } },
-                { "cpc", n => { Cpc = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalVoiceResource_cpc>(); } },
+                { "cpc", n => { Cpc = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalVoiceResourceCpc>(); } },
                 { "currency", n => { Currency = n.GetStringValue(); } },
                 { "destinationCountry", n => { DestinationCountry = n.GetStringValue(); } },
                 { "destinationNumber", n => { DestinationNumber = n.GetStringValue(); } },
@@ -331,13 +331,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalVoiceResource_attestationIndicator>("attestationIndicator", AttestationIndicator);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalVoiceResourceAttestationIndicator>("attestationIndicator", AttestationIndicator);
             writer.WriteBoolValue("callForwarded", CallForwarded);
             writer.WriteStringValue("callType", CallType);
             writer.WriteIntValue("capacityGroupId", CapacityGroupId);
             writer.WriteStringValue("capacityGroupName", CapacityGroupName);
             writer.WriteIntValue("countDidCalls", CountDidCalls);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalVoiceResource_cpc>("cpc", Cpc);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalVoiceResourceCpc>("cpc", Cpc);
             writer.WriteStringValue("currency", Currency);
             writer.WriteStringValue("destinationCountry", DestinationCountry);
             writer.WriteStringValue("destinationNumber", DestinationNumber);

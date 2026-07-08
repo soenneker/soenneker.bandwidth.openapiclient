@@ -35,7 +35,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortin
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public BulkPortinsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/bulk-portins/accounts/{accountId}/bulkPortins?page={page}&size={size}{&modifiedDateFrom*,modifiedDateTo*,orderDate*,orderDetails*,status*}", pathParameters)
+        public BulkPortinsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/bulk-portins/accounts/{accountId}/bulkPortins{?modifiedDateFrom*,modifiedDateTo*,orderDate*,orderDetails*,status*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortin
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public BulkPortinsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/bulk-portins/accounts/{accountId}/bulkPortins?page={page}&size={size}{&modifiedDateFrom*,modifiedDateTo*,orderDate*,orderDetails*,status*}", rawUrl)
+        public BulkPortinsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/bulk-portins/accounts/{accountId}/bulkPortins{?modifiedDateFrom*,modifiedDateTo*,orderDate*,orderDetails*,status*}", rawUrl)
         {
         }
         /// <summary>
@@ -105,7 +105,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortin
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.BulkPortinsRequestBuilder.BulkPortinsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/bulk-portins/accounts/{accountId}/bulkPortins?page={page}&size={size}{&modifiedDateFrom*,modifiedDateTo*,orderDate*,orderDetails*,status*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -126,7 +126,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortin
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/bulk-portins/accounts/{accountId}/bulkPortins", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
@@ -174,7 +174,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortin
             public int? Size { get; set; }
             /// <summary>&quot;Include in the response payload only entries in which the bulk port-in order had the specified ProcessingStatus value.  Note: specifying `draft` will include any of the draft values, including `DRAFT`, `VALIDATE_DRAFT_TNS`, `VALID_DRAFT_TNS`, and `INVALID_DRAFT_TNS`.&quot;</summary>
             [QueryParameter("status")]
-            public global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.GetStatusQueryParameterType? Status { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinsListBulkPortinsStatusParameter? Status { get; set; }
         }
     }
 }

@@ -31,7 +31,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string RestrictionMessage { get; set; }
 #endif
         /// <summary>The type of restriction.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Restriction_restrictionType? RestrictionType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RestrictionRestrictionType? RestrictionType { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Restriction"/> and sets the default values.
         /// </summary>
@@ -59,7 +59,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "countryCodeA3", n => { CountryCodeA3 = n.GetStringValue(); } },
                 { "restrictionMessage", n => { RestrictionMessage = n.GetStringValue(); } },
-                { "restrictionType", n => { RestrictionType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Restriction_restrictionType>(); } },
+                { "restrictionType", n => { RestrictionType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RestrictionRestrictionType>(); } },
             };
         }
         /// <summary>
@@ -71,7 +71,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("countryCodeA3", CountryCodeA3);
             writer.WriteStringValue("restrictionMessage", RestrictionMessage);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Restriction_restrictionType>("restrictionType", RestrictionType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RestrictionRestrictionType>("restrictionType", RestrictionType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

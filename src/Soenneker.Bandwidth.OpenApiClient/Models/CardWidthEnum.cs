@@ -10,11 +10,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "SMALL")]
         #pragma warning disable CS1591
-        SMALL,
+        Small,
         #pragma warning restore CS1591
         [EnumMember(Value = "MEDIUM")]
         #pragma warning disable CS1591
-        MEDIUM,
+        Medium,
         #pragma warning restore CS1591
     }
 }

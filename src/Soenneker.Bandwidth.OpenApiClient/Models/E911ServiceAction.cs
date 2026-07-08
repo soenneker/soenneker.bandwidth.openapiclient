@@ -9,11 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "MOVE")]
         #pragma warning disable CS1591
-        MOVE,
+        Move,
         #pragma warning restore CS1591
         [EnumMember(Value = "DELETE")]
         #pragma warning disable CS1591
-        DELETE,
+        Delete,
         #pragma warning restore CS1591
     }
 }

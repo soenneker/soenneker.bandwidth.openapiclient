@@ -259,10 +259,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The URL for the migration letter attachment.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistorySchema_migrationLetterAttachmentUrl? MigrationLetterAttachmentUrl { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistorySchemaMigrationLetterAttachmentUrl? MigrationLetterAttachmentUrl { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistorySchema_migrationLetterAttachmentUrl MigrationLetterAttachmentUrl { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistorySchemaMigrationLetterAttachmentUrl MigrationLetterAttachmentUrl { get; set; }
 #endif
         /// <summary>User-friendly description of an operation that occured.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -479,7 +479,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "legalEntityType", n => { LegalEntityType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegalEntityTypeEnum>(); } },
                 { "messageSenderUrl", n => { MessageSenderUrl = n.GetStringValue(); } },
                 { "messageType", n => { MessageType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MessageType>(); } },
-                { "migrationLetterAttachmentUrl", n => { MigrationLetterAttachmentUrl = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistorySchema_migrationLetterAttachmentUrl>(global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistorySchema_migrationLetterAttachmentUrl.CreateFromDiscriminatorValue); } },
+                { "migrationLetterAttachmentUrl", n => { MigrationLetterAttachmentUrl = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistorySchemaMigrationLetterAttachmentUrl>(global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistorySchemaMigrationLetterAttachmentUrl.CreateFromDiscriminatorValue); } },
                 { "operationDescription", n => { OperationDescription = n.GetStringValue(); } },
                 { "optInConfirmationMessage", n => { OptInConfirmationMessage = n.GetStringValue(); } },
                 { "optInExplanation", n => { OptInExplanation = n.GetStringValue(); } },
@@ -550,7 +550,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegalEntityTypeEnum>("legalEntityType", LegalEntityType);
             writer.WriteStringValue("messageSenderUrl", MessageSenderUrl);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MessageType>("messageType", MessageType);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistorySchema_migrationLetterAttachmentUrl>("migrationLetterAttachmentUrl", MigrationLetterAttachmentUrl);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistorySchemaMigrationLetterAttachmentUrl>("migrationLetterAttachmentUrl", MigrationLetterAttachmentUrl);
             writer.WriteStringValue("operationDescription", OperationDescription);
             writer.WriteStringValue("optInConfirmationMessage", OptInConfirmationMessage);
             writer.WriteStringValue("optInExplanation", OptInExplanation);

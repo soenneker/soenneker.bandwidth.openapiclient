@@ -9,11 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "DAILY")]
         #pragma warning disable CS1591
-        DAILY,
+        Daily,
         #pragma warning restore CS1591
         [EnumMember(Value = "INSTANT")]
         #pragma warning disable CS1591
-        INSTANT,
+        Instant,
         #pragma warning restore CS1591
     }
 }

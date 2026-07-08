@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorResponse_data? DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorResponseData? DataEscaped { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorResponse_data DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorResponseData DataEscaped { get; set; }
 #endif
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -66,7 +66,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorResponse_data>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorResponse_data.CreateFromDiscriminatorValue); } },
+                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorResponseData>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorResponseData.CreateFromDiscriminatorValue); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberError>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberError.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberLink.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -78,7 +78,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorResponse_data>("data", DataEscaped);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorResponseData>("data", DataEscaped);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberError>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberLink>("links", Links);
             writer.WriteAdditionalData(AdditionalData);

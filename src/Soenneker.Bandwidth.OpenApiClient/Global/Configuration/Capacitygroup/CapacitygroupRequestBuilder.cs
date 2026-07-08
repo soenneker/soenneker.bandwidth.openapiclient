@@ -35,7 +35,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Capacitygroup
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CapacitygroupRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/global/configuration/capacitygroup?pageNumber={pageNumber}&pageSize={pageSize}{&capacityGroupId*,description*,e164*}", pathParameters)
+        public CapacitygroupRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/global/configuration/capacitygroup{?capacityGroupId*,description*,e164*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Capacitygroup
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CapacitygroupRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/global/configuration/capacitygroup?pageNumber={pageNumber}&pageSize={pageSize}{&capacityGroupId*,description*,e164*}", rawUrl)
+        public CapacitygroupRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/global/configuration/capacitygroup{?capacityGroupId*,description*,e164*}", rawUrl)
         {
         }
         /// <summary>
@@ -98,7 +98,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Capacitygroup
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Capacitygroup.CapacitygroupRequestBuilder.CapacitygroupRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/global/configuration/capacitygroup?pageNumber={pageNumber}&pageSize={pageSize}{&capacityGroupId*,description*,e164*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -119,7 +119,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Capacitygroup
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PUT, "{+baseurl}/global/configuration/capacitygroup", PathParameters);
+            var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

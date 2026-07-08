@@ -471,7 +471,7 @@ paths:
         - Coverage
   /accounts/{accountId}/availableNpaNxx:
     get:
-      description: Retrieves a list of available Npa-Nxx phone numbers.
+      description: Retrieves the quantity of available phone numbers, grouped by NPA-NXX.
       operationId: getAvailableNpaNxx
       parameters:
         - $ref: '#/components/parameters/accountIdPathParam'
@@ -485,7 +485,7 @@ paths:
           $ref: '#/components/responses/getAvailableNpaNxx400Response'
         '404':
           $ref: '#/components/responses/getAvailableNpaNxx404Response'
-      summary: List Available NPA-NXX Phone Numbers [NANP]
+      summary: List Available NPA-NXX Inventory [NANP]
       tags:
         - Coverage
   /accounts/{accountId}/importToAccount:

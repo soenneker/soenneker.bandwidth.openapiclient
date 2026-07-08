@@ -22,11 +22,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string CreatedBy { get; private set; }
 #endif
-        /// <summary>The creationDate property</summary>
+        /// <summary>The date and time when the client secret was created.</summary>
         public DateTimeOffset? CreationDate { get; set; }
-        /// <summary>The expirationDate property</summary>
+        /// <summary>The date and time when the client secret will expire.</summary>
         public DateTimeOffset? ExpirationDate { get; set; }
-        /// <summary>The lastUsedDate property</summary>
+        /// <summary>The date and time when the client secret was last used to authenticate.</summary>
         public DateTimeOffset? LastUsedDate { get; set; }
         /// <summary>The unique identifier for the client secret.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

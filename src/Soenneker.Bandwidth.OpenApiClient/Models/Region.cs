@@ -10,11 +10,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "NA")]
         #pragma warning disable CS1591
-        NA,
+        Na,
         #pragma warning restore CS1591
         [EnumMember(Value = "ROW")]
         #pragma warning disable CS1591
-        ROW,
+        Row,
         #pragma warning restore CS1591
     }
 }

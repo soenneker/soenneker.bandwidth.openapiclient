@@ -33,10 +33,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Link>? Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Link2>? Links { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Link> Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Link2> Links { get; set; }
 #endif
         /// <summary>Detailed error information.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -46,7 +46,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Message { get; set; }
 #endif
-        /// <summary>Pagination of port-in orders.</summary>
+        /// <summary>An object which contains pagination information related to the response.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Bandwidth.OpenApiClient.Models.Pagination? Pagination { get; set; }
@@ -55,7 +55,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public global::Soenneker.Bandwidth.OpenApiClient.Models.Pagination Pagination { get; set; }
 #endif
         /// <summary>Status of the HTTP response from the API.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiListResponse_status? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiListResponseStatus? Status { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiListResponse"/> and sets the default values.
         /// </summary>
@@ -83,10 +83,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistDidObject>(global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistDidObject.CreateFromDiscriminatorValue); } },
                 { "filters", n => { Filters = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistPageFilters>(global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistPageFilters.CreateFromDiscriminatorValue); } },
-                { "_links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Link>(global::Soenneker.Bandwidth.OpenApiClient.Models.Link.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "_links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Link2>(global::Soenneker.Bandwidth.OpenApiClient.Models.Link2.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "message", n => { Message = n.GetStringValue(); } },
                 { "pagination", n => { Pagination = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Pagination>(global::Soenneker.Bandwidth.OpenApiClient.Models.Pagination.CreateFromDiscriminatorValue); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiListResponse_status>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiListResponseStatus>(); } },
             };
         }
         /// <summary>
@@ -98,10 +98,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistDidObject>("data", Data);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistPageFilters>("filters", Filters);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Link>("_links", Links);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Link2>("_links", Links);
             writer.WriteStringValue("message", Message);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Pagination>("pagination", Pagination);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiListResponse_status>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiListResponseStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

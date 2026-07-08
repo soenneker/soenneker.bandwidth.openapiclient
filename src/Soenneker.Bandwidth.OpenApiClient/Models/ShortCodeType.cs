@@ -9,11 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "RANDOM")]
         #pragma warning disable CS1591
-        RANDOM,
+        Random,
         #pragma warning restore CS1591
         [EnumMember(Value = "VANITY")]
         #pragma warning disable CS1591
-        VANITY,
+        Vanity,
         #pragma warning restore CS1591
     }
 }

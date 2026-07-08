@@ -35,10 +35,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Field is a key value pair of attribute name and value. All Date or Number type values should be provided as a &apos;string&apos;. Format for the Date type is YYYY-MM-DD.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserData_fields? Fields { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserDataFields? Fields { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserData_fields Fields { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserDataFields Fields { get; set; }
 #endif
         /// <summary>End user status</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserStatusEnum? Status { get; set; }
@@ -80,7 +80,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "createdDateTime", n => { CreatedDateTime = n.GetStringValue(); } },
                 { "customReference", n => { CustomReference = n.GetStringValue(); } },
                 { "endUserId", n => { EndUserId = n.GetGuidValue(); } },
-                { "fields", n => { Fields = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserData_fields>(global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserData_fields.CreateFromDiscriminatorValue); } },
+                { "fields", n => { Fields = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserDataFields>(global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserDataFields.CreateFromDiscriminatorValue); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserStatusEnum>(); } },
                 { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum>(); } },
                 { "updatedDateTime", n => { UpdatedDateTime = n.GetStringValue(); } },
@@ -96,7 +96,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("customReference", CustomReference);
             writer.WriteGuidValue("endUserId", EndUserId);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserData_fields>("fields", Fields);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserDataFields>("fields", Fields);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserStatusEnum>("status", Status);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum>("type", Type);
             writer.WriteStringValue("updatedDateTime", UpdatedDateTime);

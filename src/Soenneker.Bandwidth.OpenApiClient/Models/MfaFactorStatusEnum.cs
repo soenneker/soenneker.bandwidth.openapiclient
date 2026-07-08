@@ -9,27 +9,27 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "NOT_SETUP")]
         #pragma warning disable CS1591
-        NOT_SETUP,
+        NotSetup,
         #pragma warning restore CS1591
         [EnumMember(Value = "PENDING_ACTIVATION")]
         #pragma warning disable CS1591
-        PENDING_ACTIVATION,
+        PendingActivation,
         #pragma warning restore CS1591
         [EnumMember(Value = "ENROLLED")]
         #pragma warning disable CS1591
-        ENROLLED,
+        Enrolled,
         #pragma warning restore CS1591
         [EnumMember(Value = "ACTIVE")]
         #pragma warning disable CS1591
-        ACTIVE,
+        Active,
         #pragma warning restore CS1591
         [EnumMember(Value = "INACTIVE")]
         #pragma warning disable CS1591
-        INACTIVE,
+        Inactive,
         #pragma warning restore CS1591
         [EnumMember(Value = "EXPIRED")]
         #pragma warning disable CS1591
-        EXPIRED,
+        Expired,
         #pragma warning restore CS1591
     }
 }

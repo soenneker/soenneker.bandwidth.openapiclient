@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Bandwidth.OpenApiClient.Models;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -35,20 +36,20 @@ namespace Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.InserviceNum
         /// <summary>
         /// Check if a given phone number is in service. Returns a 200 OK with no body if the number is in-service on the account, and a 404 Not Found if the number is not in-service on the account.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.InserviceNumbers.Item.WithTnGetResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.DefaultResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.InserviceNumbers.Item.WithTnGetResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.DefaultResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.InserviceNumbers.Item.WithTnGetResponse> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.DefaultResponse> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.InserviceNumbers.Item.WithTnGetResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.InserviceNumbers.Item.WithTnGetResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.DefaultResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.DefaultResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Check if a given phone number is in service. Returns a 200 OK with no body if the number is in-service on the account, and a 404 Not Found if the number is not in-service on the account.

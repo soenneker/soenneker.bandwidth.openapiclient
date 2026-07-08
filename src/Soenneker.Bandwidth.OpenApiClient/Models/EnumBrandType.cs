@@ -9,23 +9,23 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "PRIVATE_PROFIT")]
         #pragma warning disable CS1591
-        PRIVATE_PROFIT,
+        PrivateProfit,
         #pragma warning restore CS1591
         [EnumMember(Value = "PUBLIC_PROFIT")]
         #pragma warning disable CS1591
-        PUBLIC_PROFIT,
+        PublicProfit,
         #pragma warning restore CS1591
         [EnumMember(Value = "NON_PROFIT")]
         #pragma warning disable CS1591
-        NON_PROFIT,
+        NonProfit,
         #pragma warning restore CS1591
         [EnumMember(Value = "GOVERNMENT")]
         #pragma warning disable CS1591
-        GOVERNMENT,
+        Government,
         #pragma warning restore CS1591
         [EnumMember(Value = "SOLE_PROPRIETOR")]
         #pragma warning disable CS1591
-        SOLE_PROPRIETOR,
+        SoleProprietor,
         #pragma warning restore CS1591
     }
 }

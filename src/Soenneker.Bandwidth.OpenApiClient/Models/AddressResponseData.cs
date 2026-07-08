@@ -70,6 +70,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string CustomReference { get; set; }
 #endif
+        /// <summary>The emergency services reference address ID. This is an identifier assigned by theemergency services provider to uniquely reference this address in their system.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EsRefAddressId { get; set; }
+#nullable restore
+#else
+        public string EsRefAddressId { get; set; }
+#endif
         /// <summary>&quot;The geo validation status of the address.- `GEO_VALID`: The address is valid and geo validated.- `NOT_GEO_VALID`: The address is not valid or geo validated.- `NOT_GEO_VALIDATED`: The address has not been geo validated yet.&quot;</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.GeoValidationStatusEnum? GeoValidationStatus { get; set; }
         /// <summary>The postal code of the address.</summary>
@@ -128,6 +136,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "countryCodeA3", n => { CountryCodeA3 = n.GetStringValue(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetStringValue(); } },
                 { "customReference", n => { CustomReference = n.GetStringValue(); } },
+                { "esRefAddressId", n => { EsRefAddressId = n.GetStringValue(); } },
                 { "geoValidationStatus", n => { GeoValidationStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GeoValidationStatusEnum>(); } },
                 { "postalCode", n => { PostalCode = n.GetStringValue(); } },
                 { "stateAbbreviation", n => { StateAbbreviation = n.GetStringValue(); } },
@@ -148,6 +157,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("countryCodeA3", CountryCodeA3);
             writer.WriteStringValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("customReference", CustomReference);
+            writer.WriteStringValue("esRefAddressId", EsRefAddressId);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GeoValidationStatusEnum>("geoValidationStatus", GeoValidationStatus);
             writer.WriteStringValue("postalCode", PostalCode);
             writer.WriteStringValue("stateAbbreviation", StateAbbreviation);

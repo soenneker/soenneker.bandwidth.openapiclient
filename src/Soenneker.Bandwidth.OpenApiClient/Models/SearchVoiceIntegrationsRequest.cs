@@ -15,7 +15,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The operator to use for multiple criteria.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequest_multipleCriteriaOperator? MultipleCriteriaOperator { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestMultipleCriteriaOperator? MultipleCriteriaOperator { get; set; }
         /// <summary>Page number parameter.</summary>
         public double? PageNumber { get; set; }
         /// <summary>Page Size parameter.</summary>
@@ -23,10 +23,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The queryCriteria property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequest_queryCriteria>? QueryCriteria { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestQueryCriteriaItem>? QueryCriteria { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequest_queryCriteria> QueryCriteria { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestQueryCriteriaItem> QueryCriteria { get; set; }
 #endif
         /// <summary>The sort property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -42,6 +42,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public SearchVoiceIntegrationsRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            PageNumber = 0;
+            PageSize = 50;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -61,10 +63,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "multipleCriteriaOperator", n => { MultipleCriteriaOperator = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequest_multipleCriteriaOperator>(); } },
+                { "multipleCriteriaOperator", n => { MultipleCriteriaOperator = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestMultipleCriteriaOperator>(); } },
                 { "pageNumber", n => { PageNumber = n.GetDoubleValue(); } },
                 { "pageSize", n => { PageSize = n.GetDoubleValue(); } },
-                { "queryCriteria", n => { QueryCriteria = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequest_queryCriteria>(global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequest_queryCriteria.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "queryCriteria", n => { QueryCriteria = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestQueryCriteriaItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestQueryCriteriaItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "sort", n => { Sort = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort>(global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort.CreateFromDiscriminatorValue); } },
             };
         }
@@ -75,10 +77,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequest_multipleCriteriaOperator>("multipleCriteriaOperator", MultipleCriteriaOperator);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestMultipleCriteriaOperator>("multipleCriteriaOperator", MultipleCriteriaOperator);
             writer.WriteDoubleValue("pageNumber", PageNumber);
             writer.WriteDoubleValue("pageSize", PageSize);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequest_queryCriteria>("queryCriteria", QueryCriteria);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestQueryCriteriaItem>("queryCriteria", QueryCriteria);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort>("sort", Sort);
             writer.WriteAdditionalData(AdditionalData);
         }

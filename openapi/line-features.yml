@@ -566,6 +566,91 @@ paths:
           $ref: '#/components/responses/errorResponse429'
         '500':
           $ref: '#/components/responses/errorResponse500'
+  /accounts/{accountId}/linefeatures:
+    post:
+      tags:
+        - Line Features
+      summary: Bulk upload line features via CSV
+      description: >-
+        Upload a CSV file to create TN Options orders, LIDB orders, DLDA orders,
+        and/or E911 orders in bulk. The file format determines which order types
+        are created.
+
+
+        The request must be submitted as `multipart/form-data` with two parts:
+
+        - `customerOrderId` (optional): A customer-defined reference label for
+        the upload. Max 255 characters. Not required to be unique.
+
+        - `file` (required): The CSV file to process.
+      operationId: bulkUploadLineFeatures
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          description: User's account ID.
+          schema:
+            type: string
+          example: '1234567'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - file
+              properties:
+                customerOrderId:
+                  type: string
+                  description: >-
+                    Optional customer-defined reference label for this upload.
+                    Max 255 characters.
+                  example: MY-UPLOAD-001
+                file:
+                  type: string
+                  format: binary
+                  description: CSV file containing line feature order data.
+      responses:
+        '200':
+          description: >-
+            OK — file processed. Check response body for per-order results and
+            any errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/lineFeaturesResponse'
+              example:
+                tnOptionOrderResponse:
+                  orderId: bf1305b8-8998-1111-2222-51ba3ce52d4e
+                  status: RECEIVED
+            application/xml:
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <LineFeaturesResponse>
+                      <TnOptionOrderResponse>
+                        <OrderId>bf1305b8-8998-1111-2222-51ba3ce52d4e</OrderId>
+                        <Status>RECEIVED</Status>
+                      </TnOptionOrderResponse>
+                    </LineFeaturesResponse>
+        '400':
+          description: Bad Request — file format error or validation failure.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/lineFeaturesErrorResponse'
+              example:
+                fileFormatErrorMessage: Unrecognized CSV header format.
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '429':
+          description: Too Many Requests
+        '500':
+          description: Internal Server Error
 components:
   securitySchemes:
     Basic:
@@ -829,6 +914,61 @@ components:
       schema:
         type: string
   schemas:
+    lineFeaturesResponse:
+      type: object
+      description: >-
+        Response from a bulk line features file upload. Contains results for
+        each order type processed from the uploaded CSV.
+      properties:
+        tnOptionOrderResponse:
+          type: object
+          description: Result from TN Options order processing, if applicable.
+          properties:
+            orderId:
+              type: string
+              description: Bandwidth-assigned order ID.
+            status:
+              type: string
+              description: Order status.
+        lidbOrderResponse:
+          type: object
+          description: Result from LIDB order processing, if applicable.
+          properties:
+            orderId:
+              type: string
+            status:
+              type: string
+        dldaOrderResponses:
+          type: array
+          description: Results from DLDA order processing, if applicable.
+          items:
+            type: object
+            properties:
+              orderId:
+                type: string
+              status:
+                type: string
+        e911OrderResponses:
+          type: array
+          description: Results from E911 order processing, if applicable.
+          items:
+            type: object
+            properties:
+              orderId:
+                type: string
+              status:
+                type: string
+        fileFormatErrorMessage:
+          type: string
+          description: >-
+            Present when the uploaded file has a format error preventing
+            processing.
+    lineFeaturesErrorResponse:
+      type: object
+      properties:
+        fileFormatErrorMessage:
+          type: string
+          description: Description of the file format error.
     tnOptionOrderJsonRequestVcpDisabled:
       type: object
       title: VCP Disabled TN Options Order Request
@@ -5480,6 +5620,8 @@ components:
                 country: United States
                 addressType: DLDA
 tags:
+  - name: Line Features
+    description: Bulk upload line feature orders via CSV file.
   - name: TN Options
     description: Manage options for telephone numbers
   - name: LIDB Orders

@@ -10,19 +10,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "FIXED")]
         #pragma warning disable CS1591
-        FIXED,
+        FixedValue,
         #pragma warning restore CS1591
         [EnumMember(Value = "VOIP-FIXED")]
         #pragma warning disable CS1591
-        VOIPFIXED,
+        VoipFixed,
         #pragma warning restore CS1591
         [EnumMember(Value = "MOBILE")]
         #pragma warning disable CS1591
-        MOBILE,
+        Mobile,
         #pragma warning restore CS1591
         [EnumMember(Value = "VOIP")]
         #pragma warning disable CS1591
-        VOIP,
+        Voip,
         #pragma warning restore CS1591
     }
 }

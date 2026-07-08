@@ -23,7 +23,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckout> ProductCheckoutList { get; set; }
 #endif
         /// <summary>A &apos;SUCCESS&apos; message will indicate that the operation was performed successfully.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CheckoutCartResponse_status? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CheckoutCartResponseStatus? Status { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CheckoutCartResponse"/> and sets the default values.
         /// </summary>
@@ -50,7 +50,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "productCheckoutList", n => { ProductCheckoutList = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckout>(global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckout.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CheckoutCartResponse_status>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CheckoutCartResponseStatus>(); } },
             };
         }
         /// <summary>
@@ -61,7 +61,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckout>("productCheckoutList", ProductCheckoutList);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CheckoutCartResponse_status>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CheckoutCartResponseStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

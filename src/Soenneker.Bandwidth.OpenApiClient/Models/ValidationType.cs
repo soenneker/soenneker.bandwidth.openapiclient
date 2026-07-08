@@ -14,27 +14,27 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         #pragma warning restore CS1591
         [EnumMember(Value = "REGEX")]
         #pragma warning disable CS1591
-        REGEX,
+        Regex,
         #pragma warning restore CS1591
         [EnumMember(Value = "ISO8601")]
         #pragma warning disable CS1591
-        ISO8601,
+        Iso8601,
         #pragma warning restore CS1591
         [EnumMember(Value = "ISO8601_RANGE")]
         #pragma warning disable CS1591
-        ISO8601_RANGE,
+        Iso8601Range,
         #pragma warning restore CS1591
         [EnumMember(Value = "STRING")]
         #pragma warning disable CS1591
-        STRING,
+        StringValue,
         #pragma warning restore CS1591
         [EnumMember(Value = "INTEGER")]
         #pragma warning disable CS1591
-        INTEGER,
+        Integer,
         #pragma warning restore CS1591
         [EnumMember(Value = "ACCOUNT")]
         #pragma warning disable CS1591
-        ACCOUNT,
+        Account,
         #pragma warning restore CS1591
     }
 }

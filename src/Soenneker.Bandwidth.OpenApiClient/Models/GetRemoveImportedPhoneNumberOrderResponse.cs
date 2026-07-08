@@ -72,8 +72,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public List<string> PhoneNumbers { get; set; }
 #endif
-        /// <summary>The processingStatus property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.GetRemoveImportedPhoneNumberOrderResponse_processingStatus? ProcessingStatus { get; set; }
+        /// <summary>The status of an order.</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementOrderStatus? ProcessingStatus { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetRemoveImportedPhoneNumberOrderResponse"/> and sets the default values.
         /// </summary>
@@ -107,7 +107,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "orderCreateDate", n => { OrderCreateDate = n.GetStringValue(); } },
                 { "orderId", n => { OrderId = n.GetStringValue(); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GetRemoveImportedPhoneNumberOrderResponse_processingStatus>(); } },
+                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementOrderStatus>(); } },
             };
         }
         /// <summary>
@@ -125,7 +125,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("orderCreateDate", OrderCreateDate);
             writer.WriteStringValue("orderId", OrderId);
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GetRemoveImportedPhoneNumberOrderResponse_processingStatus>("processingStatus", ProcessingStatus);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementOrderStatus>("processingStatus", ProcessingStatus);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

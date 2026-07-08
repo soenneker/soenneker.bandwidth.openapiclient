@@ -24,10 +24,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Information about the LATA the LRN belongs to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Lrn_lata? Lata { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LrnLataProperty? Lata { get; private set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Lrn_lata Lata { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LrnLataProperty Lata { get; private set; }
 #endif
         /// <summary>The lrnConfiguration property</summary>
         public Guid? LrnConfiguration { get; set; }
@@ -75,7 +75,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "accessHomingTandem", n => { AccessHomingTandem = n.GetBoolValue(); } },
                 { "added", n => { Added = n.GetDateTimeOffsetValue(); } },
                 { "hostedVoice", n => { HostedVoice = n.GetBoolValue(); } },
-                { "lata", n => { Lata = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Lrn_lata>(global::Soenneker.Bandwidth.OpenApiClient.Models.Lrn_lata.CreateFromDiscriminatorValue); } },
+                { "lata", n => { Lata = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnLataProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.LrnLataProperty.CreateFromDiscriminatorValue); } },
                 { "lrnConfiguration", n => { LrnConfiguration = n.GetGuidValue(); } },
                 { "lrn", n => { LrnProp = n.GetStringValue(); } },
                 { "operatingCompanyName", n => { OperatingCompanyName = n.GetStringValue(); } },

@@ -26,10 +26,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>List of errors specifying the cause of error response</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BadRequestResponse_errors>? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BadRequestResponseErrorsItem>? Errors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BadRequestResponse_errors> Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BadRequestResponseErrorsItem> Errors { get; set; }
 #endif
         /// <summary>A generic error message</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -69,7 +69,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "apiModule", n => { ApiModule = n.GetStringValue(); } },
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BadRequestResponse_errors>(global::Soenneker.Bandwidth.OpenApiClient.Models.BadRequestResponse_errors.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BadRequestResponseErrorsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.BadRequestResponseErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "genericErrorMessage", n => { GenericErrorMessage = n.GetStringValue(); } },
                 { "httpStatusCode", n => { HttpStatusCode = n.GetIntValue(); } },
             };
@@ -82,7 +82,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("apiModule", ApiModule);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BadRequestResponse_errors>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BadRequestResponseErrorsItem>("errors", Errors);
             writer.WriteStringValue("genericErrorMessage", GenericErrorMessage);
             writer.WriteIntValue("httpStatusCode", HttpStatusCode);
             writer.WriteAdditionalData(AdditionalData);

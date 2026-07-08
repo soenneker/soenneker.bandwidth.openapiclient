@@ -65,7 +65,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string OrderId { get; set; }
 #endif
         /// <summary>The processingStatus property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderJsonResponse_processingStatus? ProcessingStatus { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderJsonResponseProcessingStatus? ProcessingStatus { get; set; }
         /// <summary>The tnOptionGroups property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -114,7 +114,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "lastModifiedDate", n => { LastModifiedDate = n.GetStringValue(); } },
                 { "orderCreateDate", n => { OrderCreateDate = n.GetStringValue(); } },
                 { "orderId", n => { OrderId = n.GetStringValue(); } },
-                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderJsonResponse_processingStatus>(); } },
+                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderJsonResponseProcessingStatus>(); } },
                 { "tnOptionGroups", n => { TnOptionGroups = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderWarningPayloadJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderWarningPayloadJson.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -133,7 +133,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("lastModifiedDate", LastModifiedDate);
             writer.WriteStringValue("orderCreateDate", OrderCreateDate);
             writer.WriteStringValue("orderId", OrderId);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderJsonResponse_processingStatus>("processingStatus", ProcessingStatus);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderJsonResponseProcessingStatus>("processingStatus", ProcessingStatus);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponse>("tnOptionGroups", TnOptionGroups);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionOrderWarningPayloadJson>("warnings", Warnings);
             writer.WriteAdditionalData(AdditionalData);

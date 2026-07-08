@@ -28,13 +28,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The portinErrors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateErrorResponseJson_portinErrors>? PortinErrors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinErrorsItem>? PortinErrors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateErrorResponseJson_portinErrors> PortinErrors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinErrorsItem> PortinErrors { get; set; }
 #endif
         /// <summary>The processingStatus property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateErrorResponseJson_processingStatus? ProcessingStatus { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateErrorResponseJsonProcessingStatus? ProcessingStatus { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateErrorResponseJson"/> and sets the default values.
         /// </summary>
@@ -61,8 +61,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "orderId", n => { OrderId = n.GetStringValue(); } },
-                { "portinErrors", n => { PortinErrors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateErrorResponseJson_portinErrors>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateErrorResponseJson_portinErrors.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateErrorResponseJson_processingStatus>(); } },
+                { "portinErrors", n => { PortinErrors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinErrorsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.PortinErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateErrorResponseJsonProcessingStatus>(); } },
             };
         }
         /// <summary>
@@ -73,8 +73,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("orderId", OrderId);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateErrorResponseJson_portinErrors>("portinErrors", PortinErrors);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateErrorResponseJson_processingStatus>("processingStatus", ProcessingStatus);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinErrorsItem>("portinErrors", PortinErrors);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateErrorResponseJsonProcessingStatus>("processingStatus", ProcessingStatus);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

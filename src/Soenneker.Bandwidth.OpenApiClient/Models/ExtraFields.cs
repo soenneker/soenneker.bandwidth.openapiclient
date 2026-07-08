@@ -56,7 +56,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string IdNumber { get; set; }
 #endif
         /// <summary>Spain / Mobile / DNI, NIE, NIF, PASSPORT. Only required for personal addresses (salutation is either MR or MS).</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExtraFields_idType? IdType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExtraFieldsIdType? IdType { get; set; }
         /// <summary>&quot;Italy / GEOGRAPHIC and TOLL_FREE / String, maximum length: 60. Mandatory for Company end user only.&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -159,7 +159,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "firstName", n => { FirstName = n.GetStringValue(); } },
                 { "fiscalIdentificationCode", n => { FiscalIdentificationCode = n.GetStringValue(); } },
                 { "idNumber", n => { IdNumber = n.GetStringValue(); } },
-                { "idType", n => { IdType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExtraFields_idType>(); } },
+                { "idType", n => { IdType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExtraFieldsIdType>(); } },
                 { "lastName", n => { LastName = n.GetStringValue(); } },
                 { "municipalityCode", n => { MunicipalityCode = n.GetStringValue(); } },
                 { "nationality", n => { Nationality = n.GetStringValue(); } },
@@ -183,7 +183,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("firstName", FirstName);
             writer.WriteStringValue("fiscalIdentificationCode", FiscalIdentificationCode);
             writer.WriteStringValue("idNumber", IdNumber);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExtraFields_idType>("idType", IdType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExtraFieldsIdType>("idType", IdType);
             writer.WriteStringValue("lastName", LastName);
             writer.WriteStringValue("municipalityCode", MunicipalityCode);
             writer.WriteStringValue("nationality", Nationality);

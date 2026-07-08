@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The requirementsSets property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResult_requirementsSets>? RequirementsSets { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResultRequirementsSetsItem>? RequirementsSets { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResult_requirementsSets> RequirementsSets { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResultRequirementsSetsItem> RequirementsSets { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResult"/> and sets the default values.
@@ -48,7 +48,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "requirementsSets", n => { RequirementsSets = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResult_requirementsSets>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResult_requirementsSets.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "requirementsSets", n => { RequirementsSets = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResultRequirementsSetsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResultRequirementsSetsItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResult_requirementsSets>("requirementsSets", RequirementsSets);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResultRequirementsSetsItem>("requirementsSets", RequirementsSets);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

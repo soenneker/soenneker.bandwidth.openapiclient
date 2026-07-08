@@ -31,7 +31,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string FilterName { get; set; }
 #endif
         /// <summary>The operator property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Operator? Operator { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorType? Operator { get; set; }
         /// <summary>The required property</summary>
         public bool? Required { get; set; }
         /// <summary>The validationRegex property</summary>
@@ -71,7 +71,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "dropdownValues", n => { DropdownValues = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues>(global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "filterName", n => { FilterName = n.GetStringValue(); } },
-                { "operator", n => { Operator = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Operator>(); } },
+                { "operator", n => { Operator = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorType>(); } },
                 { "required", n => { Required = n.GetBoolValue(); } },
                 { "validationRegex", n => { ValidationRegex = n.GetStringValue(); } },
                 { "validationType", n => { ValidationType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ValidationType>(); } },
@@ -86,7 +86,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues>("dropdownValues", DropdownValues);
             writer.WriteStringValue("filterName", FilterName);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Operator>("operator", Operator);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorType>("operator", Operator);
             writer.WriteBoolValue("required", Required);
             writer.WriteStringValue("validationRegex", ValidationRegex);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ValidationType>("validationType", ValidationType);

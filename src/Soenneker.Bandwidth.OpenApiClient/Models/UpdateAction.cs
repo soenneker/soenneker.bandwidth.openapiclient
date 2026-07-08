@@ -10,11 +10,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "PROVISION")]
         #pragma warning disable CS1591
-        PROVISION,
+        Provision,
         #pragma warning restore CS1591
         [EnumMember(Value = "UNPROVISION")]
         #pragma warning disable CS1591
-        UNPROVISION,
+        Unprovision,
         #pragma warning restore CS1591
     }
 }

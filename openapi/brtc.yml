@@ -821,7 +821,7 @@ components:
         tag: '{"myTag": "myTagValue"}'
     updateEndpointBxmlRequestExample:
       summary: Update Endpoint BXML Request Example
-      value: <Bxml><StartRecording /></Bxml>
+      value: <Response><StartRecording /></Response>
     endpointDisconnectedEventExample:
       summary: Endpoint Disconnected Event
       value:

@@ -18,26 +18,26 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrors_data? DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsData? DataEscaped { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrors_data DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsData DataEscaped { get; set; }
 #endif
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrors_errors>? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsErrorsItem>? Errors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrors_errors> Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsErrorsItem> Errors { get; set; }
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrors_links>? Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsLinksItem>? Links { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrors_links> Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsLinksItem> Links { get; set; }
 #endif
         /// <summary>The primary error message.</summary>
         public override string Message { get => base.Message; }
@@ -66,9 +66,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrors_data>(global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrors_data.CreateFromDiscriminatorValue); } },
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrors_errors>(global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrors_errors.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrors_links>(global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrors_links.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsData>(global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsData.CreateFromDiscriminatorValue); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsErrorsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsLinksItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsLinksItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -78,9 +78,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrors_data>("data", DataEscaped);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrors_errors>("errors", Errors);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrors_links>("links", Links);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsData>("data", DataEscaped);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsErrorsItem>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsLinksItem>("links", Links);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

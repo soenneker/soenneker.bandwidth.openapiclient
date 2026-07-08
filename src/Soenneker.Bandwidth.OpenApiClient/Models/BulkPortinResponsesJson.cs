@@ -17,10 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The bulkPortins property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinResponsesJson_bulkPortins>? BulkPortins { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinResponsesJsonBulkPortinsItem>? BulkPortins { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinResponsesJson_bulkPortins> BulkPortins { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinResponsesJsonBulkPortinsItem> BulkPortins { get; set; }
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -57,7 +57,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "bulkPortins", n => { BulkPortins = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinResponsesJson_bulkPortins>(global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinResponsesJson_bulkPortins.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "bulkPortins", n => { BulkPortins = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinResponsesJsonBulkPortinsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinResponsesJsonBulkPortinsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SelfLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.SelfLink.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "totalCount", n => { TotalCount = n.GetIntValue(); } },
             };
@@ -69,7 +69,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinResponsesJson_bulkPortins>("bulkPortins", BulkPortins);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinResponsesJsonBulkPortinsItem>("bulkPortins", BulkPortins);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SelfLink>("links", Links);
             writer.WriteIntValue("totalCount", TotalCount);
             writer.WriteAdditionalData(AdditionalData);

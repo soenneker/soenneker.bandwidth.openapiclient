@@ -26,10 +26,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Details of the referenced asset object. It can corresponds to an address, endUser or document</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetData.AssetGetData_assetReferenceData? AssetReferenceData { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetDataAssetReferenceData? AssetReferenceData { get; private set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetData.AssetGetData_assetReferenceData AssetReferenceData { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetDataAssetReferenceData AssetReferenceData { get; private set; }
 #endif
         /// <summary>Id of the referenced asset object</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -41,21 +41,21 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>Type of the asset</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.AssetTypeEnum? AssetType { get; set; }
-        /// <summary>The createdDateTime property</summary>
+        /// <summary>The date and time this object was created in ISO 8601 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetData_createdDateTime? CreatedDateTime { get; private set; }
+        public string? CreatedDateTime { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetData_createdDateTime CreatedDateTime { get; private set; }
+        public string CreatedDateTime { get; set; }
 #endif
-        /// <summary>The updatedDateTime property</summary>
+        /// <summary>The date and time this object was last updated in ISO 8601 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetData_updatedDateTime? UpdatedDateTime { get; private set; }
+        public string? UpdatedDateTime { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetData_updatedDateTime UpdatedDateTime { get; private set; }
+        public string UpdatedDateTime { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetData"/> and sets the default values.
@@ -83,11 +83,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "assetId", n => { AssetId = n.GetStringValue(); } },
-                { "assetReferenceData", n => { AssetReferenceData = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetData.AssetGetData_assetReferenceData>(global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetData.AssetGetData_assetReferenceData.CreateFromDiscriminatorValue); } },
+                { "assetReferenceData", n => { AssetReferenceData = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetDataAssetReferenceData>(global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetDataAssetReferenceData.CreateFromDiscriminatorValue); } },
                 { "assetReferenceId", n => { AssetReferenceId = n.GetStringValue(); } },
                 { "assetType", n => { AssetType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AssetTypeEnum>(); } },
-                { "createdDateTime", n => { CreatedDateTime = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetData_createdDateTime>(global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetData_createdDateTime.CreateFromDiscriminatorValue); } },
-                { "updatedDateTime", n => { UpdatedDateTime = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetData_updatedDateTime>(global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetData_updatedDateTime.CreateFromDiscriminatorValue); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetStringValue(); } },
+                { "updatedDateTime", n => { UpdatedDateTime = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -99,102 +99,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("assetReferenceId", AssetReferenceId);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AssetTypeEnum>("assetType", AssetType);
+            writer.WriteStringValue("createdDateTime", CreatedDateTime);
+            writer.WriteStringValue("updatedDateTime", UpdatedDateTime);
             writer.WriteAdditionalData(AdditionalData);
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddressResponseAssetData"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserResponseAssetData"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class AssetGetData_assetReferenceData : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddressResponseAssetData"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddressResponseAssetData? AddressResponseAssetData { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.AddressResponseAssetData AddressResponseAssetData { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData? ComplianceDocumentResponseData { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData ComplianceDocumentResponseData { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserResponseAssetData"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserResponseAssetData? EndUserResponseAssetData { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserResponseAssetData EndUserResponseAssetData { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetData.AssetGetData_assetReferenceData"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetData.AssetGetData_assetReferenceData CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
-                var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetData.AssetGetData_assetReferenceData();
-                if("AddressResponseAssetData".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.AddressResponseAssetData = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddressResponseAssetData();
-                }
-                else if("ComplianceDocumentResponseData".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.ComplianceDocumentResponseData = new global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData();
-                }
-                else if("EndUserResponseAssetData".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.EndUserResponseAssetData = new global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserResponseAssetData();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(AddressResponseAssetData != null)
-                {
-                    return AddressResponseAssetData.GetFieldDeserializers();
-                }
-                else if(ComplianceDocumentResponseData != null)
-                {
-                    return ComplianceDocumentResponseData.GetFieldDeserializers();
-                }
-                else if(EndUserResponseAssetData != null)
-                {
-                    return EndUserResponseAssetData.GetFieldDeserializers();
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(AddressResponseAssetData != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressResponseAssetData>(null, AddressResponseAssetData);
-                }
-                else if(ComplianceDocumentResponseData != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData>(null, ComplianceDocumentResponseData);
-                }
-                else if(EndUserResponseAssetData != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserResponseAssetData>(null, EndUserResponseAssetData);
-                }
-            }
         }
     }
 }

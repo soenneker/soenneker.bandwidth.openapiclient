@@ -9,7 +9,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "FIRST_ORION")]
         #pragma warning disable CS1591
-        FIRST_ORION,
+        FirstOrion,
         #pragma warning restore CS1591
     }
 }

@@ -74,9 +74,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public UpdateConference()
         {
             AdditionalData = new Dictionary<string, object>();
-            RedirectFallbackMethod = global::Soenneker.Bandwidth.OpenApiClient.Models.RedirectMethodEnum.POST;
-            RedirectMethod = global::Soenneker.Bandwidth.OpenApiClient.Models.RedirectMethodEnum.POST;
-            Status = global::Soenneker.Bandwidth.OpenApiClient.Models.ConferenceStateEnum.Active;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

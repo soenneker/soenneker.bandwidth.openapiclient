@@ -9,15 +9,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "INITIAL")]
         #pragma warning disable CS1591
-        INITIAL,
+        Initial,
         #pragma warning restore CS1591
         [EnumMember(Value = "UPDATE")]
         #pragma warning disable CS1591
-        UPDATE,
+        Update,
         #pragma warning restore CS1591
         [EnumMember(Value = "ALL_CLEAR")]
         #pragma warning disable CS1591
-        ALL_CLEAR,
+        AllClear,
         #pragma warning restore CS1591
     }
 }

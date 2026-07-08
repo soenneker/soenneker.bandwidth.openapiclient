@@ -9,11 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "EXTERNAL")]
         #pragma warning disable CS1591
-        EXTERNAL,
+        External,
         #pragma warning restore CS1591
         [EnumMember(Value = "BANDWIDTH")]
         #pragma warning disable CS1591
-        BANDWIDTH,
+        Bandwidth,
         #pragma warning restore CS1591
     }
 }

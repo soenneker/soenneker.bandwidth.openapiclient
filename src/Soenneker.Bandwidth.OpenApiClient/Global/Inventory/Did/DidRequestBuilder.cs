@@ -165,7 +165,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Inventory.Did
             public int? RegulationAddressId { get; set; }
             /// <summary>This can be used if you want to filter by service type. The possible values are &apos;VOX800&apos; for toll-free numbers or &apos;VOXDID&apos; for geographic or national numbers.</summary>
             [QueryParameter("serviceType")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Global.Inventory.Did.GetServiceTypeQueryParameterType? ServiceType { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalListDidServiceTypeParameter? ServiceType { get; set; }
             /// <summary>The identifier of the sms link group the numbers are mapped to.</summary>
             [QueryParameter("smsLinkGroupId")]
             public int? SmsLinkGroupId { get; set; }

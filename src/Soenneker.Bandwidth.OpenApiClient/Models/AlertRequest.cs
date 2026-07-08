@@ -18,7 +18,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The time of the alert. This information is included in the alert text that is sent to the PSAPs.</summary>
         public DateTimeOffset? AlertTime { get; set; }
         /// <summary>&quot;The alert type.- UPDATE: This is an update to the INITIAL alert, indicating that the incident is still ongoing.- ALL_CLEAR: This is an all clear alert, indicating that the incident is now resolved.&quot;</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AlertRequest_alertType? AlertType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AlertRequestAlertType? AlertType { get; set; }
         /// <summary>The best known cause of the outage. If left blank, the PSAP will be notified that the cause of the outage is unknown.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -57,7 +57,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "alertTime", n => { AlertTime = n.GetDateTimeOffsetValue(); } },
-                { "alertType", n => { AlertType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AlertRequest_alertType>(); } },
+                { "alertType", n => { AlertType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AlertRequestAlertType>(); } },
                 { "causeOfOutage", n => { CauseOfOutage = n.GetStringValue(); } },
                 { "expectedRestorationTime", n => { ExpectedRestorationTime = n.GetDateTimeOffsetValue(); } },
                 { "testAlert", n => { TestAlert = n.GetBoolValue(); } },
@@ -71,7 +71,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("alertTime", AlertTime);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AlertRequest_alertType>("alertType", AlertType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AlertRequestAlertType>("alertType", AlertType);
             writer.WriteStringValue("causeOfOutage", CauseOfOutage);
             writer.WriteDateTimeOffsetValue("expectedRestorationTime", ExpectedRestorationTime);
             writer.WriteBoolValue("testAlert", TestAlert);

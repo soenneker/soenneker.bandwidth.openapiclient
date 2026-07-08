@@ -23,6 +23,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Endpoint { get; set; }
 #endif
+        /// <summary>ANI routing prefix for this endpoint (for example, `212`).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Prefix { get; set; }
+#nullable restore
+#else
+        public string Prefix { get; set; }
+#endif
         /// <summary>Overrides the user part of the SIP Request-URI (e.g. `rewrite-user@endpoint`).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -40,8 +48,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkInfo TrunkInfo { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointRequest_type? Type { get; set; }
-        /// <summary>The weight property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointRequestType? Type { get; set; }
+        /// <summary>Weighted-routing weight.</summary>
         public int? Weight { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointRequest"/> and sets the default values.
@@ -69,9 +77,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "endpoint", n => { Endpoint = n.GetStringValue(); } },
+                { "prefix", n => { Prefix = n.GetStringValue(); } },
                 { "rewriteUser", n => { RewriteUser = n.GetStringValue(); } },
                 { "trunkInfo", n => { TrunkInfo = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkInfo>(global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkInfo.CreateFromDiscriminatorValue); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointRequest_type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointRequestType>(); } },
                 { "weight", n => { Weight = n.GetIntValue(); } },
             };
         }
@@ -83,9 +92,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("endpoint", Endpoint);
+            writer.WriteStringValue("prefix", Prefix);
             writer.WriteStringValue("rewriteUser", RewriteUser);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkInfo>("trunkInfo", TrunkInfo);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointRequest_type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointRequestType>("type", Type);
             writer.WriteIntValue("weight", Weight);
             writer.WriteAdditionalData(AdditionalData);
         }

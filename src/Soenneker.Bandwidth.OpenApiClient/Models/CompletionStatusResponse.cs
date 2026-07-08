@@ -21,13 +21,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>List of phone numbers completion results</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CompletionStatusResponse_results>? Results { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CompletionStatusResponseResultsItem>? Results { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CompletionStatusResponse_results> Results { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CompletionStatusResponseResultsItem> Results { get; set; }
 #endif
         /// <summary>Status of the complete request</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CompletionStatusResponse_status? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CompletionStatusResponseStatus? Status { get; set; }
         /// <summary>Count of successfully completed phone numbers</summary>
         public int? Success { get; set; }
         /// <summary>Total number of phone numbers in the completion request</summary>
@@ -59,8 +59,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "error", n => { Error = n.GetIntValue(); } },
                 { "inProgress", n => { InProgress = n.GetIntValue(); } },
-                { "results", n => { Results = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CompletionStatusResponse_results>(global::Soenneker.Bandwidth.OpenApiClient.Models.CompletionStatusResponse_results.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CompletionStatusResponse_status>(); } },
+                { "results", n => { Results = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CompletionStatusResponseResultsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.CompletionStatusResponseResultsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CompletionStatusResponseStatus>(); } },
                 { "success", n => { Success = n.GetIntValue(); } },
                 { "total", n => { Total = n.GetIntValue(); } },
             };
@@ -74,8 +74,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("error", Error);
             writer.WriteIntValue("inProgress", InProgress);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CompletionStatusResponse_results>("results", Results);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CompletionStatusResponse_status>("status", Status);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CompletionStatusResponseResultsItem>("results", Results);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CompletionStatusResponseStatus>("status", Status);
             writer.WriteIntValue("success", Success);
             writer.WriteIntValue("total", Total);
             writer.WriteAdditionalData(AdditionalData);

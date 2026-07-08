@@ -16,7 +16,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The status property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LinkRegulationAddressResponse_status? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LinkRegulationAddressResponseStatus? Status { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LinkRegulationAddressResponse"/> and sets the default values.
         /// </summary>
@@ -42,7 +42,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LinkRegulationAddressResponse_status>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LinkRegulationAddressResponseStatus>(); } },
             };
         }
         /// <summary>
@@ -52,7 +52,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LinkRegulationAddressResponse_status>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LinkRegulationAddressResponseStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

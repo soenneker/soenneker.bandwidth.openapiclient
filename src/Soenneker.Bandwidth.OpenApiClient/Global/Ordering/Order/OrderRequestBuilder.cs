@@ -123,7 +123,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Ordering.Order
 #endif
             /// <summary>The status of the order.</summary>
             [QueryParameter("status")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Global.Ordering.Order.GetStatusQueryParameterType? Status { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalListOrderStatusParameter? Status { get; set; }
         }
     }
 }

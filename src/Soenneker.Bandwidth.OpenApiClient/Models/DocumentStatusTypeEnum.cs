@@ -9,15 +9,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "PENDING_VALIDATION")]
         #pragma warning disable CS1591
-        PENDING_VALIDATION,
+        PendingValidation,
         #pragma warning restore CS1591
         [EnumMember(Value = "VALID")]
         #pragma warning disable CS1591
-        VALID,
+        Valid,
         #pragma warning restore CS1591
         [EnumMember(Value = "INVALID")]
         #pragma warning disable CS1591
-        INVALID,
+        Invalid,
         #pragma warning restore CS1591
     }
 }

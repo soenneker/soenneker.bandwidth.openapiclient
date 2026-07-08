@@ -10,15 +10,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "VERIFIED")]
         #pragma warning disable CS1591
-        VERIFIED,
+        Verified,
         #pragma warning restore CS1591
         [EnumMember(Value = "UNVERIFIED")]
         #pragma warning disable CS1591
-        UNVERIFIED,
+        Unverified,
         #pragma warning restore CS1591
         [EnumMember(Value = "PENDING")]
         #pragma warning disable CS1591
-        PENDING,
+        Pending,
         #pragma warning restore CS1591
     }
 }

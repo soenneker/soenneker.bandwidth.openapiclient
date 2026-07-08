@@ -35,7 +35,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Voiceuri
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public VoiceuriRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/global/configuration/voiceuri?pageNumber={pageNumber}&pageSize={pageSize}{&backupUriId*,description*,uri*,voiceUriId*,voiceUriProtocol*}", pathParameters)
+        public VoiceuriRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/global/configuration/voiceuri{?backupUriId*,description*,uri*,voiceUriId*,voiceUriProtocol*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Voiceuri
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public VoiceuriRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/global/configuration/voiceuri?pageNumber={pageNumber}&pageSize={pageSize}{&backupUriId*,description*,uri*,voiceUriId*,voiceUriProtocol*}", rawUrl)
+        public VoiceuriRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/global/configuration/voiceuri{?backupUriId*,description*,uri*,voiceUriId*,voiceUriProtocol*}", rawUrl)
         {
         }
         /// <summary>
@@ -98,7 +98,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Voiceuri
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Voiceuri.VoiceuriRequestBuilder.VoiceuriRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/global/configuration/voiceuri?pageNumber={pageNumber}&pageSize={pageSize}{&backupUriId*,description*,uri*,voiceUriId*,voiceUriProtocol*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -119,7 +119,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Voiceuri
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PUT, "{+baseurl}/global/configuration/voiceuri", PathParameters);
+            var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
@@ -174,7 +174,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Voiceuri
             public int? VoiceUriId { get; set; }
             /// <summary>The protocol to use with this voice uri. Supported protocols are `SIP` and `TEL`.</summary>
             [QueryParameter("voiceUriProtocol")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Voiceuri.GetVoiceUriProtocolQueryParameterType? VoiceUriProtocol { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalListVoiceUriVoiceUriProtocolParameter? VoiceUriProtocol { get; set; }
         }
     }
 }

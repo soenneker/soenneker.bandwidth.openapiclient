@@ -9,11 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "RES")]
         #pragma warning disable CS1591
-        RES,
+        Res,
         #pragma warning restore CS1591
         [EnumMember(Value = "BUS")]
         #pragma warning disable CS1591
-        BUS,
+        Bus,
         #pragma warning restore CS1591
     }
 }

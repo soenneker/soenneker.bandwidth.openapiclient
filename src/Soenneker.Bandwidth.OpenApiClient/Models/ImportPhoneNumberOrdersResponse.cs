@@ -64,8 +64,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string LoaAuthorizingPerson { get; set; }
 #endif
-        /// <summary>The loaType property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersResponse_loaType? LoaType { get; set; }
+        /// <summary>The type of LOA authorization.</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LoaType? LoaType { get; set; }
         /// <summary>The locationId property</summary>
         public int? LocationId { get; set; }
         /// <summary>The orderCreateDate property</summary>
@@ -92,8 +92,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public List<string> PhoneNumbers { get; set; }
 #endif
-        /// <summary>Status of the Hosted Messaging Order request.RECEIVED - Order has been received without errors and will be processed through further validation.PROCESSING - The order has passed initial validation and is now being processed.Order will remain in processing status if any of the requested telphone numbers remain pending processing.COMPLETE - This implies that this order has been successfully processed and hosted messaging has been enabled on all requested telephone numbers.PARTIAL - This implies that this order has been successfully processed and hosted messaging was enabled on all except few of the numbers, reasons for same can be found in  Warning section.FAILED - This implies that this order has been failed. None of the telphone numbers requested were enabled for hosted messaging, reasons for same can be found in Errors and Warning section.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersResponse_processingStatus? ProcessingStatus { get; set; }
+        /// <summary>The status of an order.</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementOrderStatus? ProcessingStatus { get; set; }
         /// <summary>The subAccountId property</summary>
         public int? SubAccountId { get; set; }
         /// <summary>The subscriber property</summary>
@@ -152,12 +152,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "failedTelephoneNumbers", n => { FailedTelephoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "lastModifiedDate", n => { LastModifiedDate = n.GetStringValue(); } },
                 { "loaAuthorizingPerson", n => { LoaAuthorizingPerson = n.GetStringValue(); } },
-                { "loaType", n => { LoaType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersResponse_loaType>(); } },
+                { "loaType", n => { LoaType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LoaType>(); } },
                 { "locationId", n => { LocationId = n.GetIntValue(); } },
                 { "orderCreateDate", n => { OrderCreateDate = n.GetStringValue(); } },
                 { "pendingTelephoneNumbers", n => { PendingTelephoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersResponse_processingStatus>(); } },
+                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementOrderStatus>(); } },
                 { "subAccountId", n => { SubAccountId = n.GetIntValue(); } },
                 { "subscriber", n => { Subscriber = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberSubscriber>(global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberSubscriber.CreateFromDiscriminatorValue); } },
                 { "successTelephoneNumbers", n => { SuccessTelephoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
@@ -178,12 +178,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfPrimitiveValues<string>("failedTelephoneNumbers", FailedTelephoneNumbers);
             writer.WriteStringValue("lastModifiedDate", LastModifiedDate);
             writer.WriteStringValue("loaAuthorizingPerson", LoaAuthorizingPerson);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersResponse_loaType>("loaType", LoaType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LoaType>("loaType", LoaType);
             writer.WriteIntValue("locationId", LocationId);
             writer.WriteStringValue("orderCreateDate", OrderCreateDate);
             writer.WriteCollectionOfPrimitiveValues<string>("pendingTelephoneNumbers", PendingTelephoneNumbers);
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersResponse_processingStatus>("processingStatus", ProcessingStatus);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementOrderStatus>("processingStatus", ProcessingStatus);
             writer.WriteIntValue("subAccountId", SubAccountId);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberSubscriber>("subscriber", Subscriber);
             writer.WriteCollectionOfPrimitiveValues<string>("successTelephoneNumbers", SuccessTelephoneNumbers);

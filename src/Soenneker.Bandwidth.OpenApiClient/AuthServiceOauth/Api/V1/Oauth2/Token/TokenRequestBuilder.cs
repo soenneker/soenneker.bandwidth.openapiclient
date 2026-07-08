@@ -42,11 +42,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.AuthServiceOauth.Api.V1.Oauth2.Token
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TokenErrorResponse">When receiving a 400 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TokenErrorResponse">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOauthErrorResponse">When receiving a 403 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOauthErrorResponse">When receiving a 404 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOauthErrorResponse">When receiving a 405 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOauthErrorResponse">When receiving a 429 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOauthErrorResponse">When receiving a 500 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorResponse">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorResponse">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorResponse">When receiving a 405 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorResponse">When receiving a 429 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorResponse">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.Token?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.TokenRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -62,11 +62,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.AuthServiceOauth.Api.V1.Oauth2.Token
             {
                 { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.TokenErrorResponse.CreateFromDiscriminatorValue },
                 { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.TokenErrorResponse.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOauthErrorResponse.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOauthErrorResponse.CreateFromDiscriminatorValue },
-                { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOauthErrorResponse.CreateFromDiscriminatorValue },
-                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOauthErrorResponse.CreateFromDiscriminatorValue },
-                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOauthErrorResponse.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorResponse.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorResponse.CreateFromDiscriminatorValue },
+                { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorResponse.CreateFromDiscriminatorValue },
+                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorResponse.CreateFromDiscriminatorValue },
+                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorResponse.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.Token>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.Token.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

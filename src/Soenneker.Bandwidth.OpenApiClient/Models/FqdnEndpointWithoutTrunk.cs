@@ -32,7 +32,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string RewriteUser { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithoutTrunk_type? Type { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithoutTrunkType? Type { get; set; }
         /// <summary>The weight property</summary>
         public int? Weight { get; set; }
         /// <summary>
@@ -62,7 +62,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "endpoint", n => { Endpoint = n.GetStringValue(); } },
                 { "rewriteUser", n => { RewriteUser = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithoutTrunk_type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithoutTrunkType>(); } },
                 { "weight", n => { Weight = n.GetIntValue(); } },
             };
         }
@@ -75,7 +75,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("endpoint", Endpoint);
             writer.WriteStringValue("rewriteUser", RewriteUser);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithoutTrunk_type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithoutTrunkType>("type", Type);
             writer.WriteIntValue("weight", Weight);
             writer.WriteAdditionalData(AdditionalData);
         }

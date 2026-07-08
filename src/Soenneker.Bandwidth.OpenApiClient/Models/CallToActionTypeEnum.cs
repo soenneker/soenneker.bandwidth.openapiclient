@@ -9,23 +9,23 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "POINT_OF_SALE")]
         #pragma warning disable CS1591
-        POINT_OF_SALE,
+        PointOfSale,
         #pragma warning restore CS1591
         [EnumMember(Value = "PRINT")]
         #pragma warning disable CS1591
-        PRINT,
+        Print,
         #pragma warning restore CS1591
         [EnumMember(Value = "RADIO")]
         #pragma warning disable CS1591
-        RADIO,
+        Radio,
         #pragma warning restore CS1591
         [EnumMember(Value = "TV")]
         #pragma warning disable CS1591
-        TV,
+        Tv,
         #pragma warning restore CS1591
         [EnumMember(Value = "WEB")]
         #pragma warning disable CS1591
-        WEB,
+        Web,
         #pragma warning restore CS1591
     }
 }

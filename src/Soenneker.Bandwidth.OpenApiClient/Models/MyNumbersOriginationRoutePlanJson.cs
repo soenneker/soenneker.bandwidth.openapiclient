@@ -14,7 +14,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     public partial class MyNumbersOriginationRoutePlanJson : IAdditionalDataHolder, IParsable
     {
         /// <summary>The action property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersOriginationRoutePlanJson_action? Action { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersOriginationRoutePlanJsonAction? Action { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The id property</summary>
@@ -52,7 +52,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "action", n => { Action = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersOriginationRoutePlanJson_action>(); } },
+                { "action", n => { Action = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersOriginationRoutePlanJsonAction>(); } },
                 { "id", n => { Id = n.GetGuidValue(); } },
                 { "routes", n => { Routes = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersOriginationRoutePayloadJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersOriginationRoutePayloadJson.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -64,7 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersOriginationRoutePlanJson_action>("action", Action);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersOriginationRoutePlanJsonAction>("action", Action);
             writer.WriteGuidValue("id", Id);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersOriginationRoutePayloadJson>("routes", Routes);
             writer.WriteAdditionalData(AdditionalData);

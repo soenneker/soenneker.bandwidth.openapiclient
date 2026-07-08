@@ -43,10 +43,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayload_errors>? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayloadErrorsItem>? Errors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayload_errors> Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayloadErrorsItem> Errors { get; set; }
 #endif
         /// <summary>The lastModifiedDate property</summary>
         public DateTimeOffset? LastModifiedDate { get; set; }
@@ -67,7 +67,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string OrderId { get; set; }
 #endif
         /// <summary>Order status.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayload_processingStatus? ProcessingStatus { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayloadProcessingStatus? ProcessingStatus { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayload"/> and sets the default values.
         /// </summary>
@@ -97,11 +97,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "createdByUser", n => { CreatedByUser = n.GetStringValue(); } },
                 { "customerOrderId", n => { CustomerOrderId = n.GetStringValue(); } },
                 { "dldaPhoneNumberGroups", n => { DldaPhoneNumberGroups = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup>(global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayload_errors>(global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayload_errors.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayloadErrorsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayloadErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "lastModifiedDate", n => { LastModifiedDate = n.GetDateTimeOffsetValue(); } },
                 { "orderCreateDate", n => { OrderCreateDate = n.GetStringValue(); } },
                 { "orderId", n => { OrderId = n.GetStringValue(); } },
-                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayload_processingStatus>(); } },
+                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayloadProcessingStatus>(); } },
             };
         }
         /// <summary>
@@ -115,11 +115,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("createdByUser", CreatedByUser);
             writer.WriteStringValue("customerOrderId", CustomerOrderId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup>("dldaPhoneNumberGroups", DldaPhoneNumberGroups);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayload_errors>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayloadErrorsItem>("errors", Errors);
             writer.WriteDateTimeOffsetValue("lastModifiedDate", LastModifiedDate);
             writer.WriteStringValue("orderCreateDate", OrderCreateDate);
             writer.WriteStringValue("orderId", OrderId);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayload_processingStatus>("processingStatus", ProcessingStatus);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayloadProcessingStatus>("processingStatus", ProcessingStatus);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

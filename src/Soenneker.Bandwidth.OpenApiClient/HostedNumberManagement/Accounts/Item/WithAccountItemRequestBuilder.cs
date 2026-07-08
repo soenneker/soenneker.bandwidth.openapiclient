@@ -2,8 +2,13 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ExternalTns;
 using Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportPhoneNumberOrders;
+using Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportTnChecker;
+using Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportTnOrders;
+using Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.Operators;
 using Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.RemoveImportedPhoneNumberOrders;
+using Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.RemoveImportedTnOrders;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -16,15 +21,40 @@ namespace Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithAccountItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The externalTns property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ExternalTns.ExternalTnsRequestBuilder ExternalTns
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ExternalTns.ExternalTnsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The importPhoneNumberOrders property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportPhoneNumberOrders.ImportPhoneNumberOrdersRequestBuilder ImportPhoneNumberOrders
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportPhoneNumberOrders.ImportPhoneNumberOrdersRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The importTnChecker property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportTnChecker.ImportTnCheckerRequestBuilder ImportTnChecker
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportTnChecker.ImportTnCheckerRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The importTnOrders property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportTnOrders.ImportTnOrdersRequestBuilder ImportTnOrders
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportTnOrders.ImportTnOrdersRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The operators property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.Operators.OperatorsRequestBuilder Operators
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.Operators.OperatorsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The removeImportedPhoneNumberOrders property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.RemoveImportedPhoneNumberOrders.RemoveImportedPhoneNumberOrdersRequestBuilder RemoveImportedPhoneNumberOrders
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.RemoveImportedPhoneNumberOrders.RemoveImportedPhoneNumberOrdersRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The removeImportedTnOrders property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.RemoveImportedTnOrders.RemoveImportedTnOrdersRequestBuilder RemoveImportedTnOrders
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.RemoveImportedTnOrders.RemoveImportedTnOrdersRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.WithAccountItemRequestBuilder"/> and sets the default values.

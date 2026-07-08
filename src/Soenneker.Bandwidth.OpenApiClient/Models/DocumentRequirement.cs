@@ -26,10 +26,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Supported file extensions.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentRequirement_supportedFileTypes?>? SupportedFileTypes { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentRequirementSupportedFileTypesItem?>? SupportedFileTypes { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentRequirement_supportedFileTypes?> SupportedFileTypes { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentRequirementSupportedFileTypesItem?> SupportedFileTypes { get; set; }
 #endif
         /// <summary>Types of documents.**The table below defines types of documents.**| Type of document      | Description  || ----------- | ------------ || ALLO        | A local allocation letter / Bakom Ownership Letter / BNetZa Allocation Certificate. | | CAN         | A cancellation notice. | | COB         | Last invoice. || COURT       | Copy of Court Registration. || CSR         | A customer service record. || DIREC       | Copy of Certificate of Directors and Secretary of the company. | | FORM        | A local regulated porting form. | | INCORP      | Copy of Certificate of Incorporation / Company Registration Certificate. | | LEG_ID      | Copy of legal representative&apos;s photo ID. || LOA         | A letter of authority. || OFF_SGN     | Official proof of signature. || POA         | Copy of power of attorney. || TAX         | Copy of the registration at the tax office. |</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentTypeEnum? Type { get; set; }
@@ -59,7 +59,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "supportedFileTypes", n => { SupportedFileTypes = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentRequirement_supportedFileTypes>()?.AsList(); } },
+                { "supportedFileTypes", n => { SupportedFileTypes = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentRequirementSupportedFileTypesItem>()?.AsList(); } },
                 { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentTypeEnum>(); } },
             };
         }
@@ -71,7 +71,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
-            writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentRequirement_supportedFileTypes>("supportedFileTypes", SupportedFileTypes);
+            writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentRequirementSupportedFileTypesItem>("supportedFileTypes", SupportedFileTypes);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentTypeEnum>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }

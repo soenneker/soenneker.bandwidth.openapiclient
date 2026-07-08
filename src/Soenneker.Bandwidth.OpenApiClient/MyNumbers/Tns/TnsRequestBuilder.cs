@@ -217,7 +217,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.MyNumbers.Tns
             public int? Page { get; set; }
             /// <summary>The type of phone number. The system defaults to return phone numbers of all types when the query parameter is not passed. The countryCodeA3 is a required parameter with phone number type.</summary>
             [QueryParameter("phoneNumberType")]
-            public global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Tns.GetPhoneNumberTypeQueryParameterType? PhoneNumberType { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeQueryParam? PhoneNumberType { get; set; }
             /// <summary>A Rate Center search filter - all returned TNs will be in the entered Rate Center.  This `ratecenter` must be combined with a `state` in the query.  If State is not included in the query then the query will fail.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -230,7 +230,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.MyNumbers.Tns
 #endif
             /// <summary>A service type value to filter the TNs returned in the payload.</summary>
             [QueryParameter("service")]
-            public global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Tns.GetServiceQueryParameterType? Service { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersListTnsByGetServiceParameter? Service { get; set; }
             /// <summary>The number of elements to retrieve</summary>
             [QueryParameter("size")]
             public int? Size { get; set; }
@@ -256,7 +256,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.MyNumbers.Tns
         {
             /// <summary>A service type value to filter the TNs returned in the payload.</summary>
             [QueryParameter("service")]
-            public global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Tns.PostServiceQueryParameterType? Service { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersListTnsByPostServiceParameter? Service { get; set; }
         }
     }
 }

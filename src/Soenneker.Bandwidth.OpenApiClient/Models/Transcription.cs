@@ -16,6 +16,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The confidence on the recognized content, ranging from `0.0` to `1.0` with `1.0` being the highest confidence.</summary>
         public double? Confidence { get; set; }
+        /// <summary>Zero-based index identifying the speaker.</summary>
+        public int? Speaker { get; set; }
         /// <summary>The transcribed text</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -50,6 +52,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "confidence", n => { Confidence = n.GetDoubleValue(); } },
+                { "speaker", n => { Speaker = n.GetIntValue(); } },
                 { "text", n => { Text = n.GetStringValue(); } },
             };
         }
@@ -61,6 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("confidence", Confidence);
+            writer.WriteIntValue("speaker", Speaker);
             writer.WriteStringValue("text", Text);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -9,15 +9,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "GEO_VALID")]
         #pragma warning disable CS1591
-        GEO_VALID,
+        GeoValid,
         #pragma warning restore CS1591
         [EnumMember(Value = "NOT_GEO_VALID")]
         #pragma warning disable CS1591
-        NOT_GEO_VALID,
+        NotGeoValid,
         #pragma warning restore CS1591
         [EnumMember(Value = "NOT_GEO_VALIDATED")]
         #pragma warning disable CS1591
-        NOT_GEO_VALIDATED,
+        NotGeoValidated,
         #pragma warning restore CS1591
     }
 }

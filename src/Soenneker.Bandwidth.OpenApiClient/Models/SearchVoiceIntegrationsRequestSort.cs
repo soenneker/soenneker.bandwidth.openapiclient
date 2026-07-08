@@ -15,16 +15,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The parameter to sort.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort_parameter? Parameter { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSortParameter? Parameter { get; set; }
         /// <summary>The value property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort_value? Value { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSortValue? Value { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort"/> and sets the default values.
         /// </summary>
         public SearchVoiceIntegrationsRequestSort()
         {
             AdditionalData = new Dictionary<string, object>();
-            Parameter = global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort_parameter.Created;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -44,8 +43,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "parameter", n => { Parameter = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort_parameter>(); } },
-                { "value", n => { Value = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort_value>(); } },
+                { "parameter", n => { Parameter = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSortParameter>(); } },
+                { "value", n => { Value = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSortValue>(); } },
             };
         }
         /// <summary>
@@ -55,8 +54,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort_parameter>("parameter", Parameter);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort_value>("value", Value);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSortParameter>("parameter", Parameter);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSortValue>("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

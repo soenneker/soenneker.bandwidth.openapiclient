@@ -26,10 +26,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The orders property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrders_orders>? Orders { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrdersOrdersItem>? Orders { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrders_orders> Orders { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrdersOrdersItem> Orders { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrders"/> and sets the default values.
@@ -57,7 +57,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningLinks>(global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningLinks.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "orders", n => { Orders = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrders_orders>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrders_orders.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "orders", n => { Orders = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrdersOrdersItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrdersOrdersItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -68,7 +68,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningLinks>("links", Links);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrders_orders>("orders", Orders);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrdersOrdersItem>("orders", Orders);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

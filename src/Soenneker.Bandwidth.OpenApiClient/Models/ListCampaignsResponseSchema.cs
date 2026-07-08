@@ -17,18 +17,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignSchema>? Data { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignItemSchema>? Data { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignSchema> Data { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignItemSchema> Data { get; set; }
 #endif
         /// <summary>The errors array will always be empty for successful responses.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchema_errors>? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchemaErrorsItem>? Errors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchema_errors> Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchemaErrorsItem> Errors { get; set; }
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -71,8 +71,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignSchema>(global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignSchema.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchema_errors>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchema_errors.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignItemSchema>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignItemSchema.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchemaErrorsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchemaErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLinkSchemaItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLinkSchemaItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "page", n => { Page = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodePage>(global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodePage.CreateFromDiscriminatorValue); } },
             };
@@ -84,8 +84,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GetSingleCampaignSchema>("data", Data);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchema_errors>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignItemSchema>("data", Data);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchemaErrorsItem>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLinkSchemaItem>("links", Links);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodePage>("page", Page);
             writer.WriteAdditionalData(AdditionalData);

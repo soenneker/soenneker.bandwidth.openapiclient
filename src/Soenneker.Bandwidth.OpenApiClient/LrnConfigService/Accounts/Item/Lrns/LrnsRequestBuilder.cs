@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Lrns.Bulk;
 using Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Lrns.Item;
 using Soenneker.Bandwidth.OpenApiClient.Models;
 using System.Collections.Generic;
@@ -18,6 +19,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Lrns
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class LrnsRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The bulk property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Lrns.Bulk.BulkRequestBuilder Bulk
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Lrns.Bulk.BulkRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the Soenneker.Bandwidth.OpenApiClient.lrnConfigService.accounts.item.lrns.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Lrns.Item.WithLrnItemRequestBuilder"/></returns>

@@ -25,18 +25,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_errors? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementError>? Errors { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_errors Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementError> Errors { get; set; }
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_links? Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementLink>? Links { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_links Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementLink> Links { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse"/> and sets the default values.
@@ -64,8 +64,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData>(global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData.CreateFromDiscriminatorValue); } },
-                { "errors", n => { Errors = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_errors>(global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_errors.CreateFromDiscriminatorValue); } },
-                { "links", n => { Links = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_links>(global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_links.CreateFromDiscriminatorValue); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementError>(global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementError.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementLink.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -76,8 +76,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData>("data", Data);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_errors>("errors", Errors);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse_links>("links", Links);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementError>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementLink>("links", Links);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

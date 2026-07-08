@@ -19,10 +19,10 @@ info:
     #### Account Types
 
 
-    These beta APIs currently only support import customer accounts. They will
-    eventually support both import and direct customer accounts. The behavior is
-    always consistent for an account type, but reflects where the content of
-    campaign management resides: with Bandwidth, or with The Campaign Registry.
+    These APIs have different behavior for import vs. direct customer accounts.
+    The behavior is always consistent for an account, but reflects where the
+    content of campaign management resides: with Bandwidth, or with The Campaign
+    Registry.
 
 
     #### Bandwidth identifiers
@@ -238,6 +238,108 @@ paths:
           $ref: '#/components/responses/errorResponse500'
         '503':
           $ref: '#/components/responses/errorResponse503'
+    post:
+      tags:
+        - Brands
+      operationId: createBrand
+      summary: Create or refresh a brand
+      description: >
+        **All customers.** Pass in the `brandId` to refresh the information
+        about an existing brand in Bandwidth's systems based on the records at
+        TCR. This is useful if a state change occurs in the brand that has not
+        been detected by Bandwidth. For direct customers, this refresh will
+        include related records such as vettings, appeals, and their associated
+        attachments.
+
+
+        **Direct customers.** Create a new brand.
+
+
+        **Required fields by entity type:**
+
+        - `PRIVATE_PROFIT`: legal company name, country, EIN/Tax ID, address,
+        vertical, contact details.
+
+        - `PUBLIC_PROFIT`: all of the above, plus website URL, stock symbol, and
+        stock exchange. The `businessContactEmail` must be a direct individual
+        address — common distribution addresses (e.g. sales@company.com) and
+        personal or free email addresses are not accepted. Subject to Business
+        Authentication (Auth+) 2FA email verification — the business contact
+        must complete verification within 30 days or the brand becomes
+        `UNVERIFIED`.
+
+        - `NON_PROFIT`: legal company name, country, EIN/Tax ID, address,
+        vertical, contact details. Only US-based non-profits (or non-profits
+        with a US EIN) are accepted; non-US non-profits must register as
+        `PRIVATE_PROFIT`.
+
+        - `GOVERNMENT`: legal company name, country, EIN/Tax ID, address,
+        vertical, website, contact details. Only US government entities are
+        accepted; non-US government entities must register as `PRIVATE_PROFIT`.
+
+        - `SOLE_PROPRIETOR`: DBA/brand name, country (US or Canada only), full
+        address, reference ID, first name, last name, email, and phone number.
+        No EIN is required or accepted. Requires a separate contract with TCR;
+        only available to CSPs that have been enabled by TCR for the Sole
+        Proprietor use case. All `SOLE_PROPRIETOR` brands must also pass an SMS
+        one-time-password (OTP) verification before they are eligible for
+        campaign registration.
+
+
+        **Tax ID format rules:**
+
+        - **US:** Nine-digit EIN. Legal company name and address must match IRS
+        records exactly.
+
+        - **Canada:** First 9 numeric digits of the Business Number (BN), or
+        Corporation/Incorporation Number, or Registry ID. Name must match
+        Corporations Canada records.
+
+        - **International:** Numeric portion of the VAT ID, or primary
+        corporation registration/Tax ID number.
+
+
+        **Identity verification:**
+
+        Brand registration triggers an asynchronous identity verification. The
+        result is delivered via the `BRAND_IDENTITY_STATUS_UPDATE` webhook
+        event. Possible identity statuses:
+
+        - `VERIFIED`: brand can create campaigns.
+
+        - `UNVERIFIED`: identity could not be confirmed (most often due to a
+        mismatch between legal company name and EIN). Campaigns cannot be
+        created. Options: update and reverify (incurs a $4 fee), file an
+        identity status appeal, or request external vetting.
+
+        - `REGISTERING`: verification is still in progress; campaigns cannot be
+        created.
+
+        - `VETTED_VERIFIED`: brand completed additional external vetting;
+        campaigns can be created. Not available to `SOLE_PROPRIETOR` brands.
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/createOrRefreshBrandRequest'
+      responses:
+        '202':
+          $ref: '#/components/responses/brandAcceptedResponse'
+        '400':
+          $ref: '#/components/responses/errorResponse400'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/errorResponse404'
+        '405':
+          $ref: '#/components/responses/errorResponse405'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/errorResponse500'
+        '503':
+          $ref: '#/components/responses/errorResponse503'
   /accounts/{accountId}/tendlc/brands/{brandId}:
     get:
       tags:
@@ -245,17 +347,401 @@ paths:
       operationId: getBrand
       summary: Get details about a brand
       description: >
-        **All customers.** Get details for this TCR brand (the actual details
+        **All customers.** Get details for this TCR brand. The actual details
         available to Bandwidth will differ substantially between import and
-        direct customers). The ID used for the brand can either be the TCR
-        assigned brand ID, or the customer profile ID associated to this brand
-        if the brand has yet to be saved to TCR.        
+        direct customers. The `customerProfileId` may also be passed instead of
+        the `brandId` to retrieve the brand details.
       parameters:
         - $ref: '#/components/parameters/accountIdPathParam'
         - $ref: '#/components/parameters/brandIdPathParam'
       responses:
         '200':
           $ref: '#/components/responses/brandResponse'
+        '400':
+          $ref: '#/components/responses/errorResponse400'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/errorResponse404'
+        '405':
+          $ref: '#/components/responses/errorResponse405'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/errorResponse500'
+        '503':
+          $ref: '#/components/responses/errorResponse503'
+    put:
+      tags:
+        - Brands
+      operationId: updateBrand
+      summary: Update a brand
+      description: >
+        **Direct customers.** Update the details of a brand, subject to
+        restrictions. This is a full replacement — omitted optional fields will
+        be set to null. The following fields **cannot be changed** if the brand
+        has any active campaign or an active Standard, Enhanced, or Political
+        vet:
+
+        - `companyName`
+
+        - `entityType`
+
+        - `ein`
+
+        - `einIssuingCountry`
+
+
+        If these fields are updated on a brand that has no active campaigns or
+        active vets, the brand will be resubmitted for identity verification
+        (incurring a **$4 fee**) and its identity status will reset to
+        `REGISTERING`.
+
+
+        **Additional field-level restrictions:**
+
+        - `brandRelationship` can only be updated once every **3 months**.
+
+        - Updating `mobilePhone` will change the brand's identity status to
+        `UNVERIFIED`.
+
+        - **PUBLIC_PROFIT brands:** Updating `businessContactEmail` revokes the
+        brand's Business Authentication (Auth+) compliance. The brand must
+        request a new `AUTHPLUS` vet to regain compliance (requiring the
+        business contact to complete a new 2FA email verification).
+
+
+        If the brand exists in Bandwidth's system but not in TCR, because we are
+        still submitting the brand to TCR, this endpoint will return a 409
+        (Conflict). If the brand exists only in Bandwidth's system due to a
+        failure (`brandIdentityStatus` will be `ERROR`), we will attempt to
+        create the brand in TCR with the applied changes.
+      requestBody:
+        $ref: '#/components/requestBodies/updateDirectBrandRequest'
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/brandIdPathParam'
+      responses:
+        '202':
+          $ref: '#/components/responses/brandAcceptedResponse'
+        '400':
+          $ref: '#/components/responses/errorResponse400'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/errorResponse404'
+        '405':
+          $ref: '#/components/responses/errorResponse405'
+        '409':
+          $ref: '#/components/responses/errorResponse409'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/errorResponse500'
+        '503':
+          $ref: '#/components/responses/errorResponse503'
+    delete:
+      tags:
+        - Brands
+      operationId: deleteBrand
+      summary: Delete a brand from the account.
+      description: >
+        Brands can be deleted once there are no active campaigns on the brand.
+        **Deletion is permanent and cannot be reversed** — a deleted brand
+        cannot be re-activated. All campaigns associated with the brand must be
+        deactivated first. This will delete the brand in Bandwidth's systems,
+        along with the associated customer profile.
+
+
+        **Import customers.** The brand continues to exist in the customer's TCR
+        account.
+
+
+        **Direct customers.** The brand will also be deleted in TCR's system.
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/brandIdPathParam'
+      responses:
+        '202':
+          $ref: '#/components/responses/brandAcceptedResponse'
+        '400':
+          $ref: '#/components/responses/errorResponse400'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/errorResponse404'
+        '405':
+          $ref: '#/components/responses/errorResponse405'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/errorResponse500'
+        '503':
+          $ref: '#/components/responses/errorResponse503'
+  /accounts/{accountId}/tendlc/brands/{brandId}/identity/reverify:
+    post:
+      tags:
+        - Brands
+      operationId: reverifyBrand
+      summary: Reverify the brand's identity
+      description: >
+        **Direct customers.** For brands that have not been able to move out of
+        the `UNVERIFIED` status, this endpoint can be called to ask TCR to
+        re-evaluate the brand's identity. This is an asynchronous operation —
+        check the brand history for status updates on the reverification
+        request.
+
+
+        Each reverification incurs a **$4 fee**. Before reverifying, ensure the
+        brand's legal company name, EIN, and address are accurate and match
+        official government records, as mismatches are the most common cause of
+        `UNVERIFIED` status.
+
+
+        Alternatively, an identity status appeal (`POST .../appeals`) can be
+        filed, or an external vetting can be requested to resolve `UNVERIFIED`
+        status.
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/brandIdPathParam'
+      responses:
+        '204':
+          $ref: '#/components/responses/noBodyResponse'
+        '400':
+          $ref: '#/components/responses/errorResponse400'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/errorResponse404'
+        '405':
+          $ref: '#/components/responses/errorResponse405'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/errorResponse500'
+        '503':
+          $ref: '#/components/responses/errorResponse503'
+  /accounts/{accountId}/tendlc/brands/{brandId}/identity/resend2faEmail:
+    post:
+      tags:
+        - Brands
+      operationId: resend2faVerificationEmail
+      summary: Resend the 2FA verification email to the business contact
+      description: >
+        **Direct customers.** Resends a 2FA verification email for a brand that
+        has not completed Business Authentication (Auth+) or RCS verification.
+        Used if a brand's business contact has lost their original 2FA email or
+        if it has expired. This can only be triggered if the brand initiated the
+        2FA verification process within the last **30 days**. If multiple emails
+        are sent to the same address, TCR rate-limits sending to **one every two
+        hours**. This is an asynchronous operation — check the brand history for
+        status updates on the 2FA email request.
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/brandIdPathParam'
+      responses:
+        '204':
+          $ref: '#/components/responses/noBodyResponse'
+        '400':
+          $ref: '#/components/responses/errorResponse400'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/errorResponse404'
+        '405':
+          $ref: '#/components/responses/errorResponse405'
+        '409':
+          $ref: '#/components/responses/errorResponse409'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/errorResponse500'
+        '503':
+          $ref: '#/components/responses/errorResponse503'
+  /accounts/{accountId}/tendlc/brands/{brandId}/vettings:
+    get:
+      tags:
+        - Brands
+      operationId: getBrandVettings
+      summary: Get brand vettings
+      description: >
+        **Direct customers.** Get a list of the external vettings that have been
+        done for this brand.
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/brandIdPathParam'
+        - $ref: '#/components/parameters/bandwidthIdParam'
+        - $ref: '#/components/parameters/vettingIdParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/vettingListResponse'
+        '400':
+          $ref: '#/components/responses/errorResponse400'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/errorResponse404'
+        '405':
+          $ref: '#/components/responses/errorResponse405'
+        '409':
+          $ref: '#/components/responses/errorResponse409'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/errorResponse500'
+        '503':
+          $ref: '#/components/responses/errorResponse503'
+    post:
+      tags:
+        - Brands
+      operationId: requestVetting
+      summary: Request a new brand vetting
+      description: >
+        **Direct customers.** Request a new external vetting for this brand.
+        This is an asynchronous operation — check the brand history for status
+        updates on the vetting request. Results may take up to **48 hours**.
+
+
+        **Supported vetting provider and class combinations:**
+
+
+        | Provider (`evpId`) | Class (`vettingClass`) | Eligible entity types |
+        Notes |
+
+        |---|---|---|---|
+
+        | `AEGIS` | `STANDARD` | All except `SOLE_PROPRIETOR` | Returns 0–100
+        score; determines MNO throughput tier |
+
+        | `AEGIS` | `ENHANCED` | All except `SOLE_PROPRIETOR` | Manual review
+        with detailed report |
+
+        | `AEGIS` | `POLITICAL` | `NON_PROFIT` only | Required for Political
+        campaign use case; not available to brands that already have
+        501(c)(3/4/5/6) tax-exempt status |
+
+        | `AEGIS` | `AUTHPLUS` | `PUBLIC_PROFIT` only | Business Authentication
+        (Auth+) — 2FA email verification; required for `PUBLIC_PROFIT` brands to
+        create campaigns; cannot be imported |
+
+        | `AEGIS` | `RCS` | All except `SOLE_PROPRIETOR` | RCS Business
+        Messaging eligibility; automatically grants Business Authentication
+        (Auth+) compliance; cannot be imported |
+
+        | `WMC` | `STANDARD` | `PRIVATE_PROFIT`, `PUBLIC_PROFIT` | US brands
+        only |
+
+        | `CV` | `POLITICAL` | Any | Import only — use `PUT
+        .../vettings/{vettingId}` instead |
+
+
+        **Eligibility restrictions:**
+
+        - `SOLE_PROPRIETOR` brands cannot request any external vetting.
+
+        - `PUBLIC_PROFIT` brands must have `VERIFIED` or `VETTED_VERIFIED`
+        identity status to request Standard or Enhanced vets (`AUTHPLUS` and
+        `RCS` are not tied to identity status).
+
+        - `NON_PROFIT` brands with verified 501(c)(3/4/5/6) tax-exempt status
+        cannot request a `POLITICAL` vet — they already have access to the
+        Political use case.
+
+        - TCR will reject a new vetting request if a prior vet for this brand is
+        still in `PENDING` or `UNSCORE` status.
+
+
+        **Political vet additional payload:** When requesting a `POLITICAL` vet
+        via Aegis, an `additionalRequestPayload` object is required, containing
+        fields including `requestorFirstName`, `requestorLastName`, `locale`,
+        `committeeId`, `electionDate`, and `pinPreference`.
+
+
+        **RCS vet cooldown:** After an `RCS` vet completes, a new RCS vet cannot
+        be requested for **30 days**.
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/brandIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/requestVettingRequest'
+      responses:
+        '202':
+          $ref: '#/components/responses/vettingAcceptedResponse'
+        '400':
+          $ref: '#/components/responses/errorResponse400'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/errorResponse404'
+        '405':
+          $ref: '#/components/responses/errorResponse405'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/errorResponse500'
+        '503':
+          $ref: '#/components/responses/errorResponse503'
+  /accounts/{accountId}/tendlc/brands/{brandId}/vettings/{vettingId}:
+    put:
+      tags:
+        - Brands
+      operationId: importVetting
+      summary: Import an external brand vetting
+      description: >
+        **Direct customers.** Import an existing external vetting for this
+        brand. This is an asynchronous operation — check the brand history for
+        status updates on the vetting import.
+
+
+        **Import restrictions:**
+
+        - `AUTHPLUS` and `RCS` vets cannot be imported — they must be requested
+        directly via `POST .../vettings`.
+
+        - Campaign Verify (`CV`) `POLITICAL` vets are import-only; the token is
+        obtained directly from Campaign Verify, then imported here.
+
+        - `PUBLIC_PROFIT` brands must have `VERIFIED` or `VETTED_VERIFIED`
+        identity status to import a vet.
+
+        - `SOLE_PROPRIETOR` brands cannot import any external vetting.
+
+        - `NON_PROFIT` brands with verified 501(c)(3/4/5/6) tax-exempt status
+        cannot import a `POLITICAL` vet.
+
+
+        **Aegis imports:** The `vettingToken` (Aegis Verification Certificate)
+        is required. During import, the brand's Legal Name and Entity Type must
+        match the corresponding values in the Aegis report exactly.
+
+
+        **Campaign Verify imports:** The `vettingId` is the Campaign Verify
+        authorization token. The brand must be a US-based `NON_PROFIT` without
+        501(c) tax-exempt status, and the token must be unique per brand and
+        CSP.
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/brandIdPathParam'
+        - $ref: '#/components/parameters/vettingIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/importVettingRequest'
+      responses:
+        '202':
+          $ref: '#/components/responses/vettingAcceptedResponse'
         '400':
           $ref: '#/components/responses/errorResponse400'
         '401':
@@ -322,8 +808,10 @@ paths:
       operationId: createCampaign
       summary: Create or import a new campaign
       description: >
-        The manual import of a campaign only requires the `campaignId` field and
-        optionally, the `campaignName` field. If a campaign name is not
+        **Import customers.** This endpoint is used to import a campaign if it
+        does not yet exist in Bandwidth’s system, or to refresh or revet the
+        campaign if it already exists. Only the `campaignId` field is required,
+        and optionally the `campaignName` field. If a campaign name is not
         provided, the campaign’s ID will be used as the campaign’s name. All of
         the rest of the campaign will be retrieved from TCR. The `campaignName`
         is not stored in TCR’s system.
@@ -331,22 +819,104 @@ paths:
 
         The campaign will be associated to this account. A campaign cannot be
         imported into more than one account (though the brand it is associated
-        to can span accounts). If the campaign has already been imported or is
-        in the process of being imported (which can take some time), this
-        endpoint will return a 409 (CONFLICT). If necessary, the campaign’s
-        brand will be associated to this account (and it will be created if
-        necessary). If the brand is created, it will be created with an
-        accompanying customer profile to represent the brand (the profile can be
-        edited after it is created). 
+        to can span accounts). If necessary, the campaign’s brand will be
+        associated to this account (and it will be created if necessary). If the
+        brand is created, it will be created with an accompanying customer
+        profile to represent the brand (the profile can be edited after it is
+        created).
 
 
         If a campaign is changed outside of Bandwidth’s systems, we will receive
         notification and update the campaign, however, it is safe to re-import
         manually at any time.
+
+
+        **Direct customers.** Create a campaign in both Bandwidth’s and TCR’s
+        systems, subject to constraints. To refresh or revet an existing direct
+        campaign, provide **only** the `campaignId` and optionally the
+        `campaignName` in the request body.
+
+
+        If a campaign is changed outside of Bandwidth’s systems, we will receive
+        notification and update the campaign, however, it is safe to re-import
+        manually at any time.
+
+
+        - The associated brand must have `VERIFIED` or `VETTED_VERIFIED`
+        identity status.
+
+        - Once a use case is selected, **it cannot be changed** on further
+        updates.
+
+
+        **Required fields:**
+
+        - `description`: A clear and detailed explanation of the campaign’s
+        purpose, aligned with the declared use case.
+
+        - `messageFlow` (Call-to-Action): Describes how consumers opt into the
+        campaign. Must clearly state the program name, message frequency,
+        potential charges, the STOP keyword, and links to terms and conditions
+        and privacy policies. All opt-in methods must be listed.
+
+        - `sampleMessages`: At least **1 sample message** is required for most
+        use cases; at least **2** are required for `MARKETING`, `MIXED`,
+        `AGENTS_FRANCHISES`, `CARRIER_EXEMPT`, `CHARITY`, `EMERGENCY`,
+        `K12_EDUCATION`, `POLITICAL`, `PROXY`, `SOCIAL`, `SOLE_PROPRIETOR`,
+        `SWEEPSTAKE`, and `TRIAL`. Maximum **5** sample messages.
+
+        - `subscriberOptin`: **Required for all use cases except
+        Machine-to-Machine (M2M).** If an opt-in keyword is used,
+        `optinKeywords` and `optinMessage` must also be provided.
+
+        - `subscriberOptout`: **Required for all use cases except 2FA and M2M.**
+        `optoutKeywords` (such as STOP) and `optoutMessage` are mandatory.
+
+        - `subscriberHelp`, `helpKeywords` (such as HELP), and `helpMessage` are
+        required for all use cases.
+
+        - `embeddedLink`: Public URL shorteners (e.g., bit.ly, tinyurl.com) are
+        **not accepted**.
+
+        - `numberPool`: Set to `true` if 50 or more numbers will be used; this
+        triggers a different provisioning process at T-Mobile.
+
+
+        **Use case restrictions by entity type:**
+
+
+        | Use Case | Entity Type Restriction |
+
+        |---|---|
+
+        | `CHARITY` | `NON_PROFIT` with 501(c)(3) tax-exempt status only |
+
+        | `POLITICAL` | `NON_PROFIT` entity type only |
+
+        | `SOLE_PROPRIETOR` | `SOLE_PROPRIETOR` entity type only |
+
+        | `AGENTS_FRANCHISES`, `CARRIER_EXEMPT`, `SWEEPSTAKE`, `TRIAL` | All
+        entity types except 501(c)(3) Non-Profits |
+
+        | All other use cases | No entity type restriction |
+
+
+        **Special use case access:** The following use cases are only available
+        through prior arrangement with Bandwidth: `USCAAS_LOW`, `USCAAS_HIGH`,
+        `TRIAL`.
+
+
+        **Billing and renewal:**
+
+        - All campaigns have a **minimum 3-month billing commitment** (except
+        Political, which renews month-to-month immediately after registration).
+
+        - Auto-renewal is **enabled by default**. If disabled, the campaign will
+        be automatically deactivated at the end of the current billing cycle.
       parameters:
         - $ref: '#/components/parameters/accountIdPathParam'
       requestBody:
-        $ref: '#/components/requestBodies/newCampaignRequest'
+        $ref: '#/components/requestBodies/createCampaignRequest'
       responses:
         '202':
           $ref: '#/components/responses/campaignAcceptedResponse'
@@ -403,16 +973,91 @@ paths:
         - Campaigns
       operationId: updateCampaign
       summary: Update a campaign
-      description: >-
-        Import customers may submit a campaign to this endpoint to update the
-        campaign name (if no `campaignName` is provided, or it is set to null,
-        the campaign’s TCR ID will be used). All other fields can be left off as
-        they will be ignored.
+      description: >
+        **Import customers.** Import customers may submit a campaign to this
+        endpoint to update the campaign name (if no `campaignName` is provided,
+        or it is set to null, the campaign’s TCR ID will be used). All other
+        fields can be left off as they will be ignored.
+
+
+        **Direct customers.** Update the details for this campaign. This is a
+        full replacement — omitted optional fields will be set to null. If the
+        campaign exists in Bandwidth’s system but not in TCR, because we are
+        still submitting the campaign to TCR, this endpoint will return a 409
+        (Conflict). If the campaign exists only in Bandwidth’s system due to a
+        failure (`status` will be `ERROR`), we will attempt to create the
+        campaign in TCR with the applied changes. *Only the following fields can
+        be changed after creation:*
+
+
+        | Field | Description |
+
+        |---|---|
+
+        | `resellerId` | The unique ID assigned to a reseller. If a resellerId
+        is entered, it can only be changed to `R000000` to indicate No Reseller.
+        **Once set to `R000000`, it cannot be changed again, and it can only be
+        changed once.** |
+
+        | `description` | A detailed description of the campaign’s purpose. |
+
+        | `embeddedLink` | Specifies whether the campaign is using an embedded
+        link of any kind. Note that public URL shorteners (e.g., bit.ly,
+        tinyurl.com) are not accepted. |
+
+        | `embeddedPhone` | Specifies whether the campaign is using an embedded
+        phone number other than the HELP information contact number. |
+
+        | `numberPool` | Indicates whether the campaign is using more than 50
+        phone numbers. Some network providers require this information, as it
+        necessitates a different provisioning process. |
+
+        | `ageGated` | Specifies whether the campaign contains age-gated
+        content. |
+
+        | `directLending` | Specifies whether the campaign will be used by a
+        brand that provides direct lending. |
+
+        | `sample[1-5]` | Sample messages that are representative of messages
+        sent as part of the campaign. |
+
+        | `messageFlow` | Describes how a subscriber would opt-in to the
+        campaign. |
+
+        | `helpMessage` | Sample help message that would be sent to the
+        subscriber. |
+
+        | `autoRenewal` | Indicates whether the campaign will automatically
+        renew each billing period. |
+
+        | `optinKeywords` | A list of keywords a subscriber uses to opt-in to
+        the campaign. |
+
+        | `optoutKeywords` | A list of keywords a subscriber uses to opt-out of
+        the campaign. |
+
+        | `helpKeywords` | A list of keywords a subscriber can use to get help
+        or more information from the campaign. |
+
+        | `optinMessage` | Sample of a message sent to the subscriber when they
+        opt-in. |
+
+        | `optoutMessage` | Sample of a message sent to the subscriber when they
+        opt-out. |
+
+        | `privacyPolicyLink` | A link to the campaign’s privacy policy page. |
+
+        | `termsAndConditionsLink` | A link to the campaign’s terms and
+        conditions page. |
+
+        | `embeddedLinkSample` | If using an embedded link, a sample of the link
+        that will be used in the campaign. Public URL shorteners are not
+        accepted. |
       parameters:
         - $ref: '#/components/parameters/accountIdPathParam'
         - $ref: '#/components/parameters/campaignIdPathParam'
       requestBody:
-        $ref: '#/components/requestBodies/updatedCampaignRequest'
+        $ref: '#/components/requestBodies/updateCampaignRequest'
       responses:
         '202':
           $ref: '#/components/responses/campaignAcceptedResponse'
@@ -438,10 +1083,10 @@ paths:
       operationId: refreshCampaign
       summary: Refresh a campaign from TCR’s system
       description: >
-        Refresh the information in Bandwidth’s systems based on the records at
-        TCR. This will not update the brand or 10DLC registrations associated
-        with the campaign. This is useful if a state change occurs in the
-        campaign that has not been detected by Bandwidth.
+        **All customers.** Refresh the information in Bandwidth’s systems based
+        on the records at TCR. This will not update the brand or 10DLC
+        registrations associated with the campaign. This is useful if a state
+        change occurs in the campaign that has not been detected by Bandwidth.
       parameters:
         - $ref: '#/components/parameters/accountIdPathParam'
         - $ref: '#/components/parameters/campaignIdPathParam'
@@ -499,6 +1144,51 @@ paths:
           $ref: '#/components/responses/errorResponse404'
         '405':
           $ref: '#/components/responses/errorResponse405'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/errorResponse500'
+        '503':
+          $ref: '#/components/responses/errorResponse503'
+  /accounts/{accountId}/tendlc/campaigns/{campaignId}/nudge:
+    post:
+      tags:
+        - Campaigns
+      operationId: nudgeCampaign
+      summary: Nudge a campaign for re-evaluation
+      description: >
+        **Direct customers.** Sends a notification to a CNP in the upstream
+        connectivity chain to take action on a campaign that has been sitting
+        idle in a review or rejected state for an extended period of time.
+
+
+        The `nudgeIntent` field controls the type of notification sent:
+
+        - `REVIEW`: Requests that the upstream CNP take action on a campaign
+        that has not yet been reviewed.
+
+        - `APPEAL_REJECTION`: Informs the upstream CNP that a previously
+        rejected campaign has been resubmitted for review.
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/campaignIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/nudgeCampaignRequest'
+      responses:
+        '204':
+          $ref: '#/components/responses/noBodyResponse'
+        '400':
+          $ref: '#/components/responses/errorResponse400'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/errorResponse404'
+        '405':
+          $ref: '#/components/responses/errorResponse405'
+        '409':
+          $ref: '#/components/responses/errorResponse409'
         '429':
           $ref: '#/components/responses/errorResponse429'
         '500':
@@ -796,6 +1486,32 @@ components:
             type: string
         examples:
           - contains: WEPTN2N2T5
+    vettingIdParam:
+      name: vettingId
+      in: query
+      description: >-
+        Filtering parameter for the external vetting provider's vetting
+        identifier.
+      style: deepObject
+      explode: true
+      required: false
+      schema:
+        title: String query parameter
+        description: Scheme for string query parameter
+        properties:
+          contains:
+            type: string
+        examples:
+          - contains: VET123
+    vettingIdPathParam:
+      name: vettingId
+      description: The identifier of the vetting from the external vetting provider.
+      in: path
+      required: true
+      schema:
+        type: string
+        examples:
+          - VET123
     campaignNameParam:
       name: campaignName
       description: Sorting and filtering parameter for `campaignName`.
@@ -1028,21 +1744,244 @@ components:
         examples:
           - contains: jdoe
   requestBodies:
-    newCampaignRequest:
-      description: Campaign request
+    createOrRefreshBrandRequest:
+      description: Create a new brand or refresh an existing brand.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/newCampaign'
-      required: true
-    updatedCampaignRequest:
-      description: Campaign request
+            $ref: '#/components/schemas/createOrRefreshBrandRequest'
+          examples:
+            refreshBrand:
+              summary: Refresh an existing brand from TCR (all customers)
+              value:
+                brandId: B1DER2J
+            privateProfitBrand:
+              summary: PRIVATE_PROFIT brand (direct customers)
+              value:
+                customerProfileId: 3IIzIFnRRQBE3AMzPpMTNo
+                brandType: PRIVATE_PROFIT
+                displayName: Acme Corp
+                companyName: Acme Corporation, Inc.
+                ein: 21-4573154
+                einIssuingCountryCodeA3: USA
+                phone: '+18005551234'
+                email: contact@acmecorp.com
+                street: 123 Main St
+                city: Raleigh
+                state: NC
+                postalCode: '27601'
+                countryCodeA3: USA
+                vertical: TECHNOLOGY
+                firstName: Jane
+                lastName: Smith
+                mobilePhone: '+19195550123'
+                ipAddress: 192.0.2.1
+            publicProfitBrand:
+              summary: >-
+                PUBLIC_PROFIT brand (requires stockSymbol, stockExchange,
+                website, businessContactEmail)
+              value:
+                customerProfileId: 3IIzIFnRRQBE3AMzPpMTNo
+                brandType: PUBLIC_PROFIT
+                displayName: Acme Public
+                companyName: Acme Public Holdings, Inc.
+                ein: 21-4573154
+                einIssuingCountryCodeA3: USA
+                phone: '+18005551234'
+                email: contact@acmepublic.com
+                street: 456 Wall St
+                city: New York
+                state: NY
+                postalCode: '10005'
+                countryCodeA3: USA
+                vertical: FINANCIAL
+                stockSymbol: ACME
+                stockExchange: NYSE
+                website: https://acmepublic.com
+                businessContactEmail: ceo@acmepublic.com
+                firstName: Jane
+                lastName: Smith
+                mobilePhone: '+19195550123'
+                ipAddress: 192.0.2.1
+            nonProfitBrand:
+              summary: NON_PROFIT brand (einIssuingCountryCodeA3 must be USA)
+              value:
+                customerProfileId: 3IIzIFnRRQBE3AMzPpMTNo
+                brandType: NON_PROFIT
+                displayName: Acme Foundation
+                companyName: Acme Foundation, Inc.
+                ein: 21-4573154
+                einIssuingCountryCodeA3: USA
+                phone: '+18005551234'
+                email: info@acmefoundation.org
+                street: 789 Charity Ln
+                city: Durham
+                state: NC
+                postalCode: '27701'
+                countryCodeA3: USA
+                vertical: NGO
+            governmentBrand:
+              summary: GOVERNMENT brand (einIssuingCountryCodeA3 must be USA)
+              value:
+                customerProfileId: 3IIzIFnRRQBE3AMzPpMTNo
+                brandType: GOVERNMENT
+                displayName: Acme Government
+                companyName: Acme Government Agency
+                ein: 56-1234567
+                einIssuingCountryCodeA3: USA
+                phone: '+18005559876'
+                email: notifications@acmegov.gov
+                street: 100 Government Plaza
+                city: Raleigh
+                state: NC
+                postalCode: '27601'
+                countryCodeA3: USA
+                vertical: GOVERNMENT
+                website: https://acmegov.gov
+    updateDirectBrandRequest:
+      description: Update a brand for direct customers.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/updatedCampaign'
+            $ref: '#/components/schemas/updateDirectBrandRequest'
+          examples:
+            privateProfitBrand:
+              summary: PRIVATE_PROFIT brand
+              value:
+                brandType: PRIVATE_PROFIT
+                displayName: Acme Corp
+                companyName: Acme Corporation, Inc.
+                ein: 21-4573154
+                einIssuingCountryCodeA3: USA
+                phone: '+18005551234'
+                email: contact@acmecorp.com
+                street: 123 Main St
+                city: Raleigh
+                state: NC
+                postalCode: '27601'
+                countryCodeA3: USA
+                vertical: TECHNOLOGY
+                firstName: Jane
+                lastName: Smith
+                mobilePhone: '+19195550123'
+                ipAddress: 192.0.2.1
+            publicProfitBrand:
+              summary: >-
+                PUBLIC_PROFIT brand (requires stockSymbol, stockExchange,
+                website, businessContactEmail)
+              value:
+                brandType: PUBLIC_PROFIT
+                displayName: Acme Public
+                companyName: Acme Public Holdings, Inc.
+                ein: 21-4573154
+                einIssuingCountryCodeA3: USA
+                phone: '+18005551234'
+                email: contact@acmepublic.com
+                street: 456 Wall St
+                city: New York
+                state: NY
+                postalCode: '10005'
+                countryCodeA3: USA
+                vertical: FINANCIAL
+                stockSymbol: ACME
+                stockExchange: NYSE
+                website: https://acmepublic.com
+                businessContactEmail: ceo@acmepublic.com
+                firstName: Jane
+                lastName: Smith
+                mobilePhone: '+19195550123'
+                ipAddress: 192.0.2.1
+            nonProfitBrand:
+              summary: NON_PROFIT brand (einIssuingCountryCodeA3 must be USA)
+              value:
+                brandType: NON_PROFIT
+                displayName: Acme Foundation
+                companyName: Acme Foundation, Inc.
+                ein: 21-4573154
+                einIssuingCountryCodeA3: USA
+                phone: '+18005551234'
+                email: info@acmefoundation.org
+                street: 789 Charity Ln
+                city: Durham
+                state: NC
+                postalCode: '27701'
+                countryCodeA3: USA
+                vertical: NGO
+            governmentBrand:
+              summary: GOVERNMENT brand (einIssuingCountryCodeA3 must be USA)
+              value:
+                brandType: GOVERNMENT
+                displayName: Acme Government
+                companyName: Acme Government Agency
+                ein: 56-1234567
+                einIssuingCountryCodeA3: USA
+                phone: '+18005559876'
+                email: notifications@acmegov.gov
+                street: 100 Government Plaza
+                city: Raleigh
+                state: NC
+                postalCode: '27601'
+                countryCodeA3: USA
+                vertical: GOVERNMENT
+                website: https://acmegov.gov
+    createCampaignRequest:
+      description: Create or import a campaign request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/createOrImportCampaignRequest'
       required: true
+    updateCampaignRequest:
+      description: Campaign update request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/updateCampaignRequest'
+      required: true
+    nudgeCampaignRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - nudgeIntent
+            properties:
+              nudgeIntent:
+                $ref: '#/components/schemas/enumNudgeIntent'
+              description:
+                type: string
+                maxLength: 1024
+                description: A description of the reason for the nudge request.
+      description: A request to nudge a campaign for re-evaluation.
+    requestVettingRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/requestVettingBody'
+    importVettingRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/importVettingBody'
   responses:
+    brandAcceptedResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/brandAcceptedResponseObject'
+      description: An accepted response containing the brand and Bandwidth IDs.
+    vettingAcceptedResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/vettingAcceptedResponseObject'
+      description: An accepted response containing the brand's TCR and Bandwidth IDs.
+    vettingListResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/vettingListResponse'
+      description: OK
     brandResponse:
       content:
         application/json:
@@ -1055,14 +1994,6 @@ components:
           schema:
             $ref: '#/components/schemas/brandListResponse'
       description: A paged list of TCR brands in the standard response envelope.
-    campaignCreatedResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/campaignCreatedResponse'
-      description: >-
-        An accepted response containing the Bandwidth ID that can be used to
-        track the campaign's creation.
     campaignAcceptedResponse:
       content:
         application/json:
@@ -1301,6 +2232,8 @@ components:
           type: boolean
         brandIdentityStatus:
           $ref: '#/components/schemas/enumBrandIdentityStatus'
+        authenticationStatus:
+          $ref: '#/components/schemas/enumBusinessAuthenticationStatus'
         brandType:
           $ref: '#/components/schemas/enumBrandType'
         brandRelationship:
@@ -1489,6 +2422,8 @@ components:
           $ref: '#/components/schemas/enumBrandType'
         brandIdentityStatus:
           $ref: '#/components/schemas/enumBrandIdentityStatus'
+        authenticationStatus:
+          $ref: '#/components/schemas/enumBusinessAuthenticationStatus'
         companyName:
           description: Legal Company Name. Not required for Sole Proprietor.
           type: string
@@ -1560,38 +2495,6 @@ components:
             - []
         page:
           $ref: '#/components/schemas/responsePage'
-    campaignCreatedResponse:
-      description: Response payload for a created campaign.
-      type: object
-      properties:
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/responseLink'
-          readOnly: true
-        data:
-          $ref: '#/components/schemas/campaignCreatedObject'
-          readOnly: true
-        errors:
-          description: The errors array will always be empty for successful responses.
-          type: array
-          items:
-            $ref: '#/components/schemas/errorEntry'
-          examples:
-            - []
-    campaignCreatedObject:
-      description: The properties needed to create or update a TCR campaign.
-      properties:
-        bandwidthId:
-          description: >-
-            The Bandwidth-generated identifier for this campaign. The TCR and
-            Bandwidth identifiers are interchangeable in the Bandwidth APIs and
-            either can be used to retrieve information about the campaign.
-          type: string
-          examples:
-            - WEPTN2N2T5
-      required:
-        - bandwidthId
     campaignAcceptedResponseObject:
       description: An accepted response containing the campaign and Bandwidth IDs.
       type: object
@@ -1711,15 +2614,11 @@ components:
           type: string
           examples:
             - WEPTN2N2T5
-        attMessageClass:
-          type: string
-          examples:
-            - T
         cspId:
           type: string
           description: >-
-            For import accounts, the CSP ID of their CSP account with TCR.
-            Otherwise it's the Bandwidth CSP ID.
+            The CSP ID of the campaign's CSP account with TCR. This field is
+            only returned for import customers.
           examples:
             - S3TXDL4
         customerProfileId:
@@ -1882,6 +2781,8 @@ components:
           type: string
           minimum: 20
           maximum: 1024
+        autoRenewal:
+          $ref: '#/components/schemas/autoRenewal'
         helpKeywords:
           description: >-
             Help keywords of the campaign. TCR will default the value to HELP.
@@ -1932,7 +2833,7 @@ components:
         - messageFlow
         - helpMessage
         - optoutMessage
-    newCampaign:
+    importOrRefreshCampaignRequest:
       description: The properties needed to create or update a TCR campaign.
       properties:
         campaignId:
@@ -1953,17 +2854,95 @@ components:
             - Acme, Inc.
       required:
         - campaignId
-    updatedCampaign:
-      description: The properties needed to create or update a TCR campaign.
+    createCampaignRequest:
+      description: >-
+        Request body for creating a new campaign via the campaign builder. These
+        fields correspond to the TCR campaign builder API.
       properties:
+        brandId:
+          $ref: '#/components/schemas/tcrBrandId'
         campaignName:
+          $ref: '#/components/schemas/campaignName'
+        usecase:
+          $ref: '#/components/schemas/enumCampaignUsecases'
+        subUsecases:
           description: >-
-            A user-supplied name for this campaign. Because this name is not
-            stored in TCR, imported campaigns will default to the campaign’s TCR
-            ID, though this is editable via the Bandwidth APIs.
-          type: string
-          examples:
-            - Acme, Inc.
+            Campaign sub-use cases. Must be of defined valid types. Low Volume
+            Mixed and Carrier Exemptions use cases must have 1-5 sub use cases.
+            Mixed use cases must have 2-5 sub use cases. Proxy, Social, Charity,
+            and Political can have 0-5 sub use cases.
+          type: array
+          items:
+            $ref: '#/components/schemas/enumCampaignSubUsecases'
+        description:
+          $ref: '#/components/schemas/description'
+        embeddedLink:
+          $ref: '#/components/schemas/embeddedLink'
+        embeddedPhone:
+          $ref: '#/components/schemas/embeddedPhone'
+        termsAndConditions:
+          $ref: '#/components/schemas/termsAndConditions'
+        numberPool:
+          $ref: '#/components/schemas/numberPool'
+        ageGated:
+          $ref: '#/components/schemas/ageGated'
+        directLending:
+          $ref: '#/components/schemas/directLending'
+        subscriberOptin:
+          $ref: '#/components/schemas/subscriberOptin'
+        subscriberOptout:
+          $ref: '#/components/schemas/subscriberOptout'
+        subscriberHelp:
+          $ref: '#/components/schemas/subscriberHelp'
+        sample1:
+          $ref: '#/components/schemas/sample1'
+        sample2:
+          $ref: '#/components/schemas/sample2'
+        sample3:
+          $ref: '#/components/schemas/sample3'
+        sample4:
+          $ref: '#/components/schemas/sample4'
+        sample5:
+          $ref: '#/components/schemas/sample5'
+        messageFlow:
+          $ref: '#/components/schemas/messageFlow'
+        helpMessage:
+          $ref: '#/components/schemas/helpMessage'
+        autoRenewal:
+          $ref: '#/components/schemas/autoRenewal'
+        helpKeywords:
+          $ref: '#/components/schemas/helpKeywords'
+        optinMessage:
+          $ref: '#/components/schemas/optinMessage'
+        optinKeywords:
+          $ref: '#/components/schemas/optinKeywords'
+        optoutMessage:
+          $ref: '#/components/schemas/optoutMessage'
+        optoutKeywords:
+          $ref: '#/components/schemas/optoutKeywords'
+        privacyPolicyLink:
+          $ref: '#/components/schemas/privacyPolicyLink'
+        termsAndConditionsLink:
+          $ref: '#/components/schemas/termsAndConditionsLink'
+        embeddedLinkSample:
+          $ref: '#/components/schemas/embeddedLinkSample'
+      required:
+        - brandId
+        - usecase
+        - description
+        - sample1
+        - messageFlow
+        - helpMessage
+        - helpKeywords
+    createOrImportCampaignRequest:
+      description: >-
+        Request body for creating or importing a campaign. Import customers
+        provide a campaign ID (and optionally a name). Direct customers provide
+        the full campaign fields or a campaign ID (and optionally a name) to
+        refresh or revet.
+      oneOf:
+        - $ref: '#/components/schemas/importOrRefreshCampaignRequest'
+        - $ref: '#/components/schemas/createCampaignRequest'
     campaignSummary:
       description: A summary description of a campaign.
       properties:
@@ -2011,10 +2990,6 @@ components:
           readOnly: true
           examples:
             - Acme, Inc.
-        attMessageClass:
-          type: string
-          examples:
-            - T
         usecase:
           $ref: '#/components/schemas/enumCampaignUsecases'
         description:
@@ -2046,6 +3021,163 @@ components:
         - brandId
         - usecase
         - description
+    campaignName:
+      description: >-
+        A user-supplied name for this campaign. Because this name is not stored
+        in TCR, imported campaigns will default to the campaign's TCR ID, though
+        this is editable via the Bandwidth APIs.
+      type: string
+      examples:
+        - Acme, Inc.
+    description:
+      description: Summary description of this campaign.
+      type: string
+      minLength: 40
+      maxLength: 4096
+      examples:
+        - Effectively the name/label of the campaign
+    embeddedLink:
+      description: Does message generated by the campaign include URL link in SMS?
+      default: false
+      type: boolean
+    embeddedPhone:
+      description: Does message generated by the campaign include phone number in SMS?
+      default: false
+      type: boolean
+    termsAndConditions:
+      description: Does campaign include terms and conditions?
+      default: true
+      type: boolean
+    numberPool:
+      description: Does campaign utilize pool of phone numbers?
+      default: false
+      type: boolean
+    ageGated:
+      description: Age gated content in campaign?
+      default: false
+      type: boolean
+    directLending:
+      description: >-
+        Will the campaign include content related to direct lending or other
+        loan arrangements?
+      default: false
+      type: boolean
+    subscriberOptin:
+      description: >-
+        Does campaign require subscriber to opt-in before SMS is sent to
+        subscriber? Required for all use cases except for Machine to Machine.
+        Must include optinMessage and optinKeywords when true.
+      default: false
+      type: boolean
+    subscriberOptout:
+      description: >-
+        Does campaign support subscriber opt-out keyword(s)? Required for all
+        use cases except for Machine to Machine and must include 'STOP'. Must
+        include optoutMessage and optoutKeywords when true.
+      default: false
+      type: boolean
+    subscriberHelp:
+      description: >-
+        Have you implemented a response to the HELP keyword informing customers
+        of how they can contact the message sender? Required for all use cases
+        and must include 'HELP'. Must include helpMessage and helpKeywords when
+        true.
+      default: false
+      type: boolean
+    sample1:
+      description: Message sample. Sample message 1 is required for all use cases.
+      type: string
+      minLength: 20
+      maxLength: 1024
+    sample2:
+      description: >-
+        Message sample. Sample message 2 is required for `MARKETING`, `MIXED`,
+        `AGENTS_FRANCHISES`, `CARRIER_EXEMPT`, `CHARITY`, `EMERGENCY`,
+        `K12_EDUCATION`, `POLITICAL`, `PROXY`, `SOCIAL`, `SOLE_PROPRIETOR`,
+        `SWEEPSTAKE`, and `TRIAL` use cases.
+      type: string
+      minLength: 20
+      maxLength: 1024
+    sample3:
+      description: Message sample.
+      type: string
+      minLength: 20
+      maxLength: 1024
+    sample4:
+      description: Message sample.
+      type: string
+      minLength: 20
+      maxLength: 1024
+    sample5:
+      description: Message sample.
+      type: string
+      minLength: 20
+      maxLength: 1024
+    messageFlow:
+      description: Message flow description.
+      type: string
+      minLength: 40
+      maxLength: 4096
+    helpMessage:
+      description: Help message of the campaign.
+      type: string
+      minLength: 20
+      maxLength: 1024
+    autoRenewal:
+      description: >-
+        Campaign subscription auto-renewal status. If true, the campaign will
+        automatically renew at the end of the billing cycle.
+      type: boolean
+      default: true
+    helpKeywords:
+      description: >-
+        Help keywords of the campaign. TCR will default the value to HELP.
+        Multiple keywords are comma separated without space.
+      type: string
+      maxLength: 255
+      example: HELP,INFO
+    optinMessage:
+      description: Opt-In message of the campaign.
+      type: string
+      minLength: 20
+      maxLength: 1024
+    optinKeywords:
+      description: >-
+        Opt-In keywords of the campaign. Multiple keywords are comma separated
+        without space.
+      type: string
+      maxLength: 255
+      example: YES,START
+    optoutMessage:
+      description: Opt-Out message of the campaign.
+      type: string
+      minLength: 20
+      maxLength: 1024
+    optoutKeywords:
+      description: >-
+        Opt-Out keywords of the campaign. TCR will default the value to STOP.
+        Multiple keywords are comma separated without space.
+      type: string
+      maxLength: 255
+      example: STOP,END
+    privacyPolicyLink:
+      description: Privacy policy link of the campaign.
+      type: string
+      maxLength: 2048
+    termsAndConditionsLink:
+      description: Terms and conditions link of the campaign.
+      type: string
+      maxLength: 2048
+    embeddedLinkSample:
+      description: >-
+        Sample of an embedded link in messages. Cannot use URL shortening
+        services.
+      type: string
+      maxLength: 255
+    createdDate:
+      format: date-time
+      description: The time the entity was created in the TCR system.
+      type: string
     companyName:
       description: Legal Company Name of the brand.
       type: string
@@ -2083,15 +3215,28 @@ components:
         - NON_PROFIT
         - GOVERNMENT
         - SOLE_PROPRIETOR
+    enumBusinessAuthenticationStatus:
+      description: >-
+        The Business Authentication status of the brand. Applies to
+        PUBLIC_PROFIT brands only; `null` if not requested or not applicable.
+      type: string
+      nullable: true
+      example: PENDING
+      enum:
+        - PENDING
+        - ACTIVE
+        - FAILED
+        - EXPIRED
     enumBrandIdentityStatus:
       description: The identity status of the brand in TCR.
       type: string
       enum:
-        - SELF-DECLARED
+        - REGISTERING
+        - SELF_DECLARED
         - VERIFIED
         - VETTED_VERIFIED
         - UNVERIFIED
-        - PENDING
+        - ERROR
     enumBrandRelationship:
       description: Enum value describing the relationship with your Account.
       type: string
@@ -2141,6 +3286,24 @@ components:
         - UCAAS_HIGH
         - UCAAS_LOW
         - M2M
+    enumCampaignSubUsecases:
+      description: >-
+        Campaign sub-use cases. Must be of defined valid types. Low Volume Mixed
+        and Carrier Exemptions use cases must have 1-5 sub use cases. Mixed use
+        cases must have 2-5 sub use cases. Proxy, Social, Charity, and Political
+        can have 0-5 sub use cases.
+      type: string
+      enum:
+        - 2FA
+        - ACCOUNT_NOTIFICATION
+        - CUSTOMER_CARE
+        - DELIVERY_NOTIFICATION
+        - FRAUD_ALERT
+        - HIGHER_EDUCATION
+        - MARKETING
+        - POLLING_VOTING
+        - PUBLIC_SERVICE_ANNOUNCEMENT
+        - SECURITY_ALERT
     enumCampaignVettingStatus:
       type: string
       description: >-
@@ -2153,6 +3316,252 @@ components:
         - REJECTED
         - UNKNOWN
         - SUSPENDED
+    enumNudgeIntent:
+      description: The intent of a campaign nudge request. Which action is awaiting review?
+      type: string
+      enum:
+        - APPEAL_REJECTION
+        - REVIEW
+    enumVettingClass:
+      description: The type of external vetting represented by the vetting being appealed.
+      type: string
+      enum:
+        - STANDARD
+        - ENHANCED
+        - POLITICAL
+        - AUTHPLUS
+    enumVettingStatus:
+      description: The status of the external vetting.
+      type: string
+      enum:
+        - PENDING
+        - UNSCORE
+        - ACTIVE
+        - FAILED
+        - EXPIRED
+    enumVettingProviderId:
+      description: >-
+        The external vetting companies that can be used to vet brands. Aegis
+        Mobile accepts standard, enhanced, political, Auth+, and RCS vetting
+        requests; Campaign Verify (CV) vets federal political brands (import
+        only); WMC Global supports standard vetting.
+      type: string
+      enum:
+        - AEGIS
+        - CV
+        - WMC
+    vettingId:
+      description: The identifier of the vetting from the external vetting provider.
+      type: string
+      maxLength: 255
+    vettingToken:
+      description: The vetting token, required for Aegis vettings.
+      type: string
+      maxLength: 2560
+    vettingScore:
+      description: The score assigned by the external vetting provider.
+      type: integer
+      format: int32
+      examples:
+        - 80
+    vettingReasons:
+      description: >-
+        Reasons provided by the external vetting provider for the vetting
+        outcome.
+      type: array
+      items:
+        type: string
+    vettingDetails:
+      description: Additional details from the external vetting provider.
+      type: object
+      additionalProperties:
+        type: string
+    vettedDate:
+      description: The date the vetting was completed.
+      type: string
+      format: date-time
+    vetting:
+      type: object
+      properties:
+        bandwidthId:
+          $ref: '#/components/schemas/bandwidthId'
+        evpId:
+          $ref: '#/components/schemas/enumVettingProviderId'
+        vettingId:
+          $ref: '#/components/schemas/vettingId'
+        vettingToken:
+          $ref: '#/components/schemas/vettingToken'
+        vettingClass:
+          $ref: '#/components/schemas/enumVettingClass'
+        vettingStatus:
+          $ref: '#/components/schemas/enumVettingStatus'
+        vettingScore:
+          $ref: '#/components/schemas/vettingScore'
+        reasons:
+          $ref: '#/components/schemas/vettingReasons'
+        vettingDetails:
+          $ref: '#/components/schemas/vettingDetails'
+        vettedDate:
+          $ref: '#/components/schemas/vettedDate'
+        createdDate:
+          $ref: '#/components/schemas/createdDate'
+    vettingListResponse:
+      description: >-
+        A list of vettings that have occurred or are being processed for this
+        brand.
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/vetting'
+        errors:
+          description: The errors array will always be empty for this response.
+          type: array
+          items:
+            $ref: '#/components/schemas/errorEntry'
+          examples:
+            - []
+        links:
+          items:
+            $ref: '#/components/schemas/responseLink'
+          readOnly: true
+          type: array
+    vettingAcceptedObject:
+      description: >-
+        The brand's TCR and Bandwidth IDs and the Bandwidth ID for the
+        individual vetting record.
+      properties:
+        brandId:
+          $ref: '#/components/schemas/tcrBrandId'
+        brandBandwidthId:
+          $ref: '#/components/schemas/bandwidthId'
+        vettingBandwidthId:
+          $ref: '#/components/schemas/bandwidthId'
+      required:
+        - brandId
+        - brandBandwidthId
+        - vettingBandwidthId
+    vettingAcceptedResponseObject:
+      description: An accepted response containing the brand's TCR and Bandwidth IDs.
+      type: object
+      required:
+        - links
+        - data
+        - errors
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/responseLink'
+          readOnly: true
+          nullable: true
+        data:
+          allOf:
+            - $ref: '#/components/schemas/vettingAcceptedObject'
+          readOnly: true
+          nullable: true
+        errors:
+          description: The errors array will always be empty for successful responses.
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/errorEntry'
+          examples:
+            - []
+    requestVettingBody:
+      type: object
+      required:
+        - evpId
+        - vettingClass
+      properties:
+        evpId:
+          $ref: '#/components/schemas/enumVettingProviderId'
+        vettingClass:
+          $ref: '#/components/schemas/enumVettingClass'
+    importVettingBody:
+      type: object
+      required:
+        - evpId
+      properties:
+        evpId:
+          $ref: '#/components/schemas/enumVettingProviderId'
+        vettingToken:
+          $ref: '#/components/schemas/vettingToken'
+    importUpdateCampaignRequest:
+      description: >-
+        Request body for import customers to update a campaign. Only the
+        campaign name can be updated.
+      required:
+        - campaignName
+      properties:
+        campaignName:
+          $ref: '#/components/schemas/campaignName'
+    directUpdateCampaignRequest:
+      description: >-
+        Request body for direct customers to update an existing campaign. Only
+        editable fields are accepted; immutable fields are not included in this
+        schema. This is a full replacement — omitted optional fields will be set
+        to null.
+      required:
+        - description
+        - sample1
+        - messageFlow
+        - helpMessage
+        - helpKeywords
+      properties:
+        campaignName:
+          $ref: '#/components/schemas/campaignName'
+        description:
+          $ref: '#/components/schemas/description'
+        embeddedLink:
+          $ref: '#/components/schemas/embeddedLink'
+        embeddedPhone:
+          $ref: '#/components/schemas/embeddedPhone'
+        numberPool:
+          $ref: '#/components/schemas/numberPool'
+        ageGated:
+          $ref: '#/components/schemas/ageGated'
+        directLending:
+          $ref: '#/components/schemas/directLending'
+        sample1:
+          $ref: '#/components/schemas/sample1'
+        sample2:
+          $ref: '#/components/schemas/sample2'
+        sample3:
+          $ref: '#/components/schemas/sample3'
+        sample4:
+          $ref: '#/components/schemas/sample4'
+        sample5:
+          $ref: '#/components/schemas/sample5'
+        messageFlow:
+          $ref: '#/components/schemas/messageFlow'
+        helpMessage:
+          $ref: '#/components/schemas/helpMessage'
+        autoRenewal:
+          $ref: '#/components/schemas/autoRenewal'
+        optinKeywords:
+          $ref: '#/components/schemas/optinKeywords'
+        optoutKeywords:
+          $ref: '#/components/schemas/optoutKeywords'
+        helpKeywords:
+          $ref: '#/components/schemas/helpKeywords'
+        optinMessage:
+          $ref: '#/components/schemas/optinMessage'
+        optoutMessage:
+          $ref: '#/components/schemas/optoutMessage'
+        privacyPolicyLink:
+          $ref: '#/components/schemas/privacyPolicyLink'
+        termsAndConditionsLink:
+          $ref: '#/components/schemas/termsAndConditionsLink'
+        embeddedLinkSample:
+          $ref: '#/components/schemas/embeddedLinkSample'
+    updateCampaignRequest:
+      description: >-
+        Request body for updating a campaign. Import customers can only update
+        the campaign name. Direct customers can update editable campaign fields.
+      oneOf:
+        - $ref: '#/components/schemas/importUpdateCampaignRequest'
+        - $ref: '#/components/schemas/directUpdateCampaignRequest'
     enumCarrierId:
       type: string
       description: The carrier
@@ -2649,6 +4058,304 @@ components:
       enum:
         - ASC
         - DESC
+    bandwidthId:
+      description: >-
+        The Bandwidth-generated identifier for this entity. The TCR and
+        Bandwidth identifiers are interchangeable in the Bandwidth APIs and
+        either can be used to retrieve information about the entity.
+      type: string
+      examples:
+        - WEPTN2N2T5
+    customerProfileId:
+      description: The Bandwidth customer profile associated to the campaign/brand.
+      type: string
+      examples:
+        - 3IIzIFnRRQBE3AMzPpMTNo
+    tcrBrandId:
+      description: >-
+        The TCR-generated identifier for the brand. The TCR and Bandwidth
+        identifiers are interchangeable in the Bandwidth APIs and either can be
+        used to retrieve information about the brand.
+      type: string
+      minLength: 1
+      maxLength: 8
+      examples:
+        - B1DER2J
+    ein:
+      description: >-
+        Government assigned corporate tax ID. EIN is 9-digits in U.S. (format
+        XX-XXXXXXX).
+      type: string
+      maxLength: 21
+      examples:
+        - 21-4573154
+    einIssuingCountryCodeA3:
+      description: ISO 3 character country code for the EIN.
+      type: string
+      minLength: 3
+      maxLength: 3
+      examples:
+        - USA
+    brandPhone:
+      description: Valid phone number in E.164 international format.
+      type: string
+      maxLength: 20
+      examples:
+        - '+18009999999'
+    brandEmail:
+      description: Valid email address of brand support contact.
+      type: string
+      format: email
+      maxLength: 100
+    street:
+      type: string
+      maxLength: 255
+      examples:
+        - 123 Sesame St.
+    city:
+      type: string
+      maxLength: 100
+      examples:
+        - New York
+    state:
+      description: State or province. Must be 2 letter code for United States.
+      type: string
+      maxLength: 20
+      examples:
+        - NC
+    postalCode:
+      description: Postal code. Use 5 digit zip code for United States.
+      type: string
+      maxLength: 10
+      examples:
+        - '12345'
+    countryCodeA3:
+      description: ISO 3 character country code.
+      type: string
+      minLength: 3
+      maxLength: 3
+      examples:
+        - USA
+    website:
+      description: Required for `PUBLIC_PROFIT` brands.
+      type: string
+      maxLength: 255
+      examples:
+        - acme.com
+    stockSymbol:
+      description: Required for `PUBLIC_PROFIT` brands.
+      type: string
+      maxLength: 10
+      examples:
+        - BANDW
+    altBusinessId:
+      description: An alternative business identifier such as `DUNS`, `GIIN`, or `LEI`.
+      type: string
+      maxLength: 50
+    enumAltBusinessIdType:
+      description: The type of alternative business identifier provided for the brand.
+      type: string
+      enum:
+        - DUNS
+        - GIIN
+        - LEI
+    businessContactEmail:
+      description: >-
+        Valid business email address of brand. Required for `PUBLIC_PROFIT`
+        brands. Cannot be a group/support email (e.g., support@company.com) or a
+        free email domain (e.g., gmail.com).
+      type: string
+      format: email
+      maxLength: 255
+    firstName:
+      type: string
+      maxLength: 100
+    lastName:
+      type: string
+      maxLength: 100
+    mobilePhone:
+      type: string
+      maxLength: 20
+    ipAddress:
+      type: string
+      maxLength: 45
+    refreshBrandRequest:
+      description: >-
+        Request body for refreshing an existing brand from TCR. Both import and
+        direct customers may use this.
+      required:
+        - brandId
+      properties:
+        brandId:
+          $ref: '#/components/schemas/tcrBrandId'
+    createOrRefreshBrandRequest:
+      description: >-
+        Create a new brand (direct customers) or refresh an existing brand (all
+        customers) by providing only the brand ID.
+      oneOf:
+        - $ref: '#/components/schemas/refreshBrandRequest'
+        - $ref: '#/components/schemas/directBrandRequest'
+    directBrandRequest:
+      description: The properties needed to create a new brand for direct customers.
+      required:
+        - customerProfileId
+        - brandType
+        - companyName
+        - displayName
+        - phone
+        - email
+        - street
+        - city
+        - state
+        - postalCode
+        - countryCodeA3
+        - vertical
+        - ein
+        - einIssuingCountryCodeA3
+      properties:
+        customerProfileId:
+          $ref: '#/components/schemas/customerProfileId'
+        brandType:
+          $ref: '#/components/schemas/enumBrandType'
+        displayName:
+          $ref: '#/components/schemas/displayName'
+        companyName:
+          $ref: '#/components/schemas/companyName'
+        ein:
+          $ref: '#/components/schemas/ein'
+        einIssuingCountryCodeA3:
+          $ref: '#/components/schemas/einIssuingCountryCodeA3'
+        phone:
+          $ref: '#/components/schemas/brandPhone'
+        email:
+          $ref: '#/components/schemas/brandEmail'
+        street:
+          $ref: '#/components/schemas/street'
+        city:
+          $ref: '#/components/schemas/city'
+        state:
+          $ref: '#/components/schemas/state'
+        postalCode:
+          $ref: '#/components/schemas/postalCode'
+        countryCodeA3:
+          $ref: '#/components/schemas/countryCodeA3'
+        vertical:
+          $ref: '#/components/schemas/enumVertical'
+        website:
+          $ref: '#/components/schemas/website'
+        stockSymbol:
+          $ref: '#/components/schemas/stockSymbol'
+        stockExchange:
+          $ref: '#/components/schemas/enumStockExchangeSymbols'
+        altBusinessId:
+          $ref: '#/components/schemas/altBusinessId'
+        altBusinessIdType:
+          $ref: '#/components/schemas/enumAltBusinessIdType'
+        businessContactEmail:
+          $ref: '#/components/schemas/businessContactEmail'
+        firstName:
+          $ref: '#/components/schemas/firstName'
+        lastName:
+          $ref: '#/components/schemas/lastName'
+        mobilePhone:
+          $ref: '#/components/schemas/mobilePhone'
+        ipAddress:
+          $ref: '#/components/schemas/ipAddress'
+    updateDirectBrandRequest:
+      description: The properties needed to update an existing brand for direct customers.
+      required:
+        - brandType
+        - companyName
+        - displayName
+        - phone
+        - email
+        - street
+        - city
+        - state
+        - postalCode
+        - countryCodeA3
+        - vertical
+        - ein
+        - einIssuingCountryCodeA3
+      properties:
+        brandType:
+          $ref: '#/components/schemas/enumBrandType'
+        displayName:
+          $ref: '#/components/schemas/displayName'
+        companyName:
+          $ref: '#/components/schemas/companyName'
+        ein:
+          $ref: '#/components/schemas/ein'
+        einIssuingCountryCodeA3:
+          $ref: '#/components/schemas/einIssuingCountryCodeA3'
+        phone:
+          $ref: '#/components/schemas/brandPhone'
+        email:
+          $ref: '#/components/schemas/brandEmail'
+        street:
+          $ref: '#/components/schemas/street'
+        city:
+          $ref: '#/components/schemas/city'
+        state:
+          $ref: '#/components/schemas/state'
+        postalCode:
+          $ref: '#/components/schemas/postalCode'
+        countryCodeA3:
+          $ref: '#/components/schemas/countryCodeA3'
+        vertical:
+          $ref: '#/components/schemas/enumVertical'
+        website:
+          $ref: '#/components/schemas/website'
+        stockSymbol:
+          $ref: '#/components/schemas/stockSymbol'
+        stockExchange:
+          $ref: '#/components/schemas/enumStockExchangeSymbols'
+        altBusinessId:
+          $ref: '#/components/schemas/altBusinessId'
+        altBusinessIdType:
+          $ref: '#/components/schemas/enumAltBusinessIdType'
+        businessContactEmail:
+          $ref: '#/components/schemas/businessContactEmail'
+        firstName:
+          $ref: '#/components/schemas/firstName'
+        lastName:
+          $ref: '#/components/schemas/lastName'
+        mobilePhone:
+          $ref: '#/components/schemas/mobilePhone'
+        ipAddress:
+          $ref: '#/components/schemas/ipAddress'
+    brandAcceptedObject:
+      description: >-
+        The brand and Bandwidth IDs. The brandId is only present when the brand
+        has been registered with TCR (i.e. not present for newly created direct
+        brands awaiting TCR registration).
+      properties:
+        brandId:
+          $ref: '#/components/schemas/tcrBrandId'
+        bandwidthId:
+          $ref: '#/components/schemas/bandwidthId'
+      required:
+        - bandwidthId
+    brandAcceptedResponseObject:
+      description: An accepted response containing the brand and Bandwidth IDs.
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/responseLink'
+          readOnly: true
+        data:
+          allOf:
+            - $ref: '#/components/schemas/brandAcceptedObject'
+          readOnly: true
+        errors:
+          description: The errors array will always be empty for successful responses.
+          type: array
+          items:
+            $ref: '#/components/schemas/errorEntry'
+          examples:
+            - []
 tags:
   - name: 10DLC
     description: Registration of 10DLC phone numbers to campaigns

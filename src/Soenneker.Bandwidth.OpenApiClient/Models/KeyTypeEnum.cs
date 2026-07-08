@@ -9,7 +9,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "RSA")]
         #pragma warning disable CS1591
-        RSA,
+        Rsa,
         #pragma warning restore CS1591
     }
 }

@@ -97,7 +97,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Regulation.Address.Item.Valid
 #endif
             /// <summary>The did type for the destination did.</summary>
             [QueryParameter("didType")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Global.Regulation.Address.Item.Validation.GetDidTypeQueryParameterType? DidType { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalIsAddressValidDidTypeParameter? DidType { get; set; }
         }
     }
 }

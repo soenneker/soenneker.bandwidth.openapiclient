@@ -19,7 +19,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
     public partial class CallsRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Bandwidth.OpenApiClient.insights.v1.voice.calls.item collection</summary>
-        /// <param name="position">&quot;Filter Type: Exact Match, any valid call ID.&quot;</param>
+        /// <param name="position">&quot;Filter Type: Exact Match, any valid call ID.By default this is treated as a plain string. If the call ID contains characters that are notpermitted in a URL path (notably `/`), pass it as a base64url (RFC 4648 §5) encoded string andset the `callIdEncoding` query parameter to `BASE64_URL` so it is decoded before lookup.&quot;</param>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallItemRequestBuilder"/></returns>
         public global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallItemRequestBuilder this[string position]
         {
@@ -49,7 +49,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
         /// <summary>
         /// Returns a list of call events.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.CallsGetResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsListCallsResponseResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError">When receiving a 400 status code</exception>
@@ -61,11 +61,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.CallsGetResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.CallsRequestBuilder.CallsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsListCallsResponseResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.CallsRequestBuilder.CallsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.CallsGetResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.CallsRequestBuilder.CallsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsListCallsResponseResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.CallsRequestBuilder.CallsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -79,7 +79,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.CallsGetResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.CallsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsListCallsResponseResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsListCallsResponseResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns a list of call events.
@@ -128,11 +128,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("attestationIndicator")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.GetAttestationIndicatorQueryParameterType[]? AttestationIndicator { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.AttestationIndicatorItem[]? AttestationIndicator { get; set; }
 #nullable restore
 #else
             [QueryParameter("attestationIndicator")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.GetAttestationIndicatorQueryParameterType[] AttestationIndicator { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.AttestationIndicatorItem[] AttestationIndicator { get; set; }
 #endif
             /// <summary>&quot;Direction of call.Filter Type: Exact Match, Multi Match.Example:  * Exact Match: OUTBOUND  * Multi Match: OUTBOUND-FORWARDED,OUTBOUND&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

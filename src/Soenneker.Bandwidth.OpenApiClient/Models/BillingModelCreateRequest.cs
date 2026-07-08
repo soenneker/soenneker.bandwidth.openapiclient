@@ -22,21 +22,21 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestMember1"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestCapacity"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestMember1? BillingModelCreateRequestMember1 { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestCapacity? BillingModelCreateRequestCapacity { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestMember1 BillingModelCreateRequestMember1 { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestCapacity BillingModelCreateRequestCapacity { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestMember2"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestMetered"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestMember2? BillingModelCreateRequestMember2 { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestMetered? BillingModelCreateRequestMetered { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestMember2 BillingModelCreateRequestMember2 { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestMetered BillingModelCreateRequestMetered { get; set; }
 #endif
         /// <summary>The type of billing model.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.ModelTypeEnum? ModelType { get; set; }
@@ -67,13 +67,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequest();
-            if("".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("BillingModelCreateRequestCapacity".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.BillingModelCreateRequestMember1 = new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestMember1();
+                result.BillingModelCreateRequestCapacity = new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestCapacity();
             }
-            else if("".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("BillingModelCreateRequestMetered".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.BillingModelCreateRequestMember2 = new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestMember2();
+                result.BillingModelCreateRequestMetered = new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestMetered();
             }
             else if(parseNode.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ModelTypeEnum>() is global::Soenneker.Bandwidth.OpenApiClient.Models.ModelTypeEnum modelTypeValue)
             {
@@ -99,13 +99,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(BillingModelCreateRequestMember1 != null)
+            if(BillingModelCreateRequestCapacity != null)
             {
-                return BillingModelCreateRequestMember1.GetFieldDeserializers();
+                return BillingModelCreateRequestCapacity.GetFieldDeserializers();
             }
-            else if(BillingModelCreateRequestMember2 != null)
+            else if(BillingModelCreateRequestMetered != null)
             {
-                return BillingModelCreateRequestMember2.GetFieldDeserializers();
+                return BillingModelCreateRequestMetered.GetFieldDeserializers();
             }
             return new Dictionary<string, Action<IParseNode>>();
         }
@@ -116,13 +116,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            if(BillingModelCreateRequestMember1 != null)
+            if(BillingModelCreateRequestCapacity != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestMember1>(null, BillingModelCreateRequestMember1);
+                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestCapacity>(null, BillingModelCreateRequestCapacity);
             }
-            else if(BillingModelCreateRequestMember2 != null)
+            else if(BillingModelCreateRequestMetered != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestMember2>(null, BillingModelCreateRequestMember2);
+                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestMetered>(null, BillingModelCreateRequestMetered);
             }
             else if(ModelType != null)
             {

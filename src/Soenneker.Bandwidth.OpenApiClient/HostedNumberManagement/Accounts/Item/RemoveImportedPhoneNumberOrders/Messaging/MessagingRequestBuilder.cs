@@ -181,11 +181,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("status")]
-            public global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.RemoveImportedPhoneNumberOrders.Messaging.GetStatusQueryParameterType[]? Status { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.StatusQueryParamItem[]? Status { get; set; }
 #nullable restore
 #else
             [QueryParameter("status")]
-            public global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.RemoveImportedPhoneNumberOrders.Messaging.GetStatusQueryParameterType[] Status { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.StatusQueryParamItem[] Status { get; set; }
 #endif
         }
     }

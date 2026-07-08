@@ -9,43 +9,43 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "DRAFT")]
         #pragma warning disable CS1591
-        DRAFT,
+        Draft,
         #pragma warning restore CS1591
         [EnumMember(Value = "SUBMITTED")]
         #pragma warning disable CS1591
-        SUBMITTED,
+        Submitted,
         #pragma warning restore CS1591
         [EnumMember(Value = "MISSING_DATA")]
         #pragma warning disable CS1591
-        MISSING_DATA,
+        MissingData,
         #pragma warning restore CS1591
         [EnumMember(Value = "PENDING_CARRIER_APPROVAL")]
         #pragma warning disable CS1591
-        PENDING_CARRIER_APPROVAL,
+        PendingCarrierApproval,
         #pragma warning restore CS1591
         [EnumMember(Value = "ACCEPTED_BY_CARRIER")]
         #pragma warning disable CS1591
-        ACCEPTED_BY_CARRIER,
+        AcceptedByCarrier,
         #pragma warning restore CS1591
         [EnumMember(Value = "READY_FOR_CONFIGURATION")]
         #pragma warning disable CS1591
-        READY_FOR_CONFIGURATION,
+        ReadyForConfiguration,
         #pragma warning restore CS1591
         [EnumMember(Value = "COMPLETED")]
         #pragma warning disable CS1591
-        COMPLETED,
+        Completed,
         #pragma warning restore CS1591
         [EnumMember(Value = "REJECTED")]
         #pragma warning disable CS1591
-        REJECTED,
+        Rejected,
         #pragma warning restore CS1591
         [EnumMember(Value = "PROCESSING_CANCELLATION")]
         #pragma warning disable CS1591
-        PROCESSING_CANCELLATION,
+        ProcessingCancellation,
         #pragma warning restore CS1591
         [EnumMember(Value = "CANCELED")]
         #pragma warning disable CS1591
-        CANCELED,
+        Canceled,
         #pragma warning restore CS1591
     }
 }

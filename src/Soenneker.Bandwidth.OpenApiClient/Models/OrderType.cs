@@ -10,19 +10,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "ADD_ENDPOINTS")]
         #pragma warning disable CS1591
-        ADD_ENDPOINTS,
+        AddEndpoints,
         #pragma warning restore CS1591
         [EnumMember(Value = "UPDATE_ENDPOINTS")]
         #pragma warning disable CS1591
-        UPDATE_ENDPOINTS,
+        UpdateEndpoints,
         #pragma warning restore CS1591
         [EnumMember(Value = "DELETE_ENDPOINTS")]
         #pragma warning disable CS1591
-        DELETE_ENDPOINTS,
+        DeleteEndpoints,
         #pragma warning restore CS1591
         [EnumMember(Value = "BULK_ADD_ENDPOINTS")]
         #pragma warning disable CS1591
-        BULK_ADD_ENDPOINTS,
+        BulkAddEndpoints,
         #pragma warning restore CS1591
     }
 }

@@ -15,7 +15,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Type of address required.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModel_addressType? AddressType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModelAddressType? AddressType { get; set; }
         /// <summary>Whether a proof of address is required.</summary>
         public bool? ProofRequired { get; set; }
         /// <summary>
@@ -24,6 +24,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public RegulationRequirementModel()
         {
             AdditionalData = new Dictionary<string, object>();
+            ProofRequired = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -43,7 +44,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "addressType", n => { AddressType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModel_addressType>(); } },
+                { "addressType", n => { AddressType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModelAddressType>(); } },
                 { "proofRequired", n => { ProofRequired = n.GetBoolValue(); } },
             };
         }
@@ -54,7 +55,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModel_addressType>("addressType", AddressType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModelAddressType>("addressType", AddressType);
             writer.WriteBoolValue("proofRequired", ProofRequired);
             writer.WriteAdditionalData(AdditionalData);
         }

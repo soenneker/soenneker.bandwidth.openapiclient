@@ -31,7 +31,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string PhoneNumber { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonWarning_type? Type { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonWarningType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.JsonWarning"/> and sets the default values.
         /// </summary>
@@ -59,7 +59,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "phoneNumber", n => { PhoneNumber = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonWarning_type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonWarningType>(); } },
             };
         }
         /// <summary>
@@ -71,7 +71,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("phoneNumber", PhoneNumber);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonWarning_type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonWarningType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

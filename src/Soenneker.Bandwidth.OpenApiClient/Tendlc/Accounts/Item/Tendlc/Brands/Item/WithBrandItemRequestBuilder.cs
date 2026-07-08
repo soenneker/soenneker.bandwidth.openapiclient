@@ -5,6 +5,8 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Bandwidth.OpenApiClient.Models;
 using Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Brands.Item.History;
+using Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Brands.Item.Identity;
+using Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Brands.Item.Vettings;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -23,6 +25,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Brands.I
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Brands.Item.History.HistoryRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The identity property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Brands.Item.Identity.IdentityRequestBuilder Identity
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Brands.Item.Identity.IdentityRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The vettings property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Brands.Item.Vettings.VettingsRequestBuilder Vettings
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Brands.Item.Vettings.VettingsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Brands.Item.WithBrandItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -40,7 +52,44 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Brands.I
         {
         }
         /// <summary>
-        /// **All customers.** Get details for this TCR brand (the actual details available to Bandwidth will differ substantially between import and direct customers). The ID used for the brand can either be the TCR assigned brand ID, or the customer profile ID associated to this brand if the brand has yet to be saved to TCR.        
+        /// Brands can be deleted once there are no active campaigns on the brand. **Deletion is permanent and cannot be reversed** — a deleted brand cannot be re-activated. All campaigns associated with the brand must be deactivated first. This will delete the brand in Bandwidth&apos;s systems, along with the associated customer profile.**Import customers.** The brand continues to exist in the customer&apos;s TCR account.**Direct customers.** The brand will also be deleted in TCR&apos;s system.
+        /// </summary>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAcceptedResponseObject"/></returns>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse400">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse401">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse403">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse404">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse405">When receiving a 405 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse429">When receiving a 429 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse500">When receiving a 500 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse503">When receiving a 503 status code</exception>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAcceptedResponseObject?> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#nullable restore
+#else
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAcceptedResponseObject> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#endif
+            var requestInfo = ToDeleteRequestInformation(requestConfiguration);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse400.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse401.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse403.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse404.CreateFromDiscriminatorValue },
+                { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse405.CreateFromDiscriminatorValue },
+                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse429.CreateFromDiscriminatorValue },
+                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse500.CreateFromDiscriminatorValue },
+                { "503", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse503.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAcceptedResponseObject>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAcceptedResponseObject.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>
+        /// **All customers.** Get details for this TCR brand. The actual details available to Bandwidth will differ substantially between import and direct customers. The `customerProfileId` may also be passed instead of the `brandId` to retrieve the brand details.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BrandResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -77,7 +126,67 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Brands.I
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.BrandResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// **All customers.** Get details for this TCR brand (the actual details available to Bandwidth will differ substantially between import and direct customers). The ID used for the brand can either be the TCR assigned brand ID, or the customer profile ID associated to this brand if the brand has yet to be saved to TCR.        
+        /// **Direct customers.** Update the details of a brand, subject to restrictions. This is a full replacement — omitted optional fields will be set to null. The following fields **cannot be changed** if the brand has any active campaign or an active Standard, Enhanced, or Political vet:- `companyName`- `entityType`- `ein`- `einIssuingCountry`If these fields are updated on a brand that has no active campaigns or active vets, the brand will be resubmitted for identity verification (incurring a **$4 fee**) and its identity status will reset to `REGISTERING`.**Additional field-level restrictions:**- `brandRelationship` can only be updated once every **3 months**.- Updating `mobilePhone` will change the brand&apos;s identity status to `UNVERIFIED`.- **PUBLIC_PROFIT brands:** Updating `businessContactEmail` revokes the brand&apos;s Business Authentication (Auth+) compliance. The brand must request a new `AUTHPLUS` vet to regain compliance (requiring the business contact to complete a new 2FA email verification).If the brand exists in Bandwidth&apos;s system but not in TCR, because we are still submitting the brand to TCR, this endpoint will return a 409 (Conflict). If the brand exists only in Bandwidth&apos;s system due to a failure (`brandIdentityStatus` will be `ERROR`), we will attempt to create the brand in TCR with the applied changes.
+        /// </summary>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAcceptedResponseObject"/></returns>
+        /// <param name="body">The properties needed to update an existing brand for direct customers.</param>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse400">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse401">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse403">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse404">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse405">When receiving a 405 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse409">When receiving a 409 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse429">When receiving a 429 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse500">When receiving a 500 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse503">When receiving a 503 status code</exception>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAcceptedResponseObject?> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateDirectBrandRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#nullable restore
+#else
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAcceptedResponseObject> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateDirectBrandRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#endif
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = ToPutRequestInformation(body, requestConfiguration);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse400.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse401.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse403.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse404.CreateFromDiscriminatorValue },
+                { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse405.CreateFromDiscriminatorValue },
+                { "409", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse409.CreateFromDiscriminatorValue },
+                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse429.CreateFromDiscriminatorValue },
+                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse500.CreateFromDiscriminatorValue },
+                { "503", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse503.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAcceptedResponseObject>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAcceptedResponseObject.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>
+        /// Brands can be deleted once there are no active campaigns on the brand. **Deletion is permanent and cannot be reversed** — a deleted brand cannot be re-activated. All campaigns associated with the brand must be deactivated first. This will delete the brand in Bandwidth&apos;s systems, along with the associated customer profile.**Import customers.** The brand continues to exist in the customer&apos;s TCR account.**Direct customers.** The brand will also be deleted in TCR&apos;s system.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
+        }
+        /// <summary>
+        /// **All customers.** Get details for this TCR brand. The actual details available to Bandwidth will differ substantially between import and direct customers. The `customerProfileId` may also be passed instead of the `brandId` to retrieve the brand details.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -93,6 +202,28 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Brands.I
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
+        }
+        /// <summary>
+        /// **Direct customers.** Update the details of a brand, subject to restrictions. This is a full replacement — omitted optional fields will be set to null. The following fields **cannot be changed** if the brand has any active campaign or an active Standard, Enhanced, or Political vet:- `companyName`- `entityType`- `ein`- `einIssuingCountry`If these fields are updated on a brand that has no active campaigns or active vets, the brand will be resubmitted for identity verification (incurring a **$4 fee**) and its identity status will reset to `REGISTERING`.**Additional field-level restrictions:**- `brandRelationship` can only be updated once every **3 months**.- Updating `mobilePhone` will change the brand&apos;s identity status to `UNVERIFIED`.- **PUBLIC_PROFIT brands:** Updating `businessContactEmail` revokes the brand&apos;s Business Authentication (Auth+) compliance. The brand must request a new `AUTHPLUS` vet to regain compliance (requiring the business contact to complete a new 2FA email verification).If the brand exists in Bandwidth&apos;s system but not in TCR, because we are still submitting the brand to TCR, this endpoint will return a 409 (Conflict). If the brand exists only in Bandwidth&apos;s system due to a failure (`brandIdentityStatus` will be `ERROR`), we will attempt to create the brand in TCR with the applied changes.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="body">The properties needed to update an existing brand for direct customers.</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateDirectBrandRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateDirectBrandRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
         /// <summary>

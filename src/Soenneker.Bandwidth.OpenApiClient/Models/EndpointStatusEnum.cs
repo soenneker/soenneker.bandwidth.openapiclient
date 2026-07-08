@@ -10,11 +10,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "CONNECTED")]
         #pragma warning disable CS1591
-        CONNECTED,
+        Connected,
         #pragma warning restore CS1591
         [EnumMember(Value = "DISCONNECTED")]
         #pragma warning disable CS1591
-        DISCONNECTED,
+        Disconnected,
         #pragma warning restore CS1591
     }
 }

@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The items property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorMeta_items? Items { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorMetaItemsProperty? Items { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorMeta_items Items { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorMetaItemsProperty Items { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorMeta"/> and sets the default values.
@@ -48,7 +48,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "items", n => { Items = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorMeta_items>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorMeta_items.CreateFromDiscriminatorValue); } },
+                { "items", n => { Items = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorMetaItemsProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorMetaItemsProperty.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorMeta_items>("items", Items);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorMetaItemsProperty>("items", Items);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

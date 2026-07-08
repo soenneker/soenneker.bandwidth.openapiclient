@@ -9,15 +9,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "GOOD")]
         #pragma warning disable CS1591
-        GOOD,
+        Good,
         #pragma warning restore CS1591
         [EnumMember(Value = "AVERAGE")]
         #pragma warning disable CS1591
-        AVERAGE,
+        Average,
         #pragma warning restore CS1591
         [EnumMember(Value = "BAD")]
         #pragma warning disable CS1591
-        BAD,
+        Bad,
         #pragma warning restore CS1591
     }
 }

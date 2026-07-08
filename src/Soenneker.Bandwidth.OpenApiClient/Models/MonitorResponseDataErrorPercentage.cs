@@ -17,14 +17,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The end property</summary>
         public DateTimeOffset? End { get; set; }
         /// <summary>The granularity property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataErrorPercentage_granularity? Granularity { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorDataBaseGranularity? Granularity { get; set; }
         /// <summary>The slices property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataErrorPercentage_slices>? Slices { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorDataBaseSlicesItemProperty>? Slices { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataErrorPercentage_slices> Slices { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorDataBaseSlicesItemProperty> Slices { get; set; }
 #endif
         /// <summary>The start property</summary>
         public DateTimeOffset? Start { get; set; }
@@ -54,8 +54,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "end", n => { End = n.GetDateTimeOffsetValue(); } },
-                { "granularity", n => { Granularity = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataErrorPercentage_granularity>(); } },
-                { "slices", n => { Slices = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataErrorPercentage_slices>(global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataErrorPercentage_slices.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "granularity", n => { Granularity = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorDataBaseGranularity>(); } },
+                { "slices", n => { Slices = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorDataBaseSlicesItemProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorDataBaseSlicesItemProperty.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "start", n => { Start = n.GetDateTimeOffsetValue(); } },
             };
         }
@@ -67,8 +67,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("end", End);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataErrorPercentage_granularity>("granularity", Granularity);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataErrorPercentage_slices>("slices", Slices);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorDataBaseGranularity>("granularity", Granularity);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorDataBaseSlicesItemProperty>("slices", Slices);
             writer.WriteDateTimeOffsetValue("start", Start);
             writer.WriteAdditionalData(AdditionalData);
         }

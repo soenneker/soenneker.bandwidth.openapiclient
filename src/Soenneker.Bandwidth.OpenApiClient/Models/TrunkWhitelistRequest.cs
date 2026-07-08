@@ -24,7 +24,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.E911WhitelistEntry> E911Whitelists { get; set; }
 #endif
         /// <summary>The type of operation to perform on the whitelist.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistRequest_operation? Operation { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistRequestOperation? Operation { get; set; }
         /// <summary>Array of voice whitelist entries. Each entry contains IP addresses and service identifiers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -59,7 +59,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "e911Whitelists", n => { E911Whitelists = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.E911WhitelistEntry>(global::Soenneker.Bandwidth.OpenApiClient.Models.E911WhitelistEntry.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "operation", n => { Operation = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistRequest_operation>(); } },
+                { "operation", n => { Operation = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistRequestOperation>(); } },
                 { "voiceWhitelists", n => { VoiceWhitelists = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceWhitelistEntry>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceWhitelistEntry.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -71,7 +71,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.E911WhitelistEntry>("e911Whitelists", E911Whitelists);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistRequest_operation>("operation", Operation);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistRequestOperation>("operation", Operation);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceWhitelistEntry>("voiceWhitelists", VoiceWhitelists);
             writer.WriteAdditionalData(AdditionalData);
         }

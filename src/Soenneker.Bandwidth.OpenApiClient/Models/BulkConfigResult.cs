@@ -20,10 +20,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>List of configuration error messages, if any</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResult_messages>? Messages { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResultMessagesItem>? Messages { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResult_messages> Messages { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResultMessagesItem> Messages { get; set; }
 #endif
         /// <summary>List of configuration options that couldn&apos;t be applied</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -34,7 +34,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ConfigurationOption?> PartialConfigurations { get; set; }
 #endif
         /// <summary>A &apos;SUCCESS&apos; message will indicate that the operation was performed successfully.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResult_status? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResultStatus? Status { get; set; }
         /// <summary>List of configuration options that are successfully applied</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -69,9 +69,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "didId", n => { DidId = n.GetIntValue(); } },
-                { "messages", n => { Messages = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResult_messages>(global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResult_messages.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "messages", n => { Messages = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResultMessagesItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResultMessagesItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "partialConfigurations", n => { PartialConfigurations = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ConfigurationOption>()?.AsList(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResult_status>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResultStatus>(); } },
                 { "updatedConfigurations", n => { UpdatedConfigurations = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ConfigurationOption>()?.AsList(); } },
             };
         }
@@ -83,9 +83,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("didId", DidId);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResult_messages>("messages", Messages);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResultMessagesItem>("messages", Messages);
             writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ConfigurationOption>("partialConfigurations", PartialConfigurations);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResult_status>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResultStatus>("status", Status);
             writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ConfigurationOption>("updatedConfigurations", UpdatedConfigurations);
             writer.WriteAdditionalData(AdditionalData);
         }

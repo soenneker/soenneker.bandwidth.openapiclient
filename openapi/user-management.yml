@@ -167,6 +167,7 @@ paths:
         Triggers a password reset flow for the specified user.  The user will
         receive an email with instructions to reset their password.
       operationId: resetUserPassword
+      security: []
       parameters:
         - $ref: '#/components/parameters/userId'
       responses:

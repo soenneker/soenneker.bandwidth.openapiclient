@@ -36,7 +36,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         /// <summary>
         /// Delete an endpoint.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.Item.WithEndpointDeleteResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ProvisioningOrderDeleteEndpointResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningGenericError">When receiving a 400 status code</exception>
@@ -48,11 +48,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningGenericError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.Item.WithEndpointDeleteResponse?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.Item.WithEndpointItemRequestBuilder.WithEndpointItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ProvisioningOrderDeleteEndpointResponse?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.Item.WithEndpointItemRequestBuilder.WithEndpointItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.Item.WithEndpointDeleteResponse> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.Item.WithEndpointItemRequestBuilder.WithEndpointItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ProvisioningOrderDeleteEndpointResponse> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.Item.WithEndpointItemRequestBuilder.WithEndpointItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
@@ -66,7 +66,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningGenericError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningGenericError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.Item.WithEndpointDeleteResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.Item.WithEndpointDeleteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ProvisioningOrderDeleteEndpointResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ProvisioningOrderDeleteEndpointResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Get an endpoint.
@@ -106,7 +106,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         /// <summary>
         /// Update an endpoint. Only supported in the North America (NA) region.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.Item.WithEndpointPatchResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ProvisioningOrderUpdateEndpointResponse"/></returns>
         /// <param name="body">Update Endpoint.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -119,11 +119,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningGenericError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.Item.WithEndpointPatchResponse?> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpoint body, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.Item.WithEndpointItemRequestBuilder.WithEndpointItemRequestBuilderPatchQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ProvisioningOrderUpdateEndpointResponse?> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpoint body, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.Item.WithEndpointItemRequestBuilder.WithEndpointItemRequestBuilderPatchQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.Item.WithEndpointPatchResponse> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpoint body, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.Item.WithEndpointItemRequestBuilder.WithEndpointItemRequestBuilderPatchQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ProvisioningOrderUpdateEndpointResponse> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpoint body, Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.Item.WithEndpointItemRequestBuilder.WithEndpointItemRequestBuilderPatchQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -138,7 +138,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningGenericError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningGenericError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.Item.WithEndpointPatchResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.Item.WithEndpointPatchResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ProvisioningOrderUpdateEndpointResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ProvisioningOrderUpdateEndpointResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Delete an endpoint.

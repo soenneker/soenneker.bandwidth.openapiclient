@@ -9,11 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "PERSONAL")]
         #pragma warning disable CS1591
-        PERSONAL,
+        Personal,
         #pragma warning restore CS1591
         [EnumMember(Value = "BUSINESS")]
         #pragma warning disable CS1591
-        BUSINESS,
+        Business,
         #pragma warning restore CS1591
     }
 }

@@ -101,15 +101,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Reasons for the rejection of the regulation address verification.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationAddress_rejectionReasons?>? RejectionReasons { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationAddressRejectionReasonsItem?>? RejectionReasons { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationAddress_rejectionReasons?> RejectionReasons { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationAddressRejectionReasonsItem?> RejectionReasons { get; set; }
 #endif
         /// <summary>&quot;This is the salutation of the end user for the listed address: MR or MS if firstName and lastName are used or COMPANY if companyName is used.&quot;</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationAddress_salutation? Salutation { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationAddressSalutation? Salutation { get; set; }
         /// <summary>This is the current status of the regulation address.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationAddress_status? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationAddressStatus? Status { get; set; }
         /// <summary>The street for the address.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -163,9 +163,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "firstName", n => { FirstName = n.GetStringValue(); } },
                 { "lastName", n => { LastName = n.GetStringValue(); } },
                 { "linked", n => { Linked = n.GetBoolValue(); } },
-                { "rejectionReasons", n => { RejectionReasons = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationAddress_rejectionReasons>()?.AsList(); } },
-                { "salutation", n => { Salutation = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationAddress_salutation>(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationAddress_status>(); } },
+                { "rejectionReasons", n => { RejectionReasons = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationAddressRejectionReasonsItem>()?.AsList(); } },
+                { "salutation", n => { Salutation = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationAddressSalutation>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationAddressStatus>(); } },
                 { "streetName", n => { StreetName = n.GetStringValue(); } },
                 { "zipCode", n => { ZipCode = n.GetStringValue(); } },
             };
@@ -189,9 +189,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("firstName", FirstName);
             writer.WriteStringValue("lastName", LastName);
             writer.WriteBoolValue("linked", Linked);
-            writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationAddress_rejectionReasons>("rejectionReasons", RejectionReasons);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationAddress_salutation>("salutation", Salutation);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationAddress_status>("status", Status);
+            writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationAddressRejectionReasonsItem>("rejectionReasons", RejectionReasons);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationAddressSalutation>("salutation", Salutation);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationAddressStatus>("status", Status);
             writer.WriteStringValue("streetName", StreetName);
             writer.WriteStringValue("zipCode", ZipCode);
             writer.WriteAdditionalData(AdditionalData);

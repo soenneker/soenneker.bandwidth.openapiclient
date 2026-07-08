@@ -14,13 +14,23 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The Status property</summary>
+        /// <summary>Description of feature. (Eg. VoxFAX or VoxSMS).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Status { get; set; }
+        public string? Description { get; set; }
 #nullable restore
 #else
-        public string Status { get; set; }
+        public string Description { get; set; }
+#endif
+        /// <summary>ID of feature. (Eg. VoxFAX or VoxSMS).</summary>
+        public int? FeatureId { get; set; }
+        /// <summary>Name of feature. (Eg. VoxFAX or VoxSMS).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
+        public string Name { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Feature"/> and sets the default values.
@@ -47,7 +57,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "Status", n => { Status = n.GetStringValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "featureId", n => { FeatureId = n.GetIntValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -57,7 +69,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("Status", Status);
+            writer.WriteStringValue("description", Description);
+            writer.WriteIntValue("featureId", FeatureId);
+            writer.WriteStringValue("name", Name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

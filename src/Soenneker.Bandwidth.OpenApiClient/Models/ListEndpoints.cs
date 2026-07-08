@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The endpoints property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndpoints_endpoints>? Endpoints { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndpointsEndpointsItem>? Endpoints { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndpoints_endpoints> Endpoints { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndpointsEndpointsItem> Endpoints { get; set; }
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -56,7 +56,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "endpoints", n => { Endpoints = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndpoints_endpoints>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndpoints_endpoints.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "endpoints", n => { Endpoints = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndpointsEndpointsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndpointsEndpointsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningLinks>(global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningLinks.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -67,7 +67,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndpoints_endpoints>("endpoints", Endpoints);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndpointsEndpointsItem>("endpoints", Endpoints);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningLinks>("links", Links);
             writer.WriteAdditionalData(AdditionalData);
         }

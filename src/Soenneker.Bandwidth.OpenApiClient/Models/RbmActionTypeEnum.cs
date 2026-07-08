@@ -10,27 +10,27 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "REPLY")]
         #pragma warning disable CS1591
-        REPLY,
+        Reply,
         #pragma warning restore CS1591
         [EnumMember(Value = "DIAL_PHONE")]
         #pragma warning disable CS1591
-        DIAL_PHONE,
+        DialPhone,
         #pragma warning restore CS1591
         [EnumMember(Value = "SHOW_LOCATION")]
         #pragma warning disable CS1591
-        SHOW_LOCATION,
+        ShowLocation,
         #pragma warning restore CS1591
         [EnumMember(Value = "CREATE_CALENDAR_EVENT")]
         #pragma warning disable CS1591
-        CREATE_CALENDAR_EVENT,
+        CreateCalendarEvent,
         #pragma warning restore CS1591
         [EnumMember(Value = "OPEN_URL")]
         #pragma warning disable CS1591
-        OPEN_URL,
+        OpenUrl,
         #pragma warning restore CS1591
         [EnumMember(Value = "REQUEST_LOCATION")]
         #pragma warning disable CS1591
-        REQUEST_LOCATION,
+        RequestLocation,
         #pragma warning restore CS1591
     }
 }

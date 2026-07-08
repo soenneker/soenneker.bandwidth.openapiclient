@@ -32,10 +32,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>TN override details.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Override? Override { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OverrideType? Override { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Override Override { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OverrideType Override { get; set; }
 #endif
         /// <summary>An E164 formatted phone number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -82,7 +82,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "integrations", n => { Integrations = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Integrations>(global::Soenneker.Bandwidth.OpenApiClient.Models.Integrations.CreateFromDiscriminatorValue); } },
                 { "outboundInternationalActivated", n => { OutboundInternationalActivated = n.GetBoolValue(); } },
                 { "outboundNationalActivated", n => { OutboundNationalActivated = n.GetBoolValue(); } },
-                { "override", n => { Override = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Override>(global::Soenneker.Bandwidth.OpenApiClient.Models.Override.CreateFromDiscriminatorValue); } },
+                { "override", n => { Override = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OverrideType>(global::Soenneker.Bandwidth.OpenApiClient.Models.OverrideType.CreateFromDiscriminatorValue); } },
                 { "phoneNumber", n => { PhoneNumber = n.GetStringValue(); } },
                 { "voiceConfigurationPackage", n => { VoiceConfigurationPackage = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersVoiceConfigurationPackage>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersVoiceConfigurationPackage.CreateFromDiscriminatorValue); } },
             };
@@ -98,7 +98,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Integrations>("integrations", Integrations);
             writer.WriteBoolValue("outboundInternationalActivated", OutboundInternationalActivated);
             writer.WriteBoolValue("outboundNationalActivated", OutboundNationalActivated);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Override>("override", Override);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OverrideType>("override", Override);
             writer.WriteStringValue("phoneNumber", PhoneNumber);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersVoiceConfigurationPackage>("voiceConfigurationPackage", VoiceConfigurationPackage);
             writer.WriteAdditionalData(AdditionalData);

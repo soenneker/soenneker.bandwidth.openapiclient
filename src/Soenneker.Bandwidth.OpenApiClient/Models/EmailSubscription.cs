@@ -47,10 +47,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The emailSubscription property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscription_emailSubscription? EmailSubscriptionProp { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscriptionAllOf2EmailSubscription? EmailSubscriptionProp { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscription_emailSubscription EmailSubscriptionProp { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscriptionAllOf2EmailSubscription EmailSubscriptionProp { get; set; }
 #endif
         /// <summary>The filters to be applied to subscription</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -111,7 +111,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "createdBy", n => { CreatedBy = n.GetStringValue(); } },
                 { "customName", n => { CustomName = n.GetStringValue(); } },
                 { "deliveryType", n => { DeliveryType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DeliveryTypesEnum>(); } },
-                { "emailSubscription", n => { EmailSubscriptionProp = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscription_emailSubscription>(global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscription_emailSubscription.CreateFromDiscriminatorValue); } },
+                { "emailSubscription", n => { EmailSubscriptionProp = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscriptionAllOf2EmailSubscription>(global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscriptionAllOf2EmailSubscription.CreateFromDiscriminatorValue); } },
                 { "filters", n => { Filters = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria>(global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "id", n => { Id = n.GetGuidValue(); } },
                 { "subscriptionDefinitionName", n => { SubscriptionDefinitionName = n.GetStringValue(); } },
@@ -132,7 +132,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("createdBy", CreatedBy);
             writer.WriteStringValue("customName", CustomName);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DeliveryTypesEnum>("deliveryType", DeliveryType);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscription_emailSubscription>("emailSubscription", EmailSubscriptionProp);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscriptionAllOf2EmailSubscription>("emailSubscription", EmailSubscriptionProp);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria>("filters", Filters);
             writer.WriteGuidValue("id", Id);
             writer.WriteStringValue("subscriptionDefinitionName", SubscriptionDefinitionName);

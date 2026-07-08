@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The endpoints property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithFullAddress_endpoints>? Endpoints { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AddEndpointsRowBaseEndpointsItem>? Endpoints { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithFullAddress_endpoints> Endpoints { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AddEndpointsRowBaseEndpointsItem> Endpoints { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithFullAddress"/> and sets the default values.
@@ -48,7 +48,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "endpoints", n => { Endpoints = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithFullAddress_endpoints>(global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithFullAddress_endpoints.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "endpoints", n => { Endpoints = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AddEndpointsRowBaseEndpointsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.AddEndpointsRowBaseEndpointsItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithFullAddress_endpoints>("endpoints", Endpoints);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AddEndpointsRowBaseEndpointsItem>("endpoints", Endpoints);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

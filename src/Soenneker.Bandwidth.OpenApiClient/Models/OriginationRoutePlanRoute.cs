@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The endpoints property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRoute.OriginationRoutePlanRoute_endpoints>? Endpoints { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItem>? Endpoints { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRoute.OriginationRoutePlanRoute_endpoints> Endpoints { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItem> Endpoints { get; set; }
 #endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -58,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "endpoints", n => { Endpoints = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRoute.OriginationRoutePlanRoute_endpoints>(global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRoute.OriginationRoutePlanRoute_endpoints.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "endpoints", n => { Endpoints = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "priority", n => { Priority = n.GetDoubleValue(); } },
             };
@@ -70,165 +70,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRoute.OriginationRoutePlanRoute_endpoints>("endpoints", Endpoints);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItem>("endpoints", Endpoints);
             writer.WriteStringValue("name", Name);
             writer.WriteDoubleValue("priority", Priority);
             writer.WriteAdditionalData(AdditionalData);
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BotEndpoint"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithoutTrunk"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.IntegrationEndpointWithoutTrunk"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointWithoutTrunk"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SipEndpointWithoutTrunk"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnEndpointWithoutTrunk"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class OriginationRoutePlanRoute_endpoints : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BotEndpoint"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.BotEndpoint? BotEndpoint { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.BotEndpoint BotEndpoint { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithoutTrunk"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithoutTrunk? FqdnEndpointWithoutTrunk { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithoutTrunk FqdnEndpointWithoutTrunk { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.IntegrationEndpointWithoutTrunk"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.IntegrationEndpointWithoutTrunk? IntegrationEndpointWithoutTrunk { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.IntegrationEndpointWithoutTrunk IntegrationEndpointWithoutTrunk { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointWithoutTrunk"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointWithoutTrunk? Ipv4EndpointWithoutTrunk { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointWithoutTrunk Ipv4EndpointWithoutTrunk { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SipEndpointWithoutTrunk"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.SipEndpointWithoutTrunk? SipEndpointWithoutTrunk { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.SipEndpointWithoutTrunk SipEndpointWithoutTrunk { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnEndpointWithoutTrunk"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.TnEndpointWithoutTrunk? TnEndpointWithoutTrunk { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.TnEndpointWithoutTrunk TnEndpointWithoutTrunk { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRoute.OriginationRoutePlanRoute_endpoints"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRoute.OriginationRoutePlanRoute_endpoints CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
-                var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRoute.OriginationRoutePlanRoute_endpoints();
-                if("BotEndpoint".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.BotEndpoint = new global::Soenneker.Bandwidth.OpenApiClient.Models.BotEndpoint();
-                }
-                else if("FqdnEndpointWithoutTrunk".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.FqdnEndpointWithoutTrunk = new global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithoutTrunk();
-                }
-                else if("IntegrationEndpointWithoutTrunk".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.IntegrationEndpointWithoutTrunk = new global::Soenneker.Bandwidth.OpenApiClient.Models.IntegrationEndpointWithoutTrunk();
-                }
-                else if("Ipv4EndpointWithoutTrunk".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.Ipv4EndpointWithoutTrunk = new global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointWithoutTrunk();
-                }
-                else if("SipEndpointWithoutTrunk".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.SipEndpointWithoutTrunk = new global::Soenneker.Bandwidth.OpenApiClient.Models.SipEndpointWithoutTrunk();
-                }
-                else if("TnEndpointWithoutTrunk".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.TnEndpointWithoutTrunk = new global::Soenneker.Bandwidth.OpenApiClient.Models.TnEndpointWithoutTrunk();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(BotEndpoint != null)
-                {
-                    return BotEndpoint.GetFieldDeserializers();
-                }
-                else if(FqdnEndpointWithoutTrunk != null)
-                {
-                    return FqdnEndpointWithoutTrunk.GetFieldDeserializers();
-                }
-                else if(IntegrationEndpointWithoutTrunk != null)
-                {
-                    return IntegrationEndpointWithoutTrunk.GetFieldDeserializers();
-                }
-                else if(Ipv4EndpointWithoutTrunk != null)
-                {
-                    return Ipv4EndpointWithoutTrunk.GetFieldDeserializers();
-                }
-                else if(SipEndpointWithoutTrunk != null)
-                {
-                    return SipEndpointWithoutTrunk.GetFieldDeserializers();
-                }
-                else if(TnEndpointWithoutTrunk != null)
-                {
-                    return TnEndpointWithoutTrunk.GetFieldDeserializers();
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(BotEndpoint != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BotEndpoint>(null, BotEndpoint);
-                }
-                else if(FqdnEndpointWithoutTrunk != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithoutTrunk>(null, FqdnEndpointWithoutTrunk);
-                }
-                else if(IntegrationEndpointWithoutTrunk != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.IntegrationEndpointWithoutTrunk>(null, IntegrationEndpointWithoutTrunk);
-                }
-                else if(Ipv4EndpointWithoutTrunk != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointWithoutTrunk>(null, Ipv4EndpointWithoutTrunk);
-                }
-                else if(SipEndpointWithoutTrunk != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SipEndpointWithoutTrunk>(null, SipEndpointWithoutTrunk);
-                }
-                else if(TnEndpointWithoutTrunk != null)
-                {
-                    writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnEndpointWithoutTrunk>(null, TnEndpointWithoutTrunk);
-                }
-            }
         }
     }
 }

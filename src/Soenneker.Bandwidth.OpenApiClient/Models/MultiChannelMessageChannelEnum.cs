@@ -9,15 +9,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "RBM")]
         #pragma warning disable CS1591
-        RBM,
+        Rbm,
         #pragma warning restore CS1591
         [EnumMember(Value = "SMS")]
         #pragma warning disable CS1591
-        SMS,
+        Sms,
         #pragma warning restore CS1591
         [EnumMember(Value = "MMS")]
         #pragma warning disable CS1591
-        MMS,
+        Mms,
         #pragma warning restore CS1591
     }
 }

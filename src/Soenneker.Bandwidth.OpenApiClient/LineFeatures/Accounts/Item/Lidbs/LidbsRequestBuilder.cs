@@ -35,7 +35,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Lidbs
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public LidbsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/line-features/accounts/{accountId}/lidbs?phoneNumber={phoneNumber}{&lastModifiedAfter*,modifiedDateFrom*,modifiedDateTo*}", pathParameters)
+        public LidbsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/line-features/accounts/{accountId}/lidbs{?lastModifiedAfter*,modifiedDateFrom*,modifiedDateTo*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Lidbs
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public LidbsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/line-features/accounts/{accountId}/lidbs?phoneNumber={phoneNumber}{&lastModifiedAfter*,modifiedDateFrom*,modifiedDateTo*}", rawUrl)
+        public LidbsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/line-features/accounts/{accountId}/lidbs{?lastModifiedAfter*,modifiedDateFrom*,modifiedDateTo*}", rawUrl)
         {
         }
         /// <summary>
@@ -108,7 +108,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Lidbs
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Lidbs.LidbsRequestBuilder.LidbsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/line-features/accounts/{accountId}/lidbs?phoneNumber={phoneNumber}{&lastModifiedAfter*,modifiedDateFrom*,modifiedDateTo*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -129,7 +129,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Lidbs
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/line-features/accounts/{accountId}/lidbs", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

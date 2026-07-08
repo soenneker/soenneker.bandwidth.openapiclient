@@ -9,95 +9,95 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "GOVN")]
         #pragma warning disable CS1591
-        GOVN,
+        Govn,
         #pragma warning restore CS1591
         [EnumMember(Value = "SATE")]
         #pragma warning disable CS1591
-        SATE,
+        Sate,
         #pragma warning restore CS1591
         [EnumMember(Value = "ACCS")]
         #pragma warning disable CS1591
-        ACCS,
+        Accs,
         #pragma warning restore CS1591
         [EnumMember(Value = "SURV")]
         #pragma warning disable CS1591
-        SURV,
+        Surv,
         #pragma warning restore CS1591
         [EnumMember(Value = "POLI")]
         #pragma warning disable CS1591
-        POLI,
+        Poli,
         #pragma warning restore CS1591
         [EnumMember(Value = "FUND")]
         #pragma warning disable CS1591
-        FUND,
+        Fund,
         #pragma warning restore CS1591
         [EnumMember(Value = "DEBC")]
         #pragma warning disable CS1591
-        DEBC,
+        Debc,
         #pragma warning restore CS1591
         [EnumMember(Value = "APPR")]
         #pragma warning disable CS1591
-        APPR,
+        Appr,
         #pragma warning restore CS1591
         [EnumMember(Value = "INFO")]
         #pragma warning disable CS1591
-        INFO,
+        Info,
         #pragma warning restore CS1591
         [EnumMember(Value = "CUSE")]
         #pragma warning disable CS1591
-        CUSE,
+        Cuse,
         #pragma warning restore CS1591
         [EnumMember(Value = "APPS")]
         #pragma warning disable CS1591
-        APPS,
+        Apps,
         #pragma warning restore CS1591
         [EnumMember(Value = "BILL")]
         #pragma warning disable CS1591
-        BILL,
+        Bill,
         #pragma warning restore CS1591
         [EnumMember(Value = "EMER")]
         #pragma warning disable CS1591
-        EMER,
+        Emer,
         #pragma warning restore CS1591
         [EnumMember(Value = "ATTO")]
         #pragma warning disable CS1591
-        ATTO,
+        Atto,
         #pragma warning restore CS1591
         [EnumMember(Value = "FSER")]
         #pragma warning disable CS1591
-        FSER,
+        Fser,
         #pragma warning restore CS1591
         [EnumMember(Value = "FRES")]
         #pragma warning disable CS1591
-        FRES,
+        Fres,
         #pragma warning restore CS1591
         [EnumMember(Value = "HOSP")]
         #pragma warning disable CS1591
-        HOSP,
+        Hosp,
         #pragma warning restore CS1591
         [EnumMember(Value = "INSU")]
         #pragma warning disable CS1591
-        INSU,
+        Insu,
         #pragma warning restore CS1591
         [EnumMember(Value = "PHAR")]
         #pragma warning disable CS1591
-        PHAR,
+        Phar,
         #pragma warning restore CS1591
         [EnumMember(Value = "REST")]
         #pragma warning disable CS1591
-        REST,
+        Rest,
         #pragma warning restore CS1591
         [EnumMember(Value = "COLL")]
         #pragma warning disable CS1591
-        COLL,
+        Coll,
         #pragma warning restore CS1591
         [EnumMember(Value = "NPF")]
         #pragma warning disable CS1591
-        NPF,
+        Npf,
         #pragma warning restore CS1591
         [EnumMember(Value = "MUL")]
         #pragma warning disable CS1591
-        MUL,
+        Mul,
         #pragma warning restore CS1591
     }
 }

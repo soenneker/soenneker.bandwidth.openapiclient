@@ -57,7 +57,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string CityName { get; set; }
 #endif
         /// <summary>This option is only available to certain Bandwidth customers who are authorized to change the privacy settings on a per DID basis. Please check with your account manager if you need that option enabled. The possible values are P_ASSERTED_ID, REMOTE_PARTY_ID or DISABLED.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Did_cliPrivacy? CliPrivacy { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.DidCliPrivacy? CliPrivacy { get; set; }
         /// <summary>The country code for the DID in its ISO 3166-1 alpha-3 format (e.g. &apos;GBR&apos; for United Kingdom, &apos;USA&apos; for United States of America, &apos;BEL&apos; for Belgium, etc.).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -115,7 +115,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>This is an ID that you get when creating a regulation address. The DIDs can be linked to a regulation address.</summary>
         public int? RegulationAddressId { get; set; }
         /// <summary>Indicates the ringback method that is applied to the DID.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Did_ringback? Ringback { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.DidRingback? Ringback { get; set; }
         /// <summary>The SMS link group that is linked to the DID.</summary>
         public int? SmsLinkGroupId { get; set; }
         /// <summary>Indicates whether you have enabled the outbound SMS service for the DID.</summary>
@@ -125,13 +125,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The trunk that the DID belongs to (e.g. a Belgian DID can belong to a &apos;zone A&apos; or “zone WORLDWIDE” trunk).</summary>
         public int? TrunkId { get; set; }
         /// <summary>The type of the DID.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Did_type? Type { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.DidType? Type { get; set; }
         /// <summary>The voice URI that is linked to the DID.</summary>
         public int? VoiceUriId { get; set; }
         /// <summary>Indicates whether you have enabled the VoxoutInternational service for the DID.</summary>
         public bool? VoxoutInternationalEnabled { get; set; }
         /// <summary>Indicates whether you have enabled the VoxoutNational service for the DID.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Did_voxoutNational? VoxoutNational { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.DidVoxoutNational? VoxoutNational { get; set; }
         /// <summary>Indicates whether you have enabled the WebRTC service for the DID.</summary>
         public bool? WebRtc { get; set; }
         /// <summary>
@@ -168,7 +168,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "capacityGroupId", n => { CapacityGroupId = n.GetIntValue(); } },
                 { "channels", n => { Channels = n.GetIntValue(); } },
                 { "cityName", n => { CityName = n.GetStringValue(); } },
-                { "cliPrivacy", n => { CliPrivacy = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Did_cliPrivacy>(); } },
+                { "cliPrivacy", n => { CliPrivacy = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DidCliPrivacy>(); } },
                 { "countryCodeA3", n => { CountryCodeA3 = n.GetStringValue(); } },
                 { "delivery", n => { Delivery = n.GetStringValue(); } },
                 { "didGroupId", n => { DidGroupId = n.GetIntValue(); } },
@@ -179,15 +179,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "orderReference", n => { OrderReference = n.GetStringValue(); } },
                 { "otherOptions", n => { OtherOptions = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Peer>(global::Soenneker.Bandwidth.OpenApiClient.Models.Peer.CreateFromDiscriminatorValue); } },
                 { "regulationAddressId", n => { RegulationAddressId = n.GetIntValue(); } },
-                { "ringback", n => { Ringback = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Did_ringback>(); } },
+                { "ringback", n => { Ringback = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DidRingback>(); } },
                 { "smsLinkGroupId", n => { SmsLinkGroupId = n.GetIntValue(); } },
                 { "smsOutbound", n => { SmsOutbound = n.GetBoolValue(); } },
                 { "srvLookup", n => { SrvLookup = n.GetBoolValue(); } },
                 { "trunkId", n => { TrunkId = n.GetIntValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Did_type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DidType>(); } },
                 { "voiceUriId", n => { VoiceUriId = n.GetIntValue(); } },
                 { "voxoutInternationalEnabled", n => { VoxoutInternationalEnabled = n.GetBoolValue(); } },
-                { "voxoutNational", n => { VoxoutNational = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Did_voxoutNational>(); } },
+                { "voxoutNational", n => { VoxoutNational = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DidVoxoutNational>(); } },
                 { "webRtc", n => { WebRtc = n.GetBoolValue(); } },
             };
         }
@@ -207,7 +207,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteIntValue("capacityGroupId", CapacityGroupId);
             writer.WriteIntValue("channels", Channels);
             writer.WriteStringValue("cityName", CityName);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Did_cliPrivacy>("cliPrivacy", CliPrivacy);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DidCliPrivacy>("cliPrivacy", CliPrivacy);
             writer.WriteStringValue("countryCodeA3", CountryCodeA3);
             writer.WriteStringValue("delivery", Delivery);
             writer.WriteIntValue("didGroupId", DidGroupId);
@@ -218,15 +218,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("orderReference", OrderReference);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Peer>("otherOptions", OtherOptions);
             writer.WriteIntValue("regulationAddressId", RegulationAddressId);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Did_ringback>("ringback", Ringback);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DidRingback>("ringback", Ringback);
             writer.WriteIntValue("smsLinkGroupId", SmsLinkGroupId);
             writer.WriteBoolValue("smsOutbound", SmsOutbound);
             writer.WriteBoolValue("srvLookup", SrvLookup);
             writer.WriteIntValue("trunkId", TrunkId);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Did_type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DidType>("type", Type);
             writer.WriteIntValue("voiceUriId", VoiceUriId);
             writer.WriteBoolValue("voxoutInternationalEnabled", VoxoutInternationalEnabled);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Did_voxoutNational>("voxoutNational", VoxoutNational);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DidVoxoutNational>("voxoutNational", VoxoutNational);
             writer.WriteBoolValue("webRtc", WebRtc);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -10,7 +10,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "WEBRTC")]
         #pragma warning disable CS1591
-        WEBRTC,
+        Webrtc,
         #pragma warning restore CS1591
     }
 }

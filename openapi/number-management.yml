@@ -760,6 +760,696 @@ paths:
           $ref: '#/components/responses/tooManyRequestsError'
         '500':
           $ref: '#/components/responses/internalServerError'
+  /accounts/{accountId}/numbersAssignment:
+    get:
+      tags:
+        - Numbers Assignment
+      description: >-
+        Retrieve a list of the TelephoneNumbersAssignment orders that are
+        associated with the account. A maximum of 1,000 orders can be retrieved
+        per request. If no date range or specific query parameter is provided,
+        the order results will be limited to the last two years.
+      summary: List Telephone Numbers Assignment Orders
+      operationId: readTelephoneNumbersAssignmentOrders
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - name: status
+          description: >-
+            The status of the TelephoneNumbersAssignment order being searched
+            for.  COMPLETE, PARTIAL, and FAILED are 'terminal' states indicating
+            that the order has finished all processing.
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/numbersAssignmentOrderStatus'
+          example:
+            - PARTIAL
+        - name: tn
+          description: A Telephone Number (TN) that is referenced in the order
+          in: query
+          required: false
+          schema:
+            type: string
+          example: '+19199918388'
+        - name: customerOrderId
+          description: >-
+            The Customer Order ID is an ID assigned by the account owner to
+            provide a reference number for the TelephoneNumbersAssignment order.
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ABCCorp12345
+        - name: createdDateFrom
+          description: >-
+            Checks the order's creation date against this value. Orders that
+            have a creation date after this date will be included. Format is
+            yyyy-MM-dd
+          in: query
+          required: false
+          schema:
+            type: string
+          example: '2013-10-22'
+        - name: createdDateTo
+          description: >-
+            Checks the order's creation date against this value. Orders that
+            have a creation date before this date will be included. Format is
+            yyyy-MM-dd
+          in: query
+          required: false
+          schema:
+            type: string
+          example: '2013-10-25'
+        - name: orderIdFragment
+          description: >-
+            This search parameter represents the internal Bandwidth App API ID
+            that has been assigned to the TelephoneNumbersAssignment Order. 
+            This parameter is the first few characters of the internal ID - the
+            entire ID does not need to be specified.
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ed1c0bed-e2
+        - name: action
+          description: >-
+            Whether or not the results should be restricted to ASSIGNED or
+            UNASSIGNED assignment actions.
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/numbersAssignmentFilterAction'
+          example: ASSIGNED
+        - name: modifiedDateFrom
+          description: >-
+            For Date-based searches, the starting date of a date range
+            (inclusive) that will be used to find TelephoneNumbersAssignment
+            Orders that were modified within the date range. It is in the form
+            yyyy-MM-dd.
+          in: query
+          required: false
+          schema:
+            type: string
+          example: '2013-10-22'
+        - name: modifiedDateTo
+          description: >-
+            For Date-based searches, the ending date of a date range (inclusive)
+            that will be used to find TelephoneNumbersAssignment Orders that
+            were modified within the date range. It is in the form yyyy-MM-dd.
+          in: query
+          required: false
+          schema:
+            type: string
+          example: '2013-10-25'
+      responses:
+        '200':
+          description: >-
+            The descriptive payload for the TelephoneNumbersAssignment Orders
+            query provides information about the TelephoneNumbersAssignment
+            Orders, including the data associated with the order, the state of
+            the order, and a list of the successfully uploaded Telephone
+            Numbers, and descriptions of any encountered errors.
+          content:
+            application/xml:
+              examples:
+                application/xml:
+                  description: application/xml
+                  value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<TelephoneNumbersAssignmentOrders>\n\t    <TotalCount>3</TotalCount>\n\t    <TelephoneNumbersAssignmentOrderSummary>\n\t\t        <!-- Account ID preserved for uniformity with global list -->\n\t\t        <accountId>1</accountId>\n\t\t        <TotalQuantity>4</TotalQuantity>\n\t\t        <userId>jbm</userId>\n\t\t        <OrderDate>2016-01-15T11:36:52.727Z</OrderDate>\n\t\t        <OrderType>NUMBERS_ASSIGNMENT_ORDER</OrderType>\n\t\t        <OrderStatus>COMPLETE</OrderStatus>\n\t\t        <Action>ASSIGN</Action>\n\t\t        <OrderId>65e03a35-6b97-48a5-8126-f47bad02df2a</OrderId>\n\t    </TelephoneNumbersAssignmentOrderSummary>\n\t    <TelephoneNumbersAssignmentOrderSummary>\n\t\t        <accountId>1</accountId>\n\t\t        <TotalQuantity>4</TotalQuantity>\n\t\t        <FailedQuantity>1</FailedQuantity>\n\t\t        <userId>jbm</userId>\n\t\t        <OrderDate>2016-01-15T11:36:26.633Z</OrderDate>\n\t\t        <OrderType>NUMBERS_ASSIGNMENT_ORDER</OrderType>\n\t\t        <OrderStatus>PARTIAL</OrderStatus>\n\t\t        <Action>ASSIGN</Action>\n\t\t        <OrderId>d8f5abc0-1a4c-4c36-b387-93fb5b430784</OrderId>\n\t    </TelephoneNumbersAssignmentOrderSummary>\n\t    <TelephoneNumbersAssignmentOrderSummary>\n\t\t        <accountId>1</accountId>\n\t\t        <CustomerOrderId>ICPA123ABC</CustomerOrderId>\n\t\t        <TotalQuantity>4</TotalQuantity>\n\t\t        <userId>jbm</userId>\n\t\t        <OrderDate>2016-01-15T12:36:26.633Z</OrderDate>\n\t\t       <OrderType>NUMBERS_ASSIGNMENT_ORDER</OrderType>\n\t\t        <OrderStatus>FAILED</OrderStatus>\n\t\t        <Action>ASSIGN</Action>\n\t\t        <OrderId>d8f5abc0-b387-4c36-48a5-f47bad02df2a</OrderId>\n\t    </TelephoneNumbersAssignmentOrderSummary>\n</TelephoneNumbersAssignmentOrders>"
+              schema:
+                $ref: >-
+                  #/components/schemas/telephoneNumbersAssignmentOrderHistoryResponse
+            application/json:
+              schema:
+                $ref: '#/components/schemas/numbersAssignmentOrderListResponse'
+              examples:
+                example:
+                  value:
+                    totalCount: 3
+                    orders:
+                      - accountId: 1
+                        totalQuantity: 4
+                        userId: jbm
+                        orderDate: '2016-01-15T11:36:52.727Z'
+                        orderType: NUMBERS_ASSIGNMENT_ORDER
+                        orderStatus: COMPLETE
+                        action: ASSIGN
+                        orderId: 65e03a35-6b97-48a5-8126-f47bad02df2a
+                      - accountId: 1
+                        totalQuantity: 4
+                        failedQuantity: 1
+                        userId: jbm
+                        orderDate: '2016-01-15T11:36:26.633Z'
+                        orderType: NUMBERS_ASSIGNMENT_ORDER
+                        orderStatus: PARTIAL
+                        action: ASSIGN
+                        orderId: d8f5abc0-1a4c-4c36-b387-93fb5b430784
+                      - accountId: 1
+                        customerOrderId: ICPA123ABC
+                        totalQuantity: 4
+                        userId: jbm
+                        orderDate: '2016-01-15T12:36:26.633Z'
+                        orderType: NUMBERS_ASSIGNMENT_ORDER
+                        orderStatus: FAILED
+                        action: ASSIGN
+                        orderId: d8f5abc0-b387-4c36-48a5-f47bad02df2a
+        '400':
+          description: >-
+            Bad Request <br> If any errors are found in the processing of the
+            query string a 400 will be returned.  Note that parameters that are
+            not recognized are not considered errors, and are just ignored.
+    post:
+      tags:
+        - Numbers Assignment
+      description: >-
+        Create a TelephoneNumbersAssignment order to register the assignment
+        status of a list of telephone numbers.
+      summary: Telephone Numbers Assignment Order
+      operationId: createTelephoneNumbersAssignmentOrder
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+      requestBody:
+        content:
+          application/xml:
+            examples:
+              example:
+                description: example
+                value: |
+                  <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                  <TelephoneNumbersAssignmentOrder>
+                      <CustomerOrderId>ICPA123ABC</CustomerOrderId>
+                      <Action>[ ASSIGN | UNASSIGN ]</Action>
+                      <TelephoneNumbers>
+                          <TelephoneNumber>+19199918388</TelephoneNumber>
+                          <TelephoneNumber>+14158714245</TelephoneNumber>
+                          <TelephoneNumber>+14352154439</TelephoneNumber>
+                          <TelephoneNumber>+14352154466</TelephoneNumber>
+                      </TelephoneNumbers>
+                  </TelephoneNumbersAssignmentOrder>
+            schema:
+              $ref: '#/components/schemas/telephoneNumbersAssignmentOrder'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/numbersAssignmentOrderRequest'
+            examples:
+              example:
+                value:
+                  customerOrderId: ICPA123ABC
+                  action: ASSIGN
+                  phoneNumbers:
+                    - '+19199918388'
+                    - '+14158714245'
+                    - '+14352154439'
+                    - '+14352154466'
+      responses:
+        '201':
+          description: Created <br>A 201 response indicates that an order has been created.
+          content:
+            application/xml:
+              examples:
+                example:
+                  description: example
+                  value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<TelephoneNumbersAssignmentOrderResponse>\n\t <OrderCreateDate>2016-01-15T11:36:52.727Z</OrderCreateDate>\n\t <AccountId>1</AccountId>\n\t <CreatedByUser>jbm</CreatedByUser>\n\t <OrderId>65e03a35-6b97-48a5-8126-f47bad02df2a</OrderId>\n\t <ProcessingStatus>PARTIAL</ProcessingStatus>\n\t <TotalQuantity>4</TotalQuantity>\n\t <FailedQuantity>1</FailedQuantity>\n\t <TelephoneNumbersAssignmentOrder>\n\t\t <CustomerOrderId>ICPA123ABC</CustomerOrderId>\n\t\t <Action>ASSIGN</Action>\n\t\t <TelephoneNumbers>\n\t\t\t <TelephoneNumber>+19199918388</TelephoneNumber>\n\t\t\t <TelephoneNumber>+14158714245</TelephoneNumber>\n\t\t\t <TelephoneNumber>+14352154439</TelephoneNumber>\n\t\t\t <TelephoneNumber>+14352154466</TelephoneNumber>\n\t\t </TelephoneNumbers>\n\t </TelephoneNumbersAssignmentOrder>\n\t <Errors>\n\t\t <Error>\n\t\t\t <Code>5076</Code>\n\t\t\t <Description>Number does not belong to this account.</Description>\n\t\t\t <TelephoneNumbers>\n\t\t\t\t <TelephoneNumber>+19199918388</TelephoneNumber>\n\t\t\t </TelephoneNumbers>\n\t\t </Error>\n\t </Errors>\n </TelephoneNumbersAssignmentOrderResponse>\n"
+              schema:
+                $ref: '#/components/schemas/telephoneNumbersAssignmentOrderResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/numbersAssignmentOrderResponse'
+              examples:
+                example:
+                  value:
+                    orderCreateDate: '2016-01-15T11:36:52.727Z'
+                    accountId: 1
+                    createdByUser: jbm
+                    orderId: 65e03a35-6b97-48a5-8126-f47bad02df2a
+                    processingStatus: PARTIAL
+                    totalQuantity: 4
+                    failedQuantity: 1
+                    customerOrderId: ICPA123ABC
+                    action: ASSIGN
+                    phoneNumbers:
+                      - '+19199918388'
+                      - '+14158714245'
+                      - '+14352154439'
+                      - '+14352154466'
+                    errors:
+                      - code: 5076
+                        description: Number does not belong to this account.
+                        phoneNumbers:
+                          - '+19199918388'
+        '400':
+          description: >-
+            Bad Request <br> A 400 response Indicates that the order could not
+            be created.
+
+            Error text and an error code will be provided in the ErrorList
+            element.
+          content:
+            application/xml:
+              examples:
+                example:
+                  description: example
+                  value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<TelephoneNumbersAssignmentOrderResponse>\n\t <ResponseStatus>\n\t\t <ErrorCode>13554</ErrorCode>\n\t\t <Description>Assignment action is invalid. Valid values ASSIGN, UNASSIGN</Description>\n\t </ResponseStatus>\n </TelephoneNumbersAssignmentOrderResponse>\n"
+              schema:
+                $ref: >-
+                  #/components/schemas/telephoneNumbersAssignmentOrderErrorResponse
+            application/json:
+              schema:
+                $ref: '#/components/schemas/numbersAssignmentOrderErrorResponse'
+              examples:
+                example:
+                  value:
+                    errorCode: 13554
+                    description: >-
+                      Assignment action is invalid. Valid values ASSIGN,
+                      UNASSIGN
+  /accounts/{accountId}/numbersAssignment/{orderId}:
+    get:
+      tags:
+        - Numbers Assignment
+      description: >-
+        Retrieve information about a TelephoneNumbersAssignment order with
+        specified ID.
+      summary: Fetching Telephone Numbers Assignment Order status
+      operationId: readTelephoneNumbersAssignmentOrder
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - name: orderId
+          description: Telephone Numbers Assignment order id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 59e69657-44d2-4e7e-90f8-777988be4aef
+      responses:
+        '200':
+          description: >-
+            The descriptive payload for the TelephoneNumbersAssignment query
+            provides a broad range of information about the
+            TelephoneNumbersAssignment order identified in the URL.
+          content:
+            application/xml:
+              examples:
+                example:
+                  description: example
+                  value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<TelephoneNumbersAssignmentOrderResponse>\n\t <OrderCreateDate>2016-01-15T11:36:52.727Z</OrderCreateDate>\n\t <AccountId>1</AccountId>\n\t <CreatedByUser>jbm</CreatedByUser>\n\t <OrderId>65e03a35-6b97-48a5-8126-f47bad02df2a</OrderId>\n\t <ProcessingStatus>PARTIAL</ProcessingStatus>\n\t <TotalQuantity>4</TotalQuantity>\n\t <FailedQuantity>1</FailedQuantity>\n\t <TelephoneNumbersAssignmentOrder>\n\t\t <CustomerOrderId>ICPA123ABC</CustomerOrderId>\n\t\t <Action>ASSIGN</Action>\n\t\t <TelephoneNumbers>\n\t\t\t <TelephoneNumber>+19199918388</TelephoneNumber>\n\t\t\t <TelephoneNumber>+14158714245</TelephoneNumber>\n\t\t\t <TelephoneNumber>+14352154439</TelephoneNumber>\n\t\t\t <TelephoneNumber>+14352154466</TelephoneNumber>\n\t\t </TelephoneNumbers>\n\t </TelephoneNumbersAssignmentOrder>\n\t <Errors>\n\t\t <Error>\n\t\t\t <Code>5076</Code>\n\t\t\t <Description>Number does not belong to this account.</Description>\n\t\t\t <TelephoneNumbers>\n\t\t\t\t <TelephoneNumber>+19199918388</TelephoneNumber>\n\t\t\t </TelephoneNumbers>\n\t\t </Error>\n\t </Errors>\n </TelephoneNumbersAssignmentOrderResponse>\n"
+              schema:
+                $ref: '#/components/schemas/telephoneNumbersAssignmentOrderResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/numbersAssignmentOrderResponse'
+              examples:
+                example:
+                  value:
+                    orderCreateDate: '2016-01-15T11:36:52.727Z'
+                    accountId: 1
+                    createdByUser: jbm
+                    orderId: 65e03a35-6b97-48a5-8126-f47bad02df2a
+                    processingStatus: PARTIAL
+                    totalQuantity: 4
+                    failedQuantity: 1
+                    customerOrderId: ICPA123ABC
+                    action: ASSIGN
+                    phoneNumbers:
+                      - '+19199918388'
+                      - '+14158714245'
+                      - '+14352154439'
+                      - '+14352154466'
+                    errors:
+                      - code: 5076
+                        description: Number does not belong to this account.
+                        phoneNumbers:
+                          - '+19199918388'
+        '404':
+          description: NOT FOUND - the order id does not exist in the system
+          content:
+            application/xml:
+              examples:
+                example:
+                  description: example
+                  value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<TelephoneNumbersAssignmentOrderResponse>\n\t <ResponseStatus>\n\t\t <Description>The resource does not exist</Description>\n\t </ResponseStatus>\n </TelephoneNumbersAssignmentOrderResponse>\n"
+              schema:
+                $ref: >-
+                  #/components/schemas/telephoneNumbersAssignmentOrderErrorResponse
+            application/json:
+              schema:
+                $ref: '#/components/schemas/numbersAssignmentOrderErrorResponse'
+              examples:
+                example:
+                  value:
+                    description: The resource does not exist
+  /accounts/{accountId}/products/tollfree/settings:
+    get:
+      tags:
+        - Toll Free Settings
+      summary: Retrieve toll-free product settings
+      description: Retrieve existing toll-free settings on account.
+      operationId: getAccountTollFreeProductSettings
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tollFreeSettingsResponse'
+              example:
+                tollFreeSettings:
+                  respOrgException: true
+                  respOrgIds:
+                    - SFD01
+                    - WER01
+                    - WER02
+                    - XMD01
+                    - PIU02
+                  targetBandwidthRespOrgId: JYT50
+                  tollFreeTemplateAssignmentsSearch: true
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/tollFreeSettingsXmlResponse'
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <TollFreeSettingsResponse>
+                        <TollFreeSettings>
+                            <RespOrgException>true</RespOrgException>
+                            <RespOrgIdList>
+                                <RespOrgId>SFD01</RespOrgId>
+                                <RespOrgId>WER01</RespOrgId>
+                            </RespOrgIdList>
+                            <TargetBandwidthRespOrgId>JYT50</TargetBandwidthRespOrgId>
+                            <TollFreeTemplateAssignmentsSearch>true</TollFreeTemplateAssignmentsSearch>
+                        </TollFreeSettings>
+                    </TollFreeSettingsResponse>
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/numberManagementErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /accounts/{accountId}/sites/{siteId}/sippeers/{sippeerId}/tns/{tn}:
+    put:
+      tags:
+        - Location Phone Numbers
+      summary: Update SIP peer TN settings
+      description: >-
+        Update settings for a TN allocated to their account.
+
+
+        The following request body parameters are only allowed for numbers from
+        specific region/country:
+
+        | Number Region | Request Body Parameter |
+
+        |:--------------|:------------------------|
+
+        | NANP | tnAttributes |
+
+        | NANP | callingNameDisplay |
+      operationId: updateSipPeerTnSettings
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/siteIdPathParam'
+        - $ref: '#/components/parameters/sipPeerIdPathParam'
+        - name: tn
+          description: A E.164 telephone number.
+          in: path
+          required: true
+          schema:
+            type: string
+          example: '+15209072451'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateSipPeerTnRequest'
+            example:
+              phoneNumber: '+12052160156'
+              rpidFormat: 10digit
+              rewriteUser: 'false'
+              callForward: '+17042661720'
+              callingNameDisplay: 'true'
+              tnAttributes:
+                - Protected
+                - External
+              messagingSettings:
+                smsEnabled: true
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/sipPeerTelephoneNumberXml'
+            examples:
+              example:
+                value: |-
+                  <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                  <SipPeerTelephoneNumber>
+                     <FullNumber>+12052160156</FullNumber>
+                     <RPIDFormat>10digit</RPIDFormat>
+                     <RewriteUser>false</RewriteUser>
+                     <CallForward>+17042661720</CallForward>
+                     <CallingNameDisplay>true</CallingNameDisplay>
+                     <TnAttributes>
+                        <TnAttribute>Protected</TnAttribute>
+                     </TnAttributes>
+                     <MessagingSettings>
+                        <SmsEnabled>true</SmsEnabled>
+                     </MessagingSettings>
+                  </SipPeerTelephoneNumber>
+      responses:
+        '200':
+          description: OK — request successful, may include warnings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateSipPeerTnResponse'
+              example:
+                sipPeerTelephoneNumber:
+                  warnings:
+                    - phoneNumber: '+12174101601'
+                      description: SMS is already Enabled or number is in processing.
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/updateSipPeerTnXmlResponse'
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <SipPeerTelephoneNumberResponse>
+                       <SipPeerTelephoneNumber>
+                          <Warnings>
+                             <Warning>
+                                <TelephoneNumber>+12174101601</TelephoneNumber>
+                                <Description>SMS is already Enabled or number is in processing.</Description>
+                             </Warning>
+                          </Warnings>
+                       </SipPeerTelephoneNumber>
+                    </SipPeerTelephoneNumberResponse>
+        '400':
+          description: >-
+            Bad Request. Possible error codes:
+
+            - 13513: Call Forwarding number is not a valid 10-digit telephone
+            number
+
+            - 13514: Number Format is invalid for telephone number
+
+            - 13575: CallingNameDisplay is invalid. Valid values are: 'true',
+            'false'
+
+            - 13576: Account has no CallForwarding or CNAM product feature
+
+            - 13536: Telephone number does not exist on the specified Account,
+            Site, and SIP Peer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/numberManagementErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '409':
+          description: >-
+            Conflict — due to asynchronous nature of TN settings, a potential
+            conflict was identified. This typically occurs when updating TN
+            properties without changing messaging settings. Use `POST
+            /accounts/{accountId}/tnOptions` for property-only updates.
+  /accounts/{accountId}/sites/{siteId}/sippeers/{sippeerId}/associatedOutboundNumbers:
+    get:
+      tags:
+        - Location Phone Numbers
+      summary: List associated outbound numbers for a location
+      description: >-
+        Retrieve the list of associated outbound numbers for a SIP peer
+        location. Returns an empty list if none exist.
+      operationId: listSipPeerAssociatedOutboundNumbers
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/siteIdPathParam'
+        - $ref: '#/components/parameters/sipPeerIdPathParam'
+        - $ref: '#/components/parameters/pageSizeQueryParam'
+        - $ref: '#/components/parameters/pageNumberQueryParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/associatedOutboundNumbersResponse'
+              example:
+                totalCount: 2
+                successCount: 2
+                associatedOutboundNumbers:
+                  - id: 12345
+                    number: '+18005551234'
+                  - id: 12346
+                    number: '+18005551235'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/associatedOutboundNumbersXmlResponse'
+              examples:
+                example:
+                  value: |-
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <AssociatedOutboundNumbersResponse>
+                      <TotalCount>2</TotalCount>
+                      <SuccessCount>2</SuccessCount>
+                      <AssociatedOutboundNumbers>
+                        <AssociatedOutboundNumber>
+                          <id>12345</id>
+                          <number>+18005551234</number>
+                        </AssociatedOutboundNumber>
+                      </AssociatedOutboundNumbers>
+                    </AssociatedOutboundNumbersResponse>
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/numberManagementErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '429':
+          description: Too Many Requests
+        '500':
+          description: Internal Server Error
+    post:
+      tags:
+        - Location Phone Numbers
+      summary: Associate outbound numbers with a location
+      description: >-
+        Submit a list of outbound numbers to associate with this SIP peer
+        location. Maximum 250 numbers per request.
+      operationId: addSipPeerAssociatedOutboundNumbers
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/siteIdPathParam'
+        - $ref: '#/components/parameters/sipPeerIdPathParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/associatedOutboundNumbersRequest'
+            example:
+              associatedOutboundNumbers:
+                - number: '+18005551234'
+                - number: '+18005551235'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/associatedOutboundNumbersXmlRequest'
+            examples:
+              example:
+                value: |-
+                  <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                  <AssociatedOutboundNumbers>
+                    <AssociatedOutboundNumber>
+                      <number>+18005551234</number>
+                    </AssociatedOutboundNumber>
+                    <AssociatedOutboundNumber>
+                      <number>+18005551235</number>
+                    </AssociatedOutboundNumber>
+                  </AssociatedOutboundNumbers>
+      responses:
+        '200':
+          description: OK — numbers processed; check response for per-number errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/associatedOutboundNumbersResponse'
+              example:
+                totalCount: 2
+                successCount: 1
+                associatedOutboundNumbers:
+                  - id: 12345
+                    number: '+18005551234'
+                errors:
+                  - number: '+18005551235'
+                    errorReason: >-
+                      Number is already associated with location test-location
+                      [ID: 500017].
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/numberManagementErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '429':
+          description: Too Many Requests
+        '500':
+          description: Internal Server Error
+  /accounts/{accountId}/sites/{siteId}/sippeers/{sippeerId}/associatedOutboundNumbers/{associatedOutboundNumberId}:
+    delete:
+      tags:
+        - Location Phone Numbers
+      summary: Remove an associated outbound number from a location
+      description: Delete an associated outbound number from a SIP peer location by its ID.
+      operationId: deleteSipPeerAssociatedOutboundNumber
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/siteIdPathParam'
+        - $ref: '#/components/parameters/sipPeerIdPathParam'
+        - $ref: '#/components/parameters/associatedOutboundNumberIdPathParam'
+      responses:
+        '200':
+          description: OK — the outbound number has been successfully deleted.
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/numberManagementErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '429':
+          description: Too Many Requests
+        '500':
+          description: Internal Server Error
 components:
   securitySchemes:
     Basic:
@@ -785,6 +1475,368 @@ components:
 
         Example: `Authorization: Bearer <token>`
   schemas:
+    telephoneNumber:
+      type: object
+      properties:
+        TelephoneNumber:
+          description: Telephone Number in E.164 format.
+          type: string
+    telephoneNumbersAssignmentOrder:
+      type: object
+      properties:
+        TelephoneNumbersAssignmentOrder:
+          $ref: '#/components/schemas/telephoneNumbersAssignmentOrderPayload'
+    telephoneNumbersAssignmentOrderPayload:
+      type: object
+      title: TelephoneNumbersAssignmentOrder
+      properties:
+        CustomerOrderId:
+          type: string
+          description: >-
+            Optional customer-defined reference ID for this order. Only
+            alphanumeric values, dashes and spaces are allowed. Not unique —
+            Bandwidth applies no uniqueness constraint, so multiple orders may
+            share the same value. Each order receives its own unique
+            Bandwidth-assigned `orderId`.
+        TelephoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/telephoneNumber'
+        Action:
+          $ref: '#/components/schemas/numbersAssignmentAction'
+    telephoneNumbersAssignmentOrderHistoryResponse:
+      type: object
+      properties:
+        TelephoneNumbersAssignmentOrders:
+          type: object
+          properties:
+            TotalCount:
+              type: integer
+            TelephoneNumbersAssignmentOrderSummary:
+              type: array
+              items:
+                $ref: '#/components/schemas/telephoneNumbersAssignmentOrderSummary'
+    telephoneNumbersAssignmentOrderResponse:
+      type: object
+      properties:
+        AccountId:
+          type: integer
+          format: int32
+        TotalQuantity:
+          type: integer
+          format: int32
+        FailedQuantity:
+          type: integer
+          format: int32
+        CreatedByUser:
+          type: string
+        OrderCreateDate:
+          type: string
+        OrderStatus:
+          type: string
+        OrderId:
+          type: string
+        TelephoneNumbersAssignmentOrder:
+          $ref: '#/components/schemas/telephoneNumbersAssignmentOrderPayload'
+        Errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/telephoneNumbersAssignmentError'
+    telephoneNumbersAssignmentError:
+      type: object
+      title: Error
+      properties:
+        Code:
+          type: integer
+        Description:
+          type: string
+        TelephoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/telephoneNumber'
+    telephoneNumbersAssignmentOrderSummary:
+      type: object
+      properties:
+        TelephoneNumbersAssignmentOrderSummary:
+          type: object
+          properties:
+            accountId:
+              type: integer
+              format: int32
+            TotalQuantity:
+              type: integer
+              format: int32
+            FailedQuantity:
+              type: integer
+              format: int32
+            userId:
+              type: string
+            OrderDate:
+              type: string
+            OrderType:
+              type: string
+            OrderStatus:
+              type: string
+            Action:
+              type: string
+            OrderId:
+              type: string
+    telephoneNumbersAssignmentOrderErrorResponse:
+      type: object
+      properties:
+        TelephoneNumbersAssignmentOrderResponse:
+          $ref: '#/components/schemas/responseStatus'
+    responseStatus:
+      type: object
+      properties:
+        ErrorCode:
+          type: integer
+        Description:
+          type: string
+    numbersAssignmentOrderRequest:
+      title: NumbersAssignmentOrderRequest
+      type: object
+      required:
+        - action
+        - phoneNumbers
+      properties:
+        customerOrderId:
+          type: string
+          description: >-
+            Optional customer-defined reference ID for this order. Only
+            alphanumeric values, dashes and spaces are allowed. Not unique —
+            Bandwidth applies no uniqueness constraint, so multiple orders may
+            share the same value. Each order receives its own unique
+            Bandwidth-assigned `orderId`.
+          example: ICPA123ABC
+        action:
+          description: The assignment action to perform on the provided phone numbers.
+          example: ASSIGN
+          allOf:
+            - $ref: '#/components/schemas/numbersAssignmentAction'
+        phoneNumbers:
+          type: array
+          description: List of phone numbers in E.164 format to assign or unassign.
+          minItems: 1
+          items:
+            type: string
+          example:
+            - '+19199918388'
+            - '+14158714245'
+            - '+14352154439'
+            - '+14352154466'
+    numbersAssignmentOrderResponse:
+      title: NumbersAssignmentOrderResponse
+      type: object
+      properties:
+        orderCreateDate:
+          type: string
+          nullable: true
+          description: The date and time the order was created.
+          example: '2016-01-15T11:36:52.727Z'
+        accountId:
+          type: integer
+          format: int32
+          nullable: true
+          description: The account ID associated with the order.
+          example: 1
+        createdByUser:
+          type: string
+          nullable: true
+          description: The user who created the order.
+          example: jbm
+        orderId:
+          type: string
+          nullable: true
+          description: The unique Bandwidth-assigned identifier for the order.
+          example: 65e03a35-6b97-48a5-8126-f47bad02df2a
+        processingStatus:
+          nullable: true
+          description: The current processing status of the order.
+          example: PARTIAL
+          allOf:
+            - $ref: '#/components/schemas/numbersAssignmentProcessingStatus'
+        totalQuantity:
+          type: integer
+          format: int32
+          nullable: true
+          description: The total number of phone numbers in the order.
+          example: 4
+        failedQuantity:
+          type: integer
+          format: int32
+          nullable: true
+          description: The number of phone numbers that failed to be processed.
+          example: 1
+        customerOrderId:
+          type: string
+          nullable: true
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation.
+          example: ICPA123ABC
+        action:
+          nullable: true
+          description: The assignment action performed.
+          example: ASSIGN
+          allOf:
+            - $ref: '#/components/schemas/numbersAssignmentAction'
+        phoneNumbers:
+          type: array
+          nullable: true
+          description: List of phone numbers included in the order, in E.164 format.
+          items:
+            type: string
+          example:
+            - '+19199918388'
+            - '+14158714245'
+            - '+14352154439'
+            - '+14352154466'
+        errors:
+          type: array
+          nullable: true
+          description: List of errors encountered during order processing.
+          items:
+            $ref: '#/components/schemas/numbersAssignmentOrderError'
+    numbersAssignmentOrderError:
+      title: NumbersAssignmentOrderError
+      type: object
+      properties:
+        code:
+          type: integer
+          nullable: true
+          description: Error code.
+          example: 5076
+        description:
+          type: string
+          nullable: true
+          description: Human-readable error description.
+          example: Number does not belong to this account.
+        phoneNumbers:
+          type: array
+          nullable: true
+          description: The phone numbers associated with this error.
+          items:
+            type: string
+          example:
+            - '+19199918388'
+    numbersAssignmentOrderListResponse:
+      title: NumbersAssignmentOrderListResponse
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          nullable: true
+          description: The total number of orders matching the query.
+          example: 3
+        orders:
+          type: array
+          nullable: true
+          description: List of order summaries.
+          items:
+            $ref: '#/components/schemas/numbersAssignmentOrderSummary'
+    numbersAssignmentOrderSummary:
+      title: NumbersAssignmentOrderSummary
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+          nullable: true
+          description: The account ID associated with the order.
+          example: 1
+        totalQuantity:
+          type: integer
+          format: int32
+          nullable: true
+          description: The total number of phone numbers in the order.
+          example: 4
+        failedQuantity:
+          type: integer
+          format: int32
+          nullable: true
+          description: The number of phone numbers that failed to be processed.
+          example: 1
+        userId:
+          type: string
+          nullable: true
+          description: The user ID who created the order.
+          example: jbm
+        orderDate:
+          type: string
+          nullable: true
+          description: The date and time the order was created.
+          example: '2016-01-15T11:36:52.727Z'
+        orderType:
+          type: string
+          nullable: true
+          description: The type of order.
+          example: NUMBERS_ASSIGNMENT_ORDER
+        orderStatus:
+          nullable: true
+          description: The current status of the order.
+          example: COMPLETE
+          allOf:
+            - $ref: '#/components/schemas/numbersAssignmentOrderStatus'
+        action:
+          nullable: true
+          description: The assignment action performed.
+          example: ASSIGN
+          allOf:
+            - $ref: '#/components/schemas/numbersAssignmentAction'
+        orderId:
+          type: string
+          nullable: true
+          description: The unique Bandwidth-assigned identifier for the order.
+          example: 65e03a35-6b97-48a5-8126-f47bad02df2a
+        customerOrderId:
+          type: string
+          nullable: true
+          description: >-
+            The customer-defined reference ID for this order, if one was
+            provided at creation.
+          example: ICPA123ABC
+    numbersAssignmentOrderErrorResponse:
+      title: NumbersAssignmentOrderErrorResponse
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          nullable: true
+          description: Numeric error code identifying the specific failure.
+          example: 13554
+        description:
+          type: string
+          nullable: true
+          description: Human-readable description of the error.
+          example: Assignment action is invalid. Valid values ASSIGN, UNASSIGN
+    numbersAssignmentAction:
+      type: string
+      description: Assignment action performed on phone numbers.
+      enum:
+        - ASSIGN
+        - UNASSIGN
+    numbersAssignmentFilterAction:
+      type: string
+      description: Filter for the assignment action of completed orders.
+      enum:
+        - ASSIGNED
+        - UNASSIGNED
+    numbersAssignmentOrderStatus:
+      type: string
+      description: Terminal status of a numbers assignment order.
+      enum:
+        - COMPLETE
+        - PARTIAL
+        - FAILED
+    numbersAssignmentProcessingStatus:
+      type: string
+      description: Processing status of a numbers assignment order.
+      enum:
+        - RECEIVED
+        - COMPLETE
+        - PARTIAL
+        - FAILED
     getPhoneNumbersTagsResponse:
       title: List phone number tags and associated phone numbers
       type: object
@@ -3268,6 +4320,170 @@ components:
         eq:
           type: string
       type: object
+    tollFreeSettingsResponse:
+      type: object
+      properties:
+        tollFreeSettings:
+          $ref: '#/components/schemas/tollFreeSettings'
+    tollFreeSettings:
+      type: object
+      properties:
+        respOrgException:
+          type: boolean
+          description: Whether this account has a RespOrg exception configured.
+        respOrgIds:
+          type: array
+          description: List of RespOrg IDs the customer is responsible for.
+          items:
+            type: string
+        targetBandwidthRespOrgId:
+          type: string
+          description: The target Bandwidth RespOrg ID.
+        tollFreeTemplateAssignmentsSearch:
+          type: boolean
+          description: Whether toll-free template assignment search is enabled.
+    tollFreeSettingsXmlResponse:
+      type: object
+      properties:
+        TollFreeSettingsResponse:
+          type: object
+    updateSipPeerTnRequest:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          description: The E.164 telephone number.
+        rpidFormat:
+          type: string
+          enum:
+            - 10digit
+            - 11digit
+            - e164
+            - 'false'
+          description: RPID format for the telephone number.
+        rewriteUser:
+          type: string
+          maxLength: 25
+          description: Rewrite user setting.
+        callForward:
+          type: string
+          description: Call forwarding number in E.164 format.
+        callingNameDisplay:
+          type: string
+          enum:
+            - 'true'
+            - 'false'
+          description: Whether calling name display is enabled.
+        tnAttributes:
+          type: array
+          description: >-
+            TN attributes (NANP only). Valid values include Protected, External,
+            Imported.
+          items:
+            type: string
+        messagingSettings:
+          type: object
+          properties:
+            smsEnabled:
+              type: boolean
+              description: Whether SMS is enabled for this number.
+    sipPeerTelephoneNumberXml:
+      type: object
+    updateSipPeerTnResponse:
+      type: object
+      properties:
+        sipPeerTelephoneNumber:
+          type: object
+          properties:
+            warnings:
+              type: array
+              items:
+                $ref: '#/components/schemas/sipPeerTnWarning'
+    sipPeerTnWarning:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          description: The telephone number that generated the warning.
+        description:
+          type: string
+          description: Description of the warning.
+    associatedOutboundNumbersResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of associated outbound numbers processed.
+        successCount:
+          type: integer
+          description: Number of successfully processed outbound numbers.
+        associatedOutboundNumbers:
+          type: array
+          maxItems: 250
+          items:
+            $ref: '#/components/schemas/associatedOutboundNumber'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/associatedOutboundNumberError'
+    associatedOutboundNumber:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the associated outbound number.
+        number:
+          type: string
+          minLength: 3
+          maxLength: 16
+          description: >-
+            Phone number in E.164 format (e.g. +18005550123). Must be unique
+            within an account.
+    associatedOutboundNumberError:
+      type: object
+      properties:
+        number:
+          type: string
+          description: The phone number that failed.
+        errorReason:
+          type: string
+          description: Reason for failure.
+    associatedOutboundNumbersRequest:
+      type: object
+      properties:
+        associatedOutboundNumbers:
+          type: array
+          maxItems: 250
+          items:
+            type: object
+            properties:
+              number:
+                type: string
+                description: Phone number in E.164 format (e.g. +18005550123).
+    numberManagementErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code.
+        description:
+          type: string
+          description: Human-readable error description.
+    updateSipPeerTnXmlResponse:
+      type: object
+      properties:
+        SipPeerTelephoneNumberResponse:
+          type: object
+    associatedOutboundNumbersXmlResponse:
+      type: object
+      properties:
+        AssociatedOutboundNumbersResponse:
+          type: object
+    associatedOutboundNumbersXmlRequest:
+      type: object
+      properties:
+        AssociatedOutboundNumbers:
+          type: object
   requestBodies:
     updatePhoneNumberTag:
       description: Update a phone number tag.
@@ -4186,6 +5402,30 @@ components:
       schema:
         type: string
       example: '1234567'
+    siteIdPathParam:
+      name: siteId
+      description: ID of the sub-account (site).
+      in: path
+      required: true
+      schema:
+        type: string
+      example: '12345'
+    sipPeerIdPathParam:
+      name: sippeerId
+      description: ID of the SIP peer (location).
+      in: path
+      required: true
+      schema:
+        type: string
+      example: '500017'
+    associatedOutboundNumberIdPathParam:
+      name: associatedOutboundNumberId
+      description: ID of the associated outbound number to delete.
+      in: path
+      required: true
+      schema:
+        type: integer
+      example: 12345
     bulkOrderVerboseQueryParam:
       description: Whether to include the `orderDetails` list in the response.
       in: query
@@ -6217,3 +7457,13 @@ tags:
     description: >-
       Manage service activation of voice features like inbound, outbound
       national, and outbound international.
+  - name: Numbers Assignment
+    description: >-
+      Manage telephone number assignment orders to register assignment status of
+      telephone numbers.
+  - name: Toll Free Settings
+    description: Manage toll-free product settings for an account.
+  - name: Location Phone Numbers
+    description: >-
+      Manage telephone number settings and associations within SIP peer
+      locations.

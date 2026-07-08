@@ -93,7 +93,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string State { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType_type? Type { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderTypeType? Type { get; set; }
         /// <summary>The zip property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -139,7 +139,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "quantity", n => { Quantity = n.GetIntValue(); } },
                 { "rateCenter", n => { RateCenter = n.GetStringValue(); } },
                 { "state", n => { State = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType_type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderTypeType>(); } },
                 { "zip", n => { Zip = n.GetStringValue(); } },
             };
         }
@@ -162,7 +162,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteIntValue("quantity", Quantity);
             writer.WriteStringValue("rateCenter", RateCenter);
             writer.WriteStringValue("state", State);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType_type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderTypeType>("type", Type);
             writer.WriteStringValue("zip", Zip);
             writer.WriteAdditionalData(AdditionalData);
         }

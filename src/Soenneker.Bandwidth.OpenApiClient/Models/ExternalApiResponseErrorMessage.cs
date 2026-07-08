@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>A collection of errors with detailed information.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Errors2>? Errors { get; set; }
 #nullable restore
 #else
-        public UntypedNode Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Errors2> Errors { get; set; }
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -32,9 +32,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV2Link> Links { get; set; }
 #endif
         /// <summary>The primary error message.</summary>
-        public override string Message { get => base.Message; }
+        public override string Message { get => MessageEscaped ?? string.Empty; }
+        /// <summary>The primary error message.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? MessageEscaped { get; set; }
+#nullable restore
+#else
+        public string MessageEscaped { get; set; }
+#endif
         /// <summary>Status of the HTTP response from the API.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessage_status? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessageStatus? Status { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessage"/> and sets the default values.
         /// </summary>
@@ -60,9 +68,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "errors", n => { Errors = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Errors2>(global::Soenneker.Bandwidth.OpenApiClient.Models.Errors2.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV2Link>(global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV2Link.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessage_status>(); } },
+                { "message", n => { MessageEscaped = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessageStatus>(); } },
             };
         }
         /// <summary>
@@ -72,9 +81,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<UntypedNode>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Errors2>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV2Link>("links", Links);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessage_status>("status", Status);
+            writer.WriteStringValue("message", MessageEscaped);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalApiResponseErrorMessageStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

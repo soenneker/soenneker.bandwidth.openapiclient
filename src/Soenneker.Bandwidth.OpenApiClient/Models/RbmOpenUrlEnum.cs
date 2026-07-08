@@ -9,11 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "BROWSER")]
         #pragma warning disable CS1591
-        BROWSER,
+        Browser,
         #pragma warning restore CS1591
         [EnumMember(Value = "WEBVIEW")]
         #pragma warning disable CS1591
-        WEBVIEW,
+        Webview,
         #pragma warning restore CS1591
     }
 }

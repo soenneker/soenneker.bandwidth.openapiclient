@@ -46,8 +46,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public MoveTnsCheckerRequestJson()
         {
             AdditionalData = new Dictionary<string, object>();
-            E911ServiceAction = global::Soenneker.Bandwidth.OpenApiClient.Models.E911ServiceAction.MOVE;
-            MessagingService = global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingService.USE_DESTINATION_SETTINGS;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

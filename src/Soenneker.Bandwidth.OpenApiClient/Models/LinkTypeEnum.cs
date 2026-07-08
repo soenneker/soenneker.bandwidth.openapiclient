@@ -9,15 +9,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "GET")]
         #pragma warning disable CS1591
-        GET,
+        Get,
         #pragma warning restore CS1591
         [EnumMember(Value = "DELETE")]
         #pragma warning disable CS1591
-        DELETE,
+        Delete,
         #pragma warning restore CS1591
         [EnumMember(Value = "PATCH")]
         #pragma warning disable CS1591
-        PATCH,
+        Patch,
         #pragma warning restore CS1591
     }
 }

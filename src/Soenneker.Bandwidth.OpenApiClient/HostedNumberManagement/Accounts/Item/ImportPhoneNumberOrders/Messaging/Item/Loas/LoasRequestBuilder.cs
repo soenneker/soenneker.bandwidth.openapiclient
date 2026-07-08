@@ -148,7 +148,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item
         {
             /// <summary>This query parameter allows you to include the document type metadataat the same time you upload the file.</summary>
             [QueryParameter("documentType")]
-            public global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportPhoneNumberOrders.Messaging.Item.Loas.PostDocumentTypeQueryParameterType? DocumentType { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentType? DocumentType { get; set; }
         }
     }
 }

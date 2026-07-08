@@ -8,17 +8,21 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     public enum RequestedCallbackTypesJson
     #pragma warning restore CS1591
     {
+        [EnumMember(Value = "MESSAGE_SENDING")]
+        #pragma warning disable CS1591
+        MessageSending,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "MESSAGE_SENT")]
+        #pragma warning disable CS1591
+        MessageSent,
+        #pragma warning restore CS1591
         [EnumMember(Value = "MESSAGE_FAILED")]
         #pragma warning disable CS1591
-        MESSAGE_FAILED,
+        MessageFailed,
         #pragma warning restore CS1591
         [EnumMember(Value = "MESSAGE_DELIVERED")]
         #pragma warning disable CS1591
-        MESSAGE_DELIVERED,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "MESSAGE_SENDING")]
-        #pragma warning disable CS1591
-        MESSAGE_SENDING,
+        MessageDelivered,
         #pragma warning restore CS1591
     }
 }

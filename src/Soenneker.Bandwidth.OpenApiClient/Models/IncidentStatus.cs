@@ -9,19 +9,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "CREATED")]
         #pragma warning disable CS1591
-        CREATED,
+        Created,
         #pragma warning restore CS1591
         [EnumMember(Value = "ACTIVE")]
         #pragma warning disable CS1591
-        ACTIVE,
+        Active,
         #pragma warning restore CS1591
         [EnumMember(Value = "RESOLVED")]
         #pragma warning disable CS1591
-        RESOLVED,
+        Resolved,
         #pragma warning restore CS1591
         [EnumMember(Value = "TESTING")]
         #pragma warning disable CS1591
-        TESTING,
+        Testing,
         #pragma warning restore CS1591
     }
 }

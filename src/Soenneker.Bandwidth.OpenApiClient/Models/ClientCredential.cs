@@ -48,7 +48,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string CreatedBy { get; private set; }
 #endif
-        /// <summary>The creationDate property</summary>
+        /// <summary>The date and time when the client credentials were created.</summary>
         public DateTimeOffset? CreationDate { get; set; }
         /// <summary>A description of the client credentials.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -58,9 +58,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>The lastAuthenticationAttemptDate property</summary>
+        /// <summary>The date and time when the client credentials were last used to authenticate.</summary>
         public DateTimeOffset? LastAuthenticationAttemptDate { get; set; }
-        /// <summary>The lastModifiedDate property</summary>
+        /// <summary>The date and time when the client credentials were last modified.</summary>
         public DateTimeOffset? LastModifiedDate { get; set; }
         /// <summary>A list of roles.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -70,7 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public List<string> Roles { get; set; }
 #endif
-        /// <summary>The soonestExpirationDate property</summary>
+        /// <summary>The soonest expiration date of any secret within the client credential set.</summary>
         public DateTimeOffset? SoonestExpirationDate { get; set; }
         /// <summary>The status of the credentials.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.CredentialStatusEnum? Status { get; set; }

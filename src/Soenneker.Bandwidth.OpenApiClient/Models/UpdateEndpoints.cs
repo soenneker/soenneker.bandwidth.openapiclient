@@ -20,10 +20,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The endpoints property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpoints_endpoints>? Endpoints { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpointsEndpointsItem>? Endpoints { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpoints_endpoints> Endpoints { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpointsEndpointsItem> Endpoints { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpoints"/> and sets the default values.
@@ -51,7 +51,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "action", n => { Action = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateAction>(); } },
-                { "endpoints", n => { Endpoints = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpoints_endpoints>(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpoints_endpoints.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "endpoints", n => { Endpoints = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpointsEndpointsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpointsEndpointsItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -62,7 +62,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateAction>("action", Action);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpoints_endpoints>("endpoints", Endpoints);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndpointsEndpointsItem>("endpoints", Endpoints);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

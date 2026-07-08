@@ -35,7 +35,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.LrnCo
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public LrnConfigurationsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/lrn-config-service/accounts/{accountId}/lrnConfigurations?limit={limit}&offset={offset}{&name*}", pathParameters)
+        public LrnConfigurationsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/lrn-config-service/accounts/{accountId}/lrnConfigurations{?name*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.LrnCo
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public LrnConfigurationsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/lrn-config-service/accounts/{accountId}/lrnConfigurations?limit={limit}&offset={offset}{&name*}", rawUrl)
+        public LrnConfigurationsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/lrn-config-service/accounts/{accountId}/lrnConfigurations{?name*}", rawUrl)
         {
         }
         /// <summary>
@@ -132,7 +132,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.LrnCo
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.LrnConfigurations.LrnConfigurationsRequestBuilder.LrnConfigurationsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/lrn-config-service/accounts/{accountId}/lrnConfigurations?limit={limit}&offset={offset}{&name*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -153,7 +153,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.LrnCo
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/lrn-config-service/accounts/{accountId}/lrnConfigurations", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

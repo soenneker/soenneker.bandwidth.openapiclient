@@ -84,6 +84,45 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Brands
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandListResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.BrandListResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
+        /// &quot;**All customers.** Pass in the `brandId` to refresh the information about an existing brand in Bandwidth&apos;s systems based on the records at TCR. This is useful if a state change occurs in the brand that has not been detected by Bandwidth. For direct customers, this refresh will include related records such as vettings, appeals, and their associated attachments.**Direct customers.** Create a new brand.**Required fields by entity type:**- `PRIVATE_PROFIT`: legal company name, country, EIN/Tax ID, address, vertical, contact details.- `PUBLIC_PROFIT`: all of the above, plus website URL, stock symbol, and stock exchange. The `businessContactEmail` must be a direct individual address — common distribution addresses (e.g. sales@company.com) and personal or free email addresses are not accepted. Subject to Business Authentication (Auth+) 2FA email verification — the business contact must complete verification within 30 days or the brand becomes `UNVERIFIED`.- `NON_PROFIT`: legal company name, country, EIN/Tax ID, address, vertical, contact details. Only US-based non-profits (or non-profits with a US EIN) are accepted; non-US non-profits must register as `PRIVATE_PROFIT`.- `GOVERNMENT`: legal company name, country, EIN/Tax ID, address, vertical, website, contact details. Only US government entities are accepted; non-US government entities must register as `PRIVATE_PROFIT`.- `SOLE_PROPRIETOR`: DBA/brand name, country (US or Canada only), full address, reference ID, first name, last name, email, and phone number. No EIN is required or accepted. Requires a separate contract with TCR; only available to CSPs that have been enabled by TCR for the Sole Proprietor use case. All `SOLE_PROPRIETOR` brands must also pass an SMS one-time-password (OTP) verification before they are eligible for campaign registration.**Tax ID format rules:**- **US:** Nine-digit EIN. Legal company name and address must match IRS records exactly.- **Canada:** First 9 numeric digits of the Business Number (BN), or Corporation/Incorporation Number, or Registry ID. Name must match Corporations Canada records.- **International:** Numeric portion of the VAT ID, or primary corporation registration/Tax ID number.**Identity verification:**Brand registration triggers an asynchronous identity verification. The result is delivered via the `BRAND_IDENTITY_STATUS_UPDATE` webhook event. Possible identity statuses:- `VERIFIED`: brand can create campaigns.- `UNVERIFIED`: identity could not be confirmed (most often due to a mismatch between legal company name and EIN). Campaigns cannot be created. Options: update and reverify (incurs a $4 fee), file an identity status appeal, or request external vetting.- `REGISTERING`: verification is still in progress; campaigns cannot be created.- `VETTED_VERIFIED`: brand completed additional external vetting; campaigns can be created. Not available to `SOLE_PROPRIETOR` brands.&quot;
+        /// </summary>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAcceptedResponseObject"/></returns>
+        /// <param name="body">Create a new brand (direct customers) or refresh an existing brand (all customers) by providing only the brand ID.</param>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse400">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse401">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse403">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse404">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse405">When receiving a 405 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse429">When receiving a 429 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse500">When receiving a 500 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse503">When receiving a 503 status code</exception>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAcceptedResponseObject?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateOrRefreshBrandRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#nullable restore
+#else
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAcceptedResponseObject> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateOrRefreshBrandRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#endif
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = ToPostRequestInformation(body, requestConfiguration);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse400.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse401.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse403.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse404.CreateFromDiscriminatorValue },
+                { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse405.CreateFromDiscriminatorValue },
+                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse429.CreateFromDiscriminatorValue },
+                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse500.CreateFromDiscriminatorValue },
+                { "503", global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse503.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAcceptedResponseObject>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAcceptedResponseObject.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>
         /// **All customers.** Get all brands that have been created for this account. This is a paginated API that can be sorted and filtered by a number of the fields in the brand record. For example, it accepts a customer profile ID to filter to the brand that has been assigned to that customer profile.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
@@ -100,6 +139,28 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Brands
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
+        }
+        /// <summary>
+        /// &quot;**All customers.** Pass in the `brandId` to refresh the information about an existing brand in Bandwidth&apos;s systems based on the records at TCR. This is useful if a state change occurs in the brand that has not been detected by Bandwidth. For direct customers, this refresh will include related records such as vettings, appeals, and their associated attachments.**Direct customers.** Create a new brand.**Required fields by entity type:**- `PRIVATE_PROFIT`: legal company name, country, EIN/Tax ID, address, vertical, contact details.- `PUBLIC_PROFIT`: all of the above, plus website URL, stock symbol, and stock exchange. The `businessContactEmail` must be a direct individual address — common distribution addresses (e.g. sales@company.com) and personal or free email addresses are not accepted. Subject to Business Authentication (Auth+) 2FA email verification — the business contact must complete verification within 30 days or the brand becomes `UNVERIFIED`.- `NON_PROFIT`: legal company name, country, EIN/Tax ID, address, vertical, contact details. Only US-based non-profits (or non-profits with a US EIN) are accepted; non-US non-profits must register as `PRIVATE_PROFIT`.- `GOVERNMENT`: legal company name, country, EIN/Tax ID, address, vertical, website, contact details. Only US government entities are accepted; non-US government entities must register as `PRIVATE_PROFIT`.- `SOLE_PROPRIETOR`: DBA/brand name, country (US or Canada only), full address, reference ID, first name, last name, email, and phone number. No EIN is required or accepted. Requires a separate contract with TCR; only available to CSPs that have been enabled by TCR for the Sole Proprietor use case. All `SOLE_PROPRIETOR` brands must also pass an SMS one-time-password (OTP) verification before they are eligible for campaign registration.**Tax ID format rules:**- **US:** Nine-digit EIN. Legal company name and address must match IRS records exactly.- **Canada:** First 9 numeric digits of the Business Number (BN), or Corporation/Incorporation Number, or Registry ID. Name must match Corporations Canada records.- **International:** Numeric portion of the VAT ID, or primary corporation registration/Tax ID number.**Identity verification:**Brand registration triggers an asynchronous identity verification. The result is delivered via the `BRAND_IDENTITY_STATUS_UPDATE` webhook event. Possible identity statuses:- `VERIFIED`: brand can create campaigns.- `UNVERIFIED`: identity could not be confirmed (most often due to a mismatch between legal company name and EIN). Campaigns cannot be created. Options: update and reverify (incurs a $4 fee), file an identity status appeal, or request external vetting.- `REGISTERING`: verification is still in progress; campaigns cannot be created.- `VETTED_VERIFIED`: brand completed additional external vetting; campaigns can be created. Not available to `SOLE_PROPRIETOR` brands.&quot;
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="body">Create a new brand (direct customers) or refresh an existing brand (all customers) by providing only the brand ID.</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateOrRefreshBrandRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateOrRefreshBrandRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
         /// <summary>

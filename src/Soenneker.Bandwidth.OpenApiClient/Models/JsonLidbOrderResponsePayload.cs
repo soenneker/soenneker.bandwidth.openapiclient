@@ -47,7 +47,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string OrderId { get; set; }
 #endif
         /// <summary>Order status.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderResponsePayload_processingStatus? ProcessingStatus { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderResponsePayloadProcessingStatus? ProcessingStatus { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderResponsePayload"/> and sets the default values.
         /// </summary>
@@ -77,7 +77,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderError>(global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderError.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "lidbPhoneNumberGroups", n => { LidbPhoneNumberGroups = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroup>(global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroup.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "orderId", n => { OrderId = n.GetStringValue(); } },
-                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderResponsePayload_processingStatus>(); } },
+                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderResponsePayloadProcessingStatus>(); } },
             };
         }
         /// <summary>
@@ -91,7 +91,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderError>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroup>("lidbPhoneNumberGroups", LidbPhoneNumberGroups);
             writer.WriteStringValue("orderId", OrderId);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderResponsePayload_processingStatus>("processingStatus", ProcessingStatus);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderResponsePayloadProcessingStatus>("processingStatus", ProcessingStatus);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

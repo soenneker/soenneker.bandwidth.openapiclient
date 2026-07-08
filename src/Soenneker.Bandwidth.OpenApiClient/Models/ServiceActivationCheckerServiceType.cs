@@ -17,10 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The reasons property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceType_reasons>? Reasons { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceTypeReasonsItem>? Reasons { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceType_reasons> Reasons { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceTypeReasonsItem> Reasons { get; set; }
 #endif
         /// <summary>The status property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberServiceStatus? Status { get; set; }
@@ -49,7 +49,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "reasons", n => { Reasons = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceType_reasons>(global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceType_reasons.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "reasons", n => { Reasons = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceTypeReasonsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceTypeReasonsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberServiceStatus>(); } },
             };
         }
@@ -60,7 +60,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceType_reasons>("reasons", Reasons);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceTypeReasonsItem>("reasons", Reasons);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberServiceStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }

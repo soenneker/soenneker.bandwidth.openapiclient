@@ -22,10 +22,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The phoneNumbers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkVoiceProvisioningTask_phoneNumbers>? PhoneNumbers { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkVoiceProvisioningTaskPhoneNumbersItem>? PhoneNumbers { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkVoiceProvisioningTask_phoneNumbers> PhoneNumbers { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkVoiceProvisioningTaskPhoneNumbersItem> PhoneNumbers { get; set; }
 #endif
         /// <summary>A cumulative status for all phone numbers provided in an async bulk provisioning request.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkProvisioningStatusEnum? Status { get; set; }
@@ -64,7 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "action", n => { Action = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkProvisioningActionEnum>(); } },
                 { "bulkId", n => { BulkId = n.GetGuidValue(); } },
-                { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkVoiceProvisioningTask_phoneNumbers>(global::Soenneker.Bandwidth.OpenApiClient.Models.BulkVoiceProvisioningTask_phoneNumbers.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkVoiceProvisioningTaskPhoneNumbersItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.BulkVoiceProvisioningTaskPhoneNumbersItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkProvisioningStatusEnum>(); } },
                 { "voiceIntegrations", n => { VoiceIntegrations = n.GetCollectionOfPrimitiveValues<Guid?>()?.AsList(); } },
             };
@@ -78,7 +78,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkProvisioningActionEnum>("action", Action);
             writer.WriteGuidValue("bulkId", BulkId);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkVoiceProvisioningTask_phoneNumbers>("phoneNumbers", PhoneNumbers);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkVoiceProvisioningTaskPhoneNumbersItem>("phoneNumbers", PhoneNumbers);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkProvisioningStatusEnum>("status", Status);
             writer.WriteCollectionOfPrimitiveValues<Guid?>("voiceIntegrations", VoiceIntegrations);
             writer.WriteAdditionalData(AdditionalData);

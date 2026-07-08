@@ -49,7 +49,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Servi
         /// <summary>
         /// Gets a list of the service activation orders belonging to the specified account. Orders can be filtered by customer order ID (exact match or starts with). Results are paginated.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.ServiceActivationOrders.ServiceActivationOrdersRequestBuilder.ServiceActivationOrdersGetResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationSearchResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 400 status code</exception>
@@ -61,11 +61,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Servi
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.ServiceActivationOrders.ServiceActivationOrdersRequestBuilder.ServiceActivationOrdersGetResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.ServiceActivationOrders.ServiceActivationOrdersRequestBuilder.ServiceActivationOrdersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationSearchResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.ServiceActivationOrders.ServiceActivationOrdersRequestBuilder.ServiceActivationOrdersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.ServiceActivationOrders.ServiceActivationOrdersRequestBuilder.ServiceActivationOrdersGetResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.ServiceActivationOrders.ServiceActivationOrdersRequestBuilder.ServiceActivationOrdersRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationSearchResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.ServiceActivationOrders.ServiceActivationOrdersRequestBuilder.ServiceActivationOrdersRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -79,7 +79,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Servi
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.ServiceActivationOrders.ServiceActivationOrdersRequestBuilder.ServiceActivationOrdersGetResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.ServiceActivationOrders.ServiceActivationOrdersRequestBuilder.ServiceActivationOrdersGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationSearchResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationSearchResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a service activation order to activate service on a list of telephone numbers.
@@ -167,63 +167,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Servi
         public global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.ServiceActivationOrders.ServiceActivationOrdersRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.ServiceActivationOrders.ServiceActivationOrdersRequestBuilder(rawUrl, RequestAdapter);
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponse"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseVerbose"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ServiceActivationOrdersGetResponse : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponse"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponse? ServiceActivationOrderSearchResponse { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponse ServiceActivationOrderSearchResponse { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseVerbose"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseVerbose? ServiceActivationOrderSearchResponseVerbose { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseVerbose ServiceActivationOrderSearchResponseVerbose { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.ServiceActivationOrders.ServiceActivationOrdersRequestBuilder.ServiceActivationOrdersGetResponse"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.ServiceActivationOrders.ServiceActivationOrdersRequestBuilder.ServiceActivationOrdersGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.ServiceActivationOrders.ServiceActivationOrdersRequestBuilder.ServiceActivationOrdersGetResponse();
-                result.ServiceActivationOrderSearchResponse = new global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponse();
-                result.ServiceActivationOrderSearchResponseVerbose = new global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseVerbose();
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ServiceActivationOrderSearchResponse != null || ServiceActivationOrderSearchResponseVerbose != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ServiceActivationOrderSearchResponse, ServiceActivationOrderSearchResponseVerbose);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponse>(null, ServiceActivationOrderSearchResponse, ServiceActivationOrderSearchResponseVerbose);
-            }
         }
         /// <summary>
         /// Gets a list of the service activation orders belonging to the specified account. Orders can be filtered by customer order ID (exact match or starts with). Results are paginated.

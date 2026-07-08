@@ -17,13 +17,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>&quot;List of codecs that are supported for the calls on a given DID. The possible values are: G711A, G711U, G729.&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Peer_codecs?>? Codecs { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PeerCodecsItem?>? Codecs { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Peer_codecs?> Codecs { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PeerCodecsItem?> Codecs { get; set; }
 #endif
         /// <summary>Dtmf and dtmfInbandMute indicate the current DMTF configuration for the calls on a given DID. The possible values for dtmf are INBAND, INFO, RFC2833, RFC2833_INFO, RFC2833_INBAND. For the last two values, the system will automatically choose between RFC2833 and INFO or INBAND. The standard way to carry out-of-band DTMF via SIP is as RTP payload (see RFC 2833). It has the advantage that it provides accurate timing and alignment with the speech RTP packets.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Peer_dtmf? Dtmf { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PeerDtmf? Dtmf { get; set; }
         /// <summary>By activating dtmfInbandMute on a number, the inband DTMF tones are removed from the audio stream. This is recommended when you add inband DTMF tones yourself to the audio stream afterwards (which can be the case for example when the call is sent back to the PSTN).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -65,8 +65,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "codecs", n => { Codecs = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Peer_codecs>()?.AsList(); } },
-                { "dtmf", n => { Dtmf = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Peer_dtmf>(); } },
+                { "codecs", n => { Codecs = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PeerCodecsItem>()?.AsList(); } },
+                { "dtmf", n => { Dtmf = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PeerDtmf>(); } },
                 { "dtmfInbandMute", n => { DtmfInbandMute = n.GetStringValue(); } },
                 { "t38Enabled", n => { T38Enabled = n.GetStringValue(); } },
             };
@@ -78,8 +78,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Peer_codecs>("codecs", Codecs);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Peer_dtmf>("dtmf", Dtmf);
+            writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PeerCodecsItem>("codecs", Codecs);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PeerDtmf>("dtmf", Dtmf);
             writer.WriteStringValue("dtmfInbandMute", DtmfInbandMute);
             writer.WriteStringValue("t38Enabled", T38Enabled);
             writer.WriteAdditionalData(AdditionalData);

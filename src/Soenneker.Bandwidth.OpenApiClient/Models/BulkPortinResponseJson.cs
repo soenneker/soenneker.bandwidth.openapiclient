@@ -67,7 +67,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string OrderId { get; set; }
 #endif
         /// <summary>The processingStatus property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinResponseJson_processingStatus? ProcessingStatus { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinResponseJsonProcessingStatus? ProcessingStatus { get; set; }
         /// <summary>This is the FOC (Firm Order Commitment) Date requested by the person (or machine) creating the Port-in Order.</summary>
         public DateTimeOffset? RequestedFocDate { get; set; }
         /// <summary>The numeric designation for the Sub-Account ID that applied to the Port-in Order. The SubAccountId is used to provide a home within the account for the Tn(s) that were ported in by the Port-in Order.</summary>
@@ -121,7 +121,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "locationId", n => { LocationId = n.GetIntValue(); } },
                 { "orderCreateDate", n => { OrderCreateDate = n.GetStringValue(); } },
                 { "orderId", n => { OrderId = n.GetStringValue(); } },
-                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinResponseJson_processingStatus>(); } },
+                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinResponseJsonProcessingStatus>(); } },
                 { "requestedFocDate", n => { RequestedFocDate = n.GetDateTimeOffsetValue(); } },
                 { "subAccountId", n => { SubAccountId = n.GetIntValue(); } },
                 { "targetRespOrgId", n => { TargetRespOrgId = n.GetStringValue(); } },
@@ -143,7 +143,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteIntValue("locationId", LocationId);
             writer.WriteStringValue("orderCreateDate", OrderCreateDate);
             writer.WriteStringValue("orderId", OrderId);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinResponseJson_processingStatus>("processingStatus", ProcessingStatus);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinResponseJsonProcessingStatus>("processingStatus", ProcessingStatus);
             writer.WriteDateTimeOffsetValue("requestedFocDate", RequestedFocDate);
             writer.WriteIntValue("subAccountId", SubAccountId);
             writer.WriteStringValue("targetRespOrgId", TargetRespOrgId);

@@ -33,10 +33,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The Origination Route Plan (ORP), also known as the Advanced Call Route (ACR),that describes the routing strategy for LRNs assigned to the config.Only a subset of the endpoint types available on a Voice Config Package (VCP) are available on an LRN Configuration.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLrnConfig_originationRoutePlan? OriginationRoutePlan { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLrnConfigOriginationRoutePlan? OriginationRoutePlan { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLrnConfig_originationRoutePlan OriginationRoutePlan { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLrnConfigOriginationRoutePlan OriginationRoutePlan { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLrnConfig"/> and sets the default values.
@@ -65,7 +65,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "lrns", n => { Lrns = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "originationRoutePlan", n => { OriginationRoutePlan = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLrnConfig_originationRoutePlan>(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLrnConfig_originationRoutePlan.CreateFromDiscriminatorValue); } },
+                { "originationRoutePlan", n => { OriginationRoutePlan = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLrnConfigOriginationRoutePlan>(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLrnConfigOriginationRoutePlan.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -77,7 +77,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("lrns", Lrns);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLrnConfig_originationRoutePlan>("originationRoutePlan", OriginationRoutePlan);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLrnConfigOriginationRoutePlan>("originationRoutePlan", OriginationRoutePlan);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

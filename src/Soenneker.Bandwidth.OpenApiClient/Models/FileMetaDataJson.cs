@@ -23,7 +23,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string DocumentName { get; set; }
 #endif
         /// <summary>Enum of possible file type.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.FileMetaDataJson_documentType? DocumentType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.FileMetaDataJsonDocumentType? DocumentType { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.FileMetaDataJson"/> and sets the default values.
         /// </summary>
@@ -50,7 +50,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "documentName", n => { DocumentName = n.GetStringValue(); } },
-                { "documentType", n => { DocumentType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FileMetaDataJson_documentType>(); } },
+                { "documentType", n => { DocumentType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FileMetaDataJsonDocumentType>(); } },
             };
         }
         /// <summary>
@@ -61,7 +61,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("documentName", DocumentName);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FileMetaDataJson_documentType>("documentType", DocumentType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FileMetaDataJsonDocumentType>("documentType", DocumentType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

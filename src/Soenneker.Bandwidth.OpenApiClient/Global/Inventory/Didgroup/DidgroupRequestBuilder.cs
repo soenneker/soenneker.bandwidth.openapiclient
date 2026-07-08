@@ -130,7 +130,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Inventory.Didgroup
 #endif
             /// <summary>The type of DID.</summary>
             [QueryParameter("didType")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Global.Inventory.Didgroup.GetDidTypeQueryParameterType? DidType { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalListDidGroupDidTypeParameter? DidType { get; set; }
             /// <summary>You can search a specific phone number in the Bandwidth inventory with a specific pattern e.g. 123.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

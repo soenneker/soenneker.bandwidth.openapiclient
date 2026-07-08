@@ -23,6 +23,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The Business Authentication status of the brand. Applies to PUBLIC_PROFIT brands only; `null` if not requested or not applicable.</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumBusinessAuthenticationStatus? AuthenticationStatus { get; set; }
         /// <summary>The Bandwidth-generated identifier for this brand. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the brand. The bandwidthId will be available on the brand before the TCR ID is available.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -235,6 +237,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "accounts", n => { Accounts = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAccount>(global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAccount.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "authenticationStatus", n => { AuthenticationStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumBusinessAuthenticationStatus>(); } },
                 { "bandwidthId", n => { BandwidthId = n.GetStringValue(); } },
                 { "brandId", n => { BrandId = n.GetStringValue(); } },
                 { "brandIdentityStatus", n => { BrandIdentityStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumBrandIdentityStatus>(); } },
@@ -278,6 +281,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAccount>("accounts", Accounts);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumBusinessAuthenticationStatus>("authenticationStatus", AuthenticationStatus);
             writer.WriteStringValue("bandwidthId", BandwidthId);
             writer.WriteStringValue("brandId", BrandId);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumBrandIdentityStatus>("brandIdentityStatus", BrandIdentityStatus);

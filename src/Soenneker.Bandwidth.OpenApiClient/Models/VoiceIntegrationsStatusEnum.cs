@@ -9,23 +9,23 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "PROVISIONING")]
         #pragma warning disable CS1591
-        PROVISIONING,
+        Provisioning,
         #pragma warning restore CS1591
         [EnumMember(Value = "PROVISIONED")]
         #pragma warning disable CS1591
-        PROVISIONED,
+        Provisioned,
         #pragma warning restore CS1591
         [EnumMember(Value = "DELETING")]
         #pragma warning disable CS1591
-        DELETING,
+        Deleting,
         #pragma warning restore CS1591
         [EnumMember(Value = "DELETED")]
         #pragma warning disable CS1591
-        DELETED,
+        Deleted,
         #pragma warning restore CS1591
         [EnumMember(Value = "ERROR")]
         #pragma warning disable CS1591
-        ERROR,
+        Error,
         #pragma warning restore CS1591
     }
 }

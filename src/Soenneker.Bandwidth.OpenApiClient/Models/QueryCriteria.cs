@@ -16,9 +16,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The comparison operator to use.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria_operator? Operator { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.QueryOperatorEnum? Operator { get; set; }
         /// <summary>The parameter name to filter by.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria_parameter? Parameter { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.QueryParameterEnum? Parameter { get; set; }
         /// <summary>The parameter value(s) for filtering.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -52,8 +52,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "operator", n => { Operator = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria_operator>(); } },
-                { "parameter", n => { Parameter = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria_parameter>(); } },
+                { "operator", n => { Operator = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryOperatorEnum>(); } },
+                { "parameter", n => { Parameter = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryParameterEnum>(); } },
                 { "values", n => { Values = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues>(global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues.CreateFromDiscriminatorValue); } },
             };
         }
@@ -64,8 +64,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria_operator>("operator", Operator);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria_parameter>("parameter", Parameter);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryOperatorEnum>("operator", Operator);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryParameterEnum>("parameter", Parameter);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues>("values", Values);
             writer.WriteAdditionalData(AdditionalData);
         }

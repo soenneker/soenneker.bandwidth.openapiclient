@@ -74,7 +74,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string PhoneNumber { get; set; }
 #endif
         /// <summary>The provisioningStatus property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningEndpointResponse_provisioningStatus? ProvisioningStatus { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningEndpointResponseProvisioningStatus? ProvisioningStatus { get; set; }
         /// <summary>The updated property</summary>
         public DateTimeOffset? Updated { get; set; }
         /// <summary>
@@ -110,7 +110,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "lang", n => { Lang = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "phoneNumber", n => { PhoneNumber = n.GetStringValue(); } },
-                { "provisioningStatus", n => { ProvisioningStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningEndpointResponse_provisioningStatus>(); } },
+                { "provisioningStatus", n => { ProvisioningStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningEndpointResponseProvisioningStatus>(); } },
                 { "updated", n => { Updated = n.GetDateTimeOffsetValue(); } },
             };
         }
@@ -129,7 +129,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("lang", Lang);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("phoneNumber", PhoneNumber);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningEndpointResponse_provisioningStatus>("provisioningStatus", ProvisioningStatus);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningEndpointResponseProvisioningStatus>("provisioningStatus", ProvisioningStatus);
             writer.WriteDateTimeOffsetValue("updated", Updated);
             writer.WriteAdditionalData(AdditionalData);
         }

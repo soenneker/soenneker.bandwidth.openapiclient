@@ -43,10 +43,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Field is a key value pair of attribute name and value. All Date or Number type values should be provided as a &apos;string&apos;. Format for the Date type is YYYY-MM-DD.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData_fields? Fields { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseDataFields? Fields { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData_fields Fields { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseDataFields Fields { get; set; }
 #endif
         /// <summary>Indicates if file exists on system</summary>
         public bool? FileContentExists { get; set; }
@@ -105,7 +105,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "customReference", n => { CustomReference = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "documentId", n => { DocumentId = n.GetGuidValue(); } },
-                { "fields", n => { Fields = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData_fields>(global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData_fields.CreateFromDiscriminatorValue); } },
+                { "fields", n => { Fields = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseDataFields>(global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseDataFields.CreateFromDiscriminatorValue); } },
                 { "fileContentExists", n => { FileContentExists = n.GetBoolValue(); } },
                 { "fileName", n => { FileName = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentStatusEnum>(); } },
@@ -124,7 +124,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("customReference", CustomReference);
             writer.WriteStringValue("description", Description);
             writer.WriteGuidValue("documentId", DocumentId);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData_fields>("fields", Fields);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseDataFields>("fields", Fields);
             writer.WriteBoolValue("fileContentExists", FileContentExists);
             writer.WriteStringValue("fileName", FileName);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentStatusEnum>("status", Status);

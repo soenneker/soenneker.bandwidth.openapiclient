@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Csrs;
 using Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins;
+using Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Sites;
 using Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.TnPortoutPasscodes;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +27,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item
         public global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.PortinsRequestBuilder Portins
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.PortinsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The sites property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Sites.SitesRequestBuilder Sites
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Sites.SitesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The tnPortoutPasscodes property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.TnPortoutPasscodes.TnPortoutPasscodesRequestBuilder TnPortoutPasscodes

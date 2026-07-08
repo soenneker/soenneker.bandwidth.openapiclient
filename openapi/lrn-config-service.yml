@@ -464,6 +464,34 @@ paths:
         - LRNs
       requestBody:
         $ref: '#/components/requestBodies/lrnPatch'
+  /accounts/{accountId}/lrns/bulk:
+    post:
+      operationId: bulkCreateLrns
+      summary: Add multiple LRNs to the account at once.
+      description: Add multiple LRNs to the account.
+      parameters:
+        - $ref: '#/components/parameters/accountParams'
+      requestBody:
+        $ref: '#/components/requestBodies/lrnBulkPost'
+      responses:
+        '201':
+          $ref: '#/components/responses/lrnBulkCreated'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '405':
+          $ref: '#/components/responses/methodNotAllowed'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
+        5XX:
+          $ref: '#/components/responses/internalServerError'
+      tags:
+        - LRNs
 components:
   parameters:
     name:
@@ -727,6 +755,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/updatelrnConfigUpdate'
+    lrnBulkPost:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/bulkCreateLrns'
   responses:
     listLrnConfigs:
       description: Ok
@@ -786,6 +820,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/lrnConfigOkResponse'
+    lrnBulkCreated:
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/lrnBulkCreatedResponse'
     badRequest:
       description: Bad Request
       content:
@@ -1865,6 +1905,127 @@ components:
             Only a subset of the endpoint types available on a Voice Config
             Package (VCP) are available on an LRN Configuration.
       description: ''
+    bulkCreateLrnsItem:
+      type: object
+      required:
+        - lrns
+        - hostedVoice
+        - accessHomingTandem
+      properties:
+        lrns:
+          type: array
+          minItems: 1
+          maxItems: 1000
+          items:
+            $ref: '#/components/schemas/e164'
+          description: One or more LRNs that should receive the same feature settings.
+          example:
+            - '+12073361296'
+            - '+12073361297'
+        hostedVoice:
+          type: boolean
+          description: |-
+            Whether the hosted voice feature is enabled on this LRN.
+            Must be enabled on the LATA prior to being enabled on the LRN.
+        accessHomingTandem:
+          type: boolean
+          description: |-
+            Whether the access homing tandem feature is enabled on this LRN.
+            Must be enabled on the LATA prior to being enabled on the LRN.
+        lrnConfigUuid:
+          type: string
+          format: uuid
+          nullable: true
+          description: >-
+            The UUID of the LRN Configuration to assign this LRN to at creation
+            time.
+
+            If `null` or omitted, the LRN will be created without being assigned
+            to any LRN Configuration.
+      description: A grouped settings item within a bulk create request.
+      example:
+        lrns:
+          - '+12073361296'
+          - '+12073361297'
+        hostedVoice: true
+        accessHomingTandem: false
+        lrnConfigUuid: 9C88F137-B2DE-55B1-9D13-AB12CA84E7B1
+    bulkCreateLrns:
+      type: array
+      items:
+        $ref: '#/components/schemas/bulkCreateLrnsItem'
+      minItems: 1
+      maxItems: 1000
+      description: >-
+        An array of grouped create operations. Each object applies one shared
+
+        settings payload to one or more LRNs via the `lrns` array.
+
+        This supports provisioning LRNs with identical settings in a compact
+        request.
+
+        Minimum 1 group, maximum 1000 groups.
+
+        This operation is all-or-nothing: if any LRN fails validation or
+        provisioning,
+
+        the entire request is rolled back and no LRNs are persisted. Errors are
+
+        returned in the `errors` array of the final status response.
+      example:
+        - lrns:
+            - '+12073361296'
+            - '+12073361297'
+          hostedVoice: true
+          accessHomingTandem: false
+          lrnConfigUuid: 9C88F137-B2DE-55B1-9D13-AB12CA84E7B1
+        - lrns:
+            - '+12073361298'
+            - '+12073361299'
+          hostedVoice: false
+          accessHomingTandem: true
+          lrnConfigUuid: null
+    lrnBulkCreatedResponse:
+      type: object
+      required:
+        - data
+        - links
+        - errors
+      properties:
+        data:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/lrn'
+          description: The list of LRNs that were successfully provisioned.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          description: HATEOAS links.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+          description: >-
+            An array of errors. Always empty on a 201 response (all-or-nothing
+            semantics).
+          example: []
+      description: Response body for a successful bulk LRN create.
+      example:
+        data:
+          - lrn: '+12073361296'
+            added: '2025-07-14T22:21:08Z'
+            lrnConfiguration: 9C88F137-B2DE-55B1-9D13-AB12CA84E7B1
+            operatingCompanyName: Peerless Network
+            hostedVoice: true
+            accessHomingTandem: false
+            lata:
+              id: 426
+              name: Raleigh
+              region: North Carolina
+        links: []
+        errors: []
     e164:
       type: string
       minLength: 2

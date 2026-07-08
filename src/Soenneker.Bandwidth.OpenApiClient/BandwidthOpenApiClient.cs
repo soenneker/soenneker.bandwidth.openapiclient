@@ -35,6 +35,7 @@ using Soenneker.Bandwidth.OpenApiClient.NumberAcquisition;
 using Soenneker.Bandwidth.OpenApiClient.NumberManagement;
 using Soenneker.Bandwidth.OpenApiClient.PhoneNumberLookupV2;
 using Soenneker.Bandwidth.OpenApiClient.Portins;
+using Soenneker.Bandwidth.OpenApiClient.Portouts;
 using Soenneker.Bandwidth.OpenApiClient.PsapAlerts;
 using Soenneker.Bandwidth.OpenApiClient.Shortcodes;
 using Soenneker.Bandwidth.OpenApiClient.Subscriptions;
@@ -204,6 +205,11 @@ namespace Soenneker.Bandwidth.OpenApiClient
         public global::Soenneker.Bandwidth.OpenApiClient.Portins.PortinsRequestBuilder Portins
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Portins.PortinsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The portouts property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Portouts.PortoutsRequestBuilder Portouts
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.Portouts.PortoutsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The psapAlerts property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.PsapAlerts.PsapAlertsRequestBuilder PsapAlerts

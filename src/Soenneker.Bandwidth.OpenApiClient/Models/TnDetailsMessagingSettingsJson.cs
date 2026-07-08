@@ -13,7 +13,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning restore CS1591
     {
         /// <summary>The a2pState property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnDetailsMessagingSettingsJson_a2pState? A2pState { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnDetailsMessagingSettingsJsonA2PState? A2pState { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The campaignFullyProvisioned property</summary>
@@ -75,7 +75,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "a2pState", n => { A2pState = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnDetailsMessagingSettingsJson_a2pState>(); } },
+                { "a2pState", n => { A2pState = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnDetailsMessagingSettingsJsonA2PState>(); } },
                 { "campaignFullyProvisioned", n => { CampaignFullyProvisioned = n.GetBoolValue(); } },
                 { "campaignId", n => { CampaignId = n.GetStringValue(); } },
                 { "messageClass", n => { MessageClass = n.GetStringValue(); } },
@@ -90,7 +90,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnDetailsMessagingSettingsJson_a2pState>("a2pState", A2pState);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnDetailsMessagingSettingsJsonA2PState>("a2pState", A2pState);
             writer.WriteBoolValue("campaignFullyProvisioned", CampaignFullyProvisioned);
             writer.WriteStringValue("campaignId", CampaignId);
             writer.WriteStringValue("messageClass", MessageClass);

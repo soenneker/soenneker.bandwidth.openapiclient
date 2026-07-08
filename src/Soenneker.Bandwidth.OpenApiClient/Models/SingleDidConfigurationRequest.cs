@@ -32,7 +32,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>This is the ID of the capacity group to which you want to map the DIDs. The current capacityGroupId can be unset by using `null` as the value.</summary>
         public int? CapacityGroupId { get; set; }
         /// <summary>this option is only available to certain Bandwidth customers who are authorized to change the privacy settings on a per DID basis. Please check with your account manager if you need that option enabled. The possible values are P_ASSERTED_ID, REMOTE_PARTY_ID or DISABLED</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequest_cliPrivacy? CliPrivacy { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequestCliPrivacy? CliPrivacy { get; set; }
         /// <summary>This is the ID of the POP on which you want to map the DIDs.</summary>
         public int? DeliveryId { get; set; }
         /// <summary>This is the single didId to be configured. Returned in checkoutCart() and listDid().</summary>
@@ -54,7 +54,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public global::Soenneker.Bandwidth.OpenApiClient.Models.Peer Peer { get; set; }
 #endif
         /// <summary>indicates the ringback method that is applied to the DID. The possible values are STANDARD, RINGING, PROGRESS</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequest_ringback? Ringback { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequestRingback? Ringback { get; set; }
         /// <summary>This is the ID of the SMS Link Group to which you want to map the DIDs. The current smsLinkGroupId can be unset by using `null` as the value.</summary>
         public int? SmsLinkGroupId { get; set; }
         /// <summary>Allows you to enable the outbound SMS service for the DID.</summary>
@@ -103,7 +103,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "blockPayphone", n => { BlockPayphone = n.GetBoolValue(); } },
                 { "callerId", n => { CallerId = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallerId>(global::Soenneker.Bandwidth.OpenApiClient.Models.CallerId.CreateFromDiscriminatorValue); } },
                 { "capacityGroupId", n => { CapacityGroupId = n.GetIntValue(); } },
-                { "cliPrivacy", n => { CliPrivacy = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequest_cliPrivacy>(); } },
+                { "cliPrivacy", n => { CliPrivacy = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequestCliPrivacy>(); } },
                 { "deliveryId", n => { DeliveryId = n.GetIntValue(); } },
                 { "didId", n => { DidId = n.GetIntValue(); } },
                 { "dnisEnabled", n => { DnisEnabled = n.GetBoolValue(); } },
@@ -111,7 +111,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "limitChannels", n => { LimitChannels = n.GetDoubleValue(); } },
                 { "limitChannelsOutbound", n => { LimitChannelsOutbound = n.GetDoubleValue(); } },
                 { "peer", n => { Peer = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Peer>(global::Soenneker.Bandwidth.OpenApiClient.Models.Peer.CreateFromDiscriminatorValue); } },
-                { "ringback", n => { Ringback = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequest_ringback>(); } },
+                { "ringback", n => { Ringback = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequestRingback>(); } },
                 { "smsLinkGroupId", n => { SmsLinkGroupId = n.GetIntValue(); } },
                 { "smsOutbound", n => { SmsOutbound = n.GetBoolValue(); } },
                 { "srvLookup", n => { SrvLookup = n.GetBoolValue(); } },
@@ -135,7 +135,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteBoolValue("blockPayphone", BlockPayphone);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallerId>("callerId", CallerId);
             writer.WriteIntValue("capacityGroupId", CapacityGroupId);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequest_cliPrivacy>("cliPrivacy", CliPrivacy);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequestCliPrivacy>("cliPrivacy", CliPrivacy);
             writer.WriteIntValue("deliveryId", DeliveryId);
             writer.WriteIntValue("didId", DidId);
             writer.WriteBoolValue("dnisEnabled", DnisEnabled);
@@ -143,7 +143,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteDoubleValue("limitChannels", LimitChannels);
             writer.WriteDoubleValue("limitChannelsOutbound", LimitChannelsOutbound);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Peer>("peer", Peer);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequest_ringback>("ringback", Ringback);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequestRingback>("ringback", Ringback);
             writer.WriteIntValue("smsLinkGroupId", SmsLinkGroupId);
             writer.WriteBoolValue("smsOutbound", SmsOutbound);
             writer.WriteBoolValue("srvLookup", SrvLookup);

@@ -35,7 +35,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.It
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public AssociatedOutboundNumbersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/accounts/{accountId}/sites/{siteId}/sippeers/{sipPeerId}/associatedOutboundNumbers?page={page}&size={size}", pathParameters)
+        public AssociatedOutboundNumbersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/accounts/{accountId}/sites/{siteId}/sippeers/{sipPeerId}/associatedOutboundNumbers", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.It
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public AssociatedOutboundNumbersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/accounts/{accountId}/sites/{siteId}/sippeers/{sipPeerId}/associatedOutboundNumbers?page={page}&size={size}", rawUrl)
+        public AssociatedOutboundNumbersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/accounts/{accountId}/sites/{siteId}/sippeers/{sipPeerId}/associatedOutboundNumbers", rawUrl)
         {
         }
         /// <summary>
@@ -79,11 +79,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.It
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponseJson">When receiving a 400 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumbersCreateResponseJson?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.Item.AssociatedOutboundNumbers.AssociatedOutboundNumbersPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumbersCreateResponseJson?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumbersRequestRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumbersCreateResponseJson> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.Item.AssociatedOutboundNumbers.AssociatedOutboundNumbersPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumbersCreateResponseJson> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumbersRequestRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -108,7 +108,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.It
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.Item.AssociatedOutboundNumbers.AssociatedOutboundNumbersRequestBuilder.AssociatedOutboundNumbersRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/accounts/{accountId}/sites/{siteId}/sippeers/{sipPeerId}/associatedOutboundNumbers?page={page}&size={size}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -121,15 +121,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.It
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.Item.AssociatedOutboundNumbers.AssociatedOutboundNumbersPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumbersRequestRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.Item.AssociatedOutboundNumbers.AssociatedOutboundNumbersPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumbersRequestRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/accounts/{accountId}/sites/{siteId}/sippeers/{sipPeerId}/associatedOutboundNumbers", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

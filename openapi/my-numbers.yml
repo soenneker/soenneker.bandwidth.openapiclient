@@ -3087,7 +3087,223 @@ paths:
       summary: Get phone number details
       tags:
         - My Numbers
+  /accounts/{accountId}/exportTelephoneNumbers/download:
+    get:
+      tags:
+        - My Numbers
+      summary: Export all in-service phone numbers as CSV
+      description: >-
+        Download a CSV file of all INSERVICE telephone numbers for the account.
+        Each row contains a single phone number.
+      operationId: exportTelephoneNumbersByAccount
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+      responses:
+        '200':
+          description: OK — CSV file download.
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+              example: |
+                Number
+                +19199918388
+                +14158714245
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /accounts/{accountId}/exportTelephoneNumbers/download/{siteId}/{peerId}:
+    get:
+      tags:
+        - My Numbers
+      summary: Export phone numbers for a location as CSV
+      description: >-
+        Download a CSV file of INSERVICE telephone numbers for the specified
+        sub-account and SIP peer (location).
+      operationId: exportTelephoneNumbersBySipPeer
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - name: siteId
+          description: ID of the sub-account (site).
+          in: path
+          required: true
+          schema:
+            type: string
+          example: '12345'
+        - name: peerId
+          description: ID of the SIP peer (location).
+          in: path
+          required: true
+          schema:
+            type: string
+          example: '500017'
+      responses:
+        '200':
+          description: OK — CSV file download.
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+              example: |
+                Number
+                +19199918388
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /accounts/{accountId}/exportTelephoneNumbers/download/hosts/{host}:
+    get:
+      tags:
+        - My Numbers
+      summary: Export phone numbers for a host as CSV
+      description: >-
+        Download a CSV file of INSERVICE telephone numbers associated with the
+        specified host for the account.
+      operationId: exportTelephoneNumbersByHost
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - name: host
+          description: Host identifier to filter telephone numbers by.
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 192.168.1.1
+      responses:
+        '200':
+          description: OK — CSV file download.
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+              example: |
+                Number
+                +19199918388
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /exportToCsv/tns:
+    get:
+      tags:
+        - My Numbers
+      summary: Export phone number details as CSV
+      description: >-
+        Download a CSV file of telephone number details with optional filtering.
+        Each row contains:
+
+        - TELEPHONE NUMBER (E.164)
+
+        - RATE CENTER
+
+        - CITY
+
+        - STATE
+
+        - ACCOUNT ID
+
+        - ACCOUNT NAME
+
+        - LAST MODIFIED (ISO 8601)
+
+        - STATUS
+
+        - PROTECTED
+      operationId: exportTnDetailsToCsv
+      parameters:
+        - name: page
+          in: query
+          description: Page number for pagination.
+          required: false
+          schema:
+            type: integer
+        - name: size
+          in: query
+          description: Number of records per page (default 500).
+          required: false
+          schema:
+            type: integer
+            default: 500
+        - name: npa
+          in: query
+          description: Filter by NPA (area code). Implies countryCodeA3=USA.
+          required: false
+          schema:
+            type: string
+          example: '919'
+        - name: countryCodeA3
+          in: query
+          description: Filter by ISO 3166-1 alpha-3 country code.
+          required: false
+          schema:
+            type: string
+          example: USA
+      responses:
+        '200':
+          description: OK — CSV file download.
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+              example: >
+                TELEPHONE NUMBER,RATE CENTER,CITY,STATE,ACCOUNT ID,ACCOUNT
+                NAME,LAST MODIFIED,STATUS,PROTECTED
+
+                +19199918388,RALEIGH,RALEIGH,NC,1234567,My
+                Account,2024-11-04T11:16:09Z,InService,
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
 components:
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+      description: >-
+        Basic authentication is a simple authentication scheme built into the
+        HTTP protocol. To use it, send your HTTP requests with an Authorization
+        header that contains the word Basic followed by a space and a
+        base64-encoded string `username:password`.
+
+        Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        Bearer authentication (also called token authentication) is an HTTP
+        authentication scheme that involves security tokens called bearer
+        tokens. The name "Bearer authentication" can be understood as "give
+        access to the bearer of this token." The client must send this token in
+        the `Authorization` header when making requests to protected resources.
+
+        - Example: `Authorization: Bearer <token>`
+
+        Where `<token>` should be replaced with the token string without angle
+        brackets.
+
+        For more information, see the following guide:
+        [Credentials](https://dev.bandwidth.com/docs/credentials)
   schemas:
     siteTNsResponse:
       properties:

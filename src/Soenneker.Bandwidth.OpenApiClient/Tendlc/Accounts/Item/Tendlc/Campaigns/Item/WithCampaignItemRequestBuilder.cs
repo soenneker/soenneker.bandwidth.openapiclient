@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Bandwidth.OpenApiClient.Models;
 using Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaigns.Item.History;
+using Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaigns.Item.Nudge;
 using Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaigns.Item.PhoneNumbers;
 using System.Collections.Generic;
 using System.IO;
@@ -23,6 +24,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaign
         public global::Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaigns.Item.History.HistoryRequestBuilder History
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaigns.Item.History.HistoryRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The nudge property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaigns.Item.Nudge.NudgeRequestBuilder Nudge
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaigns.Item.Nudge.NudgeRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The phoneNumbers property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaigns.Item.PhoneNumbers.PhoneNumbersRequestBuilder PhoneNumbers
@@ -120,7 +126,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaign
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignCustomerResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignCustomerResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Refresh the information in Bandwidth’s systems based on the records at TCR. This will not update the brand or 10DLC registrations associated with the campaign. This is useful if a state change occurs in the campaign that has not been detected by Bandwidth.
+        /// **All customers.** Refresh the information in Bandwidth’s systems based on the records at TCR. This will not update the brand or 10DLC registrations associated with the campaign. This is useful if a state change occurs in the campaign that has not been detected by Bandwidth.
         /// </summary>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -158,10 +164,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaign
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Import customers may submit a campaign to this endpoint to update the campaign name (if no `campaignName` is provided, or it is set to null, the campaign’s TCR ID will be used). All other fields can be left off as they will be ignored.
+        /// **Import customers.** Import customers may submit a campaign to this endpoint to update the campaign name (if no `campaignName` is provided, or it is set to null, the campaign’s TCR ID will be used). All other fields can be left off as they will be ignored.**Direct customers.** Update the details for this campaign. This is a full replacement — omitted optional fields will be set to null. If the campaign exists in Bandwidth’s system but not in TCR, because we are still submitting the campaign to TCR, this endpoint will return a 409 (Conflict). If the campaign exists only in Bandwidth’s system due to a failure (`status` will be `ERROR`), we will attempt to create the campaign in TCR with the applied changes. *Only the following fields can be changed after creation:*| Field | Description ||---|---|| `resellerId` | The unique ID assigned to a reseller. If a resellerId is entered, it can only be changed to `R000000` to indicate No Reseller. **Once set to `R000000`, it cannot be changed again, and it can only be changed once.** || `description` | A detailed description of the campaign’s purpose. || `embeddedLink` | Specifies whether the campaign is using an embedded link of any kind. Note that public URL shorteners (e.g., bit.ly, tinyurl.com) are not accepted. || `embeddedPhone` | Specifies whether the campaign is using an embedded phone number other than the HELP information contact number. || `numberPool` | Indicates whether the campaign is using more than 50 phone numbers. Some network providers require this information, as it necessitates a different provisioning process. || `ageGated` | Specifies whether the campaign contains age-gated content. || `directLending` | Specifies whether the campaign will be used by a brand that provides direct lending. || `sample[1-5]` | Sample messages that are representative of messages sent as part of the campaign. || `messageFlow` | Describes how a subscriber would opt-in to the campaign. || `helpMessage` | Sample help message that would be sent to the subscriber. || `autoRenewal` | Indicates whether the campaign will automatically renew each billing period. || `optinKeywords` | A list of keywords a subscriber uses to opt-in to the campaign. || `optoutKeywords` | A list of keywords a subscriber uses to opt-out of the campaign. || `helpKeywords` | A list of keywords a subscriber can use to get help or more information from the campaign. || `optinMessage` | Sample of a message sent to the subscriber when they opt-in. || `optoutMessage` | Sample of a message sent to the subscriber when they opt-out. || `privacyPolicyLink` | A link to the campaign’s privacy policy page. || `termsAndConditionsLink` | A link to the campaign’s terms and conditions page. || `embeddedLinkSample` | If using an embedded link, a sample of the link that will be used in the campaign. Public URL shorteners are not accepted. |
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignAcceptedResponseObject"/></returns>
-        /// <param name="body">The properties needed to create or update a TCR campaign.</param>
+        /// <param name="body">Request body for updating a campaign. Import customers can only update the campaign name. Direct customers can update editable campaign fields.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse400">When receiving a 400 status code</exception>
@@ -174,11 +180,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaign
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorResponse503">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignAcceptedResponseObject?> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdatedCampaign body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignAcceptedResponseObject?> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateCampaignRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignAcceptedResponseObject> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdatedCampaign body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignAcceptedResponseObject> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateCampaignRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -235,7 +241,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaign
             return requestInfo;
         }
         /// <summary>
-        /// Refresh the information in Bandwidth’s systems based on the records at TCR. This will not update the brand or 10DLC registrations associated with the campaign. This is useful if a state change occurs in the campaign that has not been detected by Bandwidth.
+        /// **All customers.** Refresh the information in Bandwidth’s systems based on the records at TCR. This will not update the brand or 10DLC registrations associated with the campaign. This is useful if a state change occurs in the campaign that has not been detected by Bandwidth.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -254,18 +260,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaign
             return requestInfo;
         }
         /// <summary>
-        /// Import customers may submit a campaign to this endpoint to update the campaign name (if no `campaignName` is provided, or it is set to null, the campaign’s TCR ID will be used). All other fields can be left off as they will be ignored.
+        /// **Import customers.** Import customers may submit a campaign to this endpoint to update the campaign name (if no `campaignName` is provided, or it is set to null, the campaign’s TCR ID will be used). All other fields can be left off as they will be ignored.**Direct customers.** Update the details for this campaign. This is a full replacement — omitted optional fields will be set to null. If the campaign exists in Bandwidth’s system but not in TCR, because we are still submitting the campaign to TCR, this endpoint will return a 409 (Conflict). If the campaign exists only in Bandwidth’s system due to a failure (`status` will be `ERROR`), we will attempt to create the campaign in TCR with the applied changes. *Only the following fields can be changed after creation:*| Field | Description ||---|---|| `resellerId` | The unique ID assigned to a reseller. If a resellerId is entered, it can only be changed to `R000000` to indicate No Reseller. **Once set to `R000000`, it cannot be changed again, and it can only be changed once.** || `description` | A detailed description of the campaign’s purpose. || `embeddedLink` | Specifies whether the campaign is using an embedded link of any kind. Note that public URL shorteners (e.g., bit.ly, tinyurl.com) are not accepted. || `embeddedPhone` | Specifies whether the campaign is using an embedded phone number other than the HELP information contact number. || `numberPool` | Indicates whether the campaign is using more than 50 phone numbers. Some network providers require this information, as it necessitates a different provisioning process. || `ageGated` | Specifies whether the campaign contains age-gated content. || `directLending` | Specifies whether the campaign will be used by a brand that provides direct lending. || `sample[1-5]` | Sample messages that are representative of messages sent as part of the campaign. || `messageFlow` | Describes how a subscriber would opt-in to the campaign. || `helpMessage` | Sample help message that would be sent to the subscriber. || `autoRenewal` | Indicates whether the campaign will automatically renew each billing period. || `optinKeywords` | A list of keywords a subscriber uses to opt-in to the campaign. || `optoutKeywords` | A list of keywords a subscriber uses to opt-out of the campaign. || `helpKeywords` | A list of keywords a subscriber can use to get help or more information from the campaign. || `optinMessage` | Sample of a message sent to the subscriber when they opt-in. || `optoutMessage` | Sample of a message sent to the subscriber when they opt-out. || `privacyPolicyLink` | A link to the campaign’s privacy policy page. || `termsAndConditionsLink` | A link to the campaign’s terms and conditions page. || `embeddedLinkSample` | If using an embedded link, a sample of the link that will be used in the campaign. Public URL shorteners are not accepted. |
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The properties needed to create or update a TCR campaign.</param>
+        /// <param name="body">Request body for updating a campaign. Import customers can only update the campaign name. Direct customers can update editable campaign fields.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdatedCampaign body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateCampaignRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdatedCampaign body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateCampaignRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

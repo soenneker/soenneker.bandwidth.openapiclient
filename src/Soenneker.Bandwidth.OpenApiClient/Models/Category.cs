@@ -10,15 +10,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "CHARGES")]
         #pragma warning disable CS1591
-        CHARGES,
+        Charges,
         #pragma warning restore CS1591
         [EnumMember(Value = "NUMBER_DETAILS")]
         #pragma warning disable CS1591
-        NUMBER_DETAILS,
+        NumberDetails,
         #pragma warning restore CS1591
         [EnumMember(Value = "USAGE")]
         #pragma warning disable CS1591
-        USAGE,
+        Usage,
         #pragma warning restore CS1591
     }
 }

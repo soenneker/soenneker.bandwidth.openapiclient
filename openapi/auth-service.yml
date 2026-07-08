@@ -323,6 +323,11 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/clientSecretRequest'
+          examples:
+            createClientSecretNoExpirationExample:
+              $ref: '#/components/examples/clientSecretRequestNoExpirationExample'
+            createClientSecretWithExpirationExample:
+              $ref: '#/components/examples/clientSecretRequestWithExpirationExample'
     updateClientSecretRequest:
       description: >-
         The request body for updating a client secret for a given set of client
@@ -331,6 +336,11 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/clientSecretRequest'
+          examples:
+            updateClientSecretNoExpirationExample:
+              $ref: '#/components/examples/clientSecretRequestNoExpirationExample'
+            updateClientSecretWithExpirationExample:
+              $ref: '#/components/examples/clientSecretRequestWithExpirationExample'
   responses:
     createClientCredentialsResponse:
       description: Created
@@ -612,10 +622,12 @@ components:
           example: Client credentials for accessing the API
         roles:
           description: A list of roles that the client has access to.
-          $ref: '#/components/schemas/roles'
+          allOf:
+            - $ref: '#/components/schemas/roles'
         accounts:
           description: A list of account IDs for which the client can access.
-          $ref: '#/components/schemas/accounts'
+          allOf:
+            - $ref: '#/components/schemas/accounts'
         accountScope:
           $ref: '#/components/schemas/accountScopeEnum'
         createdBy:
@@ -625,22 +637,26 @@ components:
           example: user-1234567890abcdef
         creationDate:
           description: The date and time when the client credentials were created.
-          $ref: '#/components/schemas/date'
+          allOf:
+            - $ref: '#/components/schemas/date'
         status:
           $ref: '#/components/schemas/credentialStatusEnum'
         lastAuthenticationAttemptDate:
           description: >-
             The date and time when the client credentials were last used to
             authenticate.
-          $ref: '#/components/schemas/date'
+          allOf:
+            - $ref: '#/components/schemas/date'
         lastModifiedDate:
           description: The date and time when the client credentials were last modified.
-          $ref: '#/components/schemas/date'
+          allOf:
+            - $ref: '#/components/schemas/date'
         soonestExpirationDate:
           description: >-
             The soonest expiration date of any secret within the client
             credential set.
-          $ref: '#/components/schemas/date'
+          allOf:
+            - $ref: '#/components/schemas/date'
     clientSecret:
       title: Client Secret
       type: object
@@ -664,7 +680,8 @@ components:
         creationDate:
           description: The date and time when the client secret was created.
           readOnly: true
-          $ref: '#/components/schemas/date'
+          allOf:
+            - $ref: '#/components/schemas/date'
         createdBy:
           description: The user who created the client secret.
           type: string
@@ -672,13 +689,15 @@ components:
           example: user-1234567890abcdef
         expirationDate:
           description: The date and time when the client secret will expire.
-          $ref: '#/components/schemas/date'
+          allOf:
+            - $ref: '#/components/schemas/date'
         lastUsedDate:
           description: >-
             The date and time when the client secret was last used to
             authenticate.
           readOnly: true
-          $ref: '#/components/schemas/date'
+          allOf:
+            - $ref: '#/components/schemas/date'
     createClientCredentialsRequest:
       title: Create Credential Request
       type: object
@@ -694,12 +713,14 @@ components:
           example: Client credentials for accessing the API
         roles:
           description: A list of roles that the client credentials are being generated for.
-          $ref: '#/components/schemas/roles'
+          allOf:
+            - $ref: '#/components/schemas/roles'
         accounts:
           description: >-
             A list of account IDs for which the client credentials are being
             generated.
-          $ref: '#/components/schemas/accounts'
+          allOf:
+            - $ref: '#/components/schemas/accounts'
         accountScope:
           $ref: '#/components/schemas/accountScopeEnum'
     updateClientCredentialsRequest:
@@ -712,10 +733,12 @@ components:
           example: Updated description for client credentials
         roles:
           description: The new list of roles to assign to the client credential set.
-          $ref: '#/components/schemas/roles'
+          allOf:
+            - $ref: '#/components/schemas/roles'
         accounts:
           description: The new list of accounts to assign to the client credential set.
-          $ref: '#/components/schemas/accounts'
+          allOf:
+            - $ref: '#/components/schemas/accounts'
         accountScope:
           $ref: '#/components/schemas/accountScopeEnum'
         status:
@@ -726,7 +749,10 @@ components:
       properties:
         expirationDate:
           description: The expiration date for this client secret.
-          $ref: '#/components/schemas/date'
+          example: '2026-06-30T12:00:00Z'
+          readOnly: false
+          allOf:
+            - $ref: '#/components/schemas/date'
     date:
       type: string
       format: date-time
@@ -1063,6 +1089,13 @@ components:
           expirationDate: '2025-09-10T17:32:28Z'
           lastUsedDate: '2025-06-15T12:00:00Z'
         errors: []
+    clientSecretRequestNoExpirationExample:
+      summary: Create/update a secret with no expiration
+      value: {}
+    clientSecretRequestWithExpirationExample:
+      summary: Create/update a secret with an expiration date
+      value:
+        expirationDate: '2026-06-30T12:00:00Z'
     badRequestResponseExample:
       value:
         links: []

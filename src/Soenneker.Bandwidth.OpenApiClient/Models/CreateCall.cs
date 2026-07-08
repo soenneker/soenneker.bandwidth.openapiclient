@@ -146,9 +146,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public CreateCall()
         {
             AdditionalData = new Dictionary<string, object>();
-            AnswerFallbackMethod = global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum.POST;
-            AnswerMethod = global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum.POST;
-            DisconnectMethod = global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum.POST;
+            CallbackTimeout = 15;
+            CallTimeout = 30;
+            Priority = 5;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

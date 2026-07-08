@@ -35,7 +35,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ReportsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/insights/v1/reports?category={category}{&accountIds*}", pathParameters)
+        public ReportsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/insights/v1/reports{?accountIds*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,13 +43,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ReportsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/insights/v1/reports?category={category}{&accountIds*}", rawUrl)
+        public ReportsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/insights/v1/reports{?accountIds*}", rawUrl)
         {
         }
         /// <summary>
         /// Get a history of created reports.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports.ReportsGetResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ReportHistoryResponseResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError">When receiving a 400 status code</exception>
@@ -61,11 +61,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports.ReportsGetResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports.ReportsRequestBuilder.ReportsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportHistoryResponseResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports.ReportsRequestBuilder.ReportsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports.ReportsGetResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports.ReportsRequestBuilder.ReportsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportHistoryResponseResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports.ReportsRequestBuilder.ReportsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -79,12 +79,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports.ReportsGetResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports.ReportsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportHistoryResponseResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ReportHistoryResponseResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Create a new report instance.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports.ReportsPostResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusResponseResponse"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -97,11 +97,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports.ReportsPostResponse?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusObject body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusResponseResponse?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusObject body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports.ReportsPostResponse> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusObject body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusResponseResponse> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusObject body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -116,7 +116,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports.ReportsPostResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports.ReportsPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusResponseResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusResponseResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Get a history of created reports.
@@ -132,7 +132,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports.ReportsRequestBuilder.ReportsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/insights/v1/reports?category={category}{&accountIds*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -153,7 +153,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/insights/v1/reports", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
@@ -184,7 +184,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports
             public string[] AccountIds { get; set; }
 #endif
             [QueryParameter("category")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports.GetCategoryQueryParameterType? Category { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.CategoryRequired? Category { get; set; }
         }
     }
 }

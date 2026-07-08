@@ -35,7 +35,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string ProductDescription { get; set; }
 #endif
         /// <summary>Type of product added to cart.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.OrderProduct_productType? ProductType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OrderProductProductType? ProductType { get; set; }
         /// <summary>Quantiy of product added to cart.</summary>
         public int? Quantity { get; set; }
         /// <summary>
@@ -67,7 +67,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "orderProductId", n => { OrderProductId = n.GetIntValue(); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberInCart>(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberInCart.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "productDescription", n => { ProductDescription = n.GetStringValue(); } },
-                { "productType", n => { ProductType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OrderProduct_productType>(); } },
+                { "productType", n => { ProductType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OrderProductProductType>(); } },
                 { "quantity", n => { Quantity = n.GetIntValue(); } },
             };
         }
@@ -82,7 +82,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteIntValue("orderProductId", OrderProductId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberInCart>("phoneNumbers", PhoneNumbers);
             writer.WriteStringValue("productDescription", ProductDescription);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OrderProduct_productType>("productType", ProductType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OrderProductProductType>("productType", ProductType);
             writer.WriteIntValue("quantity", Quantity);
             writer.WriteAdditionalData(AdditionalData);
         }

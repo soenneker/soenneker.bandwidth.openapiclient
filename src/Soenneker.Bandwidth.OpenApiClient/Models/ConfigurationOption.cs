@@ -9,51 +9,51 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "BLACKLIST")]
         #pragma warning disable CS1591
-        BLACKLIST,
+        Blacklist,
         #pragma warning restore CS1591
         [EnumMember(Value = "CAPACITY_GROUP")]
         #pragma warning disable CS1591
-        CAPACITY_GROUP,
+        CapacityGroup,
         #pragma warning restore CS1591
         [EnumMember(Value = "CHANNELS_LIMIT")]
         #pragma warning disable CS1591
-        CHANNELS_LIMIT,
+        ChannelsLimit,
         #pragma warning restore CS1591
         [EnumMember(Value = "CHANNELS_LIMIT_OUTBOUND")]
         #pragma warning disable CS1591
-        CHANNELS_LIMIT_OUTBOUND,
+        ChannelsLimitOutbound,
         #pragma warning restore CS1591
         [EnumMember(Value = "CLI_FORMAT")]
         #pragma warning disable CS1591
-        CLI_FORMAT,
+        CliFormat,
         #pragma warning restore CS1591
         [EnumMember(Value = "CLI_PRIVACY")]
         #pragma warning disable CS1591
-        CLI_PRIVACY,
+        CliPrivacy,
         #pragma warning restore CS1591
         [EnumMember(Value = "CNAM")]
         #pragma warning disable CS1591
-        CNAM,
+        Cnam,
         #pragma warning restore CS1591
         [EnumMember(Value = "CPC_BLOCK_CELLULAR")]
         #pragma warning disable CS1591
-        CPC_BLOCK_CELLULAR,
+        CpcBlockCellular,
         #pragma warning restore CS1591
         [EnumMember(Value = "CPC_BLOCK_PAYPHONE")]
         #pragma warning disable CS1591
-        CPC_BLOCK_PAYPHONE,
+        CpcBlockPayphone,
         #pragma warning restore CS1591
         [EnumMember(Value = "CPC_BLOCK_ORDINARY")]
         #pragma warning disable CS1591
-        CPC_BLOCK_ORDINARY,
+        CpcBlockOrdinary,
         #pragma warning restore CS1591
         [EnumMember(Value = "FAX_ENABLED")]
         #pragma warning disable CS1591
-        FAX_ENABLED,
+        FaxEnabled,
         #pragma warning restore CS1591
         [EnumMember(Value = "FAX_ACCOUNT")]
         #pragma warning disable CS1591
-        FAX_ACCOUNT,
+        FaxAccount,
         #pragma warning restore CS1591
         [EnumMember(Value = "T38")]
         #pragma warning disable CS1591
@@ -61,51 +61,51 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         #pragma warning restore CS1591
         [EnumMember(Value = "RING_BACK")]
         #pragma warning disable CS1591
-        RING_BACK,
+        RingBack,
         #pragma warning restore CS1591
         [EnumMember(Value = "SEND_DNIS")]
         #pragma warning disable CS1591
-        SEND_DNIS,
+        SendDnis,
         #pragma warning restore CS1591
         [EnumMember(Value = "SIP_DELIVERY")]
         #pragma warning disable CS1591
-        SIP_DELIVERY,
+        SipDelivery,
         #pragma warning restore CS1591
         [EnumMember(Value = "SMS_LINK_GROUP")]
         #pragma warning disable CS1591
-        SMS_LINK_GROUP,
+        SmsLinkGroup,
         #pragma warning restore CS1591
         [EnumMember(Value = "SMS_OUTBOUND_ENABLED")]
         #pragma warning disable CS1591
-        SMS_OUTBOUND_ENABLED,
+        SmsOutboundEnabled,
         #pragma warning restore CS1591
         [EnumMember(Value = "SRV_LOOKUP")]
         #pragma warning disable CS1591
-        SRV_LOOKUP,
+        SrvLookup,
         #pragma warning restore CS1591
         [EnumMember(Value = "TRUNK")]
         #pragma warning disable CS1591
-        TRUNK,
+        Trunk,
         #pragma warning restore CS1591
         [EnumMember(Value = "VOICE_URI")]
         #pragma warning disable CS1591
-        VOICE_URI,
+        VoiceUri,
         #pragma warning restore CS1591
         [EnumMember(Value = "WEB_RTC")]
         #pragma warning disable CS1591
-        WEB_RTC,
+        WebRtc,
         #pragma warning restore CS1591
         [EnumMember(Value = "VOXOUT_INTERNATIONAL")]
         #pragma warning disable CS1591
-        VOXOUT_INTERNATIONAL,
+        VoxoutInternational,
         #pragma warning restore CS1591
         [EnumMember(Value = "VOXOUT_NATIONAL")]
         #pragma warning disable CS1591
-        VOXOUT_NATIONAL,
+        VoxoutNational,
         #pragma warning restore CS1591
         [EnumMember(Value = "PEER")]
         #pragma warning disable CS1591
-        PEER,
+        Peer,
         #pragma warning restore CS1591
     }
 }

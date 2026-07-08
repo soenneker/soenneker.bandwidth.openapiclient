@@ -9,7 +9,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "PORTING")]
         #pragma warning disable CS1591
-        PORTING,
+        Porting,
         #pragma warning restore CS1591
     }
 }

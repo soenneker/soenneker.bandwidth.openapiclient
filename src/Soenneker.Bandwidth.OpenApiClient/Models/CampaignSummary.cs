@@ -15,14 +15,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The attMessageClass property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? AttMessageClass { get; set; }
-#nullable restore
-#else
-        public string AttMessageClass { get; set; }
-#endif
         /// <summary>The Bandwidth-generated identifier for this campaign. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the campaign.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -97,6 +89,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public CampaignSummary()
         {
             AdditionalData = new Dictionary<string, object>();
+            NumberPool = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -116,7 +109,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "attMessageClass", n => { AttMessageClass = n.GetStringValue(); } },
                 { "bandwidthId", n => { BandwidthId = n.GetStringValue(); } },
                 { "brandDisplayName", n => { BrandDisplayName = n.GetStringValue(); } },
                 { "brandId", n => { BrandId = n.GetStringValue(); } },
@@ -139,7 +131,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("attMessageClass", AttMessageClass);
             writer.WriteStringValue("bandwidthId", BandwidthId);
             writer.WriteStringValue("brandId", BrandId);
             writer.WriteStringValue("campaignId", CampaignId);

@@ -31,7 +31,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public List<string> ReservationIds { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType_type? Type { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderTypeType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType"/> and sets the default values.
         /// </summary>
@@ -59,7 +59,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "reservationIds", n => { ReservationIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType_type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderTypeType>(); } },
             };
         }
         /// <summary>
@@ -71,7 +71,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
             writer.WriteCollectionOfPrimitiveValues<string>("reservationIds", ReservationIds);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType_type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderTypeType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

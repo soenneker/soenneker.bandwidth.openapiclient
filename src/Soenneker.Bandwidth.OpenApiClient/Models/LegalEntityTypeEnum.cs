@@ -9,23 +9,23 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "CORPORATION")]
         #pragma warning disable CS1591
-        CORPORATION,
+        Corporation,
         #pragma warning restore CS1591
         [EnumMember(Value = "LLC")]
         #pragma warning disable CS1591
-        LLC,
+        Llc,
         #pragma warning restore CS1591
         [EnumMember(Value = "PARTNERSHIP")]
         #pragma warning disable CS1591
-        PARTNERSHIP,
+        Partnership,
         #pragma warning restore CS1591
         [EnumMember(Value = "S_CORPORATION")]
         #pragma warning disable CS1591
-        S_CORPORATION,
+        SCorporation,
         #pragma warning restore CS1591
         [EnumMember(Value = "SOLE_PROPRIETORSHIP")]
         #pragma warning disable CS1591
-        SOLE_PROPRIETORSHIP,
+        SoleProprietorship,
         #pragma warning restore CS1591
     }
 }

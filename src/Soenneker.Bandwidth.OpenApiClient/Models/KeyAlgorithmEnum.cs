@@ -9,7 +9,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "RS256")]
         #pragma warning disable CS1591
-        RS256,
+        Rs256,
         #pragma warning restore CS1591
     }
 }

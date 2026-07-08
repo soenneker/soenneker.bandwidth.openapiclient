@@ -9,23 +9,23 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "LOW")]
         #pragma warning disable CS1591
-        LOW,
+        Low,
         #pragma warning restore CS1591
         [EnumMember(Value = "LOWER_MID")]
         #pragma warning disable CS1591
-        LOWER_MID,
+        LowerMid,
         #pragma warning restore CS1591
         [EnumMember(Value = "UPPER_MID")]
         #pragma warning disable CS1591
-        UPPER_MID,
+        UpperMid,
         #pragma warning restore CS1591
         [EnumMember(Value = "TOP")]
         #pragma warning disable CS1591
-        TOP,
+        Top,
         #pragma warning restore CS1591
         [EnumMember(Value = "UNCAPPED")]
         #pragma warning disable CS1591
-        UNCAPPED,
+        Uncapped,
         #pragma warning restore CS1591
     }
 }

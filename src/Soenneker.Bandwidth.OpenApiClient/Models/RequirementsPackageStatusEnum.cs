@@ -9,27 +9,27 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "DRAFT")]
         #pragma warning disable CS1591
-        DRAFT,
+        Draft,
         #pragma warning restore CS1591
         [EnumMember(Value = "SUBMITTED")]
         #pragma warning disable CS1591
-        SUBMITTED,
+        Submitted,
         #pragma warning restore CS1591
         [EnumMember(Value = "VERIFIED")]
         #pragma warning disable CS1591
-        VERIFIED,
+        Verified,
         #pragma warning restore CS1591
         [EnumMember(Value = "VERIFICATION_FAILED")]
         #pragma warning disable CS1591
-        VERIFICATION_FAILED,
+        VerificationFailed,
         #pragma warning restore CS1591
         [EnumMember(Value = "DISABLED")]
         #pragma warning disable CS1591
-        DISABLED,
+        Disabled,
         #pragma warning restore CS1591
         [EnumMember(Value = "AUTO_VALIDATED")]
         #pragma warning disable CS1591
-        AUTO_VALIDATED,
+        AutoValidated,
         #pragma warning restore CS1591
     }
 }

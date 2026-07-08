@@ -9,23 +9,23 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "0-10,000")]
         #pragma warning disable CS1591
-        ZeroOneZeroZeroZeroZero,
+        Value010Comma000,
         #pragma warning restore CS1591
         [EnumMember(Value = "10,001-50,000")]
         #pragma warning disable CS1591
-        OneZeroZeroZeroOneFiveZeroZeroZeroZero,
+        Value10Comma00150Comma000,
         #pragma warning restore CS1591
         [EnumMember(Value = "50,001-100,000")]
         #pragma warning disable CS1591
-        FiveZeroZeroZeroOneOneZeroZeroZeroZeroZero,
+        Value50Comma001100Comma000,
         #pragma warning restore CS1591
         [EnumMember(Value = "100,001-200,000")]
         #pragma warning disable CS1591
-        OneZeroZeroZeroZeroOneTwoZeroZeroZeroZeroZero,
+        Value100Comma001200Comma000,
         #pragma warning restore CS1591
         [EnumMember(Value = "200,001+")]
         #pragma warning disable CS1591
-        TwoZeroZeroZeroZeroOne_plus,
+        Value200Comma001Plus,
         #pragma warning restore CS1591
     }
 }

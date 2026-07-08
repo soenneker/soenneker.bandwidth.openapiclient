@@ -84,11 +84,15 @@ paths:
       operationId: listAddresses
       description: >-
         List all addresses. The results are sorted by last updated time in
-        reverse chronological order by default without any query filters.
+        reverse chronological order by default without any query filters. Note
+        that esRefAddressId cannot be combined with other filters such as
+        postalCode, city, countryCodeA3, customReference, geoValidationStatus,
+        or addressFields.
       tags:
         - Addresses
       parameters:
         - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/esRefAddressIdQueryParamEqStartsWith'
         - $ref: >-
             #/components/parameters/addressCustomReferenceQueryParamEqStartsWithContains
         - $ref: '#/components/parameters/countryCodeA3QueryParamEq'
@@ -1214,6 +1218,30 @@ components:
         is
 
         a required parameter with postalCode.
+    esRefAddressIdQueryParamEqStartsWith:
+      in: query
+      name: esRefAddressId
+      required: false
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/queryParamStringEqStartsWith'
+      examples:
+        eq:
+          value:
+            eq: 31afb73e-12ab-4f15-b6b1-5d7c2c0c584b
+        startsWith:
+          value:
+            startsWith: 31afb73e
+      description: >
+        Emergency services reference address ID enables flexible search
+        operations including
+
+        exact matches (eq) and prefix-based searches (startsWith).
+
+        When esRefAddressId is specified, it cannot be combined with other
+        filters such as postalCode, city, countryCodeA3, customReference,
+        geoValidationStatus, or addressFields.
     addressCustomReferenceQueryParamEqStartsWithContains:
       in: query
       name: customReference
@@ -1316,6 +1344,7 @@ components:
         contains:
           value:
             contains: 123 Main
+      style: deepObject
       explode: true
       in: query
       name: addressFields
@@ -2204,6 +2233,16 @@ components:
 
         requirements package, enduser etc.
       example: home_office
+    esRefAddressId:
+      type: string
+      nullable: true
+      description: >
+        The emergency services reference address ID. This is an identifier
+        assigned by the
+
+        emergency services provider to uniquely reference this address in their
+        system.
+      example: 31afb73e-12ab-4f15-b6b1-5d7c2c0c584b
     countryCodeA3:
       type: string
       description: Country code of the address in ISO 3166-1 alpha-3 format.
@@ -2573,6 +2612,8 @@ components:
         - $ref: '#/components/schemas/validateAddressResponseData'
         - type: object
           properties:
+            esRefAddressId:
+              $ref: '#/components/schemas/esRefAddressId'
             geoValidationStatus:
               $ref: '#/components/schemas/geoValidationStatusEnum'
             addressId:

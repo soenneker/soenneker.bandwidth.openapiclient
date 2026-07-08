@@ -9,15 +9,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "LOCAL")]
         #pragma warning disable CS1591
-        LOCAL,
+        Local,
         #pragma warning restore CS1591
         [EnumMember(Value = "NATIONAL")]
         #pragma warning disable CS1591
-        NATIONAL,
+        National,
         #pragma warning restore CS1591
         [EnumMember(Value = "WORLDWIDE")]
         #pragma warning disable CS1591
-        WORLDWIDE,
+        Worldwide,
         #pragma warning restore CS1591
     }
 }

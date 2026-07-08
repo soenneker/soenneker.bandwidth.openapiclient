@@ -10,23 +10,23 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "NASDAQ")]
         #pragma warning disable CS1591
-        NASDAQ,
+        Nasdaq,
         #pragma warning restore CS1591
         [EnumMember(Value = "NYSE")]
         #pragma warning disable CS1591
-        NYSE,
+        Nyse,
         #pragma warning restore CS1591
         [EnumMember(Value = "AMEX")]
         #pragma warning disable CS1591
-        AMEX,
+        Amex,
         #pragma warning restore CS1591
         [EnumMember(Value = "AMX")]
         #pragma warning disable CS1591
-        AMX,
+        Amx,
         #pragma warning restore CS1591
         [EnumMember(Value = "ASX")]
         #pragma warning disable CS1591
-        ASX,
+        Asx,
         #pragma warning restore CS1591
         [EnumMember(Value = "B3")]
         #pragma warning disable CS1591
@@ -34,75 +34,75 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         #pragma warning restore CS1591
         [EnumMember(Value = "BME")]
         #pragma warning disable CS1591
-        BME,
+        Bme,
         #pragma warning restore CS1591
         [EnumMember(Value = "BSE")]
         #pragma warning disable CS1591
-        BSE,
+        Bse,
         #pragma warning restore CS1591
         [EnumMember(Value = "FRA")]
         #pragma warning disable CS1591
-        FRA,
+        Fra,
         #pragma warning restore CS1591
         [EnumMember(Value = "ICEX")]
         #pragma warning disable CS1591
-        ICEX,
+        Icex,
         #pragma warning restore CS1591
         [EnumMember(Value = "JPX")]
         #pragma warning disable CS1591
-        JPX,
+        Jpx,
         #pragma warning restore CS1591
         [EnumMember(Value = "JSE")]
         #pragma warning disable CS1591
-        JSE,
+        Jse,
         #pragma warning restore CS1591
         [EnumMember(Value = "KRX")]
         #pragma warning disable CS1591
-        KRX,
+        Krx,
         #pragma warning restore CS1591
         [EnumMember(Value = "LON")]
         #pragma warning disable CS1591
-        LON,
+        Lon,
         #pragma warning restore CS1591
         [EnumMember(Value = "NSE")]
         #pragma warning disable CS1591
-        NSE,
+        Nse,
         #pragma warning restore CS1591
         [EnumMember(Value = "OMX")]
         #pragma warning disable CS1591
-        OMX,
+        Omx,
         #pragma warning restore CS1591
         [EnumMember(Value = "SEHK")]
         #pragma warning disable CS1591
-        SEHK,
+        Sehk,
         #pragma warning restore CS1591
         [EnumMember(Value = "SSE")]
         #pragma warning disable CS1591
-        SSE,
+        Sse,
         #pragma warning restore CS1591
         [EnumMember(Value = "STO")]
         #pragma warning disable CS1591
-        STO,
+        Sto,
         #pragma warning restore CS1591
         [EnumMember(Value = "SWX")]
         #pragma warning disable CS1591
-        SWX,
+        Swx,
         #pragma warning restore CS1591
         [EnumMember(Value = "SZSE")]
         #pragma warning disable CS1591
-        SZSE,
+        Szse,
         #pragma warning restore CS1591
         [EnumMember(Value = "TSX")]
         #pragma warning disable CS1591
-        TSX,
+        Tsx,
         #pragma warning restore CS1591
         [EnumMember(Value = "TWSE")]
         #pragma warning disable CS1591
-        TWSE,
+        Twse,
         #pragma warning restore CS1591
         [EnumMember(Value = "VSE")]
         #pragma warning disable CS1591
-        VSE,
+        Vse,
         #pragma warning restore CS1591
     }
 }

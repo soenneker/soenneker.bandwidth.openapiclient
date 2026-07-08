@@ -10,15 +10,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "INBOUND")]
         #pragma warning disable CS1591
-        INBOUND,
+        Inbound,
         #pragma warning restore CS1591
         [EnumMember(Value = "OUTBOUND")]
         #pragma warning disable CS1591
-        OUTBOUND,
+        Outbound,
         #pragma warning restore CS1591
         [EnumMember(Value = "BIDIRECTIONAL")]
         #pragma warning disable CS1591
-        BIDIRECTIONAL,
+        Bidirectional,
         #pragma warning restore CS1591
     }
 }

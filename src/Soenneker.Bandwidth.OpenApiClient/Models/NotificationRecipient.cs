@@ -41,7 +41,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string RecipientId { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationRecipient_type? Type { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationRecipientType? Type { get; set; }
         /// <summary>The updated property</summary>
         public DateTimeOffset? Updated { get; private set; }
         /// <summary>The username property</summary>
@@ -81,7 +81,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "password", n => { Password = n.GetStringValue(); } },
                 { "recipient", n => { Recipient = n.GetStringValue(); } },
                 { "recipientId", n => { RecipientId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationRecipient_type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationRecipientType>(); } },
                 { "updated", n => { Updated = n.GetDateTimeOffsetValue(); } },
                 { "username", n => { Username = n.GetStringValue(); } },
             };
@@ -96,7 +96,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("password", Password);
             writer.WriteStringValue("recipient", Recipient);
             writer.WriteStringValue("recipientId", RecipientId);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationRecipient_type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationRecipientType>("type", Type);
             writer.WriteStringValue("username", Username);
             writer.WriteAdditionalData(AdditionalData);
         }

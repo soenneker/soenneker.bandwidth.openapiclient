@@ -10,7 +10,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "ALL")]
         #pragma warning disable CS1591
-        ALL,
+        All,
         #pragma warning restore CS1591
     }
 }

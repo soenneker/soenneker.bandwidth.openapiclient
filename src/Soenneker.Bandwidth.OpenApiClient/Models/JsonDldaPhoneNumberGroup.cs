@@ -34,7 +34,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaListingName ListingName { get; set; }
 #endif
         /// <summary>The listingType property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup_listingType? ListingType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroupListingType? ListingType { get; set; }
         /// <summary>A list of phone numbers you need to bind information from payload</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -44,7 +44,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public List<string> PhoneNumbers { get; set; }
 #endif
         /// <summary>The subscriberType property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup_subscriberType? SubscriberType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroupSubscriberType? SubscriberType { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup"/> and sets the default values.
         /// </summary>
@@ -73,9 +73,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "address", n => { Address = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonAddress>(global::Soenneker.Bandwidth.OpenApiClient.Models.JsonAddress.CreateFromDiscriminatorValue); } },
                 { "listAddress", n => { ListAddress = n.GetBoolValue(); } },
                 { "listingName", n => { ListingName = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaListingName>(global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaListingName.CreateFromDiscriminatorValue); } },
-                { "listingType", n => { ListingType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup_listingType>(); } },
+                { "listingType", n => { ListingType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroupListingType>(); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "subscriberType", n => { SubscriberType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup_subscriberType>(); } },
+                { "subscriberType", n => { SubscriberType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroupSubscriberType>(); } },
             };
         }
         /// <summary>
@@ -88,9 +88,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonAddress>("address", Address);
             writer.WriteBoolValue("listAddress", ListAddress);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaListingName>("listingName", ListingName);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup_listingType>("listingType", ListingType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroupListingType>("listingType", ListingType);
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup_subscriberType>("subscriberType", SubscriberType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroupSubscriberType>("subscriberType", SubscriberType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -32,7 +32,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo> CarrierStatuses { get; set; }
 #endif
         /// <summary>The country the short code is registered in.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCode_country? Country { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCountry? Country { get; set; }
         /// <summary>The date and time this object was created in ISO 8601 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -78,9 +78,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string SiteId { get; set; }
 #endif
         /// <summary>If at least one carrier status is ACTIVE or PENDING, the status will be ACTIVE. If all carrier statues are INACTIVE, the status will be INACTIVE.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCode_status? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeStatus? Status { get; set; }
         /// <summary>The lease type.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCode_type? Type { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeTypeEnum? Type { get; set; }
         /// <summary>An internal field that represents the current version of the short code data.</summary>
         public int? Version { get; set; }
         /// <summary>
@@ -110,7 +110,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "accountId", n => { AccountId = n.GetStringValue(); } },
                 { "carrierStatuses", n => { CarrierStatuses = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo>(global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "country", n => { Country = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCode_country>(); } },
+                { "country", n => { Country = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCountry>(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetStringValue(); } },
                 { "customerManagedLease", n => { CustomerManagedLease = n.GetBoolValue(); } },
                 { "lease", n => { Lease = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLeaseInfo>(global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLeaseInfo.CreateFromDiscriminatorValue); } },
@@ -118,8 +118,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "shortCode", n => { ShortCodeProp = n.GetStringValue(); } },
                 { "sipPeerId", n => { SipPeerId = n.GetStringValue(); } },
                 { "siteId", n => { SiteId = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCode_status>(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCode_type>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeStatus>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeTypeEnum>(); } },
                 { "version", n => { Version = n.GetIntValue(); } },
             };
         }
@@ -132,7 +132,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("accountId", AccountId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo>("carrierStatuses", CarrierStatuses);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCode_country>("country", Country);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCountry>("country", Country);
             writer.WriteStringValue("createdDateTime", CreatedDateTime);
             writer.WriteBoolValue("customerManagedLease", CustomerManagedLease);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLeaseInfo>("lease", Lease);
@@ -140,8 +140,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("shortCode", ShortCodeProp);
             writer.WriteStringValue("sipPeerId", SipPeerId);
             writer.WriteStringValue("siteId", SiteId);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCode_status>("status", Status);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCode_type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeStatus>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeTypeEnum>("type", Type);
             writer.WriteIntValue("version", Version);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -48,10 +48,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string OrderId { get; set; }
 #endif
-        /// <summary>The orderStatus property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrderSummary_orderStatus? OrderStatus { get; set; }
+        /// <summary>The status of an order.</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementOrderStatus? OrderStatus { get; set; }
         /// <summary>The orderType property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrderSummary_orderType? OrderType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrderSummaryOrderType? OrderType { get; set; }
         /// <summary>The phoneNumberCount property</summary>
         public int? PhoneNumberCount { get; set; }
         /// <summary>The userId property</summary>
@@ -92,8 +92,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "lastModifiedDate", n => { LastModifiedDate = n.GetStringValue(); } },
                 { "orderDate", n => { OrderDate = n.GetStringValue(); } },
                 { "orderId", n => { OrderId = n.GetStringValue(); } },
-                { "orderStatus", n => { OrderStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrderSummary_orderStatus>(); } },
-                { "orderType", n => { OrderType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrderSummary_orderType>(); } },
+                { "orderStatus", n => { OrderStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementOrderStatus>(); } },
+                { "orderType", n => { OrderType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrderSummaryOrderType>(); } },
                 { "phoneNumberCount", n => { PhoneNumberCount = n.GetIntValue(); } },
                 { "userId", n => { UserId = n.GetStringValue(); } },
             };
@@ -110,8 +110,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("lastModifiedDate", LastModifiedDate);
             writer.WriteStringValue("orderDate", OrderDate);
             writer.WriteStringValue("orderId", OrderId);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrderSummary_orderStatus>("orderStatus", OrderStatus);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrderSummary_orderType>("orderType", OrderType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementOrderStatus>("orderStatus", OrderStatus);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrderSummaryOrderType>("orderType", OrderType);
             writer.WriteIntValue("phoneNumberCount", PhoneNumberCount);
             writer.WriteStringValue("userId", UserId);
             writer.WriteAdditionalData(AdditionalData);

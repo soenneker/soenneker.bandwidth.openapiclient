@@ -22,7 +22,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.TnPortoutPassc
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TnPortoutPasscodesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/portins/accounts/{accountId}/tnPortoutPasscodes?page={page}&size={size}", pathParameters)
+        public TnPortoutPasscodesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/portins/accounts/{accountId}/tnPortoutPasscodes", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.TnPortoutPassc
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TnPortoutPasscodesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/portins/accounts/{accountId}/tnPortoutPasscodes?page={page}&size={size}", rawUrl)
+        public TnPortoutPasscodesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/portins/accounts/{accountId}/tnPortoutPasscodes", rawUrl)
         {
         }
         /// <summary>
@@ -95,7 +95,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.TnPortoutPassc
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.TnPortoutPasscodes.TnPortoutPasscodesRequestBuilder.TnPortoutPasscodesRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/portins/accounts/{accountId}/tnPortoutPasscodes?page={page}&size={size}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -116,7 +116,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.TnPortoutPassc
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/portins/accounts/{accountId}/tnPortoutPasscodes", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

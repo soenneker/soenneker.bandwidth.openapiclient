@@ -9,23 +9,23 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "REMEDIATION_DENIED")]
         #pragma warning disable CS1591
-        REMEDIATION_DENIED,
+        RemediationDenied,
         #pragma warning restore CS1591
         [EnumMember(Value = "IN_REMEDIATION")]
         #pragma warning disable CS1591
-        IN_REMEDIATION,
+        InRemediation,
         #pragma warning restore CS1591
         [EnumMember(Value = "CLEAN")]
         #pragma warning disable CS1591
-        CLEAN,
+        Clean,
         #pragma warning restore CS1591
         [EnumMember(Value = "FLAGGED")]
         #pragma warning disable CS1591
-        FLAGGED,
+        Flagged,
         #pragma warning restore CS1591
         [EnumMember(Value = "NOT_RATED")]
         #pragma warning disable CS1591
-        NOT_RATED,
+        NotRated,
         #pragma warning restore CS1591
     }
 }

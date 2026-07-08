@@ -9,15 +9,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "STATUS_PENDING")]
         #pragma warning disable CS1591
-        STATUS_PENDING,
+        StatusPending,
         #pragma warning restore CS1591
         [EnumMember(Value = "FLAGGED")]
         #pragma warning disable CS1591
-        FLAGGED,
+        Flagged,
         #pragma warning restore CS1591
         [EnumMember(Value = "CLEAN")]
         #pragma warning disable CS1591
-        CLEAN,
+        Clean,
         #pragma warning restore CS1591
     }
 }

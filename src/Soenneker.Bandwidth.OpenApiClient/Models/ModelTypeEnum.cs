@@ -9,11 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "METERED")]
         #pragma warning disable CS1591
-        METERED,
+        Metered,
         #pragma warning restore CS1591
         [EnumMember(Value = "CAPACITY")]
         #pragma warning disable CS1591
-        CAPACITY,
+        Capacity,
         #pragma warning restore CS1591
     }
 }

@@ -9,51 +9,51 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "ALERTS")]
         #pragma warning disable CS1591
-        ALERTS,
+        Alerts,
         #pragma warning restore CS1591
         [EnumMember(Value = "CHAT")]
         #pragma warning disable CS1591
-        CHAT,
+        Chat,
         #pragma warning restore CS1591
         [EnumMember(Value = "DELIVERY_NOTIFICATION")]
         #pragma warning disable CS1591
-        DELIVERY_NOTIFICATION,
+        DeliveryNotification,
         #pragma warning restore CS1591
         [EnumMember(Value = "DONATION")]
         #pragma warning disable CS1591
-        DONATION,
+        Donation,
         #pragma warning restore CS1591
         [EnumMember(Value = "EMERGENCY_ALERTS")]
         #pragma warning disable CS1591
-        EMERGENCY_ALERTS,
+        EmergencyAlerts,
         #pragma warning restore CS1591
         [EnumMember(Value = "FRAUD_ALERTS")]
         #pragma warning disable CS1591
-        FRAUD_ALERTS,
+        FraudAlerts,
         #pragma warning restore CS1591
         [EnumMember(Value = "SWEEPSTAKES_CONTESTS")]
         #pragma warning disable CS1591
-        SWEEPSTAKES_CONTESTS,
+        SweepstakesContests,
         #pragma warning restore CS1591
         [EnumMember(Value = "POLITICAL")]
         #pragma warning disable CS1591
-        POLITICAL,
+        Political,
         #pragma warning restore CS1591
         [EnumMember(Value = "PROMOTIONAL_MARKETING")]
         #pragma warning disable CS1591
-        PROMOTIONAL_MARKETING,
+        PromotionalMarketing,
         #pragma warning restore CS1591
         [EnumMember(Value = "SECURITY_ALERTS")]
         #pragma warning disable CS1591
-        SECURITY_ALERTS,
+        SecurityAlerts,
         #pragma warning restore CS1591
         [EnumMember(Value = "POLLING_VOTING")]
         #pragma warning disable CS1591
-        POLLING_VOTING,
+        PollingVoting,
         #pragma warning restore CS1591
         [EnumMember(Value = "MFA")]
         #pragma warning disable CS1591
-        MFA,
+        Mfa,
         #pragma warning restore CS1591
     }
 }

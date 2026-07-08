@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.Discnumbers;
+using Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.ExportTelephoneNumbers;
 using Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.InserviceNumbers;
 using Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.Sites;
 using System.Collections.Generic;
@@ -21,6 +22,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item
         public global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.Discnumbers.DiscnumbersRequestBuilder Discnumbers
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.Discnumbers.DiscnumbersRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The exportTelephoneNumbers property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.ExportTelephoneNumbers.ExportTelephoneNumbersRequestBuilder ExportTelephoneNumbers
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.ExportTelephoneNumbers.ExportTelephoneNumbersRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The inserviceNumbers property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.InserviceNumbers.InserviceNumbersRequestBuilder InserviceNumbers

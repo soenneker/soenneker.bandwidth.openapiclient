@@ -9,19 +9,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "CALL_COMPLETION")]
         #pragma warning disable CS1591
-        CALL_COMPLETION,
+        CallCompletion,
         #pragma warning restore CS1591
         [EnumMember(Value = "CALL_QUALITY")]
         #pragma warning disable CS1591
-        CALL_QUALITY,
+        CallQuality,
         #pragma warning restore CS1591
         [EnumMember(Value = "CALL_QUALITY_AND_LOCATION_INFORMATION")]
         #pragma warning disable CS1591
-        CALL_QUALITY_AND_LOCATION_INFORMATION,
+        CallQualityAndLocationInformation,
         #pragma warning restore CS1591
         [EnumMember(Value = "LOCATION_INFORMATION")]
         #pragma warning disable CS1591
-        LOCATION_INFORMATION,
+        LocationInformation,
         #pragma warning restore CS1591
     }
 }

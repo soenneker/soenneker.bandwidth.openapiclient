@@ -17,10 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The tags property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumbersTagsResponseData_tags>? Tags { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumbersTagsResponseDataTagsItem>? Tags { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumbersTagsResponseData_tags> Tags { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumbersTagsResponseDataTagsItem> Tags { get; set; }
 #endif
         /// <summary>Total number of tags listed.</summary>
         public double? TotalCount { get; set; }
@@ -49,7 +49,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "tags", n => { Tags = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumbersTagsResponseData_tags>(global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumbersTagsResponseData_tags.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "tags", n => { Tags = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumbersTagsResponseDataTagsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumbersTagsResponseDataTagsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "totalCount", n => { TotalCount = n.GetDoubleValue(); } },
             };
         }
@@ -60,7 +60,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumbersTagsResponseData_tags>("tags", Tags);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GetPhoneNumbersTagsResponseDataTagsItem>("tags", Tags);
             writer.WriteDoubleValue("totalCount", TotalCount);
             writer.WriteAdditionalData(AdditionalData);
         }

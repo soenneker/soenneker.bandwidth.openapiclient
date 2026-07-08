@@ -35,7 +35,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Ordering.Cart
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CartRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/global/ordering/cart?pageNumber={pageNumber}&pageSize={pageSize}{&cartIdentifier*,reference*}", pathParameters)
+        public CartRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/global/ordering/cart{?cartIdentifier*,reference*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Ordering.Cart
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CartRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/global/ordering/cart?pageNumber={pageNumber}&pageSize={pageSize}{&cartIdentifier*,reference*}", rawUrl)
+        public CartRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/global/ordering/cart{?cartIdentifier*,reference*}", rawUrl)
         {
         }
         /// <summary>
@@ -98,7 +98,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Ordering.Cart
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Global.Ordering.Cart.CartRequestBuilder.CartRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/global/ordering/cart?pageNumber={pageNumber}&pageSize={pageSize}{&cartIdentifier*,reference*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -119,7 +119,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Ordering.Cart
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PUT, "{+baseurl}/global/ordering/cart", PathParameters);
+            var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

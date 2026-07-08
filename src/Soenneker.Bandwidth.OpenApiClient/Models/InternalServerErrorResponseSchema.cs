@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The globalMessages property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.InternalServerErrorResponseSchema_globalMessages>? GlobalMessages { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.InternalServerErrorResponseSchemaGlobalMessagesItem>? GlobalMessages { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.InternalServerErrorResponseSchema_globalMessages> GlobalMessages { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.InternalServerErrorResponseSchemaGlobalMessagesItem> GlobalMessages { get; set; }
 #endif
         /// <summary>The primary error message.</summary>
         public override string Message { get => base.Message; }
@@ -50,7 +50,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "globalMessages", n => { GlobalMessages = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.InternalServerErrorResponseSchema_globalMessages>(global::Soenneker.Bandwidth.OpenApiClient.Models.InternalServerErrorResponseSchema_globalMessages.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "globalMessages", n => { GlobalMessages = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.InternalServerErrorResponseSchemaGlobalMessagesItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.InternalServerErrorResponseSchemaGlobalMessagesItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -60,7 +60,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.InternalServerErrorResponseSchema_globalMessages>("globalMessages", GlobalMessages);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.InternalServerErrorResponseSchemaGlobalMessagesItem>("globalMessages", GlobalMessages);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

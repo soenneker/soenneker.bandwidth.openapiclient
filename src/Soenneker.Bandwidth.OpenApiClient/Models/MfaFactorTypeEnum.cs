@@ -9,11 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "TOTP")]
         #pragma warning disable CS1591
-        TOTP,
+        Totp,
         #pragma warning restore CS1591
         [EnumMember(Value = "EMAIL")]
         #pragma warning disable CS1591
-        EMAIL,
+        Email,
         #pragma warning restore CS1591
     }
 }

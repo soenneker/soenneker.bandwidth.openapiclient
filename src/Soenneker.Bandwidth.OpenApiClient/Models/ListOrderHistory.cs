@@ -22,10 +22,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The orderHistory property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrderHistory_orderHistory>? OrderHistory { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrderHistoryOrderHistoryItem>? OrderHistory { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrderHistory_orderHistory> OrderHistory { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrderHistoryOrderHistoryItem> OrderHistory { get; set; }
 #endif
         /// <summary>The status property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.OrderStatus? Status { get; set; }
@@ -58,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "created", n => { Created = n.GetDateTimeOffsetValue(); } },
                 { "id", n => { Id = n.GetGuidValue(); } },
-                { "orderHistory", n => { OrderHistory = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrderHistory_orderHistory>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrderHistory_orderHistory.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "orderHistory", n => { OrderHistory = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrderHistoryOrderHistoryItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrderHistoryOrderHistoryItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OrderStatus>(); } },
                 { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OrderType>(); } },
             };
@@ -72,7 +72,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("created", Created);
             writer.WriteGuidValue("id", Id);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrderHistory_orderHistory>("orderHistory", OrderHistory);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrderHistoryOrderHistoryItem>("orderHistory", OrderHistory);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OrderStatus>("status", Status);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OrderType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);

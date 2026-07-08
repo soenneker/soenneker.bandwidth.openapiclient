@@ -8,40 +8,27 @@ using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     /// <summary>
-    /// An endpoint for an Origination Route Plan.
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PrefixedEndpoint"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.WeightedEndpoint"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class VoiceConfigServiceEndpoint : IAdditionalDataHolder, IParsable
+    public partial class VoiceConfigServiceEndpoint : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The endpoint property</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PrefixedEndpoint"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Endpoint { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PrefixedEndpoint? PrefixedEndpoint { get; set; }
 #nullable restore
 #else
-        public string Endpoint { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PrefixedEndpoint PrefixedEndpoint { get; set; }
 #endif
-        /// <summary>&quot;Trunk selection information for an endpoint. This field is optional and nullable: it may be omitted in requests and responses when no trunk has been selected for an endpoint. When present it contains the trunk identifier and associated capability pipe id selected for this endpoint.&quot;</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.WeightedEndpoint"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkInfo? TrunkInfo { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.WeightedEndpoint? WeightedEndpoint { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkInfo TrunkInfo { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.WeightedEndpoint WeightedEndpoint { get; set; }
 #endif
-        /// <summary>The type property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceEndpointTypeEnum? Type { get; set; }
-        /// <summary>The weight property</summary>
-        public int? Weight { get; set; }
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceEndpoint"/> and sets the default values.
-        /// </summary>
-        public VoiceConfigServiceEndpoint()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -50,7 +37,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceEndpoint CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceEndpoint();
+            var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
+            var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceEndpoint();
+            if("PrefixedEndpoint".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.PrefixedEndpoint = new global::Soenneker.Bandwidth.OpenApiClient.Models.PrefixedEndpoint();
+            }
+            else if("WeightedEndpoint".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.WeightedEndpoint = new global::Soenneker.Bandwidth.OpenApiClient.Models.WeightedEndpoint();
+            }
+            return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -58,13 +55,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            if(PrefixedEndpoint != null)
             {
-                { "endpoint", n => { Endpoint = n.GetStringValue(); } },
-                { "trunkInfo", n => { TrunkInfo = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkInfo>(global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkInfo.CreateFromDiscriminatorValue); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceEndpointTypeEnum>(); } },
-                { "weight", n => { Weight = n.GetIntValue(); } },
-            };
+                return PrefixedEndpoint.GetFieldDeserializers();
+            }
+            else if(WeightedEndpoint != null)
+            {
+                return WeightedEndpoint.GetFieldDeserializers();
+            }
+            return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
         /// Serializes information the current object
@@ -73,11 +72,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("endpoint", Endpoint);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkInfo>("trunkInfo", TrunkInfo);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceEndpointTypeEnum>("type", Type);
-            writer.WriteIntValue("weight", Weight);
-            writer.WriteAdditionalData(AdditionalData);
+            if(PrefixedEndpoint != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PrefixedEndpoint>(null, PrefixedEndpoint);
+            }
+            else if(WeightedEndpoint != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WeightedEndpoint>(null, WeightedEndpoint);
+            }
         }
     }
 }

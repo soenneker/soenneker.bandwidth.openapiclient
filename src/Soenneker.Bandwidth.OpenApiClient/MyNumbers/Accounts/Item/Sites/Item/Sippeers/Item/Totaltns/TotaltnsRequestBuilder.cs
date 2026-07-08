@@ -98,11 +98,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.Sites.Item.S
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("feature")]
-            public global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.Sites.Item.Sippeers.Item.Totaltns.GetFeatureQueryParameterType[]? Feature { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersRetrieveSipPeerTnsCountFeatureParameterItem[]? Feature { get; set; }
 #nullable restore
 #else
             [QueryParameter("feature")]
-            public global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.Sites.Item.Sippeers.Item.Totaltns.GetFeatureQueryParameterType[] Feature { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersRetrieveSipPeerTnsCountFeatureParameterItem[] Feature { get; set; }
 #endif
         }
     }

@@ -49,17 +49,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers
         /// <summary>
         /// Retrieve information about a location (SIP Peer) or set of locations on sub-account (site)
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.SippeersGetResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LocationsResponseResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponseJson">When receiving a 400 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.SippeersGetResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationsResponseResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.SippeersGetResponse> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationsResponseResponse> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -67,7 +67,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers
             {
                 { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponseJson.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.SippeersGetResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.SippeersGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationsResponseResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.LocationsResponseResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Create Location (SIP Peer).&lt;br&gt;Possible errors in response: https://dev.bandwidth.com/docs/numbers/errors/#sippeervalidationerror&quot;

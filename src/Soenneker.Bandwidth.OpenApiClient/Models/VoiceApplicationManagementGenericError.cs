@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementGenericError_data? DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementGenericErrorData? DataEscaped { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementGenericError_data DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementGenericErrorData DataEscaped { get; set; }
 #endif
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -66,7 +66,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementGenericError_data>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementGenericError_data.CreateFromDiscriminatorValue); } },
+                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementGenericErrorData>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementGenericErrorData.CreateFromDiscriminatorValue); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementError>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementError.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementLink.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -78,7 +78,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementGenericError_data>("data", DataEscaped);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementGenericErrorData>("data", DataEscaped);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementError>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementLink>("links", Links);
             writer.WriteAdditionalData(AdditionalData);

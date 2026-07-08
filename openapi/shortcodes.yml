@@ -10,6 +10,7 @@ info:
   version: 0.0.1
 security:
   - Basic: []
+  - OAuth2: []
 servers:
   - url: https://api.bandwidth.com/api/v2
     description: Production
@@ -152,8 +153,6 @@ paths:
     get:
       description: Retrieve all short code campaigns associated with an account.
       operationId: listShortCodeCampaigns
-      security:
-        - Basic: []
       parameters:
         - $ref: '#/components/parameters/accountIdPathParam'
         - $ref: '#/components/parameters/customerProfileIdQueryParam'
@@ -188,8 +187,6 @@ paths:
     post:
       description: Create a new short code campaign for an account.
       operationId: createShortCodeCampaign
-      security:
-        - Basic: []
       parameters:
         - $ref: '#/components/parameters/accountIdPathParam'
       requestBody:
@@ -224,8 +221,6 @@ paths:
         account. Optionally, use the version query parameter to retriever the
         history for only a specific version of the campaign.
       operationId: getShortCodeCampaignHistory
-      security:
-        - Basic: []
       parameters:
         - $ref: '#/components/parameters/accountIdPathParam'
         - $ref: '#/components/parameters/campaignIdPathParam'
@@ -256,8 +251,6 @@ paths:
     get:
       description: Retrieve a single short code campaign associated with an account.
       operationId: getShortCodeCampaign
-      security:
-        - Basic: []
       parameters:
         - $ref: '#/components/parameters/accountIdPathParam'
         - $ref: '#/components/parameters/campaignIdPathParam'
@@ -284,8 +277,6 @@ paths:
     put:
       description: Update a short code campaign associated with an account.
       operationId: updateShortCodeCampaign
-      security:
-        - Basic: []
       parameters:
         - $ref: '#/components/parameters/accountIdPathParam'
         - $ref: '#/components/parameters/campaignIdPathParam'
@@ -320,8 +311,6 @@ paths:
         Upload a document associated with a short code campaign. Max file size
         is 10MB.
       operationId: postShortCodeCampaignDocument
-      security:
-        - Basic: []
       parameters:
         - $ref: '#/components/parameters/accountIdPathParam'
       requestBody:
@@ -350,8 +339,6 @@ paths:
     get:
       description: Get a document associated with a short code campaign
       operationId: getShortCodeCampaignDocument
-      security:
-        - Basic: []
       parameters:
         - $ref: '#/components/parameters/accountIdPathParam'
         - $ref: '#/components/parameters/documentIdPathParam'
@@ -379,8 +366,6 @@ paths:
     get:
       description: Get all webhook subscriptions for short code campaigns on an account.
       operationId: getShortCodeCampaignWebhookSubscriptions
-      security:
-        - Basic: []
       parameters:
         - $ref: '#/components/parameters/accountIdPathParam'
       responses:
@@ -408,8 +393,6 @@ paths:
     post:
       description: Create a webhook subscription for short code campaigns on an account.
       operationId: createShortCodeCampaignWebhookSubscription
-      security:
-        - Basic: []
       parameters:
         - $ref: '#/components/parameters/accountIdPathParam'
       requestBody:
@@ -441,8 +424,6 @@ paths:
     put:
       description: Update a webhook subscription for short code campaigns on an account.
       operationId: updateShortCodeCampaignWebhookSubscription
-      security:
-        - Basic: []
       parameters:
         - $ref: '#/components/parameters/accountIdPathParam'
         - $ref: '#/components/parameters/webhookSubscriptionIdPathParam'
@@ -474,8 +455,6 @@ paths:
     delete:
       description: Delete a webhook subscription for short code campaigns on an account.
       operationId: deleteShortCodeCampaignWebhookSubscription
-      security:
-        - Basic: []
       parameters:
         - $ref: '#/components/parameters/accountIdPathParam'
         - $ref: '#/components/parameters/webhookSubscriptionIdPathParam'
@@ -538,6 +517,16 @@ components:
         header that contains the word Basic followed by a space and a
         base64-encoded string `username:password`. Example: `Authorization:
         Basic ZGVtbZpwQDU1dzByZA==`.
+    OAuth2:
+      type: oauth2
+      description: >-
+        OAuth2 client credentials. For information on obtaining credentials, see
+        [Credentials
+        Management](https://dev.bandwidth.com/docs/account/credentials/management/).
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.bandwidth.com/api/v1/oauth2/token
+          scopes: {}
   responses:
     adminFeedbackResponse:
       content:
@@ -1855,6 +1844,66 @@ components:
               $ref: '#/components/schemas/lastUpdatedOn'
             shortCodePhoneNumber:
               $ref: '#/components/schemas/shortCodePhoneNumber'
+            supportTickets:
+              description: >-
+                A list of Intercom support tickets associated with the
+                campaign's brand name.
+              items:
+                $ref: '#/components/schemas/supportTicket'
+              minItems: 0
+              readOnly: true
+              type: array
+            version:
+              $ref: '#/components/schemas/version'
+          required:
+            - campaignId
+            - accountId
+            - campaignStatus
+            - createdOn
+            - lastUpdatedOn
+            - customerProfileId
+            - feedback
+            - carrierStatus
+            - version
+            - deleted
+            - countryCodeA3
+            - supportTickets
+          type: object
+        - $ref: '#/components/schemas/commonCampaignFields'
+    listCampaignItemSchema:
+      allOf:
+        - properties:
+            accountId:
+              $ref: '#/components/schemas/accountId'
+            addressId:
+              $ref: '#/components/schemas/addressId'
+            campaignId:
+              $ref: '#/components/schemas/campaignId'
+            campaignStatus:
+              $ref: '#/components/schemas/campaignStatus'
+            carrierStatus:
+              description: >-
+                List of objects each providing the short code registration
+                status for an individual carrier.
+              items:
+                $ref: '#/components/schemas/shortCodeCarrierInfo'
+              type: array
+            countryCodeA3:
+              $ref: '#/components/schemas/countryCodeA3'
+            createdOn:
+              $ref: '#/components/schemas/createdOn'
+            customerProfileId:
+              $ref: '#/components/schemas/customerProfileId'
+            customerProfileName:
+              $ref: '#/components/schemas/customerProfileName'
+            deleted:
+              $ref: '#/components/schemas/deleted'
+            feedback:
+              $ref: '#/components/schemas/feedback'
+            lastUpdatedOn:
+              $ref: '#/components/schemas/lastUpdatedOn'
+            shortCodePhoneNumber:
+              $ref: '#/components/schemas/shortCodePhoneNumber'
             version:
               $ref: '#/components/schemas/version'
           required:
@@ -2068,7 +2117,7 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/getSingleCampaignSchema'
+            $ref: '#/components/schemas/listCampaignItemSchema'
           type: array
         errors:
           description: The errors array will always be empty for successful responses.
@@ -2962,6 +3011,53 @@ components:
           - is required
           - can not be empty
       type: object
+    supportTicketCategory:
+      description: Different category possibilities for Intercom support tickets.
+      enum:
+        - SUBMITTED
+        - IN_PROGRESS
+        - WAITING_ON_CUSTOMER
+        - RESOLVED
+      example: IN_PROGRESS
+      type: string
+    supportTicket:
+      description: >-
+        A support ticket from Intercom associated with the campaign's brand
+        name.
+      properties:
+        category:
+          $ref: '#/components/schemas/supportTicketCategory'
+        description:
+          description: The description of the support ticket.
+          example: Shortcode issue
+          type: string
+          nullable: true
+        priority:
+          description: The priority level of the support ticket.
+          example: Low
+          type: string
+          nullable: true
+        ticketId:
+          description: >-
+            The unique identifier of the Intercom support ticket. Returned as a
+            string of numeric digits.
+          example: '1001'
+          type: string
+        title:
+          description: The title of the support ticket.
+          example: Help Needed
+          type: string
+        url:
+          description: The Intercom URL to view the support ticket.
+          example: https://app.intercom.com/a/inbox/abcdf/inbox/conversation/1234
+          format: uri
+          type: string
+      required:
+        - category
+        - ticketId
+        - title
+        - url
+      type: object
     updateShortCodeCampaignWebhookSubscriptionRequestSchema:
       $ref: '#/components/schemas/shortCodeCampaignWebhookSubscriptionSchema'
     createdDateTime:
@@ -3727,6 +3823,19 @@ components:
           shortCodeLeaseLength: 3 months
           shortCodePhoneNumber: '12345'
           shortCodeType: RANDOM
+          supportTickets:
+            - category: IN_PROGRESS
+              description: Shortcode issue
+              priority: Low
+              ticketId: '1001'
+              title: Help Needed
+              url: https://app.intercom.com/a/inbox/abcdf/inbox/conversation/1234
+            - category: SUBMITTED
+              description: Shortcode failure
+              priority: High
+              ticketId: '1002'
+              title: Help Needed Urgently
+              url: https://app.intercom.com/a/inbox/uhfadj/inbox/conversation/1235
           termsAndConditionsAttachmentUrl: https://s3.amazonaws.com/bw-athena-attachments/1234
           termsAndConditionsUrl: https://some-company.com/terms-and-conditions
           version: 0

@@ -20,10 +20,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The endpoints property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrderDetails_endpoints>? Endpoints { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrderDetailsEndpointsItem>? Endpoints { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrderDetails_endpoints> Endpoints { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrderDetailsEndpointsItem> Endpoints { get; set; }
 #endif
         /// <summary>The id property</summary>
         public Guid? Id { get; set; }
@@ -71,7 +71,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "acceptedCount", n => { AcceptedCount = n.GetIntValue(); } },
-                { "endpoints", n => { Endpoints = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrderDetails_endpoints>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrderDetails_endpoints.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "endpoints", n => { Endpoints = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrderDetailsEndpointsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrderDetailsEndpointsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "id", n => { Id = n.GetGuidValue(); } },
                 { "invalidCount", n => { InvalidCount = n.GetIntValue(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningLinks>(global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningLinks.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -89,7 +89,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("acceptedCount", AcceptedCount);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrderDetails_endpoints>("endpoints", Endpoints);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListOrderDetailsEndpointsItem>("endpoints", Endpoints);
             writer.WriteGuidValue("id", Id);
             writer.WriteIntValue("invalidCount", InvalidCount);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningLinks>("links", Links);

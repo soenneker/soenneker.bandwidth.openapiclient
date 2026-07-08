@@ -9,7 +9,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "FR")]
         #pragma warning disable CS1591
-        FR,
+        Fr,
         #pragma warning restore CS1591
     }
 }

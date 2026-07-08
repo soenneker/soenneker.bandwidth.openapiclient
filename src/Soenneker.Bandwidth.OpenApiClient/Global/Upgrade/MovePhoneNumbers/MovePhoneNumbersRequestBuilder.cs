@@ -52,14 +52,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Upgrade.MovePhoneNumbers
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse">When receiving a 403 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse">When receiving a 404 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse">When receiving a 409 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse">When receiving a 429 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse">When receiving a 500 status code</exception>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse">When receiving a 503 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2">When receiving a 409 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2">When receiving a 429 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2">When receiving a 500 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveResponse?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -73,14 +73,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Upgrade.MovePhoneNumbers
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
-                { "409", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
-                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
-                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
-                { "503", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2.CreateFromDiscriminatorValue },
+                { "409", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2.CreateFromDiscriminatorValue },
+                { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2.CreateFromDiscriminatorValue },
+                { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2.CreateFromDiscriminatorValue },
+                { "503", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse2.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersMoveResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

@@ -33,6 +33,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>The priority property</summary>
         public double? Priority { get; set; }
+        /// <summary>Route evaluation mode. This route type determines endpoint semantics (`WEIGHTED` routes use weighted endpoints; `ANI` routes use prefixed endpoints).</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RouteType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteRequest"/> and sets the default values.
         /// </summary>
@@ -61,6 +63,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "endpoints", n => { Endpoints = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequest>(global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequest.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "priority", n => { Priority = n.GetDoubleValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RouteType>(); } },
             };
         }
         /// <summary>
@@ -73,6 +76,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequest>("endpoints", Endpoints);
             writer.WriteStringValue("name", Name);
             writer.WriteDoubleValue("priority", Priority);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RouteType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

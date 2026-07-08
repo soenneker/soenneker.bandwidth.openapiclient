@@ -9,27 +9,27 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "ACCEPTED")]
         #pragma warning disable CS1591
-        ACCEPTED,
+        Accepted,
         #pragma warning restore CS1591
         [EnumMember(Value = "IN_PROGRESS")]
         #pragma warning disable CS1591
-        IN_PROGRESS,
+        InProgress,
         #pragma warning restore CS1591
         [EnumMember(Value = "COMPLETE_SUCCESS")]
         #pragma warning disable CS1591
-        COMPLETE_SUCCESS,
+        CompleteSuccess,
         #pragma warning restore CS1591
         [EnumMember(Value = "COMPLETE_ERROR")]
         #pragma warning disable CS1591
-        COMPLETE_ERROR,
+        CompleteError,
         #pragma warning restore CS1591
         [EnumMember(Value = "PARTIAL_SUCCESS")]
         #pragma warning disable CS1591
-        PARTIAL_SUCCESS,
+        PartialSuccess,
         #pragma warning restore CS1591
         [EnumMember(Value = "CANCELED")]
         #pragma warning disable CS1591
-        CANCELED,
+        Canceled,
         #pragma warning restore CS1591
     }
 }

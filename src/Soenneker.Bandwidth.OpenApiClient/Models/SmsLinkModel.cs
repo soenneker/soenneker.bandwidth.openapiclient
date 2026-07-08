@@ -17,7 +17,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>A flag indicating if delivery reports are enabled on the link.</summary>
         public bool? DeliveryStatusReport { get; set; }
         /// <summary>&quot;This is the direction of the link: FROM_VOXBONE”, “TO_VOXBONE” or “BIDIRECTIONAL”.&quot;</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModel_direction? Direction { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModelDirection? Direction { get; set; }
         /// <summary>Every SMS link must be in a link group. If you don’t need multiple groups, then you can create one single link group in which you place all your SMS links. This can be used to filter based on the SMS link group and get the list of your SMS links within that SMS link group.</summary>
         public int? GroupId { get; set; }
         /// <summary>The login used for certain SMS link types. (REST_JSON)</summary>
@@ -59,7 +59,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>This is a parameter (in milliseconds) used for SMPP default will be 60000 if not specified.</summary>
         public long? TransactionTimeout { get; set; }
         /// <summary>This is the type (or protocol) of the SMS Link. For SMS inbound services (when direction is “FROM_VOXBONE” or “BIDIRECTIONAL”), the possible protocols are REST_JSON, SMPP_SMSC, SMPP_ESME, SIP, SOAP (Parlay-X) and SMTP. For SMS outbound services (when direction is “TO_VOXBONE”), the possible protocols type are REST_JSON, SMPP_SMSC or SMPP_ESME.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModel_type? Type { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModelType? Type { get; set; }
         /// <summary>This is the URL to which Bandwidth sends the traffic to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -98,7 +98,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "deliveryStatusReport", n => { DeliveryStatusReport = n.GetBoolValue(); } },
-                { "direction", n => { Direction = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModel_direction>(); } },
+                { "direction", n => { Direction = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModelDirection>(); } },
                 { "groupId", n => { GroupId = n.GetIntValue(); } },
                 { "login", n => { Login = n.GetStringValue(); } },
                 { "monitorInterval", n => { MonitorInterval = n.GetIntValue(); } },
@@ -107,7 +107,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "smsLinkId", n => { SmsLinkId = n.GetIntValue(); } },
                 { "systemType", n => { SystemType = n.GetStringValue(); } },
                 { "transactionTimeout", n => { TransactionTimeout = n.GetLongValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModel_type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModelType>(); } },
                 { "url", n => { Url = n.GetStringValue(); } },
                 { "useSSL", n => { UseSSL = n.GetBoolValue(); } },
                 { "weight", n => { Weight = n.GetIntValue(); } },
@@ -121,7 +121,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("deliveryStatusReport", DeliveryStatusReport);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModel_direction>("direction", Direction);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModelDirection>("direction", Direction);
             writer.WriteIntValue("groupId", GroupId);
             writer.WriteStringValue("login", Login);
             writer.WriteIntValue("monitorInterval", MonitorInterval);
@@ -130,7 +130,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteIntValue("smsLinkId", SmsLinkId);
             writer.WriteStringValue("systemType", SystemType);
             writer.WriteLongValue("transactionTimeout", TransactionTimeout);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModel_type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModelType>("type", Type);
             writer.WriteStringValue("url", Url);
             writer.WriteBoolValue("useSSL", UseSSL);
             writer.WriteIntValue("weight", Weight);

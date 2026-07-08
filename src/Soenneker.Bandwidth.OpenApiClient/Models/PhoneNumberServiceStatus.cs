@@ -10,23 +10,23 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "IN_SERVICE")]
         #pragma warning disable CS1591
-        IN_SERVICE,
+        InService,
         #pragma warning restore CS1591
         [EnumMember(Value = "READY_TO_ACTIVATE")]
         #pragma warning disable CS1591
-        READY_TO_ACTIVATE,
+        ReadyToActivate,
         #pragma warning restore CS1591
         [EnumMember(Value = "ACTIVATION_REQUIREMENTS_NOT_MET")]
         #pragma warning disable CS1591
-        ACTIVATION_REQUIREMENTS_NOT_MET,
+        ActivationRequirementsNotMet,
         #pragma warning restore CS1591
         [EnumMember(Value = "ACCOUNT_NOT_CONFIGURED")]
         #pragma warning disable CS1591
-        ACCOUNT_NOT_CONFIGURED,
+        AccountNotConfigured,
         #pragma warning restore CS1591
         [EnumMember(Value = "NOT_SUPPORTED")]
         #pragma warning disable CS1591
-        NOT_SUPPORTED,
+        NotSupported,
         #pragma warning restore CS1591
     }
 }

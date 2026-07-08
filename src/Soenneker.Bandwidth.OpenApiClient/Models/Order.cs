@@ -57,7 +57,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string Reference { get; set; }
 #endif
         /// <summary>The status of the order.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Order_status? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OrderStatusEnum? Status { get; set; }
         /// <summary>The userName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -97,7 +97,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "didGroups", n => { DidGroups = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OrderDidGroups>(global::Soenneker.Bandwidth.OpenApiClient.Models.OrderDidGroups.CreateFromDiscriminatorValue); } },
                 { "orderId", n => { OrderId = n.GetIntValue(); } },
                 { "reference", n => { Reference = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Order_status>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OrderStatusEnum>(); } },
                 { "userName", n => { UserName = n.GetStringValue(); } },
             };
         }
@@ -114,7 +114,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OrderDidGroups>("didGroups", DidGroups);
             writer.WriteIntValue("orderId", OrderId);
             writer.WriteStringValue("reference", Reference);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Order_status>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OrderStatusEnum>("status", Status);
             writer.WriteStringValue("userName", UserName);
             writer.WriteAdditionalData(AdditionalData);
         }

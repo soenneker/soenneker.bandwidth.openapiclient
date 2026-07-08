@@ -10,31 +10,31 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "REGISTERING")]
         #pragma warning disable CS1591
-        REGISTERING,
+        Registering,
         #pragma warning restore CS1591
         [EnumMember(Value = "REGISTERED")]
         #pragma warning disable CS1591
-        REGISTERED,
+        Registered,
         #pragma warning restore CS1591
         [EnumMember(Value = "DECLINED")]
         #pragma warning disable CS1591
-        DECLINED,
+        Declined,
         #pragma warning restore CS1591
         [EnumMember(Value = "UNREGISTERING")]
         #pragma warning disable CS1591
-        UNREGISTERING,
+        Unregistering,
         #pragma warning restore CS1591
         [EnumMember(Value = "EXPIRED")]
         #pragma warning disable CS1591
-        EXPIRED,
+        Expired,
         #pragma warning restore CS1591
         [EnumMember(Value = "SUSPENDED")]
         #pragma warning disable CS1591
-        SUSPENDED,
+        Suspended,
         #pragma warning restore CS1591
         [EnumMember(Value = "ERROR")]
         #pragma warning disable CS1591
-        ERROR,
+        Error,
         #pragma warning restore CS1591
     }
 }

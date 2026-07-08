@@ -27,10 +27,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The orderDetails property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrderRequest_orderDetails>? OrderDetails { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrderRequestOrderDetailsItem>? OrderDetails { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrderRequest_orderDetails> OrderDetails { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrderRequestOrderDetailsItem> OrderDetails { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrderRequest"/> and sets the default values.
@@ -59,7 +59,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "customerOrderId", n => { CustomerOrderId = n.GetStringValue(); } },
                 { "migrateCampaign", n => { MigrateCampaign = n.GetBoolValue(); } },
-                { "orderDetails", n => { OrderDetails = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrderRequest_orderDetails>(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrderRequest_orderDetails.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "orderDetails", n => { OrderDetails = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrderRequestOrderDetailsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrderRequestOrderDetailsItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -71,7 +71,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("customerOrderId", CustomerOrderId);
             writer.WriteBoolValue("migrateCampaign", MigrateCampaign);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrderRequest_orderDetails>("orderDetails", OrderDetails);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrderRequestOrderDetailsItem>("orderDetails", OrderDetails);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

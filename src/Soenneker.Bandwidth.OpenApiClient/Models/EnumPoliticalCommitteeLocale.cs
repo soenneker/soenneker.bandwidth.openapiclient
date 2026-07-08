@@ -9,19 +9,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "FEDERAL")]
         #pragma warning disable CS1591
-        FEDERAL,
+        Federal,
         #pragma warning restore CS1591
         [EnumMember(Value = "STATE")]
         #pragma warning disable CS1591
-        STATE,
+        State,
         #pragma warning restore CS1591
         [EnumMember(Value = "LOCAL")]
         #pragma warning disable CS1591
-        LOCAL,
+        Local,
         #pragma warning restore CS1591
         [EnumMember(Value = "TRIBAL")]
         #pragma warning disable CS1591
-        TRIBAL,
+        Tribal,
         #pragma warning restore CS1591
     }
 }

@@ -9,35 +9,35 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "RECEIVED")]
         #pragma warning disable CS1591
-        RECEIVED,
+        Received,
         #pragma warning restore CS1591
         [EnumMember(Value = "QUEUED")]
         #pragma warning disable CS1591
-        QUEUED,
+        Queued,
         #pragma warning restore CS1591
         [EnumMember(Value = "SENDING")]
         #pragma warning disable CS1591
-        SENDING,
+        Sending,
         #pragma warning restore CS1591
         [EnumMember(Value = "SENT")]
         #pragma warning disable CS1591
-        SENT,
+        Sent,
         #pragma warning restore CS1591
         [EnumMember(Value = "FAILED")]
         #pragma warning disable CS1591
-        FAILED,
+        Failed,
         #pragma warning restore CS1591
         [EnumMember(Value = "DELIVERED")]
         #pragma warning disable CS1591
-        DELIVERED,
+        Delivered,
         #pragma warning restore CS1591
         [EnumMember(Value = "ACCEPTED")]
         #pragma warning disable CS1591
-        ACCEPTED,
+        Accepted,
         #pragma warning restore CS1591
         [EnumMember(Value = "UNDELIVERED")]
         #pragma warning disable CS1591
-        UNDELIVERED,
+        Undelivered,
         #pragma warning restore CS1591
     }
 }

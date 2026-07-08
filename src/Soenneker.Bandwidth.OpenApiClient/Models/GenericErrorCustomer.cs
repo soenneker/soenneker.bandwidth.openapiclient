@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer_data? DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomerData? DataEscaped { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer_data DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomerData DataEscaped { get; set; }
 #endif
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -66,7 +66,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer_data>(global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer_data.CreateFromDiscriminatorValue); } },
+                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomerData>(global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomerData.CreateFromDiscriminatorValue); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CustomerError>(global::Soenneker.Bandwidth.OpenApiClient.Models.CustomerError.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementLink.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -78,7 +78,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer_data>("data", DataEscaped);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomerData>("data", DataEscaped);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CustomerError>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementLink>("links", Links);
             writer.WriteAdditionalData(AdditionalData);

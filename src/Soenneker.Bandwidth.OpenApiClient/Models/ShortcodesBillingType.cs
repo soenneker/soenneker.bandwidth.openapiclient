@@ -9,11 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "STANDARD_SMS")]
         #pragma warning disable CS1591
-        STANDARD_SMS,
+        StandardSms,
         #pragma warning restore CS1591
         [EnumMember(Value = "FREE_TO_END_USER")]
         #pragma warning disable CS1591
-        FREE_TO_END_USER,
+        FreeToEndUser,
         #pragma warning restore CS1591
     }
 }

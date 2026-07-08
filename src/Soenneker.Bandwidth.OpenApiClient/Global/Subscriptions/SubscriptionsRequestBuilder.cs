@@ -49,7 +49,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions
         /// <summary>
         /// List All Subscriptions for Account
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.SubscriptionsGetResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseProperties">When receiving a 400 status code</exception>
@@ -60,11 +60,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseProperties">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.SubscriptionsGetResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.SubscriptionsRequestBuilder.SubscriptionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.SubscriptionsRequestBuilder.SubscriptionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.SubscriptionsGetResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.SubscriptionsRequestBuilder.SubscriptionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.SubscriptionsRequestBuilder.SubscriptionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -77,12 +77,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseProperties.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseProperties.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.SubscriptionsGetResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.SubscriptionsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Create New Subscription
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.SubscriptionsPostResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponse"/></returns>
         /// <param name="body">Data representing a Subscription</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -94,11 +94,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseProperties">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.SubscriptionsPostResponse?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.Subscription body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponse?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.Subscription body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.SubscriptionsPostResponse> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.Subscription body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponse> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.Subscription body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -112,7 +112,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseProperties.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseProperties.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.SubscriptionsPostResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.SubscriptionsPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// List All Subscriptions for Account

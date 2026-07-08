@@ -9,15 +9,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "UC250")]
         #pragma warning disable CS1591
-        UC250,
+        Uc250,
         #pragma warning restore CS1591
         [EnumMember(Value = "UC500")]
         #pragma warning disable CS1591
-        UC500,
+        Uc500,
         #pragma warning restore CS1591
         [EnumMember(Value = "UC1000")]
         #pragma warning disable CS1591
-        UC1000,
+        Uc1000,
         #pragma warning restore CS1591
     }
 }

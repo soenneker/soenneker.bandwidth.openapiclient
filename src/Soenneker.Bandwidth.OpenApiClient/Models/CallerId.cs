@@ -15,7 +15,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The format can be RAW, E164, LOCALIZED and CLI_NONE. In case the format is E164 or LOCALIZED, then there should be a cliValue.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallerId_cliFormat? CliFormat { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallerIdCliFormat? CliFormat { get; set; }
         /// <summary>If the value of cliFormat is E164 then the cliValue should be &apos;+&apos;, &apos;null&apos; or a numeric string (e.g. &apos;+123&apos;, &apos;+&apos;, &apos;123&apos;, etc.). If the cliFormat is LOCALIZED then the cliValue should be a country code a3 (e.g. &apos;RUS&apos;, &apos;FRA&apos;, &apos;USA&apos;, etc.).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -49,7 +49,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "cliFormat", n => { CliFormat = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallerId_cliFormat>(); } },
+                { "cliFormat", n => { CliFormat = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallerIdCliFormat>(); } },
                 { "cliValue", n => { CliValue = n.GetStringValue(); } },
             };
         }
@@ -60,7 +60,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallerId_cliFormat>("cliFormat", CliFormat);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallerIdCliFormat>("cliFormat", CliFormat);
             writer.WriteStringValue("cliValue", CliValue);
             writer.WriteAdditionalData(AdditionalData);
         }

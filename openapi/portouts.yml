@@ -1,0 +1,2216 @@
+openapi: 3.0.1
+info:
+  title: Port-Outs
+  description: >-
+    Bandwidth's Port-Outs API
+
+
+    This API provides endpoints to manage port-out orders, including retrieving
+    port-out orders by order ID and by date range for a given account, and
+    creating, retrieving, and updating LSR (Local Service Request) orders for
+    telephone numbers being ported out of the Bandwidth network.
+  contact:
+    name: Bandwidth
+    url: https://dev.bandwidth.com/apis/numbers-apis/porting/portouts/
+    email: support@bandwidth.com
+  version: 2.0.0
+  termsOfService: https://www.bandwidth.com/legal/terms-of-service/
+servers:
+  - url: https://api.bandwidth.com/api/v2
+    description: Production
+tags:
+  - name: Port-Outs
+    description: Endpoints for managing port-out orders.
+  - name: LSR Orders
+    description: Manage Local Service Request (LSR) orders for port-out actions.
+security:
+  - Basic: []
+  - Bearer: []
+paths:
+  /accounts/{accountId}/portouts:
+    get:
+      description: >-
+        Retrieves a list of port-out requests for the given account ID. A
+        maximum of 1,000 orders can be retrieved per request. If no date range
+        or specific query parameter (marked by <b class="required">*</b> below)
+        is provided, the order results will be limited to the last two years.
+      operationId: listPortOuts
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/listPortOutsPageQueryParam'
+        - $ref: '#/components/parameters/listPortOutsSizeQueryParam'
+        - $ref: '#/components/parameters/statusQueryParam'
+        - $ref: '#/components/parameters/dateQueryParam'
+        - $ref: '#/components/parameters/startdateQueryParam'
+        - $ref: '#/components/parameters/enddateQueryParam'
+        - $ref: '#/components/parameters/countryCodeA3QueryParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/listPortOutsResponse200'
+        '400':
+          $ref: '#/components/responses/listPortOutsResponse400'
+        '401':
+          $ref: '#/components/responses/listPortOutsResponse401'
+        '403':
+          $ref: '#/components/responses/listPortOutsResponse403'
+        '404':
+          $ref: '#/components/responses/listPortOutsResponse404'
+        '429':
+          $ref: '#/components/responses/listPortOutsResponse429'
+        '500':
+          $ref: '#/components/responses/listPortOutsResponse500'
+      summary: List port-out requests
+      tags:
+        - Port-Outs
+  /accounts/{accountId}/portouts/status:
+    get:
+      tags:
+        - Port-Outs
+      summary: Get Port Out Range
+      description: >-
+        List port-out orders which were last modified in the specified date
+        range.
+      operationId: getAllPortOutsByAccountIdAndRange
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/startdateQueryParam'
+        - $ref: '#/components/parameters/enddateQueryParam'
+        - $ref: '#/components/parameters/pageQueryParam'
+        - $ref: '#/components/parameters/sizeQueryParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/portoutsStatusResponse200'
+        '400':
+          $ref: '#/components/responses/errorResponse400'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/errorResponse404'
+        '405':
+          $ref: '#/components/responses/errorResponse405'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        5XX:
+          $ref: '#/components/responses/errorResponse500'
+  /accounts/{accountId}/portouts/{orderId}:
+    get:
+      tags:
+        - Port-Outs
+      operationId: getPortOut
+      summary: Fetching port-out order status
+      description: >-
+        Retrieves the information associated with the specified port-out order
+        ID.
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/orderIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/portOutGetResponse200'
+        '400':
+          $ref: '#/components/responses/errorResponse400'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/errorResponse404'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        '500':
+          $ref: '#/components/responses/errorResponse500'
+  /accounts/{accountId}/lsrorders:
+    post:
+      tags:
+        - LSR Orders
+      operationId: createLsrOrder
+      summary: Create LSR order
+      description: >-
+        Creates an LSR order to initiate a port-out of telephone numbers from
+        the Bandwidth network.
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/createLsrOrderRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/lsrOrderCreatedResponse'
+        '400':
+          $ref: '#/components/responses/lsrOrderBadRequestResponse'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/lsrOrderNotFoundResponse'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        5XX:
+          $ref: '#/components/responses/errorResponse500'
+  /accounts/{accountId}/lsrorders/{orderId}:
+    get:
+      tags:
+        - LSR Orders
+      operationId: getLsrOrder
+      summary: Retrieve LSR order
+      description: Retrieves the information associated with the specified LSR order.
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/lsrOrderIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/lsrOrderResponse200'
+        '400':
+          $ref: '#/components/responses/lsrOrderBadRequestResponse'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/lsrOrderNotFoundResponse'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        5XX:
+          $ref: '#/components/responses/errorResponse500'
+    put:
+      tags:
+        - LSR Orders
+      operationId: updateLsrOrder
+      summary: Update LSR order
+      description: >-
+        Updates the information associated with the specified LSR order. To
+        cancel an order, set `orderStatus` to `CANCELLED`.
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/lsrOrderIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/updateLsrOrderRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/lsrOrderUpdateResponse200'
+        '400':
+          $ref: '#/components/responses/lsrOrderBadRequestResponse'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/lsrOrderNotFoundResponse'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        5XX:
+          $ref: '#/components/responses/errorResponse500'
+components:
+  examples:
+    listPortOutsResponseJsonExample:
+      value:
+        totalCount: 1
+        links:
+          first: >-
+            https://api.bandwidth.com/api/v2/accounts/1234567/portouts?page=1&size=30
+        orders:
+          - accountId: 1234567
+            orderId: 4299b1ad-aa08-433e-a316-f9219b3450d2
+            userId: System
+            lastModifiedDate: '2024-11-04T11:16:09Z'
+            phoneNumberCount: 1
+            orderType: port_out
+            orderDate: '2024-11-04T10:59:35Z'
+            requestedFocDate: '2024-11-12T15:00:00Z'
+            actualFocDate: '2024-11-12T15:00:00Z'
+            processingStatus: COMPLETE
+            countryCodeA3: USA
+            vendorId: 512E
+    listPortOutsErrorResponseJsonExample:
+      value:
+        code: '7342'
+        description: The requested resource was not found.
+    listPortOutsResponseXmlExample:
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <LNPResponseWrapper>
+            <TotalCount>3</TotalCount>
+            <Links/>
+            <lnpPortInfoForGivenStatus>
+                <CountOfTNs>0</CountOfTNs>
+                <userId>System</userId>
+                <OrderId>4299b1ad-aa08-433e-a316-f9219b3450d2</OrderId>
+                <OrderType>port_out</OrderType>
+                <lastModifiedDate>2014-07-31T16:34:37.530Z</lastModifiedDate>
+                <ErrorCode>201</ErrorCode>
+                <ErrorMessage>Order request received. Please use the order id to check the status of your order later.</ErrorMessage>
+                <OrderDate>2014-07-31T16:34:37.480Z</OrderDate>
+                <ProcessingStatus>NEW</ProcessingStatus>
+                <RequestedFOCDate>2014-08-02T12:34:37.000Z</RequestedFOCDate>
+                <VendorId>512E</VendorId>
+                <CountryCodeA3>GBR</CountryCodeA3>
+            </lnpPortInfoForGivenStatus>
+        </LNPResponseWrapper>
+    portOutGetResponseJsonExample:
+      summary: JSON example for GET port-out by orderId 200 response
+      value:
+        requestedFocDate: '2024-05-10T17:00:00Z'
+        actualFocDate: '2024-05-10T17:00:00Z'
+        phoneNumbers:
+          - '+32712109100'
+        accountId: 12346158
+        orderCreateDate: '2026-05-26T08:43:34.945Z'
+        lastModifiedDate: '2026-05-26T08:43:35.387Z'
+        userId: System
+        portOutStatus: NEW
+        newCarrierPrefix: '990'
+        newCarrierName: Carrier Name
+        internal: false
+        countryCodeA3: BEL
+    portOutGetResponseXmlExample:
+      summary: XML example for GET port-out by orderId 200 response
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <LnpOrderResponse>
+            <RequestedFocDate>2024-05-10T17:00:00Z</RequestedFocDate>
+            <ActualFocDate>2024-05-10T17:00:00Z</ActualFocDate>
+            <ListOfPhoneNumbers>
+                <PhoneNumber>+32712109100</PhoneNumber>
+            </ListOfPhoneNumbers>
+            <AccountId>12346158</AccountId>
+            <OrderCreateDate>2026-05-26T08:43:34.945Z</OrderCreateDate>
+            <LastModifiedDate>2026-05-26T08:43:35.387Z</LastModifiedDate>
+            <userId>System</userId>
+            <PortOutStatus>NEW</PortOutStatus>
+            <NewCarrierPrefix>990</NewCarrierPrefix>
+            <NewCarrierName>Carrier Name</NewCarrierName>
+            <Internal>false</Internal>
+            <CountryCodeA3>BEL</CountryCodeA3>
+        </LnpOrderResponse>
+    portoutsStatusResponseJsonExample:
+      summary: JSON example for port-out orders by date range
+      value:
+        totalCount: 1
+        links:
+          - first: >-
+              https://localhost:8443/api/v2/accounts/12346158/portouts/status?startdate=2024-01-01&enddate=2026-12-31&page=1&size=25
+        lnpPortInfoForGivenStatus:
+          - accountId: 12346158
+            orderId: fabc29fe-0f19-415e-ac97-4e201de75f56
+            userId: System
+            lastModifiedDate: '2026-05-26T07:41:06.219Z'
+            phoneNumberCount: 1
+            orderType: port_out
+            orderDate: '2026-05-26T07:41:05.531Z'
+            errorMessage: >-
+              Order request received. Please use the order id to check the
+              status of your order later.
+            errorCode: 201
+            requestedFocDate: '2024-05-10T17:00:00.000Z'
+            actualFocDate: '2024-05-10T17:00:00.000Z'
+            processingStatus: NEW
+            phoneNumber: '+442079315000'
+            companyName: International Test Account
+            countryCodeA3: GBR
+    portoutsStatusResponseXmlExample:
+      summary: XML example for port-out orders by date range
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <LNPResponseWrapper>
+            <TotalCount>1</TotalCount>
+            <Links>
+                <first>Link=&lt;https://localhost:8443/api/v2/accounts/12346158/portouts/status?startdate=2024-01-01&amp;enddate=2026-12-31&amp;page=1&amp;size=25>;rel="first";</first>
+            </Links>
+            <lnpPortInfoForGivenStatus>
+                <accountId>12346158</accountId>
+                <CountOfTNs>1</CountOfTNs>
+                <userId>System</userId>
+                <lastModifiedDate>2026-05-26T07:41:06.219Z</lastModifiedDate>
+                <OrderDate>2026-05-26T07:41:05.531Z</OrderDate>
+                <OrderId>fabc29fe-0f19-415e-ac97-4e201de75f56</OrderId>
+                <OrderType>port_out</OrderType>
+                <ActualFOCDate>2024-05-10T17:00:00.000Z</ActualFOCDate>
+                <CompanyName>International Test Account</CompanyName>
+                <CountryCodeA3>GBR</CountryCodeA3>
+                <ErrorCode>201</ErrorCode>
+                <ErrorMessage>Order request received. Please use the order id to check the status of your order later.</ErrorMessage>
+                <FullNumber>+442079315000</FullNumber>
+                <ProcessingStatus>NEW</ProcessingStatus>
+                <RequestedFOCDate>2024-05-10T17:00:00.000Z</RequestedFOCDate>
+            </lnpPortInfoForGivenStatus>
+        </LNPResponseWrapper>
+    portoutsStatus404JsonExample:
+      summary: JSON example when page and size are missing
+      value:
+        first: >-
+          https://localhost:8443/api/v2/accounts/12346158/portouts/status?startdate=2024-01-01&enddate=2026-12-31&page=1&size=300
+    portoutsStatus404XmlExample:
+      summary: XML example when page and size are missing
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <Links>
+            <first>Link=&lt;https://localhost:8443/api/v2/accounts/12346158/portouts/status?startdate=2024-01-01&amp;enddate=2026-12-31&amp;page=1&amp;size=300>;rel="first";</first>
+        </Links>
+    createLsrOrderJsonExample:
+      description: Create LSR order JSON example
+      value:
+        pon: ATT-011515-324234
+        customerOrderId: FineCustomerid
+        spid: 123C
+        billingPhoneNumber: '+19192381468'
+        requestedFocDate: '2015-11-15'
+        authorizingPerson: Jim Hopkins
+        subscriber:
+          subscriberType: BUSINESS
+          businessName: BusinessName
+          serviceAddress:
+            houseNumber: '11'
+            streetName: Park
+            streetSuffix: Ave
+            city: New York
+            stateCode: NY
+            zip: '90025'
+          accountNumber: '123463'
+          pinNumber: '1231'
+        phoneNumbers:
+          - '+19192381468'
+          - '+19192381467'
+    createLsrOrderXmlExample:
+      description: Create LSR order XML example
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <LsrOrder>
+            <Pon>ATT-011515-324234</Pon>
+            <CustomerOrderId>FineCustomerid</CustomerOrderId>
+            <SPID>123C</SPID>
+            <BillingTelephoneNumber>+19192381468</BillingTelephoneNumber>
+            <RequestedFocDate>2015-11-15</RequestedFocDate>
+            <AuthorizingPerson>Jim Hopkins</AuthorizingPerson>
+            <Subscriber>
+                <SubscriberType>BUSINESS</SubscriberType>
+                <BusinessName>BusinessName</BusinessName>
+                <ServiceAddress>
+                    <HouseNumber>11</HouseNumber>
+                    <StreetName>Park</StreetName>
+                    <StreetSuffix>Ave</StreetSuffix>
+                    <City>New York</City>
+                    <StateCode>NY</StateCode>
+                    <Zip>90025</Zip>
+                </ServiceAddress>
+                <AccountNumber>123463</AccountNumber>
+                <PinNumber>1231</PinNumber>
+            </Subscriber>
+            <ListOfTelephoneNumbers>
+                <TelephoneNumber>+19192381468</TelephoneNumber>
+                <TelephoneNumber>+19192381467</TelephoneNumber>
+            </ListOfTelephoneNumbers>
+        </LsrOrder>
+    updateLsrOrderJsonExample:
+      description: Update LSR order JSON example
+      value:
+        customerOrderId: FineCustomerid
+        spid: 123C
+        billingPhoneNumber: '+19192381468'
+        requestedFocDate: '2015-11-15'
+        authorizingPerson: Jim Hopkins
+        subscriber:
+          subscriberType: BUSINESS
+          businessName: BusinessName
+          serviceAddress:
+            houseNumber: '11'
+            streetName: Park
+            streetSuffix: Ave
+            city: New York
+            stateCode: NY
+            zip: '90025'
+          accountNumber: '123463'
+          pinNumber: '1231'
+    cancelLsrOrderJsonExample:
+      description: Cancel LSR order JSON example
+      value:
+        orderStatus: CANCELLED
+        phoneNumbers: []
+    updateLsrOrderXmlExample:
+      description: Update LSR order XML example
+      value: |-
+        <LsrOrder>
+            <CustomerOrderId>FineCustomerid</CustomerOrderId>
+            <SPID>123C</SPID>
+            <BillingTelephoneNumber>+19192381468</BillingTelephoneNumber>
+            <RequestedFocDate>2015-11-15</RequestedFocDate>
+            <AuthorizingPerson>Jim Hopkins</AuthorizingPerson>
+            <Subscriber>
+                <SubscriberType>BUSINESS</SubscriberType>
+                <BusinessName>BusinessName</BusinessName>
+                <ServiceAddress>
+                    <HouseNumber>11</HouseNumber>
+                    <StreetName>Park</StreetName>
+                    <StreetSuffix>Ave</StreetSuffix>
+                    <City>New York</City>
+                    <StateCode>NY</StateCode>
+                    <Zip>90025</Zip>
+                </ServiceAddress>
+                <AccountNumber>123463</AccountNumber>
+                <PinNumber>1231</PinNumber>
+            </Subscriber>
+        </LsrOrder>
+    cancelLsrOrderXmlExample:
+      description: Cancel LSR order XML example
+      value: |-
+        <LsrOrder>
+            <OrderStatus>CANCELLED</OrderStatus>
+            <ListOfTelephoneNumbers/>
+        </LsrOrder>
+    lsrOrderCreatedJsonExample:
+      description: Created LSR order JSON response example
+      value:
+        orderId: afce454a-4e89-4753-9f58-a442ebc7b142
+        customerOrderId: FineCustomerid
+        lastModifiedBy: team_ua
+        orderCreateDate: '2015-02-06T12:57:45.607Z'
+        accountId: '9999999'
+        spid: 123C
+        lastModifiedDate: '2015-02-09T13:07:57.286Z'
+        subAccountId: 0
+        locationId: 0
+        createdByUser: team_ua
+        orderStatus: PENDING
+        billingPhoneNumber: '+19192381468'
+        pon: ATT-011515-324234
+        ponVersion: 8
+        requestedFocDate: '2015-02-25'
+        authorizingPerson: Jim Hopkins
+        subscriber:
+          subscriberType: BUSINESS
+          businessName: BusinessName
+          accountNumber: '123463'
+          pinNumber: '1231'
+          serviceAddress:
+            houseNumber: '11'
+            streetName: Park
+            streetSuffix: Ave
+            city: New York
+            stateCode: NY
+            zip: '90025'
+            country: United States
+        phoneNumbers:
+          - '+19192381468'
+          - '+19192381467'
+          - '+19192381469'
+    lsrOrderCreatedXmlExample:
+      description: Created LSR order XML response example
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <LsrOrderResponse>
+            <LsrOrder>
+                <OrderId>afce454a-4e89-4753-9f58-a442ebc7b142</OrderId>
+                <CustomerOrderId>FineCustomerid</CustomerOrderId>
+                <LastModifiedBy>team_ua</LastModifiedBy>
+                <OrderCreateDate>2015-02-06T12:57:45.607Z</OrderCreateDate>
+                <AccountId>9999999</AccountId>
+                <SPID>123C</SPID>
+                <LastModifiedDate>2015-02-09T13:07:57.286Z</LastModifiedDate>
+                <CreatedByUser>team_ua</CreatedByUser>
+                <OrderStatus>PENDING</OrderStatus>
+                <BillingTelephoneNumber>+19192381468</BillingTelephoneNumber>
+                <Pon>ATT-011515-324234</Pon>
+                <PonVersion>8</PonVersion>
+                <RequestedFocDate>2015-02-25 00:00:00</RequestedFocDate>
+                <AuthorizingPerson>Jim Hopkins</AuthorizingPerson>
+                <Subscriber>
+                    <SubscriberType>BUSINESS</SubscriberType>
+                    <BusinessName>BusinessName</BusinessName>
+                    <AccountNumber>123463</AccountNumber>
+                    <PinNumber>1231</PinNumber>
+                    <ServiceAddress>
+                        <HouseNumber>11</HouseNumber>
+                        <StreetName>Park</StreetName>
+                        <StreetSuffix>Ave</StreetSuffix>
+                        <City>New York</City>
+                        <StateCode>NY</StateCode>
+                        <Zip>90025</Zip>
+                        <Country>United States</Country>
+                    </ServiceAddress>
+                </Subscriber>
+                <ListOfTelephoneNumbers>
+                    <TelephoneNumber>+19192381468</TelephoneNumber>
+                    <TelephoneNumber>+19192381467</TelephoneNumber>
+                    <TelephoneNumber>+19192381469</TelephoneNumber>
+                </ListOfTelephoneNumbers>
+            </LsrOrder>
+        </LsrOrderResponse>
+    lsrOrderResponse200JsonExample:
+      description: LSR order detail JSON response example
+      value:
+        orderId: 00cf7e08-cab0-4515-9a77-2d0a7da09415
+        customerOrderId: MyId5
+        lastModifiedBy: System
+        orderCreateDate: '2015-03-03T13:54:00.450Z'
+        accountId: '9999999'
+        lastModifiedDate: '2015-03-03T14:07:19.926Z'
+        orderStatus: FAILED
+        spid: 123C
+        billingPhoneNumber: '+19192381468'
+        pon: testpon1002
+        ponVersion: 0
+        requestedFocDate: '2015-11-15'
+        authorizingPerson: Jim Hopkins
+        subscriber:
+          subscriberType: BUSINESS
+          businessName: BusinessName
+          accountNumber: '123463'
+          pinNumber: '1231'
+          serviceAddress:
+            houseNumber: '11'
+            streetName: Park
+            streetSuffix: Ave
+            city: New York
+            stateCode: NY
+            zip: '90025'
+        phoneNumbers:
+          - '+19192381467'
+          - '+19192381468'
+        phoneNumberCount: 2
+        errors:
+          - code: '17008'
+            description: FOC date cannot fall on a holiday
+    lsrOrderResponse200XmlExample:
+      description: LSR order detail XML response example
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <LsrOrder>
+            <CustomerOrderId>MyId5</CustomerOrderId>
+            <LastModifiedBy>System</LastModifiedBy>
+            <OrderCreateDate>2015-03-03T13:54:00.450Z</OrderCreateDate>
+            <AccountId>9999999</AccountId>
+            <OrderId>00cf7e08-cab0-4515-9a77-2d0a7da09415</OrderId>
+            <LastModifiedDate>2015-03-03T14:07:19.926Z</LastModifiedDate>
+            <OrderStatus>FAILED</OrderStatus>
+            <SPID>123C</SPID>
+            <BillingTelephoneNumber>+19192381468</BillingTelephoneNumber>
+            <Pon>testpon1002</Pon>
+            <PonVersion>0</PonVersion>
+            <RequestedFocDate>2015-11-15</RequestedFocDate>
+            <AuthorizingPerson>Jim Hopkins</AuthorizingPerson>
+            <Subscriber>
+                <SubscriberType>BUSINESS</SubscriberType>
+                <BusinessName>BusinessName</BusinessName>
+                <AccountNumber>123463</AccountNumber>
+                <PinNumber>1231</PinNumber>
+                <ServiceAddress>
+                    <HouseNumber>11</HouseNumber>
+                    <StreetName>Park</StreetName>
+                    <StreetSuffix>Ave</StreetSuffix>
+                    <City>New York</City>
+                    <StateCode>NY</StateCode>
+                    <Zip>90025</Zip>
+                </ServiceAddress>
+            </Subscriber>
+            <ListOfTelephoneNumbers>
+                <TelephoneNumber>+19192381467</TelephoneNumber>
+                <TelephoneNumber>+19192381468</TelephoneNumber>
+            </ListOfTelephoneNumbers>
+            <LsrOrderErrors>
+                <LsrOrderError>
+                    <Code>17008</Code>
+                    <Description>FOC date cannot fall on a holiday</Description>
+                </LsrOrderError>
+            </LsrOrderErrors>
+            <CountOfTNs>2</CountOfTNs>
+        </LsrOrder>
+    lsrOrderBadRequestJsonExample:
+      description: LSR order bad request JSON response example
+      value:
+        code: '400'
+        description: Lsr order doesn't pass validation. Please check your input parameters.
+        errors:
+          - code: '7324'
+            description: >-
+              The business name is too long. The business name should not be
+              longer than 25 characters.
+          - code: '7318'
+            description: >-
+              Customer order ID is invalid. Only alphanumeric values, dashes and
+              spaces are allowed. Max length is 40 characters.
+    lsrOrderBadRequestXmlExample:
+      description: LSR order bad request XML response example
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <LsrOrderResponse>
+          <ResponseStatus>
+              <ErrorCode>400</ErrorCode>
+              <Description>Lsr order doesn't pass validation. Please check your input parameters.</Description>
+          </ResponseStatus>
+          <LsrOrderErrors>
+              <LsrOrderError>
+                  <Code>7324</Code>
+                  <Description>The business name is too long. The business name should not be longer than 25 characters.</Description>
+              </LsrOrderError>
+              <LsrOrderError>
+                  <Code>7318</Code>
+                  <Description>Customer order ID is invalid. Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters.</Description>
+              </LsrOrderError>
+          </LsrOrderErrors>
+        </LsrOrderResponse>
+    lsrOrderNotFoundJsonExample:
+      description: LSR order not found JSON response example
+      value:
+        code: '5035'
+        description: lsr order 63fb728d-421b-46ce-8c32-da30b909934s not found.
+    lsrOrderNotFoundXmlExample:
+      description: LSR order not found XML response example
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <LsrOrderResponse>
+            <ResponseStatus>
+                <ErrorCode>5035</ErrorCode>
+                <Description>lsr order 63fb728d-421b-46ce-8c32-da30b909934s not found.</Description>
+            </ResponseStatus>
+        </LsrOrderResponse>
+    updateLsrOrderResponse200JsonExample:
+      description: Update LSR order JSON response example
+      value:
+        customerOrderId: FineCustomerid
+        lastModifiedBy: team_ua
+        orderCreateDate: '2015-03-11T10:08:23.961Z'
+        accountId: '9999999'
+        orderId: 63fb728d-421b-46ce-8c32-da30b909934d
+        lastModifiedDate: '2015-03-11T10:08:59.832Z'
+        orderStatus: PENDING
+        spid: 123C
+        billingPhoneNumber: '+19192381468'
+        pon: ATT-011515-324234
+        ponVersion: 8
+        requestedFocDate: '2015-11-15'
+        authorizingPerson: Jim Hopkins
+        subscriber:
+          subscriberType: BUSINESS
+          businessName: BusinessName
+          accountNumber: '123463'
+          pinNumber: '1231'
+          serviceAddress:
+            houseNumber: '11'
+            streetName: Park
+            streetSuffix: Ave
+            city: New York
+            stateCode: NY
+            zip: '90025'
+        phoneNumbers:
+          - '+19192381468'
+        phoneNumberCount: 1
+        errors: []
+    updateLsrOrderResponse200XmlExample:
+      description: Update LSR order XML response example
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <LsrOrderResponse>
+            <LsrOrder>
+                <CustomerOrderId>FineCustomerid</CustomerOrderId>
+                <LastModifiedBy>team_ua</LastModifiedBy>
+                <OrderCreateDate>2015-03-11T10:08:23.961Z</OrderCreateDate>
+                <AccountId>9999999</AccountId>
+                <OrderId>63fb728d-421b-46ce-8c32-da30b909934d</OrderId>
+                <LastModifiedDate>2015-03-11T10:08:59.832Z</LastModifiedDate>
+                <OrderStatus>PENDING</OrderStatus>
+                <SPID>123C</SPID>
+                <BillingTelephoneNumber>+19192381468</BillingTelephoneNumber>
+                <Pon>ATT-011515-324234</Pon>
+                <PonVersion>8</PonVersion>
+                <RequestedFocDate>2015-11-15</RequestedFocDate>
+                <AuthorizingPerson>Jim Hopkins</AuthorizingPerson>
+                <Subscriber>
+                    <SubscriberType>BUSINESS</SubscriberType>
+                    <BusinessName>BusinessName</BusinessName>
+                    <AccountNumber>123463</AccountNumber>
+                    <PinNumber>1231</PinNumber>
+                    <ServiceAddress>
+                        <HouseNumber>11</HouseNumber>
+                        <StreetName>Park</StreetName>
+                        <StreetSuffix>Ave</StreetSuffix>
+                        <City>New York</City>
+                        <StateCode>NY</StateCode>
+                        <Zip>90025</Zip>
+                    </ServiceAddress>
+                </Subscriber>
+                <ListOfTelephoneNumbers>
+                    <TelephoneNumber>+19192381468</TelephoneNumber>
+                </ListOfTelephoneNumbers>
+                <LsrOrderErrors/>
+                <CountOfTNs>1</CountOfTNs>
+            </LsrOrder>
+        </LsrOrderResponse>
+  requestBodies:
+    createLsrOrderRequest:
+      description: LSR order creation request
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/lsrOrderRequestJson'
+          examples:
+            Create an LSR order:
+              $ref: '#/components/examples/createLsrOrderJsonExample'
+        application/xml:
+          examples:
+            Create an LSR order:
+              $ref: '#/components/examples/createLsrOrderXmlExample'
+    updateLsrOrderRequest:
+      description: LSR order update request
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/lsrOrderUpdateRequestJson'
+          examples:
+            Update an LSR order:
+              $ref: '#/components/examples/updateLsrOrderJsonExample'
+            Cancel an LSR order:
+              $ref: '#/components/examples/cancelLsrOrderJsonExample'
+        application/xml:
+          examples:
+            Update an LSR order:
+              $ref: '#/components/examples/updateLsrOrderXmlExample'
+            Cancel an LSR order:
+              $ref: '#/components/examples/cancelLsrOrderXmlExample'
+  responses:
+    listPortOutsResponse200:
+      description: OK
+      content:
+        application/json:
+          examples:
+            example:
+              $ref: '#/components/examples/listPortOutsResponseJsonExample'
+          schema:
+            $ref: '#/components/schemas/portOutsResponseJson'
+        application/xml:
+          examples:
+            example:
+              $ref: '#/components/examples/listPortOutsResponseXmlExample'
+          schema:
+            $ref: '#/components/schemas/lnpResponseWrapper'
+    listPortOutsResponse400:
+      description: Bad Request
+      content:
+        application/json:
+          examples:
+            example:
+              $ref: '#/components/examples/listPortOutsErrorResponseJsonExample'
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/responseStatus'
+    listPortOutsResponse401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/responseStatus'
+    listPortOutsResponse403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/responseStatus'
+    listPortOutsResponse404:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/responseStatus'
+    listPortOutsResponse429:
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/responseStatus'
+    listPortOutsResponse500:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/responseStatus'
+    portOutGetResponse200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/portOutOrderDetailJson'
+          examples:
+            example:
+              $ref: '#/components/examples/portOutGetResponseJsonExample'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/lnpOrderPortoutResponse'
+          examples:
+            example:
+              $ref: '#/components/examples/portOutGetResponseXmlExample'
+    portoutsStatusResponse200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/portoutsStatusResponseJson'
+          examples:
+            example:
+              $ref: '#/components/examples/portoutsStatusResponseJsonExample'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/portoutsStatusResponseXml'
+          examples:
+            example:
+              $ref: '#/components/examples/portoutsStatusResponseXmlExample'
+    errorResponse400:
+      description: Bad Request
+    errorResponse401:
+      description: Unauthorized
+    errorResponse403:
+      description: Forbidden
+    errorResponse404:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/portoutsStatus404ResponseJson'
+          examples:
+            example:
+              $ref: '#/components/examples/portoutsStatus404JsonExample'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/portoutsStatus404ResponseXml'
+          examples:
+            example:
+              $ref: '#/components/examples/portoutsStatus404XmlExample'
+    errorResponse405:
+      description: Method Not Allowed
+    errorResponse429:
+      description: Too Many Requests
+    errorResponse500:
+      description: Internal Server Error
+    lsrOrderCreatedResponse:
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/lsrOrderDetailJson'
+          examples:
+            example:
+              $ref: '#/components/examples/lsrOrderCreatedJsonExample'
+        application/xml:
+          examples:
+            example:
+              $ref: '#/components/examples/lsrOrderCreatedXmlExample'
+    lsrOrderResponse200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/lsrOrderDetailJson'
+          examples:
+            example:
+              $ref: '#/components/examples/lsrOrderResponse200JsonExample'
+        application/xml:
+          examples:
+            example:
+              $ref: '#/components/examples/lsrOrderResponse200XmlExample'
+    lsrOrderUpdateResponse200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/lsrOrderDetailJson'
+          examples:
+            example:
+              $ref: '#/components/examples/updateLsrOrderResponse200JsonExample'
+        application/xml:
+          examples:
+            example:
+              $ref: '#/components/examples/updateLsrOrderResponse200XmlExample'
+    lsrOrderBadRequestResponse:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/lsrOrderErrorResponseJson'
+          examples:
+            example:
+              $ref: '#/components/examples/lsrOrderBadRequestJsonExample'
+        application/xml:
+          examples:
+            example:
+              $ref: '#/components/examples/lsrOrderBadRequestXmlExample'
+    lsrOrderNotFoundResponse:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/lsrErrorResponseJson'
+          examples:
+            example:
+              $ref: '#/components/examples/lsrOrderNotFoundJsonExample'
+        application/xml:
+          examples:
+            example:
+              $ref: '#/components/examples/lsrOrderNotFoundXmlExample'
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+      description: >-
+        Basic authentication is a simple authentication scheme built into the
+        HTTP protocol. To use it, send your HTTP requests with an Authorization
+        header that contains the word Basic followed by a space and a
+        base64-encoded string `username:password`.
+
+        Example: `Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=`
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        Bearer authentication (also called token authentication) is an HTTP
+        authentication scheme that involves security 
+
+        tokens called bearer tokens. The name "Bearer authentication" can be
+        understood as "give access to the bearer
+
+        of this token." The client must send this token in the `Authorization`
+        header when making requests to
+
+        protected resources.
+
+
+        - Example: `Authorization: Bearer <token>`
+
+
+        Where `<token>` should be replaced with the token string without angle
+        brackets.
+
+
+        For more information, see the following guide:
+        [Credentials](https://dev.bandwidth.com/docs/account/credentials/management)
+  parameters:
+    accountIdPathParam:
+      name: accountId
+      description: User's account ID.
+      in: path
+      required: true
+      schema:
+        type: string
+      example: '1234567'
+    orderIdPathParam:
+      name: orderId
+      description: The port-out order ID.
+      in: path
+      required: true
+      schema:
+        type: string
+      example: 4299b1ad-aa08-433e-a316-f9219b3450d2
+    startdateQueryParam:
+      name: startdate
+      description: The earliest date that the order was last modified.
+      in: query
+      required: false
+      schema:
+        type: string
+      example: '2014-08-05'
+    enddateQueryParam:
+      name: enddate
+      description: The latest date that the order was last modified.
+      in: query
+      required: false
+      schema:
+        type: string
+      example: '2014-08-05'
+    pageQueryParam:
+      name: page
+      description: >-
+        The port-out ID of the first order of the page. "1" is used as a
+        convention for the first port-out in the account ID.
+      in: query
+      required: false
+      schema:
+        type: string
+        default: '1'
+      example: '1'
+    sizeQueryParam:
+      name: size
+      description: The number of port-outs retrieved.
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 10
+      example: 10
+    listPortOutsPageQueryParam:
+      name: page
+      description: >-
+        The port-out ID of the first order of the page. "1" is used as a
+        convention for the first port-out in the account ID.
+      in: query
+      required: true
+      schema:
+        type: string
+        default: '1'
+      example: ca8065d1-ec1a-43da-af40-1dcee43becb5
+    listPortOutsSizeQueryParam:
+      name: size
+      description: The number of port-outs retrieved.
+      in: query
+      required: true
+      schema:
+        type: integer
+        default: 300
+      example: 30
+    statusQueryParam:
+      name: status
+      description: Displays the port-outs with the given status.
+      in: query
+      required: false
+      schema:
+        type: string
+      example: complete
+    dateQueryParam:
+      name: date
+      description: The date of when the order was placed.
+      in: query
+      required: false
+      schema:
+        type: string
+      example: '2014-08-01'
+    countryCodeA3QueryParam:
+      name: countryCodeA3
+      description: Country code used to filter results.
+      in: query
+      required: false
+      schema:
+        type: string
+      example: USA
+    lsrOrderIdPathParam:
+      name: orderId
+      description: The LSR order ID.
+      in: path
+      required: true
+      schema:
+        type: string
+      example: 255bda29-fc57-44e8-a6c2-59b45388c6d0
+  schemas:
+    errorResponse:
+      type: object
+      required:
+        - code
+        - description
+      properties:
+        code:
+          type: string
+          description: Numeric or string error code.
+        description:
+          type: string
+          description: Human-readable error description.
+    responseStatus:
+      type: object
+      xml:
+        name: Status
+      properties:
+        code:
+          type: string
+          xml:
+            name: Code
+        description:
+          type: string
+          xml:
+            name: Description
+    linksJson:
+      type: object
+      properties:
+        first:
+          type: string
+        last:
+          type: string
+        next:
+          type: string
+        previous:
+          type: string
+    portOutAccountId:
+      type: integer
+      description: Account identifier associated with the port-out order.
+    portOutActualFocDate:
+      type: string
+      format: date-time
+      description: Assigned FOC date/time in RFC 3339 format.
+    portOutBillingPhoneNumber:
+      type: string
+      maxLength: 12
+      description: Primary phone number associated with billing.
+    portOutCompanyName:
+      type: string
+      description: Account company name.
+    portOutCountryCodeA3:
+      type: string
+      description: ISO 3166-1 alpha-3 country code.
+    portOutLastModifiedDate:
+      type: string
+      format: date-time
+      description: Date/time when the order was last modified in RFC 3339 format.
+    portOutLosingCarrierId:
+      type: string
+      description: Identifier for the losing carrier.
+    portOutLosingCarrierName:
+      type: string
+      description: Name of the losing carrier.
+    portOutOperatorCode:
+      type: string
+      description: Operator code associated with the port-out order.
+    portOutOperatorRoutingPrefix:
+      type: string
+      description: Operator routing prefix associated with the port-out order.
+    portOutOrderDate:
+      type: string
+      format: date-time
+      description: Date/time when the order was created in RFC 3339 format.
+    portOutOrderId:
+      type: string
+      description: Bandwidth order identifier.
+    portOutOrderType:
+      type: string
+      description: Type of order.
+    portOutPhoneNumberCount:
+      type: integer
+      description: Total count of phone numbers in the order.
+    portOutPhoneNumberType:
+      type: string
+      description: Type of phone number in the order.
+    portOutPon:
+      type: string
+      description: Port Order Number.
+    portOutRequestedFocDate:
+      type: string
+      format: date-time
+      description: Requested FOC date/time in RFC 3339 format.
+    portOutUserId:
+      type: string
+      description: User identifier associated with the order.
+    portOutVendorId:
+      type: string
+      description: Vendor identifier.
+    portOutVendorName:
+      type: string
+      description: Vendor name.
+    portOutTotalCount:
+      type: integer
+      description: Total number of matching port-out orders.
+    portOutLnpTotalCount:
+      type: integer
+      description: Total count of port-out orders.
+    portOutLnpLinks:
+      type: object
+      additionalProperties:
+        type: string
+    portOutLnpPortInfoForGivenStatus:
+      type: array
+      items:
+        type: object
+        additionalProperties: true
+    portOutOrderSummaryJson:
+      type: object
+      properties:
+        accountId:
+          $ref: '#/components/schemas/portOutAccountId'
+        actualFocDate:
+          $ref: '#/components/schemas/portOutActualFocDate'
+        billingPhoneNumber:
+          $ref: '#/components/schemas/portOutBillingPhoneNumber'
+        companyName:
+          $ref: '#/components/schemas/portOutCompanyName'
+        countryCodeA3:
+          $ref: '#/components/schemas/portOutCountryCodeA3'
+        lastModifiedDate:
+          $ref: '#/components/schemas/portOutLastModifiedDate'
+        losingCarrierId:
+          $ref: '#/components/schemas/portOutLosingCarrierId'
+        losingCarrierName:
+          $ref: '#/components/schemas/portOutLosingCarrierName'
+        operatorCode:
+          $ref: '#/components/schemas/portOutOperatorCode'
+        operatorRoutingPrefix:
+          $ref: '#/components/schemas/portOutOperatorRoutingPrefix'
+        orderDate:
+          $ref: '#/components/schemas/portOutOrderDate'
+        orderId:
+          $ref: '#/components/schemas/portOutOrderId'
+        orderType:
+          $ref: '#/components/schemas/portOutOrderType'
+        phoneNumberCount:
+          $ref: '#/components/schemas/portOutPhoneNumberCount'
+        phoneNumberType:
+          $ref: '#/components/schemas/portOutPhoneNumberType'
+        pon:
+          $ref: '#/components/schemas/portOutPon'
+        processingStatus:
+          $ref: '#/components/schemas/portOutStatusEnum'
+        requestedFocDate:
+          $ref: '#/components/schemas/portOutRequestedFocDate'
+        userId:
+          $ref: '#/components/schemas/portOutUserId'
+        vendorId:
+          $ref: '#/components/schemas/portOutVendorId'
+        vendorName:
+          $ref: '#/components/schemas/portOutVendorName'
+    portOutsResponseJson:
+      type: object
+      properties:
+        links:
+          $ref: '#/components/schemas/linksJson'
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/portOutOrderSummaryJson'
+        totalCount:
+          $ref: '#/components/schemas/portOutTotalCount'
+    lnpResponseWrapper:
+      type: object
+      xml:
+        name: LNPResponseWrapper
+      properties:
+        TotalCount:
+          $ref: '#/components/schemas/portOutLnpTotalCount'
+        Links:
+          $ref: '#/components/schemas/portOutLnpLinks'
+        lnpPortInfoForGivenStatus:
+          $ref: '#/components/schemas/portOutLnpPortInfoForGivenStatus'
+    portOutStatusEnum:
+      type: string
+      description: The processing status of a port-out order.
+      enum:
+        - NEW
+        - SUPP
+        - MODIFY
+        - COMPLETE
+        - CANCELLED
+        - VALIDATION_FAILED_NEW
+        - VALIDATION_FAILED_SUPP
+        - VALIDATION_FAILED_MODIFY
+        - EXCEPTION
+        - SOA_PENDING
+        - SOA_CONFLICT
+        - FOC
+    portOutOrderDetailJson:
+      type: object
+      description: Detailed port-out order response.
+      properties:
+        requestedFocDate:
+          type: string
+          format: date-time
+          description: The requested Firm Order Commitment (FOC) date in RFC 3339 format.
+        actualFocDate:
+          type: string
+          format: date-time
+          description: The actual FOC date assigned to the port-out order.
+        phoneNumbers:
+          type: array
+          description: List of telephone numbers in E.164 format in the port-out order.
+          items:
+            type: string
+            maxLength: 12
+        accountId:
+          type: integer
+          description: The Bandwidth account ID associated with the port-out order.
+        orderCreateDate:
+          type: string
+          format: date-time
+          description: The date and time the order was created in RFC 3339 format.
+        lastModifiedDate:
+          type: string
+          format: date-time
+          description: The date and time the order was last modified in RFC 3339 format.
+        userId:
+          type: string
+          description: The user ID who created or last modified the order.
+        portOutStatus:
+          $ref: '#/components/schemas/portOutStatusEnum'
+        pon:
+          type: string
+          description: Port Order Number assigned to the port-out request.
+        spid:
+          type: string
+          description: >-
+            The Service Provider ID of the carrier that the number is being
+            ported to.
+        newCarrierPrefix:
+          type: string
+          description: The prefix of the new carrier.
+        newCarrierName:
+          type: string
+          description: The name of the new carrier.
+        internal:
+          type: boolean
+          description: Flag to distinguish internal port-outs.
+        countryCodeA3:
+          type: string
+          description: The ISO 3166-1 alpha-3 country code for the telephone numbers.
+    lnpOrderPortoutResponse:
+      type: object
+      properties:
+        LnpOrderResponse:
+          type: object
+          xml:
+            name: LnpOrderResponse
+          properties:
+            RequestedFocDate:
+              type: string
+              description: The requested FOC date.
+              xml:
+                name: RequestedFocDate
+            ActualFocDate:
+              type: string
+              description: The actual FOC date.
+              xml:
+                name: ActualFocDate
+            ListOfPhoneNumbers:
+              type: object
+              xml:
+                name: ListOfPhoneNumbers
+              properties:
+                PhoneNumber:
+                  type: array
+                  items:
+                    type: string
+                    maxLength: 12
+                  xml:
+                    name: PhoneNumber
+                    wrapped: false
+            AccountId:
+              type: integer
+              description: The Bandwidth account ID.
+              xml:
+                name: AccountId
+            OrderCreateDate:
+              type: string
+              description: The order creation date.
+              xml:
+                name: OrderCreateDate
+            LastModifiedDate:
+              type: string
+              description: The last modified date.
+              xml:
+                name: LastModifiedDate
+            userId:
+              type: string
+              description: The user ID.
+              xml:
+                name: userId
+            PortOutStatus:
+              type: string
+              description: The port-out processing status.
+              xml:
+                name: PortOutStatus
+            PON:
+              type: string
+              description: Port Order Number.
+              xml:
+                name: PON
+            SPID:
+              type: string
+              description: Service Provider ID.
+              xml:
+                name: SPID
+            NewCarrierPrefix:
+              type: string
+              description: The new carrier prefix.
+              xml:
+                name: NewCarrierPrefix
+            NewCarrierName:
+              type: string
+              description: The new carrier name.
+              xml:
+                name: NewCarrierName
+            Internal:
+              type: boolean
+              description: Flag to distinguish internal port-outs.
+              xml:
+                name: Internal
+            CountryCodeA3:
+              type: string
+              description: ISO 3166-1 alpha-3 country code.
+              xml:
+                name: CountryCodeA3
+    portoutsStatusResponseJson:
+      type: object
+      description: JSON representation of port-out orders filtered by date range.
+      properties:
+        totalCount:
+          type: integer
+          description: The total number of port-out orders matching the query.
+          example: 3
+        links:
+          type: array
+          description: Pagination links.
+          items:
+            type: object
+            properties:
+              first:
+                type: string
+                description: The first (or only) page of results matching the query.
+              last:
+                type: string
+                description: >-
+                  If more results exist than specified by 'size', this link
+                  returns the last page of results.
+              next:
+                type: string
+                description: >-
+                  If more results exist than specified by 'size', this link
+                  returns the next page of 'size' results.
+              previous:
+                type: string
+                description: >-
+                  If the results are more than one page, this link returns the
+                  previous page of 'size' results.
+        lnpPortInfoForGivenStatus:
+          type: array
+          description: List of port-out orders.
+          items:
+            $ref: '#/components/schemas/portOutInfoJson'
+    portOutInfoJson:
+      type: object
+      description: JSON representation of a single port-out order info.
+      properties:
+        accountId:
+          type: integer
+          description: The account ID associated with the port-out order.
+          example: 9900572
+        phoneNumberCount:
+          type: integer
+          description: Total count of telephone numbers in the order.
+          example: 1
+        userId:
+          type: string
+          description: Bandwidth user ID.
+          example: System
+        lastModifiedDate:
+          type: string
+          format: date-time
+          description: The date when the port-out order was last modified.
+          example: '2014-07-31T16:34:37.530Z'
+        orderDate:
+          type: string
+          format: date-time
+          description: The date when the port-out order was created.
+          example: '2014-07-31T16:34:37.480Z'
+        orderId:
+          type: string
+          description: Bandwidth Order ID.
+          example: 4299b1ad-aa08-433e-a316-f9219b3450d2
+        orderType:
+          type: string
+          description: The type of order.
+          example: port_out
+        actualFocDate:
+          type: string
+          format: date-time
+          description: The FOC (Firm Order Commitment) Date assigned to the port-out order.
+          example: '2014-08-02T12:34:37.000Z'
+        billingTelephoneNumber:
+          type: string
+          description: The primary telephone number associated with the invoice.
+          example: '+19195551234'
+        companyName:
+          type: string
+          description: Name associated with the Bandwidth App account.
+          example: Example Company
+        lnpLosingCarrierName:
+          type: string
+          description: The carrier that the telephone numbers are being ported away from.
+          example: AT&T
+        lnpLosingCarrierId:
+          type: string
+          description: Internal use only.
+        processingStatus:
+          type: string
+          description: The current processing status of the port-out order.
+          enum:
+            - NEW
+            - SUPP
+            - MODIFY
+            - FOC
+            - SOA_PENDING
+            - SOA_CONFLICT
+            - VALIDATION_FAILED_NEW
+            - VALIDATION_FAILED_SUPP
+            - VALIDATION_FAILED_MODIFY
+            - EXCEPTION
+            - COMPLETE
+            - CANCELLED
+          example: NEW
+        requestedFocDate:
+          type: string
+          format: date-time
+          description: >-
+            The FOC (Firm Order Commitment) Date requested for the port-out
+            order.
+          example: '2014-08-02T12:34:37.000Z'
+        errorCode:
+          type: integer
+          description: Code describing the processing result or error.
+          example: 201
+        errorMessage:
+          type: string
+          description: Message describing the processing result or error.
+          example: >-
+            Order request received. Please use the order id to check the status
+            of your order later.
+        phoneNumber:
+          type: string
+          description: The full telephone number being ported out in E.164 format.
+          example: '+442079315000'
+        vendorId:
+          type: string
+          description: The vendor ID associated with the port-out order.
+          example: 512E
+        vendorName:
+          type: string
+          description: The vendor name associated with the port-out order.
+          example: Vendor Name
+        pon:
+          type: string
+          description: >-
+            A PON (Port Order Number) is a system-generated order number
+            assigned to port orders.
+          example: 979E02421101708A
+        countryCodeA3:
+          type: string
+          description: The country to which the telephone number belongs.
+          example: GBR
+    portoutsStatusResponseXml:
+      type: object
+      properties:
+        lnpResponseWrapper:
+          type: object
+          xml:
+            name: LNPResponseWrapper
+          properties:
+            totalCount:
+              type: integer
+              xml:
+                name: TotalCount
+            links:
+              type: object
+              xml:
+                name: Links
+              properties:
+                first:
+                  type: string
+                  description: The first (or only) page of results matching the query.
+                  xml:
+                    name: first
+                last:
+                  type: string
+                  description: >-
+                    If more results exist than specified by 'size', this link
+                    returns the last page of results.
+                  xml:
+                    name: last
+                next:
+                  type: string
+                  description: >-
+                    If more results exist than specified by 'size', this link
+                    returns the next page of 'size' results.
+                  xml:
+                    name: next
+                previous:
+                  type: string
+                  description: >-
+                    If the results are more than one page, this link returns the
+                    previous page of 'size' results.
+                  xml:
+                    name: previous
+            lnpPortInfoForGivenStatus:
+              type: array
+              xml:
+                name: lnpPortInfoForGivenStatus
+                wrapped: false
+              items:
+                type: object
+                xml:
+                  name: lnpPortInfoForGivenStatus
+                properties:
+                  accountId:
+                    type: integer
+                    description: >-
+                      This is the account that the searched-for order will be
+                      contributing to.
+                    xml:
+                      name: accountId
+                  countOfTNs:
+                    type: integer
+                    description: Total count of telephone numbers in order.
+                    xml:
+                      name: CountOfTNs
+                  userId:
+                    type: string
+                    description: Bandwidth user ID.
+                    xml:
+                      name: userId
+                  lastModifiedDate:
+                    type: string
+                    description: This is the date when Port-out Order was last modified.
+                    xml:
+                      name: lastModifiedDate
+                  orderDate:
+                    type: string
+                    xml:
+                      name: OrderDate
+                  orderId:
+                    type: string
+                    description: This is Bandwidth Order ID.
+                    xml:
+                      name: OrderId
+                  orderType:
+                    type: string
+                    xml:
+                      name: OrderType
+                  actualFOCDate:
+                    type: string
+                    description: >-
+                      This is the FOC (Firm Order Commitment) Date assigned to
+                      the Port-out Order by the losing carrier or their agent.
+                    xml:
+                      name: ActualFOCDate
+                  billingTelephoneNumber:
+                    type: string
+                    description: >-
+                      The BillingTelephoneNumber is the primary telephone number
+                      associated with the invoice that the subscriber gets from
+                      the losing carrier.
+                    xml:
+                      name: BillingTelephoneNumber
+                  companyName:
+                    type: string
+                    description: Name associated with the Bandwidth App account.
+                    xml:
+                      name: CompanyName
+                  countryCodeA3:
+                    type: string
+                    xml:
+                      name: CountryCodeA3
+                  errorCode:
+                    type: integer
+                    description: Code describing the processing result or error.
+                    xml:
+                      name: ErrorCode
+                  errorMessage:
+                    type: string
+                    description: Message describing the processing result or error.
+                    xml:
+                      name: ErrorMessage
+                  fullNumber:
+                    type: string
+                    description: >-
+                      The full telephone number being ported out in E.164
+                      format.
+                    xml:
+                      name: FullNumber
+                  lNPLosingCarrierId:
+                    type: string
+                    description: Internal use only.
+                    xml:
+                      name: LNPLosingCarrierId
+                  lNPLosingCarrierName:
+                    type: string
+                    description: >-
+                      The carrier that the telephone numbers are being ported
+                      away from.
+                    xml:
+                      name: LNPLosingCarrierName
+                  processingStatus:
+                    type: string
+                    description: >-
+                      The processing status of this order. Values may be:
+                      PROCESSING, COMPLETED, FAILED.
+                    xml:
+                      name: ProcessingStatus
+                  requestedFOCDate:
+                    type: string
+                    description: >-
+                      This is the FOC (Firm Order Commitment) Date requested by
+                      the person (or machine) creating the Port-out Order.
+                    xml:
+                      name: RequestedFOCDate
+                  vendorId:
+                    type: string
+                    description: Internal use only.
+                    xml:
+                      name: VendorId
+                  vendorName:
+                    type: string
+                    xml:
+                      name: VendorName
+                  pon:
+                    type: string
+                    description: >-
+                      A PON (Port Order Number) is a system generated order
+                      number assigned to port orders to easily identify
+                      individual requests.
+                    xml:
+                      name: PON
+    portoutsStatus404ResponseJson:
+      type: object
+      description: Pagination link returned when required query parameters are missing.
+      properties:
+        first:
+          type: string
+          description: The first page link with default page and size values.
+          example: >-
+            https://localhost:8443/api/v2/accounts/12346158/portouts/status?startdate=2024-01-01&enddate=2026-12-31&page=1&size=300
+    portoutsStatus404ResponseXml:
+      type: object
+      properties:
+        links:
+          type: object
+          xml:
+            name: Links
+          properties:
+            first:
+              type: string
+              description: The first page link with default page and size values.
+              xml:
+                name: first
+    lsrOrderRequestJson:
+      type: object
+      description: LSR order request payload.
+      properties:
+        pon:
+          type: string
+          description: >-
+            Customer-specified order identifier. Alphanumeric values and
+            "#","-","_" allowed. Required for POST.
+          maxLength: 25
+        customerOrderId:
+          type: string
+          description: >-
+            Optional customer-defined reference ID. Only alphanumeric values,
+            dashes and spaces are allowed. Not unique.
+          maxLength: 255
+        spid:
+          type: string
+          description: >-
+            The NPAC SPID corresponding to the carrier that the phone numbers
+            are porting to. Required if account value is 'mult'.
+          maxLength: 4
+        billingPhoneNumber:
+          type: string
+          description: >-
+            The billing telephone number associated with the phone numbers being
+            ported. Non-toll-free.
+        requestedFocDate:
+          type: string
+          description: >-
+            The FOC date requested when creating the LSR order. Format
+            yyyy-MM-dd.
+        authorizingPerson:
+          type: string
+          description: Authorizing person. Required.
+          maxLength: 100
+        orderStatus:
+          type: string
+          description: >-
+            Order status. Only CANCELLED can be set on PUT to cancel an order;
+            all other fields should be left unchanged when cancelling.
+        partialPort:
+          type: boolean
+          description: >-
+            Must be set to true if not all telephone numbers associated with the
+            billingPhoneNumber are being ported.
+        subscriber:
+          type: object
+          properties:
+            subscriberType:
+              $ref: '#/components/schemas/lsrSubscriberType'
+            businessName:
+              type: string
+              description: >-
+                Subscriber business name for BUSINESS subscriberType. Required
+                if BUSINESS.
+              maxLength: 25
+            firstName:
+              type: string
+              description: Subscriber first name for RESIDENTIAL subscriberType.
+              maxLength: 25
+            middleInitial:
+              type: string
+              description: Subscriber middle initial for RESIDENTIAL subscriberType.
+              maxLength: 1
+            lastName:
+              type: string
+              description: >-
+                Subscriber last name for RESIDENTIAL subscriberType. Required if
+                RESIDENTIAL.
+              maxLength: 25
+            accountNumber:
+              type: string
+              description: Account number.
+              maxLength: 32
+            pinNumber:
+              type: string
+              description: Pin number.
+              maxLength: 10
+            serviceAddress:
+              type: object
+              properties:
+                housePrefix:
+                  type: string
+                  maxLength: 6
+                houseNumber:
+                  type: string
+                  description: >-
+                    Street address number. Mandatory when serviceAddress is
+                    required.
+                  maxLength: 45
+                houseSuffix:
+                  type: string
+                  maxLength: 45
+                preDirectional:
+                  type: string
+                  maxLength: 2
+                streetName:
+                  type: string
+                  description: Street name. Mandatory when serviceAddress is required.
+                  maxLength: 200
+                streetSuffix:
+                  type: string
+                  maxLength: 45
+                postDirectional:
+                  type: string
+                  maxLength: 2
+                addressLine2:
+                  type: string
+                  maxLength: 200
+                city:
+                  type: string
+                  description: City. Mandatory when serviceAddress is required.
+                  maxLength: 100
+                stateCode:
+                  type: string
+                  description: >-
+                    2-letter state abbreviation. Mandatory when serviceAddress
+                    is required.
+                  maxLength: 2
+                zip:
+                  type: string
+                  description: Zip code. Mandatory when serviceAddress is required.
+                plusFour:
+                  type: string
+                county:
+                  type: string
+                  maxLength: 45
+                country:
+                  type: string
+              required:
+                - houseNumber
+                - streetName
+                - city
+                - stateCode
+                - zip
+        phoneNumbers:
+          type: array
+          description: >-
+            List of telephone numbers to port. Toll-free numbers are not
+            allowed.
+          items:
+            type: string
+      required:
+        - pon
+        - spid
+        - subscriber
+        - phoneNumbers
+        - authorizingPerson
+    lsrOrderUpdateRequestJson:
+      type: object
+      description: >-
+        LSR order update/cancel request payload. All fields are optional; to
+        cancel set orderStatus to CANCELLED.
+      properties:
+        pon:
+          type: string
+          description: >-
+            Customer-specified order identifier. Alphanumeric values and
+            "#","-","_" allowed.
+          maxLength: 25
+        customerOrderId:
+          type: string
+          description: >-
+            Optional customer-defined reference ID. Only alphanumeric values,
+            dashes and spaces are allowed. Not unique.
+          maxLength: 255
+        spid:
+          type: string
+          description: >-
+            The NPAC SPID corresponding to the carrier that the phone numbers
+            are porting to.
+          maxLength: 4
+        billingPhoneNumber:
+          type: string
+          description: >-
+            The billing telephone number associated with the phone numbers being
+            ported.
+        requestedFocDate:
+          type: string
+          description: The FOC date requested. Format yyyy-MM-dd.
+        authorizingPerson:
+          type: string
+          description: Authorizing person.
+          maxLength: 100
+        orderStatus:
+          type: string
+          description: Order status. Only CANCELLED can be set on PUT to cancel an order.
+        partialPort:
+          type: boolean
+          description: >-
+            Must be set to true if not all telephone numbers associated with the
+            billingPhoneNumber are being ported.
+        subscriber:
+          type: object
+          properties:
+            subscriberType:
+              $ref: '#/components/schemas/lsrSubscriberType'
+            businessName:
+              type: string
+              maxLength: 25
+            firstName:
+              type: string
+              maxLength: 25
+            middleInitial:
+              type: string
+              maxLength: 1
+            lastName:
+              type: string
+              maxLength: 25
+            accountNumber:
+              type: string
+              maxLength: 32
+            pinNumber:
+              type: string
+              maxLength: 10
+            serviceAddress:
+              type: object
+              properties:
+                housePrefix:
+                  type: string
+                  maxLength: 6
+                houseNumber:
+                  type: string
+                  maxLength: 45
+                houseSuffix:
+                  type: string
+                  maxLength: 45
+                preDirectional:
+                  type: string
+                  maxLength: 2
+                streetName:
+                  type: string
+                  maxLength: 200
+                streetSuffix:
+                  type: string
+                  maxLength: 45
+                postDirectional:
+                  type: string
+                  maxLength: 2
+                addressLine2:
+                  type: string
+                  maxLength: 200
+                city:
+                  type: string
+                  maxLength: 100
+                stateCode:
+                  type: string
+                  maxLength: 2
+                zip:
+                  type: string
+                plusFour:
+                  type: string
+                county:
+                  type: string
+                  maxLength: 45
+                country:
+                  type: string
+        phoneNumbers:
+          type: array
+          description: >-
+            List of telephone numbers to port. Toll-free numbers are not
+            allowed.
+          items:
+            type: string
+    lsrOrderDetailJson:
+      type: object
+      description: LSR order detail.
+      properties:
+        orderId:
+          type: string
+          description: The identifier that uniquely identifies the LSR order.
+        customerOrderId:
+          type: string
+          description: Optional customer-defined reference ID, if provided at creation.
+        lastModifiedBy:
+          type: string
+          description: The user who last modified the order.
+        orderCreateDate:
+          type: string
+          format: date-time
+          description: The date and time the order was created. RFC 3339 format.
+        accountId:
+          type: string
+          description: The account ID associated with the order.
+        spid:
+          type: string
+          description: The NPAC SPID.
+        lastModifiedDate:
+          type: string
+          format: date-time
+          description: The date and time the order was last modified. RFC 3339 format.
+        subAccountId:
+          type: integer
+          format: int32
+          description: The sub-account (site) ID for the LSR order.
+        locationId:
+          type: integer
+          format: int32
+          description: The location (SIP peer) ID for the LSR order.
+        createdByUser:
+          type: string
+          description: The username of the person who created the order.
+        orderStatus:
+          type: string
+          description: The current status of the LSR order.
+        billingPhoneNumber:
+          type: string
+          description: The billing telephone number associated with the ported numbers.
+        pon:
+          type: string
+          description: Customer-specified order identifier.
+        ponVersion:
+          type: integer
+          format: int32
+          description: Version of the PON.
+        requestedFocDate:
+          type: string
+          description: The FOC date requested when creating the LSR order.
+        actualFocDate:
+          type: string
+          description: The FOC date assigned by the losing carrier.
+        authorizingPerson:
+          type: string
+          description: Authorizing person.
+        subscriber:
+          type: object
+          properties:
+            subscriberType:
+              $ref: '#/components/schemas/lsrSubscriberType'
+            businessName:
+              type: string
+            firstName:
+              type: string
+            middleInitial:
+              type: string
+            lastName:
+              type: string
+            accountNumber:
+              type: string
+            pinNumber:
+              type: string
+            serviceAddress:
+              type: object
+              properties:
+                housePrefix:
+                  type: string
+                houseNumber:
+                  type: string
+                houseSuffix:
+                  type: string
+                preDirectional:
+                  type: string
+                streetName:
+                  type: string
+                streetSuffix:
+                  type: string
+                postDirectional:
+                  type: string
+                addressLine2:
+                  type: string
+                city:
+                  type: string
+                stateCode:
+                  type: string
+                zip:
+                  type: string
+                plusFour:
+                  type: string
+                county:
+                  type: string
+                country:
+                  type: string
+        phoneNumbers:
+          type: array
+          description: List of telephone numbers in the order.
+          items:
+            type: string
+        phoneNumberCount:
+          type: integer
+          description: Total count of phone numbers in the order.
+        errors:
+          type: array
+          description: List of errors associated with this order.
+          items:
+            $ref: '#/components/schemas/lsrOrderErrorItemJson'
+    lsrOrderErrorItemJson:
+      type: object
+      description: An LSR order error item.
+      properties:
+        code:
+          type: string
+          description: Error code.
+        description:
+          type: string
+          description: Detailed description of the error.
+    lsrOrderErrorResponseJson:
+      type: object
+      description: LSR order validation error response.
+      properties:
+        code:
+          type: string
+          description: Error code.
+        description:
+          type: string
+          description: Error description.
+        errors:
+          type: array
+          description: List of validation errors.
+          items:
+            $ref: '#/components/schemas/lsrOrderErrorItemJson'
+    lsrErrorResponseJson:
+      type: object
+      description: LSR order error response.
+      properties:
+        code:
+          type: string
+          description: Error code.
+        description:
+          type: string
+          description: Error description.
+    lsrSubscriberType:
+      type: string
+      enum:
+        - BUSINESS
+        - RESIDENTIAL
+      description: Subscriber type. Defaults to RESIDENTIAL if not specified.

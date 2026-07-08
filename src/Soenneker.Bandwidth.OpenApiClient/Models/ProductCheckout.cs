@@ -31,9 +31,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string OrderReference { get; set; }
 #endif
         /// <summary>Product Type of ordered products.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckout_productType? ProductType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckoutProductType? ProductType { get; set; }
         /// <summary>Status of ordered products.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckout_status? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckoutStatus? Status { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckout"/> and sets the default values.
         /// </summary>
@@ -61,8 +61,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "message", n => { Message = n.GetStringValue(); } },
                 { "orderReference", n => { OrderReference = n.GetStringValue(); } },
-                { "productType", n => { ProductType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckout_productType>(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckout_status>(); } },
+                { "productType", n => { ProductType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckoutProductType>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckoutStatus>(); } },
             };
         }
         /// <summary>
@@ -74,8 +74,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("message", Message);
             writer.WriteStringValue("orderReference", OrderReference);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckout_productType>("productType", ProductType);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckout_status>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckoutProductType>("productType", ProductType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckoutStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

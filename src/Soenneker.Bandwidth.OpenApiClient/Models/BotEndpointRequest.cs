@@ -23,9 +23,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Endpoint { get; set; }
 #endif
+        /// <summary>ANI routing prefix for this endpoint (for example, `212`).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Prefix { get; set; }
+#nullable restore
+#else
+        public string Prefix { get; set; }
+#endif
         /// <summary>The type property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BotEndpointRequest_type? Type { get; set; }
-        /// <summary>The weight property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BotEndpointRequestType? Type { get; set; }
+        /// <summary>Weighted-routing weight.</summary>
         public int? Weight { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BotEndpointRequest"/> and sets the default values.
@@ -53,7 +61,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "endpoint", n => { Endpoint = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BotEndpointRequest_type>(); } },
+                { "prefix", n => { Prefix = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BotEndpointRequestType>(); } },
                 { "weight", n => { Weight = n.GetIntValue(); } },
             };
         }
@@ -65,7 +74,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("endpoint", Endpoint);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BotEndpointRequest_type>("type", Type);
+            writer.WriteStringValue("prefix", Prefix);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BotEndpointRequestType>("type", Type);
             writer.WriteIntValue("weight", Weight);
             writer.WriteAdditionalData(AdditionalData);
         }

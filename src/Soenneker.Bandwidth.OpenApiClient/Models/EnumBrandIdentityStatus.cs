@@ -7,25 +7,29 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum EnumBrandIdentityStatus
     {
-        [EnumMember(Value = "SELF-DECLARED")]
+        [EnumMember(Value = "REGISTERING")]
         #pragma warning disable CS1591
-        SELFDECLARED,
+        Registering,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "SELF_DECLARED")]
+        #pragma warning disable CS1591
+        SelfDeclared,
         #pragma warning restore CS1591
         [EnumMember(Value = "VERIFIED")]
         #pragma warning disable CS1591
-        VERIFIED,
+        Verified,
         #pragma warning restore CS1591
         [EnumMember(Value = "VETTED_VERIFIED")]
         #pragma warning disable CS1591
-        VETTED_VERIFIED,
+        VettedVerified,
         #pragma warning restore CS1591
         [EnumMember(Value = "UNVERIFIED")]
         #pragma warning disable CS1591
-        UNVERIFIED,
+        Unverified,
         #pragma warning restore CS1591
-        [EnumMember(Value = "PENDING")]
+        [EnumMember(Value = "ERROR")]
         #pragma warning disable CS1591
-        PENDING,
+        Error,
         #pragma warning restore CS1591
     }
 }

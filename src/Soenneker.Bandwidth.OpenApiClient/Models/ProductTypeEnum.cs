@@ -9,7 +9,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "LOCAL_A2P")]
         #pragma warning disable CS1591
-        LOCAL_A2P,
+        LocalA2P,
         #pragma warning restore CS1591
         [EnumMember(Value = "P2P")]
         #pragma warning disable CS1591
@@ -17,31 +17,31 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         #pragma warning restore CS1591
         [EnumMember(Value = "SHORT_CODE_REACH")]
         #pragma warning disable CS1591
-        SHORT_CODE_REACH,
+        ShortCodeReach,
         #pragma warning restore CS1591
         [EnumMember(Value = "TOLL_FREE")]
         #pragma warning disable CS1591
-        TOLL_FREE,
+        TollFree,
         #pragma warning restore CS1591
         [EnumMember(Value = "HOSTED_SHORT_CODE")]
         #pragma warning disable CS1591
-        HOSTED_SHORT_CODE,
+        HostedShortCode,
         #pragma warning restore CS1591
         [EnumMember(Value = "ALPHA_NUMERIC")]
         #pragma warning disable CS1591
-        ALPHA_NUMERIC,
+        AlphaNumeric,
         #pragma warning restore CS1591
         [EnumMember(Value = "RBM_MEDIA")]
         #pragma warning disable CS1591
-        RBM_MEDIA,
+        RbmMedia,
         #pragma warning restore CS1591
         [EnumMember(Value = "RBM_RICH")]
         #pragma warning disable CS1591
-        RBM_RICH,
+        RbmRich,
         #pragma warning restore CS1591
         [EnumMember(Value = "RBM_CONVERSATIONAL")]
         #pragma warning disable CS1591
-        RBM_CONVERSATIONAL,
+        RbmConversational,
         #pragma warning restore CS1591
     }
 }

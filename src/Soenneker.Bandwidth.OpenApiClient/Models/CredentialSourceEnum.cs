@@ -9,15 +9,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "PASSWORD")]
         #pragma warning disable CS1591
-        PASSWORD,
+        Password,
         #pragma warning restore CS1591
         [EnumMember(Value = "SSO")]
         #pragma warning disable CS1591
-        SSO,
+        Sso,
         #pragma warning restore CS1591
         [EnumMember(Value = "SSO_PASSWORD")]
         #pragma warning disable CS1591
-        SSO_PASSWORD,
+        SsoPassword,
         #pragma warning restore CS1591
     }
 }

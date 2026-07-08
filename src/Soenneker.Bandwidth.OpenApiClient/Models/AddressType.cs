@@ -18,7 +18,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         #pragma warning restore CS1591
         [EnumMember(Value = "DLDA")]
         #pragma warning disable CS1591
-        DLDA,
+        Dlda,
         #pragma warning restore CS1591
         [EnumMember(Value = "E911")]
         #pragma warning disable CS1591

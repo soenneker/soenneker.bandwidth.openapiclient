@@ -9,15 +9,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "ADDRESS")]
         #pragma warning disable CS1591
-        ADDRESS,
+        Address,
         #pragma warning restore CS1591
         [EnumMember(Value = "END_USER")]
         #pragma warning disable CS1591
-        END_USER,
+        EndUser,
         #pragma warning restore CS1591
         [EnumMember(Value = "DOCUMENT")]
         #pragma warning disable CS1591
-        DOCUMENT,
+        Document,
         #pragma warning restore CS1591
     }
 }

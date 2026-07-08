@@ -76,6 +76,7 @@ paths:
       operationId: listCall
       parameters:
         - $ref: '#/components/parameters/callIdPath'
+        - $ref: '#/components/parameters/callIdEncoding'
         - $ref: '#/components/parameters/region'
       responses:
         '200':
@@ -907,6 +908,13 @@ paths:
           $ref: '#/components/responses/internalServerError'
 components:
   schemas:
+    callIdEncoding:
+      type: string
+      enum:
+        - RAW
+        - BASE64_URL
+      example: BASE64_URL
+      default: RAW
     monitorDirection:
       type: object
       properties:
@@ -2233,10 +2241,42 @@ components:
       name: callId
       in: path
       required: true
-      description: 'Filter Type: Exact Match, any valid call ID.'
+      description: >-
+        Filter Type: Exact Match, any valid call ID.
+
+
+        By default this is treated as a plain string. If the call ID contains
+        characters that are not
+
+        permitted in a URL path (notably `/`), pass it as a base64url (RFC 4648
+        §5) encoded string and
+
+        set the `callIdEncoding` query parameter to `BASE64_URL` so it is
+        decoded before lookup.
       schema:
         type: string
         example: 12345678980abcdefghijklmnopqrstuvwxyz
+    callIdEncoding:
+      name: callIdEncoding
+      in: query
+      required: false
+      description: >-
+        Opt-in encoding applied to the `callId` path parameter. When set to
+        `BASE64_URL`, the
+
+        `callId` is decoded as a base64url (RFC 4648 §5) string before lookup.
+        This allows call IDs
+
+        containing characters that are not permitted in a URL path (notably `/`)
+        to be passed safely.
+
+
+        When omitted or set to `RAW`, the `callId` is used verbatim. Standard
+        Base64 is not supported because its
+
+        `+` and `/` characters would reintroduce the path-encoding problem.
+      schema:
+        $ref: '#/components/schemas/callIdEncoding'
     startTime:
       name: startTime
       in: query

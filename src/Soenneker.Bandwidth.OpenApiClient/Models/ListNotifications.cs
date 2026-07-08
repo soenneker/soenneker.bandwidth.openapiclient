@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The notifications property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotifications_notifications>? Notifications { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationsNotificationsItem>? Notifications { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotifications_notifications> Notifications { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationsNotificationsItem> Notifications { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotifications"/> and sets the default values.
@@ -48,7 +48,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "notifications", n => { Notifications = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotifications_notifications>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotifications_notifications.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "notifications", n => { Notifications = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationsNotificationsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationsNotificationsItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotifications_notifications>("notifications", Notifications);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationsNotificationsItem>("notifications", Notifications);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

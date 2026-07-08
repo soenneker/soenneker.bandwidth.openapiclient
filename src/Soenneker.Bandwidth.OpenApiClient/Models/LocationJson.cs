@@ -95,10 +95,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The products property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_products?>? Products { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonProductsItem?>? Products { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_products?> Products { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonProductsItem?> Products { get; set; }
 #endif
         /// <summary>The ssSendToCustomer property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.SsSendToCustomer? SsSendToCustomer { get; set; }
@@ -113,26 +113,26 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>These addresses, comprised of IP or Subnet(CIDR format) and optional Port, are used by the Bandwidth network to send calls to for Termination services. Maximum of 10 hosts - can be IP address or subnets. In case of subnet you should specify NetworkAddress of subnet as IP</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_terminationHosts? TerminationHosts { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonTerminationHosts? TerminationHosts { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_terminationHosts TerminationHosts { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonTerminationHosts TerminationHosts { get; set; }
 #endif
         /// <summary>The VoiceHostGroups element is comprised of one VoiceHostGroup element, which is used to randomly distribute traffic amongst up to 10 IP addresses. Failover behavior is retained within the group</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_voiceHostGroups>? VoiceHostGroups { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonVoiceHostGroupsItem>? VoiceHostGroups { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_voiceHostGroups> VoiceHostGroups { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonVoiceHostGroupsItem> VoiceHostGroups { get; set; }
 #endif
         /// <summary>These addresses, comprised of HostName and optional Port, are used by the Bandwidth network to send calls to for Origination services. The VoiceHosts list of IP addresses used for an active/standby address selection mechanism, where the first address is attempted, followed by the second address and so on. Except under failure situations the first address in the list is preferred. Maximum of 10 hosts - can be IP address or Fully Qualified Domain Name</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_voiceHosts? VoiceHosts { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonVoiceHosts? VoiceHosts { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_voiceHosts VoiceHosts { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonVoiceHosts VoiceHosts { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson"/> and sets the default values.
@@ -171,12 +171,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "phoneNumberCount", n => { PhoneNumberCount = n.GetIntValue(); } },
                 { "pindropEnabled", n => { PindropEnabled = n.GetStringValue(); } },
                 { "premiseTrunks", n => { PremiseTrunks = n.GetStringValue(); } },
-                { "products", n => { Products = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_products>()?.AsList(); } },
+                { "products", n => { Products = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonProductsItem>()?.AsList(); } },
                 { "ssSendToCustomer", n => { SsSendToCustomer = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SsSendToCustomer>(); } },
                 { "suggestedAddresses", n => { SuggestedAddresses = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.AddressJson.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "terminationHosts", n => { TerminationHosts = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_terminationHosts>(global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_terminationHosts.CreateFromDiscriminatorValue); } },
-                { "voiceHostGroups", n => { VoiceHostGroups = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_voiceHostGroups>(global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_voiceHostGroups.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "voiceHosts", n => { VoiceHosts = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_voiceHosts>(global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_voiceHosts.CreateFromDiscriminatorValue); } },
+                { "terminationHosts", n => { TerminationHosts = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonTerminationHosts>(global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonTerminationHosts.CreateFromDiscriminatorValue); } },
+                { "voiceHostGroups", n => { VoiceHostGroups = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonVoiceHostGroupsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonVoiceHostGroupsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "voiceHosts", n => { VoiceHosts = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonVoiceHosts>(global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonVoiceHosts.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -198,12 +198,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteIntValue("phoneNumberCount", PhoneNumberCount);
             writer.WriteStringValue("pindropEnabled", PindropEnabled);
             writer.WriteStringValue("premiseTrunks", PremiseTrunks);
-            writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_products>("products", Products);
+            writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonProductsItem>("products", Products);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SsSendToCustomer>("ssSendToCustomer", SsSendToCustomer);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressJson>("suggestedAddresses", SuggestedAddresses);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_terminationHosts>("terminationHosts", TerminationHosts);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_voiceHostGroups>("voiceHostGroups", VoiceHostGroups);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson_voiceHosts>("voiceHosts", VoiceHosts);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonTerminationHosts>("terminationHosts", TerminationHosts);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonVoiceHostGroupsItem>("voiceHostGroups", VoiceHostGroups);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonVoiceHosts>("voiceHosts", VoiceHosts);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

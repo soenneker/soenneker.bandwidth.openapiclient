@@ -82,9 +82,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public UpdateCall()
         {
             AdditionalData = new Dictionary<string, object>();
-            RedirectFallbackMethod = global::Soenneker.Bandwidth.OpenApiClient.Models.RedirectMethodEnum.POST;
-            RedirectMethod = global::Soenneker.Bandwidth.OpenApiClient.Models.RedirectMethodEnum.POST;
-            State = global::Soenneker.Bandwidth.OpenApiClient.Models.CallStateEnum.Active;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

@@ -67,7 +67,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string OrderId { get; set; }
 #endif
         /// <summary>The orderStatus property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload_orderStatus? OrderStatus { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayloadOrderStatus? OrderStatus { get; set; }
         /// <summary>The phoneNumbers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -121,7 +121,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "locationId", n => { LocationId = n.GetIntValue(); } },
                 { "orderCreateDate", n => { OrderCreateDate = n.GetStringValue(); } },
                 { "orderId", n => { OrderId = n.GetStringValue(); } },
-                { "orderStatus", n => { OrderStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload_orderStatus>(); } },
+                { "orderStatus", n => { OrderStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayloadOrderStatus>(); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "sourceAccountId", n => { SourceAccountId = n.GetIntValue(); } },
                 { "subAccountId", n => { SubAccountId = n.GetIntValue(); } },
@@ -143,7 +143,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteIntValue("locationId", LocationId);
             writer.WriteStringValue("orderCreateDate", OrderCreateDate);
             writer.WriteStringValue("orderId", OrderId);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload_orderStatus>("orderStatus", OrderStatus);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayloadOrderStatus>("orderStatus", OrderStatus);
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
             writer.WriteIntValue("sourceAccountId", SourceAccountId);
             writer.WriteIntValue("subAccountId", SubAccountId);

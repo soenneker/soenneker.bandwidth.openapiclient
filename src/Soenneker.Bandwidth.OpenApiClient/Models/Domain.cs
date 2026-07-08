@@ -10,15 +10,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "EMERGENCY")]
         #pragma warning disable CS1591
-        EMERGENCY,
+        Emergency,
         #pragma warning restore CS1591
         [EnumMember(Value = "MESSAGING")]
         #pragma warning disable CS1591
-        MESSAGING,
+        Messaging,
         #pragma warning restore CS1591
         [EnumMember(Value = "VOICE")]
         #pragma warning disable CS1591
-        VOICE,
+        Voice,
         #pragma warning restore CS1591
     }
 }

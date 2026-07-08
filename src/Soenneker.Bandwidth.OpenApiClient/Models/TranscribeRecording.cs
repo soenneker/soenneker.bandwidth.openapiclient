@@ -58,7 +58,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public TranscribeRecording()
         {
             AdditionalData = new Dictionary<string, object>();
-            CallbackMethod = global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum.POST;
+            CallbackTimeout = 15;
+            DetectLanguage = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

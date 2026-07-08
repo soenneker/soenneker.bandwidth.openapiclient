@@ -9,11 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "WIRELESS")]
         #pragma warning disable CS1591
-        WIRELESS,
+        Wireless,
         #pragma warning restore CS1591
         [EnumMember(Value = "WIRELINE")]
         #pragma warning disable CS1591
-        WIRELINE,
+        Wireline,
         #pragma warning restore CS1591
     }
 }

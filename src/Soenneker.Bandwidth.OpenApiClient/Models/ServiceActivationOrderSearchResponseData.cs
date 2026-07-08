@@ -17,10 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The serviceActivationOrders property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseData_serviceActivationOrders>? ServiceActivationOrders { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseDataServiceActivationOrdersItem>? ServiceActivationOrders { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseData_serviceActivationOrders> ServiceActivationOrders { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseDataServiceActivationOrdersItem> ServiceActivationOrders { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseData"/> and sets the default values.
@@ -47,7 +47,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "serviceActivationOrders", n => { ServiceActivationOrders = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseData_serviceActivationOrders>(global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseData_serviceActivationOrders.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "serviceActivationOrders", n => { ServiceActivationOrders = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseDataServiceActivationOrdersItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseDataServiceActivationOrdersItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseData_serviceActivationOrders>("serviceActivationOrders", ServiceActivationOrders);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseDataServiceActivationOrdersItem>("serviceActivationOrders", ServiceActivationOrders);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

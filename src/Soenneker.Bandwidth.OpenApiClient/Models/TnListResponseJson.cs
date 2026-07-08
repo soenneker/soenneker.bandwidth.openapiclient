@@ -17,18 +17,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The list of child, or subtending, orders associated with a bulk port-in.  The bulk port-in will have an empty childPortinOrders list if none of the telephone numbers included in the /tnList are portable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_childPortinOrders>? ChildPortinOrders { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJsonChildPortinOrdersItem>? ChildPortinOrders { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_childPortinOrders> ChildPortinOrders { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJsonChildPortinOrdersItem> ChildPortinOrders { get; set; }
 #endif
         /// <summary>This is a list of any telephone numbers from the phone numbers that have not yet been validated.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_notValidatedPhoneNumbers>? NotValidatedPhoneNumbers { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJsonNotValidatedPhoneNumbersItem>? NotValidatedPhoneNumbers { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_notValidatedPhoneNumbers> NotValidatedPhoneNumbers { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJsonNotValidatedPhoneNumbersItem> NotValidatedPhoneNumbers { get; set; }
 #endif
         /// <summary>The unique identifier string created by Bandwidth to refer to the order.  This value is returned in the synchronous response to the POST.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -41,21 +41,21 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>This is a list of all of the telephone numbers from the tnList that were validated and are known to be portable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_portablePhoneNumbers>? PortablePhoneNumbers { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJsonPortablePhoneNumbersItem>? PortablePhoneNumbers { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_portablePhoneNumbers> PortablePhoneNumbers { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJsonPortablePhoneNumbersItem> PortablePhoneNumbers { get; set; }
 #endif
         /// <summary>The portinErrors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_portinErrors>? PortinErrors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinErrorsItem>? PortinErrors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_portinErrors> PortinErrors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinErrorsItem> PortinErrors { get; set; }
 #endif
         /// <summary>The processingStatus property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_processingStatus? ProcessingStatus { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJsonProcessingStatus? ProcessingStatus { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson"/> and sets the default values.
         /// </summary>
@@ -81,12 +81,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "childPortinOrders", n => { ChildPortinOrders = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_childPortinOrders>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_childPortinOrders.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "notValidatedPhoneNumbers", n => { NotValidatedPhoneNumbers = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_notValidatedPhoneNumbers>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_notValidatedPhoneNumbers.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "childPortinOrders", n => { ChildPortinOrders = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJsonChildPortinOrdersItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJsonChildPortinOrdersItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "notValidatedPhoneNumbers", n => { NotValidatedPhoneNumbers = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJsonNotValidatedPhoneNumbersItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJsonNotValidatedPhoneNumbersItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "orderId", n => { OrderId = n.GetStringValue(); } },
-                { "portablePhoneNumbers", n => { PortablePhoneNumbers = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_portablePhoneNumbers>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_portablePhoneNumbers.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "portinErrors", n => { PortinErrors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_portinErrors>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_portinErrors.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_processingStatus>(); } },
+                { "portablePhoneNumbers", n => { PortablePhoneNumbers = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJsonPortablePhoneNumbersItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJsonPortablePhoneNumbersItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "portinErrors", n => { PortinErrors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinErrorsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.PortinErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJsonProcessingStatus>(); } },
             };
         }
         /// <summary>
@@ -96,12 +96,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_childPortinOrders>("childPortinOrders", ChildPortinOrders);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_notValidatedPhoneNumbers>("notValidatedPhoneNumbers", NotValidatedPhoneNumbers);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJsonChildPortinOrdersItem>("childPortinOrders", ChildPortinOrders);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJsonNotValidatedPhoneNumbersItem>("notValidatedPhoneNumbers", NotValidatedPhoneNumbers);
             writer.WriteStringValue("orderId", OrderId);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_portablePhoneNumbers>("portablePhoneNumbers", PortablePhoneNumbers);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_portinErrors>("portinErrors", PortinErrors);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJson_processingStatus>("processingStatus", ProcessingStatus);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJsonPortablePhoneNumbersItem>("portablePhoneNumbers", PortablePhoneNumbers);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinErrorsItem>("portinErrors", PortinErrors);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnListResponseJsonProcessingStatus>("processingStatus", ProcessingStatus);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

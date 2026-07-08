@@ -9,75 +9,75 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "EIN")]
         #pragma warning disable CS1591
-        EIN,
+        Ein,
         #pragma warning restore CS1591
         [EnumMember(Value = "CBN")]
         #pragma warning disable CS1591
-        CBN,
+        Cbn,
         #pragma warning restore CS1591
         [EnumMember(Value = "NEQ")]
         #pragma warning disable CS1591
-        NEQ,
+        Neq,
         #pragma warning restore CS1591
         [EnumMember(Value = "PROVINCIAL_NUMBER")]
         #pragma warning disable CS1591
-        PROVINCIAL_NUMBER,
+        ProvincialNumber,
         #pragma warning restore CS1591
         [EnumMember(Value = "CRN")]
         #pragma warning disable CS1591
-        CRN,
+        Crn,
         #pragma warning restore CS1591
         [EnumMember(Value = "VAT")]
         #pragma warning disable CS1591
-        VAT,
+        Vat,
         #pragma warning restore CS1591
         [EnumMember(Value = "ACN")]
         #pragma warning disable CS1591
-        ACN,
+        Acn,
         #pragma warning restore CS1591
         [EnumMember(Value = "ABN")]
         #pragma warning disable CS1591
-        ABN,
+        Abn,
         #pragma warning restore CS1591
         [EnumMember(Value = "BRN")]
         #pragma warning disable CS1591
-        BRN,
+        Brn,
         #pragma warning restore CS1591
         [EnumMember(Value = "SIREN")]
         #pragma warning disable CS1591
-        SIREN,
+        Siren,
         #pragma warning restore CS1591
         [EnumMember(Value = "SIRET")]
         #pragma warning disable CS1591
-        SIRET,
+        Siret,
         #pragma warning restore CS1591
         [EnumMember(Value = "NZBN")]
         #pragma warning disable CS1591
-        NZBN,
+        Nzbn,
         #pragma warning restore CS1591
         [EnumMember(Value = "UST_IDNR")]
         #pragma warning disable CS1591
-        UST_IDNR,
+        UstIdnr,
         #pragma warning restore CS1591
         [EnumMember(Value = "CIF")]
         #pragma warning disable CS1591
-        CIF,
+        Cif,
         #pragma warning restore CS1591
         [EnumMember(Value = "NIF")]
         #pragma warning disable CS1591
-        NIF,
+        Nif,
         #pragma warning restore CS1591
         [EnumMember(Value = "CNPJ")]
         #pragma warning disable CS1591
-        CNPJ,
+        Cnpj,
         #pragma warning restore CS1591
         [EnumMember(Value = "UID")]
         #pragma warning disable CS1591
-        UID,
+        Uid,
         #pragma warning restore CS1591
         [EnumMember(Value = "OTHER")]
         #pragma warning disable CS1591
-        OTHER,
+        Other,
         #pragma warning restore CS1591
     }
 }

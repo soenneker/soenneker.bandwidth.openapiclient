@@ -23,7 +23,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>STIR/SHAKEN attestation.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Call_attestationIndicator? AttestationIndicator { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallAttestationIndicator? AttestationIndicator { get; set; }
         /// <summary>Direction of call.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.CallDirection? CallDirection { get; set; }
         /// <summary>&quot;Phone number of the caller who received the call.Format: E.164 with &apos;+&apos; prefix&quot;</summary>
@@ -202,7 +202,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "accountId", n => { AccountId = n.GetStringValue(); } },
-                { "attestationIndicator", n => { AttestationIndicator = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Call_attestationIndicator>(); } },
+                { "attestationIndicator", n => { AttestationIndicator = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallAttestationIndicator>(); } },
                 { "callDirection", n => { CallDirection = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallDirection>(); } },
                 { "callId", n => { CallId = n.GetStringValue(); } },
                 { "callResult", n => { CallResult = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallResult>(); } },
@@ -244,7 +244,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("accountId", AccountId);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Call_attestationIndicator>("attestationIndicator", AttestationIndicator);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallAttestationIndicator>("attestationIndicator", AttestationIndicator);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallDirection>("callDirection", CallDirection);
             writer.WriteStringValue("calledNumber", CalledNumber);
             writer.WriteStringValue("callId", CallId);

@@ -9,11 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "COMPLETE")]
         #pragma warning disable CS1591
-        COMPLETE,
+        Complete,
         #pragma warning restore CS1591
         [EnumMember(Value = "INCOMPLETE")]
         #pragma warning disable CS1591
-        INCOMPLETE,
+        Incomplete,
         #pragma warning restore CS1591
     }
 }

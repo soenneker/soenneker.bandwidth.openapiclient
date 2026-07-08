@@ -41,7 +41,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Addr
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public AddressesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/end-user-management/accounts/{accountId}/addresses{?addressFields*,afterCursor*,city*,countryCodeA3*,customReference*,geoValidationStatus*,limit*,postalCode*}", pathParameters)
+        public AddressesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/end-user-management/accounts/{accountId}/addresses{?addressFields*,afterCursor*,city*,countryCodeA3*,customReference*,esRefAddressId*,geoValidationStatus*,limit*,postalCode*}", pathParameters)
         {
         }
         /// <summary>
@@ -49,11 +49,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Addr
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public AddressesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/end-user-management/accounts/{accountId}/addresses{?addressFields*,afterCursor*,city*,countryCodeA3*,customReference*,geoValidationStatus*,limit*,postalCode*}", rawUrl)
+        public AddressesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/end-user-management/accounts/{accountId}/addresses{?addressFields*,afterCursor*,city*,countryCodeA3*,customReference*,esRefAddressId*,geoValidationStatus*,limit*,postalCode*}", rawUrl)
         {
         }
         /// <summary>
-        /// List all addresses. The results are sorted by last updated time in reverse chronological order by default without any query filters.
+        /// List all addresses. The results are sorted by last updated time in reverse chronological order by default without any query filters. Note that esRefAddressId cannot be combined with other filters such as postalCode, city, countryCodeA3, customReference, geoValidationStatus, or addressFields.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ListAddressesResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -125,7 +125,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Addr
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateUpdateAddressResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CreateUpdateAddressResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// List all addresses. The results are sorted by last updated time in reverse chronological order by default without any query filters.
+        /// List all addresses. The results are sorted by last updated time in reverse chronological order by default without any query filters. Note that esRefAddressId cannot be combined with other filters such as postalCode, city, countryCodeA3, customReference, geoValidationStatus, or addressFields.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -175,7 +175,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Addr
             return new global::Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Addresses.AddressesRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// List all addresses. The results are sorted by last updated time in reverse chronological order by default without any query filters.
+        /// List all addresses. The results are sorted by last updated time in reverse chronological order by default without any query filters. Note that esRefAddressId cannot be combined with other filters such as postalCode, city, countryCodeA3, customReference, geoValidationStatus, or addressFields.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class AddressesRequestBuilderGetQueryParameters 
@@ -229,6 +229,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Addr
 #else
             [QueryParameter("customReference")]
             public string CustomReference { get; set; }
+#endif
+            /// <summary>Emergency services reference address ID enables flexible search operations includingexact matches (eq) and prefix-based searches (startsWith).When esRefAddressId is specified, it cannot be combined with other filters such as postalCode, city, countryCodeA3, customReference, geoValidationStatus, or addressFields.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("esRefAddressId")]
+            public string? EsRefAddressId { get; set; }
+#nullable restore
+#else
+            [QueryParameter("esRefAddressId")]
+            public string EsRefAddressId { get; set; }
 #endif
             /// <summary>Geo validation status which can be one of:  GEO_VALID, NOT_GEO_VALID, or NOT_GEO_VALIDATED.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

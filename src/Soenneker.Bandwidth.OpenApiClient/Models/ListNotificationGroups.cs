@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The notificationGroups property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationGroups_notificationGroups>? NotificationGroups { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationGroupsNotificationGroupsItem>? NotificationGroups { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationGroups_notificationGroups> NotificationGroups { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationGroupsNotificationGroupsItem> NotificationGroups { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationGroups"/> and sets the default values.
@@ -48,7 +48,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "notificationGroups", n => { NotificationGroups = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationGroups_notificationGroups>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationGroups_notificationGroups.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "notificationGroups", n => { NotificationGroups = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationGroupsNotificationGroupsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationGroupsNotificationGroupsItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationGroups_notificationGroups>("notificationGroups", NotificationGroups);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationGroupsNotificationGroupsItem>("notificationGroups", NotificationGroups);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

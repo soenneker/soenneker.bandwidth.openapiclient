@@ -17,10 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The values property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues_values>? Values { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValuesValuesItem>? Values { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues_values> Values { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValuesValuesItem> Values { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues"/> and sets the default values.
@@ -47,7 +47,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "values", n => { Values = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues_values>(global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues_values.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "values", n => { Values = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValuesValuesItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValuesValuesItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues_values>("values", Values);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValuesValuesItem>("values", Values);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

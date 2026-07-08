@@ -87,9 +87,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public MachineDetectionConfiguration()
         {
             AdditionalData = new Dictionary<string, object>();
-            CallbackMethod = global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum.POST;
-            FallbackMethod = global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum.POST;
-            Mode = global::Soenneker.Bandwidth.OpenApiClient.Models.MachineDetectionModeEnum.Async;
+            DelayResult = false;
+            DetectionTimeout = 15;
+            SilenceTimeout = 10;
+            SpeechEndThreshold = 5;
+            SpeechThreshold = 10;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

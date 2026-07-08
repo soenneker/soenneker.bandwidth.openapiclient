@@ -9,15 +9,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         [EnumMember(Value = "SHORT")]
         #pragma warning disable CS1591
-        SHORT,
+        ShortValue,
         #pragma warning restore CS1591
         [EnumMember(Value = "MEDIUM")]
         #pragma warning disable CS1591
-        MEDIUM,
+        Medium,
         #pragma warning restore CS1591
         [EnumMember(Value = "TALL")]
         #pragma warning disable CS1591
-        TALL,
+        Tall,
         #pragma warning restore CS1591
     }
 }
