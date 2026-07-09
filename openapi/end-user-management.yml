@@ -3590,7 +3590,7 @@ components:
           items:
             $ref: '#/components/schemas/link'
         data:
-          $ref: '#/components/schemas/requirementsPackageData'
+          $ref: '#/components/schemas/requirementsPackageGetData'
         errors:
           $ref: '#/components/schemas/errors'
     numberActivationValidatorResult:
@@ -3749,8 +3749,7 @@ components:
       type: object
       properties:
         requirementsPackageId:
-          allOf:
-            - $ref: '#/components/schemas/requirementsPackageId'
+          $ref: '#/components/schemas/requirementsPackageId'
           readOnly: true
         countryCodeA3:
           $ref: '#/components/schemas/countryCodeA3String'
@@ -3767,19 +3766,34 @@ components:
         acknowledgements:
           $ref: '#/components/schemas/requirementsPackageAcknowledgements'
         status:
-          allOf:
-            - $ref: '#/components/schemas/requirementsPackageStatusEnum'
+          $ref: '#/components/schemas/requirementsPackageStatusEnum'
           readOnly: true
         createdDateTime:
-          allOf:
-            - $ref: '#/components/schemas/createdDateTime'
+          $ref: '#/components/schemas/createdDateTime'
           readOnly: true
         updatedDateTime:
-          allOf:
-            - $ref: '#/components/schemas/updatedDateTime'
+          $ref: '#/components/schemas/updatedDateTime'
           readOnly: true
         remarks:
           $ref: '#/components/schemas/remarks'
+      required:
+        - requirementsPackageId
+        - countryCodeA3
+        - phoneNumberType
+        - endUserType
+        - status
+        - createdDateTime
+        - updatedDateTime
+    requirementsPackageGetData:
+      allOf:
+        - $ref: '#/components/schemas/requirementsPackageData'
+        - type: object
+          properties:
+            deletability:
+              $ref: '#/components/schemas/deletability'
+              readOnly: true
+          required:
+            - deletability
     numberActivationResultData:
       description: Details of result of a number activation
       type: object
@@ -3798,6 +3812,25 @@ components:
       maxLength: 5000
       readOnly: true
       example: Remarks provided by Admin
+    deletability:
+      type: object
+      description: Indicates whether the requirements package can be deleted.
+      required:
+        - deletable
+      properties:
+        deletable:
+          type: boolean
+          description: Whether the requirements package is eligible for deletion.
+          example: false
+        reason:
+          type: string
+          nullable: true
+          description: >-
+            The reason the requirements package cannot be deleted. Only present
+            when `deletable` is `false`.
+          example: >-
+            This requirements package has previously been used to activate phone
+            numbers and cannot be deleted.
     callbackUrl:
       description: Callback URL
       type: string
@@ -4303,6 +4336,11 @@ components:
           createdDateTime: '2024-03-11T04:09:25.399Z'
           updatedDateTime: '2024-03-11T04:09:25.399Z'
           remarks: Remarks provided by Admin
+          deletability:
+            deletable: false
+            reason: >-
+              This requirements package has previously been used to activate
+              phone numbers and cannot be deleted.
         errors: []
     internalServerErrorExampleComplianceRps:
       summary: An example of a generic Internal Server Error

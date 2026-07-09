@@ -42207,7 +42207,7 @@
             }
           },
           "data": {
-            "$ref": "#/components/schemas/requirementsPackageData"
+            "$ref": "#/components/schemas/requirementsPackageGetData"
           },
           "errors": {
             "$ref": "#/components/schemas/end_user_management_errors"
@@ -42421,15 +42421,19 @@
         "example": "SUBMITTED"
       },
       "requirementsPackageData": {
+        "required": [
+          "requirementsPackageId",
+          "countryCodeA3",
+          "phoneNumberType",
+          "endUserType",
+          "status",
+          "createdDateTime",
+          "updatedDateTime"
+        ],
         "type": "object",
         "properties": {
           "requirementsPackageId": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/requirementsPackageId"
-              }
-            ],
-            "readOnly": true
+            "$ref": "#/components/schemas/requirementsPackageId"
           },
           "countryCodeA3": {
             "$ref": "#/components/schemas/countryCodeA3String"
@@ -42453,34 +42457,37 @@
             "$ref": "#/components/schemas/requirementsPackageAcknowledgements"
           },
           "status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/requirementsPackageStatusEnum"
-              }
-            ],
-            "readOnly": true
+            "$ref": "#/components/schemas/requirementsPackageStatusEnum"
           },
           "createdDateTime": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/createdDateTime"
-              }
-            ],
-            "readOnly": true
+            "$ref": "#/components/schemas/createdDateTime"
           },
           "updatedDateTime": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/updatedDateTime"
-              }
-            ],
-            "readOnly": true
+            "$ref": "#/components/schemas/updatedDateTime"
           },
           "remarks": {
             "$ref": "#/components/schemas/remarks"
           }
         },
         "description": "Details of the Requirements package"
+      },
+      "requirementsPackageGetData": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/requirementsPackageData"
+          },
+          {
+            "required": [
+              "deletability"
+            ],
+            "type": "object",
+            "properties": {
+              "deletability": {
+                "$ref": "#/components/schemas/deletability"
+              }
+            }
+          }
+        ]
       },
       "numberActivationResultData": {
         "type": "object",
@@ -42506,6 +42513,26 @@
         "description": "Remarks provided by the user or admin",
         "readOnly": true,
         "example": "Remarks provided by Admin"
+      },
+      "deletability": {
+        "required": [
+          "deletable"
+        ],
+        "type": "object",
+        "properties": {
+          "deletable": {
+            "type": "boolean",
+            "description": "Whether the requirements package is eligible for deletion.",
+            "example": false
+          },
+          "reason": {
+            "type": "string",
+            "description": "The reason the requirements package cannot be deleted. Only present when `deletable` is `false`.",
+            "nullable": true,
+            "example": "This requirements package has previously been used to activate phone numbers and cannot be deleted."
+          }
+        },
+        "description": "Indicates whether the requirements package can be deleted."
       },
       "callbackUrl": {
         "type": "string",
@@ -113986,7 +114013,11 @@
             "status": "SUBMITTED",
             "createdDateTime": "2024-03-11T04:09:25.399Z",
             "updatedDateTime": "2024-03-11T04:09:25.399Z",
-            "remarks": "Remarks provided by Admin"
+            "remarks": "Remarks provided by Admin",
+            "deletability": {
+              "deletable": false,
+              "reason": "This requirements package has previously been used to activate phone numbers and cannot be deleted."
+            }
           },
           "errors": [ ]
         }
@@ -129552,6 +129583,16 @@
         "type": "http",
         "description": "Basic authentication is a simple authentication scheme built into the HTTP protocol. To use it, send your  HTTP requests with an Authorization header that contains the word Basic followed by a space and a base64-encoded string `username:password`. Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`.",
         "scheme": "basic"
+      },
+      "tendlc_OAuth2": {
+        "type": "oauth2",
+        "description": "OAuth 2.0 client credentials flow for Bandwidth 10DLC APIs.\n\nTo use it, obtain an access token from the token URL using\n`grant_type=client_credentials` and include it as a Bearer token\nin the `Authorization` header.\n\nExample:\n\n`Authorization: Bearer <ACCESS_TOKEN>`",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://api.bandwidth.com/oauth2/token",
+            "scopes": { }
+          }
+        }
       },
       "toll_free_verification_Basic": {
         "type": "http",

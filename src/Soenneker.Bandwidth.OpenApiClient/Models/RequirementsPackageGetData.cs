@@ -9,7 +9,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class PatchRequirementsPackageBodyRequest : IAdditionalDataHolder, IParsable
+    public partial class RequirementsPackageGetData : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Captures the acknowledgments on requirements package submission. Mandatory when status is provided</summary>
@@ -54,6 +54,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string CustomReference { get; set; }
 #endif
+        /// <summary>Indicates whether the requirements package can be deleted.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.Deletability? Deletability { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.Deletability Deletability { get; set; }
+#endif
         /// <summary>The email property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -93,21 +101,21 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string UpdatedDateTime { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageBodyRequest"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageGetData"/> and sets the default values.
         /// </summary>
-        public PatchRequirementsPackageBodyRequest()
+        public RequirementsPackageGetData()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageBodyRequest"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageGetData"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageBodyRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageGetData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageBodyRequest();
+            return new global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageGetData();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -122,6 +130,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "countryCodeA3", n => { CountryCodeA3 = n.GetStringValue(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetStringValue(); } },
                 { "customReference", n => { CustomReference = n.GetStringValue(); } },
+                { "deletability", n => { Deletability = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Deletability>(global::Soenneker.Bandwidth.OpenApiClient.Models.Deletability.CreateFromDiscriminatorValue); } },
                 { "email", n => { Email = n.GetStringValue(); } },
                 { "endUserType", n => { EndUserType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum>(); } },
                 { "phoneNumberType", n => { PhoneNumberType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum>(); } },
@@ -143,6 +152,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("countryCodeA3", CountryCodeA3);
             writer.WriteStringValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("customReference", CustomReference);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Deletability>("deletability", Deletability);
             writer.WriteStringValue("email", Email);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum>("endUserType", EndUserType);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum>("phoneNumberType", PhoneNumberType);
