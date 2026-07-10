@@ -106,6 +106,8 @@ paths:
 
         |NANP|-|reservationIdList in ExistingTelephoneNumberOrderType schema|
 
+        |International|countryAndPhoneNumberTypeSearchAndOrderType|backOrderRequested|
+
 
         <p>Please visit <a
         href='/docs/numbers/guides/searchingForNumbers/'>Guides and
@@ -970,6 +972,9 @@ components:
             existingPhoneNumberOrderType:
               $ref: >-
                 #/components/examples/createNewPhoneNumberOrderExistingPhoneNumberOrderTypeJsonExample
+            countryAndPhoneNumberTypeSearchAndOrderType [International]:
+              $ref: >-
+                #/components/examples/createNewPhoneNumberOrderCountryAndPhoneNumberTypeJsonExample
           schema:
             $ref: '#/components/schemas/createNewPhoneNumberOrderRequestSchemaJson'
         application/xml:
@@ -1015,6 +1020,9 @@ components:
             ZIPSearchAndOrderType [NANP]:
               $ref: >-
                 #/components/examples/createNewPhoneNumberOrderZipSearchAndOrderNanpXmlExample
+            CountryAndPhoneNumberTypeSearchAndOrderType [International]:
+              $ref: >-
+                #/components/examples/createNewPhoneNumberOrderCountryAndPhoneNumberTypeXmlExample
           schema:
             oneOf:
               - $ref: '#/components/schemas/existingTelephoneNumberOrder'
@@ -1028,6 +1036,7 @@ components:
               - $ref: '#/components/schemas/citySearchAndOrderNanp'
               - $ref: '#/components/schemas/stateSearchAndOrderNanp'
               - $ref: '#/components/schemas/combinedSearchAndOrderNanp'
+              - $ref: '#/components/schemas/countryAndPhoneNumberTypeSearchAndOrder'
     updateNewPhoneNumberOrderRequest:
       content:
         application/json:
@@ -1151,6 +1160,43 @@ components:
         voiceIntegrationIds:
           - 5fa85f64-5717-4562-b3fc-2c963f66afa6
           - 5fa85f64-5717-4562-b3fc-2c963f66afa7
+    createNewPhoneNumberOrderCountryAndPhoneNumberTypeJsonExample:
+      description: >-
+        Order international phone numbers by specifying country, phone number
+        type, area code, and city.
+      value:
+        customerOrderId: SJM00006
+        orderType:
+          type: countryAndPhoneNumberTypeSearchAndOrderType
+          countryCodeA3: GBR
+          phoneNumberType: GEOGRAPHIC
+          areaCode: '20'
+          city: London
+          quantity: 2
+        partialAllowed: true
+        backOrderRequested: true
+        subAccountId: 743
+    createNewPhoneNumberOrderCountryAndPhoneNumberTypeXmlExample:
+      description: >-
+        Order international phone numbers by specifying country, phone number
+        type, area code, and city.
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <Order>
+            <CustomerOrderId>123456789</CustomerOrderId>
+            <Name>International Order</Name>
+            <BackOrderRequested>true</BackOrderRequested>
+            <CountryAndPhoneNumberTypeSearchAndOrderType>
+                <CountryCodeA3>GBR</CountryCodeA3>
+                <PhoneNumberType>GEOGRAPHIC</PhoneNumberType>
+                <AreaCode>20</AreaCode>
+                <City>London</City>
+                <Quantity>2</Quantity>
+            </CountryAndPhoneNumberTypeSearchAndOrderType>
+            <PartialAllowed>true</PartialAllowed>
+            <SiteId>743</SiteId>
+            <AutoActivate>true</AutoActivate>
+        </Order>
     createNewPhoneNumberOrderAreaCodeSearchAndOrderNanpXmlExample:
       description: >-
         Allowed ranges ~ [2-9] for the first digit and [0, 9] for both the
@@ -1882,6 +1928,26 @@ components:
             - tagName: customerId
               tagValue: 11111111-1111-1111-1111-111111111111
         orderStatus: RECEIVED
+    createNewPhoneNumberOrder201ResponseCountryAndPhoneNumberTypeJsonExample:
+      description: >-
+        Created response example for creating a New Phone Number Order using
+        countryAndPhoneNumberTypeSearchAndOrderType in Json
+      value:
+        order:
+          autoActivate: true
+          backOrderRequested: true
+          id: a3b8c1d2-5e6f-7a8b-9c0d-1e2f3a4b5c6d
+          orderCreateDate: '2025-05-06T18:10:15.123Z'
+          orderType:
+            type: countryAndPhoneNumberTypeSearchAndOrderType
+            countryCodeA3: GBR
+            phoneNumberType: GEOGRAPHIC
+            areaCode: '20'
+            city: London
+            quantity: 2
+          partialAllowed: true
+          subAccountId: 743
+        orderStatus: BACKORDERED
     createNewPhoneNumberOrder201ResponseXmlExample:
       description: Created response example for creating a New Phone Number Order using XML
       value: |-
@@ -3295,6 +3361,9 @@ components:
             existingPhoneNumberOrderType:
               $ref: >-
                 #/components/examples/createNewPhoneNumberOrder201ResponseExistingPhoneNumberOrderTypeJsonExample
+            countryAndPhoneNumberTypeSearchAndOrderType:
+              $ref: >-
+                #/components/examples/createNewPhoneNumberOrder201ResponseCountryAndPhoneNumberTypeJsonExample
           schema:
             $ref: >-
               #/components/schemas/createNewPhoneNumberOrder201ResponseSchemaJson
@@ -4709,6 +4778,7 @@ components:
           oneOf:
             - $ref: '#/components/schemas/existingPhoneNumberOrderType'
             - $ref: '#/components/schemas/combinedSearchAndOrderType'
+            - $ref: '#/components/schemas/countryAndPhoneNumberTypeSearchAndOrderType'
         partialAllowed:
           nullable: true
           type: boolean
@@ -4794,6 +4864,7 @@ components:
           oneOf:
             - $ref: '#/components/schemas/existingPhoneNumberOrderType'
             - $ref: '#/components/schemas/combinedSearchAndOrderType'
+            - $ref: '#/components/schemas/countryAndPhoneNumberTypeSearchAndOrderType'
         partialAllowed:
           nullable: true
           type: boolean
@@ -4894,6 +4965,77 @@ components:
         - type
         - quantity
       type: object
+    countryAndPhoneNumberTypeSearchAndOrderType:
+      title: Country And Phone Number Type Search And Order Type
+      properties:
+        type:
+          type: string
+          enum:
+            - countryAndPhoneNumberTypeSearchAndOrderType
+        countryCodeA3:
+          type: string
+        phoneNumberType:
+          type: string
+          enum:
+            - GEOGRAPHIC
+            - NATIONAL
+            - MOBILE
+            - TOLL_FREE
+            - SHARED_COST
+        areaCode:
+          type: string
+        city:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+      required:
+        - type
+        - countryCodeA3
+        - phoneNumberType
+        - areaCode
+        - city
+        - quantity
+      type: object
+    countryAndPhoneNumberTypeSearchAndOrder:
+      title: Country And Phone Number Type Search And Order
+      allOf:
+        - $ref: '#/components/schemas/orderMetadata'
+        - properties:
+            CountryAndPhoneNumberTypeSearchAndOrderType:
+              $ref: >-
+                #/components/schemas/countryAndPhoneNumberTypeSearchAndOrderTypeXml
+          type: object
+      xml:
+        name: Order
+    countryAndPhoneNumberTypeSearchAndOrderTypeXml:
+      properties:
+        CountryCodeA3:
+          type: string
+        PhoneNumberType:
+          type: string
+          enum:
+            - GEOGRAPHIC
+            - NATIONAL
+            - MOBILE
+            - TOLL_FREE
+            - SHARED_COST
+        AreaCode:
+          type: string
+        City:
+          type: string
+        Quantity:
+          format: int32
+          type: integer
+      required:
+        - CountryCodeA3
+        - PhoneNumberType
+        - AreaCode
+        - City
+        - Quantity
+      type: object
+      xml:
+        name: CountryAndPhoneNumberTypeSearchAndOrderType
     createNewPhoneNumberOrder201ResponseSchemaJson:
       properties:
         order:
@@ -4928,6 +5070,8 @@ components:
             - $ref: '#/components/schemas/citySearchAndOrderResponse'
             - $ref: '#/components/schemas/stateSearchAndOrderResponse'
             - $ref: '#/components/schemas/combinedSearchAndOrderResponse'
+            - $ref: >-
+                #/components/schemas/countryAndPhoneNumberTypeSearchAndOrderResponse
           xml:
             name: OrderResponse
       type: object
@@ -4957,6 +5101,7 @@ components:
             - $ref: '#/components/schemas/citySearchAndOrderNanp'
             - $ref: '#/components/schemas/stateSearchAndOrderNanp'
             - $ref: '#/components/schemas/combinedSearchAndOrderNanp'
+            - $ref: '#/components/schemas/countryAndPhoneNumberTypeSearchAndOrder'
           xml:
             name: OrderResponse
       type: object
@@ -5171,6 +5316,25 @@ components:
       type: object
       xml:
         name: OrderResponse
+    countryAndPhoneNumberTypeSearchAndOrderResponse:
+      title: Country And Phone Number Type Search And Order Response
+      properties:
+        Order:
+          allOf:
+            - $ref: '#/components/schemas/orderResponseMetadata'
+            - properties:
+                CountryAndPhoneNumberTypeSearchAndOrderType:
+                  $ref: >-
+                    #/components/schemas/countryAndPhoneNumberTypeSearchAndOrderTypeXml
+              type: object
+          type: object
+          xml:
+            name: Order
+        OrderStatus:
+          $ref: '#/components/schemas/orderStatus'
+      type: object
+      xml:
+        name: OrderResponse
     updateNewPhoneNumberOrderJson:
       properties:
         closeOrder:
@@ -5244,6 +5408,7 @@ components:
             - $ref: '#/components/schemas/citySearchAndOrderType'
             - $ref: '#/components/schemas/stateSearchAndOrderType'
             - $ref: '#/components/schemas/combinedSearchAndOrderType'
+            - $ref: '#/components/schemas/countryAndPhoneNumberTypeSearchAndOrderType'
         pendingQuantity:
           type: integer
         serviceActivationOrderId:
@@ -5288,6 +5453,7 @@ components:
                 - $ref: '#/components/schemas/citySearchAndOrderNanp'
                 - $ref: '#/components/schemas/stateSearchAndOrderNanp'
                 - $ref: '#/components/schemas/combinedSearchAndOrderNanp'
+                - $ref: '#/components/schemas/countryAndPhoneNumberTypeSearchAndOrder'
             OrderCompleteDate:
               type: string
             OrderStatus:

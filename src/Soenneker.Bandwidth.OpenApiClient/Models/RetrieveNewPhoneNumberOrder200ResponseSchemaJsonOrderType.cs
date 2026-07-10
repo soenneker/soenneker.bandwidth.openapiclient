@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AreaCodeSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CitySearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LataSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NpaNxxSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RateCenterSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.StateSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeVanitySearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeWildCharSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ZipSearchAndOrderType"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AreaCodeSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CitySearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CountryAndPhoneNumberTypeSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LataSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NpaNxxSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RateCenterSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.StateSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeVanitySearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeWildCharSearchAndOrderType"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ZipSearchAndOrderType"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class RetrieveNewPhoneNumberOrder200ResponseSchemaJsonOrderType : IComposedTypeWrapper, IParsable
@@ -36,6 +36,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #nullable restore
 #else
         public global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType CombinedSearchAndOrderType { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CountryAndPhoneNumberTypeSearchAndOrderType"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CountryAndPhoneNumberTypeSearchAndOrderType? CountryAndPhoneNumberTypeSearchAndOrderType { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CountryAndPhoneNumberTypeSearchAndOrderType CountryAndPhoneNumberTypeSearchAndOrderType { get; set; }
 #endif
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -123,6 +131,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 result.CombinedSearchAndOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType();
             }
+            else if("CountryAndPhoneNumberTypeSearchAndOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.CountryAndPhoneNumberTypeSearchAndOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.CountryAndPhoneNumberTypeSearchAndOrderType();
+            }
             else if("ExistingPhoneNumberOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ExistingPhoneNumberOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType();
@@ -174,6 +186,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             else if(CombinedSearchAndOrderType != null)
             {
                 return CombinedSearchAndOrderType.GetFieldDeserializers();
+            }
+            else if(CountryAndPhoneNumberTypeSearchAndOrderType != null)
+            {
+                return CountryAndPhoneNumberTypeSearchAndOrderType.GetFieldDeserializers();
             }
             else if(ExistingPhoneNumberOrderType != null)
             {
@@ -227,6 +243,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             else if(CombinedSearchAndOrderType != null)
             {
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType>(null, CombinedSearchAndOrderType);
+            }
+            else if(CountryAndPhoneNumberTypeSearchAndOrderType != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CountryAndPhoneNumberTypeSearchAndOrderType>(null, CountryAndPhoneNumberTypeSearchAndOrderType);
             }
             else if(ExistingPhoneNumberOrderType != null)
             {
