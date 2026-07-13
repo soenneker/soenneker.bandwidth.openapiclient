@@ -63,6 +63,30 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string BusinessContactEmailVerifiedDate { get; set; }
 #endif
+        /// <summary>The first name of the brand&apos;s business contact, as recorded in TCR. Only populated for PUBLIC_PROFIT brands.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? BusinessContactFirstName { get; private set; }
+#nullable restore
+#else
+        public string BusinessContactFirstName { get; private set; }
+#endif
+        /// <summary>The last name of the brand&apos;s business contact, as recorded in TCR. Only populated for PUBLIC_PROFIT brands.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? BusinessContactLastName { get; private set; }
+#nullable restore
+#else
+        public string BusinessContactLastName { get; private set; }
+#endif
+        /// <summary>The job title of the brand&apos;s business contact, as recorded in TCR. Only populated for PUBLIC_PROFIT brands.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? BusinessContactTitle { get; private set; }
+#nullable restore
+#else
+        public string BusinessContactTitle { get; private set; }
+#endif
         /// <summary>The city property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -245,6 +269,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "brandType", n => { BrandType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumBrandType>(); } },
                 { "businessContactEmail", n => { BusinessContactEmail = n.GetStringValue(); } },
                 { "businessContactEmailVerifiedDate", n => { BusinessContactEmailVerifiedDate = n.GetStringValue(); } },
+                { "businessContactFirstName", n => { BusinessContactFirstName = n.GetStringValue(); } },
+                { "businessContactLastName", n => { BusinessContactLastName = n.GetStringValue(); } },
+                { "businessContactTitle", n => { BusinessContactTitle = n.GetStringValue(); } },
                 { "city", n => { City = n.GetStringValue(); } },
                 { "companyName", n => { CompanyName = n.GetStringValue(); } },
                 { "country", n => { Country = n.GetStringValue(); } },

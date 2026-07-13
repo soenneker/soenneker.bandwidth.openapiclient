@@ -77386,6 +77386,24 @@
             "maxLength": 100,
             "type": "string",
             "description": "Date when business email address was verified. This will be after TCR sends a 2FA email verification to the business email provided in businessContactEmail field. This will only be populated for PUBLIC_PROFIT brands after the verification is completed."
+          },
+          "businessContactTitle": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "The job title of the brand's business contact, as recorded in TCR. Only populated for PUBLIC_PROFIT brands.",
+            "readOnly": true
+          },
+          "businessContactFirstName": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "The first name of the brand's business contact, as recorded in TCR. Only populated for PUBLIC_PROFIT brands.",
+            "readOnly": true
+          },
+          "businessContactLastName": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "The last name of the brand's business contact, as recorded in TCR. Only populated for PUBLIC_PROFIT brands.",
+            "readOnly": true
           }
         },
         "description": "The properties of a TCR brand."
