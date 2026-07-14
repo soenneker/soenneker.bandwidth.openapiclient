@@ -184,7 +184,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports
             public string[] AccountIds { get; set; }
 #endif
             [QueryParameter("category")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CategoryRequired? Category { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.Category? Category { get; set; }
         }
     }
 }

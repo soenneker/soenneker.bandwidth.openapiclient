@@ -7,22 +7,15 @@ using System.IO;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
+    /// <summary>
+    /// A filter validated by type, with an optional regex constraint. Use when valid values are not a fixed enumerable set.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class RdoFilter : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class PaginatedRdoFilterValidationTypeFilter : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The dropdownValues property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues>? DropdownValues { get; set; }
-#nullable restore
-#else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues> DropdownValues { get; set; }
-#endif
-        /// <summary>The filterName property</summary>
+        /// <summary>The name of the filter field as used in the `queryCriteria` request body.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? FilterName { get; set; }
@@ -30,11 +23,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string FilterName { get; set; }
 #endif
-        /// <summary>The operator property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorType? Operator { get; set; }
-        /// <summary>The required property</summary>
+        /// <summary>Comparison operator applied to `values` against `parameter`.  - `EQUAL` (`=`) — exact match; single value.  - `GREATER` (`&gt;`) — strictly greater than; single value.  - `LESSER` (`&lt;`) — strictly less than; single value.  - `LESSER_OR_EQUAL` (`&lt;=`) — less than or equal to; single value.  - `GREATER_OR_EQUAL` (`&gt;=`) — greater than or equal to; single value.  - `LIKE` — SQL-style pattern match; single value.  - `IN` — value matches any in the list; one or more values.  - `CONTAINS` — substring match; single value.  - `STARTS_WITH` — prefix match; single value.  - `BETWEEN` — inclusive range; exactly two values `[lower, upper]`.</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedOperator? Operator { get; set; }
+        /// <summary>Indicates whether this filter must be supplied by the caller.</summary>
         public bool? Required { get; set; }
-        /// <summary>The validationRegex property</summary>
+        /// <summary>Regular expression pattern the filter value must match. Only applicable when validationType is REGEX.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ValidationRegex { get; set; }
@@ -45,21 +38,21 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>&quot;The validation rule applied to a filter value; a value that does not satisfy its rule is rejected with a 400.- `E164`: a phone number in E.164 format, e.g. `\&quot;+12345678901\&quot;`.- `REGEX`: a string matching the filter&apos;s own `validationRegex`, e.g. `\&quot;matchingValue\&quot;`.- `ISO8601`: a full date-time with millisecond precision, e.g. `\&quot;2023-12-30T23:59:59.000Z\&quot;`.- `ISO8601_RANGE`: a start and end date-time (millisecond precision), used with `BETWEEN`, e.g. `[\&quot;2023-12-01T00:00:00.000Z\&quot;, \&quot;2023-12-31T23:59:59.000Z\&quot;]`.- `ISO8601_YEAR_MONTH`: a year and month, e.g. `\&quot;2023-12\&quot;`.- `ISO8601_DATE`: a calendar date, e.g. `\&quot;2023-12-31\&quot;`.- `STRING`: any string, e.g. `\&quot;someString\&quot;`.- `INTEGER`: an integer, e.g. `123`.- `ACCOUNT`: a customer account ID, e.g. `\&quot;9900000\&quot;`.The `ISO8601*` types are also bounded by the report&apos;s `maxMonthsBack`.&quot;</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.ValidationType? ValidationType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RdoFilter"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilterValidationTypeFilter"/> and sets the default values.
         /// </summary>
-        public RdoFilter()
+        public PaginatedRdoFilterValidationTypeFilter()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RdoFilter"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilterValidationTypeFilter"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Bandwidth.OpenApiClient.Models.RdoFilter CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilterValidationTypeFilter CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.RdoFilter();
+            return new global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilterValidationTypeFilter();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,9 +62,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "dropdownValues", n => { DropdownValues = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues>(global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "filterName", n => { FilterName = n.GetStringValue(); } },
-                { "operator", n => { Operator = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorType>(); } },
+                { "operator", n => { Operator = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedOperator>(); } },
                 { "required", n => { Required = n.GetBoolValue(); } },
                 { "validationRegex", n => { ValidationRegex = n.GetStringValue(); } },
                 { "validationType", n => { ValidationType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ValidationType>(); } },
@@ -84,9 +76,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues>("dropdownValues", DropdownValues);
             writer.WriteStringValue("filterName", FilterName);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorType>("operator", Operator);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedOperator>("operator", Operator);
             writer.WriteBoolValue("required", Required);
             writer.WriteStringValue("validationRegex", ValidationRegex);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ValidationType>("validationType", ValidationType);

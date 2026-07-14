@@ -1082,8 +1082,14 @@ paths:
       tags:
         - Campaigns
       operationId: refreshCampaign
+      deprecated: true
       summary: Refresh a campaign from TCR’s system
       description: >
+        **Deprecated.** Use the [import campaign
+        endpoint](#operation/createCampaign) instead, which handles both initial
+        imports and re-imports.
+
+
         **All customers.** Refresh the information in Bandwidth’s systems based
         on the records at TCR. This will not update the brand or 10DLC
         registrations associated with the campaign. This is useful if a state

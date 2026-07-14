@@ -3,10 +3,9 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
+    /// <summary>The product domain the report definition belongs to.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public enum Domain
-    #pragma warning restore CS1591
     {
         [EnumMember(Value = "EMERGENCY")]
         #pragma warning disable CS1591

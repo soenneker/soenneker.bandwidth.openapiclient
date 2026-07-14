@@ -3,22 +3,17 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
+    /// <summary>An execution flow that a report definition can be run in.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public enum DomainEnum
-    #pragma warning restore CS1591
+    public enum SupportedMode
     {
-        [EnumMember(Value = "EMERGENCY")]
+        [EnumMember(Value = "SYNC")]
         #pragma warning disable CS1591
-        Emergency,
+        Sync,
         #pragma warning restore CS1591
-        [EnumMember(Value = "MESSAGING")]
+        [EnumMember(Value = "ASYNC")]
         #pragma warning disable CS1591
-        Messaging,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "VOICE")]
-        #pragma warning disable CS1591
-        Voice,
+        Async,
         #pragma warning restore CS1591
     }
 }

@@ -9,22 +9,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class ReportDefinitionObject : IAdditionalDataHolder, IParsable
+    public partial class PaginatedReportDefinitionObject : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The breakdowns property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionObjectBreakdownsItem>? Breakdowns { get; set; }
-#nullable restore
-#else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionObjectBreakdownsItem> Breakdowns { get; set; }
-#endif
         /// <summary>The category classification of the report definition.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.Category? Category { get; set; }
-        /// <summary>The description property</summary>
+        /// <summary>Detailed description of the report and its data.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -34,17 +26,27 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>The product domain the report definition belongs to.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.Domain? Domain { get; set; }
-        /// <summary>The filters property</summary>
+        /// <summary>List of filter definitions that can be applied when retrieving results for this report.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RdoFilter>? Filters { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilter>? Filters { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RdoFilter> Filters { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilter> Filters { get; set; }
 #endif
-        /// <summary>The maxMonthsBack property</summary>
+        /// <summary>Unique identifier for the report definition. Use this ID to fetch the full definition via `GET /v2/report-definitions/{reportDefinitionId}` or to retrieve results via `POST /v2/report-definitions/{reportDefinitionId}/results`.</summary>
+        public Guid? Id { get; set; }
+        /// <summary>Maximum number of months of historical data available for this report.</summary>
         public int? MaxMonthsBack { get; set; }
-        /// <summary>The regions property</summary>
+        /// <summary>The fields returned in each result row from `POST /v2/report-definitions/{reportDefinitionId}/results`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedOutputField>? OutputFields { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedOutputField> OutputFields { get; set; }
+#endif
+        /// <summary>Regions where this report is available.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsRegion?>? Regions { get; set; }
@@ -52,7 +54,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsRegion?> Regions { get; set; }
 #endif
-        /// <summary>The reportName property</summary>
+        /// <summary>Human-readable name of the report.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ReportName { get; set; }
@@ -60,22 +62,30 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string ReportName { get; set; }
 #endif
+        /// <summary>The execution flows this report definition supports.`SYNC` returns results inline from `POST /v2/report-definitions/{reportDefinitionId}/results`.`ASYNC` is generated via the report instance flow and retrieved as a file.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SupportedMode?>? SupportedModes { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SupportedMode?> SupportedModes { get; set; }
+#endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionObject"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedReportDefinitionObject"/> and sets the default values.
         /// </summary>
-        public ReportDefinitionObject()
+        public PaginatedReportDefinitionObject()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionObject"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedReportDefinitionObject"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionObject CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedReportDefinitionObject CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionObject();
+            return new global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedReportDefinitionObject();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -85,14 +95,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "breakdowns", n => { Breakdowns = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionObjectBreakdownsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionObjectBreakdownsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "category", n => { Category = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Category>(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "domain", n => { Domain = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Domain>(); } },
-                { "filters", n => { Filters = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.RdoFilter>(global::Soenneker.Bandwidth.OpenApiClient.Models.RdoFilter.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "filters", n => { Filters = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilter>(global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilter.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "id", n => { Id = n.GetGuidValue(); } },
                 { "maxMonthsBack", n => { MaxMonthsBack = n.GetIntValue(); } },
+                { "outputFields", n => { OutputFields = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedOutputField>(global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedOutputField.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "regions", n => { Regions = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsRegion>()?.AsList(); } },
                 { "reportName", n => { ReportName = n.GetStringValue(); } },
+                { "supportedModes", n => { SupportedModes = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SupportedMode>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -102,14 +114,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportDefinitionObjectBreakdownsItem>("breakdowns", Breakdowns);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Category>("category", Category);
             writer.WriteStringValue("description", Description);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Domain>("domain", Domain);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.RdoFilter>("filters", Filters);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilter>("filters", Filters);
+            writer.WriteGuidValue("id", Id);
             writer.WriteIntValue("maxMonthsBack", MaxMonthsBack);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedOutputField>("outputFields", OutputFields);
             writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsRegion>("regions", Regions);
             writer.WriteStringValue("reportName", ReportName);
+            writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SupportedMode>("supportedModes", SupportedModes);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

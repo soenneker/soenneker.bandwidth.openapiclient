@@ -3,10 +3,9 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
+    /// <summary>&quot;The validation rule applied to a filter value; a value that does not satisfy its rule is rejected with a 400.- `E164`: a phone number in E.164 format, e.g. `\&quot;+12345678901\&quot;`.- `REGEX`: a string matching the filter&apos;s own `validationRegex`, e.g. `\&quot;matchingValue\&quot;`.- `ISO8601`: a full date-time with millisecond precision, e.g. `\&quot;2023-12-30T23:59:59.000Z\&quot;`.- `ISO8601_RANGE`: a start and end date-time (millisecond precision), used with `BETWEEN`, e.g. `[\&quot;2023-12-01T00:00:00.000Z\&quot;, \&quot;2023-12-31T23:59:59.000Z\&quot;]`.- `ISO8601_YEAR_MONTH`: a year and month, e.g. `\&quot;2023-12\&quot;`.- `ISO8601_DATE`: a calendar date, e.g. `\&quot;2023-12-31\&quot;`.- `STRING`: any string, e.g. `\&quot;someString\&quot;`.- `INTEGER`: an integer, e.g. `123`.- `ACCOUNT`: a customer account ID, e.g. `\&quot;9900000\&quot;`.The `ISO8601*` types are also bounded by the report&apos;s `maxMonthsBack`.&quot;</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public enum ValidationType
-    #pragma warning restore CS1591
     {
         [EnumMember(Value = "E164")]
         #pragma warning disable CS1591
@@ -23,6 +22,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         [EnumMember(Value = "ISO8601_RANGE")]
         #pragma warning disable CS1591
         Iso8601Range,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "ISO8601_YEAR_MONTH")]
+        #pragma warning disable CS1591
+        Iso8601YearMonth,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "ISO8601_DATE")]
+        #pragma warning disable CS1591
+        Iso8601Date,
         #pragma warning restore CS1591
         [EnumMember(Value = "STRING")]
         #pragma warning disable CS1591

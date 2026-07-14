@@ -3,10 +3,9 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
+    /// <summary>The category classification of the report definition.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public enum Category
-    #pragma warning restore CS1591
     {
         [EnumMember(Value = "CHARGES")]
         #pragma warning disable CS1591

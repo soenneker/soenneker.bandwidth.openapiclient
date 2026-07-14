@@ -3,22 +3,25 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
+    /// <summary>The data type of a report output field.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public enum CategoryEnum
-    #pragma warning restore CS1591
+    public enum PaginatedFieldType
     {
-        [EnumMember(Value = "CHARGES")]
+        [EnumMember(Value = "STRING")]
         #pragma warning disable CS1591
-        Charges,
+        StringValue,
         #pragma warning restore CS1591
-        [EnumMember(Value = "NUMBER_DETAILS")]
+        [EnumMember(Value = "INTEGER")]
         #pragma warning disable CS1591
-        NumberDetails,
+        Integer,
         #pragma warning restore CS1591
-        [EnumMember(Value = "USAGE")]
+        [EnumMember(Value = "NUMBER")]
         #pragma warning disable CS1591
-        Usage,
+        Number,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "BOOLEAN")]
+        #pragma warning disable CS1591
+        Boolean,
         #pragma warning restore CS1591
     }
 }

@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Bandwidth.OpenApiClient.Insights.V1;
+using Soenneker.Bandwidth.OpenApiClient.Insights.V2;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -19,6 +20,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights
         public global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.V1RequestBuilder V1
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.V1RequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The v2 property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Insights.V2.V2RequestBuilder V2
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.Insights.V2.V2RequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Insights.InsightsRequestBuilder"/> and sets the default values.

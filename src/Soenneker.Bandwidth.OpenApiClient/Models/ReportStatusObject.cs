@@ -30,9 +30,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Breakdown { get; set; }
 #endif
-        /// <summary>The category property</summary>
+        /// <summary>The category classification of the report definition.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.Category? Category { get; set; }
-        /// <summary>The domain property</summary>
+        /// <summary>The product domain the report definition belongs to.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.Domain? Domain { get; set; }
         /// <summary>Use the Get Report Definitions endpoint to see the filters available for a report.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

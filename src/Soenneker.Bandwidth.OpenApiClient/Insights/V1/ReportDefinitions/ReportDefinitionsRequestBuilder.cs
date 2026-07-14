@@ -102,10 +102,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportDefinitions
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ReportDefinitionsRequestBuilderGetQueryParameters 
         {
+            /// <summary>Filter report definitions by category classification.</summary>
             [QueryParameter("category")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CategoryEnum? Category { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.Category? Category { get; set; }
+            /// <summary>Filter report definitions by product domain.</summary>
             [QueryParameter("domain")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.DomainEnum? Domain { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.Domain? Domain { get; set; }
+            /// <summary>Filter report definitions by exact report name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("reportName")]
