@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistGenericErrorData? DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistGenericErrorDataProperty? DataEscaped { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistGenericErrorData DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistGenericErrorDataProperty DataEscaped { get; set; }
 #endif
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -66,7 +66,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistGenericErrorData>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistGenericErrorData.CreateFromDiscriminatorValue); } },
+                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistGenericErrorDataProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistGenericErrorDataProperty.CreateFromDiscriminatorValue); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistError>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistError.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistLink.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -78,7 +78,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistGenericErrorData>("data", DataEscaped);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistGenericErrorDataProperty>("data", DataEscaped);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistError>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigWhitelistLink>("links", Links);
             writer.WriteAdditionalData(AdditionalData);

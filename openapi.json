@@ -33919,8 +33919,7 @@
             "example": [ ]
           },
           "data": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           },
           "errors": {
             "type": "array",
@@ -34214,8 +34213,7 @@
             "example": [ ]
           },
           "data": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           },
           "errors": {
             "type": "array",
@@ -35564,8 +35562,7 @@
           },
           "data": {
             "type": "object",
-            "additionalProperties": false,
-            "nullable": true
+            "additionalProperties": false
           },
           "errors": {
             "type": "array",
@@ -40523,7 +40520,6 @@
       "esRefAddressId": {
         "type": "string",
         "description": "The emergency services reference address ID. This is an identifier assigned by the\nemergency services provider to uniquely reference this address in their system.\n",
-        "nullable": true,
         "example": "31afb73e-12ab-4f15-b6b1-5d7c2c0c584b"
       },
       "countryCodeA3": {
@@ -40863,8 +40859,7 @@
             }
           },
           "data": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           },
           "errors": {
             "type": "array",
@@ -41603,8 +41598,7 @@
             }
           },
           "data": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           },
           "errors": {
             "type": "array",
@@ -42052,8 +42046,7 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/end_user_management_error"
-        },
-        "nullable": true
+        }
       },
       "requirement": {
         "type": "object",
@@ -42676,7 +42669,6 @@
           "reason": {
             "type": "string",
             "description": "The reason the requirements package cannot be deleted. Only present when `deletable` is `false`.",
-            "nullable": true,
             "example": "This requirements package has previously been used to activate phone numbers and cannot be deleted."
           }
         },
@@ -42842,8 +42834,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           },
           "errors": {
             "type": "array",
@@ -42898,8 +42889,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           },
           "errors": {
             "type": "array",
@@ -43091,8 +43081,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           },
           "errors": {
             "type": "array",
@@ -57309,7 +57298,6 @@
         "properties": {
           "data": {
             "description": "Always null.",
-            "nullable": true,
             "example": null
           },
           "links": {
@@ -58424,7 +58412,6 @@
         "properties": {
           "data": {
             "type": "object",
-            "nullable": true,
             "example": null
           },
           "links": {
@@ -58446,7 +58433,6 @@
         "properties": {
           "data": {
             "type": "object",
-            "nullable": true,
             "example": null
           },
           "links": {
@@ -58468,7 +58454,6 @@
         "properties": {
           "data": {
             "type": "object",
-            "nullable": true,
             "example": null
           },
           "links": {
@@ -58490,7 +58475,6 @@
         "properties": {
           "data": {
             "type": "object",
-            "nullable": true,
             "example": null
           },
           "links": {
@@ -58512,7 +58496,6 @@
         "properties": {
           "data": {
             "type": "object",
-            "nullable": true,
             "example": null
           },
           "links": {
@@ -58534,7 +58517,6 @@
         "properties": {
           "data": {
             "type": "object",
-            "nullable": true,
             "example": null
           },
           "links": {
@@ -58556,7 +58538,6 @@
         "properties": {
           "data": {
             "type": "object",
-            "nullable": true,
             "example": null
           },
           "links": {
@@ -58578,7 +58559,6 @@
         "properties": {
           "data": {
             "type": "object",
-            "nullable": true,
             "example": null
           },
           "links": {
@@ -58600,7 +58580,6 @@
         "properties": {
           "data": {
             "type": "object",
-            "nullable": true,
             "example": null
           },
           "links": {
@@ -58872,7 +58851,6 @@
         "pattern": "^[ -~]{16,64}$",
         "type": "string",
         "description": "An ASCII string submitted by the user as a shared secret key for generating an HMAC header for callbacks.",
-        "nullable": true,
         "writeOnly": true,
         "example": "This is my $3cret"
       },
@@ -58883,7 +58861,6 @@
         "type": "string",
         "description": "Callback URL to receive status updates from Bandwidth. When a webhook subscription is registered with Bandwidth under a given account ID, it will be used to send status updates for all requests submitted under that account ID.",
         "format": "uri",
-        "nullable": true,
         "example": "https://www.example.com/path/to/resource"
       },
       "applicationId": {
@@ -67129,26 +67106,22 @@
           "orderCreateDate": {
             "type": "string",
             "description": "The date and time the order was created.",
-            "nullable": true,
             "example": "2016-01-15T11:36:52.727Z"
           },
           "accountId": {
             "type": "integer",
             "description": "The account ID associated with the order.",
             "format": "int32",
-            "nullable": true,
             "example": 1
           },
           "createdByUser": {
             "type": "string",
             "description": "The user who created the order.",
-            "nullable": true,
             "example": "jbm"
           },
           "orderId": {
             "type": "string",
             "description": "The unique Bandwidth-assigned identifier for the order.",
-            "nullable": true,
             "example": "65e03a35-6b97-48a5-8126-f47bad02df2a"
           },
           "processingStatus": {
@@ -67158,27 +67131,23 @@
               }
             ],
             "description": "The current processing status of the order.",
-            "nullable": true,
             "example": "PARTIAL"
           },
           "totalQuantity": {
             "type": "integer",
             "description": "The total number of phone numbers in the order.",
             "format": "int32",
-            "nullable": true,
             "example": 4
           },
           "failedQuantity": {
             "type": "integer",
             "description": "The number of phone numbers that failed to be processed.",
             "format": "int32",
-            "nullable": true,
             "example": 1
           },
           "customerOrderId": {
             "type": "string",
             "description": "The customer-defined reference ID for this order, if one was provided at creation.",
-            "nullable": true,
             "example": "ICPA123ABC"
           },
           "action": {
@@ -67188,7 +67157,6 @@
               }
             ],
             "description": "The assignment action performed.",
-            "nullable": true,
             "example": "ASSIGN"
           },
           "phoneNumbers": {
@@ -67197,7 +67165,6 @@
               "type": "string"
             },
             "description": "List of phone numbers included in the order, in E.164 format.",
-            "nullable": true,
             "example": [
               19199918388,
               14158714245,
@@ -67210,8 +67177,7 @@
             "items": {
               "$ref": "#/components/schemas/numbersAssignmentOrderError"
             },
-            "description": "List of errors encountered during order processing.",
-            "nullable": true
+            "description": "List of errors encountered during order processing."
           }
         }
       },
@@ -67222,13 +67188,11 @@
           "code": {
             "type": "integer",
             "description": "Error code.",
-            "nullable": true,
             "example": 5076
           },
           "description": {
             "type": "string",
             "description": "Human-readable error description.",
-            "nullable": true,
             "example": "Number does not belong to this account."
           },
           "phoneNumbers": {
@@ -67237,7 +67201,6 @@
               "type": "string"
             },
             "description": "The phone numbers associated with this error.",
-            "nullable": true,
             "example": [
               19199918388
             ]
@@ -67251,7 +67214,6 @@
           "totalCount": {
             "type": "integer",
             "description": "The total number of orders matching the query.",
-            "nullable": true,
             "example": 3
           },
           "orders": {
@@ -67259,8 +67221,7 @@
             "items": {
               "$ref": "#/components/schemas/numbersAssignmentOrderSummary"
             },
-            "description": "List of order summaries.",
-            "nullable": true
+            "description": "List of order summaries."
           }
         }
       },
@@ -67272,39 +67233,33 @@
             "type": "integer",
             "description": "The account ID associated with the order.",
             "format": "int32",
-            "nullable": true,
             "example": 1
           },
           "totalQuantity": {
             "type": "integer",
             "description": "The total number of phone numbers in the order.",
             "format": "int32",
-            "nullable": true,
             "example": 4
           },
           "failedQuantity": {
             "type": "integer",
             "description": "The number of phone numbers that failed to be processed.",
             "format": "int32",
-            "nullable": true,
             "example": 1
           },
           "userId": {
             "type": "string",
             "description": "The user ID who created the order.",
-            "nullable": true,
             "example": "jbm"
           },
           "orderDate": {
             "type": "string",
             "description": "The date and time the order was created.",
-            "nullable": true,
             "example": "2016-01-15T11:36:52.727Z"
           },
           "orderType": {
             "type": "string",
             "description": "The type of order.",
-            "nullable": true,
             "example": "NUMBERS_ASSIGNMENT_ORDER"
           },
           "orderStatus": {
@@ -67314,7 +67269,6 @@
               }
             ],
             "description": "The current status of the order.",
-            "nullable": true,
             "example": "COMPLETE"
           },
           "action": {
@@ -67324,19 +67278,16 @@
               }
             ],
             "description": "The assignment action performed.",
-            "nullable": true,
             "example": "ASSIGN"
           },
           "orderId": {
             "type": "string",
             "description": "The unique Bandwidth-assigned identifier for the order.",
-            "nullable": true,
             "example": "65e03a35-6b97-48a5-8126-f47bad02df2a"
           },
           "customerOrderId": {
             "type": "string",
             "description": "The customer-defined reference ID for this order, if one was provided at creation.",
-            "nullable": true,
             "example": "ICPA123ABC"
           }
         }
@@ -67348,13 +67299,11 @@
           "errorCode": {
             "type": "integer",
             "description": "Numeric error code identifying the specific failure.",
-            "nullable": true,
             "example": 13554
           },
           "description": {
             "type": "string",
             "description": "Human-readable description of the error.",
-            "nullable": true,
             "example": "Assignment action is invalid. Valid values ASSIGN, UNASSIGN"
           }
         }
@@ -67516,8 +67465,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           },
           "errors": {
             "type": "array",
@@ -68593,7 +68541,6 @@
         "properties": {
           "data": {
             "type": "object",
-            "nullable": true,
             "example": null
           },
           "errors": {
@@ -68630,7 +68577,6 @@
           "$ref": "#/components/schemas/number_management_link"
         },
         "description": "An array of links related to the resource",
-        "nullable": true,
         "example": null
       },
       "number_management_errorCode": {
@@ -68710,7 +68656,6 @@
         "items": {
           "$ref": "#/components/schemas/number_management_error"
         },
-        "nullable": true,
         "example": [ ]
       },
       "number_management_processingStatus": {
@@ -68758,7 +68703,6 @@
         "properties": {
           "data": {
             "type": "object",
-            "nullable": true,
             "example": null
           },
           "links": {
@@ -68774,7 +68718,6 @@
         "properties": {
           "data": {
             "type": "object",
-            "nullable": true,
             "example": null
           },
           "links": {
@@ -69340,7 +69283,6 @@
             "items": {
               "$ref": "#/components/schemas/number_management_error"
             },
-            "nullable": true,
             "example": null
           },
           "links": {
@@ -69385,7 +69327,6 @@
             "items": {
               "$ref": "#/components/schemas/number_management_error"
             },
-            "nullable": true,
             "example": null
           },
           "links": {
@@ -69413,7 +69354,6 @@
             "items": {
               "$ref": "#/components/schemas/number_management_error"
             },
-            "nullable": true,
             "example": null
           },
           "links": {
@@ -69464,7 +69404,6 @@
             "items": {
               "$ref": "#/components/schemas/number_management_error"
             },
-            "nullable": true,
             "example": null
           },
           "links": {
@@ -69495,7 +69434,6 @@
             "items": {
               "$ref": "#/components/schemas/number_management_error"
             },
-            "nullable": true,
             "example": null
           },
           "links": {
@@ -69549,7 +69487,6 @@
             "items": {
               "$ref": "#/components/schemas/number_management_error"
             },
-            "nullable": true,
             "example": null
           },
           "links": {
@@ -69625,7 +69562,6 @@
             "items": {
               "$ref": "#/components/schemas/number_management_error"
             },
-            "nullable": true,
             "example": null
           }
         }
@@ -69692,7 +69628,6 @@
             "items": {
               "$ref": "#/components/schemas/number_management_error"
             },
-            "nullable": true,
             "example": null
           }
         }
@@ -69983,8 +69918,7 @@
               "phoneNumbers": {
                 "$ref": "#/components/schemas/serviceActivationOrderPhoneNumberObject"
               }
-            },
-            "nullable": true
+            }
           },
           "errors": {
             "$ref": "#/components/schemas/number_management_errors"
@@ -78079,8 +78013,7 @@
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
             },
-            "description": "The errors array will always be empty for successful responses.",
-            "nullable": true
+            "description": "The errors array will always be empty for successful responses."
           }
         },
         "description": "An accepted response containing the campaign and Bandwidth IDs."
@@ -78092,8 +78025,7 @@
         "properties": {
           "campaignId": {
             "type": "string",
-            "description": "The TCR-generated identifier for the campaign. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the campaign.",
-            "nullable": true
+            "description": "The TCR-generated identifier for the campaign. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the campaign."
           },
           "bandwidthId": {
             "type": "string",
@@ -78772,7 +78704,6 @@
         ],
         "type": "string",
         "description": "The Business Authentication status of the brand. Applies to PUBLIC_PROFIT brands only; `null` if not requested or not applicable.",
-        "nullable": true,
         "example": "PENDING"
       },
       "enumBrandIdentityStatus": {
@@ -79036,7 +78967,6 @@
             "items": {
               "$ref": "#/components/schemas/responseLink"
             },
-            "nullable": true,
             "readOnly": true
           },
           "data": {
@@ -79045,7 +78975,6 @@
                 "$ref": "#/components/schemas/vettingAcceptedObject"
               }
             ],
-            "nullable": true,
             "readOnly": true
           },
           "errors": {
@@ -79053,8 +78982,7 @@
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
             },
-            "description": "The errors array will always be empty for successful responses.",
-            "nullable": true
+            "description": "The errors array will always be empty for successful responses."
           }
         },
         "description": "An accepted response containing the brand's TCR and Bandwidth IDs."
@@ -79341,8 +79269,7 @@
             "readOnly": true
           },
           "data": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           },
           "errors": {
             "type": "array",
@@ -79362,8 +79289,7 @@
             "readOnly": true
           },
           "data": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           },
           "errors": {
             "type": "array",
@@ -79383,8 +79309,7 @@
             "readOnly": true
           },
           "data": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           },
           "errors": {
             "type": "array",
@@ -79404,8 +79329,7 @@
             "readOnly": true
           },
           "data": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           },
           "errors": {
             "type": "array",
@@ -79425,8 +79349,7 @@
             "readOnly": true
           },
           "data": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           },
           "errors": {
             "type": "array",
@@ -79446,8 +79369,7 @@
             "readOnly": true
           },
           "data": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           },
           "errors": {
             "type": "array",
@@ -79467,8 +79389,7 @@
             "readOnly": true
           },
           "data": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           },
           "errors": {
             "type": "array",
@@ -79488,8 +79409,7 @@
             "readOnly": true
           },
           "data": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           },
           "errors": {
             "type": "array",
@@ -79509,8 +79429,7 @@
             "readOnly": true
           },
           "data": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           },
           "errors": {
             "type": "array",
@@ -80100,7 +80019,6 @@
       "denialStatusCodeNullable": {
         "type": "integer",
         "description": "Reason code for denial.",
-        "nullable": true,
         "example": 511
       },
       "resubmitAllowed": {
@@ -80159,7 +80077,6 @@
         "maxLength": 500,
         "type": "string",
         "description": "Government-issued business identifying number.\n\n**Note: As of October 19th, 2026 this field will be required when `businessEntityType` is _not_ `SOLE_PROPRIETOR`. If this field is provided, `businessRegistrationType` and `businessRegistrationIssuingCountry` are also required.**\n",
-        "nullable": true,
         "example": "12-3456789"
       },
       "businessRegistrationTypeEnum": {
@@ -80185,13 +80102,11 @@
         ],
         "type": "string",
         "description": "The type of business registration number.\n\n**Note: As of October 19th, 2026 this field will be required when `businessRegistrationNumber` is provided.**\n",
-        "nullable": true,
         "example": "EIN"
       },
       "businessRegistrationIssuingCountry": {
         "type": "string",
         "description": "The country issuing the business registration in ISO-3166-1 alpha-3 format. Alpha-2 format is accepted by the API, but alpha-3 is highly encouraged.\n\n**Note: As of October 19th, 2026 this field will be required when `businessRegistrationNumber` is provided.**\n\n| Registration Type     | Supported Countries                |\n|----------------------|------------------------------------|\n| EIN                  | USA                                |\n| CBN                  | CAN                                |\n| NEQ                  | CAN                                |\n| PROVINCIAL_NUMBER    | CAN                                |\n| CRN                  | GBR, HKG                           |\n| VAT                  | GBR, IRL, BRA, NLD                 |\n| ACN                  | AUS                                |\n| ABN                  | AUS                                |\n| BRN                  | HKG                                |\n| SIREN                | FRA                                |\n| SIRET                | FRA                                |\n| NZBN                 | NZL                                |\n| UST_IDNR             | DEU                                |\n| CIF                  | ESP                                |\n| NIF                  | ESP                                |\n| CNPJ                 | BRA                                |\n| UID                  | CHE                                |\n| OTHER                | Must Provide Country Code          |",
-        "nullable": true,
         "example": "USA"
       },
       "businessEntityTypeEnum": {
@@ -80210,7 +80125,6 @@
         "maxLength": 500,
         "type": "string",
         "description": "A message that gets sent to users requesting help.",
-        "nullable": true,
         "example": "Please contact support for assistance."
       },
       "ageGatedContent": {
@@ -80287,7 +80201,6 @@
             "minLength": 0,
             "type": "string",
             "description": "Any additional information.",
-            "nullable": true,
             "example": "Any additional information"
           },
           "isvReseller": {
@@ -80592,7 +80505,6 @@
             "minLength": 0,
             "type": "string",
             "description": "The address of the business using the toll-free number.",
-            "nullable": true,
             "example": "2230 Bandmate Way"
           },
           "city": {
@@ -80630,7 +80542,6 @@
         "minLength": 0,
         "type": "string",
         "description": "Any additional information.",
-        "nullable": true,
         "example": "Any additional information"
       },
       "optInWorkflow": {
@@ -80660,7 +80571,6 @@
             "maxLength": 500,
             "minLength": 0,
             "type": "string",
-            "nullable": true,
             "example": "Thank you for opting in!"
           }
         }
@@ -80670,7 +80580,6 @@
         "minLength": 0,
         "type": "string",
         "description": "ISV name.",
-        "nullable": true,
         "example": "Test ISV"
       },
       "toll_free_verification_contact": {
@@ -80888,7 +80797,6 @@
         "type": "string",
         "description": "Callback URL to receive status updates from Bandwidth. When a webhook subscription is registered with Bandwidth under a given account ID, it will be used to send status updates for all requests submitted under that account ID.",
         "format": "url",
-        "nullable": true,
         "example": "https://www.example.com/path/to/resource"
       },
       "tfvError": {
@@ -80936,7 +80844,6 @@
               "$ref": "#/components/schemas/additionalDenialReason"
             },
             "description": "An optional list of denial reasons in addition to declineReasonDescription when multiple reasons apply.",
-            "nullable": true,
             "example": [
               {
                 "statusCode": 512,
@@ -81051,7 +80958,6 @@
         "pattern": "^[ -~]{16,64}$",
         "type": "string",
         "description": "An ASCII string submitted by the user as a shared secret key for generating an HMAC header for callbacks.",
-        "nullable": true,
         "example": "This is my $3cret"
       },
       "cvTokenNullable": {
@@ -81059,7 +80965,6 @@
         "minLength": 0,
         "type": "string",
         "description": "The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. Supplying an empty string will likely result in rejection.",
-        "nullable": true,
         "example": "cv.user123|sess456|mno|tfree|read_write|X7yZ9aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVw"
       },
       "createUserRequest": {
@@ -82482,7 +82387,6 @@
         "type": "string",
         "description": "HTTP Voice V2 Application ID.",
         "format": "uuid",
-        "nullable": true,
         "example": "7ea5fc7b-0b23-4e3a-8455-95544b33f212"
       },
       "analyticEngine": {
@@ -82491,7 +82395,6 @@
         ],
         "type": "string",
         "description": "Identity Auth Analytic Engine Name.",
-        "nullable": true,
         "example": "FIRST_ORION"
       },
       "routeType": {
@@ -82502,14 +82405,12 @@
         "type": "string",
         "description": "Route evaluation mode. This route type determines endpoint semantics (`WEIGHTED` routes use weighted endpoints; `ANI` routes use prefixed endpoints).",
         "default": "WEIGHTED",
-        "nullable": true,
         "example": "WEIGHTED"
       },
       "routeReferenceId": {
         "type": "string",
         "description": "Server-generated identifier for ANI routes.",
         "format": "uuid",
-        "nullable": true,
         "example": "f8d2e9b3-7a4c-4d11-9e85-1f0c66d8a2b1"
       },
       "voiceConfigurationPackageRequest": {
@@ -82808,13 +82709,11 @@
             "type": "integer",
             "description": "Weighted-routing weight.",
             "format": "int32",
-            "nullable": true,
             "example": 20
           },
           "prefix": {
             "type": "string",
             "description": "ANI routing prefix for this endpoint (for example, `212`).",
-            "nullable": true,
             "example": 212
           },
           "trunkInfo": {
@@ -82839,13 +82738,11 @@
             "type": "integer",
             "description": "Weighted-routing weight.",
             "format": "int32",
-            "nullable": true,
             "example": 20
           },
           "prefix": {
             "type": "string",
             "description": "ANI routing prefix for this endpoint (for example, `212`).",
-            "nullable": true,
             "example": 212
           },
           "trunkInfo": {
@@ -82870,19 +82767,16 @@
             "type": "integer",
             "description": "Weighted-routing weight.",
             "format": "int32",
-            "nullable": true,
             "example": 20
           },
           "prefix": {
             "type": "string",
             "description": "ANI routing prefix for this endpoint (for example, `212`).",
-            "nullable": true,
             "example": 212
           },
           "rewriteUser": {
             "type": "string",
             "description": "Overrides the user part of the SIP Request-URI (e.g. `rewrite-user@endpoint`).",
-            "nullable": true,
             "example": "rewrite-user@example.com"
           },
           "trunkInfo": {
@@ -82907,19 +82801,16 @@
             "type": "integer",
             "description": "Weighted-routing weight.",
             "format": "int32",
-            "nullable": true,
             "example": 20
           },
           "prefix": {
             "type": "string",
             "description": "ANI routing prefix for this endpoint (for example, `212`).",
-            "nullable": true,
             "example": 212
           },
           "rewriteUser": {
             "type": "string",
             "description": "Overrides the user part of the SIP Request-URI (e.g. `rewrite-user@endpoint`).",
-            "nullable": true,
             "example": "rewrite-user@example.com"
           },
           "trunkInfo": {
@@ -82944,19 +82835,16 @@
             "type": "integer",
             "description": "Weighted-routing weight.",
             "format": "int32",
-            "nullable": true,
             "example": 20
           },
           "prefix": {
             "type": "string",
             "description": "ANI routing prefix for this endpoint (for example, `212`).",
-            "nullable": true,
             "example": 212
           },
           "rewriteUser": {
             "type": "string",
             "description": "Overrides the user part of the SIP Request-URI (e.g. `rewrite-user@endpoint`).",
-            "nullable": true,
             "example": "rewrite-user@example.com"
           },
           "trunkInfo": {
@@ -82981,13 +82869,11 @@
             "type": "integer",
             "description": "Weighted-routing weight.",
             "format": "int32",
-            "nullable": true,
             "example": 20
           },
           "prefix": {
             "type": "string",
             "description": "ANI routing prefix for this endpoint (for example, `212`).",
-            "nullable": true,
             "example": 212
           }
         },
@@ -82999,13 +82885,11 @@
           "trunkId": {
             "type": "string",
             "description": "The trunk identifier selected for this endpoint.",
-            "nullable": true,
             "example": "66059341226405797b14d4c1"
           },
           "capabilityPipeId": {
             "type": "string",
             "description": "The capability pipe id associated with the selected trunk.",
-            "nullable": true,
             "example": "201954af-e0ef-494b-bf26-541a4e99904a"
           }
         },
@@ -83029,7 +82913,6 @@
             "type": "integer",
             "description": "Weighted-routing weight.",
             "format": "int32",
-            "nullable": true,
             "example": 20
           },
           "trunkInfo": {
@@ -83132,7 +83015,6 @@
           "BOT"
         ],
         "type": "string",
-        "nullable": true,
         "example": "TN"
       },
       "bulkTnActionEnum": {
@@ -83219,8 +83101,7 @@
             "description": "The page number for the page returned.",
             "example": 0
           }
-        },
-        "nullable": true
+        }
       },
       "voice_config_service_error": {
         "type": "object",
@@ -83310,7 +83191,6 @@
           },
           "data": {
             "type": "object",
-            "nullable": true,
             "example": null
           },
           "errors": {
@@ -83389,7 +83269,6 @@
           },
           "data": {
             "type": "object",
-            "nullable": true,
             "example": null
           },
           "errors": {
@@ -83420,8 +83299,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/voiceConfigurationPackage"
-            },
-            "nullable": true
+            }
           },
           "errors": {
             "type": "array",
@@ -83953,7 +83831,6 @@
           },
           "data": {
             "type": "object",
-            "nullable": true,
             "example": null
           },
           "errors": {
@@ -84372,13 +84249,11 @@
       "bulkProvisioningErrorCode": {
         "type": "string",
         "description": "The error code associated with a bulk provisioning action.",
-        "nullable": true,
         "example": "VCS-1000"
       },
       "bulkProvisioningErrorDescription": {
         "type": "string",
         "description": "The description of the error associated with a bulk provisioning action.",
-        "nullable": true,
         "example": "Description of an error that occurred during the async bulk provisioning process."
       },
       "bulkProvisioningPhoneNumberStatusEnum": {
@@ -84558,8 +84433,7 @@
             "$ref": "#/components/schemas/tasks"
           }
         },
-        "description": "Voice integration provisioning details.",
-        "nullable": true
+        "description": "Voice integration provisioning details."
       },
       "override": {
         "type": "object",
@@ -84568,8 +84442,7 @@
             "$ref": "#/components/schemas/voiceConfigurationPackageOriginationRoutePlanRequest"
           }
         },
-        "description": "TN override details.",
-        "nullable": true
+        "description": "TN override details."
       },
       "originationRoutePlanRoute": {
         "type": "object",
@@ -84888,8 +84761,7 @@
             "$ref": "#/components/schemas/voice_phone_numbers_phoneNumberCount"
           }
         },
-        "description": "The response object representing a voice configuration package.",
-        "nullable": true
+        "description": "The response object representing a voice configuration package."
       },
       "tasks": {
         "type": "array",
@@ -85013,8 +84885,7 @@
             "description": "The size of pages returned.",
             "example": 1
           }
-        },
-        "nullable": true
+        }
       },
       "voiceProvisioningPhoneNumberLink": {
         "type": "object",
@@ -85044,24 +84915,21 @@
             "items": {
               "$ref": "#/components/schemas/voiceProvisioningPhoneNumberLink"
             },
-            "description": "Links to related resources.",
-            "nullable": true
+            "description": "Links to related resources."
           },
           "data": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/voiceProvisioningPhoneNumberDetail"
             },
-            "description": "List of phone numbers and their voice provisioning details.",
-            "nullable": true
+            "description": "List of phone numbers and their voice provisioning details."
           },
           "errors": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/voiceProvisioningPhoneNumberError"
             },
-            "description": "Errors that occurred during the request.",
-            "nullable": true
+            "description": "Errors that occurred during the request."
           },
           "page": {
             "$ref": "#/components/schemas/voiceProvisioningPhoneNumberPageMeta"
@@ -85081,8 +84949,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/voiceProvisioningPhoneNumberLink"
-            },
-            "nullable": true
+            }
           },
           "data": {
             "$ref": "#/components/schemas/voiceProvisioningPhoneNumberDetail"
@@ -85091,8 +84958,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/voiceProvisioningPhoneNumberError"
-            },
-            "nullable": true
+            }
           }
         },
         "description": "Response containing voice provisioning details for a phone number."
@@ -85149,8 +85015,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/voiceProvisioningPhoneNumberError"
-            },
-            "nullable": true
+            }
           }
         },
         "description": "Bulk voice phone numbers accepted response"
@@ -85167,20 +85032,17 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/voiceProvisioningPhoneNumberLink"
-            },
-            "nullable": true
+            }
           },
           "data": {
             "type": "object",
-            "nullable": true,
             "example": null
           },
           "errors": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/voiceProvisioningPhoneNumberError"
-            },
-            "nullable": true
+            }
           }
         }
       },
@@ -85232,24 +85094,21 @@
             "items": {
               "$ref": "#/components/schemas/voiceProvisioningPhoneNumberLink"
             },
-            "description": "Links to related resources.",
-            "nullable": true
+            "description": "Links to related resources."
           },
           "data": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/voiceProvisioningPhoneNumberDetail"
             },
-            "description": "List of phone numbers and their voice provisioning details.",
-            "nullable": true
+            "description": "List of phone numbers and their voice provisioning details."
           },
           "errors": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/voiceProvisioningPhoneNumberError"
             },
-            "description": "Errors that occurred during the request.",
-            "nullable": true
+            "description": "Errors that occurred during the request."
           }
         },
         "description": "List of phone numbers that were just updated."
@@ -85504,8 +85363,7 @@
           "C"
         ],
         "type": "string",
-        "description": "Attestation level. A (Full), B (Partial), or C (Gateway). Required for US/CAN hosted signing cert assignments. For FR hosted assignments, this can be null as the 'indirect' profileType will dictate the attestLevel.",
-        "nullable": true
+        "description": "Attestation level. A (Full), B (Partial), or C (Gateway). Required for US/CAN hosted signing cert assignments. For FR hosted assignments, this can be null as the 'indirect' profileType will dictate the attestLevel."
       },
       "certificateUploadResponse": {
         "title": "Certificate Upload Response",
@@ -85520,8 +85378,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/voice_stir_shaken_links"
-            },
-            "nullable": true
+            }
           },
           "data": {
             "$ref": "#/components/schemas/certificateResponseData"
@@ -85530,8 +85387,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/voice_stir_shaken_error"
-            },
-            "nullable": true
+            }
           }
         },
         "description": "Response payload for certificate upload"
@@ -87248,6 +87104,9 @@
           },
           "machineDetectionResult": {
             "$ref": "#/components/schemas/machineDetectionResult"
+          },
+          "sipCallId": {
+            "$ref": "#/components/schemas/sipCallId"
           }
         },
         "description": "The Answer event is sent to the answerUrl specified in the createCall request when an outbound call is answered."
@@ -87575,6 +87434,12 @@
           },
           "tag": {
             "$ref": "#/components/schemas/voice_tag"
+          },
+          "sipCallId": {
+            "$ref": "#/components/schemas/sipCallId"
+          },
+          "sipResponseCode": {
+            "$ref": "#/components/schemas/sipResponseCode"
           }
         },
         "description": "The Disconnect event is fired when a call ends, for any reason."
@@ -87737,6 +87602,12 @@
           },
           "uui": {
             "$ref": "#/components/schemas/uui"
+          },
+          "sipCallId": {
+            "$ref": "#/components/schemas/sipCallId"
+          },
+          "sipHeaders": {
+            "$ref": "#/components/schemas/sipHeaders"
           }
         },
         "description": "The Initiate event is fired when an inbound call is received for a Telephone Number on your Account. It is sent to the URL specified in the application associated with the location (sip-peer) that the called telephone number belongs to."
@@ -88500,6 +88371,27 @@
         "type": "string",
         "description": "The value of the `User-To-User` header to send within the initial `INVITE`. Must include the encoding parameter as specified in RFC 7433. Only `base64`, `jwt` and `hex` encoding are currently allowed. This value, including the encoding specifier, may not exceed 256 characters.",
         "example": "bXktdXVp"
+      },
+      "sipCallId": {
+        "type": "string",
+        "description": "(optional) The SIP Call-ID of the call's current SIP dialog with Bandwidth's SBC. Used to correlate dialogs and trace calls. Present on any call, inbound or outbound, once that dialog has been established; may be absent very early in a call before the dialog exists.",
+        "example": "c95ac8d6e1a31c52eb38f419893c151633ec68f8d@sbc.bandwidth.com"
+      },
+      "sipHeaders": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "(optional) Map of customer-supplied X-* headers from the original INVITE. Keys are lowercase (SIP headers are case-insensitive). Present only for inbound SIP URI calls with custom headers. Note - keys preserve the original SIP header name in lowercase rather than Bandwidth's usual camelCase JSON convention, since these are passthrough values from the caller's SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept.",
+        "example": {
+          "x-custom-header": "customer-value",
+          "x-session-id": "sess-12345"
+        }
+      },
+      "sipResponseCode": {
+        "type": "integer",
+        "description": "(optional) The SIP status code returned by Bandwidth's SBC when it rejected an outbound call's INVITE (e.g. 486 for busy, 603 for decline). Present only when an outbound call was rejected by the SBC.",
+        "example": 486
       }
     },
     "responses": {
@@ -100452,7 +100344,6 @@
                   "items": {
                     "$ref": "#/components/schemas/number_management_error"
                   },
-                  "nullable": true,
                   "example": null
                 }
               }
@@ -100582,7 +100473,6 @@
                   "items": {
                     "$ref": "#/components/schemas/number_management_error"
                   },
-                  "nullable": true,
                   "example": null
                 }
               }

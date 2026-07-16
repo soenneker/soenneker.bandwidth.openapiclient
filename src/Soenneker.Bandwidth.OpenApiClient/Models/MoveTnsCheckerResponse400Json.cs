@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerResponse400JsonData? DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerResponse400JsonDataProperty? DataEscaped { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerResponse400JsonData DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerResponse400JsonDataProperty DataEscaped { get; set; }
 #endif
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -66,7 +66,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerResponse400JsonData>(global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerResponse400JsonData.CreateFromDiscriminatorValue); } },
+                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerResponse400JsonDataProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerResponse400JsonDataProperty.CreateFromDiscriminatorValue); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerResponse400JsonErrorsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerResponse400JsonErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerResponse400JsonLinksItemProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerResponse400JsonLinksItemProperty.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -78,7 +78,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerResponse400JsonData>("data", DataEscaped);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerResponse400JsonDataProperty>("data", DataEscaped);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerResponse400JsonErrorsItem>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerResponse400JsonLinksItemProperty>("links", Links);
             writer.WriteAdditionalData(AdditionalData);
