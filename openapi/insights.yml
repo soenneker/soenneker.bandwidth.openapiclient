@@ -2086,6 +2086,7 @@ components:
       enum:
         - US
         - EU
+        - ALL
       example: US
       default: US
     reportRegion:
@@ -3062,7 +3063,9 @@ components:
     region:
       name: region
       in: query
-      description: 'Filter Type: Exact Match, any valid region.'
+      description: >-
+        Filter Type: Exact Match, any valid region. Use ALL to search both US
+        and EU regions in a single call. Defaults to US.
       schema:
         $ref: '#/components/schemas/region'
   requestBodies:

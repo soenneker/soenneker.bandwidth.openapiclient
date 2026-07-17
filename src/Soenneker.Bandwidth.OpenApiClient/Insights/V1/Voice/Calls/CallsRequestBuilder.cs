@@ -229,7 +229,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
             public int? Offset { get; set; }
             [QueryParameter("qualityStatus")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.QualityStatus? QualityStatus { get; set; }
-            /// <summary>&quot;Filter Type: Exact Match, any valid region.&quot;</summary>
+            /// <summary>&quot;Filter Type: Exact Match, any valid region. Use ALL to search both US and EU regions in a single call. Defaults to US.&quot;</summary>
             [QueryParameter("region")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsRegion? Region { get; set; }
             /// <summary>&quot;Filter Type: Exact Match, Multi Match.Example:  * Exact Match: 200  * Multi Match: 200, 202&quot;</summary>

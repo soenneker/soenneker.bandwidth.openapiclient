@@ -51366,7 +51366,8 @@
       "InsightsRegion": {
         "enum": [
           "US",
-          "EU"
+          "EU",
+          "ALL"
         ],
         "type": "string",
         "additionalProperties": false,
@@ -51382,6 +51383,10 @@
             {
               "value": "EU",
               "name": "Eu"
+            },
+            {
+              "value": "ALL",
+              "name": "All"
             }
           ]
         }
@@ -128908,7 +128913,7 @@
       "insights_region": {
         "name": "region",
         "in": "query",
-        "description": "\u0022Filter Type: Exact Match, any valid region.\u0022",
+        "description": "\u0022Filter Type: Exact Match, any valid region. Use ALL to search both US and EU regions in a single call. Defaults to US.\u0022",
         "schema": {
           "$ref": "#/components/schemas/InsightsRegion"
         }

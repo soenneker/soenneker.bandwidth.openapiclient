@@ -16,5 +16,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         #pragma warning disable CS1591
         Eu,
         #pragma warning restore CS1591
+        [EnumMember(Value = "ALL")]
+        #pragma warning disable CS1591
+        All,
+        #pragma warning restore CS1591
     }
 }
