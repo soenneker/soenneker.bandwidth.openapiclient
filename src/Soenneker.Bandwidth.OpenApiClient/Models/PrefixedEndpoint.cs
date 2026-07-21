@@ -11,10 +11,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// An endpoint for an ANI route. Contains a prefix.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class PrefixedEndpoint : IAdditionalDataHolder, IParsable
+    public partial class PrefixedEndpoint : IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The endpoint address — an E.164 phone number, SIP URI, IPv4:port, FQDN, or integration ID depending on the endpoint type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -33,13 +31,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>The type property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceEndpointTypeEnum? Type { get; set; }
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PrefixedEndpoint"/> and sets the default values.
-        /// </summary>
-        public PrefixedEndpoint()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -73,7 +64,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("endpoint", Endpoint);
             writer.WriteStringValue("prefix", Prefix);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceEndpointTypeEnum>("type", Type);
-            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

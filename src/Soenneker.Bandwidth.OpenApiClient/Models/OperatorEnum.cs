@@ -27,5 +27,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         #pragma warning disable CS1591
         InValue,
         #pragma warning restore CS1591
+        [EnumMember(Value = "NIN")]
+        #pragma warning disable CS1591
+        Nin,
+        #pragma warning restore CS1591
     }
 }

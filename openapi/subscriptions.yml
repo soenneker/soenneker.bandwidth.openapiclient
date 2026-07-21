@@ -552,14 +552,14 @@ components:
             - type: array
               items:
                 type: number
-              description: List of number values for operator "IN"
+              description: List of number values for operators ["IN", "NIN"]
               example:
                 - 100
                 - 200
             - type: array
               items:
                 type: string
-              description: List of string values for operator "IN"
+              description: List of string values for operators ["IN", "NIN"]
               example:
                 - APPROVED
                 - PENDING
@@ -819,6 +819,7 @@ components:
         - EQ
         - NE
         - IN
+        - NIN
       example: EQ
     sharedSecretKey:
       description: >-
