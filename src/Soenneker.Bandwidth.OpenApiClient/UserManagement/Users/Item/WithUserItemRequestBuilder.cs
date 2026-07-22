@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Bandwidth.OpenApiClient.Models;
+using Soenneker.Bandwidth.OpenApiClient.UserManagement.Users.Item.AuditLogs;
 using Soenneker.Bandwidth.OpenApiClient.UserManagement.Users.Item.Factors;
 using Soenneker.Bandwidth.OpenApiClient.UserManagement.Users.Item.ResetPassword;
 using System.Collections.Generic;
@@ -19,6 +20,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.UserManagement.Users.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithUserItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The auditLogs property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.UserManagement.Users.Item.AuditLogs.AuditLogsRequestBuilder AuditLogs
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.UserManagement.Users.Item.AuditLogs.AuditLogsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The factors property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.UserManagement.Users.Item.Factors.FactorsRequestBuilder Factors
         {

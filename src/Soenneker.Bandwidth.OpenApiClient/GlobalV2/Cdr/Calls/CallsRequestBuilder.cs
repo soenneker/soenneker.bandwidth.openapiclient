@@ -139,7 +139,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls
 #endif
             /// <summary>The type of CDR event.</summary>
             [QueryParameter("eventType")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.EventType? EventType { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV2EventType? EventType { get; set; }
             /// <summary>Start of period where CDRs will be retrieved from.</summary>
             [QueryParameter("from")]
             public DateTimeOffset? From { get; set; }

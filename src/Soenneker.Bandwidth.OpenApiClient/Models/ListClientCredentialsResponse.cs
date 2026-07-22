@@ -41,10 +41,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The page property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Page? Page { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServicePage? Page { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Page Page { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServicePage Page { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ListClientCredentialsResponse"/> and sets the default values.
@@ -74,7 +74,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ClientCredential>(global::Soenneker.Bandwidth.OpenApiClient.Models.ClientCredential.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceError>(global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceError.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceLink.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "page", n => { Page = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Page>(global::Soenneker.Bandwidth.OpenApiClient.Models.Page.CreateFromDiscriminatorValue); } },
+                { "page", n => { Page = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServicePage>(global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServicePage.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -87,7 +87,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ClientCredential>("data", Data);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceError>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceLink>("links", Links);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Page>("page", Page);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServicePage>("page", Page);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

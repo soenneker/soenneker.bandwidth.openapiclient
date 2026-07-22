@@ -7,33 +7,48 @@ using System.IO;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
+    /// <summary>
+    /// Counts of unique keys for a term
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class Page : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class Term : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Number of results returned in this page.</summary>
-        public int? PageSize { get; set; }
-        /// <summary>The estimated total number of events for this query.</summary>
-        public int? TotalCount { get; set; }
+        /// <summary>the top unique keys and their counts</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TermKeysProperty? Keys { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TermKeysProperty Keys { get; set; }
+#endif
+        /// <summary>The name of the key</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
+        public string Name { get; set; }
+#endif
+        /// <summary>the number of items excluded from the terms list</summary>
+        public int? OtherCount { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Page"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Term"/> and sets the default values.
         /// </summary>
-        public Page()
+        public Term()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Page"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Term"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Bandwidth.OpenApiClient.Models.Page CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.Term CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.Page();
+            return new global::Soenneker.Bandwidth.OpenApiClient.Models.Term();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -43,8 +58,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "pageSize", n => { PageSize = n.GetIntValue(); } },
-                { "totalCount", n => { TotalCount = n.GetIntValue(); } },
+                { "keys", n => { Keys = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TermKeysProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.TermKeysProperty.CreateFromDiscriminatorValue); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "otherCount", n => { OtherCount = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -54,8 +70,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteIntValue("pageSize", PageSize);
-            writer.WriteIntValue("totalCount", TotalCount);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TermKeysProperty>("keys", Keys);
+            writer.WriteStringValue("name", Name);
+            writer.WriteIntValue("otherCount", OtherCount);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

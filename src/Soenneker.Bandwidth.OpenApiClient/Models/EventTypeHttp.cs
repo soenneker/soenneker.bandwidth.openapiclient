@@ -7,29 +7,40 @@ using System.IO;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
+    /// <summary>
+    /// Attributes for the HTTP request/response associated with this event. Extracted from OTel Semantic Conventions v1.28.0
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class GenericErrorData : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class EventTypeHttp : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The HTTP request method</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? RequestMethod { get; set; }
+#nullable restore
+#else
+        public string RequestMethod { get; set; }
+#endif
+        /// <summary>The HTTP response status code</summary>
+        public int? ResponseStatusCode { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorData"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeHttp"/> and sets the default values.
         /// </summary>
-        public GenericErrorData()
+        public EventTypeHttp()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorData"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeHttp"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorData CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeHttp CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorData();
+            return new global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeHttp();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -39,6 +50,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "requestMethod", n => { RequestMethod = n.GetStringValue(); } },
+                { "responseStatusCode", n => { ResponseStatusCode = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -48,6 +61,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("requestMethod", RequestMethod);
+            writer.WriteIntValue("responseStatusCode", ResponseStatusCode);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

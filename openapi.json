@@ -1181,6 +1181,95 @@
         }
       }
     },
+    "/audit-log/v2/accounts/{accountId}/events": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "List Events",
+        "description": "Returns a paginated list of audit log events for the specified account. Supports cursor-based pagination and filtering by timestamp, principal, resource, event type, and HTTP context. When multiple filter parameters are provided, they are combined using AND logic.",
+        "operationId": "audit_log_listEvents",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/audit_log_accountId"
+          },
+          {
+            "$ref": "#/components/parameters/timestamp"
+          },
+          {
+            "$ref": "#/components/parameters/afterCursor"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/terms"
+          },
+          {
+            "$ref": "#/components/parameters/principalEnvironment"
+          },
+          {
+            "$ref": "#/components/parameters/principalService"
+          },
+          {
+            "$ref": "#/components/parameters/principalResourceType"
+          },
+          {
+            "$ref": "#/components/parameters/principalResourceId"
+          },
+          {
+            "$ref": "#/components/parameters/resourceEnvironment"
+          },
+          {
+            "$ref": "#/components/parameters/resourceService"
+          },
+          {
+            "$ref": "#/components/parameters/resourceResourceType"
+          },
+          {
+            "$ref": "#/components/parameters/resourceResourceId"
+          },
+          {
+            "$ref": "#/components/parameters/eventType"
+          },
+          {
+            "$ref": "#/components/parameters/httpRequestMethod"
+          },
+          {
+            "$ref": "#/components/parameters/httpResponseStatusCode"
+          },
+          {
+            "$ref": "#/components/parameters/bwContextRequestId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/listEventsResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequestError"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorizedError"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbiddenError"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFoundError"
+          },
+          "405": {
+            "$ref": "#/components/responses/methodNotAllowedError"
+          },
+          "429": {
+            "$ref": "#/components/responses/tooManyRequestsError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/serviceUnavailableError"
+          }
+        }
+      }
+    },
     "/auth-service-oauth/.well-known/openid-configuration": {
       "get": {
         "tags": [
@@ -1343,10 +1432,10 @@
         "operationId": "auth_service_listClientCredentials",
         "parameters": [
           {
-            "$ref": "#/components/parameters/afterCursor"
+            "$ref": "#/components/parameters/auth_service_afterCursor"
           },
           {
-            "$ref": "#/components/parameters/limit"
+            "$ref": "#/components/parameters/auth_service_limit"
           },
           {
             "$ref": "#/components/parameters/description"
@@ -1771,16 +1860,16 @@
             "$ref": "#/components/responses/billingModelsListResponse"
           },
           "400": {
-            "$ref": "#/components/responses/badRequestError"
+            "$ref": "#/components/responses/billing_model_badRequestError"
           },
           "401": {
-            "$ref": "#/components/responses/unauthorizedError"
+            "$ref": "#/components/responses/billing_model_unauthorizedError"
           },
           "403": {
-            "$ref": "#/components/responses/forbiddenError"
+            "$ref": "#/components/responses/billing_model_forbiddenError"
           },
           "404": {
-            "$ref": "#/components/responses/notFoundError"
+            "$ref": "#/components/responses/billing_model_notFoundError"
           },
           "405": {
             "$ref": "#/components/responses/notAllowedError"
@@ -1810,16 +1899,16 @@
             "$ref": "#/components/responses/billingModelResponse"
           },
           "400": {
-            "$ref": "#/components/responses/badRequestError"
+            "$ref": "#/components/responses/billing_model_badRequestError"
           },
           "401": {
-            "$ref": "#/components/responses/unauthorizedError"
+            "$ref": "#/components/responses/billing_model_unauthorizedError"
           },
           "403": {
-            "$ref": "#/components/responses/forbiddenError"
+            "$ref": "#/components/responses/billing_model_forbiddenError"
           },
           "404": {
-            "$ref": "#/components/responses/notFoundError"
+            "$ref": "#/components/responses/billing_model_notFoundError"
           },
           "405": {
             "$ref": "#/components/responses/notAllowedError"
@@ -1854,16 +1943,16 @@
             "$ref": "#/components/responses/billingModelResponse"
           },
           "400": {
-            "$ref": "#/components/responses/badRequestError"
+            "$ref": "#/components/responses/billing_model_badRequestError"
           },
           "401": {
-            "$ref": "#/components/responses/unauthorizedError"
+            "$ref": "#/components/responses/billing_model_unauthorizedError"
           },
           "403": {
-            "$ref": "#/components/responses/forbiddenError"
+            "$ref": "#/components/responses/billing_model_forbiddenError"
           },
           "404": {
-            "$ref": "#/components/responses/notFoundError"
+            "$ref": "#/components/responses/billing_model_notFoundError"
           },
           "405": {
             "$ref": "#/components/responses/notAllowedError"
@@ -1896,16 +1985,16 @@
             "$ref": "#/components/responses/billingModelResponse"
           },
           "400": {
-            "$ref": "#/components/responses/badRequestError"
+            "$ref": "#/components/responses/billing_model_badRequestError"
           },
           "401": {
-            "$ref": "#/components/responses/unauthorizedError"
+            "$ref": "#/components/responses/billing_model_unauthorizedError"
           },
           "403": {
-            "$ref": "#/components/responses/forbiddenError"
+            "$ref": "#/components/responses/billing_model_forbiddenError"
           },
           "404": {
-            "$ref": "#/components/responses/notFoundError"
+            "$ref": "#/components/responses/billing_model_notFoundError"
           },
           "405": {
             "$ref": "#/components/responses/notAllowedError"
@@ -1935,16 +2024,16 @@
             "$ref": "#/components/responses/billing_model_noContentResponse"
           },
           "400": {
-            "$ref": "#/components/responses/badRequestError"
+            "$ref": "#/components/responses/billing_model_badRequestError"
           },
           "401": {
-            "$ref": "#/components/responses/unauthorizedError"
+            "$ref": "#/components/responses/billing_model_unauthorizedError"
           },
           "403": {
-            "$ref": "#/components/responses/forbiddenError"
+            "$ref": "#/components/responses/billing_model_forbiddenError"
           },
           "404": {
-            "$ref": "#/components/responses/notFoundError"
+            "$ref": "#/components/responses/billing_model_notFoundError"
           },
           "405": {
             "$ref": "#/components/responses/notAllowedError"
@@ -3626,7 +3715,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -3671,7 +3760,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -3716,7 +3805,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -3761,7 +3850,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -3808,7 +3897,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -3856,7 +3945,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -3901,7 +3990,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -3954,7 +4043,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -3999,7 +4088,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -4049,7 +4138,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -4097,7 +4186,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -4142,7 +4231,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -4189,7 +4278,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -4231,7 +4320,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -4281,7 +4370,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -4326,7 +4415,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -4368,7 +4457,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -4415,7 +4504,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -4457,7 +4546,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -4501,7 +4590,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -4546,7 +4635,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -4588,7 +4677,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -4641,7 +4730,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -4694,7 +4783,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -4741,7 +4830,7 @@
             "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
           },
           "429": {
-            "$ref": "#/components/responses/tooManyRequestsError"
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
           },
           "500": {
             "$ref": "#/components/responses/emergency_provisioning_internalServerError"
@@ -4779,7 +4868,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -4823,7 +4912,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -4891,7 +4980,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -4933,7 +5022,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -4977,7 +5066,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -5022,7 +5111,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -5069,7 +5158,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -5105,7 +5194,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -5141,7 +5230,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -5191,7 +5280,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -5235,7 +5324,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -5280,7 +5369,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -5324,7 +5413,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -5368,7 +5457,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -5421,7 +5510,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -5463,7 +5552,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -5507,7 +5596,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -5552,7 +5641,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -5611,7 +5700,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -5653,7 +5742,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -5697,7 +5786,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -5742,7 +5831,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -5784,7 +5873,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "409": {
             "$ref": "#/components/responses/conflictError"
@@ -5831,7 +5920,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -5876,7 +5965,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -5923,7 +6012,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -5967,7 +6056,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -6011,7 +6100,7 @@
             "$ref": "#/components/responses/end_user_management_notFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "429": {
             "$ref": "#/components/responses/end_user_management_tooManyRequestsError"
@@ -6058,7 +6147,7 @@
             "$ref": "#/components/responses/complianceRequirementsPackageBulkResourceNotFoundError"
           },
           "405": {
-            "$ref": "#/components/responses/methodNotAllowedError"
+            "$ref": "#/components/responses/end_user_management_methodNotAllowedError"
           },
           "409": {
             "$ref": "#/components/responses/conflictError"
@@ -6414,7 +6503,7 @@
             "$ref": "#/components/parameters/e164"
           },
           {
-            "$ref": "#/components/parameters/eventType"
+            "$ref": "#/components/parameters/global_v2_eventType"
           },
           {
             "$ref": "#/components/parameters/callType"
@@ -26744,6 +26833,62 @@
         }
       }
     },
+    "/user-management/users/{userId}/audit-logs": {
+      "get": {
+        "tags": [
+          "Audit Logs"
+        ],
+        "summary": "List User Audit Logs",
+        "description": "Returns audit log events for the specified user. Only events from the last 60 days are available.\n\nUse the `occurredAt` filter to narrow the date range, and `eventType` to filter by specific event types.",
+        "operationId": "user_management_listUserAuditLogs",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/userId"
+          },
+          {
+            "$ref": "#/components/parameters/user_management_limit"
+          },
+          {
+            "$ref": "#/components/parameters/user_management_afterCursor"
+          },
+          {
+            "$ref": "#/components/parameters/occurredAt"
+          },
+          {
+            "$ref": "#/components/parameters/auditLogEventType"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/listUserAuditLogsResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/genericBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/genericUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/genericForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/genericNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/genericMethodNotAllowedResponse"
+          },
+          "415": {
+            "$ref": "#/components/responses/genericUnsupportedMediaTypeResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/genericTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/genericRuntimeExceptionResponse"
+          }
+        }
+      }
+    },
     "/user-management/roles": {
       "get": {
         "tags": [
@@ -33808,6 +33953,319 @@
         ],
         "type": "string"
       },
+      "page": {
+        "title": "Page",
+        "required": [
+          "pageSize"
+        ],
+        "type": "object",
+        "properties": {
+          "pageSize": {
+            "type": "integer",
+            "description": "Number of results returned in this page.",
+            "example": 100
+          },
+          "totalCount": {
+            "type": "integer",
+            "description": "The estimated total number of events for this query.",
+            "example": 42
+          }
+        }
+      },
+      "listEventsResponse": {
+        "title": "List Events Response",
+        "required": [
+          "links",
+          "data",
+          "errors",
+          "page"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/audit_log_link"
+            }
+          },
+          "data": {
+            "$ref": "#/components/schemas/audit_log_data"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/audit_log_error"
+            }
+          },
+          "page": {
+            "$ref": "#/components/schemas/page"
+          }
+        }
+      },
+      "audit_log_data": {
+        "type": "object",
+        "properties": {
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/event"
+            },
+            "description": "The list of audit log events matching the query criteria."
+          },
+          "terms": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/term"
+            },
+            "description": "Term count aggregations for the fields requested via the terms query parameter."
+          }
+        }
+      },
+      "event": {
+        "title": "AuditLogEvent",
+        "required": [
+          "version",
+          "principal",
+          "resource",
+          "eventTime",
+          "deduplicationId",
+          "eventType"
+        ],
+        "type": "object",
+        "properties": {
+          "version": {
+            "enum": [
+              "v1",
+              "v2"
+            ],
+            "type": "string",
+            "description": "The expected version of the event schema"
+          },
+          "principal": {
+            "$ref": "#/components/schemas/bandwidthResourceName"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/bandwidthResourceName"
+          },
+          "eventTime": {
+            "type": "string",
+            "description": "The time the event was triggered",
+            "format": "date-time"
+          },
+          "replayTime": {
+            "type": "string",
+            "description": "The time the event was replayed",
+            "format": "date-time"
+          },
+          "deduplicationId": {
+            "type": "string",
+            "description": "A unique identifier for the event to distinguish between a replay and a new event",
+            "format": "uuid"
+          },
+          "eventType": {
+            "$ref": "#/components/schemas/eventTypes"
+          },
+          "http": {
+            "required": [
+              "requestMethod"
+            ],
+            "type": "object",
+            "properties": {
+              "requestMethod": {
+                "type": "string",
+                "description": "The HTTP request method"
+              },
+              "responseStatusCode": {
+                "maximum": 599,
+                "minimum": 100,
+                "type": "integer",
+                "description": "The HTTP response status code"
+              }
+            },
+            "description": "Attributes for the HTTP request/response associated with this event. Extracted from OTel Semantic Conventions v1.28.0"
+          },
+          "customerContext": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Customer-specific context that may be useful after retrieving the event, but not necessarily indexed"
+          },
+          "bwContext": {
+            "type": "object",
+            "properties": {
+              "accountId": {
+                "type": "string",
+                "description": "The Bandwidth account ID associated with the event"
+              },
+              "requestId": {
+                "type": "string",
+                "description": "A traceable ID for this event",
+                "format": "uuid"
+              }
+            },
+            "description": "Additional context for the event specific to Bandwidth"
+          }
+        },
+        "description": "An emitted audit event"
+      },
+      "term": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the key"
+          },
+          "otherCount": {
+            "type": "integer",
+            "description": "the number of items excluded from the terms list"
+          },
+          "keys": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "description": "the top unique keys and their counts"
+          }
+        },
+        "description": "Counts of unique keys for a term"
+      },
+      "timestamp": {
+        "type": "string",
+        "description": "RFC 3339 timestamp",
+        "format": "date-time"
+      },
+      "timestampFilter": {
+        "title": "Timestamp Filter Range",
+        "properties": {
+          "eq": {
+            "$ref": "#/components/schemas/timestamp"
+          },
+          "gte": {
+            "$ref": "#/components/schemas/timestamp"
+          },
+          "lte": {
+            "$ref": "#/components/schemas/timestamp"
+          }
+        },
+        "description": "Start and end time for filtering events"
+      },
+      "audit_log_link": {
+        "required": [
+          "href",
+          "rel",
+          "method"
+        ],
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string",
+            "description": "URI of the link"
+          },
+          "rel": {
+            "type": "string",
+            "description": "Specifies the relationship between this link and the resource"
+          },
+          "method": {
+            "type": "string",
+            "description": "HTTP method to be used"
+          }
+        },
+        "description": "Relevant links for the current resource"
+      },
+      "audit_log_error": {
+        "title": "Error",
+        "required": [
+          "type",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "A unique identifier for this particular instance of this problem.",
+            "format": "uuid"
+          },
+          "type": {
+            "type": "string",
+            "description": "A short, human-readable summary of the problem that SHOULD NOT change from occurrence to occurrence of the problem."
+          },
+          "description": {
+            "type": "string",
+            "description": "A human-readable explanation that SHOULD be specific to this occurrence of the problem."
+          },
+          "code": {
+            "minimum": 4,
+            "type": "integer",
+            "description": "An application-specific error code for services with extensive error scenarios to supplement `description`.",
+            "format": "int32"
+          },
+          "source": {
+            "$ref": "#/components/schemas/errorSource"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/errorMeta"
+          }
+        }
+      },
+      "errorSource": {
+        "title": "Error Source",
+        "type": "object",
+        "properties": {
+          "parameter": {
+            "type": "string",
+            "description": "A string indicating which URI query parameter caused the error."
+          },
+          "field": {
+            "type": "string",
+            "description": "A string indicating which request body field caused the error."
+          },
+          "header": {
+            "type": "string",
+            "description": "A string indicating which header field caused the error."
+          },
+          "reference": {
+            "type": "string",
+            "description": "A string that references a resource ID or path to the resource (or non-existent resource) causing the error."
+          }
+        }
+      },
+      "errorMeta": {
+        "title": "Error Meta",
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "An optional metadata message providing additional context for the error."
+          }
+        }
+      },
+      "genericError": {
+        "title": "Generic Error",
+        "required": [
+          "links",
+          "data",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/audit_log_link"
+            }
+          },
+          "data": {
+            "type": "object"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/audit_log_error"
+            }
+          }
+        }
+      },
       "tokenRequest": {
         "title": "tokenForm",
         "required": [
@@ -34173,7 +34631,7 @@
             }
           },
           "page": {
-            "$ref": "#/components/schemas/page"
+            "$ref": "#/components/schemas/auth_service_page"
           }
         }
       },
@@ -34574,7 +35032,7 @@
         "type": "string",
         "description": "The scope of the credentials."
       },
-      "page": {
+      "auth_service_page": {
         "type": "object",
         "properties": {
           "pageSize": {
@@ -34723,7 +35181,7 @@
         "description": "Sorting order in ascending or descending order",
         "default": "ASC"
       },
-      "genericError": {
+      "billing_model_genericError": {
         "title": "Generic Error",
         "required": [
           "links",
@@ -34872,14 +35330,14 @@
             "example": 51130
           },
           "source": {
-            "$ref": "#/components/schemas/errorSource"
+            "$ref": "#/components/schemas/billing_model_errorSource"
           },
           "meta": {
-            "$ref": "#/components/schemas/errorMeta"
+            "$ref": "#/components/schemas/billing_model_errorMeta"
           }
         }
       },
-      "errorSource": {
+      "billing_model_errorSource": {
         "title": "Error Source",
         "type": "object",
         "properties": {
@@ -34905,7 +35363,7 @@
           }
         }
       },
-      "errorMeta": {
+      "billing_model_errorMeta": {
         "title": "Error Meta",
         "type": "object",
         "additionalProperties": {
@@ -81755,6 +82213,113 @@
         "description": "One Time PassCode",
         "example": 123456
       },
+      "auditLogEvent": {
+        "required": [
+          "eventId",
+          "eventType",
+          "occurredAt",
+          "actor"
+        ],
+        "type": "object",
+        "properties": {
+          "eventId": {
+            "$ref": "#/components/schemas/auditLogEventId"
+          },
+          "eventType": {
+            "$ref": "#/components/schemas/auditLogEventTypeEnum"
+          },
+          "occurredAt": {
+            "type": "string",
+            "description": "The date and time the event occurred",
+            "format": "date-time",
+            "example": "2026-01-01T12:00:00Z"
+          },
+          "actor": {
+            "type": "string",
+            "description": "The userId or client ID of the principal that performed the action",
+            "example": "adminUser"
+          },
+          "details": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Event-specific metadata such as before and after state for update events. Content varies by event type.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "auditLogEventId": {
+        "type": "string",
+        "description": "Unique identifier for the audit log event",
+        "format": "uuid",
+        "example": "80c9a7f7-9a7f-bf58-f6de-942cea16cee4"
+      },
+      "auditLogEventTypeEnum": {
+        "enum": [
+          "USER_CREATE",
+          "USER_UPDATE",
+          "USER_DELETE",
+          "USER_PROFILE_UPDATE",
+          "USER_ACCOUNTS_UPDATE",
+          "USER_ROLES_UPDATE",
+          "USER_SETTINGS_UPDATE",
+          "MFA_ENROLL",
+          "MFA_UNENROLL",
+          "MFA_ACTIVATE",
+          "PASSWORD_RESET"
+        ],
+        "type": "string",
+        "description": "The type of audit log event",
+        "example": "USER_CREATE"
+      },
+      "listUserAuditLogsResponse": {
+        "required": [
+          "links",
+          "data",
+          "errors",
+          "page"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/user_management_link"
+            },
+            "example": [ ]
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/auditLogEvent"
+            },
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/user_management_error"
+            },
+            "example": [ ]
+          },
+          "page": {
+            "$ref": "#/components/schemas/user_management_page"
+          }
+        },
+        "additionalProperties": false
+      },
+      "auditLogEventTypeQueryParam": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "Comma-separated list of audit log event types to match. Multiple values use OR logic.",
+            "example": "USER_CREATE,USER_UPDATE"
+          }
+        }
+      },
       "user_management_sort": {
         "enum": [
           "ASC",
@@ -89865,6 +90430,109 @@
           }
         }
       },
+      "listEventsResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/listEventsResponse"
+            },
+            "example": {
+              "links": [
+                {
+                  "href": "https://api.bandwidth.com/v2/accounts/123456/events?limit=100&afterCursor=abc",
+                  "rel": "self",
+                  "method": "GET"
+                },
+                {
+                  "href": "https://api.bandwidth.com/v2/accounts/123456/events?limit=100&afterCursor=xyz",
+                  "rel": "next",
+                  "method": "GET"
+                }
+              ],
+              "data": {
+                "events": [ ],
+                "terms": [ ]
+              },
+              "errors": [ ],
+              "page": {
+                "pageSize": 100,
+                "totalCount": 42
+              }
+            }
+          }
+        }
+      },
+      "badRequestError": {
+        "description": "Bad Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/genericError"
+            }
+          }
+        }
+      },
+      "forbiddenError": {
+        "description": "Forbidden",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/genericError"
+            }
+          }
+        }
+      },
+      "unauthorizedError": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/genericError"
+            }
+          }
+        }
+      },
+      "notFoundError": {
+        "description": "Not Found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/genericError"
+            }
+          }
+        }
+      },
+      "methodNotAllowedError": {
+        "description": "Method Not Allowed",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/genericError"
+            }
+          }
+        }
+      },
+      "tooManyRequestsError": {
+        "description": "Too Many Requests",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/genericError"
+            }
+          }
+        }
+      },
+      "serviceUnavailableError": {
+        "description": "Service Unavailable",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/genericError"
+            }
+          }
+        }
+      },
       "wellKnownResponse": {
         "description": "OK",
         "content": {
@@ -90251,12 +90919,12 @@
       "billing_model_noContentResponse": {
         "description": "No Content"
       },
-      "badRequestError": {
+      "billing_model_badRequestError": {
         "description": "Bad Request",
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/genericError"
+              "$ref": "#/components/schemas/billing_model_genericError"
             },
             "examples": {
               "badRequestErrorExample": {
@@ -90266,18 +90934,18 @@
           }
         }
       },
-      "unauthorizedError": {
+      "billing_model_unauthorizedError": {
         "description": "Unauthorized"
       },
-      "forbiddenError": {
+      "billing_model_forbiddenError": {
         "description": "Forbidden"
       },
-      "notFoundError": {
+      "billing_model_notFoundError": {
         "description": "Not Found",
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/genericError"
+              "$ref": "#/components/schemas/billing_model_genericError"
             },
             "examples": {
               "notFoundErrorExample": {
@@ -90292,7 +90960,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/genericError"
+              "$ref": "#/components/schemas/billing_model_genericError"
             },
             "examples": {
               "notAllowedErrorExample": {
@@ -90307,7 +90975,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/genericError"
+              "$ref": "#/components/schemas/billing_model_genericError"
             },
             "examples": {
               "duplicateRequestErrorExample": {
@@ -90322,7 +90990,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/genericError"
+              "$ref": "#/components/schemas/billing_model_genericError"
             },
             "examples": {
               "internalServerErrorExample": {
@@ -91545,7 +92213,7 @@
           }
         }
       },
-      "tooManyRequestsError": {
+      "emergency_provisioning_tooManyRequestsError": {
         "description": "Too Many Requests",
         "content": {
           "application/json": {
@@ -91738,7 +92406,7 @@
           }
         }
       },
-      "methodNotAllowedError": {
+      "end_user_management_methodNotAllowedError": {
         "description": "Method Not Allowed",
         "content": {
           "application/json": {
@@ -103117,6 +103785,21 @@
       "user_management_noContentResponse": {
         "description": "No Content"
       },
+      "listUserAuditLogsResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/listUserAuditLogsResponse"
+            },
+            "examples": {
+              "listUserAuditLogsResponseExample": {
+                "$ref": "#/components/examples/listUserAuditLogsResponseExample"
+              }
+            }
+          }
+        }
+      },
       "genericBadRequestResponse": {
         "description": "Bad Request",
         "content": {
@@ -105731,7 +106414,238 @@
           "type": "string"
         }
       },
+      "audit_log_accountId": {
+        "name": "accountId",
+        "in": "path",
+        "description": "The Bandwidth account ID associated with the events to query.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "timestamp": {
+        "name": "timestamp",
+        "in": "query",
+        "description": "Filtering parameter for `timestamp`",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/timestampFilter"
+        }
+      },
       "afterCursor": {
+        "name": "afterCursor",
+        "in": "query",
+        "description": "Opaque string used to retrieve the next set of results.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "limit": {
+        "name": "limit",
+        "in": "query",
+        "description": "number of results to return",
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "terms": {
+        "name": "terms",
+        "in": "query",
+        "description": "a comma-separated string of fields that will have term counts included in the response",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "properties": {
+            "eq": {
+              "type": "string",
+              "description": "Comma-separated list of fields to include term counts for."
+            }
+          }
+        }
+      },
+      "principalEnvironment": {
+        "name": "principalEnvironment",
+        "in": "query",
+        "description": "The environment that emitted this event. Supports comma-separated values for OR matching (e.g., `principalEnvironment[eq]=prod,test`).",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "properties": {
+            "eq": {
+              "type": "string",
+              "description": "Comma-separated list of environment values to match."
+            }
+          }
+        }
+      },
+      "principalService": {
+        "name": "principalService",
+        "in": "query",
+        "description": "The domain and service name maintaining a resource, in the form `<domain>/<service>`. Must be registered before use. Supports comma-separated values for OR matching.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "properties": {
+            "eq": {
+              "type": "string",
+              "description": "Comma-separated list of service values to match."
+            }
+          }
+        }
+      },
+      "principalResourceType": {
+        "name": "principalResourceType",
+        "in": "query",
+        "description": "A general name for a resource being referenced (e.g., User, Message). Supports comma-separated values for OR matching.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "properties": {
+            "eq": {
+              "type": "string",
+              "description": "Comma-separated list of resource type values to match."
+            }
+          }
+        }
+      },
+      "principalResourceId": {
+        "name": "principalResourceId",
+        "in": "query",
+        "description": "The primary identifier of the resource referenced. Supports comma-separated values for OR matching.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "properties": {
+            "eq": {
+              "type": "string",
+              "description": "Comma-separated list of resource ID values to match."
+            }
+          }
+        }
+      },
+      "resourceEnvironment": {
+        "name": "resourceEnvironment",
+        "in": "query",
+        "description": "The environment of the resource acted upon. Supports comma-separated values for OR matching (e.g., `resourceEnvironment[eq]=prod,test`).",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "properties": {
+            "eq": {
+              "type": "string",
+              "description": "Comma-separated list of environment values to match."
+            }
+          }
+        }
+      },
+      "resourceService": {
+        "name": "resourceService",
+        "in": "query",
+        "description": "The domain and service name of the resource acted upon, in the form `<domain>/<service>`. Must be registered before use. Supports comma-separated values for OR matching.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "properties": {
+            "eq": {
+              "type": "string",
+              "description": "Comma-separated list of service values to match."
+            }
+          }
+        }
+      },
+      "resourceResourceType": {
+        "name": "resourceResourceType",
+        "in": "query",
+        "description": "A general name for the resource type acted upon (e.g., User, Message). Supports comma-separated values for OR matching.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "properties": {
+            "eq": {
+              "type": "string",
+              "description": "Comma-separated list of resource type values to match."
+            }
+          }
+        }
+      },
+      "resourceResourceId": {
+        "name": "resourceResourceId",
+        "in": "query",
+        "description": "The primary identifier of the resource acted upon. Supports comma-separated values for OR matching.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "properties": {
+            "eq": {
+              "type": "string",
+              "description": "Comma-separated list of resource ID values to match."
+            }
+          }
+        }
+      },
+      "eventType": {
+        "name": "eventType",
+        "in": "query",
+        "description": "A specific event type that must have been previously registered. Supports comma-separated values for OR matching (e.g., `eventType[eq]=auth_success,auth_failure`).",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "properties": {
+            "eq": {
+              "type": "string",
+              "description": "Comma-separated list of event type values to match."
+            }
+          }
+        }
+      },
+      "httpRequestMethod": {
+        "name": "httpRequestMethod",
+        "in": "query",
+        "description": "The HTTP request method associated with the event. Supports comma-separated values for OR matching (e.g., `httpRequestMethod[eq]=GET,POST`).",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "properties": {
+            "eq": {
+              "type": "string",
+              "description": "Comma-separated list of HTTP methods to match."
+            }
+          }
+        }
+      },
+      "httpResponseStatusCode": {
+        "name": "httpResponseStatusCode",
+        "in": "query",
+        "description": "The HTTP response status code associated with the event. Supports comma-separated values for OR matching (e.g., `httpResponseStatusCode[eq]=200,201`).",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "properties": {
+            "eq": {
+              "type": "integer",
+              "description": "Comma-separated list of HTTP status codes to match."
+            }
+          }
+        }
+      },
+      "bwContextRequestId": {
+        "name": "bwContextRequestId",
+        "in": "query",
+        "description": "Request ID from the Bandwidth context. Supports comma-separated values for OR matching.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "properties": {
+            "eq": {
+              "type": "string",
+              "description": "Comma-separated list of request ID UUIDs to match.",
+              "format": "uuid"
+            }
+          }
+        }
+      },
+      "auth_service_afterCursor": {
         "name": "afterCursor",
         "in": "query",
         "description": "The cursor to use for pagination. This is the value of the `next` link from the previous response.",
@@ -105739,7 +106653,7 @@
           "type": "string"
         }
       },
-      "limit": {
+      "auth_service_limit": {
         "name": "limit",
         "in": "query",
         "description": "The maximum number of items to return. Defaults to 100.",
@@ -106969,7 +107883,7 @@
           }
         }
       },
-      "eventType": {
+      "global_v2_eventType": {
         "name": "eventType",
         "in": "query",
         "description": "The type of CDR event.",
@@ -111043,6 +111957,26 @@
         "style": "deepObject",
         "schema": {
           "$ref": "#/components/schemas/user_management_dateQueryParam"
+        }
+      },
+      "occurredAt": {
+        "name": "occurredAt",
+        "in": "query",
+        "description": "Filter audit log events by occurrence time. Only events from the last 60 days are available.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/user_management_dateQueryParam"
+        }
+      },
+      "auditLogEventType": {
+        "name": "eventType",
+        "in": "query",
+        "description": "Filter audit log events by event type.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/auditLogEventTypeQueryParam"
         }
       },
       "voice_application_management_accountId": {
@@ -123470,6 +124404,47 @@
           "errors": [ ]
         }
       },
+      "listUserAuditLogsResponseExample": {
+        "value": {
+          "links": [
+            {
+              "href": "https://api.bandwidth.com/api/v1/users/testUser/audit-logs?limit=100&afterCursor=abc123",
+              "rel": "self",
+              "method": "GET"
+            },
+            {
+              "href": "https://api.bandwidth.com/api/v1/users/testUser/audit-logs?limit=100&afterCursor=xyz789",
+              "rel": "next",
+              "method": "GET"
+            }
+          ],
+          "data": [
+            {
+              "eventId": "80c9a7f7-9a7f-bf58-f6de-942cea16cee4",
+              "eventType": "USER_CREATE",
+              "occurredAt": "2026-01-01T12:00:00Z",
+              "actor": "adminUser"
+            },
+            {
+              "eventId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+              "eventType": "USER_ROLES_UPDATE",
+              "occurredAt": "2026-01-02T09:30:00Z",
+              "actor": "adminUser",
+              "details": {
+                "beforeRoles": "[\"httpVoice\"]",
+                "afterRoles": "[\"httpVoice\",\"adminRole\"]",
+                "status": "success",
+                "primaryUser": "adminUser",
+                "resourceUser": "testUser"
+              }
+            }
+          ],
+          "errors": [ ],
+          "page": {
+            "pageSize": 2
+          }
+        }
+      },
       "listRolesResponseExample": {
         "value": {
           "links": [ ],
@@ -130394,6 +131369,11 @@
         "scheme": "bearer",
         "bearerFormat": "JWT"
       },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      },
       "auth_service_oauth_Basic": {
         "type": "http",
         "scheme": "basic"
@@ -131041,6 +132021,12 @@
       "name": "Applications"
     },
     {
+      "name": "Audit Log"
+    },
+    {
+      "name": "Events"
+    },
+    {
       "name": ".well-known"
     },
     {
@@ -131341,6 +132327,9 @@
     },
     {
       "name": "Roles"
+    },
+    {
+      "name": "Audit Logs"
     },
     {
       "name": "Voice Applications"

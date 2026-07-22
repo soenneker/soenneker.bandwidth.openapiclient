@@ -7,33 +7,40 @@ using System.IO;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
+    /// <summary>
+    /// Additional context for the event specific to Bandwidth
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class Page : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class EventTypeBwContext : IAdditionalDataHolder, IParsable
     {
+        /// <summary>The Bandwidth account ID associated with the event</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AccountId { get; set; }
+#nullable restore
+#else
+        public string AccountId { get; set; }
+#endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Number of results returned in this page.</summary>
-        public int? PageSize { get; set; }
-        /// <summary>The estimated total number of events for this query.</summary>
-        public int? TotalCount { get; set; }
+        /// <summary>A traceable ID for this event</summary>
+        public Guid? RequestId { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Page"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeBwContext"/> and sets the default values.
         /// </summary>
-        public Page()
+        public EventTypeBwContext()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Page"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeBwContext"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Bandwidth.OpenApiClient.Models.Page CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeBwContext CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.Page();
+            return new global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeBwContext();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -43,8 +50,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "pageSize", n => { PageSize = n.GetIntValue(); } },
-                { "totalCount", n => { TotalCount = n.GetIntValue(); } },
+                { "accountId", n => { AccountId = n.GetStringValue(); } },
+                { "requestId", n => { RequestId = n.GetGuidValue(); } },
             };
         }
         /// <summary>
@@ -54,8 +61,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteIntValue("pageSize", PageSize);
-            writer.WriteIntValue("totalCount", TotalCount);
+            writer.WriteStringValue("accountId", AccountId);
+            writer.WriteGuidValue("requestId", RequestId);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -305,6 +305,44 @@ paths:
           $ref: '#/components/responses/genericTooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/genericRuntimeExceptionResponse'
+  /users/{userId}/audit-logs:
+    get:
+      tags:
+        - Audit Logs
+      summary: List User Audit Logs
+      description: >-
+        Returns audit log events for the specified user. Only events from the
+        last 60 days are available.
+
+
+        Use the `occurredAt` filter to narrow the date range, and `eventType` to
+        filter by specific event types.
+      operationId: listUserAuditLogs
+      parameters:
+        - $ref: '#/components/parameters/userId'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/afterCursor'
+        - $ref: '#/components/parameters/occurredAt'
+        - $ref: '#/components/parameters/auditLogEventType'
+      responses:
+        '200':
+          $ref: '#/components/responses/listUserAuditLogsResponse'
+        '400':
+          $ref: '#/components/responses/genericBadRequestResponse'
+        '401':
+          $ref: '#/components/responses/genericUnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/genericForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/genericNotFoundResponse'
+        '405':
+          $ref: '#/components/responses/genericMethodNotAllowedResponse'
+        '415':
+          $ref: '#/components/responses/genericUnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/genericTooManyRequestsResponse'
+        '500':
+          $ref: '#/components/responses/genericRuntimeExceptionResponse'
   /roles:
     get:
       tags:
@@ -460,6 +498,15 @@ components:
               $ref: '#/components/examples/listRolesResponseExample'
     noContentResponse:
       description: No Content
+    listUserAuditLogsResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/listUserAuditLogsResponse'
+          examples:
+            listUserAuditLogsResponseExample:
+              $ref: '#/components/examples/listUserAuditLogsResponseExample'
     genericBadRequestResponse:
       description: Bad Request
       content:
@@ -1124,6 +1171,92 @@ components:
       type: string
       description: One Time PassCode
       example: '123456'
+    auditLogEvent:
+      type: object
+      additionalProperties: false
+      required:
+        - eventId
+        - eventType
+        - occurredAt
+        - actor
+      properties:
+        eventId:
+          $ref: '#/components/schemas/auditLogEventId'
+        eventType:
+          $ref: '#/components/schemas/auditLogEventTypeEnum'
+        occurredAt:
+          type: string
+          format: date-time
+          description: The date and time the event occurred
+          example: '2026-01-01T12:00:00Z'
+        actor:
+          type: string
+          description: The userId or client ID of the principal that performed the action
+          example: adminUser
+        details:
+          type: object
+          description: >-
+            Event-specific metadata such as before and after state for update
+            events. Content varies by event type.
+          nullable: true
+          additionalProperties:
+            type: string
+    auditLogEventId:
+      type: string
+      format: uuid
+      description: Unique identifier for the audit log event
+      example: 80c9a7f7-9a7f-bf58-f6de-942cea16cee4
+    auditLogEventTypeEnum:
+      type: string
+      description: The type of audit log event
+      enum:
+        - USER_CREATE
+        - USER_UPDATE
+        - USER_DELETE
+        - USER_PROFILE_UPDATE
+        - USER_ACCOUNTS_UPDATE
+        - USER_ROLES_UPDATE
+        - USER_SETTINGS_UPDATE
+        - MFA_ENROLL
+        - MFA_UNENROLL
+        - MFA_ACTIVATE
+        - PASSWORD_RESET
+      example: USER_CREATE
+    listUserAuditLogsResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - links
+        - data
+        - errors
+        - page
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          example: []
+        data:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/auditLogEvent'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+          example: []
+        page:
+          $ref: '#/components/schemas/page'
+    auditLogEventTypeQueryParam:
+      type: object
+      properties:
+        eq:
+          type: string
+          description: >-
+            Comma-separated list of audit log event types to match. Multiple
+            values use OR logic.
+          example: USER_CREATE,USER_UPDATE
     sort:
       type: string
       enum:
@@ -1401,6 +1534,26 @@ components:
       style: deepObject
       schema:
         $ref: '#/components/schemas/dateQueryParam'
+    occurredAt:
+      name: occurredAt
+      in: query
+      required: false
+      description: >-
+        Filter audit log events by occurrence time. Only events from the last 60
+        days are available.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/dateQueryParam'
+    auditLogEventType:
+      name: eventType
+      in: query
+      required: false
+      description: Filter audit log events by event type.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/auditLogEventTypeQueryParam'
   securitySchemes:
     Bearer:
       type: http
@@ -1524,6 +1677,35 @@ components:
           required: true
           displayName: Google Authenticator
         errors: []
+    listUserAuditLogsResponseExample:
+      value:
+        links:
+          - href: >-
+              https://api.bandwidth.com/api/v1/users/testUser/audit-logs?limit=100&afterCursor=abc123
+            rel: self
+            method: GET
+          - href: >-
+              https://api.bandwidth.com/api/v1/users/testUser/audit-logs?limit=100&afterCursor=xyz789
+            rel: next
+            method: GET
+        data:
+          - eventId: 80c9a7f7-9a7f-bf58-f6de-942cea16cee4
+            eventType: USER_CREATE
+            occurredAt: '2026-01-01T12:00:00Z'
+            actor: adminUser
+          - eventId: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+            eventType: USER_ROLES_UPDATE
+            occurredAt: '2026-01-02T09:30:00Z'
+            actor: adminUser
+            details:
+              beforeRoles: '["httpVoice"]'
+              afterRoles: '["httpVoice","adminRole"]'
+              status: success
+              primaryUser: adminUser
+              resourceUser: testUser
+        errors: []
+        page:
+          pageSize: 2
     listRolesResponseExample:
       value:
         links: []
@@ -1637,3 +1819,4 @@ tags:
   - name: Users
   - name: MFA
   - name: Roles
+  - name: Audit Logs

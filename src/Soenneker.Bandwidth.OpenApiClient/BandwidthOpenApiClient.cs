@@ -9,6 +9,7 @@ using Microsoft.Kiota.Serialization.Text;
 using Soenneker.Bandwidth.OpenApiClient.Accounts;
 using Soenneker.Bandwidth.OpenApiClient.ActiveCallInfo;
 using Soenneker.Bandwidth.OpenApiClient.Applications;
+using Soenneker.Bandwidth.OpenApiClient.AuditLog;
 using Soenneker.Bandwidth.OpenApiClient.AuthService;
 using Soenneker.Bandwidth.OpenApiClient.AuthServiceOauth;
 using Soenneker.Bandwidth.OpenApiClient.BillingModel;
@@ -75,6 +76,11 @@ namespace Soenneker.Bandwidth.OpenApiClient
         public global::Soenneker.Bandwidth.OpenApiClient.Applications.ApplicationsRequestBuilder Applications
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Applications.ApplicationsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The auditLog property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.AuditLog.AuditLogRequestBuilder AuditLog
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.AuditLog.AuditLogRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The authService property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.AuthService.AuthServiceRequestBuilder AuthService
