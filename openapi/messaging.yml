@@ -1842,7 +1842,13 @@ components:
       required: true
       schema:
         type: string
-      description: Your Bandwidth Account ID.
+      description: >
+        This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth
+        App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.
+
+
+        **When migrating to OAuth authentication, you must use the 7-digit
+        Account ID.**
       example: '9900000'
     mediaId:
       in: path

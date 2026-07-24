@@ -16,7 +16,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Messaging.Users
     public partial class UsersRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Bandwidth.OpenApiClient.messaging.users.item collection</summary>
-        /// <param name="position">Your Bandwidth Account ID.</param>
+        /// <param name="position">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.**When migrating to OAuth authentication, you must use the 7-digit Account ID.**</param>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.WithAccountItemRequestBuilder"/></returns>
         public global::Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.WithAccountItemRequestBuilder this[string position]
         {

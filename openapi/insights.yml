@@ -34,6 +34,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/accountId'
         - $ref: '#/components/parameters/callId'
+        - $ref: '#/components/parameters/sipCallId'
+        - $ref: '#/components/parameters/programmableCallId'
         - $ref: '#/components/parameters/startTime'
         - $ref: '#/components/parameters/endTime'
         - $ref: '#/components/parameters/callingNumber'
@@ -1762,6 +1764,15 @@ components:
           type: string
           description: Unique call identifier.
           example: 1234567890abcdefghijklmnopqrstuvwxyz
+        sipCallId:
+          type: string
+          description: The SIP call identifier associated with this call.
+          example: aabbccddeeff00112233445566778899@10.0.0.1
+        programmableCallId:
+          type: string
+          nullable: true
+          description: The Programmable Voice call identifier associated with this call.
+          example: c-1234567890abcdef
         startTime:
           type: string
           description: Timestamp of when the call started, conforming to RFC 3339 format.
@@ -2784,6 +2795,22 @@ components:
       schema:
         type: string
         example: 12345678980abcdefghijklmnopqrstuvwxyz
+    sipCallId:
+      name: sipCallId
+      in: query
+      description: |
+        Filter Type: Exact Match, any valid SIP call ID.
+      schema:
+        type: string
+        example: aabbccddeeff00112233445566778899@10.0.0.1
+    programmableCallId:
+      name: programmableCallId
+      in: query
+      description: |
+        Filter Type: Exact Match, any valid Programmable Voice call ID.
+      schema:
+        type: string
+        example: c-1234567890abcdef
     callIdPath:
       name: callId
       in: path

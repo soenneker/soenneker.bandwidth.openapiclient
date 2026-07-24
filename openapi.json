@@ -12371,6 +12371,12 @@
             "$ref": "#/components/parameters/callId"
           },
           {
+            "$ref": "#/components/parameters/sipCallId"
+          },
+          {
+            "$ref": "#/components/parameters/programmableCallId"
+          },
+          {
             "$ref": "#/components/parameters/insights_startTime"
           },
           {
@@ -52839,6 +52845,17 @@
             "type": "string",
             "description": "Unique call identifier.",
             "example": "1234567890abcdefghijklmnopqrstuvwxyz"
+          },
+          "sipCallId": {
+            "type": "string",
+            "description": "The SIP call identifier associated with this call.",
+            "example": "aabbccddeeff00112233445566778899@10.0.0.1"
+          },
+          "programmableCallId": {
+            "type": "string",
+            "description": "The Programmable Voice call identifier associated with this call.",
+            "nullable": true,
+            "example": "c-1234567890abcdef"
           },
           "startTime": {
             "type": "string",
@@ -108629,6 +108646,24 @@
           "example": "12345678980abcdefghijklmnopqrstuvwxyz"
         }
       },
+      "sipCallId": {
+        "name": "sipCallId",
+        "in": "query",
+        "description": "Filter Type: Exact Match, any valid SIP call ID.\n",
+        "schema": {
+          "type": "string",
+          "example": "aabbccddeeff00112233445566778899@10.0.0.1"
+        }
+      },
+      "programmableCallId": {
+        "name": "programmableCallId",
+        "in": "query",
+        "description": "Filter Type: Exact Match, any valid Programmable Voice call ID.\n",
+        "schema": {
+          "type": "string",
+          "example": "c-1234567890abcdef"
+        }
+      },
       "callIdPath": {
         "name": "callId",
         "in": "path",
@@ -109394,7 +109429,7 @@
       "messaging_accountId": {
         "name": "accountId",
         "in": "path",
-        "description": "Your Bandwidth Account ID.",
+        "description": "This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.\n\n**When migrating to OAuth authentication, you must use the 7-digit Account ID.**\n",
         "required": true,
         "schema": {
           "type": "string"

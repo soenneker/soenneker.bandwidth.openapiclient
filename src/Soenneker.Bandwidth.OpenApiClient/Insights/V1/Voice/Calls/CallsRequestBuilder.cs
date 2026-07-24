@@ -35,7 +35,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CallsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/insights/v1/voice/calls{?accountId*,attestationIndicator*,callDirection*,callId*,callResult*,callType*,calledNumber*,callingNumber*,destinationCountryCodeA3*,destinationIp*,endTime*,hangUpSource*,limit*,locationId*,offset*,qualityStatus*,region*,sipResponseCode*,sort*,sourceCountryCodeA3*,sourceIp*,startTime*,subAccount*,x5u*}", pathParameters)
+        public CallsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/insights/v1/voice/calls{?accountId*,attestationIndicator*,callDirection*,callId*,callResult*,callType*,calledNumber*,callingNumber*,destinationCountryCodeA3*,destinationIp*,endTime*,hangUpSource*,limit*,locationId*,offset*,programmableCallId*,qualityStatus*,region*,sipCallId*,sipResponseCode*,sort*,sourceCountryCodeA3*,sourceIp*,startTime*,subAccount*,x5u*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CallsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/insights/v1/voice/calls{?accountId*,attestationIndicator*,callDirection*,callId*,callResult*,callType*,calledNumber*,callingNumber*,destinationCountryCodeA3*,destinationIp*,endTime*,hangUpSource*,limit*,locationId*,offset*,qualityStatus*,region*,sipResponseCode*,sort*,sourceCountryCodeA3*,sourceIp*,startTime*,subAccount*,x5u*}", rawUrl)
+        public CallsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/insights/v1/voice/calls{?accountId*,attestationIndicator*,callDirection*,callId*,callResult*,callType*,calledNumber*,callingNumber*,destinationCountryCodeA3*,destinationIp*,endTime*,hangUpSource*,limit*,locationId*,offset*,programmableCallId*,qualityStatus*,region*,sipCallId*,sipResponseCode*,sort*,sourceCountryCodeA3*,sourceIp*,startTime*,subAccount*,x5u*}", rawUrl)
         {
         }
         /// <summary>
@@ -227,11 +227,31 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
             /// <summary>Return records starting at the nth record.</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }
+            /// <summary>&quot;Filter Type: Exact Match, any valid Programmable Voice call ID.&quot;</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("programmableCallId")]
+            public string? ProgrammableCallId { get; set; }
+#nullable restore
+#else
+            [QueryParameter("programmableCallId")]
+            public string ProgrammableCallId { get; set; }
+#endif
             [QueryParameter("qualityStatus")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.QualityStatus? QualityStatus { get; set; }
             /// <summary>&quot;Filter Type: Exact Match, any valid region. Use ALL to search both US and EU regions in a single call. Defaults to US.&quot;</summary>
             [QueryParameter("region")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsRegion? Region { get; set; }
+            /// <summary>&quot;Filter Type: Exact Match, any valid SIP call ID.&quot;</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("sipCallId")]
+            public string? SipCallId { get; set; }
+#nullable restore
+#else
+            [QueryParameter("sipCallId")]
+            public string SipCallId { get; set; }
+#endif
             /// <summary>&quot;Filter Type: Exact Match, Multi Match.Example:  * Exact Match: 200  * Multi Match: 200, 202&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
