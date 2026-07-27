@@ -84,7 +84,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports.Item.FileNamespa
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
-            requestInfo.Headers.TryAdd("Accept", "application/gzip, application/json");
+            requestInfo.Headers.TryAdd("Accept", "application/zip, application/json");
             return requestInfo;
         }
         /// <summary>

@@ -95965,7 +95965,7 @@
           }
         },
         "content": {
-          "application/gzip": {
+          "application/zip": {
             "schema": {
               "type": "string",
               "format": "binary"

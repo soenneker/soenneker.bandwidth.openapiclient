@@ -3137,7 +3137,7 @@ components:
     reportFileResponse:
       description: OK
       content:
-        application/gzip:
+        application/zip:
           schema:
             type: string
             format: binary

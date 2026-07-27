@@ -81872,7 +81872,7 @@
           }
         }
       },
-      "ReportFileResponseResponseGzip": {
+      "ReportFileResponseResponseZip": {
         "type": "string",
         "format": "binary"
       },
@@ -101518,7 +101518,7 @@
       "GetExternalTnOrderResponseResponseXmlContent": {
         "type": "object"
       },
-      "ReportFileResponseResponseGzipContent": {
+      "ReportFileResponseResponseZipContent": {
         "type": "string",
         "format": "binary"
       },
@@ -118055,9 +118055,9 @@
           }
         },
         "content": {
-          "application/gzip": {
+          "application/zip": {
             "schema": {
-              "$ref": "#/components/schemas/ReportFileResponseResponseGzipContent"
+              "$ref": "#/components/schemas/ReportFileResponseResponseZipContent"
             }
           }
         }
