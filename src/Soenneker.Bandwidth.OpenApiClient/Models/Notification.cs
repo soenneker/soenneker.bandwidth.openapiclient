@@ -9,11 +9,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class Notification : IAdditionalDataHolder, IParsable
+    public partial class Notification : IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The ID of the sent notification</summary>
         public Guid? NotificationId { get; set; }
         /// <summary>The timestamp when the notification was sent</summary>
@@ -22,13 +20,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationStatusEnum? Status { get; set; }
         /// <summary>Indicates if the notification is a test notification</summary>
         public bool? Test { get; set; }
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Notification"/> and sets the default values.
-        /// </summary>
-        public Notification()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -64,7 +55,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteDateTimeOffsetValue("sentDate", SentDate);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationStatusEnum>("status", Status);
             writer.WriteBoolValue("test", Test);
-            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

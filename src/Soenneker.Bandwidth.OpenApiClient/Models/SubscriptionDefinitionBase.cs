@@ -9,13 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class SubscriptionDefinitionBase : IAdditionalDataHolder, IParsable
+    public partial class SubscriptionDefinitionBase : IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Indicates if the event is account specific. If true, end users will be required to subscribed to specific account IDs. False is considered account agnostic system events.</summary>
         public bool? AccountSpecific { get; set; }
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>A description of the subscription definition</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -65,13 +63,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DeliveryTypesEnum?> SupportedDeliveryTypes { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionDefinitionBase"/> and sets the default values.
-        /// </summary>
-        public SubscriptionDefinitionBase()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionDefinitionBase"/></returns>
@@ -112,7 +103,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("functionalDomain", FunctionalDomain);
             writer.WriteStringValue("name", Name);
             writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.DeliveryTypesEnum>("supportedDeliveryTypes", SupportedDeliveryTypes);
-            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

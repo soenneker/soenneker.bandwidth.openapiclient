@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Audit Log
-  description: Query audit log events. The audit_log_viewer role is required.
+  description: Query audit log events. The Audit Log Viewer role is required.
   version: 1.0.0
   contact:
     name: Bandwidth

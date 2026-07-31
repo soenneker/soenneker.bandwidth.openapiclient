@@ -77136,7 +77136,8 @@
               "$ref": "#/components/schemas/SubscriptionsError"
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "SubscriptionsLink": {
         "title": "Link",
@@ -77157,7 +77158,8 @@
             "description": "HTTP method to be used.",
             "example": "GET"
           }
-        }
+        },
+        "additionalProperties": false
       },
       "SubscriptionsError": {
         "title": "Error",
@@ -77194,7 +77196,8 @@
           "meta": {
             "$ref": "#/components/schemas/SubscriptionsErrorMetaProperty"
           }
-        }
+        },
+        "additionalProperties": false
       },
       "SubscriptionsErrorSource": {
         "title": "Error Source",
@@ -77220,7 +77223,8 @@
             "description": "A string that references a resource ID or path to the resource (or non-existent resource) causing the error.",
             "example": "/some/reference"
           }
-        }
+        },
+        "additionalProperties": false
       },
       "SubscriptionsErrorMeta": {
         "title": "Error Meta",
@@ -77254,6 +77258,7 @@
             "example": 0
           }
         },
+        "additionalProperties": false,
         "nullable": true
       },
       "CursorBasedPaginationPageMeta": {
@@ -77266,6 +77271,7 @@
             "example": 20
           }
         },
+        "additionalProperties": false,
         "nullable": true
       },
       "SubscriptionsListApiResponse": {
@@ -77289,7 +77295,8 @@
           "page": {
             "$ref": "#/components/schemas/SubscriptionsPageMeta"
           }
-        }
+        },
+        "additionalProperties": false
       },
       "SubscriptionsListResponse": {
         "required": [
@@ -77308,7 +77315,8 @@
               "$ref": "#/components/schemas/SubscriptionsSubscriptionResponse"
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "SubscriptionsApiResponse": {
         "type": "object",
@@ -77328,7 +77336,8 @@
               "$ref": "#/components/schemas/SubscriptionsError"
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "SubscriptionBase": {
         "required": [
@@ -77365,24 +77374,30 @@
           },
           "createdBy": {
             "type": "string",
-            "description": "The user who created the subscription"
+            "description": "The user who created the subscription",
+            "readOnly": true,
+            "example": "jbloggs"
           },
           "createdAt": {
             "type": "string",
             "description": "The timestamp when the subscription was created",
             "format": "date-time",
+            "readOnly": true,
             "example": "2023-01-01T00:00:00Z"
           },
           "updatedBy": {
             "type": "string",
             "description": "The user who last updated the subscription",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true,
+            "example": "jbloggs"
           },
           "updatedAt": {
             "type": "string",
             "description": "The timestamp when the subscription was last updated",
             "format": "date-time",
             "nullable": true,
+            "readOnly": true,
             "example": "2023-01-01T01:00:00Z"
           },
           "filters": {
@@ -77489,7 +77504,8 @@
               "$ref": "#/components/schemas/SubscriptionsError"
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "SubscriptionDefinitionList": {
         "type": "array",
@@ -77515,7 +77531,8 @@
               "$ref": "#/components/schemas/SubscriptionsError"
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "SubscriptionDefinitionBase": {
         "required": [
@@ -77562,7 +77579,8 @@
           "functionalDomain": {
             "type": "string"
           }
-        }
+        },
+        "additionalProperties": false
       },
       "WebhookAuthenticationResponse": {
         "type": "object",
@@ -77576,6 +77594,7 @@
             "description": "Indicates if a password or secret has been set."
           }
         },
+        "additionalProperties": false,
         "description": "Credentials and secrets for webhook authentication",
         "nullable": true
       },
@@ -77589,16 +77608,6 @@
             "$ref": "#/components/schemas/BasicAuthenticationRequest"
           }
         }
-      },
-      "BasicAuthenticationResponse": {
-        "type": "object",
-        "properties": {
-          "username": {
-            "type": "string",
-            "description": "The username for basic authentication"
-          }
-        },
-        "description": "The Username and Password to be used for basic authentication."
       },
       "BasicAuthenticationRequest": {
         "type": "object",
@@ -77655,10 +77664,6 @@
         },
         "description": "The \u0060hmacAuthentication\u0060 object determines how webhook authentication is handled and captures HMAC details like the \u0060sharedSecretKey\u0060:\n- If omitted or \u0060null\u0060:\n    - No HMAC authentication is applied.\n    - Any existing \u0060hmacAuthentication\u0060 is removed during updates.\n- If an empty object ({}) is provided:\n    - It is not valid for a create/POST request.\n    - For update/PUT requests, the existing hmacAuthentication remains unchanged.\n- If \u0060sharedSecretKey\u0060 is provided:\n    - It is encrypted and used for HMAC authentication."
       },
-      "HmacAuthenticationResponse": {
-        "type": "object",
-        "description": "The \u0060hmacAuthentication\u0060 object in the response indicates whether HMAC authentication is configured:\n- If HMAC authentication has been set with a \u0060sharedSecretKey\u0060, the \u0060hmacAuthentication\u0060 object will be present but empty (\u0060{}\u0060).\n- If no HMAC authentication is configured, the \u0060hmacAuthentication\u0060 object will be null or omitted."
-      },
       "WebhookSubscriptionResponse": {
         "required": [
           "subscriptionDefinitionName",
@@ -77695,24 +77700,30 @@
           },
           "createdBy": {
             "type": "string",
-            "description": "The user who created the subscription"
+            "description": "The user who created the subscription",
+            "readOnly": true,
+            "example": "jbloggs"
           },
           "createdAt": {
             "type": "string",
             "description": "The timestamp when the subscription was created",
             "format": "date-time",
+            "readOnly": true,
             "example": "2023-01-01T00:00:00Z"
           },
           "updatedBy": {
             "type": "string",
             "description": "The user who last updated the subscription",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true,
+            "example": "jbloggs"
           },
           "updatedAt": {
             "type": "string",
             "description": "The timestamp when the subscription was last updated",
             "format": "date-time",
             "nullable": true,
+            "readOnly": true,
             "example": "2023-01-01T01:00:00Z"
           },
           "filters": {
@@ -77769,24 +77780,30 @@
           },
           "createdBy": {
             "type": "string",
-            "description": "The user who created the subscription"
+            "description": "The user who created the subscription",
+            "readOnly": true,
+            "example": "jbloggs"
           },
           "createdAt": {
             "type": "string",
             "description": "The timestamp when the subscription was created",
             "format": "date-time",
+            "readOnly": true,
             "example": "2023-01-01T00:00:00Z"
           },
           "updatedBy": {
             "type": "string",
             "description": "The user who last updated the subscription",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true,
+            "example": "jbloggs"
           },
           "updatedAt": {
             "type": "string",
             "description": "The timestamp when the subscription was last updated",
             "format": "date-time",
             "nullable": true,
+            "readOnly": true,
             "example": "2023-01-01T01:00:00Z"
           },
           "filters": {
@@ -77852,24 +77869,30 @@
           },
           "createdBy": {
             "type": "string",
-            "description": "The user who created the subscription"
+            "description": "The user who created the subscription",
+            "readOnly": true,
+            "example": "jbloggs"
           },
           "createdAt": {
             "type": "string",
             "description": "The timestamp when the subscription was created",
             "format": "date-time",
+            "readOnly": true,
             "example": "2023-01-01T00:00:00Z"
           },
           "updatedBy": {
             "type": "string",
             "description": "The user who last updated the subscription",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true,
+            "example": "jbloggs"
           },
           "updatedAt": {
             "type": "string",
             "description": "The timestamp when the subscription was last updated",
             "format": "date-time",
             "nullable": true,
+            "readOnly": true,
             "example": "2023-01-01T01:00:00Z"
           },
           "filters": {
@@ -77933,7 +77956,8 @@
               "$ref": "#/components/schemas/OperatorEnum"
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "DeliveryTypesEnum": {
         "enum": [
@@ -78033,7 +78057,8 @@
           "page": {
             "$ref": "#/components/schemas/CursorBasedPaginationPageMeta"
           }
-        }
+        },
+        "additionalProperties": false
       },
       "NotificationList": {
         "type": "object",
@@ -78048,7 +78073,8 @@
               "$ref": "#/components/schemas/Notification"
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "SubscriptionsNotificationResponse": {
         "type": "object",
@@ -78068,7 +78094,8 @@
               "$ref": "#/components/schemas/SubscriptionsError"
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "Notification": {
         "type": "object",
@@ -78092,7 +78119,8 @@
             "description": "Indicates if the notification is a test notification",
             "example": false
           }
-        }
+        },
+        "additionalProperties": false
       },
       "CreateClientCredentialsRequestRoles": {
         "type": "array",

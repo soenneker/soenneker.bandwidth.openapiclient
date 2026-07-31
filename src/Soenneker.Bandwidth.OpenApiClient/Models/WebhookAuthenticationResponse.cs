@@ -11,21 +11,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// Credentials and secrets for webhook authentication
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class WebhookAuthenticationResponse : IAdditionalDataHolder, IParsable
+    public partial class WebhookAuthenticationResponse : IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Indicates if a password or secret has been set.</summary>
         public bool? BasicAuthenticationConfigured { get; set; }
         /// <summary>Indicates if a password or secret has been set.</summary>
         public bool? HmacAuthenticationConfigured { get; set; }
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookAuthenticationResponse"/> and sets the default values.
-        /// </summary>
-        public WebhookAuthenticationResponse()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -57,7 +48,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("basicAuthenticationConfigured", BasicAuthenticationConfigured);
             writer.WriteBoolValue("hmacAuthenticationConfigured", HmacAuthenticationConfigured);
-            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

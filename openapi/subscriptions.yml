@@ -273,6 +273,7 @@ components:
     genericError:
       title: Generic Error
       type: object
+      additionalProperties: false
       properties:
         links:
           type: array
@@ -294,6 +295,7 @@ components:
     link:
       title: Link
       type: object
+      additionalProperties: false
       properties:
         href:
           type: string
@@ -310,6 +312,7 @@ components:
     error:
       title: Error
       type: object
+      additionalProperties: false
       properties:
         id:
           type: string
@@ -344,6 +347,7 @@ components:
     errorSource:
       title: Error Source
       type: object
+      additionalProperties: false
       properties:
         parameter:
           type: string
@@ -371,6 +375,7 @@ components:
     pageMeta:
       title: Pagination Metadata
       type: object
+      additionalProperties: false
       properties:
         pageSize:
           type: integer
@@ -394,6 +399,7 @@ components:
     cursorBasedPaginationPageMeta:
       title: Cursor Based Pagination Metadata
       type: object
+      additionalProperties: false
       properties:
         pageSize:
           type: integer
@@ -402,6 +408,7 @@ components:
       nullable: true
     subscriptionsListApiResponse:
       type: object
+      additionalProperties: false
       properties:
         links:
           type: array
@@ -417,6 +424,7 @@ components:
           $ref: '#/components/schemas/pageMeta'
     subscriptionsListResponse:
       type: object
+      additionalProperties: false
       required:
         - totalCount
         - subscriptions
@@ -430,6 +438,7 @@ components:
             $ref: '#/components/schemas/subscriptionResponse'
     subscriptionsApiResponse:
       type: object
+      additionalProperties: false
       properties:
         links:
           type: array
@@ -471,21 +480,27 @@ components:
         createdBy:
           type: string
           description: The user who created the subscription
+          example: jbloggs
+          readOnly: true
         createdAt:
           type: string
           format: date-time
           description: The timestamp when the subscription was created
           example: '2023-01-01T00:00:00Z'
+          readOnly: true
         updatedBy:
           type: string
           description: The user who last updated the subscription
+          example: jbloggs
           nullable: true
+          readOnly: true
         updatedAt:
           type: string
           format: date-time
           description: The timestamp when the subscription was last updated
           example: '2023-01-01T01:00:00Z'
           nullable: true
+          readOnly: true
         filters:
           type: array
           nullable: true
@@ -575,6 +590,7 @@ components:
             - PENDING
     subscriptionDefinitionListResponse:
       type: object
+      additionalProperties: false
       properties:
         links:
           type: array
@@ -592,6 +608,7 @@ components:
         $ref: '#/components/schemas/subscriptionDefinitionBase'
     subscriptionDefinitionResponse:
       type: object
+      additionalProperties: false
       properties:
         links:
           type: array
@@ -605,6 +622,7 @@ components:
             $ref: '#/components/schemas/error'
     subscriptionDefinitionBase:
       type: object
+      additionalProperties: false
       required:
         - name
         - friendlyName
@@ -643,6 +661,7 @@ components:
           type: string
     webhookAuthenticationResponse:
       type: object
+      additionalProperties: false
       description: Credentials and secrets for webhook authentication
       nullable: true
       properties:
@@ -658,12 +677,6 @@ components:
               $ref: '#/components/schemas/hmacAuthenticationRequest'
             basicAuthentication:
               $ref: '#/components/schemas/basicAuthenticationRequest'
-    basicAuthenticationResponse:
-      type: object
-      description: The Username and Password to be used for basic authentication.
-      properties:
-        username:
-          $ref: '#/components/schemas/username'
     basicAuthenticationRequest:
       type: object
       description: The Username and Password to be used for basic authentication.
@@ -701,18 +714,6 @@ components:
       properties:
         sharedSecretKey:
           $ref: '#/components/schemas/sharedSecretKey'
-    hmacAuthenticationResponse:
-      type: object
-      description: >-
-        The `hmacAuthentication` object in the response indicates whether HMAC
-        authentication is configured:
-
-        - If HMAC authentication has been set with a `sharedSecretKey`, the
-        `hmacAuthentication` object will be present but empty (`{}`).
-
-        - If no HMAC authentication is configured, the `hmacAuthentication`
-        object will be null or omitted.
-      example: {}
     webhookSubscriptionResponse:
       allOf:
         - $ref: '#/components/schemas/subscriptionBase'
@@ -773,6 +774,7 @@ components:
       example: example@test.com
     filterableField:
       type: object
+      additionalProperties: false
       required:
         - field
         - friendlyName
@@ -834,6 +836,7 @@ components:
       type: string
     notificationListResponse:
       type: object
+      additionalProperties: false
       properties:
         links:
           type: array
@@ -849,6 +852,7 @@ components:
           $ref: '#/components/schemas/cursorBasedPaginationPageMeta'
     notificationList:
       type: object
+      additionalProperties: false
       properties:
         totalCount:
           type: integer
@@ -859,6 +863,7 @@ components:
             $ref: '#/components/schemas/notification'
     notificationResponse:
       type: object
+      additionalProperties: false
       properties:
         links:
           type: array
@@ -872,6 +877,7 @@ components:
             $ref: '#/components/schemas/error'
     notification:
       type: object
+      additionalProperties: false
       properties:
         notificationId:
           $ref: '#/components/schemas/notificationId'

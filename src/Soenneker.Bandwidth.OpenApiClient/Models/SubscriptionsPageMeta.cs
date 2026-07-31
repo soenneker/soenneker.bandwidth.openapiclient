@@ -9,11 +9,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class SubscriptionsPageMeta : IAdditionalDataHolder, IParsable
+    public partial class SubscriptionsPageMeta : IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The page number for the page returned.</summary>
         public int? PageNumber { get; set; }
         /// <summary>The size of pages returned.</summary>
@@ -22,13 +20,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public int? TotalElements { get; set; }
         /// <summary>The total number of pages in the collection of the specified pageSize.</summary>
         public int? TotalPages { get; set; }
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsPageMeta"/> and sets the default values.
-        /// </summary>
-        public SubscriptionsPageMeta()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -64,7 +55,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteIntValue("pageSize", PageSize);
             writer.WriteIntValue("totalElements", TotalElements);
             writer.WriteIntValue("totalPages", TotalPages);
-            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

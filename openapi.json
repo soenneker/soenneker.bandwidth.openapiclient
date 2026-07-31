@@ -77257,7 +77257,8 @@
               "$ref": "#/components/schemas/subscriptions_error"
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "subscriptions_link": {
         "title": "Link",
@@ -77278,7 +77279,8 @@
             "description": "HTTP method to be used.",
             "example": "GET"
           }
-        }
+        },
+        "additionalProperties": false
       },
       "subscriptions_error": {
         "title": "Error",
@@ -77315,7 +77317,8 @@
           "meta": {
             "$ref": "#/components/schemas/subscriptions_errorMeta"
           }
-        }
+        },
+        "additionalProperties": false
       },
       "subscriptions_errorSource": {
         "title": "Error Source",
@@ -77341,7 +77344,8 @@
             "description": "A string that references a resource ID or path to the resource (or non-existent resource) causing the error.",
             "example": "/some/reference"
           }
-        }
+        },
+        "additionalProperties": false
       },
       "subscriptions_errorMeta": {
         "title": "Error Meta",
@@ -77375,6 +77379,7 @@
             "example": 0
           }
         },
+        "additionalProperties": false,
         "nullable": true
       },
       "cursorBasedPaginationPageMeta": {
@@ -77387,6 +77392,7 @@
             "example": 20
           }
         },
+        "additionalProperties": false,
         "nullable": true
       },
       "subscriptionsListApiResponse": {
@@ -77410,7 +77416,8 @@
           "page": {
             "$ref": "#/components/schemas/subscriptions_pageMeta"
           }
-        }
+        },
+        "additionalProperties": false
       },
       "subscriptionsListResponse": {
         "required": [
@@ -77429,7 +77436,8 @@
               "$ref": "#/components/schemas/subscriptions_subscriptionResponse"
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "subscriptionsApiResponse": {
         "type": "object",
@@ -77449,7 +77457,8 @@
               "$ref": "#/components/schemas/subscriptions_error"
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "subscriptionBase": {
         "required": [
@@ -77486,24 +77495,30 @@
           },
           "createdBy": {
             "type": "string",
-            "description": "The user who created the subscription"
+            "description": "The user who created the subscription",
+            "readOnly": true,
+            "example": "jbloggs"
           },
           "createdAt": {
             "type": "string",
             "description": "The timestamp when the subscription was created",
             "format": "date-time",
+            "readOnly": true,
             "example": "2023-01-01T00:00:00Z"
           },
           "updatedBy": {
             "type": "string",
             "description": "The user who last updated the subscription",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true,
+            "example": "jbloggs"
           },
           "updatedAt": {
             "type": "string",
             "description": "The timestamp when the subscription was last updated",
             "format": "date-time",
             "nullable": true,
+            "readOnly": true,
             "example": "2023-01-01T01:00:00Z"
           },
           "filters": {
@@ -77654,7 +77669,8 @@
               "$ref": "#/components/schemas/subscriptions_error"
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "subscriptionDefinitionList": {
         "type": "array",
@@ -77680,7 +77696,8 @@
               "$ref": "#/components/schemas/subscriptions_error"
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "subscriptionDefinitionBase": {
         "required": [
@@ -77727,7 +77744,8 @@
           "functionalDomain": {
             "type": "string"
           }
-        }
+        },
+        "additionalProperties": false
       },
       "webhookAuthenticationResponse": {
         "type": "object",
@@ -77739,6 +77757,7 @@
             "$ref": "#/components/schemas/basicHmacAuthenticationConfigured"
           }
         },
+        "additionalProperties": false,
         "description": "Credentials and secrets for webhook authentication",
         "nullable": true
       },
@@ -77756,15 +77775,6 @@
             }
           }
         ]
-      },
-      "basicAuthenticationResponse": {
-        "type": "object",
-        "properties": {
-          "username": {
-            "$ref": "#/components/schemas/subscriptions_username"
-          }
-        },
-        "description": "The Username and Password to be used for basic authentication."
       },
       "basicAuthenticationRequest": {
         "type": "object",
@@ -77801,10 +77811,6 @@
           }
         },
         "description": "The `hmacAuthentication` object determines how webhook authentication is handled and captures HMAC details like the `sharedSecretKey`:\n- If omitted or `null`:\n    - No HMAC authentication is applied.\n    - Any existing `hmacAuthentication` is removed during updates.\n- If an empty object ({}) is provided:\n    - It is not valid for a create/POST request.\n    - For update/PUT requests, the existing hmacAuthentication remains unchanged.\n- If `sharedSecretKey` is provided:\n    - It is encrypted and used for HMAC authentication."
-      },
-      "hmacAuthenticationResponse": {
-        "type": "object",
-        "description": "The `hmacAuthentication` object in the response indicates whether HMAC authentication is configured:\n- If HMAC authentication has been set with a `sharedSecretKey`, the `hmacAuthentication` object will be present but empty (`{}`).\n- If no HMAC authentication is configured, the `hmacAuthentication` object will be null or omitted."
       },
       "webhookSubscriptionResponse": {
         "allOf": [
@@ -77957,7 +77963,8 @@
               "$ref": "#/components/schemas/operatorEnum"
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "deliveryTypesEnum": {
         "enum": [
@@ -78011,7 +78018,8 @@
           "page": {
             "$ref": "#/components/schemas/cursorBasedPaginationPageMeta"
           }
-        }
+        },
+        "additionalProperties": false
       },
       "notificationList": {
         "type": "object",
@@ -78026,7 +78034,8 @@
               "$ref": "#/components/schemas/notification"
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "subscriptions_notificationResponse": {
         "type": "object",
@@ -78046,7 +78055,8 @@
               "$ref": "#/components/schemas/subscriptions_error"
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "notification": {
         "type": "object",
@@ -78068,7 +78078,8 @@
             "description": "Indicates if the notification is a test notification",
             "example": false
           }
-        }
+        },
+        "additionalProperties": false
       },
       "notificationId": {
         "type": "string",

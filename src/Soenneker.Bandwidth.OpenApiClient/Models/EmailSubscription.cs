@@ -25,14 +25,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Indicates if the subscription is blocked. Webhook subscriptions that are blocked will not receive notifications until unblocked. A subscription can be unblocked by triggering a test notification which completes successfully. See Send Test Notification.</summary>
         public bool? Blocked { get; set; }
         /// <summary>The timestamp when the subscription was created</summary>
-        public DateTimeOffset? CreatedAt { get; set; }
+        public DateTimeOffset? CreatedAt { get; private set; }
         /// <summary>The user who created the subscription</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CreatedBy { get; set; }
+        public string? CreatedBy { get; private set; }
 #nullable restore
 #else
-        public string CreatedBy { get; set; }
+        public string CreatedBy { get; private set; }
 #endif
         /// <summary>The custom name for the subscription</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -71,14 +71,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string SubscriptionDefinitionName { get; set; }
 #endif
         /// <summary>The timestamp when the subscription was last updated</summary>
-        public DateTimeOffset? UpdatedAt { get; set; }
+        public DateTimeOffset? UpdatedAt { get; private set; }
         /// <summary>The user who last updated the subscription</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? UpdatedBy { get; set; }
+        public string? UpdatedBy { get; private set; }
 #nullable restore
 #else
-        public string UpdatedBy { get; set; }
+        public string UpdatedBy { get; private set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscription"/> and sets the default values.
@@ -128,16 +128,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("accountId", AccountId);
             writer.WriteBoolValue("blocked", Blocked);
-            writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
-            writer.WriteStringValue("createdBy", CreatedBy);
             writer.WriteStringValue("customName", CustomName);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DeliveryTypesEnum>("deliveryType", DeliveryType);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EmailSubscriptionAllOf2EmailSubscription>("emailSubscription", EmailSubscriptionProp);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria>("filters", Filters);
             writer.WriteGuidValue("id", Id);
             writer.WriteStringValue("subscriptionDefinitionName", SubscriptionDefinitionName);
-            writer.WriteDateTimeOffsetValue("updatedAt", UpdatedAt);
-            writer.WriteStringValue("updatedBy", UpdatedBy);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
