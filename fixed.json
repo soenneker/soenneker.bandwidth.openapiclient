@@ -3304,7 +3304,7 @@
             "content": {
               "text/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/DashGetLocationsByUri200Response"
+                  "$ref": "#/components/schemas/DashGetLocationsByUri200XmlResponse"
                 },
                 "examples": {
                   "successfulResponse": {
@@ -3384,7 +3384,7 @@
             "content": {
               "text/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/DashGetProvisionedLocationHistoryByUri200Response"
+                  "$ref": "#/components/schemas/DashGetProvisionedLocationHistoryByUri200XmlResponse"
                 },
                 "examples": {
                   "successfulResponse": {
@@ -18049,7 +18049,7 @@
             "content": {
               "text/csv": {
                 "schema": {
-                  "$ref": "#/components/schemas/MyNumbersExportTelephoneNumbersByAccount200ResponseResponseCsv"
+                  "$ref": "#/components/schemas/MyNumbersExportTelephoneNumbersByAccount200CsvResponseSchema"
                 },
                 "example": "Number\n\u002B19199918388\n\u002B14158714245\n"
               }
@@ -18097,7 +18097,7 @@
             "content": {
               "text/csv": {
                 "schema": {
-                  "$ref": "#/components/schemas/MyNumbersExportTelephoneNumbersBySipPeer200ResponseResponseCsv"
+                  "$ref": "#/components/schemas/MyNumbersExportTelephoneNumbersBySipPeer200CsvResponseSchema"
                 },
                 "example": "Number\n\u002B19199918388\n"
               }
@@ -18135,7 +18135,7 @@
             "content": {
               "text/csv": {
                 "schema": {
-                  "$ref": "#/components/schemas/MyNumbersExportTelephoneNumbersByHost200ResponseResponseCsv"
+                  "$ref": "#/components/schemas/MyNumbersExportTelephoneNumbersByHost200CsvResponseSchema"
                 },
                 "example": "Number\n\u002B19199918388\n"
               }
@@ -18195,7 +18195,7 @@
             "content": {
               "text/csv": {
                 "schema": {
-                  "$ref": "#/components/schemas/MyNumbersExportTnDetailsToCsv200ResponseResponseCsv"
+                  "$ref": "#/components/schemas/MyNumbersExportTnDetailsToCsv200CsvResponseSchema"
                 },
                 "example": "TELEPHONE NUMBER,RATE CENTER,CITY,STATE,ACCOUNT ID,ACCOUNT NAME,LAST MODIFIED,STATUS,PROTECTED\n\u002B19199918388,RALEIGH,RALEIGH,NC,1234567,My Account,2024-11-04T11:16:09Z,InService,\n"
               }
@@ -100713,19 +100713,19 @@
           }
         }
       },
-      "MyNumbersExportTelephoneNumbersByAccount200Response": {
+      "MyNumbersExportTelephoneNumbersByAccount200CsvResponse": {
         "type": "string",
         "format": "binary"
       },
-      "MyNumbersExportTelephoneNumbersBySipPeer200Response": {
+      "MyNumbersExportTelephoneNumbersBySipPeer200CsvResponse": {
         "type": "string",
         "format": "binary"
       },
-      "MyNumbersExportTelephoneNumbersByHost200Response": {
+      "MyNumbersExportTelephoneNumbersByHost200CsvResponse": {
         "type": "string",
         "format": "binary"
       },
-      "MyNumbersExportTnDetailsToCsv200Response": {
+      "MyNumbersExportTnDetailsToCsv200CsvResponse": {
         "type": "string",
         "format": "binary"
       },
@@ -101452,13 +101452,13 @@
           }
         }
       },
-      "DashGetLocationsByUri200Response": {
+      "DashGetLocationsByUri200XmlResponse": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/Locations2"
         }
       },
-      "DashGetProvisionedLocationHistoryByUri200Response": {
+      "DashGetProvisionedLocationHistoryByUri200XmlResponse": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/ProvisionedLocations"
@@ -101469,19 +101469,19 @@
         "type": "object",
         "description": "Default response schema"
       },
-      "MyNumbersExportTelephoneNumbersByAccount200ResponseResponseCsv": {
+      "MyNumbersExportTelephoneNumbersByAccount200CsvResponseSchema": {
         "type": "string",
         "format": "binary"
       },
-      "MyNumbersExportTelephoneNumbersBySipPeer200ResponseResponseCsv": {
+      "MyNumbersExportTelephoneNumbersBySipPeer200CsvResponseSchema": {
         "type": "string",
         "format": "binary"
       },
-      "MyNumbersExportTelephoneNumbersByHost200ResponseResponseCsv": {
+      "MyNumbersExportTelephoneNumbersByHost200CsvResponseSchema": {
         "type": "string",
         "format": "binary"
       },
-      "MyNumbersExportTnDetailsToCsv200ResponseResponseCsv": {
+      "MyNumbersExportTnDetailsToCsv200CsvResponseSchema": {
         "type": "string",
         "format": "binary"
       },
