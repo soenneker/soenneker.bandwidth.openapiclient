@@ -34,7 +34,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
         {
         }
         /// <summary>
-        /// Update Requirements package status to `VERIFIED` to submit a legacy address.This will execute the validations and store the failures but will not fail the update. Only an admin can perform this operation.* &apos;acknowledgements&apos; is required for submitting the package with &apos;allDetailsAccurate&apos; set to true.* Once submitted, all associated assets will be locked and cannot be modified.Update custom reference, email, or callback.
+        /// Update Requirements package status to `VERIFIED` to submit a legacy address.This will execute the validations and store the failures but will not fail the update. Only an admin can perform this operation.* &apos;acknowledgements&apos; is required for submitting the package with &apos;allDetailsAccurate&apos; set to true.* Once submitted, all associated assets will be locked and cannot be modified.Update custom reference.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -71,7 +71,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Update Requirements package status to `VERIFIED` to submit a legacy address.This will execute the validations and store the failures but will not fail the update. Only an admin can perform this operation.* &apos;acknowledgements&apos; is required for submitting the package with &apos;allDetailsAccurate&apos; set to true.* Once submitted, all associated assets will be locked and cannot be modified.Update custom reference, email, or callback.
+        /// Update Requirements package status to `VERIFIED` to submit a legacy address.This will execute the validations and store the failures but will not fail the update. Only an admin can perform this operation.* &apos;acknowledgements&apos; is required for submitting the package with &apos;allDetailsAccurate&apos; set to true.* Once submitted, all associated assets will be locked and cannot be modified.Update custom reference.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

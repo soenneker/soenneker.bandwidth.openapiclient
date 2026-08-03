@@ -5801,7 +5801,7 @@
           "Requirements Packages"
         ],
         "summary": "Update Requirements Package",
-        "description": "Update Requirements package status to `SUBMITTED` to submit a package.\n* 'acknowledgements' is required for submitting the package with 'allDetailsAccurate' set to true.\n* Once submitted, all associated assets will be locked and cannot be modified.\nUpdate custom reference, email, or callback.\n",
+        "description": "Update Requirements package status to `SUBMITTED` to submit a package.\n* 'acknowledgements' is required for submitting the package with 'allDetailsAccurate' set to true.\n* Once submitted, all associated assets will be locked and cannot be modified.\nUpdate custom reference.\n",
         "operationId": "end_user_management_patchRequirementsPackage",
         "parameters": [
           {
@@ -6167,7 +6167,7 @@
           "Requirements Packages"
         ],
         "summary": "Submit Legacy Requirements Package",
-        "description": "Update Requirements package status to `VERIFIED` to submit a legacy address.\nThis will execute the validations and store the failures but will not fail the update. Only an admin can perform this operation.\n* 'acknowledgements' is required for submitting the package with 'allDetailsAccurate' set to true.\n* Once submitted, all associated assets will be locked and cannot be modified.\nUpdate custom reference, email, or callback.\n",
+        "description": "Update Requirements package status to `VERIFIED` to submit a legacy address.\nThis will execute the validations and store the failures but will not fail the update. Only an admin can perform this operation.\n* 'acknowledgements' is required for submitting the package with 'allDetailsAccurate' set to true.\n* Once submitted, all associated assets will be locked and cannot be modified.\nUpdate custom reference.\n",
         "operationId": "end_user_management_updateLegacyRequirementsPackage",
         "parameters": [
           {
@@ -42977,16 +42977,6 @@
             "type": "string",
             "description": "The customReference of the requirements package"
           },
-          "email": {
-            "type": "string",
-            "description": "The email provided as part of the requirements",
-            "format": "email"
-          },
-          "callbacks": {
-            "type": "string",
-            "description": "The callback provided as part of the requirements",
-            "format": "uri"
-          },
           "dateTime": {
             "type": "string",
             "description": "The date and time of the requirements package event in ISO 8601 format",
@@ -43051,12 +43041,6 @@
           },
           "customReference": {
             "$ref": "#/components/schemas/customReference"
-          },
-          "email": {
-            "$ref": "#/components/schemas/end_user_management_email"
-          },
-          "callback": {
-            "$ref": "#/components/schemas/callbackUrl"
           },
           "acknowledgements": {
             "$ref": "#/components/schemas/requirementsPackageAcknowledgements"
@@ -43137,24 +43121,6 @@
           }
         },
         "description": "Indicates whether the requirements package can be deleted."
-      },
-      "callbackUrl": {
-        "type": "string",
-        "description": "Callback URL",
-        "example": "http://somehost.com/new-callback"
-      },
-      "callback": {
-        "type": "string",
-        "description": "Callback url",
-        "example": "http://somehost.com/new-callback"
-      },
-      "end_user_management_email": {
-        "maxLength": 500,
-        "minLength": 0,
-        "pattern": "^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])$",
-        "type": "string",
-        "format": "email",
-        "example": "foo@bar.com"
       },
       "requirementsPackageAcknowledgements": {
         "type": "object",
@@ -43429,14 +43395,6 @@
         "description": "Customer username from BWI/legacy platform.\nIt can be used for your own reference to the item to easily identify one of your customers, requirements package, enduser etc.\n",
         "example": "vb_runscope"
       },
-      "legacyEmail": {
-        "maxLength": 500,
-        "minLength": 0,
-        "pattern": "^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])$",
-        "type": "string",
-        "format": "email",
-        "example": "vbrunscope@gmail.com"
-      },
       "migrationRequirementsPackageStatus": {
         "type": "string",
         "description": "Statuses. Values - DRAFT, SUBMITTED, VERIFIED, VERIFICATION_FAILED, DISABLED",
@@ -43448,9 +43406,6 @@
         "properties": {
           "acknowledgements": {
             "$ref": "#/components/schemas/requirementsPackageAcknowledgements"
-          },
-          "callback": {
-            "$ref": "#/components/schemas/callback"
           },
           "countryCodeA3": {
             "$ref": "#/components/schemas/legacyCountryCodeA3String"
@@ -43465,9 +43420,6 @@
           },
           "customReference": {
             "$ref": "#/components/schemas/legacyCustomReference"
-          },
-          "email": {
-            "$ref": "#/components/schemas/legacyEmail"
           },
           "endUserType": {
             "$ref": "#/components/schemas/endUserType"
@@ -47768,7 +47720,7 @@
           }
         }
       },
-      "global_callback": {
+      "callback": {
         "title": "callback",
         "type": "object",
         "properties": {
@@ -76336,7 +76288,7 @@
             "$ref": "#/components/schemas/callbackBasicAuthentication"
           },
           "callbackUrl": {
-            "$ref": "#/components/schemas/shortcodes_callbackUrl"
+            "$ref": "#/components/schemas/callbackUrl"
           },
           "sharedSecretKey": {
             "$ref": "#/components/schemas/shortcodes_sharedSecretKey"
@@ -77003,7 +76955,7 @@
         },
         "description": "Basic authentication credentials are not required, but if present, both username and password must be provided."
       },
-      "shortcodes_callbackUrl": {
+      "callbackUrl": {
         "maximum": 2000,
         "type": "string",
         "description": "The URL that the webhook subscription will send messages to.",
@@ -116005,8 +115957,6 @@
             "phoneNumberType": "GEOGRAPHIC",
             "endUserType": "BUSINESS",
             "customReference": "home_office",
-            "email": "foo@bar.com",
-            "callback": "http://somehost.com/new-callback",
             "acknowledgements": {
               "allDetailsAccurate": true
             },
@@ -128441,7 +128391,9 @@
               ],
               "example": {
                 "customReference": "home_office",
-                "email": "foo@bar.com",
+                "acknowledgements": {
+                  "allDetailsAccurate": true
+                },
                 "status": "SUBMITTED"
               }
             }
@@ -128492,7 +128444,6 @@
             "schema": {
               "required": [
                 "status",
-                "email",
                 "customReference"
               ],
               "allOf": [
@@ -128518,7 +128469,6 @@
               },
               "example": {
                 "customReference": "vb_runscope",
-                "email": "vbrunscope@gmail.com",
                 "status": "VERIFIED"
               }
             }

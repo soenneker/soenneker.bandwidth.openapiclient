@@ -5745,7 +5745,7 @@
           "Requirements Packages"
         ],
         "summary": "Update Requirements Package",
-        "description": "Update Requirements package status to \u0060SUBMITTED\u0060 to submit a package.\n* \u0027acknowledgements\u0027 is required for submitting the package with \u0027allDetailsAccurate\u0027 set to true.\n* Once submitted, all associated assets will be locked and cannot be modified.\nUpdate custom reference, email, or callback.\n",
+        "description": "Update Requirements package status to \u0060SUBMITTED\u0060 to submit a package.\n* \u0027acknowledgements\u0027 is required for submitting the package with \u0027allDetailsAccurate\u0027 set to true.\n* Once submitted, all associated assets will be locked and cannot be modified.\nUpdate custom reference.\n",
         "operationId": "EndUserManagementPatchRequirementsPackage",
         "parameters": [
           {
@@ -6105,7 +6105,7 @@
           "Requirements Packages"
         ],
         "summary": "Submit Legacy Requirements Package",
-        "description": "Update Requirements package status to \u0060VERIFIED\u0060 to submit a legacy address.\nThis will execute the validations and store the failures but will not fail the update. Only an admin can perform this operation.\n* \u0027acknowledgements\u0027 is required for submitting the package with \u0027allDetailsAccurate\u0027 set to true.\n* Once submitted, all associated assets will be locked and cannot be modified.\nUpdate custom reference, email, or callback.\n",
+        "description": "Update Requirements package status to \u0060VERIFIED\u0060 to submit a legacy address.\nThis will execute the validations and store the failures but will not fail the update. Only an admin can perform this operation.\n* \u0027acknowledgements\u0027 is required for submitting the package with \u0027allDetailsAccurate\u0027 set to true.\n* Once submitted, all associated assets will be locked and cannot be modified.\nUpdate custom reference.\n",
         "operationId": "EndUserManagementUpdateLegacyRequirementsPackage",
         "parameters": [
           {
@@ -30451,12 +30451,7 @@
           }
         }
       },
-      "BillingModelGenericErrorData": {
-        "type": "object",
-        "nullable": true,
-        "example": null
-      },
-      "AuthServiceErrorMeta": {
+      "AuthServiceOAuthErrorMeta": {
         "type": "object",
         "properties": {
           "traceId": {
@@ -30468,7 +30463,7 @@
         "additionalProperties": false,
         "description": "Additional metadata about the error"
       },
-      "AuthServiceErrorSource": {
+      "AuthServiceOAuthErrorSource": {
         "type": "object",
         "properties": {
           "field": {
@@ -30479,6 +30474,9 @@
         },
         "additionalProperties": false,
         "description": "Information about the source of the error"
+      },
+      "AuthServiceOAuthErrorResponseData": {
+        "type": "object"
       },
       "AccountRelationship": {
         "enum": [
@@ -30526,20 +30524,15 @@
         "type": "string",
         "additionalProperties": false
       },
-      "AuthServiceErrorResponseData": {
+      "GenericErrorData": {
         "type": "object"
       },
-      "AuthServiceOAuthErrorMeta": {
+      "TermKeys": {
         "type": "object",
-        "properties": {
-          "traceId": {
-            "type": "string",
-            "description": "A unique identifier for the error",
-            "example": 123456789
-          }
+        "additionalProperties": {
+          "type": "integer"
         },
-        "additionalProperties": false,
-        "description": "Additional metadata about the error"
+        "description": "the top unique keys and their counts"
       },
       "BillingCycle": {
         "enum": [
@@ -30552,31 +30545,6 @@
         "additionalProperties": false,
         "description": "BillingCycle is the day of the month that the account\u0027s billing cycle closes. Valid values are 1, 5, 15, and 20.",
         "format": "int32"
-      },
-      "AuthServiceOAuthErrorSource": {
-        "type": "object",
-        "properties": {
-          "field": {
-            "type": "string",
-            "description": "The field in the request that caused the error",
-            "example": "lastName"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Information about the source of the error"
-      },
-      "AuthServiceOAuthErrorResponseData": {
-        "type": "object"
-      },
-      "GenericErrorData": {
-        "type": "object"
-      },
-      "TermKeys": {
-        "type": "object",
-        "additionalProperties": {
-          "type": "integer"
-        },
-        "description": "the top unique keys and their counts"
       },
       "EventTypeBwContext": {
         "type": "object",
@@ -30618,29 +30586,6 @@
           }
         },
         "description": "Attributes for the HTTP request/response associated with this event. Extracted from OTel Semantic Conventions v1.28.0"
-      },
-      "PortCarrierType": {
-        "enum": [
-          "WIRELESS",
-          "WIRELINE"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The PortCarrierType indicates the type of carrier for porting purposes.",
-        "x-ms-enum": {
-          "name": "PortCarrierType",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "WIRELESS",
-              "name": "Wireless"
-            },
-            {
-              "value": "WIRELINE",
-              "name": "Wireline"
-            }
-          ]
-        }
       },
       "AssociatedLocationsErrorResponseXmlWrapperAssociatedSipPeersResponse": {
         "type": "object",
@@ -30685,6 +30630,29 @@
       "ApiErrorsData": {
         "type": "object",
         "nullable": true
+      },
+      "PortCarrierType": {
+        "enum": [
+          "WIRELESS",
+          "WIRELINE"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The PortCarrierType indicates the type of carrier for porting purposes.",
+        "x-ms-enum": {
+          "name": "PortCarrierType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "WIRELESS",
+              "name": "Wireless"
+            },
+            {
+              "value": "WIRELINE",
+              "name": "Wireline"
+            }
+          ]
+        }
       },
       "ActiveCallInfoWithoutCallIdData": {
         "type": "object",
@@ -30959,39 +30927,6 @@
           }
         }
       },
-      "AddressType": {
-        "enum": [
-          "Service",
-          "Billing",
-          "DLDA",
-          "E911"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "example": "Billing",
-        "x-ms-enum": {
-          "name": "AddressType",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "DLDA",
-              "name": "Dlda"
-            }
-          ]
-        }
-      },
-      "Tier": {
-        "enum": [
-          0,
-          1,
-          2,
-          3,
-          4
-        ],
-        "type": "integer",
-        "additionalProperties": false,
-        "format": "int32"
-      },
       "SubAccountsResponseXmlObjectUcTrunkingConfiguration": {
         "type": "object",
         "properties": {
@@ -31031,6 +30966,39 @@
           }
         }
       },
+      "AddressType": {
+        "enum": [
+          "Service",
+          "Billing",
+          "DLDA",
+          "E911"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "example": "Billing",
+        "x-ms-enum": {
+          "name": "AddressType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "DLDA",
+              "name": "Dlda"
+            }
+          ]
+        }
+      },
+      "Tier": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "additionalProperties": false,
+        "format": "int32"
+      },
       "SubAccountForUcUcTrunkingConfiguration": {
         "type": "object",
         "properties": {
@@ -31042,33 +31010,6 @@
           }
         },
         "description": "For UC Trunking accounts the UcTrunkingConfiguration element describes the kind of UC trunking that is provided. The Type parameter is one of Seats, Premise, or Cloud, and the UsageCategory parameter is one of UC250, UC500 or UC1000."
-      },
-      "OriginationRoutePlanAction": {
-        "enum": [
-          "UNCHANGED",
-          "OFF",
-          "ASSPECIFIED"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "OriginationRoutePlanAction",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "UNCHANGED",
-              "name": "Unchanged"
-            },
-            {
-              "value": "OFF",
-              "name": "Off"
-            },
-            {
-              "value": "ASSPECIFIED",
-              "name": "Asspecified"
-            }
-          ]
-        }
       },
       "AccountLinkedAddresses": {
         "type": "object",
@@ -31104,6 +31045,79 @@
         }
       },
       "UpdateLocationJsonRequestOriginationRoutePlan": {
+        "type": "object",
+        "properties": {
+          "originationRoutes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OriginationRoutePayloadJson"
+            }
+          }
+        }
+      },
+      "OriginationRoutePlanAction": {
+        "enum": [
+          "UNCHANGED",
+          "OFF",
+          "ASSPECIFIED"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "OriginationRoutePlanAction",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "UNCHANGED",
+              "name": "Unchanged"
+            },
+            {
+              "value": "OFF",
+              "name": "Off"
+            },
+            {
+              "value": "ASSPECIFIED",
+              "name": "Asspecified"
+            }
+          ]
+        }
+      },
+      "UpdateLocationJsonRequestVoiceHostGroupsItem": {
+        "type": "object",
+        "properties": {
+          "hosts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HostJson"
+            }
+          }
+        }
+      },
+      "UpdateLocationJsonRequestVoiceHosts": {
+        "type": "object",
+        "properties": {
+          "hosts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HostJson"
+            }
+          }
+        }
+      },
+      "CreateLocationJsonRequestTerminationHosts": {
+        "type": "object",
+        "properties": {
+          "terminationHosts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationTerminationHostJson"
+            }
+          }
+        },
+        "description": "These addresses, comprised of IP or Subnet(CIDR format) and optional Port, are used by the Bandwidth network to send calls to for Termination services. Maximum of 10 hosts - can be IP address or subnets. In case of subnet you should specify NetworkAddress of subnet as IP",
+        "x-internal": true
+      },
+      "CreateLocationJsonRequestOriginationRoutePlan": {
         "type": "object",
         "properties": {
           "originationRoutes": {
@@ -31218,94 +31232,6 @@
           ]
         }
       },
-      "UpdateLocationJsonRequestVoiceHostGroupsItem": {
-        "type": "object",
-        "properties": {
-          "hosts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/HostJson"
-            }
-          }
-        }
-      },
-      "UpdateLocationJsonRequestVoiceHosts": {
-        "type": "object",
-        "properties": {
-          "hosts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/HostJson"
-            }
-          }
-        }
-      },
-      "CreateLocationJsonRequestTerminationHosts": {
-        "type": "object",
-        "properties": {
-          "terminationHosts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LocationTerminationHostJson"
-            }
-          }
-        },
-        "description": "These addresses, comprised of IP or Subnet(CIDR format) and optional Port, are used by the Bandwidth network to send calls to for Termination services. Maximum of 10 hosts - can be IP address or subnets. In case of subnet you should specify NetworkAddress of subnet as IP",
-        "x-internal": true
-      },
-      "CreateLocationJsonRequestOriginationRoutePlan": {
-        "type": "object",
-        "properties": {
-          "originationRoutes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/OriginationRoutePayloadJson"
-            }
-          }
-        }
-      },
-      "SsSendToCustomer": {
-        "enum": [
-          "NONE",
-          "VERSTAT",
-          "ENH_VERSTAT",
-          "VERSTAT_AND_IDENTITY",
-          "ENH_VERSTAT_AND_IDENTITY",
-          "IDENTITY"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "SsSendToCustomer",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "NONE",
-              "name": "None"
-            },
-            {
-              "value": "VERSTAT",
-              "name": "Verstat"
-            },
-            {
-              "value": "ENH_VERSTAT",
-              "name": "EnhVerstat"
-            },
-            {
-              "value": "VERSTAT_AND_IDENTITY",
-              "name": "VerstatAndIdentity"
-            },
-            {
-              "value": "ENH_VERSTAT_AND_IDENTITY",
-              "name": "EnhVerstatAndIdentity"
-            },
-            {
-              "value": "IDENTITY",
-              "name": "Identity"
-            }
-          ]
-        }
-      },
       "CreateLocationJsonRequestVoiceHostGroupsItem": {
         "type": "object",
         "properties": {
@@ -31353,6 +31279,48 @@
           }
         }
       },
+      "SsSendToCustomer": {
+        "enum": [
+          "NONE",
+          "VERSTAT",
+          "ENH_VERSTAT",
+          "VERSTAT_AND_IDENTITY",
+          "ENH_VERSTAT_AND_IDENTITY",
+          "IDENTITY"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "SsSendToCustomer",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "NONE",
+              "name": "None"
+            },
+            {
+              "value": "VERSTAT",
+              "name": "Verstat"
+            },
+            {
+              "value": "ENH_VERSTAT",
+              "name": "EnhVerstat"
+            },
+            {
+              "value": "VERSTAT_AND_IDENTITY",
+              "name": "VerstatAndIdentity"
+            },
+            {
+              "value": "ENH_VERSTAT_AND_IDENTITY",
+              "name": "EnhVerstatAndIdentity"
+            },
+            {
+              "value": "IDENTITY",
+              "name": "Identity"
+            }
+          ]
+        }
+      },
       "LocationJsonVoiceHosts": {
         "type": "object",
         "properties": {
@@ -31384,6 +31352,69 @@
           }
         },
         "description": "For UC Trunking accounts the UcTrunkingConfiguration element describes the kind of UC trunking that is provided. The Type parameter is one of Seats, Premise, or Cloud, and the UsageCategory parameter is one of UC250, UC500 or UC1000."
+      },
+      "SubAccountForUcJsonUcTrunkingConfiguration": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/UcType"
+          },
+          "usageCategory": {
+            "$ref": "#/components/schemas/UcUsageCategory"
+          }
+        },
+        "description": "For UC Trunking accounts the UcTrunkingConfiguration element describes the kind of UC trunking that is provided. The Type parameter is one of Seats, Premise, or Cloud, and the UsageCategory parameter is one of UC250, UC500 or UC1000."
+      },
+      "NumberActivationValidatorResultRequirementsSetsItemAllOf2": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/RequirementsPackageStatusEnum"
+          },
+          "result": {
+            "$ref": "#/components/schemas/NumberActivationValidatorResultRequirementsSetsItemAllOf2Result"
+          }
+        }
+      },
+      "RbmCardContentMediaAllOf2": {
+        "type": "object",
+        "properties": {
+          "height": {
+            "$ref": "#/components/schemas/RbmMediaHeightEnum"
+          }
+        }
+      },
+      "MultiChannelChannelListRbmObjectAllOf2Content": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/RbmMessageContentText"
+          },
+          {
+            "$ref": "#/components/schemas/RbmMessageMedia"
+          },
+          {
+            "$ref": "#/components/schemas/RbmMessageContentRichCard"
+          }
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "description": "The content of the message.",
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "RbmMessageContentText": "#/components/schemas/RbmMessageContentText",
+            "RbmMessageMedia": "#/components/schemas/RbmMessageMedia",
+            "RbmMessageContentRichCard": "#/components/schemas/RbmMessageContentRichCard"
+          }
+        }
       },
       "UcType": {
         "enum": [
@@ -31447,34 +31478,27 @@
           }
         }
       },
-      "SubAccountForUcJsonUcTrunkingConfiguration": {
+      "CreateNewPhoneNumberOrder201ResponseSchemaJsonOrderAllOf2": {
         "type": "object",
         "properties": {
-          "type": {
-            "$ref": "#/components/schemas/UcType"
-          },
-          "usageCategory": {
-            "$ref": "#/components/schemas/UcUsageCategory"
-          }
-        },
-        "description": "For UC Trunking accounts the UcTrunkingConfiguration element describes the kind of UC trunking that is provided. The Type parameter is one of Seats, Premise, or Cloud, and the UsageCategory parameter is one of UC250, UC500 or UC1000."
-      },
-      "NumberActivationValidatorResultRequirementsSetsItemAllOf2": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "$ref": "#/components/schemas/RequirementsPackageStatusEnum"
-          },
-          "result": {
-            "$ref": "#/components/schemas/NumberActivationValidatorResultRequirementsSetsItemAllOf2Result"
+          "orderStatus": {
+            "$ref": "#/components/schemas/VisibleOrderStatusJson"
           }
         }
       },
-      "RbmCardContentMediaAllOf2": {
+      "ExistingTelephoneNumberOrderResponseOrderAllOf2": {
         "type": "object",
         "properties": {
-          "height": {
-            "$ref": "#/components/schemas/RbmMediaHeightEnum"
+          "ExistingTelephoneNumberOrderType": {
+            "$ref": "#/components/schemas/ExistingTelephoneNumberOrderTypeXml"
+          }
+        }
+      },
+      "RateCenterSearchAndOrderResponseOrderAllOf2": {
+        "type": "object",
+        "properties": {
+          "RateCenterSearchAndOrderType": {
+            "$ref": "#/components/schemas/RateCenterSearchAndOrderTypeXml"
           }
         }
       },
@@ -31501,62 +31525,6 @@
           },
           "type": {
             "type": "string"
-          }
-        }
-      },
-      "MultiChannelChannelListRbmObjectAllOf2Content": {
-        "required": [
-          "type"
-        ],
-        "type": "object",
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/RbmMessageContentText"
-          },
-          {
-            "$ref": "#/components/schemas/RbmMessageMedia"
-          },
-          {
-            "$ref": "#/components/schemas/RbmMessageContentRichCard"
-          }
-        ],
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "Union discriminator"
-          }
-        },
-        "description": "The content of the message.",
-        "discriminator": {
-          "propertyName": "type",
-          "mapping": {
-            "RbmMessageContentText": "#/components/schemas/RbmMessageContentText",
-            "RbmMessageMedia": "#/components/schemas/RbmMessageMedia",
-            "RbmMessageContentRichCard": "#/components/schemas/RbmMessageContentRichCard"
-          }
-        }
-      },
-      "CreateNewPhoneNumberOrder201ResponseSchemaJsonOrderAllOf2": {
-        "type": "object",
-        "properties": {
-          "orderStatus": {
-            "$ref": "#/components/schemas/VisibleOrderStatusJson"
-          }
-        }
-      },
-      "ExistingTelephoneNumberOrderResponseOrderAllOf2": {
-        "type": "object",
-        "properties": {
-          "ExistingTelephoneNumberOrderType": {
-            "$ref": "#/components/schemas/ExistingTelephoneNumberOrderTypeXml"
-          }
-        }
-      },
-      "RateCenterSearchAndOrderResponseOrderAllOf2": {
-        "type": "object",
-        "properties": {
-          "RateCenterSearchAndOrderType": {
-            "$ref": "#/components/schemas/RateCenterSearchAndOrderTypeXml"
           }
         }
       },
@@ -31592,35 +31560,6 @@
           }
         }
       },
-      "ErrorResponseJson": {
-        "type": "object",
-        "properties": {
-          "errorCode": {
-            "type": "integer",
-            "description": "Numeric designation of corresponding error"
-          },
-          "description": {
-            "type": "string",
-            "description": "Detailed explanation about error"
-          }
-        }
-      },
-      "SubAccountUcTrunkingSeats": {
-        "type": "object",
-        "properties": {
-          "SiteTotalSeatsResponse": {
-            "$ref": "#/components/schemas/SubAccountUcTrunkingSeatsSiteTotalSeatsResponse"
-          }
-        }
-      },
-      "SubAccountTotalSeatsBadRequestResponse": {
-        "type": "object",
-        "properties": {
-          "SiteTotalSeatsResponse": {
-            "$ref": "#/components/schemas/ResponseStatus"
-          }
-        }
-      },
       "LataSearchAndOrderResponseOrderAllOf2": {
         "type": "object",
         "properties": {
@@ -31653,6 +31592,35 @@
           }
         }
       },
+      "ErrorResponseJson": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "integer",
+            "description": "Numeric designation of corresponding error"
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed explanation about error"
+          }
+        }
+      },
+      "SubAccountUcTrunkingSeats": {
+        "type": "object",
+        "properties": {
+          "SiteTotalSeatsResponse": {
+            "$ref": "#/components/schemas/SubAccountUcTrunkingSeatsSiteTotalSeatsResponse"
+          }
+        }
+      },
+      "SubAccountTotalSeatsBadRequestResponse": {
+        "type": "object",
+        "properties": {
+          "SiteTotalSeatsResponse": {
+            "$ref": "#/components/schemas/ResponseStatus"
+          }
+        }
+      },
       "CombinedSearchAndOrderResponseOrderAllOf2": {
         "type": "object",
         "properties": {
@@ -31679,6 +31647,66 @@
             "type": "integer",
             "description": "The ID of the customer the group belongs to",
             "example": 42
+          }
+        }
+      },
+      "GetGroupReseller200ResponseDataAllOf2": {
+        "required": [
+          "customerId",
+          "customerName"
+        ],
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "integer",
+            "description": "The ID of the customer the group belongs to",
+            "example": 42
+          },
+          "customerName": {
+            "type": "string",
+            "description": "The name of the customer the group belongs to",
+            "example": "Customer A"
+          }
+        }
+      },
+      "GetListOfGroupsReseller200ResponseDataItemAllOf2": {
+        "required": [
+          "customerId",
+          "customerName"
+        ],
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "integer",
+            "description": "The ID of the customer the group belongs to",
+            "example": 42
+          },
+          "customerName": {
+            "type": "string",
+            "description": "The name of the customer the group belongs to",
+            "example": "Customer A"
+          }
+        }
+      },
+      "UpdateVoiceApplicationResponseDataAllOf2": {
+        "type": "object",
+        "properties": {
+          "sipAuthPassword": {
+            "type": "string",
+            "description": "The password to be used for SIP digest authentication. Only returned when \u0060passwordAuthEnabled\u0060 is set to \u0060true\u0060. Null otherwise.",
+            "nullable": true,
+            "example": "super_secure_password"
+          }
+        }
+      },
+      "StirShakenCertificatesAccountPutRequestDataRegionDataOneOf1": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "$ref": "#/components/schemas/StirShakenCertificatesAccountPutRequestDataRegionDataOneOf1Region"
+          },
+          "regionFr": {
+            "$ref": "#/components/schemas/StirShakenCertificatesAccountPutRequestDataRegionDataOneOf1RegionFr"
           }
         }
       },
@@ -32239,130 +32267,6 @@
           }
         }
       },
-      "GetGroupReseller200ResponseDataAllOf2": {
-        "required": [
-          "customerId",
-          "customerName"
-        ],
-        "type": "object",
-        "properties": {
-          "customerId": {
-            "type": "integer",
-            "description": "The ID of the customer the group belongs to",
-            "example": 42
-          },
-          "customerName": {
-            "type": "string",
-            "description": "The name of the customer the group belongs to",
-            "example": "Customer A"
-          }
-        }
-      },
-      "GetListOfGroupsReseller200ResponseDataItemAllOf2": {
-        "required": [
-          "customerId",
-          "customerName"
-        ],
-        "type": "object",
-        "properties": {
-          "customerId": {
-            "type": "integer",
-            "description": "The ID of the customer the group belongs to",
-            "example": 42
-          },
-          "customerName": {
-            "type": "string",
-            "description": "The name of the customer the group belongs to",
-            "example": "Customer A"
-          }
-        }
-      },
-      "UpdateVoiceApplicationResponseDataAllOf2": {
-        "type": "object",
-        "properties": {
-          "sipAuthPassword": {
-            "type": "string",
-            "description": "The password to be used for SIP digest authentication. Only returned when \u0060passwordAuthEnabled\u0060 is set to \u0060true\u0060. Null otherwise.",
-            "nullable": true,
-            "example": "super_secure_password"
-          }
-        }
-      },
-      "StirShakenCertificatesAccountPutRequestDataRegionDataOneOf1": {
-        "type": "object",
-        "properties": {
-          "region": {
-            "$ref": "#/components/schemas/StirShakenCertificatesAccountPutRequestDataRegionDataOneOf1Region"
-          },
-          "regionFr": {
-            "$ref": "#/components/schemas/StirShakenCertificatesAccountPutRequestDataRegionDataOneOf1RegionFr"
-          }
-        }
-      },
-      "RequestedCallbackTypes": {
-        "enum": [
-          "message-sending",
-          "message-sent",
-          "message-delivered",
-          "message-failed"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "RequestedCallbackTypes",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "message-sending",
-              "name": "MessageSending"
-            },
-            {
-              "value": "message-sent",
-              "name": "MessageSent"
-            },
-            {
-              "value": "message-delivered",
-              "name": "MessageDelivered"
-            },
-            {
-              "value": "message-failed",
-              "name": "MessageFailed"
-            }
-          ]
-        }
-      },
-      "RequestedCallbackTypesJson": {
-        "enum": [
-          "MESSAGE_SENDING",
-          "MESSAGE_SENT",
-          "MESSAGE_FAILED",
-          "MESSAGE_DELIVERED"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "RequestedCallbackTypesJson",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "MESSAGE_SENDING",
-              "name": "MessageSending"
-            },
-            {
-              "value": "MESSAGE_SENT",
-              "name": "MessageSent"
-            },
-            {
-              "value": "MESSAGE_FAILED",
-              "name": "MessageFailed"
-            },
-            {
-              "value": "MESSAGE_DELIVERED",
-              "name": "MessageDelivered"
-            }
-          ]
-        }
-      },
       "PatchRequirementsPackageBodyRequestAllOf2": {
         "type": "object",
         "properties": {
@@ -32379,19 +32283,6 @@
             "type": "string",
             "description": "Status change to requirement package. Only allowed value is SUBMITTED",
             "example": "SUBMITTED"
-          }
-        }
-      },
-      "ApplicationsResponseStatus": {
-        "type": "object",
-        "properties": {
-          "ErrorCode": {
-            "type": "integer",
-            "description": "Numeric designation of corresponding error"
-          },
-          "Description": {
-            "type": "string",
-            "description": "Detailed explanation about error"
           }
         }
       },
@@ -32459,6 +32350,125 @@
             "IntegrationEndpointWithoutTrunk": "#/components/schemas/IntegrationEndpointWithoutTrunk",
             "FqdnEndpointWithoutTrunk": "#/components/schemas/FqdnEndpointWithoutTrunk",
             "BotEndpoint": "#/components/schemas/BotEndpoint"
+          }
+        }
+      },
+      "QueryCriteriaValuesOneOf3Item": {
+        "type": "object",
+        "oneOf": [
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "RequestedCallbackTypes": {
+        "enum": [
+          "message-sending",
+          "message-sent",
+          "message-delivered",
+          "message-failed"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "RequestedCallbackTypes",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "message-sending",
+              "name": "MessageSending"
+            },
+            {
+              "value": "message-sent",
+              "name": "MessageSent"
+            },
+            {
+              "value": "message-delivered",
+              "name": "MessageDelivered"
+            },
+            {
+              "value": "message-failed",
+              "name": "MessageFailed"
+            }
+          ]
+        }
+      },
+      "RequestedCallbackTypesJson": {
+        "enum": [
+          "MESSAGE_SENDING",
+          "MESSAGE_SENT",
+          "MESSAGE_FAILED",
+          "MESSAGE_DELIVERED"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "RequestedCallbackTypesJson",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "MESSAGE_SENDING",
+              "name": "MessageSending"
+            },
+            {
+              "value": "MESSAGE_SENT",
+              "name": "MessageSent"
+            },
+            {
+              "value": "MESSAGE_FAILED",
+              "name": "MessageFailed"
+            },
+            {
+              "value": "MESSAGE_DELIVERED",
+              "name": "MessageDelivered"
+            }
+          ]
+        }
+      },
+      "UpdateVoiceApplicationResponseData": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/VoiceApplicationData"
+          }
+        ],
+        "properties": {
+          "sipAuthPassword": {
+            "type": "string",
+            "description": "The password to be used for SIP digest authentication. Only returned when \u0060passwordAuthEnabled\u0060 is set to \u0060true\u0060. Null otherwise.",
+            "nullable": true,
+            "example": "super_secure_password"
+          }
+        }
+      },
+      "ApplicationsResponseStatus": {
+        "type": "object",
+        "properties": {
+          "ErrorCode": {
+            "type": "integer",
+            "description": "Numeric designation of corresponding error"
+          },
+          "Description": {
+            "type": "string",
+            "description": "Detailed explanation about error"
+          }
+        }
+      },
+      "ProvisioningOrderAddEndpointResponseAllOf2": {
+        "type": "object",
+        "properties": {
+          "orderType": {
+            "type": "string",
+            "example": "ADD_ENDPOINTS"
+          }
+        }
+      },
+      "ProvisioningOrderUpdateEndpointResponseAllOf2": {
+        "type": "object",
+        "properties": {
+          "orderType": {
+            "type": "string",
+            "example": "UPDATE_ENDPOINTS"
           }
         }
       },
@@ -32620,13 +32630,14 @@
         },
         "description": "Counts of unique keys for a term"
       },
-      "QueryCriteriaValuesOneOf3Item": {
+      "ProvisioningOrderDeleteEndpointResponseAllOf2": {
         "type": "object",
-        "oneOf": [
-          {
-            "type": "string"
+        "properties": {
+          "orderType": {
+            "type": "string",
+            "example": "DELETE_ENDPOINTS"
           }
-        ]
+        }
       },
       "TimestampFilter": {
         "title": "Timestamp Filter Range",
@@ -33458,21 +33469,23 @@
           }
         }
       },
-      "UpdateVoiceApplicationResponseData": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/VoiceApplicationData"
-          }
+      "BrandAcceptedResponseObjectData": {
+        "required": [
+          "bandwidthId"
         ],
+        "type": "object",
         "properties": {
-          "sipAuthPassword": {
+          "brandId": {
+            "maxLength": 8,
             "type": "string",
-            "description": "The password to be used for SIP digest authentication. Only returned when \u0060passwordAuthEnabled\u0060 is set to \u0060true\u0060. Null otherwise.",
-            "nullable": true,
-            "example": "super_secure_password"
+            "description": "The TCR-generated identifier for the brand. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the brand."
+          },
+          "bandwidthId": {
+            "type": "string",
+            "description": "The Bandwidth-generated identifier for this entity. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the entity."
           }
-        }
+        },
+        "readOnly": true
       },
       "Roles": {
         "type": "array",
@@ -34029,51 +34042,6 @@
           }
         }
       },
-      "ProvisioningOrderAddEndpointResponseAllOf2": {
-        "type": "object",
-        "properties": {
-          "orderType": {
-            "type": "string",
-            "example": "ADD_ENDPOINTS"
-          }
-        }
-      },
-      "ProvisioningOrderUpdateEndpointResponseAllOf2": {
-        "type": "object",
-        "properties": {
-          "orderType": {
-            "type": "string",
-            "example": "UPDATE_ENDPOINTS"
-          }
-        }
-      },
-      "ProvisioningOrderDeleteEndpointResponseAllOf2": {
-        "type": "object",
-        "properties": {
-          "orderType": {
-            "type": "string",
-            "example": "DELETE_ENDPOINTS"
-          }
-        }
-      },
-      "BrandAcceptedResponseObjectData": {
-        "required": [
-          "bandwidthId"
-        ],
-        "type": "object",
-        "properties": {
-          "brandId": {
-            "maxLength": 8,
-            "type": "string",
-            "description": "The TCR-generated identifier for the brand. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the brand."
-          },
-          "bandwidthId": {
-            "type": "string",
-            "description": "The Bandwidth-generated identifier for this entity. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the entity."
-          }
-        },
-        "readOnly": true
-      },
       "PaginatedReportDefinitionResponseResponseData": {
         "required": [
           "id",
@@ -34173,6 +34141,54 @@
           }
         },
         "readOnly": true
+      },
+      "FilterableFieldSelectableValuesItem": {
+        "type": "object",
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          }
+        ]
+      },
+      "FilterableFieldType": {
+        "type": "object",
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          }
+        ],
+        "example": "number"
+      },
+      "EmailSubscriptionAllOf2": {
+        "required": [
+          "emailSubscription"
+        ],
+        "type": "object",
+        "properties": {
+          "emailSubscription": {
+            "$ref": "#/components/schemas/EmailSubscriptionAllOf2EmailSubscription"
+          }
+        }
+      },
+      "WebhookSubscriptionRequestAllOf2": {
+        "required": [
+          "webhookSubscription"
+        ],
+        "type": "object",
+        "properties": {
+          "webhookSubscription": {
+            "$ref": "#/components/schemas/WebhookSubscriptionRequestAllOf2WebhookSubscription"
+          }
+        }
       },
       "EndpointStatusEnum": {
         "enum": [
@@ -34306,31 +34322,27 @@
         "title": "WebRTC Connection",
         "type": "object"
       },
-      "FilterableFieldSelectableValuesItem": {
-        "type": "object",
-        "oneOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          }
-        ]
-      },
-      "FilterableFieldType": {
-        "type": "object",
-        "oneOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "boolean"
-          }
+      "WebhookSubscriptionResponseAllOf2": {
+        "required": [
+          "webhookSubscription"
         ],
-        "example": "number"
+        "type": "object",
+        "properties": {
+          "webhookSubscription": {
+            "$ref": "#/components/schemas/WebhookSubscriptionResponseAllOf2WebhookSubscription"
+          }
+        }
+      },
+      "WebhookAuthenticationRequestAllOf1": {
+        "type": "object",
+        "properties": {
+          "hmacAuthentication": {
+            "$ref": "#/components/schemas/HmacAuthenticationRequest"
+          },
+          "basicAuthentication": {
+            "$ref": "#/components/schemas/BasicAuthenticationRequest"
+          }
+        }
       },
       "Device": {
         "required": [
@@ -35562,16 +35574,58 @@
           }
         }
       },
-      "EmailSubscriptionAllOf2": {
-        "required": [
-          "emailSubscription"
-        ],
+      "FilterCriteriaValue": {
         "type": "object",
-        "properties": {
-          "emailSubscription": {
-            "$ref": "#/components/schemas/EmailSubscriptionAllOf2EmailSubscription"
+        "oneOf": [
+          {
+            "type": "number",
+            "description": "Single number value for operators [\u0022GT\u0022, \u0022LT\u0022, \u0022EQ\u0022, \u0022NE\u0022]",
+            "example": 100
+          },
+          {
+            "type": "string",
+            "description": "Single string value for operators [\u0022EQ\u0022, \u0022NE\u0022]",
+            "example": "APPROVED"
+          },
+          {
+            "type": "boolean",
+            "description": "Single boolean value for operators [\u0022EQ\u0022, \u0022NE\u0022]",
+            "example": true
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "List of number values for operators [\u0022IN\u0022, \u0022NIN\u0022]",
+            "example": [
+              100,
+              200
+            ]
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of string values for operators [\u0022IN\u0022, \u0022NIN\u0022]",
+            "example": [
+              "APPROVED",
+              "PENDING"
+            ]
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "boolean"
+            },
+            "description": "List of boolean values for operator \u0022IN\u0022",
+            "example": [
+              true,
+              false
+            ]
           }
-        }
+        ]
       },
       "FileMetaData": {
         "type": "object",
@@ -38574,14 +38628,20 @@
           ]
         }
       },
-      "WebhookSubscriptionRequestAllOf2": {
+      "UpdateCampaignRequestSchemaAllOf1": {
         "required": [
-          "webhookSubscription"
+          "customerProfileId"
         ],
         "type": "object",
         "properties": {
-          "webhookSubscription": {
-            "$ref": "#/components/schemas/WebhookSubscriptionRequestAllOf2WebhookSubscription"
+          "addressId": {
+            "type": "string",
+            "description": "Address Id"
+          },
+          "customerProfileId": {
+            "maxLength": 36,
+            "type": "string",
+            "description": "The unique identifier of the customer profile associated with this short code campaign."
           }
         }
       },
@@ -38701,145 +38761,6 @@
               "name": "SharedCost"
             }
           ]
-        }
-      },
-      "WebhookSubscriptionResponseAllOf2": {
-        "required": [
-          "webhookSubscription"
-        ],
-        "type": "object",
-        "properties": {
-          "webhookSubscription": {
-            "$ref": "#/components/schemas/WebhookSubscriptionResponseAllOf2WebhookSubscription"
-          }
-        }
-      },
-      "WebhookAuthenticationRequestAllOf1": {
-        "type": "object",
-        "properties": {
-          "hmacAuthentication": {
-            "$ref": "#/components/schemas/HmacAuthenticationRequest"
-          },
-          "basicAuthentication": {
-            "$ref": "#/components/schemas/BasicAuthenticationRequest"
-          }
-        }
-      },
-      "CreateAddressRequestData": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/ValidateAddressRequestData"
-          }
-        ],
-        "properties": {
-          "geoValidation": {
-            "$ref": "#/components/schemas/GeoValidation"
-          }
-        }
-      },
-      "AddressRequestData": {
-        "type": "object",
-        "properties": {
-          "customReference": {
-            "maxLength": 100,
-            "type": "string",
-            "description": "A custom reference name.\nIt can be used for your own reference to the item to easily identify one of your customers,\nrequirements package, enduser etc.\n"
-          },
-          "countryCodeA3": {
-            "type": "string",
-            "description": "Country code of the address in ISO 3166-1 alpha-3 format."
-          },
-          "addressLine1": {
-            "type": "string",
-            "description": "The first line of the address."
-          },
-          "addressLine2": {
-            "type": "string",
-            "description": "The second line of the address."
-          },
-          "city": {
-            "type": "string",
-            "description": "The city of the address."
-          },
-          "stateAbbreviation": {
-            "type": "string",
-            "description": "The state abbreviation of the address."
-          },
-          "postalCode": {
-            "type": "string",
-            "description": "The postal code of the address."
-          }
-        }
-      },
-      "FilterCriteriaValue": {
-        "type": "object",
-        "oneOf": [
-          {
-            "type": "number",
-            "description": "Single number value for operators [\u0022GT\u0022, \u0022LT\u0022, \u0022EQ\u0022, \u0022NE\u0022]",
-            "example": 100
-          },
-          {
-            "type": "string",
-            "description": "Single string value for operators [\u0022EQ\u0022, \u0022NE\u0022]",
-            "example": "APPROVED"
-          },
-          {
-            "type": "boolean",
-            "description": "Single boolean value for operators [\u0022EQ\u0022, \u0022NE\u0022]",
-            "example": true
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "number"
-            },
-            "description": "List of number values for operators [\u0022IN\u0022, \u0022NIN\u0022]",
-            "example": [
-              100,
-              200
-            ]
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "List of string values for operators [\u0022IN\u0022, \u0022NIN\u0022]",
-            "example": [
-              "APPROVED",
-              "PENDING"
-            ]
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "boolean"
-            },
-            "description": "List of boolean values for operator \u0022IN\u0022",
-            "example": [
-              true,
-              false
-            ]
-          }
-        ]
-      },
-      "UpdateCampaignRequestSchemaAllOf1": {
-        "required": [
-          "customerProfileId"
-        ],
-        "type": "object",
-        "properties": {
-          "addressId": {
-            "type": "string",
-            "description": "Address Id"
-          },
-          "customerProfileId": {
-            "maxLength": 36,
-            "type": "string",
-            "description": "The unique identifier of the customer profile associated with this short code campaign."
-          }
         }
       },
       "GetCampaignHistorySchemaAllOf1": {
@@ -39011,6 +38932,53 @@
             "minimum": 0,
             "type": "integer",
             "description": "The version of the short code campaign. This gets incremented every time the campaign is edited."
+          }
+        }
+      },
+      "CreateAddressRequestData": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ValidateAddressRequestData"
+          }
+        ],
+        "properties": {
+          "geoValidation": {
+            "$ref": "#/components/schemas/GeoValidation"
+          }
+        }
+      },
+      "AddressRequestData": {
+        "type": "object",
+        "properties": {
+          "customReference": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "A custom reference name.\nIt can be used for your own reference to the item to easily identify one of your customers,\nrequirements package, enduser etc.\n"
+          },
+          "countryCodeA3": {
+            "type": "string",
+            "description": "Country code of the address in ISO 3166-1 alpha-3 format."
+          },
+          "addressLine1": {
+            "type": "string",
+            "description": "The first line of the address."
+          },
+          "addressLine2": {
+            "type": "string",
+            "description": "The second line of the address."
+          },
+          "city": {
+            "type": "string",
+            "description": "The city of the address."
+          },
+          "stateAbbreviation": {
+            "type": "string",
+            "description": "The state abbreviation of the address."
+          },
+          "postalCode": {
+            "type": "string",
+            "description": "The postal code of the address."
           }
         }
       },
@@ -39202,190 +39170,6 @@
             "minimum": 0,
             "type": "integer",
             "description": "The version of the short code campaign. This gets incremented every time the campaign is edited."
-          }
-        }
-      },
-      "GeoValidation": {
-        "type": "object",
-        "properties": {
-          "required": {
-            "type": "boolean",
-            "description": "Flag to indicate if the address should be geo validated or\nnot. By default the value is set to true.\n",
-            "example": true
-          },
-          "createOnFailure": {
-            "type": "boolean",
-            "description": "Flag to indicate if the address should be created even if geo\nvalidation fails. \u0027false\u0027 indicates that the creation request will fail\nand \u201CsuggestedAddresses\u201D will be provided in the response. By default\nthe value is set to false.\n",
-            "example": false
-          }
-        }
-      },
-      "UnsupportedFeatures": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/UnsupportedFeaturesItem"
-        },
-        "description": "Excluded Features"
-      },
-      "FeatureNameEnum": {
-        "enum": [
-          "REQUIREMENTS_PACKAGE",
-          "EMERGENCY",
-          "PORTING"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "A unique identifier for feature.",
-        "x-ms-enum": {
-          "name": "FeatureNameEnum",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "REQUIREMENTS_PACKAGE",
-              "name": "RequirementsPackage"
-            },
-            {
-              "value": "EMERGENCY",
-              "name": "Emergency"
-            },
-            {
-              "value": "PORTING",
-              "name": "Porting"
-            }
-          ]
-        }
-      },
-      "AddressFieldSchema": {
-        "type": "object",
-        "properties": {
-          "fieldName": {
-            "type": "string",
-            "description": "The address field to be provided.",
-            "example": "postalCode"
-          },
-          "friendlyName": {
-            "type": "string",
-            "description": "The friendly name of the address field.",
-            "example": "Postal code"
-          },
-          "description": {
-            "type": "string",
-            "description": "The description of the address field.",
-            "example": "Enter the 5-digit ZIP code for your location. You can also enter\na 9-digit ZIP\u002B4 code. For example, 27607 or 27607-6789 are valid ZIP codes.\n"
-          },
-          "type": {
-            "type": "string",
-            "description": "The data type of the field"
-          },
-          "maxLength": {
-            "type": "integer",
-            "description": "The length of the field"
-          },
-          "required": {
-            "type": "boolean",
-            "description": "The address field is required or optional",
-            "example": true
-          },
-          "changeable": {
-            "type": "boolean",
-            "description": "The address field value can be updated or not",
-            "example": false
-          },
-          "usedBy": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AddressFieldSchemaUsedByItem"
-            }
-          }
-        }
-      },
-      "ValidateAddressRequestData": {
-        "type": "object",
-        "properties": {
-          "customReference": {
-            "maxLength": 100,
-            "type": "string",
-            "description": "A custom reference name.\nIt can be used for your own reference to the item to easily identify one of your customers,\nrequirements package, enduser etc.\n"
-          },
-          "countryCodeA3": {
-            "type": "string",
-            "description": "Country code of the address in ISO 3166-1 alpha-3 format."
-          },
-          "addressLine1": {
-            "type": "string",
-            "description": "The first line of the address."
-          },
-          "addressLine2": {
-            "type": "string",
-            "description": "The second line of the address."
-          },
-          "city": {
-            "type": "string",
-            "description": "The city of the address."
-          },
-          "stateAbbreviation": {
-            "type": "string",
-            "description": "The state abbreviation of the address."
-          },
-          "postalCode": {
-            "type": "string",
-            "description": "The postal code of the address."
-          },
-          "geoValidation": {
-            "$ref": "#/components/schemas/GeoValidation"
-          }
-        }
-      },
-      "UpdateAddressData": {
-        "type": "object",
-        "properties": {
-          "customReference": {
-            "maxLength": 100,
-            "type": "string",
-            "description": "A custom reference name.\nIt can be used for your own reference to the item to easily identify one of your customers,\nrequirements package, enduser etc.\n"
-          },
-          "geoValidation": {
-            "$ref": "#/components/schemas/GeoValidation"
-          }
-        }
-      },
-      "ValidateAddressResponse": {
-        "type": "object",
-        "properties": {
-          "links": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AddressFieldsLink"
-            }
-          },
-          "data": {
-            "$ref": "#/components/schemas/ValidateAddressResponseDataProperty"
-          },
-          "errors": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EndUserManagementError"
-            }
-          }
-        }
-      },
-      "GetAddressFieldsResponse": {
-        "type": "object",
-        "properties": {
-          "links": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AddressFieldsLink"
-            }
-          },
-          "data": {
-            "$ref": "#/components/schemas/GetAddressFieldsResponseData"
-          },
-          "errors": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EndUserManagementError"
-            }
           }
         }
       },
@@ -39616,6 +39400,190 @@
           }
         }
       },
+      "GeoValidation": {
+        "type": "object",
+        "properties": {
+          "required": {
+            "type": "boolean",
+            "description": "Flag to indicate if the address should be geo validated or\nnot. By default the value is set to true.\n",
+            "example": true
+          },
+          "createOnFailure": {
+            "type": "boolean",
+            "description": "Flag to indicate if the address should be created even if geo\nvalidation fails. \u0027false\u0027 indicates that the creation request will fail\nand \u201CsuggestedAddresses\u201D will be provided in the response. By default\nthe value is set to false.\n",
+            "example": false
+          }
+        }
+      },
+      "UnsupportedFeatures": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/UnsupportedFeaturesItem"
+        },
+        "description": "Excluded Features"
+      },
+      "FeatureNameEnum": {
+        "enum": [
+          "REQUIREMENTS_PACKAGE",
+          "EMERGENCY",
+          "PORTING"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "A unique identifier for feature.",
+        "x-ms-enum": {
+          "name": "FeatureNameEnum",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "REQUIREMENTS_PACKAGE",
+              "name": "RequirementsPackage"
+            },
+            {
+              "value": "EMERGENCY",
+              "name": "Emergency"
+            },
+            {
+              "value": "PORTING",
+              "name": "Porting"
+            }
+          ]
+        }
+      },
+      "AddressFieldSchema": {
+        "type": "object",
+        "properties": {
+          "fieldName": {
+            "type": "string",
+            "description": "The address field to be provided.",
+            "example": "postalCode"
+          },
+          "friendlyName": {
+            "type": "string",
+            "description": "The friendly name of the address field.",
+            "example": "Postal code"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the address field.",
+            "example": "Enter the 5-digit ZIP code for your location. You can also enter\na 9-digit ZIP\u002B4 code. For example, 27607 or 27607-6789 are valid ZIP codes.\n"
+          },
+          "type": {
+            "type": "string",
+            "description": "The data type of the field"
+          },
+          "maxLength": {
+            "type": "integer",
+            "description": "The length of the field"
+          },
+          "required": {
+            "type": "boolean",
+            "description": "The address field is required or optional",
+            "example": true
+          },
+          "changeable": {
+            "type": "boolean",
+            "description": "The address field value can be updated or not",
+            "example": false
+          },
+          "usedBy": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressFieldSchemaUsedByItem"
+            }
+          }
+        }
+      },
+      "ValidateAddressRequestData": {
+        "type": "object",
+        "properties": {
+          "customReference": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "A custom reference name.\nIt can be used for your own reference to the item to easily identify one of your customers,\nrequirements package, enduser etc.\n"
+          },
+          "countryCodeA3": {
+            "type": "string",
+            "description": "Country code of the address in ISO 3166-1 alpha-3 format."
+          },
+          "addressLine1": {
+            "type": "string",
+            "description": "The first line of the address."
+          },
+          "addressLine2": {
+            "type": "string",
+            "description": "The second line of the address."
+          },
+          "city": {
+            "type": "string",
+            "description": "The city of the address."
+          },
+          "stateAbbreviation": {
+            "type": "string",
+            "description": "The state abbreviation of the address."
+          },
+          "postalCode": {
+            "type": "string",
+            "description": "The postal code of the address."
+          },
+          "geoValidation": {
+            "$ref": "#/components/schemas/GeoValidation"
+          }
+        }
+      },
+      "UpdateAddressData": {
+        "type": "object",
+        "properties": {
+          "customReference": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "A custom reference name.\nIt can be used for your own reference to the item to easily identify one of your customers,\nrequirements package, enduser etc.\n"
+          },
+          "geoValidation": {
+            "$ref": "#/components/schemas/GeoValidation"
+          }
+        }
+      },
+      "ValidateAddressResponse": {
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressFieldsLink"
+            }
+          },
+          "data": {
+            "$ref": "#/components/schemas/ValidateAddressResponseDataProperty"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EndUserManagementError"
+            }
+          }
+        }
+      },
+      "GetAddressFieldsResponse": {
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressFieldsLink"
+            }
+          },
+          "data": {
+            "$ref": "#/components/schemas/GetAddressFieldsResponseData"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EndUserManagementError"
+            }
+          }
+        }
+      },
       "CreateGroupRequestResellerAllOf2": {
         "required": [
           "customerId"
@@ -39684,6 +39652,141 @@
         },
         "description": "The assignment action performed.",
         "example": "ASSIGN"
+      },
+      "NumbersAssignmentOrderResponseProcessingStatus": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/NumbersAssignmentProcessingStatus"
+          }
+        },
+        "description": "The current processing status of the order.",
+        "example": "PARTIAL"
+      },
+      "NumbersAssignmentOrderRequestAction": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/NumbersAssignmentAction"
+          }
+        },
+        "description": "The assignment action to perform on the provided phone numbers.",
+        "example": "ASSIGN"
+      },
+      "TnOrderUpdatedResponseOrderResponseOrder": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ExistingTelephoneNumberOrder"
+          },
+          {
+            "$ref": "#/components/schemas/RateCenterSearchAndOrderNanp"
+          },
+          {
+            "$ref": "#/components/schemas/AreaCodeSearchAndOrderNanp"
+          },
+          {
+            "$ref": "#/components/schemas/NpaNxxSearchAndOrderNanp"
+          },
+          {
+            "$ref": "#/components/schemas/TollFreeWildCharSearchAndOrderNanp"
+          },
+          {
+            "$ref": "#/components/schemas/TollFreeVanitySearchAndOrderNanp"
+          },
+          {
+            "$ref": "#/components/schemas/LataSearchAndOrderNanp"
+          },
+          {
+            "$ref": "#/components/schemas/ZipSearchAndOrderNanp"
+          },
+          {
+            "$ref": "#/components/schemas/CitySearchAndOrderNanp"
+          },
+          {
+            "$ref": "#/components/schemas/StateSearchAndOrderNanp"
+          },
+          {
+            "$ref": "#/components/schemas/CombinedSearchAndOrderNanp"
+          },
+          {
+            "$ref": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrder"
+          }
+        ]
+      },
+      "RetrieveNewPhoneNumberOrder200ResponseSchemaJsonOrderType": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ExistingPhoneNumberOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/RateCenterSearchAndOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/AreaCodeSearchAndOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/NpaNxxSearchAndOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/TollFreeWildCharSearchAndOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/TollFreeVanitySearchAndOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/LataSearchAndOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/ZipSearchAndOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/CitySearchAndOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/StateSearchAndOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/CombinedSearchAndOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrderType"
+          }
+        ],
+        "properties": {
+          "type": {
+            "title": "type",
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "ExistingPhoneNumberOrderType": "#/components/schemas/ExistingPhoneNumberOrderType",
+            "RateCenterSearchAndOrderType": "#/components/schemas/RateCenterSearchAndOrderType",
+            "AreaCodeSearchAndOrderType": "#/components/schemas/AreaCodeSearchAndOrderType",
+            "NpaNxxSearchAndOrderType": "#/components/schemas/NpaNxxSearchAndOrderType",
+            "TollFreeWildCharSearchAndOrderType": "#/components/schemas/TollFreeWildCharSearchAndOrderType",
+            "TollFreeVanitySearchAndOrderType": "#/components/schemas/TollFreeVanitySearchAndOrderType",
+            "LataSearchAndOrderType": "#/components/schemas/LataSearchAndOrderType",
+            "ZipSearchAndOrderType": "#/components/schemas/ZipSearchAndOrderType",
+            "CitySearchAndOrderType": "#/components/schemas/CitySearchAndOrderType",
+            "StateSearchAndOrderType": "#/components/schemas/StateSearchAndOrderType",
+            "CombinedSearchAndOrderType": "#/components/schemas/CombinedSearchAndOrderType",
+            "CountryAndPhoneNumberTypeSearchAndOrderType": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrderType"
+          }
+        }
       },
       "EndUserManagementErrorSource": {
         "type": "object",
@@ -40790,31 +40893,37 @@
           }
         }
       },
-      "NumbersAssignmentOrderResponseProcessingStatus": {
-        "required": [
-          "value"
-        ],
+      "CountryAndPhoneNumberTypeSearchAndOrderResponseOrder": {
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/OrderResponseMetadata"
+          }
+        ],
         "properties": {
-          "value": {
-            "$ref": "#/components/schemas/NumbersAssignmentProcessingStatus"
+          "CountryAndPhoneNumberTypeSearchAndOrderType": {
+            "$ref": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrderTypeXml"
           }
         },
-        "description": "The current processing status of the order.",
-        "example": "PARTIAL"
+        "xml": {
+          "name": "Order"
+        }
       },
-      "NumbersAssignmentOrderRequestAction": {
-        "required": [
-          "value"
-        ],
+      "CombinedSearchAndOrderResponseOrder": {
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/OrderResponseMetadata"
+          }
+        ],
         "properties": {
-          "value": {
-            "$ref": "#/components/schemas/NumbersAssignmentAction"
+          "CombinedSearchAndOrderType": {
+            "$ref": "#/components/schemas/CombinedSearchAndOrderTypeXml"
           }
         },
-        "description": "The assignment action to perform on the provided phone numbers.",
-        "example": "ASSIGN"
+        "xml": {
+          "name": "Order"
+        }
       },
       "DocumentStatusEnum": {
         "enum": [
@@ -40855,116 +40964,7 @@
           ]
         }
       },
-      "TnOrderUpdatedResponseOrderResponseOrder": {
-        "type": "object",
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/ExistingTelephoneNumberOrder"
-          },
-          {
-            "$ref": "#/components/schemas/RateCenterSearchAndOrderNanp"
-          },
-          {
-            "$ref": "#/components/schemas/AreaCodeSearchAndOrderNanp"
-          },
-          {
-            "$ref": "#/components/schemas/NpaNxxSearchAndOrderNanp"
-          },
-          {
-            "$ref": "#/components/schemas/TollFreeWildCharSearchAndOrderNanp"
-          },
-          {
-            "$ref": "#/components/schemas/TollFreeVanitySearchAndOrderNanp"
-          },
-          {
-            "$ref": "#/components/schemas/LataSearchAndOrderNanp"
-          },
-          {
-            "$ref": "#/components/schemas/ZipSearchAndOrderNanp"
-          },
-          {
-            "$ref": "#/components/schemas/CitySearchAndOrderNanp"
-          },
-          {
-            "$ref": "#/components/schemas/StateSearchAndOrderNanp"
-          },
-          {
-            "$ref": "#/components/schemas/CombinedSearchAndOrderNanp"
-          },
-          {
-            "$ref": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrder"
-          }
-        ]
-      },
-      "RetrieveNewPhoneNumberOrder200ResponseSchemaJsonOrderType": {
-        "required": [
-          "type"
-        ],
-        "type": "object",
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/ExistingPhoneNumberOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/RateCenterSearchAndOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/AreaCodeSearchAndOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/NpaNxxSearchAndOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/TollFreeWildCharSearchAndOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/TollFreeVanitySearchAndOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/LataSearchAndOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/ZipSearchAndOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/CitySearchAndOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/StateSearchAndOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/CombinedSearchAndOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrderType"
-          }
-        ],
-        "properties": {
-          "type": {
-            "title": "type",
-            "type": "string",
-            "description": "Union discriminator"
-          }
-        },
-        "discriminator": {
-          "propertyName": "type",
-          "mapping": {
-            "ExistingPhoneNumberOrderType": "#/components/schemas/ExistingPhoneNumberOrderType",
-            "RateCenterSearchAndOrderType": "#/components/schemas/RateCenterSearchAndOrderType",
-            "AreaCodeSearchAndOrderType": "#/components/schemas/AreaCodeSearchAndOrderType",
-            "NpaNxxSearchAndOrderType": "#/components/schemas/NpaNxxSearchAndOrderType",
-            "TollFreeWildCharSearchAndOrderType": "#/components/schemas/TollFreeWildCharSearchAndOrderType",
-            "TollFreeVanitySearchAndOrderType": "#/components/schemas/TollFreeVanitySearchAndOrderType",
-            "LataSearchAndOrderType": "#/components/schemas/LataSearchAndOrderType",
-            "ZipSearchAndOrderType": "#/components/schemas/ZipSearchAndOrderType",
-            "CitySearchAndOrderType": "#/components/schemas/CitySearchAndOrderType",
-            "StateSearchAndOrderType": "#/components/schemas/StateSearchAndOrderType",
-            "CombinedSearchAndOrderType": "#/components/schemas/CombinedSearchAndOrderType",
-            "CountryAndPhoneNumberTypeSearchAndOrderType": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrderType"
-          }
-        }
-      },
-      "CountryAndPhoneNumberTypeSearchAndOrderResponseOrder": {
+      "StateSearchAndOrderResponseOrder": {
         "type": "object",
         "allOf": [
           {
@@ -40972,15 +40972,15 @@
           }
         ],
         "properties": {
-          "CountryAndPhoneNumberTypeSearchAndOrderType": {
-            "$ref": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrderTypeXml"
+          "StateSearchAndOrderType": {
+            "$ref": "#/components/schemas/StateSearchAndOrderTypeXml"
           }
         },
         "xml": {
           "name": "Order"
         }
       },
-      "CombinedSearchAndOrderResponseOrder": {
+      "CitySearchAndOrderResponseOrder": {
         "type": "object",
         "allOf": [
           {
@@ -40988,8 +40988,40 @@
           }
         ],
         "properties": {
-          "CombinedSearchAndOrderType": {
-            "$ref": "#/components/schemas/CombinedSearchAndOrderTypeXml"
+          "CitySearchAndOrderType": {
+            "$ref": "#/components/schemas/CitySearchAndOrderTypeXml"
+          }
+        },
+        "xml": {
+          "name": "Order"
+        }
+      },
+      "ZipSearchAndOrderResponseOrder": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/OrderResponseMetadata"
+          }
+        ],
+        "properties": {
+          "ZIPSearchAndOrderType": {
+            "$ref": "#/components/schemas/ZipSearchAndOrderTypeXml"
+          }
+        },
+        "xml": {
+          "name": "Order"
+        }
+      },
+      "LataSearchAndOrderResponseOrder": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/OrderResponseMetadata"
+          }
+        ],
+        "properties": {
+          "LATASearchAndOrderType": {
+            "$ref": "#/components/schemas/LataSearchAndOrderTypeXml"
           }
         },
         "xml": {
@@ -41102,7 +41134,7 @@
           }
         }
       },
-      "StateSearchAndOrderResponseOrder": {
+      "TollFreeVanitySearchAndOrderResponseOrder": {
         "type": "object",
         "allOf": [
           {
@@ -41110,8 +41142,8 @@
           }
         ],
         "properties": {
-          "StateSearchAndOrderType": {
-            "$ref": "#/components/schemas/StateSearchAndOrderTypeXml"
+          "TollFreeVanitySearchAndOrderType": {
+            "$ref": "#/components/schemas/TollFreeVanitySearchAndOrderTypeXml"
           }
         },
         "xml": {
@@ -41152,7 +41184,7 @@
           ]
         }
       },
-      "CitySearchAndOrderResponseOrder": {
+      "TollFreeWildCharSearchAndOrderResponseOrder": {
         "type": "object",
         "allOf": [
           {
@@ -41160,8 +41192,8 @@
           }
         ],
         "properties": {
-          "CitySearchAndOrderType": {
-            "$ref": "#/components/schemas/CitySearchAndOrderTypeXml"
+          "TollFreeWildCharSearchAndOrderType": {
+            "$ref": "#/components/schemas/TollFreeWildCharSearchAndOrderTypeXml"
           }
         },
         "xml": {
@@ -41632,16 +41664,6 @@
             "type": "string",
             "description": "The customReference of the requirements package"
           },
-          "email": {
-            "type": "string",
-            "description": "The email provided as part of the requirements",
-            "format": "email"
-          },
-          "callbacks": {
-            "type": "string",
-            "description": "The callback provided as part of the requirements",
-            "format": "uri"
-          },
           "dateTime": {
             "type": "string",
             "description": "The date and time of the requirements package event in ISO 8601 format",
@@ -41742,16 +41764,6 @@
             "type": "string",
             "description": "A custom reference name.\nIt can be used for your own reference to the item to easily identify one of your customers,\nrequirements package, enduser etc.\n"
           },
-          "email": {
-            "maxLength": 500,
-            "pattern": "^(?:[a-z0-9!#$%\u0026\u0027*\u002B/=?^_\u0060{|}~-]\u002B(?:\\.[a-z0-9!#$%\u0026\u0027*\u002B/=?^_\u0060{|}~-]\u002B)*|\u0022(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\u0022)@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)\u002B[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])\u002B)\\])$",
-            "type": "string",
-            "format": "email"
-          },
-          "callback": {
-            "type": "string",
-            "description": "Callback URL"
-          },
           "acknowledgements": {
             "$ref": "#/components/schemas/RequirementsPackageAcknowledgements"
           },
@@ -41806,16 +41818,6 @@
             "type": "string",
             "description": "A custom reference name.\nIt can be used for your own reference to the item to easily identify one of your customers,\nrequirements package, enduser etc.\n"
           },
-          "email": {
-            "maxLength": 500,
-            "pattern": "^(?:[a-z0-9!#$%\u0026\u0027*\u002B/=?^_\u0060{|}~-]\u002B(?:\\.[a-z0-9!#$%\u0026\u0027*\u002B/=?^_\u0060{|}~-]\u002B)*|\u0022(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\u0022)@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)\u002B[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])\u002B)\\])$",
-            "type": "string",
-            "format": "email"
-          },
-          "callback": {
-            "type": "string",
-            "description": "Callback URL"
-          },
           "acknowledgements": {
             "$ref": "#/components/schemas/RequirementsPackageAcknowledgements"
           },
@@ -41859,7 +41861,7 @@
         },
         "description": "Details of result of a number activation"
       },
-      "ZipSearchAndOrderResponseOrder": {
+      "NpaNxxSearchAndOrderResponseOrder": {
         "type": "object",
         "allOf": [
           {
@@ -41867,8 +41869,8 @@
           }
         ],
         "properties": {
-          "ZIPSearchAndOrderType": {
-            "$ref": "#/components/schemas/ZipSearchAndOrderTypeXml"
+          "NPANXXSearchAndOrderType": {
+            "$ref": "#/components/schemas/NpaNxxSearchAndOrderTypeXml"
           }
         },
         "xml": {
@@ -41893,54 +41895,6 @@
           }
         },
         "description": "Indicates whether the requirements package can be deleted."
-      },
-      "LataSearchAndOrderResponseOrder": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/OrderResponseMetadata"
-          }
-        ],
-        "properties": {
-          "LATASearchAndOrderType": {
-            "$ref": "#/components/schemas/LataSearchAndOrderTypeXml"
-          }
-        },
-        "xml": {
-          "name": "Order"
-        }
-      },
-      "TollFreeVanitySearchAndOrderResponseOrder": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/OrderResponseMetadata"
-          }
-        ],
-        "properties": {
-          "TollFreeVanitySearchAndOrderType": {
-            "$ref": "#/components/schemas/TollFreeVanitySearchAndOrderTypeXml"
-          }
-        },
-        "xml": {
-          "name": "Order"
-        }
-      },
-      "TollFreeWildCharSearchAndOrderResponseOrder": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/OrderResponseMetadata"
-          }
-        ],
-        "properties": {
-          "TollFreeWildCharSearchAndOrderType": {
-            "$ref": "#/components/schemas/TollFreeWildCharSearchAndOrderTypeXml"
-          }
-        },
-        "xml": {
-          "name": "Order"
-        }
       },
       "RequirementsPackageAcknowledgements": {
         "type": "object",
@@ -42084,22 +42038,6 @@
         },
         "description": "Details of requirements for number activation"
       },
-      "NpaNxxSearchAndOrderResponseOrder": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/OrderResponseMetadata"
-          }
-        ],
-        "properties": {
-          "NPANXXSearchAndOrderType": {
-            "$ref": "#/components/schemas/NpaNxxSearchAndOrderTypeXml"
-          }
-        },
-        "xml": {
-          "name": "Order"
-        }
-      },
       "AreaCodeSearchAndOrderResponseOrder": {
         "type": "object",
         "allOf": [
@@ -42114,6 +42052,22 @@
         },
         "xml": {
           "name": "Order"
+        }
+      },
+      "OrderResponseMetadataAllOf2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "c1b34921-ed73-4732-8a08-168e815514ec"
+          },
+          "orderCreateDate": {
+            "type": "string",
+            "xml": {
+              "name": "OrderCreateDate"
+            },
+            "example": "2022-11-14T18:39:04.505Z"
+          }
         }
       },
       "ComplianceRequirementsPackageBulkBadRequest": {
@@ -42213,22 +42167,6 @@
           "$ref": "#/components/schemas/EndUserManagementLink"
         }
       },
-      "OrderResponseMetadataAllOf2": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "example": "c1b34921-ed73-4732-8a08-168e815514ec"
-          },
-          "orderCreateDate": {
-            "type": "string",
-            "xml": {
-              "name": "OrderCreateDate"
-            },
-            "example": "2022-11-14T18:39:04.505Z"
-          }
-        }
-      },
       "RateCenterSearchAndOrderResponseOrder": {
         "type": "object",
         "allOf": [
@@ -42312,10 +42250,6 @@
           "acknowledgements": {
             "$ref": "#/components/schemas/RequirementsPackageAcknowledgements"
           },
-          "callback": {
-            "type": "string",
-            "description": "Callback url"
-          },
           "countryCodeA3": {
             "type": "string",
             "description": "Country code in ISO 3166-1 alpha-3 format"
@@ -42328,12 +42262,6 @@
             "maxLength": 100,
             "type": "string",
             "description": "Customer username from BWI/legacy platform.\nIt can be used for your own reference to the item to easily identify one of your customers, requirements package, enduser etc.\n"
-          },
-          "email": {
-            "maxLength": 500,
-            "pattern": "^(?:[a-z0-9!#$%\u0026\u0027*\u002B/=?^_\u0060{|}~-]\u002B(?:\\.[a-z0-9!#$%\u0026\u0027*\u002B/=?^_\u0060{|}~-]\u002B)*|\u0022(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\u0022)@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)\u002B[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])\u002B)\\])$",
-            "type": "string",
-            "format": "email"
           },
           "endUserType": {
             "type": "string",
@@ -46480,7 +46408,7 @@
           }
         }
       },
-      "GlobalCallback": {
+      "Callback": {
         "title": "callback",
         "type": "object",
         "properties": {
@@ -92635,7 +92563,6 @@
       "PatchMigrationRequirementsPackageBodyRequest": {
         "required": [
           "status",
-          "email",
           "customReference"
         ],
         "type": "object",
@@ -92657,10 +92584,6 @@
           "acknowledgements": {
             "$ref": "#/components/schemas/RequirementsPackageAcknowledgements"
           },
-          "callback": {
-            "type": "string",
-            "description": "Callback url"
-          },
           "createdDateTime": {
             "type": "string",
             "description": "The date and time this object was created in ISO 8601 format"
@@ -92669,12 +92592,6 @@
             "maxLength": 100,
             "type": "string",
             "description": "Customer username from BWI/legacy platform.\nIt can be used for your own reference to the item to easily identify one of your customers, requirements package, enduser etc.\n"
-          },
-          "email": {
-            "maxLength": 500,
-            "pattern": "^(?:[a-z0-9!#$%\u0026\u0027*\u002B/=?^_\u0060{|}~-]\u002B(?:\\.[a-z0-9!#$%\u0026\u0027*\u002B/=?^_\u0060{|}~-]\u002B)*|\u0022(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\u0022)@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)\u002B[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])\u002B)\\])$",
-            "type": "string",
-            "format": "email"
           },
           "remarks": {
             "maxLength": 5000,
@@ -92692,7 +92609,6 @@
         },
         "example": {
           "customReference": "vb_runscope",
-          "email": "vbrunscope@gmail.com",
           "status": "VERIFIED"
         }
       },
@@ -92726,16 +92642,6 @@
             "maxLength": 100,
             "type": "string",
             "description": "A custom reference name.\nIt can be used for your own reference to the item to easily identify one of your customers,\nrequirements package, enduser etc.\n"
-          },
-          "email": {
-            "maxLength": 500,
-            "pattern": "^(?:[a-z0-9!#$%\u0026\u0027*\u002B/=?^_\u0060{|}~-]\u002B(?:\\.[a-z0-9!#$%\u0026\u0027*\u002B/=?^_\u0060{|}~-]\u002B)*|\u0022(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\u0022)@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)\u002B[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])\u002B)\\])$",
-            "type": "string",
-            "format": "email"
-          },
-          "callback": {
-            "type": "string",
-            "description": "Callback URL"
           },
           "acknowledgements": {
             "$ref": "#/components/schemas/RequirementsPackageAcknowledgements"
@@ -92789,16 +92695,6 @@
             "type": "string",
             "description": "A custom reference name.\nIt can be used for your own reference to the item to easily identify one of your customers,\nrequirements package, enduser etc.\n"
           },
-          "email": {
-            "maxLength": 500,
-            "pattern": "^(?:[a-z0-9!#$%\u0026\u0027*\u002B/=?^_\u0060{|}~-]\u002B(?:\\.[a-z0-9!#$%\u0026\u0027*\u002B/=?^_\u0060{|}~-]\u002B)*|\u0022(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\u0022)@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)\u002B[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])\u002B)\\])$",
-            "type": "string",
-            "format": "email"
-          },
-          "callback": {
-            "type": "string",
-            "description": "Callback URL"
-          },
           "acknowledgements": {
             "$ref": "#/components/schemas/RequirementsPackageAcknowledgements"
           },
@@ -92821,7 +92717,9 @@
         },
         "example": {
           "customReference": "home_office",
-          "email": "foo@bar.com",
+          "acknowledgements": {
+            "allDetailsAccurate": true
+          },
           "status": "SUBMITTED"
         }
       },
@@ -93401,6 +93299,86 @@
           }
         }
       },
+      "AuthServiceErrorResponseData": {
+        "type": "object"
+      },
+      "AuthServiceErrorSource": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "The field in the request that caused the error",
+            "example": "lastName"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Information about the source of the error"
+      },
+      "AuthServiceErrorMeta": {
+        "type": "object",
+        "properties": {
+          "traceId": {
+            "type": "string",
+            "description": "A unique identifier for the error",
+            "example": 123456789
+          }
+        },
+        "additionalProperties": false,
+        "description": "Additional metadata about the error"
+      },
+      "BillingModelGenericErrorData": {
+        "type": "object",
+        "nullable": true,
+        "example": null
+      },
+      "EmailSubscriptionAllOf2EmailSubscription": {
+        "required": [
+          "emailAddress"
+        ],
+        "type": "object",
+        "properties": {
+          "emailAddress": {
+            "pattern": "^[a-zA-Z0-9._%\u002B-]\u002B@[a-zA-Z0-9.-]\u002B\\.[a-zA-Z]{2,}$",
+            "type": "string",
+            "format": "email"
+          },
+          "digest": {
+            "$ref": "#/components/schemas/DigestEnum"
+          }
+        }
+      },
+      "WebhookSubscriptionRequestAllOf2WebhookSubscription": {
+        "required": [
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "The URL to send the webhook to",
+            "format": "uri"
+          },
+          "authentication": {
+            "$ref": "#/components/schemas/WebhookAuthenticationRequest"
+          }
+        }
+      },
+      "WebhookSubscriptionResponseAllOf2WebhookSubscription": {
+        "required": [
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "The URL to send the webhook to",
+            "format": "uri"
+          },
+          "authentication": {
+            "$ref": "#/components/schemas/WebhookAuthenticationResponse"
+          }
+        }
+      },
       "BrtcErrorResponseData": {
         "type": "object"
       },
@@ -93684,22 +93662,6 @@
           "ResultMessage": {
             "type": "string",
             "description": "Results of the attempt to fetch the list of files."
-          }
-        }
-      },
-      "EmailSubscriptionAllOf2EmailSubscription": {
-        "required": [
-          "emailAddress"
-        ],
-        "type": "object",
-        "properties": {
-          "emailAddress": {
-            "pattern": "^[a-zA-Z0-9._%\u002B-]\u002B@[a-zA-Z0-9.-]\u002B\\.[a-zA-Z]{2,}$",
-            "type": "string",
-            "format": "email"
-          },
-          "digest": {
-            "$ref": "#/components/schemas/DigestEnum"
           }
         }
       },
@@ -94510,38 +94472,6 @@
           "note": {
             "type": "string",
             "example": "message"
-          }
-        }
-      },
-      "WebhookSubscriptionRequestAllOf2WebhookSubscription": {
-        "required": [
-          "url"
-        ],
-        "type": "object",
-        "properties": {
-          "url": {
-            "type": "string",
-            "description": "The URL to send the webhook to",
-            "format": "uri"
-          },
-          "authentication": {
-            "$ref": "#/components/schemas/WebhookAuthenticationRequest"
-          }
-        }
-      },
-      "WebhookSubscriptionResponseAllOf2WebhookSubscription": {
-        "required": [
-          "url"
-        ],
-        "type": "object",
-        "properties": {
-          "url": {
-            "type": "string",
-            "description": "The URL to send the webhook to",
-            "format": "uri"
-          },
-          "authentication": {
-            "$ref": "#/components/schemas/WebhookAuthenticationResponse"
           }
         }
       },
@@ -101629,6 +101559,10 @@
         "type": "object",
         "description": "the main data payload of the response"
       },
+      "StirShakenCertificatesAccountPutRequestDataRegionDataOneOf1RegionFr": {
+        "type": "object",
+        "description": "Contains stir/shaken certificate request data for the FR region"
+      },
       "ActiveCallInfoErrorsItem": {
         "type": "object"
       },
@@ -101637,10 +101571,6 @@
       },
       "ApiErrorsLinksItem": {
         "type": "object"
-      },
-      "StirShakenCertificatesAccountPutRequestDataRegionDataOneOf1RegionFr": {
-        "type": "object",
-        "description": "Contains stir/shaken certificate request data for the FR region"
       },
       "PatchRequirementsPackageBodyRequestAllOf2CountryCodeA3": {
         "type": "object",
@@ -137112,8 +137042,6 @@
             "phoneNumberType": "GEOGRAPHIC",
             "endUserType": "BUSINESS",
             "customReference": "home_office",
-            "email": "foo@bar.com",
-            "callback": "http://somehost.com/new-callback",
             "acknowledgements": {
               "allDetailsAccurate": true
             },

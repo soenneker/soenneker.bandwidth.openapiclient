@@ -22,14 +22,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Callback URL</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Callback { get; set; }
-#nullable restore
-#else
-        public string Callback { get; set; }
-#endif
         /// <summary>Country code in ISO 3166-1 alpha-3 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -61,14 +53,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #nullable restore
 #else
         public global::Soenneker.Bandwidth.OpenApiClient.Models.Deletability Deletability { get; set; }
-#endif
-        /// <summary>The email property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Email { get; set; }
-#nullable restore
-#else
-        public string Email { get; set; }
 #endif
         /// <summary>The type of end user</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum? EndUserType { get; set; }
@@ -126,12 +110,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "acknowledgements", n => { Acknowledgements = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements>(global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements.CreateFromDiscriminatorValue); } },
-                { "callback", n => { Callback = n.GetStringValue(); } },
                 { "countryCodeA3", n => { CountryCodeA3 = n.GetStringValue(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetStringValue(); } },
                 { "customReference", n => { CustomReference = n.GetStringValue(); } },
                 { "deletability", n => { Deletability = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Deletability>(global::Soenneker.Bandwidth.OpenApiClient.Models.Deletability.CreateFromDiscriminatorValue); } },
-                { "email", n => { Email = n.GetStringValue(); } },
                 { "endUserType", n => { EndUserType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum>(); } },
                 { "phoneNumberType", n => { PhoneNumberType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum>(); } },
                 { "remarks", n => { Remarks = n.GetStringValue(); } },
@@ -148,12 +130,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements>("acknowledgements", Acknowledgements);
-            writer.WriteStringValue("callback", Callback);
             writer.WriteStringValue("countryCodeA3", CountryCodeA3);
             writer.WriteStringValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("customReference", CustomReference);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Deletability>("deletability", Deletability);
-            writer.WriteStringValue("email", Email);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum>("endUserType", EndUserType);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum>("phoneNumberType", PhoneNumberType);
             writer.WriteStringValue("remarks", Remarks);

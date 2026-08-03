@@ -799,7 +799,7 @@ paths:
         * Once submitted, all associated assets will be locked and cannot be
         modified.
 
-        Update custom reference, email, or callback.
+        Update custom reference.
       tags:
         - Requirements Packages
       parameters:
@@ -1059,7 +1059,7 @@ paths:
         * Once submitted, all associated assets will be locked and cannot be
         modified.
 
-        Update custom reference, email, or callback.
+        Update custom reference.
       operationId: updateLegacyRequirementsPackage
       parameters:
         - $ref: '#/components/parameters/accountId'
@@ -1678,7 +1678,8 @@ components:
                     example: SUBMITTED
             example:
               customReference: home_office
-              email: foo@bar.com
+              acknowledgements:
+                allDetailsAccurate: true
               status: SUBMITTED
     postRequirementsPackageBody:
       content:
@@ -1716,7 +1717,6 @@ components:
               - $ref: '#/components/schemas/legacyRequirementsPackageData'
             example:
               customReference: vb_runscope
-              email: vbrunscope@gmail.com
               status: VERIFIED
             properties:
               countryCodeA3:
@@ -1734,7 +1734,6 @@ components:
                 type: string
             required:
               - status
-              - email
               - customReference
   responses:
     createAddressResponse:
@@ -3701,14 +3700,6 @@ components:
         customReference:
           type: string
           description: The customReference of the requirements package
-        email:
-          type: string
-          format: email
-          description: The email provided as part of the requirements
-        callbacks:
-          type: string
-          format: uri
-          description: The callback provided as part of the requirements
         dateTime:
           type: string
           format: date-time
@@ -3759,10 +3750,6 @@ components:
           $ref: '#/components/schemas/endUserTypeEnum'
         customReference:
           $ref: '#/components/schemas/customReference'
-        email:
-          $ref: '#/components/schemas/email'
-        callback:
-          $ref: '#/components/schemas/callbackUrl'
         acknowledgements:
           $ref: '#/components/schemas/requirementsPackageAcknowledgements'
         status:
@@ -3831,22 +3818,6 @@ components:
           example: >-
             This requirements package has previously been used to activate phone
             numbers and cannot be deleted.
-    callbackUrl:
-      description: Callback URL
-      type: string
-      example: http://somehost.com/new-callback
-    callback:
-      description: Callback url
-      example: http://somehost.com/new-callback
-      type: string
-    email:
-      type: string
-      format: email
-      minLength: 0
-      maxLength: 500
-      pattern: >-
-        ^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$
-      example: foo@bar.com
     requirementsPackageAcknowledgements:
       description: >-
         Captures the acknowledgments on requirements package submission.
@@ -4078,15 +4049,6 @@ components:
       maxLength: 100
       minLength: 1
       type: string
-    legacyEmail:
-      example: vbrunscope@gmail.com
-      format: email
-      maxLength: 500
-      minLength: 0
-      nullable: false
-      pattern: >-
-        ^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$
-      type: string
     migrationRequirementsPackageStatus:
       description: >-
         Statuses. Values - DRAFT, SUBMITTED, VERIFIED, VERIFICATION_FAILED,
@@ -4098,8 +4060,6 @@ components:
       properties:
         acknowledgements:
           $ref: '#/components/schemas/requirementsPackageAcknowledgements'
-        callback:
-          $ref: '#/components/schemas/callback'
         countryCodeA3:
           $ref: '#/components/schemas/legacyCountryCodeA3String'
         createdDateTime:
@@ -4108,8 +4068,6 @@ components:
           readOnly: true
         customReference:
           $ref: '#/components/schemas/legacyCustomReference'
-        email:
-          $ref: '#/components/schemas/legacyEmail'
         endUserType:
           $ref: '#/components/schemas/endUserType'
         phoneNumberType:
@@ -4328,8 +4286,6 @@ components:
           phoneNumberType: GEOGRAPHIC
           endUserType: BUSINESS
           customReference: home_office
-          email: foo@bar.com
-          callback: http://somehost.com/new-callback
           acknowledgements:
             allDetailsAccurate: true
           status: SUBMITTED

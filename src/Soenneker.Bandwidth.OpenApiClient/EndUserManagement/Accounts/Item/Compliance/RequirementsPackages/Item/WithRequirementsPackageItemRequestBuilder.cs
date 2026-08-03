@@ -124,7 +124,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageGetResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Update Requirements package status to `SUBMITTED` to submit a package.* &apos;acknowledgements&apos; is required for submitting the package with &apos;allDetailsAccurate&apos; set to true.* Once submitted, all associated assets will be locked and cannot be modified.Update custom reference, email, or callback.
+        /// Update Requirements package status to `SUBMITTED` to submit a package.* &apos;acknowledgements&apos; is required for submitting the package with &apos;allDetailsAccurate&apos; set to true.* Once submitted, all associated assets will be locked and cannot be modified.Update custom reference.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateUpdateResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -199,7 +199,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
             return requestInfo;
         }
         /// <summary>
-        /// Update Requirements package status to `SUBMITTED` to submit a package.* &apos;acknowledgements&apos; is required for submitting the package with &apos;allDetailsAccurate&apos; set to true.* Once submitted, all associated assets will be locked and cannot be modified.Update custom reference, email, or callback.
+        /// Update Requirements package status to `SUBMITTED` to submit a package.* &apos;acknowledgements&apos; is required for submitting the package with &apos;allDetailsAccurate&apos; set to true.* Once submitted, all associated assets will be locked and cannot be modified.Update custom reference.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

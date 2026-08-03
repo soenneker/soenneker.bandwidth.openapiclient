@@ -25,14 +25,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Author { get; set; }
 #endif
-        /// <summary>The callback provided as part of the requirements</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Callbacks { get; set; }
-#nullable restore
-#else
-        public string Callbacks { get; set; }
-#endif
         /// <summary>The customReference of the requirements package</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -43,14 +35,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>The date and time of the requirements package event in ISO 8601 format</summary>
         public DateTimeOffset? DateTime { get; set; }
-        /// <summary>The email provided as part of the requirements</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Email { get; set; }
-#nullable restore
-#else
-        public string Email { get; set; }
-#endif
         /// <summary>The remarks, if any, provided by the author along with the requirements package event</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -88,10 +72,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "allDetailsAccurate", n => { AllDetailsAccurate = n.GetBoolValue(); } },
                 { "author", n => { Author = n.GetStringValue(); } },
-                { "callbacks", n => { Callbacks = n.GetStringValue(); } },
                 { "customReference", n => { CustomReference = n.GetStringValue(); } },
                 { "dateTime", n => { DateTime = n.GetDateTimeOffsetValue(); } },
-                { "email", n => { Email = n.GetStringValue(); } },
                 { "remarks", n => { Remarks = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStatusEnum>(); } },
             };
@@ -105,10 +87,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("allDetailsAccurate", AllDetailsAccurate);
             writer.WriteStringValue("author", Author);
-            writer.WriteStringValue("callbacks", Callbacks);
             writer.WriteStringValue("customReference", CustomReference);
             writer.WriteDateTimeOffsetValue("dateTime", DateTime);
-            writer.WriteStringValue("email", Email);
             writer.WriteStringValue("remarks", Remarks);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStatusEnum>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
