@@ -32353,13 +32353,21 @@
           }
         }
       },
-      "QueryCriteriaValuesOneOf3Item": {
+      "VoiceConfigurationPackageSearchResultAllOf2": {
         "type": "object",
-        "oneOf": [
-          {
-            "type": "string"
+        "properties": {
+          "isCompatible": {
+            "type": "boolean",
+            "description": "Whether the voice configuration package is compatible with all phone numbers provided in the search criteria. Returned as null when the search criteria do not evaluate compatibility (searches without phoneNumber criteria). When a name filter is combined with phoneNumber criteria, only compatible packages are returned."
+          },
+          "incompatibilityReasons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IncompatibilityReason"
+            },
+            "description": "The reasons a voice configuration package is incompatible with the phone numbers in the search criteria. Populated when isCompatible is false; returned as null when the package is compatible or compatibility is not evaluated."
           }
-        ]
+        }
       },
       "RequestedCallbackTypes": {
         "enum": [
@@ -32425,6 +32433,27 @@
           ]
         }
       },
+      "QueryCriteriaValuesOneOf3Item": {
+        "type": "object",
+        "oneOf": [
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "ApplicationsResponseStatus": {
+        "type": "object",
+        "properties": {
+          "ErrorCode": {
+            "type": "integer",
+            "description": "Numeric designation of corresponding error"
+          },
+          "Description": {
+            "type": "string",
+            "description": "Detailed explanation about error"
+          }
+        }
+      },
       "UpdateVoiceApplicationResponseData": {
         "type": "object",
         "allOf": [
@@ -32441,34 +32470,12 @@
           }
         }
       },
-      "ApplicationsResponseStatus": {
-        "type": "object",
-        "properties": {
-          "ErrorCode": {
-            "type": "integer",
-            "description": "Numeric designation of corresponding error"
-          },
-          "Description": {
-            "type": "string",
-            "description": "Detailed explanation about error"
-          }
-        }
-      },
       "ProvisioningOrderAddEndpointResponseAllOf2": {
         "type": "object",
         "properties": {
           "orderType": {
             "type": "string",
             "example": "ADD_ENDPOINTS"
-          }
-        }
-      },
-      "ProvisioningOrderUpdateEndpointResponseAllOf2": {
-        "type": "object",
-        "properties": {
-          "orderType": {
-            "type": "string",
-            "example": "UPDATE_ENDPOINTS"
           }
         }
       },
@@ -32630,12 +32637,12 @@
         },
         "description": "Counts of unique keys for a term"
       },
-      "ProvisioningOrderDeleteEndpointResponseAllOf2": {
+      "ProvisioningOrderUpdateEndpointResponseAllOf2": {
         "type": "object",
         "properties": {
           "orderType": {
             "type": "string",
-            "example": "DELETE_ENDPOINTS"
+            "example": "UPDATE_ENDPOINTS"
           }
         }
       },
@@ -33469,23 +33476,14 @@
           }
         }
       },
-      "BrandAcceptedResponseObjectData": {
-        "required": [
-          "bandwidthId"
-        ],
+      "ProvisioningOrderDeleteEndpointResponseAllOf2": {
         "type": "object",
         "properties": {
-          "brandId": {
-            "maxLength": 8,
+          "orderType": {
             "type": "string",
-            "description": "The TCR-generated identifier for the brand. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the brand."
-          },
-          "bandwidthId": {
-            "type": "string",
-            "description": "The Bandwidth-generated identifier for this entity. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the entity."
+            "example": "DELETE_ENDPOINTS"
           }
-        },
-        "readOnly": true
+        }
       },
       "Roles": {
         "type": "array",
@@ -34042,6 +34040,24 @@
           }
         }
       },
+      "BrandAcceptedResponseObjectData": {
+        "required": [
+          "bandwidthId"
+        ],
+        "type": "object",
+        "properties": {
+          "brandId": {
+            "maxLength": 8,
+            "type": "string",
+            "description": "The TCR-generated identifier for the brand. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the brand."
+          },
+          "bandwidthId": {
+            "type": "string",
+            "description": "The Bandwidth-generated identifier for this entity. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the entity."
+          }
+        },
+        "readOnly": true
+      },
       "PaginatedReportDefinitionResponseResponseData": {
         "required": [
           "id",
@@ -34179,17 +34195,6 @@
           }
         }
       },
-      "WebhookSubscriptionRequestAllOf2": {
-        "required": [
-          "webhookSubscription"
-        ],
-        "type": "object",
-        "properties": {
-          "webhookSubscription": {
-            "$ref": "#/components/schemas/WebhookSubscriptionRequestAllOf2WebhookSubscription"
-          }
-        }
-      },
       "EndpointStatusEnum": {
         "enum": [
           "CONNECTED",
@@ -34322,6 +34327,17 @@
         "title": "WebRTC Connection",
         "type": "object"
       },
+      "WebhookSubscriptionRequestAllOf2": {
+        "required": [
+          "webhookSubscription"
+        ],
+        "type": "object",
+        "properties": {
+          "webhookSubscription": {
+            "$ref": "#/components/schemas/WebhookSubscriptionRequestAllOf2WebhookSubscription"
+          }
+        }
+      },
       "WebhookSubscriptionResponseAllOf2": {
         "required": [
           "webhookSubscription"
@@ -34330,17 +34346,6 @@
         "properties": {
           "webhookSubscription": {
             "$ref": "#/components/schemas/WebhookSubscriptionResponseAllOf2WebhookSubscription"
-          }
-        }
-      },
-      "WebhookAuthenticationRequestAllOf1": {
-        "type": "object",
-        "properties": {
-          "hmacAuthentication": {
-            "$ref": "#/components/schemas/HmacAuthenticationRequest"
-          },
-          "basicAuthentication": {
-            "$ref": "#/components/schemas/BasicAuthenticationRequest"
           }
         }
       },
@@ -35574,58 +35579,16 @@
           }
         }
       },
-      "FilterCriteriaValue": {
+      "WebhookAuthenticationRequestAllOf1": {
         "type": "object",
-        "oneOf": [
-          {
-            "type": "number",
-            "description": "Single number value for operators [\u0022GT\u0022, \u0022LT\u0022, \u0022EQ\u0022, \u0022NE\u0022]",
-            "example": 100
+        "properties": {
+          "hmacAuthentication": {
+            "$ref": "#/components/schemas/HmacAuthenticationRequest"
           },
-          {
-            "type": "string",
-            "description": "Single string value for operators [\u0022EQ\u0022, \u0022NE\u0022]",
-            "example": "APPROVED"
-          },
-          {
-            "type": "boolean",
-            "description": "Single boolean value for operators [\u0022EQ\u0022, \u0022NE\u0022]",
-            "example": true
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "number"
-            },
-            "description": "List of number values for operators [\u0022IN\u0022, \u0022NIN\u0022]",
-            "example": [
-              100,
-              200
-            ]
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "List of string values for operators [\u0022IN\u0022, \u0022NIN\u0022]",
-            "example": [
-              "APPROVED",
-              "PENDING"
-            ]
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "boolean"
-            },
-            "description": "List of boolean values for operator \u0022IN\u0022",
-            "example": [
-              true,
-              false
-            ]
+          "basicAuthentication": {
+            "$ref": "#/components/schemas/BasicAuthenticationRequest"
           }
-        ]
+        }
       },
       "FileMetaData": {
         "type": "object",
@@ -38628,22 +38591,58 @@
           ]
         }
       },
-      "UpdateCampaignRequestSchemaAllOf1": {
-        "required": [
-          "customerProfileId"
-        ],
+      "FilterCriteriaValue": {
         "type": "object",
-        "properties": {
-          "addressId": {
-            "type": "string",
-            "description": "Address Id"
+        "oneOf": [
+          {
+            "type": "number",
+            "description": "Single number value for operators [\u0022GT\u0022, \u0022LT\u0022, \u0022EQ\u0022, \u0022NE\u0022]",
+            "example": 100
           },
-          "customerProfileId": {
-            "maxLength": 36,
+          {
             "type": "string",
-            "description": "The unique identifier of the customer profile associated with this short code campaign."
+            "description": "Single string value for operators [\u0022EQ\u0022, \u0022NE\u0022]",
+            "example": "APPROVED"
+          },
+          {
+            "type": "boolean",
+            "description": "Single boolean value for operators [\u0022EQ\u0022, \u0022NE\u0022]",
+            "example": true
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "List of number values for operators [\u0022IN\u0022, \u0022NIN\u0022]",
+            "example": [
+              100,
+              200
+            ]
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of string values for operators [\u0022IN\u0022, \u0022NIN\u0022]",
+            "example": [
+              "APPROVED",
+              "PENDING"
+            ]
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "boolean"
+            },
+            "description": "List of boolean values for operator \u0022IN\u0022",
+            "example": [
+              true,
+              false
+            ]
           }
-        }
+        ]
       },
       "SortEnum": {
         "enum": [
@@ -38763,6 +38762,23 @@
           ]
         }
       },
+      "UpdateCampaignRequestSchemaAllOf1": {
+        "required": [
+          "customerProfileId"
+        ],
+        "type": "object",
+        "properties": {
+          "addressId": {
+            "type": "string",
+            "description": "Address Id"
+          },
+          "customerProfileId": {
+            "maxLength": 36,
+            "type": "string",
+            "description": "The unique identifier of the customer profile associated with this short code campaign."
+          }
+        }
+      },
       "GetCampaignHistorySchemaAllOf1": {
         "required": [
           "campaignId",
@@ -38844,6 +38860,53 @@
             "minimum": 0,
             "type": "integer",
             "description": "The version of the short code campaign. This gets incremented every time the campaign is edited."
+          }
+        }
+      },
+      "CreateAddressRequestData": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ValidateAddressRequestData"
+          }
+        ],
+        "properties": {
+          "geoValidation": {
+            "$ref": "#/components/schemas/GeoValidation"
+          }
+        }
+      },
+      "AddressRequestData": {
+        "type": "object",
+        "properties": {
+          "customReference": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "A custom reference name.\nIt can be used for your own reference to the item to easily identify one of your customers,\nrequirements package, enduser etc.\n"
+          },
+          "countryCodeA3": {
+            "type": "string",
+            "description": "Country code of the address in ISO 3166-1 alpha-3 format."
+          },
+          "addressLine1": {
+            "type": "string",
+            "description": "The first line of the address."
+          },
+          "addressLine2": {
+            "type": "string",
+            "description": "The second line of the address."
+          },
+          "city": {
+            "type": "string",
+            "description": "The city of the address."
+          },
+          "stateAbbreviation": {
+            "type": "string",
+            "description": "The state abbreviation of the address."
+          },
+          "postalCode": {
+            "type": "string",
+            "description": "The postal code of the address."
           }
         }
       },
@@ -38932,53 +38995,6 @@
             "minimum": 0,
             "type": "integer",
             "description": "The version of the short code campaign. This gets incremented every time the campaign is edited."
-          }
-        }
-      },
-      "CreateAddressRequestData": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/ValidateAddressRequestData"
-          }
-        ],
-        "properties": {
-          "geoValidation": {
-            "$ref": "#/components/schemas/GeoValidation"
-          }
-        }
-      },
-      "AddressRequestData": {
-        "type": "object",
-        "properties": {
-          "customReference": {
-            "maxLength": 100,
-            "type": "string",
-            "description": "A custom reference name.\nIt can be used for your own reference to the item to easily identify one of your customers,\nrequirements package, enduser etc.\n"
-          },
-          "countryCodeA3": {
-            "type": "string",
-            "description": "Country code of the address in ISO 3166-1 alpha-3 format."
-          },
-          "addressLine1": {
-            "type": "string",
-            "description": "The first line of the address."
-          },
-          "addressLine2": {
-            "type": "string",
-            "description": "The second line of the address."
-          },
-          "city": {
-            "type": "string",
-            "description": "The city of the address."
-          },
-          "stateAbbreviation": {
-            "type": "string",
-            "description": "The state abbreviation of the address."
-          },
-          "postalCode": {
-            "type": "string",
-            "description": "The postal code of the address."
           }
         }
       },
@@ -39352,54 +39368,6 @@
           }
         }
       },
-      "CreateGroupReseller201ResponseData": {
-        "required": [
-          "groupId",
-          "groupName",
-          "description",
-          "intent",
-          "phoneNumberCount",
-          "createdAt",
-          "customerId"
-        ],
-        "type": "object",
-        "properties": {
-          "groupId": {
-            "type": "number",
-            "description": "The ID of the group.",
-            "example": 26
-          },
-          "groupName": {
-            "type": "string",
-            "description": "The name of the group.",
-            "example": "Group Name"
-          },
-          "description": {
-            "type": "string",
-            "description": "The description of the group.",
-            "example": "Group Description"
-          },
-          "intent": {
-            "$ref": "#/components/schemas/GroupIntentEnum"
-          },
-          "phoneNumberCount": {
-            "type": "integer",
-            "description": "The number of phone numbers associated with the group.",
-            "example": 2
-          },
-          "createdAt": {
-            "type": "string",
-            "description": "The date and time the group was created.",
-            "format": "date-time",
-            "example": "2021-01-01T00:00:00Z"
-          },
-          "customerId": {
-            "type": "integer",
-            "description": "The ID of the customer the group belongs to",
-            "example": 42
-          }
-        }
-      },
       "GeoValidation": {
         "type": "object",
         "properties": {
@@ -39584,6 +39552,54 @@
           }
         }
       },
+      "CreateGroupReseller201ResponseData": {
+        "required": [
+          "groupId",
+          "groupName",
+          "description",
+          "intent",
+          "phoneNumberCount",
+          "createdAt",
+          "customerId"
+        ],
+        "type": "object",
+        "properties": {
+          "groupId": {
+            "type": "number",
+            "description": "The ID of the group.",
+            "example": 26
+          },
+          "groupName": {
+            "type": "string",
+            "description": "The name of the group.",
+            "example": "Group Name"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the group.",
+            "example": "Group Description"
+          },
+          "intent": {
+            "$ref": "#/components/schemas/GroupIntentEnum"
+          },
+          "phoneNumberCount": {
+            "type": "integer",
+            "description": "The number of phone numbers associated with the group.",
+            "example": 2
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "The date and time the group was created.",
+            "format": "date-time",
+            "example": "2021-01-01T00:00:00Z"
+          },
+          "customerId": {
+            "type": "integer",
+            "description": "The ID of the customer the group belongs to",
+            "example": 42
+          }
+        }
+      },
       "CreateGroupRequestResellerAllOf2": {
         "required": [
           "customerId"
@@ -39719,74 +39735,6 @@
             "$ref": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrder"
           }
         ]
-      },
-      "RetrieveNewPhoneNumberOrder200ResponseSchemaJsonOrderType": {
-        "required": [
-          "type"
-        ],
-        "type": "object",
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/ExistingPhoneNumberOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/RateCenterSearchAndOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/AreaCodeSearchAndOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/NpaNxxSearchAndOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/TollFreeWildCharSearchAndOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/TollFreeVanitySearchAndOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/LataSearchAndOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/ZipSearchAndOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/CitySearchAndOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/StateSearchAndOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/CombinedSearchAndOrderType"
-          },
-          {
-            "$ref": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrderType"
-          }
-        ],
-        "properties": {
-          "type": {
-            "title": "type",
-            "type": "string",
-            "description": "Union discriminator"
-          }
-        },
-        "discriminator": {
-          "propertyName": "type",
-          "mapping": {
-            "ExistingPhoneNumberOrderType": "#/components/schemas/ExistingPhoneNumberOrderType",
-            "RateCenterSearchAndOrderType": "#/components/schemas/RateCenterSearchAndOrderType",
-            "AreaCodeSearchAndOrderType": "#/components/schemas/AreaCodeSearchAndOrderType",
-            "NpaNxxSearchAndOrderType": "#/components/schemas/NpaNxxSearchAndOrderType",
-            "TollFreeWildCharSearchAndOrderType": "#/components/schemas/TollFreeWildCharSearchAndOrderType",
-            "TollFreeVanitySearchAndOrderType": "#/components/schemas/TollFreeVanitySearchAndOrderType",
-            "LataSearchAndOrderType": "#/components/schemas/LataSearchAndOrderType",
-            "ZipSearchAndOrderType": "#/components/schemas/ZipSearchAndOrderType",
-            "CitySearchAndOrderType": "#/components/schemas/CitySearchAndOrderType",
-            "StateSearchAndOrderType": "#/components/schemas/StateSearchAndOrderType",
-            "CombinedSearchAndOrderType": "#/components/schemas/CombinedSearchAndOrderType",
-            "CountryAndPhoneNumberTypeSearchAndOrderType": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrderType"
-          }
-        }
       },
       "EndUserManagementErrorSource": {
         "type": "object",
@@ -40893,6 +40841,74 @@
           }
         }
       },
+      "RetrieveNewPhoneNumberOrder200ResponseSchemaJsonOrderType": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ExistingPhoneNumberOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/RateCenterSearchAndOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/AreaCodeSearchAndOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/NpaNxxSearchAndOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/TollFreeWildCharSearchAndOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/TollFreeVanitySearchAndOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/LataSearchAndOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/ZipSearchAndOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/CitySearchAndOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/StateSearchAndOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/CombinedSearchAndOrderType"
+          },
+          {
+            "$ref": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrderType"
+          }
+        ],
+        "properties": {
+          "type": {
+            "title": "type",
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "ExistingPhoneNumberOrderType": "#/components/schemas/ExistingPhoneNumberOrderType",
+            "RateCenterSearchAndOrderType": "#/components/schemas/RateCenterSearchAndOrderType",
+            "AreaCodeSearchAndOrderType": "#/components/schemas/AreaCodeSearchAndOrderType",
+            "NpaNxxSearchAndOrderType": "#/components/schemas/NpaNxxSearchAndOrderType",
+            "TollFreeWildCharSearchAndOrderType": "#/components/schemas/TollFreeWildCharSearchAndOrderType",
+            "TollFreeVanitySearchAndOrderType": "#/components/schemas/TollFreeVanitySearchAndOrderType",
+            "LataSearchAndOrderType": "#/components/schemas/LataSearchAndOrderType",
+            "ZipSearchAndOrderType": "#/components/schemas/ZipSearchAndOrderType",
+            "CitySearchAndOrderType": "#/components/schemas/CitySearchAndOrderType",
+            "StateSearchAndOrderType": "#/components/schemas/StateSearchAndOrderType",
+            "CombinedSearchAndOrderType": "#/components/schemas/CombinedSearchAndOrderType",
+            "CountryAndPhoneNumberTypeSearchAndOrderType": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrderType"
+          }
+        }
+      },
       "CountryAndPhoneNumberTypeSearchAndOrderResponseOrder": {
         "type": "object",
         "allOf": [
@@ -40903,22 +40919,6 @@
         "properties": {
           "CountryAndPhoneNumberTypeSearchAndOrderType": {
             "$ref": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrderTypeXml"
-          }
-        },
-        "xml": {
-          "name": "Order"
-        }
-      },
-      "CombinedSearchAndOrderResponseOrder": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/OrderResponseMetadata"
-          }
-        ],
-        "properties": {
-          "CombinedSearchAndOrderType": {
-            "$ref": "#/components/schemas/CombinedSearchAndOrderTypeXml"
           }
         },
         "xml": {
@@ -40964,6 +40964,22 @@
           ]
         }
       },
+      "CombinedSearchAndOrderResponseOrder": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/OrderResponseMetadata"
+          }
+        ],
+        "properties": {
+          "CombinedSearchAndOrderType": {
+            "$ref": "#/components/schemas/CombinedSearchAndOrderTypeXml"
+          }
+        },
+        "xml": {
+          "name": "Order"
+        }
+      },
       "StateSearchAndOrderResponseOrder": {
         "type": "object",
         "allOf": [
@@ -41006,22 +41022,6 @@
         "properties": {
           "ZIPSearchAndOrderType": {
             "$ref": "#/components/schemas/ZipSearchAndOrderTypeXml"
-          }
-        },
-        "xml": {
-          "name": "Order"
-        }
-      },
-      "LataSearchAndOrderResponseOrder": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/OrderResponseMetadata"
-          }
-        ],
-        "properties": {
-          "LATASearchAndOrderType": {
-            "$ref": "#/components/schemas/LataSearchAndOrderTypeXml"
           }
         },
         "xml": {
@@ -41134,7 +41134,7 @@
           }
         }
       },
-      "TollFreeVanitySearchAndOrderResponseOrder": {
+      "LataSearchAndOrderResponseOrder": {
         "type": "object",
         "allOf": [
           {
@@ -41142,8 +41142,8 @@
           }
         ],
         "properties": {
-          "TollFreeVanitySearchAndOrderType": {
-            "$ref": "#/components/schemas/TollFreeVanitySearchAndOrderTypeXml"
+          "LATASearchAndOrderType": {
+            "$ref": "#/components/schemas/LataSearchAndOrderTypeXml"
           }
         },
         "xml": {
@@ -41184,7 +41184,7 @@
           ]
         }
       },
-      "TollFreeWildCharSearchAndOrderResponseOrder": {
+      "TollFreeVanitySearchAndOrderResponseOrder": {
         "type": "object",
         "allOf": [
           {
@@ -41192,8 +41192,8 @@
           }
         ],
         "properties": {
-          "TollFreeWildCharSearchAndOrderType": {
-            "$ref": "#/components/schemas/TollFreeWildCharSearchAndOrderTypeXml"
+          "TollFreeVanitySearchAndOrderType": {
+            "$ref": "#/components/schemas/TollFreeVanitySearchAndOrderTypeXml"
           }
         },
         "xml": {
@@ -41861,7 +41861,7 @@
         },
         "description": "Details of result of a number activation"
       },
-      "NpaNxxSearchAndOrderResponseOrder": {
+      "TollFreeWildCharSearchAndOrderResponseOrder": {
         "type": "object",
         "allOf": [
           {
@@ -41869,8 +41869,8 @@
           }
         ],
         "properties": {
-          "NPANXXSearchAndOrderType": {
-            "$ref": "#/components/schemas/NpaNxxSearchAndOrderTypeXml"
+          "TollFreeWildCharSearchAndOrderType": {
+            "$ref": "#/components/schemas/TollFreeWildCharSearchAndOrderTypeXml"
           }
         },
         "xml": {
@@ -42038,6 +42038,22 @@
         },
         "description": "Details of requirements for number activation"
       },
+      "NpaNxxSearchAndOrderResponseOrder": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/OrderResponseMetadata"
+          }
+        ],
+        "properties": {
+          "NPANXXSearchAndOrderType": {
+            "$ref": "#/components/schemas/NpaNxxSearchAndOrderTypeXml"
+          }
+        },
+        "xml": {
+          "name": "Order"
+        }
+      },
       "AreaCodeSearchAndOrderResponseOrder": {
         "type": "object",
         "allOf": [
@@ -42052,22 +42068,6 @@
         },
         "xml": {
           "name": "Order"
-        }
-      },
-      "OrderResponseMetadataAllOf2": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "example": "c1b34921-ed73-4732-8a08-168e815514ec"
-          },
-          "orderCreateDate": {
-            "type": "string",
-            "xml": {
-              "name": "OrderCreateDate"
-            },
-            "example": "2022-11-14T18:39:04.505Z"
-          }
         }
       },
       "ComplianceRequirementsPackageBulkBadRequest": {
@@ -42167,6 +42167,22 @@
           "$ref": "#/components/schemas/EndUserManagementLink"
         }
       },
+      "OrderResponseMetadataAllOf2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "c1b34921-ed73-4732-8a08-168e815514ec"
+          },
+          "orderCreateDate": {
+            "type": "string",
+            "xml": {
+              "name": "OrderCreateDate"
+            },
+            "example": "2022-11-14T18:39:04.505Z"
+          }
+        }
+      },
       "RateCenterSearchAndOrderResponseOrder": {
         "type": "object",
         "allOf": [
@@ -42197,50 +42213,6 @@
         },
         "xml": {
           "name": "Order"
-        }
-      },
-      "TnOrderBadResponseOrderResponse": {
-        "type": "object",
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/ExistingTelephoneNumberOrder"
-          },
-          {
-            "$ref": "#/components/schemas/RateCenterSearchAndOrderNanp"
-          },
-          {
-            "$ref": "#/components/schemas/AreaCodeSearchAndOrderNanp"
-          },
-          {
-            "$ref": "#/components/schemas/NpaNxxSearchAndOrderNanp"
-          },
-          {
-            "$ref": "#/components/schemas/TollFreeWildCharSearchAndOrderNanp"
-          },
-          {
-            "$ref": "#/components/schemas/TollFreeVanitySearchAndOrderNanp"
-          },
-          {
-            "$ref": "#/components/schemas/LataSearchAndOrderNanp"
-          },
-          {
-            "$ref": "#/components/schemas/ZipSearchAndOrderNanp"
-          },
-          {
-            "$ref": "#/components/schemas/CitySearchAndOrderNanp"
-          },
-          {
-            "$ref": "#/components/schemas/StateSearchAndOrderNanp"
-          },
-          {
-            "$ref": "#/components/schemas/CombinedSearchAndOrderNanp"
-          },
-          {
-            "$ref": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrder"
-          }
-        ],
-        "xml": {
-          "name": "OrderResponse"
         }
       },
       "LegacyRequirementsPackageData": {
@@ -43813,72 +43785,46 @@
           ]
         }
       },
-      "TnOrderCreatedResponseOrderResponse": {
-        "required": [
-          "type"
-        ],
+      "TnOrderBadResponseOrderResponse": {
         "type": "object",
         "oneOf": [
           {
-            "$ref": "#/components/schemas/ExistingTelephoneNumberOrderResponse"
+            "$ref": "#/components/schemas/ExistingTelephoneNumberOrder"
           },
           {
-            "$ref": "#/components/schemas/RateCenterSearchAndOrderResponse"
+            "$ref": "#/components/schemas/RateCenterSearchAndOrderNanp"
           },
           {
-            "$ref": "#/components/schemas/AreaCodeSearchAndOrderResponse"
+            "$ref": "#/components/schemas/AreaCodeSearchAndOrderNanp"
           },
           {
-            "$ref": "#/components/schemas/NpaNxxSearchAndOrderResponse"
+            "$ref": "#/components/schemas/NpaNxxSearchAndOrderNanp"
           },
           {
-            "$ref": "#/components/schemas/TollFreeWildCharSearchAndOrderResponse"
+            "$ref": "#/components/schemas/TollFreeWildCharSearchAndOrderNanp"
           },
           {
-            "$ref": "#/components/schemas/TollFreeVanitySearchAndOrderResponse"
+            "$ref": "#/components/schemas/TollFreeVanitySearchAndOrderNanp"
           },
           {
-            "$ref": "#/components/schemas/LataSearchAndOrderResponse"
+            "$ref": "#/components/schemas/LataSearchAndOrderNanp"
           },
           {
-            "$ref": "#/components/schemas/ZipSearchAndOrderResponse"
+            "$ref": "#/components/schemas/ZipSearchAndOrderNanp"
           },
           {
-            "$ref": "#/components/schemas/CitySearchAndOrderResponse"
+            "$ref": "#/components/schemas/CitySearchAndOrderNanp"
           },
           {
-            "$ref": "#/components/schemas/StateSearchAndOrderResponse"
+            "$ref": "#/components/schemas/StateSearchAndOrderNanp"
           },
           {
-            "$ref": "#/components/schemas/CombinedSearchAndOrderResponse"
+            "$ref": "#/components/schemas/CombinedSearchAndOrderNanp"
           },
           {
-            "$ref": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrderResponse"
+            "$ref": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrder"
           }
         ],
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "Union discriminator"
-          }
-        },
-        "discriminator": {
-          "propertyName": "type",
-          "mapping": {
-            "ExistingTelephoneNumberOrderResponse": "#/components/schemas/ExistingTelephoneNumberOrderResponse",
-            "RateCenterSearchAndOrderResponse": "#/components/schemas/RateCenterSearchAndOrderResponse",
-            "AreaCodeSearchAndOrderResponse": "#/components/schemas/AreaCodeSearchAndOrderResponse",
-            "NpaNxxSearchAndOrderResponse": "#/components/schemas/NpaNxxSearchAndOrderResponse",
-            "TollFreeWildCharSearchAndOrderResponse": "#/components/schemas/TollFreeWildCharSearchAndOrderResponse",
-            "TollFreeVanitySearchAndOrderResponse": "#/components/schemas/TollFreeVanitySearchAndOrderResponse",
-            "LataSearchAndOrderResponse": "#/components/schemas/LataSearchAndOrderResponse",
-            "ZipSearchAndOrderResponse": "#/components/schemas/ZipSearchAndOrderResponse",
-            "CitySearchAndOrderResponse": "#/components/schemas/CitySearchAndOrderResponse",
-            "StateSearchAndOrderResponse": "#/components/schemas/StateSearchAndOrderResponse",
-            "CombinedSearchAndOrderResponse": "#/components/schemas/CombinedSearchAndOrderResponse",
-            "CountryAndPhoneNumberTypeSearchAndOrderResponse": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrderResponse"
-          }
-        },
         "xml": {
           "name": "OrderResponse"
         }
@@ -48279,15 +48225,74 @@
           }
         }
       },
-      "CreateNewPhoneNumberOrder400ResponseSchemaJsonAllOf2": {
+      "TnOrderCreatedResponseOrderResponse": {
+        "required": [
+          "type"
+        ],
         "type": "object",
-        "properties": {
-          "errors": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IrisStatusJson"
-            }
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ExistingTelephoneNumberOrderResponse"
+          },
+          {
+            "$ref": "#/components/schemas/RateCenterSearchAndOrderResponse"
+          },
+          {
+            "$ref": "#/components/schemas/AreaCodeSearchAndOrderResponse"
+          },
+          {
+            "$ref": "#/components/schemas/NpaNxxSearchAndOrderResponse"
+          },
+          {
+            "$ref": "#/components/schemas/TollFreeWildCharSearchAndOrderResponse"
+          },
+          {
+            "$ref": "#/components/schemas/TollFreeVanitySearchAndOrderResponse"
+          },
+          {
+            "$ref": "#/components/schemas/LataSearchAndOrderResponse"
+          },
+          {
+            "$ref": "#/components/schemas/ZipSearchAndOrderResponse"
+          },
+          {
+            "$ref": "#/components/schemas/CitySearchAndOrderResponse"
+          },
+          {
+            "$ref": "#/components/schemas/StateSearchAndOrderResponse"
+          },
+          {
+            "$ref": "#/components/schemas/CombinedSearchAndOrderResponse"
+          },
+          {
+            "$ref": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrderResponse"
           }
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "ExistingTelephoneNumberOrderResponse": "#/components/schemas/ExistingTelephoneNumberOrderResponse",
+            "RateCenterSearchAndOrderResponse": "#/components/schemas/RateCenterSearchAndOrderResponse",
+            "AreaCodeSearchAndOrderResponse": "#/components/schemas/AreaCodeSearchAndOrderResponse",
+            "NpaNxxSearchAndOrderResponse": "#/components/schemas/NpaNxxSearchAndOrderResponse",
+            "TollFreeWildCharSearchAndOrderResponse": "#/components/schemas/TollFreeWildCharSearchAndOrderResponse",
+            "TollFreeVanitySearchAndOrderResponse": "#/components/schemas/TollFreeVanitySearchAndOrderResponse",
+            "LataSearchAndOrderResponse": "#/components/schemas/LataSearchAndOrderResponse",
+            "ZipSearchAndOrderResponse": "#/components/schemas/ZipSearchAndOrderResponse",
+            "CitySearchAndOrderResponse": "#/components/schemas/CitySearchAndOrderResponse",
+            "StateSearchAndOrderResponse": "#/components/schemas/StateSearchAndOrderResponse",
+            "CombinedSearchAndOrderResponse": "#/components/schemas/CombinedSearchAndOrderResponse",
+            "CountryAndPhoneNumberTypeSearchAndOrderResponse": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrderResponse"
+          }
+        },
+        "xml": {
+          "name": "OrderResponse"
         }
       },
       "HostedNumberManagementResponseStatus": {
@@ -51462,6 +51467,17 @@
           ]
         }
       },
+      "CreateNewPhoneNumberOrder400ResponseSchemaJsonAllOf2": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IrisStatusJson"
+            }
+          }
+        }
+      },
       "CreateNewPhoneNumberOrder201ResponseSchemaJsonOrder": {
         "required": [
           "orderType",
@@ -51555,14 +51571,6 @@
           },
           "orderStatus": {
             "$ref": "#/components/schemas/VisibleOrderStatusJson"
-          }
-        }
-      },
-      "CountryAndPhoneNumberTypeSearchAndOrderAllOf2": {
-        "type": "object",
-        "properties": {
-          "CountryAndPhoneNumberTypeSearchAndOrderType": {
-            "$ref": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrderTypeXml"
           }
         }
       },
@@ -53878,6 +53886,14 @@
         },
         "description": "The URI link details to self or a related resource with the relation"
       },
+      "CountryAndPhoneNumberTypeSearchAndOrderAllOf2": {
+        "type": "object",
+        "properties": {
+          "CountryAndPhoneNumberTypeSearchAndOrderType": {
+            "$ref": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrderTypeXml"
+          }
+        }
+      },
       "NewPhoneNumberOrderResponseOrderType": {
         "required": [
           "type"
@@ -53937,14 +53953,6 @@
             "ExistingPhoneNumberOrderType": "#/components/schemas/ExistingPhoneNumberOrderType",
             "CombinedSearchAndOrderType": "#/components/schemas/CombinedSearchAndOrderType",
             "CountryAndPhoneNumberTypeSearchAndOrderType": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrderType"
-          }
-        }
-      },
-      "CombinedSearchAndOrderNanpAllOf2": {
-        "type": "object",
-        "properties": {
-          "CombinedSearchAndOrderType": {
-            "$ref": "#/components/schemas/CombinedSearchAndOrderTypeXml"
           }
         }
       },
@@ -56306,11 +56314,11 @@
           "errors": []
         }
       },
-      "StateSearchAndOrderNanpAllOf2": {
+      "CombinedSearchAndOrderNanpAllOf2": {
         "type": "object",
         "properties": {
-          "StateSearchAndOrderType": {
-            "$ref": "#/components/schemas/StateSearchAndOrderTypeXml"
+          "CombinedSearchAndOrderType": {
+            "$ref": "#/components/schemas/CombinedSearchAndOrderTypeXml"
           }
         }
       },
@@ -57065,6 +57073,14 @@
           }
         }
       },
+      "StateSearchAndOrderNanpAllOf2": {
+        "type": "object",
+        "properties": {
+          "StateSearchAndOrderType": {
+            "$ref": "#/components/schemas/StateSearchAndOrderTypeXml"
+          }
+        }
+      },
       "CitySearchAndOrderNanpAllOf2": {
         "type": "object",
         "properties": {
@@ -57094,14 +57110,6 @@
         "properties": {
           "TollFreeVanitySearchAndOrderType": {
             "$ref": "#/components/schemas/TollFreeVanitySearchAndOrderTypeXml"
-          }
-        }
-      },
-      "TollFreeWildCharSearchAndOrderNanpAllOf2": {
-        "type": "object",
-        "properties": {
-          "TollFreeWildCharSearchAndOrderType": {
-            "$ref": "#/components/schemas/TollFreeWildCharSearchAndOrderTypeXml"
           }
         }
       },
@@ -57541,11 +57549,11 @@
           }
         }
       },
-      "NpaNxxSearchAndOrderNanpAllOf2": {
+      "TollFreeWildCharSearchAndOrderNanpAllOf2": {
         "type": "object",
         "properties": {
-          "NPANXXSearchAndOrderType": {
-            "$ref": "#/components/schemas/NpaNxxSearchAndOrderTypeXml"
+          "TollFreeWildCharSearchAndOrderType": {
+            "$ref": "#/components/schemas/TollFreeWildCharSearchAndOrderTypeXml"
           }
         }
       },
@@ -57563,6 +57571,14 @@
           "mediaName": {
             "type": "string",
             "example": "image.png"
+          }
+        }
+      },
+      "NpaNxxSearchAndOrderNanpAllOf2": {
+        "type": "object",
+        "properties": {
+          "NPANXXSearchAndOrderType": {
+            "$ref": "#/components/schemas/NpaNxxSearchAndOrderTypeXml"
           }
         }
       },
@@ -57587,30 +57603,6 @@
         "properties": {
           "ExistingTelephoneNumberOrderType": {
             "$ref": "#/components/schemas/ExistingTelephoneNumberOrderTypeXml"
-          }
-        }
-      },
-      "NumberAcquisitionLinksItem": {
-        "required": [
-          "type"
-        ],
-        "type": "object",
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/NumberAcquisitionSelfLink"
-          }
-        ],
-        "properties": {
-          "type": {
-            "title": "type",
-            "type": "string",
-            "description": "Union discriminator"
-          }
-        },
-        "discriminator": {
-          "propertyName": "type",
-          "mapping": {
-            "NumberAcquisitionSelfLink": "#/components/schemas/NumberAcquisitionSelfLink"
           }
         }
       },
@@ -57739,17 +57731,27 @@
           }
         }
       },
-      "InboundCallbackMessageAllOf2": {
+      "NumberAcquisitionLinksItem": {
+        "required": [
+          "type"
+        ],
         "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/NumberAcquisitionSelfLink"
+          }
+        ],
         "properties": {
-          "content": {
-            "$ref": "#/components/schemas/MultiChannelMessageContent"
-          },
-          "suggestionResponse": {
-            "$ref": "#/components/schemas/RbmSuggestionResponse"
-          },
-          "locationResponse": {
-            "$ref": "#/components/schemas/RbmLocationResponse"
+          "type": {
+            "title": "type",
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "NumberAcquisitionSelfLink": "#/components/schemas/NumberAcquisitionSelfLink"
           }
         }
       },
@@ -57889,19 +57891,25 @@
           ]
         }
       },
+      "InboundCallbackMessageAllOf2": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "$ref": "#/components/schemas/MultiChannelMessageContent"
+          },
+          "suggestionResponse": {
+            "$ref": "#/components/schemas/RbmSuggestionResponse"
+          },
+          "locationResponse": {
+            "$ref": "#/components/schemas/RbmLocationResponse"
+          }
+        }
+      },
       "MultiChannelChannelListMmsObjectAllOf2": {
         "type": "object",
         "properties": {
           "content": {
             "$ref": "#/components/schemas/MmsMessageContent"
-          }
-        }
-      },
-      "MultiChannelChannelListSmsObjectAllOf2": {
-        "type": "object",
-        "properties": {
-          "content": {
-            "$ref": "#/components/schemas/SmsMessageContent"
           }
         }
       },
@@ -58336,33 +58344,19 @@
           ]
         }
       },
+      "MultiChannelChannelListSmsObjectAllOf2": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "$ref": "#/components/schemas/SmsMessageContent"
+          }
+        }
+      },
       "MultiChannelChannelListRbmObjectAllOf2": {
         "type": "object",
         "properties": {
           "content": {
             "$ref": "#/components/schemas/MultiChannelChannelListRbmObjectAllOf2Content"
-          }
-        }
-      },
-      "RbmActionOpenUrlOpenUrl": {
-        "title": "Open URL",
-        "required": [
-          "url"
-        ],
-        "type": "object",
-        "properties": {
-          "url": {
-            "maxLength": 2048,
-            "type": "string",
-            "description": "The URL to open in browser. Must use http:// or https:// scheme.",
-            "format": "uri",
-            "example": "https://dev.bandwidth.com"
-          },
-          "application": {
-            "$ref": "#/components/schemas/RbmOpenUrlEnum"
-          },
-          "webviewViewMode": {
-            "$ref": "#/components/schemas/RbmWebViewEnum"
           }
         }
       },
@@ -59726,38 +59720,25 @@
           }
         }
       },
-      "MultiChannelActionCalendarEventCalendarEvent": {
-        "title": "Calendar Event",
+      "RbmActionOpenUrlOpenUrl": {
+        "title": "Open URL",
         "required": [
-          "title",
-          "startTime",
-          "endTime"
+          "url"
         ],
         "type": "object",
         "properties": {
-          "title": {
-            "maxLength": 100,
+          "url": {
+            "maxLength": 2048,
             "type": "string",
-            "description": "The title of the event.",
-            "example": "Meeting with John"
+            "description": "The URL to open in browser. Must use http:// or https:// scheme.",
+            "format": "uri",
+            "example": "https://dev.bandwidth.com"
           },
-          "startTime": {
-            "type": "string",
-            "description": "The start time of the event. Must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00.",
-            "format": "date-time",
-            "example": "2022-09-14T18:20:16.000Z"
+          "application": {
+            "$ref": "#/components/schemas/RbmOpenUrlEnum"
           },
-          "endTime": {
-            "type": "string",
-            "description": "The end time of the event. Must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00.",
-            "format": "date-time",
-            "example": "2022-09-14T18:20:16.000Z"
-          },
-          "description": {
-            "maxLength": 500,
-            "type": "string",
-            "description": "The description of the event.",
-            "example": "Discuss the new project"
+          "webviewViewMode": {
+            "$ref": "#/components/schemas/RbmWebViewEnum"
           }
         }
       },
@@ -59911,31 +59892,38 @@
           }
         }
       },
-      "RbmActionViewLocationShowLocation": {
-        "title": "Show Location",
+      "MultiChannelActionCalendarEventCalendarEvent": {
+        "title": "Calendar Event",
         "required": [
-          "latitude",
-          "longitude"
+          "title",
+          "startTime",
+          "endTime"
         ],
         "type": "object",
         "properties": {
-          "latitude": {
-            "type": "string",
-            "description": "The latitude of the location. Must be in range [-90.000000, 90.000000].",
-            "format": "double",
-            "example": 37.7749
-          },
-          "longitude": {
-            "type": "string",
-            "description": "The longitude of the location. Must be in range [-180.000000, 180.000000].",
-            "format": "double",
-            "example": -122.4194
-          },
-          "label": {
+          "title": {
             "maxLength": 100,
             "type": "string",
-            "description": "The label of the location.",
-            "example": "San Francisco"
+            "description": "The title of the event.",
+            "example": "Meeting with John"
+          },
+          "startTime": {
+            "type": "string",
+            "description": "The start time of the event. Must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00.",
+            "format": "date-time",
+            "example": "2022-09-14T18:20:16.000Z"
+          },
+          "endTime": {
+            "type": "string",
+            "description": "The end time of the event. Must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00.",
+            "format": "date-time",
+            "example": "2022-09-14T18:20:16.000Z"
+          },
+          "description": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "The description of the event.",
+            "example": "Discuss the new project"
           }
         }
       },
@@ -59991,17 +59979,31 @@
           }
         }
       },
-      "RbmActionDialDialPhone": {
-        "title": "Dial Phone",
+      "RbmActionViewLocationShowLocation": {
+        "title": "Show Location",
         "required": [
-          "phoneNumber"
+          "latitude",
+          "longitude"
         ],
         "type": "object",
         "properties": {
-          "phoneNumber": {
+          "latitude": {
             "type": "string",
-            "description": "The phone number to dial. Must be E164 format.",
-            "example": 15552223333
+            "description": "The latitude of the location. Must be in range [-90.000000, 90.000000].",
+            "format": "double",
+            "example": 37.7749
+          },
+          "longitude": {
+            "type": "string",
+            "description": "The longitude of the location. Must be in range [-180.000000, 180.000000].",
+            "format": "double",
+            "example": -122.4194
+          },
+          "label": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "The label of the location.",
+            "example": "San Francisco"
           }
         }
       },
@@ -60912,29 +60914,17 @@
           }
         }
       },
-      "RbmCardContentMedia": {
+      "RbmActionDialDialPhone": {
+        "title": "Dial Phone",
         "required": [
-          "height",
-          "fileUrl"
+          "phoneNumber"
         ],
         "type": "object",
         "properties": {
-          "fileUrl": {
-            "maxLength": 1000,
+          "phoneNumber": {
             "type": "string",
-            "description": "The URL of the media file. 100MB is the maximum file size.",
-            "format": "uri",
-            "example": "https://dev.bandwidth.com/images/bandwidth-logo.png"
-          },
-          "thumbnailUrl": {
-            "maxLength": 1000,
-            "type": "string",
-            "description": "The URL of the thumbnail image. Applies only to video file media.",
-            "format": "uri",
-            "example": "https://dev.bandwidth.com/images/bandwidth-logo.png"
-          },
-          "height": {
-            "$ref": "#/components/schemas/RbmMediaHeightEnum"
+            "description": "The phone number to dial. Must be E164 format.",
+            "example": 15552223333
           }
         }
       },
@@ -61128,35 +61118,29 @@
           ]
         }
       },
-      "OrpRouteEndpointsItem": {
+      "RbmCardContentMedia": {
         "required": [
-          "type"
+          "height",
+          "fileUrl"
         ],
         "type": "object",
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/SipEndpoint"
-          },
-          {
-            "$ref": "#/components/schemas/Ipv4Endpoint"
-          },
-          {
-            "$ref": "#/components/schemas/FqdnEndpoint"
-          }
-        ],
         "properties": {
-          "type": {
-            "title": "type",
+          "fileUrl": {
+            "maxLength": 1000,
             "type": "string",
-            "description": "Union discriminator"
-          }
-        },
-        "discriminator": {
-          "propertyName": "type",
-          "mapping": {
-            "SipEndpoint": "#/components/schemas/SipEndpoint",
-            "Ipv4Endpoint": "#/components/schemas/Ipv4Endpoint",
-            "FqdnEndpoint": "#/components/schemas/FqdnEndpoint"
+            "description": "The URL of the media file. 100MB is the maximum file size.",
+            "format": "uri",
+            "example": "https://dev.bandwidth.com/images/bandwidth-logo.png"
+          },
+          "thumbnailUrl": {
+            "maxLength": 1000,
+            "type": "string",
+            "description": "The URL of the thumbnail image. Applies only to video file media.",
+            "format": "uri",
+            "example": "https://dev.bandwidth.com/images/bandwidth-logo.png"
+          },
+          "height": {
+            "$ref": "#/components/schemas/RbmMediaHeightEnum"
           }
         }
       },
@@ -62497,6 +62481,47 @@
           "name": "Order"
         }
       },
+      "OrpRouteEndpointsItem": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/SipEndpoint"
+          },
+          {
+            "$ref": "#/components/schemas/Ipv4Endpoint"
+          },
+          {
+            "$ref": "#/components/schemas/FqdnEndpoint"
+          }
+        ],
+        "properties": {
+          "type": {
+            "title": "type",
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "SipEndpoint": "#/components/schemas/SipEndpoint",
+            "Ipv4Endpoint": "#/components/schemas/Ipv4Endpoint",
+            "FqdnEndpoint": "#/components/schemas/FqdnEndpoint"
+          }
+        }
+      },
+      "NumberAcquisitionTnAttribute": {
+        "type": "object",
+        "properties": {
+          "TnAttribute": {
+            "type": "string"
+          }
+        },
+        "description": "The TnAttributes field specifies line attributes that will apply to the ported in phone numbers. If present, TnAttributes may have a value of PROTECTED. This element is not applicable for off-net and toll free port-types."
+      },
       "LineFeaturesLinksItem": {
         "required": [
           "type"
@@ -62520,26 +62545,6 @@
             "LineFeaturesSelfLink": "#/components/schemas/LineFeaturesSelfLink"
           }
         }
-      },
-      "NumberAcquisitionTnAttribute": {
-        "type": "object",
-        "properties": {
-          "TnAttribute": {
-            "type": "string"
-          }
-        },
-        "description": "The TnAttributes field specifies line attributes that will apply to the ported in phone numbers. If present, TnAttributes may have a value of PROTECTED. This element is not applicable for off-net and toll free port-types."
-      },
-      "TnOptionGroupVcpDisabledXmlEspid": {
-        "type": "object",
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/TnOptionGroupVcpDisabledXmlEspidBranch1"
-          },
-          {
-            "$ref": "#/components/schemas/TnOptionGroupVcpDisabledXmlEspidWrapper"
-          }
-        ]
       },
       "VoiceIntegrationIdsJson": {
         "title": "Voice Integrations",
@@ -62577,6 +62582,17 @@
           "format": "uuid"
         }
       },
+      "TnOptionGroupVcpDisabledXmlEspid": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/TnOptionGroupVcpDisabledXmlEspidBranch1"
+          },
+          {
+            "$ref": "#/components/schemas/TnOptionGroupVcpDisabledXmlEspidWrapper"
+          }
+        ]
+      },
       "TnOptionGroupVcpDisabledXmlNnid": {
         "type": "object",
         "anyOf": [
@@ -62596,17 +62612,6 @@
           },
           {
             "$ref": "#/components/schemas/TnOptionGroupVcpDisabledXmlFinalDestinationUriWrapper"
-          }
-        ]
-      },
-      "TnOptionGroupVcpDisabledXmlPortOutPasscode": {
-        "type": "object",
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/TnOptionGroupVcpDisabledXmlPortOutPasscodeBranch1"
-          },
-          {
-            "$ref": "#/components/schemas/TnOptionGroupVcpDisabledXmlPortOutPasscodeWrapper"
           }
         ]
       },
@@ -64772,14 +64777,14 @@
           }
         }
       },
-      "TnOptionGroupVcpDisabledXmlCallForward": {
+      "TnOptionGroupVcpDisabledXmlPortOutPasscode": {
         "type": "object",
         "anyOf": [
           {
-            "$ref": "#/components/schemas/TnOptionGroupVcpDisabledXmlCallForwardWrapper"
+            "$ref": "#/components/schemas/TnOptionGroupVcpDisabledXmlPortOutPasscodeBranch1"
           },
           {
-            "$ref": "#/components/schemas/TnOptionGroupVcpDisabledXmlCallForwardBranch2"
+            "$ref": "#/components/schemas/TnOptionGroupVcpDisabledXmlPortOutPasscodeWrapper"
           }
         ]
       },
@@ -65489,6 +65494,17 @@
           }
         }
       },
+      "TnOptionGroupVcpDisabledXmlCallForward": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/TnOptionGroupVcpDisabledXmlCallForwardWrapper"
+          },
+          {
+            "$ref": "#/components/schemas/TnOptionGroupVcpDisabledXmlCallForwardBranch2"
+          }
+        ]
+      },
       "TnOptionGroupVcpDisabledXmlRewriteUser": {
         "type": "object",
         "anyOf": [
@@ -65497,17 +65513,6 @@
           },
           {
             "$ref": "#/components/schemas/TnOptionGroupVcpDisabledXmlRewriteUserBranch2"
-          }
-        ]
-      },
-      "TnOptionGroupVcpEnabledXmlNnid": {
-        "type": "object",
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/TnOptionGroupVcpEnabledXmlNnidBranch1"
-          },
-          {
-            "$ref": "#/components/schemas/TnOptionGroupVcpEnabledXmlNnidWrapper"
           }
         ]
       },
@@ -65534,6 +65539,17 @@
           ]
         }
       },
+      "TnOptionGroupVcpEnabledXmlNnid": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/TnOptionGroupVcpEnabledXmlNnidBranch1"
+          },
+          {
+            "$ref": "#/components/schemas/TnOptionGroupVcpEnabledXmlNnidWrapper"
+          }
+        ]
+      },
       "TnOptionGroupVcpEnabledXmlPortOutPasscode": {
         "type": "object",
         "anyOf": [
@@ -65542,17 +65558,6 @@
           },
           {
             "$ref": "#/components/schemas/TnOptionGroupVcpEnabledXmlPortOutPasscodeWrapper"
-          }
-        ]
-      },
-      "TnOptionGroupJsonVcpDisabledResponseEspid": {
-        "type": "object",
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledResponseEspidBranch1"
-          },
-          {
-            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledResponseEspidWrapper"
           }
         ]
       },
@@ -65606,6 +65611,17 @@
         "additionalProperties": false,
         "description": "TN status to be assigned to imported telephone numbers. Requires the \u0022Protected\u0022 TnAttribute."
       },
+      "TnOptionGroupJsonVcpDisabledResponseEspid": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledResponseEspidBranch1"
+          },
+          {
+            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledResponseEspidWrapper"
+          }
+        ]
+      },
       "TnOptionGroupJsonVcpDisabledResponseNnid": {
         "type": "object",
         "anyOf": [
@@ -65614,17 +65630,6 @@
           },
           {
             "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledResponseNnidWrapper"
-          }
-        ]
-      },
-      "TnOptionGroupJsonVcpDisabledResponseFinalDestinationUri": {
-        "type": "object",
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledResponseFinalDestinationUriBranch1"
-          },
-          {
-            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledResponseFinalDestinationUriWrapper"
           }
         ]
       },
@@ -65663,6 +65668,17 @@
           }
         }
       },
+      "TnOptionGroupJsonVcpDisabledResponseFinalDestinationUri": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledResponseFinalDestinationUriBranch1"
+          },
+          {
+            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledResponseFinalDestinationUriWrapper"
+          }
+        ]
+      },
       "TnOptionGroupJsonVcpDisabledResponsePortOutPasscode": {
         "type": "object",
         "anyOf": [
@@ -65682,17 +65698,6 @@
           },
           {
             "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledResponseCallForwardBranch2"
-          }
-        ]
-      },
-      "TnOptionGroupJsonVcpDisabledResponseRewriteUser": {
-        "type": "object",
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledResponseRewriteUserWrapper"
-          },
-          {
-            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledResponseRewriteUserBranch2"
           }
         ]
       },
@@ -65716,14 +65721,14 @@
           }
         }
       },
-      "TnOptionGroupJsonVcpDisabledRequestEspid": {
+      "TnOptionGroupJsonVcpDisabledResponseRewriteUser": {
         "type": "object",
         "anyOf": [
           {
-            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledRequestEspidBranch1"
+            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledResponseRewriteUserWrapper"
           },
           {
-            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledRequestEspidWrapper"
+            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledResponseRewriteUserBranch2"
           }
         ]
       },
@@ -66295,6 +66300,17 @@
           ]
         }
       },
+      "TnOptionGroupJsonVcpDisabledRequestEspid": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledRequestEspidBranch1"
+          },
+          {
+            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledRequestEspidWrapper"
+          }
+        ]
+      },
       "TnOptionGroupJsonVcpDisabledRequestNnid": {
         "type": "object",
         "anyOf": [
@@ -66303,17 +66319,6 @@
           },
           {
             "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledRequestNnidWrapper"
-          }
-        ]
-      },
-      "TnOptionGroupJsonVcpDisabledRequestFinalDestinationUri": {
-        "type": "object",
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledRequestFinalDestinationUriBranch1"
-          },
-          {
-            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledRequestFinalDestinationUriWrapper"
           }
         ]
       },
@@ -66435,6 +66440,17 @@
           }
         }
       },
+      "TnOptionGroupJsonVcpDisabledRequestFinalDestinationUri": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledRequestFinalDestinationUriBranch1"
+          },
+          {
+            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledRequestFinalDestinationUriWrapper"
+          }
+        ]
+      },
       "TnOptionGroupJsonVcpDisabledRequestPortOutPasscode": {
         "type": "object",
         "anyOf": [
@@ -66443,17 +66459,6 @@
           },
           {
             "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledRequestPortOutPasscodeWrapper"
-          }
-        ]
-      },
-      "TnOptionGroupJsonVcpDisabledRequestCallForward": {
-        "type": "object",
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledRequestCallForwardWrapper"
-          },
-          {
-            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledRequestCallForwardBranch2"
           }
         ]
       },
@@ -66511,6 +66516,17 @@
             }
           ]
         }
+      },
+      "TnOptionGroupJsonVcpDisabledRequestCallForward": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledRequestCallForwardWrapper"
+          },
+          {
+            "$ref": "#/components/schemas/TnOptionGroupJsonVcpDisabledRequestCallForwardBranch2"
+          }
+        ]
       },
       "TnOptionGroupJsonVcpDisabledRequestRewriteUser": {
         "type": "object",
@@ -66594,6 +66610,14 @@
           }
         }
       },
+      "OrderIds": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "description": "A list of order IDs for child orders generated from this group of phone number configurations. If there were more than 5000\nphone numbers for one grouping of bulk order details, multiple child orders will be created."
+      },
       "MonitorResponseDataAverageDurationAllOf2": {
         "type": "object",
         "properties": {
@@ -66605,14 +66629,6 @@
           }
         }
       },
-      "OrderIds": {
-        "type": "array",
-        "items": {
-          "type": "string",
-          "format": "uuid"
-        },
-        "description": "A list of order IDs for child orders generated from this group of phone number configurations. If there were more than 5000\nphone numbers for one grouping of bulk order details, multiple child orders will be created."
-      },
       "MonitorResponseDataErrorPercentageAllOf2": {
         "type": "object",
         "properties": {
@@ -66620,17 +66636,6 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/MonitorSliceErrorPercentage"
-            }
-          }
-        }
-      },
-      "MonitorResponseDataFailedCallsAllOf2": {
-        "type": "object",
-        "properties": {
-          "slices": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MonitorSliceFailedCalls"
             }
           }
         }
@@ -66737,13 +66742,13 @@
           ]
         }
       },
-      "MonitorResponseDataCompletedCallsAllOf2": {
+      "MonitorResponseDataFailedCallsAllOf2": {
         "type": "object",
         "properties": {
           "slices": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/MonitorSliceCompletedCalls"
+              "$ref": "#/components/schemas/MonitorSliceFailedCalls"
             }
           }
         }
@@ -67387,6 +67392,17 @@
         "description": "An array of links related to the resource",
         "example": null
       },
+      "MonitorResponseDataCompletedCallsAllOf2": {
+        "type": "object",
+        "properties": {
+          "slices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MonitorSliceCompletedCalls"
+            }
+          }
+        }
+      },
       "MonitorResponseDataConnectionRateAllOf2": {
         "type": "object",
         "properties": {
@@ -67405,17 +67421,6 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/MonitorSliceMinutesOfUse"
-            }
-          }
-        }
-      },
-      "MonitorResponseDataCallCountAllOf2": {
-        "type": "object",
-        "properties": {
-          "slices": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MonitorSliceCallCount"
             }
           }
         }
@@ -67638,11 +67643,14 @@
           }
         }
       },
-      "MonitorSliceConcurrentCallsAllOf2": {
+      "MonitorResponseDataCallCountAllOf2": {
         "type": "object",
         "properties": {
-          "data": {
-            "$ref": "#/components/schemas/MonitorSliceDataConcurrentCalls"
+          "slices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MonitorSliceCallCount"
+            }
           }
         }
       },
@@ -69001,11 +69009,11 @@
           ]
         }
       },
-      "MonitorSliceCallsPerSecondAllOf2": {
+      "MonitorSliceConcurrentCallsAllOf2": {
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/MonitorSliceDataCallsPerSecond"
+            "$ref": "#/components/schemas/MonitorSliceDataConcurrentCalls"
           }
         }
       },
@@ -69499,11 +69507,11 @@
           ]
         }
       },
-      "MonitorSliceNetworkEfficiencyRatioAllOf2": {
+      "MonitorSliceCallsPerSecondAllOf2": {
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/MonitorSliceDataNetworkEfficiencyRatio"
+            "$ref": "#/components/schemas/MonitorSliceDataCallsPerSecond"
           }
         }
       },
@@ -69682,11 +69690,11 @@
           }
         }
       },
-      "MonitorSliceTotalShortCallsAllOf2": {
+      "MonitorSliceNetworkEfficiencyRatioAllOf2": {
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/MonitorSliceDataTotalShortCalls"
+            "$ref": "#/components/schemas/MonitorSliceDataNetworkEfficiencyRatio"
           }
         }
       },
@@ -70461,6 +70469,14 @@
           }
         }
       },
+      "MonitorSliceTotalShortCallsAllOf2": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/MonitorSliceDataTotalShortCalls"
+          }
+        }
+      },
       "MonitorSliceAverageDurationAllOf2": {
         "type": "object",
         "properties": {
@@ -70732,12 +70748,6 @@
         },
         "additionalProperties": false,
         "example": []
-      },
-      "LegacyRequirementsPackageDataUpdatedDateTime": {
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The date and time this object was last updated in ISO 8601 format",
-        "readOnly": true
       },
       "PortOutLnpLinks": {
         "type": "object",
@@ -71480,10 +71490,10 @@
           ]
         }
       },
-      "LegacyRequirementsPackageDataStatus": {
+      "LegacyRequirementsPackageDataUpdatedDateTime": {
         "type": "string",
         "additionalProperties": false,
-        "description": "Statuses. Values - DRAFT, SUBMITTED, VERIFIED, VERIFICATION_FAILED, DISABLED",
+        "description": "The date and time this object was last updated in ISO 8601 format",
         "readOnly": true
       },
       "AlertRequest": {
@@ -71557,10 +71567,10 @@
         },
         "description": "The areas affected by the outage. This can be either a list of FCC IDs, two-letter state codes, or USA if the outage is nationwide.\nOnce an alert has been triggered, the areas affected cannot be updated. In the case that additional areas are impacted after an alert\nhas been triggered, a new incident should be created with the additional areas affected.\n"
       },
-      "LegacyRequirementsPackageDataRequirementsPackageId": {
+      "LegacyRequirementsPackageDataStatus": {
         "type": "string",
         "additionalProperties": false,
-        "description": "Unique identifier for requirements package",
+        "description": "Statuses. Values - DRAFT, SUBMITTED, VERIFIED, VERIFICATION_FAILED, DISABLED",
         "readOnly": true
       },
       "CreateAlertResponse": {
@@ -71632,17 +71642,17 @@
           }
         }
       },
+      "LegacyRequirementsPackageDataRequirementsPackageId": {
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Unique identifier for requirements package",
+        "readOnly": true
+      },
       "LegacyRequirementsPackageDataRemarks": {
         "maxLength": 5000,
         "type": "string",
         "additionalProperties": false,
         "description": "Remarks provided by the user or admin",
-        "readOnly": true
-      },
-      "LegacyRequirementsPackageDataCreatedDateTime": {
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The date and time this object was created in ISO 8601 format",
         "readOnly": true
       },
       "IncidentResponse": {
@@ -71881,16 +71891,11 @@
         },
         "nullable": true
       },
-      "RequirementsPackageGetDataAllOf2": {
-        "required": [
-          "deletability"
-        ],
-        "type": "object",
-        "properties": {
-          "deletability": {
-            "$ref": "#/components/schemas/Deletability"
-          }
-        }
+      "LegacyRequirementsPackageDataCreatedDateTime": {
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The date and time this object was created in ISO 8601 format",
+        "readOnly": true
       },
       "TriggerPsapOutage": {
         "title": "Trigger a PSAP Outage Alert",
@@ -72062,16 +72067,21 @@
         },
         "description": "Update a PSAP Outage Alert Incident"
       },
+      "RequirementsPackageGetDataAllOf2": {
+        "required": [
+          "deletability"
+        ],
+        "type": "object",
+        "properties": {
+          "deletability": {
+            "$ref": "#/components/schemas/Deletability"
+          }
+        }
+      },
       "AssetGetDataUpdatedDateTime": {
         "type": "string",
         "additionalProperties": false,
         "description": "The date and time this object was last updated in ISO 8601 format",
-        "readOnly": true
-      },
-      "AssetGetDataCreatedDateTime": {
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The date and time this object was created in ISO 8601 format",
         "readOnly": true
       },
       "AdminFeedbackSchema": {
@@ -72519,37 +72529,10 @@
           ]
         }
       },
-      "AssetGetDataAssetReferenceData": {
-        "required": [
-          "type"
-        ],
-        "type": "object",
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/AddressResponseAssetData"
-          },
-          {
-            "$ref": "#/components/schemas/EndUserResponseAssetData"
-          },
-          {
-            "$ref": "#/components/schemas/ComplianceDocumentResponseData"
-          }
-        ],
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "Union discriminator"
-          }
-        },
-        "description": "Details of the referenced asset object. It can corresponds to an address, endUser or document",
-        "discriminator": {
-          "propertyName": "type",
-          "mapping": {
-            "AddressResponseAssetData": "#/components/schemas/AddressResponseAssetData",
-            "EndUserResponseAssetData": "#/components/schemas/EndUserResponseAssetData",
-            "ComplianceDocumentResponseData": "#/components/schemas/ComplianceDocumentResponseData"
-          }
-        },
+      "AssetGetDataCreatedDateTime": {
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The date and time this object was created in ISO 8601 format",
         "readOnly": true
       },
       "CallToActionType": {
@@ -72597,6 +72580,39 @@
           ]
         }
       },
+      "AssetGetDataAssetReferenceData": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AddressResponseAssetData"
+          },
+          {
+            "$ref": "#/components/schemas/EndUserResponseAssetData"
+          },
+          {
+            "$ref": "#/components/schemas/ComplianceDocumentResponseData"
+          }
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "description": "Details of the referenced asset object. It can corresponds to an address, endUser or document",
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "AddressResponseAssetData": "#/components/schemas/AddressResponseAssetData",
+            "EndUserResponseAssetData": "#/components/schemas/EndUserResponseAssetData",
+            "ComplianceDocumentResponseData": "#/components/schemas/ComplianceDocumentResponseData"
+          }
+        },
+        "readOnly": true
+      },
       "AssetDataUpdatedDateTime": {
         "type": "string",
         "additionalProperties": false,
@@ -72641,46 +72657,6 @@
           }
         },
         "readOnly": true
-      },
-      "NumberActivationValidatorResultRequirementsSetsItem": {
-        "required": [
-          "requirementsPackageId",
-          "countryCodeA3",
-          "phoneNumberType",
-          "areaCodes"
-        ],
-        "type": "object",
-        "properties": {
-          "requirementsPackageId": {
-            "type": "string",
-            "description": "Unique identifier for requirements package"
-          },
-          "countryCodeA3": {
-            "type": "string",
-            "description": "Country code in ISO 3166-1 alpha-3 format"
-          },
-          "phoneNumberType": {
-            "$ref": "#/components/schemas/PhoneNumberTypeEnum"
-          },
-          "referenceId": {
-            "type": "string",
-            "description": "A unique reference ID to the requirement set",
-            "example": "requirementsSetReference"
-          },
-          "areaCodes": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "description": "The 1 to 6 digit area code associated with the phone number."
-            }
-          },
-          "status": {
-            "$ref": "#/components/schemas/RequirementsPackageStatusEnum"
-          },
-          "result": {
-            "$ref": "#/components/schemas/NumberActivationValidatorResultRequirementsSetsItemAllOf2Result"
-          }
-        }
       },
       "CampaignResponseSchema": {
         "type": "object",
@@ -73147,31 +73123,43 @@
         },
         "description": "This webhook may be sent out when a campaign status is updated, a short code is assigned to a campaign, or there is an update from the carrier on the status of a campaign."
       },
-      "ComplianceDocumentResponseDataAllOf2": {
+      "NumberActivationValidatorResultRequirementsSetsItem": {
+        "required": [
+          "requirementsPackageId",
+          "countryCodeA3",
+          "phoneNumberType",
+          "areaCodes"
+        ],
         "type": "object",
         "properties": {
-          "documentId": {
+          "requirementsPackageId": {
             "type": "string",
-            "description": "Unique identifier of the document",
-            "format": "uuid"
+            "description": "Unique identifier for requirements package"
+          },
+          "countryCodeA3": {
+            "type": "string",
+            "description": "Country code in ISO 3166-1 alpha-3 format"
+          },
+          "phoneNumberType": {
+            "$ref": "#/components/schemas/PhoneNumberTypeEnum"
+          },
+          "referenceId": {
+            "type": "string",
+            "description": "A unique reference ID to the requirement set",
+            "example": "requirementsSetReference"
+          },
+          "areaCodes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "The 1 to 6 digit area code associated with the phone number."
+            }
           },
           "status": {
-            "$ref": "#/components/schemas/DocumentStatusEnum"
+            "$ref": "#/components/schemas/RequirementsPackageStatusEnum"
           },
-          "fileContentExists": {
-            "type": "boolean",
-            "description": "Indicates if file exists on system"
-          },
-          "createdDateTime": {
-            "type": "string",
-            "description": "The date and time this object was created in ISO 8601 format"
-          },
-          "updatedDateTime": {
-            "type": "string",
-            "description": "The date and time this object was last updated in ISO 8601 format"
-          },
-          "fileName": {
-            "type": "string"
+          "result": {
+            "$ref": "#/components/schemas/NumberActivationValidatorResultRequirementsSetsItemAllOf2Result"
           }
         }
       },
@@ -73431,6 +73419,34 @@
           }
         }
       },
+      "ComplianceDocumentResponseDataAllOf2": {
+        "type": "object",
+        "properties": {
+          "documentId": {
+            "type": "string",
+            "description": "Unique identifier of the document",
+            "format": "uuid"
+          },
+          "status": {
+            "$ref": "#/components/schemas/DocumentStatusEnum"
+          },
+          "fileContentExists": {
+            "type": "boolean",
+            "description": "Indicates if file exists on system"
+          },
+          "createdDateTime": {
+            "type": "string",
+            "description": "The date and time this object was created in ISO 8601 format"
+          },
+          "updatedDateTime": {
+            "type": "string",
+            "description": "The date and time this object was last updated in ISO 8601 format"
+          },
+          "fileName": {
+            "type": "string"
+          }
+        }
+      },
       "AddressResponseDataAllOf2": {
         "type": "object",
         "properties": {
@@ -73452,14 +73468,6 @@
           "updatedDateTime": {
             "type": "string",
             "description": "The date and time this object was last updated in ISO 8601 format"
-          }
-        }
-      },
-      "ValidateAddressRequestDataAllOf2": {
-        "type": "object",
-        "properties": {
-          "geoValidation": {
-            "$ref": "#/components/schemas/GeoValidation"
           }
         }
       },
@@ -73759,6 +73767,14 @@
           }
         }
       },
+      "ValidateAddressRequestDataAllOf2": {
+        "type": "object",
+        "properties": {
+          "geoValidation": {
+            "$ref": "#/components/schemas/GeoValidation"
+          }
+        }
+      },
       "CreateAddressRequestDataAllOf2": {
         "type": "object",
         "properties": {
@@ -73818,14 +73834,6 @@
             "items": {
               "$ref": "#/components/schemas/AddRowEndpointsWithAddressIdAllOf2EndpointsItem"
             }
-          }
-        }
-      },
-      "AddNomadicNorthAmericaEndpointsWithFullAddressAllOf2": {
-        "type": "object",
-        "properties": {
-          "endpoints": {
-            "$ref": "#/components/schemas/AddNomadicNorthAmericaEndpointsWithFullAddressAllOf2Endpoints"
           }
         }
       },
@@ -73907,6 +73915,14 @@
           ]
         }
       },
+      "AddNomadicNorthAmericaEndpointsWithFullAddressAllOf2": {
+        "type": "object",
+        "properties": {
+          "endpoints": {
+            "$ref": "#/components/schemas/AddNomadicNorthAmericaEndpointsWithFullAddressAllOf2Endpoints"
+          }
+        }
+      },
       "AddStandardNorthAmericaEndpointsWithFullAddressAllOf2": {
         "type": "object",
         "properties": {
@@ -73936,18 +73952,6 @@
             "$ref": "#/components/schemas/AddStandardNorthAmericaEndpointsWithAddressIdAllOf2Endpoints"
           }
         }
-      },
-      "SubscriberPatchLastName": {
-        "type": "object",
-        "properties": {
-          "delete": {
-            "type": "boolean",
-            "xml": {
-              "attribute": true
-            }
-          }
-        },
-        "description": "Subscriber last name."
       },
       "GetSingleCampaignSchema": {
         "required": [
@@ -75047,7 +75051,7 @@
           }
         }
       },
-      "SubscriberPatchMiddleInitial": {
+      "SubscriberPatchLastName": {
         "type": "object",
         "properties": {
           "delete": {
@@ -75057,7 +75061,7 @@
             }
           }
         },
-        "description": "Subscriber middle initial."
+        "description": "Subscriber last name."
       },
       "FailureWebhookSchema": {
         "required": [
@@ -75083,6 +75087,18 @@
           "$ref": "#/components/schemas/FeedbackItem"
         },
         "description": "The feedback provided for the short code campaign by a Bandwidth reviewer."
+      },
+      "SubscriberPatchMiddleInitial": {
+        "type": "object",
+        "properties": {
+          "delete": {
+            "type": "boolean",
+            "xml": {
+              "attribute": true
+            }
+          }
+        },
+        "description": "Subscriber middle initial."
       },
       "SubscriberPatchFirstName": {
         "type": "object",
@@ -75141,18 +75157,6 @@
           ]
         }
       },
-      "AddressPatchCounty": {
-        "type": "object",
-        "properties": {
-          "delete": {
-            "type": "boolean",
-            "xml": {
-              "attribute": true
-            }
-          }
-        },
-        "description": "The county where the subscriber or business is located."
-      },
       "JsonPatch": {
         "type": "array",
         "items": {
@@ -75184,6 +75188,18 @@
           }
         }
       },
+      "AddressPatchCounty": {
+        "type": "object",
+        "properties": {
+          "delete": {
+            "type": "boolean",
+            "xml": {
+              "attribute": true
+            }
+          }
+        },
+        "description": "The county where the subscriber or business is located."
+      },
       "AddressPatchPlusFour": {
         "type": "object",
         "properties": {
@@ -75207,18 +75223,6 @@
           }
         },
         "description": "Zip code."
-      },
-      "AddressPatchStateCode": {
-        "type": "object",
-        "properties": {
-          "delete": {
-            "type": "boolean",
-            "xml": {
-              "attribute": true
-            }
-          }
-        },
-        "description": "Two letter state code."
       },
       "ListCampaignsResponseSchema": {
         "type": "object",
@@ -75248,7 +75252,7 @@
           }
         }
       },
-      "AddressPatchCity": {
+      "AddressPatchStateCode": {
         "type": "object",
         "properties": {
           "delete": {
@@ -75258,7 +75262,7 @@
             }
           }
         },
-        "description": "City."
+        "description": "Two letter state code."
       },
       "MessageType": {
         "enum": [
@@ -75291,6 +75295,18 @@
         "format": "uri",
         "example": "https://www.example.com/migrationLetter"
       },
+      "AddressPatchCity": {
+        "type": "object",
+        "properties": {
+          "delete": {
+            "type": "boolean",
+            "xml": {
+              "attribute": true
+            }
+          }
+        },
+        "description": "City."
+      },
       "AddressPatchAddressLine2": {
         "type": "object",
         "properties": {
@@ -75314,18 +75330,6 @@
           }
         },
         "description": "Street address post directional."
-      },
-      "AddressPatchStreetSuffix": {
-        "type": "object",
-        "properties": {
-          "delete": {
-            "type": "boolean",
-            "xml": {
-              "attribute": true
-            }
-          }
-        },
-        "description": "Street suffix."
       },
       "OptInType": {
         "type": "array",
@@ -75377,6 +75381,18 @@
           ]
         }
       },
+      "AddressPatchStreetSuffix": {
+        "type": "object",
+        "properties": {
+          "delete": {
+            "type": "boolean",
+            "xml": {
+              "attribute": true
+            }
+          }
+        },
+        "description": "Street suffix."
+      },
       "AddressPatchStreetName": {
         "type": "object",
         "properties": {
@@ -75424,18 +75440,6 @@
           }
         },
         "description": "Street address number."
-      },
-      "AddressPatchHousePrefix": {
-        "type": "object",
-        "properties": {
-          "delete": {
-            "type": "boolean",
-            "xml": {
-              "attribute": true
-            }
-          }
-        },
-        "description": "Street address number prefix."
       },
       "ProgramType": {
         "enum": [
@@ -75907,14 +75911,17 @@
         },
         "description": "Internal field, list of carrier to provider mappings (direct binds)."
       },
-      "BulkPortinPatchTnAttributes": {
+      "AddressPatchHousePrefix": {
         "type": "object",
         "properties": {
           "delete": {
-            "type": "boolean"
+            "type": "boolean",
+            "xml": {
+              "attribute": true
+            }
           }
         },
-        "description": "Attributes to be assigned to the telephone number. Optional parameter. Possible values - \u0060Protected\u0060."
+        "description": "Street address number prefix."
       },
       "ShortCodeData": {
         "type": "object",
@@ -76226,14 +76233,14 @@
         },
         "description": "The lease information for the short code number. This information only applies to Bandwidth managed short code leases (customerManagedLease set to false)."
       },
-      "BulkPortinPatchProcessingStatus": {
+      "BulkPortinPatchTnAttributes": {
         "type": "object",
         "properties": {
           "delete": {
             "type": "boolean"
           }
         },
-        "description": "This is the processing status the bulk portin should transition into."
+        "description": "Attributes to be assigned to the telephone number. Optional parameter. Possible values - \u0060Protected\u0060."
       },
       "ShortCodeLinkSchema": {
         "type": "array",
@@ -76267,15 +76274,14 @@
         },
         "description": "Pagination object that represents the current page."
       },
-      "BulkPortinPatchPeerId": {
+      "BulkPortinPatchProcessingStatus": {
         "type": "object",
         "properties": {
           "delete": {
             "type": "boolean"
           }
         },
-        "description": "This is the SIP Peer / Location ID made visible in the /accounts/{accountId}/sites/{siteId}/sipPeers API call.",
-        "example": 521434
+        "description": "This is the processing status the bulk portin should transition into."
       },
       "ShortCodeType": {
         "enum": [
@@ -76423,6 +76429,16 @@
       "UpdateShortCodeCampaignWebhookSubscriptionRequestSchema": {
         "$ref": "#/components/schemas/ShortCodeCampaignWebhookSubscriptionSchema"
       },
+      "BulkPortinPatchPeerId": {
+        "type": "object",
+        "properties": {
+          "delete": {
+            "type": "boolean"
+          }
+        },
+        "description": "This is the SIP Peer / Location ID made visible in the /accounts/{accountId}/sites/{siteId}/sipPeers API call.",
+        "example": 521434
+      },
       "BulkPortinPatchSiteId": {
         "type": "object",
         "properties": {
@@ -76431,18 +76447,6 @@
           }
         },
         "description": "This is the Site / Sub-Account ID made visible in the /accounts/{accountId}/sites API call."
-      },
-      "BulkPortinPatchPinNumber": {
-        "type": "object",
-        "properties": {
-          "delete": {
-            "type": "boolean",
-            "xml": {
-              "attribute": true
-            }
-          }
-        },
-        "description": "PIN Number, often required for wireless ports."
       },
       "CallbackBasicAuthentication": {
         "required": [
@@ -76467,6 +76471,28 @@
         },
         "description": "Basic authentication credentials are not required, but if present, both username and password must be provided."
       },
+      "BulkPortinPatchPinNumber": {
+        "type": "object",
+        "properties": {
+          "delete": {
+            "type": "boolean",
+            "xml": {
+              "attribute": true
+            }
+          }
+        },
+        "description": "PIN Number, often required for wireless ports."
+      },
+      "ShortcodesSharedSecretKey": {
+        "maxLength": 64,
+        "minLength": 16,
+        "pattern": "^[ -~]{16,64}$",
+        "type": "string",
+        "description": "An ASCII string submitted by the user as a shared secret key for generating an HMAC header for callbacks.",
+        "nullable": true,
+        "writeOnly": true,
+        "example": "This is my $3cret"
+      },
       "BulkPortinPatchAccountNumber": {
         "type": "object",
         "properties": {
@@ -76478,16 +76504,6 @@
           }
         },
         "description": "Account number associated with the account on the losing carrier, often required for wireless ports, or enterprise ports. This will be unusual for bulk port-in requests that are expected to decompose into port-in requests from multiple carriers."
-      },
-      "ShortcodesSharedSecretKey": {
-        "maxLength": 64,
-        "minLength": 16,
-        "pattern": "^[ -~]{16,64}$",
-        "type": "string",
-        "description": "An ASCII string submitted by the user as a shared secret key for generating an HMAC header for callbacks.",
-        "nullable": true,
-        "writeOnly": true,
-        "example": "This is my $3cret"
       },
       "BulkPortinPatchLoaAuthorizingPerson": {
         "type": "object",
@@ -76512,19 +76528,6 @@
           }
         },
         "description": "Account or Billing telephone number for order. This will be unusual for bulk port-in requests that are expected to decompose into port-in requests from multiple carriers, because the value will be different for each losing carrier."
-      },
-      "BulkPortinPatchAlternateSpid": {
-        "type": "object",
-        "properties": {
-          "delete": {
-            "type": "boolean",
-            "xml": {
-              "attribute": true
-            }
-          }
-        },
-        "description": "Unique customer AltSPID to be applied to the port-in requests. Can be changed only for DRAFT bulk port-in.",
-        "example": "X455"
       },
       "PostShortCodeCampaignDocumentResponseSchema": {
         "type": "object",
@@ -76564,16 +76567,7 @@
           "$ref": "#/components/schemas/DocumentLinkSchemaItem"
         }
       },
-      "BulkPortinPatchRequestedFocDate": {
-        "type": "object",
-        "properties": {
-          "delete": {
-            "type": "boolean"
-          }
-        },
-        "description": "If present this will specify the date and time that the port-in is requested to happen. The actual time and date is subject to negotiation with the losing carriers."
-      },
-      "BulkPortinPatchCustomerOrderId": {
+      "BulkPortinPatchAlternateSpid": {
         "type": "object",
         "properties": {
           "delete": {
@@ -76583,8 +76577,17 @@
             }
           }
         },
-        "description": "Optional customer-defined reference ID for this order. Not unique \u2014 Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned \u0060orderId\u0060.",
-        "example": "CUST12345"
+        "description": "Unique customer AltSPID to be applied to the port-in requests. Can be changed only for DRAFT bulk port-in.",
+        "example": "X455"
+      },
+      "BulkPortinPatchRequestedFocDate": {
+        "type": "object",
+        "properties": {
+          "delete": {
+            "type": "boolean"
+          }
+        },
+        "description": "If present this will specify the date and time that the port-in is requested to happen. The actual time and date is subject to negotiation with the losing carriers."
       },
       "BrandTypeEnum": {
         "enum": [
@@ -76649,6 +76652,19 @@
           ]
         }
       },
+      "BulkPortinPatchCustomerOrderId": {
+        "type": "object",
+        "properties": {
+          "delete": {
+            "type": "boolean",
+            "xml": {
+              "attribute": true
+            }
+          }
+        },
+        "description": "Optional customer-defined reference ID for this order. Not unique \u2014 Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned \u0060orderId\u0060.",
+        "example": "CUST12345"
+      },
       "EndpointEventAllOf2": {
         "required": [
           "eventType",
@@ -76670,6 +76686,14 @@
           }
         }
       },
+      "StockMarketSymbol": {
+        "maxLength": 10,
+        "minLength": 1,
+        "type": "string",
+        "description": "The stock market symbol for the organization that is applying for the short code campaign.",
+        "nullable": true,
+        "example": "BAND"
+      },
       "CreateEndpointResponseDataAllOf2": {
         "required": [
           "token"
@@ -76679,22 +76703,6 @@
           "token": {
             "type": "string",
             "description": "The json web token specific to the endpoint. Used to authenticate the client with the media gateway."
-          }
-        }
-      },
-      "StockMarketSymbol": {
-        "maxLength": 10,
-        "minLength": 1,
-        "type": "string",
-        "description": "The stock market symbol for the organization that is applying for the short code campaign.",
-        "nullable": true,
-        "example": "BAND"
-      },
-      "CreateWebRtcConnectionRequestAllOf2": {
-        "type": "object",
-        "properties": {
-          "connectionMetadata": {
-            "$ref": "#/components/schemas/CreateWebRtcConnectionRequestAllOf2ConnectionMetadata"
           }
         }
       },
@@ -77019,6 +77027,14 @@
           }
         }
       },
+      "CreateWebRtcConnectionRequestAllOf2": {
+        "type": "object",
+        "properties": {
+          "connectionMetadata": {
+            "$ref": "#/components/schemas/CreateWebRtcConnectionRequestAllOf2ConnectionMetadata"
+          }
+        }
+      },
       "EndpointAllOf2": {
         "type": "object",
         "properties": {
@@ -77027,15 +77043,6 @@
             "items": {
               "$ref": "#/components/schemas/Device"
             }
-          }
-        }
-      },
-      "BillingModelCreateRequestMetered": {
-        "title": "Metered",
-        "type": "object",
-        "properties": {
-          "modelType": {
-            "$ref": "#/components/schemas/BillingModelCreateRequestMeteredModelType"
           }
         }
       },
@@ -77551,6 +77558,15 @@
         },
         "description": "The Username and Password to be used for basic authentication."
       },
+      "BillingModelCreateRequestMetered": {
+        "title": "Metered",
+        "type": "object",
+        "properties": {
+          "modelType": {
+            "$ref": "#/components/schemas/BillingModelCreateRequestMeteredModelType"
+          }
+        }
+      },
       "BillingModelCreateRequestCapacity": {
         "title": "Capacity",
         "required": [
@@ -77573,15 +77589,6 @@
         "description": "The expiration date for this client secret.",
         "format": "date-time",
         "example": "2026-06-30T12:00:00Z"
-      },
-      "UpdateClientCredentialsRequestAccounts": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        },
-        "additionalProperties": false,
-        "description": "A list of account IDs.",
-        "default": []
       },
       "HmacAuthenticationRequest": {
         "type": "object",
@@ -77752,13 +77759,13 @@
           }
         }
       },
-      "UpdateClientCredentialsRequestRoles": {
+      "UpdateClientCredentialsRequestAccounts": {
         "type": "array",
         "items": {
           "type": "string"
         },
         "additionalProperties": false,
-        "description": "A list of roles.",
+        "description": "A list of account IDs.",
         "default": []
       },
       "EmailSubscription": {
@@ -77841,13 +77848,13 @@
           }
         }
       },
-      "CreateClientCredentialsRequestAccounts": {
+      "UpdateClientCredentialsRequestRoles": {
         "type": "array",
         "items": {
           "type": "string"
         },
         "additionalProperties": false,
-        "description": "A list of account IDs.",
+        "description": "A list of roles.",
         "default": []
       },
       "FilterableField": {
@@ -78050,13 +78057,13 @@
         },
         "additionalProperties": false
       },
-      "CreateClientCredentialsRequestRoles": {
+      "CreateClientCredentialsRequestAccounts": {
         "type": "array",
         "items": {
           "type": "string"
         },
         "additionalProperties": false,
-        "description": "A list of roles.",
+        "description": "A list of account IDs.",
         "default": []
       },
       "NotificationStatusEnum": {
@@ -79062,6 +79069,15 @@
         },
         "description": "A summary description of a campaign."
       },
+      "CreateClientCredentialsRequestRoles": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "additionalProperties": false,
+        "description": "A list of roles.",
+        "default": []
+      },
       "ClientSecretLastUsedDate": {
         "type": "string",
         "additionalProperties": false,
@@ -79405,33 +79421,6 @@
           "mapping": {
             "GetGroupEnterprise200Response": "#/components/schemas/GetGroupEnterprise200Response",
             "GetGroupReseller200Response": "#/components/schemas/GetGroupReseller200Response"
-          }
-        }
-      },
-      "CreateGroupResponseResponse": {
-        "required": [
-          "type"
-        ],
-        "type": "object",
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/CreateGroupEnterprise201Response"
-          },
-          {
-            "$ref": "#/components/schemas/CreateGroupReseller201Response"
-          }
-        ],
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "Union discriminator"
-          }
-        },
-        "discriminator": {
-          "propertyName": "type",
-          "mapping": {
-            "CreateGroupEnterprise201Response": "#/components/schemas/CreateGroupEnterprise201Response",
-            "CreateGroupReseller201Response": "#/components/schemas/CreateGroupReseller201Response"
           }
         }
       },
@@ -80035,6 +80024,33 @@
           ]
         }
       },
+      "CreateGroupResponseResponse": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/CreateGroupEnterprise201Response"
+          },
+          {
+            "$ref": "#/components/schemas/CreateGroupReseller201Response"
+          }
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "CreateGroupEnterprise201Response": "#/components/schemas/CreateGroupEnterprise201Response",
+            "CreateGroupReseller201Response": "#/components/schemas/CreateGroupReseller201Response"
+          }
+        }
+      },
       "ListMediaResponseResponse": {
         "type": "array",
         "items": {
@@ -80045,6 +80061,20 @@
         "type": "string",
         "description": "Successful Operation",
         "format": "binary"
+      },
+      "VettingReasons": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Reasons provided by the external vetting provider for the vetting outcome."
+      },
+      "VettingDetails": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Additional details from the external vetting provider."
       },
       "GetTnOptionOrdersSummaryResponseResponse": {
         "required": [
@@ -80070,47 +80100,6 @@
           "mapping": {
             "TnOptionOrderReportSummaryJsonResponse": "#/components/schemas/TnOptionOrderReportSummaryJsonResponse",
             "TnOptionOrderReportDetailedJsonResponse": "#/components/schemas/TnOptionOrderReportDetailedJsonResponse"
-          }
-        }
-      },
-      "VettingReasons": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        },
-        "description": "Reasons provided by the external vetting provider for the vetting outcome."
-      },
-      "VettingDetails": {
-        "type": "object",
-        "additionalProperties": {
-          "type": "string"
-        },
-        "description": "Additional details from the external vetting provider."
-      },
-      "GetTnOptionOrdersSummaryResponseResponseXml": {
-        "required": [
-          "type"
-        ],
-        "type": "object",
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/TnOptionOrderReportSummaryResponse"
-          },
-          {
-            "$ref": "#/components/schemas/TnOptionOrderReportDetailedResponse"
-          }
-        ],
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "Union discriminator"
-          }
-        },
-        "discriminator": {
-          "propertyName": "type",
-          "mapping": {
-            "TnOptionOrderReportSummaryResponse": "#/components/schemas/TnOptionOrderReportSummaryResponse",
-            "TnOptionOrderReportDetailedResponse": "#/components/schemas/TnOptionOrderReportDetailedResponse"
           }
         }
       },
@@ -81310,6 +81299,33 @@
           ]
         }
       },
+      "GetTnOptionOrdersSummaryResponseResponseXml": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/TnOptionOrderReportSummaryResponse"
+          },
+          {
+            "$ref": "#/components/schemas/TnOptionOrderReportDetailedResponse"
+          }
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "TnOptionOrderReportSummaryResponse": "#/components/schemas/TnOptionOrderReportSummaryResponse",
+            "TnOptionOrderReportDetailedResponse": "#/components/schemas/TnOptionOrderReportDetailedResponse"
+          }
+        }
+      },
       "GetMonitorConcurrentCallsResponseOkResponse": {
         "required": [
           "links",
@@ -81680,6 +81696,34 @@
           }
         }
       },
+      "EnumAltBusinessIdType": {
+        "enum": [
+          "DUNS",
+          "GIIN",
+          "LEI"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The type of alternative business identifier provided for the brand.",
+        "x-ms-enum": {
+          "name": "EnumAltBusinessIdType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "DUNS",
+              "name": "Duns"
+            },
+            {
+              "value": "GIIN",
+              "name": "Giin"
+            },
+            {
+              "value": "LEI",
+              "name": "Lei"
+            }
+          ]
+        }
+      },
       "PaginatedReportDefinitionsResponseResponse": {
         "required": [
           "links",
@@ -81711,34 +81755,6 @@
             "description": "List of errors encountered while processing the request.",
             "nullable": true
           }
-        }
-      },
-      "EnumAltBusinessIdType": {
-        "enum": [
-          "DUNS",
-          "GIIN",
-          "LEI"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The type of alternative business identifier provided for the brand.",
-        "x-ms-enum": {
-          "name": "EnumAltBusinessIdType",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "DUNS",
-              "name": "Duns"
-            },
-            {
-              "value": "GIIN",
-              "name": "Giin"
-            },
-            {
-              "value": "LEI",
-              "name": "Lei"
-            }
-          ]
         }
       },
       "PaginatedResultResponseResponse": {
@@ -81831,32 +81847,6 @@
       "ReportFileResponseResponseZip": {
         "type": "string",
         "format": "binary"
-      },
-      "ReportStatusResponseResponse": {
-        "required": [
-          "links",
-          "data",
-          "errors"
-        ],
-        "type": "object",
-        "properties": {
-          "links": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InsightsLink"
-            }
-          },
-          "data": {
-            "$ref": "#/components/schemas/ReportStatus"
-          },
-          "errors": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InsightsError"
-            },
-            "example": []
-          }
-        }
       },
       "RefreshBrandRequest": {
         "required": [
@@ -82194,16 +82184,36 @@
         },
         "description": "An accepted response containing the brand and Bandwidth IDs."
       },
+      "ReportStatusResponseResponse": {
+        "required": [
+          "links",
+          "data",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InsightsLink"
+            }
+          },
+          "data": {
+            "$ref": "#/components/schemas/ReportStatus"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InsightsError"
+            },
+            "example": []
+          }
+        }
+      },
       "GetExternalTnOrderResponseResponseXml": {
         "type": "object",
         "xml": {
           "name": "ExternalTnsOrder"
-        }
-      },
-      "CreateExternalTnOrderResponseResponseXml": {
-        "type": "object",
-        "xml": {
-          "name": "ExternalTnsOrderResponse"
         }
       },
       "TfvWebhookErrors": {
@@ -82235,6 +82245,12 @@
               "name": "Unverified"
             }
           ]
+        }
+      },
+      "CreateExternalTnOrderResponseResponseXml": {
+        "type": "object",
+        "xml": {
+          "name": "ExternalTnsOrderResponse"
         }
       },
       "ListExternalTnOrdersResponseResponseXml": {
@@ -82293,6 +82309,28 @@
         },
         "description": "Subscription Response Object"
       },
+      "AdditionalDenialReason": {
+        "required": [
+          "statusCode",
+          "reason",
+          "resubmitAllowed"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "description": "Reason code for denial."
+          },
+          "reason": {
+            "type": "string",
+            "description": "Explanation for why a verification request was declined."
+          },
+          "resubmitAllowed": {
+            "type": "boolean",
+            "description": "Whether a Toll-Free Verification request qualifies for resubmission via PUT."
+          }
+        }
+      },
       "SubscriptionListResponseResponse": {
         "type": "object",
         "properties": {
@@ -82315,28 +82353,6 @@
           }
         },
         "description": "Response with multiple Subscription elements"
-      },
-      "AdditionalDenialReason": {
-        "required": [
-          "statusCode",
-          "reason",
-          "resubmitAllowed"
-        ],
-        "type": "object",
-        "properties": {
-          "statusCode": {
-            "type": "integer",
-            "description": "Reason code for denial."
-          },
-          "reason": {
-            "type": "string",
-            "description": "Explanation for why a verification request was declined."
-          },
-          "resubmitAllowed": {
-            "type": "boolean",
-            "description": "Whether a Toll-Free Verification request qualifies for resubmission via PUT."
-          }
-        }
       },
       "InternalErrorResponseResponse": {
         "type": "object",
@@ -82426,14 +82442,6 @@
           },
           "status": {
             "type": "string"
-          }
-        }
-      },
-      "GlobalV3ForbiddenErrorResponseResponse": {
-        "type": "object",
-        "properties": {
-          "properties": {
-            "$ref": "#/components/schemas/GlobalV3ForbiddenErrorResponseResponseProperties"
           }
         }
       },
@@ -82541,23 +82549,11 @@
           ]
         }
       },
-      "GlobalV3UnauthorizedErrorResponseResponse": {
+      "GlobalV3ForbiddenErrorResponseResponse": {
         "type": "object",
         "properties": {
-          "errors": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GlobalV3Error"
-            }
-          },
-          "links": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GlobalV3Link"
-            }
-          },
-          "status": {
-            "type": "string"
+          "properties": {
+            "$ref": "#/components/schemas/GlobalV3ForbiddenErrorResponseResponseProperties"
           }
         }
       },
@@ -82598,6 +82594,26 @@
               "name": "Government"
             }
           ]
+        }
+      },
+      "GlobalV3UnauthorizedErrorResponseResponse": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GlobalV3Error"
+            }
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GlobalV3Link"
+            }
+          },
+          "status": {
+            "type": "string"
+          }
         }
       },
       "GlobalV3BadRequestErrorResponseResponse": {
@@ -82648,26 +82664,6 @@
         "properties": {
           "data": {
             "$ref": "#/components/schemas/DocumentUploadSuccessResponseResponseData"
-          },
-          "links": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GlobalV3Link"
-            }
-          },
-          "errors": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GlobalV3Error"
-            }
-          }
-        }
-      },
-      "PortInOrderArraySuccessResponseResponse": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "$ref": "#/components/schemas/PortInOrderArraySuccessResponseResponseData"
           },
           "links": {
             "type": "array",
@@ -83147,11 +83143,11 @@
           }
         }
       },
-      "ReturnPortInOrderSuccessResponseResponse": {
+      "PortInOrderArraySuccessResponseResponse": {
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/ReturnPortInOrderSuccessResponseResponseData"
+            "$ref": "#/components/schemas/PortInOrderArraySuccessResponseResponseData"
           },
           "links": {
             "type": "array",
@@ -83198,11 +83194,11 @@
           }
         }
       },
-      "CreatedPortInOrderSuccessResponseResponse": {
+      "ReturnPortInOrderSuccessResponseResponse": {
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/CreatedPortInOrderSuccessResponseResponseData"
+            "$ref": "#/components/schemas/ReturnPortInOrderSuccessResponseResponseData"
           },
           "links": {
             "type": "array",
@@ -83254,15 +83250,35 @@
           }
         }
       },
-      "DownloadDocumentResponseResponseOctetStream": {
-        "type": "string",
-        "format": "binary"
+      "CreatedPortInOrderSuccessResponseResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/CreatedPortInOrderSuccessResponseResponseData"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GlobalV3Link"
+            }
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GlobalV3Error"
+            }
+          }
+        }
       },
       "UseCases": {
         "type": "array",
         "items": {
           "type": "string"
         }
+      },
+      "DownloadDocumentResponseResponseOctetStream": {
+        "type": "string",
+        "format": "binary"
       },
       "GetAddressResponse": {
         "required": [
@@ -83319,47 +83335,6 @@
           "mapping": {
             "ListAddresses": "#/components/schemas/ListAddresses",
             "ListAddressesWithEndpointCount": "#/components/schemas/ListAddressesWithEndpointCount"
-          }
-        }
-      },
-      "ProvisioningOrderDeleteEndpointResponse": {
-        "type": "object",
-        "properties": {
-          "orderId": {
-            "type": "string",
-            "format": "uuid",
-            "example": "08e0be9a-52fd-45a0-be2e-86835c534aad"
-          },
-          "updatedBy": {
-            "type": "string",
-            "example": "joe@crabshack.com"
-          },
-          "orderStatus": {
-            "$ref": "#/components/schemas/OrderStatus"
-          },
-          "acceptedCount": {
-            "minimum": 0,
-            "type": "integer",
-            "example": 1
-          },
-          "invalidCount": {
-            "minimum": 0,
-            "type": "integer",
-            "example": 0
-          },
-          "updated": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2022-05-18T08:57:04Z"
-          },
-          "totalNumber": {
-            "minimum": 0,
-            "type": "integer",
-            "example": 1
-          },
-          "orderType": {
-            "type": "string",
-            "example": "DELETE_ENDPOINTS"
           }
         }
       },
@@ -83497,7 +83472,7 @@
         },
         "description": "Information about a webhook that Bandwidth should send upon the completion of event customer has subscribed to."
       },
-      "ProvisioningOrderUpdateEndpointResponse": {
+      "ProvisioningOrderDeleteEndpointResponse": {
         "type": "object",
         "properties": {
           "orderId": {
@@ -83534,7 +83509,7 @@
           },
           "orderType": {
             "type": "string",
-            "example": "UPDATE_ENDPOINTS"
+            "example": "DELETE_ENDPOINTS"
           }
         }
       },
@@ -83724,6 +83699,47 @@
           ]
         }
       },
+      "ProvisioningOrderUpdateEndpointResponse": {
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "format": "uuid",
+            "example": "08e0be9a-52fd-45a0-be2e-86835c534aad"
+          },
+          "updatedBy": {
+            "type": "string",
+            "example": "joe@crabshack.com"
+          },
+          "orderStatus": {
+            "$ref": "#/components/schemas/OrderStatus"
+          },
+          "acceptedCount": {
+            "minimum": 0,
+            "type": "integer",
+            "example": 1
+          },
+          "invalidCount": {
+            "minimum": 0,
+            "type": "integer",
+            "example": 0
+          },
+          "updated": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2022-05-18T08:57:04Z"
+          },
+          "totalNumber": {
+            "minimum": 0,
+            "type": "integer",
+            "example": 1
+          },
+          "orderType": {
+            "type": "string",
+            "example": "UPDATE_ENDPOINTS"
+          }
+        }
+      },
       "ProvisioningOrderAddEndpointResponse": {
         "type": "object",
         "properties": {
@@ -83762,33 +83778,6 @@
           "orderType": {
             "type": "string",
             "example": "ADD_ENDPOINTS"
-          }
-        }
-      },
-      "SubAccountBadRequestErrorResponsePutResponse": {
-        "required": [
-          "type"
-        ],
-        "type": "object",
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/ErrorResponseJson"
-          },
-          {
-            "$ref": "#/components/schemas/GenericJsonResponse"
-          }
-        ],
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "Union discriminator"
-          }
-        },
-        "discriminator": {
-          "propertyName": "type",
-          "mapping": {
-            "ErrorResponseJson": "#/components/schemas/ErrorResponseJson",
-            "GenericJsonResponse": "#/components/schemas/GenericJsonResponse"
           }
         }
       },
@@ -84307,6 +84296,33 @@
         },
         "additionalProperties": false
       },
+      "SubAccountBadRequestErrorResponsePutResponse": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/ErrorResponseJson"
+          },
+          {
+            "$ref": "#/components/schemas/GenericJsonResponse"
+          }
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "ErrorResponseJson": "#/components/schemas/ErrorResponseJson",
+            "GenericJsonResponse": "#/components/schemas/GenericJsonResponse"
+          }
+        }
+      },
       "SubAccountBadRequestErrorResponseResponse": {
         "required": [
           "type"
@@ -84361,18 +84377,6 @@
           }
         }
       },
-      "UpdateConferenceBxmlRequestRequestXml": {
-        "required": [
-          "value"
-        ],
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "string",
-            "description": "A valid BXML document to replace the call\u0027s current BXML."
-          }
-        }
-      },
       "UserManagementAccountScopeEnum": {
         "enum": [
           "ACCOUNT",
@@ -84397,7 +84401,7 @@
           ]
         }
       },
-      "UpdateCallBxmlRequestRequestXml": {
+      "UpdateConferenceBxmlRequestRequestXml": {
         "required": [
           "value"
         ],
@@ -84501,6 +84505,18 @@
           ]
         }
       },
+      "UpdateCallBxmlRequestRequestXml": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "A valid BXML document to replace the call\u0027s current BXML."
+          }
+        }
+      },
       "EnrollUserMfaFactorRequestRequest": {
         "required": [
           "type"
@@ -84579,33 +84595,6 @@
           }
         }
       },
-      "CampaignUpdateWebhookRequestRequest": {
-        "required": [
-          "type"
-        ],
-        "type": "object",
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/CampaignUpdateWebhookSchema"
-          },
-          {
-            "$ref": "#/components/schemas/FailureWebhookSchema"
-          }
-        ],
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "Union discriminator"
-          }
-        },
-        "discriminator": {
-          "propertyName": "type",
-          "mapping": {
-            "CampaignUpdateWebhookSchema": "#/components/schemas/CampaignUpdateWebhookSchema",
-            "FailureWebhookSchema": "#/components/schemas/FailureWebhookSchema"
-          }
-        }
-      },
       "CredentialSourceEnum": {
         "enum": [
           "PASSWORD",
@@ -84635,12 +84624,30 @@
           ]
         }
       },
-      "CampaignDocumentRequestFormData": {
+      "CampaignUpdateWebhookRequestRequest": {
+        "required": [
+          "type"
+        ],
         "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/CampaignUpdateWebhookSchema"
+          },
+          {
+            "$ref": "#/components/schemas/FailureWebhookSchema"
+          }
+        ],
         "properties": {
-          "file": {
+          "type": {
             "type": "string",
-            "format": "binary"
+            "description": "Union discriminator"
+          }
+        },
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "CampaignUpdateWebhookSchema": "#/components/schemas/CampaignUpdateWebhookSchema",
+            "FailureWebhookSchema": "#/components/schemas/FailureWebhookSchema"
           }
         }
       },
@@ -84652,31 +84659,12 @@
           "description": "A unique identifier for an account"
         }
       },
-      "CreateGroupRequestRequest": {
-        "required": [
-          "type"
-        ],
+      "CampaignDocumentRequestFormData": {
         "type": "object",
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/CreateGroupRequestEnterprise"
-          },
-          {
-            "$ref": "#/components/schemas/CreateGroupRequestReseller"
-          }
-        ],
         "properties": {
-          "type": {
-            "title": "type",
+          "file": {
             "type": "string",
-            "description": "Union discriminator"
-          }
-        },
-        "discriminator": {
-          "propertyName": "type",
-          "mapping": {
-            "CreateGroupRequestEnterprise": "#/components/schemas/CreateGroupRequestEnterprise",
-            "CreateGroupRequestReseller": "#/components/schemas/CreateGroupRequestReseller"
+            "format": "binary"
           }
         }
       },
@@ -84711,6 +84699,34 @@
           }
         },
         "additionalProperties": false
+      },
+      "CreateGroupRequestRequest": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/CreateGroupRequestEnterprise"
+          },
+          {
+            "$ref": "#/components/schemas/CreateGroupRequestReseller"
+          }
+        ],
+        "properties": {
+          "type": {
+            "title": "type",
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "CreateGroupRequestEnterprise": "#/components/schemas/CreateGroupRequestEnterprise",
+            "CreateGroupRequestReseller": "#/components/schemas/CreateGroupRequestReseller"
+          }
+        }
       },
       "CreateNewPhoneNumberOrderRequestRequestXml": {
         "required": [
@@ -84792,18 +84808,6 @@
           }
         }
       },
-      "UploadMediaRequestRequestXMsWmv": {
-        "required": [
-          "value"
-        ],
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "string",
-            "format": "binary"
-          }
-        }
-      },
       "MfaFactorTypeEnum": {
         "enum": [
           "TOTP",
@@ -84852,7 +84856,7 @@
           ]
         }
       },
-      "UploadMediaRequestRequestWebmContent": {
+      "UploadMediaRequestRequestXMsWmv": {
         "required": [
           "value"
         ],
@@ -84908,6 +84912,18 @@
           ]
         }
       },
+      "UploadMediaRequestRequestWebmContent": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "format": "binary"
+          }
+        }
+      },
       "UploadMediaRequestRequestQuicktime": {
         "required": [
           "value"
@@ -84921,18 +84937,6 @@
         }
       },
       "UploadMediaRequestRequestOggContent2": {
-        "required": [
-          "value"
-        ],
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "string",
-            "format": "binary"
-          }
-        }
-      },
-      "UploadMediaRequestRequestMpegContent": {
         "required": [
           "value"
         ],
@@ -84962,7 +84966,7 @@
         },
         "additionalProperties": false
       },
-      "UploadMediaRequestRequestMp4Content": {
+      "UploadMediaRequestRequestMpegContent": {
         "required": [
           "value"
         ],
@@ -85023,7 +85027,7 @@
         },
         "additionalProperties": false
       },
-      "UploadMediaRequestRequestAvi": {
+      "UploadMediaRequestRequestMp4Content": {
         "required": [
           "value"
         ],
@@ -85069,7 +85073,7 @@
         },
         "additionalProperties": false
       },
-      "UploadMediaRequestRequestXmlContent": {
+      "UploadMediaRequestRequestAvi": {
         "required": [
           "value"
         ],
@@ -85535,7 +85539,7 @@
         "nullable": true,
         "example": "sip:479fbd44-3362-45f3-bb80-284f21111be4@sip.programmable-voice.bandwidth.com"
       },
-      "UploadMediaRequestRequestWapWml": {
+      "UploadMediaRequestRequestXmlContent": {
         "required": [
           "value"
         ],
@@ -85547,7 +85551,7 @@
           }
         }
       },
-      "UploadMediaRequestRequestVcard": {
+      "UploadMediaRequestRequestWapWml": {
         "required": [
           "value"
         ],
@@ -85792,6 +85796,18 @@
           }
         }
       },
+      "UploadMediaRequestRequestVcard": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "format": "binary"
+          }
+        }
+      },
       "UploadMediaRequestRequestJavascriptContent": {
         "required": [
           "value"
@@ -85805,18 +85821,6 @@
         }
       },
       "UploadMediaRequestRequestPlain": {
-        "required": [
-          "value"
-        ],
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "string",
-            "format": "binary"
-          }
-        }
-      },
-      "UploadMediaRequestRequestHtml": {
         "required": [
           "value"
         ],
@@ -85894,7 +85898,7 @@
         },
         "description": "Stir shaken behavior."
       },
-      "UploadMediaRequestRequestCalendar": {
+      "UploadMediaRequestRequestHtml": {
         "required": [
           "value"
         ],
@@ -86216,6 +86220,110 @@
           }
         },
         "description": "The response object representing a voice configuration package with phone number count."
+      },
+      "UploadMediaRequestRequestCalendar": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "format": "binary"
+          }
+        }
+      },
+      "IncompatibilityReason": {
+        "required": [
+          "type",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Machine-readable identifier of the failed compatibility criterion. Possible values are STIR_SHAKEN, CNAM, HTTP_VOICE, CALL_VERIFICATION, INTEGRATION_TYPE, and ANALYTIC_ENGINE. New values may be added as compatibility criteria evolve.",
+            "example": "STIR_SHAKEN"
+          },
+          "description": {
+            "type": "string",
+            "description": "Human-readable explanation of the incompatibility.",
+            "example": "The voice configuration package has STIR/SHAKEN enabled, but one or more of the requested phone numbers do not support STIR/SHAKEN."
+          }
+        },
+        "description": "A reason why a voice configuration package is incompatible with the phone numbers in the search criteria.",
+        "example": {
+          "type": "STIR_SHAKEN",
+          "description": "The voice configuration package has STIR/SHAKEN enabled, but one or more of the requested phone numbers do not support STIR/SHAKEN."
+        }
+      },
+      "IncompatibilityReasons": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/IncompatibilityReason"
+        },
+        "description": "The reasons a voice configuration package is incompatible with the phone numbers in the search criteria. Populated when isCompatible is false; returned as null when the package is compatible or compatibility is not evaluated."
+      },
+      "VoiceConfigurationPackageSearchResult": {
+        "type": "object",
+        "properties": {
+          "voiceConfigurationPackageId": {
+            "type": "string",
+            "description": "The voice configuration package\u0027s ID.",
+            "format": "uuid"
+          },
+          "accountId": {
+            "type": "integer",
+            "description": "The account ID for the phone numbers."
+          },
+          "name": {
+            "type": "string",
+            "description": "The voice configuration package\u0027s name."
+          },
+          "description": {
+            "type": "string",
+            "description": "The voice configuration package\u0027s description."
+          },
+          "cnam": {
+            "$ref": "#/components/schemas/Cnam"
+          },
+          "pindropIntegration": {
+            "$ref": "#/components/schemas/PindropIntegration"
+          },
+          "callVerification": {
+            "$ref": "#/components/schemas/CallVerification"
+          },
+          "originationRoutePlan": {
+            "$ref": "#/components/schemas/VoiceConfigServiceOriginationRoutePlan"
+          },
+          "stirShakenBehavior": {
+            "$ref": "#/components/schemas/StirShakenBehavior"
+          },
+          "httpVoiceV2ApplicationId": {
+            "type": "string",
+            "description": "HTTP Voice V2 Application ID.",
+            "format": "uuid"
+          },
+          "analyticEngine": {
+            "$ref": "#/components/schemas/AnalyticEngine"
+          },
+          "phoneNumberCount": {
+            "type": "integer",
+            "description": "The number of phone numbers associated with the voice configuration package."
+          },
+          "isCompatible": {
+            "type": "boolean",
+            "description": "Whether the voice configuration package is compatible with all phone numbers provided in the search criteria. Returned as null when the search criteria do not evaluate compatibility (searches without phoneNumber criteria). When a name filter is combined with phoneNumber criteria, only compatible packages are returned."
+          },
+          "incompatibilityReasons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IncompatibilityReason"
+            },
+            "description": "The reasons a voice configuration package is incompatible with the phone numbers in the search criteria. Populated when isCompatible is false; returned as null when the package is compatible or compatibility is not evaluated."
+          }
+        },
+        "description": "A voice configuration package returned by the search endpoint, including compatibility details when searching by phone number."
       },
       "UploadMediaRequestRequestCsv": {
         "required": [
@@ -87001,7 +87109,7 @@
           "data": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/VoiceConfigurationPackage"
+              "$ref": "#/components/schemas/VoiceConfigurationPackageSearchResult"
             }
           },
           "errors": {
@@ -87014,7 +87122,7 @@
             "$ref": "#/components/schemas/VoiceConfigServicePageMeta"
           }
         },
-        "description": "A response containing an array of voice configuration package objects."
+        "description": "A response containing an array of voice configuration package objects matching the search criteria, including compatibility details when searching by phone number."
       },
       "AnalyticEngineListResponse": {
         "required": [
@@ -102017,12 +102125,12 @@
           }
         }
       },
-      "CreateWebRtcConnectionRequestAllOf2ConnectionMetadata": {
-        "type": "object"
-      },
       "UpdateCampaignRequestSchemaMigrationLetterAttachmentUrl": {
         "type": "object",
         "description": "The URL for the migration letter attachment."
+      },
+      "CreateWebRtcConnectionRequestAllOf2ConnectionMetadata": {
+        "type": "object"
       },
       "SubscriptionsErrorMetaProperty": {
         "type": "object",
@@ -125487,7 +125595,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/ListVoiceConfigurationPackagesResponse"
+              "$ref": "#/components/schemas/SearchVoiceConfigurationPackagesResponse"
             },
             "examples": {
               "default": {
@@ -146694,7 +146802,52 @@
                 "identity": true
               },
               "httpVoiceV2ApplicationId": null,
-              "analyticEngine": "FIRST_ORION"
+              "analyticEngine": "FIRST_ORION",
+              "isCompatible": true,
+              "incompatibilityReasons": null
+            },
+            {
+              "voiceConfigurationPackageId": "7a1b03c4-91d2-4f3a-b6c5-2df84a9e1b23",
+              "accountId": 123456,
+              "name": "Incompatible Voice Configuration Package Name",
+              "description": "Voice Configuration Package Description",
+              "cnam": {
+                "enabled": false
+              },
+              "pindropIntegration": {
+                "enabled": false
+              },
+              "callVerification": {
+                "enabled": false
+              },
+              "originationRoutePlan": {
+                "routes": [
+                  {
+                    "priority": 1,
+                    "type": "WEIGHTED",
+                    "name": "Route Name",
+                    "endpoints": [
+                      {
+                        "endpoint": 12345678910,
+                        "type": "TN",
+                        "weight": 100
+                      }
+                    ]
+                  }
+                ]
+              },
+              "stirShakenBehavior": {
+                "verstat": "BASIC",
+                "identity": true
+              },
+              "httpVoiceV2ApplicationId": null,
+              "isCompatible": false,
+              "incompatibilityReasons": [
+                {
+                  "type": "STIR_SHAKEN",
+                  "description": "The voice configuration package has STIR/SHAKEN enabled, but one or more of the requested phone numbers do not support STIR/SHAKEN."
+                }
+              ]
             }
           ],
           "errors": [],
@@ -146792,7 +146945,9 @@
                 "identity": true
               },
               "httpVoiceV2ApplicationId": null,
-              "analyticEngine": "FIRST_ORION"
+              "analyticEngine": "FIRST_ORION",
+              "isCompatible": null,
+              "incompatibilityReasons": null
             }
           ],
           "errors": [],

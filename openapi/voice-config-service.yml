@@ -560,6 +560,71 @@ components:
           $ref: '#/components/schemas/analyticEngine'
         phoneNumberCount:
           $ref: '#/components/schemas/phoneNumberCount'
+    isCompatible:
+      type: boolean
+      nullable: true
+      description: >-
+        Whether the voice configuration package is compatible with all phone
+        numbers provided in the search criteria. Returned as null when the
+        search criteria do not evaluate compatibility (searches without
+        phoneNumber criteria). When a name filter is combined with phoneNumber
+        criteria, only compatible packages are returned.
+      example: false
+    incompatibilityReason:
+      type: object
+      description: >-
+        A reason why a voice configuration package is incompatible with the
+        phone numbers in the search criteria.
+      properties:
+        type:
+          type: string
+          description: >-
+            Machine-readable identifier of the failed compatibility criterion.
+            Possible values are STIR_SHAKEN, CNAM, HTTP_VOICE,
+            CALL_VERIFICATION, INTEGRATION_TYPE, and ANALYTIC_ENGINE. New values
+            may be added as compatibility criteria evolve.
+          example: STIR_SHAKEN
+        description:
+          type: string
+          description: Human-readable explanation of the incompatibility.
+          example: >-
+            The voice configuration package has STIR/SHAKEN enabled, but one or
+            more of the requested phone numbers do not support STIR/SHAKEN.
+      required:
+        - type
+        - description
+      example:
+        type: STIR_SHAKEN
+        description: >-
+          The voice configuration package has STIR/SHAKEN enabled, but one or
+          more of the requested phone numbers do not support STIR/SHAKEN.
+    incompatibilityReasons:
+      type: array
+      nullable: true
+      description: >-
+        The reasons a voice configuration package is incompatible with the phone
+        numbers in the search criteria. Populated when isCompatible is false;
+        returned as null when the package is compatible or compatibility is not
+        evaluated.
+      items:
+        $ref: '#/components/schemas/incompatibilityReason'
+      example:
+        - type: STIR_SHAKEN
+          description: >-
+            The voice configuration package has STIR/SHAKEN enabled, but one or
+            more of the requested phone numbers do not support STIR/SHAKEN.
+    voiceConfigurationPackageSearchResult:
+      description: >-
+        A voice configuration package returned by the search endpoint, including
+        compatibility details when searching by phone number.
+      allOf:
+        - $ref: '#/components/schemas/voiceConfigurationPackageWithPhoneNumberCount'
+        - type: object
+          properties:
+            isCompatible:
+              $ref: '#/components/schemas/isCompatible'
+            incompatibilityReasons:
+              $ref: '#/components/schemas/incompatibilityReasons'
     phoneNumber:
       type: string
       description: An E164 phone number.
@@ -1098,7 +1163,10 @@ components:
         - errors
     searchVoiceConfigurationPackagesResponse:
       type: object
-      description: A response containing an array of voice configuration package objects.
+      description: >-
+        A response containing an array of voice configuration package objects
+        matching the search criteria, including compatibility details when
+        searching by phone number.
       properties:
         links:
           type: array
@@ -1107,7 +1175,7 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/voiceConfigurationPackage'
+            $ref: '#/components/schemas/voiceConfigurationPackageSearchResult'
           nullable: true
         errors:
           type: array
@@ -1154,7 +1222,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/listVoiceConfigurationPackagesResponse'
+            $ref: '#/components/schemas/searchVoiceConfigurationPackagesResponse'
           examples:
             default:
               $ref: >-
@@ -1878,6 +1946,38 @@ components:
               identity: true
             httpVoiceV2ApplicationId: null
             analyticEngine: FIRST_ORION
+            isCompatible: true
+            incompatibilityReasons: null
+          - voiceConfigurationPackageId: 7a1b03c4-91d2-4f3a-b6c5-2df84a9e1b23
+            accountId: 123456
+            name: Incompatible Voice Configuration Package Name
+            description: Voice Configuration Package Description
+            cnam:
+              enabled: false
+            pindropIntegration:
+              enabled: false
+            callVerification:
+              enabled: false
+            originationRoutePlan:
+              routes:
+                - priority: 1
+                  type: WEIGHTED
+                  name: Route Name
+                  endpoints:
+                    - endpoint: '+12345678910'
+                      type: TN
+                      weight: 100
+            stirShakenBehavior:
+              verstat: BASIC
+              identity: true
+            httpVoiceV2ApplicationId: null
+            isCompatible: false
+            incompatibilityReasons:
+              - type: STIR_SHAKEN
+                description: >-
+                  The voice configuration package has STIR/SHAKEN enabled, but
+                  one or more of the requested phone numbers do not support
+                  STIR/SHAKEN.
         errors: []
         page:
           pageSize: 25
@@ -1943,6 +2043,8 @@ components:
               identity: true
             httpVoiceV2ApplicationId: null
             analyticEngine: FIRST_ORION
+            isCompatible: null
+            incompatibilityReasons: null
         errors: []
         page:
           pageSize: 25
