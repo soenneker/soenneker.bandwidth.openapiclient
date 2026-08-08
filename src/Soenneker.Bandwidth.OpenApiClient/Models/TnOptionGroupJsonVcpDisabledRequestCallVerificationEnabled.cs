@@ -5,24 +5,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public enum TnOptionGroupJsonVcpDisabledResponseProtected
+    public enum TnOptionGroupJsonVcpDisabledRequestCallVerificationEnabled
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "TRUE")]
+        [EnumMember(Value = "true")]
         #pragma warning disable CS1591
         TrueValue,
         #pragma warning restore CS1591
-        [EnumMember(Value = "FALSE")]
+        [EnumMember(Value = "false")]
         #pragma warning disable CS1591
         FalseValue,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "UNCHANGED")]
-        #pragma warning disable CS1591
-        Unchanged,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "SYSTEM_DEFAULT")]
-        #pragma warning disable CS1591
-        SystemDefault,
         #pragma warning restore CS1591
     }
 }

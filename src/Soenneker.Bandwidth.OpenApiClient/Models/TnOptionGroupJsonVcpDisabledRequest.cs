@@ -33,7 +33,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The callingNameDisplay property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestCallingNameDisplay? CallingNameDisplay { get; set; }
         /// <summary>The callVerificationEnabled property</summary>
-        public bool? CallVerificationEnabled { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestCallVerificationEnabled? CallVerificationEnabled { get; set; }
         /// <summary>The espid property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -77,7 +77,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public List<string> PhoneNumbers { get; set; }
 #endif
         /// <summary>The pindropEnabled property</summary>
-        public bool? PindropEnabled { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestPindropEnabled? PindropEnabled { get; set; }
         /// <summary>The portOutPasscode property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -127,7 +127,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "a2pSettings", n => { A2pSettings = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.A2PSettingsJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.A2PSettingsJson.CreateFromDiscriminatorValue); } },
                 { "callForward", n => { CallForward = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestCallForward>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestCallForward.CreateFromDiscriminatorValue); } },
-                { "callVerificationEnabled", n => { CallVerificationEnabled = n.GetBoolValue(); } },
+                { "callVerificationEnabled", n => { CallVerificationEnabled = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestCallVerificationEnabled>(); } },
                 { "callingNameDisplay", n => { CallingNameDisplay = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestCallingNameDisplay>(); } },
                 { "espid", n => { Espid = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspid>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspid.CreateFromDiscriminatorValue); } },
                 { "finalDestinationUri", n => { FinalDestinationUri = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestFinalDestinationUri>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestFinalDestinationUri.CreateFromDiscriminatorValue); } },
@@ -135,7 +135,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "numberFormat", n => { NumberFormat = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestNumberFormat>(); } },
                 { "originationRoutePlan", n => { OriginationRoutePlan = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesOriginationRoutePlanJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesOriginationRoutePlanJson.CreateFromDiscriminatorValue); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "pindropEnabled", n => { PindropEnabled = n.GetBoolValue(); } },
+                { "pindropEnabled", n => { PindropEnabled = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestPindropEnabled>(); } },
                 { "portOutPasscode", n => { PortOutPasscode = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestPortOutPasscode>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestPortOutPasscode.CreateFromDiscriminatorValue); } },
                 { "protected", n => { Protected = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestProtected>(); } },
                 { "rewriteUser", n => { RewriteUser = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestRewriteUser>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestRewriteUser.CreateFromDiscriminatorValue); } },
@@ -153,14 +153,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.A2PSettingsJson>("a2pSettings", A2pSettings);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestCallForward>("callForward", CallForward);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestCallingNameDisplay>("callingNameDisplay", CallingNameDisplay);
-            writer.WriteBoolValue("callVerificationEnabled", CallVerificationEnabled);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestCallVerificationEnabled>("callVerificationEnabled", CallVerificationEnabled);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspid>("espid", Espid);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestFinalDestinationUri>("finalDestinationUri", FinalDestinationUri);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestNnid>("nnid", Nnid);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestNumberFormat>("numberFormat", NumberFormat);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesOriginationRoutePlanJson>("originationRoutePlan", OriginationRoutePlan);
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
-            writer.WriteBoolValue("pindropEnabled", PindropEnabled);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestPindropEnabled>("pindropEnabled", PindropEnabled);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestPortOutPasscode>("portOutPasscode", PortOutPasscode);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestProtected>("protected", Protected);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestRewriteUser>("rewriteUser", RewriteUser);

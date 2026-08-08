@@ -3,10 +3,9 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
+    /// <summary>Whether calling name display is enabled.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public enum TnOptionGroupJsonVcpEnabledProtected
-    #pragma warning restore CS1591
+    public enum UpdateSipPeerTnRequestCallingNameDisplay
     {
         [EnumMember(Value = "true")]
         #pragma warning disable CS1591
@@ -15,14 +14,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         [EnumMember(Value = "false")]
         #pragma warning disable CS1591
         FalseValue,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "UNCHANGED")]
-        #pragma warning disable CS1591
-        Unchanged,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "SYSTEM_DEFAULT")]
-        #pragma warning disable CS1591
-        SystemDefault,
         #pragma warning restore CS1591
     }
 }

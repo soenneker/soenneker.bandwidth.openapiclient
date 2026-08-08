@@ -23,7 +23,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string CallForward { get; set; }
 #endif
         /// <summary>Whether calling name display is enabled.</summary>
-        public bool? CallingNameDisplay { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestCallingNameDisplay? CallingNameDisplay { get; set; }
         /// <summary>The messagingSettings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -84,7 +84,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "callForward", n => { CallForward = n.GetStringValue(); } },
-                { "callingNameDisplay", n => { CallingNameDisplay = n.GetBoolValue(); } },
+                { "callingNameDisplay", n => { CallingNameDisplay = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestCallingNameDisplay>(); } },
                 { "messagingSettings", n => { MessagingSettings = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestMessagingSettings>(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestMessagingSettings.CreateFromDiscriminatorValue); } },
                 { "phoneNumber", n => { PhoneNumber = n.GetStringValue(); } },
                 { "rewriteUser", n => { RewriteUser = n.GetStringValue(); } },
@@ -100,7 +100,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("callForward", CallForward);
-            writer.WriteBoolValue("callingNameDisplay", CallingNameDisplay);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestCallingNameDisplay>("callingNameDisplay", CallingNameDisplay);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestMessagingSettings>("messagingSettings", MessagingSettings);
             writer.WriteStringValue("phoneNumber", PhoneNumber);
             writer.WriteStringValue("rewriteUser", RewriteUser);
