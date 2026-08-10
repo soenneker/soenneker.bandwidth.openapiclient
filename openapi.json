@@ -19009,47 +19009,6 @@
         }
       }
     },
-    "/my-numbers/accounts/{accountId}/exportTelephoneNumbers/download": {
-      "get": {
-        "tags": [
-          "My Numbers"
-        ],
-        "summary": "Export all in-service phone numbers as CSV",
-        "description": "Download a CSV file of all INSERVICE telephone numbers for the account. Each row contains a single phone number.",
-        "operationId": "my_numbers_exportTelephoneNumbersByAccount",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/accountIdPathParam"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK — CSV file download.",
-            "content": {
-              "text/csv": {
-                "schema": {
-                  "type": "string",
-                  "format": "binary"
-                },
-                "example": "Number\n+19199918388\n+14158714245\n"
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
     "/my-numbers/accounts/{accountId}/exportTelephoneNumbers/download/{siteId}/{peerId}": {
       "get": {
         "tags": [

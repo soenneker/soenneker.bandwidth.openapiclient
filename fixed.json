@@ -18030,34 +18030,6 @@
         }
       }
     },
-    "/my-numbers/accounts/{accountId}/exportTelephoneNumbers/download": {
-      "get": {
-        "tags": [
-          "My Numbers"
-        ],
-        "summary": "Export all in-service phone numbers as CSV",
-        "description": "Download a CSV file of all INSERVICE telephone numbers for the account. Each row contains a single phone number.",
-        "operationId": "MyNumbersExportTelephoneNumbersByAccount",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/accountIdPathParam"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK \u2014 CSV file download.",
-            "content": {
-              "text/csv": {
-                "schema": {
-                  "$ref": "#/components/schemas/MyNumbersExportTelephoneNumbersByAccount200CsvResponseSchema"
-                },
-                "example": "Number\n\u002B19199918388\n\u002B14158714245\n"
-              }
-            }
-          }
-        }
-      }
-    },
     "/my-numbers/accounts/{accountId}/exportTelephoneNumbers/download/{siteId}/{peerId}": {
       "get": {
         "tags": [
@@ -100744,10 +100716,6 @@
           }
         }
       },
-      "MyNumbersExportTelephoneNumbersByAccount200CsvResponse": {
-        "type": "string",
-        "format": "binary"
-      },
       "MyNumbersExportTelephoneNumbersBySipPeer200CsvResponse": {
         "type": "string",
         "format": "binary"
@@ -101499,10 +101467,6 @@
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
-      },
-      "MyNumbersExportTelephoneNumbersByAccount200CsvResponseSchema": {
-        "type": "string",
-        "format": "binary"
       },
       "MyNumbersExportTelephoneNumbersBySipPeer200CsvResponseSchema": {
         "type": "string",
