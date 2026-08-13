@@ -19,10 +19,6 @@ using Soenneker.Bandwidth.OpenApiClient.Dash;
 using Soenneker.Bandwidth.OpenApiClient.DashNotifications;
 using Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning;
 using Soenneker.Bandwidth.OpenApiClient.EndUserManagement;
-using Soenneker.Bandwidth.OpenApiClient.Global;
-using Soenneker.Bandwidth.OpenApiClient.GlobalBeta;
-using Soenneker.Bandwidth.OpenApiClient.GlobalV2;
-using Soenneker.Bandwidth.OpenApiClient.GlobalV3;
 using Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement;
 using Soenneker.Bandwidth.OpenApiClient.Insights;
 using Soenneker.Bandwidth.OpenApiClient.LineFeatures;
@@ -126,26 +122,6 @@ namespace Soenneker.Bandwidth.OpenApiClient
         public global::Soenneker.Bandwidth.OpenApiClient.EndUserManagement.EndUserManagementRequestBuilder EndUserManagement
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.EndUserManagement.EndUserManagementRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The global property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Global.GlobalRequestBuilder Global
-        {
-            get => new global::Soenneker.Bandwidth.OpenApiClient.Global.GlobalRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The globalBeta property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.GlobalBeta.GlobalBetaRequestBuilder GlobalBeta
-        {
-            get => new global::Soenneker.Bandwidth.OpenApiClient.GlobalBeta.GlobalBetaRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The globalV2 property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.GlobalV2RequestBuilder GlobalV2
-        {
-            get => new global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.GlobalV2RequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The globalV3 property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.GlobalV3.GlobalV3RequestBuilder GlobalV3
-        {
-            get => new global::Soenneker.Bandwidth.OpenApiClient.GlobalV3.GlobalV3RequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The hostedNumberManagement property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.HostedNumberManagementRequestBuilder HostedNumberManagement

@@ -2,6 +2,21 @@ openapi: 3.0.1
 info:
   title: Global API Beta
   description: >
+    <div class="alert alert--warning">
+      <h2>⚠️ Legacy API Deprecation Notice</h2>
+      The Legacy Global Platform (Voxbone) APIs are scheduled to be sunset in 2027.
+      Bandwidth is upgrading all customers to the Universal Platform, which offers a modernized,
+      unified API experience for all global services.<br><br>
+
+      <h4>What this means for you:</h4>
+      • These endpoints will become unavailable in early 2027.<br>
+      • Your account manager will reach out when your account is ready to upgrade.<br>
+      • New integrations should be built on the Universal Platform APIs targeting your new UP account.<br>
+      • Start exploring the new APIs and plan your upgrade early to avoid disruption.
+      Full details on the upgrade process <a href="https://www.bandwidth.com/support/en/articles/14472087-universal-platform-upgrade-from-legacy-global-platform-faqs" target="_blank">here</a>.
+    </div><br>
+
+
     Bandwidth's global API is an application programming interface for
     Bandwidth's global network.
 
@@ -92,6 +107,7 @@ tags:
 paths:
   /whitelist:
     get:
+      deprecated: true
       tags:
         - Number Whitelisting
       summary: |
@@ -143,6 +159,7 @@ paths:
         - apiKey:
             - yourKey
     put:
+      deprecated: true
       tags:
         - Number Whitelisting
       summary: |
@@ -173,6 +190,7 @@ paths:
       Create or list whitelisted numbers
   /whitelist/{e164}:
     get:
+      deprecated: true
       tags:
         - Number Whitelisting
       summary: |
@@ -199,6 +217,7 @@ paths:
         - apiKey:
             - yourKey
     delete:
+      deprecated: true
       tags:
         - Number Whitelisting
       summary: |

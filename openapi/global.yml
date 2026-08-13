@@ -1029,6 +1029,7 @@ tags:
 paths:
   /inventory/country:
     get:
+      deprecated: true
       tags:
         - Service, Coverage, & Number Inventory
       summary: Search Coverage by Country
@@ -1093,6 +1094,7 @@ paths:
       ordering.
   /inventory/country/{countryCodeA3}:
     get:
+      deprecated: true
       tags:
         - Service, Coverage, & Number Inventory
       summary: Get activation requirements and available area codes within a country
@@ -1121,6 +1123,7 @@ paths:
       states and if the country has local address requirements (LAR)
   /inventory/country/{countryCodeA3}/state:
     get:
+      deprecated: true
       tags:
         - Service, Coverage, & Number Inventory
       summary: Get Coverage by States in USA and Canada
@@ -1152,6 +1155,7 @@ paths:
       USA and CAN.
   /inventory/didgroup:
     get:
+      deprecated: true
       tags:
         - Service, Coverage, & Number Inventory
       summary: Search Global Number Inventory by City and Area Code
@@ -1367,6 +1371,7 @@ paths:
       placing a DID order.
   /inventory/country/{countryCodeA3}/restriction:
     get:
+      deprecated: true
       tags:
         - Service, Coverage, & Number Inventory
       summary: List Service Restrictions by Country
@@ -1404,6 +1409,7 @@ paths:
       to service activation.
   /inventory/zone:
     get:
+      deprecated: true
       tags:
         - Service, Coverage, & Number Inventory
       summary: List channels by zone
@@ -1423,6 +1429,7 @@ paths:
     x-description: Allows you to display all the zones currently configured in your account.
   /inventory/feature:
     get:
+      deprecated: true
       tags:
         - Service, Coverage, & Number Inventory
       summary: List available communications features
@@ -1445,6 +1452,7 @@ paths:
       now also return Voice as a feature.
   /ordering/cart:
     get:
+      deprecated: true
       tags:
         - Ordering
       summary: List and filter created carts
@@ -1493,6 +1501,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListCartResponse'
     put:
+      deprecated: true
       tags:
         - Ordering
       summary: Create cart for new orders
@@ -1530,6 +1539,7 @@ paths:
       of products - orderProducts - that are currently in the cart).
   /ordering/cart/{cartIdentifier}/product/{orderProductId}:
     post:
+      deprecated: true
       tags:
         - Ordering
       summary: Remove number(s) and product(s) from cart or change quantity
@@ -1579,6 +1589,7 @@ paths:
     x-description: Remove a product from your cart, or change the ordered quantity.
   /ordering/cart/{cartIdentifier}:
     get:
+      deprecated: true
       tags:
         - Ordering
       summary: Get a specific cart by id
@@ -1605,6 +1616,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListCartResponse'
     delete:
+      deprecated: true
       tags:
         - Ordering
       summary: Destroy a cart and all its contents
@@ -1635,6 +1647,7 @@ paths:
       orderProducts - that are currently in the cart).
   /ordering/cart/{cartIdentifier}/product:
     post:
+      deprecated: true
       tags:
         - Ordering
       summary: Add Numbers and products to cart
@@ -1699,6 +1712,7 @@ paths:
       can be added into one single cart.
   /ordering/accountbalance:
     get:
+      deprecated: true
       tags:
         - Ordering
       summary: Get account balance
@@ -1724,6 +1738,7 @@ paths:
       parameter is set to true, especially when using the API for ordering.
   /inventory/creditpackage:
     get:
+      deprecated: true
       tags:
         - Ordering
       summary: List Top-Up Credit Package Options
@@ -1746,6 +1761,7 @@ paths:
       a value multiplied by 100 as Price100=10000).
   /ordering/cart/{cartIdentifier}/checkout:
     get:
+      deprecated: true
       tags:
         - Ordering
       summary: Checkout Cart
@@ -1782,6 +1798,7 @@ paths:
       listOrder method.
   /ordering/order:
     get:
+      deprecated: true
       tags:
         - Ordering
       summary: List and filter placed orders
@@ -1855,6 +1872,7 @@ paths:
       out) and their status.
   /regulation/address:
     get:
+      deprecated: true
       tags:
         - Service Activation
       summary: List already created addresses
@@ -1961,6 +1979,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListRegulationAddressResponse'
     put:
+      deprecated: true
       tags:
         - Service Activation
       summary: Create a new address
@@ -2270,6 +2289,7 @@ paths:
       more detailed information on when this is required.
   /regulation/address/{regulationAddressId}:
     get:
+      deprecated: true
       tags:
         - Service Activation
       summary: Get a specific address with id
@@ -2294,6 +2314,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListRegulationAddressResponse'
     delete:
+      deprecated: true
       tags:
         - Service Activation
       summary: Delete an address
@@ -2325,6 +2346,7 @@ paths:
       required.
   /regulation/address/{regulationAddressId}/proof:
     put:
+      deprecated: true
       tags:
         - Service Activation
       summary: Update proof of address
@@ -2379,6 +2401,7 @@ paths:
       depending on the country and number type.
   /regulation/identitydocument:
     put:
+      deprecated: true
       tags:
         - Service Activation
       summary: Update identity proof document
@@ -2410,6 +2433,7 @@ paths:
       be mandatory depending on the country and number type.
   /regulation/zipcode:
     get:
+      deprecated: true
       tags:
         - Service Activation
       summary: List accepted postal codes for address creation in a country
@@ -2476,6 +2500,7 @@ paths:
       instance in Germany (DEU), Croatia (HRV), South Korea (KOR), etc…
   /regulation/address/{regulationAddressId}/validation:
     get:
+      deprecated: true
       tags:
         - Service Activation
       summary: Check if address is valid to activate numbers
@@ -2526,6 +2551,7 @@ paths:
       for a given DID and you wish to reuse that same address for another DID.
   /regulation/address/{regulationAddressId}/link:
     post:
+      deprecated: true
       tags:
         - Service Activation
       summary: Link numbers to a Local Address Requirement
@@ -2577,6 +2603,7 @@ paths:
       for the number to be activated, the LAR document linked must be validated.
   /regulation/address/{regulationAddressId}/verification:
     put:
+      deprecated: true
       tags:
         - Service Activation
       summary: Request verification of changes to an address
@@ -2610,6 +2637,7 @@ paths:
       in VERIFICATION_NOT_REQUIRED status will return an error.
   /regulation/address/unlink:
     post:
+      deprecated: true
       tags:
         - Service Activation
       summary: Remove address information from numbers
@@ -2654,6 +2682,7 @@ paths:
       numbers from their linked address/end user.
   /ordering/cancel:
     post:
+      deprecated: true
       tags:
         - Inventory
       summary: Cancel number subscription
@@ -2683,6 +2712,7 @@ paths:
       available to cancel the DID from first.
   /inventory/did:
     get:
+      deprecated: true
       tags:
         - Inventory
       summary: List number inventory
@@ -2862,6 +2892,7 @@ paths:
       DIDs.
   /configuration/voiceuri:
     get:
+      deprecated: true
       tags:
         - Voice
       summary: List Voice URIs
@@ -2929,6 +2960,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListVoiceUriResponse'
     put:
+      deprecated: true
       tags:
         - Voice
       summary: Create a new Voice URI
@@ -2964,6 +2996,7 @@ paths:
       response to link a URI of choice with a DID from your inventory
   /configuration/voiceuri/{voiceUriId}:
     get:
+      deprecated: true
       tags:
         - Voice
       summary: Get a specific Voice URI with id
@@ -2988,6 +3021,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListVoiceUriResponse'
     put:
+      deprecated: true
       tags:
         - Voice
       summary: Change Voice URI
@@ -3022,6 +3056,7 @@ paths:
                 $ref: '#/components/schemas/SaveVoiceUriResponse'
       x-codegen-request-body-name: body
     delete:
+      deprecated: true
       tags:
         - Voice
       summary: Delete Voice URI
@@ -3052,6 +3087,7 @@ paths:
     x-description: Get, update or delete previously created voice URIs.
   /configuration/smslink:
     get:
+      deprecated: true
       tags:
         - SMS
       summary: List SMS Links
@@ -3107,6 +3143,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListSmsLinkResponse'
     put:
+      deprecated: true
       tags:
         - SMS
       summary: Create new SMS Link
@@ -3139,6 +3176,7 @@ paths:
       SMS Links created to assign them to a mobile number.
   /configuration/smslink/{smsLinkId}:
     get:
+      deprecated: true
       tags:
         - SMS
       summary: Get a specific SMS link with id
@@ -3163,6 +3201,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListSmsLinkResponse'
     put:
+      deprecated: true
       tags:
         - SMS
       summary: Update an SMS link
@@ -3198,6 +3237,7 @@ paths:
                 $ref: '#/components/schemas/SaveSmsLinkResponse'
       x-codegen-request-body-name: body
     delete:
+      deprecated: true
       tags:
         - SMS
       summary: Delete an SMS link
@@ -3230,6 +3270,7 @@ paths:
       protocols used.
   /configuration/smslinkgroup:
     get:
+      deprecated: true
       tags:
         - SMS
       summary: List SMS Link Groups
@@ -3249,6 +3290,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListSmsLinkGroupResponse'
     put:
+      deprecated: true
       tags:
         - SMS
       summary: Create a new SMS Link Group or Update
@@ -3283,6 +3325,7 @@ paths:
       parameter defined in the links definition.
   /configuration/smslinkgroup/{smsLinkGroupId}:
     delete:
+      deprecated: true
       tags:
         - SMS
       summary: Delete SMS Link Group
@@ -3313,6 +3356,7 @@ paths:
     x-description: Deletes all associated SMS links with the group
   /configuration/faxuri:
     get:
+      deprecated: true
       tags:
         - Fax
       summary: List Fax URIs
@@ -3386,6 +3430,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListFaxUriResponse'
     put:
+      deprecated: true
       tags:
         - Fax
       summary: Create a new Fax URI
@@ -3418,6 +3463,7 @@ paths:
       faxURI’s using the appropriate methods
   /configuration/faxuri/{faxUriId}:
     get:
+      deprecated: true
       tags:
         - Fax
       summary: Get specific Fax URI with id
@@ -3442,6 +3488,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListFaxUriResponse'
     put:
+      deprecated: true
       tags:
         - Fax
       summary: Update existing Fax URI
@@ -3473,6 +3520,7 @@ paths:
                 $ref: '#/components/schemas/SaveFaxUriResponse'
       x-codegen-request-body-name: body
     delete:
+      deprecated: true
       tags:
         - Fax
       summary: Delete a Fax URI
@@ -3505,6 +3553,7 @@ paths:
       methods.
   /configuration/didConfiguration:
     post:
+      deprecated: true
       tags:
         - Number Configuration
       summary: Apply set of configurations to a DID
@@ -3540,6 +3589,7 @@ paths:
       remaining configuration remains unchanged.
   /configuration/bulk:
     post:
+      deprecated: true
       tags:
         - Number Configuration
       summary: Apply set of configurations to one or many DIDs
@@ -3711,6 +3761,7 @@ paths:
       the configurations.
   /inventory/trunk:
     get:
+      deprecated: true
       tags:
         - Capacity
       summary: List SIP Trunks
@@ -3733,6 +3784,7 @@ paths:
       the response.
   /configuration/capacitygroup:
     get:
+      deprecated: true
       tags:
         - Capacity
       summary: List Capacity Groups
@@ -3784,6 +3836,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListCapacityGroupResponse'
     put:
+      deprecated: true
       tags:
         - Capacity
       summary: Create a new Capacity Group or Update
@@ -3817,6 +3870,7 @@ paths:
       capacity groups using the appropriate methods.
   /configuration/capacitygroup/{capacityGroupId}:
     get:
+      deprecated: true
       tags:
         - Capacity
       summary: Get specific capacity group by Id
@@ -3841,6 +3895,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListCapacityGroupResponse'
     put:
+      deprecated: true
       tags:
         - Capacity
       summary: Update an existing capacity group.
@@ -3872,6 +3927,7 @@ paths:
                 $ref: '#/components/schemas/SaveCapacityGroupResponse'
       x-codegen-request-body-name: body
     delete:
+      deprecated: true
       tags:
         - Capacity
       summary: Remove a capacity group
@@ -3901,6 +3957,7 @@ paths:
     x-description: Get, update or delete previously created capacity groups.
   /configuration/pop:
     get:
+      deprecated: true
       tags:
         - Connectivity
       summary: List Interconnect locations and IP addresses
@@ -3924,6 +3981,7 @@ paths:
       addresses.
   /subscriptions:
     get:
+      deprecated: true
       summary: List Subscriptions
       operationId: listSubscriptions
       description: List All Subscriptions for Account
@@ -3951,6 +4009,7 @@ paths:
         '500':
           $ref: '#/components/responses/internalErrorResponse'
     post:
+      deprecated: true
       summary: Create Subscription
       operationId: createSubscription
       description: Create New Subscription
@@ -3975,6 +4034,7 @@ paths:
           $ref: '#/components/responses/internalErrorResponse'
   /subscriptions/{subscriptionId}:
     get:
+      deprecated: true
       summary: Get Subscription
       operationId: getSubscription
       description: GET Subscription by ID
@@ -3998,6 +4058,7 @@ paths:
         '500':
           $ref: '#/components/responses/internalErrorResponse'
     delete:
+      deprecated: true
       summary: Delete Subscription
       operationId: deleteSubscription
       description: Delete Subscription
@@ -4021,6 +4082,7 @@ paths:
         '500':
           $ref: '#/components/responses/internalErrorResponse'
     patch:
+      deprecated: true
       summary: Modify Subscription
       operationId: modifySubscription
       description: Modify Subscription
@@ -4048,6 +4110,7 @@ paths:
         '500':
           $ref: '#/components/responses/internalErrorResponse'
     put:
+      deprecated: true
       summary: Update Subscription
       operationId: updateSubscription
       description: Update Subscription
@@ -4074,6 +4137,7 @@ paths:
           $ref: '#/components/responses/internalErrorResponse'
   /upgrade/movePhoneNumbers:
     post:
+      deprecated: true
       summary: Move phone numbers from Legacy Global Network to Universal Platform
       parameters:
         - $ref: '#/components/parameters/BandwidthAuthorizationHeader'
@@ -4127,6 +4191,7 @@ paths:
           $ref: '#/components/responses/serviceUnavailableResponse'
   /upgrade/movePhoneNumbers/status/{orderId}:
     get:
+      deprecated: true
       tags:
         - Move Phone Numbers
       summary: Get phone number move order status
@@ -4159,6 +4224,7 @@ paths:
           $ref: '#/components/responses/serviceUnavailableResponse'
   /upgrade/movePhoneNumbers/complete:
     post:
+      deprecated: true
       tags:
         - Move Phone Numbers
       operationId: completeMoveRequest
@@ -4190,6 +4256,7 @@ paths:
           $ref: '#/components/responses/serviceUnavailableResponse'
   /upgrade/movePhoneNumbers/complete/status/{orderId}:
     get:
+      deprecated: true
       tags:
         - Move Phone Numbers
       summary: Get complete phone number move order status

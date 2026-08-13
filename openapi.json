@@ -6350,6 +6350,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "apiKey": [
@@ -6388,6 +6389,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "apiKey": [
@@ -6430,6 +6432,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "apiKey": [
@@ -6468,6 +6471,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "apiKey": [
@@ -6547,6 +6551,7 @@
             "$ref": "#/components/responses/global_v2_internalServerErrorResponse"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "global_v2_apiKey": [
@@ -6590,7 +6595,8 @@
           "500": {
             "$ref": "#/components/responses/internalErrorResponse"
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/global-v3/porting/portInOrders": {
@@ -6626,7 +6632,8 @@
           "500": {
             "$ref": "#/components/responses/internalErrorResponse"
           }
-        }
+        },
+        "deprecated": true
       },
       "patch": {
         "tags": [
@@ -6666,7 +6673,8 @@
           "500": {
             "$ref": "#/components/responses/internalErrorResponse"
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/global-v3/porting/{portInOrderId}/documents": {
@@ -6705,7 +6713,8 @@
           "500": {
             "$ref": "#/components/responses/internalErrorResponse"
           }
-        }
+        },
+        "deprecated": true
       },
       "parameters": [
         {
@@ -6786,7 +6795,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "Search for coverage by country",
       "x-description": "Check country coverage by number type. __hasStates__ and __hasRegulationRequirement__ values for a country in the response is useful when creating addresses for service activation in the country. If __hasRegulationRequirement__ is `false`, numbers become activated upon ordering."
@@ -6826,7 +6836,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "Get Country Details",
       "x-description": "Allows you to display details for a country. Returns if the country has states and if the country has local address requirements (LAR)"
@@ -6866,7 +6877,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "Search for coverage by states (USA and Canada)",
       "x-description": "Allows you to get the list of states for a country that has states such as USA and CAN."
@@ -7098,6 +7110,7 @@
             }
           }
         },
+        "deprecated": true,
         "x-internal": false
       },
       "x-summary": "Get stock, pricing, activation requirements, available features and other details on numbers",
@@ -7138,7 +7151,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "Get service restrictions by country",
       "x-description": "Since every country is quite different when it comes to regulations, they may to have different and more specific requirements to activate a number. As it's challenging to translate all these everchanging constraints into a standard JSON format, we are serving this information in human-readable text. It's recommended to use them to display to your end users or on your portal so they know better what's required and what to expect. Restrictions with restrictionType LEGAL and PURCHASE are closely related to service activation."
@@ -7167,7 +7181,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "Get available zones for trunks",
       "x-description": "Allows you to display all the zones currently configured in your account."
@@ -7196,7 +7211,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "Get available features",
       "x-description": "Allows you to retrieve the list of features (featureID, name and description) that DIDs can have such as VoxFAX or VoxSMS. This method will now also return Voice as a feature."
@@ -7266,7 +7282,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "put": {
         "tags": [
@@ -7301,6 +7318,7 @@
             }
           }
         },
+        "deprecated": true,
         "x-codegen-request-body-name": "body"
       },
       "x-summary": "Create or list carts for ordering",
@@ -7370,6 +7388,7 @@
             }
           }
         },
+        "deprecated": true,
         "x-codegen-request-body-name": "body"
       },
       "x-summary": "Manage product quantities in existing cart",
@@ -7411,7 +7430,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "delete": {
         "tags": [
@@ -7448,7 +7468,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "Get, update or delete carts",
       "x-description": "Allows you to retrieve your cart attributes (cartIdentifier, customerReference, description) and its content (list of products - orderProducts - that are currently in the cart)."
@@ -7508,6 +7529,7 @@
             }
           }
         },
+        "deprecated": true,
         "x-codegen-request-body-name": "body"
       },
       "x-summary": "Add numbers and channels into cart",
@@ -7537,7 +7559,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "Retrieve information about your account balance",
       "x-description": "You may need to check your account balance before checking out your carts. This is not mandatory, but checking out a cart with an empty balance will return an error. Note that you can set up a threshold for automatic refills of your business account. This threshold is configurable both on the web portal and the API. We recommend that this automatic refill parameter is set to true, especially when using the API for ordering."
@@ -7566,7 +7589,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "List Available Top-Up Credit Packages for Prepaid Services",
       "x-description": "This method is used to retrieve the list of packages that are available for prepaid credits top-ups (e.g. $100 Prepaid Credits package which shows a value multiplied by 100 as Price100=10000)."
@@ -7607,7 +7631,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "Checkout Cart to Buy numbers and channels",
       "x-description": "Allows you to checkout a cart and place an order for all the products contained in the cart. You can then retrieve your orders using the listOrder method."
@@ -7699,7 +7724,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "List placed orders",
       "x-description": "Allows you to get a list of your orders (after a cart has been checked out) and their status."
@@ -7856,7 +7882,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "put": {
         "tags": [
@@ -7892,6 +7919,7 @@
             }
           }
         },
+        "deprecated": true,
         "x-codegen-request-body-name": "createRegulationAddressRequest"
       },
       "x-summary": "Create or list addresses",
@@ -7933,7 +7961,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "delete": {
         "tags": [
@@ -7970,7 +7999,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "Get or Delete an address",
       "x-description": "Allows you to view existing addresses and remove them if they are not required."
@@ -8035,7 +8065,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "Update proof documents for an address",
       "x-description": "Allows you to separately upload a proof of address after the address is created if the proof was rejected or not provided during initial address creation. The upload for proof of address is done automatically during address creation when a document is specified and may be mandatory depending on the country and number type.\n"
@@ -8074,6 +8105,7 @@
             }
           }
         },
+        "deprecated": true,
         "x-codegen-request-body-name": "body"
       },
       "x-summary": "Update identity proof documents for an address",
@@ -8144,7 +8176,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "List accepted postal codes",
       "x-description": "Allows you to get the matching cities and zip codes for a certain country or DID's area code. This is an absolute requirement for certain countries where the city and zip code will have to match the DID's area code for instance in Germany (DEU), Croatia (HRV), South Korea (KOR), etc…"
@@ -8212,7 +8245,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "Check address validity for activation",
       "x-description": "Allows to check the validity of an address against a certain DID's type and country. This can be useful if you have originally created an address for a given DID and you wish to reuse that same address for another DID."
@@ -8281,6 +8315,7 @@
             }
           }
         },
+        "deprecated": true,
         "x-codegen-request-body-name": "body"
       },
       "x-summary": "Link numbers to a Local Address Requirement document for activation",
@@ -8322,7 +8357,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "Request verification of changes to an address",
       "x-description": "Can be used if you want to use an existing address which didn't require verification for the DIDs it is linked to, or for which the proof of address was rejected. You need to upload a proof of address and then request address verification if you wish to link the address to DIDs requiring a proof of address. Calling this method for addresses that are in VERIFICATION_NOT_REQUIRED status will return an error."
@@ -8378,6 +8414,7 @@
             }
           }
         },
+        "deprecated": true,
         "x-codegen-request-body-name": "body"
       },
       "x-summary": "Remove regulatory information from numbers",
@@ -8417,6 +8454,7 @@
             }
           }
         },
+        "deprecated": true,
         "x-codegen-request-body-name": "body"
       },
       "x-summary": "Remove numbers from your inventory",
@@ -8623,7 +8661,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "Search for numbers in your account",
       "x-description": "This method allows you to search for DIDs within your own inventory. This method can be useful to get the current configuration of one or multiple DIDs."
@@ -8722,7 +8761,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "put": {
         "tags": [
@@ -8763,6 +8803,7 @@
             }
           }
         },
+        "deprecated": true,
         "x-codegen-request-body-name": "body"
       },
       "x-summary": "Create or List Voice URIs",
@@ -8804,7 +8845,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "put": {
         "tags": [
@@ -8856,6 +8898,7 @@
             }
           }
         },
+        "deprecated": true,
         "x-codegen-request-body-name": "body"
       },
       "delete": {
@@ -8894,7 +8937,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "Get, Update or Delete Voice URIs",
       "x-description": "Get, update or delete previously created voice URIs."
@@ -8971,7 +9015,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "put": {
         "tags": [
@@ -9011,6 +9056,7 @@
             }
           }
         },
+        "deprecated": true,
         "x-codegen-request-body-name": "body"
       },
       "x-summary": "Create or List SMS Links",
@@ -9052,7 +9098,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "put": {
         "tags": [
@@ -9105,6 +9152,7 @@
             }
           }
         },
+        "deprecated": true,
         "x-codegen-request-body-name": "body"
       },
       "delete": {
@@ -9142,7 +9190,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "Get, update or delete SMS Links",
       "x-description": "You can change configuration for your callback URLs, direction and protocols used."
@@ -9171,7 +9220,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "put": {
         "tags": [
@@ -9211,6 +9261,7 @@
             }
           }
         },
+        "deprecated": true,
         "x-codegen-request-body-name": "body"
       },
       "x-summary": "Create or List SMS Link Groups",
@@ -9252,7 +9303,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "Delete SMS Links Groups",
       "x-description": "Deletes all associated SMS links with the group"
@@ -9354,7 +9406,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "put": {
         "tags": [
@@ -9390,6 +9443,7 @@
             }
           }
         },
+        "deprecated": true,
         "x-codegen-request-body-name": "body"
       },
       "x-summary": "Create or list Fax URIs",
@@ -9431,7 +9485,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "put": {
         "tags": [
@@ -9478,6 +9533,7 @@
             }
           }
         },
+        "deprecated": true,
         "x-codegen-request-body-name": "body"
       },
       "delete": {
@@ -9515,7 +9571,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "Get, update or delete Fax URIs",
       "x-description": "Manage your Fax URIs and their details. The faxUriId returned by this method can be used to edit or delete faxURI’s using the appropriate methods."
@@ -9560,6 +9617,7 @@
             }
           }
         },
+        "deprecated": true,
         "x-codegen-request-body-name": "body"
       },
       "x-summary": "Single Number Configuration",
@@ -9793,6 +9851,7 @@
             }
           }
         },
+        "deprecated": true,
         "x-codegen-request-body-name": "body"
       },
       "x-summary": "Bulk Configuration",
@@ -9822,7 +9881,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "List Available Trunks",
       "x-description": "This method allows you to get the list of the trunks that are available in your account. To assign numbers to a specific trunk, use __trunkId__ from the response."
@@ -9900,7 +9960,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "put": {
         "tags": [
@@ -9936,6 +9997,7 @@
             }
           }
         },
+        "deprecated": true,
         "x-codegen-request-body-name": "body"
       },
       "x-summary": "Create or list Capacity Groups",
@@ -9977,7 +10039,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "put": {
         "tags": [
@@ -10024,6 +10087,7 @@
             }
           }
         },
+        "deprecated": true,
         "x-codegen-request-body-name": "body"
       },
       "delete": {
@@ -10061,7 +10125,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "Get, update or delete Capacity Groups",
       "x-description": "Get, update or delete previously created capacity groups."
@@ -10090,7 +10155,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "x-summary": "Get Connectivity information",
       "x-description": "Get the list of POPs (Points Of Presence) and their corresponding IP addresses."
@@ -10142,7 +10208,8 @@
           "500": {
             "$ref": "#/components/responses/global_internalErrorResponse"
           }
-        }
+        },
+        "deprecated": true
       },
       "post": {
         "tags": [
@@ -10176,7 +10243,8 @@
           "500": {
             "$ref": "#/components/responses/global_internalErrorResponse"
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/global/subscriptions/{subscriptionId}": {
@@ -10214,7 +10282,8 @@
           "500": {
             "$ref": "#/components/responses/global_internalErrorResponse"
           }
-        }
+        },
+        "deprecated": true
       },
       "delete": {
         "tags": [
@@ -10250,7 +10319,8 @@
           "500": {
             "$ref": "#/components/responses/global_internalErrorResponse"
           }
-        }
+        },
+        "deprecated": true
       },
       "patch": {
         "tags": [
@@ -10292,7 +10362,8 @@
           "500": {
             "$ref": "#/components/responses/global_internalErrorResponse"
           }
-        }
+        },
+        "deprecated": true
       },
       "put": {
         "tags": [
@@ -10331,7 +10402,8 @@
           "500": {
             "$ref": "#/components/responses/global_internalErrorResponse"
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/global/upgrade/movePhoneNumbers": {
@@ -10378,7 +10450,8 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailableResponse"
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/global/upgrade/movePhoneNumbers/status/{orderId}": {
@@ -10413,7 +10486,8 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailableResponse"
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/global/upgrade/movePhoneNumbers/complete": {
@@ -10452,7 +10526,8 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailableResponse"
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/global/upgrade/movePhoneNumbers/complete/status/{orderId}": {
@@ -10487,7 +10562,8 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailableResponse"
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/hosted-number-management/accounts/{accountId}/importPhoneNumberOrders/messaging": {
