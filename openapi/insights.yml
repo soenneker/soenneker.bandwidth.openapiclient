@@ -1940,6 +1940,38 @@ components:
           description: Count of packets received during transmission.
           nullable: true
           example: 0
+        customerSbcCustomerSendMos:
+          type: number
+          format: double
+          nullable: true
+          description: >-
+            MOS for audio sent from the Session Border Controller network
+            (customer SBC) to the Tx/ Outbound Stream (customer).
+          example: 4.2
+        customerSbcCustomerReceiveMos:
+          type: number
+          format: double
+          nullable: true
+          description: >-
+            MOS for audio received at the Session Border Controller network
+            (customer SBC) from the Tx/ Outbound Stream (customer).
+          example: 4.2
+        customerSbcCarrierSendMos:
+          type: number
+          format: double
+          nullable: true
+          description: >-
+            MOS for audio sent from the Session Border Controller network
+            (customer SBC) to the Carrier.
+          example: 4.2
+        customerSbcCarrierReceiveMos:
+          type: number
+          format: double
+          nullable: true
+          description: >-
+            MOS for audio received at the Session Border Controller network
+            (customer SBC) from the Carrier.
+          example: 4.2
     genericError:
       title: Generic Error
       type: object

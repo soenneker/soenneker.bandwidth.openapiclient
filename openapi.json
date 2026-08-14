@@ -34091,17 +34091,20 @@
           "eventTime": {
             "type": "string",
             "description": "The time the event was triggered",
-            "format": "date-time"
+            "format": "date-time",
+            "example": "2024-01-01T00:00:00Z"
           },
           "replayTime": {
             "type": "string",
             "description": "The time the event was replayed",
-            "format": "date-time"
+            "format": "date-time",
+            "example": "2024-01-01T00:00:00Z"
           },
           "deduplicationId": {
             "type": "string",
             "description": "A unique identifier for the event to distinguish between a replay and a new event",
-            "format": "uuid"
+            "format": "uuid",
+            "example": "80c9a7f7-9a7f-bf58-f6de-942cea16cee4"
           },
           "eventType": {
             "$ref": "#/components/schemas/eventTypes"
@@ -34114,13 +34117,26 @@
             "properties": {
               "requestMethod": {
                 "type": "string",
-                "description": "The HTTP request method"
+                "description": "The HTTP request method",
+                "example": "GET",
+                "x-jsonschema-examples": [
+                  "POST",
+                  "PUT",
+                  "DELETE",
+                  "PATCH",
+                  "HEAD",
+                  "OPTIONS",
+                  "TRACE",
+                  "CONNECT",
+                  "_OTHER"
+                ]
               },
               "responseStatusCode": {
                 "maximum": 599,
                 "minimum": 100,
                 "type": "integer",
-                "description": "The HTTP response status code"
+                "description": "The HTTP response status code",
+                "example": 200
               }
             },
             "description": "Attributes for the HTTP request/response associated with this event. Extracted from OTel Semantic Conventions v1.28.0"
@@ -34137,12 +34153,14 @@
             "properties": {
               "accountId": {
                 "type": "string",
-                "description": "The Bandwidth account ID associated with the event"
+                "description": "The Bandwidth account ID associated with the event",
+                "example": "123456"
               },
               "requestId": {
                 "type": "string",
                 "description": "A traceable ID for this event",
-                "format": "uuid"
+                "format": "uuid",
+                "example": "d3243458-ad6e-4de1-848f-be591b63f360"
               }
             },
             "description": "Additional context for the event specific to Bandwidth"
@@ -34155,18 +34173,23 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "The name of the key"
+            "description": "The name of the key",
+            "example": "test-resource-1"
           },
           "otherCount": {
             "type": "integer",
-            "description": "the number of items excluded from the terms list"
+            "description": "the number of items excluded from the terms list",
+            "example": 100
           },
           "keys": {
             "type": "object",
             "additionalProperties": {
               "type": "integer"
             },
-            "description": "the top unique keys and their counts"
+            "description": "the top unique keys and their counts",
+            "example": {
+              "sample": 1000
+            }
           }
         },
         "description": "Counts of unique keys for a term"
@@ -34201,15 +34224,18 @@
         "properties": {
           "href": {
             "type": "string",
-            "description": "URI of the link"
+            "description": "URI of the link",
+            "example": "https://api.bandwidth.com/v2/accounts/123456/events"
           },
           "rel": {
             "type": "string",
-            "description": "Specifies the relationship between this link and the resource"
+            "description": "Specifies the relationship between this link and the resource",
+            "example": "self"
           },
           "method": {
             "type": "string",
-            "description": "HTTP method to be used"
+            "description": "HTTP method to be used",
+            "example": "GET"
           }
         },
         "description": "Relevant links for the current resource"
@@ -34225,21 +34251,25 @@
           "id": {
             "type": "string",
             "description": "A unique identifier for this particular instance of this problem.",
-            "format": "uuid"
+            "format": "uuid",
+            "example": "68793412-493c-4a5a-bcd3-44d2ab695a5b"
           },
           "type": {
             "type": "string",
-            "description": "A short, human-readable summary of the problem that SHOULD NOT change from occurrence to occurrence of the problem."
+            "description": "A short, human-readable summary of the problem that SHOULD NOT change from occurrence to occurrence of the problem.",
+            "example": "REQUEST_ERROR"
           },
           "description": {
             "type": "string",
-            "description": "A human-readable explanation that SHOULD be specific to this occurrence of the problem."
+            "description": "A human-readable explanation that SHOULD be specific to this occurrence of the problem.",
+            "example": "There was an issue with a field in your request body"
           },
           "code": {
             "minimum": 4,
             "type": "integer",
             "description": "An application-specific error code for services with extensive error scenarios to supplement `description`.",
-            "format": "int32"
+            "format": "int32",
+            "example": 51130
           },
           "source": {
             "$ref": "#/components/schemas/errorSource"
@@ -34255,19 +34285,23 @@
         "properties": {
           "parameter": {
             "type": "string",
-            "description": "A string indicating which URI query parameter caused the error."
+            "description": "A string indicating which URI query parameter caused the error.",
+            "example": "someParameter"
           },
           "field": {
             "type": "string",
-            "description": "A string indicating which request body field caused the error."
+            "description": "A string indicating which request body field caused the error.",
+            "example": "someField"
           },
           "header": {
             "type": "string",
-            "description": "A string indicating which header field caused the error."
+            "description": "A string indicating which header field caused the error.",
+            "example": "someHeader"
           },
           "reference": {
             "type": "string",
-            "description": "A string that references a resource ID or path to the resource (or non-existent resource) causing the error."
+            "description": "A string that references a resource ID or path to the resource (or non-existent resource) causing the error.",
+            "example": "/some/reference"
           }
         }
       },
@@ -34277,7 +34311,8 @@
         "properties": {
           "message": {
             "type": "string",
-            "description": "An optional metadata message providing additional context for the error."
+            "description": "An optional metadata message providing additional context for the error.",
+            "example": "An optional metadata field"
           }
         }
       },
@@ -34294,10 +34329,12 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/audit_log_link"
-            }
+            },
+            "example": null
           },
           "data": {
-            "type": "object"
+            "type": "object",
+            "example": null
           },
           "errors": {
             "type": "array",
@@ -44389,7 +44426,18 @@
             "$ref": "#/components/schemas/mailBox"
           }
         },
-        "description": "Owner of the numbers."
+        "description": "Owner of the numbers.",
+        "example": {
+          "numberUsageType": "BUSINESS",
+          "complementaryAddressInformation": "In attention to Mr. Smith",
+          "buildingNumber": "489",
+          "streetName": "Rue Vanderkindere",
+          "city": "Brussels",
+          "countryCodeA3": "BEL",
+          "postalCode": "1050",
+          "companyName": "Voxbone",
+          "companyVatNumber": "BE0478928788"
+        }
       },
       "mailBox": {
         "type": "object",
@@ -44524,7 +44572,12 @@
             "example": "EUR"
           }
         },
-        "description": "Fees that you have to pay for a number or a set of numbers. The currency will depend on your configuration."
+        "description": "Fees that you have to pay for a number or a set of numbers. The currency will depend on your configuration.",
+        "example": {
+          "portFees": 1,
+          "cancellationFees": 2.3,
+          "phoneNumberMonthlyFees": 5.7
+        }
       },
       "global_v3_link": {
         "required": [
@@ -44548,7 +44601,12 @@
             "$ref": "#/components/schemas/linkTypeEnum"
           }
         },
-        "description": "All actions that you can do for a port-in order, document, support ticket, or a comment in a support ticket."
+        "description": "All actions that you can do for a port-in order, document, support ticket, or a comment in a support ticket.",
+        "example": {
+          "rel": "CANCEL",
+          "href": "https://api.voxbone.com/v3/porting/251593",
+          "type": "DELETE"
+        }
       },
       "document": {
         "required": [
@@ -44577,7 +44635,13 @@
             "$ref": "#/components/schemas/global_v3_link"
           }
         },
-        "description": "Required documents for porting-in a number or a set of numbers."
+        "description": "Required documents for porting-in a number or a set of numbers.",
+        "example": {
+          "type": "LOA",
+          "description": "Letter of authority",
+          "status": "PENDING_VALIDATION",
+          "documentId": 255005
+        }
       },
       "comment": {
         "required": [
@@ -44604,7 +44668,12 @@
             "example": "Last invoice document is not readable - please upload a new one for continuing the porting process."
           }
         },
-        "description": "Comments from porting team."
+        "description": "Comments from porting team.",
+        "example": {
+          "id": "R6776898",
+          "dateCreated": "2021-11-20",
+          "description": "Hi there, The cancellation request for your port has been successfully processed."
+        }
       },
       "supportTicket": {
         "type": "object",
@@ -44616,7 +44685,21 @@
             "$ref": "#/components/schemas/comment"
           }
         },
-        "description": "Support ticket associated to the port-in order."
+        "description": "Support ticket associated to the port-in order.",
+        "example": {
+          "link": {
+            "rel": "SELF",
+            "href": "https://support.voxbone.com/hc/en-us/requests/295782",
+            "type": "GET"
+          },
+          "comments": [
+            {
+              "id": "R6776898",
+              "dateCreated": "2021-11-20",
+              "description": "Hi there, The cancellation request for your port has been successfully processed."
+            }
+          ]
+        }
       },
       "global_v3_requirement": {
         "type": "object",
@@ -44732,7 +44815,14 @@
             "description": "Contains references to the source of the error."
           }
         },
-        "description": "Generic error."
+        "description": "Generic error.",
+        "example": {
+          "source": {
+            "field": "numberToPort"
+          },
+          "description": "Invalid phone number: jnk",
+          "code": "XXX-XXXX"
+        }
       },
       "pagination": {
         "type": "object",
@@ -48015,7 +48105,8 @@
       "eventTypeEnum": {
         "title": "eventTypeEnum",
         "enum": [
-          "PORTIN_ORDER_STATUS"
+          "PORTIN_ORDER_STATUS",
+          null
         ],
         "type": "string",
         "description": "The Event Type of the Subscription. This value is Required when entityId is present",
@@ -48043,7 +48134,8 @@
           "PROCESSING_CANCELLATION",
           "READY_FOR_CONFIGURATION",
           "REJECTED",
-          "SUBMITTED"
+          "SUBMITTED",
+          null
         ],
         "type": "string",
         "description": "The valid Event Status values \n<table>\n  <tr>\n    <th>Status</th>\n    <th>Description</th>\n  </tr>\n  <tr>\n    <td>ACCEPTED_BY_CARRIER </td>\n    <td>Good news - your port-in is accepted by our carrier. </td>\n  </tr>\n  <tr>\n    <td>CANCELED </td>\n    <td>Your port-in order is cancelled. </td>\n  </tr>\n  <tr>\n    <td>COMPLETED </td>\n    <td>Your port-in order is completed. </td>\n  </tr>    \n  <tr>\n    <td>DRAFT </td>\n    <td> Your port-in order is created, but not yet submitted. You can change the content of the order or delete it anytime. </td>\n  </tr>\n  <tr>\n    <td>MISSING_DATA </td>\n    <td>Your port-in order has been returned by our LNP team - because the order doesn't contain required information, this can be data or document. Your order has to be amended and resubmitted again. </td>\n  </tr>   \n  </tr>\n  <tr>\n    <td>PENDING_CARRIER_APPROVAL </td>\n    <td> Your port-in order is transmitted to our carrier.</td>\n  </tr>   \n  <tr>\n    <td>PROCESSING_CANCELLATION </td>\n    <td>You are requesting the cancellation of your order. Our LNP team will get back to you shortly </td>\n  </tr>  \n  <tr>\n    <td>READY_FOR_CONFIGURATION</td>\n    <td>Your numbers are ready for configuration. You can now assign your configuration profile to your order. </td>\n  </tr>           \n  <tr>\n    <td>REJECTED </td>\n    <td>\tYour port-in order is rejected by our LNP team/carrier. Please contact our LNP team for further details.Your port-in order is submitted, our LNP team will take care of it shortly. In case you need to change your order, you have to request a cancellation or ask our LNP team to return your order. </td>\n  </tr>  \n  <tr>\n    <td>SUBMITTED </td>\n    <td>Your port-in order is submitted, our LNP team will take care of it shortly. In case you need to change your order, you have to request a cancellation or ask our LNP team to return your order. </td>\n  </tr>                                                                 \n</table>\n",
@@ -51662,11 +51754,7 @@
             "title": "Fields",
             "type": "object",
             "additionalProperties": {
-              "anyOf": [
-                {
-                  "type": "string"
-                }
-              ]
+              "type": "string"
             },
             "description": "Field is a key value pair of attribute name and value.",
             "example": {
@@ -53019,6 +53107,34 @@
             "description": "Count of packets received during transmission.",
             "nullable": true,
             "example": 0
+          },
+          "customerSbcCustomerSendMos": {
+            "type": "number",
+            "description": "MOS for audio sent from the Session Border Controller network (customer SBC) to the Tx/ Outbound Stream (customer).",
+            "format": "double",
+            "nullable": true,
+            "example": 4.2
+          },
+          "customerSbcCustomerReceiveMos": {
+            "type": "number",
+            "description": "MOS for audio received at the Session Border Controller network (customer SBC) from the Tx/ Outbound Stream (customer).",
+            "format": "double",
+            "nullable": true,
+            "example": 4.2
+          },
+          "customerSbcCarrierSendMos": {
+            "type": "number",
+            "description": "MOS for audio sent from the Session Border Controller network (customer SBC) to the Carrier.",
+            "format": "double",
+            "nullable": true,
+            "example": 4.2
+          },
+          "customerSbcCarrierReceiveMos": {
+            "type": "number",
+            "description": "MOS for audio received at the Session Border Controller network (customer SBC) from the Carrier.",
+            "format": "double",
+            "nullable": true,
+            "example": 4.2
           }
         }
       },
@@ -58728,7 +58844,8 @@
             "items": {
               "$ref": "#/components/schemas/errorEntry"
             },
-            "description": "The errors array will be empty for successful responses to this request."
+            "description": "The errors array will be empty for successful responses to this request.",
+            "example": [ ]
           },
           "links": {
             "type": "array",
@@ -58756,7 +58873,8 @@
             "items": {
               "$ref": "#/components/schemas/errorEntry"
             },
-            "description": "The errors array will always be empty for this response."
+            "description": "The errors array will always be empty for this response.",
+            "example": [ ]
           },
           "links": {
             "type": "array",
@@ -58794,18 +58912,21 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "A short, human-readable description of the type of error (e.g. \"bad request\")."
+            "description": "A short, human-readable description of the type of error (e.g. \"bad request\").",
+            "example": "bad request"
           },
           "description": {
             "type": "string",
-            "description": "A full description of the error (e.g. \"name cannot be blank\")."
+            "description": "A full description of the error (e.g. \"name cannot be blank\").",
+            "example": "accountId is required"
           },
           "source": {
             "type": "object",
             "additionalProperties": {
               "type": "string"
             },
-            "description": "A map from the type of source to a value for that type. The supported keys are: 1) POINTER (the value is a RFC6901 JSON pointer to a field in the request body); 2) PARAMETER (the value is a query parameter name); and 3) PATH (the value is a parameter name in the URI of the request). There will only be one entry in the source property, as each error is recorded separately in the errors array.\n"
+            "description": "A map from the type of source to a value for that type. The supported keys are: 1) POINTER (the value is a RFC6901 JSON pointer to a field in the request body); 2) PARAMETER (the value is a query parameter name); and 3) PATH (the value is a parameter name in the URI of the request). There will only be one entry in the source property, as each error is recorded separately in the errors array.\n",
+            "example": "POINTER: /accountId"
           }
         }
       },
@@ -58813,15 +58934,18 @@
         "properties": {
           "href": {
             "type": "string",
-            "readOnly": true
+            "readOnly": true,
+            "example": "/api/v2/accounts/9900010/messaging/transfer-requests/asd231das3ASDQW"
           },
           "rel": {
             "type": "string",
-            "readOnly": true
+            "readOnly": true,
+            "example": "self"
           },
           "method": {
             "type": "string",
-            "readOnly": true
+            "readOnly": true,
+            "example": "GET"
           }
         },
         "description": "Link to a resource"
@@ -58831,22 +58955,26 @@
           "pageSize": {
             "type": "integer",
             "format": "int32",
-            "readOnly": true
+            "readOnly": true,
+            "example": 25
           },
           "totalElements": {
             "type": "integer",
             "format": "int32",
-            "readOnly": true
+            "readOnly": true,
+            "example": 434
           },
           "totalPages": {
             "type": "integer",
             "format": "int32",
-            "readOnly": true
+            "readOnly": true,
+            "example": 18
           },
           "pageNumber": {
             "type": "integer",
             "format": "int32",
-            "readOnly": true
+            "readOnly": true,
+            "example": 3
           }
         },
         "description": "Information about the current page"
@@ -58856,18 +58984,21 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "A short, human-readable description of the type of error (e.g. \"bad request\")."
+            "description": "A short, human-readable description of the type of error (e.g. \"bad request\").",
+            "example": "bad request"
           },
           "description": {
             "type": "string",
-            "description": "A full description of the error (e.g. \"name cannot be blank\")."
+            "description": "A full description of the error (e.g. \"name cannot be blank\").",
+            "example": "accountId is required"
           },
           "source": {
             "type": "object",
             "additionalProperties": {
               "type": "string"
             },
-            "description": "A map from the type of source to a value for that type. The supported keys are: 1) POINTER (the value is a RFC6901 JSON pointer to a field in the request body); 2) PARAMETER (the value is a query parameter name); and 3) PATH (the value is a parameter name in the URI of the request). There will only be one entry in the source property, as each error is recorded separately in the errors array.\n"
+            "description": "A map from the type of source to a value for that type. The supported keys are: 1) POINTER (the value is a RFC6901 JSON pointer to a field in the request body); 2) PARAMETER (the value is a query parameter name); and 3) PATH (the value is a parameter name in the URI of the request). There will only be one entry in the source property, as each error is recorded separately in the errors array.\n",
+            "example": "POINTER: /accountId"
           }
         }
       },
@@ -58882,7 +59013,8 @@
             "items": {
               "$ref": "#/components/schemas/apiResponseLink"
             },
-            "readOnly": true
+            "readOnly": true,
+            "example": [ ]
           },
           "errors": {
             "type": "array",
@@ -58903,7 +59035,8 @@
             "items": {
               "$ref": "#/components/schemas/apiResponseLink"
             },
-            "readOnly": true
+            "readOnly": true,
+            "example": [ ]
           },
           "errors": {
             "type": "array",
@@ -58924,7 +59057,8 @@
             "items": {
               "$ref": "#/components/schemas/apiResponseLink"
             },
-            "readOnly": true
+            "readOnly": true,
+            "example": [ ]
           },
           "errors": {
             "type": "array",
@@ -58945,7 +59079,8 @@
             "items": {
               "$ref": "#/components/schemas/apiResponseLink"
             },
-            "readOnly": true
+            "readOnly": true,
+            "example": [ ]
           },
           "errors": {
             "type": "array",
@@ -58966,7 +59101,8 @@
             "items": {
               "$ref": "#/components/schemas/apiResponseLink"
             },
-            "readOnly": true
+            "readOnly": true,
+            "example": [ ]
           },
           "errors": {
             "type": "array",
@@ -58987,7 +59123,8 @@
             "items": {
               "$ref": "#/components/schemas/apiResponseLink"
             },
-            "readOnly": true
+            "readOnly": true,
+            "example": [ ]
           },
           "errors": {
             "type": "array",
@@ -59008,7 +59145,8 @@
             "items": {
               "$ref": "#/components/schemas/apiResponseLink"
             },
-            "readOnly": true
+            "readOnly": true,
+            "example": [ ]
           },
           "errors": {
             "type": "array",
@@ -59029,7 +59167,8 @@
             "items": {
               "$ref": "#/components/schemas/apiResponseLink"
             },
-            "readOnly": true
+            "readOnly": true,
+            "example": [ ]
           },
           "errors": {
             "type": "array",
@@ -59050,7 +59189,8 @@
             "items": {
               "$ref": "#/components/schemas/apiResponseLink"
             },
-            "readOnly": true
+            "readOnly": true,
+            "example": [ ]
           },
           "errors": {
             "type": "array",
@@ -59240,7 +59380,8 @@
             "items": {
               "$ref": "#/components/schemas/apiResponseErrorEntry"
             },
-            "description": "The errors array will always be empty for this response."
+            "description": "The errors array will always be empty for this response.",
+            "example": [ ]
           },
           "links": {
             "type": "array",
@@ -59301,7 +59442,11 @@
       },
       "requestId": {
         "type": "string",
-        "description": "The unique ID assigned to the request"
+        "description": "The unique ID assigned to the request",
+        "example": "33636456",
+        "x-jsonschema-examples": [
+          "14DloM8hrxtD6Z7oOpPDv8"
+        ]
       },
       "messaging_transfer_phoneNumber": {
         "type": "string",
@@ -77917,15 +78062,15 @@
             "example": "Price"
           },
           "type": {
-            "oneOf": [
+            "anyOf": [
               {
-                "type": "string"
+                "type": "boolean"
               },
               {
                 "type": "number"
               },
               {
-                "type": "boolean"
+                "type": "string"
               }
             ],
             "example": "number"
@@ -77933,12 +78078,12 @@
           "selectableValues": {
             "type": "array",
             "items": {
-              "oneOf": [
-                {
-                  "type": "string"
-                },
+              "anyOf": [
                 {
                   "type": "number"
+                },
+                {
+                  "type": "string"
                 }
               ]
             },
@@ -78099,25 +78244,44 @@
           },
           "messageClass": {
             "type": "string",
-            "description": "AT&T message class qualified by brand for a desired use case."
+            "description": "AT&T message class qualified by brand for a desired use case.",
+            "example": "T"
           },
           "tpm": {
             "type": "integer",
-            "description": "AT&T SMS message segment throughput per minute, qualified by the brand for a desired use case."
+            "description": "AT&T SMS message segment throughput per minute, qualified by the brand for a desired use case.",
+            "example": 2400
           },
           "mmsTpm": {
             "type": "integer",
-            "description": "AT&T MMS message segment throughput per minute, qualified by the brand for a desired use case."
+            "description": "AT&T MMS message segment throughput per minute, qualified by the brand for a desired use case.",
+            "example": 50
           },
           "brandTier": {
             "$ref": "#/components/schemas/enumTmobileBrandTier"
           },
           "brandDailyCap": {
             "type": "integer",
-            "description": "T-Mobile daily message quota, applying across campaigns and CSPs."
+            "description": "T-Mobile daily message quota, applying across campaigns and CSPs.",
+            "example": 40000
           }
         },
-        "description": "The status of registering a campaign with a carrier or external connectivity partner."
+        "description": "The status of registering a campaign with a carrier or external connectivity partner.",
+        "example": {
+          "partnerId": "ATT",
+          "decision": "APRROVED",
+          "messageClass": "T",
+          "tpm": 300,
+          "mmsTpm": 300
+        },
+        "x-jsonschema-examples": [
+          {
+            "partnerId": "TMOBILE",
+            "decision": "APRROVED",
+            "brandTier": "UPPER_MID",
+            "brandDailyCap": 40000
+          }
+        ]
       },
       "getCampaignPhoneNumbersResponse": {
         "type": "object",
@@ -78136,7 +78300,8 @@
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
             },
-            "description": "The errors array will always be empty for successful responses."
+            "description": "The errors array will always be empty for successful responses.",
+            "example": [ ]
           },
           "links": {
             "type": "array",
@@ -78161,28 +78326,42 @@
         "properties": {
           "brandId": {
             "type": "string",
-            "description": "The TCR-generated identifier for this brand. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the brand."
+            "description": "The TCR-generated identifier for this brand. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the brand.",
+            "example": "B1DER2J"
           },
           "bandwidthId": {
             "type": "string",
-            "description": "The Bandwidth-generated identifier for this brand. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the brand. The bandwidthId will be available on the brand before the TCR ID is available."
+            "description": "The Bandwidth-generated identifier for this brand. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the brand. The bandwidthId will be available on the brand before the TCR ID is available.",
+            "example": "WEPTN2N2T5"
           },
           "accounts": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/brandAccount"
             },
-            "description": "The accounts associated to this brand."
+            "description": "The accounts associated to this brand.",
+            "example": {
+              "accountId": "5001923",
+              "customerProfileId": "3IIzIFnRRQBE3AMzPpMTNo"
+            },
+            "x-jsonschema-examples": [
+              {
+                "accountId": "5001925",
+                "customerProfileId": "1D3FEV9bOfq6sWLSlRDebp"
+              }
+            ]
           },
           "createdDate": {
             "type": "string",
             "description": "The time the brand was created in the TCR system.",
-            "format": "date-time"
+            "format": "date-time",
+            "example": "2024-01-24T23:59:59Z"
           },
           "modifiedDate": {
             "type": "string",
             "description": "The time the brand was last modified in the Bandwidth system.",
-            "format": "date-time"
+            "format": "date-time",
+            "example": "2024-01-24T23:59:59Z"
           },
           "imported": {
             "type": "boolean"
@@ -78201,33 +78380,39 @@
           },
           "city": {
             "maxLength": 100,
-            "type": "string"
+            "type": "string",
+            "example": "New York"
           },
           "companyName": {
             "maxLength": 100,
             "type": "string",
-            "description": "Legal Company Name. Not required for Sole Proprietor."
+            "description": "Legal Company Name. Not required for Sole Proprietor.",
+            "example": "Acme Amalgamated, Inc."
           },
           "displayName": {
             "maxLength": 100,
-            "type": "string"
+            "type": "string",
+            "example": "Acme"
           },
           "ein": {
             "maxLength": 9,
             "type": "string",
-            "description": "Government assigned corporate tax ID, EIN is 9-digits in U.S. Not required for Sole_Proprietor."
+            "description": "Government assigned corporate tax ID, EIN is 9-digits in U.S. Not required for Sole_Proprietor.",
+            "example": 214573154
           },
           "einIssuingCountry": {
             "maxLength": 2,
             "minLength": 2,
             "type": "string",
-            "description": "ISO 2 character country code of the country that issued the EIN."
+            "description": "ISO 2 character country code of the country that issued the EIN.",
+            "example": "US"
           },
           "einIssuingCountryCodeA3": {
             "maxLength": 3,
             "minLength": 3,
             "type": "string",
-            "description": "ISO 3 character country code of the country that issued the EIN."
+            "description": "ISO 3 character country code of the country that issued the EIN.",
+            "example": "USA"
           },
           "email": {
             "maxLength": 100,
@@ -78237,7 +78422,8 @@
           "evpVettingScore": {
             "type": "integer",
             "description": "External vetting provider's score for this brand.",
-            "format": "int32"
+            "format": "int32",
+            "example": 200
           },
           "governmentEntity": {
             "type": "boolean",
@@ -78245,7 +78431,8 @@
           },
           "phone": {
             "type": "string",
-            "description": "Valid phone number in e.164 international format."
+            "description": "Valid phone number in e.164 international format.",
+            "example": "+18009999999"
           },
           "politicalCommitteeLocale": {
             "$ref": "#/components/schemas/enumPoliticalCommitteeLocale"
@@ -78253,19 +78440,22 @@
           "postalCode": {
             "maxLength": 5,
             "type": "string",
-            "description": "Postal codes. Use 5 digit zipcode for United States."
+            "description": "Postal codes. Use 5 digit zipcode for United States.",
+            "example": "12345"
           },
           "country": {
             "maxLength": 2,
             "minLength": 2,
             "type": "string",
-            "description": "ISO 2 character country code."
+            "description": "ISO 2 character country code.",
+            "example": "US"
           },
           "countryCodeA3": {
             "maxLength": 3,
             "minLength": 3,
             "type": "string",
-            "description": "ISO 3 character country code."
+            "description": "ISO 3 character country code.",
+            "example": "USA"
           },
           "russell3000": {
             "type": "boolean",
@@ -78278,24 +78468,28 @@
           "state": {
             "maxLength": 2,
             "type": "string",
-            "description": "State name. Must be 2 letters code for United States."
+            "description": "State name. Must be 2 letters code for United States.",
+            "example": "NC"
           },
           "street": {
             "maxLength": 100,
-            "type": "string"
+            "type": "string",
+            "example": "123 Sesame St."
           },
           "stockExchange": {
             "$ref": "#/components/schemas/enumStockExchangeSymbols"
           },
           "stockSymbol": {
-            "type": "string"
+            "type": "string",
+            "example": "BANDW"
           },
           "taxExemptStatus": {
             "type": "string",
             "description": "Nonprofit organization tax-exempt status per section 501 of the US tax code. Example: “501c3.” Please refer to https://ballotpedia.org/IRS_code,_section_501 for more information.\n"
           },
           "website": {
-            "type": "string"
+            "type": "string",
+            "example": "acme.com"
           },
           "vertical": {
             "$ref": "#/components/schemas/enumVertical"
@@ -78338,11 +78532,13 @@
         ],
         "properties": {
           "accountId": {
-            "type": "string"
+            "type": "string",
+            "example": "5001923"
           },
           "customerProfileId": {
             "type": "string",
-            "description": "The Bandwidth customer profile to associate to the brand."
+            "description": "The Bandwidth customer profile to associate to the brand.",
+            "example": "3IIzIFnRRQBE3AMzPpMTNo"
           }
         },
         "description": "The accounts a brand is associated to."
@@ -78360,11 +78556,13 @@
         "properties": {
           "brandId": {
             "type": "string",
-            "description": "The TCR-generated identifier for this brand. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the brand."
+            "description": "The TCR-generated identifier for this brand. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the brand.",
+            "example": "B1DER2J"
           },
           "bandwidthId": {
             "type": "string",
-            "description": "The Bandwidth-generated identifier for this brand. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the brand. The bandwidthId will be available on the brand before the TCR ID is available."
+            "description": "The Bandwidth-generated identifier for this brand. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the brand. The bandwidthId will be available on the brand before the TCR ID is available.",
+            "example": "WEPTN2N2T5"
           },
           "accounts": {
             "items": {
@@ -78383,18 +78581,22 @@
           "companyName": {
             "maxLength": 100,
             "type": "string",
-            "description": "Legal Company Name. Not required for Sole Proprietor."
+            "description": "Legal Company Name. Not required for Sole Proprietor.",
+            "example": "Acme Amalgamated, Inc."
           },
           "displayName": {
             "maxLength": 100,
-            "type": "string"
+            "type": "string",
+            "example": "Acme"
           },
           "website": {
-            "type": "string"
+            "type": "string",
+            "example": "acme.com"
           },
           "businessContactEmail": {
             "maxLength": 100,
-            "type": "string"
+            "type": "string",
+            "example": "businessemail@mail.com"
           },
           "createdDate": {
             "type": "string",
@@ -78431,7 +78633,8 @@
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
             },
-            "description": "The errors array will always be empty for successful responses."
+            "description": "The errors array will always be empty for successful responses.",
+            "example": [ ]
           }
         },
         "description": "Response payload describing a brand."
@@ -78457,7 +78660,8 @@
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
             },
-            "description": "The errors array will always be empty for successful responses."
+            "description": "The errors array will always be empty for successful responses.",
+            "example": [ ]
           },
           "page": {
             "$ref": "#/components/schemas/tendlc_responsePage"
@@ -78488,7 +78692,8 @@
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
             },
-            "description": "The errors array will always be empty for successful responses."
+            "description": "The errors array will always be empty for successful responses.",
+            "example": [ ]
           }
         },
         "description": "An accepted response containing the campaign and Bandwidth IDs."
@@ -78500,11 +78705,13 @@
         "properties": {
           "campaignId": {
             "type": "string",
-            "description": "The TCR-generated identifier for the campaign. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the campaign."
+            "description": "The TCR-generated identifier for the campaign. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the campaign.",
+            "example": "CA9D2FS"
           },
           "bandwidthId": {
             "type": "string",
-            "description": "The Bandwidth-generated identifier for this campaign. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the campaign."
+            "description": "The Bandwidth-generated identifier for this campaign. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the campaign.",
+            "example": "WEPTN2N2T5"
           }
         },
         "description": "The campaign and Bandwidth IDs. The campaignId is only present when the campaign has been registered with TCR (i.e. not present for newly created direct campaigns awaiting TCR registration)."
@@ -78517,7 +78724,24 @@
             "items": {
               "$ref": "#/components/schemas/responseLink"
             },
-            "readOnly": true
+            "readOnly": true,
+            "example": {
+              "href": "/accounts/5001923/tendlc/campaigns/2YekXSSvsbyC7cHWnbV2Qv",
+              "rel": "self",
+              "method": "GET"
+            },
+            "x-jsonschema-examples": [
+              {
+                "href": "/accounts/5001923/tendlc/campaigns/2YekXSSvsbyC7cHWnbV2Qv",
+                "rel": "update",
+                "method": "PUT"
+              },
+              {
+                "href": "/accounts/5001923/tendlc/campaigns/2YekXSSvsbyC7cHWnbV2Qv",
+                "rel": "delete",
+                "method": "DELETE"
+              }
+            ]
           },
           "data": {
             "$ref": "#/components/schemas/campaign"
@@ -78527,7 +78751,8 @@
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
             },
-            "description": "The errors array will always be empty for successful responses."
+            "description": "The errors array will always be empty for successful responses.",
+            "example": [ ]
           }
         },
         "description": "Response payload describing a campaign."
@@ -78553,7 +78778,8 @@
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
             },
-            "description": "The errors array will always be empty for successful responses."
+            "description": "The errors array will always be empty for successful responses.",
+            "example": [ ]
           },
           "page": {
             "$ref": "#/components/schemas/tendlc_responsePage"
@@ -78574,32 +78800,39 @@
         "properties": {
           "campaignId": {
             "type": "string",
-            "description": "The TCR-generated identifier for campaign. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the campaign."
+            "description": "The TCR-generated identifier for campaign. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the campaign.",
+            "example": "CA9D2FS"
           },
           "bandwidthId": {
             "type": "string",
-            "description": "The Bandwidth-generated identifier for this campaign. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the campaign."
+            "description": "The Bandwidth-generated identifier for this campaign. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the campaign.",
+            "example": "WEPTN2N2T5"
           },
           "cspId": {
             "type": "string",
-            "description": "The CSP ID of the campaign's CSP account with TCR. This field is only returned for import customers."
+            "description": "The CSP ID of the campaign's CSP account with TCR. This field is only returned for import customers.",
+            "example": "S3TXDL4"
           },
           "customerProfileId": {
             "type": "string",
-            "description": "The Bandwidth customer profile to associate to the brand."
+            "description": "The Bandwidth customer profile to associate to the brand.",
+            "example": "3IIzIFnRRQBE3AMzPpMTNo"
           },
           "brandId": {
             "type": "string",
-            "description": "The TCR-generated identifier for the brand associated to this brand."
+            "description": "The TCR-generated identifier for the brand associated to this brand.",
+            "example": "B1DER2J"
           },
           "brandDisplayName": {
             "type": "string",
             "description": "The display name of the brand associated with this campaign.",
-            "readOnly": true
+            "readOnly": true,
+            "example": "Acme, Inc."
           },
           "campaignName": {
             "type": "string",
-            "description": "A user-supplied name for this campaign. Because this name is not stored in TCR, imported campaigns will default to the campaign’s TCR ID, though this is editable via the Bandwidth APIs."
+            "description": "A user-supplied name for this campaign. Because this name is not stored in TCR, imported campaigns will default to the campaign’s TCR ID, though this is editable via the Bandwidth APIs.",
+            "example": "Acme, Inc."
           },
           "imported": {
             "type": "boolean",
@@ -78620,7 +78853,8 @@
           },
           "accountId": {
             "type": "string",
-            "description": "The Bandwidth Account owning the campaign."
+            "description": "The Bandwidth Account owning the campaign.",
+            "example": "5001923"
           },
           "approvals": {
             "type": "array",
@@ -78640,13 +78874,15 @@
           },
           "resellerId": {
             "type": "string",
-            "description": "Alphanumeric identifier of the reseller that you want to associate with this campaign."
+            "description": "Alphanumeric identifier of the reseller that you want to associate with this campaign.",
+            "example": "R1D4SJK"
           },
           "description": {
             "maximum": 4096,
             "minimum": 40,
             "type": "string",
-            "description": "Summary description of this campaign."
+            "description": "Summary description of this campaign.",
+            "example": "Effectively the name/label of the campaign"
           },
           "embeddedLink": {
             "type": "boolean",
@@ -78793,11 +79029,13 @@
         "properties": {
           "campaignId": {
             "type": "string",
-            "description": "The TCR-generated identifier for campaign. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the campaign."
+            "description": "The TCR-generated identifier for campaign. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the campaign.",
+            "example": "CA9D2FS"
           },
           "campaignName": {
             "type": "string",
-            "description": "A user-supplied name for this campaign. Because this name is not stored in TCR, imported campaigns will default to the campaign’s TCR ID, though this is editable via the Bandwidth APIs."
+            "description": "A user-supplied name for this campaign. Because this name is not stored in TCR, imported campaigns will default to the campaign’s TCR ID, though this is editable via the Bandwidth APIs.",
+            "example": "Acme, Inc."
           }
         },
         "description": "The properties needed to create or update a TCR campaign."
@@ -78930,31 +79168,37 @@
         "properties": {
           "campaignId": {
             "type": "string",
-            "description": "The TCR-generated identifier for campaign. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the campaign."
+            "description": "The TCR-generated identifier for campaign. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the campaign.",
+            "example": "CA9D2FS"
           },
           "bandwidthId": {
             "type": "string",
-            "description": "The Bandwidth-generated identifier for this campaign. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the campaign."
+            "description": "The Bandwidth-generated identifier for this campaign. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the campaign.",
+            "example": "WEPTN2N2T5"
           },
           "campaignName": {
             "type": "string",
-            "description": "A user-supplied name for this campaign. Because this name is not stored in TCR, imported campaigns will default to the campaign’s TCR ID, though this is editable via the Bandwidth APIs."
+            "description": "A user-supplied name for this campaign. Because this name is not stored in TCR, imported campaigns will default to the campaign’s TCR ID, though this is editable via the Bandwidth APIs.",
+            "example": "Acme, Inc."
           },
           "status": {
             "$ref": "#/components/schemas/enumCampaignStatus"
           },
           "customerProfileId": {
             "type": "string",
-            "description": "Alphanumeric identifier of the customer profile to associate with this campaign"
+            "description": "Alphanumeric identifier of the customer profile to associate with this campaign",
+            "example": "1TcAThKNW0B0Nwh0XwpdQT"
           },
           "brandId": {
             "type": "string",
-            "description": "The TCR-generated identifier for this brand."
+            "description": "The TCR-generated identifier for this brand.",
+            "example": "B1DER2J"
           },
           "brandDisplayName": {
             "type": "string",
             "description": "The display name of the brand associated with this campaign.",
-            "readOnly": true
+            "readOnly": true,
+            "example": "Acme, Inc."
           },
           "usecase": {
             "$ref": "#/components/schemas/enumCampaignUsecases"
@@ -78963,7 +79207,8 @@
             "maximum": 4096,
             "minimum": 40,
             "type": "string",
-            "description": "Summary description of this campaign."
+            "description": "Summary description of this campaign.",
+            "example": "Effectively the name/label of the campaign"
           },
           "numberPool": {
             "type": "boolean",
@@ -78973,12 +79218,14 @@
           "createdDate": {
             "type": "string",
             "description": "The time the brand was created in the TCR system.",
-            "format": "date-time"
+            "format": "date-time",
+            "example": "2024-09-24T21:52:03.876Z"
           },
           "modifiedDate": {
             "type": "string",
             "description": "The time the brand was last modified in the Bandwidth system.",
-            "format": "date-time"
+            "format": "date-time",
+            "example": "2024-09-25T21:52:03.876Z"
           },
           "vettingStatus": {
             "$ref": "#/components/schemas/enumCampaignVettingStatus"
@@ -78988,13 +79235,15 @@
       },
       "tendlc_campaignName": {
         "type": "string",
-        "description": "A user-supplied name for this campaign. Because this name is not stored in TCR, imported campaigns will default to the campaign's TCR ID, though this is editable via the Bandwidth APIs."
+        "description": "A user-supplied name for this campaign. Because this name is not stored in TCR, imported campaigns will default to the campaign's TCR ID, though this is editable via the Bandwidth APIs.",
+        "example": "Acme, Inc."
       },
       "tendlc_description": {
         "maxLength": 4096,
         "minLength": 40,
         "type": "string",
-        "description": "Summary description of this campaign."
+        "description": "Summary description of this campaign.",
+        "example": "Effectively the name/label of the campaign"
       },
       "embeddedLink": {
         "type": "boolean",
@@ -79141,12 +79390,14 @@
       "companyName": {
         "maxLength": 255,
         "type": "string",
-        "description": "Legal Company Name of the brand."
+        "description": "Legal Company Name of the brand.",
+        "example": "Acme, Inc."
       },
       "displayName": {
         "maxLength": 255,
         "type": "string",
-        "description": "Display name of the brand."
+        "description": "Display name of the brand.",
+        "example": "Acme"
       },
       "enumApprovalDecision": {
         "enum": [
@@ -79326,7 +79577,8 @@
       "vettingScore": {
         "type": "integer",
         "description": "The score assigned by the external vetting provider.",
-        "format": "int32"
+        "format": "int32",
+        "example": 80
       },
       "vettingReasons": {
         "type": "array",
@@ -79398,7 +79650,8 @@
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
             },
-            "description": "The errors array will always be empty for this response."
+            "description": "The errors array will always be empty for this response.",
+            "example": [ ]
           },
           "links": {
             "type": "array",
@@ -79457,7 +79710,8 @@
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
             },
-            "description": "The errors array will always be empty for successful responses."
+            "description": "The errors array will always be empty for successful responses.",
+            "example": [ ]
           }
         },
         "description": "An accepted response containing the brand's TCR and Bandwidth IDs."
@@ -79689,7 +79943,8 @@
           "UNCAPPED"
         ],
         "type": "string",
-        "description": "T-Mobile daily message volume is restricted based on brand tier, applying across campaigns and CSPs."
+        "description": "T-Mobile daily message volume is restricted based on brand tier, applying across campaigns and CSPs.",
+        "example": "UPPER_MID"
       },
       "enumVertical": {
         "enum": [
@@ -79719,18 +79974,23 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "A short, human-readable description of the type of error (e.g. \"bad request\")."
+            "description": "A short, human-readable description of the type of error (e.g. \"bad request\").",
+            "example": "bad request"
           },
           "description": {
             "type": "string",
-            "description": "A full description of the error (e.g. \"name cannot be blank\")."
+            "description": "A full description of the error (e.g. \"name cannot be blank\").",
+            "example": "accountId is required"
           },
           "source": {
             "type": "object",
             "additionalProperties": {
               "type": "string"
             },
-            "description": "A map from the type of source to a value for that type. The supported keys are: 1) POINTER (the value is a RFC6901 JSON pointer to a field in the request body); 2) PARAMETER (the value is a query parameter name); and 3) PATH (the value is a parameter name in the URI of the request). There will only be one entry in the source property, as each error is recorded separately in the errors array.\n"
+            "description": "A map from the type of source to a value for that type. The supported keys are: 1) POINTER (the value is a RFC6901 JSON pointer to a field in the request body); 2) PARAMETER (the value is a query parameter name); and 3) PATH (the value is a parameter name in the URI of the request). There will only be one entry in the source property, as each error is recorded separately in the errors array.\n",
+            "example": {
+              "POINTER": "/accountId"
+            }
           }
         }
       },
@@ -79741,10 +80001,12 @@
             "items": {
               "$ref": "#/components/schemas/responseLink"
             },
-            "readOnly": true
+            "readOnly": true,
+            "example": [ ]
           },
           "data": {
-            "type": "object"
+            "type": "object",
+            "example": null
           },
           "errors": {
             "type": "array",
@@ -79761,16 +80023,24 @@
             "items": {
               "$ref": "#/components/schemas/responseLink"
             },
-            "readOnly": true
+            "readOnly": true,
+            "example": [ ]
           },
           "data": {
-            "type": "object"
+            "type": "object",
+            "example": null
           },
           "errors": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
-            }
+            },
+            "example": [
+              {
+                "type": "unauthorized",
+                "description": "client is providing incorrect or invalid credentials"
+              }
+            ]
           }
         }
       },
@@ -79781,16 +80051,24 @@
             "items": {
               "$ref": "#/components/schemas/responseLink"
             },
-            "readOnly": true
+            "readOnly": true,
+            "example": [ ]
           },
           "data": {
-            "type": "object"
+            "type": "object",
+            "example": null
           },
           "errors": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
-            }
+            },
+            "example": [
+              {
+                "type": "forbidden",
+                "description": "client does not have access rights to the content"
+              }
+            ]
           }
         }
       },
@@ -79801,16 +80079,24 @@
             "items": {
               "$ref": "#/components/schemas/responseLink"
             },
-            "readOnly": true
+            "readOnly": true,
+            "example": [ ]
           },
           "data": {
-            "type": "object"
+            "type": "object",
+            "example": null
           },
           "errors": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
-            }
+            },
+            "example": [
+              {
+                "type": "not found",
+                "description": "CVW1111"
+              }
+            ]
           }
         }
       },
@@ -79821,16 +80107,24 @@
             "items": {
               "$ref": "#/components/schemas/responseLink"
             },
-            "readOnly": true
+            "readOnly": true,
+            "example": [ ]
           },
           "data": {
-            "type": "object"
+            "type": "object",
+            "example": null
           },
           "errors": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
-            }
+            },
+            "example": [
+              {
+                "type": "method not allowed",
+                "description": "Request method 'PATCH' is not supported"
+              }
+            ]
           }
         }
       },
@@ -79841,16 +80135,24 @@
             "items": {
               "$ref": "#/components/schemas/responseLink"
             },
-            "readOnly": true
+            "readOnly": true,
+            "example": [ ]
           },
           "data": {
-            "type": "object"
+            "type": "object",
+            "example": null
           },
           "errors": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
-            }
+            },
+            "example": [
+              {
+                "type": "conflict",
+                "description": "submitted entity already exists"
+              }
+            ]
           }
         }
       },
@@ -79861,16 +80163,24 @@
             "items": {
               "$ref": "#/components/schemas/responseLink"
             },
-            "readOnly": true
+            "readOnly": true,
+            "example": [ ]
           },
           "data": {
-            "type": "object"
+            "type": "object",
+            "example": null
           },
           "errors": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
-            }
+            },
+            "example": [
+              {
+                "type": "too many requests",
+                "description": "too many requests"
+              }
+            ]
           }
         }
       },
@@ -79881,16 +80191,24 @@
             "items": {
               "$ref": "#/components/schemas/responseLink"
             },
-            "readOnly": true
+            "readOnly": true,
+            "example": [ ]
           },
           "data": {
-            "type": "object"
+            "type": "object",
+            "example": null
           },
           "errors": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
-            }
+            },
+            "example": [
+              {
+                "type": "internal service error",
+                "description": "the server has encountered an internal error"
+              }
+            ]
           }
         }
       },
@@ -79901,41 +80219,54 @@
             "items": {
               "$ref": "#/components/schemas/responseLink"
             },
-            "readOnly": true
+            "readOnly": true,
+            "example": [ ]
           },
           "data": {
-            "type": "object"
+            "type": "object",
+            "example": null
           },
           "errors": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
-            }
+            },
+            "example": [
+              {
+                "type": "service unavailable",
+                "description": "the server has encountered an internal error"
+              }
+            ]
           }
         }
       },
       "registration": {
         "properties": {
           "phoneNumber": {
-            "type": "string"
+            "type": "string",
+            "example": "+12054443942"
           },
           "campaignId": {
-            "type": "string"
+            "type": "string",
+            "example": "CA3XKE1"
           },
           "status": {
             "$ref": "#/components/schemas/enumRegistrationStatus"
           },
           "customerProfileId": {
             "type": "string",
-            "description": "The customer profile ID associated with the TN."
+            "description": "The customer profile ID associated with the TN.",
+            "example": "3IIzIFnRRQBE3AMzPpMTNo"
           },
           "brandId": {
             "type": "string",
-            "description": "The TCR-generated identifier for the brand associated to this brand."
+            "description": "The TCR-generated identifier for the brand associated to this brand.",
+            "example": "B1DER2J"
           },
           "nnid": {
             "type": "string",
-            "description": "The Net Number ID used to register the messaging provider in the Override Service Registry."
+            "description": "The Net Number ID used to register the messaging provider in the Override Service Registry.",
+            "example": "103775"
           },
           "createdDate": {
             "type": "string",
@@ -79953,17 +80284,20 @@
       "historyEntry": {
         "properties": {
           "message": {
-            "type": "string"
+            "type": "string",
+            "example": "Campaign CCB0URS for brand BDYTCLP was updated"
           },
           "createdDate": {
             "type": "string",
             "description": "The time the brand was created in the TCR system.",
-            "format": "date-time"
+            "format": "date-time",
+            "example": "2024-09-24T21:52:03.876Z"
           },
           "userName": {
             "maxLength": 100,
             "type": "string",
-            "description": "The user who triggered this provisioning request. If longer than 100 characters, it will be silently truncated."
+            "description": "The user who triggered this provisioning request. If longer than 100 characters, it will be silently truncated.",
+            "example": "atest"
           }
         },
         "description": "An audit record for this resource."
@@ -79981,7 +80315,8 @@
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
             },
-            "description": "The errors array will always be empty for this response."
+            "description": "The errors array will always be empty for this response.",
+            "example": [ ]
           },
           "links": {
             "type": "array",
@@ -80009,7 +80344,8 @@
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
             },
-            "description": "The errors array will always be empty for this response."
+            "description": "The errors array will always be empty for this response.",
+            "example": [ ]
           },
           "links": {
             "type": "array",
@@ -80034,7 +80370,8 @@
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
             },
-            "description": "The errors array will always be empty for this response."
+            "description": "The errors array will always be empty for this response.",
+            "example": [ ]
           },
           "links": {
             "type": "array",
@@ -80050,15 +80387,18 @@
         "properties": {
           "href": {
             "type": "string",
-            "readOnly": true
+            "readOnly": true,
+            "example": "/api/v2/tendlc/2YekXSSvsbyC7cHWnbV2Qv"
           },
           "rel": {
             "type": "string",
-            "readOnly": true
+            "readOnly": true,
+            "example": "self"
           },
           "method": {
             "type": "string",
-            "readOnly": true
+            "readOnly": true,
+            "example": "GET"
           }
         },
         "description": "Link to a resource"
@@ -80068,22 +80408,26 @@
           "pageSize": {
             "type": "integer",
             "format": "int32",
-            "readOnly": true
+            "readOnly": true,
+            "example": 25
           },
           "totalElements": {
             "type": "integer",
             "format": "int32",
-            "readOnly": true
+            "readOnly": true,
+            "example": 434
           },
           "totalPages": {
             "type": "integer",
             "format": "int32",
-            "readOnly": true
+            "readOnly": true,
+            "example": 18
           },
           "pageNumber": {
             "type": "integer",
             "format": "int32",
-            "readOnly": true
+            "readOnly": true,
+            "example": 3
           }
         },
         "description": "Information about the current page"
@@ -80097,33 +80441,39 @@
       },
       "bandwidthId": {
         "type": "string",
-        "description": "The Bandwidth-generated identifier for this entity. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the entity."
+        "description": "The Bandwidth-generated identifier for this entity. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the entity.",
+        "example": "WEPTN2N2T5"
       },
       "tendlc_customerProfileId": {
         "type": "string",
-        "description": "The Bandwidth customer profile associated to the campaign/brand."
+        "description": "The Bandwidth customer profile associated to the campaign/brand.",
+        "example": "3IIzIFnRRQBE3AMzPpMTNo"
       },
       "tcrBrandId": {
         "maxLength": 8,
         "minLength": 1,
         "type": "string",
-        "description": "The TCR-generated identifier for the brand. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the brand."
+        "description": "The TCR-generated identifier for the brand. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the brand.",
+        "example": "B1DER2J"
       },
       "ein": {
         "maxLength": 21,
         "type": "string",
-        "description": "Government assigned corporate tax ID. EIN is 9-digits in U.S. (format XX-XXXXXXX)."
+        "description": "Government assigned corporate tax ID. EIN is 9-digits in U.S. (format XX-XXXXXXX).",
+        "example": "21-4573154"
       },
       "einIssuingCountryCodeA3": {
         "maxLength": 3,
         "minLength": 3,
         "type": "string",
-        "description": "ISO 3 character country code for the EIN."
+        "description": "ISO 3 character country code for the EIN.",
+        "example": "USA"
       },
       "brandPhone": {
         "maxLength": 20,
         "type": "string",
-        "description": "Valid phone number in E.164 international format."
+        "description": "Valid phone number in E.164 international format.",
+        "example": "+18009999999"
       },
       "brandEmail": {
         "maxLength": 100,
@@ -80133,37 +80483,44 @@
       },
       "street": {
         "maxLength": 255,
-        "type": "string"
+        "type": "string",
+        "example": "123 Sesame St."
       },
       "tendlc_city": {
         "maxLength": 100,
-        "type": "string"
+        "type": "string",
+        "example": "New York"
       },
       "state": {
         "maxLength": 20,
         "type": "string",
-        "description": "State or province. Must be 2 letter code for United States."
+        "description": "State or province. Must be 2 letter code for United States.",
+        "example": "NC"
       },
       "tendlc_postalCode": {
         "maxLength": 10,
         "type": "string",
-        "description": "Postal code. Use 5 digit zip code for United States."
+        "description": "Postal code. Use 5 digit zip code for United States.",
+        "example": "12345"
       },
       "tendlc_countryCodeA3": {
         "maxLength": 3,
         "minLength": 3,
         "type": "string",
-        "description": "ISO 3 character country code."
+        "description": "ISO 3 character country code.",
+        "example": "USA"
       },
       "website": {
         "maxLength": 255,
         "type": "string",
-        "description": "Required for `PUBLIC_PROFIT` brands."
+        "description": "Required for `PUBLIC_PROFIT` brands.",
+        "example": "acme.com"
       },
       "stockSymbol": {
         "maxLength": 10,
         "type": "string",
-        "description": "Required for `PUBLIC_PROFIT` brands."
+        "description": "Required for `PUBLIC_PROFIT` brands.",
+        "example": "BANDW"
       },
       "altBusinessId": {
         "maxLength": 50,
@@ -80442,7 +80799,8 @@
             "items": {
               "$ref": "#/components/schemas/tendlc_errorEntry"
             },
-            "description": "The errors array will always be empty for successful responses."
+            "description": "The errors array will always be empty for successful responses.",
+            "example": [ ]
           }
         },
         "description": "An accepted response containing the brand and Bandwidth IDs."
@@ -83098,11 +83456,7 @@
           {
             "type": "array",
             "items": {
-              "oneOf": [
-                {
-                  "type": "string"
-                }
-              ]
+              "type": "string"
             }
           }
         ],
@@ -85015,7 +85369,21 @@
       "voiceConfigurationPackageIdQueryParameter": {
         "type": "string",
         "description": "Filter phone numbers by their assigned voice configuration package. When the string value 'null' is provided the result set returned will be a filtered list of phone numbers missing a voice configuration package.",
-        "format": "uuid"
+        "format": "uuid",
+        "example": {
+          "ID Filter": {
+            "description": "A unique identifier referencing a voice configuration package.",
+            "value": "3bc3c038-8f8c-4489-8dd2-c14063f395e2"
+          }
+        },
+        "x-jsonschema-examples": [
+          {
+            "Null Filter": {
+              "description": "Filter value to get result set of phone numbers not assigned a voice configuration package.",
+              "value": "null"
+            }
+          }
+        ]
       },
       "voice_phone_numbers_voiceConfigurationPackageName": {
         "maxLength": 128,
@@ -85798,6 +86166,9 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/voice_stir_shaken_links"
+            },
+            "example": {
+              "$ref": "#/components/examples/linksExample"
             }
           },
           "data": {
@@ -85805,12 +86176,18 @@
             "properties": {
               "totalCount": {
                 "type": "integer",
-                "description": "The total count of objects returned in the response."
+                "description": "The total count of objects returned in the response.",
+                "example": {
+                  "$ref": "#/components/examples/totalCountExample"
+                }
               },
               "stirShakenProfiles": {
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/stirShakenProfilesResponseData"
+                },
+                "example": {
+                  "$ref": "#/components/examples/stirShakenProfilesResponseDataExample"
                 }
               }
             }
@@ -85820,7 +86197,10 @@
             "items": {
               "$ref": "#/components/schemas/voice_stir_shaken_error"
             },
-            "default": [ ]
+            "default": [ ],
+            "example": {
+              "$ref": "#/components/examples/errorsExample"
+            }
           }
         },
         "description": "Response payload for get all stir/shaken profiles information."
@@ -85838,6 +86218,9 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/voice_stir_shaken_links"
+            },
+            "example": {
+              "$ref": "#/components/examples/linksExample"
             }
           },
           "data": {
@@ -85848,7 +86231,10 @@
             "items": {
               "$ref": "#/components/schemas/voice_stir_shaken_error"
             },
-            "default": [ ]
+            "default": [ ],
+            "example": {
+              "$ref": "#/components/examples/errorsExample"
+            }
           }
         },
         "description": "Response payload for stir/shaken profile information."
@@ -85866,6 +86252,9 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/voice_stir_shaken_links"
+            },
+            "example": {
+              "$ref": "#/components/examples/linksExample"
             }
           },
           "data": {
@@ -85873,12 +86262,18 @@
             "properties": {
               "totalCount": {
                 "type": "integer",
-                "description": "The total count of objects returned in the response."
+                "description": "The total count of objects returned in the response.",
+                "example": {
+                  "$ref": "#/components/examples/totalCountExample"
+                }
               },
               "stirShakenCertificates": {
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/stirShakenCertificatesAccountResponseData"
+                },
+                "example": {
+                  "$ref": "#/components/examples/stirShakenCertificatesAccountResponseDataExample"
                 }
               }
             }
@@ -85888,7 +86283,10 @@
             "items": {
               "$ref": "#/components/schemas/voice_stir_shaken_error"
             },
-            "default": [ ]
+            "default": [ ],
+            "example": {
+              "$ref": "#/components/examples/errorsExample"
+            }
           }
         },
         "description": "Response payload for stir/shaken certificates information."
@@ -85906,6 +86304,9 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/voice_stir_shaken_links"
+            },
+            "example": {
+              "$ref": "#/components/examples/linksExample"
             }
           },
           "data": {
@@ -85916,7 +86317,10 @@
             "items": {
               "$ref": "#/components/schemas/voice_stir_shaken_error"
             },
-            "default": [ ]
+            "default": [ ],
+            "example": {
+              "$ref": "#/components/examples/errorsExample"
+            }
           }
         },
         "description": "Response payload for stir/shaken certificate information."
@@ -85934,6 +86338,9 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/voice_stir_shaken_links"
+            },
+            "example": {
+              "$ref": "#/components/examples/linksExample"
             }
           },
           "data": {
@@ -85941,12 +86348,18 @@
             "properties": {
               "totalCount": {
                 "type": "integer",
-                "description": "The total count of objects returned in the response."
+                "description": "The total count of objects returned in the response.",
+                "example": {
+                  "$ref": "#/components/examples/totalCountExample"
+                }
               },
               "stirShakenCertificatesSpcs": {
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/stirShakenCertificatesAccountSpcsResponseData"
+                },
+                "example": {
+                  "$ref": "#/components/examples/stirShakenCertificatesAccountSpcsResponseDataExample"
                 }
               }
             }
@@ -85956,7 +86369,10 @@
             "items": {
               "$ref": "#/components/schemas/voice_stir_shaken_error"
             },
-            "default": [ ]
+            "default": [ ],
+            "example": {
+              "$ref": "#/components/examples/errorsExample"
+            }
           }
         },
         "description": "Response payload for stir/shaken certificates SPCs information."
@@ -85990,7 +86406,10 @@
             "$ref": "#/components/schemas/voice_stir_shaken_name"
           }
         },
-        "description": "Contains stir/shaken profile information."
+        "description": "Contains stir/shaken profile information.",
+        "example": {
+          "$ref": "#/components/examples/stirShakenProfilesResponseDataExample"
+        }
       },
       "attestLevel": {
         "enum": [
@@ -85999,7 +86418,8 @@
           "C"
         ],
         "type": "string",
-        "description": "Attestation level. A (Full), B (Partial), or C (Gateway). Required for US/CAN hosted signing cert assignments. For FR hosted assignments, this can be null as the 'indirect' profileType will dictate the attestLevel."
+        "description": "Attestation level. A (Full), B (Partial), or C (Gateway). Required for US/CAN hosted signing cert assignments. For FR hosted assignments, this can be null as the 'indirect' profileType will dictate the attestLevel.",
+        "example": "A"
       },
       "certificateUploadResponse": {
         "title": "Certificate Upload Response",
@@ -86176,7 +86596,10 @@
             "$ref": "#/components/schemas/certificateType"
           }
         },
-        "description": "Contains stir/shaken certificate information."
+        "description": "Contains stir/shaken certificate information.",
+        "example": {
+          "$ref": "#/components/examples/stirShakenCertificatesAccountResponseDataExample"
+        }
       },
       "stirShakenCertificatesAccountSpcsResponseData": {
         "title": "Stir/Shaken Certificate SPC Properties",
@@ -86192,7 +86615,10 @@
             "$ref": "#/components/schemas/gan"
           }
         },
-        "description": "Contains stir/shaken certificate SPC information."
+        "description": "Contains stir/shaken certificate SPC information.",
+        "example": {
+          "$ref": "#/components/examples/stirShakenCertificatesAccountSpcsResponseDataExample"
+        }
       },
       "stirShakenProfilesRequestData": {
         "title": "Stir/Shaken Profile Request Data",
@@ -86216,7 +86642,10 @@
             "$ref": "#/components/schemas/attestLevel"
           }
         },
-        "description": "Contains stir/shaken profile request data."
+        "description": "Contains stir/shaken profile request data.",
+        "example": {
+          "$ref": "#/components/examples/stirShakenProfilesRequestDataExample"
+        }
       },
       "stirShakenCertificatesAccountPutRequestData": {
         "title": "Stir/Shaken Certificate Request Data",
@@ -86251,12 +86680,18 @@
             ]
           }
         },
-        "description": "Contains stir/shaken certificate request data."
+        "description": "Contains stir/shaken certificate request data.",
+        "example": {
+          "$ref": "#/components/examples/stirShakenCertificatesAccountPutRequestDataExample"
+        }
       },
       "regionFr": {
         "title": "FR",
         "type": "object",
-        "description": "Contains stir/shaken certificate request data for the FR region"
+        "description": "Contains stir/shaken certificate request data for the FR region",
+        "example": {
+          "$ref": "#/components/examples/stirShakenCertificatesRequestDataExampleRegionFr"
+        }
       },
       "voice_stir_shaken_errorResponse": {
         "required": [
@@ -86271,7 +86706,8 @@
             "items": {
               "type": "string"
             },
-            "default": [ ]
+            "default": [ ],
+            "example": [ ]
           },
           "data": {
             "type": "object"
@@ -86280,24 +86716,30 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/voice_stir_shaken_error"
+            },
+            "example": {
+              "$ref": "#/components/examples/errorsExample"
             }
           }
         }
       },
       "voice_stir_shaken_accountId": {
         "type": "integer",
-        "description": "The ID of the Bandwidth App account that the certificate is assigned to."
+        "description": "The ID of the Bandwidth App account that the certificate is assigned to.",
+        "example": 1234567
       },
       "stirShakenProfileId": {
         "type": "string",
-        "description": "The UUID for the stir/shaken profile id."
+        "description": "The UUID for the stir/shaken profile id.",
+        "example": "12bae4ae-42d8-76ea-9e33-a8675309ba77"
       },
       "profileType": {
         "enum": [
           "INDIRECT"
         ],
         "type": "string",
-        "description": "The attestation type."
+        "description": "The attestation type.",
+        "example": "INDIRECT"
       },
       "certificateType": {
         "enum": [
@@ -86305,7 +86747,8 @@
           "INDIRECT"
         ],
         "type": "string",
-        "description": "The certificate type."
+        "description": "The certificate type.",
+        "example": "DIRECT"
       },
       "regionAll": {
         "enum": [
@@ -86313,52 +86756,63 @@
           "FR"
         ],
         "type": "string",
-        "description": "The region for the certificate."
+        "description": "The region for the certificate.",
+        "example": "US"
       },
       "regionAccountPut": {
         "enum": [
           "FR"
         ],
         "type": "string",
-        "description": "The region for the certificate."
+        "description": "The region for the certificate.",
+        "example": "FR"
       },
       "certificateId": {
         "type": "string",
-        "description": "The UUID for the certificate."
+        "description": "The UUID for the certificate.",
+        "example": "5ed410d5-215d-4f3e-b7b9-9a7cd50bf514"
       },
       "active": {
         "type": "boolean",
-        "description": "Whether or not the assignment is active."
+        "description": "Whether or not the assignment is active.",
+        "example": true
       },
       "voice_stir_shaken_name": {
         "type": "string",
-        "description": "The name of the certificate."
+        "description": "The name of the certificate.",
+        "example": "BW US"
       },
       "voice_stir_shaken_description": {
         "type": "string",
-        "description": "The certificate description."
+        "description": "The certificate description.",
+        "example": "BW US Signing Cert"
       },
       "organization": {
         "type": "string",
-        "description": "The organization associated with the certificate."
+        "description": "The organization associated with the certificate.",
+        "example": "bandwidth.com"
       },
       "publicCertUrl": {
         "type": "string",
-        "description": "The public URL for the certificate."
+        "description": "The public URL for the certificate.",
+        "example": "https://bw-shaken-cert-pub.s3.amazonaws.com/bw-shaken_foobar.pem"
       },
       "spc": {
         "type": "string",
-        "description": "The Service Provider Code token."
+        "description": "The Service Provider Code token.",
+        "example": "997E"
       },
       "validFrom": {
         "type": "string",
         "description": "The start date of the certificate.",
-        "format": "date-time"
+        "format": "date-time",
+        "example": "2023-10-13T21:11:09.000Z"
       },
       "expiryDate": {
         "type": "string",
         "description": "The expiration date of the certificate.",
-        "format": "date-time"
+        "format": "date-time",
+        "example": "2024-10-13T21:11:09.000Z"
       },
       "voice_stir_shaken_status": {
         "enum": [
@@ -86367,11 +86821,13 @@
           "INACTIVE"
         ],
         "type": "string",
-        "description": "The status of the certificate."
+        "description": "The status of the certificate.",
+        "example": "ACTIVE"
       },
       "gan": {
         "type": "string",
-        "description": "The Global Account Number."
+        "description": "The Global Account Number.",
+        "example": "BW-1234567"
       },
       "validFromQueryParameter": {
         "properties": {
@@ -86379,6 +86835,9 @@
             "type": "string",
             "format": "date-time"
           }
+        },
+        "example": {
+          "gte": "2024-10-13T21:11:09.000Z"
         }
       },
       "expiryDateQueryParameter": {
@@ -86387,6 +86846,9 @@
             "type": "string",
             "format": "date-time"
           }
+        },
+        "example": {
+          "lte": "2024-10-13T21:11:09.000Z"
         }
       },
       "regionQueryParameter": {
@@ -86394,6 +86856,9 @@
           "eq": {
             "type": "string"
           }
+        },
+        "example": {
+          "eq": "US"
         }
       },
       "certificateTypeQueryParameter": {
@@ -86401,6 +86866,9 @@
           "eq": {
             "type": "string"
           }
+        },
+        "example": {
+          "eq": "INDIRECT"
         }
       },
       "voice_stir_shaken_error": {
@@ -86420,17 +86888,20 @@
       },
       "voice_stir_shaken_errorType": {
         "type": "string",
-        "description": "A short, human-readable summary of the problem that SHOULD NOT change from occurrence to occurrence of the problem."
+        "description": "A short, human-readable summary of the problem that SHOULD NOT change from occurrence to occurrence of the problem.",
+        "example": "REQUEST_ERROR"
       },
       "voice_stir_shaken_errorDescription": {
         "type": "string",
-        "description": "A human-readable explanation that SHOULD be specific to this occurrence of the problem."
+        "description": "A human-readable explanation that SHOULD be specific to this occurrence of the problem.",
+        "example": "There was an issue with a field in your request body"
       },
       "voice_stir_shaken_errorCode": {
         "minimum": 3,
         "type": "integer",
         "description": "An application-specific error code for services with extensive error scenarios to supplement `description`.",
-        "format": "int32"
+        "format": "int32",
+        "example": 4200
       },
       "voice_stir_shaken_links": {
         "title": "Links",
@@ -86438,11 +86909,13 @@
         "properties": {
           "href": {
             "type": "string",
-            "description": "URI of the link."
+            "description": "URI of the link.",
+            "example": "/relative/uri"
           },
           "rel": {
             "type": "string",
-            "description": "Specifies the relationship between this link and the resource."
+            "description": "Specifies the relationship between this link and the resource.",
+            "example": "aRelatedResource"
           },
           "method": {
             "enum": [
@@ -86452,8 +86925,12 @@
               "DELETE"
             ],
             "type": "string",
-            "description": "HTTP method to be used."
+            "description": "HTTP method to be used.",
+            "example": "GET"
           }
+        },
+        "example": {
+          "$ref": "#/components/examples/linksExample"
         }
       },
       "callbackMethodEnum": {
@@ -106566,7 +107043,8 @@
         "description": "The Bandwidth account ID associated with the events to query.",
         "required": true,
         "schema": {
-          "type": "string"
+          "type": "string",
+          "example": "123456"
         }
       },
       "timestamp": {
@@ -106584,7 +107062,8 @@
         "in": "query",
         "description": "Opaque string used to retrieve the next set of results.",
         "schema": {
-          "type": "string"
+          "type": "string",
+          "example": 1701374259320946200
         }
       },
       "limit": {
@@ -106592,7 +107071,8 @@
         "in": "query",
         "description": "number of results to return",
         "schema": {
-          "type": "integer"
+          "type": "integer",
+          "example": 100
         }
       },
       "terms": {
@@ -106605,7 +107085,8 @@
           "properties": {
             "eq": {
               "type": "string",
-              "description": "Comma-separated list of fields to include term counts for."
+              "description": "Comma-separated list of fields to include term counts for.",
+              "example": "principalResourceType,bwContextAccountId"
             }
           }
         }
@@ -109471,7 +109952,11 @@
         "description": "Messaging transfer request ID supplied in the original webhook",
         "required": true,
         "schema": {
-          "type": "string"
+          "type": "string",
+          "example": "33636456",
+          "x-jsonschema-examples": [
+            "14DloM8hrxtD6Z7oOpPDv8"
+          ]
         }
       },
       "webhookSubscriptionIdPathParam": {
@@ -109491,7 +109976,10 @@
         "schema": {
           "maximum": 250,
           "type": "number",
-          "default": 50
+          "default": 50,
+          "example": {
+            "limit": 10
+          }
         }
       },
       "offsetParam": {
@@ -109500,7 +109988,10 @@
         "description": "Offset for pagination (from zero, the first returned record)",
         "schema": {
           "type": "number",
-          "default": 0
+          "default": 0,
+          "example": {
+            "offset": 25
+          }
         }
       },
       "phoneNumberParam": {
@@ -109519,7 +110010,15 @@
               "$ref": "#/components/schemas/messaging_transfer_sort"
             }
           },
-          "description": "Schema for string query parameter"
+          "description": "Schema for string query parameter",
+          "example": {
+            "eq": "+19194445555"
+          },
+          "x-jsonschema-examples": [
+            {
+              "sort": "DESC"
+            }
+          ]
         }
       },
       "statusParam": {
@@ -109538,7 +110037,15 @@
               "$ref": "#/components/schemas/messaging_transfer_sort"
             }
           },
-          "description": "Schema for string query parameter"
+          "description": "Schema for string query parameter",
+          "example": {
+            "eq": "REQUESTED"
+          },
+          "x-jsonschema-examples": [
+            {
+              "sort": "DESC"
+            }
+          ]
         }
       },
       "sourceParam": {
@@ -109552,7 +110059,10 @@
           "properties": {
             "eq": { }
           },
-          "description": "Schema for string query parameter"
+          "description": "Schema for string query parameter",
+          "example": {
+            "eq": "EXTERNAL"
+          }
         }
       },
       "messaging_accountId": {
@@ -111518,7 +112028,8 @@
         "description": "User's account ID.",
         "required": true,
         "schema": {
-          "type": "string"
+          "type": "string",
+          "example": "1234567"
         }
       },
       "displayNameParam": {
@@ -111537,7 +112048,15 @@
               "$ref": "#/components/schemas/tendlc_sort"
             }
           },
-          "description": "Scheme for string query parameter"
+          "description": "Scheme for string query parameter",
+          "example": {
+            "contains": "Acme"
+          },
+          "x-jsonschema-examples": [
+            {
+              "sort": "DESC"
+            }
+          ]
         }
       },
       "companyNameParam": {
@@ -111556,7 +112075,15 @@
               "$ref": "#/components/schemas/tendlc_sort"
             }
           },
-          "description": "Scheme for string query parameter"
+          "description": "Scheme for string query parameter",
+          "example": {
+            "contains": "Acme, Inc."
+          },
+          "x-jsonschema-examples": [
+            {
+              "sort": "DESC"
+            }
+          ]
         }
       },
       "brandTypeParam": {
@@ -111575,7 +112102,15 @@
               "$ref": "#/components/schemas/tendlc_sort"
             }
           },
-          "description": "Scheme for string query parameter"
+          "description": "Scheme for string query parameter",
+          "example": {
+            "contains": "NON_PROFIT"
+          },
+          "x-jsonschema-examples": [
+            {
+              "sort": "DESC"
+            }
+          ]
         }
       },
       "brandIdentityStatusParam": {
@@ -111594,7 +112129,15 @@
               "$ref": "#/components/schemas/tendlc_sort"
             }
           },
-          "description": "Scheme for string query parameter"
+          "description": "Scheme for string query parameter",
+          "example": {
+            "contains": "VERIFIED"
+          },
+          "x-jsonschema-examples": [
+            {
+              "sort": "DESC"
+            }
+          ]
         }
       },
       "brandIdParam": {
@@ -111613,7 +112156,15 @@
               "$ref": "#/components/schemas/tendlc_sort"
             }
           },
-          "description": "Scheme for string query parameter"
+          "description": "Scheme for string query parameter",
+          "example": {
+            "contains": "BABC"
+          },
+          "x-jsonschema-examples": [
+            {
+              "sort": "DESC"
+            }
+          ]
         }
       },
       "brandIdPathParam": {
@@ -111622,7 +112173,8 @@
         "description": "This can be the TCR-assigned brand ID, the Bandwidth-assigned identifier for this brand, or the customer profile ID that is associated to the brand in the given account (the last two IDs can be used even before the brand is successfully submitted to TCR).",
         "required": true,
         "schema": {
-          "type": "string"
+          "type": "string",
+          "example": "B5DG4HH"
         }
       },
       "campaignIdParam": {
@@ -111641,7 +112193,15 @@
               "$ref": "#/components/schemas/tendlc_sort"
             }
           },
-          "description": "Scheme for string query parameter"
+          "description": "Scheme for string query parameter",
+          "example": {
+            "contains": "CAB"
+          },
+          "x-jsonschema-examples": [
+            {
+              "sort": "DESC"
+            }
+          ]
         }
       },
       "tendlc_campaignIdPathParam": {
@@ -111650,7 +112210,8 @@
         "description": "This ID can be the TCR-assigned identifier for the campaign, or the internally generated identifier used by Bandwidth to track the campaign before it is submitted to TCR. The latter is returned when a campaign is created.",
         "required": true,
         "schema": {
-          "type": "string"
+          "type": "string",
+          "example": "CABCDEF"
         }
       },
       "bandwidthIdParam": {
@@ -111666,7 +112227,10 @@
               "type": "string"
             }
           },
-          "description": "Scheme for string query parameter"
+          "description": "Scheme for string query parameter",
+          "example": {
+            "contains": "WEPTN2N2T5"
+          }
         }
       },
       "vettingIdParam": {
@@ -111682,7 +112246,10 @@
               "type": "string"
             }
           },
-          "description": "Scheme for string query parameter"
+          "description": "Scheme for string query parameter",
+          "example": {
+            "contains": "VET123"
+          }
         }
       },
       "vettingIdPathParam": {
@@ -111691,7 +112258,8 @@
         "description": "The identifier of the vetting from the external vetting provider.",
         "required": true,
         "schema": {
-          "type": "string"
+          "type": "string",
+          "example": "VET123"
         }
       },
       "campaignNameParam": {
@@ -111710,7 +112278,15 @@
               "$ref": "#/components/schemas/tendlc_sort"
             }
           },
-          "description": "Scheme for string query parameter"
+          "description": "Scheme for string query parameter",
+          "example": {
+            "contains": "Acme, Inc."
+          },
+          "x-jsonschema-examples": [
+            {
+              "sort": "DESC"
+            }
+          ]
         }
       },
       "createdDateParam": {
@@ -111734,7 +112310,18 @@
               "$ref": "#/components/schemas/tendlc_sort"
             }
           },
-          "description": "Scheme for date & time query parameter"
+          "description": "Scheme for date & time query parameter",
+          "example": {
+            "lt": "2024-01-24T00:00:00Z"
+          },
+          "x-jsonschema-examples": [
+            {
+              "gt": "2024-01-24T23:59:59Z"
+            },
+            {
+              "sort": "DESC"
+            }
+          ]
         }
       },
       "customerProfileIdParam": {
@@ -111750,7 +112337,10 @@
               "type": "string"
             }
           },
-          "description": "Scheme for string query parameter"
+          "description": "Scheme for string query parameter",
+          "example": {
+            "contains": "Xa39"
+          }
         }
       },
       "customerProfileIdsParam": {
@@ -111769,7 +112359,10 @@
               }
             }
           },
-          "description": "Scheme for string query parameter"
+          "description": "Scheme for string query parameter",
+          "example": {
+            "contains": "[a,b,c]"
+          }
         }
       },
       "tendlc_limitParam": {
@@ -111779,7 +112372,10 @@
         "schema": {
           "maximum": 250,
           "type": "number",
-          "default": 50
+          "default": 50,
+          "example": {
+            "limit": 10
+          }
         }
       },
       "messageParam": {
@@ -111795,7 +112391,10 @@
               "type": "string"
             }
           },
-          "description": "Scheme for string query parameter"
+          "description": "Scheme for string query parameter",
+          "example": {
+            "contains": "created"
+          }
         }
       },
       "modifiedDateParam": {
@@ -111819,7 +112418,18 @@
               "$ref": "#/components/schemas/tendlc_sort"
             }
           },
-          "description": "Scheme for date & time query parameter"
+          "description": "Scheme for date & time query parameter",
+          "example": {
+            "gt": "2024-01-24T23:59:59Z"
+          },
+          "x-jsonschema-examples": [
+            {
+              "lt": "2024-01-24T00:00:00Z"
+            },
+            {
+              "sort": "DESC"
+            }
+          ]
         }
       },
       "tendlc_offsetParam": {
@@ -111828,7 +112438,10 @@
         "description": "Offset for pagination (from zero, the first returned record)",
         "schema": {
           "type": "number",
-          "default": 0
+          "default": 0,
+          "example": {
+            "offset": 25
+          }
         }
       },
       "tendlc_phoneNumberParam": {
@@ -111847,7 +112460,15 @@
               "$ref": "#/components/schemas/tendlc_sort"
             }
           },
-          "description": "Schema for string query parameter"
+          "description": "Schema for string query parameter",
+          "example": {
+            "contains": "+1206"
+          },
+          "x-jsonschema-examples": [
+            {
+              "sort": "DESC"
+            }
+          ]
         }
       },
       "tendlc_phoneNumberPathParam": {
@@ -111856,7 +112477,8 @@
         "description": "Phone number in full E.164 format",
         "required": true,
         "schema": {
-          "type": "string"
+          "type": "string",
+          "example": "+12056349312"
         }
       },
       "registrationStatusParam": {
@@ -111875,7 +112497,15 @@
               "$ref": "#/components/schemas/tendlc_sort"
             }
           },
-          "description": "Schema for string query parameter"
+          "description": "Schema for string query parameter",
+          "example": {
+            "contains": "Acme"
+          },
+          "x-jsonschema-examples": [
+            {
+              "sort": "DESC"
+            }
+          ]
         }
       },
       "campaignStatusParam": {
@@ -111894,7 +112524,15 @@
               "$ref": "#/components/schemas/tendlc_sort"
             }
           },
-          "description": "Schema for string query parameter"
+          "description": "Schema for string query parameter",
+          "example": {
+            "eq": "REGISTERED"
+          },
+          "x-jsonschema-examples": [
+            {
+              "sort": "DESC"
+            }
+          ]
         }
       },
       "vettingStatusParam": {
@@ -111913,7 +112551,15 @@
               "$ref": "#/components/schemas/tendlc_sort"
             }
           },
-          "description": "Schema for string query parameter"
+          "description": "Schema for string query parameter",
+          "example": {
+            "eq": "REJECTED"
+          },
+          "x-jsonschema-examples": [
+            {
+              "sort": "DESC"
+            }
+          ]
         }
       },
       "userNameParam": {
@@ -111929,7 +112575,10 @@
               "type": "string"
             }
           },
-          "description": "Schema for string query parameter"
+          "description": "Schema for string query parameter",
+          "example": {
+            "contains": "jdoe"
+          }
         }
       },
       "toll_free_verification_accountId": {

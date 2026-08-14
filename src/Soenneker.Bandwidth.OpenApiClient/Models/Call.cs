@@ -68,6 +68,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public int? CustomerLatency { get; set; }
         /// <summary>Packet loss percentage experienced by the customer during the call.</summary>
         public double? CustomerPacketLossPercentage { get; set; }
+        /// <summary>MOS for audio received at the Session Border Controller network (customer SBC) from the Carrier.</summary>
+        public double? CustomerSbcCarrierReceiveMos { get; set; }
+        /// <summary>MOS for audio sent from the Session Border Controller network (customer SBC) to the Carrier.</summary>
+        public double? CustomerSbcCarrierSendMos { get; set; }
+        /// <summary>MOS for audio received at the Session Border Controller network (customer SBC) from the Tx/ Outbound Stream (customer).</summary>
+        public double? CustomerSbcCustomerReceiveMos { get; set; }
+        /// <summary>MOS for audio sent from the Session Border Controller network (customer SBC) to the Tx/ Outbound Stream (customer).</summary>
+        public double? CustomerSbcCustomerSendMos { get; set; }
         /// <summary>Destination Country in A3 format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -232,6 +240,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "customerJitter", n => { CustomerJitter = n.GetIntValue(); } },
                 { "customerLatency", n => { CustomerLatency = n.GetIntValue(); } },
                 { "customerPacketLossPercentage", n => { CustomerPacketLossPercentage = n.GetDoubleValue(); } },
+                { "customerSbcCarrierReceiveMos", n => { CustomerSbcCarrierReceiveMos = n.GetDoubleValue(); } },
+                { "customerSbcCarrierSendMos", n => { CustomerSbcCarrierSendMos = n.GetDoubleValue(); } },
+                { "customerSbcCustomerReceiveMos", n => { CustomerSbcCustomerReceiveMos = n.GetDoubleValue(); } },
+                { "customerSbcCustomerSendMos", n => { CustomerSbcCustomerSendMos = n.GetDoubleValue(); } },
                 { "destinationCountryCodeA3", n => { DestinationCountryCodeA3 = n.GetStringValue(); } },
                 { "destinationIp", n => { DestinationIp = n.GetStringValue(); } },
                 { "duration", n => { Duration = n.GetIntValue(); } },
@@ -276,6 +288,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteIntValue("customerJitter", CustomerJitter);
             writer.WriteIntValue("customerLatency", CustomerLatency);
             writer.WriteDoubleValue("customerPacketLossPercentage", CustomerPacketLossPercentage);
+            writer.WriteDoubleValue("customerSbcCarrierReceiveMos", CustomerSbcCarrierReceiveMos);
+            writer.WriteDoubleValue("customerSbcCarrierSendMos", CustomerSbcCarrierSendMos);
+            writer.WriteDoubleValue("customerSbcCustomerReceiveMos", CustomerSbcCustomerReceiveMos);
+            writer.WriteDoubleValue("customerSbcCustomerSendMos", CustomerSbcCustomerSendMos);
             writer.WriteStringValue("destinationCountryCodeA3", DestinationCountryCodeA3);
             writer.WriteStringValue("destinationIp", DestinationIp);
             writer.WriteIntValue("duration", Duration);
