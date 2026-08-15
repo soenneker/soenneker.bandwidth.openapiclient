@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
-    /// <summary>&quot;The geo validation status of the address.- `GEO_VALID`: The address is valid and geo validated.- `NOT_GEO_VALID`: The address is not valid or geo validated.- `NOT_GEO_VALIDATED`: The address has not been geo validated yet.&quot;</summary>
+    /// <summary>The geo validation status of the address.- `GEO_VALID`: The address is valid and geo validated.- `NOT_GEO_VALID`: The address is not valid or geo validated.- `NOT_GEO_VALIDATED`: The address has not been geo validated yet.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum GeoValidationStatusEnum
     {

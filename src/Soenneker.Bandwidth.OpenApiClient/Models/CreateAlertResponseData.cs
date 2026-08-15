@@ -30,7 +30,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string AlertText { get; set; }
 #endif
-        /// <summary>&quot;The type of alert.- INITIAL: This is the initial alert that is sent to the PSAPs.- UPDATE: This is an update to the initial alert, indicating that the incident is still ongoing.- ALL_CLEAR: This is an all clear alert, indicating that the incident is now resolved.&quot;</summary>
+        /// <summary>The type of alert.- INITIAL: This is the initial alert that is sent to the PSAPs.- UPDATE: This is an update to the initial alert, indicating that the incident is still ongoing.- ALL_CLEAR: This is an all clear alert, indicating that the incident is now resolved.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.AlertType? AlertType { get; set; }
         /// <summary>Indicates if the alert has been triggered.If true, the alert has been sent to the PSAPs and cannot be triggered again.If false, the alert has not been sent.</summary>
         public bool? Triggered { get; set; }

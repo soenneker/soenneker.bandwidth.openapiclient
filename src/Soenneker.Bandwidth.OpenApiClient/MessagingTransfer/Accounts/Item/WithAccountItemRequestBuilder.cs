@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Bandwidth.OpenApiClient.MessagingTransfer.Accounts.Item.Messaging;
+using Soenneker.Bandwidth.OpenApiClient.MessagingTransfer.Accounts.Item.MessagingPortouts;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -19,6 +20,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.MessagingTransfer.Accounts.Item
         public global::Soenneker.Bandwidth.OpenApiClient.MessagingTransfer.Accounts.Item.Messaging.MessagingRequestBuilder Messaging
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.MessagingTransfer.Accounts.Item.Messaging.MessagingRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The messagingPortouts property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.MessagingTransfer.Accounts.Item.MessagingPortouts.MessagingPortoutsRequestBuilder MessagingPortouts
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.MessagingTransfer.Accounts.Item.MessagingPortouts.MessagingPortoutsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.MessagingTransfer.Accounts.Item.WithAccountItemRequestBuilder"/> and sets the default values.

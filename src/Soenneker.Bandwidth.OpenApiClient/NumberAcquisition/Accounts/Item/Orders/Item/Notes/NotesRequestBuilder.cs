@@ -46,7 +46,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orde
         {
         }
         /// <summary>
-        /// &quot;Retrieve all notes associated with the order.&lt;p&gt;This order returns a &lt;code&gt;204: No Content&lt;/code&gt; when the endpoint finds no results matching the parameters provided.&lt;/p&gt;&quot;
+        /// Retrieve all notes associated with the order.&lt;p&gt;This order returns a &lt;code&gt;204: No Content&lt;/code&gt; when the endpoint finds no results matching the parameters provided.&lt;/p&gt;
         /// </summary>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -82,7 +82,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orde
             await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Retrieve all notes associated with the order.&lt;p&gt;This order returns a &lt;code&gt;204: No Content&lt;/code&gt; when the endpoint finds no results matching the parameters provided.&lt;/p&gt;&quot;
+        /// Retrieve all notes associated with the order.&lt;p&gt;This order returns a &lt;code&gt;204: No Content&lt;/code&gt; when the endpoint finds no results matching the parameters provided.&lt;/p&gt;
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

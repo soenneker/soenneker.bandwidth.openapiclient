@@ -157,7 +157,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.DashNotifications.Notifications.Noti
             public int? Page { get; set; }
             /// <summary>Size of the page</summary>
             public int? Size { get; set; }
-            /// <summary>&quot;Recipient or type of the notification (accepts recipient substrings). If searching type, it must be all caps (ex: SMS).&quot;</summary>
+            /// <summary>Recipient or type of the notification (accepts recipient substrings). If searching type, it must be all caps (ex: SMS).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("uriSubstr")]

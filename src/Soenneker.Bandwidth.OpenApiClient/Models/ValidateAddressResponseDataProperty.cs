@@ -30,7 +30,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnsupportedFeaturesItem> ExcludedFeatures { get; set; }
 #endif
-        /// <summary>&quot;The geo validation status of the address.- `GEO_VALID`: The address is valid and geo validated.- `NOT_GEO_VALID`: The address is not valid or geo validated.- `NOT_GEO_VALIDATED`: The address has not been geo validated yet.&quot;</summary>
+        /// <summary>The geo validation status of the address.- `GEO_VALID`: The address is valid and geo validated.- `NOT_GEO_VALID`: The address is not valid or geo validated.- `NOT_GEO_VALIDATED`: The address has not been geo validated yet.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.GeoValidationStatusEnum? GeoValidationStatus { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ValidateAddressResponseDataProperty"/> and sets the default values.

@@ -219,7 +219,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Messages
             /// <summary>A boolean value indicating whether the message is queued in the carrier network. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled.</summary>
             [QueryParameter("carrierQueued")]
             public bool? CarrierQueued { get; set; }
-            /// <summary>&quot;The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &apos;%2B1919&apos;).&quot;</summary>
+            /// <summary>The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &apos;%2B1919&apos;).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("destinationTn")]
@@ -312,7 +312,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Messages
             [QueryParameter("sort")]
             public string Sort { get; set; }
 #endif
-            /// <summary>&quot;The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &apos;%2B1919&apos;).&quot;</summary>
+            /// <summary>The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &apos;%2B1919&apos;).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("sourceTn")]

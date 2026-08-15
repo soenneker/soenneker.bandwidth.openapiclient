@@ -147,13 +147,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortin
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class BulkPortinsRequestBuilderGetQueryParameters 
         {
-            /// <summary>&quot;The earliest date from which you want to see modifications to a bulk port-in order.This query parameter must be used together with `modifiedDateTo`.This parameter and modifiedDateTo define a time interval.  For each bulk port-in order,belonging to the account, that was modified in that time interval, only the latestupdate for that order is included in the results. Date format can be one of: `yyyy-mm-ddThh:mm:ss.sZ`, `yyyy-mm-ddZ`, `yyyy-mm-ddThh:mm:ssTZD`.&quot;</summary>
+            /// <summary>The earliest date from which you want to see modifications to a bulk port-in order.This query parameter must be used together with `modifiedDateTo`.This parameter and modifiedDateTo define a time interval.  For each bulk port-in order,belonging to the account, that was modified in that time interval, only the latestupdate for that order is included in the results. Date format can be one of: `yyyy-mm-ddThh:mm:ss.sZ`, `yyyy-mm-ddZ`, `yyyy-mm-ddThh:mm:ssTZD`.</summary>
             [QueryParameter("modifiedDateFrom")]
             public Date? ModifiedDateFrom { get; set; }
-            /// <summary>&quot;The latest date from which you want to see modifications to a bulk port-in order.This query parameter must be used together with `modifiedDateFrom`.This parameter and modifiedDateFrom define a time interval.  For each bulkport-in order, belonging to the account, that was modified in that time interval,only the latest update for that order is included in the results.The modifiedDateTo value may be in the future. Date format can be one of: `yyyy-mm-ddThh:mm:ss.sZ`, `yyyy-mm-ddZ`, `yyyy-mm-ddThh:mm:ssTZD`.&quot;</summary>
+            /// <summary>The latest date from which you want to see modifications to a bulk port-in order.This query parameter must be used together with `modifiedDateFrom`.This parameter and modifiedDateFrom define a time interval.  For each bulkport-in order, belonging to the account, that was modified in that time interval,only the latest update for that order is included in the results.The modifiedDateTo value may be in the future. Date format can be one of: `yyyy-mm-ddThh:mm:ss.sZ`, `yyyy-mm-ddZ`, `yyyy-mm-ddThh:mm:ssTZD`.</summary>
             [QueryParameter("modifiedDateTo")]
             public Date? ModifiedDateTo { get; set; }
-            /// <summary>&quot;A specific date on which you wish to see modifications to a bulk port-in order.For each bulk port-in order, belonging to the account, that was modified on the specified date/time, only the latest update for that order is included in the results. Date format can be one of: `yyyy-mm-ddThh:mm:ss.sZ`, `yyyy-mm-ddZ`, `yyyy-mm-ddThh:mm:ssTZD`.&quot;</summary>
+            /// <summary>A specific date on which you wish to see modifications to a bulk port-in order.For each bulk port-in order, belonging to the account, that was modified on the specified date/time, only the latest update for that order is included in the results. Date format can be one of: `yyyy-mm-ddThh:mm:ss.sZ`, `yyyy-mm-ddZ`, `yyyy-mm-ddThh:mm:ssTZD`.</summary>
             [QueryParameter("orderDate")]
             public Date? OrderDate { get; set; }
             /// <summary>If set to true, bulk port-in order details will be displayed instead of summary information.</summary>
@@ -172,7 +172,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortin
             /// <summary>The maximum number of results to include in the response payload.  Thevalue should be between 1 and 1000.  Larger values may be specified, but results arelimited to a maximum of 1000 entries, regardless.</summary>
             [QueryParameter("size")]
             public int? Size { get; set; }
-            /// <summary>&quot;Include in the response payload only entries in which the bulk port-in order had the specified ProcessingStatus value.  Note: specifying `draft` will include any of the draft values, including `DRAFT`, `VALIDATE_DRAFT_TNS`, `VALID_DRAFT_TNS`, and `INVALID_DRAFT_TNS`.&quot;</summary>
+            /// <summary>Include in the response payload only entries in which the bulk port-in order had the specified ProcessingStatus value.  Note: specifying `draft` will include any of the draft values, including `DRAFT`, `VALIDATE_DRAFT_TNS`, `VALID_DRAFT_TNS`, and `INVALID_DRAFT_TNS`.</summary>
             [QueryParameter("status")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinsListBulkPortinsStatusParameter? Status { get; set; }
         }

@@ -26,7 +26,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public global::Soenneker.Bandwidth.OpenApiClient.Models.CallAttestationIndicator? AttestationIndicator { get; set; }
         /// <summary>Direction of call.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.CallDirection? CallDirection { get; set; }
-        /// <summary>&quot;Phone number of the caller who received the call.Format: E.164 with &apos;+&apos; prefix&quot;</summary>
+        /// <summary>Phone number of the caller who received the call.Format: E.164 with &apos;+&apos; prefix</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CalledNumber { get; set; }
@@ -42,7 +42,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string CallId { get; set; }
 #endif
-        /// <summary>&quot;Phone number of the caller who initiated the call.Format: E.164 with &apos;+&apos; prefix&quot;</summary>
+        /// <summary>Phone number of the caller who initiated the call.Format: E.164 with &apos;+&apos; prefix</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CallingNumber { get; set; }

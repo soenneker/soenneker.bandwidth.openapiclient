@@ -22,7 +22,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string OrderId { get; set; }
 #endif
-        /// <summary>&quot;The processing status of this order. Values may be: PROCESSING, COMPLETED, FAILED. PROCESSING means that the system is still processing the order. COMPLETED means that the order has been successfully completed. FAILED means that errors occurred while processing the order, and that the order did not make any changes to the system.&quot;</summary>
+        /// <summary>The processing status of this order. Values may be: PROCESSING, COMPLETED, FAILED. PROCESSING means that the system is still processing the order. COMPLETED means that the order has been successfully completed. FAILED means that errors occurred while processing the order, and that the order did not make any changes to the system.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateResponseJsonProcessingStatus? ProcessingStatus { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateResponseJson"/> and sets the default values.

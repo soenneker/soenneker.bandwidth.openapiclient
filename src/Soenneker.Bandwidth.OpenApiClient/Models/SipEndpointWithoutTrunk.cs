@@ -24,7 +24,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string Endpoint { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SipEndpointWithoutTrunkType? Type { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SipType? Type { get; set; }
         /// <summary>The weight property</summary>
         public int? Weight { get; set; }
         /// <summary>
@@ -53,7 +53,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "endpoint", n => { Endpoint = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SipEndpointWithoutTrunkType>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SipType>(); } },
                 { "weight", n => { Weight = n.GetIntValue(); } },
             };
         }
@@ -65,7 +65,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("endpoint", Endpoint);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SipEndpointWithoutTrunkType>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SipType>("type", Type);
             writer.WriteIntValue("weight", Weight);
             writer.WriteAdditionalData(AdditionalData);
         }

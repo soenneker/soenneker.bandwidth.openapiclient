@@ -17,7 +17,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The time of the alert. This information is included in the alert text that is sent to the PSAPs.</summary>
         public DateTimeOffset? AlertTime { get; set; }
-        /// <summary>&quot;The alert type.- UPDATE: This is an update to the INITIAL alert, indicating that the incident is still ongoing.- ALL_CLEAR: This is an all clear alert, indicating that the incident is now resolved.&quot;</summary>
+        /// <summary>The alert type.- UPDATE: This is an update to the INITIAL alert, indicating that the incident is still ongoing.- ALL_CLEAR: This is an all clear alert, indicating that the incident is now resolved.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.AlertRequestAlertType? AlertType { get; set; }
         /// <summary>The best known cause of the outage. If left blank, the PSAP will be notified that the cause of the outage is unknown.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

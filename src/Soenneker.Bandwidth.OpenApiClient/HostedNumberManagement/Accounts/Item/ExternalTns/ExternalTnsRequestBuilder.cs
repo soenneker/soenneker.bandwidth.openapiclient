@@ -70,7 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrdersListResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrdersListResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Create an External TN order to add or remove telephone numbers provided by the customer from the Bandwidth network.Note: attempting to import a telephone number that is already present in the account will not create an error, but will reset all of the attributes of that telephone number in the system as if the telephone number was being imported for the first time.&quot;
+        /// Create an External TN order to add or remove telephone numbers provided by the customer from the Bandwidth network.Note: attempting to import a telephone number that is already present in the account will not create an error, but will reset all of the attributes of that telephone number in the system as if the telephone number was being imported for the first time.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItem"/></returns>
         /// <param name="body">The request body</param>
@@ -114,7 +114,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item
             return requestInfo;
         }
         /// <summary>
-        /// &quot;Create an External TN order to add or remove telephone numbers provided by the customer from the Bandwidth network.Note: attempting to import a telephone number that is already present in the account will not create an error, but will reset all of the attributes of that telephone number in the system as if the telephone number was being imported for the first time.&quot;
+        /// Create an External TN order to add or remove telephone numbers provided by the customer from the Bandwidth network.Note: attempting to import a telephone number that is already present in the account will not create an error, but will reset all of the attributes of that telephone number in the system as if the telephone number was being imported for the first time.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -47,7 +47,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
         {
         }
         /// <summary>
-        /// &quot;List all requirements packages.The results are sorted by last updated time in reverse chronological order by default without any query filters.Following filters can be used to filter the result* Country Code : List requirements packages based on the country code.* Phone Number Type : List requirements packages based on the phone number type.* End user Type : List requirements packages based on the End user type.* Custom Reference : List requirements packages based on the custom reference.* Status : List requirements packages based on the status.&quot;
+        /// List all requirements packages.The results are sorted by last updated time in reverse chronological order by default without any query filters.Following filters can be used to filter the result* Country Code : List requirements packages based on the country code.* Phone Number Type : List requirements packages based on the phone number type.* End user Type : List requirements packages based on the End user type.* Custom Reference : List requirements packages based on the custom reference.* Status : List requirements packages based on the status.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageListResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -82,7 +82,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageListResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageListResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Create a requirements package with a set of requirements.Note: Country, Phone Number Type and End User Type cannot be changed once created.&quot;
+        /// Create a requirements package with a set of requirements.Note: Country, Phone Number Type and End User Type cannot be changed once created.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateUpdateResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -119,7 +119,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateUpdateResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateUpdateResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;List all requirements packages.The results are sorted by last updated time in reverse chronological order by default without any query filters.Following filters can be used to filter the result* Country Code : List requirements packages based on the country code.* Phone Number Type : List requirements packages based on the phone number type.* End user Type : List requirements packages based on the End user type.* Custom Reference : List requirements packages based on the custom reference.* Status : List requirements packages based on the status.&quot;
+        /// List all requirements packages.The results are sorted by last updated time in reverse chronological order by default without any query filters.Following filters can be used to filter the result* Country Code : List requirements packages based on the country code.* Phone Number Type : List requirements packages based on the phone number type.* End user Type : List requirements packages based on the End user type.* Custom Reference : List requirements packages based on the custom reference.* Status : List requirements packages based on the status.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -138,7 +138,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
             return requestInfo;
         }
         /// <summary>
-        /// &quot;Create a requirements package with a set of requirements.Note: Country, Phone Number Type and End User Type cannot be changed once created.&quot;
+        /// Create a requirements package with a set of requirements.Note: Country, Phone Number Type and End User Type cannot be changed once created.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -169,7 +169,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
             return new global::Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Compliance.RequirementsPackages.RequirementsPackagesRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// &quot;List all requirements packages.The results are sorted by last updated time in reverse chronological order by default without any query filters.Following filters can be used to filter the result* Country Code : List requirements packages based on the country code.* Phone Number Type : List requirements packages based on the phone number type.* End user Type : List requirements packages based on the End user type.* Custom Reference : List requirements packages based on the custom reference.* Status : List requirements packages based on the status.&quot;
+        /// List all requirements packages.The results are sorted by last updated time in reverse chronological order by default without any query filters.Following filters can be used to filter the result* Country Code : List requirements packages based on the country code.* Phone Number Type : List requirements packages based on the phone number type.* End user Type : List requirements packages based on the End user type.* Custom Reference : List requirements packages based on the custom reference.* Status : List requirements packages based on the status.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class RequirementsPackagesRequestBuilderGetQueryParameters 

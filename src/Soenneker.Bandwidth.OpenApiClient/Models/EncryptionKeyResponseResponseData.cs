@@ -15,7 +15,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Encryption algorithm</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EncryptionKeyResponseResponseDataAlgorithm? Algorithm { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.Rsa4096Algorithm? Algorithm { get; set; }
         /// <summary>PEM-encoded public key for encryption</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -49,7 +49,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "algorithm", n => { Algorithm = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EncryptionKeyResponseResponseDataAlgorithm>(); } },
+                { "algorithm", n => { Algorithm = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Rsa4096Algorithm>(); } },
                 { "key", n => { Key = n.GetStringValue(); } },
             };
         }
@@ -60,7 +60,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EncryptionKeyResponseResponseDataAlgorithm>("algorithm", Algorithm);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Rsa4096Algorithm>("algorithm", Algorithm);
             writer.WriteStringValue("key", Key);
             writer.WriteAdditionalData(AdditionalData);
         }

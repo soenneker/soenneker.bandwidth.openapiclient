@@ -34,7 +34,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaign
         {
         }
         /// <summary>
-        /// &quot;**Direct customers.** Sends a notification to a CNP in the upstream connectivity chain to take action on a campaign that has been sitting idle in a review or rejected state for an extended period of time.The `nudgeIntent` field controls the type of notification sent:- `REVIEW`: Requests that the upstream CNP take action on a campaign that has not yet been reviewed.- `APPEAL_REJECTION`: Informs the upstream CNP that a previously rejected campaign has been resubmitted for review.&quot;
+        /// **Direct customers.** Sends a notification to a CNP in the upstream connectivity chain to take action on a campaign that has been sitting idle in a review or rejected state for an extended period of time.The `nudgeIntent` field controls the type of notification sent:- `REVIEW`: Requests that the upstream CNP take action on a campaign that has not yet been reviewed.- `APPEAL_REJECTION`: Informs the upstream CNP that a previously rejected campaign has been resubmitted for review.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -74,7 +74,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaign
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;**Direct customers.** Sends a notification to a CNP in the upstream connectivity chain to take action on a campaign that has been sitting idle in a review or rejected state for an extended period of time.The `nudgeIntent` field controls the type of notification sent:- `REVIEW`: Requests that the upstream CNP take action on a campaign that has not yet been reviewed.- `APPEAL_REJECTION`: Informs the upstream CNP that a previously rejected campaign has been resubmitted for review.&quot;
+        /// **Direct customers.** Sends a notification to a CNP in the upstream connectivity chain to take action on a campaign that has been sitting idle in a review or rejected state for an extended period of time.The `nudgeIntent` field controls the type of notification sent:- `REVIEW`: Requests that the upstream CNP take action on a campaign that has not yet been reviewed.- `APPEAL_REJECTION`: Informs the upstream CNP that a previously rejected campaign has been resubmitted for review.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -21,7 +21,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Endpoint { get; set; }
 #endif
-        /// <summary>&quot;Trunk selection information for an endpoint. This field is optional and nullable: it may be omitted in requests and responses when no trunk has been selected for an endpoint. When present it contains the trunk identifier and associated capability pipe id selected for this endpoint.&quot;</summary>
+        /// <summary>Trunk selection information for an endpoint. This field is optional and nullable: it may be omitted in requests and responses when no trunk has been selected for an endpoint. When present it contains the trunk identifier and associated capability pipe id selected for this endpoint.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkInfo? TrunkInfo { get; set; }

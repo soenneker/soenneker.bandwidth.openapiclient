@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
-    /// <summary>&quot;The intent or purpose of the group. This indicates how the phone numbers in the group will be used.- GOVN: Government- SATE: Sales/Telemarketing- ACCS: Account Services- SURV: Survey- POLI: Political- FUND: Fundraising- DEBC: Debt Collection- APPR: Appointment Reminder- INFO: Information- CUSE: Customer Services- APPS: Appointment Setting- BILL: Billing- EMER: Emergency- ATTO: Attorney/Law- FSER: Financial Service- FRES: First Responder- HOSP: Health Care/Hospital- INSU: Insurance- PHAR: Pharmacy- REST: Real Estate- COLL: School/College- NPF: Non-Profit- MUL: Multi use line&quot;</summary>
+    /// <summary>The intent or purpose of the group. This indicates how the phone numbers in the group will be used.- GOVN: Government- SATE: Sales/Telemarketing- ACCS: Account Services- SURV: Survey- POLI: Political- FUND: Fundraising- DEBC: Debt Collection- APPR: Appointment Reminder- INFO: Information- CUSE: Customer Services- APPS: Appointment Setting- BILL: Billing- EMER: Emergency- ATTO: Attorney/Law- FSER: Financial Service- FRES: First Responder- HOSP: Health Care/Hospital- INSU: Insurance- PHAR: Pharmacy- REST: Real Estate- COLL: School/College- NPF: Non-Profit- MUL: Multi use line</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum GroupIntentEnum
     {

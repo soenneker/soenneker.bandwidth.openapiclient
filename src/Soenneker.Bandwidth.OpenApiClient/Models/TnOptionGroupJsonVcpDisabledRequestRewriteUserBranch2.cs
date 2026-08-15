@@ -14,7 +14,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>&quot;This field must be a string up to 30 characters long, containing only letters (a-z, A-Z), digits (0-9),and the following symbols: +, @, :, ., (, ), _, ;, ?, =, -. No spaces or other special characters are allowed.&quot;</summary>
+        /// <summary>This field must be a string up to 30 characters long, containing only letters (a-z, A-Z), digits (0-9),and the following symbols: +, @, :, ., (, ), _, ;, ?, =, -. No spaces or other special characters are allowed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Value { get; set; }

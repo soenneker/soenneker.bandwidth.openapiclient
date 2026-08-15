@@ -14,7 +14,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>&quot;a 10 digit telephone number or a SIP URI ( without the sip: prefix ) in the form address-string@host IP:port, where the host IP is an IPv4 address in the standard numerical n.n.n.n. form, and the port is numeric, and optional containing [a-z,A-Z,0-9], with &apos;:&apos;, &apos;.&apos; and &apos;@&apos; to delimit the components of the overall string, and less than 60 characters long.&quot;</summary>
+        /// <summary>a 10 digit telephone number or a SIP URI ( without the sip: prefix ) in the form address-string@host IP:port, where the host IP is an IPv4 address in the standard numerical n.n.n.n. form, and the port is numeric, and optional containing [a-z,A-Z,0-9], with &apos;:&apos;, &apos;.&apos; and &apos;@&apos; to delimit the components of the overall string, and less than 60 characters long.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Value { get; set; }

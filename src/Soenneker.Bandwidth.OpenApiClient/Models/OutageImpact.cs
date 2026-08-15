@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
-    /// <summary>&quot;The impact of the outage. This will be shared with the PSAPs to help them understand the impact of the outage.- CALL_COMPLETION: Users may be unable to complete 911 calls- CALL_QUALITY: Operators may experience call quality issues- CALL_QUALITY_AND_LOCATION_INFORMATION: Operators may experience call quality issues and loss of location information- LOCATION_INFORMATION: Operators may experience loss of location information&quot;</summary>
+    /// <summary>The impact of the outage. This will be shared with the PSAPs to help them understand the impact of the outage.- CALL_COMPLETION: Users may be unable to complete 911 calls- CALL_QUALITY: Operators may experience call quality issues- CALL_QUALITY_AND_LOCATION_INFORMATION: Operators may experience call quality issues and loss of location information- LOCATION_INFORMATION: Operators may experience loss of location information</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum OutageImpact
     {

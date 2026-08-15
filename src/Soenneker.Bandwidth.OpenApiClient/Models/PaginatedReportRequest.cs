@@ -19,7 +19,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public int? PageNumber { get; set; }
         /// <summary>Number of rows to return per page.</summary>
         public int? PageSize { get; set; }
-        /// <summary>&quot;List of criteria to apply to the report. At least one criterion is required;individual reports may require specific parameters — call`GET /v2/report-definitions/{reportDefinitionId}` to see whichparameters are marked `required: true` for that report.When a report supports more than one region (see `regions` on the reportdefinition), a `region` criterion must also be supplied.&quot;</summary>
+        /// <summary>List of criteria to apply to the report. At least one criterion is required;individual reports may require specific parameters — call`GET /v2/report-definitions/{reportDefinitionId}` to see whichparameters are marked `required: true` for that report.When a report supports more than one region (see `regions` on the reportdefinition), a `region` criterion must also be supplied.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedReportFilter>? QueryCriteria { get; set; }

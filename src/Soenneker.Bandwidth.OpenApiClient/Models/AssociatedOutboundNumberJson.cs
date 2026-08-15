@@ -16,7 +16,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The id property</summary>
         public int? Id { get; set; }
-        /// <summary>&quot;&lt;p&gt; An Associated Outbound Number should:  &lt;ul&gt;    &lt;li&gt; Be a valid phone number in E.164 format. For example: +18005550123.&lt;/li&gt;    &lt;li&gt; Not be duplicated. An Associated Outbound Number is unique within an account.  &lt;/ul&gt;&lt;/p&gt;&quot;</summary>
+        /// <summary>&lt;p&gt; An Associated Outbound Number should:  &lt;ul&gt;    &lt;li&gt; Be a valid phone number in E.164 format. For example: +18005550123.&lt;/li&gt;    &lt;li&gt; Not be duplicated. An Associated Outbound Number is unique within an account.  &lt;/ul&gt;&lt;/p&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PhoneNumber { get; set; }

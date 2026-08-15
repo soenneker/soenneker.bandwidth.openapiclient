@@ -22,7 +22,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string BotId { get; set; }
 #endif
-        /// <summary>&quot;Must be one of the following: - a NANP 10 digit telephone number, or - a SIP URI, or - a IPv4 address, or - a Fully Qualified Domain name(FQDN)&quot;</summary>
+        /// <summary>Must be one of the following: - a NANP 10 digit telephone number, or - a SIP URI, or - a IPv4 address, or - a Fully Qualified Domain name(FQDN)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Endpoint { get; set; }

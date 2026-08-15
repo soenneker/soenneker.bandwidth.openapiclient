@@ -51,7 +51,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The status of an order.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementOrderStatus? OrderStatus { get; set; }
         /// <summary>The orderType property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrderSummaryOrderType? OrderType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedTnOrdersOrderType? OrderType { get; set; }
         /// <summary>The phoneNumberCount property</summary>
         public int? PhoneNumberCount { get; set; }
         /// <summary>The userId property</summary>
@@ -93,7 +93,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "orderDate", n => { OrderDate = n.GetStringValue(); } },
                 { "orderId", n => { OrderId = n.GetStringValue(); } },
                 { "orderStatus", n => { OrderStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementOrderStatus>(); } },
-                { "orderType", n => { OrderType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrderSummaryOrderType>(); } },
+                { "orderType", n => { OrderType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedTnOrdersOrderType>(); } },
                 { "phoneNumberCount", n => { PhoneNumberCount = n.GetIntValue(); } },
                 { "userId", n => { UserId = n.GetStringValue(); } },
             };
@@ -111,7 +111,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("orderDate", OrderDate);
             writer.WriteStringValue("orderId", OrderId);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementOrderStatus>("orderStatus", OrderStatus);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedPhoneNumberOrderSummaryOrderType>("orderType", OrderType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveImportedTnOrdersOrderType>("orderType", OrderType);
             writer.WriteIntValue("phoneNumberCount", PhoneNumberCount);
             writer.WriteStringValue("userId", UserId);
             writer.WriteAdditionalData(AdditionalData);

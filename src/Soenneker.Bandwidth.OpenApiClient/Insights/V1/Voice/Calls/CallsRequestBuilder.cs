@@ -19,7 +19,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
     public partial class CallsRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Bandwidth.OpenApiClient.insights.v1.voice.calls.item collection</summary>
-        /// <param name="position">&quot;Filter Type: Exact Match, any valid call ID.By default this is treated as a plain string. If the call ID contains characters that are notpermitted in a URL path (notably `/`), pass it as a base64url (RFC 4648 §5) encoded string andset the `callIdEncoding` query parameter to `BASE64_URL` so it is decoded before lookup.&quot;</param>
+        /// <param name="position">Filter Type: Exact Match, any valid call ID.By default this is treated as a plain string. If the call ID contains characters that are notpermitted in a URL path (notably `/`), pass it as a base64url (RFC 4648 §5) encoded string andset the `callIdEncoding` query parameter to `BASE64_URL` so it is decoded before lookup.</param>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallItemRequestBuilder"/></returns>
         public global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.Item.WithCallItemRequestBuilder this[string position]
         {
@@ -134,7 +134,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
             [QueryParameter("attestationIndicator")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.AttestationIndicatorItem[] AttestationIndicator { get; set; }
 #endif
-            /// <summary>&quot;Direction of call.Filter Type: Exact Match, Multi Match.Example:  * Exact Match: OUTBOUND  * Multi Match: OUTBOUND-FORWARDED,OUTBOUND&quot;</summary>
+            /// <summary>Direction of call.Filter Type: Exact Match, Multi Match.Example:  * Exact Match: OUTBOUND  * Multi Match: OUTBOUND-FORWARDED,OUTBOUND</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("callDirection")]
@@ -144,7 +144,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
             [QueryParameter("callDirection")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.CallDirection[] CallDirection { get; set; }
 #endif
-            /// <summary>&quot;Short number exact match, Short number Multimatch, Short number prefix match, E.164 exact match, E.164 Multimatch, E.164 prefix match, Alphanumeric exact match, Alphanumeric Multimatch, Alphanumeric prefix match.Example:* Short number exact match: 15555551234* Short number Multimatch: 1555*,1234*,15555551234,15555554567* Short number prefix match: 1555** E.164 exact match: +15555551234* E.164 Multimatch: +1555*,+1234*,+15555551234,+15555554567* E.164 prefix match: +1555** Alphanumeric exact match: WO1234567* Alphanumeric Multimatch: WO1234567, PO4567891, WO*, PO** Alphanumeric prefix match: WO*Alphanumeric string of length 1 to 15 characters with optional leading &apos;+&apos; (URL encoded as %2B) and optional trailing &apos;*&apos; (indicating prefix search)&quot;</summary>
+            /// <summary>Short number exact match, Short number Multimatch, Short number prefix match, E.164 exact match, E.164 Multimatch, E.164 prefix match, Alphanumeric exact match, Alphanumeric Multimatch, Alphanumeric prefix match.Example:* Short number exact match: 15555551234* Short number Multimatch: 1555*,1234*,15555551234,15555554567* Short number prefix match: 1555** E.164 exact match: +15555551234* E.164 Multimatch: +1555*,+1234*,+15555551234,+15555554567* E.164 prefix match: +1555** Alphanumeric exact match: WO1234567* Alphanumeric Multimatch: WO1234567, PO4567891, WO*, PO** Alphanumeric prefix match: WO*Alphanumeric string of length 1 to 15 characters with optional leading &apos;+&apos; (URL encoded as %2B) and optional trailing &apos;*&apos; (indicating prefix search)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("calledNumber")]
@@ -164,7 +164,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
             [QueryParameter("callId")]
             public string CallId { get; set; }
 #endif
-            /// <summary>&quot;Short number exact match, Short number Multimatch, Short number prefix match, E.164 exact match, E.164 Multimatch, E.164 prefix match, Alphanumeric exact match, Alphanumeric Multimatch, Alphanumeric prefix match.Example:* Short number exact match: 15555551234* Short number Multimatch: 1555*,1234*,15555551234,15555554567* Short number prefix match: 1555** E.164 exact match: +15555551234* E.164 Multimatch: +1555*,+1234*,+15555551234,+15555554567* E.164 prefix match: +1555** Alphanumeric exact match: WO1234567* Alphanumeric Multimatch: WO1234567, PO4567891, WO*, PO** Alphanumeric prefix match: WO*Alphanumeric string of length 1 to 15 characters with optional leading &apos;+&apos; (URL encoded as %2B) and optional trailing &apos;*&apos; (indicating prefix search)&quot;</summary>
+            /// <summary>Short number exact match, Short number Multimatch, Short number prefix match, E.164 exact match, E.164 Multimatch, E.164 prefix match, Alphanumeric exact match, Alphanumeric Multimatch, Alphanumeric prefix match.Example:* Short number exact match: 15555551234* Short number Multimatch: 1555*,1234*,15555551234,15555554567* Short number prefix match: 1555** E.164 exact match: +15555551234* E.164 Multimatch: +1555*,+1234*,+15555551234,+15555554567* E.164 prefix match: +1555** Alphanumeric exact match: WO1234567* Alphanumeric Multimatch: WO1234567, PO4567891, WO*, PO** Alphanumeric prefix match: WO*Alphanumeric string of length 1 to 15 characters with optional leading &apos;+&apos; (URL encoded as %2B) and optional trailing &apos;*&apos; (indicating prefix search)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("callingNumber")]
@@ -174,10 +174,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
             [QueryParameter("callingNumber")]
             public string CallingNumber { get; set; }
 #endif
-            /// <summary>&quot;Filter Type: Exact Match, any valid call result type.&quot;</summary>
+            /// <summary>Filter Type: Exact Match, any valid call result type.</summary>
             [QueryParameter("callResult")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.CallResult? CallResult { get; set; }
-            /// <summary>&quot;Filter Type: Exact Match, any valid call type.&quot;</summary>
+            /// <summary>Filter Type: Exact Match, any valid call type.</summary>
             [QueryParameter("callType")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.CallType? CallType { get; set; }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -198,7 +198,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
             [QueryParameter("destinationIp")]
             public string DestinationIp { get; set; }
 #endif
-            /// <summary>&quot;Filter Type: Range using gt, gte, lt, and lte.&quot;</summary>
+            /// <summary>Filter Type: Range using gt, gte, lt, and lte.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("endTime")]
@@ -208,13 +208,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
             [QueryParameter("endTime")]
             public string EndTime { get; set; }
 #endif
-            /// <summary>&quot;Filter Type: Exact Match, any valid hang up source.&quot;</summary>
+            /// <summary>Filter Type: Exact Match, any valid hang up source.</summary>
             [QueryParameter("hangUpSource")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.HangUpSource? HangUpSource { get; set; }
             /// <summary>The maximum records to return per page.</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
-            /// <summary>&quot;Filter Type: Exact Match. Examples: 1234,2345&quot;</summary>
+            /// <summary>Filter Type: Exact Match. Examples: 1234,2345</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("locationId")]
@@ -227,7 +227,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
             /// <summary>Return records starting at the nth record.</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }
-            /// <summary>&quot;Filter Type: Exact Match, any valid Programmable Voice call ID.&quot;</summary>
+            /// <summary>Filter Type: Exact Match, any valid Programmable Voice call ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("programmableCallId")]
@@ -239,10 +239,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
 #endif
             [QueryParameter("qualityStatus")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.QualityStatus? QualityStatus { get; set; }
-            /// <summary>&quot;Filter Type: Exact Match, any valid region. Use ALL to search both US and EU regions in a single call. Defaults to US.&quot;</summary>
+            /// <summary>Filter Type: Exact Match, any valid region. Use ALL to search both US and EU regions in a single call. Defaults to US.</summary>
             [QueryParameter("region")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsRegion? Region { get; set; }
-            /// <summary>&quot;Filter Type: Exact Match, any valid SIP call ID.&quot;</summary>
+            /// <summary>Filter Type: Exact Match, any valid SIP call ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("sipCallId")]
@@ -252,7 +252,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
             [QueryParameter("sipCallId")]
             public string SipCallId { get; set; }
 #endif
-            /// <summary>&quot;Filter Type: Exact Match, Multi Match.Example:  * Exact Match: 200  * Multi Match: 200, 202&quot;</summary>
+            /// <summary>Filter Type: Exact Match, Multi Match.Example:  * Exact Match: 200  * Multi Match: 200, 202</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("sipResponseCode")]
@@ -290,7 +290,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
             [QueryParameter("sourceIp")]
             public string SourceIp { get; set; }
 #endif
-            /// <summary>&quot;Filter Type: Range using gt, gte, lt, and lte.Note: If no startTime or endTime is specified, startTime will default to the last 24 hours.&quot;</summary>
+            /// <summary>Filter Type: Range using gt, gte, lt, and lte.Note: If no startTime or endTime is specified, startTime will default to the last 24 hours.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("startTime")]
@@ -300,7 +300,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
             [QueryParameter("startTime")]
             public string StartTime { get; set; }
 #endif
-            /// <summary>&quot;Filter Type: Exact Match. Examples: 1234,2345&quot;</summary>
+            /// <summary>Filter Type: Exact Match. Examples: 1234,2345</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("subAccount")]

@@ -33,7 +33,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public ComplianceRequirementsPackageBulkRequest()
         {
             AdditionalData = new Dictionary<string, object>();
-            AllDetailsAccurate = true;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

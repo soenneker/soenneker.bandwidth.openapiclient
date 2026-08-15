@@ -217,7 +217,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Street { get; set; }
 #endif
-        /// <summary>&quot;Nonprofit organization tax-exempt status per section 501 of the US tax code. Example: “501c3.” Please refer to https://ballotpedia.org/IRS_code,_section_501 for more information.&quot;</summary>
+        /// <summary>Nonprofit organization tax-exempt status per section 501 of the US tax code. Example: “501c3.” Please refer to https://ballotpedia.org/IRS_code,_section_501 for more information.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TaxExemptStatus { get; set; }

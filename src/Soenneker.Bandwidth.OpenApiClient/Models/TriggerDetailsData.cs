@@ -34,7 +34,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>The time included in the alert that was sent to the PSAPs.</summary>
         public DateTimeOffset? AlertTime { get; set; }
-        /// <summary>&quot;The type of alert.- INITIAL: This is the initial alert that is sent to the PSAPs.- UPDATE: This is an update to the initial alert, indicating that the incident is still ongoing.- ALL_CLEAR: This is an all clear alert, indicating that the incident is now resolved.&quot;</summary>
+        /// <summary>The type of alert.- INITIAL: This is the initial alert that is sent to the PSAPs.- UPDATE: This is an update to the initial alert, indicating that the incident is still ongoing.- ALL_CLEAR: This is an all clear alert, indicating that the incident is now resolved.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.AlertType? AlertType { get; set; }
         /// <summary>The areas affected by the outage. This can be either a list of FCC IDs, two-letter state codes, or USA if the outage is nationwide.Once an alert has been triggered, the areas affected cannot be updated. In the case that additional areas are impacted after an alerthas been triggered, a new incident should be created with the additional areas affected.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -58,9 +58,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public DateTimeOffset? IncidentStartTime { get; set; }
         /// <summary>The number of PSAP Outage Alerts that failed to send.</summary>
         public int? InvalidCount { get; set; }
-        /// <summary>&quot;The impact of the outage. This will be shared with the PSAPs to help them understand the impact of the outage.- CALL_COMPLETION: Users may be unable to complete 911 calls- CALL_QUALITY: Operators may experience call quality issues- CALL_QUALITY_AND_LOCATION_INFORMATION: Operators may experience call quality issues and loss of location information- LOCATION_INFORMATION: Operators may experience loss of location information&quot;</summary>
+        /// <summary>The impact of the outage. This will be shared with the PSAPs to help them understand the impact of the outage.- CALL_COMPLETION: Users may be unable to complete 911 calls- CALL_QUALITY: Operators may experience call quality issues- CALL_QUALITY_AND_LOCATION_INFORMATION: Operators may experience call quality issues and loss of location information- LOCATION_INFORMATION: Operators may experience loss of location information</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.OutageImpact? OutageImpact { get; set; }
-        /// <summary>&quot;The status of the trigger.- RECEIVED: The trigger has been received and is awaiting processing.- PROCESSING: The trigger is being processed.- COMPLETED: The trigger has been successfully processed and all alerts have been successfully sent.- FAILED: The trigger has finished processing, but all alerts have failed to send.- PARTIAL: The trigger has finished processing, but some alerts have failed to send.&quot;</summary>
+        /// <summary>The status of the trigger.- RECEIVED: The trigger has been received and is awaiting processing.- PROCESSING: The trigger is being processed.- COMPLETED: The trigger has been successfully processed and all alerts have been successfully sent.- FAILED: The trigger has finished processing, but all alerts have failed to send.- PARTIAL: The trigger has finished processing, but some alerts have failed to send.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.TriggerStatus? Status { get; set; }
         /// <summary>The total number of PSAP Outage Alerts that will be sent.</summary>
         public int? TotalNumber { get; set; }

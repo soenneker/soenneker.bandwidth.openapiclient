@@ -96,7 +96,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.It
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJson.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;There are a few rules used to eliminate IP address collisions.  The primary restriction is on the ability to share Term IP addresses across the Bandwidth API structural elements. Essentially...&lt;ul&gt;  &lt;li&gt;Term Addresses cannot be shared anywhere&lt;/li&gt;  &lt;li&gt;VoiceHost and VoiceHostGroup addresses can be shared between locations and can be different than or the same as Term IP Addresses &lt;/li&gt;&lt;/ul&gt;If the CallingName field is missing from the payload, CNAM will default to false on the location.&lt;br&gt;Possible errors in response: https://dev.bandwidth.com/docs/numbers/errors/#sippeervalidationerror&quot;
+        /// There are a few rules used to eliminate IP address collisions.  The primary restriction is on the ability to share Term IP addresses across the Bandwidth API structural elements. Essentially...&lt;ul&gt;  &lt;li&gt;Term Addresses cannot be shared anywhere&lt;/li&gt;  &lt;li&gt;VoiceHost and VoiceHostGroup addresses can be shared between locations and can be different than or the same as Term IP Addresses &lt;/li&gt;&lt;/ul&gt;If the CallingName field is missing from the payload, CNAM will default to false on the location.&lt;br&gt;Possible errors in response: https://dev.bandwidth.com/docs/numbers/errors/#sippeervalidationerror
         /// </summary>
         /// <returns>A <see cref="Stream"/></returns>
         /// <param name="body">The request body</param>
@@ -163,7 +163,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.It
             return requestInfo;
         }
         /// <summary>
-        /// &quot;There are a few rules used to eliminate IP address collisions.  The primary restriction is on the ability to share Term IP addresses across the Bandwidth API structural elements. Essentially...&lt;ul&gt;  &lt;li&gt;Term Addresses cannot be shared anywhere&lt;/li&gt;  &lt;li&gt;VoiceHost and VoiceHostGroup addresses can be shared between locations and can be different than or the same as Term IP Addresses &lt;/li&gt;&lt;/ul&gt;If the CallingName field is missing from the payload, CNAM will default to false on the location.&lt;br&gt;Possible errors in response: https://dev.bandwidth.com/docs/numbers/errors/#sippeervalidationerror&quot;
+        /// There are a few rules used to eliminate IP address collisions.  The primary restriction is on the ability to share Term IP addresses across the Bandwidth API structural elements. Essentially...&lt;ul&gt;  &lt;li&gt;Term Addresses cannot be shared anywhere&lt;/li&gt;  &lt;li&gt;VoiceHost and VoiceHostGroup addresses can be shared between locations and can be different than or the same as Term IP Addresses &lt;/li&gt;&lt;/ul&gt;If the CallingName field is missing from the payload, CNAM will default to false on the location.&lt;br&gt;Possible errors in response: https://dev.bandwidth.com/docs/numbers/errors/#sippeervalidationerror
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

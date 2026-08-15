@@ -70,7 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Dldas
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseSelectWrapperJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseSelectWrapperJson.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Business Listings: Sorted starting from the beginning of the business name. Enter the full business name in the LastName field.Leave the FirstName field blank unless there is a non-sorting part of the name, which can be placed in FirstName. Example: For \&quot;Joe&apos;s Pizza, the best pizza in town\&quot;, use LastName: \&quot;Joe&apos;s Pizza\&quot;, FirstName: \&quot;the best pizza in town\&quot;. Residential Listings: Sorted by the LastName field as usual.&quot;
+        /// Business Listings: Sorted starting from the beginning of the business name. Enter the full business name in the LastName field.Leave the FirstName field blank unless there is a non-sorting part of the name, which can be placed in FirstName. Example: For &quot;Joe&apos;s Pizza, the best pizza in town&quot;, use LastName: &quot;Joe&apos;s Pizza&quot;, FirstName: &quot;the best pizza in town&quot;. Residential Listings: Sorted by the LastName field as usual.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -114,7 +114,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Dldas
             return requestInfo;
         }
         /// <summary>
-        /// &quot;Business Listings: Sorted starting from the beginning of the business name. Enter the full business name in the LastName field.Leave the FirstName field blank unless there is a non-sorting part of the name, which can be placed in FirstName. Example: For \&quot;Joe&apos;s Pizza, the best pizza in town\&quot;, use LastName: \&quot;Joe&apos;s Pizza\&quot;, FirstName: \&quot;the best pizza in town\&quot;. Residential Listings: Sorted by the LastName field as usual.&quot;
+        /// Business Listings: Sorted starting from the beginning of the business name. Enter the full business name in the LastName field.Leave the FirstName field blank unless there is a non-sorting part of the name, which can be placed in FirstName. Example: For &quot;Joe&apos;s Pizza, the best pizza in town&quot;, use LastName: &quot;Joe&apos;s Pizza&quot;, FirstName: &quot;the best pizza in town&quot;. Residential Listings: Sorted by the LastName field as usual.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

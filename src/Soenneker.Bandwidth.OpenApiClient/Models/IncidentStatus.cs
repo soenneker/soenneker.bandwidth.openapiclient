@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
-    /// <summary>&quot;The status of the incident.- CREATED: The incident has been created but no alerts have been triggered.- ACTIVE: Alerts have been triggered for the incident and it is ongoing.- RESOLVED: The incident has been resolved. No additional alerts can be created or triggered for this incident.- TESTING: The incident has been created and contains only test alerts. Test alerts are only used for testing and are not sent to the PSAPs. Test alerts are excluded           from the GET /incidents response, and can be retrieved using the includeTestAlerts query parameter via the GET /incidents/{incidentId} endpoint.&quot;</summary>
+    /// <summary>The status of the incident.- CREATED: The incident has been created but no alerts have been triggered.- ACTIVE: Alerts have been triggered for the incident and it is ongoing.- RESOLVED: The incident has been resolved. No additional alerts can be created or triggered for this incident.- TESTING: The incident has been created and contains only test alerts. Test alerts are only used for testing and are not sent to the PSAPs. Test alerts are excluded           from the GET /incidents response, and can be retrieved using the includeTestAlerts query parameter via the GET /incidents/{incidentId} endpoint.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum IncidentStatus
     {

@@ -44,14 +44,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>The alignment of the thumbnail image in the card. Required when orientation is HORIZONTAL.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.ThumbnailAlignmentEnum? ThumbnailImageAlignment { get; set; }
-        /// <summary>Union discriminator</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Type { get; set; }
-#nullable restore
-#else
-        public string Type { get; set; }
-#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RbmMessageContentRichCard"/> and sets the default values.
         /// </summary>
@@ -83,7 +75,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "orientation", n => { Orientation = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.StandaloneCardOrientationEnum>(); } },
                 { "suggestions", n => { Suggestions = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelAction>(global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelAction.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "thumbnailImageAlignment", n => { ThumbnailImageAlignment = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ThumbnailAlignmentEnum>(); } },
-                { "type", n => { Type = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -99,7 +90,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.StandaloneCardOrientationEnum>("orientation", Orientation);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelAction>("suggestions", Suggestions);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ThumbnailAlignmentEnum>("thumbnailImageAlignment", ThumbnailImageAlignment);
-            writer.WriteStringValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -34,7 +34,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Voice.Accounts.Item.Calls.Item.Trans
         {
         }
         /// <summary>
-        /// &quot;Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).Note: After the deletion is requested and a `200` is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.&quot;
+        /// Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).Note: After the deletion is requested and a `200` is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </summary>
         /// <returns>A <see cref="Stream"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -108,7 +108,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Voice.Accounts.Item.Calls.Item.Trans
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CallTranscriptionResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CallTranscriptionResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).Note: After the deletion is requested and a `200` is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.&quot;
+        /// Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).Note: After the deletion is requested and a `200` is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

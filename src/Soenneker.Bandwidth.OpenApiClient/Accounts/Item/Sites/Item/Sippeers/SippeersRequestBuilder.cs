@@ -70,7 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationsResponseResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.LocationsResponseResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Create Location (SIP Peer).&lt;br&gt;Possible errors in response: https://dev.bandwidth.com/docs/numbers/errors/#sippeervalidationerror&quot;
+        /// Create Location (SIP Peer).&lt;br&gt;Possible errors in response: https://dev.bandwidth.com/docs/numbers/errors/#sippeervalidationerror
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -117,7 +117,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers
             return requestInfo;
         }
         /// <summary>
-        /// &quot;Create Location (SIP Peer).&lt;br&gt;Possible errors in response: https://dev.bandwidth.com/docs/numbers/errors/#sippeervalidationerror&quot;
+        /// Create Location (SIP Peer).&lt;br&gt;Possible errors in response: https://dev.bandwidth.com/docs/numbers/errors/#sippeervalidationerror
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

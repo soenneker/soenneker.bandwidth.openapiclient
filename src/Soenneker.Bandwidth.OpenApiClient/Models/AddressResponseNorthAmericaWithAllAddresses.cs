@@ -177,14 +177,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string StreetSuffix { get; set; }
 #endif
-        /// <summary>Union discriminator</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Type { get; set; }
-#nullable restore
-#else
-        public string Type { get; set; }
-#endif
         /// <summary>when was updated last</summary>
         public DateTimeOffset? Updated { get; set; }
         /// <summary>Address is valid and represents a location</summary>
@@ -235,7 +227,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "state", n => { State = n.GetStringValue(); } },
                 { "streetName", n => { StreetName = n.GetStringValue(); } },
                 { "streetSuffix", n => { StreetSuffix = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetStringValue(); } },
                 { "updated", n => { Updated = n.GetDateTimeOffsetValue(); } },
                 { "validationStatus", n => { ValidationStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ValidationStatus>(); } },
             };
@@ -268,7 +259,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("state", State);
             writer.WriteStringValue("streetName", StreetName);
             writer.WriteStringValue("streetSuffix", StreetSuffix);
-            writer.WriteStringValue("type", Type);
             writer.WriteDateTimeOffsetValue("updated", Updated);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ValidationStatus>("validationStatus", ValidationStatus);
             writer.WriteAdditionalData(AdditionalData);

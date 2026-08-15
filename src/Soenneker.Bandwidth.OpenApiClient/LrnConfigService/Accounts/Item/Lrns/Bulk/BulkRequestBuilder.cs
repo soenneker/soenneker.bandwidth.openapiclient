@@ -37,7 +37,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Lrns.
         /// Add multiple LRNs to the account.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LrnBulkCreatedResponse"/></returns>
-        /// <param name="body">&quot;An array of grouped create operations. Each object applies one sharedsettings payload to one or more LRNs via the `lrns` array.This supports provisioning LRNs with identical settings in a compact request.Minimum 1 group, maximum 1000 groups.This operation is all-or-nothing: if any LRN fails validation or provisioning,the entire request is rolled back and no LRNs are persisted. Errors arereturned in the `errors` array of the final status response.&quot;</param>
+        /// <param name="body">An array of grouped create operations. Each object applies one sharedsettings payload to one or more LRNs via the `lrns` array.This supports provisioning LRNs with identical settings in a compact request.Minimum 1 group, maximum 1000 groups.This operation is all-or-nothing: if any LRN fails validation or provisioning,the entire request is rolled back and no LRNs are persisted. Errors arereturned in the `errors` array of the final status response.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorBody">When receiving a 400 status code</exception>
@@ -74,7 +74,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Lrns.
         /// Add multiple LRNs to the account.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">&quot;An array of grouped create operations. Each object applies one sharedsettings payload to one or more LRNs via the `lrns` array.This supports provisioning LRNs with identical settings in a compact request.Minimum 1 group, maximum 1000 groups.This operation is all-or-nothing: if any LRN fails validation or provisioning,the entire request is rolled back and no LRNs are persisted. Errors arereturned in the `errors` array of the final status response.&quot;</param>
+        /// <param name="body">An array of grouped create operations. Each object applies one sharedsettings payload to one or more LRNs via the `lrns` array.This supports provisioning LRNs with identical settings in a compact request.Minimum 1 group, maximum 1000 groups.This operation is all-or-nothing: if any LRN fails validation or provisioning,the entire request is rolled back and no LRNs are persisted. Errors arereturned in the `errors` array of the final status response.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

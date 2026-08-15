@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
-    /// <summary>&quot;[DNI-Only](#section/DNI-Only). The current delivery status of the phone number.- ACTIVE: A message was successfully sent to the number (delivery code 0).- DEACTIVATED: A message was not delivered to a number (delivery code 720)- UNKNOWN: Bandwidth cannot find an delivery status entry for the number.- NOT_ENABLED: The phone number is not enabled for messaging, so there is no delivery status information.&quot;</summary>
+    /// <summary>[DNI-Only](#section/DNI-Only). The current delivery status of the phone number.- ACTIVE: A message was successfully sent to the number (delivery code 0).- DEACTIVATED: A message was not delivered to a number (delivery code 720)- UNKNOWN: Bandwidth cannot find an delivery status entry for the number.- NOT_ENABLED: The phone number is not enabled for messaging, so there is no delivery status information.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum LatestMessageDeliveryStatusEnum
     {

@@ -22,7 +22,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public int? TotalNumber { get; set; }
         /// <summary>The unique identifier for the PSAP Outage Alert Trigger.</summary>
         public Guid? TriggerId { get; set; }
-        /// <summary>&quot;The status of the trigger.- RECEIVED: The trigger has been received and is awaiting processing.- PROCESSING: The trigger is being processed.- COMPLETED: The trigger has been successfully processed and all alerts have been successfully sent.- FAILED: The trigger has finished processing, but all alerts have failed to send.- PARTIAL: The trigger has finished processing, but some alerts have failed to send.&quot;</summary>
+        /// <summary>The status of the trigger.- RECEIVED: The trigger has been received and is awaiting processing.- PROCESSING: The trigger is being processed.- COMPLETED: The trigger has been successfully processed and all alerts have been successfully sent.- FAILED: The trigger has finished processing, but all alerts have failed to send.- PARTIAL: The trigger has finished processing, but some alerts have failed to send.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.TriggerStatus? TriggerStatus { get; set; }
         /// <summary>The triggerType property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.TriggerType? TriggerType { get; set; }

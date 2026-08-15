@@ -43,7 +43,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>The time the incident occurred. This information is included in the initial alert that is sent to the PSAPs.This time cannot be updated after the alert has been triggered. This must be provided in UTC.</summary>
         public DateTimeOffset? IncidentStartTime { get; set; }
-        /// <summary>&quot;The impact of the outage. This will be shared with the PSAPs to help them understand the impact of the outage.- CALL_COMPLETION: Users may be unable to complete 911 calls- CALL_QUALITY: Operators may experience call quality issues- CALL_QUALITY_AND_LOCATION_INFORMATION: Operators may experience call quality issues and loss of location information- LOCATION_INFORMATION: Operators may experience loss of location information&quot;</summary>
+        /// <summary>The impact of the outage. This will be shared with the PSAPs to help them understand the impact of the outage.- CALL_COMPLETION: Users may be unable to complete 911 calls- CALL_QUALITY: Operators may experience call quality issues- CALL_QUALITY_AND_LOCATION_INFORMATION: Operators may experience call quality issues and loss of location information- LOCATION_INFORMATION: Operators may experience loss of location information</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.OutageImpact? OutageImpact { get; set; }
         /// <summary>Indicates if this alert should be created as a test alert. If true, the alert will only be able to be triggered as a test alert.Test alerts are not sent to the PSAPs, but instead are sent to the pre-configured test phone number and email address from the PSAP Outage Alert Settings.</summary>
         public bool? TestAlert { get; set; }

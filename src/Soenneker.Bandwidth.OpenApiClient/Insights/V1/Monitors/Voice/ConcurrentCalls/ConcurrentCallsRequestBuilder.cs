@@ -34,7 +34,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.Concurren
         {
         }
         /// <summary>
-        /// &quot;Retrieves an aggregated summary of concurrent calls based on the provided filters. This api is only available for accounts with Monitoring API feature.The summary returned is broken down into time &apos;slices&apos; depending on the time range requested.The granularity is calculated based on: * 0-24 hours: hour * 25 hours - 7 days: day * 8 days - 30 days: week * 31+ days: monthThrough the use of various query parameters, users can filter the data by phone numbers, sub-account, call type, hang-up source, and country.Occasionally, underlying data may take longer than expected to load. To avoid connection timeouts, the API will return a `503 Service Unavailable` response in these cases, with an error message indicating that the data is still loading. If you receive a `503`, retry your request immediately with the exact same parameters.&quot;
+        /// Retrieves an aggregated summary of concurrent calls based on the provided filters. This api is only available for accounts with Monitoring API feature.The summary returned is broken down into time &apos;slices&apos; depending on the time range requested.The granularity is calculated based on: * 0-24 hours: hour * 25 hours - 7 days: day * 8 days - 30 days: week * 31+ days: monthThrough the use of various query parameters, users can filter the data by phone numbers, sub-account, call type, hang-up source, and country.Occasionally, underlying data may take longer than expected to load. To avoid connection timeouts, the API will return a `503 Service Unavailable` response in these cases, with an error message indicating that the data is still loading. If you receive a `503`, retry your request immediately with the exact same parameters.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetMonitorConcurrentCallsResponseOkResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -71,7 +71,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.Concurren
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMonitorConcurrentCallsResponseOkResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.GetMonitorConcurrentCallsResponseOkResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Retrieves an aggregated summary of concurrent calls based on the provided filters. This api is only available for accounts with Monitoring API feature.The summary returned is broken down into time &apos;slices&apos; depending on the time range requested.The granularity is calculated based on: * 0-24 hours: hour * 25 hours - 7 days: day * 8 days - 30 days: week * 31+ days: monthThrough the use of various query parameters, users can filter the data by phone numbers, sub-account, call type, hang-up source, and country.Occasionally, underlying data may take longer than expected to load. To avoid connection timeouts, the API will return a `503 Service Unavailable` response in these cases, with an error message indicating that the data is still loading. If you receive a `503`, retry your request immediately with the exact same parameters.&quot;
+        /// Retrieves an aggregated summary of concurrent calls based on the provided filters. This api is only available for accounts with Monitoring API feature.The summary returned is broken down into time &apos;slices&apos; depending on the time range requested.The granularity is calculated based on: * 0-24 hours: hour * 25 hours - 7 days: day * 8 days - 30 days: week * 31+ days: monthThrough the use of various query parameters, users can filter the data by phone numbers, sub-account, call type, hang-up source, and country.Occasionally, underlying data may take longer than expected to load. To avoid connection timeouts, the API will return a `503 Service Unavailable` response in these cases, with an error message indicating that the data is still loading. If you receive a `503`, retry your request immediately with the exact same parameters.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -99,7 +99,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.Concurren
             return new global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.ConcurrentCalls.ConcurrentCallsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// &quot;Retrieves an aggregated summary of concurrent calls based on the provided filters. This api is only available for accounts with Monitoring API feature.The summary returned is broken down into time &apos;slices&apos; depending on the time range requested.The granularity is calculated based on: * 0-24 hours: hour * 25 hours - 7 days: day * 8 days - 30 days: week * 31+ days: monthThrough the use of various query parameters, users can filter the data by phone numbers, sub-account, call type, hang-up source, and country.Occasionally, underlying data may take longer than expected to load. To avoid connection timeouts, the API will return a `503 Service Unavailable` response in these cases, with an error message indicating that the data is still loading. If you receive a `503`, retry your request immediately with the exact same parameters.&quot;
+        /// Retrieves an aggregated summary of concurrent calls based on the provided filters. This api is only available for accounts with Monitoring API feature.The summary returned is broken down into time &apos;slices&apos; depending on the time range requested.The granularity is calculated based on: * 0-24 hours: hour * 25 hours - 7 days: day * 8 days - 30 days: week * 31+ days: monthThrough the use of various query parameters, users can filter the data by phone numbers, sub-account, call type, hang-up source, and country.Occasionally, underlying data may take longer than expected to load. To avoid connection timeouts, the API will return a `503 Service Unavailable` response in these cases, with an error message indicating that the data is still loading. If you receive a `503`, retry your request immediately with the exact same parameters.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ConcurrentCallsRequestBuilderGetQueryParameters 
@@ -114,7 +114,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.Concurren
             [QueryParameter("accountId")]
             public string AccountId { get; set; }
 #endif
-            /// <summary>&quot;Filter results by call type.Accepts a single value: `NATIONAL`, `INTERNATIONAL`, `EMERGENCY` Etc.If not provided, results for all call types will be returned.&quot;</summary>
+            /// <summary>Filter results by call type.Accepts a single value: `NATIONAL`, `INTERNATIONAL`, `EMERGENCY` Etc.If not provided, results for all call types will be returned.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("callType")]
@@ -144,7 +144,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.Concurren
             [QueryParameter("fromPhoneNumber")]
             public string FromPhoneNumber { get; set; }
 #endif
-            /// <summary>&quot;Filter results by hang up source.Accepts a single value: `CALLED_PARTY` or `CALLING_PARTY`.If not provided, results for all hang up sources will be returned.&quot;</summary>
+            /// <summary>Filter results by hang up source.Accepts a single value: `CALLED_PARTY` or `CALLING_PARTY`.If not provided, results for all hang up sources will be returned.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("hangUpSource")]

@@ -39,7 +39,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string RewriteUser { get; set; }
 #endif
-        /// <summary>&quot;Trunk selection information for an endpoint. This field is optional and nullable: it may be omitted in requests and responses when no trunk has been selected for an endpoint. When present it contains the trunk identifier and associated capability pipe id selected for this endpoint.&quot;</summary>
+        /// <summary>Trunk selection information for an endpoint. This field is optional and nullable: it may be omitted in requests and responses when no trunk has been selected for an endpoint. When present it contains the trunk identifier and associated capability pipe id selected for this endpoint.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkInfo? TrunkInfo { get; set; }
@@ -48,7 +48,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkInfo TrunkInfo { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.IntegrationEndpointRequestType? Type { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.IntegrationType? Type { get; set; }
         /// <summary>Weighted-routing weight.</summary>
         public int? Weight { get; set; }
         /// <summary>
@@ -80,7 +80,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "prefix", n => { Prefix = n.GetStringValue(); } },
                 { "rewriteUser", n => { RewriteUser = n.GetStringValue(); } },
                 { "trunkInfo", n => { TrunkInfo = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkInfo>(global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkInfo.CreateFromDiscriminatorValue); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.IntegrationEndpointRequestType>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.IntegrationType>(); } },
                 { "weight", n => { Weight = n.GetIntValue(); } },
             };
         }
@@ -95,7 +95,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("prefix", Prefix);
             writer.WriteStringValue("rewriteUser", RewriteUser);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkInfo>("trunkInfo", TrunkInfo);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.IntegrationEndpointRequestType>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.IntegrationType>("type", Type);
             writer.WriteIntValue("weight", Weight);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -15,7 +15,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The modelType property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestCapacityModelType? ModelType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CapacityModelType? ModelType { get; set; }
         /// <summary>Must be in increments of 10.</summary>
         public int? VoiceCapacityThreshold { get; set; }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "modelType", n => { ModelType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestCapacityModelType>(); } },
+                { "modelType", n => { ModelType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CapacityModelType>(); } },
                 { "voiceCapacityThreshold", n => { VoiceCapacityThreshold = n.GetIntValue(); } },
             };
         }
@@ -54,7 +54,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestCapacityModelType>("modelType", ModelType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CapacityModelType>("modelType", ModelType);
             writer.WriteIntValue("voiceCapacityThreshold", VoiceCapacityThreshold);
             writer.WriteAdditionalData(AdditionalData);
         }

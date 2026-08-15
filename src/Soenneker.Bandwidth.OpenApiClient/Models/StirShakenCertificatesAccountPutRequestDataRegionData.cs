@@ -15,7 +15,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The region property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionDataOneOf1Region? Region { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.FrRegion? Region { get; set; }
         /// <summary>Contains stir/shaken certificate request data for the FR region</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -23,14 +23,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #nullable restore
 #else
         public global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionDataOneOf1RegionFr RegionFr { get; set; }
-#endif
-        /// <summary>Union discriminator</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Type { get; set; }
-#nullable restore
-#else
-        public string Type { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionData"/> and sets the default values.
@@ -57,9 +49,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "region", n => { Region = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionDataOneOf1Region>(); } },
+                { "region", n => { Region = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FrRegion>(); } },
                 { "regionFr", n => { RegionFr = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionDataOneOf1RegionFr>(global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionDataOneOf1RegionFr.CreateFromDiscriminatorValue); } },
-                { "type", n => { Type = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -69,9 +60,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionDataOneOf1Region>("region", Region);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FrRegion>("region", Region);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionDataOneOf1RegionFr>("regionFr", RegionFr);
-            writer.WriteStringValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

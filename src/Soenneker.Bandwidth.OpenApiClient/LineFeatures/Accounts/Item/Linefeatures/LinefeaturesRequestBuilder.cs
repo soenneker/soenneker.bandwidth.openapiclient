@@ -34,7 +34,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Linefeatu
         {
         }
         /// <summary>
-        /// &quot;Upload a CSV file to create TN Options orders, LIDB orders, DLDA orders, and/or E911 orders in bulk. The file format determines which order types are created.The request must be submitted as `multipart/form-data` with two parts:- `customerOrderId` (optional): A customer-defined reference label for the upload. Max 255 characters. Not required to be unique.- `file` (required): The CSV file to process.&quot;
+        /// Upload a CSV file to create TN Options orders, LIDB orders, DLDA orders, and/or E911 orders in bulk. The file format determines which order types are created.The request must be submitted as `multipart/form-data` with two parts:- `customerOrderId` (optional): A customer-defined reference label for the upload. Max 255 characters. Not required to be unique.- `file` (required): The CSV file to process.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -59,7 +59,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Linefeatu
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Upload a CSV file to create TN Options orders, LIDB orders, DLDA orders, and/or E911 orders in bulk. The file format determines which order types are created.The request must be submitted as `multipart/form-data` with two parts:- `customerOrderId` (optional): A customer-defined reference label for the upload. Max 255 characters. Not required to be unique.- `file` (required): The CSV file to process.&quot;
+        /// Upload a CSV file to create TN Options orders, LIDB orders, DLDA orders, and/or E911 orders in bulk. The file format determines which order types are created.The request must be submitted as `multipart/form-data` with two parts:- `customerOrderId` (optional): A customer-defined reference label for the upload. Max 255 characters. Not required to be unique.- `file` (required): The CSV file to process.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

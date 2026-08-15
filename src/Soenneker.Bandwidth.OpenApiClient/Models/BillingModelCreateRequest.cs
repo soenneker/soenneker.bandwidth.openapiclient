@@ -40,14 +40,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>The type of billing model.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.ModelTypeEnum? ModelType { get; set; }
-        /// <summary>Union discriminator</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Type { get; set; }
-#nullable restore
-#else
-        public string Type { get; set; }
-#endif
         /// <summary>Must be in increments of 10.</summary>
         public int? VoiceCapacityThreshold { get; set; }
         /// <summary>
@@ -65,7 +57,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequest();
             if("BillingModelCreateRequestCapacity".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
@@ -82,10 +74,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             else if(parseNode.GetStringValue() is string accountIdValue)
             {
                 result.AccountId = accountIdValue;
-            }
-            else if(parseNode.GetStringValue() is string typeValue)
-            {
-                result.Type = typeValue;
             }
             else if(parseNode.GetIntValue() is int voiceCapacityThresholdValue)
             {
@@ -131,10 +119,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             else if(AccountId != null)
             {
                 writer.WriteStringValue(null, AccountId);
-            }
-            else if(Type != null)
-            {
-                writer.WriteStringValue(null, Type);
             }
             else if(VoiceCapacityThreshold != null)
             {

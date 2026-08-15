@@ -48,14 +48,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Tag { get; set; }
 #endif
-        /// <summary>Union discriminator</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Type { get; set; }
-#nullable restore
-#else
-        public string Type { get; set; }
-#endif
+        /// <summary>The type property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointTypeEnum? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequest"/> and sets the default values.
         /// </summary>
@@ -86,7 +80,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "eventCallbackUrl", n => { EventCallbackUrl = n.GetStringValue(); } },
                 { "eventFallbackUrl", n => { EventFallbackUrl = n.GetStringValue(); } },
                 { "tag", n => { Tag = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointTypeEnum>(); } },
             };
         }
         /// <summary>
@@ -101,7 +95,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("eventCallbackUrl", EventCallbackUrl);
             writer.WriteStringValue("eventFallbackUrl", EventFallbackUrl);
             writer.WriteStringValue("tag", Tag);
-            writer.WriteStringValue("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointTypeEnum>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

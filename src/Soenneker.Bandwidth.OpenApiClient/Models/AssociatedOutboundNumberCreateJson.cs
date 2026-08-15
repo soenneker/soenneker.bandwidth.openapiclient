@@ -14,7 +14,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>&quot;&lt;p&gt; Describes the reason an associated outbound number has failed. This could be due to validation or business logic.&lt;br&gt;Possible Error Reasons include:  &lt;ul&gt;    &lt;li&gt; Invalid number format. &lt;/li&gt;    &lt;li&gt; Number is already associated with location ${location_name} [ID: ${location_id}]. &lt;/li&gt;    &lt;li&gt; Associated Outbound Number not found with location [ID: ${location_id}]. &lt;/li&gt;  &lt;/ul&gt;&lt;/p&gt;&quot;</summary>
+        /// <summary>&lt;p&gt; Describes the reason an associated outbound number has failed. This could be due to validation or business logic.&lt;br&gt;Possible Error Reasons include:  &lt;ul&gt;    &lt;li&gt; Invalid number format. &lt;/li&gt;    &lt;li&gt; Number is already associated with location ${location_name} [ID: ${location_id}]. &lt;/li&gt;    &lt;li&gt; Associated Outbound Number not found with location [ID: ${location_id}]. &lt;/li&gt;  &lt;/ul&gt;&lt;/p&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ErrorReason { get; set; }
@@ -22,7 +22,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string ErrorReason { get; set; }
 #endif
-        /// <summary>&quot;&lt;p&gt; An Associated Outbound Number should:  &lt;ul&gt;    &lt;li&gt; Be a valid phone number in E.164 format. For example: +18005550123.&lt;/li&gt;    &lt;li&gt; Not be duplicated. An Associated Outbound Number is unique within an account.  &lt;/ul&gt;&lt;/p&gt;&quot;</summary>
+        /// <summary>&lt;p&gt; An Associated Outbound Number should:  &lt;ul&gt;    &lt;li&gt; Be a valid phone number in E.164 format. For example: +18005550123.&lt;/li&gt;    &lt;li&gt; Not be duplicated. An Associated Outbound Number is unique within an account.  &lt;/ul&gt;&lt;/p&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PhoneNumber { get; set; }

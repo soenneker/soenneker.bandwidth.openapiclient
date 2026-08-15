@@ -38,14 +38,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Rel { get; set; }
 #endif
-        /// <summary>Union discriminator</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Type { get; set; }
-#nullable restore
-#else
-        public string Type { get; set; }
-#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementLinksItem"/> and sets the default values.
         /// </summary>
@@ -74,7 +66,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "href", n => { Href = n.GetStringValue(); } },
                 { "method", n => { Method = n.GetStringValue(); } },
                 { "rel", n => { Rel = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -87,7 +78,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("href", Href);
             writer.WriteStringValue("method", Method);
             writer.WriteStringValue("rel", Rel);
-            writer.WriteStringValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
