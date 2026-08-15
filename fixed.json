@@ -27859,7 +27859,7 @@
             "example": []
           },
           "data": {
-            "$ref": "#/components/schemas/ApiErrorsData"
+            "$ref": "#/components/schemas/ApiErrorsDataProperty"
           },
           "errors": {
             "type": "array",
@@ -29829,7 +29829,7 @@
             "example": []
           },
           "data": {
-            "$ref": "#/components/schemas/BillingModelGenericErrorData"
+            "$ref": "#/components/schemas/BillingModelGenericErrorDataProperty"
           },
           "errors": {
             "type": "array",
@@ -42860,7 +42860,7 @@
             "nullable": true
           },
           "data": {
-            "$ref": "#/components/schemas/ResponsePropertiesData"
+            "$ref": "#/components/schemas/ResponsePropertiesDataProperty"
           },
           "errors": {
             "minItems": 1,
@@ -43045,7 +43045,7 @@
             "nullable": true
           },
           "data": {
-            "$ref": "#/components/schemas/GenericErrorResponseData"
+            "$ref": "#/components/schemas/GenericErrorResponseDataProperty"
           },
           "errors": {
             "type": "array",
@@ -43093,7 +43093,7 @@
             "$ref": "#/components/schemas/GlobalErrorSource"
           },
           "meta": {
-            "$ref": "#/components/schemas/GlobalErrorMeta"
+            "$ref": "#/components/schemas/GlobalErrorMetaProperty"
           }
         },
         "description": "An error object"
@@ -45229,7 +45229,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/HostedNumberManagementGenericErrorData"
+            "$ref": "#/components/schemas/HostedNumberManagementGenericErrorDataProperty"
           },
           "errors": {
             "type": "array",
@@ -47319,7 +47319,7 @@
             "example": null
           },
           "data": {
-            "$ref": "#/components/schemas/InsightsGenericErrorData"
+            "$ref": "#/components/schemas/InsightsGenericErrorDataProperty"
           },
           "errors": {
             "type": "array",
@@ -47348,7 +47348,7 @@
             "example": null
           },
           "data": {
-            "$ref": "#/components/schemas/MonitorGenericErrorData"
+            "$ref": "#/components/schemas/MonitorGenericErrorDataProperty"
           },
           "errors": {
             "type": "array",
@@ -49839,7 +49839,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/LineFeaturesGenericErrorData"
+            "$ref": "#/components/schemas/LineFeaturesGenericErrorDataProperty"
           },
           "errors": {
             "type": "array",
@@ -53988,7 +53988,7 @@
             "example": []
           },
           "data": {
-            "$ref": "#/components/schemas/MultiChannelErrorData"
+            "$ref": "#/components/schemas/MultiChannelErrorDataProperty"
           },
           "errors": {
             "type": "array",
@@ -67815,7 +67815,7 @@
             "default": []
           },
           "data": {
-            "$ref": "#/components/schemas/PsapAlertsErrorResponseData"
+            "$ref": "#/components/schemas/PsapAlertsErrorResponseDataProperty"
           },
           "errors": {
             "type": "array",
@@ -68336,7 +68336,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/AdminFeedbackResponseSchemaErrorsItem"
+              "$ref": "#/components/schemas/AdminFeedbackResponseSchemaErrorsItemProperty"
             },
             "description": "The errors array will always be empty for successful responses.",
             "example": []
@@ -68696,7 +68696,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/AdminUpdateCampaignResponseSchemaErrorsItem"
+              "$ref": "#/components/schemas/AdminUpdateCampaignResponseSchemaErrorsItemProperty"
             },
             "description": "The errors array will always be empty for successful responses.",
             "example": []
@@ -68849,7 +68849,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CampaignResponseSchemaErrorsItem"
+              "$ref": "#/components/schemas/CampaignResponseSchemaErrorsItemProperty"
             },
             "description": "The errors array will always be empty for successful responses.",
             "example": []
@@ -69923,7 +69923,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CreateShortCodeCampaignWebhookSubscriptionResponseSchemaErrorsItem"
+              "$ref": "#/components/schemas/CreateShortCodeCampaignWebhookSubscriptionResponseSchemaErrorsItemProperty"
             },
             "description": "The errors array will always be empty for successful responses.",
             "example": []
@@ -71187,7 +71187,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/GetCampaignHistoryResponseSchemaErrorsItem"
+              "$ref": "#/components/schemas/GetCampaignHistoryResponseSchemaErrorsItemProperty"
             },
             "description": "The errors array will always be empty for successful responses.",
             "example": []
@@ -71215,7 +71215,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/GetShortCodeCampaignWebhookSubscriptionsResponseSchemaErrorsItem"
+              "$ref": "#/components/schemas/GetShortCodeCampaignWebhookSubscriptionsResponseSchemaErrorsItemProperty"
             },
             "description": "The errors array will always be empty for successful responses.",
             "example": []
@@ -71243,7 +71243,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/GetSingleCampaignResponseSchemaErrorsItem"
+              "$ref": "#/components/schemas/GetSingleCampaignResponseSchemaErrorsItemProperty"
             },
             "description": "The errors array will always be empty for successful responses.",
             "example": []
@@ -71433,7 +71433,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ListCampaignsResponseSchemaErrorsItem"
+              "$ref": "#/components/schemas/ListCampaignsResponseSchemaErrorsItemProperty"
             },
             "description": "The errors array will always be empty for successful responses.",
             "example": []
@@ -71801,7 +71801,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/ShortCodeCampaign401ResponseSchemaData"
+            "$ref": "#/components/schemas/ShortCodeCampaign401ResponseSchemaDataProperty"
           },
           "errors": {
             "type": "array",
@@ -71812,7 +71812,7 @@
           "links": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ShortCodeCampaign401ResponseSchemaLinksItem"
+              "$ref": "#/components/schemas/ShortCodeCampaign401ResponseSchemaLinksItemProperty"
             },
             "example": []
           }
@@ -71822,7 +71822,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/ShortCodeCampaign403ResponseSchemaData"
+            "$ref": "#/components/schemas/ShortCodeCampaign403ResponseSchemaDataProperty"
           },
           "errors": {
             "type": "array",
@@ -71833,7 +71833,7 @@
           "links": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ShortCodeCampaign403ResponseSchemaLinksItem"
+              "$ref": "#/components/schemas/ShortCodeCampaign403ResponseSchemaLinksItemProperty"
             },
             "example": []
           }
@@ -71860,7 +71860,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/ShortCodeCampaign404ResponseSchemaData"
+            "$ref": "#/components/schemas/ShortCodeCampaign404ResponseSchemaDataProperty"
           },
           "errors": {
             "type": "array",
@@ -71871,7 +71871,7 @@
           "links": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ShortCodeCampaign404ResponseSchemaLinksItem"
+              "$ref": "#/components/schemas/ShortCodeCampaign404ResponseSchemaLinksItemProperty"
             },
             "example": []
           }
@@ -71881,7 +71881,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/ShortCodeCampaign405ResponseSchemaData"
+            "$ref": "#/components/schemas/ShortCodeCampaign405ResponseSchemaDataProperty"
           },
           "errors": {
             "type": "array",
@@ -71892,7 +71892,7 @@
           "links": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ShortCodeCampaign405ResponseSchemaLinksItem"
+              "$ref": "#/components/schemas/ShortCodeCampaign405ResponseSchemaLinksItemProperty"
             },
             "example": []
           }
@@ -71902,7 +71902,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/ShortCodeCampaign429ResponseSchemaData"
+            "$ref": "#/components/schemas/ShortCodeCampaign429ResponseSchemaDataProperty"
           },
           "errors": {
             "type": "array",
@@ -71913,7 +71913,7 @@
           "links": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ShortCodeCampaign429ResponseSchemaLinksItem"
+              "$ref": "#/components/schemas/ShortCodeCampaign429ResponseSchemaLinksItemProperty"
             },
             "example": []
           }
@@ -71923,7 +71923,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/ShortCodeCampaign500ResponseSchemaData"
+            "$ref": "#/components/schemas/ShortCodeCampaign500ResponseSchemaDataProperty"
           },
           "errors": {
             "type": "array",
@@ -71934,7 +71934,7 @@
           "links": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ShortCodeCampaign500ResponseSchemaLinksItem"
+              "$ref": "#/components/schemas/ShortCodeCampaign500ResponseSchemaLinksItemProperty"
             },
             "example": []
           }
@@ -71944,7 +71944,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/ShortCodeCampaignErrorResponseSchemaData"
+            "$ref": "#/components/schemas/ShortCodeCampaignErrorResponseSchemaDataProperty"
           },
           "errors": {
             "type": "array",
@@ -71955,7 +71955,7 @@
           "links": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ShortCodeCampaignErrorResponseSchemaLinksItem"
+              "$ref": "#/components/schemas/ShortCodeCampaignErrorResponseSchemaLinksItemProperty"
             }
           }
         }
@@ -71978,7 +71978,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/ShortCodeCampaignUploadUrl404ResponseSchemaData"
+            "$ref": "#/components/schemas/ShortCodeCampaignUploadUrl404ResponseSchemaDataProperty"
           },
           "errors": {
             "type": "array",
@@ -71989,7 +71989,7 @@
           "links": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ShortCodeCampaignUploadUrl404ResponseSchemaLinksItem"
+              "$ref": "#/components/schemas/ShortCodeCampaignUploadUrl404ResponseSchemaLinksItemProperty"
             }
           }
         }
@@ -71998,7 +71998,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/ShortCodeCampaignWebhookSubscription404ResponseSchemaData"
+            "$ref": "#/components/schemas/ShortCodeCampaignWebhookSubscription404ResponseSchemaDataProperty"
           },
           "errors": {
             "type": "array",
@@ -72009,7 +72009,7 @@
           "links": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ShortCodeCampaignWebhookSubscription404ResponseSchemaLinksItem"
+              "$ref": "#/components/schemas/ShortCodeCampaignWebhookSubscription404ResponseSchemaLinksItemProperty"
             }
           }
         }
@@ -72018,7 +72018,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/ShortCodeCampaignWebhookSubscriptionId404ResponseSchemaData"
+            "$ref": "#/components/schemas/ShortCodeCampaignWebhookSubscriptionId404ResponseSchemaDataProperty"
           },
           "errors": {
             "type": "array",
@@ -72029,7 +72029,7 @@
           "links": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ShortCodeCampaignWebhookSubscriptionId404ResponseSchemaLinksItem"
+              "$ref": "#/components/schemas/ShortCodeCampaignWebhookSubscriptionId404ResponseSchemaLinksItemProperty"
             },
             "example": []
           }
@@ -72735,7 +72735,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PostShortCodeCampaignDocumentResponseSchemaErrorsItem"
+              "$ref": "#/components/schemas/PostShortCodeCampaignDocumentResponseSchemaErrorsItemProperty"
             },
             "description": "The errors array will always be empty for successful responses.",
             "example": []
@@ -73202,7 +73202,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/UpdateShortCodeCampaignWebhookSubscriptionResponseSchemaErrorsItem"
+              "$ref": "#/components/schemas/UpdateShortCodeCampaignWebhookSubscriptionResponseSchemaErrorsItemProperty"
             },
             "description": "The errors array will always be empty for successful responses.",
             "example": []
@@ -73265,7 +73265,7 @@
             "example": []
           },
           "data": {
-            "$ref": "#/components/schemas/SubscriptionsGenericErrorData"
+            "$ref": "#/components/schemas/SubscriptionsGenericErrorDataProperty"
           },
           "errors": {
             "type": "array",
@@ -80419,7 +80419,7 @@
             "example": []
           },
           "data": {
-            "$ref": "#/components/schemas/UserManagementErrorResponseData"
+            "$ref": "#/components/schemas/UserManagementErrorResponseDataProperty"
           },
           "errors": {
             "type": "array",
@@ -81418,7 +81418,7 @@
             "example": "adminUser"
           },
           "details": {
-            "$ref": "#/components/schemas/AuditLogEventDetails"
+            "$ref": "#/components/schemas/AuditLogEventDetailsProperty"
           }
         },
         "additionalProperties": false
@@ -81872,7 +81872,7 @@
             "example": []
           },
           "data": {
-            "$ref": "#/components/schemas/VoiceApplicationManagementGenericErrorData"
+            "$ref": "#/components/schemas/VoiceApplicationManagementGenericErrorDataProperty"
           },
           "errors": {
             "type": "array",
@@ -86904,7 +86904,7 @@
             "example": "disconnected"
           },
           "stirShaken": {
-            "$ref": "#/components/schemas/CallStateStirShaken"
+            "$ref": "#/components/schemas/CallStateStirShakenProperty"
           },
           "identity": {
             "type": "string",
@@ -98010,6 +98010,9 @@
       "ApiErrorsLinksItem": {
         "type": "object"
       },
+      "ApiErrorsDataProperty": {
+        "type": "object"
+      },
       "StirShakenCertificatesAccountPutRequestDataRegionDataOneOf1RegionFr": {
         "type": "object",
         "description": "Contains stir/shaken certificate request data for the FR region"
@@ -98047,6 +98050,9 @@
         "type": "object"
       },
       "AuthServiceErrorResponseDataProperty": {
+        "type": "object"
+      },
+      "BillingModelGenericErrorDataProperty": {
         "type": "object"
       },
       "BillingModelErrorMetaProperty": {
@@ -98119,10 +98125,27 @@
       "ComplianceRequirementsPackageResourceNotFoundDataProperty": {
         "type": "object"
       },
+      "ResponsePropertiesDataProperty": {
+        "type": "object"
+      },
+      "GenericErrorResponseDataProperty": {
+        "type": "object",
+        "description": "A generic object for any additional data"
+      },
+      "GlobalErrorMetaProperty": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string",
+          "example": "error info"
+        }
+      },
       "OperatorUnauthorizedRequestErrorData": {
         "type": "object"
       },
       "OperatorInvalidMediaTypeRequestErrorData": {
+        "type": "object"
+      },
+      "HostedNumberManagementGenericErrorDataProperty": {
         "type": "object"
       },
       "HostedVoiceDocumentDataFieldsProperty": {
@@ -98148,6 +98171,12 @@
           }
         },
         "description": "Use the Get Report Definitions endpoint to see the filters available for a report."
+      },
+      "InsightsGenericErrorDataProperty": {
+        "type": "object"
+      },
+      "MonitorGenericErrorDataProperty": {
+        "type": "object"
       },
       "MonitorSliceBaseDataProperty": {
         "type": "object"
@@ -98186,6 +98215,9 @@
         "type": "object"
       },
       "MonitorDataBaseSlicesItemProperty": {
+        "type": "object"
+      },
+      "LineFeaturesGenericErrorDataProperty": {
         "type": "object"
       },
       "LineFeaturesErrorMetaProperty": {
@@ -98349,6 +98381,9 @@
         "type": "object",
         "description": "Each key of this errors object refers to a field of the submitted object (using dot notation for nested objects), with the field being a key to an array of one or more errors for that field."
       },
+      "MultiChannelErrorDataProperty": {
+        "type": "object"
+      },
       "NumberAcquisitionErrorMetaProperty": {
         "type": "object",
         "description": "A meta object containing application-specific information or non-standard metadata about the error."
@@ -98403,9 +98438,21 @@
       "PortoutsLnpResponseWrapperLnpPortInfoForGivenStatusItem": {
         "type": "object"
       },
+      "PsapAlertsErrorResponseDataProperty": {
+        "type": "object"
+      },
+      "AdminFeedbackResponseSchemaErrorsItemProperty": {
+        "type": "object"
+      },
       "AdminUpdateCampaignSchemaMigrationLetterAttachmentUrl": {
         "type": "object",
         "description": "The URL for the migration letter attachment."
+      },
+      "AdminUpdateCampaignResponseSchemaErrorsItemProperty": {
+        "type": "object"
+      },
+      "CampaignResponseSchemaErrorsItemProperty": {
+        "type": "object"
       },
       "CampaignSchemaMigrationLetterAttachmentUrl": {
         "type": "object",
@@ -98418,6 +98465,9 @@
       "CreateCampaignRequestSchemaMigrationLetterAttachmentUrl": {
         "type": "object",
         "description": "The URL for the migration letter attachment."
+      },
+      "CreateShortCodeCampaignWebhookSubscriptionResponseSchemaErrorsItemProperty": {
+        "type": "object"
       },
       "AddNomadicNorthAmericaEndpointsWithFullAddressAllOf2Endpoints": {
         "type": "object",
@@ -98437,6 +98487,15 @@
         "type": "object",
         "description": "The URL for the migration letter attachment."
       },
+      "GetCampaignHistoryResponseSchemaErrorsItemProperty": {
+        "type": "object"
+      },
+      "GetShortCodeCampaignWebhookSubscriptionsResponseSchemaErrorsItemProperty": {
+        "type": "object"
+      },
+      "GetSingleCampaignResponseSchemaErrorsItemProperty": {
+        "type": "object"
+      },
       "AddNomadicNorthAmericaEndpointsWithAddressIdAllOf2Endpoints": {
         "type": "object",
         "items": {
@@ -98449,6 +98508,69 @@
           "$ref": "#/components/schemas/AddStandardNorthAmericaEndpointsWithAddressIdAllOf2EndpointsItem"
         }
       },
+      "ListCampaignsResponseSchemaErrorsItemProperty": {
+        "type": "object"
+      },
+      "ShortCodeCampaign401ResponseSchemaDataProperty": {
+        "type": "object"
+      },
+      "ShortCodeCampaign401ResponseSchemaLinksItemProperty": {
+        "type": "object"
+      },
+      "ShortCodeCampaign403ResponseSchemaDataProperty": {
+        "type": "object"
+      },
+      "ShortCodeCampaign403ResponseSchemaLinksItemProperty": {
+        "type": "object"
+      },
+      "ShortCodeCampaign404ResponseSchemaDataProperty": {
+        "type": "object"
+      },
+      "ShortCodeCampaign404ResponseSchemaLinksItemProperty": {
+        "type": "object"
+      },
+      "ShortCodeCampaign405ResponseSchemaDataProperty": {
+        "type": "object"
+      },
+      "ShortCodeCampaign405ResponseSchemaLinksItemProperty": {
+        "type": "object"
+      },
+      "ShortCodeCampaign429ResponseSchemaDataProperty": {
+        "type": "object"
+      },
+      "ShortCodeCampaign429ResponseSchemaLinksItemProperty": {
+        "type": "object"
+      },
+      "ShortCodeCampaign500ResponseSchemaDataProperty": {
+        "type": "object"
+      },
+      "ShortCodeCampaign500ResponseSchemaLinksItemProperty": {
+        "type": "object"
+      },
+      "ShortCodeCampaignErrorResponseSchemaDataProperty": {
+        "type": "object"
+      },
+      "ShortCodeCampaignErrorResponseSchemaLinksItemProperty": {
+        "type": "object"
+      },
+      "ShortCodeCampaignUploadUrl404ResponseSchemaDataProperty": {
+        "type": "object"
+      },
+      "ShortCodeCampaignUploadUrl404ResponseSchemaLinksItemProperty": {
+        "type": "object"
+      },
+      "ShortCodeCampaignWebhookSubscription404ResponseSchemaDataProperty": {
+        "type": "object"
+      },
+      "ShortCodeCampaignWebhookSubscription404ResponseSchemaLinksItemProperty": {
+        "type": "object"
+      },
+      "ShortCodeCampaignWebhookSubscriptionId404ResponseSchemaDataProperty": {
+        "type": "object"
+      },
+      "ShortCodeCampaignWebhookSubscriptionId404ResponseSchemaLinksItemProperty": {
+        "type": "object"
+      },
       "ShortCodeError400Errors": {
         "type": "object",
         "additionalProperties": {
@@ -98459,9 +98581,18 @@
           }
         }
       },
+      "PostShortCodeCampaignDocumentResponseSchemaErrorsItemProperty": {
+        "type": "object"
+      },
       "UpdateCampaignRequestSchemaMigrationLetterAttachmentUrl": {
         "type": "object",
         "description": "The URL for the migration letter attachment."
+      },
+      "UpdateShortCodeCampaignWebhookSubscriptionResponseSchemaErrorsItemProperty": {
+        "type": "object"
+      },
+      "SubscriptionsGenericErrorDataProperty": {
+        "type": "object"
       },
       "SubscriptionsErrorMetaProperty": {
         "type": "object",
@@ -98556,6 +98687,19 @@
         "type": "object",
         "description": "Each key of this errors object refers to a field of the submitted object (using dot notation for nested objects), with the field being a key to an array of one or more errors for that field."
       },
+      "UserManagementErrorResponseDataProperty": {
+        "type": "object"
+      },
+      "AuditLogEventDetailsProperty": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Event-specific metadata such as before and after state for update events. Content varies by event type."
+      },
+      "VoiceApplicationManagementGenericErrorDataProperty": {
+        "type": "object"
+      },
       "VoiceConfigServiceErrorResponseDataProperty": {
         "type": "object"
       },
@@ -98570,6 +98714,13 @@
       },
       "VoiceStirShakenErrorResponseDataProperty": {
         "type": "object"
+      },
+      "CallStateStirShakenProperty": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "\u0022For inbound calls, the Bandwidth STIR/SHAKEN implementation will verify the information provided in the inbound invite request \u0060Identity\u0060 header.\nThe verification status is stored in the call state \u0060stirShaken\u0060 property as follows.\n\n| Property          | Description |\n|:------------------|:------------|\n| verstat | (optional) The verification status indicating whether the verification was successful or not. Possible values are \u0060TN-Validation-Passed\u0060 or \u0060TN-Validation-Failed\u0060. |\n| attestationIndicator | (optional) The attestation level verified by Bandwidth. Possible values are \u0060A\u0060 (full), \u0060B\u0060 (partial) or \u0060C\u0060 (gateway). |\n| originatingId | (optional) A unique origination identifier. |\n\nNote that these are common properties but that the \u0060stirShaken\u0060 object is free form and can contain other key-value pairs.\n\nMore information: [Understanding STIR/SHAKEN](https://www.bandwidth.com/regulations/stir-shaken).\u0022"
       },
       "InitiateCallbackSipHeaders": {
         "type": "object",

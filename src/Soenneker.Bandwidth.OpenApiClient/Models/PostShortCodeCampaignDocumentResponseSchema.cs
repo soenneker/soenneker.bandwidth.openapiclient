@@ -25,10 +25,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The errors array will always be empty for successful responses.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PostShortCodeCampaignDocumentResponseSchemaErrorsItem>? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PostShortCodeCampaignDocumentResponseSchemaErrorsItemProperty>? Errors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PostShortCodeCampaignDocumentResponseSchemaErrorsItem> Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PostShortCodeCampaignDocumentResponseSchemaErrorsItemProperty> Errors { get; set; }
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -64,7 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PostShortCodeCampaignDocumentSchema>(global::Soenneker.Bandwidth.OpenApiClient.Models.PostShortCodeCampaignDocumentSchema.CreateFromDiscriminatorValue); } },
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PostShortCodeCampaignDocumentResponseSchemaErrorsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.PostShortCodeCampaignDocumentResponseSchemaErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PostShortCodeCampaignDocumentResponseSchemaErrorsItemProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.PostShortCodeCampaignDocumentResponseSchemaErrorsItemProperty.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentLinkSchemaItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentLinkSchemaItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -76,7 +76,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PostShortCodeCampaignDocumentSchema>("data", Data);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PostShortCodeCampaignDocumentResponseSchemaErrorsItem>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PostShortCodeCampaignDocumentResponseSchemaErrorsItemProperty>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentLinkSchemaItem>("links", Links);
             writer.WriteAdditionalData(AdditionalData);
         }

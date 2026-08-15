@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchemaData? DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchemaDataProperty? DataEscaped { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchemaData DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchemaDataProperty DataEscaped { get; set; }
 #endif
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -34,10 +34,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchemaLinksItem>? Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchemaLinksItemProperty>? Links { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchemaLinksItem> Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchemaLinksItemProperty> Links { get; set; }
 #endif
         /// <summary>The primary error message.</summary>
         public override string Message { get => base.Message; }
@@ -66,9 +66,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchemaData>(global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchemaData.CreateFromDiscriminatorValue); } },
+                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchemaDataProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchemaDataProperty.CreateFromDiscriminatorValue); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignResponseError>(global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignResponseError.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchemaLinksItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchemaLinksItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchemaLinksItemProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchemaLinksItemProperty.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -78,9 +78,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchemaData>("data", DataEscaped);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchemaDataProperty>("data", DataEscaped);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaignResponseError>("errors", Errors);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchemaLinksItem>("links", Links);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchemaLinksItemProperty>("links", Links);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
