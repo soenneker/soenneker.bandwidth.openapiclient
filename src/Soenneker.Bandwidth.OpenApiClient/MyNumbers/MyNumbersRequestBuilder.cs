@@ -3,7 +3,6 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts;
-using Soenneker.Bandwidth.OpenApiClient.MyNumbers.ExportToCsv;
 using Soenneker.Bandwidth.OpenApiClient.MyNumbers.Tns;
 using System.Collections.Generic;
 using System.IO;
@@ -21,11 +20,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.MyNumbers
         public global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.AccountsRequestBuilder Accounts
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.AccountsRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The exportToCsv property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.ExportToCsv.ExportToCsvRequestBuilder ExportToCsv
-        {
-            get => new global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.ExportToCsv.ExportToCsvRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The tns property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Tns.TnsRequestBuilder Tns
