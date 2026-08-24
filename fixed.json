@@ -29279,6 +29279,10 @@
       "AddressJson": {
         "type": "object",
         "properties": {
+          "addressLine1": {
+            "type": "string",
+            "description": "AddressLine1 is the primary street address line."
+          },
           "addressLine2": {
             "type": "string",
             "description": "AddressLine2 is used to specify Unit, Suite, Floor, etc. in the Service Address. AddressLine2 is optional when not needed to fully specify the ServiceAddress."
@@ -29933,7 +29937,7 @@
           }
         }
       },
-      "LocationResponseConflictJson": {
+      "GeoValidationErrorResponseJson": {
         "type": "object",
         "properties": {
           "errorCode": {
@@ -30215,6 +30219,10 @@
       "Address": {
         "type": "object",
         "properties": {
+          "AddressLine1": {
+            "type": "string",
+            "description": "AddressLine1 is the primary street address line."
+          },
           "HousePrefix": {
             "type": "string",
             "description": "The HousePrefix is the non-numeric address number prefix of the ServiceAddress. This element is optional when not needed to fully specify the ServiceAddress."
@@ -30494,6 +30502,9 @@
         "properties": {
           "ResponseStatus": {
             "$ref": "#/components/schemas/ResponseStatus"
+          },
+          "AddressErrorDescription": {
+            "$ref": "#/components/schemas/AddressErrorDescription"
           }
         }
       },
@@ -31063,6 +31074,86 @@
           }
         }
       },
+      "BulkPortinRequestJsonBulkPortin": {
+        "type": "object",
+        "properties": {
+          "customerOrderId": {
+            "type": "string",
+            "description": "Optional customer-defined reference ID for this order. Not unique \u2014 Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned \u0060orderId\u0060."
+          },
+          "requestedFocDate": {
+            "type": "string",
+            "description": "If present this will specify the date and time that the port-in is requested to happen. The actual time and date is subject to negotiation with the losing carriers.",
+            "format": "date",
+            "example": "2013-05-10Z"
+          },
+          "alternateSpid": {
+            "type": "string",
+            "description": "Unique customer AltSPID to be applied to the port-in requests. Can be changed only for DRAFT bulk port-in."
+          },
+          "billingTelephoneNumber": {
+            "type": "string",
+            "description": "Account or Billing telephone number for order. This will be unusual for bulk port-in requests that are expected to decompose into port-in requests from multiple carriers, because the value will be different for each losing carrier."
+          },
+          "subscriber": {
+            "$ref": "#/components/schemas/SubscriberJson"
+          },
+          "loaAuthorizingPerson": {
+            "type": "string",
+            "description": "First and last name of person who authorized LOA."
+          },
+          "accountNumber": {
+            "type": "string",
+            "description": "Account number associated with the account on the losing carrier, often required for wireless ports, or enterprise ports. This will be unusual for bulk port-in requests that are expected to decompose into port-in requests from multiple carriers."
+          },
+          "pinNumber": {
+            "type": "string",
+            "description": "PIN Number, often required for wireless ports."
+          },
+          "subAccountId": {
+            "type": "integer",
+            "description": "This is the Site / Sub-Account ID made visible in the /accounts/{accountId}/sites API call.",
+            "format": "int32"
+          },
+          "locationId": {
+            "type": "integer",
+            "description": "This is the SIP Peer / Location ID made visible in the /accounts/{accountId}/sites/{siteId}/sipPeers API call.",
+            "format": "int32"
+          },
+          "tnAttributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TnAttribute"
+            },
+            "description": "Attributes to be assigned to the telephone number. Optional parameter. Possible values - \u0060Protected\u0060."
+          },
+          "targetRespOrgId": {
+            "maxLength": 5,
+            "minLength": 5,
+            "type": "string",
+            "description": "For toll free port-ins, this value specifies the RespOrg ID that the toll free numbers should be ported to.  When porting to Bandwidth, the value is generally JYT01.  When specified in a bulk port-in, the value will be applied to all subtending toll free port-in orders, unless overridden in the subtending order.  The value should be 5 characters in length, consisting of digits a-z, A-Z, and 0-9."
+          },
+          "retryValidation": {
+            "type": "boolean",
+            "description": "Only allowed for PUT and PATCH requests.\n\n When telephone numbers are included in a bulk port-in order, Bandwidth accesses a vendor to determine if the numbers are portable, and who currently serves the numbers. In the event that we do not receive a response from our vendor after a number of retries, we give up and place the order in the INVALID_DRAFT_TNS state. This scenario can occur if our vendor is performing maintenance. Including RetryValidation with a value of true will cause the order to return to VALIDATE_DRAFT_TNS and we will repeat our attempts to retrieve the portability data from the vendor. This element is included in the synchronous response to the PUT or PATCH, when included in the request, but is not included in subsequent GET requests for the order."
+          },
+          "voiceConfigurationPackageId": {
+            "type": "string",
+            "description": "VoiceConfigurationPackageId is the identifier of the voice configuration package containing the voice origination settings. When specified in a bulk port-in, the value will be applied to all subtending port-in orders, unless overriden in the subtending order.",
+            "format": "uuid"
+          },
+          "losingResellerName": {
+            "maxLength": 60,
+            "pattern": "[A-z0-9 -]\u002B",
+            "type": "string",
+            "description": "Name of the company serving the telephone numbers prior to the port. Some Canada ports may be rejected unless this information is supplied.",
+            "xml": {
+              "name": "LosingResellerName"
+            },
+            "example": "ResellerName"
+          }
+        }
+      },
       "BulkPortinRequestBulkPortin": {
         "type": "object",
         "properties": {
@@ -31146,11 +31237,6 @@
       "BrtcErrorResponseData": {
         "type": "object"
       },
-      "BillingModelGenericErrorData": {
-        "type": "object",
-        "nullable": true,
-        "example": null
-      },
       "AccountRelationship": {
         "enum": [
           "BASIC_ACCOUNT",
@@ -31197,6 +31283,11 @@
         "type": "string",
         "additionalProperties": false
       },
+      "BillingModelGenericErrorData": {
+        "type": "object",
+        "nullable": true,
+        "example": null
+      },
       "AuthServiceErrorMeta": {
         "type": "object",
         "properties": {
@@ -31209,18 +31300,6 @@
         "additionalProperties": false,
         "description": "Additional metadata about the error"
       },
-      "AuthServiceErrorSource": {
-        "type": "object",
-        "properties": {
-          "field": {
-            "type": "string",
-            "description": "The field in the request that caused the error",
-            "example": "lastName"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Information about the source of the error"
-      },
       "BillingCycle": {
         "enum": [
           1,
@@ -31232,6 +31311,18 @@
         "additionalProperties": false,
         "description": "BillingCycle is the day of the month that the account\u0027s billing cycle closes. Valid values are 1, 5, 15, and 20.",
         "format": "int32"
+      },
+      "AuthServiceErrorSource": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "The field in the request that caused the error",
+            "example": "lastName"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Information about the source of the error"
       },
       "AuthServiceErrorResponseData": {
         "type": "object"
@@ -31277,23 +31368,6 @@
           "sample": 1000
         }
       },
-      "EventTypeBwContext": {
-        "type": "object",
-        "properties": {
-          "accountId": {
-            "type": "string",
-            "description": "The Bandwidth account ID associated with the event",
-            "example": "123456"
-          },
-          "requestId": {
-            "type": "string",
-            "description": "A traceable ID for this event",
-            "format": "uuid",
-            "example": "d3243458-ad6e-4de1-848f-be591b63f360"
-          }
-        },
-        "description": "Additional context for the event specific to Bandwidth"
-      },
       "PortCarrierType": {
         "enum": [
           "WIRELESS",
@@ -31316,6 +31390,23 @@
             }
           ]
         }
+      },
+      "EventTypeBwContext": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "string",
+            "description": "The Bandwidth account ID associated with the event",
+            "example": "123456"
+          },
+          "requestId": {
+            "type": "string",
+            "description": "A traceable ID for this event",
+            "format": "uuid",
+            "example": "d3243458-ad6e-4de1-848f-be591b63f360"
+          }
+        },
+        "description": "Additional context for the event specific to Bandwidth"
       },
       "EventTypeCustomerContext": {
         "type": "object",
@@ -86692,6 +86783,9 @@
           },
           {
             "$ref": "#/components/schemas/GenericJsonResponse"
+          },
+          {
+            "$ref": "#/components/schemas/GeoValidationErrorResponseJson"
           }
         ],
         "properties": {
@@ -86719,6 +86813,13 @@
               "$ref": "#/components/schemas/Link"
             },
             "description": "list of useful links"
+          },
+          "addressInconsistencies": {
+            "type": "string",
+            "description": "Indicates discrepancies found in the provided address details"
+          },
+          "recommendedAddress": {
+            "$ref": "#/components/schemas/AddressJson"
           }
         }
       },
@@ -86730,6 +86831,9 @@
           },
           {
             "$ref": "#/components/schemas/GenericJsonResponse"
+          },
+          {
+            "$ref": "#/components/schemas/GeoValidationErrorResponseJson"
           }
         ],
         "properties": {
@@ -86757,6 +86861,13 @@
               "$ref": "#/components/schemas/Link"
             },
             "description": "list of useful links"
+          },
+          "addressInconsistencies": {
+            "type": "string",
+            "description": "Indicates discrepancies found in the provided address details"
+          },
+          "recommendedAddress": {
+            "$ref": "#/components/schemas/AddressJson"
           }
         }
       },
@@ -88485,6 +88596,7 @@
       },
       "QueryOperatorEnum": {
         "enum": [
+          "CONTAINS",
           "EQ",
           "STARTS_WITH"
         ],
@@ -88496,6 +88608,10 @@
           "name": "QueryOperatorEnum",
           "modelAsString": false,
           "values": [
+            {
+              "value": "CONTAINS",
+              "name": "Contains"
+            },
             {
               "value": "EQ",
               "name": "Eq"
@@ -95752,86 +95868,6 @@
             "type": "string",
             "description": "The unique Bandwidth-generated identifier of a phone call provided by Bandwidth in the SIP invite for that call.\nTypically this value is provided in an X header in the SIP invite such as X-Customer-Ixn.",
             "example": "MTU2MDI4ODE1XzgzMzQ4OTg4QDE5Mi4xNjguMTMyLjQx"
-          }
-        }
-      },
-      "BulkPortinRequestJsonBulkPortin": {
-        "type": "object",
-        "properties": {
-          "customerOrderId": {
-            "type": "string",
-            "description": "Optional customer-defined reference ID for this order. Not unique \u2014 Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned \u0060orderId\u0060."
-          },
-          "requestedFocDate": {
-            "type": "string",
-            "description": "If present this will specify the date and time that the port-in is requested to happen. The actual time and date is subject to negotiation with the losing carriers.",
-            "format": "date",
-            "example": "2013-05-10Z"
-          },
-          "alternateSpid": {
-            "type": "string",
-            "description": "Unique customer AltSPID to be applied to the port-in requests. Can be changed only for DRAFT bulk port-in."
-          },
-          "billingTelephoneNumber": {
-            "type": "string",
-            "description": "Account or Billing telephone number for order. This will be unusual for bulk port-in requests that are expected to decompose into port-in requests from multiple carriers, because the value will be different for each losing carrier."
-          },
-          "subscriber": {
-            "$ref": "#/components/schemas/SubscriberJson"
-          },
-          "loaAuthorizingPerson": {
-            "type": "string",
-            "description": "First and last name of person who authorized LOA."
-          },
-          "accountNumber": {
-            "type": "string",
-            "description": "Account number associated with the account on the losing carrier, often required for wireless ports, or enterprise ports. This will be unusual for bulk port-in requests that are expected to decompose into port-in requests from multiple carriers."
-          },
-          "pinNumber": {
-            "type": "string",
-            "description": "PIN Number, often required for wireless ports."
-          },
-          "subAccountId": {
-            "type": "integer",
-            "description": "This is the Site / Sub-Account ID made visible in the /accounts/{accountId}/sites API call.",
-            "format": "int32"
-          },
-          "locationId": {
-            "type": "integer",
-            "description": "This is the SIP Peer / Location ID made visible in the /accounts/{accountId}/sites/{siteId}/sipPeers API call.",
-            "format": "int32"
-          },
-          "tnAttributes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TnAttribute"
-            },
-            "description": "Attributes to be assigned to the telephone number. Optional parameter. Possible values - \u0060Protected\u0060."
-          },
-          "targetRespOrgId": {
-            "maxLength": 5,
-            "minLength": 5,
-            "type": "string",
-            "description": "For toll free port-ins, this value specifies the RespOrg ID that the toll free numbers should be ported to.  When porting to Bandwidth, the value is generally JYT01.  When specified in a bulk port-in, the value will be applied to all subtending toll free port-in orders, unless overridden in the subtending order.  The value should be 5 characters in length, consisting of digits a-z, A-Z, and 0-9."
-          },
-          "retryValidation": {
-            "type": "boolean",
-            "description": "Only allowed for PUT and PATCH requests.\n\n When telephone numbers are included in a bulk port-in order, Bandwidth accesses a vendor to determine if the numbers are portable, and who currently serves the numbers. In the event that we do not receive a response from our vendor after a number of retries, we give up and place the order in the INVALID_DRAFT_TNS state. This scenario can occur if our vendor is performing maintenance. Including RetryValidation with a value of true will cause the order to return to VALIDATE_DRAFT_TNS and we will repeat our attempts to retrieve the portability data from the vendor. This element is included in the synchronous response to the PUT or PATCH, when included in the request, but is not included in subsequent GET requests for the order."
-          },
-          "voiceConfigurationPackageId": {
-            "type": "string",
-            "description": "VoiceConfigurationPackageId is the identifier of the voice configuration package containing the voice origination settings. When specified in a bulk port-in, the value will be applied to all subtending port-in orders, unless overriden in the subtending order.",
-            "format": "uuid"
-          },
-          "losingResellerName": {
-            "maxLength": 60,
-            "pattern": "[A-z0-9 -]\u002B",
-            "type": "string",
-            "description": "Name of the company serving the telephone numbers prior to the port. Some Canada ports may be rejected unless this information is supplied.",
-            "xml": {
-              "name": "LosingResellerName"
-            },
-            "example": "ResellerName"
           }
         }
       },
@@ -114578,7 +114614,7 @@
           },
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/LocationResponseConflictJson"
+              "$ref": "#/components/schemas/GeoValidationErrorResponseJson"
             },
             "examples": {
               "example": {
@@ -114691,6 +114727,9 @@
             "examples": {
               "siteExample": {
                 "$ref": "#/components/examples/subAccountBadRequestResponseXmlExample"
+              },
+              "geoValidationErrorExample": {
+                "$ref": "#/components/examples/subAccountBadRequestGeoValidationXmlExample"
               }
             }
           },
@@ -114704,6 +114743,9 @@
               },
               "genericJsonErrorExample": {
                 "$ref": "#/components/examples/genericJsonErrorForSubAccountExamplePost"
+              },
+              "geoValidationErrorExample": {
+                "$ref": "#/components/examples/subAccountBadRequestGeoValidationJsonExample"
               }
             }
           }
@@ -114719,6 +114761,9 @@
             "examples": {
               "siteExample": {
                 "$ref": "#/components/examples/subAccountBadRequestResponseXmlExample"
+              },
+              "geoValidationErrorExample": {
+                "$ref": "#/components/examples/subAccountBadRequestGeoValidationXmlExample"
               }
             }
           },
@@ -114732,6 +114777,9 @@
               },
               "genericJsonErrorExample": {
                 "$ref": "#/components/examples/genericJsonErrorForSubAccountExamplePut"
+              },
+              "geoValidationErrorExample": {
+                "$ref": "#/components/examples/subAccountBadRequestGeoValidationJsonExample"
               }
             }
           }
@@ -135965,7 +136013,7 @@
       "nameFilter": {
         "name": "nameFilter",
         "in": "query",
-        "description": "Voice Configuration Package Name.",
+        "description": "Filter Voice Configuration Packages by name. Performs substring matching \u2014 returns any package whose name contains the provided value, regardless of position.",
         "schema": {
           "type": "string"
         },
@@ -136668,6 +136716,29 @@
         "value": {
           "errorCode": 12561,
           "description": "name is required"
+        }
+      },
+      "subAccountBadRequestGeoValidationXmlExample": {
+        "description": "Response body when the submitted address fails geo-validation",
+        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CSiteResponse\u003E\n   \u003CResponseStatus\u003E\n      \u003CErrorCode\u003E13231\u003C/ErrorCode\u003E\n      \u003CDescription\u003EAddress failed geo-validation.\u003C/Description\u003E\n   \u003C/ResponseStatus\u003E\n   \u003CAddressErrorDescription\u003E\n      \u003CAddressInconsistencies\u003EAddress provided is not geo-valid.\u003C/AddressInconsistencies\u003E\n      \u003CRecommendedAddress\u003E\n         \u003CAddressLine1\u003E1600 PENNSYLVANIA AVE NW\u003C/AddressLine1\u003E\n         \u003CHouseNumber\u003E1600\u003C/HouseNumber\u003E\n         \u003CStreetName\u003EPENNSYLVANIA\u003C/StreetName\u003E\n         \u003CStreetSuffix\u003EAVE\u003C/StreetSuffix\u003E\n         \u003CPostDirectional\u003ENW\u003C/PostDirectional\u003E\n         \u003CCity\u003EWASHINGTON\u003C/City\u003E\n         \u003CStateCode\u003EDC\u003C/StateCode\u003E\n         \u003CZip\u003E20500\u003C/Zip\u003E\n         \u003CCountry\u003EUS\u003C/Country\u003E\n      \u003C/RecommendedAddress\u003E\n   \u003C/AddressErrorDescription\u003E\n\u003C/SiteResponse\u003E"
+      },
+      "subAccountBadRequestGeoValidationJsonExample": {
+        "description": "Response body when the submitted address fails geo-validation",
+        "value": {
+          "errorCode": 13231,
+          "description": "Address failed geo-validation.",
+          "addressInconsistencies": "Address provided is not geo-valid.",
+          "recommendedAddress": {
+            "addressLine1": "1600 PENNSYLVANIA AVE NW",
+            "houseNumber": "1600",
+            "streetName": "PENNSYLVANIA",
+            "streetSuffix": "AVE",
+            "postDirectional": "NW",
+            "city": "WASHINGTON",
+            "stateCode": "DC",
+            "zip": "20500",
+            "country": "US"
+          }
         }
       },
       "genericJsonErrorForSubAccountExamplePut": {
@@ -154287,7 +154358,7 @@
                 }
               },
               "phoneNumberWithValidVoiceConfigAndName": {
-                "summary": "Search by phone number, validVoiceConfig, and name",
+                "summary": "Search by phone number, validVoiceConfig, and name (prefix)",
                 "value": {
                   "queryCriteria": [
                     {
@@ -154306,6 +154377,30 @@
                       "parameter": "name",
                       "operator": "STARTS_WITH",
                       "values": "Lorem Ipsum"
+                    }
+                  ]
+                }
+              },
+              "phoneNumberWithValidVoiceConfigAndNameContains": {
+                "summary": "Search by phone number, validVoiceConfig, and name (substring)",
+                "value": {
+                  "queryCriteria": [
+                    {
+                      "parameter": "phoneNumber",
+                      "operator": "EQ",
+                      "values": [
+                        "\u002B441512100308"
+                      ]
+                    },
+                    {
+                      "parameter": "validVoiceConfig",
+                      "operator": "EQ",
+                      "values": true
+                    },
+                    {
+                      "parameter": "name",
+                      "operator": "CONTAINS",
+                      "values": "Ipsum"
                     }
                   ]
                 }
@@ -154330,7 +154425,7 @@
                 }
               },
               "phoneNumberWithValidVoiceConfigurationPackageAndName": {
-                "summary": "Search by phone number, validVoiceConfigurationPackage, and name",
+                "summary": "Search by phone number, validVoiceConfigurationPackage, and name (prefix)",
                 "value": {
                   "queryCriteria": [
                     {
@@ -154353,6 +154448,30 @@
                   ]
                 }
               },
+              "phoneNumberWithValidVoiceConfigurationPackageAndNameContains": {
+                "summary": "Search by phone number, validVoiceConfigurationPackage, and name (substring)",
+                "value": {
+                  "queryCriteria": [
+                    {
+                      "parameter": "phoneNumber",
+                      "operator": "EQ",
+                      "values": [
+                        "\u002B441512100308"
+                      ]
+                    },
+                    {
+                      "parameter": "validVoiceConfigurationPackage",
+                      "operator": "EQ",
+                      "values": true
+                    },
+                    {
+                      "parameter": "name",
+                      "operator": "CONTAINS",
+                      "values": "Ipsum"
+                    }
+                  ]
+                }
+              },
               "voiceIntegrationIdOnly": {
                 "summary": "Search by voiceIntegrationId only",
                 "value": {
@@ -154368,7 +154487,7 @@
                 }
               },
               "voiceIntegrationIdWithName": {
-                "summary": "Search by voiceIntegrationId and name",
+                "summary": "Search by voiceIntegrationId and name (prefix)",
                 "value": {
                   "queryCriteria": [
                     {
@@ -154386,14 +154505,45 @@
                   ]
                 }
               },
+              "voiceIntegrationIdWithNameContains": {
+                "summary": "Search by voiceIntegrationId and name (substring)",
+                "value": {
+                  "queryCriteria": [
+                    {
+                      "parameter": "voiceIntegrationId",
+                      "operator": "EQ",
+                      "values": [
+                        "281e5e81-5a23-4821-aef2-cfb558ca1468"
+                      ]
+                    },
+                    {
+                      "parameter": "name",
+                      "operator": "CONTAINS",
+                      "values": "Ipsum"
+                    }
+                  ]
+                }
+              },
               "nameOnly": {
-                "summary": "Search by name only",
+                "summary": "Search by name only (prefix)",
                 "value": {
                   "queryCriteria": [
                     {
                       "parameter": "name",
                       "operator": "STARTS_WITH",
                       "values": "Lorem Ipsum"
+                    }
+                  ]
+                }
+              },
+              "nameOnlyContains": {
+                "summary": "Search by name only (substring)",
+                "value": {
+                  "queryCriteria": [
+                    {
+                      "parameter": "name",
+                      "operator": "CONTAINS",
+                      "values": "Ipsum"
                     }
                   ]
                 }

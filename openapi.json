@@ -30857,6 +30857,9 @@
       "addressJson": {
         "type": "object",
         "properties": {
+          "addressLine1": {
+            "$ref": "#/components/schemas/addressLine1"
+          },
           "addressLine2": {
             "$ref": "#/components/schemas/addressLine2"
           },
@@ -31509,7 +31512,7 @@
           }
         }
       },
-      "locationResponseConflictJson": {
+      "geoValidationErrorResponseJson": {
         "type": "object",
         "properties": {
           "errorCode": {
@@ -31777,6 +31780,9 @@
       "address": {
         "type": "object",
         "properties": {
+          "AddressLine1": {
+            "$ref": "#/components/schemas/addressLine1"
+          },
           "HousePrefix": {
             "$ref": "#/components/schemas/housePrefix"
           },
@@ -32006,6 +32012,9 @@
         "properties": {
           "ResponseStatus": {
             "$ref": "#/components/schemas/responseStatus"
+          },
+          "AddressErrorDescription": {
+            "$ref": "#/components/schemas/addressErrorDescription"
           }
         }
       },
@@ -32772,6 +32781,11 @@
         "type": "string",
         "description": "SPID is the Service Provider Identifier for the account. This value is used for E911 services.",
         "example": "9999"
+      },
+      "addressLine1": {
+        "type": "string",
+        "description": "AddressLine1 is the primary street address line.",
+        "example": "1600 PENNSYLVANIA AVE NW"
       },
       "addressLine2": {
         "type": "string",
@@ -40955,7 +40969,7 @@
             "$ref": "#/components/schemas/countryCodeA3"
           },
           "addressLine1": {
-            "$ref": "#/components/schemas/addressLine1"
+            "$ref": "#/components/schemas/end_user_management_addressLine1"
           },
           "addressLine2": {
             "$ref": "#/components/schemas/end_user_management_addressLine2"
@@ -40993,7 +41007,7 @@
         "description": "Country code of the address in ISO 3166-1 alpha-3 format.",
         "example": "USA"
       },
-      "addressLine1": {
+      "end_user_management_addressLine1": {
         "type": "string",
         "description": "The first line of the address.",
         "example": "123 Main St"
@@ -41518,7 +41532,7 @@
             "$ref": "#/components/schemas/countryCodeA3"
           },
           "addressLine1": {
-            "$ref": "#/components/schemas/addressLine1"
+            "$ref": "#/components/schemas/end_user_management_addressLine1"
           },
           "addressLine2": {
             "$ref": "#/components/schemas/end_user_management_addressLine2"
@@ -43151,7 +43165,7 @@
             "$ref": "#/components/schemas/postalCode"
           },
           "addressLine1": {
-            "$ref": "#/components/schemas/addressLine1"
+            "$ref": "#/components/schemas/end_user_management_addressLine1"
           },
           "addressLine2": {
             "$ref": "#/components/schemas/end_user_management_addressLine2"
@@ -83348,6 +83362,7 @@
       },
       "queryOperatorEnum": {
         "enum": [
+          "CONTAINS",
           "EQ",
           "STARTS_WITH"
         ],
@@ -89985,7 +90000,7 @@
           },
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/locationResponseConflictJson"
+              "$ref": "#/components/schemas/geoValidationErrorResponseJson"
             },
             "examples": {
               "example": {
@@ -90098,6 +90113,9 @@
             "examples": {
               "siteExample": {
                 "$ref": "#/components/examples/subAccountBadRequestResponseXmlExample"
+              },
+              "geoValidationErrorExample": {
+                "$ref": "#/components/examples/subAccountBadRequestGeoValidationXmlExample"
               }
             }
           },
@@ -90109,6 +90127,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/genericJsonResponse"
+                },
+                {
+                  "$ref": "#/components/schemas/geoValidationErrorResponseJson"
                 }
               ]
             },
@@ -90118,6 +90139,9 @@
               },
               "genericJsonErrorExample": {
                 "$ref": "#/components/examples/genericJsonErrorForSubAccountExamplePost"
+              },
+              "geoValidationErrorExample": {
+                "$ref": "#/components/examples/subAccountBadRequestGeoValidationJsonExample"
               }
             }
           }
@@ -90133,6 +90157,9 @@
             "examples": {
               "siteExample": {
                 "$ref": "#/components/examples/subAccountBadRequestResponseXmlExample"
+              },
+              "geoValidationErrorExample": {
+                "$ref": "#/components/examples/subAccountBadRequestGeoValidationXmlExample"
               }
             }
           },
@@ -90144,6 +90171,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/genericJsonResponse"
+                },
+                {
+                  "$ref": "#/components/schemas/geoValidationErrorResponseJson"
                 }
               ]
             },
@@ -90153,6 +90183,9 @@
               },
               "genericJsonErrorExample": {
                 "$ref": "#/components/examples/genericJsonErrorForSubAccountExamplePut"
+              },
+              "geoValidationErrorExample": {
+                "$ref": "#/components/examples/subAccountBadRequestGeoValidationJsonExample"
               }
             }
           }
@@ -112766,7 +112799,7 @@
       "nameFilter": {
         "name": "nameFilter",
         "in": "query",
-        "description": "Voice Configuration Package Name.",
+        "description": "Filter Voice Configuration Packages by name. Performs substring matching — returns any package whose name contains the provided value, regardless of position.",
         "schema": {
           "type": "string"
         },
@@ -113469,6 +113502,29 @@
         "value": {
           "errorCode": 12561,
           "description": "name is required"
+        }
+      },
+      "subAccountBadRequestGeoValidationXmlExample": {
+        "description": "Response body when the submitted address fails geo-validation",
+        "value": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<SiteResponse>\n   <ResponseStatus>\n      <ErrorCode>13231</ErrorCode>\n      <Description>Address failed geo-validation.</Description>\n   </ResponseStatus>\n   <AddressErrorDescription>\n      <AddressInconsistencies>Address provided is not geo-valid.</AddressInconsistencies>\n      <RecommendedAddress>\n         <AddressLine1>1600 PENNSYLVANIA AVE NW</AddressLine1>\n         <HouseNumber>1600</HouseNumber>\n         <StreetName>PENNSYLVANIA</StreetName>\n         <StreetSuffix>AVE</StreetSuffix>\n         <PostDirectional>NW</PostDirectional>\n         <City>WASHINGTON</City>\n         <StateCode>DC</StateCode>\n         <Zip>20500</Zip>\n         <Country>US</Country>\n      </RecommendedAddress>\n   </AddressErrorDescription>\n</SiteResponse>"
+      },
+      "subAccountBadRequestGeoValidationJsonExample": {
+        "description": "Response body when the submitted address fails geo-validation",
+        "value": {
+          "errorCode": 13231,
+          "description": "Address failed geo-validation.",
+          "addressInconsistencies": "Address provided is not geo-valid.",
+          "recommendedAddress": {
+            "addressLine1": "1600 PENNSYLVANIA AVE NW",
+            "houseNumber": "1600",
+            "streetName": "PENNSYLVANIA",
+            "streetSuffix": "AVE",
+            "postDirectional": "NW",
+            "city": "WASHINGTON",
+            "stateCode": "DC",
+            "zip": "20500",
+            "country": "US"
+          }
         }
       },
       "genericJsonErrorForSubAccountExamplePut": {
@@ -131560,7 +131616,7 @@
                 }
               },
               "phoneNumberWithValidVoiceConfigAndName": {
-                "summary": "Search by phone number, validVoiceConfig, and name",
+                "summary": "Search by phone number, validVoiceConfig, and name (prefix)",
                 "value": {
                   "queryCriteria": [
                     {
@@ -131579,6 +131635,30 @@
                       "parameter": "name",
                       "operator": "STARTS_WITH",
                       "values": "Lorem Ipsum"
+                    }
+                  ]
+                }
+              },
+              "phoneNumberWithValidVoiceConfigAndNameContains": {
+                "summary": "Search by phone number, validVoiceConfig, and name (substring)",
+                "value": {
+                  "queryCriteria": [
+                    {
+                      "parameter": "phoneNumber",
+                      "operator": "EQ",
+                      "values": [
+                        "+441512100308"
+                      ]
+                    },
+                    {
+                      "parameter": "validVoiceConfig",
+                      "operator": "EQ",
+                      "values": true
+                    },
+                    {
+                      "parameter": "name",
+                      "operator": "CONTAINS",
+                      "values": "Ipsum"
                     }
                   ]
                 }
@@ -131603,7 +131683,7 @@
                 }
               },
               "phoneNumberWithValidVoiceConfigurationPackageAndName": {
-                "summary": "Search by phone number, validVoiceConfigurationPackage, and name",
+                "summary": "Search by phone number, validVoiceConfigurationPackage, and name (prefix)",
                 "value": {
                   "queryCriteria": [
                     {
@@ -131626,6 +131706,30 @@
                   ]
                 }
               },
+              "phoneNumberWithValidVoiceConfigurationPackageAndNameContains": {
+                "summary": "Search by phone number, validVoiceConfigurationPackage, and name (substring)",
+                "value": {
+                  "queryCriteria": [
+                    {
+                      "parameter": "phoneNumber",
+                      "operator": "EQ",
+                      "values": [
+                        "+441512100308"
+                      ]
+                    },
+                    {
+                      "parameter": "validVoiceConfigurationPackage",
+                      "operator": "EQ",
+                      "values": true
+                    },
+                    {
+                      "parameter": "name",
+                      "operator": "CONTAINS",
+                      "values": "Ipsum"
+                    }
+                  ]
+                }
+              },
               "voiceIntegrationIdOnly": {
                 "summary": "Search by voiceIntegrationId only",
                 "value": {
@@ -131641,7 +131745,7 @@
                 }
               },
               "voiceIntegrationIdWithName": {
-                "summary": "Search by voiceIntegrationId and name",
+                "summary": "Search by voiceIntegrationId and name (prefix)",
                 "value": {
                   "queryCriteria": [
                     {
@@ -131659,14 +131763,45 @@
                   ]
                 }
               },
+              "voiceIntegrationIdWithNameContains": {
+                "summary": "Search by voiceIntegrationId and name (substring)",
+                "value": {
+                  "queryCriteria": [
+                    {
+                      "parameter": "voiceIntegrationId",
+                      "operator": "EQ",
+                      "values": [
+                        "281e5e81-5a23-4821-aef2-cfb558ca1468"
+                      ]
+                    },
+                    {
+                      "parameter": "name",
+                      "operator": "CONTAINS",
+                      "values": "Ipsum"
+                    }
+                  ]
+                }
+              },
               "nameOnly": {
-                "summary": "Search by name only",
+                "summary": "Search by name only (prefix)",
                 "value": {
                   "queryCriteria": [
                     {
                       "parameter": "name",
                       "operator": "STARTS_WITH",
                       "values": "Lorem Ipsum"
+                    }
+                  ]
+                }
+              },
+              "nameOnlyContains": {
+                "summary": "Search by name only (substring)",
+                "value": {
+                  "queryCriteria": [
+                    {
+                      "parameter": "name",
+                      "operator": "CONTAINS",
+                      "values": "Ipsum"
                     }
                   ]
                 }

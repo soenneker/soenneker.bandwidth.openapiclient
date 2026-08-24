@@ -470,6 +470,7 @@ components:
       type: string
       description: The comparison operator to use.
       enum:
+        - CONTAINS
         - EQ
         - STARTS_WITH
       example: EQ
@@ -493,8 +494,9 @@ components:
             string (e.g. for `name` or `trunkId`), or - an array of strings
             (e.g. for `phoneNumber` or `voiceIntegrationId`).
 
-            Use the `EQ` operator for exact matches (booleans and exact values)
-            and `STARTS_WITH` for prefix matching on string values.
+            Use the `EQ` operator for exact matches (booleans and exact values),
+            `STARTS_WITH` for prefix matching on string values, and `CONTAINS`
+            for substring matching on the `name` parameter.
     queryCriteriaValues:
       oneOf:
         - type: boolean
@@ -1447,7 +1449,7 @@ components:
                     operator: EQ
                     values: true
             phoneNumberWithValidVoiceConfigAndName:
-              summary: Search by phone number, validVoiceConfig, and name
+              summary: Search by phone number, validVoiceConfig, and name (prefix)
               value:
                 queryCriteria:
                   - parameter: phoneNumber
@@ -1460,6 +1462,20 @@ components:
                   - parameter: name
                     operator: STARTS_WITH
                     values: Lorem Ipsum
+            phoneNumberWithValidVoiceConfigAndNameContains:
+              summary: Search by phone number, validVoiceConfig, and name (substring)
+              value:
+                queryCriteria:
+                  - parameter: phoneNumber
+                    operator: EQ
+                    values:
+                      - '+441512100308'
+                  - parameter: validVoiceConfig
+                    operator: EQ
+                    values: true
+                  - parameter: name
+                    operator: CONTAINS
+                    values: Ipsum
             phoneNumberWithValidVoiceConfigurationPackage:
               summary: Search by phone number and validVoiceConfigurationPackage
               value:
@@ -1472,7 +1488,9 @@ components:
                     operator: EQ
                     values: true
             phoneNumberWithValidVoiceConfigurationPackageAndName:
-              summary: Search by phone number, validVoiceConfigurationPackage, and name
+              summary: >-
+                Search by phone number, validVoiceConfigurationPackage, and name
+                (prefix)
               value:
                 queryCriteria:
                   - parameter: phoneNumber
@@ -1485,6 +1503,22 @@ components:
                   - parameter: name
                     operator: STARTS_WITH
                     values: Lorem Ipsum
+            phoneNumberWithValidVoiceConfigurationPackageAndNameContains:
+              summary: >-
+                Search by phone number, validVoiceConfigurationPackage, and name
+                (substring)
+              value:
+                queryCriteria:
+                  - parameter: phoneNumber
+                    operator: EQ
+                    values:
+                      - '+441512100308'
+                  - parameter: validVoiceConfigurationPackage
+                    operator: EQ
+                    values: true
+                  - parameter: name
+                    operator: CONTAINS
+                    values: Ipsum
             voiceIntegrationIdOnly:
               summary: Search by voiceIntegrationId only
               value:
@@ -1494,7 +1528,7 @@ components:
                     values:
                       - 281e5e81-5a23-4821-aef2-cfb558ca1468
             voiceIntegrationIdWithName:
-              summary: Search by voiceIntegrationId and name
+              summary: Search by voiceIntegrationId and name (prefix)
               value:
                 queryCriteria:
                   - parameter: voiceIntegrationId
@@ -1504,13 +1538,31 @@ components:
                   - parameter: name
                     operator: STARTS_WITH
                     values: Lorem Ipsum
+            voiceIntegrationIdWithNameContains:
+              summary: Search by voiceIntegrationId and name (substring)
+              value:
+                queryCriteria:
+                  - parameter: voiceIntegrationId
+                    operator: EQ
+                    values:
+                      - 281e5e81-5a23-4821-aef2-cfb558ca1468
+                  - parameter: name
+                    operator: CONTAINS
+                    values: Ipsum
             nameOnly:
-              summary: Search by name only
+              summary: Search by name only (prefix)
               value:
                 queryCriteria:
                   - parameter: name
                     operator: STARTS_WITH
                     values: Lorem Ipsum
+            nameOnlyContains:
+              summary: Search by name only (substring)
+              value:
+                queryCriteria:
+                  - parameter: name
+                    operator: CONTAINS
+                    values: Ipsum
             trunkIdOnly:
               summary: Search by trunkId only
               value:
@@ -2072,7 +2124,10 @@ components:
     nameFilter:
       in: query
       name: nameFilter
-      description: Voice Configuration Package Name.
+      description: >-
+        Filter Voice Configuration Packages by name. Performs substring matching
+        — returns any package whose name contains the provided value, regardless
+        of position.
       example: Voice Configuration Package 1
       required: false
       schema:

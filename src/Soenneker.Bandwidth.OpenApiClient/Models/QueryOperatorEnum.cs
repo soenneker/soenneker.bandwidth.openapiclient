@@ -7,6 +7,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum QueryOperatorEnum
     {
+        [EnumMember(Value = "CONTAINS")]
+        #pragma warning disable CS1591
+        Contains,
+        #pragma warning restore CS1591
         [EnumMember(Value = "EQ")]
         #pragma warning disable CS1591
         Eq,

@@ -1084,7 +1084,7 @@ components:
                   zip: '20500'
                   country: US
           schema:
-            $ref: '#/components/schemas/locationResponseConflictJson'
+            $ref: '#/components/schemas/geoValidationErrorResponseJson'
     locationResponseServiceUnavailable:
       description: Service unavailable
       content:
@@ -1148,16 +1148,23 @@ components:
           examples:
             siteExample:
               $ref: '#/components/examples/subAccountBadRequestResponseXmlExample'
+            geoValidationErrorExample:
+              $ref: >-
+                #/components/examples/subAccountBadRequestGeoValidationXmlExample
         application/json:
           schema:
             anyOf:
               - $ref: '#/components/schemas/errorResponseJson'
               - $ref: '#/components/schemas/genericJsonResponse'
+              - $ref: '#/components/schemas/geoValidationErrorResponseJson'
           examples:
             subAccountExample:
               $ref: '#/components/examples/subAccountBadRequestResponseJsonExample'
             genericJsonErrorExample:
               $ref: '#/components/examples/genericJsonErrorForSubAccountExamplePost'
+            geoValidationErrorExample:
+              $ref: >-
+                #/components/examples/subAccountBadRequestGeoValidationJsonExample
     subAccountBadRequestErrorResponsePut:
       description: Bad Request
       content:
@@ -1167,16 +1174,23 @@ components:
           examples:
             siteExample:
               $ref: '#/components/examples/subAccountBadRequestResponseXmlExample'
+            geoValidationErrorExample:
+              $ref: >-
+                #/components/examples/subAccountBadRequestGeoValidationXmlExample
         application/json:
           schema:
             anyOf:
               - $ref: '#/components/schemas/errorResponseJson'
               - $ref: '#/components/schemas/genericJsonResponse'
+              - $ref: '#/components/schemas/geoValidationErrorResponseJson'
           examples:
             subAccountExample:
               $ref: '#/components/examples/subAccountBadRequestResponseJsonExample'
             genericJsonErrorExample:
               $ref: '#/components/examples/genericJsonErrorForSubAccountExamplePut'
+            geoValidationErrorExample:
+              $ref: >-
+                #/components/examples/subAccountBadRequestGeoValidationJsonExample
     subAccountConflictErrorResponse:
       description: Conflict
       content:
@@ -1790,6 +1804,46 @@ components:
       value:
         errorCode: 12561
         description: name is required
+    subAccountBadRequestGeoValidationXmlExample:
+      description: Response body when the submitted address fails geo-validation
+      value: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <SiteResponse>
+           <ResponseStatus>
+              <ErrorCode>13231</ErrorCode>
+              <Description>Address failed geo-validation.</Description>
+           </ResponseStatus>
+           <AddressErrorDescription>
+              <AddressInconsistencies>Address provided is not geo-valid.</AddressInconsistencies>
+              <RecommendedAddress>
+                 <AddressLine1>1600 PENNSYLVANIA AVE NW</AddressLine1>
+                 <HouseNumber>1600</HouseNumber>
+                 <StreetName>PENNSYLVANIA</StreetName>
+                 <StreetSuffix>AVE</StreetSuffix>
+                 <PostDirectional>NW</PostDirectional>
+                 <City>WASHINGTON</City>
+                 <StateCode>DC</StateCode>
+                 <Zip>20500</Zip>
+                 <Country>US</Country>
+              </RecommendedAddress>
+           </AddressErrorDescription>
+        </SiteResponse>
+    subAccountBadRequestGeoValidationJsonExample:
+      description: Response body when the submitted address fails geo-validation
+      value:
+        errorCode: 13231
+        description: Address failed geo-validation.
+        addressInconsistencies: Address provided is not geo-valid.
+        recommendedAddress:
+          addressLine1: 1600 PENNSYLVANIA AVE NW
+          houseNumber: '1600'
+          streetName: PENNSYLVANIA
+          streetSuffix: AVE
+          postDirectional: NW
+          city: WASHINGTON
+          stateCode: DC
+          zip: '20500'
+          country: US
     genericJsonErrorForSubAccountExamplePut:
       description: Error response body for malformed JSON requests
       value:
@@ -2574,6 +2628,8 @@ components:
           $ref: '#/components/schemas/supportLevel'
     addressJson:
       properties:
+        addressLine1:
+          $ref: '#/components/schemas/addressLine1'
         addressLine2:
           $ref: '#/components/schemas/addressLine2'
         addressType:
@@ -3037,7 +3093,7 @@ components:
           $ref: '#/components/schemas/isDefaultLocation'
         ssSendToCustomer:
           $ref: '#/components/schemas/ssSendToCustomer'
-    locationResponseConflictJson:
+    geoValidationErrorResponseJson:
       type: object
       properties:
         errorCode:
@@ -3212,6 +3268,8 @@ components:
     address:
       type: object
       properties:
+        AddressLine1:
+          $ref: '#/components/schemas/addressLine1'
         HousePrefix:
           $ref: '#/components/schemas/housePrefix'
         HouseNumber:
@@ -3361,6 +3419,8 @@ components:
       properties:
         ResponseStatus:
           $ref: '#/components/schemas/responseStatus'
+        AddressErrorDescription:
+          $ref: '#/components/schemas/addressErrorDescription'
     subAccountsResponseXmlWrapper:
       properties:
         SitesResponse:
@@ -3909,6 +3969,10 @@ components:
         used for E911 services.
       type: string
       example: '9999'
+    addressLine1:
+      description: AddressLine1 is the primary street address line.
+      type: string
+      example: 1600 PENNSYLVANIA AVE NW
     addressLine2:
       description: >-
         AddressLine2 is used to specify Unit, Suite, Floor, etc. in the Service

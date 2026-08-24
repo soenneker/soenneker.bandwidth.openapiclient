@@ -14,6 +14,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>AddressLine1 is the primary street address line.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AddressLine1 { get; set; }
+#nullable restore
+#else
+        public string AddressLine1 { get; set; }
+#endif
         /// <summary>AddressLine2 is used to specify Unit, Suite, Floor, etc. in the Service Address. AddressLine2 is optional when not needed to fully specify the ServiceAddress.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -169,6 +177,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "addressLine1", n => { AddressLine1 = n.GetStringValue(); } },
                 { "addressLine2", n => { AddressLine2 = n.GetStringValue(); } },
                 { "addressType", n => { AddressType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressType>(); } },
                 { "city", n => { City = n.GetStringValue(); } },
@@ -195,6 +204,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("addressLine1", AddressLine1);
             writer.WriteStringValue("addressLine2", AddressLine2);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressType>("addressType", AddressType);
             writer.WriteStringValue("city", City);

@@ -186,7 +186,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceConfigService.V2.Accounts.Item.
             /// <summary>Limit query parameter.</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
-            /// <summary>Voice Configuration Package Name.</summary>
+            /// <summary>Filter Voice Configuration Packages by name. Performs substring matching — returns any package whose name contains the provided value, regardless of position.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("nameFilter")]
