@@ -18528,116 +18528,6 @@
         }
       }
     },
-    "/my-numbers/accounts/{accountId}/exportTelephoneNumbers/download/{siteId}/{peerId}": {
-      "get": {
-        "tags": [
-          "My Numbers"
-        ],
-        "summary": "Export phone numbers for a location as CSV",
-        "description": "Download a CSV file of INSERVICE telephone numbers for the specified sub-account and SIP peer (location).",
-        "operationId": "MyNumbersExportTelephoneNumbersBySipPeer",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/accountIdPathParam"
-          },
-          {
-            "name": "siteId",
-            "in": "path",
-            "description": "ID of the sub-account (site).",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "12345"
-          },
-          {
-            "name": "peerId",
-            "in": "path",
-            "description": "ID of the SIP peer (location).",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "500017"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK \u2014 CSV file download.",
-            "content": {
-              "text/csv": {
-                "schema": {
-                  "$ref": "#/components/schemas/MyNumbersExportTelephoneNumbersBySipPeer200CsvResponseSchema"
-                },
-                "example": "Number\n\u002B19199918388\n"
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/my-numbers/accounts/{accountId}/exportTelephoneNumbers/download/hosts/{host}": {
-      "get": {
-        "tags": [
-          "My Numbers"
-        ],
-        "summary": "Export phone numbers for a host as CSV",
-        "description": "Download a CSV file of INSERVICE telephone numbers associated with the specified host for the account.",
-        "operationId": "MyNumbersExportTelephoneNumbersByHost",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/accountIdPathParam"
-          },
-          {
-            "name": "host",
-            "in": "path",
-            "description": "Host identifier to filter telephone numbers by.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "192.168.1.1"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK \u2014 CSV file download.",
-            "content": {
-              "text/csv": {
-                "schema": {
-                  "$ref": "#/components/schemas/MyNumbersExportTelephoneNumbersByHost200CsvResponseSchema"
-                },
-                "example": "Number\n\u002B19199918388\n"
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
     "/number-acquisition/accounts/{accountId}/orders": {
       "get": {
         "tags": [
@@ -103050,14 +102940,6 @@
           }
         }
       },
-      "MyNumbersExportTelephoneNumbersBySipPeer200CsvResponse": {
-        "type": "string",
-        "format": "binary"
-      },
-      "MyNumbersExportTelephoneNumbersByHost200CsvResponse": {
-        "type": "string",
-        "format": "binary"
-      },
       "SearchVoiceIntegrationsRequestSortValue": {
         "title": "SearchVoiceIntegrationsRequestSort_value",
         "enum": [
@@ -103792,14 +103674,6 @@
         "items": {
           "$ref": "#/components/schemas/ProvisionedLocations"
         }
-      },
-      "MyNumbersExportTelephoneNumbersBySipPeer200CsvResponseSchema": {
-        "type": "string",
-        "format": "binary"
-      },
-      "MyNumbersExportTelephoneNumbersByHost200CsvResponseSchema": {
-        "type": "string",
-        "format": "binary"
       },
       "NumberManagementUpdateSipPeerTnSettingsXmlRequest": {
         "type": "object"
