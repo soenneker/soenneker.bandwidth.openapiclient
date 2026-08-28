@@ -9,7 +9,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class TollFreeSettings : IAdditionalDataHolder, IParsable
+    public partial class NumberManagementTollFreeSettings : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -35,21 +35,21 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Whether toll-free template assignment search is enabled.</summary>
         public bool? TollFreeTemplateAssignmentsSearch { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeSettings"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementTollFreeSettings"/> and sets the default values.
         /// </summary>
-        public TollFreeSettings()
+        public NumberManagementTollFreeSettings()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeSettings"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementTollFreeSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementTollFreeSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.TollFreeSettings();
+            return new global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementTollFreeSettings();
         }
         /// <summary>
         /// The deserialization information for the current model

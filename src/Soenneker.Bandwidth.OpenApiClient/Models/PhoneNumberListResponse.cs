@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PaginationLinksJson? Links { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersPaginationLinksJson? Links { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PaginationLinksJson Links { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersPaginationLinksJson Links { get; set; }
 #endif
         /// <summary>Phone numbers in E.164 format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -58,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "links", n => { Links = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginationLinksJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.PaginationLinksJson.CreateFromDiscriminatorValue); } },
+                { "links", n => { Links = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersPaginationLinksJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersPaginationLinksJson.CreateFromDiscriminatorValue); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "totalCount", n => { TotalCount = n.GetIntValue(); } },
             };
@@ -70,7 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginationLinksJson>("links", Links);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersPaginationLinksJson>("links", Links);
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
             writer.WriteIntValue("totalCount", TotalCount);
             writer.WriteAdditionalData(AdditionalData);

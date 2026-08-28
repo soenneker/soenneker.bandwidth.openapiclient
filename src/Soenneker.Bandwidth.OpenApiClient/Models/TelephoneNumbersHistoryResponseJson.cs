@@ -25,10 +25,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PaginationLinksJson? Links { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersPaginationLinksJson? Links { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PaginationLinksJson Links { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersPaginationLinksJson Links { get; set; }
 #endif
         /// <summary>The phoneNumberCount property</summary>
         public int? PhoneNumberCount { get; set; }
@@ -66,7 +66,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TelephoneNumberGroupErrorJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.TelephoneNumberGroupErrorJson.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "links", n => { Links = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginationLinksJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.PaginationLinksJson.CreateFromDiscriminatorValue); } },
+                { "links", n => { Links = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersPaginationLinksJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersPaginationLinksJson.CreateFromDiscriminatorValue); } },
                 { "phoneNumberCount", n => { PhoneNumberCount = n.GetIntValue(); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TelephoneNumberDetailHistoryPayloadJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.TelephoneNumberDetailHistoryPayloadJson.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -79,7 +79,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TelephoneNumberGroupErrorJson>("errors", Errors);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginationLinksJson>("links", Links);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersPaginationLinksJson>("links", Links);
             writer.WriteIntValue("phoneNumberCount", PhoneNumberCount);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TelephoneNumberDetailHistoryPayloadJson>("phoneNumbers", PhoneNumbers);
             writer.WriteAdditionalData(AdditionalData);

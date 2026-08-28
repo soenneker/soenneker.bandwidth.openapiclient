@@ -14,7 +14,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The first property</summary>
+        /// <summary>A link to the first page of results</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? First { get; set; }
@@ -22,7 +22,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string First { get; set; }
 #endif
-        /// <summary>The last property</summary>
+        /// <summary>A link to the last page of results</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Last { get; set; }
@@ -30,7 +30,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Last { get; set; }
 #endif
-        /// <summary>The next property</summary>
+        /// <summary>A link to the next page of results</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Next { get; set; }
@@ -38,7 +38,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Next { get; set; }
 #endif
-        /// <summary>The previous property</summary>
+        /// <summary>A link to the previous page of results</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Previous { get; set; }

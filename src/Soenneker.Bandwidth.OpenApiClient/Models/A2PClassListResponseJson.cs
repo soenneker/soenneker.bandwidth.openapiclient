@@ -12,13 +12,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     public partial class A2PClassListResponseJson : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>The a2pClassList property</summary>
+        /// <summary>The a2pClasses property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.A2PClassJson>? A2pClassList { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.A2PClassJson>? A2pClasses { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.A2PClassJson> A2pClassList { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.A2PClassJson> A2pClasses { get; set; }
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -47,7 +47,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "a2pClassList", n => { A2pClassList = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.A2PClassJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.A2PClassJson.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "a2pClasses", n => { A2pClasses = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.A2PClassJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.A2PClassJson.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.A2PClassJson>("a2pClassList", A2pClassList);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.A2PClassJson>("a2pClasses", A2pClasses);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

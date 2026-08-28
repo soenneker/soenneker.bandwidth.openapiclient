@@ -41,7 +41,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "Type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UcType>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UcType>(); } },
             };
         }
         /// <summary>
@@ -51,7 +51,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UcType>("Type", Type);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UcType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

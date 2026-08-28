@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.Item.AssociatedOutboundNumbers;
+using Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.Item.Products;
 using Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.Item.TotalSeats;
 using Soenneker.Bandwidth.OpenApiClient.Models;
 using System.Collections.Generic;
@@ -23,6 +24,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.It
         public global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.Item.AssociatedOutboundNumbers.AssociatedOutboundNumbersRequestBuilder AssociatedOutboundNumbers
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.Item.AssociatedOutboundNumbers.AssociatedOutboundNumbersRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The products property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.Item.Products.ProductsRequestBuilder Products
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.Item.Products.ProductsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The totalSeats property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.Item.Sippeers.Item.TotalSeats.TotalSeatsRequestBuilder TotalSeats

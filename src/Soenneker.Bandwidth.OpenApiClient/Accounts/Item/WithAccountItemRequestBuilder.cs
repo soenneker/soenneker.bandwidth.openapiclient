@@ -3,6 +3,10 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Hosts;
+using Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Products;
+using Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Realms;
+using Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sipcredentials;
 using Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites;
 using Soenneker.Bandwidth.OpenApiClient.Accounts.Item.TotalSeats;
 using Soenneker.Bandwidth.OpenApiClient.Models;
@@ -19,6 +23,26 @@ namespace Soenneker.Bandwidth.OpenApiClient.Accounts.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithAccountItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The hosts property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Hosts.HostsRequestBuilder Hosts
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Hosts.HostsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The products property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Products.ProductsRequestBuilder Products
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Products.ProductsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The realms property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Realms.RealmsRequestBuilder Realms
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Realms.RealmsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The sipcredentials property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sipcredentials.SipcredentialsRequestBuilder Sipcredentials
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sipcredentials.SipcredentialsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The sites property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Accounts.Item.Sites.SitesRequestBuilder Sites
         {
