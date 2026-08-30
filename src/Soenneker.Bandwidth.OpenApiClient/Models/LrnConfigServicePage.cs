@@ -7,29 +7,38 @@ using System.IO;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
+    /// <summary>
+    /// Pagination data
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class BrandSummaryAccounts : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class LrnConfigServicePage : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The index of the current page.</summary>
+        public int? PageNumber { get; set; }
+        /// <summary>The number of items in the page.</summary>
+        public int? PageSize { get; set; }
+        /// <summary>The total number of items in the database.</summary>
+        public int? TotalElements { get; set; }
+        /// <summary>The number of pages of the given size.</summary>
+        public int? TotalPages { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BrandSummaryAccounts"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServicePage"/> and sets the default values.
         /// </summary>
-        public BrandSummaryAccounts()
+        public LrnConfigServicePage()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BrandSummaryAccounts"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServicePage"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Bandwidth.OpenApiClient.Models.BrandSummaryAccounts CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServicePage CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.BrandSummaryAccounts();
+            return new global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServicePage();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -39,6 +48,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "pageNumber", n => { PageNumber = n.GetIntValue(); } },
+                { "pageSize", n => { PageSize = n.GetIntValue(); } },
+                { "totalElements", n => { TotalElements = n.GetIntValue(); } },
+                { "totalPages", n => { TotalPages = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -48,6 +61,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteIntValue("pageNumber", PageNumber);
+            writer.WriteIntValue("pageSize", PageSize);
+            writer.WriteIntValue("totalElements", TotalElements);
+            writer.WriteIntValue("totalPages", TotalPages);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

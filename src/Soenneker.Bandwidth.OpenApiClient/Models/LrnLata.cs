@@ -8,29 +8,47 @@ using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     /// <summary>
-    /// The data being returned, depends on the operation.
+    /// A sub-object of the LRN entity, containing the only modifyable properties of an LRN, the enabled features.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class LrnConfigUpdateResponseData : IAdditionalDataHolder, IParsable
+    public partial class LrnLata : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The 3-5 digit number that identifies the LATA.</summary>
+        public int? Id { get; private set; }
+        /// <summary>The name of the LATA.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; private set; }
+#nullable restore
+#else
+        public string Name { get; private set; }
+#endif
+        /// <summary>The region the LATA belongs to.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Region { get; private set; }
+#nullable restore
+#else
+        public string Region { get; private set; }
+#endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigUpdateResponseData"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LrnLata"/> and sets the default values.
         /// </summary>
-        public LrnConfigUpdateResponseData()
+        public LrnLata()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigUpdateResponseData"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LrnLata"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigUpdateResponseData CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.LrnLata CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigUpdateResponseData();
+            return new global::Soenneker.Bandwidth.OpenApiClient.Models.LrnLata();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -40,6 +58,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "id", n => { Id = n.GetIntValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "region", n => { Region = n.GetStringValue(); } },
             };
         }
         /// <summary>

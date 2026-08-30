@@ -16,10 +16,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The accounts property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BrandSummaryAccounts? Accounts { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAccount>? Accounts { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BrandSummaryAccounts Accounts { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAccount> Accounts { get; set; }
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -106,7 +106,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "accounts", n => { Accounts = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandSummaryAccounts>(global::Soenneker.Bandwidth.OpenApiClient.Models.BrandSummaryAccounts.CreateFromDiscriminatorValue); } },
+                { "accounts", n => { Accounts = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAccount>(global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAccount.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "authenticationStatus", n => { AuthenticationStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumBusinessAuthenticationStatus>(); } },
                 { "bandwidthId", n => { BandwidthId = n.GetStringValue(); } },
                 { "brandId", n => { BrandId = n.GetStringValue(); } },
@@ -127,7 +127,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandSummaryAccounts>("accounts", Accounts);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAccount>("accounts", Accounts);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumBusinessAuthenticationStatus>("authenticationStatus", AuthenticationStatus);
             writer.WriteStringValue("bandwidthId", BandwidthId);
             writer.WriteStringValue("brandId", BrandId);

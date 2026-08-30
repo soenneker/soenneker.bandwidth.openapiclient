@@ -42,10 +42,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Pagination metadata.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ListLrnConfigResponsePage? Page { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServicePage>? Page { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ListLrnConfigResponsePage Page { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServicePage> Page { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ListLrnConfigResponse"/> and sets the default values.
@@ -75,7 +75,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfig>(global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfig.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServiceError>(global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServiceError.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServiceLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServiceLink.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "page", n => { Page = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ListLrnConfigResponsePage>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListLrnConfigResponsePage.CreateFromDiscriminatorValue); } },
+                { "page", n => { Page = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServicePage>(global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServicePage.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -88,7 +88,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfig>("data", Data);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServiceError>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServiceLink>("links", Links);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ListLrnConfigResponsePage>("page", Page);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServicePage>("page", Page);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
