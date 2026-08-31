@@ -33369,26 +33369,6 @@
             "items": {
               "$ref": "#/components/schemas/RbmMessageContentFile"
             }
-          },
-          "orientation": {
-            "$ref": "#/components/schemas/StandaloneCardOrientationEnum"
-          },
-          "thumbnailImageAlignment": {
-            "$ref": "#/components/schemas/ThumbnailAlignmentEnum"
-          },
-          "cardContent": {
-            "$ref": "#/components/schemas/RbmCardContent"
-          },
-          "cardWidth": {
-            "$ref": "#/components/schemas/CardWidthEnum"
-          },
-          "cardContents": {
-            "maxItems": 10,
-            "minItems": 2,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RbmCardContent"
-            }
           }
         },
         "description": "The content of the message."
