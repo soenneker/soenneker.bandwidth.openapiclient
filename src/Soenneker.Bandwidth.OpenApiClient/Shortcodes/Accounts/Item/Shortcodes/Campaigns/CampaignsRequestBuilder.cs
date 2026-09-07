@@ -182,21 +182,29 @@ namespace Soenneker.Bandwidth.OpenApiClient.Shortcodes.Accounts.Item.Shortcodes.
         {
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("campaignName")]
             public string? CampaignName { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("campaignName")]
             public string CampaignName { get; set; }
+            #pragma warning restore CS1591
 #endif
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("campaignStatus")]
             public string? CampaignStatus { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("campaignStatus")]
             public string CampaignStatus { get; set; }
+            #pragma warning restore CS1591
 #endif
             /// <summary>The query parameter for the country code of the short code. This is used to sort and filter the short code campaigns by country code.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -230,12 +238,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.Shortcodes.Accounts.Item.Shortcodes.
 #endif
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("lastUpdated")]
             public string? LastUpdated { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("lastUpdated")]
             public string LastUpdated { get; set; }
+            #pragma warning restore CS1591
 #endif
             /// <summary>The query parameter for the number of results to return. This limits the number of short code campaigns returned.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

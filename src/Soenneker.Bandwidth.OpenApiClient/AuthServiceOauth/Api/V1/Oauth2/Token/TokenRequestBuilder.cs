@@ -34,10 +34,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.AuthServiceOauth.Api.V1.Oauth2.Token
         {
         }
         /// <summary>
-        /// Mints a new access token in the form of a JSON Web Token (JWT) for a client.
+        /// Mints a new access token in the form of a JSON Web Token (JWT) for a client.Client credentials must be provided using exactly one of two methods: either as an `Authorization` header using HTTP Basic authentication (`client_secret_basic`), or as `client_id`/`client_secret` form-encoded body parameters (`client_secret_post`). Exactly one method is required; requests that combine both methods (an `Authorization` header together with `client_id`/`client_secret` body parameters) are rejected with a `400 invalid_request` error.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Token"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">Note: `client_id` and `client_secret` use snake_case rather than Bandwidth&apos;sstandard camelCase, as an intentional deviation to comply with RFC 6749(`client_secret_post` authentication), which mandates these exactform-encoded parameter names.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TokenErrorResponse">When receiving a 400 status code</exception>
@@ -71,10 +71,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.AuthServiceOauth.Api.V1.Oauth2.Token
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.Token>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.Token.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Mints a new access token in the form of a JSON Web Token (JWT) for a client.
+        /// Mints a new access token in the form of a JSON Web Token (JWT) for a client.Client credentials must be provided using exactly one of two methods: either as an `Authorization` header using HTTP Basic authentication (`client_secret_basic`), or as `client_id`/`client_secret` form-encoded body parameters (`client_secret_post`). Exactly one method is required; requests that combine both methods (an `Authorization` header together with `client_id`/`client_secret` body parameters) are rejected with a `400 invalid_request` error.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">Note: `client_id` and `client_secret` use snake_case rather than Bandwidth&apos;sstandard camelCase, as an intentional deviation to comply with RFC 6749(`client_secret_post` authentication), which mandates these exactform-encoded parameter names.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

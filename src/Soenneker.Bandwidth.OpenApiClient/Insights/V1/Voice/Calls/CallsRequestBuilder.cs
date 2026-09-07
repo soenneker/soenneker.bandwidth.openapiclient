@@ -127,12 +127,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
 #endif
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("attestationIndicator")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.AttestationIndicatorItem[]? AttestationIndicator { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("attestationIndicator")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.AttestationIndicatorItem[] AttestationIndicator { get; set; }
+            #pragma warning restore CS1591
 #endif
             /// <summary>Direction of call.Filter Type: Exact Match, Multi Match.Example:  * Exact Match: OUTBOUND  * Multi Match: OUTBOUND-FORWARDED,OUTBOUND</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -182,21 +186,29 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
             public global::Soenneker.Bandwidth.OpenApiClient.Models.CallType? CallType { get; set; }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("destinationCountryCodeA3")]
             public string? DestinationCountryCodeA3 { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("destinationCountryCodeA3")]
             public string DestinationCountryCodeA3 { get; set; }
+            #pragma warning restore CS1591
 #endif
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("destinationIp")]
             public string? DestinationIp { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("destinationIp")]
             public string DestinationIp { get; set; }
+            #pragma warning restore CS1591
 #endif
             /// <summary>Filter Type: Range using gt, gte, lt, and lte.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -237,8 +249,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
             [QueryParameter("programmableCallId")]
             public string ProgrammableCallId { get; set; }
 #endif
+            #pragma warning disable CS1591
             [QueryParameter("qualityStatus")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.QualityStatus? QualityStatus { get; set; }
+            #pragma warning restore CS1591
             /// <summary>Filter Type: Exact Match, any valid region. Use ALL to search both US and EU regions in a single call. Defaults to US.</summary>
             [QueryParameter("region")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsRegion? Region { get; set; }
@@ -274,21 +288,29 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
 #endif
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("sourceCountryCodeA3")]
             public string? SourceCountryCodeA3 { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("sourceCountryCodeA3")]
             public string SourceCountryCodeA3 { get; set; }
+            #pragma warning restore CS1591
 #endif
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("sourceIp")]
             public string? SourceIp { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("sourceIp")]
             public string SourceIp { get; set; }
+            #pragma warning restore CS1591
 #endif
             /// <summary>Filter Type: Range using gt, gte, lt, and lte.Note: If no startTime or endTime is specified, startTime will default to the last 24 hours.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -312,12 +334,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
 #endif
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("x5u")]
             public string? X5u { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("x5u")]
             public string X5u { get; set; }
+            #pragma warning restore CS1591
 #endif
         }
     }

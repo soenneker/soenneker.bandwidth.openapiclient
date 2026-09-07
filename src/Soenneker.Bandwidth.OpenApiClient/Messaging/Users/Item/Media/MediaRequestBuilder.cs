@@ -19,7 +19,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Media
     public partial class MediaRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Bandwidth.OpenApiClient.messaging.users.item.media.item collection</summary>
-        /// <param name="position">Media ID to retrieve.</param>
+        /// <param name="position">The ID of the media file.</param>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Media.Item.WithMediaItemRequestBuilder"/></returns>
         public global::Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Media.Item.WithMediaItemRequestBuilder this[string position]
         {

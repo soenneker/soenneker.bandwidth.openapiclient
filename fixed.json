@@ -2784,7 +2784,7 @@
           "Token"
         ],
         "summary": "Mint Token",
-        "description": "Mints a new access token in the form of a JSON Web Token (JWT) for a client.",
+        "description": "Mints a new access token in the form of a JSON Web Token (JWT) for a client.\n\nClient credentials must be provided using exactly one of two methods: either as an \u0060Authorization\u0060 header using HTTP Basic authentication (\u0060client_secret_basic\u0060), or as \u0060client_id\u0060/\u0060client_secret\u0060 form-encoded body parameters (\u0060client_secret_post\u0060). Exactly one method is required; requests that combine both methods (an \u0060Authorization\u0060 header together with \u0060client_id\u0060/\u0060client_secret\u0060 body parameters) are rejected with a \u0060400 invalid_request\u0060 error.\n",
         "operationId": "AuthServiceOAuthGenerateToken",
         "requestBody": {
           "$ref": "#/components/requestBodies/tokenRequest"
@@ -2797,7 +2797,7 @@
             "$ref": "#/components/responses/tokenBadRequestResponse"
           },
           "401": {
-            "$ref": "#/components/responses/auth_service_oauth_unauthorizedResponse"
+            "$ref": "#/components/responses/tokenUnauthorizedResponse"
           },
           "403": {
             "$ref": "#/components/responses/auth_service_oauth_forbiddenResponse"
@@ -2818,7 +2818,8 @@
         "security": [
           {
             "auth_service_oauth_Basic": []
-          }
+          },
+          {}
         ]
       }
     },
@@ -21822,6 +21823,9 @@
           "405": {
             "$ref": "#/components/responses/number_management_methodNotAllowedError"
           },
+          "409": {
+            "$ref": "#/components/responses/number_management_conflictError"
+          },
           "429": {
             "$ref": "#/components/responses/number_management_tooManyRequestsError"
           },
@@ -32439,6 +32443,34 @@
           }
         }
       },
+      "ApiErrorsErrorsItem": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "A short, human-readable summary of the problem that SHOULD NOT change from occurrence to occurrence of the problem.",
+            "example": "request-error"
+          },
+          "description": {
+            "type": "string",
+            "description": "A human-readable explanation that SHOULD be specific to this occurrence of the problem.",
+            "example": "There was an issue with a field in your request body"
+          },
+          "code": {
+            "type": "integer",
+            "description": "An application-specific error code for services with extensive error scenarios to supplement \u0060description\u0060.",
+            "format": "int32",
+            "example": 1203
+          },
+          "source": {
+            "$ref": "#/components/schemas/ApiErrorsErrorsItemSource"
+          }
+        }
+      },
+      "ApiErrorsData": {
+        "type": "object",
+        "nullable": true
+      },
       "ActiveCallInfoWithoutCallIdData": {
         "type": "object",
         "properties": {
@@ -32447,45 +32479,6 @@
             "items": {
               "$ref": "#/components/schemas/RiskScoresItem"
             }
-          }
-        }
-      },
-      "ActiveCallInfoWithoutCallIdLinksItem": {
-        "type": "object",
-        "properties": {
-          "href": {
-            "type": "string",
-            "description": "URI of the link.",
-            "example": "/accounts/9903248/activeCalls?fromNumber=%2B17706308523\u0026toNumber=%2B17706308523\u0026startTime=2023-09-25T11:40:00.000000-04:00"
-          },
-          "rel": {
-            "type": "string",
-            "description": "Specifies the relationship between this link and the resource.",
-            "example": "ActiveCallInfo"
-          },
-          "method": {
-            "type": "string",
-            "description": "HTTP method to be used.",
-            "example": "GET"
-          }
-        },
-        "example": {
-          "href": "/accounts/9903248/activeCalls?fromNumber=%2B17706308523\u0026toNumber=%2B17706308523\u0026startTime=2023-09-25T11:40:00.000000-04:00",
-          "rel": "ActiveCallInfo",
-          "method": "GET"
-        }
-      },
-      "ActiveCallInfoData": {
-        "type": "object",
-        "properties": {
-          "riskScore": {
-            "$ref": "#/components/schemas/RiskScore"
-          }
-        },
-        "example": {
-          "riskScore": {
-            "spoofingRisk": 9.83,
-            "fraudRisk": 72
           }
         }
       },
@@ -32535,6 +32528,57 @@
         "type": "string",
         "additionalProperties": false
       },
+      "ActiveCallInfoWithoutCallIdLinksItem": {
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string",
+            "description": "URI of the link.",
+            "example": "/accounts/9903248/activeCalls?fromNumber=%2B17706308523\u0026toNumber=%2B17706308523\u0026startTime=2023-09-25T11:40:00.000000-04:00"
+          },
+          "rel": {
+            "type": "string",
+            "description": "Specifies the relationship between this link and the resource.",
+            "example": "ActiveCallInfo"
+          },
+          "method": {
+            "type": "string",
+            "description": "HTTP method to be used.",
+            "example": "GET"
+          }
+        },
+        "example": {
+          "href": "/accounts/9903248/activeCalls?fromNumber=%2B17706308523\u0026toNumber=%2B17706308523\u0026startTime=2023-09-25T11:40:00.000000-04:00",
+          "rel": "ActiveCallInfo",
+          "method": "GET"
+        }
+      },
+      "ActiveCallInfoData": {
+        "type": "object",
+        "properties": {
+          "riskScore": {
+            "$ref": "#/components/schemas/RiskScore"
+          }
+        },
+        "example": {
+          "riskScore": {
+            "spoofingRisk": 9.83,
+            "fraudRisk": 72
+          }
+        }
+      },
+      "BillingCycle": {
+        "enum": [
+          1,
+          5,
+          15,
+          20
+        ],
+        "type": "integer",
+        "additionalProperties": false,
+        "description": "BillingCycle is the day of the month that the account\u0027s billing cycle closes. Valid values are 1, 5, 15, and 20.",
+        "format": "int32"
+      },
       "ActiveCallInfoLinksItem": {
         "type": "object",
         "properties": {
@@ -32569,18 +32613,6 @@
             "example": "469ebbac-4459-4d98-bc19-a038960e787f"
           }
         }
-      },
-      "BillingCycle": {
-        "enum": [
-          1,
-          5,
-          15,
-          20
-        ],
-        "type": "integer",
-        "additionalProperties": false,
-        "description": "BillingCycle is the day of the month that the account\u0027s billing cycle closes. Valid values are 1, 5, 15, and 20.",
-        "format": "int32"
       },
       "SipPeerTerminationProductsResponseXmlTerminationResponse": {
         "type": "object",
@@ -32627,28 +32659,6 @@
           }
         }
       },
-      "SipCredentialsCreatedResponseXmlSipCredentialsResponse": {
-        "type": "object",
-        "properties": {
-          "ValidSipCredentials": {
-            "$ref": "#/components/schemas/AccountSipCredentials"
-          },
-          "Errors": {
-            "$ref": "#/components/schemas/SipCredentialsCreatedResponseXmlSipCredentialsResponseErrors"
-          }
-        }
-      },
-      "RealmSipCredentialsResponseXmlSipCredentialsResponse": {
-        "type": "object",
-        "properties": {
-          "Links": {
-            "$ref": "#/components/schemas/PaginationLinksJson"
-          },
-          "SipCredentials": {
-            "$ref": "#/components/schemas/AccountSipCredentials"
-          }
-        }
-      },
       "PortCarrierType": {
         "enum": [
           "WIRELESS",
@@ -32670,6 +32680,28 @@
               "name": "Wireline"
             }
           ]
+        }
+      },
+      "SipCredentialsCreatedResponseXmlSipCredentialsResponse": {
+        "type": "object",
+        "properties": {
+          "ValidSipCredentials": {
+            "$ref": "#/components/schemas/AccountSipCredentials"
+          },
+          "Errors": {
+            "$ref": "#/components/schemas/SipCredentialsCreatedResponseXmlSipCredentialsResponseErrors"
+          }
+        }
+      },
+      "RealmSipCredentialsResponseXmlSipCredentialsResponse": {
+        "type": "object",
+        "properties": {
+          "Links": {
+            "$ref": "#/components/schemas/PaginationLinksJson"
+          },
+          "SipCredentials": {
+            "$ref": "#/components/schemas/AccountSipCredentials"
+          }
         }
       },
       "AccessRestrictionRestrictedAccessTypesItem": {
@@ -32941,28 +32973,6 @@
           }
         }
       },
-      "AccountTiers": {
-        "type": "object",
-        "properties": {
-          "Tier": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Tier"
-            }
-          }
-        }
-      },
-      "UpdateLocationJsonRequestTerminationHosts": {
-        "type": "object",
-        "properties": {
-          "terminationHosts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LocationTerminationHostJson"
-            }
-          }
-        }
-      },
       "AddressType": {
         "enum": [
           "Service",
@@ -32995,6 +33005,28 @@
         "type": "integer",
         "additionalProperties": false,
         "format": "int32"
+      },
+      "AccountTiers": {
+        "type": "object",
+        "properties": {
+          "Tier": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Tier"
+            }
+          }
+        }
+      },
+      "UpdateLocationJsonRequestTerminationHosts": {
+        "type": "object",
+        "properties": {
+          "terminationHosts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationTerminationHostJson"
+            }
+          }
+        }
       },
       "UpdateLocationJsonRequestOriginationRoutePlan": {
         "type": "object",
@@ -33029,30 +33061,6 @@
           }
         }
       },
-      "CreateLocationJsonRequestTerminationHosts": {
-        "type": "object",
-        "properties": {
-          "terminationHosts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LocationTerminationHostJson"
-            }
-          }
-        },
-        "description": "These addresses, comprised of IP or Subnet(CIDR format) and optional Port, are used by the Bandwidth network to send calls to for Termination services. Maximum of 10 hosts - can be IP address or subnets. In case of subnet you should specify NetworkAddress of subnet as IP",
-        "x-internal": true
-      },
-      "CreateLocationJsonRequestOriginationRoutePlan": {
-        "type": "object",
-        "properties": {
-          "originationRoutes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/OriginationRoutePayloadJson"
-            }
-          }
-        }
-      },
       "OriginationRoutePlanAction": {
         "enum": [
           "UNCHANGED",
@@ -33080,6 +33088,30 @@
           ]
         }
       },
+      "CreateLocationJsonRequestTerminationHosts": {
+        "type": "object",
+        "properties": {
+          "terminationHosts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationTerminationHostJson"
+            }
+          }
+        },
+        "description": "These addresses, comprised of IP or Subnet(CIDR format) and optional Port, are used by the Bandwidth network to send calls to for Termination services. Maximum of 10 hosts - can be IP address or subnets. In case of subnet you should specify NetworkAddress of subnet as IP",
+        "x-internal": true
+      },
+      "CreateLocationJsonRequestOriginationRoutePlan": {
+        "type": "object",
+        "properties": {
+          "originationRoutes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OriginationRoutePayloadJson"
+            }
+          }
+        }
+      },
       "CreateLocationJsonRequestVoiceHostGroupsItem": {
         "type": "object",
         "properties": {
@@ -33102,30 +33134,6 @@
           }
         },
         "description": "These addresses, comprised of a \u0060hostName\u0060 and an optional \u0060port\u0060, are used by the Bandwidth network to send calls for origination services. The voiceHosts list of IP addresses are used for an active/standby address selection mechanism, where the first address is attempted, followed by the second address, and so on. Except under failure situations, the first address in the list is preferred. Maximum of 10 hosts - can be IP address or a fully qualified domain name."
-      },
-      "LocationJsonTerminationHosts": {
-        "type": "object",
-        "properties": {
-          "terminationHosts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LocationTerminationHostJson"
-            }
-          }
-        },
-        "description": "These addresses, comprised of IP or Subnet(CIDR format) and optional Port, are used by the Bandwidth network to send calls to for Termination services. Maximum of 10 hosts - can be IP address or subnets. In case of subnet you should specify NetworkAddress of subnet as IP",
-        "x-internal": true
-      },
-      "LocationJsonVoiceHostGroupsItem": {
-        "type": "object",
-        "properties": {
-          "hosts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/HostJson"
-            }
-          }
-        }
       },
       "OriginationRoutePayloadEndpointType": {
         "enum": [
@@ -33231,6 +33239,30 @@
           ]
         }
       },
+      "LocationJsonTerminationHosts": {
+        "type": "object",
+        "properties": {
+          "terminationHosts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationTerminationHostJson"
+            }
+          }
+        },
+        "description": "These addresses, comprised of IP or Subnet(CIDR format) and optional Port, are used by the Bandwidth network to send calls to for Termination services. Maximum of 10 hosts - can be IP address or subnets. In case of subnet you should specify NetworkAddress of subnet as IP",
+        "x-internal": true
+      },
+      "LocationJsonVoiceHostGroupsItem": {
+        "type": "object",
+        "properties": {
+          "hosts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HostJson"
+            }
+          }
+        }
+      },
       "LocationJsonVoiceHosts": {
         "type": "object",
         "properties": {
@@ -33250,30 +33282,6 @@
             "$ref": "#/components/schemas/UcType"
           }
         }
-      },
-      "SubAccountJsonUcTrunkingConfiguration": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/UcType"
-          },
-          "usageCategory": {
-            "$ref": "#/components/schemas/UcUsageCategory"
-          }
-        },
-        "description": "For UC Trunking accounts the UcTrunkingConfiguration element describes the kind of UC trunking that is provided. The Type parameter is one of Seats, Premise, or Cloud, and the UsageCategory parameter is one of UC250, UC500 or UC1000."
-      },
-      "SubAccountForUcJsonUcTrunkingConfiguration": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/UcType"
-          },
-          "usageCategory": {
-            "$ref": "#/components/schemas/UcUsageCategory"
-          }
-        },
-        "description": "For UC Trunking accounts the UcTrunkingConfiguration element describes the kind of UC trunking that is provided. The Type parameter is one of Seats, Premise, or Cloud, and the UsageCategory parameter is one of UC250, UC500 or UC1000."
       },
       "SsSendToCustomer": {
         "enum": [
@@ -33316,6 +33324,30 @@
             }
           ]
         }
+      },
+      "SubAccountJsonUcTrunkingConfiguration": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/UcType"
+          },
+          "usageCategory": {
+            "$ref": "#/components/schemas/UcUsageCategory"
+          }
+        },
+        "description": "For UC Trunking accounts the UcTrunkingConfiguration element describes the kind of UC trunking that is provided. The Type parameter is one of Seats, Premise, or Cloud, and the UsageCategory parameter is one of UC250, UC500 or UC1000."
+      },
+      "SubAccountForUcJsonUcTrunkingConfiguration": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/UcType"
+          },
+          "usageCategory": {
+            "$ref": "#/components/schemas/UcUsageCategory"
+          }
+        },
+        "description": "For UC Trunking accounts the UcTrunkingConfiguration element describes the kind of UC trunking that is provided. The Type parameter is one of Seats, Premise, or Cloud, and the UsageCategory parameter is one of UC250, UC500 or UC1000."
       },
       "NumberActivationValidatorResultRequirementsSetsItemAllOf2": {
         "type": "object",
@@ -33369,6 +33401,26 @@
             "items": {
               "$ref": "#/components/schemas/RbmMessageContentFile"
             }
+          },
+          "orientation": {
+            "$ref": "#/components/schemas/StandaloneCardOrientationEnum"
+          },
+          "thumbnailImageAlignment": {
+            "$ref": "#/components/schemas/ThumbnailAlignmentEnum"
+          },
+          "cardContent": {
+            "$ref": "#/components/schemas/RbmCardContent"
+          },
+          "cardWidth": {
+            "$ref": "#/components/schemas/CardWidthEnum"
+          },
+          "cardContents": {
+            "maxItems": 10,
+            "minItems": 2,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RbmCardContent"
+            }
           }
         },
         "description": "The content of the message."
@@ -33386,22 +33438,6 @@
         "properties": {
           "ExistingTelephoneNumberOrderType": {
             "$ref": "#/components/schemas/ExistingTelephoneNumberOrderTypeXml"
-          }
-        }
-      },
-      "RateCenterSearchAndOrderResponseOrderAllOf2": {
-        "type": "object",
-        "properties": {
-          "RateCenterSearchAndOrderType": {
-            "$ref": "#/components/schemas/RateCenterSearchAndOrderTypeXml"
-          }
-        }
-      },
-      "AreaCodeSearchAndOrderResponseOrderAllOf2": {
-        "type": "object",
-        "properties": {
-          "AreaCodeSearchAndOrderType": {
-            "$ref": "#/components/schemas/AreaCodeSearchAndOrderTypeXml"
           }
         }
       },
@@ -33467,27 +33503,27 @@
           }
         }
       },
+      "RateCenterSearchAndOrderResponseOrderAllOf2": {
+        "type": "object",
+        "properties": {
+          "RateCenterSearchAndOrderType": {
+            "$ref": "#/components/schemas/RateCenterSearchAndOrderTypeXml"
+          }
+        }
+      },
+      "AreaCodeSearchAndOrderResponseOrderAllOf2": {
+        "type": "object",
+        "properties": {
+          "AreaCodeSearchAndOrderType": {
+            "$ref": "#/components/schemas/AreaCodeSearchAndOrderTypeXml"
+          }
+        }
+      },
       "NpaNxxSearchAndOrderResponseOrderAllOf2": {
         "type": "object",
         "properties": {
           "NPANXXSearchAndOrderType": {
             "$ref": "#/components/schemas/NpaNxxSearchAndOrderTypeXml"
-          }
-        }
-      },
-      "TollFreeWildCharSearchAndOrderResponseOrderAllOf2": {
-        "type": "object",
-        "properties": {
-          "TollFreeWildCharSearchAndOrderType": {
-            "$ref": "#/components/schemas/TollFreeWildCharSearchAndOrderTypeXml"
-          }
-        }
-      },
-      "TollFreeVanitySearchAndOrderResponseOrderAllOf2": {
-        "type": "object",
-        "properties": {
-          "TollFreeVanitySearchAndOrderType": {
-            "$ref": "#/components/schemas/TollFreeVanitySearchAndOrderTypeXml"
           }
         }
       },
@@ -33514,6 +33550,22 @@
           },
           "type": {
             "type": "string"
+          }
+        }
+      },
+      "TollFreeWildCharSearchAndOrderResponseOrderAllOf2": {
+        "type": "object",
+        "properties": {
+          "TollFreeWildCharSearchAndOrderType": {
+            "$ref": "#/components/schemas/TollFreeWildCharSearchAndOrderTypeXml"
+          }
+        }
+      },
+      "TollFreeVanitySearchAndOrderResponseOrderAllOf2": {
+        "type": "object",
+        "properties": {
+          "TollFreeVanitySearchAndOrderType": {
+            "$ref": "#/components/schemas/TollFreeVanitySearchAndOrderTypeXml"
           }
         }
       },
@@ -33565,38 +33617,6 @@
           }
         }
       },
-      "CreateGroupReseller201ResponseDataAllOf2": {
-        "required": [
-          "customerId"
-        ],
-        "type": "object",
-        "properties": {
-          "customerId": {
-            "type": "integer",
-            "description": "The ID of the customer the group belongs to",
-            "example": 42
-          }
-        }
-      },
-      "GetGroupReseller200ResponseDataAllOf2": {
-        "required": [
-          "customerId",
-          "customerName"
-        ],
-        "type": "object",
-        "properties": {
-          "customerId": {
-            "type": "integer",
-            "description": "The ID of the customer the group belongs to",
-            "example": 42
-          },
-          "customerName": {
-            "type": "string",
-            "description": "The name of the customer the group belongs to",
-            "example": "Customer A"
-          }
-        }
-      },
       "ErrorResponseJson": {
         "type": "object",
         "properties": {
@@ -33626,10 +33646,9 @@
           }
         }
       },
-      "GetListOfGroupsReseller200ResponseDataItemAllOf2": {
+      "CreateGroupReseller201ResponseDataAllOf2": {
         "required": [
-          "customerId",
-          "customerName"
+          "customerId"
         ],
         "type": "object",
         "properties": {
@@ -33637,11 +33656,6 @@
             "type": "integer",
             "description": "The ID of the customer the group belongs to",
             "example": 42
-          },
-          "customerName": {
-            "type": "string",
-            "description": "The name of the customer the group belongs to",
-            "example": "Customer A"
           }
         }
       },
@@ -35242,6 +35256,44 @@
           }
         }
       },
+      "GetGroupReseller200ResponseDataAllOf2": {
+        "required": [
+          "customerId",
+          "customerName"
+        ],
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "integer",
+            "description": "The ID of the customer the group belongs to",
+            "example": 42
+          },
+          "customerName": {
+            "type": "string",
+            "description": "The name of the customer the group belongs to",
+            "example": "Customer A"
+          }
+        }
+      },
+      "GetListOfGroupsReseller200ResponseDataItemAllOf2": {
+        "required": [
+          "customerId",
+          "customerName"
+        ],
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "integer",
+            "description": "The ID of the customer the group belongs to",
+            "example": 42
+          },
+          "customerName": {
+            "type": "string",
+            "description": "The name of the customer the group belongs to",
+            "example": "Customer A"
+          }
+        }
+      },
       "UpdateVoiceApplicationResponseDataAllOf2": {
         "type": "object",
         "properties": {
@@ -35296,59 +35348,6 @@
           },
           "regionFr": {
             "$ref": "#/components/schemas/StirShakenCertificatesAccountPutRequestDataRegionDataOneOf1RegionFr"
-          }
-        }
-      },
-      "OriginationRoutePlanRouteEndpointsItem": {
-        "type": "object",
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/TnEndpointWithoutTrunk"
-          },
-          {
-            "$ref": "#/components/schemas/SipEndpointWithoutTrunk"
-          },
-          {
-            "$ref": "#/components/schemas/Ipv4EndpointWithoutTrunk"
-          },
-          {
-            "$ref": "#/components/schemas/IntegrationEndpointWithoutTrunk"
-          },
-          {
-            "$ref": "#/components/schemas/FqdnEndpointWithoutTrunk"
-          },
-          {
-            "$ref": "#/components/schemas/BotEndpoint"
-          }
-        ],
-        "properties": {
-          "endpoint": {
-            "type": "string"
-          },
-          "weight": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "rewriteUser": {
-            "type": "string",
-            "description": "Overrides the user part of the SIP Request-URI (e.g. \u0060rewrite-user@endpoint\u0060).",
-            "example": "rewrite-user@example.com"
-          }
-        }
-      },
-      "VoiceConfigurationPackageSearchResultAllOf2": {
-        "type": "object",
-        "properties": {
-          "isCompatible": {
-            "type": "boolean",
-            "description": "Whether the voice configuration package is compatible with all phone numbers provided in the search criteria. Returned as null when the search criteria do not evaluate compatibility (searches without phoneNumber criteria). When a name filter is combined with phoneNumber criteria, only compatible packages are returned."
-          },
-          "incompatibilityReasons": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IncompatibilityReason"
-            },
-            "description": "The reasons a voice configuration package is incompatible with the phone numbers in the search criteria. Populated when isCompatible is false; returned as null when the package is compatible or compatibility is not evaluated."
           }
         }
       },
@@ -35909,6 +35908,59 @@
           }
         }
       },
+      "OriginationRoutePlanRouteEndpointsItem": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/TnEndpointWithoutTrunk"
+          },
+          {
+            "$ref": "#/components/schemas/SipEndpointWithoutTrunk"
+          },
+          {
+            "$ref": "#/components/schemas/Ipv4EndpointWithoutTrunk"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationEndpointWithoutTrunk"
+          },
+          {
+            "$ref": "#/components/schemas/FqdnEndpointWithoutTrunk"
+          },
+          {
+            "$ref": "#/components/schemas/BotEndpoint"
+          }
+        ],
+        "properties": {
+          "endpoint": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rewriteUser": {
+            "type": "string",
+            "description": "Overrides the user part of the SIP Request-URI (e.g. \u0060rewrite-user@endpoint\u0060).",
+            "example": "rewrite-user@example.com"
+          }
+        }
+      },
+      "VoiceConfigurationPackageSearchResultAllOf2": {
+        "type": "object",
+        "properties": {
+          "isCompatible": {
+            "type": "boolean",
+            "description": "Whether the voice configuration package is compatible with all phone numbers provided in the search criteria. Returned as null when the search criteria do not evaluate compatibility (searches without phoneNumber criteria). When a name filter is combined with phoneNumber criteria, only compatible packages are returned."
+          },
+          "incompatibilityReasons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IncompatibilityReason"
+            },
+            "description": "The reasons a voice configuration package is incompatible with the phone numbers in the search criteria. Populated when isCompatible is false; returned as null when the package is compatible or compatibility is not evaluated."
+          }
+        }
+      },
       "UpdateVoiceApplicationResponseData": {
         "type": "object",
         "allOf": [
@@ -35931,24 +35983,6 @@
           "orderType": {
             "type": "string",
             "example": "ADD_ENDPOINTS"
-          }
-        }
-      },
-      "ProvisioningOrderUpdateEndpointResponseAllOf2": {
-        "type": "object",
-        "properties": {
-          "orderType": {
-            "type": "string",
-            "example": "UPDATE_ENDPOINTS"
-          }
-        }
-      },
-      "ProvisioningOrderDeleteEndpointResponseAllOf2": {
-        "type": "object",
-        "properties": {
-          "orderType": {
-            "type": "string",
-            "example": "DELETE_ENDPOINTS"
           }
         }
       },
@@ -36016,23 +36050,14 @@
           ]
         }
       },
-      "BrandAcceptedResponseObjectData": {
-        "required": [
-          "bandwidthId"
-        ],
+      "ProvisioningOrderUpdateEndpointResponseAllOf2": {
         "type": "object",
         "properties": {
-          "brandId": {
-            "maxLength": 8,
+          "orderType": {
             "type": "string",
-            "description": "The TCR-generated identifier for the brand. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the brand."
-          },
-          "bandwidthId": {
-            "type": "string",
-            "description": "The Bandwidth-generated identifier for this entity. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the entity."
+            "example": "UPDATE_ENDPOINTS"
           }
-        },
-        "readOnly": true
+        }
       },
       "ApplicationsResponseStatus": {
         "type": "object",
@@ -36047,87 +36072,18 @@
           }
         }
       },
-      "PaginatedReportDefinitionResponseResponseData": {
-        "required": [
-          "id",
-          "category",
-          "domain",
-          "reportName",
-          "description",
-          "regions",
-          "maxMonthsBack",
-          "filters",
-          "outputFields",
-          "supportedModes"
-        ],
+      "ProvisioningOrderDeleteEndpointResponseAllOf2": {
         "type": "object",
         "properties": {
-          "id": {
+          "orderType": {
             "type": "string",
-            "description": "Unique identifier for the report definition. Use this ID to fetch the full definition via \u0060GET /v2/report-definitions/{reportDefinitionId}\u0060 or to retrieve results via \u0060POST /v2/report-definitions/{reportDefinitionId}/results\u0060.",
-            "format": "uuid",
-            "example": "6d4f848a-9543-4e18-b580-2621c9525892"
-          },
-          "category": {
-            "$ref": "#/components/schemas/Category"
-          },
-          "domain": {
-            "$ref": "#/components/schemas/Domain"
-          },
-          "reportName": {
-            "type": "string",
-            "description": "Human-readable name of the report.",
-            "example": "CDRs"
-          },
-          "description": {
-            "type": "string",
-            "description": "Detailed description of the report and its data.",
-            "example": "Call Detail Records provides details for all the Voice calls associated with your account."
-          },
-          "regions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InsightsRegion"
-            },
-            "description": "Regions where this report is available."
-          },
-          "maxMonthsBack": {
-            "maximum": 24,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Maximum number of months of historical data available for this report.",
-            "example": 12
-          },
-          "filters": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PaginatedRdoFilter"
-            },
-            "description": "List of filter definitions that can be applied when retrieving results for this report."
-          },
-          "outputFields": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PaginatedOutputField"
-            },
-            "description": "The fields returned in each result row from \u0060POST /v2/report-definitions/{reportDefinitionId}/results\u0060."
-          },
-          "supportedModes": {
-            "minItems": 1,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SupportedMode"
-            },
-            "description": "The execution flows this report definition supports.\n\u0060SYNC\u0060 returns results inline from \u0060POST /v2/report-definitions/{reportDefinitionId}/results\u0060.\n\u0060ASYNC\u0060 is generated via the report instance flow and retrieved as a file."
+            "example": "DELETE_ENDPOINTS"
           }
-        },
-        "description": "The report definition object."
+        }
       },
-      "VettingAcceptedResponseObjectData": {
+      "BrandAcceptedResponseObjectData": {
         "required": [
-          "brandId",
-          "brandBandwidthId",
-          "vettingBandwidthId"
+          "bandwidthId"
         ],
         "type": "object",
         "properties": {
@@ -36136,11 +36092,7 @@
             "type": "string",
             "description": "The TCR-generated identifier for the brand. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the brand."
           },
-          "brandBandwidthId": {
-            "type": "string",
-            "description": "The Bandwidth-generated identifier for this entity. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the entity."
-          },
-          "vettingBandwidthId": {
+          "bandwidthId": {
             "type": "string",
             "description": "The Bandwidth-generated identifier for this entity. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the entity."
           }
@@ -36253,10 +36205,10 @@
             "$ref": "#/components/schemas/EventTypeVersion"
           },
           "principal": {
-            "type": "string"
+            "$ref": "#/components/schemas/EventTypePrincipalProperty"
           },
           "resource": {
-            "type": "string"
+            "$ref": "#/components/schemas/EventTypeResourceProperty"
           },
           "eventTime": {
             "type": "string",
@@ -36277,7 +36229,7 @@
             "example": "80c9a7f7-9a7f-bf58-f6de-942cea16cee4"
           },
           "eventType": {
-            "type": "string"
+            "$ref": "#/components/schemas/EventTypeEventTypeProperty"
           },
           "http": {
             "$ref": "#/components/schemas/EventTypeHttp"
@@ -36310,16 +36262,81 @@
         },
         "description": "Counts of unique keys for a term"
       },
-      "EmailSubscriptionAllOf2": {
+      "PaginatedReportDefinitionResponseResponseData": {
         "required": [
-          "emailSubscription"
+          "id",
+          "category",
+          "domain",
+          "reportName",
+          "description",
+          "regions",
+          "maxMonthsBack",
+          "filters",
+          "outputFields",
+          "supportedModes"
         ],
         "type": "object",
         "properties": {
-          "emailSubscription": {
-            "$ref": "#/components/schemas/EmailSubscriptionAllOf2EmailSubscription"
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the report definition. Use this ID to fetch the full definition via \u0060GET /v2/report-definitions/{reportDefinitionId}\u0060 or to retrieve results via \u0060POST /v2/report-definitions/{reportDefinitionId}/results\u0060.",
+            "format": "uuid",
+            "example": "6d4f848a-9543-4e18-b580-2621c9525892"
+          },
+          "category": {
+            "$ref": "#/components/schemas/Category"
+          },
+          "domain": {
+            "$ref": "#/components/schemas/Domain"
+          },
+          "reportName": {
+            "type": "string",
+            "description": "Human-readable name of the report.",
+            "example": "CDRs"
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description of the report and its data.",
+            "example": "Call Detail Records provides details for all the Voice calls associated with your account."
+          },
+          "regions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InsightsRegion"
+            },
+            "description": "Regions where this report is available."
+          },
+          "maxMonthsBack": {
+            "maximum": 24,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Maximum number of months of historical data available for this report.",
+            "example": 12
+          },
+          "filters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaginatedRdoFilter"
+            },
+            "description": "List of filter definitions that can be applied when retrieving results for this report."
+          },
+          "outputFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaginatedOutputField"
+            },
+            "description": "The fields returned in each result row from \u0060POST /v2/report-definitions/{reportDefinitionId}/results\u0060."
+          },
+          "supportedModes": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SupportedMode"
+            },
+            "description": "The execution flows this report definition supports.\n\u0060SYNC\u0060 returns results inline from \u0060POST /v2/report-definitions/{reportDefinitionId}/results\u0060.\n\u0060ASYNC\u0060 is generated via the report instance flow and retrieved as a file."
           }
-        }
+        },
+        "description": "The report definition object."
       },
       "TimestampFilter": {
         "title": "Timestamp Filter Range",
@@ -36484,6 +36501,50 @@
           },
           "scope": {
             "type": "string"
+          },
+          "client_id": {
+            "type": "string",
+            "description": "The client ID, used to authenticate via \u0060client_secret_post\u0060. Required when the \u0060Authorization\u0060 header is not provided, and must not be supplied when the \u0060Authorization\u0060 header is present."
+          },
+          "client_secret": {
+            "type": "string",
+            "description": "The client secret, used to authenticate via \u0060client_secret_post\u0060. Required when the \u0060Authorization\u0060 header is not provided, and must not be supplied when the \u0060Authorization\u0060 header is present."
+          }
+        },
+        "description": "Note: \u0060client_id\u0060 and \u0060client_secret\u0060 use snake_case rather than Bandwidth\u0027s\nstandard camelCase, as an intentional deviation to comply with RFC 6749\n(\u0060client_secret_post\u0060 authentication), which mandates these exact\nform-encoded parameter names.\n"
+      },
+      "VettingAcceptedResponseObjectData": {
+        "required": [
+          "brandId",
+          "brandBandwidthId",
+          "vettingBandwidthId"
+        ],
+        "type": "object",
+        "properties": {
+          "brandId": {
+            "maxLength": 8,
+            "type": "string",
+            "description": "The TCR-generated identifier for the brand. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the brand."
+          },
+          "brandBandwidthId": {
+            "type": "string",
+            "description": "The Bandwidth-generated identifier for this entity. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the entity."
+          },
+          "vettingBandwidthId": {
+            "type": "string",
+            "description": "The Bandwidth-generated identifier for this entity. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the entity."
+          }
+        },
+        "readOnly": true
+      },
+      "EmailSubscriptionAllOf2": {
+        "required": [
+          "emailSubscription"
+        ],
+        "type": "object",
+        "properties": {
+          "emailSubscription": {
+            "$ref": "#/components/schemas/EmailSubscriptionAllOf2EmailSubscription"
           }
         }
       },
@@ -38420,6 +38481,9 @@
         }
       },
       "CreateEndpointRequest": {
+        "required": [
+          "type"
+        ],
         "type": "object",
         "oneOf": [
           {
@@ -43448,6 +43512,9 @@
         }
       },
       "RetrieveNewPhoneNumberOrder200ResponseSchemaJsonOrderType": {
+        "required": [
+          "type"
+        ],
         "type": "object",
         "oneOf": [
           {
@@ -43549,6 +43616,9 @@
           },
           "phoneNumberType": {
             "$ref": "#/components/schemas/CountryAndPhoneNumberTypeSearchAndOrderTypePhoneNumberType"
+          },
+          "type": {
+            "type": "string"
           }
         },
         "discriminator": {
@@ -62597,6 +62667,9 @@
         }
       },
       "OrpRouteEndpointsItem": {
+        "required": [
+          "type"
+        ],
         "type": "object",
         "oneOf": [
           {
@@ -62618,6 +62691,9 @@
             "type": "string",
             "description": "Overrides the user part of the SIP Request-URI  (e.g. \u0060rewrite-user@endpoint\u0060).",
             "example": "rewrite-user@example.com"
+          },
+          "type": {
+            "type": "string"
           }
         },
         "discriminator": {
@@ -62850,6 +62926,9 @@
         "description": "An array of suggested actions for the recipient."
       },
       "MultiChannelAction": {
+        "required": [
+          "type"
+        ],
         "type": "object",
         "anyOf": [
           {
@@ -63148,6 +63227,9 @@
         }
       },
       "MultiChannelChannelListRequestObject": {
+        "required": [
+          "channel"
+        ],
         "type": "object",
         "anyOf": [
           {
@@ -63198,6 +63280,9 @@
         }
       },
       "MultiChannelChannelListResponseObject": {
+        "required": [
+          "channel"
+        ],
         "type": "object",
         "anyOf": [
           {
@@ -63379,6 +63464,9 @@
         }
       },
       "MessagingCallback": {
+        "required": [
+          "type"
+        ],
         "type": "object",
         "oneOf": [
           {
@@ -63418,6 +63506,9 @@
           "carrierName": {
             "type": "string",
             "description": "The name of the Authorized Message Provider (AMP) that handled this message.\nIn the US, this is the carrier that the message was sent to.\nThis field is present only when this account feature has been enabled."
+          },
+          "type": {
+            "type": "string"
           }
         },
         "description": "Callbacks are divided into two types based on direction of the related message:\n- \u0060statusCallback\u0060 indicates status of an outbound MT SMS, MMS, or RBM message.\n- \u0060inboundCallback\u0060 indicates an inbound MO message or a multichannel message client\u0027s response to a suggestion or location request.",
@@ -98691,34 +98782,6 @@
           }
         }
       },
-      "ApiErrorsData": {
-        "type": "object",
-        "nullable": true
-      },
-      "ApiErrorsErrorsItem": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "A short, human-readable summary of the problem that SHOULD NOT change from occurrence to occurrence of the problem.",
-            "example": "request-error"
-          },
-          "description": {
-            "type": "string",
-            "description": "A human-readable explanation that SHOULD be specific to this occurrence of the problem.",
-            "example": "There was an issue with a field in your request body"
-          },
-          "code": {
-            "type": "integer",
-            "description": "An application-specific error code for services with extensive error scenarios to supplement \u0060description\u0060.",
-            "format": "int32",
-            "example": 1203
-          },
-          "source": {
-            "$ref": "#/components/schemas/ApiErrorsErrorsItemSource"
-          }
-        }
-      },
       "ApplicationErrorResponseXmlWrapperApplicationProvisioningResponse": {
         "type": "object",
         "properties": {
@@ -98734,6 +98797,15 @@
             "$ref": "#/components/schemas/ApplicationsResponseStatus"
           }
         }
+      },
+      "EventTypePrincipal": {
+        "type": "object"
+      },
+      "EventTypeResource": {
+        "type": "object"
+      },
+      "EventTypeEventType": {
+        "type": "object"
       },
       "EventTypeHttp": {
         "required": [
@@ -98801,6 +98873,10 @@
           "sample": 1000
         }
       },
+      "GenericErrorData": {
+        "type": "object",
+        "example": null
+      },
       "EmailSubscriptionAllOf2EmailSubscription": {
         "required": [
           "emailAddress"
@@ -98816,10 +98892,6 @@
             "$ref": "#/components/schemas/DigestEnum"
           }
         }
-      },
-      "GenericErrorData": {
-        "type": "object",
-        "example": null
       },
       "AuthServiceOAuthErrorResponseData": {
         "type": "object"
@@ -104519,17 +104591,6 @@
           }
         }
       },
-      "SipCredentialsCreatedResponseXmlSipCredentialsResponseErrors": {
-        "type": "object",
-        "properties": {
-          "Error": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SipCredentialError"
-            }
-          }
-        }
-      },
       "ApiErrorsErrorsItemSource": {
         "type": "object",
         "properties": {
@@ -104552,6 +104613,17 @@
         "example": {
           "method": "GET",
           "reference": "/accounts/9903248/activeCalls/MTU2MDI4ODE1XzgzMzQ4OTg4QDE5Mi4xNjguMTMyLjQx"
+        }
+      },
+      "SipCredentialsCreatedResponseXmlSipCredentialsResponseErrors": {
+        "type": "object",
+        "properties": {
+          "Error": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SipCredentialError"
+            }
+          }
         }
       },
       "BulkPortinResponsesBulkPortinResponsesBulkPortinResponseItem": {
@@ -107353,6 +107425,15 @@
         "type": "object"
       },
       "ApiErrorsDataProperty": {
+        "type": "object"
+      },
+      "EventTypePrincipalProperty": {
+        "type": "object"
+      },
+      "EventTypeResourceProperty": {
+        "type": "object"
+      },
+      "EventTypeEventTypeProperty": {
         "type": "object"
       },
       "EventTypeCustomerContextProperty": {
@@ -120260,6 +120341,9 @@
             "examples": {
               "badRequestResponseExample": {
                 "$ref": "#/components/examples/tokenBadRequestResponseExample"
+              },
+              "multipleCredentialsResponseExample": {
+                "$ref": "#/components/examples/tokenMultipleCredentialsResponseExample"
               }
             }
           }
@@ -120350,7 +120434,7 @@
           }
         }
       },
-      "auth_service_oauth_unauthorizedResponse": {
+      "tokenUnauthorizedResponse": {
         "description": "Unauthorized",
         "content": {
           "application/json": {
@@ -120358,8 +120442,8 @@
               "$ref": "#/components/schemas/TokenErrorResponse"
             },
             "examples": {
-              "unauthorizedResponseExample": {
-                "$ref": "#/components/examples/unauthorizedResponseExample"
+              "tokenUnauthorizedResponseExample": {
+                "$ref": "#/components/examples/tokenUnauthorizedResponseExample"
               }
             }
           }
@@ -120507,7 +120591,7 @@
             },
             "examples": {
               "unauthorizedResponseExample": {
-                "$ref": "#/components/examples/auth_service_unauthorizedResponseExample"
+                "$ref": "#/components/examples/unauthorizedResponseExample"
               }
             }
           }
@@ -137915,12 +137999,12 @@
       "mediaId": {
         "name": "mediaId",
         "in": "path",
-        "description": "Media ID to retrieve.",
+        "description": "The ID of the media file.",
         "required": true,
         "schema": {
           "type": "string"
         },
-        "example": "14762070468292kw2fuqty55yp2b2/0/bw.png"
+        "example": "bw.png"
       },
       "contentType": {
         "name": "Content-Type",
@@ -143350,11 +143434,23 @@
       "tokenBadRequestResponseExample": {
         "value": {
           "error": "invalid_client",
-          "error_description": "Missing or malformed basic auth credentials",
+          "error_description": "Missing or malformed client credentials",
           "error_uri": "https://tools.ietf.org/html/rfc6749#section-5.2",
           "err": {
             "type": "authentication-credentials",
-            "description": "Missing or malformed basic auth credentials.",
+            "description": "Missing or malformed client credentials.",
+            "code": "1003"
+          }
+        }
+      },
+      "tokenMultipleCredentialsResponseExample": {
+        "value": {
+          "error": "invalid_request",
+          "error_description": "Client credentials must be provided using exactly one method, not both an Authorization header and body parameters",
+          "error_uri": "https://tools.ietf.org/html/rfc6749#section-5.2",
+          "err": {
+            "type": "authentication-credentials",
+            "description": "Client credentials must be provided using exactly one method, not both an Authorization header and body parameters.",
             "code": "1003"
           }
         }
@@ -143442,7 +143538,7 @@
           ]
         }
       },
-      "unauthorizedResponseExample": {
+      "tokenUnauthorizedResponseExample": {
         "value": {
           "error": "invalid_client",
           "error_description": "Provided client credentials are invalid",
@@ -143619,7 +143715,7 @@
           ]
         }
       },
-      "auth_service_unauthorizedResponseExample": {
+      "unauthorizedResponseExample": {
         "value": {
           "links": [],
           "data": null,
@@ -157728,7 +157824,7 @@
         "required": true
       },
       "tokenRequest": {
-        "description": "The request body for generating a token.",
+        "description": "The request body for generating a token.\n\nIf client credentials are not provided via the \u0060Authorization\u0060 header (\u0060client_secret_basic\u0060), \u0060client_id\u0060 and \u0060client_secret\u0060 must be provided here instead (\u0060client_secret_post\u0060). These body parameters must not be combined with an \u0060Authorization\u0060 header; supplying credentials via both methods is rejected with a \u0060400 invalid_request\u0060 error.\n",
         "content": {
           "application/x-www-form-urlencoded": {
             "schema": {

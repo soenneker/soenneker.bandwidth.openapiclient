@@ -52,11 +52,21 @@ paths:
   /api/v1/oauth2/token:
     post:
       summary: Mint Token
-      description: >-
+      description: >
         Mints a new access token in the form of a JSON Web Token (JWT) for a
         client.
+
+
+        Client credentials must be provided using exactly one of two methods:
+        either as an `Authorization` header using HTTP Basic authentication
+        (`client_secret_basic`), or as `client_id`/`client_secret` form-encoded
+        body parameters (`client_secret_post`). Exactly one method is required;
+        requests that combine both methods (an `Authorization` header together
+        with `client_id`/`client_secret` body parameters) are rejected with a
+        `400 invalid_request` error.
       security:
         - Basic: []
+        - {}
       operationId: generateToken
       tags:
         - Token
@@ -68,7 +78,7 @@ paths:
         '400':
           $ref: '#/components/responses/tokenBadRequestResponse'
         '401':
-          $ref: '#/components/responses/unauthorizedResponse'
+          $ref: '#/components/responses/tokenUnauthorizedResponse'
         '403':
           $ref: '#/components/responses/forbiddenResponse'
         '404':
@@ -110,7 +120,15 @@ components:
       scheme: basic
   requestBodies:
     tokenRequest:
-      description: The request body for generating a token.
+      description: >
+        The request body for generating a token.
+
+
+        If client credentials are not provided via the `Authorization` header
+        (`client_secret_basic`), `client_id` and `client_secret` must be
+        provided here instead (`client_secret_post`). These body parameters must
+        not be combined with an `Authorization` header; supplying credentials
+        via both methods is rejected with a `400 invalid_request` error.
       content:
         application/x-www-form-urlencoded:
           schema:
@@ -140,6 +158,8 @@ components:
           examples:
             badRequestResponseExample:
               $ref: '#/components/examples/tokenBadRequestResponseExample'
+            multipleCredentialsResponseExample:
+              $ref: '#/components/examples/tokenMultipleCredentialsResponseExample'
     forbiddenResponse:
       description: Forbidden
       content:
@@ -191,15 +211,15 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/token'
-    unauthorizedResponse:
+    tokenUnauthorizedResponse:
       description: Unauthorized
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/tokenErrorResponse'
           examples:
-            unauthorizedResponseExample:
-              $ref: '#/components/examples/unauthorizedResponseExample'
+            tokenUnauthorizedResponseExample:
+              $ref: '#/components/examples/tokenUnauthorizedResponseExample'
     keysResponse:
       description: OK
       content:
@@ -210,6 +230,15 @@ components:
     tokenRequest:
       title: tokenForm
       type: object
+      description: >
+        Note: `client_id` and `client_secret` use snake_case rather than
+        Bandwidth's
+
+        standard camelCase, as an intentional deviation to comply with RFC 6749
+
+        (`client_secret_post` authentication), which mandates these exact
+
+        form-encoded parameter names.
       required:
         - grant_type
       properties:
@@ -217,6 +246,24 @@ components:
           $ref: '#/components/schemas/grantTypeEnum'
         scope:
           type: string
+        client_id:
+          $ref: '#/components/schemas/tokenClientId'
+        client_secret:
+          $ref: '#/components/schemas/tokenClientSecret'
+    tokenClientId:
+      type: string
+      description: >-
+        The client ID, used to authenticate via `client_secret_post`. Required
+        when the `Authorization` header is not provided, and must not be
+        supplied when the `Authorization` header is present.
+      example: c-123456ab-1234-5678-9012-abcdef123456
+    tokenClientSecret:
+      type: string
+      description: >-
+        The client secret, used to authenticate via `client_secret_post`.
+        Required when the `Authorization` header is not provided, and must not
+        be supplied when the `Authorization` header is present.
+      example: 1234567890abcdefghijklmnopqrstuvwxyz
     metaData:
       title: authServiceMetaData
       type: object
@@ -263,6 +310,7 @@ components:
             type: string
           example:
             - client_secret_basic
+            - client_secret_post
     tokenErrorResponse:
       required:
         - error
@@ -484,11 +532,24 @@ components:
     tokenBadRequestResponseExample:
       value:
         error: invalid_client
-        error_description: Missing or malformed basic auth credentials
+        error_description: Missing or malformed client credentials
         error_uri: https://tools.ietf.org/html/rfc6749#section-5.2
         err:
           type: authentication-credentials
-          description: Missing or malformed basic auth credentials.
+          description: Missing or malformed client credentials.
+          code: '1003'
+    tokenMultipleCredentialsResponseExample:
+      value:
+        error: invalid_request
+        error_description: >-
+          Client credentials must be provided using exactly one method, not both
+          an Authorization header and body parameters
+        error_uri: https://tools.ietf.org/html/rfc6749#section-5.2
+        err:
+          type: authentication-credentials
+          description: >-
+            Client credentials must be provided using exactly one method, not
+            both an Authorization header and body parameters.
           code: '1003'
     forbiddenResponseExample:
       value:
@@ -542,7 +603,7 @@ components:
             code: '1010'
             meta:
               traceId: '123456789'
-    unauthorizedResponseExample:
+    tokenUnauthorizedResponseExample:
       value:
         error: invalid_client
         error_description: Provided client credentials are invalid

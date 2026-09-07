@@ -38,10 +38,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The eventType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? EventTypeProp { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeEventTypeProperty? EventTypeProp { get; set; }
 #nullable restore
 #else
-        public string EventTypeProp { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeEventTypeProperty EventTypeProp { get; set; }
 #endif
         /// <summary>Attributes for the HTTP request/response associated with this event. Extracted from OTel Semantic Conventions v1.28.0</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -54,20 +54,20 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The principal property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Principal { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypePrincipalProperty? Principal { get; set; }
 #nullable restore
 #else
-        public string Principal { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypePrincipalProperty Principal { get; set; }
 #endif
         /// <summary>The time the event was replayed</summary>
         public DateTimeOffset? ReplayTime { get; set; }
         /// <summary>The resource property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Resource { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeResourceProperty? Resource { get; set; }
 #nullable restore
 #else
-        public string Resource { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeResourceProperty Resource { get; set; }
 #endif
         /// <summary>The expected version of the event schema</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeVersion? Version { get; set; }
@@ -100,11 +100,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "customerContext", n => { CustomerContext = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContextProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContextProperty.CreateFromDiscriminatorValue); } },
                 { "deduplicationId", n => { DeduplicationId = n.GetGuidValue(); } },
                 { "eventTime", n => { EventTime = n.GetDateTimeOffsetValue(); } },
-                { "eventType", n => { EventTypeProp = n.GetStringValue(); } },
+                { "eventType", n => { EventTypeProp = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeEventTypeProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeEventTypeProperty.CreateFromDiscriminatorValue); } },
                 { "http", n => { Http = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeHttp>(global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeHttp.CreateFromDiscriminatorValue); } },
-                { "principal", n => { Principal = n.GetStringValue(); } },
+                { "principal", n => { Principal = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypePrincipalProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypePrincipalProperty.CreateFromDiscriminatorValue); } },
                 { "replayTime", n => { ReplayTime = n.GetDateTimeOffsetValue(); } },
-                { "resource", n => { Resource = n.GetStringValue(); } },
+                { "resource", n => { Resource = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeResourceProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeResourceProperty.CreateFromDiscriminatorValue); } },
                 { "version", n => { Version = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeVersion>(); } },
             };
         }
@@ -119,11 +119,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContextProperty>("customerContext", CustomerContext);
             writer.WriteGuidValue("deduplicationId", DeduplicationId);
             writer.WriteDateTimeOffsetValue("eventTime", EventTime);
-            writer.WriteStringValue("eventType", EventTypeProp);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeEventTypeProperty>("eventType", EventTypeProp);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeHttp>("http", Http);
-            writer.WriteStringValue("principal", Principal);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypePrincipalProperty>("principal", Principal);
             writer.WriteDateTimeOffsetValue("replayTime", ReplayTime);
-            writer.WriteStringValue("resource", Resource);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeResourceProperty>("resource", Resource);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeVersion>("version", Version);
             writer.WriteAdditionalData(AdditionalData);
         }

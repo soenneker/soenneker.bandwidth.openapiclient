@@ -7,13 +7,30 @@ using System.IO;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
+    /// <summary>
+    /// Note: `client_id` and `client_secret` use snake_case rather than Bandwidth&apos;sstandard camelCase, as an intentional deviation to comply with RFC 6749(`client_secret_post` authentication), which mandates these exactform-encoded parameter names.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class TokenRequest : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The client ID, used to authenticate via `client_secret_post`. Required when the `Authorization` header is not provided, and must not be supplied when the `Authorization` header is present.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ClientId { get; set; }
+#nullable restore
+#else
+        public string ClientId { get; set; }
+#endif
+        /// <summary>The client secret, used to authenticate via `client_secret_post`. Required when the `Authorization` header is not provided, and must not be supplied when the `Authorization` header is present.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ClientSecret { get; set; }
+#nullable restore
+#else
+        public string ClientSecret { get; set; }
+#endif
         /// <summary>The OAuth 2.0 grant type.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.GrantTypeEnum? GrantType { get; set; }
         /// <summary>The scope property</summary>
@@ -49,6 +66,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "client_id", n => { ClientId = n.GetStringValue(); } },
+                { "client_secret", n => { ClientSecret = n.GetStringValue(); } },
                 { "grant_type", n => { GrantType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GrantTypeEnum>(); } },
                 { "scope", n => { Scope = n.GetStringValue(); } },
             };
@@ -60,6 +79,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("client_id", ClientId);
+            writer.WriteStringValue("client_secret", ClientSecret);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GrantTypeEnum>("grant_type", GrantType);
             writer.WriteStringValue("scope", Scope);
             writer.WriteAdditionalData(AdditionalData);

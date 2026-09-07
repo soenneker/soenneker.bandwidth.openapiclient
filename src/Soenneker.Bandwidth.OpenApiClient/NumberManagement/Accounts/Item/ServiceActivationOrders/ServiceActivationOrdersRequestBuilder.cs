@@ -93,6 +93,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Servi
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer">When receiving a 403 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 404 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 405 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 409 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 429 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -113,6 +114,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Servi
                 { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
+                { "409", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementGenericError.CreateFromDiscriminatorValue },
             };
