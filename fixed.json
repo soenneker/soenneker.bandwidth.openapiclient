@@ -47127,6 +47127,10 @@
             "items": {
               "$ref": "#/components/schemas/InternalServerErrorResponseSchemaGlobalMessagesItem"
             }
+          },
+          "message": {
+            "type": "string",
+            "description": "The primary error message."
           }
         }
       },
