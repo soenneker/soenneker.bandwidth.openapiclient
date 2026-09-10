@@ -17,10 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PaginationLinksJson? Links { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ProductSettingsPaginationLinksJson? Links { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PaginationLinksJson Links { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ProductSettingsPaginationLinksJson Links { get; set; }
 #endif
         /// <summary>The sipCredentials property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -55,7 +55,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "links", n => { Links = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginationLinksJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.PaginationLinksJson.CreateFromDiscriminatorValue); } },
+                { "links", n => { Links = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductSettingsPaginationLinksJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.ProductSettingsPaginationLinksJson.CreateFromDiscriminatorValue); } },
                 { "sipCredentials", n => { SipCredentials = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SipCredentialJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.SipCredentialJson.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -66,7 +66,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginationLinksJson>("links", Links);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductSettingsPaginationLinksJson>("links", Links);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SipCredentialJson>("sipCredentials", SipCredentials);
             writer.WriteAdditionalData(AdditionalData);
         }

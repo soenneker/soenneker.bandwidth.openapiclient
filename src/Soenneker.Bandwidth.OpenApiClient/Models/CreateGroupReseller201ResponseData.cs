@@ -14,6 +14,22 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The ID of the brand associated with this group. Present only when the account has Identity Presentation enabled and an approved brand has been assigned to this group.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? BrandId { get; set; }
+#nullable restore
+#else
+        public string BrandId { get; set; }
+#endif
+        /// <summary>Approval status of the associated brand with First Orion. Present only when brandId is populated.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnumWrapper? BrandStatus { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnumWrapper BrandStatus { get; set; }
+#endif
         /// <summary>The date and time the group was created.</summary>
         public DateTimeOffset? CreatedAt { get; set; }
         /// <summary>The ID of the customer the group belongs to</summary>
@@ -65,6 +81,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "brandId", n => { BrandId = n.GetStringValue(); } },
+                { "brandStatus", n => { BrandStatus = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnumWrapper>(global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnumWrapper.CreateFromDiscriminatorValue); } },
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "customerId", n => { CustomerId = n.GetIntValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
@@ -81,6 +99,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("brandId", BrandId);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnumWrapper>("brandStatus", BrandStatus);
             writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
             writer.WriteIntValue("customerId", CustomerId);
             writer.WriteStringValue("description", Description);

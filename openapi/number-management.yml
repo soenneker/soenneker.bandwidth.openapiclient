@@ -3195,6 +3195,20 @@ components:
         - NPF
         - MUL
       example: GOVN
+    brandStatusEnum:
+      type: string
+      nullable: true
+      title: Brand Status
+      description: >-
+        Approval status of the brand associated with this group with First
+        Orion.
+
+        Present only when `brandId` is populated.
+      enum:
+        - PENDING
+        - APPROVED
+        - REJECTED
+      example: APPROVED
     groupBaseProperties:
       type: object
       title: Group Base Properties
@@ -3242,6 +3256,21 @@ components:
           format: date-time
           description: The date and time the group was created.
           example: '2021-01-01T00:00:00Z'
+        brandId:
+          type: string
+          nullable: true
+          description: >
+            The ID of the brand associated with this group. Present only when
+            the account has Identity Presentation enabled and an approved brand
+            has been assigned to this group.
+          example: b1a2c3d4-e5f6-7890-abcd-ef1234567890
+        brandStatus:
+          anyOf:
+            - $ref: '#/components/schemas/brandStatusEnum'
+            - type: 'null'
+          description: >
+            Approval status of the associated brand with First Orion. Present
+            only when brandId is populated.
       required:
         - groupId
         - groupName
@@ -3502,10 +3531,11 @@ components:
         data:
           $ref: '#/components/schemas/groupData'
         errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/error'
-          nullable: true
+          oneOf:
+            - type: array
+              items:
+                $ref: '#/components/schemas/error'
+            - type: 'null'
           example: null
         links:
           type: array
@@ -3531,10 +3561,11 @@ components:
               required:
                 - customerId
         errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/error'
-          nullable: true
+          oneOf:
+            - type: array
+              items:
+                $ref: '#/components/schemas/error'
+            - type: 'null'
           example: null
         links:
           type: array
@@ -3551,10 +3582,11 @@ components:
         data:
           $ref: '#/components/schemas/groupData'
         errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/error'
-          nullable: true
+          oneOf:
+            - type: array
+              items:
+                $ref: '#/components/schemas/error'
+            - type: 'null'
           example: null
         links:
           type: array
@@ -3585,10 +3617,11 @@ components:
                 - customerId
                 - customerName
         errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/error'
-          nullable: true
+          oneOf:
+            - type: array
+              items:
+                $ref: '#/components/schemas/error'
+            - type: 'null'
           example: null
         links:
           type: array
@@ -3607,10 +3640,11 @@ components:
           items:
             $ref: '#/components/schemas/groupData'
         errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/error'
-          nullable: true
+          oneOf:
+            - type: array
+              items:
+                $ref: '#/components/schemas/error'
+            - type: 'null'
           example: null
         links:
           type: array
@@ -3643,10 +3677,11 @@ components:
                   - customerId
                   - customerName
         errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/error'
-          nullable: true
+          oneOf:
+            - type: array
+              items:
+                $ref: '#/components/schemas/error'
+            - type: 'null'
           example: null
         links:
           type: array
@@ -6750,6 +6785,8 @@ components:
           intent: GOVN
           createdAt: '2023-10-01T12:00:00Z'
           phoneNumberCount: 1
+          brandId: b1a2c3d4-e5f6-7890-abcd-ef1234567890
+          brandStatus: APPROVED
         links:
           - href: >-
               https://api.bandwidth.com/api/v2/accounts/6555555/numberReputationManagement/groups/26
@@ -6772,6 +6809,8 @@ components:
           intent: GOVN
           createdAt: '2023-10-01T12:00:00Z'
           phoneNumberCount: 1
+          brandId: b1a2c3d4-e5f6-7890-abcd-ef1234567890
+          brandStatus: APPROVED
         links:
           - href: >-
               https://api.bandwidth.com/api/v2/accounts/6555555/numberReputationManagement/groups/26
@@ -6792,6 +6831,8 @@ components:
             intent: GOVN
             createdAt: '2008-09-15T13:45:30Z'
             phoneNumberCount: 2
+            brandId: b1a2c3d4-e5f6-7890-abcd-ef1234567890
+            brandStatus: APPROVED
           - groupId: 27
             groupName: Group Name 2
             description: Group Description 2
@@ -6816,6 +6857,8 @@ components:
             intent: GOVN
             createdAt: '2008-09-15T13:45:30Z'
             phoneNumberCount: 2
+            brandId: b1a2c3d4-e5f6-7890-abcd-ef1234567890
+            brandStatus: APPROVED
           - groupId: 27
             groupName: Group Name 2
             customerId: 42
