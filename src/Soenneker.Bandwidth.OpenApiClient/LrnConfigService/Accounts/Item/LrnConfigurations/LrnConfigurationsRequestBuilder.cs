@@ -177,7 +177,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.LrnCo
             /// <summary>The number of items to include in the current page.</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
-            /// <summary>A query param for sorting by name.</summary>
+            /// <summary>Filter and/or sort Location Routing Configuration Packages by name. Use `name[eq]` for an exact match, `name[contains]` for a case-insensitive substring match (returns any package whose name contains the provided value, regardless of position), and `name[sort]` to control sort order. All sub-properties are optional and may be combined.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("name")]

@@ -76,7 +76,7 @@ paths:
         - $ref: '#/components/parameters/accountParams'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/lrnConfigNameParam'
       responses:
         '200':
           $ref: '#/components/responses/listLrnConfigs'
@@ -501,6 +501,24 @@ components:
       description: A query param for sorting by name.
       schema:
         $ref: '#/components/schemas/sortable'
+    lrnConfigNameParam:
+      name: name
+      in: query
+      required: false
+      description: >-
+        Filter and/or sort Location Routing Configuration Packages by name. Use
+        `name[eq]` for an exact match, `name[contains]` for a case-insensitive
+        substring match (returns any package whose name contains the provided
+        value, regardless of position), and `name[sort]` to control sort order.
+        All sub-properties are optional and may be combined.
+      schema:
+        $ref: '#/components/schemas/nameFilterSortParam'
+      style: deepObject
+      explode: true
+      example:
+        eq: Example LRN Config
+        contains: config
+        sort: ASC
     region:
       name: region
       in: query
@@ -1169,6 +1187,26 @@ components:
           type: string
           description: Case-insensitive substring match on the LRN value.
           example: '+1234'
+        sort:
+          $ref: '#/components/schemas/sort'
+    nameFilterSortParam:
+      type: object
+      description: >-
+        Consolidated filter and sort parameter for the Location Routing
+        Configuration Package name. Use `name[eq]` for an exact match,
+        `name[contains]` for a case-insensitive substring match (returns any
+        package whose name contains the provided value, regardless of position),
+        and `name[sort]` to control sort order. All sub-properties are optional
+        and may be combined.
+      properties:
+        eq:
+          type: string
+          description: Exact match on the package name.
+          example: Example LRN Config
+        contains:
+          type: string
+          description: Case-insensitive substring match on the package name.
+          example: config
         sort:
           $ref: '#/components/schemas/sort'
     operatingCompanyNameFilterSortParam:

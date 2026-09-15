@@ -14144,7 +14144,7 @@
             "$ref": "#/components/parameters/lrn_config_service_limit"
           },
           {
-            "$ref": "#/components/parameters/name"
+            "$ref": "#/components/parameters/lrnConfigNameParam"
           }
         ],
         "responses": {
@@ -58026,6 +58026,25 @@
           }
         },
         "description": "Consolidated filter and sort parameter for the LRN value. Use \u0060lrn[eq]\u0060 for an exact match, \u0060lrn[contains]\u0060 for a case-insensitive substring match, and \u0060lrn[sort]\u0060 to control sort order. All sub-properties are optional and may be combined."
+      },
+      "NameFilterSortParam": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "Exact match on the package name.",
+            "example": "Example LRN Config"
+          },
+          "contains": {
+            "type": "string",
+            "description": "Case-insensitive substring match on the package name.",
+            "example": "config"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/LrnConfigServiceSort"
+          }
+        },
+        "description": "Consolidated filter and sort parameter for the Location Routing Configuration Package name. Use \u0060name[eq]\u0060 for an exact match, \u0060name[contains]\u0060 for a case-insensitive substring match (returns any package whose name contains the provided value, regardless of position), and \u0060name[sort]\u0060 to control sort order. All sub-properties are optional and may be combined."
       },
       "OperatingCompanyNameFilterSortParam": {
         "type": "object",
@@ -137659,6 +137678,21 @@
         "description": "A query param for sorting by name.",
         "schema": {
           "$ref": "#/components/schemas/Sortable"
+        }
+      },
+      "lrnConfigNameParam": {
+        "name": "name",
+        "in": "query",
+        "description": "Filter and/or sort Location Routing Configuration Packages by name. Use \u0060name[eq]\u0060 for an exact match, \u0060name[contains]\u0060 for a case-insensitive substring match (returns any package whose name contains the provided value, regardless of position), and \u0060name[sort]\u0060 to control sort order. All sub-properties are optional and may be combined.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/NameFilterSortParam"
+        },
+        "example": {
+          "eq": "Example LRN Config",
+          "contains": "config",
+          "sort": "ASC"
         }
       },
       "lrn_config_service_region": {
