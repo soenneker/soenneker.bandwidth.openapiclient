@@ -19,7 +19,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Lidbs
     public partial class LidbsRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Bandwidth.OpenApiClient.lineFeatures.accounts.item.lidbs.item collection</summary>
-        /// <param name="position">LIDB order ID</param>
+        /// <param name="position">Unique identifier of the item</param>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Lidbs.Item.WithLidbItemRequestBuilder"/></returns>
         public global::Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Lidbs.Item.WithLidbItemRequestBuilder this[string position]
         {

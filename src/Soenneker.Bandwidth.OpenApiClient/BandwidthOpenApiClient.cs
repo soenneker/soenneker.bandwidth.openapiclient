@@ -48,6 +48,7 @@ using Soenneker.Bandwidth.OpenApiClient.Voice;
 using Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement;
 using Soenneker.Bandwidth.OpenApiClient.VoiceConfigService;
 using Soenneker.Bandwidth.OpenApiClient.VoiceConfigWhitelist;
+using Soenneker.Bandwidth.OpenApiClient.VoiceDebugLogs;
 using Soenneker.Bandwidth.OpenApiClient.VoiceIntegrations;
 using Soenneker.Bandwidth.OpenApiClient.VoicePhoneNumbers;
 using Soenneker.Bandwidth.OpenApiClient.VoiceStirShaken;
@@ -272,6 +273,11 @@ namespace Soenneker.Bandwidth.OpenApiClient
         public global::Soenneker.Bandwidth.OpenApiClient.VoiceConfigWhitelist.VoiceConfigWhitelistRequestBuilder VoiceConfigWhitelist
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.VoiceConfigWhitelist.VoiceConfigWhitelistRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The voiceDebugLogs property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.VoiceDebugLogs.VoiceDebugLogsRequestBuilder VoiceDebugLogs
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.VoiceDebugLogs.VoiceDebugLogsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The voiceIntegrations property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.VoiceIntegrations.VoiceIntegrationsRequestBuilder VoiceIntegrations

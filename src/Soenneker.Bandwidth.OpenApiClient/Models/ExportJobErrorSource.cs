@@ -7,37 +7,30 @@ using System.IO;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
+    /// <summary>
+    /// Identifies the source of the error.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class CancelDidsRequest : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class ExportJobErrorSource : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Array of identifier of the dids to cancel from order. Note that you can specify multiple ids by repeating the query parameter.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<int?>? DidIds { get; set; }
-#nullable restore
-#else
-        public List<int?> DidIds { get; set; }
-#endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CancelDidsRequest"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorSource"/> and sets the default values.
         /// </summary>
-        public CancelDidsRequest()
+        public ExportJobErrorSource()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CancelDidsRequest"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorSource"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Bandwidth.OpenApiClient.Models.CancelDidsRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorSource CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.CancelDidsRequest();
+            return new global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorSource();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -47,7 +40,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "didIds", n => { DidIds = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -57,7 +49,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfPrimitiveValues<int?>("didIds", DidIds);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

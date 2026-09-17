@@ -9,35 +9,35 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class SaveCapacityGroupRequest : IAdditionalDataHolder, IParsable
+    public partial class CreateDebugLogExportRequestRequest : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The capacityGroup property</summary>
+        /// <summary>Filters for an export job. `occurredAtFrom` and `occurredAtTo` arerequired and the range between them cannot exceed 2 days. Filtersemantics are AND across fields, OR within array-valued fields.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveCapacityGroup? CapacityGroup { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExportRequest? Filters { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveCapacityGroup CapacityGroup { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExportRequest Filters { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SaveCapacityGroupRequest"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateDebugLogExportRequestRequest"/> and sets the default values.
         /// </summary>
-        public SaveCapacityGroupRequest()
+        public CreateDebugLogExportRequestRequest()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SaveCapacityGroupRequest"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateDebugLogExportRequestRequest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Bandwidth.OpenApiClient.Models.SaveCapacityGroupRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.CreateDebugLogExportRequestRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.SaveCapacityGroupRequest();
+            return new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateDebugLogExportRequestRequest();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -47,7 +47,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "capacityGroup", n => { CapacityGroup = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveCapacityGroup>(global::Soenneker.Bandwidth.OpenApiClient.Models.SaveCapacityGroup.CreateFromDiscriminatorValue); } },
+                { "filters", n => { Filters = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExportRequest>(global::Soenneker.Bandwidth.OpenApiClient.Models.ExportRequest.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveCapacityGroup>("capacityGroup", CapacityGroup);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExportRequest>("filters", Filters);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

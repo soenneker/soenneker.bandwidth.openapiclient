@@ -1,0 +1,1142 @@
+openapi: 3.0.3
+info:
+  title: Voice API Debug Logs
+  version: 1.0.0-beta
+  contact:
+    name: Bandwidth
+    url: https://support.bandwidth.com
+    email: support@bandwidth.com
+  termsOfService: https://www.bandwidth.com/legal/terms-of-use-bandwidthcom-web-sites/
+  description: |-
+    ## Status: Beta
+
+    This API is in **Beta**. The contract may change before general
+    availability based on feedback from early users. Backwards-incompatible
+    changes are possible during the Beta period; Bandwidth will provide as
+    much notice as is practical, but the standard 6-month deprecation
+    notice for stable APIs does not apply. Production traffic at your own
+    risk; please share feedback with your account team.
+
+    ## Overview
+
+    The Debug Logs API exposes the HTTP transactions Bandwidth captures
+    between our Programmable Voice platform and your application — every
+    inbound REST call you made, every webhook we delivered, and every media
+    fetch we performed for a given call. Use it to self-serve debug a call
+    without filing a support ticket.
+
+    ## Base URL
+
+    `https://api.bandwidth.com/v2/voice-api`
+
+    ## Retention
+
+    Events are retained for 7 days from the time the call ended. Export
+    archives are retained separately, for 3 days from when the export was
+    requested.
+servers:
+  - url: https://api.bandwidth.com/v2/voice-api
+    description: Production
+security:
+  - OAuth2: []
+  - Bearer: []
+tags:
+  - name: Debug Logs
+    description: Voice API HTTP transaction events.
+  - name: Debug Log Exports
+    description: Asynchronous gzipped JSONL exports of debug log events.
+paths:
+  /accounts/{accountId}/debug-logs:
+    get:
+      tags:
+        - Debug Logs
+      summary: List debug logs
+      description: |-
+        Returns a cursor-paginated list of HTTP transaction event summaries
+        for the account, sorted by `occurredAt DESC` by default. Each item is
+        a lightweight projection (`httpTransactionEventSummary`) intended for
+        rendering a summary row; fetch the full event — request/response
+        headers and bodies, delivery and attempt detail, and the error
+        reason — from `GET /accounts/{accountId}/debug-logs/{eventId}` using
+        the item's `eventId`. Multi-region fan-out: events from all storage
+        regions are merged in one response.
+      operationId: listDebugLogs
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/callIdFilter'
+        - $ref: '#/components/parameters/statusCodeFilter'
+        - $ref: '#/components/parameters/occurredAtFilter'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/afterCursor'
+        - $ref: '#/components/parameters/beforeCursor'
+      responses:
+        '200':
+          $ref: '#/components/responses/listDebugLogsResponse'
+        default:
+          $ref: '#/components/responses/defaultErrorResponse'
+      x-badges:
+        - name: Beta
+          color: '#076EA8'
+  /accounts/{accountId}/debug-logs/exports:
+    get:
+      tags:
+        - Debug Log Exports
+      summary: List debug log exports
+      description: |-
+        Returns a cursor-paginated list of past export jobs for the account,
+        newest-first. Pagination is forward-only (no `beforeCursor`); there
+        are no filter parameters on this endpoint.
+      operationId: listDebugLogExports
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/afterCursor'
+      responses:
+        '200':
+          $ref: '#/components/responses/listDebugLogExportsResponse'
+        default:
+          $ref: '#/components/responses/defaultErrorResponse'
+      x-badges:
+        - name: Beta
+          color: '#076EA8'
+    post:
+      tags:
+        - Debug Log Exports
+      summary: Create a debug log export
+      description: |-
+        Kicks off an asynchronous export of debug log events matching the
+        supplied filters, delivered as a single gzip-compressed JSONL file
+        (one `httpTransactionEvent` object per line). Returns 202 with the
+        freshly-created export job. Poll
+        `GET /accounts/{accountId}/debug-logs/exports/{exportId}` to track
+        status; when `status` is `COMPLETED` or `NO_RESULTS`, the response
+        carries a `rel: file` link in `links` pointing at
+        `GET /accounts/{accountId}/debug-logs/exports/{exportId}/file` to
+        download the archive.
+
+        Filter semantics match the list endpoints (AND across fields, OR
+        within array-valued fields). `occurredAtFrom` and `occurredAtTo` are
+        both required and the range between them cannot exceed 2 days.
+
+        There is a limit on concurrently-running exports; exceeding it
+        returns 429.
+      operationId: createDebugLogExport
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      requestBody:
+        $ref: '#/components/requestBodies/createDebugLogExportRequest'
+      responses:
+        '202':
+          $ref: '#/components/responses/createDebugLogExportResponse'
+        '429':
+          $ref: '#/components/responses/exportCapacitySaturatedResponse'
+        default:
+          $ref: '#/components/responses/defaultErrorResponse'
+      x-badges:
+        - name: Beta
+          color: '#076EA8'
+  /accounts/{accountId}/debug-logs/exports/{exportId}:
+    get:
+      tags:
+        - Debug Log Exports
+      summary: Get a debug log export
+      description: |-
+        Returns a single export job. Customers poll this endpoint to track
+        status. When `status` is `COMPLETED` or `NO_RESULTS`, the response
+        carries a `rel: file` link in `links` pointing at
+        `GET /accounts/{accountId}/debug-logs/exports/{exportId}/file`. The
+        underlying export is retained for 3 days from `requestedAt`
+        (mirrored by `expiresAt` on the export job); after that, the export
+        itself is purged and this endpoint returns 404.
+      operationId: getDebugLogExport
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/exportId'
+      responses:
+        '200':
+          $ref: '#/components/responses/getDebugLogExportResponse'
+        default:
+          $ref: '#/components/responses/defaultErrorResponse'
+      x-badges:
+        - name: Beta
+          color: '#076EA8'
+  /accounts/{accountId}/debug-logs/exports/{exportId}/file:
+    get:
+      tags:
+        - Debug Log Exports
+      summary: Download a debug log export file
+      description: |-
+        Downloads the exported archive as a gzip-compressed JSONL file (one
+        `httpTransactionEvent` object per line). Only available once the
+        export job's `status` is `COMPLETED` or `NO_RESULTS`, and only until
+        the job's `expiresAt`. Returns 404 if the export doesn't exist,
+        isn't finished, or has expired.
+      operationId: getDebugLogExportFile
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/exportId'
+      responses:
+        '200':
+          $ref: '#/components/responses/getDebugLogExportFileResponse'
+        default:
+          $ref: '#/components/responses/defaultErrorResponse'
+      x-badges:
+        - name: Beta
+          color: '#076EA8'
+  /accounts/{accountId}/debug-logs/{eventId}:
+    get:
+      tags:
+        - Debug Logs
+      summary: Get a single debug log event
+      description: |-
+        Returns a single HTTP transaction event by `eventId`. Returns 404
+        when the event does not exist. Returns 410 when the event ID is
+        well-formed but falls outside the 7-day retention window (i.e. it
+        did exist but has since aged out).
+      operationId: getDebugLog
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/eventId'
+      responses:
+        '200':
+          $ref: '#/components/responses/getDebugLogResponse'
+        default:
+          $ref: '#/components/responses/defaultErrorResponse'
+      x-badges:
+        - name: Beta
+          color: '#076EA8'
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.bandwidth.com/api/v1/oauth2/token
+          scopes: {}
+    Bearer:
+      type: http
+      scheme: bearer
+  parameters:
+    accountId:
+      name: accountId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Bandwidth account ID.
+    eventId:
+      name: eventId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Debug log event ID (ULID).
+    exportId:
+      name: exportId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Debug log export job ID.
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 50
+        minimum: 1
+        maximum: 200
+      description: Maximum number of records to return per page. Default 50, max 200.
+    afterCursor:
+      name: afterCursor
+      in: query
+      required: false
+      schema:
+        type: string
+      description: |-
+        Opaque pagination cursor. To retrieve the page after the current one,
+        pass the value from the `next` HATEOAS link's query string.
+        Treat as opaque — its internal structure may change.
+    beforeCursor:
+      name: beforeCursor
+      in: query
+      required: false
+      schema:
+        type: string
+      description: |-
+        Opaque pagination cursor for backward navigation. To retrieve the page
+        before the current one, pass the value from the `prev` HATEOAS link's
+        query string. Treat as opaque — its internal structure may change.
+        Mutually exclusive with `afterCursor` — supplying both returns 400.
+    callIdFilter:
+      name: callId
+      in: query
+      required: false
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/callIdQueryParameter'
+      description: Filter by Voice API call ID.
+    statusCodeFilter:
+      name: statusCode
+      in: query
+      required: false
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/statusCodeQueryParameter'
+      description: |-
+        Filter by HTTP status code. Comma-separated integers, e.g.
+        `statusCode[eq]=200,404,486`. Exact-match integers only — no `4xx`
+        shorthand.
+    occurredAtFilter:
+      name: occurredAt
+      in: query
+      required: false
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/occurredAtQueryParameter'
+      description: |-
+        Filter and sort by `occurredAt`. Supports `gte`, `lte`, and `sort`.
+        Default sort is `DESC` (newest-first), since newest-first is the
+        universal expectation for log/event APIs.
+  requestBodies:
+    createDebugLogExportRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - filters
+            properties:
+              filters:
+                $ref: '#/components/schemas/exportRequest'
+          example:
+            filters:
+              occurredAtFrom: '2026-04-27T00:00:00Z'
+              occurredAtTo: '2026-04-27T23:59:59Z'
+              statusCode:
+                - 400
+                - 404
+                - 500
+  responses:
+    defaultErrorResponse:
+      description: Standardized error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/defaultErrorResponse'
+    exportCapacitySaturatedResponse:
+      description: |-
+        Too many exports are already running. Returned as a `REQUEST_ERROR`
+        with a description prefixed `EXPORT_CAPACITY_SATURATED:`. Try again
+        shortly.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/defaultErrorResponse'
+    getDebugLogExportFileResponse:
+      description: OK
+      content:
+        application/gzip:
+          schema:
+            type: string
+            format: binary
+    listDebugLogsResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - links
+              - data
+              - errors
+              - page
+            properties:
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/link'
+              data:
+                type: array
+                nullable: true
+                items:
+                  $ref: '#/components/schemas/httpTransactionEventSummary'
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+                example: []
+              page:
+                $ref: '#/components/schemas/page'
+          example:
+            links:
+              - href: >-
+                  https://api.bandwidth.com/v2/voice-api/accounts/9900000/debug-logs
+                rel: self
+                method: GET
+              - href: >-
+                  https://api.bandwidth.com/v2/voice-api/accounts/9900000/debug-logs?afterCursor=eyJ1cyI6...
+                rel: next
+                method: GET
+            data:
+              - eventId: 01HZQK7M9N2P3R4S5T6V7W8X9Y
+                occurredAt: '2026-04-27T14:35:21Z'
+                callId: c-abc123
+                source: WEBHOOK_DELIVERY
+                direction: OUTBOUND
+                method: POST
+                url: https://customer.example.com/voice/callback
+                statusCode: 200
+                elapsedMs: 187
+            errors: []
+            page:
+              pageSize: 1
+    getDebugLogResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - links
+              - data
+              - errors
+            properties:
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/link'
+              data:
+                $ref: '#/components/schemas/httpTransactionEvent'
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+                example: []
+              page:
+                type: object
+                nullable: true
+                description: Not applicable to single-resource responses; always null.
+                properties:
+                  pageSize:
+                    type: integer
+                    description: Number of records on this page.
+                    example: 50
+          example:
+            links:
+              - href: >-
+                  https://api.bandwidth.com/v2/voice-api/accounts/9900000/debug-logs/01HZQK7M9N2P3R4S5T6V7W8X9Y
+                rel: self
+                method: GET
+            data:
+              eventId: 01HZQK7M9N2P3R4S5T6V7W8X9Y
+              deliveryId: 01HZQK7M8N1P2R3S4T5V6W7X8Y
+              attemptNumber: 1
+              occurredAt: '2026-04-27T14:35:21Z'
+              accountId: '9900000'
+              callId: c-abc123
+              source: WEBHOOK_DELIVERY
+              direction: OUTBOUND
+              request:
+                method: POST
+                url: https://customer.example.com/voice/callback
+                headers:
+                  content-type: application/json
+                body: '{"eventType":"answer","callId":"c-abc123"}'
+                bodyTruncated: false
+                bodyBytes: 42
+              response:
+                headers:
+                  content-type: application/xml
+                statusCode: 200
+                body: <Response><Hangup/></Response>
+                bodyTruncated: false
+                bodyBytes: 32
+                elapsedMs: 187
+            errors: []
+            page: null
+    createDebugLogExportResponse:
+      description: Accepted
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - links
+              - data
+              - errors
+            properties:
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/link'
+              data:
+                $ref: '#/components/schemas/exportJob'
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+                example: []
+              page:
+                type: object
+                nullable: true
+                description: Not applicable to single-resource responses; always null.
+                properties:
+                  pageSize:
+                    type: integer
+                    description: Number of records on this page.
+                    example: 50
+          example:
+            links:
+              - href: >-
+                  https://api.bandwidth.com/v2/voice-api/accounts/9900000/debug-logs/exports/01HZQK9M9N2P3R4S5T6V7W8XAB
+                rel: self
+                method: GET
+            data:
+              exportId: 01HZQK9M9N2P3R4S5T6V7W8XAB
+              status: QUEUED
+              requestedAt: '2026-04-27T15:00:00Z'
+              filters:
+                occurredAtFrom: '2026-04-27T00:00:00Z'
+                occurredAtTo: '2026-04-27T23:59:59Z'
+                statusCode:
+                  - 400
+                  - 404
+                  - 500
+            errors: []
+            page: null
+    listDebugLogExportsResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - links
+              - data
+              - errors
+              - page
+            properties:
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/link'
+              data:
+                type: array
+                nullable: true
+                items:
+                  $ref: '#/components/schemas/exportJob'
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+                example: []
+              page:
+                $ref: '#/components/schemas/page'
+          example:
+            links:
+              - href: >-
+                  https://api.bandwidth.com/v2/voice-api/accounts/9900000/debug-logs/exports
+                rel: self
+                method: GET
+            data:
+              - exportId: 01HZQK9M9N2P3R4S5T6V7W8XAB
+                status: COMPLETED
+                requestedAt: '2026-04-27T15:00:00Z'
+                completedAt: '2026-04-27T15:01:42Z'
+                expiresAt: '2026-04-30T15:01:42Z'
+                recordCount: 1284
+                filters:
+                  occurredAtFrom: '2026-04-27T00:00:00Z'
+                  occurredAtTo: '2026-04-27T23:59:59Z'
+                  statusCode:
+                    - 400
+                    - 404
+                    - 500
+            errors: []
+            page:
+              pageSize: 1
+    getDebugLogExportResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - links
+              - data
+              - errors
+            properties:
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/link'
+              data:
+                $ref: '#/components/schemas/exportJob'
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+                example: []
+                properties:
+                  pageSize:
+                    type: integer
+                    description: Number of records on this page.
+                    example: 50
+          example:
+            links:
+              - href: >-
+                  https://api.bandwidth.com/v2/voice-api/accounts/9900000/debug-logs/exports/01HZQK9M9N2P3R4S5T6V7W8XAB
+                rel: self
+                method: GET
+              - href: >-
+                  https://api.bandwidth.com/v2/voice-api/accounts/9900000/debug-logs/exports/01HZQK9M9N2P3R4S5T6V7W8XAB/file
+                rel: file
+                method: GET
+            data:
+              exportId: 01HZQK9M9N2P3R4S5T6V7W8XAB
+              status: COMPLETED
+              requestedAt: '2026-04-27T15:00:00Z'
+              completedAt: '2026-04-27T15:01:42Z'
+              expiresAt: '2026-04-30T15:01:42Z'
+              recordCount: 1284
+              filters:
+                occurredAtFrom: '2026-04-27T00:00:00Z'
+                occurredAtTo: '2026-04-27T23:59:59Z'
+                statusCode:
+                  - 400
+                  - 404
+                  - 500
+            errors: []
+            page: null
+  schemas:
+    link:
+      type: object
+      required:
+        - href
+        - rel
+      properties:
+        href:
+          type: string
+          format: uri
+          description: Absolute URI of the linked resource.
+          example: >-
+            https://api.bandwidth.com/v2/voice-api/accounts/9900000/debug-logs?afterCursor=eyJ1cyI6...
+        rel:
+          type: string
+          description: >-
+            Descriptor of the linked resource: self, next, prev, first, last,
+            etc.
+          example: next
+        method:
+          type: string
+          description: HTTP method for the linked resource.
+          example: GET
+    errorType:
+      type: string
+      enum:
+        - REQUEST_ERROR
+        - INVALID_CURSOR
+        - INVALID_LIMIT
+        - RESOURCE_NOT_FOUND
+        - AUTHENTICATION_ERROR
+        - AUTHORIZATION_ERROR
+        - SERVICE_UNAVAILABLE
+        - INTERNAL_ERROR
+      description: >-
+        Machine-readable error category. Consistent across occurrences of the
+        same problem.
+      example: INVALID_LIMIT
+    error:
+      type: object
+      required:
+        - type
+        - description
+      properties:
+        type:
+          $ref: '#/components/schemas/errorType'
+        code:
+          type: string
+          description: |-
+            Reserved for a finer-grained application-specific code (NOT the
+            HTTP status). Not currently populated — `type` carries the error
+            category today.
+        description:
+          type: string
+          description: Human-readable detailed explanation.
+          example: callId must be a non-empty string
+        source:
+          type: object
+          description: Identifies the source of the error.
+          properties:
+            parameter:
+              type: string
+              description: URI query parameter that caused the error.
+            field:
+              type: string
+              description: Request body field that caused the error.
+            header:
+              type: string
+              description: Request header that caused the error.
+            reference:
+              type: string
+              description: Reference path or resource ID associated with the error.
+        meta:
+          type: object
+          description: Application-specific metadata.
+          additionalProperties: true
+        id:
+          type: string
+          description: Unique identifier for this instance of the problem.
+    eventError:
+      type: object
+      description: |-
+        Error detail embedded on an `httpTransactionEvent` or `exportJob`.
+        Unlike the top-level `error` schema, `type` here is not a closed
+        enum — e.g. an export job that failed to generate reports
+        `EXPORT_GENERATION_FAILED`.
+      required:
+        - type
+        - description
+      properties:
+        type:
+          type: string
+          description: Machine-readable error category.
+          example: EXPORT_GENERATION_FAILED
+        description:
+          type: string
+          description: Human-readable detailed explanation.
+        code:
+          type: string
+          nullable: true
+          description: Reserved for a finer-grained application-specific code.
+        source:
+          type: object
+          nullable: true
+          description: Identifies the source of the error.
+          additionalProperties:
+            type: string
+            nullable: true
+        meta:
+          type: object
+          nullable: true
+          description: Application-specific metadata.
+          additionalProperties: true
+        id:
+          type: string
+          nullable: true
+          description: Unique identifier for this instance of the problem.
+    defaultErrorResponse:
+      type: object
+      required:
+        - links
+        - data
+        - errors
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          example: []
+        data:
+          type: object
+          nullable: true
+          example: null
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+    sort:
+      type: string
+      description: |-
+        Sort direction for the field. Default sort direction is documented
+        on each filter parameter.
+      enum:
+        - ASC
+        - DESC
+      example: DESC
+    eventSource:
+      type: string
+      enum:
+        - WEBHOOK_DELIVERY
+        - INBOUND_REST
+        - MEDIA_FETCH
+      description: >-
+        - `WEBHOOK_DELIVERY` — Bandwidth delivered a webhook to your URL.
+
+        - `INBOUND_REST` — You made a REST call to the Voice API.
+
+        - `MEDIA_FETCH` — Bandwidth fetched media (audio file, etc.) from your
+        URL.
+      example: WEBHOOK_DELIVERY
+    callDirection:
+      type: string
+      enum:
+        - INBOUND
+        - OUTBOUND
+      description: |-
+        Direction of the **call** the event is associated with — not the
+        direction of the HTTP transaction itself. `INBOUND` = a call from a
+        caller to your Bandwidth-numbered destination; `OUTBOUND` = a call
+        Bandwidth placed on your behalf.
+      example: OUTBOUND
+    page:
+      type: object
+      required:
+        - pageSize
+      properties:
+        pageSize:
+          type: integer
+          description: Number of records on this page.
+          example: 50
+    httpDetails:
+      type: object
+      description: |-
+        One side of an HTTP transaction. The same shape is used for both
+        request and response: `method` and `url` are populated only on the
+        request side; `statusCode` and `elapsedMs` are populated only on the
+        response side.
+      required:
+        - headers
+      properties:
+        method:
+          type: string
+          nullable: true
+          description: HTTP method. Null on the response side.
+        url:
+          type: string
+          nullable: true
+          description: |-
+            Full URL. Null on the response side. URL redaction (e.g. of
+            sensitive query-string values) is applied upstream by the
+            ingestion pipeline before the event is stored.
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: |-
+            Headers as a flat string-to-string map. Headers with multiple
+            values are joined into a single comma-separated string per the
+            emitter's convention.
+        statusCode:
+          type: integer
+          nullable: true
+          description: HTTP status code. Null on the request side.
+        body:
+          type: string
+          nullable: true
+          description: |-
+            Body as text. Truncated to 64 KB; see `bodyTruncated` and
+            `bodyBytes`. May be null when no body was present.
+        bodyTruncated:
+          type: boolean
+          nullable: true
+          description: True when the original body exceeded 64 KB and was truncated.
+        bodyBytes:
+          type: integer
+          nullable: true
+          description: Original body size in bytes before truncation.
+        elapsedMs:
+          type: integer
+          format: int64
+          nullable: true
+          description: |-
+            Duration in milliseconds, populated on the response side.
+            Null on the request side and when no response was received
+            (e.g. a connect failure).
+    httpTransactionEvent:
+      type: object
+      description: |-
+        A single HTTP transaction captured between Bandwidth and your
+        application for a Voice API call. Sourced from the
+        `pv-event-emitter` schema.
+      required:
+        - eventId
+        - accountId
+      properties:
+        eventId:
+          type: string
+          description: ULID, unique per attempt.
+          example: 01HZQK7M9N2P3R4S5T6V7W8X9Y
+        deliveryId:
+          type: string
+          nullable: true
+          description: |-
+            ULID, shared across all retry attempts of one logical delivery.
+            On sources without a retry concept (e.g. INBOUND_REST), this
+            equals `eventId`. Null when not populated by the source.
+        attemptNumber:
+          type: integer
+          nullable: true
+          description: 1-based attempt counter. Null on sources without retry semantics.
+        occurredAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: RFC 3339 UTC timestamp of when the event was captured.
+        accountId:
+          type: string
+          description: Bandwidth account ID. Matches the path parameter.
+        callId:
+          type: string
+          nullable: true
+          description: |-
+            Voice API call ID. Null when the event has no associated call
+            (e.g. an inbound REST request that was rejected before call
+            context resolved).
+        source:
+          allOf:
+            - $ref: '#/components/schemas/eventSource'
+          type: string
+          nullable: true
+        direction:
+          allOf:
+            - $ref: '#/components/schemas/callDirection'
+          type: string
+          nullable: true
+        request:
+          allOf:
+            - $ref: '#/components/schemas/httpDetails'
+          type: object
+          nullable: true
+        response:
+          allOf:
+            - $ref: '#/components/schemas/httpDetails'
+          type: object
+          nullable: true
+        error:
+          allOf:
+            - $ref: '#/components/schemas/eventError'
+          type: object
+          nullable: true
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          nullable: true
+          description: Small free-form metadata captured by the emitter.
+    httpTransactionEventSummary:
+      type: object
+      description: |-
+        Lightweight projection of an HTTP transaction event, returned by the
+        list endpoint to keep list responses cheap. Carries only the fields
+        needed to render a summary row plus the identifiers used for
+        filtering and drill-down. Fetch the full event — request/response
+        headers and bodies, delivery and attempt detail, and the error
+        reason — from `GET /accounts/{accountId}/debug-logs/{eventId}` using
+        `eventId`.
+      required:
+        - eventId
+      properties:
+        eventId:
+          type: string
+          description: |-
+            ULID, unique per attempt. Pass it to
+            `GET /accounts/{accountId}/debug-logs/{eventId}` to retrieve the
+            full event.
+          example: 01HZQK7M9N2P3R4S5T6V7W8X9Y
+        occurredAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: RFC 3339 UTC timestamp of when the event was captured.
+        callId:
+          type: string
+          nullable: true
+          description: Voice API call ID. Null when the event has no associated call.
+          example: c-abc123
+        source:
+          allOf:
+            - $ref: '#/components/schemas/eventSource'
+          type: string
+          nullable: true
+        direction:
+          allOf:
+            - $ref: '#/components/schemas/callDirection'
+          type: string
+          nullable: true
+        method:
+          type: string
+          nullable: true
+          description: HTTP method of the request side of the transaction.
+          example: POST
+        url:
+          type: string
+          nullable: true
+          description: |-
+            Request URL of the transaction, for display in the summary row.
+            The full request URL (and the response side) are on the
+            `request`/`response` objects of the single-event response.
+          example: https://customer.example.com/voice/callback
+        statusCode:
+          type: integer
+          nullable: true
+          description: |-
+            HTTP response status code. Null when no response was received
+            (e.g. a connect or DNS failure).
+          example: 200
+        elapsedMs:
+          type: integer
+          format: int64
+          nullable: true
+          description: |-
+            Response duration in milliseconds. Null when no response was
+            received.
+          example: 187
+    exportStatus:
+      type: string
+      enum:
+        - QUEUED
+        - PROCESSING
+        - COMPLETED
+        - NO_RESULTS
+        - FAILED
+      description: |-
+        Current state of an export job. `NO_RESULTS` means the export ran
+        successfully but no events matched the filters — it still has a
+        downloadable (empty) file, same as `COMPLETED`.
+      example: COMPLETED
+    exportRequest:
+      type: object
+      description: |-
+        Filters for an export job. `occurredAtFrom` and `occurredAtTo` are
+        required and the range between them cannot exceed 2 days. Filter
+        semantics are AND across fields, OR within array-valued fields.
+      required:
+        - occurredAtFrom
+        - occurredAtTo
+      properties:
+        callId:
+          type: string
+          nullable: true
+          description: >-
+            Voice API call ID to filter exported events by. Omit to include all
+            calls.
+        statusCode:
+          type: array
+          items:
+            type: integer
+          nullable: true
+          maxItems: 20
+          description: |-
+            HTTP status codes to include, e.g. [200, 404, 486]. No 4xx
+            shorthand. Up to 20 status codes.
+        occurredAtFrom:
+          type: string
+          format: date-time
+          description: |-
+            Inclusive lower bound on `occurredAt`. Must be no more than 2
+            days before `occurredAtTo`.
+        occurredAtTo:
+          type: string
+          format: date-time
+          description: |-
+            Inclusive upper bound on `occurredAt`. Must be strictly after
+            `occurredAtFrom`.
+    exportJob:
+      type: object
+      description: |-
+        State of an asynchronous export. Customers poll
+        `GET /accounts/{accountId}/debug-logs/exports/{exportId}` to track
+        progress. When `status` is `COMPLETED` or `NO_RESULTS`, the
+        enclosing response envelope carries a `rel: file` link in `links`
+        pointing at
+        `GET /accounts/{accountId}/debug-logs/exports/{exportId}/file`.
+      required:
+        - exportId
+        - status
+        - requestedAt
+        - filters
+      properties:
+        exportId:
+          type: string
+          description: Unique identifier for this export job.
+          example: 01HZQK9M9N2P3R4S5T6V7W8XAB
+        status:
+          allOf:
+            - $ref: '#/components/schemas/exportStatus'
+          description: Current state of the export job.
+        requestedAt:
+          type: string
+          format: date-time
+          description: RFC 3339 UTC timestamp when the export job was requested.
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: Populated when status is COMPLETED, NO_RESULTS, or FAILED.
+        expiresAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: |-
+            When the underlying export is purged from storage (3 days from
+            `requestedAt`). After this time the export job itself returns
+            404 and the file can no longer be downloaded.
+        recordCount:
+          type: integer
+          nullable: true
+          description: |-
+            Total number of events in the export. Populated when COMPLETED
+            or NO_RESULTS.
+        filters:
+          $ref: '#/components/schemas/exportRequest'
+        error:
+          allOf:
+            - $ref: '#/components/schemas/eventError'
+          type: object
+          nullable: true
+    callIdQueryParameter:
+      title: Call ID Query Parameter
+      description: Filter parameter for `callId`. Supports only the `eq` operator.
+      properties:
+        eq:
+          type: string
+          description: |-
+            One or more Voice API call IDs. Supply a comma-separated list
+            to match any of the IDs (OR semantics), e.g.
+            `c-abc123,c-def456`. Up to 5 call IDs.
+          example: c-abc123,c-def456
+      example:
+        eq: c-abc123
+    statusCodeQueryParameter:
+      title: Status Code Query Parameter
+      description: |-
+        Filter parameter for `statusCode`. Supports only the `eq` operator.
+        Wire format is a comma-separated list of integer HTTP status codes.
+      properties:
+        eq:
+          type: string
+          description: >-
+            Comma-separated list of integer status codes (OR semantics), e.g.
+            `200,404,486`.
+          example: 200,404,486
+      example:
+        eq: 200,404,486
+    occurredAtQueryParameter:
+      title: Occurred At Query Parameter
+      description: |-
+        Filter and sort parameter for `occurredAt`. Supports `gte`, `lte`,
+        and `sort`. Default sort direction is `DESC`.
+      properties:
+        gte:
+          type: string
+          format: date-time
+          description: Inclusive lower bound on `occurredAt`.
+          example: '2026-04-27T00:00:00Z'
+        lte:
+          type: string
+          format: date-time
+          description: Inclusive upper bound on `occurredAt`.
+          example: '2026-04-27T23:59:59Z'
+        sort:
+          $ref: '#/components/schemas/sort'
+      example:
+        gte: '2026-04-27T00:00:00Z'
+        lte: '2026-04-27T23:59:59Z'
+        sort: DESC

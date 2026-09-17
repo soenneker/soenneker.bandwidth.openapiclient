@@ -70,21 +70,23 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Faxuri
         /// Allows you to either create a new Fax URI or update an existing one. If an existing faxUriId is passed in the request, then an update will be performed. If no faxUriId is passed, then a new Fax URI is created.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriResponse"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">Binary request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="contentType">The request body content type.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriResponse?> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriResponse?> PutAsync(Stream body, string contentType, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriResponse> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriResponse> PutAsync(Stream body, string contentType, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = ToPutRequestInformation(body, requestConfiguration);
+            if(string.IsNullOrEmpty(contentType)) throw new ArgumentNullException(nameof(contentType));
+            var requestInfo = ToPutRequestInformation(body, contentType, requestConfiguration);
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
@@ -111,23 +113,25 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Faxuri
         /// Allows you to either create a new Fax URI or update an existing one. If an existing faxUriId is passed in the request, then an update will be performed. If no faxUriId is passed, then a new Fax URI is created.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">Binary request body</param>
+        /// <param name="contentType">The request body content type.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(Stream body, string contentType, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(Stream body, string contentType, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            if(string.IsNullOrEmpty(contentType)) throw new ArgumentNullException(nameof(contentType));
             var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
+            requestInfo.SetStreamContent(body, contentType);
             return requestInfo;
         }
         /// <summary>

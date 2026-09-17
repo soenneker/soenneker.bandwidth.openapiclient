@@ -70,6 +70,10 @@
       "url": "https://api.bandwidth.com/api/v1"
     },
     {
+      "url": "https://api.bandwidth.com/v2/voice-api",
+      "description": "Production"
+    },
+    {
       "url": "https://voice.bandwidth.com/api/v2",
       "description": "Production"
     }
@@ -28906,6 +28910,217 @@
             "$ref": "#/components/responses/voice_config_whitelist_internalServerError"
           }
         }
+      }
+    },
+    "/voice-debug-logs/accounts/{accountId}/debug-logs": {
+      "get": {
+        "tags": [
+          "Debug Logs"
+        ],
+        "summary": "List debug logs",
+        "description": "Returns a cursor-paginated list of HTTP transaction event summaries\nfor the account, sorted by `occurredAt DESC` by default. Each item is\na lightweight projection (`httpTransactionEventSummary`) intended for\nrendering a summary row; fetch the full event — request/response\nheaders and bodies, delivery and attempt detail, and the error\nreason — from `GET /accounts/{accountId}/debug-logs/{eventId}` using\nthe item's `eventId`. Multi-region fan-out: events from all storage\nregions are merged in one response.",
+        "operationId": "voice_debug_logs_listDebugLogs",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/voice_debug_logs_accountId"
+          },
+          {
+            "$ref": "#/components/parameters/callIdFilter"
+          },
+          {
+            "$ref": "#/components/parameters/statusCodeFilter"
+          },
+          {
+            "$ref": "#/components/parameters/occurredAtFilter"
+          },
+          {
+            "$ref": "#/components/parameters/voice_debug_logs_limit"
+          },
+          {
+            "$ref": "#/components/parameters/voice_debug_logs_afterCursor"
+          },
+          {
+            "$ref": "#/components/parameters/voice_debug_logs_beforeCursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/listDebugLogsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/defaultErrorResponse"
+          }
+        },
+        "x-badges": [
+          {
+            "name": "Beta",
+            "color": "#076EA8"
+          }
+        ]
+      }
+    },
+    "/voice-debug-logs/accounts/{accountId}/debug-logs/exports": {
+      "get": {
+        "tags": [
+          "Debug Log Exports"
+        ],
+        "summary": "List debug log exports",
+        "description": "Returns a cursor-paginated list of past export jobs for the account,\nnewest-first. Pagination is forward-only (no `beforeCursor`); there\nare no filter parameters on this endpoint.",
+        "operationId": "voice_debug_logs_listDebugLogExports",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/voice_debug_logs_accountId"
+          },
+          {
+            "$ref": "#/components/parameters/voice_debug_logs_limit"
+          },
+          {
+            "$ref": "#/components/parameters/voice_debug_logs_afterCursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/listDebugLogExportsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/defaultErrorResponse"
+          }
+        },
+        "x-badges": [
+          {
+            "name": "Beta",
+            "color": "#076EA8"
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Debug Log Exports"
+        ],
+        "summary": "Create a debug log export",
+        "description": "Kicks off an asynchronous export of debug log events matching the\nsupplied filters, delivered as a single gzip-compressed JSONL file\n(one `httpTransactionEvent` object per line). Returns 202 with the\nfreshly-created export job. Poll\n`GET /accounts/{accountId}/debug-logs/exports/{exportId}` to track\nstatus; when `status` is `COMPLETED` or `NO_RESULTS`, the response\ncarries a `rel: file` link in `links` pointing at\n`GET /accounts/{accountId}/debug-logs/exports/{exportId}/file` to\ndownload the archive.\n\nFilter semantics match the list endpoints (AND across fields, OR\nwithin array-valued fields). `occurredAtFrom` and `occurredAtTo` are\nboth required and the range between them cannot exceed 2 days.\n\nThere is a limit on concurrently-running exports; exceeding it\nreturns 429.",
+        "operationId": "voice_debug_logs_createDebugLogExport",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/voice_debug_logs_accountId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/createDebugLogExportRequest"
+        },
+        "responses": {
+          "202": {
+            "$ref": "#/components/responses/createDebugLogExportResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/exportCapacitySaturatedResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/defaultErrorResponse"
+          }
+        },
+        "x-badges": [
+          {
+            "name": "Beta",
+            "color": "#076EA8"
+          }
+        ]
+      }
+    },
+    "/voice-debug-logs/accounts/{accountId}/debug-logs/exports/{exportId}": {
+      "get": {
+        "tags": [
+          "Debug Log Exports"
+        ],
+        "summary": "Get a debug log export",
+        "description": "Returns a single export job. Customers poll this endpoint to track\nstatus. When `status` is `COMPLETED` or `NO_RESULTS`, the response\ncarries a `rel: file` link in `links` pointing at\n`GET /accounts/{accountId}/debug-logs/exports/{exportId}/file`. The\nunderlying export is retained for 3 days from `requestedAt`\n(mirrored by `expiresAt` on the export job); after that, the export\nitself is purged and this endpoint returns 404.",
+        "operationId": "voice_debug_logs_getDebugLogExport",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/voice_debug_logs_accountId"
+          },
+          {
+            "$ref": "#/components/parameters/exportId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/getDebugLogExportResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/defaultErrorResponse"
+          }
+        },
+        "x-badges": [
+          {
+            "name": "Beta",
+            "color": "#076EA8"
+          }
+        ]
+      }
+    },
+    "/voice-debug-logs/accounts/{accountId}/debug-logs/exports/{exportId}/file": {
+      "get": {
+        "tags": [
+          "Debug Log Exports"
+        ],
+        "summary": "Download a debug log export file",
+        "description": "Downloads the exported archive as a gzip-compressed JSONL file (one\n`httpTransactionEvent` object per line). Only available once the\nexport job's `status` is `COMPLETED` or `NO_RESULTS`, and only until\nthe job's `expiresAt`. Returns 404 if the export doesn't exist,\nisn't finished, or has expired.",
+        "operationId": "voice_debug_logs_getDebugLogExportFile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/voice_debug_logs_accountId"
+          },
+          {
+            "$ref": "#/components/parameters/exportId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/getDebugLogExportFileResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/defaultErrorResponse"
+          }
+        },
+        "x-badges": [
+          {
+            "name": "Beta",
+            "color": "#076EA8"
+          }
+        ]
+      }
+    },
+    "/voice-debug-logs/accounts/{accountId}/debug-logs/{eventId}": {
+      "get": {
+        "tags": [
+          "Debug Logs"
+        ],
+        "summary": "Get a single debug log event",
+        "description": "Returns a single HTTP transaction event by `eventId`. Returns 404\nwhen the event does not exist. Returns 410 when the event ID is\nwell-formed but falls outside the 7-day retention window (i.e. it\ndid exist but has since aged out).",
+        "operationId": "voice_debug_logs_getDebugLog",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/voice_debug_logs_accountId"
+          },
+          {
+            "$ref": "#/components/parameters/eventId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/getDebugLogResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/defaultErrorResponse"
+          }
+        },
+        "x-badges": [
+          {
+            "name": "Beta",
+            "color": "#076EA8"
+          }
+        ]
       }
     },
     "/voice-integrations/accounts/{accountId}/voiceIntegrations": {
@@ -87974,6 +88189,582 @@
           }
         }
       },
+      "voice_debug_logs_link": {
+        "required": [
+          "href",
+          "rel"
+        ],
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string",
+            "description": "Absolute URI of the linked resource.",
+            "format": "uri",
+            "example": "https://api.bandwidth.com/v2/voice-api/accounts/9900000/debug-logs?afterCursor=eyJ1cyI6..."
+          },
+          "rel": {
+            "type": "string",
+            "description": "Descriptor of the linked resource: self, next, prev, first, last, etc.",
+            "example": "next"
+          },
+          "method": {
+            "type": "string",
+            "description": "HTTP method for the linked resource.",
+            "example": "GET"
+          }
+        }
+      },
+      "voice_debug_logs_errorType": {
+        "enum": [
+          "REQUEST_ERROR",
+          "INVALID_CURSOR",
+          "INVALID_LIMIT",
+          "RESOURCE_NOT_FOUND",
+          "AUTHENTICATION_ERROR",
+          "AUTHORIZATION_ERROR",
+          "SERVICE_UNAVAILABLE",
+          "INTERNAL_ERROR"
+        ],
+        "type": "string",
+        "description": "Machine-readable error category. Consistent across occurrences of the same problem.",
+        "example": "INVALID_LIMIT"
+      },
+      "voice_debug_logs_error": {
+        "required": [
+          "type",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/voice_debug_logs_errorType"
+          },
+          "code": {
+            "type": "string",
+            "description": "Reserved for a finer-grained application-specific code (NOT the\nHTTP status). Not currently populated — `type` carries the error\ncategory today."
+          },
+          "description": {
+            "type": "string",
+            "description": "Human-readable detailed explanation.",
+            "example": "callId must be a non-empty string"
+          },
+          "source": {
+            "type": "object",
+            "properties": {
+              "parameter": {
+                "type": "string",
+                "description": "URI query parameter that caused the error."
+              },
+              "field": {
+                "type": "string",
+                "description": "Request body field that caused the error."
+              },
+              "header": {
+                "type": "string",
+                "description": "Request header that caused the error."
+              },
+              "reference": {
+                "type": "string",
+                "description": "Reference path or resource ID associated with the error."
+              }
+            },
+            "description": "Identifies the source of the error."
+          },
+          "meta": {
+            "type": "object",
+            "description": "Application-specific metadata."
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for this instance of the problem."
+          }
+        }
+      },
+      "eventError": {
+        "required": [
+          "type",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Machine-readable error category.",
+            "example": "EXPORT_GENERATION_FAILED"
+          },
+          "description": {
+            "type": "string",
+            "description": "Human-readable detailed explanation."
+          },
+          "code": {
+            "type": "string",
+            "description": "Reserved for a finer-grained application-specific code.",
+            "nullable": true
+          },
+          "source": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": "Identifies the source of the error.",
+            "nullable": true
+          },
+          "meta": {
+            "type": "object",
+            "description": "Application-specific metadata.",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for this instance of the problem.",
+            "nullable": true
+          }
+        },
+        "description": "Error detail embedded on an `httpTransactionEvent` or `exportJob`.\nUnlike the top-level `error` schema, `type` here is not a closed\nenum — e.g. an export job that failed to generate reports\n`EXPORT_GENERATION_FAILED`."
+      },
+      "defaultErrorResponse": {
+        "required": [
+          "links",
+          "data",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/voice_debug_logs_link"
+            },
+            "example": [ ]
+          },
+          "data": {
+            "type": "object",
+            "nullable": true,
+            "example": null
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/voice_debug_logs_error"
+            }
+          }
+        }
+      },
+      "voice_debug_logs_sort": {
+        "enum": [
+          "ASC",
+          "DESC"
+        ],
+        "type": "string",
+        "description": "Sort direction for the field. Default sort direction is documented\non each filter parameter.",
+        "example": "DESC"
+      },
+      "eventSource": {
+        "enum": [
+          "WEBHOOK_DELIVERY",
+          "INBOUND_REST",
+          "MEDIA_FETCH"
+        ],
+        "type": "string",
+        "description": "- `WEBHOOK_DELIVERY` — Bandwidth delivered a webhook to your URL.\n- `INBOUND_REST` — You made a REST call to the Voice API.\n- `MEDIA_FETCH` — Bandwidth fetched media (audio file, etc.) from your URL.",
+        "example": "WEBHOOK_DELIVERY"
+      },
+      "voice_debug_logs_callDirection": {
+        "enum": [
+          "INBOUND",
+          "OUTBOUND"
+        ],
+        "type": "string",
+        "description": "Direction of the **call** the event is associated with — not the\ndirection of the HTTP transaction itself. `INBOUND` = a call from a\ncaller to your Bandwidth-numbered destination; `OUTBOUND` = a call\nBandwidth placed on your behalf.",
+        "example": "OUTBOUND"
+      },
+      "voice_debug_logs_page": {
+        "required": [
+          "pageSize"
+        ],
+        "type": "object",
+        "properties": {
+          "pageSize": {
+            "type": "integer",
+            "description": "Number of records on this page.",
+            "example": 50
+          }
+        }
+      },
+      "httpDetails": {
+        "required": [
+          "headers"
+        ],
+        "type": "object",
+        "properties": {
+          "method": {
+            "type": "string",
+            "description": "HTTP method. Null on the response side.",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "description": "Full URL. Null on the response side. URL redaction (e.g. of\nsensitive query-string values) is applied upstream by the\ningestion pipeline before the event is stored.",
+            "nullable": true
+          },
+          "headers": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Headers as a flat string-to-string map. Headers with multiple\nvalues are joined into a single comma-separated string per the\nemitter's convention."
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "HTTP status code. Null on the request side.",
+            "nullable": true
+          },
+          "body": {
+            "type": "string",
+            "description": "Body as text. Truncated to 64 KB; see `bodyTruncated` and\n`bodyBytes`. May be null when no body was present.",
+            "nullable": true
+          },
+          "bodyTruncated": {
+            "type": "boolean",
+            "description": "True when the original body exceeded 64 KB and was truncated.",
+            "nullable": true
+          },
+          "bodyBytes": {
+            "type": "integer",
+            "description": "Original body size in bytes before truncation.",
+            "nullable": true
+          },
+          "elapsedMs": {
+            "type": "integer",
+            "description": "Duration in milliseconds, populated on the response side.\nNull on the request side and when no response was received\n(e.g. a connect failure).",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "description": "One side of an HTTP transaction. The same shape is used for both\nrequest and response: `method` and `url` are populated only on the\nrequest side; `statusCode` and `elapsedMs` are populated only on the\nresponse side."
+      },
+      "httpTransactionEvent": {
+        "required": [
+          "eventId",
+          "accountId"
+        ],
+        "type": "object",
+        "properties": {
+          "eventId": {
+            "type": "string",
+            "description": "ULID, unique per attempt.",
+            "example": "01HZQK7M9N2P3R4S5T6V7W8X9Y"
+          },
+          "deliveryId": {
+            "type": "string",
+            "description": "ULID, shared across all retry attempts of one logical delivery.\nOn sources without a retry concept (e.g. INBOUND_REST), this\nequals `eventId`. Null when not populated by the source.",
+            "nullable": true
+          },
+          "attemptNumber": {
+            "type": "integer",
+            "description": "1-based attempt counter. Null on sources without retry semantics.",
+            "nullable": true
+          },
+          "occurredAt": {
+            "type": "string",
+            "description": "RFC 3339 UTC timestamp of when the event was captured.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "accountId": {
+            "type": "string",
+            "description": "Bandwidth account ID. Matches the path parameter."
+          },
+          "callId": {
+            "type": "string",
+            "description": "Voice API call ID. Null when the event has no associated call\n(e.g. an inbound REST request that was rejected before call\ncontext resolved).",
+            "nullable": true
+          },
+          "source": {
+            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/eventSource"
+              }
+            ],
+            "nullable": true
+          },
+          "direction": {
+            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/voice_debug_logs_callDirection"
+              }
+            ],
+            "nullable": true
+          },
+          "request": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/httpDetails"
+              }
+            ],
+            "nullable": true
+          },
+          "response": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/httpDetails"
+              }
+            ],
+            "nullable": true
+          },
+          "error": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/eventError"
+              }
+            ],
+            "nullable": true
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Small free-form metadata captured by the emitter.",
+            "nullable": true
+          }
+        },
+        "description": "A single HTTP transaction captured between Bandwidth and your\napplication for a Voice API call. Sourced from the\n`pv-event-emitter` schema."
+      },
+      "httpTransactionEventSummary": {
+        "required": [
+          "eventId"
+        ],
+        "type": "object",
+        "properties": {
+          "eventId": {
+            "type": "string",
+            "description": "ULID, unique per attempt. Pass it to\n`GET /accounts/{accountId}/debug-logs/{eventId}` to retrieve the\nfull event.",
+            "example": "01HZQK7M9N2P3R4S5T6V7W8X9Y"
+          },
+          "occurredAt": {
+            "type": "string",
+            "description": "RFC 3339 UTC timestamp of when the event was captured.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "callId": {
+            "type": "string",
+            "description": "Voice API call ID. Null when the event has no associated call.",
+            "nullable": true,
+            "example": "c-abc123"
+          },
+          "source": {
+            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/eventSource"
+              }
+            ],
+            "nullable": true
+          },
+          "direction": {
+            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/voice_debug_logs_callDirection"
+              }
+            ],
+            "nullable": true
+          },
+          "method": {
+            "type": "string",
+            "description": "HTTP method of the request side of the transaction.",
+            "nullable": true,
+            "example": "POST"
+          },
+          "url": {
+            "type": "string",
+            "description": "Request URL of the transaction, for display in the summary row.\nThe full request URL (and the response side) are on the\n`request`/`response` objects of the single-event response.",
+            "nullable": true,
+            "example": "https://customer.example.com/voice/callback"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "HTTP response status code. Null when no response was received\n(e.g. a connect or DNS failure).",
+            "nullable": true,
+            "example": 200
+          },
+          "elapsedMs": {
+            "type": "integer",
+            "description": "Response duration in milliseconds. Null when no response was\nreceived.",
+            "format": "int64",
+            "nullable": true,
+            "example": 187
+          }
+        },
+        "description": "Lightweight projection of an HTTP transaction event, returned by the\nlist endpoint to keep list responses cheap. Carries only the fields\nneeded to render a summary row plus the identifiers used for\nfiltering and drill-down. Fetch the full event — request/response\nheaders and bodies, delivery and attempt detail, and the error\nreason — from `GET /accounts/{accountId}/debug-logs/{eventId}` using\n`eventId`."
+      },
+      "exportStatus": {
+        "enum": [
+          "QUEUED",
+          "PROCESSING",
+          "COMPLETED",
+          "NO_RESULTS",
+          "FAILED"
+        ],
+        "type": "string",
+        "description": "Current state of an export job. `NO_RESULTS` means the export ran\nsuccessfully but no events matched the filters — it still has a\ndownloadable (empty) file, same as `COMPLETED`.",
+        "example": "COMPLETED"
+      },
+      "exportRequest": {
+        "required": [
+          "occurredAtFrom",
+          "occurredAtTo"
+        ],
+        "type": "object",
+        "properties": {
+          "callId": {
+            "type": "string",
+            "description": "Voice API call ID to filter exported events by. Omit to include all calls.",
+            "nullable": true
+          },
+          "statusCode": {
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "HTTP status codes to include, e.g. [200, 404, 486]. No 4xx\nshorthand. Up to 20 status codes.",
+            "nullable": true
+          },
+          "occurredAtFrom": {
+            "type": "string",
+            "description": "Inclusive lower bound on `occurredAt`. Must be no more than 2\ndays before `occurredAtTo`.",
+            "format": "date-time"
+          },
+          "occurredAtTo": {
+            "type": "string",
+            "description": "Inclusive upper bound on `occurredAt`. Must be strictly after\n`occurredAtFrom`.",
+            "format": "date-time"
+          }
+        },
+        "description": "Filters for an export job. `occurredAtFrom` and `occurredAtTo` are\nrequired and the range between them cannot exceed 2 days. Filter\nsemantics are AND across fields, OR within array-valued fields."
+      },
+      "exportJob": {
+        "required": [
+          "exportId",
+          "status",
+          "requestedAt",
+          "filters"
+        ],
+        "type": "object",
+        "properties": {
+          "exportId": {
+            "type": "string",
+            "description": "Unique identifier for this export job.",
+            "example": "01HZQK9M9N2P3R4S5T6V7W8XAB"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/exportStatus"
+              }
+            ],
+            "description": "Current state of the export job."
+          },
+          "requestedAt": {
+            "type": "string",
+            "description": "RFC 3339 UTC timestamp when the export job was requested.",
+            "format": "date-time"
+          },
+          "completedAt": {
+            "type": "string",
+            "description": "Populated when status is COMPLETED, NO_RESULTS, or FAILED.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "expiresAt": {
+            "type": "string",
+            "description": "When the underlying export is purged from storage (3 days from\n`requestedAt`). After this time the export job itself returns\n404 and the file can no longer be downloaded.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "recordCount": {
+            "type": "integer",
+            "description": "Total number of events in the export. Populated when COMPLETED\nor NO_RESULTS.",
+            "nullable": true
+          },
+          "filters": {
+            "$ref": "#/components/schemas/exportRequest"
+          },
+          "error": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/eventError"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "description": "State of an asynchronous export. Customers poll\n`GET /accounts/{accountId}/debug-logs/exports/{exportId}` to track\nprogress. When `status` is `COMPLETED` or `NO_RESULTS`, the\nenclosing response envelope carries a `rel: file` link in `links`\npointing at\n`GET /accounts/{accountId}/debug-logs/exports/{exportId}/file`."
+      },
+      "callIdQueryParameter": {
+        "title": "Call ID Query Parameter",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "One or more Voice API call IDs. Supply a comma-separated list\nto match any of the IDs (OR semantics), e.g.\n`c-abc123,c-def456`. Up to 5 call IDs.",
+            "example": "c-abc123,c-def456"
+          }
+        },
+        "description": "Filter parameter for `callId`. Supports only the `eq` operator.",
+        "example": {
+          "eq": "c-abc123"
+        }
+      },
+      "statusCodeQueryParameter": {
+        "title": "Status Code Query Parameter",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "Comma-separated list of integer status codes (OR semantics), e.g. `200,404,486`.",
+            "example": "200,404,486"
+          }
+        },
+        "description": "Filter parameter for `statusCode`. Supports only the `eq` operator.\nWire format is a comma-separated list of integer HTTP status codes.",
+        "example": {
+          "eq": "200,404,486"
+        }
+      },
+      "occurredAtQueryParameter": {
+        "title": "Occurred At Query Parameter",
+        "properties": {
+          "gte": {
+            "type": "string",
+            "description": "Inclusive lower bound on `occurredAt`.",
+            "format": "date-time",
+            "example": "2026-04-27T00:00:00Z"
+          },
+          "lte": {
+            "type": "string",
+            "description": "Inclusive upper bound on `occurredAt`.",
+            "format": "date-time",
+            "example": "2026-04-27T23:59:59Z"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/voice_debug_logs_sort"
+          }
+        },
+        "description": "Filter and sort parameter for `occurredAt`. Supports `gte`, `lte`,\nand `sort`. Default sort direction is `DESC`.",
+        "example": {
+          "gte": "2026-04-27T00:00:00Z",
+          "lte": "2026-04-27T23:59:59Z",
+          "sort": "DESC"
+        }
+      },
       "ApiResponse": {
         "title": "Voice Integration Response Body",
         "required": [
@@ -109793,6 +110584,411 @@
           }
         }
       },
+      "defaultErrorResponse": {
+        "description": "Standardized error response.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/defaultErrorResponse"
+            }
+          }
+        }
+      },
+      "exportCapacitySaturatedResponse": {
+        "description": "Too many exports are already running. Returned as a `REQUEST_ERROR`\nwith a description prefixed `EXPORT_CAPACITY_SATURATED:`. Try again\nshortly.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/defaultErrorResponse"
+            }
+          }
+        }
+      },
+      "getDebugLogExportFileResponse": {
+        "description": "OK",
+        "content": {
+          "application/gzip": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          }
+        }
+      },
+      "listDebugLogsResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "required": [
+                "links",
+                "data",
+                "errors",
+                "page"
+              ],
+              "type": "object",
+              "properties": {
+                "links": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/voice_debug_logs_link"
+                  }
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/httpTransactionEventSummary"
+                  },
+                  "nullable": true
+                },
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/voice_debug_logs_error"
+                  },
+                  "example": [ ]
+                },
+                "page": {
+                  "$ref": "#/components/schemas/voice_debug_logs_page"
+                }
+              }
+            },
+            "example": {
+              "links": [
+                {
+                  "href": "https://api.bandwidth.com/v2/voice-api/accounts/9900000/debug-logs",
+                  "rel": "self",
+                  "method": "GET"
+                },
+                {
+                  "href": "https://api.bandwidth.com/v2/voice-api/accounts/9900000/debug-logs?afterCursor=eyJ1cyI6...",
+                  "rel": "next",
+                  "method": "GET"
+                }
+              ],
+              "data": [
+                {
+                  "eventId": "01HZQK7M9N2P3R4S5T6V7W8X9Y",
+                  "occurredAt": "2026-04-27T14:35:21Z",
+                  "callId": "c-abc123",
+                  "source": "WEBHOOK_DELIVERY",
+                  "direction": "OUTBOUND",
+                  "method": "POST",
+                  "url": "https://customer.example.com/voice/callback",
+                  "statusCode": 200,
+                  "elapsedMs": 187
+                }
+              ],
+              "errors": [ ],
+              "page": {
+                "pageSize": 1
+              }
+            }
+          }
+        }
+      },
+      "getDebugLogResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "required": [
+                "links",
+                "data",
+                "errors"
+              ],
+              "type": "object",
+              "properties": {
+                "links": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/voice_debug_logs_link"
+                  }
+                },
+                "data": {
+                  "$ref": "#/components/schemas/httpTransactionEvent"
+                },
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/voice_debug_logs_error"
+                  },
+                  "example": [ ]
+                },
+                "page": {
+                  "type": "object",
+                  "properties": {
+                    "pageSize": {
+                      "type": "integer",
+                      "description": "Number of records on this page.",
+                      "example": 50
+                    }
+                  },
+                  "description": "Not applicable to single-resource responses; always null.",
+                  "nullable": true
+                }
+              }
+            },
+            "example": {
+              "links": [
+                {
+                  "href": "https://api.bandwidth.com/v2/voice-api/accounts/9900000/debug-logs/01HZQK7M9N2P3R4S5T6V7W8X9Y",
+                  "rel": "self",
+                  "method": "GET"
+                }
+              ],
+              "data": {
+                "eventId": "01HZQK7M9N2P3R4S5T6V7W8X9Y",
+                "deliveryId": "01HZQK7M8N1P2R3S4T5V6W7X8Y",
+                "attemptNumber": 1,
+                "occurredAt": "2026-04-27T14:35:21Z",
+                "accountId": "9900000",
+                "callId": "c-abc123",
+                "source": "WEBHOOK_DELIVERY",
+                "direction": "OUTBOUND",
+                "request": {
+                  "method": "POST",
+                  "url": "https://customer.example.com/voice/callback",
+                  "headers": {
+                    "content-type": "application/json"
+                  },
+                  "body": "{\"eventType\":\"answer\",\"callId\":\"c-abc123\"}",
+                  "bodyTruncated": false,
+                  "bodyBytes": 42
+                },
+                "response": {
+                  "headers": {
+                    "content-type": "application/xml"
+                  },
+                  "statusCode": 200,
+                  "body": "<Response><Hangup/></Response>",
+                  "bodyTruncated": false,
+                  "bodyBytes": 32,
+                  "elapsedMs": 187
+                }
+              },
+              "errors": [ ],
+              "page": null
+            }
+          }
+        }
+      },
+      "createDebugLogExportResponse": {
+        "description": "Accepted",
+        "content": {
+          "application/json": {
+            "schema": {
+              "required": [
+                "links",
+                "data",
+                "errors"
+              ],
+              "type": "object",
+              "properties": {
+                "links": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/voice_debug_logs_link"
+                  }
+                },
+                "data": {
+                  "$ref": "#/components/schemas/exportJob"
+                },
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/voice_debug_logs_error"
+                  },
+                  "example": [ ]
+                },
+                "page": {
+                  "type": "object",
+                  "properties": {
+                    "pageSize": {
+                      "type": "integer",
+                      "description": "Number of records on this page.",
+                      "example": 50
+                    }
+                  },
+                  "description": "Not applicable to single-resource responses; always null.",
+                  "nullable": true
+                }
+              }
+            },
+            "example": {
+              "links": [
+                {
+                  "href": "https://api.bandwidth.com/v2/voice-api/accounts/9900000/debug-logs/exports/01HZQK9M9N2P3R4S5T6V7W8XAB",
+                  "rel": "self",
+                  "method": "GET"
+                }
+              ],
+              "data": {
+                "exportId": "01HZQK9M9N2P3R4S5T6V7W8XAB",
+                "status": "QUEUED",
+                "requestedAt": "2026-04-27T15:00:00Z",
+                "filters": {
+                  "occurredAtFrom": "2026-04-27T00:00:00Z",
+                  "occurredAtTo": "2026-04-27T23:59:59Z",
+                  "statusCode": [
+                    400,
+                    404,
+                    500
+                  ]
+                }
+              },
+              "errors": [ ],
+              "page": null
+            }
+          }
+        }
+      },
+      "listDebugLogExportsResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "required": [
+                "links",
+                "data",
+                "errors",
+                "page"
+              ],
+              "type": "object",
+              "properties": {
+                "links": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/voice_debug_logs_link"
+                  }
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/exportJob"
+                  },
+                  "nullable": true
+                },
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/voice_debug_logs_error"
+                  },
+                  "example": [ ]
+                },
+                "page": {
+                  "$ref": "#/components/schemas/voice_debug_logs_page"
+                }
+              }
+            },
+            "example": {
+              "links": [
+                {
+                  "href": "https://api.bandwidth.com/v2/voice-api/accounts/9900000/debug-logs/exports",
+                  "rel": "self",
+                  "method": "GET"
+                }
+              ],
+              "data": [
+                {
+                  "exportId": "01HZQK9M9N2P3R4S5T6V7W8XAB",
+                  "status": "COMPLETED",
+                  "requestedAt": "2026-04-27T15:00:00Z",
+                  "completedAt": "2026-04-27T15:01:42Z",
+                  "expiresAt": "2026-04-30T15:01:42Z",
+                  "recordCount": 1284,
+                  "filters": {
+                    "occurredAtFrom": "2026-04-27T00:00:00Z",
+                    "occurredAtTo": "2026-04-27T23:59:59Z",
+                    "statusCode": [
+                      400,
+                      404,
+                      500
+                    ]
+                  }
+                }
+              ],
+              "errors": [ ],
+              "page": {
+                "pageSize": 1
+              }
+            }
+          }
+        }
+      },
+      "getDebugLogExportResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "required": [
+                "links",
+                "data",
+                "errors"
+              ],
+              "type": "object",
+              "properties": {
+                "links": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/voice_debug_logs_link"
+                  }
+                },
+                "data": {
+                  "$ref": "#/components/schemas/exportJob"
+                },
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/voice_debug_logs_error"
+                  },
+                  "properties": {
+                    "pageSize": {
+                      "type": "integer",
+                      "description": "Number of records on this page.",
+                      "example": 50
+                    }
+                  },
+                  "example": [ ]
+                }
+              }
+            },
+            "example": {
+              "links": [
+                {
+                  "href": "https://api.bandwidth.com/v2/voice-api/accounts/9900000/debug-logs/exports/01HZQK9M9N2P3R4S5T6V7W8XAB",
+                  "rel": "self",
+                  "method": "GET"
+                },
+                {
+                  "href": "https://api.bandwidth.com/v2/voice-api/accounts/9900000/debug-logs/exports/01HZQK9M9N2P3R4S5T6V7W8XAB/file",
+                  "rel": "file",
+                  "method": "GET"
+                }
+              ],
+              "data": {
+                "exportId": "01HZQK9M9N2P3R4S5T6V7W8XAB",
+                "status": "COMPLETED",
+                "requestedAt": "2026-04-27T15:00:00Z",
+                "completedAt": "2026-04-27T15:01:42Z",
+                "expiresAt": "2026-04-30T15:01:42Z",
+                "recordCount": 1284,
+                "filters": {
+                  "occurredAtFrom": "2026-04-27T00:00:00Z",
+                  "occurredAtTo": "2026-04-27T23:59:59Z",
+                  "statusCode": [
+                    400,
+                    404,
+                    500
+                  ]
+                }
+              },
+              "errors": [ ],
+              "page": null
+            }
+          }
+        }
+      },
       "createVoiceIntegrationResponse": {
         "description": "Created",
         "content": {
@@ -117684,6 +118880,90 @@
         "schema": {
           "type": "string",
           "example": "100001"
+        }
+      },
+      "voice_debug_logs_accountId": {
+        "name": "accountId",
+        "in": "path",
+        "description": "Bandwidth account ID.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "eventId": {
+        "name": "eventId",
+        "in": "path",
+        "description": "Debug log event ID (ULID).",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "exportId": {
+        "name": "exportId",
+        "in": "path",
+        "description": "Debug log export job ID.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "voice_debug_logs_limit": {
+        "name": "limit",
+        "in": "query",
+        "description": "Maximum number of records to return per page. Default 50, max 200.",
+        "schema": {
+          "maximum": 200,
+          "minimum": 1,
+          "type": "integer",
+          "default": 50
+        }
+      },
+      "voice_debug_logs_afterCursor": {
+        "name": "afterCursor",
+        "in": "query",
+        "description": "Opaque pagination cursor. To retrieve the page after the current one,\npass the value from the `next` HATEOAS link's query string.\nTreat as opaque — its internal structure may change.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "voice_debug_logs_beforeCursor": {
+        "name": "beforeCursor",
+        "in": "query",
+        "description": "Opaque pagination cursor for backward navigation. To retrieve the page\nbefore the current one, pass the value from the `prev` HATEOAS link's\nquery string. Treat as opaque — its internal structure may change.\nMutually exclusive with `afterCursor` — supplying both returns 400.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "callIdFilter": {
+        "name": "callId",
+        "in": "query",
+        "description": "Filter by Voice API call ID.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/callIdQueryParameter"
+        }
+      },
+      "statusCodeFilter": {
+        "name": "statusCode",
+        "in": "query",
+        "description": "Filter by HTTP status code. Comma-separated integers, e.g.\n`statusCode[eq]=200,404,486`. Exact-match integers only — no `4xx`\nshorthand.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/statusCodeQueryParameter"
+        }
+      },
+      "occurredAtFilter": {
+        "name": "occurredAt",
+        "in": "query",
+        "description": "Filter and sort by `occurredAt`. Supports `gte`, `lte`, and `sort`.\nDefault sort is `DESC` (newest-first), since newest-first is the\nuniversal expectation for log/event APIs.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/occurredAtQueryParameter"
         }
       },
       "nameParam": {
@@ -137947,6 +139227,35 @@
           }
         }
       },
+      "createDebugLogExportRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "required": [
+                "filters"
+              ],
+              "type": "object",
+              "properties": {
+                "filters": {
+                  "$ref": "#/components/schemas/exportRequest"
+                }
+              }
+            },
+            "example": {
+              "filters": {
+                "occurredAtFrom": "2026-04-27T00:00:00Z",
+                "occurredAtTo": "2026-04-27T23:59:59Z",
+                "statusCode": [
+                  400,
+                  404,
+                  500
+                ]
+              }
+            }
+          }
+        },
+        "required": true
+      },
       "createVoiceIntegrationRequestBody": {
         "content": {
           "application/json": {
@@ -138697,6 +140006,19 @@
         "scheme": "bearer",
         "bearerFormat": "JWT"
       },
+      "voice_debug_logs_OAuth2": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://api.bandwidth.com/api/v1/oauth2/token",
+            "scopes": { }
+          }
+        }
+      },
+      "voice_debug_logs_Bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      },
       "voice_integrations_Basic": {
         "type": "http",
         "description": "Basic authentication is a simple authentication scheme built into the HTTP protocol. To use it, send your HTTP requests with an Authorization header that contains the word Basic followed by a space and a base64-encoded string `username:password`.\nExample: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`",
@@ -139331,6 +140653,14 @@
     {
       "name": "Whitelist",
       "description": "Operations for managing IP address whitelists for voice services."
+    },
+    {
+      "name": "Debug Logs",
+      "description": "Voice API HTTP transaction events."
+    },
+    {
+      "name": "Debug Log Exports",
+      "description": "Asynchronous gzipped JSONL exports of debug log events."
     },
     {
       "name": "Voice Integrations"
