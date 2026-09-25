@@ -114,7 +114,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors.Voice.ShortCall
             [QueryParameter("accountId")]
             public string AccountId { get; set; }
 #endif
-            /// <summary>Filter results by call type.Accepts a single value: `NATIONAL`, `INTERNATIONAL`, `EMERGENCY` Etc.If not provided, results for all call types will be returned.</summary>
+            /// <summary>Filter results by call type. Accepts a single value from the enum defined in the schema (e.g. `INTERNATIONAL`, `EMERGENCY`, `LOCAL`).If not provided, results for all call types will be returned.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("callType")]

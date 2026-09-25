@@ -14,14 +14,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>The account ID associated with the order.</summary>
         public int? AccountId { get; set; }
-        /// <summary>The assignment action performed.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
+        /// <summary>Assignment action performed on phone numbers.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderResponseAction? Action { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderResponseAction Action { get; set; }
-#endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The user who created the order.</summary>
@@ -74,14 +68,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public List<string> PhoneNumbers { get; set; }
 #endif
-        /// <summary>The current processing status of the order.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
+        /// <summary>Processing status of a numbers assignment order.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderResponseProcessingStatus? ProcessingStatus { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderResponseProcessingStatus ProcessingStatus { get; set; }
-#endif
         /// <summary>The total number of phone numbers in the order.</summary>
         public int? TotalQuantity { get; set; }
         /// <summary>
@@ -110,7 +98,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "accountId", n => { AccountId = n.GetIntValue(); } },
-                { "action", n => { Action = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderResponseAction>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderResponseAction.CreateFromDiscriminatorValue); } },
+                { "action", n => { Action = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderResponseAction>(); } },
                 { "createdByUser", n => { CreatedByUser = n.GetStringValue(); } },
                 { "customerOrderId", n => { CustomerOrderId = n.GetStringValue(); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderError>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderError.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -118,7 +106,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "orderCreateDate", n => { OrderCreateDate = n.GetStringValue(); } },
                 { "orderId", n => { OrderId = n.GetStringValue(); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "processingStatus", n => { ProcessingStatus = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderResponseProcessingStatus>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderResponseProcessingStatus.CreateFromDiscriminatorValue); } },
+                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderResponseProcessingStatus>(); } },
                 { "totalQuantity", n => { TotalQuantity = n.GetIntValue(); } },
             };
         }
@@ -130,7 +118,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("accountId", AccountId);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderResponseAction>("action", Action);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderResponseAction>("action", Action);
             writer.WriteStringValue("createdByUser", CreatedByUser);
             writer.WriteStringValue("customerOrderId", CustomerOrderId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderError>("errors", Errors);
@@ -138,7 +126,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("orderCreateDate", OrderCreateDate);
             writer.WriteStringValue("orderId", OrderId);
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderResponseProcessingStatus>("processingStatus", ProcessingStatus);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderResponseProcessingStatus>("processingStatus", ProcessingStatus);
             writer.WriteIntValue("totalQuantity", TotalQuantity);
             writer.WriteAdditionalData(AdditionalData);
         }

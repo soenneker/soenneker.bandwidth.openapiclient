@@ -106,7 +106,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls
             public bool? Anonymized { get; set; }
             /// <summary>The grouping for the type of DID.</summary>
             [QueryParameter("callType")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CallTypeEnum? CallType { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.CallType? CallType { get; set; }
             /// <summary>Indicates the country code of the DID in its ISO 3166-1 alpha-3 format (e.g. &apos;GBR&apos; for United Kingdom, &apos;USA&apos; for United States of America, &apos;BEL&apos; for Belgium, etc.).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

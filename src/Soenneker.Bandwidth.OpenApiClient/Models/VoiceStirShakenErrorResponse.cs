@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponseDataProperty? DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponseDataProperty2? DataEscaped { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponseDataProperty DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponseDataProperty2 DataEscaped { get; set; }
 #endif
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -66,7 +66,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponseDataProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponseDataProperty.CreateFromDiscriminatorValue); } },
+                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponseDataProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponseDataProperty2.CreateFromDiscriminatorValue); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenError>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenError.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
@@ -78,7 +78,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponseDataProperty>("data", DataEscaped);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponseDataProperty2>("data", DataEscaped);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenError>("errors", Errors);
             writer.WriteCollectionOfPrimitiveValues<string>("links", Links);
             writer.WriteAdditionalData(AdditionalData);

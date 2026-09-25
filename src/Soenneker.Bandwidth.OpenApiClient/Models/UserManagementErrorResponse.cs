@@ -10,16 +10,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class UserManagementErrorResponse : ApiException, IParsable
+    public partial class UserManagementErrorResponse : ApiException, IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UserManagementErrorResponseDataProperty? DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UserManagementErrorResponseDataProperty2? DataEscaped { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UserManagementErrorResponseDataProperty DataEscaped { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UserManagementErrorResponseDataProperty2 DataEscaped { get; set; }
 #endif
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -40,6 +42,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The primary error message.</summary>
         public override string Message { get => base.Message; }
         /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UserManagementErrorResponse"/> and sets the default values.
+        /// </summary>
+        public UserManagementErrorResponse()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UserManagementErrorResponse"/></returns>
@@ -57,7 +66,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UserManagementErrorResponseDataProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.UserManagementErrorResponseDataProperty.CreateFromDiscriminatorValue); } },
+                { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UserManagementErrorResponseDataProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.UserManagementErrorResponseDataProperty2.CreateFromDiscriminatorValue); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.UserManagementError>(global::Soenneker.Bandwidth.OpenApiClient.Models.UserManagementError.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.UserManagementLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.UserManagementLink.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -69,9 +78,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UserManagementErrorResponseDataProperty>("data", DataEscaped);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UserManagementErrorResponseDataProperty2>("data", DataEscaped);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.UserManagementError>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.UserManagementLink>("links", Links);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

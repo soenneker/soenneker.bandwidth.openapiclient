@@ -49,10 +49,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The source property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesErrorsItemSourceProperty? Source { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesErrorsItemSourceProperty2? Source { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesErrorsItemSourceProperty Source { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesErrorsItemSourceProperty2 Source { get; set; }
 #endif
         /// <summary>The type property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -91,7 +91,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "meta", n => { Meta = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesErrorsItemMeta>(global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesErrorsItemMeta.CreateFromDiscriminatorValue); } },
-                { "source", n => { Source = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesErrorsItemSourceProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesErrorsItemSourceProperty.CreateFromDiscriminatorValue); } },
+                { "source", n => { Source = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesErrorsItemSourceProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesErrorsItemSourceProperty2.CreateFromDiscriminatorValue); } },
                 { "type", n => { Type = n.GetStringValue(); } },
             };
         }
@@ -106,7 +106,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("id", Id);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesErrorsItemMeta>("meta", Meta);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesErrorsItemSourceProperty>("source", Source);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponsePropertiesErrorsItemSourceProperty2>("source", Source);
             writer.WriteStringValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }

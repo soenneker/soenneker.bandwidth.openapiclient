@@ -180,7 +180,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Voiceuri
             public int? VoiceUriId { get; set; }
             /// <summary>The protocol to use with this voice uri. Supported protocols are `SIP` and `TEL`.</summary>
             [QueryParameter("voiceUriProtocol")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalListVoiceUriVoiceUriProtocolParameter? VoiceUriProtocol { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.ListVoiceUriVoiceUriProtocolParameter? VoiceUriProtocol { get; set; }
         }
     }
 }

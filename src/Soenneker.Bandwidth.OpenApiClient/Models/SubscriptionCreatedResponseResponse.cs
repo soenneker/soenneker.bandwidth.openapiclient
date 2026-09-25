@@ -26,18 +26,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponseErrorsItemProperty>? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponseErrorsItemProperty2>? Errors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponseErrorsItemProperty> Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponseErrorsItemProperty2> Errors { get; set; }
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponseLinksItemProperty>? Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponseLinksItemProperty2>? Links { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponseLinksItemProperty> Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponseLinksItemProperty2> Links { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponse"/> and sets the default values.
@@ -65,8 +65,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse.CreateFromDiscriminatorValue); } },
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponseErrorsItemProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponseErrorsItemProperty.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponseLinksItemProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponseLinksItemProperty.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponseErrorsItemProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponseErrorsItemProperty2.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponseLinksItemProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponseLinksItemProperty2.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -77,8 +77,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse>("data", Data);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponseErrorsItemProperty>("errors", Errors);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponseLinksItemProperty>("links", Links);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponseErrorsItemProperty2>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionCreatedResponseResponseLinksItemProperty2>("links", Links);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

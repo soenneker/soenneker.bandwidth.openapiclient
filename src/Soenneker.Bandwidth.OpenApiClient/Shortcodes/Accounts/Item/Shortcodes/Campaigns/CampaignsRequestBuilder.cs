@@ -250,25 +250,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Shortcodes.Accounts.Item.Shortcodes.
             #pragma warning restore CS1591
 #endif
             /// <summary>The query parameter for the number of results to return. This limits the number of short code campaigns returned.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("limit")]
-            public string? Limit { get; set; }
-#nullable restore
-#else
-            [QueryParameter("limit")]
-            public string Limit { get; set; }
-#endif
+            public int? Limit { get; set; }
             /// <summary>The query parameter for the number of results to skip. This skips the number of short code campaigns returned.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("offset")]
-            public string? Offset { get; set; }
-#nullable restore
-#else
-            [QueryParameter("offset")]
-            public string Offset { get; set; }
-#endif
+            public int? Offset { get; set; }
             /// <summary>The query parameter for the short code. This is used to sort and filter the short code campaigns by the short code.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -26,10 +26,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ActiveCallInfoErrorsItem>? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ActiveCallInfoErrorsItemProperty>? Errors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ActiveCallInfoErrorsItem> Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ActiveCallInfoErrorsItemProperty> Errors { get; set; }
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -65,7 +65,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ActiveCallInfoData>(global::Soenneker.Bandwidth.OpenApiClient.Models.ActiveCallInfoData.CreateFromDiscriminatorValue); } },
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ActiveCallInfoErrorsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ActiveCallInfoErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ActiveCallInfoErrorsItemProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.ActiveCallInfoErrorsItemProperty.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ActiveCallInfoLinksItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ActiveCallInfoLinksItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -77,7 +77,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ActiveCallInfoData>("data", Data);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ActiveCallInfoErrorsItem>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ActiveCallInfoErrorsItemProperty>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ActiveCallInfoLinksItem>("links", Links);
             writer.WriteAdditionalData(AdditionalData);
         }

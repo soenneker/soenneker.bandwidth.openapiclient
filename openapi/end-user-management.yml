@@ -764,12 +764,15 @@ paths:
     get:
       summary: Get Requirements Package
       operationId: getRequirementsPackage
-      description: Retrieve a requirements package using the id.
+      description: >-
+        Retrieve a requirements package using the id. The `deletability` info is
+        returned only on query param `verbose=true`
       tags:
         - Requirements Packages
       parameters:
         - $ref: '#/components/parameters/accountId'
         - $ref: '#/components/parameters/requirementsPackageIdPathParam'
+        - $ref: '#/components/parameters/verboseQueryParam'
       responses:
         '200':
           $ref: '#/components/responses/getRequirementsPackageResponse'
@@ -1566,6 +1569,17 @@ components:
       schema:
         example: 30
         type: integer
+    verboseQueryParam:
+      description: >-
+        When set to true, the response will include additional details. This
+        currently includes the `deletability`field.
+      in: query
+      name: verbose
+      required: false
+      schema:
+        type: boolean
+        default: false
+        example: false
   requestBodies:
     createAddressRequest:
       content:
@@ -3779,8 +3793,6 @@ components:
             deletability:
               $ref: '#/components/schemas/deletability'
               readOnly: true
-          required:
-            - deletability
     numberActivationResultData:
       description: Details of result of a number activation
       type: object

@@ -15,7 +15,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The campaign and Bandwidth IDs. The campaignId is only present when the campaign has been registered with TCR (i.e. not present for newly created direct campaigns awaiting TCR registration).</summary>
+        /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignAcceptedObject? Data { get; set; }

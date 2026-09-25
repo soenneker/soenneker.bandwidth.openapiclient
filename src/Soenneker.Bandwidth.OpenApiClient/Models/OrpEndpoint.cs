@@ -52,8 +52,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return mappingValue switch
             {
                 "FQDN" => new global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpoint(),
+                "FqdnEndpoint" => new global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpoint(),
+                "Ipv4Endpoint" => new global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4Endpoint(),
                 "IP_V4" => new global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4Endpoint(),
                 "SIP" => new global::Soenneker.Bandwidth.OpenApiClient.Models.SipEndpoint(),
+                "SipEndpoint" => new global::Soenneker.Bandwidth.OpenApiClient.Models.SipEndpoint(),
                 _ => new global::Soenneker.Bandwidth.OpenApiClient.Models.OrpEndpoint(),
             };
         }

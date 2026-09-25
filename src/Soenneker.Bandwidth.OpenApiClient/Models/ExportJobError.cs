@@ -41,18 +41,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Application-specific metadata.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorMeta? Meta { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorMetaProperty? Meta { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorMeta Meta { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorMetaProperty Meta { get; set; }
 #endif
         /// <summary>Identifies the source of the error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorSource? Source { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorSourceProperty? Source { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorSource Source { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorSourceProperty Source { get; set; }
 #endif
         /// <summary>Machine-readable error category.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -90,8 +90,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "code", n => { Code = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
-                { "meta", n => { Meta = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorMeta>(global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorMeta.CreateFromDiscriminatorValue); } },
-                { "source", n => { Source = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorSource>(global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorSource.CreateFromDiscriminatorValue); } },
+                { "meta", n => { Meta = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorMetaProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorMetaProperty.CreateFromDiscriminatorValue); } },
+                { "source", n => { Source = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorSourceProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorSourceProperty.CreateFromDiscriminatorValue); } },
                 { "type", n => { Type = n.GetStringValue(); } },
             };
         }
@@ -105,8 +105,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("code", Code);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("id", Id);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorMeta>("meta", Meta);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorSource>("source", Source);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorMetaProperty>("meta", Meta);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobErrorSourceProperty>("source", Source);
             writer.WriteStringValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }

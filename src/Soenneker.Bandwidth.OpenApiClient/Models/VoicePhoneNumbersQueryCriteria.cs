@@ -16,7 +16,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The operator to use for a filter.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersOperator? Operator { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersOperatorType? Operator { get; set; }
         /// <summary>Field name to filter on.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -58,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "operator", n => { Operator = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersOperator>(); } },
+                { "operator", n => { Operator = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersOperatorType>(); } },
                 { "parameter", n => { Parameter = n.GetStringValue(); } },
                 { "values", n => { Values = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
@@ -70,7 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersOperator>("operator", Operator);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersOperatorType>("operator", Operator);
             writer.WriteStringValue("parameter", Parameter);
             writer.WriteCollectionOfPrimitiveValues<string>("values", Values);
             writer.WriteAdditionalData(AdditionalData);

@@ -17,7 +17,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The parameter to sort.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSortParameter? Parameter { get; set; }
         /// <summary>The value property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSortValue? Value { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSortValue2? Value { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort"/> and sets the default values.
         /// </summary>
@@ -44,7 +44,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "parameter", n => { Parameter = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSortParameter>(); } },
-                { "value", n => { Value = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSortValue>(); } },
+                { "value", n => { Value = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSortValue2>(); } },
             };
         }
         /// <summary>
@@ -55,7 +55,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSortParameter>("parameter", Parameter);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSortValue>("value", Value);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSortValue2>("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

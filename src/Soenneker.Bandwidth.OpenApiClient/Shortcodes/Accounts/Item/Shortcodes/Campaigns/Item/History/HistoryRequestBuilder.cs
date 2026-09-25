@@ -103,15 +103,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Shortcodes.Accounts.Item.Shortcodes.
         public partial class HistoryRequestBuilderGetQueryParameters 
         {
             /// <summary>The query parameter for the version of the campaign. This filters the short code campaign histories by the version.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("version")]
-            public string? Version { get; set; }
-#nullable restore
-#else
-            [QueryParameter("version")]
-            public string Version { get; set; }
-#endif
+            public int? Version { get; set; }
         }
     }
 }

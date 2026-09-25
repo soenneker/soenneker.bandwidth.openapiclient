@@ -117,11 +117,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.Item
         [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponseResponse?> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.ModifySubscription body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponseResponse?> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.ModifySubscriptionBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponseResponse> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.ModifySubscription body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponseResponse> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.ModifySubscriptionBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -223,11 +223,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.Item
         [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.ModifySubscription body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.ModifySubscriptionBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.ModifySubscription body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.ModifySubscriptionBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

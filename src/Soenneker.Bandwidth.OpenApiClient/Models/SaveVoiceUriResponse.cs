@@ -17,10 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The voiceUri property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUri? VoiceUri { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUriBody? VoiceUri { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUri VoiceUri { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUriBody VoiceUri { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUriResponse"/> and sets the default values.
@@ -47,7 +47,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "voiceUri", n => { VoiceUri = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUri>(global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUri.CreateFromDiscriminatorValue); } },
+                { "voiceUri", n => { VoiceUri = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUriBody>(global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUriBody.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUri>("voiceUri", VoiceUri);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUriBody>("voiceUri", VoiceUri);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

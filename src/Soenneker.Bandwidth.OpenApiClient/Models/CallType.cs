@@ -3,69 +3,22 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
-    /// <summary>Type of call.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+    #pragma warning disable CS1591
     public enum CallType
+    #pragma warning restore CS1591
     {
-        [EnumMember(Value = "EMERGENCY")]
+        [EnumMember(Value = "VOXDID")]
         #pragma warning disable CS1591
-        Emergency,
+        Voxdid,
         #pragma warning restore CS1591
-        [EnumMember(Value = "INBOUND-TFOOS")]
+        [EnumMember(Value = "VOXPREMIUM")]
         #pragma warning disable CS1591
-        InboundTfoos,
+        Voxpremium,
         #pragma warning restore CS1591
-        [EnumMember(Value = "INFORMATION")]
+        [EnumMember(Value = "VOX800")]
         #pragma warning disable CS1591
-        Information,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "INTERNATIONAL")]
-        #pragma warning disable CS1591
-        International,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "INTERNATIONAL-INTERNAL")]
-        #pragma warning disable CS1591
-        InternationalInternal,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "INTERSTATE")]
-        #pragma warning disable CS1591
-        Interstate,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "INTRASTATE")]
-        #pragma warning disable CS1591
-        Intrastate,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "INTL-BLOCK")]
-        #pragma warning disable CS1591
-        IntlBlock,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "LOCAL")]
-        #pragma warning disable CS1591
-        Local,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "OPERATOR")]
-        #pragma warning disable CS1591
-        OperatorValue,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "OTHER-N11")]
-        #pragma warning disable CS1591
-        OtherN11,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "SIPURI-EXT")]
-        #pragma warning disable CS1591
-        SipuriExt,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "TOLLFREE-IN")]
-        #pragma warning disable CS1591
-        TollfreeIn,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "TOLLFREE-OUT")]
-        #pragma warning disable CS1591
-        TollfreeOut,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "UNDETERMINED")]
-        #pragma warning disable CS1591
-        Undetermined,
+        Vox800,
         #pragma warning restore CS1591
     }
 }

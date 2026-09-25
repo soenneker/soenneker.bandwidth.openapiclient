@@ -26,7 +26,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public global::Soenneker.Bandwidth.OpenApiClient.Models.CallAttestationIndicator? AttestationIndicator { get; set; }
         /// <summary>Direction of call.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.CallDirection? CallDirection { get; set; }
-        /// <summary>Phone number of the caller who received the call.Format: E.164 with &apos;+&apos; prefix</summary>
+        /// <summary>Phone number of the called party who received the call.Format: E.164 with &apos;+&apos; prefix</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CalledNumber { get; set; }
@@ -53,8 +53,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Call completion status.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.CallResult? CallResult { get; set; }
         /// <summary>Type of call.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallType? CallType { get; set; }
-        /// <summary>Jitter experienced by the carrrier during the call, measured in milliseconds.</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsCallType? CallType { get; set; }
+        /// <summary>Jitter experienced by the carrier during the call, measured in milliseconds.</summary>
         public int? CarrierJitter { get; set; }
         /// <summary>Latency experienced by the carrier during the call, measured in milliseconds.</summary>
         public int? CarrierLatency { get; set; }
@@ -230,7 +230,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "callDirection", n => { CallDirection = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallDirection>(); } },
                 { "callId", n => { CallId = n.GetStringValue(); } },
                 { "callResult", n => { CallResult = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallResult>(); } },
-                { "callType", n => { CallType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallType>(); } },
+                { "callType", n => { CallType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsCallType>(); } },
                 { "calledNumber", n => { CalledNumber = n.GetStringValue(); } },
                 { "callingNumber", n => { CallingNumber = n.GetStringValue(); } },
                 { "carrierJitter", n => { CarrierJitter = n.GetIntValue(); } },
@@ -280,7 +280,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("callId", CallId);
             writer.WriteStringValue("callingNumber", CallingNumber);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallResult>("callResult", CallResult);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallType>("callType", CallType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsCallType>("callType", CallType);
             writer.WriteIntValue("carrierJitter", CarrierJitter);
             writer.WriteIntValue("carrierLatency", CarrierLatency);
             writer.WriteDoubleValue("carrierPacketLossPercentage", CarrierPacketLossPercentage);

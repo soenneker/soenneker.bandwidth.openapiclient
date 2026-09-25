@@ -25,10 +25,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementError>? Errors { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponseErrors? Errors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementError> Errors { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponseErrors Errors { get; set; }
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -64,7 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData>(global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData.CreateFromDiscriminatorValue); } },
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementError>(global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementError.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "errors", n => { Errors = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponseErrors>(global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponseErrors.CreateFromDiscriminatorValue); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementLink.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -76,7 +76,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LegacyRequirementsPackageData>("data", Data);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementError>("errors", Errors);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MigrationRequirementsPackageCreateUpdateResponseErrors>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementLink>("links", Links);
             writer.WriteAdditionalData(AdditionalData);
         }

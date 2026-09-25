@@ -18,7 +18,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoicePhoneNumbers.V2.Accounts
         /// <summary>Gets an item from the Soenneker.Bandwidth.OpenApiClient.voicePhoneNumbers.v2.accounts.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.VoicePhoneNumbers.V2.Accounts.Item.WithAccountItemRequestBuilder"/></returns>
-        public global::Soenneker.Bandwidth.OpenApiClient.VoicePhoneNumbers.V2.Accounts.Item.WithAccountItemRequestBuilder this[string position]
+        public global::Soenneker.Bandwidth.OpenApiClient.VoicePhoneNumbers.V2.Accounts.Item.WithAccountItemRequestBuilder this[int position]
         {
             get
             {

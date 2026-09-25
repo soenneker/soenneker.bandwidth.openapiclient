@@ -89,7 +89,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaign
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignAcceptedResponseObject>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignAcceptedResponseObject.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// **All customers.** Get details for this TCR campaign.
+        /// **All customers.** Get details for this TCR campaign.&gt; **Note:** Starting October 15, 2026, `US_CELLULAR` will no longer appear as a `partnerId` in the `approvals` array for campaigns created on or after that date, as part of T-Mobile&apos;s acquisition of US Cellular. Existing campaigns are unaffected.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignCustomerResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -223,7 +223,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Campaign
             return requestInfo;
         }
         /// <summary>
-        /// **All customers.** Get details for this TCR campaign.
+        /// **All customers.** Get details for this TCR campaign.&gt; **Note:** Starting October 15, 2026, `US_CELLULAR` will no longer appear as a `partnerId` in the `approvals` array for campaigns created on or after that date, as part of T-Mobile&apos;s acquisition of US Cellular. Existing campaigns are unaffected.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

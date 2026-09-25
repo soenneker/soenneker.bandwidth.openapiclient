@@ -122,19 +122,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoicePhoneNumbers.V2.Accounts.Item.P
             public string AfterCursor { get; set; }
             #pragma warning restore CS1591
 #endif
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             #pragma warning disable CS1591
             [QueryParameter("limit")]
-            public string? Limit { get; set; }
+            public int? Limit { get; set; }
             #pragma warning restore CS1591
-#nullable restore
-#else
-            #pragma warning disable CS1591
-            [QueryParameter("limit")]
-            public string Limit { get; set; }
-            #pragma warning restore CS1591
-#endif
         }
     }
 }

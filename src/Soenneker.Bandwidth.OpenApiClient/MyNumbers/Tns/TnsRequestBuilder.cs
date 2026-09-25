@@ -230,7 +230,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.MyNumbers.Tns
 #endif
             /// <summary>A service type value to filter the TNs returned in the payload.</summary>
             [QueryParameter("service")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersListTnsByGetServiceParameter? Service { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.ListTnsByGetServiceParameter? Service { get; set; }
             /// <summary>The number of elements to retrieve</summary>
             [QueryParameter("size")]
             public int? Size { get; set; }
@@ -256,7 +256,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.MyNumbers.Tns
         {
             /// <summary>A service type value to filter the TNs returned in the payload.</summary>
             [QueryParameter("service")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersListTnsByPostServiceParameter? Service { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.ListTnsByPostServiceParameter? Service { get; set; }
         }
     }
 }

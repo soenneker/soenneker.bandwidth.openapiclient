@@ -148,7 +148,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Smslink
         {
             /// <summary>This can be used to filter your SMS links based on their direction: FROM_VOXBONE, TO_VOXBONE or BIDIRECTIONAL.</summary>
             [QueryParameter("direction")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalListSmsLinkDirectionParameter? Direction { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.ListSmsLinkDirectionParameter? Direction { get; set; }
             /// <summary>This can be used to filter based on the SMS link group and get the list of your SMS links within that SMS link group.</summary>
             [QueryParameter("groupId")]
             public int? GroupId { get; set; }
@@ -157,7 +157,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Smslink
             public int? SmsLinkId { get; set; }
             /// <summary>This can be used to filter based on the type (protocol) of SMS links: REST_JSON, SMPP_SMSC, SMPP_ESME, SOAP, SIP, SMTP.</summary>
             [QueryParameter("type")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalListSmsLinkTypeParameter? Type { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.ListSmsLinkTypeParameter? Type { get; set; }
         }
     }
 }

@@ -15,10 +15,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The accountBalance property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AccountBalance? AccountBalance { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AccountBalanceBody? AccountBalance { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AccountBalance AccountBalance { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AccountBalanceBody AccountBalance { get; set; }
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -47,7 +47,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "accountBalance", n => { AccountBalance = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AccountBalance>(global::Soenneker.Bandwidth.OpenApiClient.Models.AccountBalance.CreateFromDiscriminatorValue); } },
+                { "accountBalance", n => { AccountBalance = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AccountBalanceBody>(global::Soenneker.Bandwidth.OpenApiClient.Models.AccountBalanceBody.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AccountBalance>("accountBalance", AccountBalance);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AccountBalanceBody>("accountBalance", AccountBalance);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

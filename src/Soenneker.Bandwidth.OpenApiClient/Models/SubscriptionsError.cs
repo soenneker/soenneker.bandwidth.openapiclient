@@ -9,9 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class SubscriptionsError : IParsable
+    public partial class SubscriptionsError : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>An application-specific error code for services with extensive error scenarios to supplement `description`.</summary>
         public int? Code { get; set; }
         /// <summary>A human-readable explanation that SHOULD be specific to this occurrence of the problem.</summary>
@@ -33,10 +35,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The meta property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsErrorMetaProperty? Meta { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsErrorMetaProperty2? Meta { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsErrorMetaProperty Meta { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsErrorMetaProperty2 Meta { get; set; }
 #endif
         /// <summary>The source property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -54,6 +56,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Type { get; set; }
 #endif
+        /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsError"/> and sets the default values.
+        /// </summary>
+        public SubscriptionsError()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -75,7 +84,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "code", n => { Code = n.GetIntValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
-                { "meta", n => { Meta = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsErrorMetaProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsErrorMetaProperty.CreateFromDiscriminatorValue); } },
+                { "meta", n => { Meta = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsErrorMetaProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsErrorMetaProperty2.CreateFromDiscriminatorValue); } },
                 { "source", n => { Source = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsErrorSource>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsErrorSource.CreateFromDiscriminatorValue); } },
                 { "type", n => { Type = n.GetStringValue(); } },
             };
@@ -90,9 +99,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteIntValue("code", Code);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("id", Id);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsErrorMetaProperty>("meta", Meta);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsErrorMetaProperty2>("meta", Meta);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsErrorSource>("source", Source);
             writer.WriteStringValue("type", Type);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

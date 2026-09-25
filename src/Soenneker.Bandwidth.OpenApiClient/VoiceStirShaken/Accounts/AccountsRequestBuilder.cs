@@ -18,7 +18,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceStirShaken.Accounts
         /// <summary>Gets an item from the Soenneker.Bandwidth.OpenApiClient.voiceStirShaken.accounts.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.VoiceStirShaken.Accounts.Item.WithAccountItemRequestBuilder"/></returns>
-        public global::Soenneker.Bandwidth.OpenApiClient.VoiceStirShaken.Accounts.Item.WithAccountItemRequestBuilder this[string position]
+        public global::Soenneker.Bandwidth.OpenApiClient.VoiceStirShaken.Accounts.Item.WithAccountItemRequestBuilder this[int position]
         {
             get
             {

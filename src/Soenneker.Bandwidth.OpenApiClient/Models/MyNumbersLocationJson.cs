@@ -97,7 +97,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersLocationJsonProductsItem?> Products { get; set; }
 #endif
         /// <summary>The ssSendToCustomer property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersLocationJsonSsSendToCustomer? SsSendToCustomer { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonSsSendToCustomer? SsSendToCustomer { get; set; }
         /// <summary>The suggestedAddresses property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -169,7 +169,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "pindropEnabled", n => { PindropEnabled = n.GetBoolValue(); } },
                 { "premiseTrunks", n => { PremiseTrunks = n.GetStringValue(); } },
                 { "products", n => { Products = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersLocationJsonProductsItem>()?.AsList(); } },
-                { "ssSendToCustomer", n => { SsSendToCustomer = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersLocationJsonSsSendToCustomer>(); } },
+                { "ssSendToCustomer", n => { SsSendToCustomer = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonSsSendToCustomer>(); } },
                 { "suggestedAddresses", n => { SuggestedAddresses = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersAddressJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersAddressJson.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "terminationHosts", n => { TerminationHosts = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationTerminationHostsJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.LocationTerminationHostsJson.CreateFromDiscriminatorValue); } },
                 { "voiceHostGroups", n => { VoiceHostGroups = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.HostsJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.HostsJson.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -197,7 +197,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteBoolValue("pindropEnabled", PindropEnabled);
             writer.WriteStringValue("premiseTrunks", PremiseTrunks);
             writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersLocationJsonProductsItem>("products", Products);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersLocationJsonSsSendToCustomer>("ssSendToCustomer", SsSendToCustomer);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationJsonSsSendToCustomer>("ssSendToCustomer", SsSendToCustomer);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersAddressJson>("suggestedAddresses", SuggestedAddresses);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationTerminationHostsJson>("terminationHosts", TerminationHosts);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.HostsJson>("voiceHostGroups", VoiceHostGroups);

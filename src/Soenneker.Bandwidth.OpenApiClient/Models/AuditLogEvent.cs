@@ -9,7 +9,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class AuditLogEvent : IParsable
+    public partial class AuditLogEvent : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The userId or client ID of the principal that performed the action</summary>
@@ -20,13 +20,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Actor { get; set; }
 #endif
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Event-specific metadata such as before and after state for update events. Content varies by event type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetailsProperty? Details { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetailsProperty2? Details { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetailsProperty Details { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetailsProperty2 Details { get; set; }
 #endif
         /// <summary>Unique identifier for the audit log event</summary>
         public Guid? EventId { get; set; }
@@ -34,6 +36,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventTypeEnum? EventType { get; set; }
         /// <summary>The date and time the event occurred</summary>
         public DateTimeOffset? OccurredAt { get; set; }
+        /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEvent"/> and sets the default values.
+        /// </summary>
+        public AuditLogEvent()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -53,7 +62,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "actor", n => { Actor = n.GetStringValue(); } },
-                { "details", n => { Details = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetailsProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetailsProperty.CreateFromDiscriminatorValue); } },
+                { "details", n => { Details = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetailsProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetailsProperty2.CreateFromDiscriminatorValue); } },
                 { "eventId", n => { EventId = n.GetGuidValue(); } },
                 { "eventType", n => { EventType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventTypeEnum>(); } },
                 { "occurredAt", n => { OccurredAt = n.GetDateTimeOffsetValue(); } },
@@ -67,10 +76,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("actor", Actor);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetailsProperty>("details", Details);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetailsProperty2>("details", Details);
             writer.WriteGuidValue("eventId", EventId);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventTypeEnum>("eventType", EventType);
             writer.WriteDateTimeOffsetValue("occurredAt", OccurredAt);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

@@ -41,18 +41,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Application-specific metadata.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventErrorMeta? Meta { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventErrorMetaProperty? Meta { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventErrorMeta Meta { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventErrorMetaProperty Meta { get; set; }
 #endif
         /// <summary>Identifies the source of the error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventErrorSource? Source { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventErrorSourceProperty? Source { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventErrorSource Source { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventErrorSourceProperty Source { get; set; }
 #endif
         /// <summary>Machine-readable error category.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -90,8 +90,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "code", n => { Code = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
-                { "meta", n => { Meta = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventErrorMeta>(global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventErrorMeta.CreateFromDiscriminatorValue); } },
-                { "source", n => { Source = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventErrorSource>(global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventErrorSource.CreateFromDiscriminatorValue); } },
+                { "meta", n => { Meta = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventErrorMetaProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventErrorMetaProperty.CreateFromDiscriminatorValue); } },
+                { "source", n => { Source = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventErrorSourceProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventErrorSourceProperty.CreateFromDiscriminatorValue); } },
                 { "type", n => { Type = n.GetStringValue(); } },
             };
         }
@@ -105,8 +105,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("code", Code);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("id", Id);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventErrorMeta>("meta", Meta);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventErrorSource>("source", Source);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventErrorMetaProperty>("meta", Meta);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventErrorSourceProperty>("source", Source);
             writer.WriteStringValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }

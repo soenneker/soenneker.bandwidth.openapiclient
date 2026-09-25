@@ -31,10 +31,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Headers as a flat string-to-string map. Headers with multiplevalues are joined into a single comma-separated string per theemitter&apos;s convention.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventResponseHeaders? Headers { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventResponseHeadersProperty? Headers { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventResponseHeaders Headers { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventResponseHeadersProperty Headers { get; set; }
 #endif
         /// <summary>HTTP method. Null on the response side.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -83,7 +83,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "bodyBytes", n => { BodyBytes = n.GetIntValue(); } },
                 { "bodyTruncated", n => { BodyTruncated = n.GetBoolValue(); } },
                 { "elapsedMs", n => { ElapsedMs = n.GetLongValue(); } },
-                { "headers", n => { Headers = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventResponseHeaders>(global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventResponseHeaders.CreateFromDiscriminatorValue); } },
+                { "headers", n => { Headers = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventResponseHeadersProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventResponseHeadersProperty.CreateFromDiscriminatorValue); } },
                 { "method", n => { Method = n.GetStringValue(); } },
                 { "statusCode", n => { StatusCode = n.GetIntValue(); } },
                 { "url", n => { Url = n.GetStringValue(); } },
@@ -100,7 +100,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteIntValue("bodyBytes", BodyBytes);
             writer.WriteBoolValue("bodyTruncated", BodyTruncated);
             writer.WriteLongValue("elapsedMs", ElapsedMs);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventResponseHeaders>("headers", Headers);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventResponseHeadersProperty>("headers", Headers);
             writer.WriteStringValue("method", Method);
             writer.WriteIntValue("statusCode", StatusCode);
             writer.WriteStringValue("url", Url);

@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VettingAcceptedResponseObjectData? Data { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VettingAcceptedResponseObjectDataAnyOf1? Data { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VettingAcceptedResponseObjectData Data { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VettingAcceptedResponseObjectDataAnyOf1 Data { get; set; }
 #endif
         /// <summary>The errors array will always be empty for successful responses.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -64,7 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VettingAcceptedResponseObjectData>(global::Soenneker.Bandwidth.OpenApiClient.Models.VettingAcceptedResponseObjectData.CreateFromDiscriminatorValue); } },
+                { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VettingAcceptedResponseObjectDataAnyOf1>(global::Soenneker.Bandwidth.OpenApiClient.Models.VettingAcceptedResponseObjectDataAnyOf1.CreateFromDiscriminatorValue); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorEntry>(global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorEntry.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.ResponseLink.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -76,6 +76,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VettingAcceptedResponseObjectDataAnyOf1>("data", Data);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TendlcErrorEntry>("errors", Errors);
             writer.WriteAdditionalData(AdditionalData);
         }

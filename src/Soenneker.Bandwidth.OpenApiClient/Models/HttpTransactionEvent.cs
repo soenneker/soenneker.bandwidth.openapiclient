@@ -62,10 +62,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Small free-form metadata captured by the emitter.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventMetadataProperty? Metadata { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventMetadataProperty2? Metadata { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventMetadataProperty Metadata { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventMetadataProperty2 Metadata { get; set; }
 #endif
         /// <summary>RFC 3339 UTC timestamp of when the event was captured.</summary>
         public DateTimeOffset? OccurredAt { get; set; }
@@ -119,7 +119,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "direction", n => { Direction = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventDirection>(); } },
                 { "error", n => { Error = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventError>(global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventError.CreateFromDiscriminatorValue); } },
                 { "eventId", n => { EventId = n.GetStringValue(); } },
-                { "metadata", n => { Metadata = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventMetadataProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventMetadataProperty.CreateFromDiscriminatorValue); } },
+                { "metadata", n => { Metadata = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventMetadataProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventMetadataProperty2.CreateFromDiscriminatorValue); } },
                 { "occurredAt", n => { OccurredAt = n.GetDateTimeOffsetValue(); } },
                 { "request", n => { Request = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventRequest>(global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventRequest.CreateFromDiscriminatorValue); } },
                 { "response", n => { Response = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventResponse>(global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventResponse.CreateFromDiscriminatorValue); } },
@@ -140,7 +140,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventDirection>("direction", Direction);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventError>("error", Error);
             writer.WriteStringValue("eventId", EventId);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventMetadataProperty>("metadata", Metadata);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventMetadataProperty2>("metadata", Metadata);
             writer.WriteDateTimeOffsetValue("occurredAt", OccurredAt);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventRequest>("request", Request);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HttpTransactionEventResponse>("response", Response);

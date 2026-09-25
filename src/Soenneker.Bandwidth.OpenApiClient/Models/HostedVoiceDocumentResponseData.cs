@@ -43,10 +43,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Field is a key value pair of attribute name and value.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentResponseDataFields? Fields { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentResponseDataFieldsProperty? Fields { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentResponseDataFields Fields { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentResponseDataFieldsProperty Fields { get; set; }
 #endif
         /// <summary>The status of a hosted voice document.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentStatus? Status { get; set; }
@@ -95,7 +95,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "customReference", n => { CustomReference = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "documentId", n => { DocumentId = n.GetGuidValue(); } },
-                { "fields", n => { Fields = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentResponseDataFields>(global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentResponseDataFields.CreateFromDiscriminatorValue); } },
+                { "fields", n => { Fields = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentResponseDataFieldsProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentResponseDataFieldsProperty.CreateFromDiscriminatorValue); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentStatus>(); } },
                 { "type", n => { Type = n.GetStringValue(); } },
                 { "updatedDateTime", n => { UpdatedDateTime = n.GetStringValue(); } },
@@ -112,7 +112,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("customReference", CustomReference);
             writer.WriteStringValue("description", Description);
             writer.WriteGuidValue("documentId", DocumentId);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentResponseDataFields>("fields", Fields);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentResponseDataFieldsProperty>("fields", Fields);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentStatus>("status", Status);
             writer.WriteStringValue("type", Type);
             writer.WriteStringValue("updatedDateTime", UpdatedDateTime);

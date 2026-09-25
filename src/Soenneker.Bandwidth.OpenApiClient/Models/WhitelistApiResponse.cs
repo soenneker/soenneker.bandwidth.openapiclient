@@ -25,10 +25,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Link2>? Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalBetaLink>? Links { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Link2> Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalBetaLink> Links { get; set; }
 #endif
         /// <summary>The messages property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -66,7 +66,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistDidObject>(global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistDidObject.CreateFromDiscriminatorValue); } },
-                { "_links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Link2>(global::Soenneker.Bandwidth.OpenApiClient.Models.Link2.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "_links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalBetaLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalBetaLink.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "messages", n => { Messages = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiResponseErrorMessage>(global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiResponseErrorMessage.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiResponseStatus>(); } },
             };
@@ -79,7 +79,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistDidObject>("data", Data);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Link2>("_links", Links);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalBetaLink>("_links", Links);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiResponseErrorMessage>("messages", Messages);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiResponseStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);

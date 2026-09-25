@@ -14,8 +14,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Approval status of the brand associated with this group with First Orion.Present only when `brandId` is populated.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnum? Value { get; set; }
+        /// <summary>The value property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnumWrapperValue? Value { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnumWrapper"/> and sets the default values.
         /// </summary>
@@ -41,7 +41,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "value", n => { Value = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnum>(); } },
+                { "value", n => { Value = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnumWrapperValue>(); } },
             };
         }
         /// <summary>
@@ -51,7 +51,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnum>("value", Value);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnumWrapperValue>("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

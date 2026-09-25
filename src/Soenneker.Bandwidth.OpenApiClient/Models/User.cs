@@ -9,7 +9,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class User : IParsable
+    public partial class User : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The accounts property</summary>
@@ -22,6 +22,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>The scope of the user</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.UserManagementAccountScopeEnum? AccountScope { get; set; }
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The principal that created this user (Username or Client ID)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -97,6 +99,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string UserId { get; set; }
 #endif
         /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.User"/> and sets the default values.
+        /// </summary>
+        public User()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.User"/></returns>
@@ -153,6 +162,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfPrimitiveValues<string>("roles", Roles);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UserManagementStatusEnum>("status", Status);
             writer.WriteStringValue("userId", UserId);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

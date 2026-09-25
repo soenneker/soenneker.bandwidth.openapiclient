@@ -73,10 +73,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The phoneNumberAttributes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrderPhoneNumberAttributesItem?>? PhoneNumberAttributes { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NewPhoneNumberOrderResponsePhoneNumberAttributesItem?>? PhoneNumberAttributes { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrderPhoneNumberAttributesItem?> PhoneNumberAttributes { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NewPhoneNumberOrderResponsePhoneNumberAttributesItem?> PhoneNumberAttributes { get; set; }
 #endif
         /// <summary>The requirementsPackageId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -152,7 +152,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "orderStatus", n => { OrderStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VisibleOrderStatusJson>(); } },
                 { "orderType", n => { OrderType = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NewPhoneNumberOrderResponseOrderType>(global::Soenneker.Bandwidth.OpenApiClient.Models.NewPhoneNumberOrderResponseOrderType.CreateFromDiscriminatorValue); } },
                 { "partialAllowed", n => { PartialAllowed = n.GetBoolValue(); } },
-                { "phoneNumberAttributes", n => { PhoneNumberAttributes = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrderPhoneNumberAttributesItem>()?.AsList(); } },
+                { "phoneNumberAttributes", n => { PhoneNumberAttributes = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NewPhoneNumberOrderResponsePhoneNumberAttributesItem>()?.AsList(); } },
                 { "requirementsPackageId", n => { RequirementsPackageId = n.GetStringValue(); } },
                 { "subAccountId", n => { SubAccountId = n.GetIntValue(); } },
                 { "tags", n => { Tags = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag>(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -177,7 +177,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VisibleOrderStatusJson>("orderStatus", OrderStatus);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NewPhoneNumberOrderResponseOrderType>("orderType", OrderType);
             writer.WriteBoolValue("partialAllowed", PartialAllowed);
-            writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJsonOrderPhoneNumberAttributesItem>("phoneNumberAttributes", PhoneNumberAttributes);
+            writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NewPhoneNumberOrderResponsePhoneNumberAttributesItem>("phoneNumberAttributes", PhoneNumberAttributes);
             writer.WriteStringValue("requirementsPackageId", RequirementsPackageId);
             writer.WriteIntValue("subAccountId", SubAccountId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag>("tags", Tags);

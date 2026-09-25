@@ -47,7 +47,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string OrderDate { get; set; }
 #endif
         /// <summary>This is the state that the order was in when the order history event occurred.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionOrderHistoryJsonStatus? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OrderHistoryJsonStatus? Status { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionOrderHistoryJson"/> and sets the default values.
         /// </summary>
@@ -77,7 +77,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "difference", n => { Difference = n.GetStringValue(); } },
                 { "note", n => { Note = n.GetStringValue(); } },
                 { "orderDate", n => { OrderDate = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionOrderHistoryJsonStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OrderHistoryJsonStatus>(); } },
             };
         }
         /// <summary>
@@ -91,7 +91,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("difference", Difference);
             writer.WriteStringValue("note", Note);
             writer.WriteStringValue("orderDate", OrderDate);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionOrderHistoryJsonStatus>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OrderHistoryJsonStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

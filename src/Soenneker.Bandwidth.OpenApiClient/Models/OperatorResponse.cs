@@ -25,10 +25,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementLinksItem>? Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LinksItem>? Links { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementLinksItem> Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LinksItem> Links { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorResponse"/> and sets the default values.
@@ -56,7 +56,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorResponsePayload>(global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorResponsePayload.CreateFromDiscriminatorValue); } },
-                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementLinksItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementLinksItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LinksItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.LinksItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -67,7 +67,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorResponsePayload>("data", Data);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedNumberManagementLinksItem>("links", Links);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LinksItem>("links", Links);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

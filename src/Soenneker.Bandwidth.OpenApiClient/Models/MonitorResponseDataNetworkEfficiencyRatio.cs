@@ -21,10 +21,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The slices property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorDataBaseSlicesItemProperty>? Slices { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataNetworkEfficiencyRatioSlicesItem>? Slices { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorDataBaseSlicesItemProperty> Slices { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataNetworkEfficiencyRatioSlicesItem> Slices { get; set; }
 #endif
         /// <summary>The start property</summary>
         public DateTimeOffset? Start { get; set; }
@@ -55,7 +55,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "end", n => { End = n.GetDateTimeOffsetValue(); } },
                 { "granularity", n => { Granularity = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorDataBaseGranularity>(); } },
-                { "slices", n => { Slices = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorDataBaseSlicesItemProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorDataBaseSlicesItemProperty.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "slices", n => { Slices = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataNetworkEfficiencyRatioSlicesItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataNetworkEfficiencyRatioSlicesItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "start", n => { Start = n.GetDateTimeOffsetValue(); } },
             };
         }
@@ -68,7 +68,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("end", End);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorDataBaseGranularity>("granularity", Granularity);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorDataBaseSlicesItemProperty>("slices", Slices);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorResponseDataNetworkEfficiencyRatioSlicesItem>("slices", Slices);
             writer.WriteDateTimeOffsetValue("start", Start);
             writer.WriteAdditionalData(AdditionalData);
         }

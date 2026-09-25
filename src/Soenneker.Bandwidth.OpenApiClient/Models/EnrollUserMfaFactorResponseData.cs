@@ -9,9 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class EnrollUserMfaFactorResponseData : IParsable
+    public partial class EnrollUserMfaFactorResponseData : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The MFA factor type</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.MfaFactorTypeEnum? FactorType { get; set; }
         /// <summary>The unique identifier of the MFA Factor</summary>
@@ -42,6 +44,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>The enrollment status of the MFA factor</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.MfaFactorStatusEnum? Status { get; set; }
+        /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EnrollUserMfaFactorResponseData"/> and sets the default values.
+        /// </summary>
+        public EnrollUserMfaFactorResponseData()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -81,6 +90,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MfaQrCode>("qrCode", QrCode);
             writer.WriteStringValue("sharedSecret", SharedSecret);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MfaFactorStatusEnum>("status", Status);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

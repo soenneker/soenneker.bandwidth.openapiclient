@@ -25,10 +25,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The countryCodeA3 property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestCountryCodeA3? CountryCodeA3 { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestCountryCodeA3Property? CountryCodeA3 { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestCountryCodeA3 CountryCodeA3 { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestCountryCodeA3Property CountryCodeA3 { get; set; }
 #endif
         /// <summary>The date and time this object was created in ISO 8601 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -49,18 +49,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The endUserType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestEndUserType? EndUserType { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestEndUserTypeProperty? EndUserType { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestEndUserType EndUserType { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestEndUserTypeProperty EndUserType { get; set; }
 #endif
         /// <summary>The phoneNumberType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestPhoneNumberType? PhoneNumberType { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestPhoneNumberTypeProperty? PhoneNumberType { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestPhoneNumberType PhoneNumberType { get; private set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestPhoneNumberTypeProperty PhoneNumberType { get; set; }
 #endif
         /// <summary>Remarks provided by the user or admin</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -120,11 +120,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "acknowledgements", n => { Acknowledgements = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements>(global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements.CreateFromDiscriminatorValue); } },
-                { "countryCodeA3", n => { CountryCodeA3 = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestCountryCodeA3>(global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestCountryCodeA3.CreateFromDiscriminatorValue); } },
+                { "countryCodeA3", n => { CountryCodeA3 = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestCountryCodeA3Property>(global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestCountryCodeA3Property.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetStringValue(); } },
                 { "customReference", n => { CustomReference = n.GetStringValue(); } },
-                { "endUserType", n => { EndUserType = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestEndUserType>(global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestEndUserType.CreateFromDiscriminatorValue); } },
-                { "phoneNumberType", n => { PhoneNumberType = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestPhoneNumberType>(global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestPhoneNumberType.CreateFromDiscriminatorValue); } },
+                { "endUserType", n => { EndUserType = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestEndUserTypeProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestEndUserTypeProperty.CreateFromDiscriminatorValue); } },
+                { "phoneNumberType", n => { PhoneNumberType = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestPhoneNumberTypeProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestPhoneNumberTypeProperty.CreateFromDiscriminatorValue); } },
                 { "remarks", n => { Remarks = n.GetStringValue(); } },
                 { "requirementsPackageId", n => { RequirementsPackageId = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetStringValue(); } },
@@ -139,8 +139,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements>("acknowledgements", Acknowledgements);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestCountryCodeA3Property>("countryCodeA3", CountryCodeA3);
             writer.WriteStringValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("customReference", CustomReference);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestEndUserTypeProperty>("endUserType", EndUserType);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PatchMigrationRequirementsPackageBodyRequestPhoneNumberTypeProperty>("phoneNumberType", PhoneNumberType);
             writer.WriteStringValue("remarks", Remarks);
             writer.WriteStringValue("requirementsPackageId", RequirementsPackageId);
             writer.WriteStringValue("status", Status);

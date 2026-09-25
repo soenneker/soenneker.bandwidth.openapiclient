@@ -27,10 +27,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeError400Errors? Errors { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeError400ErrorsProperty? Errors { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeError400Errors Errors { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeError400ErrorsProperty Errors { get; set; }
 #endif
         /// <summary>The primary error message.</summary>
         public override string Message { get => base.Message; }
@@ -68,7 +68,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "errors", n => { Errors = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeError400Errors>(global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeError400Errors.CreateFromDiscriminatorValue); } },
+                { "errors", n => { Errors = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeError400ErrorsProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeError400ErrorsProperty.CreateFromDiscriminatorValue); } },
                 { "type", n => { Type = n.GetStringValue(); } },
             };
         }
@@ -80,7 +80,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeError400Errors>("errors", Errors);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeError400ErrorsProperty>("errors", Errors);
             writer.WriteStringValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }

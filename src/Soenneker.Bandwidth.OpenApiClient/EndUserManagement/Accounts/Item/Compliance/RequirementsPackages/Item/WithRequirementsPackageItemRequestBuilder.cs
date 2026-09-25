@@ -40,7 +40,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithRequirementsPackageItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/end-user-management/accounts/{accountId}/compliance/requirementsPackages/{requirementsPackageId}", pathParameters)
+        public WithRequirementsPackageItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/end-user-management/accounts/{accountId}/compliance/requirementsPackages/{requirementsPackageId}{?verbose*}", pathParameters)
         {
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithRequirementsPackageItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/end-user-management/accounts/{accountId}/compliance/requirementsPackages/{requirementsPackageId}", rawUrl)
+        public WithRequirementsPackageItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/end-user-management/accounts/{accountId}/compliance/requirementsPackages/{requirementsPackageId}{?verbose*}", rawUrl)
         {
         }
         /// <summary>
@@ -88,7 +88,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve a requirements package using the id.
+        /// Retrieve a requirements package using the id. The `deletability` info is returned only on query param `verbose=true`
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -102,11 +102,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementGenericError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageGetResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageGetResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Compliance.RequirementsPackages.Item.WithRequirementsPackageItemRequestBuilder.WithRequirementsPackageItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageGetResponse> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageGetResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Compliance.RequirementsPackages.Item.WithRequirementsPackageItemRequestBuilder.WithRequirementsPackageItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -179,17 +179,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a requirements package using the id.
+        /// Retrieve a requirements package using the id. The `deletability` info is returned only on query param `verbose=true`
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Compliance.RequirementsPackages.Item.WithRequirementsPackageItemRequestBuilder.WithRequirementsPackageItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Compliance.RequirementsPackages.Item.WithRequirementsPackageItemRequestBuilder.WithRequirementsPackageItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -227,6 +227,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
         public global::Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Compliance.RequirementsPackages.Item.WithRequirementsPackageItemRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Compliance.RequirementsPackages.Item.WithRequirementsPackageItemRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Retrieve a requirements package using the id. The `deletability` info is returned only on query param `verbose=true`
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class WithRequirementsPackageItemRequestBuilderGetQueryParameters 
+        {
+            /// <summary>When set to true, the response will include additional details. This currently includes the `deletability`field.</summary>
+            [QueryParameter("verbose")]
+            public bool? Verbose { get; set; }
         }
     }
 }

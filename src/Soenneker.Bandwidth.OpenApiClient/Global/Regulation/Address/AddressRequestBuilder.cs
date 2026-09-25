@@ -237,7 +237,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Regulation.Address
             public int? RegulationAddressId { get; set; }
             /// <summary>The status of the regulation address.</summary>
             [QueryParameter("status")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalListRegulationAddressStatusParameter? Status { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.ListRegulationAddressStatusParameter? Status { get; set; }
             /// <summary>The street for the address.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

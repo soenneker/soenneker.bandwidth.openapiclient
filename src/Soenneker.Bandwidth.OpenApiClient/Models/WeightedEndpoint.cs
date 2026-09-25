@@ -11,8 +11,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// An endpoint for a WEIGHTED route. Contains an integer weight.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class WeightedEndpoint : IParsable
+    public partial class WeightedEndpoint : IAdditionalDataHolder, IParsable
     {
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The endpoint address — an E.164 phone number, SIP URI, IPv4:port, FQDN, or integration ID depending on the endpoint type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -21,7 +23,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Endpoint { get; set; }
 #endif
-        /// <summary>Trunk selection information for an endpoint. This field is optional and nullable: it may be omitted in requests and responses when no trunk has been selected for an endpoint. When present it contains the trunk identifier and associated capability pipe id selected for this endpoint.</summary>
+        /// <summary>The trunkInfo property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceTrunkInfo? TrunkInfo { get; set; }
@@ -33,6 +35,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceEndpointTypeEnum? Type { get; set; }
         /// <summary>Weighted-routing weight.</summary>
         public int? Weight { get; set; }
+        /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.WeightedEndpoint"/> and sets the default values.
+        /// </summary>
+        public WeightedEndpoint()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -68,6 +77,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceTrunkInfo>("trunkInfo", TrunkInfo);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceEndpointTypeEnum>("type", Type);
             writer.WriteIntValue("weight", Weight);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

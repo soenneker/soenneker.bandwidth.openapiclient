@@ -114,7 +114,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Inventory.Country
 #endif
             /// <summary>The type of DIDs (service) offered for the country.</summary>
             [QueryParameter("didType")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalListCountryDidTypeParameter? DidType { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.ListCountryDidTypeParameter? DidType { get; set; }
             /// <summary>The page number, starting at 0.</summary>
             [QueryParameter("pageNumber")]
             public int? PageNumber { get; set; }

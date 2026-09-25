@@ -49,7 +49,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
         /// <summary>
         /// Returns a list of call events.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsListCallsResponseResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ListCallsResponseResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError">When receiving a 400 status code</exception>
@@ -61,11 +61,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsListCallsResponseResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.CallsRequestBuilder.CallsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCallsResponseResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.CallsRequestBuilder.CallsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsListCallsResponseResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.CallsRequestBuilder.CallsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCallsResponseResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls.CallsRequestBuilder.CallsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -79,7 +79,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsGenericError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsListCallsResponseResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsListCallsResponseResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCallsResponseResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ListCallsResponseResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns a list of call events.
@@ -125,18 +125,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
             [QueryParameter("accountId")]
             public string AccountId { get; set; }
 #endif
+            /// <summary>Filter by STIR/SHAKEN attestation level.Filter Type: Exact Match or Multi Match (comma-separated).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            #pragma warning disable CS1591
             [QueryParameter("attestationIndicator")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.AttestationIndicatorItem[]? AttestationIndicator { get; set; }
-            #pragma warning restore CS1591
 #nullable restore
 #else
-            #pragma warning disable CS1591
             [QueryParameter("attestationIndicator")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.AttestationIndicatorItem[] AttestationIndicator { get; set; }
-            #pragma warning restore CS1591
 #endif
             /// <summary>Direction of call.Filter Type: Exact Match, Multi Match.Example:  * Exact Match: OUTBOUND  * Multi Match: OUTBOUND-FORWARDED,OUTBOUND</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -183,34 +180,28 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
             public global::Soenneker.Bandwidth.OpenApiClient.Models.CallResult? CallResult { get; set; }
             /// <summary>Filter Type: Exact Match, any valid call type.</summary>
             [QueryParameter("callType")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.CallType? CallType { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsCallType? CallType { get; set; }
+            /// <summary>Filter by the destination country of the call using ISO 3166-1 alpha-3 country codes (e.g. `USA`, `IRL`).Accepts an exact match or a comma-separated list for multi-match (e.g. `USA,CAN`).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            #pragma warning disable CS1591
             [QueryParameter("destinationCountryCodeA3")]
             public string? DestinationCountryCodeA3 { get; set; }
-            #pragma warning restore CS1591
 #nullable restore
 #else
-            #pragma warning disable CS1591
             [QueryParameter("destinationCountryCodeA3")]
             public string DestinationCountryCodeA3 { get; set; }
-            #pragma warning restore CS1591
 #endif
+            /// <summary>Filter by the destination IP address of the call. Accepts IPv4 or IPv6 format. IPv6 colons must be URL-encoded as `%3A`.Filter Type: Exact Match.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            #pragma warning disable CS1591
             [QueryParameter("destinationIp")]
             public string? DestinationIp { get; set; }
-            #pragma warning restore CS1591
 #nullable restore
 #else
-            #pragma warning disable CS1591
             [QueryParameter("destinationIp")]
             public string DestinationIp { get; set; }
-            #pragma warning restore CS1591
 #endif
-            /// <summary>Filter Type: Range using gt, gte, lt, and lte.</summary>
+            /// <summary>Filter Type: Range using gt, gte, lt, and lte. Timestamps must conform to RFC 3339 format. All timestamps are interpreted as UTC.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("endTime")]
@@ -249,10 +240,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
             [QueryParameter("programmableCallId")]
             public string ProgrammableCallId { get; set; }
 #endif
-            #pragma warning disable CS1591
+            /// <summary>Filter by the overall call quality status, derived from a combination of Jitter, Latency, and Packet Loss Percentage.Only available for accounts with the Advanced Quality Metrics feature.</summary>
             [QueryParameter("qualityStatus")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.QualityStatus? QualityStatus { get; set; }
-            #pragma warning restore CS1591
             /// <summary>Filter Type: Exact Match, any valid region. Use ALL to search both US and EU regions in a single call. Defaults to US.</summary>
             [QueryParameter("region")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsRegion? Region { get; set; }
@@ -286,33 +276,27 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
             [QueryParameter("sort")]
             public string Sort { get; set; }
 #endif
+            /// <summary>Filter by the source country of the call using ISO 3166-1 alpha-3 country codes (e.g. `USA`, `IRL`).Accepts an exact match or a comma-separated list for multi-match (e.g. `USA,CAN`).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            #pragma warning disable CS1591
             [QueryParameter("sourceCountryCodeA3")]
             public string? SourceCountryCodeA3 { get; set; }
-            #pragma warning restore CS1591
 #nullable restore
 #else
-            #pragma warning disable CS1591
             [QueryParameter("sourceCountryCodeA3")]
             public string SourceCountryCodeA3 { get; set; }
-            #pragma warning restore CS1591
 #endif
+            /// <summary>Filter by the source IP address of the call. Accepts IPv4 or IPv6 format. IPv6 colons must be URL-encoded as `%3A`.Filter Type: Exact Match.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            #pragma warning disable CS1591
             [QueryParameter("sourceIp")]
             public string? SourceIp { get; set; }
-            #pragma warning restore CS1591
 #nullable restore
 #else
-            #pragma warning disable CS1591
             [QueryParameter("sourceIp")]
             public string SourceIp { get; set; }
-            #pragma warning restore CS1591
 #endif
-            /// <summary>Filter Type: Range using gt, gte, lt, and lte.Note: If no startTime or endTime is specified, startTime will default to the last 24 hours.</summary>
+            /// <summary>Filter Type: Range using gt, gte, lt, and lte. Timestamps must conform to RFC 3339 format. All timestamps are interpreted as UTC.Note: If no startTime or endTime is specified, startTime will default to the last 24 hours.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("startTime")]
@@ -332,18 +316,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.Calls
             [QueryParameter("subAccount")]
             public string SubAccount { get; set; }
 #endif
+            /// <summary>Filter by the X5U URL of the STIR/SHAKEN certificate&apos;s location.Filter Type: Exact Match or Text Match (substring).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            #pragma warning disable CS1591
             [QueryParameter("x5u")]
             public string? X5u { get; set; }
-            #pragma warning restore CS1591
 #nullable restore
 #else
-            #pragma warning disable CS1591
             [QueryParameter("x5u")]
             public string X5u { get; set; }
-            #pragma warning restore CS1591
 #endif
         }
     }

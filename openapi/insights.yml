@@ -3,6 +3,10 @@ info:
   title: Insights
   contact:
     name: Bandwidth
+    url: https://support.bandwidth.com
+  license:
+    name: Bandwidth Terms of Use
+    url: https://www.bandwidth.com/legal/terms-of-use-bandwidthcom-web-sites/
   version: 0.1.2
   termsOfService: https://www.bandwidth.com/legal/terms-of-use-bandwidthcom-web-sites/
   description: |-
@@ -14,7 +18,9 @@ servers:
   - url: https://insights.bandwidth.com/api
 tags:
   - name: Voice
-    description: Call Logs
+    description: >-
+      Call logs and monitoring — query individual call events and retrieve
+      aggregated monitoring metrics.
   - name: Reporting v1
     description: >-
       Asynchronous report generation — create a report, poll its status, and
@@ -792,8 +798,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/createReportBody'
       responses:
-        '200':
-          $ref: '#/components/responses/reportStatusResponse'
+        '202':
+          $ref: '#/components/responses/reportCreatedResponse'
         '400':
           $ref: '#/components/responses/badRequestError'
         '401':
@@ -1798,7 +1804,7 @@ components:
           type: string
           nullable: true
           description: |-
-            Phone number of the caller who received the call.
+            Phone number of the called party who received the call.
 
             Format: E.164 with '+' prefix
           example: '+18185551234'
@@ -1892,7 +1898,7 @@ components:
           type: integer
           nullable: true
           description: >-
-            Jitter experienced by the carrrier during the call, measured in
+            Jitter experienced by the carrier during the call, measured in
             milliseconds.
           example: 500
         carrierLatency:
@@ -2709,9 +2715,10 @@ components:
     monitorCallType:
       name: callType
       in: query
-      description: |-
-        Filter results by call type.
-        Accepts a single value: `NATIONAL`, `INTERNATIONAL`, `EMERGENCY` Etc.
+      description: >-
+        Filter results by call type. Accepts a single value from the enum
+        defined in the schema (e.g. `INTERNATIONAL`, `EMERGENCY`, `LOCAL`).
+
         If not provided, results for all call types will be returned.
       style: deepObject
       explode: true
@@ -2768,6 +2775,7 @@ components:
     accountIds:
       name: accountIds
       in: query
+      description: One or more account IDs to filter report history by.
       schema:
         type: array
         items:
@@ -2776,6 +2784,7 @@ components:
       name: category
       in: query
       required: true
+      description: The report category to filter by.
       schema:
         $ref: '#/components/schemas/category'
     category:
@@ -2887,7 +2896,8 @@ components:
       name: startTime
       in: query
       description: >
-        Filter Type: Range using gt, gte, lt, and lte.
+        Filter Type: Range using gt, gte, lt, and lte. Timestamps must conform
+        to RFC 3339 format. All timestamps are interpreted as UTC.
 
 
         Note: If no startTime or endTime is specified, startTime will default to
@@ -2899,8 +2909,9 @@ components:
     endTime:
       name: endTime
       in: query
-      description: |
-        Filter Type: Range using gt, gte, lt, and lte.
+      description: >
+        Filter Type: Range using gt, gte, lt, and lte. Timestamps must conform
+        to RFC 3339 format. All timestamps are interpreted as UTC.
       schema:
         type: string
         example: lte:2022-05-26T12:00:50Z
@@ -3061,36 +3072,69 @@ components:
     sourceCountryCodeA3:
       name: sourceCountryCodeA3
       in: query
+      description: >-
+        Filter by the source country of the call using ISO 3166-1 alpha-3
+        country codes (e.g. `USA`, `IRL`).
+
+        Accepts an exact match or a comma-separated list for multi-match (e.g.
+        `USA,CAN`).
       schema:
         $ref: '#/components/schemas/countryCodeA3'
     destinationCountryCodeA3:
       name: destinationCountryCodeA3
       in: query
+      description: >-
+        Filter by the destination country of the call using ISO 3166-1 alpha-3
+        country codes (e.g. `USA`, `IRL`).
+
+        Accepts an exact match or a comma-separated list for multi-match (e.g.
+        `USA,CAN`).
       schema:
         $ref: '#/components/schemas/countryCodeA3'
     sourceIp:
       name: sourceIp
       in: query
+      description: >-
+        Filter by the source IP address of the call. Accepts IPv4 or IPv6
+        format. IPv6 colons must be URL-encoded as `%3A`.
+
+        Filter Type: Exact Match.
       schema:
         $ref: '#/components/schemas/ipAddress'
     destinationIp:
       name: destinationIp
       in: query
+      description: >-
+        Filter by the destination IP address of the call. Accepts IPv4 or IPv6
+        format. IPv6 colons must be URL-encoded as `%3A`.
+
+        Filter Type: Exact Match.
       schema:
         $ref: '#/components/schemas/ipAddress'
     qualityStatus:
       name: qualityStatus
       in: query
+      description: >-
+        Filter by the overall call quality status, derived from a combination of
+        Jitter, Latency, and Packet Loss Percentage.
+
+        Only available for accounts with the Advanced Quality Metrics feature.
       schema:
         $ref: '#/components/schemas/qualityStatus'
     attestationIndicator:
       name: attestationIndicator
       in: query
+      description: |-
+        Filter by STIR/SHAKEN attestation level.
+        Filter Type: Exact Match or Multi Match (comma-separated).
       schema:
         $ref: '#/components/schemas/attestationIndicator'
     x5u:
       name: x5u
       in: query
+      description: |-
+        Filter by the X5U URL of the STIR/SHAKEN certificate's location.
+        Filter Type: Exact Match or Text Match (substring).
       schema:
         $ref: '#/components/schemas/x5u'
     sort:
@@ -3140,6 +3184,44 @@ components:
           schema:
             $ref: '#/components/schemas/paginatedReportRequest'
   responses:
+    reportCreatedResponse:
+      description: Accepted
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              links:
+                type: array
+                nullable: true
+                items:
+                  $ref: '#/components/schemas/link'
+                example:
+                  - rel: reportDownload
+                    href: >-
+                      https://insights.bandwidth.com/api/v1/reports/67a95525-4618-418b-ad8b-4ddd8562ad37/file
+              data:
+                nullable: true
+                allOf:
+                  - $ref: '#/components/schemas/reportStatus'
+                example:
+                  reportId: 67a95525-4618-418b-ad8b-4ddd8562ad37
+                  requestedAt: '2024-01-18T17:38:37.041444Z'
+                  status: PROCESSING
+                  report:
+                    category: USAGE
+                    domain: MESSAGING
+                    reportName: Messaging Detail Records (MDRs)
+              errors:
+                type: array
+                nullable: true
+                items:
+                  $ref: '#/components/schemas/error'
+                example: []
+            required:
+              - links
+              - data
+              - errors
     reportStatusResponse:
       description: OK
       content:
@@ -4369,27 +4451,14 @@ components:
               The server encountered an unexpected condition that prevented it
               from fulfilling the request.
   securitySchemes:
-    Basic:
-      type: http
-      scheme: basic
-      description: >-
-        Basic authentication is a simple authentication scheme built into the
-        HTTP protocol. To use it, send your HTTP requests with an
-        `Authorization` header that contains the word `Basic` followed by a
-        space and a Base64-encoded string `username:password`.
-
-
-        - Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`
     Bearer:
       type: http
       scheme: bearer
       bearerFormat: JWT
       description: >-
-        Bearer authentication (also called token authentication) is an HTTP
-        authentication scheme that involves security tokens called bearer
-        tokens. The name “Bearer authentication” can be understood as “give
-        access to the bearer of this token.” The client must send this token in
-        the `Authorization` header when making requests to protected resources.
+        Bearer authentication uses short-lived JWT tokens generated by our
+        authentication server. Obtain a token using your API client credentials
+        and include it in the `Authorization` header.
 
 
         - Example: `Authorization: Bearer <token>`
@@ -4401,6 +4470,22 @@ components:
 
         For more information, see the following guide:
         [Credentials](https://dev.bandwidth.com/docs/account/credentials/management)
+    Basic:
+      type: http
+      scheme: basic
+      x-deprecated: true
+      description: >-
+        **Deprecated — migrate to Bearer authentication as soon as possible.**
+        API Users will be fully decommissioned on **December 2, 2026**, after
+        which Basic auth will stop functioning. See the Bearer scheme above for
+        the recommended approach.
+
+
+        Basic authentication sends a Base64-encoded `username:password` pair in
+        the `Authorization` header.
+
+
+        - Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`
 security:
-  - Basic: []
   - Bearer: []
+  - Basic: []

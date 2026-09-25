@@ -41,10 +41,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Additional details from the external vetting provider.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VettingVettingDetails? VettingDetails { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VettingVettingDetailsProperty? VettingDetails { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VettingVettingDetails VettingDetails { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VettingVettingDetailsProperty VettingDetails { get; set; }
 #endif
         /// <summary>The identifier of the vetting from the external vetting provider.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -97,7 +97,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "reasons", n => { Reasons = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "vettedDate", n => { VettedDate = n.GetDateTimeOffsetValue(); } },
                 { "vettingClass", n => { VettingClass = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingClass>(); } },
-                { "vettingDetails", n => { VettingDetails = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VettingVettingDetails>(global::Soenneker.Bandwidth.OpenApiClient.Models.VettingVettingDetails.CreateFromDiscriminatorValue); } },
+                { "vettingDetails", n => { VettingDetails = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VettingVettingDetailsProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.VettingVettingDetailsProperty.CreateFromDiscriminatorValue); } },
                 { "vettingId", n => { VettingId = n.GetStringValue(); } },
                 { "vettingScore", n => { VettingScore = n.GetIntValue(); } },
                 { "vettingStatus", n => { VettingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingStatus>(); } },
@@ -117,7 +117,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfPrimitiveValues<string>("reasons", Reasons);
             writer.WriteDateTimeOffsetValue("vettedDate", VettedDate);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingClass>("vettingClass", VettingClass);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VettingVettingDetails>("vettingDetails", VettingDetails);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VettingVettingDetailsProperty>("vettingDetails", VettingDetails);
             writer.WriteStringValue("vettingId", VettingId);
             writer.WriteIntValue("vettingScore", VettingScore);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingStatus>("vettingStatus", VettingStatus);

@@ -41,10 +41,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Application-specific metadata.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMetaProperty? Meta { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMetaProperty2? Meta { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMetaProperty Meta { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMetaProperty2 Meta { get; set; }
 #endif
         /// <summary>Identifies the source of the error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -84,7 +84,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "code", n => { Code = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
-                { "meta", n => { Meta = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMetaProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMetaProperty.CreateFromDiscriminatorValue); } },
+                { "meta", n => { Meta = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMetaProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMetaProperty2.CreateFromDiscriminatorValue); } },
                 { "source", n => { Source = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorSource>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorSource.CreateFromDiscriminatorValue); } },
                 { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorType>(); } },
             };
@@ -99,7 +99,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("code", Code);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("id", Id);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMetaProperty>("meta", Meta);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMetaProperty2>("meta", Meta);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorSource>("source", Source);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);

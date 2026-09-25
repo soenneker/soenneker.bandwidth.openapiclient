@@ -162,10 +162,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Faxuri
 #endif
             /// <summary>This is the delivery method on which you want to filter your list of Fax URIs. The possible values are SMTP and HTTP_POST.</summary>
             [QueryParameter("deliveryMethod")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalListFaxUriDeliveryMethodParameter? DeliveryMethod { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.ListFaxUriDeliveryMethodParameter? DeliveryMethod { get; set; }
             /// <summary>This is the file format on which you want to filter your list of Fax URIs. The possible values are Tiff and Pdf.</summary>
             [QueryParameter("faxFileFormat")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalListFaxUriFaxFileFormatParameter? FaxFileFormat { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.ListFaxUriFaxFileFormatParameter? FaxFileFormat { get; set; }
             /// <summary>The identifier of the fax uri.</summary>
             [QueryParameter("faxUriId")]
             public int? FaxUriId { get; set; }

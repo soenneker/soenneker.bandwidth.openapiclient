@@ -9,9 +9,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class FilterableField : IParsable
+    public partial class FilterableField : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The allowedOperators property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -39,10 +41,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The selectableValues property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField.FilterableField_selectableValues>? SelectableValues { get; set; }
+        public List<double?>? SelectableValues { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField.FilterableField_selectableValues> SelectableValues { get; set; }
+        public List<double?> SelectableValues { get; set; }
 #endif
         /// <summary>The type property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -52,6 +54,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField.FilterableField_type Type { get; set; }
 #endif
+        /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField"/> and sets the default values.
+        /// </summary>
+        public FilterableField()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -73,7 +82,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "allowedOperators", n => { AllowedOperators = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorEnum>()?.AsList(); } },
                 { "field", n => { Field = n.GetStringValue(); } },
                 { "friendlyName", n => { FriendlyName = n.GetStringValue(); } },
-                { "selectableValues", n => { SelectableValues = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField.FilterableField_selectableValues>(global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField.FilterableField_selectableValues.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "selectableValues", n => { SelectableValues = n.GetCollectionOfPrimitiveValues<double?>()?.AsList(); } },
                 { "type", n => { Type = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField.FilterableField_type>(global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField.FilterableField_type.CreateFromDiscriminatorValue); } },
             };
         }
@@ -87,69 +96,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorEnum>("allowedOperators", AllowedOperators);
             writer.WriteStringValue("field", Field);
             writer.WriteStringValue("friendlyName", FriendlyName);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField.FilterableField_selectableValues>("selectableValues", SelectableValues);
+            writer.WriteCollectionOfPrimitiveValues<double?>("selectableValues", SelectableValues);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField.FilterableField_type>("type", Type);
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="double"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class FilterableField_selectableValues : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="double"/></summary>
-            public double? Double { get; set; }
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField.FilterableField_selectableValues"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField.FilterableField_selectableValues CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
-                var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField.FilterableField_selectableValues();
-                if(parseNode.GetDoubleValue() is double doubleValue)
-                {
-                    result.Double = doubleValue;
-                }
-                else if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(Double != null)
-                {
-                    writer.WriteDoubleValue(null, Double);
-                }
-                else if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-            }
+            writer.WriteAdditionalData(AdditionalData);
         }
         /// <summary>
         /// Composed type wrapper for classes <see cref="bool"/>, <see cref="double"/>, <see cref="string"/>
@@ -177,7 +126,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             public static global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField.FilterableField_type CreateFromDiscriminatorValue(IParseNode parseNode)
             {
                 if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
                 var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField.FilterableField_type();
                 if(parseNode.GetBoolValue() is bool booleanValue)
                 {

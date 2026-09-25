@@ -174,7 +174,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortin
             public int? Size { get; set; }
             /// <summary>Include in the response payload only entries in which the bulk port-in order had the specified ProcessingStatus value.  Note: specifying `draft` will include any of the draft values, including `DRAFT`, `VALIDATE_DRAFT_TNS`, `VALID_DRAFT_TNS`, and `INVALID_DRAFT_TNS`.</summary>
             [QueryParameter("status")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinsListBulkPortinsStatusParameter? Status { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.ListBulkPortinsStatusParameter? Status { get; set; }
         }
     }
 }

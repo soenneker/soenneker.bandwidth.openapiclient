@@ -54,10 +54,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Origination route plan associated with a voice configuration package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersVoiceConfigurationPackageOriginationRoutePlan? OriginationRoutePlan { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageOriginationRoutePlanProperty? OriginationRoutePlan { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersVoiceConfigurationPackageOriginationRoutePlan OriginationRoutePlan { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageOriginationRoutePlanProperty OriginationRoutePlan { get; set; }
 #endif
         /// <summary>The number of phone numbers associated with the voice configuration package.</summary>
         public int? PhoneNumberCount { get; set; }
@@ -110,7 +110,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "httpVoiceV2ApplicationId", n => { HttpVoiceV2ApplicationId = n.GetGuidValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "originationRoutePlan", n => { OriginationRoutePlan = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersVoiceConfigurationPackageOriginationRoutePlan>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersVoiceConfigurationPackageOriginationRoutePlan.CreateFromDiscriminatorValue); } },
+                { "originationRoutePlan", n => { OriginationRoutePlan = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageOriginationRoutePlanProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageOriginationRoutePlanProperty.CreateFromDiscriminatorValue); } },
                 { "phoneNumberCount", n => { PhoneNumberCount = n.GetIntValue(); } },
                 { "pindropIntegration", n => { PindropIntegration = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackagePindropIntegration>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackagePindropIntegration.CreateFromDiscriminatorValue); } },
                 { "stirShakenBehavior", n => { StirShakenBehavior = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageStirShakenBehavior>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageStirShakenBehavior.CreateFromDiscriminatorValue); } },
@@ -130,7 +130,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("description", Description);
             writer.WriteGuidValue("httpVoiceV2ApplicationId", HttpVoiceV2ApplicationId);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersVoiceConfigurationPackageOriginationRoutePlan>("originationRoutePlan", OriginationRoutePlan);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageOriginationRoutePlanProperty>("originationRoutePlan", OriginationRoutePlan);
             writer.WriteIntValue("phoneNumberCount", PhoneNumberCount);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackagePindropIntegration>("pindropIntegration", PindropIntegration);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageStirShakenBehavior>("stirShakenBehavior", StirShakenBehavior);

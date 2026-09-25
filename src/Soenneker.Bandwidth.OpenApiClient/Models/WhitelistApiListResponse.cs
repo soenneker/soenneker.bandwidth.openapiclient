@@ -33,10 +33,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Link2>? Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalBetaLink>? Links { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Link2> Links { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalBetaLink> Links { get; set; }
 #endif
         /// <summary>Detailed error information.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -83,7 +83,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistDidObject>(global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistDidObject.CreateFromDiscriminatorValue); } },
                 { "filters", n => { Filters = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistPageFilters>(global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistPageFilters.CreateFromDiscriminatorValue); } },
-                { "_links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Link2>(global::Soenneker.Bandwidth.OpenApiClient.Models.Link2.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "_links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalBetaLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalBetaLink.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "message", n => { Message = n.GetStringValue(); } },
                 { "pagination", n => { Pagination = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Pagination>(global::Soenneker.Bandwidth.OpenApiClient.Models.Pagination.CreateFromDiscriminatorValue); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiListResponseStatus>(); } },
@@ -98,7 +98,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistDidObject>("data", Data);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistPageFilters>("filters", Filters);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Link2>("_links", Links);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalBetaLink>("_links", Links);
             writer.WriteStringValue("message", Message);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Pagination>("pagination", Pagination);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiListResponseStatus>("status", Status);

@@ -945,8 +945,14 @@ paths:
         - Campaigns
       operationId: getCampaign
       summary: Get details about a campaign
-      description: |
+      description: >
         **All customers.** Get details for this TCR campaign.
+
+
+        > **Note:** Starting October 15, 2026, `US_CELLULAR` will no longer
+        appear as a `partnerId` in the `approvals` array for campaigns created
+        on or after that date, as part of T-Mobile's acquisition of US Cellular.
+        Existing campaigns are unaffected.
       parameters:
         - $ref: '#/components/parameters/accountIdPathParam'
         - $ref: '#/components/parameters/campaignIdPathParam'

@@ -19,10 +19,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The voiceUris property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListVoiceUri>? VoiceUris { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListVoiceUriBody>? VoiceUris { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListVoiceUri> VoiceUris { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListVoiceUriBody> VoiceUris { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ListVoiceUriResponse"/> and sets the default values.
@@ -50,7 +50,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "resultCount", n => { ResultCount = n.GetIntValue(); } },
-                { "voiceUris", n => { VoiceUris = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListVoiceUri>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListVoiceUri.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "voiceUris", n => { VoiceUris = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListVoiceUriBody>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListVoiceUriBody.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -61,7 +61,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("resultCount", ResultCount);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListVoiceUri>("voiceUris", VoiceUris);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListVoiceUriBody>("voiceUris", VoiceUris);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
