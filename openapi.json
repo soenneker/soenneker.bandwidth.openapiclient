@@ -74518,6 +74518,12 @@
             "type": "string",
             "description": "The filter name to breakdown the report by.",
             "example": "campaignId"
+          },
+          "useNotifications": {
+            "type": "boolean",
+            "description": "When `true`, a notification is sent when the report is ready for download. Requires notifications to be enabled on the account.",
+            "default": false,
+            "example": true
           }
         }
       },

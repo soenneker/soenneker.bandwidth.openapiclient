@@ -52,12 +52,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string ReportName { get; set; }
 #endif
+        /// <summary>When `true`, a notification is sent when the report is ready for download. Requires notifications to be enabled on the account.</summary>
+        public bool? UseNotifications { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusObject"/> and sets the default values.
         /// </summary>
         public ReportStatusObject()
         {
             AdditionalData = new Dictionary<string, object>();
+            UseNotifications = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -84,6 +87,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "filters", n => { Filters = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusObjectFiltersProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusObjectFiltersProperty.CreateFromDiscriminatorValue); } },
                 { "region", n => { Region = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportRegion>(); } },
                 { "reportName", n => { ReportName = n.GetStringValue(); } },
+                { "useNotifications", n => { UseNotifications = n.GetBoolValue(); } },
             };
         }
         /// <summary>
@@ -100,6 +104,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportStatusObjectFiltersProperty>("filters", Filters);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportRegion>("region", Region);
             writer.WriteStringValue("reportName", ReportName);
+            writer.WriteBoolValue("useNotifications", UseNotifications);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

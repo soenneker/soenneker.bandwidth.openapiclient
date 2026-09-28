@@ -1232,6 +1232,13 @@ components:
           type: string
           example: campaignId
           description: The filter name to breakdown the report by.
+        useNotifications:
+          type: boolean
+          description: >-
+            When `true`, a notification is sent when the report is ready for
+            download. Requires notifications to be enabled on the account.
+          example: true
+          default: false
     reportStatus:
       type: object
       properties:
