@@ -7096,6 +7096,346 @@
         ]
       }
     },
+    "/emergency-provisioning/accounts/{accountId}/emergency/end-user-mappings": {
+      "get": {
+        "tags": [
+          "End User Mappings"
+        ],
+        "summary": "List End User Mappings",
+        "description": "List the end user mappings for an account. Each mapping links a Customer\u0027s End User (by Okta username) to the specific endpoint they\u0027re permitted to self-manage.",
+        "operationId": "EmergencyProvisioningListEndUserMappings",
+        "parameters": [
+          {
+            "description": "Your Bandwidth Account ID.",
+            "$ref": "#/components/parameters/emergency_provisioning_accountId"
+          },
+          {
+            "description": "Filter and/or sort by aeuid.",
+            "$ref": "#/components/parameters/aeuidFilterParam"
+          },
+          {
+            "description": "Filter and/or sort by email address.",
+            "$ref": "#/components/parameters/emailFilterParam"
+          },
+          {
+            "description": "Filter and/or sort by id.",
+            "$ref": "#/components/parameters/idFilterParam"
+          },
+          {
+            "description": "Limit the number of returned record.",
+            "$ref": "#/components/parameters/emergency_provisioning_limit"
+          },
+          {
+            "description": "Filter and/or sort by name. \u0060firstName\u0060 and \u0060lastName\u0060 are stored separately but are combined for filtering and sorting purposes.",
+            "$ref": "#/components/parameters/nameFilterParam"
+          },
+          {
+            "description": "Position in the dataset of a particular record to start the response.",
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "description": "Filter and/or sort by Okta username.",
+            "$ref": "#/components/parameters/oktaUsernameFilterParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "$ref": "#/components/responses/listEndUserMappings"
+          },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/emergency_provisioning_badRequestError"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "$ref": "#/components/responses/emergency_provisioning_unauthorizedError"
+          },
+          "403": {
+            "description": "Forbidden",
+            "$ref": "#/components/responses/emergency_provisioning_forbiddenError"
+          },
+          "404": {
+            "description": "Not Found",
+            "$ref": "#/components/responses/emergency_provisioning_notFoundError"
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/emergency_provisioning_internalServerError"
+          }
+        },
+        "security": [
+          {
+            "Token": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/v2"
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "End User Mappings"
+        ],
+        "summary": "Create End User Mapping",
+        "description": "Create an end user mapping, granting a Customer\u0027s End User (identified by their Okta username) permission to self-manage a specific endpoint on this account \u2014 most commonly so they can update that endpoint\u0027s Location for dynamic 911 call routing.",
+        "operationId": "EmergencyProvisioningCreateEndUserMapping",
+        "parameters": [
+          {
+            "description": "Your Bandwidth Account ID.",
+            "$ref": "#/components/parameters/emergency_provisioning_accountId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/addEndUserMapping"
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "$ref": "#/components/responses/addEndUserMapping"
+          },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/emergency_provisioning_badRequestError"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "$ref": "#/components/responses/emergency_provisioning_unauthorizedError"
+          },
+          "403": {
+            "description": "Forbidden",
+            "$ref": "#/components/responses/emergency_provisioning_forbiddenError"
+          },
+          "404": {
+            "description": "Not Found",
+            "$ref": "#/components/responses/emergency_provisioning_notFoundError"
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/emergency_provisioning_internalServerError"
+          }
+        },
+        "security": [
+          {
+            "Token": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/v2"
+          }
+        ]
+      }
+    },
+    "/emergency-provisioning/accounts/{accountId}/emergency/end-user-mappings/{oktaUsername}": {
+      "get": {
+        "tags": [
+          "End User Mappings"
+        ],
+        "summary": "Get End User Mapping",
+        "description": "Get the end user mapping for a given Okta username, showing which endpoint that end user is permitted to self-manage.",
+        "operationId": "EmergencyProvisioningGetEndUserMapping",
+        "parameters": [
+          {
+            "description": "Your Bandwidth Account ID.",
+            "$ref": "#/components/parameters/emergency_provisioning_accountId"
+          },
+          {
+            "description": "The Okta username identifying the end user mapping.",
+            "$ref": "#/components/parameters/oktaUsername"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "$ref": "#/components/responses/getEndUserMapping"
+          },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/emergency_provisioning_badRequestError"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "$ref": "#/components/responses/emergency_provisioning_unauthorizedError"
+          },
+          "403": {
+            "description": "Forbidden",
+            "$ref": "#/components/responses/emergency_provisioning_forbiddenError"
+          },
+          "404": {
+            "description": "Not Found",
+            "$ref": "#/components/responses/emergency_provisioning_notFoundError"
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/emergency_provisioning_internalServerError"
+          }
+        },
+        "security": [
+          {
+            "Token": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/v2"
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "End User Mappings"
+        ],
+        "summary": "Replace End User Mapping",
+        "description": "Replace an existing end user mapping\u0027s contact details and/or which endpoint the end user is permitted to self-manage.",
+        "operationId": "EmergencyProvisioningReplaceEndUserMapping",
+        "parameters": [
+          {
+            "description": "Your Bandwidth Account ID.",
+            "$ref": "#/components/parameters/emergency_provisioning_accountId"
+          },
+          {
+            "description": "The Okta username identifying the end user mapping.",
+            "$ref": "#/components/parameters/oktaUsername"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/replaceEndUserMapping"
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "$ref": "#/components/responses/updateEndUserMapping"
+          },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/emergency_provisioning_badRequestError"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "$ref": "#/components/responses/emergency_provisioning_unauthorizedError"
+          },
+          "403": {
+            "description": "Forbidden",
+            "$ref": "#/components/responses/emergency_provisioning_forbiddenError"
+          },
+          "404": {
+            "description": "Not Found",
+            "$ref": "#/components/responses/emergency_provisioning_notFoundError"
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/emergency_provisioning_internalServerError"
+          }
+        },
+        "security": [
+          {
+            "Token": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/v2"
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "End User Mappings"
+        ],
+        "summary": "Delete End User Mapping",
+        "description": "Delete an end user mapping, revoking a Customer\u0027s End User\u0027s permission to self-manage their assigned endpoint.",
+        "operationId": "EmergencyProvisioningDeleteEndUserMapping",
+        "parameters": [
+          {
+            "description": "Your Bandwidth Account ID.",
+            "$ref": "#/components/parameters/emergency_provisioning_accountId"
+          },
+          {
+            "description": "The Okta username identifying the end user mapping.",
+            "$ref": "#/components/parameters/oktaUsername"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "$ref": "#/components/responses/emergency_provisioning_noContentResponse"
+          },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/emergency_provisioning_badRequestError"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "$ref": "#/components/responses/emergency_provisioning_unauthorizedError"
+          },
+          "403": {
+            "description": "Forbidden",
+            "$ref": "#/components/responses/emergency_provisioning_forbiddenError"
+          },
+          "404": {
+            "description": "Not Found",
+            "$ref": "#/components/responses/emergency_provisioning_notFoundError"
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "$ref": "#/components/responses/emergency_provisioning_notAllowedError"
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "$ref": "#/components/responses/emergency_provisioning_tooManyRequestsError"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/emergency_provisioning_internalServerError"
+          }
+        },
+        "security": [
+          {
+            "Token": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/v2"
+          }
+        ]
+      }
+    },
     "/end-user-management/addresses/fields/{countryCodeA3}": {
       "get": {
         "tags": [
@@ -8440,12 +8780,12 @@
         "tags": [
           "Requirements Packages"
         ],
-        "summary": "Create Requirements Package",
-        "description": "Create a requirements package with a set of requirements.\nNote: Country, Phone Number Type and End User Type cannot be changed once created.\n",
+        "summary": "Create or Clone Requirements Package",
+        "description": "Create a requirements package with a set of requirements.\nNote: Country, Phone Number Type and End User Type cannot be changed once created.\n\n**Cloning a requirements package:**\n\nTo clone an existing requirements package, set lineage.parent in the request body with the source requirementsPackageId and accountId.\n\nConstraints:\n- The source requirements package must have a status of VERIFIED or AUTO_VALIDATED.\n- The source and target accounts must share the same Global Account Number (GAN).\n",
         "operationId": "EndUserManagementCreateRequirementsPackage",
         "parameters": [
           {
-            "description": "Your Bandwidth Account ID.",
+            "description": "Target accountId to create or clone requirements package",
             "$ref": "#/components/parameters/end_user_management_accountId"
           }
         ],
@@ -8459,7 +8799,7 @@
           },
           "400": {
             "description": "Bad Request",
-            "$ref": "#/components/responses/end_user_management_badRequestError"
+            "$ref": "#/components/responses/createRequirementsPackageBadRequestError"
           },
           "401": {
             "description": "Unauthorized",
@@ -8508,7 +8848,7 @@
           "Requirements Packages"
         ],
         "summary": "Get Requirements Package",
-        "description": "Retrieve a requirements package using the id. The \u0060deletability\u0060 info is returned only on query param \u0060verbose=true\u0060",
+        "description": "Retrieve a requirements package using the id. Set verbose=true to include deletability and lineage in the response\n",
         "operationId": "EndUserManagementGetRequirementsPackage",
         "parameters": [
           {
@@ -8520,7 +8860,7 @@
             "$ref": "#/components/parameters/requirementsPackageIdPathParam"
           },
           {
-            "description": "When set to true, the response will include additional details. This currently includes the \u0060deletability\u0060field.",
+            "description": "When true, the response includes additional details for the resource.\nWhen false or not provided, only the default response fields are returned.\n",
             "$ref": "#/components/parameters/verboseQueryParam"
           }
         ],
@@ -57803,6 +58143,271 @@
         },
         "description": "Notification Group."
       },
+      "ListEndUserMappingsBody": {
+        "title": "List End User Mappings",
+        "required": [
+          "links",
+          "data",
+          "errors",
+          "page"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/EmergencyProvisioningLinks"
+            }
+          },
+          "data": {
+            "$ref": "#/components/schemas/ListEndUserMappingsBodyData"
+          },
+          "errors": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/EmergencyProvisioningError"
+            }
+          },
+          "page": {
+            "$ref": "#/components/schemas/ListEndUserMappingsBodyPage"
+          }
+        },
+        "description": "A page of end user mappings for an account, each linking a Customer\u0027s End User to the endpoint they\u0027re permitted to self-manage."
+      },
+      "EndUserMapping": {
+        "title": "End User Mapping",
+        "required": [
+          "id",
+          "accountId",
+          "oktaUsername",
+          "email",
+          "firstName",
+          "lastName",
+          "aeuid"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "pattern": "^\\S*$",
+            "type": "string",
+            "example": "4334343"
+          },
+          "accountId": {
+            "type": "string",
+            "example": "9900000"
+          },
+          "oktaUsername": {
+            "type": "string",
+            "example": "jsmith"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "jsmith@example.com"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "Jane"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Smith"
+          },
+          "aeuid": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The caller identifier of the endpoint this mapping is linked to. This is a domain-specific identifier (not necessarily a phone number) that may use E.164 format when the endpoint is identified by a telephone number.",
+            "example": "\u002B13035554321"
+          }
+        },
+        "description": "Associates a Customer\u0027s End User (identified by their Okta username) with a specific endpoint they\u0027re permitted to self-manage \u2014 most commonly so they can update that endpoint\u0027s Location for dynamic 911 call routing."
+      },
+      "EndUserMappingResponse": {
+        "title": "End User Mapping Response",
+        "required": [
+          "links",
+          "data",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/EmergencyProvisioningLinks"
+            }
+          },
+          "data": {
+            "$ref": "#/components/schemas/EndUserMappingResponseData"
+          },
+          "errors": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/EmergencyProvisioningError"
+            }
+          }
+        },
+        "description": "End User Mapping Response envelope."
+      },
+      "SortDirection": {
+        "title": "Sort Direction",
+        "enum": [
+          "ASC",
+          "DESC"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Sort direction for a sortable field.",
+        "x-ms-enum": {
+          "name": "SortDirection",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "ASC",
+              "name": "Asc"
+            },
+            {
+              "value": "DESC",
+              "name": "Desc"
+            }
+          ]
+        }
+      },
+      "StringEqFilter": {
+        "title": "String Equality Filter",
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string"
+          },
+          "sort": {
+            "description": "Sort direction for a sortable field.",
+            "$ref": "#/components/schemas/SortDirection"
+          }
+        },
+        "description": "Query filter supporting exact-match (\u0060eq\u0060) filtering and sorting."
+      },
+      "NameContainsFilter": {
+        "title": "Name Filter",
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string"
+          },
+          "contains": {
+            "type": "string"
+          },
+          "sort": {
+            "description": "Sort direction for a sortable field.",
+            "$ref": "#/components/schemas/SortDirection"
+          }
+        },
+        "description": "Query filter supporting exact-match (\u0060eq\u0060), substring (\u0060contains\u0060) filtering, and sorting for name fields."
+      },
+      "EmailContainsFilter": {
+        "title": "Email Filter",
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string"
+          },
+          "contains": {
+            "type": "string"
+          },
+          "sort": {
+            "description": "Sort direction for a sortable field.",
+            "$ref": "#/components/schemas/SortDirection"
+          }
+        },
+        "description": "Query filter supporting exact-match (\u0060eq\u0060), substring (\u0060contains\u0060) filtering, and sorting for email fields."
+      },
+      "AddEndUserMappingRequest": {
+        "title": "Add End User Mapping Request",
+        "required": [
+          "oktaUsername",
+          "email",
+          "firstName",
+          "lastName",
+          "aeuid"
+        ],
+        "type": "object",
+        "properties": {
+          "oktaUsername": {
+            "type": "string",
+            "example": "jsmith"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "jsmith@example.com"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "Jane"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Smith"
+          },
+          "aeuid": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The caller identifier of the endpoint to link to this mapping. This is a domain-specific identifier (not necessarily a phone number) that may use E.164 format when the endpoint is identified by a telephone number.",
+            "example": "\u002B13035554321"
+          }
+        },
+        "description": "Creates an end user mapping, granting the given Okta username permission to self-manage the specified endpoint."
+      },
+      "ReplaceEndUserMappingRequest": {
+        "title": "Replace End User Mapping Request",
+        "required": [
+          "email",
+          "firstName",
+          "lastName",
+          "aeuid"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "jsmith@example.com"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "Jane"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Smith"
+          },
+          "aeuid": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The caller identifier of the endpoint to link to this mapping. This is a domain-specific identifier (not necessarily a phone number) that may use E.164 format when the endpoint is identified by a telephone number.",
+            "example": "\u002B13035554321"
+          }
+        },
+        "description": "Replaces an existing end user mapping\u0027s contact details and/or which endpoint the end user is permitted to self-manage. The end user mapping is identified by the \u0060oktaUsername\u0060 path parameter."
+      },
       "ListOrdersBody": {
         "title": "Get Orders",
         "type": "object",
@@ -57912,10 +58517,24 @@
       "EmergencyProvisioningGenericError": {
         "title": "Generic Error",
         "required": [
+          "links",
+          "data",
           "errors"
         ],
         "type": "object",
         "properties": {
+          "links": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/EmergencyProvisioningLinks"
+            }
+          },
+          "data": {
+            "$ref": "#/components/schemas/EmergencyProvisioningGenericErrorDataProperty2"
+          },
           "errors": {
             "type": [
               "null",
@@ -59067,6 +59686,54 @@
           }
         }
       },
+      "EndUserMappingResponseData": {
+        "required": [
+          "id",
+          "accountId",
+          "oktaUsername",
+          "email",
+          "firstName",
+          "lastName",
+          "aeuid"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "pattern": "^\\S*$",
+            "type": "string",
+            "example": "4334343"
+          },
+          "accountId": {
+            "type": "string",
+            "example": "9900000"
+          },
+          "oktaUsername": {
+            "type": "string",
+            "example": "jsmith"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "jsmith@example.com"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "Jane"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Smith"
+          },
+          "aeuid": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The caller identifier of the endpoint this mapping is linked to. This is a domain-specific identifier (not necessarily a phone number) that may use E.164 format when the endpoint is identified by a telephone number.",
+            "example": "\u002B13035554321"
+          }
+        }
+      },
       "ProvisioningOrderAddEndpointResponseAllOf2": {
         "type": "object",
         "properties": {
@@ -59409,6 +60076,41 @@
           }
         }
       },
+      "ListEndUserMappingsBodyData": {
+        "type": [
+          "null",
+          "object"
+        ],
+        "properties": {
+          "endUserMappings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EndUserMapping"
+            }
+          }
+        }
+      },
+      "ListEndUserMappingsBodyPage": {
+        "type": "object",
+        "properties": {
+          "pageSize": {
+            "type": "integer",
+            "example": 1000
+          },
+          "totalElements": {
+            "type": "integer",
+            "example": 5000
+          },
+          "totalPages": {
+            "type": "integer",
+            "example": 5
+          },
+          "pageNumber": {
+            "type": "integer",
+            "example": 0
+          }
+        }
+      },
       "ListOrdersBodyOrdersItem": {
         "type": "object",
         "properties": {
@@ -59522,6 +60224,12 @@
           }
         }
       },
+      "EmergencyProvisioningGenericErrorData": {
+        "type": [
+          "null",
+          "object"
+        ]
+      },
       "AddStandardNorthAmericaEndpointsWithAddressIdAllOf2EndpointsItem": {
         "required": [
           "addressId"
@@ -59628,6 +60336,9 @@
       "EmergencyProvisioningExamplePayload": {
         "type": "object",
         "description": "Placeholder schema for path example refs"
+      },
+      "EmergencyProvisioningGenericErrorDataProperty": {
+        "type": "object"
       },
       "EndpointResponseProvisioningStatus": {
         "enum": [
@@ -59935,6 +60646,11 @@
         "type": "string",
         "description": "Address ID",
         "example": "daa9dd0f-de97-4103-8530-b31bf4be8fc0"
+      },
+      "EndUserManagementAccountId": {
+        "type": "string",
+        "description": "Your Bandwidth Account ID.",
+        "example": "9900000"
       },
       "CustomReference": {
         "maxLength": 100,
@@ -61816,7 +62532,7 @@
           }
         }
       },
-      "RequirementsPackageCreateUpdateResponse": {
+      "RequirementsPackageUpdateResponse": {
         "type": "object",
         "properties": {
           "links": {
@@ -61834,7 +62550,66 @@
           }
         }
       },
-      "RequirementsPackageGetResponse": {
+      "RequirementsPackageCreateData": {
+        "required": [
+          "requirementsPackageId",
+          "countryCodeA3",
+          "phoneNumberType",
+          "endUserType",
+          "status",
+          "createdDateTime",
+          "updatedDateTime"
+        ],
+        "type": "object",
+        "properties": {
+          "requirementsPackageId": {
+            "type": "string",
+            "description": "Unique identifier for requirements package"
+          },
+          "countryCodeA3": {
+            "type": "string",
+            "description": "Country code in ISO 3166-1 alpha-3 format"
+          },
+          "phoneNumberType": {
+            "description": "The type of phone number.",
+            "$ref": "#/components/schemas/PhoneNumberTypeEnum"
+          },
+          "endUserType": {
+            "description": "The type of end user",
+            "$ref": "#/components/schemas/EndUserTypeEnum"
+          },
+          "customReference": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "A custom reference name.\nIt can be used for your own reference to the item to easily identify one of your customers,\nrequirements package, enduser etc.\n"
+          },
+          "acknowledgements": {
+            "description": "Captures the acknowledgments on requirements package submission. Mandatory when status is provided",
+            "$ref": "#/components/schemas/RequirementsPackageAcknowledgements"
+          },
+          "status": {
+            "description": "Status of the Requirements package",
+            "$ref": "#/components/schemas/RequirementsPackageStatusEnum"
+          },
+          "createdDateTime": {
+            "type": "string",
+            "description": "The date and time this object was created in ISO 8601 format"
+          },
+          "updatedDateTime": {
+            "type": "string",
+            "description": "The date and time this object was last updated in ISO 8601 format"
+          },
+          "remarks": {
+            "maxLength": 5000,
+            "type": "string",
+            "description": "Remarks provided by the user or admin"
+          },
+          "lineage": {
+            "$ref": "#/components/schemas/RequirementsPackageCreateDataAllOf2Lineage"
+          }
+        }
+      },
+      "RequirementsPackageCreateResponse": {
         "type": "object",
         "properties": {
           "links": {
@@ -61844,7 +62619,7 @@
             }
           },
           "data": {
-            "$ref": "#/components/schemas/RequirementsPackageGetData"
+            "$ref": "#/components/schemas/RequirementsPackageCreateData"
           },
           "errors": {
             "$ref": "#/components/schemas/EndUserManagementErrors"
@@ -62152,6 +62927,26 @@
           "deletability": {
             "description": "Indicates whether the requirements package can be deleted.",
             "$ref": "#/components/schemas/Deletability"
+          },
+          "lineage": {
+            "$ref": "#/components/schemas/RequirementsPackageGetDataAllOf2Lineage"
+          }
+        }
+      },
+      "RequirementsPackageGetResponse": {
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EndUserManagementLink"
+            }
+          },
+          "data": {
+            "$ref": "#/components/schemas/RequirementsPackageGetData"
+          },
+          "errors": {
+            "$ref": "#/components/schemas/EndUserManagementErrors"
           }
         }
       },
@@ -62213,6 +63008,125 @@
           }
         },
         "description": "Captures the acknowledgments on requirements package submission. Mandatory when status is provided"
+      },
+      "RequirementsPackageLineageData": {
+        "title": "Requirements package pointer (requirementsPackageId, accountId)",
+        "required": [
+          "requirementsPackageId",
+          "accountId"
+        ],
+        "type": "object",
+        "properties": {
+          "requirementsPackageId": {
+            "type": "string",
+            "description": "Unique identifier for requirements package"
+          },
+          "accountId": {
+            "type": "string",
+            "description": "Your Bandwidth Account ID."
+          }
+        },
+        "description": "Points to a requirements package involved in a clone relationship: the source it was cloned from, or one cloned from it.\nIdentified by requirementsPackageId and accountId.\n"
+      },
+      "RequirementsPackageLineage": {
+        "title": "Requirements package lineage relationship (parent, children)",
+        "type": "object",
+        "properties": {
+          "parent": {
+            "description": "Points to a requirements package involved in a clone relationship: the source it was cloned from, or one cloned from it.\nIdentified by requirementsPackageId and accountId.\n",
+            "$ref": "#/components/schemas/RequirementsPackageLineageData"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RequirementsPackageLineageData"
+            },
+            "description": "Requirements packages cloned from this one (**requirementsPackageId**, **accountId** each). Only returned by Get Requirements Package with \u0060verbose=true\u0060.\n",
+            "readOnly": true
+          }
+        },
+        "description": "Clone relationship for this requirements package. Omitted when no clone relationship exists.\n**parent** identifies the requirements package this one was cloned from.\n**children** lists the requirements packages cloned from this one.\n"
+      },
+      "CreateNewRequirementsPackageRequestData": {
+        "title": "Create new requirements package",
+        "required": [
+          "countryCodeA3",
+          "phoneNumberType",
+          "endUserType"
+        ],
+        "type": "object",
+        "properties": {
+          "countryCodeA3": {
+            "type": "string",
+            "description": "Country code in ISO 3166-1 alpha-3 format"
+          },
+          "phoneNumberType": {
+            "description": "The type of phone number.",
+            "$ref": "#/components/schemas/PhoneNumberTypeEnum"
+          },
+          "endUserType": {
+            "description": "The type of end user",
+            "$ref": "#/components/schemas/EndUserTypeEnum"
+          },
+          "customReference": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "A custom reference name.\nIt can be used for your own reference to the item to easily identify one of your customers,\nrequirements package, enduser etc.\n"
+          }
+        }
+      },
+      "CloneRequirementsPackageRequestData": {
+        "title": "Clone existing requirements package",
+        "required": [
+          "lineage"
+        ],
+        "type": "object",
+        "properties": {
+          "lineage": {
+            "description": "Clone relationship for this requirements package. Omitted when no clone relationship exists.\n**parent** identifies the requirements package this one was cloned from.\n**children** lists the requirements packages cloned from this one.\n",
+            "$ref": "#/components/schemas/RequirementsPackageLineage"
+          },
+          "customReference": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "A custom reference name.\nIt can be used for your own reference to the item to easily identify one of your customers,\nrequirements package, enduser etc.\n"
+          }
+        }
+      },
+      "CreateRequirementsPackageRequestData": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/CreateNewRequirementsPackageRequestData"
+          },
+          {
+            "$ref": "#/components/schemas/CloneRequirementsPackageRequestData"
+          }
+        ],
+        "properties": {
+          "countryCodeA3": {
+            "type": "string",
+            "description": "Country code in ISO 3166-1 alpha-3 format"
+          },
+          "phoneNumberType": {
+            "description": "The type of phone number.",
+            "$ref": "#/components/schemas/PhoneNumberTypeEnum"
+          },
+          "endUserType": {
+            "description": "The type of end user",
+            "$ref": "#/components/schemas/EndUserTypeEnum"
+          },
+          "customReference": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "A custom reference name.\nIt can be used for your own reference to the item to easily identify one of your customers,\nrequirements package, enduser etc.\n"
+          },
+          "lineage": {
+            "description": "Clone relationship for this requirements package. Omitted when no clone relationship exists.\n**parent** identifies the requirements package this one was cloned from.\n**children** lists the requirements packages cloned from this one.\n",
+            "$ref": "#/components/schemas/RequirementsPackageLineage"
+          }
+        },
+        "description": "Request body for creating or cloning a requirements package."
       },
       "AddressResponseAssetData": {
         "type": "object",
@@ -62805,62 +63719,6 @@
           "status": "SUBMITTED"
         }
       },
-      "PostRequirementsPackageBodyRequest": {
-        "required": [
-          "countryCodeA3",
-          "phoneNumberType",
-          "endUserType",
-          "requirementsPackageId",
-          "status",
-          "createdDateTime",
-          "updatedDateTime"
-        ],
-        "type": "object",
-        "properties": {
-          "requirementsPackageId": {
-            "type": "string",
-            "description": "Unique identifier for requirements package"
-          },
-          "countryCodeA3": {
-            "type": "string",
-            "description": "Country code in ISO 3166-1 alpha-3 format"
-          },
-          "phoneNumberType": {
-            "description": "The type of phone number.",
-            "$ref": "#/components/schemas/PhoneNumberTypeEnum"
-          },
-          "endUserType": {
-            "description": "The type of end user",
-            "$ref": "#/components/schemas/EndUserTypeEnum"
-          },
-          "customReference": {
-            "maxLength": 100,
-            "type": "string",
-            "description": "A custom reference name.\nIt can be used for your own reference to the item to easily identify one of your customers,\nrequirements package, enduser etc.\n"
-          },
-          "acknowledgements": {
-            "description": "Captures the acknowledgments on requirements package submission. Mandatory when status is provided",
-            "$ref": "#/components/schemas/RequirementsPackageAcknowledgements"
-          },
-          "status": {
-            "description": "Status of the Requirements package",
-            "$ref": "#/components/schemas/RequirementsPackageStatusEnum"
-          },
-          "createdDateTime": {
-            "type": "string",
-            "description": "The date and time this object was created in ISO 8601 format"
-          },
-          "updatedDateTime": {
-            "type": "string",
-            "description": "The date and time this object was last updated in ISO 8601 format"
-          },
-          "remarks": {
-            "maxLength": 5000,
-            "type": "string",
-            "description": "Remarks provided by the user or admin"
-          }
-        }
-      },
       "PatchMigrationRequirementsPackageBodyRequest": {
         "required": [
           "status",
@@ -62985,6 +63843,14 @@
           },
           "fileName": {
             "type": "string"
+          }
+        }
+      },
+      "RequirementsPackageCreateDataAllOf2": {
+        "type": "object",
+        "properties": {
+          "lineage": {
+            "$ref": "#/components/schemas/RequirementsPackageCreateDataAllOf2Lineage"
           }
         }
       },
@@ -63234,6 +64100,9 @@
           "deletability": {
             "description": "Indicates whether the requirements package can be deleted.",
             "$ref": "#/components/schemas/Deletability"
+          },
+          "lineage": {
+            "$ref": "#/components/schemas/RequirementsPackageGetDataAllOf2Lineage"
           }
         }
       },
@@ -63320,6 +64189,31 @@
           }
         }
       },
+      "RequirementsPackageCreateDataAllOf2Lineage": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/RequirementsPackageLineage"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "properties": {
+          "parent": {
+            "description": "Points to a requirements package involved in a clone relationship: the source it was cloned from, or one cloned from it.\nIdentified by requirementsPackageId and accountId.\n",
+            "$ref": "#/components/schemas/RequirementsPackageLineageData"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RequirementsPackageLineageData"
+            },
+            "description": "Requirements packages cloned from this one (**requirementsPackageId**, **accountId** each). Only returned by Get Requirements Package with \u0060verbose=true\u0060.\n",
+            "readOnly": true
+          }
+        }
+      },
       "NumberActivationValidatorResultRequirementsSetsItemAllOf2": {
         "type": "object",
         "properties": {
@@ -63330,6 +64224,31 @@
           "result": {
             "description": "Details of results of number activation validation",
             "$ref": "#/components/schemas/NumberActivationValidatorResultRequirementsSetsItemAllOf2Result"
+          }
+        }
+      },
+      "RequirementsPackageGetDataAllOf2Lineage": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/RequirementsPackageLineage"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "properties": {
+          "parent": {
+            "description": "Points to a requirements package involved in a clone relationship: the source it was cloned from, or one cloned from it.\nIdentified by requirementsPackageId and accountId.\n",
+            "$ref": "#/components/schemas/RequirementsPackageLineageData"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RequirementsPackageLineageData"
+            },
+            "description": "Requirements packages cloned from this one (**requirementsPackageId**, **accountId** each). Only returned by Get Requirements Package with \u0060verbose=true\u0060.\n",
+            "readOnly": true
           }
         }
       },
@@ -142910,6 +143829,9 @@
         "type": "object",
         "description": "This is the SIP Peer / Location ID made visible in the /accounts/{accountId}/sites/{siteId}/sipPeers"
       },
+      "EmergencyProvisioningGenericErrorDataProperty2": {
+        "type": "object"
+      },
       "EndUserManagementGenericErrorDataProperty2": {
         "type": "object"
       },
@@ -146991,6 +147913,91 @@
           }
         }
       },
+      "listEndUserMappings": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListEndUserMappingsBody"
+            },
+            "examples": {
+              "listEndUserMappings": {
+                "summary": "List End User Mappings",
+                "value": {
+                  "links": [
+                    {
+                      "href": "/api/v2/accounts/9900000/emergency/end-user-mappings?limit=1000\u0026offset=0",
+                      "rel": "self"
+                    },
+                    {
+                      "href": "/api/v2/accounts/9900000/emergency/end-user-mappings?limit=1000",
+                      "rel": "first"
+                    },
+                    {
+                      "href": "/api/v2/accounts/9900000/emergency/end-user-mappings?limit=1000\u0026offset=4000",
+                      "rel": "last"
+                    },
+                    {
+                      "href": "/api/v2/accounts/9900000/emergency/end-user-mappings?limit=1000\u0026offset=1000",
+                      "rel": "next"
+                    }
+                  ],
+                  "data": {
+                    "endUserMappings": [
+                      {
+                        "id": "4334343",
+                        "accountId": "9900000",
+                        "oktaUsername": "jsmith",
+                        "email": "jsmith@example.com",
+                        "firstName": "Jane",
+                        "lastName": "Smith",
+                        "aeuid": "\u002B13035554321"
+                      }
+                    ]
+                  },
+                  "errors": [],
+                  "page": {
+                    "pageSize": 1000,
+                    "totalElements": 5000,
+                    "totalPages": 5,
+                    "pageNumber": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "getEndUserMapping": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/EndUserMappingResponse"
+            }
+          }
+        }
+      },
+      "addEndUserMapping": {
+        "description": "Created",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/EndUserMappingResponse"
+            }
+          }
+        }
+      },
+      "updateEndUserMapping": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/EndUserMappingResponse"
+            }
+          }
+        }
+      },
       "emergency_provisioning_badRequestError": {
         "description": "Bad Request",
         "content": {
@@ -147209,6 +148216,24 @@
             "examples": {
               "badRequestErrorExample": {
                 "$ref": "#/components/examples/end_user_management_badRequestErrorExample"
+              }
+            }
+          }
+        }
+      },
+      "createRequirementsPackageBadRequestError": {
+        "description": "Bad Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/EndUserManagementGenericError"
+            },
+            "examples": {
+              "badRequestErrorExample": {
+                "$ref": "#/components/examples/end_user_management_badRequestErrorExample"
+              },
+              "cloneRequirementsPackageInvalidSourceStatusErrorExample": {
+                "$ref": "#/components/examples/cloneRequirementsPackageInvalidSourceStatusErrorExample"
               }
             }
           }
@@ -147504,11 +148529,11 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/RequirementsPackageCreateUpdateResponse"
+              "$ref": "#/components/schemas/RequirementsPackageUpdateResponse"
             },
             "examples": {
-              "requirementsPackageResponseExample": {
-                "$ref": "#/components/examples/requirementsPackageResponseExample"
+              "requirementsPackageUpdateResponseExample": {
+                "$ref": "#/components/examples/requirementsPackageUpdateResponseExample"
               }
             }
           }
@@ -147519,11 +148544,14 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/RequirementsPackageCreateUpdateResponse"
+              "$ref": "#/components/schemas/RequirementsPackageCreateResponse"
             },
             "examples": {
               "requirementsPackageResponseExample": {
                 "$ref": "#/components/examples/requirementsPackageResponseExample"
+              },
+              "cloneRequirementsPackageResponseExample": {
+                "$ref": "#/components/examples/cloneRequirementsPackageResponseExample"
               }
             }
           }
@@ -147537,8 +148565,11 @@
               "$ref": "#/components/schemas/RequirementsPackageGetResponse"
             },
             "examples": {
-              "requirementsPackageResponseExample": {
-                "$ref": "#/components/examples/requirementsPackageResponseExample"
+              "requirementsPackageGetResponseExample": {
+                "$ref": "#/components/examples/requirementsPackageGetResponseExample"
+              },
+              "requirementsPackageGetVerboseResponseExample": {
+                "$ref": "#/components/examples/requirementsPackageGetVerboseResponseExample"
               }
             }
           }
@@ -162482,6 +163513,66 @@
           "type": "integer"
         }
       },
+      "oktaUsername": {
+        "name": "oktaUsername",
+        "in": "path",
+        "description": "The Okta username identifying the end user mapping.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "jsmith"
+      },
+      "oktaUsernameFilterParam": {
+        "name": "oktaUsername",
+        "in": "query",
+        "description": "Filter and/or sort by Okta username.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/StringEqFilter"
+        }
+      },
+      "emailFilterParam": {
+        "name": "email",
+        "in": "query",
+        "description": "Filter and/or sort by email address.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/EmailContainsFilter"
+        }
+      },
+      "nameFilterParam": {
+        "name": "name",
+        "in": "query",
+        "description": "Filter and/or sort by name. \u0060firstName\u0060 and \u0060lastName\u0060 are stored separately but are combined for filtering and sorting purposes.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/NameContainsFilter"
+        }
+      },
+      "aeuidFilterParam": {
+        "name": "aeuid",
+        "in": "query",
+        "description": "Filter and/or sort by aeuid.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/StringEqFilter"
+        }
+      },
+      "idFilterParam": {
+        "name": "id",
+        "in": "query",
+        "description": "Filter and/or sort by id.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/StringEqFilter"
+        }
+      },
       "orderType": {
         "name": "orderType",
         "in": "query",
@@ -163053,11 +164144,10 @@
       "verboseQueryParam": {
         "name": "verbose",
         "in": "query",
-        "description": "When set to true, the response will include additional details. This currently includes the \u0060deletability\u0060field.",
+        "description": "When true, the response includes additional details for the resource.\nWhen false or not provided, only the default response fields are returned.\n",
         "schema": {
           "type": "boolean",
-          "default": false,
-          "example": false
+          "default": false
         }
       },
       "from": {
@@ -171478,6 +172568,8 @@
       "emergency_provisioning_badRequestErrorExample": {
         "summary": "An example of a generic Bad Request Error",
         "value": {
+          "links": [],
+          "data": null,
           "errors": [
             {
               "id": "optional-error-id",
@@ -171492,6 +172584,8 @@
       "emergency_provisioning_unauthorizedErrorExample": {
         "summary": "An example of a generic Unauthorized Error",
         "value": {
+          "links": [],
+          "data": null,
           "errors": [
             {
               "id": "optional-error-id",
@@ -171506,6 +172600,8 @@
       "emergency_provisioning_forbiddenErrorExample": {
         "summary": "An example of a generic Unauthorized Error",
         "value": {
+          "links": [],
+          "data": null,
           "errors": [
             {
               "id": "optional-error-id",
@@ -171519,6 +172615,8 @@
       "emergency_provisioning_notFoundErrorExample": {
         "summary": "An example of a generic Not Found Error",
         "value": {
+          "links": [],
+          "data": null,
           "errors": [
             {
               "id": "optional-error-id",
@@ -171532,6 +172630,8 @@
       "emergency_provisioning_notAllowedErrorExample": {
         "summary": "An example of a generic Not Allowed Error",
         "value": {
+          "links": [],
+          "data": null,
           "errors": [
             {
               "id": "optional-error-id",
@@ -171548,6 +172648,8 @@
       "emergency_provisioning_tooManyRequestsErrorExample": {
         "summary": "An example of a generic Too Many Requests Error",
         "value": {
+          "links": [],
+          "data": null,
           "errors": [
             {
               "id": "optional-error-id",
@@ -171561,6 +172663,8 @@
       "emergency_provisioning_internalServerErrorExample": {
         "summary": "An example of a generic Internal Server Error",
         "value": {
+          "links": [],
+          "data": null,
           "errors": [
             {
               "id": "optional-error-id",
@@ -171750,11 +172854,160 @@
         }
       },
       "requirementsPackageResponseExample": {
-        "summary": "Requirements Package Response Example",
+        "summary": "Requirements Package Response",
         "value": {
           "links": [
             {
-              "href": "https://api.bandwidth.com/api/v2/accounts/9900000/compliance/requirementsPackages/46bd4a91-582d-442f-bd1b-bcf17ca7fc6a",
+              "href": "https://api.bandwidth.com/api/v2/accounts/9900000/compliance/requirementsPackages/93ac73e8-20a7-95ec-bd32-4e8270e66c31",
+              "rel": "self",
+              "method": "GET"
+            }
+          ],
+          "data": {
+            "requirementsPackageId": "93ac73e8-20a7-95ec-bd32-4e8270e66c31",
+            "countryCodeA3": "FRA",
+            "phoneNumberType": "GEOGRAPHIC",
+            "endUserType": "BUSINESS",
+            "customReference": "home_office",
+            "acknowledgements": {
+              "allDetailsAccurate": true
+            },
+            "status": "SUBMITTED",
+            "createdDateTime": "2024-03-11T04:09:25.399Z",
+            "updatedDateTime": "2024-03-11T04:09:25.399Z",
+            "remarks": "Remarks provided by Admin"
+          },
+          "errors": []
+        }
+      },
+      "requirementsPackageUpdateResponseExample": {
+        "summary": "Update Requirements Package Response Example",
+        "value": {
+          "links": [
+            {
+              "href": "https://api.bandwidth.com/api/v2/accounts/9900000/compliance/requirementsPackages/93ac73e8-20a7-95ec-bd32-4e8270e66c31",
+              "rel": "self",
+              "method": "GET"
+            }
+          ],
+          "data": {
+            "requirementsPackageId": "93ac73e8-20a7-95ec-bd32-4e8270e66c31",
+            "countryCodeA3": "FRA",
+            "phoneNumberType": "GEOGRAPHIC",
+            "endUserType": "BUSINESS",
+            "customReference": "home_office",
+            "acknowledgements": {
+              "allDetailsAccurate": true
+            },
+            "status": "SUBMITTED",
+            "createdDateTime": "2024-03-11T04:09:25.399Z",
+            "updatedDateTime": "2024-03-11T04:09:25.399Z",
+            "remarks": "Remarks provided by Admin"
+          },
+          "errors": []
+        }
+      },
+      "createRequirementsPackageRequestExample": {
+        "summary": "Create Requirements Package",
+        "value": {
+          "countryCodeA3": "FRA",
+          "phoneNumberType": "GEOGRAPHIC",
+          "endUserType": "BUSINESS",
+          "customReference": "home_office"
+        }
+      },
+      "cloneRequirementsPackageRequestExample": {
+        "summary": "Clone Requirements Package",
+        "value": {
+          "customReference": "FRA#GEOGRAPHIC#BUSINESS#bd11becd-483c-43c3-981c-ea53bbba0307",
+          "lineage": {
+            "parent": {
+              "requirementsPackageId": "3127a39d-20d6-49bc-898d-aac28e6c459a",
+              "accountId": "6555555"
+            }
+          }
+        }
+      },
+      "cloneRequirementsPackageResponseExample": {
+        "summary": "Clone Requirements Package Response",
+        "value": {
+          "links": [
+            {
+              "href": "https://api.bandwidth.com/api/v2/accounts/9900000/compliance/requirementsPackages/93ac73e8-20a7-95ec-bd32-4e8270e66c31",
+              "rel": "self",
+              "method": "GET"
+            }
+          ],
+          "data": {
+            "requirementsPackageId": "93ac73e8-20a7-95ec-bd32-4e8270e66c31",
+            "countryCodeA3": "FRA",
+            "phoneNumberType": "GEOGRAPHIC",
+            "endUserType": "BUSINESS",
+            "customReference": "FRA#GEOGRAPHIC#BUSINESS#bd11becd-483c-43c3-981c-ea53bbba0307",
+            "acknowledgements": {
+              "allDetailsAccurate": true
+            },
+            "status": "VERIFIED",
+            "createdDateTime": "2024-03-11T04:09:25.399Z",
+            "updatedDateTime": "2024-03-11T04:09:25.399Z",
+            "remarks": "Remarks provided by Admin",
+            "lineage": {
+              "parent": {
+                "requirementsPackageId": "3127a39d-20d6-49bc-898d-aac28e6c459a",
+                "accountId": "6555555"
+              }
+            }
+          },
+          "errors": []
+        }
+      },
+      "cloneRequirementsPackageInvalidSourceStatusErrorExample": {
+        "summary": "Clone Requirements package Invalid Source Status example",
+        "value": {
+          "links": [],
+          "data": null,
+          "errors": [
+            {
+              "code": 20212,
+              "type": "business-exception",
+              "description": "Requirements package status should be in \u0060VERIFIED\u0060, \u0060AUTO_VALIDATED\u0060 status"
+            }
+          ]
+        }
+      },
+      "requirementsPackageGetResponseExample": {
+        "summary": "Get Requirements Package Response",
+        "value": {
+          "links": [
+            {
+              "href": "https://api.bandwidth.com/api/v2/accounts/9900000/compliance/requirementsPackages/93ac73e8-20a7-95ec-bd32-4e8270e66c31",
+              "rel": "self",
+              "method": "GET"
+            }
+          ],
+          "data": {
+            "requirementsPackageId": "93ac73e8-20a7-95ec-bd32-4e8270e66c31",
+            "countryCodeA3": "FRA",
+            "phoneNumberType": "GEOGRAPHIC",
+            "endUserType": "BUSINESS",
+            "customReference": "home_office",
+            "acknowledgements": {
+              "allDetailsAccurate": true
+            },
+            "status": "SUBMITTED",
+            "createdDateTime": "2024-03-11T04:09:25.399Z",
+            "updatedDateTime": "2024-03-11T04:09:25.399Z",
+            "remarks": "Remarks provided by Admin"
+          },
+          "errors": []
+        }
+      },
+      "requirementsPackageGetVerboseResponseExample": {
+        "summary": "Get Requirements Package Verbose Response",
+        "value": {
+          "links": [
+            {
+              "href": "https://api.bandwidth.com/api/v2/accounts/9900000/compliance/requirementsPackages/93ac73e8-20a7-95ec-bd32-4e8270e66c31",
               "rel": "self",
               "method": "GET"
             }
@@ -171775,6 +173028,18 @@
             "deletability": {
               "deletable": false,
               "reason": "This requirements package has previously been used to activate phone numbers and cannot be deleted."
+            },
+            "lineage": {
+              "parent": {
+                "requirementsPackageId": "3127a39d-20d6-49bc-898d-aac28e6c459a",
+                "accountId": "6555555"
+              },
+              "children": [
+                {
+                  "requirementsPackageId": "e1b7c4d9-5f2a-48b6-a3e1-7c8d2f4b9a6e",
+                  "accountId": "6777777"
+                }
+              ]
             }
           },
           "errors": []
@@ -185079,6 +186344,24 @@
           }
         }
       },
+      "addEndUserMapping": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AddEndUserMappingRequest"
+            }
+          }
+        }
+      },
+      "replaceEndUserMapping": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReplaceEndUserMappingRequest"
+            }
+          }
+        }
+      },
       "createAddressRequest": {
         "content": {
           "application/json": {
@@ -185195,7 +186478,15 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/PostRequirementsPackageBodyRequest"
+              "$ref": "#/components/schemas/CreateRequirementsPackageRequestData"
+            },
+            "examples": {
+              "createRequirementsPackageRequestExample": {
+                "$ref": "#/components/examples/createRequirementsPackageRequestExample"
+              },
+              "cloneRequirementsPackageRequestExample": {
+                "$ref": "#/components/examples/cloneRequirementsPackageRequestExample"
+              }
             }
           }
         }
@@ -188913,6 +190204,10 @@
     },
     {
       "name": "Orders"
+    },
+    {
+      "name": "End User Mappings",
+      "description": "An End User Mapping associates a Customer\u0027s end user \u2014 identified by the Okta username they use to log into Bandwidth\u0027s self-service portal \u2014 with a specific endpoint on the account. It\u0027s the permission record that lets an individual end user securely manage only their own assigned endpoint (most commonly, updating that endpoint\u0027s Location so calls route correctly for dynamic 911 routing) without needing broader account-level access. Today this supports BYOC (Bring Your Own Carrier) integrations, such as Salesforce Agentforce call center agents placing 911 calls with Bandwidth as the carrier; the same mapping will support reseller use cases as they\u0027re added."
     },
     {
       "name": "Compliance"

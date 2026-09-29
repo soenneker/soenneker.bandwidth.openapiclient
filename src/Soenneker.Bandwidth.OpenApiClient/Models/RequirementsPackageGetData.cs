@@ -56,6 +56,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>The type of end user</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum? EndUserType { get; set; }
+        /// <summary>The lineage property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage? Lineage { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage Lineage { get; set; }
+#endif
         /// <summary>The type of phone number.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum? PhoneNumberType { get; set; }
         /// <summary>Remarks provided by the user or admin</summary>
@@ -115,6 +123,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "customReference", n => { CustomReference = n.GetStringValue(); } },
                 { "deletability", n => { Deletability = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Deletability>(global::Soenneker.Bandwidth.OpenApiClient.Models.Deletability.CreateFromDiscriminatorValue); } },
                 { "endUserType", n => { EndUserType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum>(); } },
+                { "lineage", n => { Lineage = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage>(global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage.CreateFromDiscriminatorValue); } },
                 { "phoneNumberType", n => { PhoneNumberType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum>(); } },
                 { "remarks", n => { Remarks = n.GetStringValue(); } },
                 { "requirementsPackageId", n => { RequirementsPackageId = n.GetStringValue(); } },
@@ -135,6 +144,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("customReference", CustomReference);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Deletability>("deletability", Deletability);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum>("endUserType", EndUserType);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage>("lineage", Lineage);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum>("phoneNumberType", PhoneNumberType);
             writer.WriteStringValue("remarks", Remarks);
             writer.WriteStringValue("requirementsPackageId", RequirementsPackageId);

@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Addresses;
+using Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.EndUserMappings;
 using Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints;
 using Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.NotificationGroups;
 using Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Notifications;
@@ -28,6 +29,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         public global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder Endpoints
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.Endpoints.EndpointsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The endUserMappings property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.EndUserMappings.EndUserMappingsRequestBuilder EndUserMappings
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.EndUserMappings.EndUserMappingsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The notificationGroups property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.Emergency.NotificationGroups.NotificationGroupsRequestBuilder NotificationGroups

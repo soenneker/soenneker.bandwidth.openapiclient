@@ -730,24 +730,41 @@ paths:
         '500':
           $ref: '#/components/responses/internalServerError'
     post:
-      summary: Create Requirements Package
+      summary: Create or Clone Requirements Package
       operationId: createRequirementsPackage
       description: >
         Create a requirements package with a set of requirements.
 
         Note: Country, Phone Number Type and End User Type cannot be changed
         once created.
+
+
+        **Cloning a requirements package:**
+
+
+        To clone an existing requirements package, set lineage.parent in the
+        request body with the source requirementsPackageId and accountId.
+
+
+        Constraints:
+
+        - The source requirements package must have a status of VERIFIED or
+        AUTO_VALIDATED.
+
+        - The source and target accounts must share the same Global Account
+        Number (GAN).
       tags:
         - Requirements Packages
       parameters:
         - $ref: '#/components/parameters/accountId'
+          description: Target accountId to create or clone requirements package
       requestBody:
         $ref: '#/components/requestBodies/postRequirementsPackageBody'
       responses:
         '201':
           $ref: '#/components/responses/createRequirementsPackageResponse'
         '400':
-          $ref: '#/components/responses/badRequestError'
+          $ref: '#/components/responses/createRequirementsPackageBadRequestError'
         '401':
           $ref: '#/components/responses/unauthorizedEUMSError'
         '403':
@@ -764,9 +781,9 @@ paths:
     get:
       summary: Get Requirements Package
       operationId: getRequirementsPackage
-      description: >-
-        Retrieve a requirements package using the id. The `deletability` info is
-        returned only on query param `verbose=true`
+      description: >
+        Retrieve a requirements package using the id. Set verbose=true to
+        include deletability and lineage in the response
       tags:
         - Requirements Packages
       parameters:
@@ -1570,16 +1587,17 @@ components:
         example: 30
         type: integer
     verboseQueryParam:
-      description: >-
-        When set to true, the response will include additional details. This
-        currently includes the `deletability`field.
       in: query
       name: verbose
       required: false
       schema:
         type: boolean
         default: false
-        example: false
+      description: >
+        When true, the response includes additional details for the resource.
+
+        When false or not provided, only the default response fields are
+        returned.
   requestBodies:
     createAddressRequest:
       content:
@@ -1699,12 +1717,12 @@ components:
       content:
         application/json:
           schema:
-            allOf:
-              - $ref: '#/components/schemas/requirementsPackageData'
-            required:
-              - countryCodeA3
-              - phoneNumberType
-              - endUserType
+            $ref: '#/components/schemas/createRequirementsPackageRequestData'
+          examples:
+            createRequirementsPackageRequestExample:
+              $ref: '#/components/examples/createRequirementsPackageRequestExample'
+            cloneRequirementsPackageRequestExample:
+              $ref: '#/components/examples/cloneRequirementsPackageRequestExample'
     postComplianceRequirementsPackageBulkRequestBody:
       content:
         application/json:
@@ -1821,6 +1839,18 @@ components:
           examples:
             badRequestErrorExample:
               $ref: '#/components/examples/badRequestErrorExample'
+    createRequirementsPackageBadRequestError:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genericError'
+          examples:
+            badRequestErrorExample:
+              $ref: '#/components/examples/badRequestErrorExample'
+            cloneRequirementsPackageInvalidSourceStatusErrorExample:
+              $ref: >-
+                #/components/examples/cloneRequirementsPackageInvalidSourceStatusErrorExample
     notFoundError:
       description: Not Found
       content:
@@ -1999,19 +2029,21 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/requirementsPackageCreateUpdateResponse'
+            $ref: '#/components/schemas/requirementsPackageUpdateResponse'
           examples:
-            requirementsPackageResponseExample:
-              $ref: '#/components/examples/requirementsPackageResponseExample'
+            requirementsPackageUpdateResponseExample:
+              $ref: '#/components/examples/requirementsPackageUpdateResponseExample'
     createRequirementsPackageResponse:
       description: Created
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/requirementsPackageCreateUpdateResponse'
+            $ref: '#/components/schemas/requirementsPackageCreateResponse'
           examples:
             requirementsPackageResponseExample:
               $ref: '#/components/examples/requirementsPackageResponseExample'
+            cloneRequirementsPackageResponseExample:
+              $ref: '#/components/examples/cloneRequirementsPackageResponseExample'
     getRequirementsPackageResponse:
       description: OK
       content:
@@ -2019,8 +2051,11 @@ components:
           schema:
             $ref: '#/components/schemas/requirementsPackageGetResponse'
           examples:
-            requirementsPackageResponseExample:
-              $ref: '#/components/examples/requirementsPackageResponseExample'
+            requirementsPackageGetResponseExample:
+              $ref: '#/components/examples/requirementsPackageGetResponseExample'
+            requirementsPackageGetVerboseResponseExample:
+              $ref: >-
+                #/components/examples/requirementsPackageGetVerboseResponseExample
     complianceRequirementsPackageBulkResponseSuccess:
       content:
         application/json:
@@ -2234,6 +2269,10 @@ components:
       type: string
       description: Address ID
       example: daa9dd0f-de97-4103-8530-b31bf4be8fc0
+    accountId:
+      type: string
+      description: Your Bandwidth Account ID.
+      example: '9900000'
     customReference:
       type: string
       minLength: 1
@@ -3584,7 +3623,7 @@ components:
             $ref: '#/components/schemas/assetGetData'
         errors:
           $ref: '#/components/schemas/errors'
-    requirementsPackageCreateUpdateResponse:
+    requirementsPackageUpdateResponse:
       type: object
       properties:
         links:
@@ -3595,7 +3634,15 @@ components:
           $ref: '#/components/schemas/requirementsPackageData'
         errors:
           $ref: '#/components/schemas/errors'
-    requirementsPackageGetResponse:
+    requirementsPackageCreateData:
+      allOf:
+        - $ref: '#/components/schemas/requirementsPackageData'
+        - type: object
+          properties:
+            lineage:
+              $ref: '#/components/schemas/requirementsPackageLineage'
+              nullable: true
+    requirementsPackageCreateResponse:
       type: object
       properties:
         links:
@@ -3603,7 +3650,7 @@ components:
           items:
             $ref: '#/components/schemas/link'
         data:
-          $ref: '#/components/schemas/requirementsPackageGetData'
+          $ref: '#/components/schemas/requirementsPackageCreateData'
         errors:
           $ref: '#/components/schemas/errors'
     numberActivationValidatorResult:
@@ -3793,6 +3840,20 @@ components:
             deletability:
               $ref: '#/components/schemas/deletability'
               readOnly: true
+            lineage:
+              $ref: '#/components/schemas/requirementsPackageLineage'
+              nullable: true
+    requirementsPackageGetResponse:
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        data:
+          $ref: '#/components/schemas/requirementsPackageGetData'
+        errors:
+          $ref: '#/components/schemas/errors'
     numberActivationResultData:
       description: Details of result of a number activation
       type: object
@@ -3842,6 +3903,89 @@ components:
             Confirms that all provided information is accurate and valid for the
             end user attached to the requirements package.
           example: true
+    requirementsPackageLineageData:
+      title: Requirements package pointer (requirementsPackageId, accountId)
+      description: >
+        Points to a requirements package involved in a clone relationship: the
+        source it was cloned from, or one cloned from it.
+
+        Identified by requirementsPackageId and accountId.
+      type: object
+      required:
+        - requirementsPackageId
+        - accountId
+      properties:
+        requirementsPackageId:
+          $ref: '#/components/schemas/requirementsPackageId'
+        accountId:
+          $ref: '#/components/schemas/accountId'
+    requirementsPackageLineage:
+      title: Requirements package lineage relationship (parent, children)
+      description: >
+        Clone relationship for this requirements package. Omitted when no clone
+        relationship exists.
+
+        **parent** identifies the requirements package this one was cloned from.
+
+        **children** lists the requirements packages cloned from this one.
+      type: object
+      properties:
+        parent:
+          $ref: '#/components/schemas/requirementsPackageLineageData'
+          description: >
+            Source requirements package for the clone relationship
+            (**requirementsPackageId**, **accountId**).
+
+            In a clone request, the requirements package to clone.
+
+            In a response, the requirements package this one was cloned from.
+            Present only if this requirements package is itself a clone.
+        children:
+          type: array
+          readOnly: true
+          description: >
+            Requirements packages cloned from this one
+            (**requirementsPackageId**, **accountId** each). Only returned by
+            Get Requirements Package with `verbose=true`.
+          items:
+            $ref: '#/components/schemas/requirementsPackageLineageData'
+    createNewRequirementsPackageRequestData:
+      title: Create new requirements package
+      type: object
+      required:
+        - countryCodeA3
+        - phoneNumberType
+        - endUserType
+      properties:
+        countryCodeA3:
+          $ref: '#/components/schemas/countryCodeA3String'
+        phoneNumberType:
+          $ref: '#/components/schemas/phoneNumberTypeEnum'
+        endUserType:
+          $ref: '#/components/schemas/endUserTypeEnum'
+        customReference:
+          $ref: '#/components/schemas/customReference'
+    cloneRequirementsPackageRequestData:
+      title: Clone existing requirements package
+      type: object
+      required:
+        - lineage
+      properties:
+        lineage:
+          title: Clone relationship for this requirements package
+          description: >
+            Clone relationship for this requirements package. Set **parent** to
+            the requirements package to clone.
+          $ref: '#/components/schemas/requirementsPackageLineage'
+          required:
+            - parent
+        customReference:
+          $ref: '#/components/schemas/customReference'
+    createRequirementsPackageRequestData:
+      description: Request body for creating or cloning a requirements package.
+      oneOf:
+        - $ref: '#/components/schemas/createNewRequirementsPackageRequestData'
+        - $ref: '#/components/schemas/cloneRequirementsPackageRequestData'
     addressResponseAssetData:
       type: object
       properties:
@@ -4285,11 +4429,125 @@ components:
         assetReferenceId: 05ee3231-ad80-4fc5-9c13-68ffc26846a5
         assetType: ADDRESS
     requirementsPackageResponseExample:
-      summary: Requirements Package Response Example
+      summary: Requirements Package Response
       value:
         links:
           - href: >-
-              https://api.bandwidth.com/api/v2/accounts/9900000/compliance/requirementsPackages/46bd4a91-582d-442f-bd1b-bcf17ca7fc6a
+              https://api.bandwidth.com/api/v2/accounts/9900000/compliance/requirementsPackages/93ac73e8-20a7-95ec-bd32-4e8270e66c31
+            rel: self
+            method: GET
+        data:
+          requirementsPackageId: 93ac73e8-20a7-95ec-bd32-4e8270e66c31
+          countryCodeA3: FRA
+          phoneNumberType: GEOGRAPHIC
+          endUserType: BUSINESS
+          customReference: home_office
+          acknowledgements:
+            allDetailsAccurate: true
+          status: SUBMITTED
+          createdDateTime: '2024-03-11T04:09:25.399Z'
+          updatedDateTime: '2024-03-11T04:09:25.399Z'
+          remarks: Remarks provided by Admin
+        errors: []
+    requirementsPackageUpdateResponseExample:
+      summary: Update Requirements Package Response Example
+      value:
+        links:
+          - href: >-
+              https://api.bandwidth.com/api/v2/accounts/9900000/compliance/requirementsPackages/93ac73e8-20a7-95ec-bd32-4e8270e66c31
+            rel: self
+            method: GET
+        data:
+          requirementsPackageId: 93ac73e8-20a7-95ec-bd32-4e8270e66c31
+          countryCodeA3: FRA
+          phoneNumberType: GEOGRAPHIC
+          endUserType: BUSINESS
+          customReference: home_office
+          acknowledgements:
+            allDetailsAccurate: true
+          status: SUBMITTED
+          createdDateTime: '2024-03-11T04:09:25.399Z'
+          updatedDateTime: '2024-03-11T04:09:25.399Z'
+          remarks: Remarks provided by Admin
+        errors: []
+    createRequirementsPackageRequestExample:
+      summary: Create Requirements Package
+      value:
+        countryCodeA3: FRA
+        phoneNumberType: GEOGRAPHIC
+        endUserType: BUSINESS
+        customReference: home_office
+    cloneRequirementsPackageRequestExample:
+      summary: Clone Requirements Package
+      value:
+        customReference: FRA#GEOGRAPHIC#BUSINESS#bd11becd-483c-43c3-981c-ea53bbba0307
+        lineage:
+          parent:
+            requirementsPackageId: 3127a39d-20d6-49bc-898d-aac28e6c459a
+            accountId: '6555555'
+    cloneRequirementsPackageResponseExample:
+      summary: Clone Requirements Package Response
+      value:
+        links:
+          - href: >-
+              https://api.bandwidth.com/api/v2/accounts/9900000/compliance/requirementsPackages/93ac73e8-20a7-95ec-bd32-4e8270e66c31
+            rel: self
+            method: GET
+        data:
+          requirementsPackageId: 93ac73e8-20a7-95ec-bd32-4e8270e66c31
+          countryCodeA3: FRA
+          phoneNumberType: GEOGRAPHIC
+          endUserType: BUSINESS
+          customReference: FRA#GEOGRAPHIC#BUSINESS#bd11becd-483c-43c3-981c-ea53bbba0307
+          acknowledgements:
+            allDetailsAccurate: true
+          status: VERIFIED
+          createdDateTime: '2024-03-11T04:09:25.399Z'
+          updatedDateTime: '2024-03-11T04:09:25.399Z'
+          remarks: Remarks provided by Admin
+          lineage:
+            parent:
+              requirementsPackageId: 3127a39d-20d6-49bc-898d-aac28e6c459a
+              accountId: '6555555'
+        errors: []
+    cloneRequirementsPackageInvalidSourceStatusErrorExample:
+      summary: Clone Requirements package Invalid Source Status example
+      value:
+        links: []
+        data: null
+        errors:
+          - code: 20212
+            type: business-exception
+            description: >-
+              Requirements package status should be in `VERIFIED`,
+              `AUTO_VALIDATED` status
+    requirementsPackageGetResponseExample:
+      summary: Get Requirements Package Response
+      value:
+        links:
+          - href: >-
+              https://api.bandwidth.com/api/v2/accounts/9900000/compliance/requirementsPackages/93ac73e8-20a7-95ec-bd32-4e8270e66c31
+            rel: self
+            method: GET
+        data:
+          requirementsPackageId: 93ac73e8-20a7-95ec-bd32-4e8270e66c31
+          countryCodeA3: FRA
+          phoneNumberType: GEOGRAPHIC
+          endUserType: BUSINESS
+          customReference: home_office
+          acknowledgements:
+            allDetailsAccurate: true
+          status: SUBMITTED
+          createdDateTime: '2024-03-11T04:09:25.399Z'
+          updatedDateTime: '2024-03-11T04:09:25.399Z'
+          remarks: Remarks provided by Admin
+        errors: []
+    requirementsPackageGetVerboseResponseExample:
+      summary: Get Requirements Package Verbose Response
+      value:
+        links:
+          - href: >-
+              https://api.bandwidth.com/api/v2/accounts/9900000/compliance/requirementsPackages/93ac73e8-20a7-95ec-bd32-4e8270e66c31
             rel: self
             method: GET
         data:
@@ -4309,6 +4567,13 @@ components:
             reason: >-
               This requirements package has previously been used to activate
               phone numbers and cannot be deleted.
+          lineage:
+            parent:
+              requirementsPackageId: 3127a39d-20d6-49bc-898d-aac28e6c459a
+              accountId: '6555555'
+            children:
+              - requirementsPackageId: e1b7c4d9-5f2a-48b6-a3e1-7c8d2f4b9a6e
+                accountId: '6777777'
         errors: []
     internalServerErrorExampleComplianceRps:
       summary: An example of a generic Internal Server Error

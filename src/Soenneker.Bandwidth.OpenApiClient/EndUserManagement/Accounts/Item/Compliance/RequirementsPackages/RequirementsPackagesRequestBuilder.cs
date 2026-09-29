@@ -82,10 +82,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageListResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageListResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Create a requirements package with a set of requirements.Note: Country, Phone Number Type and End User Type cannot be changed once created.
+        /// Create a requirements package with a set of requirements.Note: Country, Phone Number Type and End User Type cannot be changed once created.**Cloning a requirements package:**To clone an existing requirements package, set lineage.parent in the request body with the source requirementsPackageId and accountId.Constraints:- The source requirements package must have a status of VERIFIED or AUTO_VALIDATED.- The source and target accounts must share the same Global Account Number (GAN).
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateUpdateResponse"/></returns>
-        /// <param name="body">The request body</param>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateResponse"/></returns>
+        /// <param name="body">Request body for creating or cloning a requirements package.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementGenericError">When receiving a 400 status code</exception>
@@ -97,11 +97,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementGenericError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateUpdateResponse?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.PostRequirementsPackageBodyRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateResponse?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateRequirementsPackageRequestData body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateUpdateResponse> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.PostRequirementsPackageBodyRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateResponse> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateRequirementsPackageRequestData body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -116,7 +116,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementGenericError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementGenericError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateUpdateResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateUpdateResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// List all requirements packages.The results are sorted by last updated time in reverse chronological order by default without any query filters.Following filters can be used to filter the result* Country Code : List requirements packages based on the country code.* Phone Number Type : List requirements packages based on the phone number type.* End user Type : List requirements packages based on the End user type.* Custom Reference : List requirements packages based on the custom reference.* Status : List requirements packages based on the status.
@@ -138,18 +138,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
             return requestInfo;
         }
         /// <summary>
-        /// Create a requirements package with a set of requirements.Note: Country, Phone Number Type and End User Type cannot be changed once created.
+        /// Create a requirements package with a set of requirements.Note: Country, Phone Number Type and End User Type cannot be changed once created.**Cloning a requirements package:**To clone an existing requirements package, set lineage.parent in the request body with the source requirementsPackageId and accountId.Constraints:- The source requirements package must have a status of VERIFIED or AUTO_VALIDATED.- The source and target accounts must share the same Global Account Number (GAN).
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">Request body for creating or cloning a requirements package.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.PostRequirementsPackageBodyRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateRequirementsPackageRequestData body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.PostRequirementsPackageBodyRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateRequirementsPackageRequestData body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

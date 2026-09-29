@@ -727,6 +727,170 @@ paths:
           $ref: '#/components/responses/tooManyRequestsError'
         '500':
           $ref: '#/components/responses/internalServerError'
+  /accounts/{accountId}/emergency/end-user-mappings:
+    get:
+      summary: List End User Mappings
+      operationId: listEndUserMappings
+      description: >-
+        List the end user mappings for an account. Each mapping links a
+        Customer's End User (by Okta username) to the specific endpoint they're
+        permitted to self-manage.
+      tags:
+        - End User Mappings
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/oktaUsernameFilterParam'
+        - $ref: '#/components/parameters/emailFilterParam'
+        - $ref: '#/components/parameters/nameFilterParam'
+        - $ref: '#/components/parameters/aeuidFilterParam'
+        - $ref: '#/components/parameters/idFilterParam'
+      security:
+        - Token: []
+      responses:
+        '200':
+          $ref: '#/components/responses/listEndUserMappings'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
+    post:
+      summary: Create End User Mapping
+      operationId: createEndUserMapping
+      description: >-
+        Create an end user mapping, granting a Customer's End User (identified
+        by their Okta username) permission to self-manage a specific endpoint on
+        this account — most commonly so they can update that endpoint's Location
+        for dynamic 911 call routing.
+      tags:
+        - End User Mappings
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      requestBody:
+        $ref: '#/components/requestBodies/addEndUserMapping'
+      security:
+        - Token: []
+      responses:
+        '201':
+          $ref: '#/components/responses/addEndUserMapping'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
+  /accounts/{accountId}/emergency/end-user-mappings/{oktaUsername}:
+    get:
+      summary: Get End User Mapping
+      operationId: getEndUserMapping
+      description: >-
+        Get the end user mapping for a given Okta username, showing which
+        endpoint that end user is permitted to self-manage.
+      tags:
+        - End User Mappings
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/oktaUsername'
+      security:
+        - Token: []
+      responses:
+        '200':
+          $ref: '#/components/responses/getEndUserMapping'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
+    put:
+      summary: Replace End User Mapping
+      operationId: replaceEndUserMapping
+      description: >-
+        Replace an existing end user mapping's contact details and/or which
+        endpoint the end user is permitted to self-manage.
+      tags:
+        - End User Mappings
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/oktaUsername'
+      requestBody:
+        $ref: '#/components/requestBodies/replaceEndUserMapping'
+      security:
+        - Token: []
+      responses:
+        '200':
+          $ref: '#/components/responses/updateEndUserMapping'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
+    delete:
+      summary: Delete End User Mapping
+      operationId: deleteEndUserMapping
+      description: >-
+        Delete an end user mapping, revoking a Customer's End User's permission
+        to self-manage their assigned endpoint.
+      tags:
+        - End User Mappings
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/oktaUsername'
+      security:
+        - Token: []
+      responses:
+        '204':
+          $ref: '#/components/responses/noContentResponse'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/notAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
 components:
   schemas:
     addEndpointsNorthAmericaBase:
@@ -2144,6 +2308,230 @@ components:
         updatedBy:
           type: string
           example: JJ
+    listEndUserMappings:
+      title: List End User Mappings
+      description: >-
+        A page of end user mappings for an account, each linking a Customer's
+        End User to the endpoint they're permitted to self-manage.
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/links'
+          nullable: true
+        data:
+          type: object
+          nullable: true
+          properties:
+            endUserMappings:
+              type: array
+              items:
+                $ref: '#/components/schemas/endUserMapping'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+          nullable: true
+        page:
+          type: object
+          properties:
+            pageSize:
+              type: integer
+              example: 1000
+            totalElements:
+              type: integer
+              example: 5000
+            totalPages:
+              type: integer
+              example: 5
+            pageNumber:
+              type: integer
+              example: 0
+      required:
+        - links
+        - data
+        - errors
+        - page
+    endUserMapping:
+      title: End User Mapping
+      description: >-
+        Associates a Customer's End User (identified by their Okta username)
+        with a specific endpoint they're permitted to self-manage — most
+        commonly so they can update that endpoint's Location for dynamic 911
+        call routing.
+      type: object
+      properties:
+        id:
+          type: string
+          example: '4334343'
+          pattern: ^\S*$
+        accountId:
+          type: string
+          example: '9900000'
+        oktaUsername:
+          type: string
+          example: jsmith
+        email:
+          type: string
+          format: email
+          example: jsmith@example.com
+        firstName:
+          type: string
+          example: Jane
+        lastName:
+          type: string
+          example: Smith
+        aeuid:
+          type: string
+          nullable: true
+          description: >-
+            The caller identifier of the endpoint this mapping is linked to.
+            This is a domain-specific identifier (not necessarily a phone
+            number) that may use E.164 format when the endpoint is identified by
+            a telephone number.
+          example: '+13035554321'
+      required:
+        - id
+        - accountId
+        - oktaUsername
+        - email
+        - firstName
+        - lastName
+        - aeuid
+    endUserMappingResponse:
+      title: End User Mapping Response
+      description: End User Mapping Response envelope.
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/links'
+          nullable: true
+        data:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/endUserMapping'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+          nullable: true
+      required:
+        - links
+        - data
+        - errors
+    sortDirection:
+      title: Sort Direction
+      description: Sort direction for a sortable field.
+      type: string
+      enum:
+        - ASC
+        - DESC
+      default: ASC
+    stringEqFilter:
+      title: String Equality Filter
+      description: Query filter supporting exact-match (`eq`) filtering and sorting.
+      type: object
+      properties:
+        eq:
+          type: string
+        sort:
+          $ref: '#/components/schemas/sortDirection'
+    nameContainsFilter:
+      title: Name Filter
+      description: >-
+        Query filter supporting exact-match (`eq`), substring (`contains`)
+        filtering, and sorting for name fields.
+      type: object
+      properties:
+        eq:
+          type: string
+        contains:
+          type: string
+        sort:
+          $ref: '#/components/schemas/sortDirection'
+    emailContainsFilter:
+      title: Email Filter
+      description: >-
+        Query filter supporting exact-match (`eq`), substring (`contains`)
+        filtering, and sorting for email fields.
+      type: object
+      properties:
+        eq:
+          type: string
+        contains:
+          type: string
+        sort:
+          $ref: '#/components/schemas/sortDirection'
+    addEndUserMappingRequest:
+      title: Add End User Mapping Request
+      description: >-
+        Creates an end user mapping, granting the given Okta username permission
+        to self-manage the specified endpoint.
+      type: object
+      properties:
+        oktaUsername:
+          type: string
+          example: jsmith
+        email:
+          type: string
+          format: email
+          example: jsmith@example.com
+        firstName:
+          type: string
+          example: Jane
+        lastName:
+          type: string
+          example: Smith
+        aeuid:
+          type: string
+          nullable: true
+          description: >-
+            The caller identifier of the endpoint to link to this mapping. This
+            is a domain-specific identifier (not necessarily a phone number)
+            that may use E.164 format when the endpoint is identified by a
+            telephone number.
+          example: '+13035554321'
+      required:
+        - oktaUsername
+        - email
+        - firstName
+        - lastName
+        - aeuid
+    replaceEndUserMappingRequest:
+      title: Replace End User Mapping Request
+      description: >-
+        Replaces an existing end user mapping's contact details and/or which
+        endpoint the end user is permitted to self-manage. The end user mapping
+        is identified by the `oktaUsername` path parameter.
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: jsmith@example.com
+        firstName:
+          type: string
+          example: Jane
+        lastName:
+          type: string
+          example: Smith
+        aeuid:
+          type: string
+          nullable: true
+          description: >-
+            The caller identifier of the endpoint to link to this mapping. This
+            is a domain-specific identifier (not necessarily a phone number)
+            that may use E.164 format when the endpoint is identified by a
+            telephone number.
+          example: '+13035554321'
+      required:
+        - email
+        - firstName
+        - lastName
+        - aeuid
     listOrders:
       title: Get Orders
       description: Get Orders.
@@ -2300,12 +2688,22 @@ components:
       title: Generic Error
       type: object
       properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/links'
+          nullable: true
+        data:
+          type: object
+          nullable: true
         errors:
           type: array
           items:
             $ref: '#/components/schemas/error'
           nullable: true
       required:
+        - links
+        - data
         - errors
     links:
       title: Links
@@ -2557,6 +2955,16 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/updateNotificationGroup'
+    addEndUserMapping:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/addEndUserMappingRequest'
+    replaceEndUserMapping:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/replaceEndUserMappingRequest'
   responses:
     provisioningOrderAddEndpoint:
       description: Accepted
@@ -2739,6 +3147,62 @@ components:
           examples:
             listOrderHistory:
               $ref: '#/components/examples/listOrderHistory'
+    listEndUserMappings:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/listEndUserMappings'
+          examples:
+            listEndUserMappings:
+              summary: List End User Mappings
+              value:
+                links:
+                  - href: >-
+                      /api/v2/accounts/9900000/emergency/end-user-mappings?limit=1000&offset=0
+                    rel: self
+                  - href: >-
+                      /api/v2/accounts/9900000/emergency/end-user-mappings?limit=1000
+                    rel: first
+                  - href: >-
+                      /api/v2/accounts/9900000/emergency/end-user-mappings?limit=1000&offset=4000
+                    rel: last
+                  - href: >-
+                      /api/v2/accounts/9900000/emergency/end-user-mappings?limit=1000&offset=1000
+                    rel: next
+                data:
+                  endUserMappings:
+                    - id: '4334343'
+                      accountId: '9900000'
+                      oktaUsername: jsmith
+                      email: jsmith@example.com
+                      firstName: Jane
+                      lastName: Smith
+                      aeuid: '+13035554321'
+                errors: []
+                page:
+                  pageSize: 1000
+                  totalElements: 5000
+                  totalPages: 5
+                  pageNumber: 0
+    getEndUserMapping:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/endUserMappingResponse'
+    addEndUserMapping:
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/endUserMappingResponse'
+    updateEndUserMapping:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/endUserMappingResponse'
     badRequestError:
       description: Bad Request
       content:
@@ -2878,6 +3342,61 @@ components:
       schema:
         type: integer
       description: Unique emergency notification group ID.
+    oktaUsername:
+      name: oktaUsername
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The Okta username identifying the end user mapping.
+      example: jsmith
+    oktaUsernameFilterParam:
+      name: oktaUsername
+      in: query
+      required: false
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/stringEqFilter'
+      description: Filter and/or sort by Okta username.
+    emailFilterParam:
+      name: email
+      in: query
+      required: false
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/emailContainsFilter'
+      description: Filter and/or sort by email address.
+    nameFilterParam:
+      name: name
+      in: query
+      required: false
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/nameContainsFilter'
+      description: >-
+        Filter and/or sort by name. `firstName` and `lastName` are stored
+        separately but are combined for filtering and sorting purposes.
+    aeuidFilterParam:
+      name: aeuid
+      in: query
+      required: false
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/stringEqFilter'
+      description: Filter and/or sort by aeuid.
+    idFilterParam:
+      name: id
+      in: query
+      required: false
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/stringEqFilter'
+      description: Filter and/or sort by id.
     orderType:
       name: orderType
       in: query
@@ -3323,6 +3842,8 @@ components:
     badRequestErrorExample:
       summary: An example of a generic Bad Request Error
       value:
+        links: []
+        data: null
         errors:
           - id: optional-error-id
             type: bad-request
@@ -3332,6 +3853,8 @@ components:
     unauthorizedErrorExample:
       summary: An example of a generic Unauthorized Error
       value:
+        links: []
+        data: null
         errors:
           - id: optional-error-id
             type: authentication-credentials
@@ -3341,6 +3864,8 @@ components:
     forbiddenErrorExample:
       summary: An example of a generic Unauthorized Error
       value:
+        links: []
+        data: null
         errors:
           - id: optional-error-id
             type: resource-permissions
@@ -3349,6 +3874,8 @@ components:
     notFoundErrorExample:
       summary: An example of a generic Not Found Error
       value:
+        links: []
+        data: null
         errors:
           - id: optional-error-id
             type: resource-not-found
@@ -3357,6 +3884,8 @@ components:
     notAllowedErrorExample:
       summary: An example of a generic Not Allowed Error
       value:
+        links: []
+        data: null
         errors:
           - id: optional-error-id
             type: http-method-not-supported
@@ -3367,6 +3896,8 @@ components:
     tooManyRequestsErrorExample:
       summary: An example of a generic Too Many Requests Error
       value:
+        links: []
+        data: null
         errors:
           - id: optional-error-id
             type: rate-limiting
@@ -3377,6 +3908,8 @@ components:
     internalServerErrorExample:
       summary: An example of a generic Internal Server Error
       value:
+        links: []
+        data: null
         errors:
           - id: optional-error-id
             type: internal-server-error
@@ -3413,3 +3946,15 @@ tags:
   - name: Notifications
   - name: Notification Groups
   - name: Orders
+  - name: End User Mappings
+    description: >-
+      An End User Mapping associates a Customer's end user — identified by the
+      Okta username they use to log into Bandwidth's self-service portal — with
+      a specific endpoint on the account. It's the permission record that lets
+      an individual end user securely manage only their own assigned endpoint
+      (most commonly, updating that endpoint's Location so calls route correctly
+      for dynamic 911 routing) without needing broader account-level access.
+      Today this supports BYOC (Bring Your Own Carrier) integrations, such as
+      Salesforce Agentforce call center agents placing 911 calls with Bandwidth
+      as the carrier; the same mapping will support reseller use cases as
+      they're added.
