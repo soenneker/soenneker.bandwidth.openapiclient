@@ -51,5 +51,101 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         #pragma warning disable CS1591
         PasswordReset,
         #pragma warning restore CS1591
+        [EnumMember(Value = "PORTAL_ACCESS_SUCCESS")]
+        #pragma warning disable CS1591
+        PortalAccessSuccess,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "PORTAL_ACCESS_FAILURE")]
+        #pragma warning disable CS1591
+        PortalAccessFailure,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "SESSION_START")]
+        #pragma warning disable CS1591
+        SessionStart,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "SESSION_END")]
+        #pragma warning disable CS1591
+        SessionEnd,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "MFA_CHALLENGE_SUCCESS")]
+        #pragma warning disable CS1591
+        MfaChallengeSuccess,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "MFA_CHALLENGE_FAILURE")]
+        #pragma warning disable CS1591
+        MfaChallengeFailure,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "IDP_AUTHENTICATION")]
+        #pragma warning disable CS1591
+        IdpAuthentication,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "POLICY_DECISION_ALLOW")]
+        #pragma warning disable CS1591
+        PolicyDecisionAllow,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "POLICY_DECISION_CHALLENGE")]
+        #pragma warning disable CS1591
+        PolicyDecisionChallenge,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "POLICY_DECISION_DENY")]
+        #pragma warning disable CS1591
+        PolicyDecisionDeny,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "SESSION_REVOKED")]
+        #pragma warning disable CS1591
+        SessionRevoked,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "SESSION_CONTEXT_CHANGE")]
+        #pragma warning disable CS1591
+        SessionContextChange,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "THREAT_BLOCKED")]
+        #pragma warning disable CS1591
+        ThreatBlocked,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "THREAT_DETECTED")]
+        #pragma warning disable CS1591
+        ThreatDetected,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "ACCOUNT_LOCKED")]
+        #pragma warning disable CS1591
+        AccountLocked,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "ACCOUNT_UNLOCKED")]
+        #pragma warning disable CS1591
+        AccountUnlocked,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "RISK_DETECTED")]
+        #pragma warning disable CS1591
+        RiskDetected,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "RISK_CHANGED")]
+        #pragma warning disable CS1591
+        RiskChanged,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "BREACHED_CREDENTIAL_DETECTED")]
+        #pragma warning disable CS1591
+        BreachedCredentialDetected,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "CLIENT_ROAMING_DETECTED")]
+        #pragma warning disable CS1591
+        ClientRoamingDetected,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "OAUTH_AUTHORIZE")]
+        #pragma warning disable CS1591
+        OAuthAuthorize,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "OAUTH_TOKEN_GRANT")]
+        #pragma warning disable CS1591
+        OAuthTokenGrant,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "OAUTH_TOKEN_REVOKE")]
+        #pragma warning disable CS1591
+        OAuthTokenRevoke,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "OAUTH_TOKEN_REUSE_DETECTED")]
+        #pragma warning disable CS1591
+        OAuthTokenReuseDetected,
+        #pragma warning restore CS1591
     }
 }

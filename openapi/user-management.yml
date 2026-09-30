@@ -343,6 +343,136 @@ paths:
           $ref: '#/components/responses/genericTooManyRequestsResponse'
         '500':
           $ref: '#/components/responses/genericRuntimeExceptionResponse'
+  /users/{userId}/audit-log-reports:
+    post:
+      tags:
+        - Audit Logs
+      summary: Create User Audit Log Report
+      description: >-
+        Starts an asynchronous job to generate a report of audit log events for
+        the specified user. Returns `202 Accepted` immediately with the new
+        report's `reportId` and `PENDING` status.
+
+
+        Poll `GET /users/{userId}/audit-log-reports/{reportId}` to check status,
+        then `GET /users/{userId}/audit-log-reports/{reportId}/file` to download
+        the report once its status is `COMPLETE`.
+      operationId: createUserAuditLogReport
+      parameters:
+        - $ref: '#/components/parameters/userId'
+      requestBody:
+        $ref: '#/components/requestBodies/createAuditLogReportRequest'
+      responses:
+        '202':
+          $ref: '#/components/responses/createAuditLogReportResponse'
+        '400':
+          $ref: '#/components/responses/genericBadRequestResponse'
+        '401':
+          $ref: '#/components/responses/genericUnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/genericForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/genericNotFoundResponse'
+        '405':
+          $ref: '#/components/responses/genericMethodNotAllowedResponse'
+        '415':
+          $ref: '#/components/responses/genericUnsupportedMediaTypeResponse'
+        '429':
+          $ref: '#/components/responses/genericTooManyRequestsResponse'
+        '500':
+          $ref: '#/components/responses/genericRuntimeExceptionResponse'
+    get:
+      tags:
+        - Audit Logs
+      summary: List User Audit Log Reports
+      description: >-
+        Returns all audit log report jobs for the specified user, including
+        pending and completed reports.
+      operationId: listUserAuditLogReports
+      parameters:
+        - $ref: '#/components/parameters/userId'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/afterCursor'
+        - $ref: '#/components/parameters/reportStatus'
+        - $ref: '#/components/parameters/reportCreatedBy'
+        - $ref: '#/components/parameters/reportCreationDate'
+      responses:
+        '200':
+          $ref: '#/components/responses/listUserAuditLogReportsResponse'
+        '400':
+          $ref: '#/components/responses/genericBadRequestResponse'
+        '401':
+          $ref: '#/components/responses/genericUnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/genericForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/genericNotFoundResponse'
+        '405':
+          $ref: '#/components/responses/genericMethodNotAllowedResponse'
+        '429':
+          $ref: '#/components/responses/genericTooManyRequestsResponse'
+        '500':
+          $ref: '#/components/responses/genericRuntimeExceptionResponse'
+  /users/{userId}/audit-log-reports/{reportId}:
+    get:
+      tags:
+        - Audit Logs
+      summary: Get User Audit Log Report
+      description: >-
+        Returns the status of an audit log report job. When complete a
+        `download` link will be provided.
+      operationId: getUserAuditLogReport
+      parameters:
+        - $ref: '#/components/parameters/userId'
+        - $ref: '#/components/parameters/reportId'
+      responses:
+        '200':
+          $ref: '#/components/responses/getUserAuditLogReportResponse'
+        '400':
+          $ref: '#/components/responses/genericBadRequestResponse'
+        '401':
+          $ref: '#/components/responses/genericUnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/genericForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/genericNotFoundResponse'
+        '405':
+          $ref: '#/components/responses/genericMethodNotAllowedResponse'
+        '429':
+          $ref: '#/components/responses/genericTooManyRequestsResponse'
+        '500':
+          $ref: '#/components/responses/genericRuntimeExceptionResponse'
+  /users/{userId}/audit-log-reports/{reportId}/file:
+    get:
+      tags:
+        - Audit Logs
+      summary: Download User Audit Log Report
+      description: >-
+        Downloads a completed audit log report as newline-delimited JSON. A
+        `409` is returned if the report is not yet `COMPLETE`.
+      operationId: getUserAuditLogReportFile
+      parameters:
+        - $ref: '#/components/parameters/userId'
+        - $ref: '#/components/parameters/reportId'
+      responses:
+        '200':
+          $ref: '#/components/responses/downloadUserAuditLogReportResponse'
+        '400':
+          $ref: '#/components/responses/genericBadRequestResponse'
+        '401':
+          $ref: '#/components/responses/genericUnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/genericForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/genericNotFoundResponse'
+        '405':
+          $ref: '#/components/responses/genericMethodNotAllowedResponse'
+        '409':
+          $ref: '#/components/responses/genericConflictResponse'
+        '429':
+          $ref: '#/components/responses/genericTooManyRequestsResponse'
+        '500':
+          $ref: '#/components/responses/genericRuntimeExceptionResponse'
   /roles:
     get:
       tags:
@@ -395,6 +525,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/activateUserMfaFactorRequest'
+    createAuditLogReportRequest:
+      description: Create user audit log report request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/createAuditLogReportRequest'
+          example:
+            occurredAt:
+              gte: '2025-01-01T00:00:00Z'
+              lte: '2025-06-01T00:00:00Z'
+            eventType:
+              eq: USER_ROLES_UPDATE,MFA_ENROLL
   responses:
     listUsersResponse:
       description: OK
@@ -507,6 +649,45 @@ components:
           examples:
             listUserAuditLogsResponseExample:
               $ref: '#/components/examples/listUserAuditLogsResponseExample'
+    createAuditLogReportResponse:
+      description: Accepted
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/auditLogReportResponse'
+          examples:
+            createAuditLogReportResponseExample:
+              $ref: '#/components/examples/createAuditLogReportResponseExample'
+    listUserAuditLogReportsResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/listUserAuditLogReportsResponse'
+          examples:
+            listUserAuditLogReportsResponseExample:
+              $ref: '#/components/examples/listUserAuditLogReportsResponseExample'
+    getUserAuditLogReportResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/auditLogReportResponse'
+          examples:
+            getUserAuditLogReportResponseExample:
+              $ref: '#/components/examples/getUserAuditLogReportResponseExample'
+    downloadUserAuditLogReportResponse:
+      description: >-
+        OK. A newline-delimited JSON stream of audit log events, one
+        auditLogEvent object per line.
+      content:
+        application/x-ndjson:
+          schema:
+            type: string
+            format: binary
+            description: >-
+              Newline-delimited JSON stream of audit log events, one
+              auditLogEvent object per line.
     genericBadRequestResponse:
       description: Bad Request
       content:
@@ -1221,6 +1402,30 @@ components:
         - MFA_UNENROLL
         - MFA_ACTIVATE
         - PASSWORD_RESET
+        - PORTAL_ACCESS_SUCCESS
+        - PORTAL_ACCESS_FAILURE
+        - SESSION_START
+        - SESSION_END
+        - MFA_CHALLENGE_SUCCESS
+        - MFA_CHALLENGE_FAILURE
+        - IDP_AUTHENTICATION
+        - POLICY_DECISION_ALLOW
+        - POLICY_DECISION_CHALLENGE
+        - POLICY_DECISION_DENY
+        - SESSION_REVOKED
+        - SESSION_CONTEXT_CHANGE
+        - THREAT_BLOCKED
+        - THREAT_DETECTED
+        - ACCOUNT_LOCKED
+        - ACCOUNT_UNLOCKED
+        - RISK_DETECTED
+        - RISK_CHANGED
+        - BREACHED_CREDENTIAL_DETECTED
+        - CLIENT_ROAMING_DETECTED
+        - OAUTH_AUTHORIZE
+        - OAUTH_TOKEN_GRANT
+        - OAUTH_TOKEN_REVOKE
+        - OAUTH_TOKEN_REUSE_DETECTED
       example: USER_CREATE
     listUserAuditLogsResponse:
       type: object
@@ -1257,6 +1462,133 @@ components:
             Comma-separated list of audit log event types to match. Multiple
             values use OR logic.
           example: USER_CREATE,USER_UPDATE
+    auditLogReport:
+      type: object
+      additionalProperties: false
+      required:
+        - reportId
+        - status
+        - createdBy
+        - creationDate
+      properties:
+        reportId:
+          type: string
+          format: uuid
+          description: Unique identifier for the audit log report
+          example: 845c8f5c-4923-4970-95dc-a0f081a47d3c
+        status:
+          $ref: '#/components/schemas/auditLogReportStatusEnum'
+        createdBy:
+          type: string
+          description: The principal that created this report (Username or Client ID)
+          example: adminUser
+        creationDate:
+          type: string
+          format: date-time
+          description: The date and time when the report job was created.
+          example: '2026-01-01T12:00:00Z'
+    auditLogReportStatusEnum:
+      type: string
+      description: The status of an audit log report generation job
+      enum:
+        - PENDING
+        - IN_PROGRESS
+        - COMPLETE
+        - ERROR
+      example: PENDING
+    auditLogReportResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - links
+        - data
+        - errors
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          example: []
+        data:
+          type: object
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/auditLogReport'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+          example: []
+    listUserAuditLogReportsResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - links
+        - data
+        - errors
+        - page
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          example: []
+        data:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/auditLogReport'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+          example: []
+        page:
+          $ref: '#/components/schemas/page'
+    createAuditLogReportRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        occurredAt:
+          type: object
+          nullable: true
+          description: >-
+            Filter the report to events within this time range. Defaults to the
+            full retention window if omitted.
+          additionalProperties: false
+          properties:
+            gte:
+              type: string
+              format: date-time
+              description: Greater than or equal to the specified date and time.
+            lte:
+              type: string
+              format: date-time
+              description: Less than or equal to the specified date and time.
+          example:
+            gte: '2025-01-01T00:00:00Z'
+            lte: '2025-06-01T00:00:00Z'
+        eventType:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/auditLogEventTypeQueryParam'
+          description: Filter the report to specific event types.
+    reportStatusQueryParam:
+      type: object
+      properties:
+        eq:
+          type: string
+          description: >-
+            Comma-separated list of statuses for OR matching. Example:
+            PENDING,IN_PROGRESS
+    reportCreatedByQueryParam:
+      type: object
+      properties:
+        eq:
+          type: string
+          description: >-
+            Comma-separated list of userIds to filter by. Multiple values use OR
+            logic. Example: adminUser,serviceAccount
     sort:
       type: string
       enum:
@@ -1405,6 +1737,15 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/mfaFactorId'
+    reportId:
+      in: path
+      name: reportId
+      description: Unique identifier of the audit log report
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: 845c8f5c-4923-4970-95dc-a0f081a47d3c
     afterCursor:
       name: afterCursor
       in: query
@@ -1554,6 +1895,35 @@ components:
       explode: true
       schema:
         $ref: '#/components/schemas/auditLogEventTypeQueryParam'
+    reportStatus:
+      name: status
+      in: query
+      required: false
+      description: Filter audit log reports by status.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/reportStatusQueryParam'
+    reportCreatedBy:
+      name: createdBy
+      in: query
+      required: false
+      description: >-
+        Filter audit log reports by the userId of the principal that created
+        them.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/reportCreatedByQueryParam'
+    reportCreationDate:
+      name: creationDate
+      in: query
+      required: false
+      description: Filter audit log reports by creation time.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/dateQueryParam'
   securitySchemes:
     Bearer:
       type: http
@@ -1716,6 +2086,59 @@ components:
           - id: httpVoice
             name: HTTP Voice Role
             description: This role gives you access to HTTP Voice resources
+        errors: []
+    createAuditLogReportResponseExample:
+      value:
+        links:
+          - href: >-
+              https://api.bandwidth.com/api/v1/users/testUser/audit-log-reports/845c8f5c-4923-4970-95dc-a0f081a47d3c
+            rel: self
+            method: GET
+        data:
+          reportId: 845c8f5c-4923-4970-95dc-a0f081a47d3c
+          status: PENDING
+          createdBy: adminUser
+          creationDate: '2026-01-01T12:00:00Z'
+        errors: []
+    listUserAuditLogReportsResponseExample:
+      value:
+        links:
+          - href: >-
+              https://api.bandwidth.com/api/v1/users/testUser/audit-log-reports?limit=100
+            rel: self
+            method: GET
+          - href: >-
+              https://api.bandwidth.com/api/v1/users/testUser/audit-log-reports?limit=100&afterCursor=845c8f5c-4923-4970-95dc-a0f081a47d3c
+            rel: next
+            method: GET
+        data:
+          - reportId: 845c8f5c-4923-4970-95dc-a0f081a47d3c
+            status: COMPLETE
+            createdBy: adminUser
+            creationDate: '2026-01-01T12:00:00Z'
+          - reportId: f1e2d3c4-b5a6-7890-cdef-012345678901
+            status: PENDING
+            createdBy: adminUser
+            creationDate: '2026-01-02T09:30:00Z'
+        errors: []
+        page:
+          pageSize: 2
+    getUserAuditLogReportResponseExample:
+      value:
+        links:
+          - href: >-
+              https://api.bandwidth.com/api/v1/users/testUser/audit-log-reports/845c8f5c-4923-4970-95dc-a0f081a47d3c
+            rel: self
+            method: GET
+          - href: >-
+              https://api.bandwidth.com/api/v1/users/testUser/audit-log-reports/845c8f5c-4923-4970-95dc-a0f081a47d3c/file
+            rel: download
+            method: GET
+        data:
+          reportId: 845c8f5c-4923-4970-95dc-a0f081a47d3c
+          status: COMPLETE
+          createdBy: adminUser
+          creationDate: '2026-01-01T12:00:00Z'
         errors: []
     genericBadRequestResponseExample:
       value:

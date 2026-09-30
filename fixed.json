@@ -39712,6 +39712,284 @@
         ]
       }
     },
+    "/user-management/users/{userId}/audit-log-reports": {
+      "post": {
+        "tags": [
+          "Audit Logs"
+        ],
+        "summary": "Create User Audit Log Report",
+        "description": "Starts an asynchronous job to generate a report of audit log events for the specified user. Returns \u0060202 Accepted\u0060 immediately with the new report\u0027s \u0060reportId\u0060 and \u0060PENDING\u0060 status.\n\nPoll \u0060GET /users/{userId}/audit-log-reports/{reportId}\u0060 to check status, then \u0060GET /users/{userId}/audit-log-reports/{reportId}/file\u0060 to download the report once its status is \u0060COMPLETE\u0060.",
+        "operationId": "UserManagementCreateUserAuditLogReport",
+        "parameters": [
+          {
+            "description": "Unique identifier of the user",
+            "$ref": "#/components/parameters/userId"
+          }
+        ],
+        "requestBody": {
+          "description": "Create user audit log report request body",
+          "$ref": "#/components/requestBodies/createAuditLogReportRequest"
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "$ref": "#/components/responses/createAuditLogReportResponse"
+          },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/genericBadRequestResponse"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "$ref": "#/components/responses/genericUnauthorizedResponse"
+          },
+          "403": {
+            "description": "Forbidden",
+            "$ref": "#/components/responses/genericForbiddenResponse"
+          },
+          "404": {
+            "description": "Not Found",
+            "$ref": "#/components/responses/genericNotFoundResponse"
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "$ref": "#/components/responses/genericMethodNotAllowedResponse"
+          },
+          "415": {
+            "description": "Unsupported Media Type",
+            "$ref": "#/components/responses/genericUnsupportedMediaTypeResponse"
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "$ref": "#/components/responses/genericTooManyRequestsResponse"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/genericRuntimeExceptionResponse"
+          }
+        },
+        "security": [
+          {
+            "user_management_Bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/v1"
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Audit Logs"
+        ],
+        "summary": "List User Audit Log Reports",
+        "description": "Returns all audit log report jobs for the specified user, including pending and completed reports.",
+        "operationId": "UserManagementListUserAuditLogReports",
+        "parameters": [
+          {
+            "description": "Unique identifier of the user",
+            "$ref": "#/components/parameters/userId"
+          },
+          {
+            "description": "The cursor to use for pagination. This is the value of the \u0060next\u0060 link from the previous response.",
+            "$ref": "#/components/parameters/user_management_afterCursor"
+          },
+          {
+            "description": "Filter audit log reports by the userId of the principal that created them.",
+            "$ref": "#/components/parameters/reportCreatedBy"
+          },
+          {
+            "description": "Filter audit log reports by creation time.",
+            "$ref": "#/components/parameters/reportCreationDate"
+          },
+          {
+            "description": "The maximum number of items to return. Defaults to 100.",
+            "$ref": "#/components/parameters/user_management_limit"
+          },
+          {
+            "description": "Filter audit log reports by status.",
+            "$ref": "#/components/parameters/reportStatus"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "$ref": "#/components/responses/listUserAuditLogReportsResponse"
+          },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/genericBadRequestResponse"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "$ref": "#/components/responses/genericUnauthorizedResponse"
+          },
+          "403": {
+            "description": "Forbidden",
+            "$ref": "#/components/responses/genericForbiddenResponse"
+          },
+          "404": {
+            "description": "Not Found",
+            "$ref": "#/components/responses/genericNotFoundResponse"
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "$ref": "#/components/responses/genericMethodNotAllowedResponse"
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "$ref": "#/components/responses/genericTooManyRequestsResponse"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/genericRuntimeExceptionResponse"
+          }
+        },
+        "security": [
+          {
+            "user_management_Bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/v1"
+          }
+        ]
+      }
+    },
+    "/user-management/users/{userId}/audit-log-reports/{reportId}": {
+      "get": {
+        "tags": [
+          "Audit Logs"
+        ],
+        "summary": "Get User Audit Log Report",
+        "description": "Returns the status of an audit log report job. When complete a \u0060download\u0060 link will be provided.",
+        "operationId": "UserManagementGetUserAuditLogReport",
+        "parameters": [
+          {
+            "description": "Unique identifier of the audit log report",
+            "$ref": "#/components/parameters/reportId"
+          },
+          {
+            "description": "Unique identifier of the user",
+            "$ref": "#/components/parameters/userId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "$ref": "#/components/responses/getUserAuditLogReportResponse"
+          },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/genericBadRequestResponse"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "$ref": "#/components/responses/genericUnauthorizedResponse"
+          },
+          "403": {
+            "description": "Forbidden",
+            "$ref": "#/components/responses/genericForbiddenResponse"
+          },
+          "404": {
+            "description": "Not Found",
+            "$ref": "#/components/responses/genericNotFoundResponse"
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "$ref": "#/components/responses/genericMethodNotAllowedResponse"
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "$ref": "#/components/responses/genericTooManyRequestsResponse"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/genericRuntimeExceptionResponse"
+          }
+        },
+        "security": [
+          {
+            "user_management_Bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/v1"
+          }
+        ]
+      }
+    },
+    "/user-management/users/{userId}/audit-log-reports/{reportId}/file": {
+      "get": {
+        "tags": [
+          "Audit Logs"
+        ],
+        "summary": "Download User Audit Log Report",
+        "description": "Downloads a completed audit log report as newline-delimited JSON. A \u0060409\u0060 is returned if the report is not yet \u0060COMPLETE\u0060.",
+        "operationId": "UserManagementGetUserAuditLogReportFile",
+        "parameters": [
+          {
+            "description": "Unique identifier of the audit log report",
+            "$ref": "#/components/parameters/reportId"
+          },
+          {
+            "description": "Unique identifier of the user",
+            "$ref": "#/components/parameters/userId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. A newline-delimited JSON stream of audit log events, one auditLogEvent object per line.",
+            "$ref": "#/components/responses/downloadUserAuditLogReportResponse"
+          },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/genericBadRequestResponse"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "$ref": "#/components/responses/genericUnauthorizedResponse"
+          },
+          "403": {
+            "description": "Forbidden",
+            "$ref": "#/components/responses/genericForbiddenResponse"
+          },
+          "404": {
+            "description": "Not Found",
+            "$ref": "#/components/responses/genericNotFoundResponse"
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "$ref": "#/components/responses/genericMethodNotAllowedResponse"
+          },
+          "409": {
+            "description": "Conflict",
+            "$ref": "#/components/responses/genericConflictResponse"
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "$ref": "#/components/responses/genericTooManyRequestsResponse"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/genericRuntimeExceptionResponse"
+          }
+        },
+        "security": [
+          {
+            "user_management_Bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/v1"
+          }
+        ]
+      }
+    },
     "/user-management/roles": {
       "get": {
         "tags": [
@@ -130708,7 +130986,31 @@
           "MFA_ENROLL",
           "MFA_UNENROLL",
           "MFA_ACTIVATE",
-          "PASSWORD_RESET"
+          "PASSWORD_RESET",
+          "PORTAL_ACCESS_SUCCESS",
+          "PORTAL_ACCESS_FAILURE",
+          "SESSION_START",
+          "SESSION_END",
+          "MFA_CHALLENGE_SUCCESS",
+          "MFA_CHALLENGE_FAILURE",
+          "IDP_AUTHENTICATION",
+          "POLICY_DECISION_ALLOW",
+          "POLICY_DECISION_CHALLENGE",
+          "POLICY_DECISION_DENY",
+          "SESSION_REVOKED",
+          "SESSION_CONTEXT_CHANGE",
+          "THREAT_BLOCKED",
+          "THREAT_DETECTED",
+          "ACCOUNT_LOCKED",
+          "ACCOUNT_UNLOCKED",
+          "RISK_DETECTED",
+          "RISK_CHANGED",
+          "BREACHED_CREDENTIAL_DETECTED",
+          "CLIENT_ROAMING_DETECTED",
+          "OAUTH_AUTHORIZE",
+          "OAUTH_TOKEN_GRANT",
+          "OAUTH_TOKEN_REVOKE",
+          "OAUTH_TOKEN_REUSE_DETECTED"
         ],
         "type": "string",
         "additionalProperties": false,
@@ -130761,6 +131063,102 @@
             {
               "value": "PASSWORD_RESET",
               "name": "PasswordReset"
+            },
+            {
+              "value": "PORTAL_ACCESS_SUCCESS",
+              "name": "PortalAccessSuccess"
+            },
+            {
+              "value": "PORTAL_ACCESS_FAILURE",
+              "name": "PortalAccessFailure"
+            },
+            {
+              "value": "SESSION_START",
+              "name": "SessionStart"
+            },
+            {
+              "value": "SESSION_END",
+              "name": "SessionEnd"
+            },
+            {
+              "value": "MFA_CHALLENGE_SUCCESS",
+              "name": "MfaChallengeSuccess"
+            },
+            {
+              "value": "MFA_CHALLENGE_FAILURE",
+              "name": "MfaChallengeFailure"
+            },
+            {
+              "value": "IDP_AUTHENTICATION",
+              "name": "IdpAuthentication"
+            },
+            {
+              "value": "POLICY_DECISION_ALLOW",
+              "name": "PolicyDecisionAllow"
+            },
+            {
+              "value": "POLICY_DECISION_CHALLENGE",
+              "name": "PolicyDecisionChallenge"
+            },
+            {
+              "value": "POLICY_DECISION_DENY",
+              "name": "PolicyDecisionDeny"
+            },
+            {
+              "value": "SESSION_REVOKED",
+              "name": "SessionRevoked"
+            },
+            {
+              "value": "SESSION_CONTEXT_CHANGE",
+              "name": "SessionContextChange"
+            },
+            {
+              "value": "THREAT_BLOCKED",
+              "name": "ThreatBlocked"
+            },
+            {
+              "value": "THREAT_DETECTED",
+              "name": "ThreatDetected"
+            },
+            {
+              "value": "ACCOUNT_LOCKED",
+              "name": "AccountLocked"
+            },
+            {
+              "value": "ACCOUNT_UNLOCKED",
+              "name": "AccountUnlocked"
+            },
+            {
+              "value": "RISK_DETECTED",
+              "name": "RiskDetected"
+            },
+            {
+              "value": "RISK_CHANGED",
+              "name": "RiskChanged"
+            },
+            {
+              "value": "BREACHED_CREDENTIAL_DETECTED",
+              "name": "BreachedCredentialDetected"
+            },
+            {
+              "value": "CLIENT_ROAMING_DETECTED",
+              "name": "ClientRoamingDetected"
+            },
+            {
+              "value": "OAUTH_AUTHORIZE",
+              "name": "OAuthAuthorize"
+            },
+            {
+              "value": "OAUTH_TOKEN_GRANT",
+              "name": "OAuthTokenGrant"
+            },
+            {
+              "value": "OAUTH_TOKEN_REVOKE",
+              "name": "OAuthTokenRevoke"
+            },
+            {
+              "value": "OAUTH_TOKEN_REUSE_DETECTED",
+              "name": "OAuthTokenReuseDetected"
             }
           ]
         }
@@ -130812,6 +131210,179 @@
             "type": "string",
             "description": "Comma-separated list of audit log event types to match. Multiple values use OR logic.",
             "example": "USER_CREATE,USER_UPDATE"
+          }
+        }
+      },
+      "AuditLogReport": {
+        "required": [
+          "reportId",
+          "status",
+          "createdBy",
+          "creationDate"
+        ],
+        "type": "object",
+        "properties": {
+          "reportId": {
+            "type": "string",
+            "description": "Unique identifier for the audit log report",
+            "format": "uuid",
+            "example": "845c8f5c-4923-4970-95dc-a0f081a47d3c"
+          },
+          "status": {
+            "description": "The status of an audit log report generation job",
+            "$ref": "#/components/schemas/AuditLogReportStatusEnum"
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "The principal that created this report (Username or Client ID)",
+            "example": "adminUser"
+          },
+          "creationDate": {
+            "type": "string",
+            "description": "The date and time when the report job was created.",
+            "format": "date-time",
+            "example": "2026-01-01T12:00:00Z"
+          }
+        },
+        "additionalProperties": {
+          "$ref": "#/components/schemas/AuditLogReportAdditionalProperties"
+        }
+      },
+      "AuditLogReportStatusEnum": {
+        "enum": [
+          "PENDING",
+          "IN_PROGRESS",
+          "COMPLETE",
+          "ERROR"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The status of an audit log report generation job",
+        "example": "PENDING",
+        "x-ms-enum": {
+          "name": "AuditLogReportStatusEnum",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "PENDING",
+              "name": "Pending"
+            },
+            {
+              "value": "IN_PROGRESS",
+              "name": "InProgress"
+            },
+            {
+              "value": "COMPLETE",
+              "name": "Complete"
+            },
+            {
+              "value": "ERROR",
+              "name": "Error"
+            }
+          ]
+        }
+      },
+      "AuditLogReportResponse": {
+        "required": [
+          "links",
+          "data",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserManagementLink"
+            },
+            "example": []
+          },
+          "data": {
+            "$ref": "#/components/schemas/AuditLogReportResponseData"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserManagementError"
+            },
+            "example": []
+          }
+        },
+        "additionalProperties": {
+          "$ref": "#/components/schemas/AuditLogReportResponseAdditionalProperties"
+        }
+      },
+      "ListUserAuditLogReportsResponse": {
+        "required": [
+          "links",
+          "data",
+          "errors",
+          "page"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserManagementLink"
+            },
+            "example": []
+          },
+          "data": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/AuditLogReport"
+            }
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserManagementError"
+            },
+            "example": []
+          },
+          "page": {
+            "$ref": "#/components/schemas/UserManagementPage"
+          }
+        },
+        "additionalProperties": {
+          "$ref": "#/components/schemas/ListUserAuditLogReportsResponseAdditionalProperties"
+        }
+      },
+      "CreateAuditLogReportRequest": {
+        "type": "object",
+        "properties": {
+          "occurredAt": {
+            "description": "Filter the report to events within this time range. Defaults to the full retention window if omitted.",
+            "$ref": "#/components/schemas/CreateAuditLogReportRequestOccurredAt"
+          },
+          "eventType": {
+            "description": "Filter the report to specific event types.",
+            "$ref": "#/components/schemas/CreateAuditLogReportRequestEventType"
+          }
+        },
+        "additionalProperties": {
+          "$ref": "#/components/schemas/CreateAuditLogReportRequestAdditionalProperties"
+        }
+      },
+      "ReportStatusQueryParam": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "Comma-separated list of statuses for OR matching. Example: PENDING,IN_PROGRESS"
+          }
+        }
+      },
+      "ReportCreatedByQueryParam": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "Comma-separated list of userIds to filter by. Multiple values use OR logic. Example: adminUser,serviceAccount"
           }
         }
       },
@@ -131065,6 +131636,54 @@
         "description": "Excel file containing user data",
         "format": "binary"
       },
+      "DownloadUserAuditLogReportResponseResponseXNdjson": {
+        "type": "string",
+        "description": "Newline-delimited JSON stream of audit log events, one auditLogEvent object per line.",
+        "format": "binary"
+      },
+      "AuditLogReportResponseData": {
+        "required": [
+          "reportId",
+          "status",
+          "createdBy",
+          "creationDate"
+        ],
+        "type": "object",
+        "properties": {
+          "reportId": {
+            "type": "string",
+            "description": "Unique identifier for the audit log report",
+            "format": "uuid",
+            "example": "845c8f5c-4923-4970-95dc-a0f081a47d3c"
+          },
+          "status": {
+            "description": "The status of an audit log report generation job",
+            "$ref": "#/components/schemas/AuditLogReportStatusEnum"
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "The principal that created this report (Username or Client ID)",
+            "example": "adminUser"
+          },
+          "creationDate": {
+            "type": "string",
+            "description": "The date and time when the report job was created.",
+            "format": "date-time",
+            "example": "2026-01-01T12:00:00Z"
+          }
+        }
+      },
+      "CreateAuditLogReportRequestEventType": {
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "Comma-separated list of audit log event types to match. Multiple values use OR logic.",
+            "example": "USER_CREATE,USER_UPDATE"
+          }
+        },
+        "description": "Filter the report to specific event types."
+      },
       "EnrollUserMfaFactorResponseData": {
         "required": [
           "id",
@@ -131149,6 +131768,32 @@
         },
         "description": "Event-specific metadata such as before and after state for update events. Content varies by event type."
       },
+      "CreateAuditLogReportRequestOccurredAt": {
+        "type": [
+          "null",
+          "object"
+        ],
+        "properties": {
+          "gte": {
+            "type": "string",
+            "description": "Greater than or equal to the specified date and time.",
+            "format": "date-time"
+          },
+          "lte": {
+            "type": "string",
+            "description": "Less than or equal to the specified date and time.",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": {
+          "$ref": "#/components/schemas/CreateAuditLogReportRequestOccurredAtAdditionalProperties"
+        },
+        "description": "Filter the report to events within this time range. Defaults to the full retention window if omitted.",
+        "example": {
+          "gte": "2025-01-01T00:00:00Z",
+          "lte": "2025-06-01T00:00:00Z"
+        }
+      },
       "UserManagementExamplePayload": {
         "type": "object",
         "description": "Placeholder schema for path example refs"
@@ -131166,6 +131811,11 @@
       "ListUsersResponseResponseOpenxmlformatsOfficedocumentSpreadsheetmlSheetContent": {
         "type": "string",
         "description": "Excel file containing user data",
+        "format": "binary"
+      },
+      "DownloadUserAuditLogReportResponseResponseXNdjsonContent": {
+        "type": "string",
+        "description": "Newline-delimited JSON stream of audit log events, one auditLogEvent object per line.",
         "format": "binary"
       },
       "UserManagementErrorResponseDataProperty": {
@@ -142056,6 +142706,11 @@
         "description": "Excel file containing user data",
         "format": "binary"
       },
+      "DownloadUserAuditLogReportResponseResponseXNdjsonContent2": {
+        "type": "string",
+        "description": "Newline-delimited JSON stream of audit log events, one auditLogEvent object per line.",
+        "format": "binary"
+      },
       "GetDebugLogExportFileResponseResponseGzipContent2": {
         "type": "string",
         "format": "binary"
@@ -143612,6 +144267,11 @@
         "description": "Excel file containing user data",
         "format": "binary"
       },
+      "DownloadUserAuditLogReportResponseResponseXNdjsonContent3": {
+        "type": "string",
+        "description": "Newline-delimited JSON stream of audit log events, one auditLogEvent object per line.",
+        "format": "binary"
+      },
       "GetDebugLogExportFileResponseResponseGzipContent3": {
         "type": "string",
         "format": "binary"
@@ -144601,6 +145261,22 @@
         "type": "object",
         "not": {}
       },
+      "AuditLogReportAdditionalProperties": {
+        "type": "object",
+        "not": {}
+      },
+      "AuditLogReportResponseAdditionalProperties": {
+        "type": "object",
+        "not": {}
+      },
+      "ListUserAuditLogReportsResponseAdditionalProperties": {
+        "type": "object",
+        "not": {}
+      },
+      "CreateAuditLogReportRequestAdditionalProperties": {
+        "type": "object",
+        "not": {}
+      },
       "EnrollUserMfaFactorResponseDataAdditionalProperties": {
         "type": "object",
         "not": {}
@@ -144610,6 +145286,10 @@
         "not": {}
       },
       "UserManagementErrorMetaAdditionalProperties": {
+        "type": "object",
+        "not": {}
+      },
+      "CreateAuditLogReportRequestOccurredAtAdditionalProperties": {
         "type": "object",
         "not": {}
       },
@@ -160070,6 +160750,61 @@
           }
         }
       },
+      "createAuditLogReportResponse": {
+        "description": "Accepted",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AuditLogReportResponse"
+            },
+            "examples": {
+              "createAuditLogReportResponseExample": {
+                "$ref": "#/components/examples/createAuditLogReportResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "listUserAuditLogReportsResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListUserAuditLogReportsResponse"
+            },
+            "examples": {
+              "listUserAuditLogReportsResponseExample": {
+                "$ref": "#/components/examples/listUserAuditLogReportsResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "getUserAuditLogReportResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AuditLogReportResponse"
+            },
+            "examples": {
+              "getUserAuditLogReportResponseExample": {
+                "$ref": "#/components/examples/getUserAuditLogReportResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "downloadUserAuditLogReportResponse": {
+        "description": "OK. A newline-delimited JSON stream of audit log events, one auditLogEvent object per line.",
+        "content": {
+          "application/x-ndjson": {
+            "schema": {
+              "$ref": "#/components/schemas/DownloadUserAuditLogReportResponseResponseXNdjsonContent3"
+            }
+          }
+        }
+      },
       "genericBadRequestResponse": {
         "description": "Bad Request",
         "content": {
@@ -168558,6 +169293,17 @@
           "description": "The unique identifier of the MFA Factor"
         }
       },
+      "reportId": {
+        "name": "reportId",
+        "in": "path",
+        "description": "Unique identifier of the audit log report",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "uuid",
+          "example": "845c8f5c-4923-4970-95dc-a0f081a47d3c"
+        }
+      },
       "user_management_afterCursor": {
         "name": "afterCursor",
         "in": "query",
@@ -168719,6 +169465,36 @@
         "explode": true,
         "schema": {
           "$ref": "#/components/schemas/AuditLogEventTypeQueryParam"
+        }
+      },
+      "reportStatus": {
+        "name": "status",
+        "in": "query",
+        "description": "Filter audit log reports by status.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/ReportStatusQueryParam"
+        }
+      },
+      "reportCreatedBy": {
+        "name": "createdBy",
+        "in": "query",
+        "description": "Filter audit log reports by the userId of the principal that created them.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/ReportCreatedByQueryParam"
+        }
+      },
+      "reportCreationDate": {
+        "name": "creationDate",
+        "in": "query",
+        "description": "Filter audit log reports by creation time.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/UserManagementDateQueryParam"
         }
       },
       "voice_application_management_accountId": {
@@ -182578,6 +183354,81 @@
           "errors": []
         }
       },
+      "createAuditLogReportResponseExample": {
+        "value": {
+          "links": [
+            {
+              "href": "https://api.bandwidth.com/api/v1/users/testUser/audit-log-reports/845c8f5c-4923-4970-95dc-a0f081a47d3c",
+              "rel": "self",
+              "method": "GET"
+            }
+          ],
+          "data": {
+            "reportId": "845c8f5c-4923-4970-95dc-a0f081a47d3c",
+            "status": "PENDING",
+            "createdBy": "adminUser",
+            "creationDate": "2026-01-01T12:00:00Z"
+          },
+          "errors": []
+        }
+      },
+      "listUserAuditLogReportsResponseExample": {
+        "value": {
+          "links": [
+            {
+              "href": "https://api.bandwidth.com/api/v1/users/testUser/audit-log-reports?limit=100",
+              "rel": "self",
+              "method": "GET"
+            },
+            {
+              "href": "https://api.bandwidth.com/api/v1/users/testUser/audit-log-reports?limit=100\u0026afterCursor=845c8f5c-4923-4970-95dc-a0f081a47d3c",
+              "rel": "next",
+              "method": "GET"
+            }
+          ],
+          "data": [
+            {
+              "reportId": "845c8f5c-4923-4970-95dc-a0f081a47d3c",
+              "status": "COMPLETE",
+              "createdBy": "adminUser",
+              "creationDate": "2026-01-01T12:00:00Z"
+            },
+            {
+              "reportId": "f1e2d3c4-b5a6-7890-cdef-012345678901",
+              "status": "PENDING",
+              "createdBy": "adminUser",
+              "creationDate": "2026-01-02T09:30:00Z"
+            }
+          ],
+          "errors": [],
+          "page": {
+            "pageSize": 2
+          }
+        }
+      },
+      "getUserAuditLogReportResponseExample": {
+        "value": {
+          "links": [
+            {
+              "href": "https://api.bandwidth.com/api/v1/users/testUser/audit-log-reports/845c8f5c-4923-4970-95dc-a0f081a47d3c",
+              "rel": "self",
+              "method": "GET"
+            },
+            {
+              "href": "https://api.bandwidth.com/api/v1/users/testUser/audit-log-reports/845c8f5c-4923-4970-95dc-a0f081a47d3c/file",
+              "rel": "download",
+              "method": "GET"
+            }
+          ],
+          "data": {
+            "reportId": "845c8f5c-4923-4970-95dc-a0f081a47d3c",
+            "status": "COMPLETE",
+            "createdBy": "adminUser",
+            "creationDate": "2026-01-01T12:00:00Z"
+          },
+          "errors": []
+        }
+      },
       "genericBadRequestResponseExample": {
         "value": {
           "links": [],
@@ -188640,6 +189491,25 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/ActivateUserMfaFactorRequest"
+            }
+          }
+        }
+      },
+      "createAuditLogReportRequest": {
+        "description": "Create user audit log report request body",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateAuditLogReportRequest"
+            },
+            "example": {
+              "occurredAt": {
+                "gte": "2025-01-01T00:00:00Z",
+                "lte": "2025-06-01T00:00:00Z"
+              },
+              "eventType": {
+                "eq": "USER_ROLES_UPDATE,MFA_ENROLL"
+              }
             }
           }
         }
