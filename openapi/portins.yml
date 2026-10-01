@@ -431,6 +431,51 @@ paths:
           $ref: '#/components/responses/errorResponse429'
         5XX:
           $ref: '#/components/responses/errorResponse500'
+  /accounts/{accountId}/portins/{orderId}/availableFocDates:
+    get:
+      tags:
+        - Porting
+      description: >-
+        Retrieves the set of valid FOC (Firm Order Commitment) dates that would
+        currently pass
+
+        FOC date validation for this port-in order, expressed as bookable
+        date/time windows.
+
+        These are the dates that will be accepted if submitted as the order's
+        requestedFocDate,
+
+        rather than validating after the fact. Both bounds are driven by the
+        order's port type:
+
+        the lower bound is the earliest available FOC date, and the upper bound
+        is the latest
+
+        date that port type allows.
+      operationId: listPortinAvailableFocDates
+      summary: Retrieve available FOC dates for a port-in order
+      parameters:
+        - $ref: '#/components/parameters/AccountIdPathParam'
+        - $ref: '#/components/parameters/OrderIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/availableFocDatesResponse200'
+        '400':
+          $ref: '#/components/responses/availableFocDatesResponse400'
+        '401':
+          $ref: '#/components/responses/errorResponse401'
+        '403':
+          $ref: '#/components/responses/errorResponse403'
+        '404':
+          $ref: '#/components/responses/availableFocDatesResponse404'
+        '405':
+          $ref: '#/components/responses/errorResponse405'
+        '409':
+          $ref: '#/components/responses/availableFocDatesResponse409'
+        '429':
+          $ref: '#/components/responses/errorResponse429'
+        5XX:
+          $ref: '#/components/responses/errorResponse500'
   /accounts/{accountId}/sites/{siteId}/portins:
     get:
       tags:
@@ -1118,6 +1163,61 @@ components:
           examples:
             example:
               $ref: '#/components/examples/listPortinTns404XmlExample'
+    availableFocDatesResponse200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/availableFocDatesResponseJson'
+    availableFocDatesResponse400:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorEnvelopeJson'
+          examples:
+            example:
+              value:
+                data: null
+                errors:
+                  - type: bad-request
+                    description: >-
+                      The request could not be understood or was missing
+                      required parameters.
+                    code: 50400
+                links: []
+    availableFocDatesResponse404:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorEnvelopeJson'
+          examples:
+            example:
+              value:
+                data: null
+                errors:
+                  - type: resource-not-found
+                    description: The resource specified cannot be found.
+                    code: 50420
+                links: []
+    availableFocDatesResponse409:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorEnvelopeJson'
+          examples:
+            example:
+              value:
+                data: null
+                errors:
+                  - type: order-not-eligible-for-foc-date-selection
+                    description: >-
+                      The order is not in a state that allows selection of a FOC
+                      date.
+                    code: 50900
+                links: []
     portinStatisticsResponse200:
       description: OK
       content:
@@ -1584,6 +1684,128 @@ components:
             maxLength: 12
           example:
             - '+19192809870'
+    link:
+      title: Link
+      description: The URI link details to self or a related resource with the relation.
+      type: object
+      properties:
+        href:
+          type: string
+          description: URI of the link.
+          example: /resource/uri
+        rel:
+          type: string
+          description: Specifies the relationship between this link and the resource.
+          example: self
+        method:
+          type: string
+          description: HTTP method to be used.
+          example: GET
+      required:
+        - href
+        - rel
+        - method
+    error:
+      title: Error
+      type: object
+      properties:
+        type:
+          type: string
+          description: >-
+            A short, human-readable summary of the problem that SHOULD NOT
+            change from occurrence to occurrence of the problem.
+          example: resource-not-found
+        description:
+          type: string
+          description: >-
+            A human-readable explanation specific to this occurrence of the
+            problem.
+        code:
+          type: integer
+          description: An application-specific error code.
+      required:
+        - type
+        - code
+        - description
+    errorEnvelopeJson:
+      type: object
+      description: Generic data/errors/links envelope for an error response.
+      properties:
+        data:
+          type: object
+          nullable: true
+          example: null
+        errors:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/error'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          example: []
+      required:
+        - data
+        - errors
+        - links
+    focDateWindow:
+      title: FOC Date Window
+      description: A single bookable FOC date window.
+      type: object
+      properties:
+        start:
+          type: string
+          format: date-time
+          description: Start of the bookable window for this FOC date.
+        end:
+          type: string
+          format: date-time
+          description: End of the bookable window for this FOC date.
+      required:
+        - start
+        - end
+    availableFocDatesResponseJson:
+      type: object
+      description: Response containing the set of valid FOC dates for a port-in order.
+      properties:
+        data:
+          type: object
+          nullable: true
+          properties:
+            focDates:
+              type: array
+              items:
+                $ref: '#/components/schemas/focDateWindow'
+          example:
+            focDates:
+              - start: '2024-07-01T11:00:00Z'
+                end: '2024-07-02T00:00:00Z'
+              - start: '2024-07-02T11:00:00Z'
+                end: '2024-07-03T00:00:00Z'
+              - start: '2024-07-03T11:00:00Z'
+                end: '2024-07-04T00:00:00Z'
+              - start: '2024-07-05T11:00:00Z'
+                end: '2024-07-06T00:00:00Z'
+        errors:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/error'
+          example: []
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          example:
+            - href: >-
+                https://api.bandwidth.com/api/v2/accounts/{accountId}/portins/{orderId}/availableFocDates
+              rel: self
+              method: GET
+      required:
+        - data
+        - errors
+        - links
     telephoneNumbers:
       type: object
       properties:

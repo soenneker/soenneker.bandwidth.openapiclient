@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.ActivationStatus;
+using Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.AvailableFocDates;
 using Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.Loas;
 using Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.Tns;
 using System.Collections.Generic;
@@ -21,6 +22,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item
         public global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.ActivationStatus.ActivationStatusRequestBuilder ActivationStatus
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.ActivationStatus.ActivationStatusRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The availableFocDates property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.AvailableFocDates.AvailableFocDatesRequestBuilder AvailableFocDates
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.AvailableFocDates.AvailableFocDatesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The loas property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.Loas.LoasRequestBuilder Loas

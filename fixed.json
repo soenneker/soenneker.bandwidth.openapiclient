@@ -31015,6 +31015,78 @@
         ]
       }
     },
+    "/portins/accounts/{accountId}/portins/{orderId}/availableFocDates": {
+      "get": {
+        "tags": [
+          "Porting"
+        ],
+        "summary": "Retrieve available FOC dates for a port-in order",
+        "description": "Retrieves the set of valid FOC (Firm Order Commitment) dates that would currently pass\nFOC date validation for this port-in order, expressed as bookable date/time windows.\nThese are the dates that will be accepted if submitted as the order\u0027s requestedFocDate,\nrather than validating after the fact. Both bounds are driven by the order\u0027s port type:\nthe lower bound is the earliest available FOC date, and the upper bound is the latest\ndate that port type allows.",
+        "operationId": "PortinsListPortinAvailableFocDates",
+        "parameters": [
+          {
+            "description": "User\u0027s account ID.",
+            "$ref": "#/components/parameters/portins_AccountIdPathParam"
+          },
+          {
+            "description": "The port-in order ID.",
+            "$ref": "#/components/parameters/portins_OrderIdPathParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "$ref": "#/components/responses/availableFocDatesResponse200"
+          },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/availableFocDatesResponse400"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "$ref": "#/components/responses/portins_errorResponse401"
+          },
+          "403": {
+            "description": "Forbidden",
+            "$ref": "#/components/responses/portins_errorResponse403"
+          },
+          "404": {
+            "description": "Not Found",
+            "$ref": "#/components/responses/availableFocDatesResponse404"
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "$ref": "#/components/responses/portins_errorResponse405"
+          },
+          "409": {
+            "description": "Conflict",
+            "$ref": "#/components/responses/availableFocDatesResponse409"
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "$ref": "#/components/responses/portins_errorResponse429"
+          },
+          "5XX": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/portins_errorResponse500"
+          }
+        },
+        "security": [
+          {
+            "portins_Basic": []
+          },
+          {
+            "portins_Bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/v2",
+            "description": "Production"
+          }
+        ]
+      }
+    },
     "/portins/accounts/{accountId}/sites/{siteId}/portins": {
       "get": {
         "tags": [
@@ -110265,6 +110337,138 @@
         },
         "description": "Response containing a list of telephone numbers associated with a port-in order."
       },
+      "PortinsLink": {
+        "title": "Link",
+        "required": [
+          "href",
+          "rel",
+          "method"
+        ],
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string",
+            "description": "URI of the link.",
+            "example": "/resource/uri"
+          },
+          "rel": {
+            "type": "string",
+            "description": "Specifies the relationship between this link and the resource.",
+            "example": "self"
+          },
+          "method": {
+            "type": "string",
+            "description": "HTTP method to be used.",
+            "example": "GET"
+          }
+        },
+        "description": "The URI link details to self or a related resource with the relation."
+      },
+      "PortinsError": {
+        "title": "Error",
+        "required": [
+          "type",
+          "code",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "A short, human-readable summary of the problem that SHOULD NOT change from occurrence to occurrence of the problem.",
+            "example": "resource-not-found"
+          },
+          "description": {
+            "type": "string",
+            "description": "A human-readable explanation specific to this occurrence of the problem."
+          },
+          "code": {
+            "type": "integer",
+            "description": "An application-specific error code."
+          }
+        }
+      },
+      "ErrorEnvelopeJson": {
+        "required": [
+          "data",
+          "errors",
+          "links"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ErrorEnvelopeJsonDataProperty2"
+          },
+          "errors": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/PortinsError"
+            }
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PortinsLink"
+            },
+            "example": []
+          }
+        },
+        "description": "Generic data/errors/links envelope for an error response."
+      },
+      "FocDateWindow": {
+        "title": "FOC Date Window",
+        "required": [
+          "start",
+          "end"
+        ],
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "string",
+            "description": "Start of the bookable window for this FOC date.",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "description": "End of the bookable window for this FOC date.",
+            "format": "date-time"
+          }
+        },
+        "description": "A single bookable FOC date window."
+      },
+      "AvailableFocDatesResponseJson": {
+        "required": [
+          "data",
+          "errors",
+          "links"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/AvailableFocDatesResponseJsonData"
+          },
+          "errors": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/PortinsError"
+            },
+            "example": []
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PortinsLink"
+            }
+          }
+        },
+        "description": "Response containing the set of valid FOC dates for a port-in order."
+      },
       "PortinsTelephoneNumbers": {
         "type": "object",
         "properties": {
@@ -110904,6 +111108,47 @@
           }
         }
       },
+      "ErrorEnvelopeJsonData": {
+        "type": [
+          "null",
+          "object"
+        ],
+        "example": null
+      },
+      "AvailableFocDatesResponseJsonData": {
+        "type": [
+          "null",
+          "object"
+        ],
+        "properties": {
+          "focDates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FocDateWindow"
+            }
+          }
+        },
+        "example": {
+          "focDates": [
+            {
+              "start": "2024-07-01T11:00:00Z",
+              "end": "2024-07-02T00:00:00Z"
+            },
+            {
+              "start": "2024-07-02T11:00:00Z",
+              "end": "2024-07-03T00:00:00Z"
+            },
+            {
+              "start": "2024-07-03T11:00:00Z",
+              "end": "2024-07-04T00:00:00Z"
+            },
+            {
+              "start": "2024-07-05T11:00:00Z",
+              "end": "2024-07-06T00:00:00Z"
+            }
+          ]
+        }
+      },
       "PortinsTelephoneNumbersTelephoneNumbers": {
         "type": "object",
         "properties": {
@@ -111375,6 +111620,9 @@
       "PortinsExamplePayload": {
         "type": "object",
         "description": "Placeholder schema for path example refs"
+      },
+      "ErrorEnvelopeJsonDataProperty": {
+        "type": "object"
       },
       "CsrResponsesCsrResponseItemProperty": {
         "type": "object"
@@ -144888,6 +145136,9 @@
         "type": "object",
         "description": "The phone number lookup response data"
       },
+      "ErrorEnvelopeJsonDataProperty2": {
+        "type": "object"
+      },
       "CsrResponsesCsrResponseItemProperty2": {
         "type": "object"
       },
@@ -157049,6 +157300,91 @@
             "examples": {
               "example": {
                 "$ref": "#/components/examples/listPortinTns404XmlExample"
+              }
+            }
+          }
+        }
+      },
+      "availableFocDatesResponse200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AvailableFocDatesResponseJson"
+            }
+          }
+        }
+      },
+      "availableFocDatesResponse400": {
+        "description": "Bad Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorEnvelopeJson"
+            },
+            "examples": {
+              "example": {
+                "value": {
+                  "data": null,
+                  "errors": [
+                    {
+                      "type": "bad-request",
+                      "description": "The request could not be understood or was missing required parameters.",
+                      "code": 50400
+                    }
+                  ],
+                  "links": []
+                }
+              }
+            }
+          }
+        }
+      },
+      "availableFocDatesResponse404": {
+        "description": "Not Found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorEnvelopeJson"
+            },
+            "examples": {
+              "example": {
+                "value": {
+                  "data": null,
+                  "errors": [
+                    {
+                      "type": "resource-not-found",
+                      "description": "The resource specified cannot be found.",
+                      "code": 50420
+                    }
+                  ],
+                  "links": []
+                }
+              }
+            }
+          }
+        }
+      },
+      "availableFocDatesResponse409": {
+        "description": "Conflict",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorEnvelopeJson"
+            },
+            "examples": {
+              "example": {
+                "value": {
+                  "data": null,
+                  "errors": [
+                    {
+                      "type": "order-not-eligible-for-foc-date-selection",
+                      "description": "The order is not in a state that allows selection of a FOC date.",
+                      "code": 50900
+                    }
+                  ],
+                  "links": []
+                }
               }
             }
           }
