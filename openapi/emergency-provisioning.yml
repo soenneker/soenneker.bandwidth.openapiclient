@@ -829,19 +829,22 @@ paths:
           $ref: '#/components/responses/tooManyRequestsError'
         '500':
           $ref: '#/components/responses/internalServerError'
-    put:
-      summary: Replace End User Mapping
-      operationId: replaceEndUserMapping
+    patch:
+      summary: Update End User Mapping
+      operationId: updateEndUserMapping
       description: >-
-        Replace an existing end user mapping's contact details and/or which
-        endpoint the end user is permitted to self-manage.
+        Update an existing end user mapping's contact details and/or which
+        endpoint the end user is permitted to self-manage. Uses merge-patch
+        semantics: omit a field to leave it unchanged, or set `aeuid` explicitly
+        to `null` to unlink the mapping's endpoint. `email`, `firstName`, and
+        `lastName` may not be set to `null`.
       tags:
         - End User Mappings
       parameters:
         - $ref: '#/components/parameters/accountId'
         - $ref: '#/components/parameters/oktaUsername'
       requestBody:
-        $ref: '#/components/requestBodies/replaceEndUserMapping'
+        $ref: '#/components/requestBodies/updateEndUserMapping'
       security:
         - Token: []
       responses:
@@ -2362,10 +2365,6 @@ components:
         call routing.
       type: object
       properties:
-        id:
-          type: string
-          example: '4334343'
-          pattern: ^\S*$
         accountId:
           type: string
           example: '9900000'
@@ -2392,7 +2391,6 @@ components:
             a telephone number.
           example: '+13035554321'
       required:
-        - id
         - accountId
         - oktaUsername
         - email
@@ -2500,12 +2498,15 @@ components:
         - firstName
         - lastName
         - aeuid
-    replaceEndUserMappingRequest:
-      title: Replace End User Mapping Request
+    updateEndUserMappingRequest:
+      title: Update End User Mapping Request
       description: >-
-        Replaces an existing end user mapping's contact details and/or which
+        Updates an existing end user mapping's contact details and/or which
         endpoint the end user is permitted to self-manage. The end user mapping
-        is identified by the `oktaUsername` path parameter.
+        is identified by the `oktaUsername` path parameter. Uses merge-patch
+        semantics: any field omitted from the request is left unchanged. `aeuid`
+        may be explicitly set to `null` to unlink the mapping's endpoint;
+        `email`, `firstName`, and `lastName` may not be set to `null`.
       type: object
       properties:
         email:
@@ -2527,11 +2528,6 @@ components:
             that may use E.164 format when the endpoint is identified by a
             telephone number.
           example: '+13035554321'
-      required:
-        - email
-        - firstName
-        - lastName
-        - aeuid
     listOrders:
       title: Get Orders
       description: Get Orders.
@@ -2960,11 +2956,11 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/addEndUserMappingRequest'
-    replaceEndUserMapping:
+    updateEndUserMapping:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/replaceEndUserMappingRequest'
+            $ref: '#/components/schemas/updateEndUserMappingRequest'
   responses:
     provisioningOrderAddEndpoint:
       description: Accepted
@@ -3172,8 +3168,7 @@ components:
                     rel: next
                 data:
                   endUserMappings:
-                    - id: '4334343'
-                      accountId: '9900000'
+                    - accountId: '9900000'
                       oktaUsername: jsmith
                       email: jsmith@example.com
                       firstName: Jane

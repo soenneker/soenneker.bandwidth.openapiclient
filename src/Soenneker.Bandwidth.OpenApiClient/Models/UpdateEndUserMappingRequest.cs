@@ -8,10 +8,10 @@ using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     /// <summary>
-    /// Replaces an existing end user mapping&apos;s contact details and/or which endpoint the end user is permitted to self-manage. The end user mapping is identified by the `oktaUsername` path parameter.
+    /// Updates an existing end user mapping&apos;s contact details and/or which endpoint the end user is permitted to self-manage. The end user mapping is identified by the `oktaUsername` path parameter. Uses merge-patch semantics: any field omitted from the request is left unchanged. `aeuid` may be explicitly set to `null` to unlink the mapping&apos;s endpoint; `email`, `firstName`, and `lastName` may not be set to `null`.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class ReplaceEndUserMappingRequest : IAdditionalDataHolder, IParsable
+    public partial class UpdateEndUserMappingRequest : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -48,21 +48,21 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string LastName { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ReplaceEndUserMappingRequest"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndUserMappingRequest"/> and sets the default values.
         /// </summary>
-        public ReplaceEndUserMappingRequest()
+        public UpdateEndUserMappingRequest()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ReplaceEndUserMappingRequest"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndUserMappingRequest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Bandwidth.OpenApiClient.Models.ReplaceEndUserMappingRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndUserMappingRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.ReplaceEndUserMappingRequest();
+            return new global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndUserMappingRequest();
         }
         /// <summary>
         /// The deserialization information for the current model

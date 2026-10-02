@@ -46,14 +46,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string FirstName { get; set; }
 #endif
-        /// <summary>The id property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Id { get; set; }
-#nullable restore
-#else
-        public string Id { get; set; }
-#endif
         /// <summary>The lastName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -99,7 +91,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "aeuid", n => { Aeuid = n.GetStringValue(); } },
                 { "email", n => { Email = n.GetStringValue(); } },
                 { "firstName", n => { FirstName = n.GetStringValue(); } },
-                { "id", n => { Id = n.GetStringValue(); } },
                 { "lastName", n => { LastName = n.GetStringValue(); } },
                 { "oktaUsername", n => { OktaUsername = n.GetStringValue(); } },
             };
@@ -115,7 +106,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("aeuid", Aeuid);
             writer.WriteStringValue("email", Email);
             writer.WriteStringValue("firstName", FirstName);
-            writer.WriteStringValue("id", Id);
             writer.WriteStringValue("lastName", LastName);
             writer.WriteStringValue("oktaUsername", OktaUsername);
             writer.WriteAdditionalData(AdditionalData);

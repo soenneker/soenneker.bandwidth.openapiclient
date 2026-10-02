@@ -7308,13 +7308,13 @@
           }
         ]
       },
-      "put": {
+      "patch": {
         "tags": [
           "End User Mappings"
         ],
-        "summary": "Replace End User Mapping",
-        "description": "Replace an existing end user mapping\u0027s contact details and/or which endpoint the end user is permitted to self-manage.",
-        "operationId": "EmergencyProvisioningReplaceEndUserMapping",
+        "summary": "Update End User Mapping",
+        "description": "Update an existing end user mapping\u0027s contact details and/or which endpoint the end user is permitted to self-manage. Uses merge-patch semantics: omit a field to leave it unchanged, or set \u0060aeuid\u0060 explicitly to \u0060null\u0060 to unlink the mapping\u0027s endpoint. \u0060email\u0060, \u0060firstName\u0060, and \u0060lastName\u0060 may not be set to \u0060null\u0060.",
+        "operationId": "EmergencyProvisioningUpdateEndUserMapping",
         "parameters": [
           {
             "description": "Your Bandwidth Account ID.",
@@ -7326,7 +7326,7 @@
           }
         ],
         "requestBody": {
-          "$ref": "#/components/requestBodies/replaceEndUserMapping"
+          "$ref": "#/components/requestBodies/updateEndUserMapping"
         },
         "responses": {
           "200": {
@@ -58533,7 +58533,6 @@
       "EndUserMapping": {
         "title": "End User Mapping",
         "required": [
-          "id",
           "accountId",
           "oktaUsername",
           "email",
@@ -58543,11 +58542,6 @@
         ],
         "type": "object",
         "properties": {
-          "id": {
-            "pattern": "^\\S*$",
-            "type": "string",
-            "example": "4334343"
-          },
           "accountId": {
             "type": "string",
             "example": "9900000"
@@ -58724,14 +58718,8 @@
         },
         "description": "Creates an end user mapping, granting the given Okta username permission to self-manage the specified endpoint."
       },
-      "ReplaceEndUserMappingRequest": {
-        "title": "Replace End User Mapping Request",
-        "required": [
-          "email",
-          "firstName",
-          "lastName",
-          "aeuid"
-        ],
+      "UpdateEndUserMappingRequest": {
+        "title": "Update End User Mapping Request",
         "type": "object",
         "properties": {
           "email": {
@@ -58756,7 +58744,7 @@
             "example": "\u002B13035554321"
           }
         },
-        "description": "Replaces an existing end user mapping\u0027s contact details and/or which endpoint the end user is permitted to self-manage. The end user mapping is identified by the \u0060oktaUsername\u0060 path parameter."
+        "description": "Updates an existing end user mapping\u0027s contact details and/or which endpoint the end user is permitted to self-manage. The end user mapping is identified by the \u0060oktaUsername\u0060 path parameter. Uses merge-patch semantics: any field omitted from the request is left unchanged. \u0060aeuid\u0060 may be explicitly set to \u0060null\u0060 to unlink the mapping\u0027s endpoint; \u0060email\u0060, \u0060firstName\u0060, and \u0060lastName\u0060 may not be set to \u0060null\u0060."
       },
       "ListOrdersBody": {
         "title": "Get Orders",
@@ -60038,7 +60026,6 @@
       },
       "EndUserMappingResponseData": {
         "required": [
-          "id",
           "accountId",
           "oktaUsername",
           "email",
@@ -60048,11 +60035,6 @@
         ],
         "type": "object",
         "properties": {
-          "id": {
-            "pattern": "^\\S*$",
-            "type": "string",
-            "example": "4334343"
-          },
           "accountId": {
             "type": "string",
             "example": "9900000"
@@ -80121,40 +80103,7 @@
               "array"
             ],
             "items": {
-              "$ref": "#/components/schemas/InsightsError"
-            }
-          }
-        }
-      },
-      "MonitorGenericError": {
-        "title": "Generic Error",
-        "required": [
-          "links",
-          "data",
-          "errors"
-        ],
-        "type": "object",
-        "properties": {
-          "links": {
-            "type": [
-              "null",
-              "array"
-            ],
-            "items": {
-              "$ref": "#/components/schemas/InsightsLink"
-            },
-            "example": null
-          },
-          "data": {
-            "$ref": "#/components/schemas/MonitorGenericErrorDataProperty2"
-          },
-          "errors": {
-            "type": [
-              "null",
-              "array"
-            ],
-            "items": {
-              "$ref": "#/components/schemas/MonitorError"
+              "$ref": "#/components/schemas/InsightsApiError"
             }
           }
         }
@@ -80465,22 +80414,8 @@
           }
         }
       },
-      "InsightsError": {
-        "title": "Error",
-        "required": [
-          "description"
-        ],
-        "type": "object",
-        "properties": {
-          "description": {
-            "type": "string",
-            "description": "A human-readable explanation that SHOULD be specific to this occurrence of the problem.",
-            "example": "There was an issue with a field in your request body."
-          }
-        }
-      },
-      "MonitorError": {
-        "title": "Error",
+      "InsightsApiError": {
+        "title": "API Error",
         "required": [
           "description"
         ],
@@ -80489,7 +80424,7 @@
           "type": {
             "type": "string",
             "description": "A short, human-readable summary of the problem that SHOULD NOT change from occurrence to occurrence of the problem.",
-            "example": "REQUEST_ERROR"
+            "example": "bad-request"
           },
           "description": {
             "type": "string",
@@ -81339,7 +81274,7 @@
               "array"
             ],
             "items": {
-              "$ref": "#/components/schemas/InsightsError"
+              "$ref": "#/components/schemas/InsightsApiError"
             },
             "example": []
           }
@@ -81365,7 +81300,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/InsightsError"
+              "$ref": "#/components/schemas/InsightsApiError"
             },
             "example": []
           }
@@ -81396,7 +81331,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/InsightsError"
+              "$ref": "#/components/schemas/InsightsApiError"
             },
             "example": []
           }
@@ -81423,7 +81358,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/InsightsError"
+              "$ref": "#/components/schemas/InsightsApiError"
             },
             "example": []
           }
@@ -81462,7 +81397,7 @@
               "array"
             ],
             "items": {
-              "$ref": "#/components/schemas/InsightsError"
+              "$ref": "#/components/schemas/InsightsApiError"
             },
             "description": "List of errors encountered while processing the request."
           }
@@ -81501,7 +81436,7 @@
               "array"
             ],
             "items": {
-              "$ref": "#/components/schemas/InsightsError"
+              "$ref": "#/components/schemas/InsightsApiError"
             },
             "description": "List of errors encountered while processing the request."
           }
@@ -81535,7 +81470,7 @@
               "array"
             ],
             "items": {
-              "$ref": "#/components/schemas/InsightsError"
+              "$ref": "#/components/schemas/InsightsApiError"
             },
             "description": "List of errors encountered while processing the request."
           }
@@ -81567,7 +81502,7 @@
               "array"
             ],
             "items": {
-              "$ref": "#/components/schemas/InsightsError"
+              "$ref": "#/components/schemas/InsightsApiError"
             },
             "example": null
           }
@@ -81594,7 +81529,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/InsightsError"
+              "$ref": "#/components/schemas/InsightsApiError"
             },
             "example": []
           }
@@ -81620,7 +81555,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/InsightsError"
+              "$ref": "#/components/schemas/InsightsApiError"
             },
             "example": []
           }
@@ -81646,7 +81581,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/InsightsError"
+              "$ref": "#/components/schemas/InsightsApiError"
             },
             "example": []
           }
@@ -81672,7 +81607,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/InsightsError"
+              "$ref": "#/components/schemas/InsightsApiError"
             },
             "example": []
           }
@@ -81698,7 +81633,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/InsightsError"
+              "$ref": "#/components/schemas/InsightsApiError"
             },
             "example": []
           }
@@ -81724,7 +81659,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/InsightsError"
+              "$ref": "#/components/schemas/InsightsApiError"
             },
             "example": []
           }
@@ -81750,7 +81685,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/InsightsError"
+              "$ref": "#/components/schemas/InsightsApiError"
             },
             "example": []
           }
@@ -81776,7 +81711,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/InsightsError"
+              "$ref": "#/components/schemas/InsightsApiError"
             },
             "example": []
           }
@@ -81802,7 +81737,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/InsightsError"
+              "$ref": "#/components/schemas/InsightsApiError"
             },
             "example": []
           }
@@ -81828,7 +81763,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/InsightsError"
+              "$ref": "#/components/schemas/InsightsApiError"
             },
             "example": []
           }
@@ -81854,7 +81789,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/InsightsError"
+              "$ref": "#/components/schemas/InsightsApiError"
             },
             "example": []
           }
@@ -81880,7 +81815,7 @@
           "errors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/InsightsError"
+              "$ref": "#/components/schemas/InsightsApiError"
             },
             "example": []
           }
@@ -82319,13 +82254,6 @@
         ],
         "example": null
       },
-      "MonitorGenericErrorData": {
-        "type": [
-          "null",
-          "object"
-        ],
-        "example": null
-      },
       "MonitorSliceBaseData": {
         "type": "object"
       },
@@ -82434,9 +82362,6 @@
         "description": "Use the Get Report Definitions endpoint to see the filters available for a report."
       },
       "InsightsGenericErrorDataProperty": {
-        "type": "object"
-      },
-      "MonitorGenericErrorDataProperty": {
         "type": "object"
       },
       "MonitorSliceBaseDataProperty": {
@@ -144959,9 +144884,6 @@
       "InsightsGenericErrorDataProperty2": {
         "type": "object"
       },
-      "MonitorGenericErrorDataProperty2": {
-        "type": "object"
-      },
       "MonitorSliceBaseDataProperty2": {
         "type": "object"
       },
@@ -148876,7 +148798,6 @@
                   "data": {
                     "endUserMappings": [
                       {
-                        "id": "4334343",
                         "accountId": "9900000",
                         "oktaUsername": "jsmith",
                         "email": "jsmith@example.com",
@@ -152892,7 +152813,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/MonitorGenericError"
+              "$ref": "#/components/schemas/InsightsGenericError"
             },
             "example": {
               "links": [],
@@ -152912,7 +152833,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/MonitorGenericError"
+              "$ref": "#/components/schemas/InsightsGenericError"
             },
             "example": {
               "links": [],
@@ -152932,7 +152853,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/MonitorGenericError"
+              "$ref": "#/components/schemas/InsightsGenericError"
             },
             "example": {
               "links": [],
@@ -152952,7 +152873,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/MonitorGenericError"
+              "$ref": "#/components/schemas/InsightsGenericError"
             },
             "example": {
               "links": [],
@@ -152972,7 +152893,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/MonitorGenericError"
+              "$ref": "#/components/schemas/InsightsGenericError"
             },
             "example": {
               "links": [],
@@ -152992,7 +152913,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/MonitorGenericError"
+              "$ref": "#/components/schemas/InsightsGenericError"
             },
             "example": {
               "links": [],
@@ -153012,7 +152933,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/MonitorGenericError"
+              "$ref": "#/components/schemas/InsightsGenericError"
             },
             "example": {
               "links": [],
@@ -153032,7 +152953,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/MonitorGenericError"
+              "$ref": "#/components/schemas/InsightsGenericError"
             },
             "example": {
               "links": [],
@@ -175001,6 +174922,7 @@
           "data": null,
           "errors": [
             {
+              "type": "bad-request",
               "description": "There was an issue with your request."
             }
           ]
@@ -175013,6 +174935,7 @@
           "data": null,
           "errors": [
             {
+              "type": "unauthorized",
               "description": "This is an Unauthorized Account."
             }
           ]
@@ -175025,6 +174948,7 @@
           "data": null,
           "errors": [
             {
+              "type": "resource-permissions",
               "description": "This is an Unknown Account."
             }
           ]
@@ -175037,6 +174961,7 @@
           "data": null,
           "errors": [
             {
+              "type": "resource-not-found",
               "description": "The origin server did not find a current representation for the target resource or is not willing to disclose that one exists."
             }
           ]
@@ -175049,6 +174974,7 @@
           "data": null,
           "errors": [
             {
+              "type": "http-method-not-supported",
               "description": "POST is not an allowed method. Method must be GET"
             }
           ]
@@ -175061,6 +174987,7 @@
           "data": null,
           "errors": [
             {
+              "type": "rate-limiting",
               "description": "The user has sent too many requests in a given amount of time."
             }
           ]
@@ -175073,6 +175000,7 @@
           "data": null,
           "errors": [
             {
+              "type": "internal-server-error",
               "description": "The server encountered an unexpected condition that prevented it from fulfilling the request."
             }
           ]
@@ -187540,11 +187468,11 @@
           }
         }
       },
-      "replaceEndUserMapping": {
+      "updateEndUserMapping": {
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/ReplaceEndUserMappingRequest"
+              "$ref": "#/components/schemas/UpdateEndUserMappingRequest"
             }
           }
         }

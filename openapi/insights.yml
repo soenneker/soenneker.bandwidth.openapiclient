@@ -2002,30 +2002,7 @@ components:
         errors:
           type: array
           items:
-            $ref: '#/components/schemas/error'
-          nullable: true
-      required:
-        - links
-        - data
-        - errors
-    monitorGenericError:
-      title: Generic Error
-      type: object
-      properties:
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/link'
-          nullable: true
-          example: null
-        data:
-          type: object
-          nullable: true
-          example: null
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/monitorError'
+            $ref: '#/components/schemas/apiError'
           nullable: true
       required:
         - links
@@ -2170,20 +2147,8 @@ components:
           type: string
           description: HTTP method to use when following this link. Omitted for GET links.
           example: POST
-    error:
-      title: Error
-      type: object
-      properties:
-        description:
-          type: string
-          description: >-
-            A human-readable explanation that SHOULD be specific to this
-            occurrence of the problem.
-          example: There was an issue with a field in your request body.
-      required:
-        - description
-    monitorError:
-      title: Error
+    apiError:
+      title: API Error
       type: object
       properties:
         type:
@@ -2191,7 +2156,7 @@ components:
           description: >-
             A short, human-readable summary of the problem that SHOULD NOT
             change from occurrence to occurrence of the problem.
-          example: REQUEST_ERROR
+          example: bad-request
         description:
           type: string
           description: >-
@@ -3223,7 +3188,7 @@ components:
                 type: array
                 nullable: true
                 items:
-                  $ref: '#/components/schemas/error'
+                  $ref: '#/components/schemas/apiError'
                 example: []
             required:
               - links
@@ -3249,7 +3214,7 @@ components:
               errors:
                 type: array
                 items:
-                  $ref: '#/components/schemas/error'
+                  $ref: '#/components/schemas/apiError'
                 example: []
             required:
               - links
@@ -3296,7 +3261,7 @@ components:
               errors:
                 type: array
                 items:
-                  $ref: '#/components/schemas/error'
+                  $ref: '#/components/schemas/apiError'
                 example: []
             required:
               - links
@@ -3324,7 +3289,7 @@ components:
               errors:
                 type: array
                 items:
-                  $ref: '#/components/schemas/error'
+                  $ref: '#/components/schemas/apiError'
                 example: []
             required:
               - links
@@ -3363,7 +3328,7 @@ components:
                 nullable: true
                 description: List of errors encountered while processing the request.
                 items:
-                  $ref: '#/components/schemas/error'
+                  $ref: '#/components/schemas/apiError'
             required:
               - links
               - data
@@ -3445,7 +3410,7 @@ components:
                 nullable: true
                 description: List of errors encountered while processing the request.
                 items:
-                  $ref: '#/components/schemas/error'
+                  $ref: '#/components/schemas/apiError'
             required:
               - links
               - data
@@ -3595,7 +3560,7 @@ components:
                 nullable: true
                 description: List of errors encountered while processing the request.
                 items:
-                  $ref: '#/components/schemas/error'
+                  $ref: '#/components/schemas/apiError'
             required:
               - links
               - data
@@ -3675,7 +3640,7 @@ components:
               errors:
                 type: array
                 items:
-                  $ref: '#/components/schemas/error'
+                  $ref: '#/components/schemas/apiError'
                 nullable: true
                 example: null
             required:
@@ -3700,7 +3665,7 @@ components:
               errors:
                 type: array
                 items:
-                  $ref: '#/components/schemas/error'
+                  $ref: '#/components/schemas/apiError'
                 nullable: false
                 example: []
             required:
@@ -3775,7 +3740,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/monitorGenericError'
+            $ref: '#/components/schemas/genericError'
           example:
             links: []
             data: null
@@ -3787,7 +3752,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/monitorGenericError'
+            $ref: '#/components/schemas/genericError'
           example:
             links: []
             data: null
@@ -3799,7 +3764,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/monitorGenericError'
+            $ref: '#/components/schemas/genericError'
           example:
             links: []
             data: null
@@ -3811,7 +3776,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/monitorGenericError'
+            $ref: '#/components/schemas/genericError'
           example:
             links: []
             data: null
@@ -3826,7 +3791,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/monitorGenericError'
+            $ref: '#/components/schemas/genericError'
           example:
             links: []
             data: null
@@ -3838,7 +3803,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/monitorGenericError'
+            $ref: '#/components/schemas/genericError'
           example:
             links: []
             data: null
@@ -3850,7 +3815,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/monitorGenericError'
+            $ref: '#/components/schemas/genericError'
           example:
             links: []
             data: null
@@ -3864,7 +3829,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/monitorGenericError'
+            $ref: '#/components/schemas/genericError'
           example:
             links: []
             data: null
@@ -3891,7 +3856,7 @@ components:
               errors:
                 type: array
                 items:
-                  $ref: '#/components/schemas/error'
+                  $ref: '#/components/schemas/apiError'
                 example: []
             required:
               - links
@@ -3936,7 +3901,7 @@ components:
               errors:
                 type: array
                 items:
-                  $ref: '#/components/schemas/error'
+                  $ref: '#/components/schemas/apiError'
                 example: []
             required:
               - links
@@ -3982,7 +3947,7 @@ components:
               errors:
                 type: array
                 items:
-                  $ref: '#/components/schemas/error'
+                  $ref: '#/components/schemas/apiError'
                 example: []
             required:
               - links
@@ -4028,7 +3993,7 @@ components:
               errors:
                 type: array
                 items:
-                  $ref: '#/components/schemas/error'
+                  $ref: '#/components/schemas/apiError'
                 example: []
             required:
               - links
@@ -4077,7 +4042,7 @@ components:
               errors:
                 type: array
                 items:
-                  $ref: '#/components/schemas/error'
+                  $ref: '#/components/schemas/apiError'
                 example: []
             required:
               - links
@@ -4126,7 +4091,7 @@ components:
               errors:
                 type: array
                 items:
-                  $ref: '#/components/schemas/error'
+                  $ref: '#/components/schemas/apiError'
                 example: []
             required:
               - links
@@ -4178,7 +4143,7 @@ components:
               errors:
                 type: array
                 items:
-                  $ref: '#/components/schemas/error'
+                  $ref: '#/components/schemas/apiError'
                 example: []
             required:
               - links
@@ -4224,7 +4189,7 @@ components:
               errors:
                 type: array
                 items:
-                  $ref: '#/components/schemas/error'
+                  $ref: '#/components/schemas/apiError'
                 example: []
             required:
               - links
@@ -4279,7 +4244,7 @@ components:
               errors:
                 type: array
                 items:
-                  $ref: '#/components/schemas/error'
+                  $ref: '#/components/schemas/apiError'
                 example: []
             required:
               - links
@@ -4325,7 +4290,7 @@ components:
               errors:
                 type: array
                 items:
-                  $ref: '#/components/schemas/error'
+                  $ref: '#/components/schemas/apiError'
                 example: []
             required:
               - links
@@ -4374,7 +4339,7 @@ components:
               errors:
                 type: array
                 items:
-                  $ref: '#/components/schemas/error'
+                  $ref: '#/components/schemas/apiError'
                 example: []
             required:
               - links
@@ -4410,28 +4375,32 @@ components:
         links: null
         data: null
         errors:
-          - description: There was an issue with your request.
+          - type: bad-request
+            description: There was an issue with your request.
     unauthorizedErrorExample:
       summary: An example of a generic Unauthorized Account Error
       value:
         links: null
         data: null
         errors:
-          - description: This is an Unauthorized Account.
+          - type: unauthorized
+            description: This is an Unauthorized Account.
     forbiddenErrorExample:
       summary: An example of a generic Unknown Account Error
       value:
         links: null
         data: null
         errors:
-          - description: This is an Unknown Account.
+          - type: resource-permissions
+            description: This is an Unknown Account.
     notFoundErrorExample:
       summary: An example of a generic Not Found Error
       value:
         links: null
         data: null
         errors:
-          - description: >-
+          - type: resource-not-found
+            description: >-
               The origin server did not find a current representation for the
               target resource or is not willing to disclose that one exists.
     methodNotFoundErrorExample:
@@ -4440,21 +4409,24 @@ components:
         links: null
         data: null
         errors:
-          - description: POST is not an allowed method. Method must be GET
+          - type: http-method-not-supported
+            description: POST is not an allowed method. Method must be GET
     tooManyRequestsErrorExample:
       summary: An example of a generic Too Many Requests Error
       value:
         links: null
         data: null
         errors:
-          - description: The user has sent too many requests in a given amount of time.
+          - type: rate-limiting
+            description: The user has sent too many requests in a given amount of time.
     internalServerErrorExample:
       summary: An example of a generic Internal Server Error
       value:
         links: null
         data: null
         errors:
-          - description: >-
+          - type: internal-server-error
+            description: >-
               The server encountered an unexpected condition that prevented it
               from fulfilling the request.
   securitySchemes:

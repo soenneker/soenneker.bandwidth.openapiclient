@@ -103,10 +103,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserMappingResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserMappingResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Replace an existing end user mapping&apos;s contact details and/or which endpoint the end user is permitted to self-manage.
+        /// Update an existing end user mapping&apos;s contact details and/or which endpoint the end user is permitted to self-manage. Uses merge-patch semantics: omit a field to leave it unchanged, or set `aeuid` explicitly to `null` to unlink the mapping&apos;s endpoint. `email`, `firstName`, and `lastName` may not be set to `null`.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserMappingResponse"/></returns>
-        /// <param name="body">Replaces an existing end user mapping&apos;s contact details and/or which endpoint the end user is permitted to self-manage. The end user mapping is identified by the `oktaUsername` path parameter.</param>
+        /// <param name="body">Updates an existing end user mapping&apos;s contact details and/or which endpoint the end user is permitted to self-manage. The end user mapping is identified by the `oktaUsername` path parameter. Uses merge-patch semantics: any field omitted from the request is left unchanged. `aeuid` may be explicitly set to `null` to unlink the mapping&apos;s endpoint; `email`, `firstName`, and `lastName` may not be set to `null`.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningGenericError">When receiving a 400 status code</exception>
@@ -118,15 +118,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningGenericError">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserMappingResponse?> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.ReplaceEndUserMappingRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserMappingResponse?> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndUserMappingRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserMappingResponse> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.ReplaceEndUserMappingRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserMappingResponse> PatchAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndUserMappingRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = ToPutRequestInformation(body, requestConfiguration);
+            var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningGenericError.CreateFromDiscriminatorValue },
@@ -178,22 +178,22 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
             return requestInfo;
         }
         /// <summary>
-        /// Replace an existing end user mapping&apos;s contact details and/or which endpoint the end user is permitted to self-manage.
+        /// Update an existing end user mapping&apos;s contact details and/or which endpoint the end user is permitted to self-manage. Uses merge-patch semantics: omit a field to leave it unchanged, or set `aeuid` explicitly to `null` to unlink the mapping&apos;s endpoint. `email`, `firstName`, and `lastName` may not be set to `null`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">Replaces an existing end user mapping&apos;s contact details and/or which endpoint the end user is permitted to self-manage. The end user mapping is identified by the `oktaUsername` path parameter.</param>
+        /// <param name="body">Updates an existing end user mapping&apos;s contact details and/or which endpoint the end user is permitted to self-manage. The end user mapping is identified by the `oktaUsername` path parameter. Uses merge-patch semantics: any field omitted from the request is left unchanged. `aeuid` may be explicitly set to `null` to unlink the mapping&apos;s endpoint; `email`, `firstName`, and `lastName` may not be set to `null`.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.ReplaceEndUserMappingRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndUserMappingRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.ReplaceEndUserMappingRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateEndUserMappingRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
