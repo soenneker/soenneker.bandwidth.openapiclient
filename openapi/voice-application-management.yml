@@ -5,8 +5,24 @@ info:
     Bandwidth's Voice Application Management API
 
 
-    Bandwidth's Voice Application Management API currently allows you to manage
-    SIP Authentication for inbound calls to your Voice Applications.
+    Bandwidth's Voice Application Management API allows you to manage SIP
+    Authentication for inbound calls to your Voice Applications, and to manage
+    account-scoped SIP domains, SIP users, and IP access lists for custom SIP
+    domains and per-user identities.
+
+
+    Two independent ways to receive inbound SIP calls are supported:
+
+
+    - **Default-realm SIP identity** (`sip:{applicationId}@{auth_realm}`) —
+    configured with the SIP fields on the Voice Applications endpoints
+    (`inboundSipCallsEnabled`, `passwordAuthEnabled`, `allowedSourceIps`,
+    `allowedRegions`). These fields apply only to the default realm.
+
+    - **Custom SIP domains** — configured with the SIP Domains, SIP Users, and
+    IP Access Lists endpoints. Calls to a custom domain are authenticated only
+    against the domain's IP access lists and its SIP users; the voice
+    application's SIP fields have no effect on them.
 
 
     ## Base URL
@@ -30,7 +46,10 @@ paths:
     get:
       summary: Retrieve a voice application
       operationId: getVoiceApplication
-      description: Retrieves information about a voice application.
+      description: >-
+        Retrieves information about a voice application, including its
+        default-realm SIP settings (`sip:{applicationId}@{auth_realm}`). These
+        settings do not apply to custom SIP domains bound to the application.
       tags:
         - Voice Applications
       responses:
@@ -53,7 +72,27 @@ paths:
     patch:
       summary: Update a voice application
       operationId: updateVoiceApplication
-      description: Updates SIP authentication settings for a voice application.
+      description: >-
+        Updates the default-realm SIP settings for a voice application. These
+        govern only the default-realm SIP identity
+        (`sip:{applicationId}@{auth_realm}`); they do not affect calls to custom
+        SIP domains bound to the application, which are configured with the SIP
+        Domains, SIP Users, and IP Access Lists endpoints. Both are supported
+        side by side.
+
+
+        Sending `inboundSipCallsEnabled: false` disables inbound SIP calls and
+        clears the application's SIP settings; any other fields in the request
+        are still validated but are not applied. If inbound SIP calls are not
+        yet enabled, the request must include `inboundSipCallsEnabled: true`,
+        otherwise a `400` is returned.
+
+
+        Every request that includes `passwordAuthEnabled: true` generates a new
+        SIP digest password, even if password auth was already enabled, and
+        returns it once as `sipAuthPassword`. The previous password stops
+        working immediately. Omit `passwordAuthEnabled` to keep the existing
+        password.
       tags:
         - Voice Applications
       requestBody:
@@ -75,6 +114,378 @@ paths:
           $ref: '#/components/responses/tooManyRequestsError'
         default:
           $ref: '#/components/responses/defaultError'
+  /accounts/{accountId}/voice-applications/sip-domains:
+    parameters:
+      - $ref: '#/components/parameters/accountId'
+    post:
+      summary: Create a SIP domain
+      operationId: createSipDomain
+      description: >-
+        Registers a new account-scoped SIP domain. Calls to a custom SIP domain
+        are authenticated only against its attached IP access lists and its
+        assigned SIP users; the bound voice application's default-realm SIP
+        settings (`inboundSipCallsEnabled`, `passwordAuthEnabled`,
+        `allowedSourceIps`, `allowedRegions`) do not apply.
+
+
+        - Calls whose request URI includes a user (`<userId>@<fqdn>`) are
+        challenged and authenticated with that SIP user's credentials. If IP
+        access lists are attached, the source IP must also match one of them.
+
+        - Calls with no user in the request URI are authenticated by source IP
+        alone, and are rejected unless the domain has at least one attached IP
+        access list.
+
+        - Calls are only accepted in the domain's `regions`. A domain created
+        without any `regions` rejects all inbound calls until at least one
+        region is added via `PATCH`.
+
+
+        The supplied `domain` is a label that Bandwidth combines with the
+        account ID and its env-wide SIP host suffix to form the full SIP host(s)
+        that will be reachable on inbound calls. The full hosts are returned as
+        `fqdns` on the resource (a global entry, plus one per configured region)
+        — those are the values to configure as the destination in your SBC or
+        PBX.
+
+
+        Domain labels are unique **within the account** (not globally) — a `409`
+        is returned if you already have a domain registered under this label.
+        Region codes (`us`, `eu`) and `null` are reserved and cannot be used as
+        a domain label; a `400` is returned otherwise. Each account can register
+        up to 500 SIP domains; a `400` is returned once the limit is reached.
+
+
+        `applicationId` is optional — you can register a domain and bind it to
+        an application later via `PATCH`. When supplied, it must reference an
+        existing voice application on this account (`404` if it does not exist,
+        `400` if it is not a voice application). A domain with no
+        `applicationId` cannot accept inbound calls until bound.
+
+
+        `ipAccessListIds` must reference existing IP access lists on this
+        account (`404` otherwise). The attached lists may contain at most 50
+        unique CIDRs in total; a `400` is returned otherwise.
+
+
+        The domain is provisioned asynchronously; it is created with `status:
+        "PENDING"` and transitions to `"ACTIVE"` once DNS provisioning
+        completes, or `"FAILED"` if provisioning could not complete.
+      tags:
+        - SIP Domains
+      requestBody:
+        $ref: '#/components/requestBodies/createSipDomainRequestBody'
+      responses:
+        '201':
+          $ref: '#/components/responses/createSipDomainResponse'
+        default:
+          $ref: '#/components/responses/defaultError'
+    get:
+      summary: List SIP domains
+      operationId: listSipDomains
+      description: >-
+        Lists the SIP domains registered on this account. Results are paginated.
+        A page may hold fewer than `pageSize` resources, or none, while a `next`
+        link is still present; keep following the `next` link in `links` until
+        it is absent to retrieve every resource. `links` always includes a
+        `self` link to the current page.
+      tags:
+        - SIP Domains
+      parameters:
+        - $ref: '#/components/parameters/pageSize'
+        - $ref: '#/components/parameters/afterCursor'
+        - $ref: '#/components/parameters/sipDomainApplicationIdFilter'
+        - $ref: '#/components/parameters/sipDomainStatusFilter'
+      responses:
+        '200':
+          $ref: '#/components/responses/listSipDomainsResponse'
+        default:
+          $ref: '#/components/responses/defaultError'
+  /accounts/{accountId}/voice-applications/sip-domains/{domain}:
+    parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/domain'
+    get:
+      summary: Retrieve a SIP domain
+      operationId: getSipDomain
+      description: Retrieves the SIP domain registered under this label on the account.
+      tags:
+        - SIP Domains
+      responses:
+        '200':
+          $ref: '#/components/responses/getSipDomainResponse'
+        default:
+          $ref: '#/components/responses/defaultError'
+    patch:
+      summary: Update a SIP domain
+      operationId: updateSipDomain
+      description: >-
+        Updates `name`, `applicationId`, `regions`, and/or `ipAccessListIds` on
+        the SIP domain. At least one field must be supplied. `domain` (the
+        label) is immutable; to change it, delete this domain and create a new
+        one.
+
+
+        Supplying `applicationId` binds (or rebinds) the domain to a voice
+        application on this account; supply an empty string (`""`) to unbind.
+        Supplying `regions` replaces the domain's region set; if the set
+        changes, the DNS records are reprovisioned and `status` returns to
+        `"PENDING"`. Supplying `ipAccessListIds` replaces the domain's attached
+        IP access lists (max 25, at most 50 unique CIDRs in total); unknown IDs
+        return `404`.
+      tags:
+        - SIP Domains
+      requestBody:
+        $ref: '#/components/requestBodies/updateSipDomainRequestBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/updateSipDomainResponse'
+        default:
+          $ref: '#/components/responses/defaultError'
+    delete:
+      summary: Delete a SIP domain
+      operationId: deleteSipDomain
+      description: >-
+        Deletes the SIP domain. SIP users that were assigned to this domain
+        (`user.domain == this domain`) remain on the account but their `domain`
+        is set to `null` (unassigned); they will not authenticate on any domain
+        until reassigned via `PATCH /sip-users/{userId}` with a new `domain`.
+        Attached IP access lists and the bound voice application are not
+        affected.
+
+
+        The domain's DNS records are removed asynchronously. The label is freed
+        for reuse on this account immediately.
+      tags:
+        - SIP Domains
+      responses:
+        '204':
+          description: No Content
+        default:
+          $ref: '#/components/responses/defaultError'
+  /accounts/{accountId}/voice-applications/sip-users:
+    parameters:
+      - $ref: '#/components/parameters/accountId'
+    post:
+      summary: Create a SIP user
+      operationId: createSipUser
+      description: >-
+        Creates a new SIP user on this account. `userId` is unique within the
+        account and immutable after creation; to change it, delete the user and
+        recreate.
+
+
+        **Account-scoped resource** — SIP users belong to the account, not to a
+        specific voice application, and authenticate calls to custom SIP domains
+        only; they cannot be used with the default-realm SIP identity. Each user
+        can be assigned to **at most one** SIP domain via the `domain` field —
+        supply it on create to make the user immediately reachable on that
+        domain, or omit it to create an unassigned user that you assign later
+        via `PATCH`. The domain does not need to be `ACTIVE` to be assigned.
+
+
+        `password` is **required and customer-supplied** — Bandwidth never
+        generates a password on your behalf, and the plaintext is never stored
+        or returned in any response.
+
+
+        A user can only authenticate in the regions listed in `allowedRegions`;
+        a user with no allowed regions cannot authenticate.
+
+
+        Each account can have up to 5,000 SIP users; a `400` is returned once
+        the limit is reached.
+      tags:
+        - SIP Users
+      requestBody:
+        $ref: '#/components/requestBodies/createSipUserRequestBody'
+      responses:
+        '201':
+          $ref: '#/components/responses/createSipUserResponse'
+        default:
+          $ref: '#/components/responses/defaultError'
+    get:
+      summary: List SIP users
+      operationId: listSipUsers
+      description: >-
+        Lists the SIP users on this account. Results are paginated. A page may
+        hold fewer than `pageSize` resources, or none, while a `next` link is
+        still present; keep following the `next` link in `links` until it is
+        absent to retrieve every resource. `links` always includes a `self` link
+        to the current page.
+      tags:
+        - SIP Users
+      parameters:
+        - $ref: '#/components/parameters/pageSize'
+        - $ref: '#/components/parameters/afterCursor'
+        - $ref: '#/components/parameters/sipUserDomainFilter'
+      responses:
+        '200':
+          $ref: '#/components/responses/listSipUsersResponse'
+        default:
+          $ref: '#/components/responses/defaultError'
+  /accounts/{accountId}/voice-applications/sip-users/{userId}:
+    parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/userId'
+    get:
+      summary: Retrieve a SIP user
+      operationId: getSipUser
+      description: >-
+        Retrieves a SIP user on this account, including the `domain` the user is
+        assigned to (or `null` if unassigned). The `password` field is **never**
+        returned on this or any other endpoint — Bandwidth does not store the
+        plaintext and cannot recover it.
+      tags:
+        - SIP Users
+      responses:
+        '200':
+          $ref: '#/components/responses/getSipUserResponse'
+        default:
+          $ref: '#/components/responses/defaultError'
+    patch:
+      summary: Update a SIP user
+      operationId: updateSipUser
+      description: >-
+        Updates `name`, `domain`, `password`, and/or `allowedRegions` on the SIP
+        user. At least one field must be supplied. `userId` is immutable; to
+        change it, delete the user and recreate.
+
+
+        Supplying `domain` reassigns the user to a new SIP domain — a user can
+        be on at most one domain at a time, so the prior assignment (if any) is
+        overwritten atomically in a single write. Supply an empty string (`""`)
+        to unassign the user from any domain. The supplied `domain` must
+        reference an existing SIP domain on this account; unknown domains return
+        `404`.
+
+
+        Supplying `password` rotates the user's digest credential; the plaintext
+        is never echoed back in the response. A password cannot be removed, so
+        `password: null` returns `400`.
+      tags:
+        - SIP Users
+      requestBody:
+        $ref: '#/components/requestBodies/updateSipUserRequestBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/updateSipUserResponse'
+        default:
+          $ref: '#/components/responses/defaultError'
+    delete:
+      summary: Delete a SIP user
+      operationId: deleteSipUser
+      description: >-
+        Deletes the SIP user along with the user's digest credential. The SIP
+        domain the user was assigned to (if any) continues to exist; the user
+        simply disappears from that domain's `userIds` list.
+      tags:
+        - SIP Users
+      responses:
+        '204':
+          description: No Content
+        default:
+          $ref: '#/components/responses/defaultError'
+  /accounts/{accountId}/voice-applications/ip-access-lists:
+    parameters:
+      - $ref: '#/components/parameters/accountId'
+    post:
+      summary: Create an IP access list
+      operationId: createIpAccessList
+      description: >-
+        Creates a new account-scoped IP access list — a named, reusable set of
+        CIDR blocks. Attach it to one or more SIP domains via
+        `SipDomain.ipAccessListIds` (max 25 lists per domain) to gate inbound
+        SIP traffic to those domains by source IP.
+
+
+        **Account-scoped resource** — IP access lists belong to the account, not
+        to a specific voice application or SIP domain, and are reusable across
+        any number of the account's SIP domains. IP access lists apply to custom
+        SIP domains only. The voice application's `allowedSourceIps` field is
+        separate and applies only to the default-realm SIP identity.
+
+
+        Names do not need to be unique. Each account can have up to 500 IP
+        access lists; a `400` is returned once the limit is reached.
+      tags:
+        - IP Access Lists
+      requestBody:
+        $ref: '#/components/requestBodies/createIpAccessListRequestBody'
+      responses:
+        '201':
+          $ref: '#/components/responses/createIpAccessListResponse'
+        default:
+          $ref: '#/components/responses/defaultError'
+    get:
+      summary: List IP access lists
+      operationId: listIpAccessLists
+      description: >-
+        Lists the IP access lists registered on this account. Results are
+        paginated. A page may hold fewer than `pageSize` resources, or none,
+        while a `next` link is still present; keep following the `next` link in
+        `links` until it is absent to retrieve every resource. `links` always
+        includes a `self` link to the current page.
+      tags:
+        - IP Access Lists
+      parameters:
+        - $ref: '#/components/parameters/pageSize'
+        - $ref: '#/components/parameters/afterCursor'
+        - $ref: '#/components/parameters/ipAccessListNameFilter'
+      responses:
+        '200':
+          $ref: '#/components/responses/listIpAccessListsResponse'
+        default:
+          $ref: '#/components/responses/defaultError'
+  /accounts/{accountId}/voice-applications/ip-access-lists/{ipAccessListId}:
+    parameters:
+      - $ref: '#/components/parameters/accountId'
+      - $ref: '#/components/parameters/ipAccessListId'
+    get:
+      summary: Retrieve an IP access list
+      operationId: getIpAccessList
+      description: Retrieves a single IP access list on the account.
+      tags:
+        - IP Access Lists
+      responses:
+        '200':
+          $ref: '#/components/responses/getIpAccessListResponse'
+        default:
+          $ref: '#/components/responses/defaultError'
+    patch:
+      summary: Update an IP access list
+      operationId: updateIpAccessList
+      description: >-
+        Updates the `name` and/or `cidrs` on an IP access list. At least one
+        field must be supplied.
+
+
+        A `cidrs` change takes effect on every SIP domain that references this
+        list. A `400` is returned if the change would give any of those domains
+        more than 50 unique CIDRs across its attached lists.
+      tags:
+        - IP Access Lists
+      requestBody:
+        $ref: '#/components/requestBodies/updateIpAccessListRequestBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/updateIpAccessListResponse'
+        default:
+          $ref: '#/components/responses/defaultError'
+    delete:
+      summary: Delete an IP access list
+      operationId: deleteIpAccessList
+      description: >-
+        Deletes the IP access list. The list is removed from `ipAccessListIds`
+        on every SIP domain that references it, and those domains stop allowing
+        traffic from its CIDRs.
+      tags:
+        - IP Access Lists
+      responses:
+        '204':
+          description: No Content
+        default:
+          $ref: '#/components/responses/defaultError'
 components:
   parameters:
     accountId:
@@ -93,6 +504,90 @@ components:
         type: string
       description: The unique ID of the application.
       example: 15f99d57-f823-4718-80cc-5d95d5b83e59
+    domain:
+      name: domain
+      in: path
+      required: true
+      description: The SIP domain label, as registered. Case-insensitive.
+      schema:
+        $ref: '#/components/schemas/sipDomainLabel'
+      example: mycompany
+    userId:
+      name: userId
+      in: path
+      required: true
+      description: The SIP user identifier, as registered on the account. Case-sensitive.
+      schema:
+        $ref: '#/components/schemas/sipUserId'
+      example: alice
+    ipAccessListId:
+      name: ipAccessListId
+      in: path
+      required: true
+      description: The unique ID of the IP access list. An unknown ID returns `404`.
+      schema:
+        type: string
+      example: 6d8e9b22-4c2c-4a37-8f54-1be0eaf6b3e2
+    pageSize:
+      name: pageSize
+      in: query
+      required: false
+      description: >-
+        The maximum number of resources to return in a single page. Values
+        outside 1-100 return `400`.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+      example: 25
+    afterCursor:
+      name: afterCursor
+      in: query
+      required: false
+      description: >-
+        Opaque cursor returned in the `next` link of a previous list response.
+        Pass it back verbatim to fetch the next page. An invalid cursor, or one
+        issued for a different account or resource type, returns `400`.
+      schema:
+        type: string
+      example: eyJhY2NvdW50SWQiOiI5OTAwMDAwIn0=
+    sipDomainApplicationIdFilter:
+      name: applicationId
+      in: query
+      required: false
+      description: Filter SIP domains by the voice application they are bound to.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/sipDomainApplicationIdFilterQueryParameter'
+    sipDomainStatusFilter:
+      name: status
+      in: query
+      required: false
+      description: Filter SIP domains by provisioning `status`.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/sipDomainStatusFilterQueryParameter'
+    sipUserDomainFilter:
+      name: domain
+      in: query
+      required: false
+      description: Filter SIP users by the SIP domain they are assigned to.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/sipUserDomainFilterQueryParameter'
+    ipAccessListNameFilter:
+      name: name
+      in: query
+      required: false
+      description: Filter IP access lists by name.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/ipAccessListNameFilterQueryParameter'
   requestBodies:
     updateVoiceApplicationRequestBody:
       required: true
@@ -112,6 +607,77 @@ components:
               $ref: '#/components/examples/updateRequestDisableInboundSipCalls'
             updateRegionsOnly:
               $ref: '#/components/examples/updateRequestUpdateRegionsOnly'
+    createSipDomainRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/createSipDomainRequest'
+          examples:
+            createSipDomainUnbound:
+              $ref: '#/components/examples/createSipDomainUnboundRequestExample'
+            createSipDomainBound:
+              $ref: '#/components/examples/createSipDomainBoundRequestExample'
+    updateSipDomainRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/updateSipDomainRequest'
+          examples:
+            bindApplication:
+              $ref: >-
+                #/components/examples/updateSipDomainBindApplicationRequestExample
+            updateIpAccessLists:
+              $ref: '#/components/examples/updateSipDomainIpAccessListsRequestExample'
+            updateRegions:
+              $ref: '#/components/examples/updateSipDomainRegionsRequestExample'
+    createSipUserRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/createSipUserRequest'
+          examples:
+            createSipUserAssigned:
+              $ref: '#/components/examples/createSipUserAssignedRequestExample'
+            createSipUserUnassigned:
+              $ref: '#/components/examples/createSipUserUnassignedRequestExample'
+    updateSipUserRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/updateSipUserRequest'
+          examples:
+            reassignDomain:
+              $ref: '#/components/examples/updateSipUserReassignDomainRequestExample'
+            unassignDomain:
+              $ref: '#/components/examples/updateSipUserUnassignDomainRequestExample'
+            rotatePassword:
+              $ref: '#/components/examples/updateSipUserRotatePasswordRequestExample'
+            updateRegions:
+              $ref: '#/components/examples/updateSipUserUpdateRegionsRequestExample'
+    createIpAccessListRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/createIpAccessListRequest'
+          examples:
+            createIpAccessList:
+              $ref: '#/components/examples/createIpAccessListRequestExample'
+            createOpenIpAccessList:
+              $ref: '#/components/examples/createOpenIpAccessListRequestExample'
+    updateIpAccessListRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/updateIpAccessListRequest'
+          examples:
+            renameIpAccessList:
+              $ref: '#/components/examples/updateIpAccessListRequestExample'
   responses:
     getVoiceApplicationResponse:
       description: OK
@@ -209,11 +775,159 @@ components:
             tooManyRequestsErrorExample:
               $ref: '#/components/examples/tooManyRequestsErrorExample'
     defaultError:
-      description: Unexpected Error
+      description: >-
+        Error response. The shape is the standard `links/data/errors` envelope
+        with `data: null`. The HTTP status code on the wire indicates the class
+        of failure (400 validation, 401 auth, 403 permission, 404 not-found, 405
+        method not allowed, 409 conflict, 429 rate-limited by the API gateway,
+        500 server error, 503 authentication temporarily unavailable). Request
+        validation errors identify the offending body field in `source.field`,
+        or the query parameter in `source.parameter`. The examples below
+        illustrate the most common scenarios for the SIP-domains, SIP-users, and
+        IP-access-list endpoints.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/genericError'
+          examples:
+            badRequest:
+              $ref: '#/components/examples/badRequestErrorExample'
+            reservedRegionLabel:
+              $ref: '#/components/examples/reservedRegionLabelErrorExample'
+            invalidSipPassword:
+              $ref: '#/components/examples/invalidSipPasswordErrorExample'
+            domainCidrLimit:
+              $ref: '#/components/examples/domainCidrLimitErrorExample'
+            invalidCursor:
+              $ref: '#/components/examples/invalidCursorErrorExample'
+            unauthorized:
+              $ref: '#/components/examples/unauthorizedErrorExample'
+            forbidden:
+              $ref: '#/components/examples/forbiddenErrorExample'
+            notFound:
+              $ref: '#/components/examples/notFoundErrorExample'
+            tooManyRequests:
+              $ref: '#/components/examples/tooManyRequestsErrorExample'
+            duplicateSipDomain:
+              $ref: '#/components/examples/duplicateSipDomainErrorExample'
+            duplicateSipUserId:
+              $ref: '#/components/examples/duplicateSipUserIdErrorExample'
+    createSipDomainResponse:
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sipDomainResponseEnvelope'
+          examples:
+            sipDomain:
+              $ref: '#/components/examples/createSipDomainResponseExample'
+    getSipDomainResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sipDomainResponseEnvelope'
+          examples:
+            sipDomain:
+              $ref: '#/components/examples/sipDomainResponseExample'
+    updateSipDomainResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sipDomainResponseEnvelope'
+          examples:
+            sipDomain:
+              $ref: '#/components/examples/sipDomainResponseExample'
+    listSipDomainsResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/listSipDomainsResponseEnvelope'
+          examples:
+            listSipDomains:
+              $ref: '#/components/examples/listSipDomainsExample'
+    createSipUserResponse:
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sipUserResponseEnvelope'
+          examples:
+            createSipUserAssigned:
+              $ref: '#/components/examples/createSipUserAssignedResponseExample'
+            createSipUserUnassigned:
+              $ref: '#/components/examples/createSipUserUnassignedResponseExample'
+    getSipUserResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sipUserResponseEnvelope'
+          examples:
+            sipUser:
+              $ref: '#/components/examples/getSipUserResponseExample'
+    listSipUsersResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/listSipUsersResponseEnvelope'
+          examples:
+            listSipUsers:
+              $ref: '#/components/examples/listSipUsersExample'
+    updateSipUserResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sipUserResponseEnvelope'
+          examples:
+            reassignDomain:
+              $ref: '#/components/examples/updateSipUserReassignDomainResponseExample'
+            rotatePassword:
+              $ref: '#/components/examples/updateSipUserRotatePasswordResponseExample'
+            updateRegions:
+              $ref: '#/components/examples/updateSipUserUpdateRegionsResponseExample'
+    createIpAccessListResponse:
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ipAccessListResponseEnvelope'
+          examples:
+            ipAccessList:
+              $ref: '#/components/examples/ipAccessListResponseExample'
+            openIpAccessList:
+              $ref: '#/components/examples/openIpAccessListResponseExample'
+    getIpAccessListResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ipAccessListResponseEnvelope'
+          examples:
+            ipAccessList:
+              $ref: '#/components/examples/ipAccessListResponseExample'
+    listIpAccessListsResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/listIpAccessListsResponseEnvelope'
+          examples:
+            listIpAccessLists:
+              $ref: '#/components/examples/listIpAccessListsExample'
+    updateIpAccessListResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ipAccessListResponseEnvelope'
+          examples:
+            ipAccessList:
+              $ref: '#/components/examples/ipAccessListResponseExample'
   schemas:
     link:
       title: Link
@@ -320,30 +1034,40 @@ components:
       title: SIP URI
       type: string
       nullable: true
-      description: The SIP URI for the specified application.
+      description: >-
+        The application's default-realm SIP URI
+        (`sip:{applicationId}@{auth_realm}`). `null` when inbound SIP calls are
+        disabled. Custom SIP domain hosts are listed in each SIP domain's
+        `fqdns`.
       example: >-
         sip:479fbd44-3362-45f3-bb80-284f21111be4@sip.programmable-voice.bandwidth.com
     inboundSipCallsEnabled:
       title: Inbound SIP Calls Enabled
       type: boolean
-      description: Indicates whether the application can receive inbound SIP calls.
+      description: >-
+        Whether the application accepts inbound SIP calls on its default-realm
+        SIP identity (`sip:{applicationId}@{auth_realm}`). Does not affect calls
+        to custom SIP domains bound to the application.
       example: true
     passwordAuthEnabled:
       title: Password Auth Enabled
       type: boolean
       description: >-
-        Controls whether SIP digest authentication (407 challenge) is required
-        for inbound SIP calls.
+        Whether SIP digest authentication (407 challenge) is required for
+        inbound SIP calls on the application's default-realm SIP identity.
+        Custom SIP domains authenticate with per-user credentials from SIP Users
+        instead.
       example: true
     allowedSourceIps:
       title: Allowed Source IPs
       type: array
       description: >-
-        List of CIDR blocks allowed to send SIP traffic to this application. An
-        empty array means no IP restriction is applied. Maximum 25 entries.
+        IPv4 CIDR blocks allowed to send SIP traffic to the application's
+        default-realm SIP identity. An empty array means no IP restriction is
+        applied. Maximum 25 entries. Custom SIP domains use IP access lists
+        instead.
       items:
-        type: string
-        pattern: ^(\d{1,3}\.){3}\d{1,3}/\d{1,2}$
+        $ref: '#/components/schemas/ipv4Cidr'
       maxItems: 25
       default: []
       example:
@@ -362,8 +1086,10 @@ components:
       type: array
       nullable: true
       description: >-
-        The list of regions where the application is permitted to authenticate.
-        When null, no regions are configured.
+        The regions where calls to the application's default-realm SIP identity
+        are permitted to authenticate. An application with no allowed regions
+        cannot authenticate. Custom SIP domains use each SIP user's
+        `allowedRegions` instead.
       items:
         $ref: '#/components/schemas/region'
       example:
@@ -453,6 +1179,11 @@ components:
         At least one field must be provided. When `inboundSipCallsEnabled` is
         `true`, at least one auth mechanism must be active:
         `passwordAuthEnabled: true` OR a non-empty `allowedSourceIps` array.
+
+
+        A `null` value is treated the same as omitting the field; it does not
+        clear the setting. To clear `allowedSourceIps` or `allowedRegions`, send
+        an empty array.
       type: object
       properties:
         inboundSipCallsEnabled:
@@ -498,9 +1229,9 @@ components:
                   type: string
                   nullable: true
                   description: >-
-                    The password to be used for SIP digest authentication. Only
-                    returned when `passwordAuthEnabled` is set to `true`. Null
-                    otherwise.
+                    The newly generated password to be used for SIP digest
+                    authentication. Only present when the request included
+                    `passwordAuthEnabled: true`; it is not returned again.
                   example: super_secure_password
         errors:
           type: array
@@ -511,6 +1242,701 @@ components:
         - links
         - data
         - errors
+    sipDomainLabel:
+      title: SIP Domain Label
+      type: string
+      description: >-
+        The customer-chosen DNS label that identifies the SIP domain on this
+        account. 1-63 alphanumeric or hyphen characters, no leading or trailing
+        hyphen. Case-insensitive; stored and returned in lowercase.
+
+
+        Region codes (`us`, `eu`) are reserved and rejected as a domain label,
+        since they are used as the region prefix in `fqdns`. `null` is also
+        reserved, since it is the list filters' value for an unassigned domain.
+      pattern: ^[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?$
+      minLength: 1
+      maxLength: 63
+      example: mycompany
+    sipDomainName:
+      title: SIP Domain Name
+      type: string
+      description: A customer-chosen friendly name for the SIP domain.
+      minLength: 1
+      maxLength: 255
+      example: Acme Support Domain
+    sipDomainStatus:
+      title: SIP Domain Status
+      type: string
+      description: >-
+        The provisioning status of the SIP domain's DNS records. `PENDING`
+        immediately after create, or after a `regions` update that changes the
+        region set, while provisioning runs asynchronously; `ACTIVE` once
+        provisioning completes; `FAILED` if provisioning could not complete (see
+        `failureReason`). A domain still `PENDING` after 10 minutes is reported
+        as `FAILED`. Inbound calls are only accepted on an `ACTIVE` domain.
+      enum:
+        - PENDING
+        - ACTIVE
+        - FAILED
+      example: ACTIVE
+    ipAccessListIds:
+      title: IP Access List IDs
+      type: array
+      description: >-
+        IDs of account-scoped IP access lists attached to the domain (max 25).
+        Inbound SIP traffic to the domain is allowed from the union of the
+        lists' CIDRs, which may contain at most 50 unique CIDRs. Unknown IDs
+        return `404`.
+      items:
+        type: string
+        format: uuid
+      maxItems: 25
+      default: []
+      example:
+        - 6d8e9b22-4c2c-4a37-8f54-1be0eaf6b3e2
+    sipDomainRegions:
+      title: SIP Domain Regions
+      type: array
+      description: >-
+        The regions this domain provisions DNS records for and accepts calls in.
+        Drives the region-pinned entries in `fqdns`.
+
+
+        **At least one region is required for the domain to accept calls.** If
+        `regions` is omitted or empty, every inbound call to the domain is
+        rejected, even though the domain is created and becomes `ACTIVE`.
+
+
+        A call to `<userId>@<fqdn>` must also be in one of that SIP user's
+        `allowedRegions`.
+      items:
+        $ref: '#/components/schemas/region'
+      default: []
+      example:
+        - US
+        - EU
+    sipUserId:
+      title: SIP User ID
+      type: string
+      description: >-
+        The customer-chosen SIP user identifier. 1-64 letters, numbers, `.`,
+        `_`, or `-`. Case-sensitive. Immutable after creation.
+      pattern: ^[A-Za-z0-9._-]{1,64}$
+      minLength: 1
+      maxLength: 64
+      example: alice
+    sipUserName:
+      title: SIP User Friendly Name
+      type: string
+      description: >-
+        A customer-chosen friendly name for the SIP user, distinct from the
+        immutable `userId`.
+      minLength: 1
+      maxLength: 255
+      example: Alice Support Line
+    sipPassword:
+      title: SIP Digest Password
+      type: string
+      writeOnly: true
+      description: >-
+        The customer-supplied plaintext digest password. Must be 8-128 printable
+        ASCII characters and include at least one uppercase letter, one
+        lowercase letter, one number, and one special character. Required on
+        create; supply again on `PATCH` to rotate it. Bandwidth never stores or
+        returns the plaintext — it is not recoverable, and this field never
+        appears in a response.
+      pattern: ^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!-/:-@\[-`{-~])[ -~]{8,128}$
+      minLength: 8
+      maxLength: 128
+      example: s0meRand0mP4ssw0rd!
+    sipUserAllowedRegions:
+      title: SIP User Allowed Regions
+      type: array
+      description: >-
+        The list of regions where this user is permitted to authenticate. A user
+        with no allowed regions cannot authenticate.
+      items:
+        $ref: '#/components/schemas/region'
+      default: []
+      example:
+        - US
+    createdAt:
+      title: Created At
+      type: string
+      format: date-time
+      description: >-
+        RFC 3339 timestamp (UTC) of when the resource was created. Preserved
+        across updates.
+      example: '2026-04-29T12:34:56.789012+00:00'
+    sipDomain:
+      title: SIP Domain
+      type: object
+      properties:
+        domain:
+          $ref: '#/components/schemas/sipDomainLabel'
+        name:
+          $ref: '#/components/schemas/sipDomainName'
+        applicationId:
+          type: string
+          nullable: true
+          description: >-
+            The unique ID of the voice application this domain is bound to, or
+            `null` if unbound. A domain with no `applicationId` cannot accept
+            inbound calls until bound; you may set this later via `PATCH`.
+          example: 15f99d57-f823-4718-80cc-5d95d5b83e59
+        regions:
+          $ref: '#/components/schemas/sipDomainRegions'
+        ipAccessListIds:
+          $ref: '#/components/schemas/ipAccessListIds'
+        fqdns:
+          type: array
+          readOnly: true
+          description: >-
+            **Read-only / derived.** The full SIP host(s) that inbound calls to
+            this domain are reachable on — one global entry
+            (`{domain}.{accountId}.{suffix}`), plus one region-pinned entry
+            (`{region}.{domain}.{accountId}.{suffix}`) for each region in
+            `regions`. These are the values to configure as the destination in
+            your SBC or PBX. Customers with data-residency requirements should
+            use the region-pinned host rather than the global one, since the
+            global host may route to any of the domain's configured regions.
+          items:
+            type: string
+          example:
+            - mycompany.9900000.sip-uri.voice-api.bandwidth.com
+            - us.mycompany.9900000.sip-uri.voice-api.bandwidth.com
+            - eu.mycompany.9900000.sip-uri.voice-api.bandwidth.com
+        status:
+          allOf:
+            - $ref: '#/components/schemas/sipDomainStatus'
+          readOnly: true
+        failureReason:
+          type: string
+          nullable: true
+          readOnly: true
+          description: >-
+            Why provisioning failed when `status` is `FAILED` (`Domain
+            provisioning failed` or `Provisioning timed out`); `null` otherwise.
+          example: Provisioning timed out
+        userIds:
+          type: array
+          readOnly: true
+          description: >-
+            **Read-only / derived.** The SIP user IDs currently assigned to this
+            domain (i.e. the users whose `domain` field equals this domain).
+            Inbound SIP calls to `<userId>@<fqdn>` authenticate against the
+            named user's credentials. Always empty in the response to the create
+            request. To assign or unassign a user, `PATCH /sip-users/{userId}`
+            with the new `domain` value (or an empty string, `""`, to unassign).
+          items:
+            $ref: '#/components/schemas/sipUserId'
+          maxItems: 5000
+          example:
+            - alice
+            - support
+        createdAt:
+          $ref: '#/components/schemas/createdAt'
+      required:
+        - domain
+        - name
+        - applicationId
+        - regions
+        - ipAccessListIds
+        - fqdns
+        - status
+        - failureReason
+        - userIds
+        - createdAt
+    sipUser:
+      title: SIP User
+      type: object
+      properties:
+        userId:
+          $ref: '#/components/schemas/sipUserId'
+        name:
+          $ref: '#/components/schemas/sipUserName'
+        domain:
+          type: string
+          nullable: true
+          description: >-
+            The label of the SIP domain this user is currently assigned to, or
+            `null` if unassigned. A SIP user can be assigned to **at most one**
+            SIP domain at a time. Inbound SIP calls to `<userId>@<this domain's
+            fqdn>` authenticate against this user's credentials; calls to the
+            user on any other domain are rejected.
+          example: mycompany
+        allowedRegions:
+          $ref: '#/components/schemas/sipUserAllowedRegions'
+        createdAt:
+          $ref: '#/components/schemas/createdAt'
+      required:
+        - userId
+        - name
+        - domain
+        - allowedRegions
+        - createdAt
+    createSipDomainRequest:
+      title: Create SIP Domain Request
+      type: object
+      description: >-
+        `domain` and `name` are required. The domain is created with no users
+        assigned; assign users by `PATCH /sip-users/{userId}` with this domain's
+        label.
+      properties:
+        domain:
+          $ref: '#/components/schemas/sipDomainLabel'
+        name:
+          $ref: '#/components/schemas/sipDomainName'
+        applicationId:
+          type: string
+          nullable: true
+          description: >-
+            Optional voice application to bind this domain to at creation time.
+            Omit or send `null` to create the domain unbound; bind it later via
+            `PATCH`.
+          example: 15f99d57-f823-4718-80cc-5d95d5b83e59
+        regions:
+          $ref: '#/components/schemas/sipDomainRegions'
+        ipAccessListIds:
+          $ref: '#/components/schemas/ipAccessListIds'
+      required:
+        - domain
+        - name
+    updateSipDomainRequest:
+      title: Update SIP Domain Request
+      type: object
+      description: >-
+        At least one field must be supplied. `domain` (the label) is immutable
+        and ignored if supplied; to change it, delete this domain and create a
+        new one.
+
+
+        A `null` value for any field is treated the same as omitting it; it
+        never clears a setting. To unbind `applicationId`, send an empty string.
+        To clear `regions` or `ipAccessListIds`, send an empty array.
+      properties:
+        name:
+          type: string
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/sipDomainName'
+          description: Replaces the friendly name for this domain.
+        applicationId:
+          type: string
+          nullable: true
+          description: >-
+            Binds or rebinds the domain to the named voice application, or an
+            empty string (`""`) to unbind. `null` leaves the binding unchanged.
+          example: 15f99d57-f823-4718-80cc-5d95d5b83e59
+        regions:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/region'
+          description: >-
+            Replaces the domain's region set; send an empty array to clear it.
+            `null` leaves it unchanged. If the set changes, DNS records are
+            reprovisioned and `status` returns to `PENDING`.
+        ipAccessListIds:
+          type: array
+          nullable: true
+          items:
+            type: string
+            format: uuid
+          maxItems: 25
+          description: >-
+            Replaces the domain's attached IP access lists; send an empty array
+            to detach all. `null` leaves them unchanged. Unknown IDs return
+            `404`.
+    createSipUserRequest:
+      title: Create SIP User Request
+      type: object
+      description: >-
+        `userId`, `name`, and `password` are required. Optionally supply
+        `domain` to assign the user to a SIP domain at creation time; omit (or
+        send `null`) to leave the user unassigned. The user can be reassigned
+        later via `PATCH /sip-users/{userId}`.
+      properties:
+        userId:
+          $ref: '#/components/schemas/sipUserId'
+        name:
+          $ref: '#/components/schemas/sipUserName'
+        password:
+          $ref: '#/components/schemas/sipPassword'
+        domain:
+          type: string
+          nullable: true
+          description: >-
+            Optional SIP domain label to assign this user to at creation time.
+            Must reference an existing SIP domain on this account; unknown
+            domains return `404`. Omit or send `null` to create the user without
+            a domain assignment.
+          example: mycompany
+        allowedRegions:
+          $ref: '#/components/schemas/sipUserAllowedRegions'
+      required:
+        - userId
+        - name
+        - password
+    updateSipUserRequest:
+      title: Update SIP User Request
+      type: object
+      description: >-
+        At least one field must be supplied. `userId` is immutable and ignored
+        if supplied; to change it, delete the user and recreate.
+
+
+        Supplying `domain` reassigns the user to the named SIP domain,
+        overwriting any prior assignment. Supply an empty string (`""`) to
+        unassign the user from any domain. Supplying `password` rotates the
+        digest credential; the plaintext is never echoed back.
+
+
+        A `null` value for any field is treated the same as omitting it; it
+        never clears a setting. To clear `allowedRegions`, send an empty array.
+      properties:
+        name:
+          type: string
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/sipUserName'
+          description: Replaces the friendly name for this user.
+        domain:
+          type: string
+          nullable: true
+          description: >-
+            Reassign this user to the named SIP domain (must exist on this
+            account), or an empty string (`""`) to unassign. `null` leaves the
+            assignment unchanged. A user can be assigned to at most one domain
+            at a time; the prior assignment is overwritten atomically.
+          example: mycompany
+        password:
+          type: string
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/sipPassword'
+          description: Rotates the user's digest password. `null` leaves it unchanged.
+        allowedRegions:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/region'
+          description: >-
+            Replaces the user's `allowedRegions`; send an empty array to clear
+            it. `null` leaves it unchanged.
+    pageMeta:
+      title: Page Metadata
+      type: object
+      description: Pagination metadata for a list response.
+      properties:
+        pageSize:
+          type: integer
+          description: The number of resources on the current page.
+          example: 2
+      required:
+        - pageSize
+    sipDomainApplicationIdFilterQueryParameter:
+      title: SIP Domain Application ID Filter Query Parameter
+      type: object
+      properties:
+        eq:
+          type: string
+          description: >-
+            Returns only SIP domains bound to one of these voice application IDs
+            (exact, case-sensitive match). Supply a comma-separated list to
+            match any of the values (OR); entries are trimmed, empty entries and
+            duplicates are ignored, and at most 100 values are allowed. An empty
+            value or more than 100 values returns `400`. Include the literal
+            lowercase `null` to also match unbound domains.
+          example: 15f99d57-f823-4718-80cc-5d95d5b83e59,null
+      example:
+        eq: 15f99d57-f823-4718-80cc-5d95d5b83e59
+    sipDomainStatusFilterQueryParameter:
+      title: SIP Domain Status Filter Query Parameter
+      type: object
+      properties:
+        eq:
+          type: string
+          description: >-
+            Returns only SIP domains with one of these `status` values:
+            `PENDING`, `ACTIVE`, or `FAILED` (uppercase). Supply a
+            comma-separated list to match any of the values (OR); entries are
+            trimmed, empty entries and duplicates are ignored, and at most 100
+            values are allowed. An empty value or more than 100 values returns
+            `400`. Any other value in the list returns `400`.
+          example: PENDING,FAILED
+      example:
+        eq: PENDING,FAILED
+    sipUserDomainFilterQueryParameter:
+      title: SIP User Domain Filter Query Parameter
+      type: object
+      properties:
+        eq:
+          type: string
+          description: >-
+            Returns only SIP users assigned to one of these SIP domain labels
+            (case-insensitive). Supply a comma-separated list to match any of
+            the values (OR); entries are trimmed, empty entries and duplicates
+            are ignored, and at most 100 values are allowed. An empty value or
+            more than 100 values returns `400`. Include the literal lowercase
+            `null` to also match unassigned users.
+          example: mycompany,sales
+      example:
+        eq: mycompany
+    ipAccessListNameFilterQueryParameter:
+      title: IP Access List Name Filter Query Parameter
+      type: object
+      properties:
+        eq:
+          type: string
+          description: >-
+            Returns only IP access lists with exactly this name
+            (case-sensitive). Only a single value is supported, since names may
+            contain commas.
+          example: Office NAT
+      example:
+        eq: Office NAT
+    sipDomainResponseEnvelope:
+      title: SIP Domain Response
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          nullable: true
+        data:
+          type: object
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/sipDomain'
+        errors:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/error'
+      required:
+        - links
+        - data
+        - errors
+    sipUserResponseEnvelope:
+      title: SIP User Response
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          nullable: true
+        data:
+          type: object
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/sipUser'
+        errors:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/error'
+      required:
+        - links
+        - data
+        - errors
+    listSipDomainsResponseEnvelope:
+      title: List SIP Domains Response
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          nullable: true
+        data:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/sipDomain'
+        errors:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/error'
+        page:
+          $ref: '#/components/schemas/pageMeta'
+      required:
+        - links
+        - data
+        - errors
+        - page
+    listSipUsersResponseEnvelope:
+      title: List SIP Users Response
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          nullable: true
+        data:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/sipUser'
+        errors:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/error'
+        page:
+          $ref: '#/components/schemas/pageMeta'
+      required:
+        - links
+        - data
+        - errors
+        - page
+    ipv4Cidr:
+      title: IPv4 CIDR
+      type: string
+      description: >-
+        An IPv4 CIDR block in canonical `<network>/<prefix>` form (host bits
+        must be zero, e.g. `192.168.1.0/24`, not `192.168.1.5/24`). A bare IP
+        address is accepted and stored as `/32`. Any block that overlaps a
+        private or reserved range is rejected (so a supernet such as
+        `172.0.0.0/8` is rejected too): `0.0.0.0/8`, `10.0.0.0/8`,
+        `100.64.0.0/10`, `127.0.0.0/8`, `169.254.0.0/16`, `172.16.0.0/12`,
+        `192.0.0.0/24`, `192.168.0.0/16`, `224.0.0.0/4`, and `240.0.0.0/4`.
+        `0.0.0.0/0` is allowed and permits all source IPs.
+      pattern: ^(\d{1,3}\.){3}\d{1,3}(/\d{1,2})?$
+      example: 203.0.113.0/24
+    ipAccessListCidrs:
+      title: IP Access List CIDRs
+      type: array
+      description: >-
+        The IPv4 CIDR blocks in this access list. Entries must be unique after
+        normalization.
+      items:
+        $ref: '#/components/schemas/ipv4Cidr'
+      minItems: 1
+      maxItems: 25
+      uniqueItems: true
+      example:
+        - 203.0.113.0/24
+        - 198.51.100.7/32
+    ipAccessListName:
+      title: IP Access List Name
+      type: string
+      description: Human-readable label for the IP access list. Does not need to be unique.
+      minLength: 1
+      maxLength: 255
+      example: Office NAT
+    ipAccessList:
+      title: IP Access List
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique ID of the IP access list, generated by Bandwidth.
+          example: 6d8e9b22-4c2c-4a37-8f54-1be0eaf6b3e2
+        name:
+          $ref: '#/components/schemas/ipAccessListName'
+        cidrs:
+          $ref: '#/components/schemas/ipAccessListCidrs'
+        createdAt:
+          $ref: '#/components/schemas/createdAt'
+      required:
+        - id
+        - name
+        - cidrs
+        - createdAt
+    createIpAccessListRequest:
+      title: Create IP Access List Request
+      type: object
+      description: '`name` and `cidrs` are required.'
+      properties:
+        name:
+          $ref: '#/components/schemas/ipAccessListName'
+        cidrs:
+          $ref: '#/components/schemas/ipAccessListCidrs'
+      required:
+        - name
+        - cidrs
+    updateIpAccessListRequest:
+      title: Update IP Access List Request
+      type: object
+      description: >-
+        Updates `name` and/or `cidrs`. At least one field must be supplied. A
+        `null` value is treated the same as omitting the field. `cidrs`, when
+        supplied, replaces the full list (not a merge).
+      properties:
+        name:
+          type: string
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/ipAccessListName'
+          description: >-
+            Replaces the friendly label for this IP access list. Omit to leave
+            unchanged.
+        cidrs:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ipv4Cidr'
+          allOf:
+            - $ref: '#/components/schemas/ipAccessListCidrs'
+          description: >-
+            Replaces the full CIDR list for this IP access list. Omit to leave
+            unchanged.
+    ipAccessListResponseEnvelope:
+      title: IP Access List Response
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          nullable: true
+        data:
+          type: object
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/ipAccessList'
+        errors:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/error'
+      required:
+        - links
+        - data
+        - errors
+    listIpAccessListsResponseEnvelope:
+      title: List IP Access Lists Response
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          nullable: true
+        data:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ipAccessList'
+        errors:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/error'
+        page:
+          $ref: '#/components/schemas/pageMeta'
+      required:
+        - links
+        - data
+        - errors
+        - page
   examples:
     getResponsePasswordAuthEnabled:
       summary: Password auth enabled with IP ACL
@@ -593,7 +2019,7 @@ components:
           inboundSipCallsEnabled: false
           passwordAuthEnabled: false
           allowedSourceIps: []
-          allowedRegions: null
+          allowedRegions: []
         errors: []
     updateRequestEnableWithPasswordAuth:
       summary: Enable inbound SIP with password auth only
@@ -651,7 +2077,7 @@ components:
           inboundSipCallsEnabled: true
           passwordAuthEnabled: true
           allowedSourceIps: []
-          allowedRegions: null
+          allowedRegions: []
           sipAuthPassword: super_secure_password
         errors: []
     updateResponseEnableWithPasswordAuthAndIpAcl:
@@ -709,8 +2135,7 @@ components:
           allowedSourceIps:
             - 203.0.113.0/24
             - 198.51.100.0/32
-          allowedRegions: null
-          sipAuthPassword: null
+          allowedRegions: []
         errors: []
     updateResponseDisableInboundSipCalls:
       summary: Response after disabling inbound SIP calls
@@ -735,8 +2160,7 @@ components:
           inboundSipCallsEnabled: false
           passwordAuthEnabled: false
           allowedSourceIps: []
-          allowedRegions: null
-          sipAuthPassword: null
+          allowedRegions: []
         errors: []
     updateResponseUpdateRegionsOnly:
       summary: Response after updating regions only
@@ -772,52 +2196,84 @@ components:
         links: []
         data: null
         errors:
-          - id: optional-error-id
-            type: bad-request
-            description: There was an issue with your request
-            code: 205617
+          - type: string_too_short
+            description: String should have at least 1 character
+            source:
+              field: name
+    reservedRegionLabelErrorExample:
+      summary: Domain label collides with a reserved region code
+      description: >
+        This error occurs when `domain` on a SIP domain create matches a
+        reserved label (`us`, `eu`, `null`).
+      value:
+        links: []
+        data: null
+        errors:
+          - type: value_error
+            description: domain 'eu' is a reserved label and cannot be used
+            source:
+              field: domain
+    invalidSipPasswordErrorExample:
+      summary: SIP user password does not meet the complexity requirements
+      value:
+        links: []
+        data: null
+        errors:
+          - type: value_error
+            description: >-
+              Password must be 8-128 printable ASCII characters and include an
+              uppercase letter, lowercase letter, number, and special character
+            source:
+              field: password
+    domainCidrLimitErrorExample:
+      summary: Attached IP access lists exceed the per-domain CIDR limit
+      description: >
+        This error occurs on SIP domain create/update when the attached IP
+        access lists contain more than 50 unique CIDRs in total.
+      value:
+        links: []
+        data: null
+        errors:
+          - type: http_exception
+            description: >-
+              The selected IP access lists contain 62 unique CIDRs; a domain can
+              have at most 50
     unauthorizedErrorExample:
       summary: An example of a generic Unauthorized Error
       value:
         links: []
         data: null
         errors:
-          - id: optional-error-id
-            type: authentication-credentials
-            description: Invalid or missing credentials.
-            code: 206401
+          - type: Unauthorized
+            description: Invalid token
+            source:
+              header: authorization
     forbiddenErrorExample:
       summary: An example of a generic Forbidden Error
       value:
         links: []
         data: null
         errors:
-          - id: optional-error-id
-            type: resource-permissions
-            description: User does not have permissions to access this resource.
-            code: 109107
+          - type: Forbidden
+            description: Insufficient account access
+            source:
+              header: authorization
     notFoundErrorExample:
       summary: An example of a generic Not Found Error
       value:
         links: []
         data: null
         errors:
-          - id: optional-error-id
-            type: resource-not-found
-            description: The resource specified cannot be found.
-            code: 50420
+          - type: http_exception
+            description: SIP domain not found
     notAllowedErrorExample:
       summary: An example of a generic Not Allowed Error
       value:
         links: []
         data: null
         errors:
-          - id: optional-error-id
-            type: http-method-not-supported
-            description: The HTTP method used is not supported by this resource.
-            code: 205621
-            meta:
-              method: TRACE
+          - type: http_exception
+            description: Method Not Allowed
     tooManyRequestsErrorExample:
       summary: An example of a generic Too Many Requests Error
       value:
@@ -839,10 +2295,10 @@ components:
         links: []
         data: null
         errors:
-          - type: application-not-found
-            description: The specified application does not exist.
-            source:
-              parameter: applicationId
+          - type: http_exception
+            description: >-
+              Application '15f99d57-f823-4718-80cc-5d95d5b83e59' not found for
+              account 9900000
     applicationIsNotAVoiceApplicationErrorExample:
       summary: Application is not a voice application
       description: >
@@ -852,10 +2308,358 @@ components:
         links: []
         data: null
         errors:
-          - type: not-a-voice-application
-            description: The specified application is not a voice application.
+          - type: request_validation_error
+            description: Bandwidth Application serviceType does not contain 'voice'.
             source:
-              parameter: applicationId
+              field: serviceType
+    invalidCursorErrorExample:
+      summary: List request with an invalid `afterCursor`
+      value:
+        links: []
+        data: null
+        errors:
+          - type: value_error
+            description: Invalid cursor
+            source:
+              parameter: afterCursor
+    duplicateSipDomainErrorExample:
+      summary: SIP domain label already registered on this account
+      description: >
+        This error occurs on `POST /sip-domains` when the supplied `domain` is
+        already registered on this account. Because uniqueness is per-account
+        (not global), the only possible existing owner is the caller.
+      value:
+        links: []
+        data: null
+        errors:
+          - type: duplicate_resource_exception
+            description: Domain 'mycompany' already exists for account 9900000
+    duplicateSipUserIdErrorExample:
+      summary: SIP user ID already registered on this account
+      value:
+        links: []
+        data: null
+        errors:
+          - type: duplicate_resource_exception
+            description: User 'alice' already exists for account 9900000
+    createSipDomainResponseExample:
+      summary: A newly created SIP domain, still provisioning
+      value:
+        links: []
+        data:
+          domain: mycompany
+          name: Acme Support Domain
+          applicationId: 15f99d57-f823-4718-80cc-5d95d5b83e59
+          regions:
+            - US
+            - EU
+          ipAccessListIds:
+            - 6d8e9b22-4c2c-4a37-8f54-1be0eaf6b3e2
+          fqdns:
+            - mycompany.9900000.sip-uri.voice-api.bandwidth.com
+            - us.mycompany.9900000.sip-uri.voice-api.bandwidth.com
+            - eu.mycompany.9900000.sip-uri.voice-api.bandwidth.com
+          status: PENDING
+          failureReason: null
+          userIds: []
+          createdAt: '2026-04-29T12:34:56.789012+00:00'
+        errors: []
+    sipDomainResponseExample:
+      summary: A bound, active SIP domain with users and an IP access list attached
+      value:
+        links: []
+        data:
+          domain: mycompany
+          name: Acme Support Domain
+          applicationId: 15f99d57-f823-4718-80cc-5d95d5b83e59
+          regions:
+            - US
+            - EU
+          ipAccessListIds:
+            - 6d8e9b22-4c2c-4a37-8f54-1be0eaf6b3e2
+          fqdns:
+            - mycompany.9900000.sip-uri.voice-api.bandwidth.com
+            - us.mycompany.9900000.sip-uri.voice-api.bandwidth.com
+            - eu.mycompany.9900000.sip-uri.voice-api.bandwidth.com
+          status: ACTIVE
+          failureReason: null
+          userIds:
+            - alice
+            - support
+          createdAt: '2026-04-29T12:34:56.789012+00:00'
+        errors: []
+    listSipDomainsExample:
+      summary: A page of SIP domains, with more to follow
+      value:
+        links:
+          - href: >-
+              https://api.bandwidth.com/v2/accounts/9900000/voice-applications/sip-domains?pageSize=2
+            rel: self
+            method: GET
+          - href: >-
+              https://api.bandwidth.com/v2/accounts/9900000/voice-applications/sip-domains?pageSize=2&afterCursor=eyJhY2NvdW50SWQiOiI5OTAwMDAwIn0%3D
+            rel: next
+            method: GET
+        data:
+          - domain: mycompany
+            name: Acme Support Domain
+            applicationId: 15f99d57-f823-4718-80cc-5d95d5b83e59
+            regions:
+              - US
+            ipAccessListIds: []
+            fqdns:
+              - mycompany.9900000.sip-uri.voice-api.bandwidth.com
+              - us.mycompany.9900000.sip-uri.voice-api.bandwidth.com
+            status: ACTIVE
+            failureReason: null
+            userIds:
+              - alice
+            createdAt: '2026-04-29T12:34:56.789012+00:00'
+          - domain: sales
+            name: Sales Domain
+            applicationId: null
+            regions:
+              - US
+            ipAccessListIds:
+              - 6d8e9b22-4c2c-4a37-8f54-1be0eaf6b3e2
+            fqdns:
+              - sales.9900000.sip-uri.voice-api.bandwidth.com
+              - us.sales.9900000.sip-uri.voice-api.bandwidth.com
+            status: FAILED
+            failureReason: Domain provisioning failed
+            userIds: []
+            createdAt: '2026-04-28T09:00:00.000000+00:00'
+        errors: []
+        page:
+          pageSize: 2
+    createSipDomainUnboundRequestExample:
+      summary: Create an unbound SIP domain
+      value:
+        domain: sales
+        name: Sales Domain
+        regions:
+          - US
+    createSipDomainBoundRequestExample:
+      summary: Create a SIP domain bound to an application, with an IP access list
+      value:
+        domain: mycompany
+        name: Acme Support Domain
+        applicationId: 15f99d57-f823-4718-80cc-5d95d5b83e59
+        regions:
+          - US
+          - EU
+        ipAccessListIds:
+          - 6d8e9b22-4c2c-4a37-8f54-1be0eaf6b3e2
+    updateSipDomainBindApplicationRequestExample:
+      summary: Bind an existing domain to an application
+      value:
+        applicationId: 15f99d57-f823-4718-80cc-5d95d5b83e59
+    updateSipDomainIpAccessListsRequestExample:
+      summary: Replace the domain's attached IP access lists
+      value:
+        ipAccessListIds:
+          - 6d8e9b22-4c2c-4a37-8f54-1be0eaf6b3e2
+    updateSipDomainRegionsRequestExample:
+      summary: Add a region to an existing domain
+      value:
+        regions:
+          - US
+          - EU
+    createSipUserAssignedRequestExample:
+      summary: Create a SIP user assigned to a domain
+      value:
+        userId: alice
+        name: Alice Support Line
+        password: s0meRand0mP4ssw0rd!
+        domain: mycompany
+        allowedRegions:
+          - US
+    createSipUserUnassignedRequestExample:
+      summary: Create an unassigned SIP user
+      value:
+        userId: bob
+        name: Bob
+        password: an0therStr0ngP4ss#
+        allowedRegions:
+          - US
+          - EU
+    createSipUserAssignedResponseExample:
+      summary: Response after creating an assigned SIP user
+      value:
+        links: []
+        data:
+          userId: alice
+          name: Alice Support Line
+          domain: mycompany
+          allowedRegions:
+            - US
+          createdAt: '2026-04-29T12:34:56.789012+00:00'
+        errors: []
+    createSipUserUnassignedResponseExample:
+      summary: Response after creating an unassigned SIP user
+      value:
+        links: []
+        data:
+          userId: bob
+          name: Bob
+          domain: null
+          allowedRegions:
+            - US
+            - EU
+          createdAt: '2026-04-29T12:34:56.789012+00:00'
+        errors: []
+    getSipUserResponseExample:
+      summary: Retrieve a SIP user (password never returned)
+      value:
+        links: []
+        data:
+          userId: alice
+          name: Alice Support Line
+          domain: mycompany
+          allowedRegions:
+            - US
+          createdAt: '2026-04-29T12:34:56.789012+00:00'
+        errors: []
+    listSipUsersExample:
+      summary: The last page of SIP users (no `next` link)
+      value:
+        links:
+          - href: >-
+              https://api.bandwidth.com/v2/accounts/9900000/voice-applications/sip-users?pageSize=2&afterCursor=eyJhY2NvdW50SWQiOiI5OTAwMDAwIn0%3D
+            rel: self
+            method: GET
+        data:
+          - userId: alice
+            name: Alice Support Line
+            domain: mycompany
+            allowedRegions:
+              - US
+            createdAt: '2026-04-29T12:34:56.789012+00:00'
+          - userId: bob
+            name: Bob
+            domain: null
+            allowedRegions:
+              - US
+              - EU
+            createdAt: '2026-04-28T09:00:00.000000+00:00'
+        errors: []
+        page:
+          pageSize: 2
+    updateSipUserReassignDomainRequestExample:
+      summary: Reassign a user to a different domain
+      value:
+        domain: sales
+    updateSipUserUnassignDomainRequestExample:
+      summary: Unassign a user from any domain
+      value:
+        domain: ''
+    updateSipUserRotatePasswordRequestExample:
+      summary: Rotate a user's password
+      value:
+        password: aBr4ndN3wP4ssw0rd$
+    updateSipUserUpdateRegionsRequestExample:
+      summary: Update a user's allowed regions
+      value:
+        allowedRegions:
+          - US
+          - EU
+    updateSipUserReassignDomainResponseExample:
+      summary: Response after reassigning a user's domain
+      value:
+        links: []
+        data:
+          userId: alice
+          name: Alice Support Line
+          domain: sales
+          allowedRegions:
+            - US
+          createdAt: '2026-04-29T12:34:56.789012+00:00'
+        errors: []
+    updateSipUserRotatePasswordResponseExample:
+      summary: Response after rotating a user's password (plaintext never echoed)
+      value:
+        links: []
+        data:
+          userId: alice
+          name: Alice Support Line
+          domain: mycompany
+          allowedRegions:
+            - US
+          createdAt: '2026-04-29T12:34:56.789012+00:00'
+        errors: []
+    updateSipUserUpdateRegionsResponseExample:
+      summary: Response after updating a user's allowed regions
+      value:
+        links: []
+        data:
+          userId: alice
+          name: Alice Support Line
+          domain: mycompany
+          allowedRegions:
+            - US
+            - EU
+          createdAt: '2026-04-29T12:34:56.789012+00:00'
+        errors: []
+    createIpAccessListRequestExample:
+      summary: Create an IP access list with two CIDRs
+      value:
+        name: Office NAT
+        cidrs:
+          - 203.0.113.0/24
+          - 198.51.100.7/32
+    createOpenIpAccessListRequestExample:
+      summary: Create an "Open" IP access list (0.0.0.0/0) — use with caution
+      value:
+        name: Open (unrestricted)
+        cidrs:
+          - 0.0.0.0/0
+    updateIpAccessListRequestExample:
+      summary: Rename an IP access list and replace its CIDRs
+      value:
+        name: Office NAT (renamed)
+        cidrs:
+          - 203.0.113.0/24
+    ipAccessListResponseExample:
+      summary: An IP access list with two CIDRs
+      value:
+        links: []
+        data:
+          id: 6d8e9b22-4c2c-4a37-8f54-1be0eaf6b3e2
+          name: Office NAT
+          cidrs:
+            - 203.0.113.0/24
+            - 198.51.100.7/32
+          createdAt: '2026-04-29T12:34:56.789012+00:00'
+        errors: []
+    openIpAccessListResponseExample:
+      summary: An "Open" IP access list (0.0.0.0/0)
+      value:
+        links: []
+        data:
+          id: 9b1e2f3a-4c2c-4a37-8f54-1be0eaf6b3e2
+          name: Open (unrestricted)
+          cidrs:
+            - 0.0.0.0/0
+          createdAt: '2026-04-29T12:34:56.789012+00:00'
+        errors: []
+    listIpAccessListsExample:
+      summary: The last page of IP access lists (no `next` link)
+      value:
+        links:
+          - href: >-
+              https://api.bandwidth.com/v2/accounts/9900000/voice-applications/ip-access-lists
+            rel: self
+            method: GET
+        data:
+          - id: 6d8e9b22-4c2c-4a37-8f54-1be0eaf6b3e2
+            name: Office NAT
+            cidrs:
+              - 203.0.113.0/24
+              - 198.51.100.7/32
+            createdAt: '2026-04-29T12:34:56.789012+00:00'
+        errors: []
+        page:
+          pageSize: 1
   securitySchemes:
     OAuth2:
       type: oauth2
@@ -867,3 +2671,18 @@ security:
   - OAuth2: []
 tags:
   - name: Voice Applications
+    description: >-
+      Default-realm SIP settings (`sip:{applicationId}@{auth_realm}`) for a
+      voice application. These do not apply to custom SIP domains.
+  - name: SIP Domains
+    description: >-
+      Account-scoped custom SIP domains. Not affected by a voice application's
+      default-realm SIP settings.
+  - name: SIP Users
+    description: >-
+      Per-user digest credentials for custom SIP domains. Not used by the
+      default-realm SIP identity.
+  - name: IP Access Lists
+    description: >-
+      Reusable CIDR allowlists for custom SIP domains. Not used by the
+      default-realm SIP identity.

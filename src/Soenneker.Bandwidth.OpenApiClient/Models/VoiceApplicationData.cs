@@ -14,7 +14,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The list of regions where the application is permitted to authenticate. When null, no regions are configured.</summary>
+        /// <summary>The regions where calls to the application&apos;s default-realm SIP identity are permitted to authenticate. An application with no allowed regions cannot authenticate. Custom SIP domains use each SIP user&apos;s `allowedRegions` instead.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?>? AllowedRegions { get; set; }
@@ -22,7 +22,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?> AllowedRegions { get; set; }
 #endif
-        /// <summary>List of CIDR blocks allowed to send SIP traffic to this application. An empty array means no IP restriction is applied. Maximum 25 entries.</summary>
+        /// <summary>IPv4 CIDR blocks allowed to send SIP traffic to the application&apos;s default-realm SIP identity. An empty array means no IP restriction is applied. Maximum 25 entries. Custom SIP domains use IP access lists instead.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? AllowedSourceIps { get; set; }
@@ -112,9 +112,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string CallStatusMethod { get; set; }
 #endif
-        /// <summary>Indicates whether the application can receive inbound SIP calls.</summary>
+        /// <summary>Whether the application accepts inbound SIP calls on its default-realm SIP identity (`sip:{applicationId}@{auth_realm}`). Does not affect calls to custom SIP domains bound to the application.</summary>
         public bool? InboundSipCallsEnabled { get; set; }
-        /// <summary>Controls whether SIP digest authentication (407 challenge) is required for inbound SIP calls.</summary>
+        /// <summary>Whether SIP digest authentication (407 challenge) is required for inbound SIP calls on the application&apos;s default-realm SIP identity. Custom SIP domains authenticate with per-user credentials from SIP Users instead.</summary>
         public bool? PasswordAuthEnabled { get; set; }
         /// <summary>The service type of the application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -124,7 +124,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string ServiceType { get; set; }
 #endif
-        /// <summary>The SIP URI for the specified application.</summary>
+        /// <summary>The application&apos;s default-realm SIP URI (`sip:{applicationId}@{auth_realm}`). `null` when inbound SIP calls are disabled. Custom SIP domain hosts are listed in each SIP domain&apos;s `fqdns`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SipUri { get; set; }

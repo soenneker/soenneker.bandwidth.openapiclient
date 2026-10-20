@@ -14,13 +14,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Base64 payload the customer receives when the reply is clicked.</summary>
+        /// <summary>Payload the customer receives when the reply is clicked.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public byte[]? PostbackData { get; set; }
+        public string? PostbackData { get; set; }
 #nullable restore
 #else
-        public byte[] PostbackData { get; set; }
+        public string PostbackData { get; set; }
 #endif
         /// <summary>Displayed text for user to click</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -57,7 +57,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "postbackData", n => { PostbackData = n.GetByteArrayValue(); } },
+                { "postbackData", n => { PostbackData = n.GetStringValue(); } },
                 { "text", n => { Text = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionTypeEnum>(); } },
             };
@@ -69,7 +69,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteByteArrayValue("postbackData", PostbackData);
+            writer.WriteStringValue("postbackData", PostbackData);
             writer.WriteStringValue("text", Text);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionTypeEnum>("type", Type);
             writer.WriteAdditionalData(AdditionalData);

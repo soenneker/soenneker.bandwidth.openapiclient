@@ -2,7 +2,10 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement.Accounts.Item.VoiceApplications.IpAccessLists;
 using Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement.Accounts.Item.VoiceApplications.Item;
+using Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement.Accounts.Item.VoiceApplications.SipDomains;
+using Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement.Accounts.Item.VoiceApplications.SipUsers;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -15,6 +18,21 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement.Accounts.
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class VoiceApplicationsRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The ipAccessLists property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement.Accounts.Item.VoiceApplications.IpAccessLists.IpAccessListsRequestBuilder IpAccessLists
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement.Accounts.Item.VoiceApplications.IpAccessLists.IpAccessListsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The sipDomains property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement.Accounts.Item.VoiceApplications.SipDomains.SipDomainsRequestBuilder SipDomains
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement.Accounts.Item.VoiceApplications.SipDomains.SipDomainsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The sipUsers property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement.Accounts.Item.VoiceApplications.SipUsers.SipUsersRequestBuilder SipUsers
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement.Accounts.Item.VoiceApplications.SipUsers.SipUsersRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the Soenneker.Bandwidth.OpenApiClient.voiceApplicationManagement.accounts.item.voiceApplications.item collection</summary>
         /// <param name="position">The unique ID of the application.</param>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement.Accounts.Item.VoiceApplications.Item.WithApplicationItemRequestBuilder"/></returns>

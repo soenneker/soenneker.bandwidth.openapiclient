@@ -34,7 +34,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement.Accounts.
         {
         }
         /// <summary>
-        /// Retrieves information about a voice application.
+        /// Retrieves information about a voice application, including its default-realm SIP settings (`sip:{applicationId}@{auth_realm}`). These settings do not apply to custom SIP domains bound to the application.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetVoiceApplicationResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -69,10 +69,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement.Accounts.
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.GetVoiceApplicationResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.GetVoiceApplicationResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Updates SIP authentication settings for a voice application.
+        /// Updates the default-realm SIP settings for a voice application. These govern only the default-realm SIP identity (`sip:{applicationId}@{auth_realm}`); they do not affect calls to custom SIP domains bound to the application, which are configured with the SIP Domains, SIP Users, and IP Access Lists endpoints. Both are supported side by side.Sending `inboundSipCallsEnabled: false` disables inbound SIP calls and clears the application&apos;s SIP settings; any other fields in the request are still validated but are not applied. If inbound SIP calls are not yet enabled, the request must include `inboundSipCallsEnabled: true`, otherwise a `400` is returned.Every request that includes `passwordAuthEnabled: true` generates a new SIP digest password, even if password auth was already enabled, and returns it once as `sipAuthPassword`. The previous password stops working immediately. Omit `passwordAuthEnabled` to keep the existing password.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateVoiceApplicationResponse"/></returns>
-        /// <param name="body">At least one field must be provided. When `inboundSipCallsEnabled` is `true`, at least one auth mechanism must be active: `passwordAuthEnabled: true` OR a non-empty `allowedSourceIps` array.</param>
+        /// <param name="body">At least one field must be provided. When `inboundSipCallsEnabled` is `true`, at least one auth mechanism must be active: `passwordAuthEnabled: true` OR a non-empty `allowedSourceIps` array.A `null` value is treated the same as omitting the field; it does not clear the setting. To clear `allowedSourceIps` or `allowedRegions`, send an empty array.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementGenericError">When receiving a 400 status code</exception>
@@ -106,7 +106,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement.Accounts.
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateVoiceApplicationResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateVoiceApplicationResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieves information about a voice application.
+        /// Retrieves information about a voice application, including its default-realm SIP settings (`sip:{applicationId}@{auth_realm}`). These settings do not apply to custom SIP domains bound to the application.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -125,10 +125,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceApplicationManagement.Accounts.
             return requestInfo;
         }
         /// <summary>
-        /// Updates SIP authentication settings for a voice application.
+        /// Updates the default-realm SIP settings for a voice application. These govern only the default-realm SIP identity (`sip:{applicationId}@{auth_realm}`); they do not affect calls to custom SIP domains bound to the application, which are configured with the SIP Domains, SIP Users, and IP Access Lists endpoints. Both are supported side by side.Sending `inboundSipCallsEnabled: false` disables inbound SIP calls and clears the application&apos;s SIP settings; any other fields in the request are still validated but are not applied. If inbound SIP calls are not yet enabled, the request must include `inboundSipCallsEnabled: true`, otherwise a `400` is returned.Every request that includes `passwordAuthEnabled: true` generates a new SIP digest password, even if password auth was already enabled, and returns it once as `sipAuthPassword`. The previous password stops working immediately. Omit `passwordAuthEnabled` to keep the existing password.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">At least one field must be provided. When `inboundSipCallsEnabled` is `true`, at least one auth mechanism must be active: `passwordAuthEnabled: true` OR a non-empty `allowedSourceIps` array.</param>
+        /// <param name="body">At least one field must be provided. When `inboundSipCallsEnabled` is `true`, at least one auth mechanism must be active: `passwordAuthEnabled: true` OR a non-empty `allowedSourceIps` array.A `null` value is treated the same as omitting the field; it does not clear the setting. To clear `allowedSourceIps` or `allowedRegions`, send an empty array.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

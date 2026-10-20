@@ -38,13 +38,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Longitude { get; set; }
 #endif
-        /// <summary>Base64 payload the customer receives when the reply is clicked.</summary>
+        /// <summary>Payload the customer receives when the reply is clicked.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public byte[]? PostbackData { get; set; }
+        public string? PostbackData { get; set; }
 #nullable restore
 #else
-        public byte[] PostbackData { get; set; }
+        public string PostbackData { get; set; }
 #endif
         /// <summary>Displayed text for user to click</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -84,7 +84,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "label", n => { Label = n.GetStringValue(); } },
                 { "latitude", n => { Latitude = n.GetStringValue(); } },
                 { "longitude", n => { Longitude = n.GetStringValue(); } },
-                { "postbackData", n => { PostbackData = n.GetByteArrayValue(); } },
+                { "postbackData", n => { PostbackData = n.GetStringValue(); } },
                 { "text", n => { Text = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionTypeEnum>(); } },
             };
@@ -99,7 +99,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("label", Label);
             writer.WriteStringValue("latitude", Latitude);
             writer.WriteStringValue("longitude", Longitude);
-            writer.WriteByteArrayValue("postbackData", PostbackData);
+            writer.WriteStringValue("postbackData", PostbackData);
             writer.WriteStringValue("text", Text);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionTypeEnum>("type", Type);
             writer.WriteAdditionalData(AdditionalData);

@@ -24,13 +24,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>The end time of the event. Must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00.</summary>
         public DateTimeOffset? EndTime { get; set; }
-        /// <summary>Base64 payload the customer receives when the reply is clicked.</summary>
+        /// <summary>Payload the customer receives when the reply is clicked.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public byte[]? PostbackData { get; set; }
+        public string? PostbackData { get; set; }
 #nullable restore
 #else
-        public byte[] PostbackData { get; set; }
+        public string PostbackData { get; set; }
 #endif
         /// <summary>The start time of the event. Must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00.</summary>
         public DateTimeOffset? StartTime { get; set; }
@@ -79,7 +79,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "endTime", n => { EndTime = n.GetDateTimeOffsetValue(); } },
-                { "postbackData", n => { PostbackData = n.GetByteArrayValue(); } },
+                { "postbackData", n => { PostbackData = n.GetStringValue(); } },
                 { "startTime", n => { StartTime = n.GetDateTimeOffsetValue(); } },
                 { "text", n => { Text = n.GetStringValue(); } },
                 { "title", n => { Title = n.GetStringValue(); } },
@@ -95,7 +95,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
             writer.WriteDateTimeOffsetValue("endTime", EndTime);
-            writer.WriteByteArrayValue("postbackData", PostbackData);
+            writer.WriteStringValue("postbackData", PostbackData);
             writer.WriteDateTimeOffsetValue("startTime", StartTime);
             writer.WriteStringValue("text", Text);
             writer.WriteStringValue("title", Title);

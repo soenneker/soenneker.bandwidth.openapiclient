@@ -42427,7 +42427,7 @@
           "Voice Applications"
         ],
         "summary": "Retrieve a voice application",
-        "description": "Retrieves information about a voice application.",
+        "description": "Retrieves information about a voice application, including its default-realm SIP settings (\u0060sip:{applicationId}@{auth_realm}\u0060). These settings do not apply to custom SIP domains bound to the application.",
         "operationId": "VoiceApplicationManagementGetVoiceApplication",
         "parameters": [
           {
@@ -42469,7 +42469,7 @@
             "$ref": "#/components/responses/voice_application_management_tooManyRequestsError"
           },
           "default": {
-            "description": "Unexpected Error",
+            "description": "Error response. The shape is the standard \u0060links/data/errors\u0060 envelope with \u0060data: null\u0060. The HTTP status code on the wire indicates the class of failure (400 validation, 401 auth, 403 permission, 404 not-found, 405 method not allowed, 409 conflict, 429 rate-limited by the API gateway, 500 server error, 503 authentication temporarily unavailable). Request validation errors identify the offending body field in \u0060source.field\u0060, or the query parameter in \u0060source.parameter\u0060. The examples below illustrate the most common scenarios for the SIP-domains, SIP-users, and IP-access-list endpoints.",
             "$ref": "#/components/responses/defaultError"
           }
         },
@@ -42490,7 +42490,7 @@
           "Voice Applications"
         ],
         "summary": "Update a voice application",
-        "description": "Updates SIP authentication settings for a voice application.",
+        "description": "Updates the default-realm SIP settings for a voice application. These govern only the default-realm SIP identity (\u0060sip:{applicationId}@{auth_realm}\u0060); they do not affect calls to custom SIP domains bound to the application, which are configured with the SIP Domains, SIP Users, and IP Access Lists endpoints. Both are supported side by side.\n\nSending \u0060inboundSipCallsEnabled: false\u0060 disables inbound SIP calls and clears the application\u0027s SIP settings; any other fields in the request are still validated but are not applied. If inbound SIP calls are not yet enabled, the request must include \u0060inboundSipCallsEnabled: true\u0060, otherwise a \u0060400\u0060 is returned.\n\nEvery request that includes \u0060passwordAuthEnabled: true\u0060 generates a new SIP digest password, even if password auth was already enabled, and returns it once as \u0060sipAuthPassword\u0060. The previous password stops working immediately. Omit \u0060passwordAuthEnabled\u0060 to keep the existing password.",
         "operationId": "VoiceApplicationManagementUpdateVoiceApplication",
         "parameters": [
           {
@@ -42535,7 +42535,635 @@
             "$ref": "#/components/responses/voice_application_management_tooManyRequestsError"
           },
           "default": {
-            "description": "Unexpected Error",
+            "description": "Error response. The shape is the standard \u0060links/data/errors\u0060 envelope with \u0060data: null\u0060. The HTTP status code on the wire indicates the class of failure (400 validation, 401 auth, 403 permission, 404 not-found, 405 method not allowed, 409 conflict, 429 rate-limited by the API gateway, 500 server error, 503 authentication temporarily unavailable). Request validation errors identify the offending body field in \u0060source.field\u0060, or the query parameter in \u0060source.parameter\u0060. The examples below illustrate the most common scenarios for the SIP-domains, SIP-users, and IP-access-list endpoints.",
+            "$ref": "#/components/responses/defaultError"
+          }
+        },
+        "security": [
+          {
+            "voice_application_management_OAuth2": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/v2",
+            "description": "Production"
+          }
+        ]
+      }
+    },
+    "/voice-application-management/accounts/{accountId}/voice-applications/sip-domains": {
+      "post": {
+        "tags": [
+          "SIP Domains"
+        ],
+        "summary": "Create a SIP domain",
+        "description": "Registers a new account-scoped SIP domain. Calls to a custom SIP domain are authenticated only against its attached IP access lists and its assigned SIP users; the bound voice application\u0027s default-realm SIP settings (\u0060inboundSipCallsEnabled\u0060, \u0060passwordAuthEnabled\u0060, \u0060allowedSourceIps\u0060, \u0060allowedRegions\u0060) do not apply.\n\n- Calls whose request URI includes a user (\u0060\u003CuserId\u003E@\u003Cfqdn\u003E\u0060) are challenged and authenticated with that SIP user\u0027s credentials. If IP access lists are attached, the source IP must also match one of them.\n- Calls with no user in the request URI are authenticated by source IP alone, and are rejected unless the domain has at least one attached IP access list.\n- Calls are only accepted in the domain\u0027s \u0060regions\u0060. A domain created without any \u0060regions\u0060 rejects all inbound calls until at least one region is added via \u0060PATCH\u0060.\n\nThe supplied \u0060domain\u0060 is a label that Bandwidth combines with the account ID and its env-wide SIP host suffix to form the full SIP host(s) that will be reachable on inbound calls. The full hosts are returned as \u0060fqdns\u0060 on the resource (a global entry, plus one per configured region) \u2014 those are the values to configure as the destination in your SBC or PBX.\n\nDomain labels are unique **within the account** (not globally) \u2014 a \u0060409\u0060 is returned if you already have a domain registered under this label. Region codes (\u0060us\u0060, \u0060eu\u0060) and \u0060null\u0060 are reserved and cannot be used as a domain label; a \u0060400\u0060 is returned otherwise. Each account can register up to 500 SIP domains; a \u0060400\u0060 is returned once the limit is reached.\n\n\u0060applicationId\u0060 is optional \u2014 you can register a domain and bind it to an application later via \u0060PATCH\u0060. When supplied, it must reference an existing voice application on this account (\u0060404\u0060 if it does not exist, \u0060400\u0060 if it is not a voice application). A domain with no \u0060applicationId\u0060 cannot accept inbound calls until bound.\n\n\u0060ipAccessListIds\u0060 must reference existing IP access lists on this account (\u0060404\u0060 otherwise). The attached lists may contain at most 50 unique CIDRs in total; a \u0060400\u0060 is returned otherwise.\n\nThe domain is provisioned asynchronously; it is created with \u0060status: \u0022PENDING\u0022\u0060 and transitions to \u0060\u0022ACTIVE\u0022\u0060 once DNS provisioning completes, or \u0060\u0022FAILED\u0022\u0060 if provisioning could not complete.",
+        "operationId": "VoiceApplicationManagementCreateSipDomain",
+        "parameters": [
+          {
+            "description": "Your Bandwidth Account ID.",
+            "$ref": "#/components/parameters/voice_application_management_accountId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/createSipDomainRequestBody"
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "$ref": "#/components/responses/createSipDomainResponse"
+          },
+          "default": {
+            "description": "Error response. The shape is the standard \u0060links/data/errors\u0060 envelope with \u0060data: null\u0060. The HTTP status code on the wire indicates the class of failure (400 validation, 401 auth, 403 permission, 404 not-found, 405 method not allowed, 409 conflict, 429 rate-limited by the API gateway, 500 server error, 503 authentication temporarily unavailable). Request validation errors identify the offending body field in \u0060source.field\u0060, or the query parameter in \u0060source.parameter\u0060. The examples below illustrate the most common scenarios for the SIP-domains, SIP-users, and IP-access-list endpoints.",
+            "$ref": "#/components/responses/defaultError"
+          }
+        },
+        "security": [
+          {
+            "voice_application_management_OAuth2": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/v2",
+            "description": "Production"
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "SIP Domains"
+        ],
+        "summary": "List SIP domains",
+        "description": "Lists the SIP domains registered on this account. Results are paginated. A page may hold fewer than \u0060pageSize\u0060 resources, or none, while a \u0060next\u0060 link is still present; keep following the \u0060next\u0060 link in \u0060links\u0060 until it is absent to retrieve every resource. \u0060links\u0060 always includes a \u0060self\u0060 link to the current page.",
+        "operationId": "VoiceApplicationManagementListSipDomains",
+        "parameters": [
+          {
+            "description": "Your Bandwidth Account ID.",
+            "$ref": "#/components/parameters/voice_application_management_accountId"
+          },
+          {
+            "description": "Opaque cursor returned in the \u0060next\u0060 link of a previous list response. Pass it back verbatim to fetch the next page. An invalid cursor, or one issued for a different account or resource type, returns \u0060400\u0060.",
+            "$ref": "#/components/parameters/voice_application_management_afterCursor"
+          },
+          {
+            "description": "Filter SIP domains by the voice application they are bound to.",
+            "$ref": "#/components/parameters/sipDomainApplicationIdFilter"
+          },
+          {
+            "description": "The maximum number of resources to return in a single page. Values outside 1-100 return \u0060400\u0060.",
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "description": "Filter SIP domains by provisioning \u0060status\u0060.",
+            "$ref": "#/components/parameters/sipDomainStatusFilter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "$ref": "#/components/responses/listSipDomainsResponse"
+          },
+          "default": {
+            "description": "Error response. The shape is the standard \u0060links/data/errors\u0060 envelope with \u0060data: null\u0060. The HTTP status code on the wire indicates the class of failure (400 validation, 401 auth, 403 permission, 404 not-found, 405 method not allowed, 409 conflict, 429 rate-limited by the API gateway, 500 server error, 503 authentication temporarily unavailable). Request validation errors identify the offending body field in \u0060source.field\u0060, or the query parameter in \u0060source.parameter\u0060. The examples below illustrate the most common scenarios for the SIP-domains, SIP-users, and IP-access-list endpoints.",
+            "$ref": "#/components/responses/defaultError"
+          }
+        },
+        "security": [
+          {
+            "voice_application_management_OAuth2": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/v2",
+            "description": "Production"
+          }
+        ]
+      }
+    },
+    "/voice-application-management/accounts/{accountId}/voice-applications/sip-domains/{domain}": {
+      "get": {
+        "tags": [
+          "SIP Domains"
+        ],
+        "summary": "Retrieve a SIP domain",
+        "description": "Retrieves the SIP domain registered under this label on the account.",
+        "operationId": "VoiceApplicationManagementGetSipDomain",
+        "parameters": [
+          {
+            "description": "Your Bandwidth Account ID.",
+            "$ref": "#/components/parameters/voice_application_management_accountId"
+          },
+          {
+            "description": "The SIP domain label, as registered. Case-insensitive.",
+            "$ref": "#/components/parameters/voice_application_management_domain"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "$ref": "#/components/responses/getSipDomainResponse"
+          },
+          "default": {
+            "description": "Error response. The shape is the standard \u0060links/data/errors\u0060 envelope with \u0060data: null\u0060. The HTTP status code on the wire indicates the class of failure (400 validation, 401 auth, 403 permission, 404 not-found, 405 method not allowed, 409 conflict, 429 rate-limited by the API gateway, 500 server error, 503 authentication temporarily unavailable). Request validation errors identify the offending body field in \u0060source.field\u0060, or the query parameter in \u0060source.parameter\u0060. The examples below illustrate the most common scenarios for the SIP-domains, SIP-users, and IP-access-list endpoints.",
+            "$ref": "#/components/responses/defaultError"
+          }
+        },
+        "security": [
+          {
+            "voice_application_management_OAuth2": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/v2",
+            "description": "Production"
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "SIP Domains"
+        ],
+        "summary": "Update a SIP domain",
+        "description": "Updates \u0060name\u0060, \u0060applicationId\u0060, \u0060regions\u0060, and/or \u0060ipAccessListIds\u0060 on the SIP domain. At least one field must be supplied. \u0060domain\u0060 (the label) is immutable; to change it, delete this domain and create a new one.\n\nSupplying \u0060applicationId\u0060 binds (or rebinds) the domain to a voice application on this account; supply an empty string (\u0060\u0022\u0022\u0060) to unbind. Supplying \u0060regions\u0060 replaces the domain\u0027s region set; if the set changes, the DNS records are reprovisioned and \u0060status\u0060 returns to \u0060\u0022PENDING\u0022\u0060. Supplying \u0060ipAccessListIds\u0060 replaces the domain\u0027s attached IP access lists (max 25, at most 50 unique CIDRs in total); unknown IDs return \u0060404\u0060.",
+        "operationId": "VoiceApplicationManagementUpdateSipDomain",
+        "parameters": [
+          {
+            "description": "Your Bandwidth Account ID.",
+            "$ref": "#/components/parameters/voice_application_management_accountId"
+          },
+          {
+            "description": "The SIP domain label, as registered. Case-insensitive.",
+            "$ref": "#/components/parameters/voice_application_management_domain"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/updateSipDomainRequestBody"
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "$ref": "#/components/responses/updateSipDomainResponse"
+          },
+          "default": {
+            "description": "Error response. The shape is the standard \u0060links/data/errors\u0060 envelope with \u0060data: null\u0060. The HTTP status code on the wire indicates the class of failure (400 validation, 401 auth, 403 permission, 404 not-found, 405 method not allowed, 409 conflict, 429 rate-limited by the API gateway, 500 server error, 503 authentication temporarily unavailable). Request validation errors identify the offending body field in \u0060source.field\u0060, or the query parameter in \u0060source.parameter\u0060. The examples below illustrate the most common scenarios for the SIP-domains, SIP-users, and IP-access-list endpoints.",
+            "$ref": "#/components/responses/defaultError"
+          }
+        },
+        "security": [
+          {
+            "voice_application_management_OAuth2": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/v2",
+            "description": "Production"
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "SIP Domains"
+        ],
+        "summary": "Delete a SIP domain",
+        "description": "Deletes the SIP domain. SIP users that were assigned to this domain (\u0060user.domain == this domain\u0060) remain on the account but their \u0060domain\u0060 is set to \u0060null\u0060 (unassigned); they will not authenticate on any domain until reassigned via \u0060PATCH /sip-users/{userId}\u0060 with a new \u0060domain\u0060. Attached IP access lists and the bound voice application are not affected.\n\nThe domain\u0027s DNS records are removed asynchronously. The label is freed for reuse on this account immediately.",
+        "operationId": "VoiceApplicationManagementDeleteSipDomain",
+        "parameters": [
+          {
+            "description": "Your Bandwidth Account ID.",
+            "$ref": "#/components/parameters/voice_application_management_accountId"
+          },
+          {
+            "description": "The SIP domain label, as registered. Case-insensitive.",
+            "$ref": "#/components/parameters/voice_application_management_domain"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "default": {
+            "description": "Error response. The shape is the standard \u0060links/data/errors\u0060 envelope with \u0060data: null\u0060. The HTTP status code on the wire indicates the class of failure (400 validation, 401 auth, 403 permission, 404 not-found, 405 method not allowed, 409 conflict, 429 rate-limited by the API gateway, 500 server error, 503 authentication temporarily unavailable). Request validation errors identify the offending body field in \u0060source.field\u0060, or the query parameter in \u0060source.parameter\u0060. The examples below illustrate the most common scenarios for the SIP-domains, SIP-users, and IP-access-list endpoints.",
+            "$ref": "#/components/responses/defaultError"
+          }
+        },
+        "security": [
+          {
+            "voice_application_management_OAuth2": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/v2",
+            "description": "Production"
+          }
+        ]
+      }
+    },
+    "/voice-application-management/accounts/{accountId}/voice-applications/sip-users": {
+      "post": {
+        "tags": [
+          "SIP Users"
+        ],
+        "summary": "Create a SIP user",
+        "description": "Creates a new SIP user on this account. \u0060userId\u0060 is unique within the account and immutable after creation; to change it, delete the user and recreate.\n\n**Account-scoped resource** \u2014 SIP users belong to the account, not to a specific voice application, and authenticate calls to custom SIP domains only; they cannot be used with the default-realm SIP identity. Each user can be assigned to **at most one** SIP domain via the \u0060domain\u0060 field \u2014 supply it on create to make the user immediately reachable on that domain, or omit it to create an unassigned user that you assign later via \u0060PATCH\u0060. The domain does not need to be \u0060ACTIVE\u0060 to be assigned.\n\n\u0060password\u0060 is **required and customer-supplied** \u2014 Bandwidth never generates a password on your behalf, and the plaintext is never stored or returned in any response.\n\nA user can only authenticate in the regions listed in \u0060allowedRegions\u0060; a user with no allowed regions cannot authenticate.\n\nEach account can have up to 5,000 SIP users; a \u0060400\u0060 is returned once the limit is reached.",
+        "operationId": "VoiceApplicationManagementCreateSipUser",
+        "parameters": [
+          {
+            "description": "Your Bandwidth Account ID.",
+            "$ref": "#/components/parameters/voice_application_management_accountId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/createSipUserRequestBody"
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "$ref": "#/components/responses/createSipUserResponse"
+          },
+          "default": {
+            "description": "Error response. The shape is the standard \u0060links/data/errors\u0060 envelope with \u0060data: null\u0060. The HTTP status code on the wire indicates the class of failure (400 validation, 401 auth, 403 permission, 404 not-found, 405 method not allowed, 409 conflict, 429 rate-limited by the API gateway, 500 server error, 503 authentication temporarily unavailable). Request validation errors identify the offending body field in \u0060source.field\u0060, or the query parameter in \u0060source.parameter\u0060. The examples below illustrate the most common scenarios for the SIP-domains, SIP-users, and IP-access-list endpoints.",
+            "$ref": "#/components/responses/defaultError"
+          }
+        },
+        "security": [
+          {
+            "voice_application_management_OAuth2": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/v2",
+            "description": "Production"
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "SIP Users"
+        ],
+        "summary": "List SIP users",
+        "description": "Lists the SIP users on this account. Results are paginated. A page may hold fewer than \u0060pageSize\u0060 resources, or none, while a \u0060next\u0060 link is still present; keep following the \u0060next\u0060 link in \u0060links\u0060 until it is absent to retrieve every resource. \u0060links\u0060 always includes a \u0060self\u0060 link to the current page.",
+        "operationId": "VoiceApplicationManagementListSipUsers",
+        "parameters": [
+          {
+            "description": "Your Bandwidth Account ID.",
+            "$ref": "#/components/parameters/voice_application_management_accountId"
+          },
+          {
+            "description": "Opaque cursor returned in the \u0060next\u0060 link of a previous list response. Pass it back verbatim to fetch the next page. An invalid cursor, or one issued for a different account or resource type, returns \u0060400\u0060.",
+            "$ref": "#/components/parameters/voice_application_management_afterCursor"
+          },
+          {
+            "description": "Filter SIP users by the SIP domain they are assigned to.",
+            "$ref": "#/components/parameters/sipUserDomainFilter"
+          },
+          {
+            "description": "The maximum number of resources to return in a single page. Values outside 1-100 return \u0060400\u0060.",
+            "$ref": "#/components/parameters/pageSize"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "$ref": "#/components/responses/listSipUsersResponse"
+          },
+          "default": {
+            "description": "Error response. The shape is the standard \u0060links/data/errors\u0060 envelope with \u0060data: null\u0060. The HTTP status code on the wire indicates the class of failure (400 validation, 401 auth, 403 permission, 404 not-found, 405 method not allowed, 409 conflict, 429 rate-limited by the API gateway, 500 server error, 503 authentication temporarily unavailable). Request validation errors identify the offending body field in \u0060source.field\u0060, or the query parameter in \u0060source.parameter\u0060. The examples below illustrate the most common scenarios for the SIP-domains, SIP-users, and IP-access-list endpoints.",
+            "$ref": "#/components/responses/defaultError"
+          }
+        },
+        "security": [
+          {
+            "voice_application_management_OAuth2": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/v2",
+            "description": "Production"
+          }
+        ]
+      }
+    },
+    "/voice-application-management/accounts/{accountId}/voice-applications/sip-users/{userId}": {
+      "get": {
+        "tags": [
+          "SIP Users"
+        ],
+        "summary": "Retrieve a SIP user",
+        "description": "Retrieves a SIP user on this account, including the \u0060domain\u0060 the user is assigned to (or \u0060null\u0060 if unassigned). The \u0060password\u0060 field is **never** returned on this or any other endpoint \u2014 Bandwidth does not store the plaintext and cannot recover it.",
+        "operationId": "VoiceApplicationManagementGetSipUser",
+        "parameters": [
+          {
+            "description": "Your Bandwidth Account ID.",
+            "$ref": "#/components/parameters/voice_application_management_accountId"
+          },
+          {
+            "description": "The SIP user identifier, as registered on the account. Case-sensitive.",
+            "$ref": "#/components/parameters/voice_application_management_userId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "$ref": "#/components/responses/getSipUserResponse"
+          },
+          "default": {
+            "description": "Error response. The shape is the standard \u0060links/data/errors\u0060 envelope with \u0060data: null\u0060. The HTTP status code on the wire indicates the class of failure (400 validation, 401 auth, 403 permission, 404 not-found, 405 method not allowed, 409 conflict, 429 rate-limited by the API gateway, 500 server error, 503 authentication temporarily unavailable). Request validation errors identify the offending body field in \u0060source.field\u0060, or the query parameter in \u0060source.parameter\u0060. The examples below illustrate the most common scenarios for the SIP-domains, SIP-users, and IP-access-list endpoints.",
+            "$ref": "#/components/responses/defaultError"
+          }
+        },
+        "security": [
+          {
+            "voice_application_management_OAuth2": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/v2",
+            "description": "Production"
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "SIP Users"
+        ],
+        "summary": "Update a SIP user",
+        "description": "Updates \u0060name\u0060, \u0060domain\u0060, \u0060password\u0060, and/or \u0060allowedRegions\u0060 on the SIP user. At least one field must be supplied. \u0060userId\u0060 is immutable; to change it, delete the user and recreate.\n\nSupplying \u0060domain\u0060 reassigns the user to a new SIP domain \u2014 a user can be on at most one domain at a time, so the prior assignment (if any) is overwritten atomically in a single write. Supply an empty string (\u0060\u0022\u0022\u0060) to unassign the user from any domain. The supplied \u0060domain\u0060 must reference an existing SIP domain on this account; unknown domains return \u0060404\u0060.\n\nSupplying \u0060password\u0060 rotates the user\u0027s digest credential; the plaintext is never echoed back in the response. A password cannot be removed, so \u0060password: null\u0060 returns \u0060400\u0060.",
+        "operationId": "VoiceApplicationManagementUpdateSipUser",
+        "parameters": [
+          {
+            "description": "Your Bandwidth Account ID.",
+            "$ref": "#/components/parameters/voice_application_management_accountId"
+          },
+          {
+            "description": "The SIP user identifier, as registered on the account. Case-sensitive.",
+            "$ref": "#/components/parameters/voice_application_management_userId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/updateSipUserRequestBody"
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "$ref": "#/components/responses/updateSipUserResponse"
+          },
+          "default": {
+            "description": "Error response. The shape is the standard \u0060links/data/errors\u0060 envelope with \u0060data: null\u0060. The HTTP status code on the wire indicates the class of failure (400 validation, 401 auth, 403 permission, 404 not-found, 405 method not allowed, 409 conflict, 429 rate-limited by the API gateway, 500 server error, 503 authentication temporarily unavailable). Request validation errors identify the offending body field in \u0060source.field\u0060, or the query parameter in \u0060source.parameter\u0060. The examples below illustrate the most common scenarios for the SIP-domains, SIP-users, and IP-access-list endpoints.",
+            "$ref": "#/components/responses/defaultError"
+          }
+        },
+        "security": [
+          {
+            "voice_application_management_OAuth2": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/v2",
+            "description": "Production"
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "SIP Users"
+        ],
+        "summary": "Delete a SIP user",
+        "description": "Deletes the SIP user along with the user\u0027s digest credential. The SIP domain the user was assigned to (if any) continues to exist; the user simply disappears from that domain\u0027s \u0060userIds\u0060 list.",
+        "operationId": "VoiceApplicationManagementDeleteSipUser",
+        "parameters": [
+          {
+            "description": "Your Bandwidth Account ID.",
+            "$ref": "#/components/parameters/voice_application_management_accountId"
+          },
+          {
+            "description": "The SIP user identifier, as registered on the account. Case-sensitive.",
+            "$ref": "#/components/parameters/voice_application_management_userId"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "default": {
+            "description": "Error response. The shape is the standard \u0060links/data/errors\u0060 envelope with \u0060data: null\u0060. The HTTP status code on the wire indicates the class of failure (400 validation, 401 auth, 403 permission, 404 not-found, 405 method not allowed, 409 conflict, 429 rate-limited by the API gateway, 500 server error, 503 authentication temporarily unavailable). Request validation errors identify the offending body field in \u0060source.field\u0060, or the query parameter in \u0060source.parameter\u0060. The examples below illustrate the most common scenarios for the SIP-domains, SIP-users, and IP-access-list endpoints.",
+            "$ref": "#/components/responses/defaultError"
+          }
+        },
+        "security": [
+          {
+            "voice_application_management_OAuth2": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/v2",
+            "description": "Production"
+          }
+        ]
+      }
+    },
+    "/voice-application-management/accounts/{accountId}/voice-applications/ip-access-lists": {
+      "post": {
+        "tags": [
+          "IP Access Lists"
+        ],
+        "summary": "Create an IP access list",
+        "description": "Creates a new account-scoped IP access list \u2014 a named, reusable set of CIDR blocks. Attach it to one or more SIP domains via \u0060SipDomain.ipAccessListIds\u0060 (max 25 lists per domain) to gate inbound SIP traffic to those domains by source IP.\n\n**Account-scoped resource** \u2014 IP access lists belong to the account, not to a specific voice application or SIP domain, and are reusable across any number of the account\u0027s SIP domains. IP access lists apply to custom SIP domains only. The voice application\u0027s \u0060allowedSourceIps\u0060 field is separate and applies only to the default-realm SIP identity.\n\nNames do not need to be unique. Each account can have up to 500 IP access lists; a \u0060400\u0060 is returned once the limit is reached.",
+        "operationId": "VoiceApplicationManagementCreateIpAccessList",
+        "parameters": [
+          {
+            "description": "Your Bandwidth Account ID.",
+            "$ref": "#/components/parameters/voice_application_management_accountId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/createIpAccessListRequestBody"
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "$ref": "#/components/responses/createIpAccessListResponse"
+          },
+          "default": {
+            "description": "Error response. The shape is the standard \u0060links/data/errors\u0060 envelope with \u0060data: null\u0060. The HTTP status code on the wire indicates the class of failure (400 validation, 401 auth, 403 permission, 404 not-found, 405 method not allowed, 409 conflict, 429 rate-limited by the API gateway, 500 server error, 503 authentication temporarily unavailable). Request validation errors identify the offending body field in \u0060source.field\u0060, or the query parameter in \u0060source.parameter\u0060. The examples below illustrate the most common scenarios for the SIP-domains, SIP-users, and IP-access-list endpoints.",
+            "$ref": "#/components/responses/defaultError"
+          }
+        },
+        "security": [
+          {
+            "voice_application_management_OAuth2": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/v2",
+            "description": "Production"
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "IP Access Lists"
+        ],
+        "summary": "List IP access lists",
+        "description": "Lists the IP access lists registered on this account. Results are paginated. A page may hold fewer than \u0060pageSize\u0060 resources, or none, while a \u0060next\u0060 link is still present; keep following the \u0060next\u0060 link in \u0060links\u0060 until it is absent to retrieve every resource. \u0060links\u0060 always includes a \u0060self\u0060 link to the current page.",
+        "operationId": "VoiceApplicationManagementListIpAccessLists",
+        "parameters": [
+          {
+            "description": "Your Bandwidth Account ID.",
+            "$ref": "#/components/parameters/voice_application_management_accountId"
+          },
+          {
+            "description": "Opaque cursor returned in the \u0060next\u0060 link of a previous list response. Pass it back verbatim to fetch the next page. An invalid cursor, or one issued for a different account or resource type, returns \u0060400\u0060.",
+            "$ref": "#/components/parameters/voice_application_management_afterCursor"
+          },
+          {
+            "description": "Filter IP access lists by name.",
+            "$ref": "#/components/parameters/ipAccessListNameFilter"
+          },
+          {
+            "description": "The maximum number of resources to return in a single page. Values outside 1-100 return \u0060400\u0060.",
+            "$ref": "#/components/parameters/pageSize"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "$ref": "#/components/responses/listIpAccessListsResponse"
+          },
+          "default": {
+            "description": "Error response. The shape is the standard \u0060links/data/errors\u0060 envelope with \u0060data: null\u0060. The HTTP status code on the wire indicates the class of failure (400 validation, 401 auth, 403 permission, 404 not-found, 405 method not allowed, 409 conflict, 429 rate-limited by the API gateway, 500 server error, 503 authentication temporarily unavailable). Request validation errors identify the offending body field in \u0060source.field\u0060, or the query parameter in \u0060source.parameter\u0060. The examples below illustrate the most common scenarios for the SIP-domains, SIP-users, and IP-access-list endpoints.",
+            "$ref": "#/components/responses/defaultError"
+          }
+        },
+        "security": [
+          {
+            "voice_application_management_OAuth2": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/v2",
+            "description": "Production"
+          }
+        ]
+      }
+    },
+    "/voice-application-management/accounts/{accountId}/voice-applications/ip-access-lists/{ipAccessListId}": {
+      "get": {
+        "tags": [
+          "IP Access Lists"
+        ],
+        "summary": "Retrieve an IP access list",
+        "description": "Retrieves a single IP access list on the account.",
+        "operationId": "VoiceApplicationManagementGetIpAccessList",
+        "parameters": [
+          {
+            "description": "Your Bandwidth Account ID.",
+            "$ref": "#/components/parameters/voice_application_management_accountId"
+          },
+          {
+            "description": "The unique ID of the IP access list. An unknown ID returns \u0060404\u0060.",
+            "$ref": "#/components/parameters/ipAccessListId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "$ref": "#/components/responses/getIpAccessListResponse"
+          },
+          "default": {
+            "description": "Error response. The shape is the standard \u0060links/data/errors\u0060 envelope with \u0060data: null\u0060. The HTTP status code on the wire indicates the class of failure (400 validation, 401 auth, 403 permission, 404 not-found, 405 method not allowed, 409 conflict, 429 rate-limited by the API gateway, 500 server error, 503 authentication temporarily unavailable). Request validation errors identify the offending body field in \u0060source.field\u0060, or the query parameter in \u0060source.parameter\u0060. The examples below illustrate the most common scenarios for the SIP-domains, SIP-users, and IP-access-list endpoints.",
+            "$ref": "#/components/responses/defaultError"
+          }
+        },
+        "security": [
+          {
+            "voice_application_management_OAuth2": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/v2",
+            "description": "Production"
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "IP Access Lists"
+        ],
+        "summary": "Update an IP access list",
+        "description": "Updates the \u0060name\u0060 and/or \u0060cidrs\u0060 on an IP access list. At least one field must be supplied.\n\nA \u0060cidrs\u0060 change takes effect on every SIP domain that references this list. A \u0060400\u0060 is returned if the change would give any of those domains more than 50 unique CIDRs across its attached lists.",
+        "operationId": "VoiceApplicationManagementUpdateIpAccessList",
+        "parameters": [
+          {
+            "description": "Your Bandwidth Account ID.",
+            "$ref": "#/components/parameters/voice_application_management_accountId"
+          },
+          {
+            "description": "The unique ID of the IP access list. An unknown ID returns \u0060404\u0060.",
+            "$ref": "#/components/parameters/ipAccessListId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/updateIpAccessListRequestBody"
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "$ref": "#/components/responses/updateIpAccessListResponse"
+          },
+          "default": {
+            "description": "Error response. The shape is the standard \u0060links/data/errors\u0060 envelope with \u0060data: null\u0060. The HTTP status code on the wire indicates the class of failure (400 validation, 401 auth, 403 permission, 404 not-found, 405 method not allowed, 409 conflict, 429 rate-limited by the API gateway, 500 server error, 503 authentication temporarily unavailable). Request validation errors identify the offending body field in \u0060source.field\u0060, or the query parameter in \u0060source.parameter\u0060. The examples below illustrate the most common scenarios for the SIP-domains, SIP-users, and IP-access-list endpoints.",
+            "$ref": "#/components/responses/defaultError"
+          }
+        },
+        "security": [
+          {
+            "voice_application_management_OAuth2": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/v2",
+            "description": "Production"
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "IP Access Lists"
+        ],
+        "summary": "Delete an IP access list",
+        "description": "Deletes the IP access list. The list is removed from \u0060ipAccessListIds\u0060 on every SIP domain that references it, and those domains stop allowing traffic from its CIDRs.",
+        "operationId": "VoiceApplicationManagementDeleteIpAccessList",
+        "parameters": [
+          {
+            "description": "Your Bandwidth Account ID.",
+            "$ref": "#/components/parameters/voice_application_management_accountId"
+          },
+          {
+            "description": "The unique ID of the IP access list. An unknown ID returns \u0060404\u0060.",
+            "$ref": "#/components/parameters/ipAccessListId"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "default": {
+            "description": "Error response. The shape is the standard \u0060links/data/errors\u0060 envelope with \u0060data: null\u0060. The HTTP status code on the wire indicates the class of failure (400 validation, 401 auth, 403 permission, 404 not-found, 405 method not allowed, 409 conflict, 429 rate-limited by the API gateway, 500 server error, 503 authentication temporarily unavailable). Request validation errors identify the offending body field in \u0060source.field\u0060, or the query parameter in \u0060source.parameter\u0060. The examples below illustrate the most common scenarios for the SIP-domains, SIP-users, and IP-access-list endpoints.",
             "$ref": "#/components/responses/defaultError"
           }
         },
@@ -43762,7 +44390,7 @@
           },
           {
             "description": "Page size query parameter.",
-            "$ref": "#/components/parameters/pageSize"
+            "$ref": "#/components/parameters/voice_integrations_pageSize"
           }
         ],
         "responses": {
@@ -94654,15 +95282,14 @@
         "maxLength": 25,
         "type": "string",
         "description": "Displayed text for user to click",
-        "example": "Hello world"
+        "example": "Track my order"
       },
       "RbmActionPostbackData": {
         "title": "Post Back Data",
         "maxLength": 2048,
         "type": "string",
-        "description": "Base64 payload the customer receives when the reply is clicked.",
-        "format": "byte",
-        "example": "SGVsbG8gd29ybGQ="
+        "description": "Payload the customer receives when the reply is clicked.",
+        "example": "track-order-43654"
       },
       "RbmActionBase": {
         "required": [
@@ -94683,8 +95310,7 @@
           "postbackData": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Base64 payload the customer receives when the reply is clicked.",
-            "format": "byte"
+            "description": "Payload the customer receives when the reply is clicked."
           }
         }
       },
@@ -94708,8 +95334,7 @@
           "postbackData": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Base64 payload the customer receives when the reply is clicked.",
-            "format": "byte"
+            "description": "Payload the customer receives when the reply is clicked."
           },
           "phoneNumber": {
             "type": "string",
@@ -94739,8 +95364,7 @@
           "postbackData": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Base64 payload the customer receives when the reply is clicked.",
-            "format": "byte"
+            "description": "Payload the customer receives when the reply is clicked."
           },
           "latitude": {
             "type": "string",
@@ -94784,8 +95408,7 @@
           "postbackData": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Base64 payload the customer receives when the reply is clicked.",
-            "format": "byte"
+            "description": "Payload the customer receives when the reply is clicked."
           },
           "title": {
             "maxLength": 100,
@@ -94833,8 +95456,7 @@
           "postbackData": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Base64 payload the customer receives when the reply is clicked.",
-            "format": "byte"
+            "description": "Payload the customer receives when the reply is clicked."
           },
           "url": {
             "maxLength": 2048,
@@ -94895,8 +95517,7 @@
           "postbackData": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Base64 payload the customer receives when the reply is clicked.",
-            "format": "byte"
+            "description": "Payload the customer receives when the reply is clicked."
           },
           "phoneNumber": {
             "type": "string",
@@ -95381,14 +96002,13 @@
         "properties": {
           "text": {
             "type": "string",
-            "description": "The text associated with the suggestion response.",
-            "example": "Yes, I would like to proceed"
+            "description": "The text of the suggestion the user tapped.",
+            "example": "Track my order"
           },
           "postbackData": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Base64 payload the customer receives when the reply is clicked.",
-            "format": "byte"
+            "description": "Payload the customer receives when the reply is clicked."
           },
           "pairedMessageId": {
             "type": [
@@ -95416,6 +96036,54 @@
             "example": "-122.4194"
           }
         }
+      },
+      "RbmSession": {
+        "required": [
+          "canInitiate"
+        ],
+        "type": "object",
+        "properties": {
+          "canInitiate": {
+            "type": "boolean",
+            "description": "Whether the message can start an interactive session.\n\u0060false\u0060 if the message is already part of an active session, or if the agent is not eligible for\ninteractive session billing.",
+            "example": false
+          },
+          "id": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The unique identifier of the interactive session the message is part of. This is not a message ID.\nOmitted if the message is not part of a session.",
+            "example": "0f5a3b9c-2d4e-4f6a-8b1c-7e9d0a2b3c4d"
+          },
+          "type": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The type of the interactive session.\nOnly present on \u0060session-started\u0060 callbacks.",
+            "example": "INTERACTIVE_SESSION"
+          },
+          "startTime": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The time the 24-hour session window opened. Only present on \u0060session-started\u0060 callbacks.",
+            "format": "date-time",
+            "example": "2026-08-06T09:59:55Z"
+          },
+          "endTime": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The time the 24-hour session window closes. Only present on \u0060session-started\u0060 callbacks.",
+            "format": "date-time",
+            "example": "2026-08-07T09:59:55Z"
+          }
+        },
+        "description": "RCS interactive session information for the message.\nAn interactive session is a 24-hour window covering all Rich and Rich Media messages exchanged between an\nRCS agent and a specific end user mobile number. It is triggered when at least 4 messages are exchanged within\n24 hours, at least 2 of them mobile-originated and at least 1 mobile-terminated.\nOnly present on \u0060message-delivered\u0060, \u0060message-received\u0060 and \u0060session-started\u0060 callbacks for RBM messages of\nUS agents with the Conversational billing category. Omitted for all other messages."
       },
       "MessagingCallback": {
         "required": [
@@ -95474,6 +96142,7 @@
             "message-delivered": "#/components/schemas/StatusCallback",
             "message-failed": "#/components/schemas/StatusCallback",
             "message-read": "#/components/schemas/StatusCallback",
+            "session-started": "#/components/schemas/StatusCallback",
             "message-received": "#/components/schemas/InboundCallback",
             "requested-location-response": "#/components/schemas/InboundCallback",
             "suggestion-response": "#/components/schemas/InboundCallback",
@@ -95504,7 +96173,7 @@
             "example": "2024-12-02T20:15:58.278Z"
           },
           "type": {
-            "description": "The possible status callbacks when sending an MT SMS or MMS or RBM message:\n- \u0060message-sending\u0060 indicates that Bandwidth is sending the message to the upstream provider.\n- \u0060message-sent\u0060 indicates that the message has left the Bandwidth network and is in transit to the provider.\n- \u0060message-delivered\u0060 indicates that the message was successfully delivered to handset.\n- \u0060message-failed\u0060 indicates that the message could not be sent to the intended recipient.\n- \u0060message-read\u0060 indicates that the RBM message was read by the recipient.",
+            "description": "The possible status callbacks when sending an MT SMS or MMS or RBM message:\n- \u0060message-sending\u0060 indicates that Bandwidth is sending the message to the upstream provider.\n- \u0060message-sent\u0060 indicates that the message has left the Bandwidth network and is in transit to the provider.\n- \u0060message-delivered\u0060 indicates that the message was successfully delivered to handset.\n- \u0060message-failed\u0060 indicates that the message could not be sent to the intended recipient.\n- \u0060message-read\u0060 indicates that the RBM message was read by the recipient.\n- \u0060session-started\u0060 indicates that a previously exchanged RBM message is now part of an RCS interactive session and is no longer billed individually.",
             "$ref": "#/components/schemas/StatusCallbackTypeEnum"
           },
           "to": {
@@ -95578,11 +96247,12 @@
           "message-sent",
           "message-delivered",
           "message-failed",
-          "message-read"
+          "message-read",
+          "session-started"
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "The possible status callbacks when sending an MT SMS or MMS or RBM message:\n- \u0060message-sending\u0060 indicates that Bandwidth is sending the message to the upstream provider.\n- \u0060message-sent\u0060 indicates that the message has left the Bandwidth network and is in transit to the provider.\n- \u0060message-delivered\u0060 indicates that the message was successfully delivered to handset.\n- \u0060message-failed\u0060 indicates that the message could not be sent to the intended recipient.\n- \u0060message-read\u0060 indicates that the RBM message was read by the recipient.",
+        "description": "The possible status callbacks when sending an MT SMS or MMS or RBM message:\n- \u0060message-sending\u0060 indicates that Bandwidth is sending the message to the upstream provider.\n- \u0060message-sent\u0060 indicates that the message has left the Bandwidth network and is in transit to the provider.\n- \u0060message-delivered\u0060 indicates that the message was successfully delivered to handset.\n- \u0060message-failed\u0060 indicates that the message could not be sent to the intended recipient.\n- \u0060message-read\u0060 indicates that the RBM message was read by the recipient.\n- \u0060session-started\u0060 indicates that a previously exchanged RBM message is now part of an RCS interactive session and is no longer billed individually.",
         "example": "message-delivered",
         "x-ms-enum": {
           "name": "StatusCallbackTypeEnum",
@@ -95607,6 +96277,10 @@
             {
               "value": "message-read",
               "name": "MessageRead"
+            },
+            {
+              "value": "session-started",
+              "name": "SessionStarted"
             }
           ]
         }
@@ -95716,6 +96390,10 @@
           "channel": {
             "description": "The channel of the multi-channel message.",
             "$ref": "#/components/schemas/MultiChannelMessageChannelEnum"
+          },
+          "session": {
+            "description": "RCS interactive session information for the message.\nAn interactive session is a 24-hour window covering all Rich and Rich Media messages exchanged between an\nRCS agent and a specific end user mobile number. It is triggered when at least 4 messages are exchanged within\n24 hours, at least 2 of them mobile-originated and at least 1 mobile-terminated.\nOnly present on \u0060message-delivered\u0060, \u0060message-received\u0060 and \u0060session-started\u0060 callbacks for RBM messages of\nUS agents with the Conversational billing category. Omitted for all other messages.",
+            "$ref": "#/components/schemas/RbmSession"
           }
         },
         "description": "Message payload schema within a callback"
@@ -95796,6 +96474,10 @@
           "channel": {
             "description": "The channel of the multi-channel message.",
             "$ref": "#/components/schemas/MultiChannelMessageChannelEnum"
+          },
+          "session": {
+            "description": "RCS interactive session information for the message.\nAn interactive session is a 24-hour window covering all Rich and Rich Media messages exchanged between an\nRCS agent and a specific end user mobile number. It is triggered when at least 4 messages are exchanged within\n24 hours, at least 2 of them mobile-originated and at least 1 mobile-terminated.\nOnly present on \u0060message-delivered\u0060, \u0060message-received\u0060 and \u0060session-started\u0060 callbacks for RBM messages of\nUS agents with the Conversational billing category. Omitted for all other messages.",
+            "$ref": "#/components/schemas/RbmSession"
           },
           "content": {
             "description": "The structure of the content field of a multichannel message.",
@@ -142665,19 +143347,19 @@
           "null",
           "string"
         ],
-        "description": "The SIP URI for the specified application.",
+        "description": "The application\u0027s default-realm SIP URI (\u0060sip:{applicationId}@{auth_realm}\u0060). \u0060null\u0060 when inbound SIP calls are disabled. Custom SIP domain hosts are listed in each SIP domain\u0027s \u0060fqdns\u0060.",
         "example": "sip:479fbd44-3362-45f3-bb80-284f21111be4@sip.programmable-voice.bandwidth.com"
       },
       "InboundSipCallsEnabled": {
         "title": "Inbound SIP Calls Enabled",
         "type": "boolean",
-        "description": "Indicates whether the application can receive inbound SIP calls.",
+        "description": "Whether the application accepts inbound SIP calls on its default-realm SIP identity (\u0060sip:{applicationId}@{auth_realm}\u0060). Does not affect calls to custom SIP domains bound to the application.",
         "example": true
       },
       "PasswordAuthEnabled": {
         "title": "Password Auth Enabled",
         "type": "boolean",
-        "description": "Controls whether SIP digest authentication (407 challenge) is required for inbound SIP calls.",
+        "description": "Whether SIP digest authentication (407 challenge) is required for inbound SIP calls on the application\u0027s default-realm SIP identity. Custom SIP domains authenticate with per-user credentials from SIP Users instead.",
         "example": true
       },
       "AllowedSourceIps": {
@@ -142685,10 +143367,11 @@
         "maxItems": 25,
         "type": "array",
         "items": {
-          "pattern": "^(\\d{1,3}\\.){3}\\d{1,3}/\\d{1,2}$",
-          "type": "string"
+          "pattern": "^(\\d{1,3}\\.){3}\\d{1,3}(/\\d{1,2})?$",
+          "type": "string",
+          "description": "An IPv4 CIDR block in canonical \u0060\u003Cnetwork\u003E/\u003Cprefix\u003E\u0060 form (host bits must be zero, e.g. \u0060192.168.1.0/24\u0060, not \u0060192.168.1.5/24\u0060). A bare IP address is accepted and stored as \u0060/32\u0060. Any block that overlaps a private or reserved range is rejected (so a supernet such as \u0060172.0.0.0/8\u0060 is rejected too): \u00600.0.0.0/8\u0060, \u006010.0.0.0/8\u0060, \u0060100.64.0.0/10\u0060, \u0060127.0.0.0/8\u0060, \u0060169.254.0.0/16\u0060, \u0060172.16.0.0/12\u0060, \u0060192.0.0.0/24\u0060, \u0060192.168.0.0/16\u0060, \u0060224.0.0.0/4\u0060, and \u0060240.0.0.0/4\u0060. \u00600.0.0.0/0\u0060 is allowed and permits all source IPs."
         },
-        "description": "List of CIDR blocks allowed to send SIP traffic to this application. An empty array means no IP restriction is applied. Maximum 25 entries.",
+        "description": "IPv4 CIDR blocks allowed to send SIP traffic to the application\u0027s default-realm SIP identity. An empty array means no IP restriction is applied. Maximum 25 entries. Custom SIP domains use IP access lists instead.",
         "default": []
       },
       "VoiceApplicationManagementRegion": {
@@ -142725,7 +143408,7 @@
         "items": {
           "$ref": "#/components/schemas/VoiceApplicationManagementRegion"
         },
-        "description": "The list of regions where the application is permitted to authenticate. When null, no regions are configured."
+        "description": "The regions where calls to the application\u0027s default-realm SIP identity are permitted to authenticate. An application with no allowed regions cannot authenticate. Custom SIP domains use each SIP user\u0027s \u0060allowedRegions\u0060 instead."
       },
       "VoiceApplicationManagementCallbackCreds": {
         "title": "Callback Credentials",
@@ -142835,28 +143518,29 @@
             "example": 30
           },
           "sipUri": {
-            "description": "The SIP URI for the specified application.",
+            "description": "The application\u0027s default-realm SIP URI (\u0060sip:{applicationId}@{auth_realm}\u0060). \u0060null\u0060 when inbound SIP calls are disabled. Custom SIP domain hosts are listed in each SIP domain\u0027s \u0060fqdns\u0060.",
             "$ref": "#/components/schemas/SipUri"
           },
           "inboundSipCallsEnabled": {
             "type": "boolean",
-            "description": "Indicates whether the application can receive inbound SIP calls."
+            "description": "Whether the application accepts inbound SIP calls on its default-realm SIP identity (\u0060sip:{applicationId}@{auth_realm}\u0060). Does not affect calls to custom SIP domains bound to the application."
           },
           "passwordAuthEnabled": {
             "type": "boolean",
-            "description": "Controls whether SIP digest authentication (407 challenge) is required for inbound SIP calls."
+            "description": "Whether SIP digest authentication (407 challenge) is required for inbound SIP calls on the application\u0027s default-realm SIP identity. Custom SIP domains authenticate with per-user credentials from SIP Users instead."
           },
           "allowedSourceIps": {
             "maxItems": 25,
             "type": "array",
             "items": {
-              "pattern": "^(\\d{1,3}\\.){3}\\d{1,3}/\\d{1,2}$",
-              "type": "string"
+              "pattern": "^(\\d{1,3}\\.){3}\\d{1,3}(/\\d{1,2})?$",
+              "type": "string",
+              "description": "An IPv4 CIDR block in canonical \u0060\u003Cnetwork\u003E/\u003Cprefix\u003E\u0060 form (host bits must be zero, e.g. \u0060192.168.1.0/24\u0060, not \u0060192.168.1.5/24\u0060). A bare IP address is accepted and stored as \u0060/32\u0060. Any block that overlaps a private or reserved range is rejected (so a supernet such as \u0060172.0.0.0/8\u0060 is rejected too): \u00600.0.0.0/8\u0060, \u006010.0.0.0/8\u0060, \u0060100.64.0.0/10\u0060, \u0060127.0.0.0/8\u0060, \u0060169.254.0.0/16\u0060, \u0060172.16.0.0/12\u0060, \u0060192.0.0.0/24\u0060, \u0060192.168.0.0/16\u0060, \u0060224.0.0.0/4\u0060, and \u0060240.0.0.0/4\u0060. \u00600.0.0.0/0\u0060 is allowed and permits all source IPs."
             },
-            "description": "List of CIDR blocks allowed to send SIP traffic to this application. An empty array means no IP restriction is applied. Maximum 25 entries."
+            "description": "IPv4 CIDR blocks allowed to send SIP traffic to the application\u0027s default-realm SIP identity. An empty array means no IP restriction is applied. Maximum 25 entries. Custom SIP domains use IP access lists instead."
           },
           "allowedRegions": {
-            "description": "The list of regions where the application is permitted to authenticate. When null, no regions are configured.",
+            "description": "The regions where calls to the application\u0027s default-realm SIP identity are permitted to authenticate. An application with no allowed regions cannot authenticate. Custom SIP domains use each SIP user\u0027s \u0060allowedRegions\u0060 instead.",
             "$ref": "#/components/schemas/AllowedRegions"
           }
         }
@@ -142867,27 +143551,28 @@
         "properties": {
           "inboundSipCallsEnabled": {
             "type": "boolean",
-            "description": "Indicates whether the application can receive inbound SIP calls."
+            "description": "Whether the application accepts inbound SIP calls on its default-realm SIP identity (\u0060sip:{applicationId}@{auth_realm}\u0060). Does not affect calls to custom SIP domains bound to the application."
           },
           "passwordAuthEnabled": {
             "type": "boolean",
-            "description": "Controls whether SIP digest authentication (407 challenge) is required for inbound SIP calls."
+            "description": "Whether SIP digest authentication (407 challenge) is required for inbound SIP calls on the application\u0027s default-realm SIP identity. Custom SIP domains authenticate with per-user credentials from SIP Users instead."
           },
           "allowedSourceIps": {
             "maxItems": 25,
             "type": "array",
             "items": {
-              "pattern": "^(\\d{1,3}\\.){3}\\d{1,3}/\\d{1,2}$",
-              "type": "string"
+              "pattern": "^(\\d{1,3}\\.){3}\\d{1,3}(/\\d{1,2})?$",
+              "type": "string",
+              "description": "An IPv4 CIDR block in canonical \u0060\u003Cnetwork\u003E/\u003Cprefix\u003E\u0060 form (host bits must be zero, e.g. \u0060192.168.1.0/24\u0060, not \u0060192.168.1.5/24\u0060). A bare IP address is accepted and stored as \u0060/32\u0060. Any block that overlaps a private or reserved range is rejected (so a supernet such as \u0060172.0.0.0/8\u0060 is rejected too): \u00600.0.0.0/8\u0060, \u006010.0.0.0/8\u0060, \u0060100.64.0.0/10\u0060, \u0060127.0.0.0/8\u0060, \u0060169.254.0.0/16\u0060, \u0060172.16.0.0/12\u0060, \u0060192.0.0.0/24\u0060, \u0060192.168.0.0/16\u0060, \u0060224.0.0.0/4\u0060, and \u0060240.0.0.0/4\u0060. \u00600.0.0.0/0\u0060 is allowed and permits all source IPs."
             },
-            "description": "List of CIDR blocks allowed to send SIP traffic to this application. An empty array means no IP restriction is applied. Maximum 25 entries."
+            "description": "IPv4 CIDR blocks allowed to send SIP traffic to the application\u0027s default-realm SIP identity. An empty array means no IP restriction is applied. Maximum 25 entries. Custom SIP domains use IP access lists instead."
           },
           "allowedRegions": {
-            "description": "The list of regions where the application is permitted to authenticate. When null, no regions are configured.",
+            "description": "The regions where calls to the application\u0027s default-realm SIP identity are permitted to authenticate. An application with no allowed regions cannot authenticate. Custom SIP domains use each SIP user\u0027s \u0060allowedRegions\u0060 instead.",
             "$ref": "#/components/schemas/AllowedRegions"
           }
         },
-        "description": "At least one field must be provided. When \u0060inboundSipCallsEnabled\u0060 is \u0060true\u0060, at least one auth mechanism must be active: \u0060passwordAuthEnabled: true\u0060 OR a non-empty \u0060allowedSourceIps\u0060 array."
+        "description": "At least one field must be provided. When \u0060inboundSipCallsEnabled\u0060 is \u0060true\u0060, at least one auth mechanism must be active: \u0060passwordAuthEnabled: true\u0060 OR a non-empty \u0060allowedSourceIps\u0060 array.\n\nA \u0060null\u0060 value is treated the same as omitting the field; it does not clear the setting. To clear \u0060allowedSourceIps\u0060 or \u0060allowedRegions\u0060, send an empty array."
       },
       "GetVoiceApplicationResponse": {
         "title": "Get Voice Application Response",
@@ -142944,6 +143629,818 @@
           }
         }
       },
+      "SipDomainLabel": {
+        "title": "SIP Domain Label",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?$",
+        "type": "string",
+        "description": "The customer-chosen DNS label that identifies the SIP domain on this account. 1-63 alphanumeric or hyphen characters, no leading or trailing hyphen. Case-insensitive; stored and returned in lowercase.\n\nRegion codes (\u0060us\u0060, \u0060eu\u0060) are reserved and rejected as a domain label, since they are used as the region prefix in \u0060fqdns\u0060. \u0060null\u0060 is also reserved, since it is the list filters\u0027 value for an unassigned domain.",
+        "example": "mycompany"
+      },
+      "SipDomainName": {
+        "title": "SIP Domain Name",
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string",
+        "description": "A customer-chosen friendly name for the SIP domain.",
+        "example": "Acme Support Domain"
+      },
+      "SipDomainStatus": {
+        "title": "SIP Domain Status",
+        "enum": [
+          "PENDING",
+          "ACTIVE",
+          "FAILED"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The provisioning status of the SIP domain\u0027s DNS records. \u0060PENDING\u0060 immediately after create, or after a \u0060regions\u0060 update that changes the region set, while provisioning runs asynchronously; \u0060ACTIVE\u0060 once provisioning completes; \u0060FAILED\u0060 if provisioning could not complete (see \u0060failureReason\u0060). A domain still \u0060PENDING\u0060 after 10 minutes is reported as \u0060FAILED\u0060. Inbound calls are only accepted on an \u0060ACTIVE\u0060 domain.",
+        "example": "ACTIVE",
+        "x-ms-enum": {
+          "name": "SipDomainStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "PENDING",
+              "name": "Pending"
+            },
+            {
+              "value": "ACTIVE",
+              "name": "Active"
+            },
+            {
+              "value": "FAILED",
+              "name": "Failed"
+            }
+          ]
+        }
+      },
+      "IpAccessListIds": {
+        "title": "IP Access List IDs",
+        "maxItems": 25,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "description": "IDs of account-scoped IP access lists attached to the domain (max 25). Inbound SIP traffic to the domain is allowed from the union of the lists\u0027 CIDRs, which may contain at most 50 unique CIDRs. Unknown IDs return \u0060404\u0060.",
+        "default": []
+      },
+      "SipDomainRegions": {
+        "title": "SIP Domain Regions",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/VoiceApplicationManagementRegion"
+        },
+        "description": "The regions this domain provisions DNS records for and accepts calls in. Drives the region-pinned entries in \u0060fqdns\u0060.\n\n**At least one region is required for the domain to accept calls.** If \u0060regions\u0060 is omitted or empty, every inbound call to the domain is rejected, even though the domain is created and becomes \u0060ACTIVE\u0060.\n\nA call to \u0060\u003CuserId\u003E@\u003Cfqdn\u003E\u0060 must also be in one of that SIP user\u0027s \u0060allowedRegions\u0060.",
+        "default": []
+      },
+      "SipUserId": {
+        "title": "SIP User ID",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9._-]{1,64}$",
+        "type": "string",
+        "description": "The customer-chosen SIP user identifier. 1-64 letters, numbers, \u0060.\u0060, \u0060_\u0060, or \u0060-\u0060. Case-sensitive. Immutable after creation.",
+        "example": "alice"
+      },
+      "SipUserName": {
+        "title": "SIP User Friendly Name",
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string",
+        "description": "A customer-chosen friendly name for the SIP user, distinct from the immutable \u0060userId\u0060.",
+        "example": "Alice Support Line"
+      },
+      "SipPassword": {
+        "title": "SIP Digest Password",
+        "maxLength": 128,
+        "minLength": 8,
+        "pattern": "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!-/:-@\\[-\u0060{-~])[ -~]{8,128}$",
+        "type": "string",
+        "description": "The customer-supplied plaintext digest password. Must be 8-128 printable ASCII characters and include at least one uppercase letter, one lowercase letter, one number, and one special character. Required on create; supply again on \u0060PATCH\u0060 to rotate it. Bandwidth never stores or returns the plaintext \u2014 it is not recoverable, and this field never appears in a response.",
+        "writeOnly": true,
+        "example": "s0meRand0mP4ssw0rd!"
+      },
+      "SipUserAllowedRegions": {
+        "title": "SIP User Allowed Regions",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/VoiceApplicationManagementRegion"
+        },
+        "description": "The list of regions where this user is permitted to authenticate. A user with no allowed regions cannot authenticate.",
+        "default": []
+      },
+      "CreatedAt": {
+        "title": "Created At",
+        "type": "string",
+        "description": "RFC 3339 timestamp (UTC) of when the resource was created. Preserved across updates.",
+        "format": "date-time",
+        "example": "2026-04-29T12:34:56.789012\u002B00:00"
+      },
+      "SipDomain": {
+        "title": "SIP Domain",
+        "required": [
+          "domain",
+          "name",
+          "applicationId",
+          "regions",
+          "ipAccessListIds",
+          "fqdns",
+          "status",
+          "failureReason",
+          "userIds",
+          "createdAt"
+        ],
+        "type": "object",
+        "properties": {
+          "domain": {
+            "maxLength": 63,
+            "pattern": "^[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?$",
+            "type": "string",
+            "description": "The customer-chosen DNS label that identifies the SIP domain on this account. 1-63 alphanumeric or hyphen characters, no leading or trailing hyphen. Case-insensitive; stored and returned in lowercase.\n\nRegion codes (\u0060us\u0060, \u0060eu\u0060) are reserved and rejected as a domain label, since they are used as the region prefix in \u0060fqdns\u0060. \u0060null\u0060 is also reserved, since it is the list filters\u0027 value for an unassigned domain."
+          },
+          "name": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "A customer-chosen friendly name for the SIP domain."
+          },
+          "applicationId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The unique ID of the voice application this domain is bound to, or \u0060null\u0060 if unbound. A domain with no \u0060applicationId\u0060 cannot accept inbound calls until bound; you may set this later via \u0060PATCH\u0060.",
+            "example": "15f99d57-f823-4718-80cc-5d95d5b83e59"
+          },
+          "regions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VoiceApplicationManagementRegion"
+            },
+            "description": "The regions this domain provisions DNS records for and accepts calls in. Drives the region-pinned entries in \u0060fqdns\u0060.\n\n**At least one region is required for the domain to accept calls.** If \u0060regions\u0060 is omitted or empty, every inbound call to the domain is rejected, even though the domain is created and becomes \u0060ACTIVE\u0060.\n\nA call to \u0060\u003CuserId\u003E@\u003Cfqdn\u003E\u0060 must also be in one of that SIP user\u0027s \u0060allowedRegions\u0060."
+          },
+          "ipAccessListIds": {
+            "maxItems": 25,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "IDs of account-scoped IP access lists attached to the domain (max 25). Inbound SIP traffic to the domain is allowed from the union of the lists\u0027 CIDRs, which may contain at most 50 unique CIDRs. Unknown IDs return \u0060404\u0060."
+          },
+          "fqdns": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "**Read-only / derived.** The full SIP host(s) that inbound calls to this domain are reachable on \u2014 one global entry (\u0060{domain}.{accountId}.{suffix}\u0060), plus one region-pinned entry (\u0060{region}.{domain}.{accountId}.{suffix}\u0060) for each region in \u0060regions\u0060. These are the values to configure as the destination in your SBC or PBX. Customers with data-residency requirements should use the region-pinned host rather than the global one, since the global host may route to any of the domain\u0027s configured regions.",
+            "readOnly": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/SipDomainStatusComposed"
+          },
+          "failureReason": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Why provisioning failed when \u0060status\u0060 is \u0060FAILED\u0060 (\u0060Domain provisioning failed\u0060 or \u0060Provisioning timed out\u0060); \u0060null\u0060 otherwise.",
+            "readOnly": true,
+            "example": "Provisioning timed out"
+          },
+          "userIds": {
+            "maxItems": 5000,
+            "type": "array",
+            "items": {
+              "maxLength": 64,
+              "pattern": "^[A-Za-z0-9._-]{1,64}$",
+              "type": "string",
+              "description": "The customer-chosen SIP user identifier. 1-64 letters, numbers, \u0060.\u0060, \u0060_\u0060, or \u0060-\u0060. Case-sensitive. Immutable after creation."
+            },
+            "description": "**Read-only / derived.** The SIP user IDs currently assigned to this domain (i.e. the users whose \u0060domain\u0060 field equals this domain). Inbound SIP calls to \u0060\u003CuserId\u003E@\u003Cfqdn\u003E\u0060 authenticate against the named user\u0027s credentials. Always empty in the response to the create request. To assign or unassign a user, \u0060PATCH /sip-users/{userId}\u0060 with the new \u0060domain\u0060 value (or an empty string, \u0060\u0022\u0022\u0060, to unassign).",
+            "readOnly": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "RFC 3339 timestamp (UTC) of when the resource was created. Preserved across updates.",
+            "format": "date-time"
+          }
+        }
+      },
+      "SipUser": {
+        "title": "SIP User",
+        "required": [
+          "userId",
+          "name",
+          "domain",
+          "allowedRegions",
+          "createdAt"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "maxLength": 64,
+            "pattern": "^[A-Za-z0-9._-]{1,64}$",
+            "type": "string",
+            "description": "The customer-chosen SIP user identifier. 1-64 letters, numbers, \u0060.\u0060, \u0060_\u0060, or \u0060-\u0060. Case-sensitive. Immutable after creation."
+          },
+          "name": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "A customer-chosen friendly name for the SIP user, distinct from the immutable \u0060userId\u0060."
+          },
+          "domain": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The label of the SIP domain this user is currently assigned to, or \u0060null\u0060 if unassigned. A SIP user can be assigned to **at most one** SIP domain at a time. Inbound SIP calls to \u0060\u003CuserId\u003E@\u003Cthis domain\u0027s fqdn\u003E\u0060 authenticate against this user\u0027s credentials; calls to the user on any other domain are rejected.",
+            "example": "mycompany"
+          },
+          "allowedRegions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VoiceApplicationManagementRegion"
+            },
+            "description": "The list of regions where this user is permitted to authenticate. A user with no allowed regions cannot authenticate."
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "RFC 3339 timestamp (UTC) of when the resource was created. Preserved across updates.",
+            "format": "date-time"
+          }
+        }
+      },
+      "CreateSipDomainRequest": {
+        "title": "Create SIP Domain Request",
+        "required": [
+          "domain",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "domain": {
+            "maxLength": 63,
+            "pattern": "^[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?$",
+            "type": "string",
+            "description": "The customer-chosen DNS label that identifies the SIP domain on this account. 1-63 alphanumeric or hyphen characters, no leading or trailing hyphen. Case-insensitive; stored and returned in lowercase.\n\nRegion codes (\u0060us\u0060, \u0060eu\u0060) are reserved and rejected as a domain label, since they are used as the region prefix in \u0060fqdns\u0060. \u0060null\u0060 is also reserved, since it is the list filters\u0027 value for an unassigned domain."
+          },
+          "name": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "A customer-chosen friendly name for the SIP domain."
+          },
+          "applicationId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Optional voice application to bind this domain to at creation time. Omit or send \u0060null\u0060 to create the domain unbound; bind it later via \u0060PATCH\u0060.",
+            "example": "15f99d57-f823-4718-80cc-5d95d5b83e59"
+          },
+          "regions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VoiceApplicationManagementRegion"
+            },
+            "description": "The regions this domain provisions DNS records for and accepts calls in. Drives the region-pinned entries in \u0060fqdns\u0060.\n\n**At least one region is required for the domain to accept calls.** If \u0060regions\u0060 is omitted or empty, every inbound call to the domain is rejected, even though the domain is created and becomes \u0060ACTIVE\u0060.\n\nA call to \u0060\u003CuserId\u003E@\u003Cfqdn\u003E\u0060 must also be in one of that SIP user\u0027s \u0060allowedRegions\u0060."
+          },
+          "ipAccessListIds": {
+            "maxItems": 25,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "IDs of account-scoped IP access lists attached to the domain (max 25). Inbound SIP traffic to the domain is allowed from the union of the lists\u0027 CIDRs, which may contain at most 50 unique CIDRs. Unknown IDs return \u0060404\u0060."
+          }
+        },
+        "description": "\u0060domain\u0060 and \u0060name\u0060 are required. The domain is created with no users assigned; assign users by \u0060PATCH /sip-users/{userId}\u0060 with this domain\u0027s label."
+      },
+      "UpdateSipDomainRequest": {
+        "title": "Update SIP Domain Request",
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "A customer-chosen friendly name for the SIP domain.",
+            "$ref": "#/components/schemas/UpdateSipDomainRequestName"
+          },
+          "applicationId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Binds or rebinds the domain to the named voice application, or an empty string (\u0060\u0022\u0022\u0060) to unbind. \u0060null\u0060 leaves the binding unchanged.",
+            "example": "15f99d57-f823-4718-80cc-5d95d5b83e59"
+          },
+          "regions": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/VoiceApplicationManagementRegion"
+            },
+            "description": "Replaces the domain\u0027s region set; send an empty array to clear it. \u0060null\u0060 leaves it unchanged. If the set changes, DNS records are reprovisioned and \u0060status\u0060 returns to \u0060PENDING\u0060."
+          },
+          "ipAccessListIds": {
+            "maxItems": 25,
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Replaces the domain\u0027s attached IP access lists; send an empty array to detach all. \u0060null\u0060 leaves them unchanged. Unknown IDs return \u0060404\u0060."
+          }
+        },
+        "description": "At least one field must be supplied. \u0060domain\u0060 (the label) is immutable and ignored if supplied; to change it, delete this domain and create a new one.\n\nA \u0060null\u0060 value for any field is treated the same as omitting it; it never clears a setting. To unbind \u0060applicationId\u0060, send an empty string. To clear \u0060regions\u0060 or \u0060ipAccessListIds\u0060, send an empty array."
+      },
+      "CreateSipUserRequest": {
+        "title": "Create SIP User Request",
+        "required": [
+          "userId",
+          "name",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "maxLength": 64,
+            "pattern": "^[A-Za-z0-9._-]{1,64}$",
+            "type": "string",
+            "description": "The customer-chosen SIP user identifier. 1-64 letters, numbers, \u0060.\u0060, \u0060_\u0060, or \u0060-\u0060. Case-sensitive. Immutable after creation."
+          },
+          "name": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "A customer-chosen friendly name for the SIP user, distinct from the immutable \u0060userId\u0060."
+          },
+          "password": {
+            "maxLength": 128,
+            "pattern": "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!-/:-@\\[-\u0060{-~])[ -~]{8,128}$",
+            "type": "string",
+            "description": "The customer-supplied plaintext digest password. Must be 8-128 printable ASCII characters and include at least one uppercase letter, one lowercase letter, one number, and one special character. Required on create; supply again on \u0060PATCH\u0060 to rotate it. Bandwidth never stores or returns the plaintext \u2014 it is not recoverable, and this field never appears in a response."
+          },
+          "domain": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Optional SIP domain label to assign this user to at creation time. Must reference an existing SIP domain on this account; unknown domains return \u0060404\u0060. Omit or send \u0060null\u0060 to create the user without a domain assignment.",
+            "example": "mycompany"
+          },
+          "allowedRegions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VoiceApplicationManagementRegion"
+            },
+            "description": "The list of regions where this user is permitted to authenticate. A user with no allowed regions cannot authenticate."
+          }
+        },
+        "description": "\u0060userId\u0060, \u0060name\u0060, and \u0060password\u0060 are required. Optionally supply \u0060domain\u0060 to assign the user to a SIP domain at creation time; omit (or send \u0060null\u0060) to leave the user unassigned. The user can be reassigned later via \u0060PATCH /sip-users/{userId}\u0060."
+      },
+      "UpdateSipUserRequest": {
+        "title": "Update SIP User Request",
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "A customer-chosen friendly name for the SIP user, distinct from the immutable \u0060userId\u0060.",
+            "$ref": "#/components/schemas/UpdateSipUserRequestName"
+          },
+          "domain": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Reassign this user to the named SIP domain (must exist on this account), or an empty string (\u0060\u0022\u0022\u0060) to unassign. \u0060null\u0060 leaves the assignment unchanged. A user can be assigned to at most one domain at a time; the prior assignment is overwritten atomically.",
+            "example": "mycompany"
+          },
+          "password": {
+            "description": "The customer-supplied plaintext digest password. Must be 8-128 printable ASCII characters and include at least one uppercase letter, one lowercase letter, one number, and one special character. Required on create; supply again on \u0060PATCH\u0060 to rotate it. Bandwidth never stores or returns the plaintext \u2014 it is not recoverable, and this field never appears in a response.",
+            "$ref": "#/components/schemas/UpdateSipUserRequestPassword"
+          },
+          "allowedRegions": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/VoiceApplicationManagementRegion"
+            },
+            "description": "Replaces the user\u0027s \u0060allowedRegions\u0060; send an empty array to clear it. \u0060null\u0060 leaves it unchanged."
+          }
+        },
+        "description": "At least one field must be supplied. \u0060userId\u0060 is immutable and ignored if supplied; to change it, delete the user and recreate.\n\nSupplying \u0060domain\u0060 reassigns the user to the named SIP domain, overwriting any prior assignment. Supply an empty string (\u0060\u0022\u0022\u0060) to unassign the user from any domain. Supplying \u0060password\u0060 rotates the digest credential; the plaintext is never echoed back.\n\nA \u0060null\u0060 value for any field is treated the same as omitting it; it never clears a setting. To clear \u0060allowedRegions\u0060, send an empty array."
+      },
+      "VoiceApplicationManagementPageMeta": {
+        "title": "Page Metadata",
+        "required": [
+          "pageSize"
+        ],
+        "type": "object",
+        "properties": {
+          "pageSize": {
+            "type": "integer",
+            "description": "The number of resources on the current page.",
+            "example": 2
+          }
+        },
+        "description": "Pagination metadata for a list response."
+      },
+      "SipDomainApplicationIdFilterQueryParameter": {
+        "title": "SIP Domain Application ID Filter Query Parameter",
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "Returns only SIP domains bound to one of these voice application IDs (exact, case-sensitive match). Supply a comma-separated list to match any of the values (OR); entries are trimmed, empty entries and duplicates are ignored, and at most 100 values are allowed. An empty value or more than 100 values returns \u0060400\u0060. Include the literal lowercase \u0060null\u0060 to also match unbound domains.",
+            "example": "15f99d57-f823-4718-80cc-5d95d5b83e59,null"
+          }
+        },
+        "example": {
+          "eq": "15f99d57-f823-4718-80cc-5d95d5b83e59"
+        }
+      },
+      "SipDomainStatusFilterQueryParameter": {
+        "title": "SIP Domain Status Filter Query Parameter",
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "Returns only SIP domains with one of these \u0060status\u0060 values: \u0060PENDING\u0060, \u0060ACTIVE\u0060, or \u0060FAILED\u0060 (uppercase). Supply a comma-separated list to match any of the values (OR); entries are trimmed, empty entries and duplicates are ignored, and at most 100 values are allowed. An empty value or more than 100 values returns \u0060400\u0060. Any other value in the list returns \u0060400\u0060.",
+            "example": "PENDING,FAILED"
+          }
+        },
+        "example": {
+          "eq": "PENDING,FAILED"
+        }
+      },
+      "SipUserDomainFilterQueryParameter": {
+        "title": "SIP User Domain Filter Query Parameter",
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "Returns only SIP users assigned to one of these SIP domain labels (case-insensitive). Supply a comma-separated list to match any of the values (OR); entries are trimmed, empty entries and duplicates are ignored, and at most 100 values are allowed. An empty value or more than 100 values returns \u0060400\u0060. Include the literal lowercase \u0060null\u0060 to also match unassigned users.",
+            "example": "mycompany,sales"
+          }
+        },
+        "example": {
+          "eq": "mycompany"
+        }
+      },
+      "IpAccessListNameFilterQueryParameter": {
+        "title": "IP Access List Name Filter Query Parameter",
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "Returns only IP access lists with exactly this name (case-sensitive). Only a single value is supported, since names may contain commas.",
+            "example": "Office NAT"
+          }
+        },
+        "example": {
+          "eq": "Office NAT"
+        }
+      },
+      "SipDomainResponseEnvelope": {
+        "title": "SIP Domain Response",
+        "required": [
+          "links",
+          "data",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/VoiceApplicationManagementLink"
+            }
+          },
+          "data": {
+            "$ref": "#/components/schemas/SipDomainResponseEnvelopeData"
+          },
+          "errors": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/VoiceApplicationManagementError"
+            }
+          }
+        }
+      },
+      "SipUserResponseEnvelope": {
+        "title": "SIP User Response",
+        "required": [
+          "links",
+          "data",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/VoiceApplicationManagementLink"
+            }
+          },
+          "data": {
+            "$ref": "#/components/schemas/SipUserResponseEnvelopeData"
+          },
+          "errors": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/VoiceApplicationManagementError"
+            }
+          }
+        }
+      },
+      "ListSipDomainsResponseEnvelope": {
+        "title": "List SIP Domains Response",
+        "required": [
+          "links",
+          "data",
+          "errors",
+          "page"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/VoiceApplicationManagementLink"
+            }
+          },
+          "data": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/SipDomain"
+            }
+          },
+          "errors": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/VoiceApplicationManagementError"
+            }
+          },
+          "page": {
+            "$ref": "#/components/schemas/VoiceApplicationManagementPageMeta"
+          }
+        }
+      },
+      "ListSipUsersResponseEnvelope": {
+        "title": "List SIP Users Response",
+        "required": [
+          "links",
+          "data",
+          "errors",
+          "page"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/VoiceApplicationManagementLink"
+            }
+          },
+          "data": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/SipUser"
+            }
+          },
+          "errors": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/VoiceApplicationManagementError"
+            }
+          },
+          "page": {
+            "$ref": "#/components/schemas/VoiceApplicationManagementPageMeta"
+          }
+        }
+      },
+      "Ipv4Cidr": {
+        "title": "IPv4 CIDR",
+        "pattern": "^(\\d{1,3}\\.){3}\\d{1,3}(/\\d{1,2})?$",
+        "type": "string",
+        "description": "An IPv4 CIDR block in canonical \u0060\u003Cnetwork\u003E/\u003Cprefix\u003E\u0060 form (host bits must be zero, e.g. \u0060192.168.1.0/24\u0060, not \u0060192.168.1.5/24\u0060). A bare IP address is accepted and stored as \u0060/32\u0060. Any block that overlaps a private or reserved range is rejected (so a supernet such as \u0060172.0.0.0/8\u0060 is rejected too): \u00600.0.0.0/8\u0060, \u006010.0.0.0/8\u0060, \u0060100.64.0.0/10\u0060, \u0060127.0.0.0/8\u0060, \u0060169.254.0.0/16\u0060, \u0060172.16.0.0/12\u0060, \u0060192.0.0.0/24\u0060, \u0060192.168.0.0/16\u0060, \u0060224.0.0.0/4\u0060, and \u0060240.0.0.0/4\u0060. \u00600.0.0.0/0\u0060 is allowed and permits all source IPs.",
+        "example": "203.0.113.0/24"
+      },
+      "IpAccessListCidrs": {
+        "title": "IP Access List CIDRs",
+        "maxItems": 25,
+        "minItems": 1,
+        "uniqueItems": true,
+        "type": "array",
+        "items": {
+          "pattern": "^(\\d{1,3}\\.){3}\\d{1,3}(/\\d{1,2})?$",
+          "type": "string",
+          "description": "An IPv4 CIDR block in canonical \u0060\u003Cnetwork\u003E/\u003Cprefix\u003E\u0060 form (host bits must be zero, e.g. \u0060192.168.1.0/24\u0060, not \u0060192.168.1.5/24\u0060). A bare IP address is accepted and stored as \u0060/32\u0060. Any block that overlaps a private or reserved range is rejected (so a supernet such as \u0060172.0.0.0/8\u0060 is rejected too): \u00600.0.0.0/8\u0060, \u006010.0.0.0/8\u0060, \u0060100.64.0.0/10\u0060, \u0060127.0.0.0/8\u0060, \u0060169.254.0.0/16\u0060, \u0060172.16.0.0/12\u0060, \u0060192.0.0.0/24\u0060, \u0060192.168.0.0/16\u0060, \u0060224.0.0.0/4\u0060, and \u0060240.0.0.0/4\u0060. \u00600.0.0.0/0\u0060 is allowed and permits all source IPs."
+        },
+        "description": "The IPv4 CIDR blocks in this access list. Entries must be unique after normalization."
+      },
+      "IpAccessListName": {
+        "title": "IP Access List Name",
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string",
+        "description": "Human-readable label for the IP access list. Does not need to be unique.",
+        "example": "Office NAT"
+      },
+      "IpAccessList": {
+        "title": "IP Access List",
+        "required": [
+          "id",
+          "name",
+          "cidrs",
+          "createdAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of the IP access list, generated by Bandwidth.",
+            "format": "uuid",
+            "example": "6d8e9b22-4c2c-4a37-8f54-1be0eaf6b3e2"
+          },
+          "name": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "Human-readable label for the IP access list. Does not need to be unique."
+          },
+          "cidrs": {
+            "maxItems": 25,
+            "minItems": 1,
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "pattern": "^(\\d{1,3}\\.){3}\\d{1,3}(/\\d{1,2})?$",
+              "type": "string",
+              "description": "An IPv4 CIDR block in canonical \u0060\u003Cnetwork\u003E/\u003Cprefix\u003E\u0060 form (host bits must be zero, e.g. \u0060192.168.1.0/24\u0060, not \u0060192.168.1.5/24\u0060). A bare IP address is accepted and stored as \u0060/32\u0060. Any block that overlaps a private or reserved range is rejected (so a supernet such as \u0060172.0.0.0/8\u0060 is rejected too): \u00600.0.0.0/8\u0060, \u006010.0.0.0/8\u0060, \u0060100.64.0.0/10\u0060, \u0060127.0.0.0/8\u0060, \u0060169.254.0.0/16\u0060, \u0060172.16.0.0/12\u0060, \u0060192.0.0.0/24\u0060, \u0060192.168.0.0/16\u0060, \u0060224.0.0.0/4\u0060, and \u0060240.0.0.0/4\u0060. \u00600.0.0.0/0\u0060 is allowed and permits all source IPs."
+            },
+            "description": "The IPv4 CIDR blocks in this access list. Entries must be unique after normalization."
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "RFC 3339 timestamp (UTC) of when the resource was created. Preserved across updates.",
+            "format": "date-time"
+          }
+        }
+      },
+      "CreateIpAccessListRequest": {
+        "title": "Create IP Access List Request",
+        "required": [
+          "name",
+          "cidrs"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "Human-readable label for the IP access list. Does not need to be unique."
+          },
+          "cidrs": {
+            "maxItems": 25,
+            "minItems": 1,
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "pattern": "^(\\d{1,3}\\.){3}\\d{1,3}(/\\d{1,2})?$",
+              "type": "string",
+              "description": "An IPv4 CIDR block in canonical \u0060\u003Cnetwork\u003E/\u003Cprefix\u003E\u0060 form (host bits must be zero, e.g. \u0060192.168.1.0/24\u0060, not \u0060192.168.1.5/24\u0060). A bare IP address is accepted and stored as \u0060/32\u0060. Any block that overlaps a private or reserved range is rejected (so a supernet such as \u0060172.0.0.0/8\u0060 is rejected too): \u00600.0.0.0/8\u0060, \u006010.0.0.0/8\u0060, \u0060100.64.0.0/10\u0060, \u0060127.0.0.0/8\u0060, \u0060169.254.0.0/16\u0060, \u0060172.16.0.0/12\u0060, \u0060192.0.0.0/24\u0060, \u0060192.168.0.0/16\u0060, \u0060224.0.0.0/4\u0060, and \u0060240.0.0.0/4\u0060. \u00600.0.0.0/0\u0060 is allowed and permits all source IPs."
+            },
+            "description": "The IPv4 CIDR blocks in this access list. Entries must be unique after normalization."
+          }
+        },
+        "description": "\u0060name\u0060 and \u0060cidrs\u0060 are required."
+      },
+      "UpdateIpAccessListRequest": {
+        "title": "Update IP Access List Request",
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Human-readable label for the IP access list. Does not need to be unique.",
+            "$ref": "#/components/schemas/UpdateIpAccessListRequestName"
+          },
+          "cidrs": {
+            "description": "The IPv4 CIDR blocks in this access list. Entries must be unique after normalization.",
+            "$ref": "#/components/schemas/UpdateIpAccessListRequestCidrs"
+          }
+        },
+        "description": "Updates \u0060name\u0060 and/or \u0060cidrs\u0060. At least one field must be supplied. A \u0060null\u0060 value is treated the same as omitting the field. \u0060cidrs\u0060, when supplied, replaces the full list (not a merge)."
+      },
+      "IpAccessListResponseEnvelope": {
+        "title": "IP Access List Response",
+        "required": [
+          "links",
+          "data",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/VoiceApplicationManagementLink"
+            }
+          },
+          "data": {
+            "$ref": "#/components/schemas/IpAccessListResponseEnvelopeData"
+          },
+          "errors": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/VoiceApplicationManagementError"
+            }
+          }
+        }
+      },
+      "ListIpAccessListsResponseEnvelope": {
+        "title": "List IP Access Lists Response",
+        "required": [
+          "links",
+          "data",
+          "errors",
+          "page"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/VoiceApplicationManagementLink"
+            }
+          },
+          "data": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/IpAccessList"
+            }
+          },
+          "errors": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/VoiceApplicationManagementError"
+            }
+          },
+          "page": {
+            "$ref": "#/components/schemas/VoiceApplicationManagementPageMeta"
+          }
+        }
+      },
       "UpdateVoiceApplicationResponseData": {
         "type": "object",
         "allOf": [
@@ -142957,8 +144454,255 @@
               "null",
               "string"
             ],
-            "description": "The password to be used for SIP digest authentication. Only returned when \u0060passwordAuthEnabled\u0060 is set to \u0060true\u0060. Null otherwise.",
+            "description": "The newly generated password to be used for SIP digest authentication. Only present when the request included \u0060passwordAuthEnabled: true\u0060; it is not returned again.",
             "example": "super_secure_password"
+          }
+        }
+      },
+      "SipDomainStatusComposed": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/SipDomainStatusComposedValue"
+          }
+        },
+        "readOnly": true
+      },
+      "UpdateSipDomainRequestName": {
+        "maxLength": 255,
+        "type": [
+          "null",
+          "string"
+        ],
+        "additionalProperties": {
+          "$ref": "#/components/schemas/UpdateSipDomainRequestNameAdditionalProperties"
+        },
+        "description": "A customer-chosen friendly name for the SIP domain."
+      },
+      "UpdateSipUserRequestName": {
+        "maxLength": 255,
+        "type": [
+          "null",
+          "string"
+        ],
+        "additionalProperties": {
+          "$ref": "#/components/schemas/UpdateSipUserRequestNameAdditionalProperties"
+        },
+        "description": "A customer-chosen friendly name for the SIP user, distinct from the immutable \u0060userId\u0060."
+      },
+      "UpdateSipUserRequestPassword": {
+        "maxLength": 128,
+        "pattern": "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!-/:-@\\[-\u0060{-~])[ -~]{8,128}$",
+        "type": [
+          "null",
+          "string"
+        ],
+        "additionalProperties": {
+          "$ref": "#/components/schemas/UpdateSipUserRequestPasswordAdditionalProperties"
+        },
+        "description": "The customer-supplied plaintext digest password. Must be 8-128 printable ASCII characters and include at least one uppercase letter, one lowercase letter, one number, and one special character. Required on create; supply again on \u0060PATCH\u0060 to rotate it. Bandwidth never stores or returns the plaintext \u2014 it is not recoverable, and this field never appears in a response."
+      },
+      "SipDomainResponseEnvelopeData": {
+        "required": [
+          "domain",
+          "name",
+          "applicationId",
+          "regions",
+          "ipAccessListIds",
+          "fqdns",
+          "status",
+          "failureReason",
+          "userIds",
+          "createdAt"
+        ],
+        "type": "object",
+        "properties": {
+          "domain": {
+            "maxLength": 63,
+            "pattern": "^[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?$",
+            "type": "string",
+            "description": "The customer-chosen DNS label that identifies the SIP domain on this account. 1-63 alphanumeric or hyphen characters, no leading or trailing hyphen. Case-insensitive; stored and returned in lowercase.\n\nRegion codes (\u0060us\u0060, \u0060eu\u0060) are reserved and rejected as a domain label, since they are used as the region prefix in \u0060fqdns\u0060. \u0060null\u0060 is also reserved, since it is the list filters\u0027 value for an unassigned domain."
+          },
+          "name": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "A customer-chosen friendly name for the SIP domain."
+          },
+          "applicationId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The unique ID of the voice application this domain is bound to, or \u0060null\u0060 if unbound. A domain with no \u0060applicationId\u0060 cannot accept inbound calls until bound; you may set this later via \u0060PATCH\u0060.",
+            "example": "15f99d57-f823-4718-80cc-5d95d5b83e59"
+          },
+          "regions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VoiceApplicationManagementRegion"
+            },
+            "description": "The regions this domain provisions DNS records for and accepts calls in. Drives the region-pinned entries in \u0060fqdns\u0060.\n\n**At least one region is required for the domain to accept calls.** If \u0060regions\u0060 is omitted or empty, every inbound call to the domain is rejected, even though the domain is created and becomes \u0060ACTIVE\u0060.\n\nA call to \u0060\u003CuserId\u003E@\u003Cfqdn\u003E\u0060 must also be in one of that SIP user\u0027s \u0060allowedRegions\u0060."
+          },
+          "ipAccessListIds": {
+            "maxItems": 25,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "IDs of account-scoped IP access lists attached to the domain (max 25). Inbound SIP traffic to the domain is allowed from the union of the lists\u0027 CIDRs, which may contain at most 50 unique CIDRs. Unknown IDs return \u0060404\u0060."
+          },
+          "fqdns": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "**Read-only / derived.** The full SIP host(s) that inbound calls to this domain are reachable on \u2014 one global entry (\u0060{domain}.{accountId}.{suffix}\u0060), plus one region-pinned entry (\u0060{region}.{domain}.{accountId}.{suffix}\u0060) for each region in \u0060regions\u0060. These are the values to configure as the destination in your SBC or PBX. Customers with data-residency requirements should use the region-pinned host rather than the global one, since the global host may route to any of the domain\u0027s configured regions.",
+            "readOnly": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/SipDomainStatusComposed"
+          },
+          "failureReason": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Why provisioning failed when \u0060status\u0060 is \u0060FAILED\u0060 (\u0060Domain provisioning failed\u0060 or \u0060Provisioning timed out\u0060); \u0060null\u0060 otherwise.",
+            "readOnly": true,
+            "example": "Provisioning timed out"
+          },
+          "userIds": {
+            "maxItems": 5000,
+            "type": "array",
+            "items": {
+              "maxLength": 64,
+              "pattern": "^[A-Za-z0-9._-]{1,64}$",
+              "type": "string",
+              "description": "The customer-chosen SIP user identifier. 1-64 letters, numbers, \u0060.\u0060, \u0060_\u0060, or \u0060-\u0060. Case-sensitive. Immutable after creation."
+            },
+            "description": "**Read-only / derived.** The SIP user IDs currently assigned to this domain (i.e. the users whose \u0060domain\u0060 field equals this domain). Inbound SIP calls to \u0060\u003CuserId\u003E@\u003Cfqdn\u003E\u0060 authenticate against the named user\u0027s credentials. Always empty in the response to the create request. To assign or unassign a user, \u0060PATCH /sip-users/{userId}\u0060 with the new \u0060domain\u0060 value (or an empty string, \u0060\u0022\u0022\u0060, to unassign).",
+            "readOnly": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "RFC 3339 timestamp (UTC) of when the resource was created. Preserved across updates.",
+            "format": "date-time"
+          }
+        }
+      },
+      "SipUserResponseEnvelopeData": {
+        "required": [
+          "userId",
+          "name",
+          "domain",
+          "allowedRegions",
+          "createdAt"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "maxLength": 64,
+            "pattern": "^[A-Za-z0-9._-]{1,64}$",
+            "type": "string",
+            "description": "The customer-chosen SIP user identifier. 1-64 letters, numbers, \u0060.\u0060, \u0060_\u0060, or \u0060-\u0060. Case-sensitive. Immutable after creation."
+          },
+          "name": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "A customer-chosen friendly name for the SIP user, distinct from the immutable \u0060userId\u0060."
+          },
+          "domain": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The label of the SIP domain this user is currently assigned to, or \u0060null\u0060 if unassigned. A SIP user can be assigned to **at most one** SIP domain at a time. Inbound SIP calls to \u0060\u003CuserId\u003E@\u003Cthis domain\u0027s fqdn\u003E\u0060 authenticate against this user\u0027s credentials; calls to the user on any other domain are rejected.",
+            "example": "mycompany"
+          },
+          "allowedRegions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VoiceApplicationManagementRegion"
+            },
+            "description": "The list of regions where this user is permitted to authenticate. A user with no allowed regions cannot authenticate."
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "RFC 3339 timestamp (UTC) of when the resource was created. Preserved across updates.",
+            "format": "date-time"
+          }
+        }
+      },
+      "UpdateIpAccessListRequestName": {
+        "maxLength": 255,
+        "type": [
+          "null",
+          "string"
+        ],
+        "additionalProperties": {
+          "$ref": "#/components/schemas/UpdateIpAccessListRequestNameAdditionalProperties"
+        },
+        "description": "Human-readable label for the IP access list. Does not need to be unique."
+      },
+      "UpdateIpAccessListRequestCidrs": {
+        "title": "IP Access List CIDRs",
+        "maxItems": 25,
+        "minItems": 1,
+        "uniqueItems": true,
+        "type": [
+          "null",
+          "array"
+        ],
+        "items": {
+          "pattern": "^(\\d{1,3}\\.){3}\\d{1,3}(/\\d{1,2})?$",
+          "type": "string",
+          "description": "An IPv4 CIDR block in canonical \u0060\u003Cnetwork\u003E/\u003Cprefix\u003E\u0060 form (host bits must be zero, e.g. \u0060192.168.1.0/24\u0060, not \u0060192.168.1.5/24\u0060). A bare IP address is accepted and stored as \u0060/32\u0060. Any block that overlaps a private or reserved range is rejected (so a supernet such as \u0060172.0.0.0/8\u0060 is rejected too): \u00600.0.0.0/8\u0060, \u006010.0.0.0/8\u0060, \u0060100.64.0.0/10\u0060, \u0060127.0.0.0/8\u0060, \u0060169.254.0.0/16\u0060, \u0060172.16.0.0/12\u0060, \u0060192.0.0.0/24\u0060, \u0060192.168.0.0/16\u0060, \u0060224.0.0.0/4\u0060, and \u0060240.0.0.0/4\u0060. \u00600.0.0.0/0\u0060 is allowed and permits all source IPs."
+        },
+        "additionalProperties": {
+          "$ref": "#/components/schemas/UpdateIpAccessListRequestCidrsAdditionalProperties"
+        },
+        "description": "The IPv4 CIDR blocks in this access list. Entries must be unique after normalization."
+      },
+      "IpAccessListResponseEnvelopeData": {
+        "required": [
+          "id",
+          "name",
+          "cidrs",
+          "createdAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of the IP access list, generated by Bandwidth.",
+            "format": "uuid",
+            "example": "6d8e9b22-4c2c-4a37-8f54-1be0eaf6b3e2"
+          },
+          "name": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "Human-readable label for the IP access list. Does not need to be unique."
+          },
+          "cidrs": {
+            "maxItems": 25,
+            "minItems": 1,
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "pattern": "^(\\d{1,3}\\.){3}\\d{1,3}(/\\d{1,2})?$",
+              "type": "string",
+              "description": "An IPv4 CIDR block in canonical \u0060\u003Cnetwork\u003E/\u003Cprefix\u003E\u0060 form (host bits must be zero, e.g. \u0060192.168.1.0/24\u0060, not \u0060192.168.1.5/24\u0060). A bare IP address is accepted and stored as \u0060/32\u0060. Any block that overlaps a private or reserved range is rejected (so a supernet such as \u0060172.0.0.0/8\u0060 is rejected too): \u00600.0.0.0/8\u0060, \u006010.0.0.0/8\u0060, \u0060100.64.0.0/10\u0060, \u0060127.0.0.0/8\u0060, \u0060169.254.0.0/16\u0060, \u0060172.16.0.0/12\u0060, \u0060192.0.0.0/24\u0060, \u0060192.168.0.0/16\u0060, \u0060224.0.0.0/4\u0060, and \u0060240.0.0.0/4\u0060. \u00600.0.0.0/0\u0060 is allowed and permits all source IPs."
+            },
+            "description": "The IPv4 CIDR blocks in this access list. Entries must be unique after normalization."
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "RFC 3339 timestamp (UTC) of when the resource was created. Preserved across updates.",
+            "format": "date-time"
           }
         }
       },
@@ -142970,7 +144714,7 @@
               "null",
               "string"
             ],
-            "description": "The password to be used for SIP digest authentication. Only returned when \u0060passwordAuthEnabled\u0060 is set to \u0060true\u0060. Null otherwise.",
+            "description": "The newly generated password to be used for SIP digest authentication. Only present when the request included \u0060passwordAuthEnabled: true\u0060; it is not returned again.",
             "example": "super_secure_password"
           }
         }
@@ -142981,6 +144725,17 @@
           "object"
         ],
         "example": null
+      },
+      "SipDomainStatusWrapper": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/SipDomainStatusWrapperValue"
+          }
+        }
       },
       "VoiceApplicationManagementExamplePayload": {
         "type": "object",
@@ -154361,6 +156116,62 @@
           ]
         }
       },
+      "SipDomainStatusComposedValue": {
+        "title": "SipDomainStatusComposed_value",
+        "enum": [
+          "PENDING",
+          "ACTIVE",
+          "FAILED"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "SipDomainStatusComposedValue",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "PENDING",
+              "name": "Pending"
+            },
+            {
+              "value": "ACTIVE",
+              "name": "Active"
+            },
+            {
+              "value": "FAILED",
+              "name": "Failed"
+            }
+          ]
+        }
+      },
+      "SipDomainStatusWrapperValue": {
+        "title": "SipDomainStatusWrapper_value",
+        "enum": [
+          "PENDING",
+          "ACTIVE",
+          "FAILED"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "SipDomainStatusWrapperValue",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "PENDING",
+              "name": "Pending"
+            },
+            {
+              "value": "ACTIVE",
+              "name": "Active"
+            },
+            {
+              "value": "FAILED",
+              "name": "Failed"
+            }
+          ]
+        }
+      },
       "ExportJobStatusValue": {
         "title": "ExportJobStatus_value",
         "enum": [
@@ -156002,6 +157813,26 @@
       },
       "VoiceApplicationManagementGenericErrorDataProperty2": {
         "type": "object"
+      },
+      "UpdateSipDomainRequestNameAdditionalProperties": {
+        "type": "object",
+        "not": {}
+      },
+      "UpdateSipUserRequestNameAdditionalProperties": {
+        "type": "object",
+        "not": {}
+      },
+      "UpdateSipUserRequestPasswordAdditionalProperties": {
+        "type": "object",
+        "not": {}
+      },
+      "UpdateIpAccessListRequestNameAdditionalProperties": {
+        "type": "object",
+        "not": {}
+      },
+      "UpdateIpAccessListRequestCidrsAdditionalProperties": {
+        "type": "object",
+        "not": {}
       },
       "WeightedEndpointAdditionalProperties": {
         "type": "object",
@@ -171977,11 +173808,238 @@
         }
       },
       "defaultError": {
-        "description": "Unexpected Error",
+        "description": "Error response. The shape is the standard \u0060links/data/errors\u0060 envelope with \u0060data: null\u0060. The HTTP status code on the wire indicates the class of failure (400 validation, 401 auth, 403 permission, 404 not-found, 405 method not allowed, 409 conflict, 429 rate-limited by the API gateway, 500 server error, 503 authentication temporarily unavailable). Request validation errors identify the offending body field in \u0060source.field\u0060, or the query parameter in \u0060source.parameter\u0060. The examples below illustrate the most common scenarios for the SIP-domains, SIP-users, and IP-access-list endpoints.",
         "content": {
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/VoiceApplicationManagementGenericError"
+            },
+            "examples": {
+              "badRequest": {
+                "$ref": "#/components/examples/voice_application_management_badRequestErrorExample"
+              },
+              "reservedRegionLabel": {
+                "$ref": "#/components/examples/reservedRegionLabelErrorExample"
+              },
+              "invalidSipPassword": {
+                "$ref": "#/components/examples/invalidSipPasswordErrorExample"
+              },
+              "domainCidrLimit": {
+                "$ref": "#/components/examples/domainCidrLimitErrorExample"
+              },
+              "invalidCursor": {
+                "$ref": "#/components/examples/invalidCursorErrorExample"
+              },
+              "unauthorized": {
+                "$ref": "#/components/examples/voice_application_management_unauthorizedErrorExample"
+              },
+              "forbidden": {
+                "$ref": "#/components/examples/voice_application_management_forbiddenErrorExample"
+              },
+              "notFound": {
+                "$ref": "#/components/examples/voice_application_management_notFoundErrorExample"
+              },
+              "tooManyRequests": {
+                "$ref": "#/components/examples/voice_application_management_tooManyRequestsErrorExample"
+              },
+              "duplicateSipDomain": {
+                "$ref": "#/components/examples/duplicateSipDomainErrorExample"
+              },
+              "duplicateSipUserId": {
+                "$ref": "#/components/examples/duplicateSipUserIdErrorExample"
+              }
+            }
+          }
+        }
+      },
+      "createSipDomainResponse": {
+        "description": "Created",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SipDomainResponseEnvelope"
+            },
+            "examples": {
+              "sipDomain": {
+                "$ref": "#/components/examples/createSipDomainResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "getSipDomainResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SipDomainResponseEnvelope"
+            },
+            "examples": {
+              "sipDomain": {
+                "$ref": "#/components/examples/sipDomainResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "updateSipDomainResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SipDomainResponseEnvelope"
+            },
+            "examples": {
+              "sipDomain": {
+                "$ref": "#/components/examples/sipDomainResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "listSipDomainsResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListSipDomainsResponseEnvelope"
+            },
+            "examples": {
+              "listSipDomains": {
+                "$ref": "#/components/examples/listSipDomainsExample"
+              }
+            }
+          }
+        }
+      },
+      "createSipUserResponse": {
+        "description": "Created",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SipUserResponseEnvelope"
+            },
+            "examples": {
+              "createSipUserAssigned": {
+                "$ref": "#/components/examples/createSipUserAssignedResponseExample"
+              },
+              "createSipUserUnassigned": {
+                "$ref": "#/components/examples/createSipUserUnassignedResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "getSipUserResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SipUserResponseEnvelope"
+            },
+            "examples": {
+              "sipUser": {
+                "$ref": "#/components/examples/getSipUserResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "listSipUsersResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListSipUsersResponseEnvelope"
+            },
+            "examples": {
+              "listSipUsers": {
+                "$ref": "#/components/examples/listSipUsersExample"
+              }
+            }
+          }
+        }
+      },
+      "updateSipUserResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SipUserResponseEnvelope"
+            },
+            "examples": {
+              "reassignDomain": {
+                "$ref": "#/components/examples/updateSipUserReassignDomainResponseExample"
+              },
+              "rotatePassword": {
+                "$ref": "#/components/examples/updateSipUserRotatePasswordResponseExample"
+              },
+              "updateRegions": {
+                "$ref": "#/components/examples/updateSipUserUpdateRegionsResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "createIpAccessListResponse": {
+        "description": "Created",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/IpAccessListResponseEnvelope"
+            },
+            "examples": {
+              "ipAccessList": {
+                "$ref": "#/components/examples/ipAccessListResponseExample"
+              },
+              "openIpAccessList": {
+                "$ref": "#/components/examples/openIpAccessListResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "getIpAccessListResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/IpAccessListResponseEnvelope"
+            },
+            "examples": {
+              "ipAccessList": {
+                "$ref": "#/components/examples/ipAccessListResponseExample"
+              }
+            }
+          }
+        }
+      },
+      "listIpAccessListsResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListIpAccessListsResponseEnvelope"
+            },
+            "examples": {
+              "listIpAccessLists": {
+                "$ref": "#/components/examples/listIpAccessListsExample"
+              }
+            }
+          }
+        }
+      },
+      "updateIpAccessListResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/IpAccessListResponseEnvelope"
+            },
+            "examples": {
+              "ipAccessList": {
+                "$ref": "#/components/examples/ipAccessListResponseExample"
+              }
             }
           }
         }
@@ -180639,6 +182697,105 @@
         },
         "example": "15f99d57-f823-4718-80cc-5d95d5b83e59"
       },
+      "voice_application_management_domain": {
+        "name": "domain",
+        "in": "path",
+        "description": "The SIP domain label, as registered. Case-insensitive.",
+        "required": true,
+        "schema": {
+          "maxLength": 63,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?$",
+          "type": "string",
+          "description": "The customer-chosen DNS label that identifies the SIP domain on this account. 1-63 alphanumeric or hyphen characters, no leading or trailing hyphen. Case-insensitive; stored and returned in lowercase.\n\nRegion codes (\u0060us\u0060, \u0060eu\u0060) are reserved and rejected as a domain label, since they are used as the region prefix in \u0060fqdns\u0060. \u0060null\u0060 is also reserved, since it is the list filters\u0027 value for an unassigned domain."
+        },
+        "example": "mycompany"
+      },
+      "voice_application_management_userId": {
+        "name": "userId",
+        "in": "path",
+        "description": "The SIP user identifier, as registered on the account. Case-sensitive.",
+        "required": true,
+        "schema": {
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._-]{1,64}$",
+          "type": "string",
+          "description": "The customer-chosen SIP user identifier. 1-64 letters, numbers, \u0060.\u0060, \u0060_\u0060, or \u0060-\u0060. Case-sensitive. Immutable after creation."
+        },
+        "example": "alice"
+      },
+      "ipAccessListId": {
+        "name": "ipAccessListId",
+        "in": "path",
+        "description": "The unique ID of the IP access list. An unknown ID returns \u0060404\u0060.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "6d8e9b22-4c2c-4a37-8f54-1be0eaf6b3e2"
+      },
+      "pageSize": {
+        "name": "pageSize",
+        "in": "query",
+        "description": "The maximum number of resources to return in a single page. Values outside 1-100 return \u0060400\u0060.",
+        "schema": {
+          "maximum": 100,
+          "minimum": 1,
+          "type": "integer",
+          "default": 25
+        },
+        "example": 25
+      },
+      "voice_application_management_afterCursor": {
+        "name": "afterCursor",
+        "in": "query",
+        "description": "Opaque cursor returned in the \u0060next\u0060 link of a previous list response. Pass it back verbatim to fetch the next page. An invalid cursor, or one issued for a different account or resource type, returns \u0060400\u0060.",
+        "schema": {
+          "type": "string"
+        },
+        "example": "eyJhY2NvdW50SWQiOiI5OTAwMDAwIn0="
+      },
+      "sipDomainApplicationIdFilter": {
+        "name": "applicationId",
+        "in": "query",
+        "description": "Filter SIP domains by the voice application they are bound to.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/SipDomainApplicationIdFilterQueryParameter"
+        }
+      },
+      "sipDomainStatusFilter": {
+        "name": "status",
+        "in": "query",
+        "description": "Filter SIP domains by provisioning \u0060status\u0060.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/SipDomainStatusFilterQueryParameter"
+        }
+      },
+      "sipUserDomainFilter": {
+        "name": "domain",
+        "in": "query",
+        "description": "Filter SIP users by the SIP domain they are assigned to.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/SipUserDomainFilterQueryParameter"
+        }
+      },
+      "ipAccessListNameFilter": {
+        "name": "name",
+        "in": "query",
+        "description": "Filter IP access lists by name.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/IpAccessListNameFilterQueryParameter"
+        }
+      },
       "voice_config_service_accountId": {
         "name": "accountId",
         "in": "path",
@@ -180909,7 +183066,7 @@
           "default": 1
         }
       },
-      "pageSize": {
+      "voice_integrations_pageSize": {
         "name": "pageSize",
         "in": "query",
         "description": "Page size query parameter.",
@@ -187068,6 +189225,35 @@
           }
         }
       },
+      "rbmMessageReceivedSessionCallbackExample": {
+        "summary": "An example of a rbm message-received callback body for a message that is part of an RCS interactive session.",
+        "value": {
+          "time": "2026-08-06T10:00:05.502180Z",
+          "type": "message-received",
+          "to": "BandwidthRBM",
+          "description": "Incoming message received",
+          "message": {
+            "id": "1786010405502l2ntaoajuqjhqnxu",
+            "owner": "BandwidthRBM",
+            "applicationId": "93de2206-9669-4e07-948d-329f4b722ee2",
+            "time": "2026-08-06T10:00:05.302180Z",
+            "segmentCount": 1,
+            "direction": "in",
+            "to": [
+              "BandwidthRBM"
+            ],
+            "from": "\u002B12345678902",
+            "channel": "RBM",
+            "content": {
+              "text": "Yes, please book it for tomorrow."
+            },
+            "session": {
+              "canInitiate": false,
+              "id": "0f5a3b9c-2d4e-4f6a-8b1c-7e9d0a2b3c4d"
+            }
+          }
+        }
+      },
       "messageSendingCallbackExample": {
         "summary": "An example of a message-sending callback body.",
         "value": {
@@ -187187,6 +189373,90 @@
             "owner": "\u002B12345678902",
             "direction": "out",
             "segmentCount": 1
+          }
+        }
+      },
+      "rbmMessageDeliveredSessionCallbackExample": {
+        "summary": "An example of a rbm message-delivered callback body for a message that is part of an RCS interactive session.",
+        "value": {
+          "type": "message-delivered",
+          "time": "2026-08-06T10:01:11.160744Z",
+          "description": "Message delivered to handset.",
+          "to": "\u002B12345678902",
+          "message": {
+            "id": "1786010470868ty55yp2b2kw2fuq",
+            "time": "2026-08-06T10:01:10.868292Z",
+            "to": [
+              "\u002B12345678902"
+            ],
+            "from": "BandwidthRBM",
+            "text": "",
+            "applicationId": "93de2206-9669-4e07-948d-329f4b722ee2",
+            "owner": "BandwidthRBM",
+            "direction": "out",
+            "segmentCount": 1,
+            "channel": "RBM",
+            "session": {
+              "canInitiate": false,
+              "id": "0f5a3b9c-2d4e-4f6a-8b1c-7e9d0a2b3c4d"
+            }
+          }
+        }
+      },
+      "rbmMessageDeliveredCanInitiateSessionCallbackExample": {
+        "summary": "An example of a rbm message-delivered callback body for a message that is not yet part of an RCS interactive session.",
+        "value": {
+          "type": "message-delivered",
+          "time": "2026-08-06T09:59:56.160744Z",
+          "description": "Message delivered to handset.",
+          "to": "\u002B12345678902",
+          "message": {
+            "id": "1786010395000kw2fuqty55yp2b2",
+            "time": "2026-08-06T09:59:55.000000Z",
+            "to": [
+              "\u002B12345678902"
+            ],
+            "from": "BandwidthRBM",
+            "text": "",
+            "applicationId": "93de2206-9669-4e07-948d-329f4b722ee2",
+            "owner": "BandwidthRBM",
+            "direction": "out",
+            "segmentCount": 1,
+            "channel": "RBM",
+            "session": {
+              "canInitiate": true
+            }
+          }
+        }
+      },
+      "sessionStartedCallbackExample": {
+        "summary": "An example of a session-started callback body.",
+        "value": {
+          "type": "session-started",
+          "time": "2026-08-06T10:00:00.123000Z",
+          "description": "Message is now part of an RCS interactive session.",
+          "to": "\u002B12345678902",
+          "message": {
+            "id": "1786010395000kw2fuqty55yp2b2",
+            "owner": "BandwidthRBM",
+            "applicationId": "93de2206-9669-4e07-948d-329f4b722ee2",
+            "time": "2026-08-06T10:00:00.120000Z",
+            "segmentCount": 1,
+            "direction": "out",
+            "to": [
+              "\u002B12345678902"
+            ],
+            "from": "BandwidthRBM",
+            "text": "",
+            "tag": "",
+            "channel": "RBM",
+            "session": {
+              "canInitiate": false,
+              "id": "0f5a3b9c-2d4e-4f6a-8b1c-7e9d0a2b3c4d",
+              "type": "INTERACTIVE_SESSION",
+              "startTime": "2026-08-06T09:59:55Z",
+              "endTime": "2026-08-07T09:59:55Z"
+            }
           }
         }
       },
@@ -195235,7 +197505,7 @@
             "inboundSipCallsEnabled": false,
             "passwordAuthEnabled": false,
             "allowedSourceIps": [],
-            "allowedRegions": null
+            "allowedRegions": []
           },
           "errors": []
         }
@@ -195311,7 +197581,7 @@
             "inboundSipCallsEnabled": true,
             "passwordAuthEnabled": true,
             "allowedSourceIps": [],
-            "allowedRegions": null,
+            "allowedRegions": [],
             "sipAuthPassword": "super_secure_password"
           },
           "errors": []
@@ -195380,8 +197650,7 @@
               "203.0.113.0/24",
               "198.51.100.0/32"
             ],
-            "allowedRegions": null,
-            "sipAuthPassword": null
+            "allowedRegions": []
           },
           "errors": []
         }
@@ -195411,8 +197680,7 @@
             "inboundSipCallsEnabled": false,
             "passwordAuthEnabled": false,
             "allowedSourceIps": [],
-            "allowedRegions": null,
-            "sipAuthPassword": null
+            "allowedRegions": []
           },
           "errors": []
         }
@@ -195457,10 +197725,58 @@
           "data": null,
           "errors": [
             {
-              "id": "optional-error-id",
-              "type": "bad-request",
-              "description": "There was an issue with your request",
-              "code": 205617
+              "type": "string_too_short",
+              "description": "String should have at least 1 character",
+              "source": {
+                "field": "name"
+              }
+            }
+          ]
+        }
+      },
+      "reservedRegionLabelErrorExample": {
+        "summary": "Domain label collides with a reserved region code",
+        "description": "This error occurs when \u0060domain\u0060 on a SIP domain create matches a reserved label (\u0060us\u0060, \u0060eu\u0060, \u0060null\u0060).\n",
+        "value": {
+          "links": [],
+          "data": null,
+          "errors": [
+            {
+              "type": "value_error",
+              "description": "domain \u0027eu\u0027 is a reserved label and cannot be used",
+              "source": {
+                "field": "domain"
+              }
+            }
+          ]
+        }
+      },
+      "invalidSipPasswordErrorExample": {
+        "summary": "SIP user password does not meet the complexity requirements",
+        "value": {
+          "links": [],
+          "data": null,
+          "errors": [
+            {
+              "type": "value_error",
+              "description": "Password must be 8-128 printable ASCII characters and include an uppercase letter, lowercase letter, number, and special character",
+              "source": {
+                "field": "password"
+              }
+            }
+          ]
+        }
+      },
+      "domainCidrLimitErrorExample": {
+        "summary": "Attached IP access lists exceed the per-domain CIDR limit",
+        "description": "This error occurs on SIP domain create/update when the attached IP access lists contain more than 50 unique CIDRs in total.\n",
+        "value": {
+          "links": [],
+          "data": null,
+          "errors": [
+            {
+              "type": "http_exception",
+              "description": "The selected IP access lists contain 62 unique CIDRs; a domain can have at most 50"
             }
           ]
         }
@@ -195472,10 +197788,11 @@
           "data": null,
           "errors": [
             {
-              "id": "optional-error-id",
-              "type": "authentication-credentials",
-              "description": "Invalid or missing credentials.",
-              "code": 206401
+              "type": "Unauthorized",
+              "description": "Invalid token",
+              "source": {
+                "header": "authorization"
+              }
             }
           ]
         }
@@ -195487,10 +197804,11 @@
           "data": null,
           "errors": [
             {
-              "id": "optional-error-id",
-              "type": "resource-permissions",
-              "description": "User does not have permissions to access this resource.",
-              "code": 109107
+              "type": "Forbidden",
+              "description": "Insufficient account access",
+              "source": {
+                "header": "authorization"
+              }
             }
           ]
         }
@@ -195502,10 +197820,8 @@
           "data": null,
           "errors": [
             {
-              "id": "optional-error-id",
-              "type": "resource-not-found",
-              "description": "The resource specified cannot be found.",
-              "code": 50420
+              "type": "http_exception",
+              "description": "SIP domain not found"
             }
           ]
         }
@@ -195517,13 +197833,8 @@
           "data": null,
           "errors": [
             {
-              "id": "optional-error-id",
-              "type": "http-method-not-supported",
-              "description": "The HTTP method used is not supported by this resource.",
-              "code": 205621,
-              "meta": {
-                "method": "TRACE"
-              }
+              "type": "http_exception",
+              "description": "Method Not Allowed"
             }
           ]
         }
@@ -195551,11 +197862,8 @@
           "data": null,
           "errors": [
             {
-              "type": "application-not-found",
-              "description": "The specified application does not exist.",
-              "source": {
-                "parameter": "applicationId"
-              }
+              "type": "http_exception",
+              "description": "Application \u002715f99d57-f823-4718-80cc-5d95d5b83e59\u0027 not found for account 9900000"
             }
           ]
         }
@@ -195568,13 +197876,496 @@
           "data": null,
           "errors": [
             {
-              "type": "not-a-voice-application",
-              "description": "The specified application is not a voice application.",
+              "type": "request_validation_error",
+              "description": "Bandwidth Application serviceType does not contain \u0027voice\u0027.",
               "source": {
-                "parameter": "applicationId"
+                "field": "serviceType"
               }
             }
           ]
+        }
+      },
+      "invalidCursorErrorExample": {
+        "summary": "List request with an invalid \u0060afterCursor\u0060",
+        "value": {
+          "links": [],
+          "data": null,
+          "errors": [
+            {
+              "type": "value_error",
+              "description": "Invalid cursor",
+              "source": {
+                "parameter": "afterCursor"
+              }
+            }
+          ]
+        }
+      },
+      "duplicateSipDomainErrorExample": {
+        "summary": "SIP domain label already registered on this account",
+        "description": "This error occurs on \u0060POST /sip-domains\u0060 when the supplied \u0060domain\u0060 is already registered on this account. Because uniqueness is per-account (not global), the only possible existing owner is the caller.\n",
+        "value": {
+          "links": [],
+          "data": null,
+          "errors": [
+            {
+              "type": "duplicate_resource_exception",
+              "description": "Domain \u0027mycompany\u0027 already exists for account 9900000"
+            }
+          ]
+        }
+      },
+      "duplicateSipUserIdErrorExample": {
+        "summary": "SIP user ID already registered on this account",
+        "value": {
+          "links": [],
+          "data": null,
+          "errors": [
+            {
+              "type": "duplicate_resource_exception",
+              "description": "User \u0027alice\u0027 already exists for account 9900000"
+            }
+          ]
+        }
+      },
+      "createSipDomainResponseExample": {
+        "summary": "A newly created SIP domain, still provisioning",
+        "value": {
+          "links": [],
+          "data": {
+            "domain": "mycompany",
+            "name": "Acme Support Domain",
+            "applicationId": "15f99d57-f823-4718-80cc-5d95d5b83e59",
+            "regions": [
+              "US",
+              "EU"
+            ],
+            "ipAccessListIds": [
+              "6d8e9b22-4c2c-4a37-8f54-1be0eaf6b3e2"
+            ],
+            "fqdns": [
+              "mycompany.9900000.sip-uri.voice-api.bandwidth.com",
+              "us.mycompany.9900000.sip-uri.voice-api.bandwidth.com",
+              "eu.mycompany.9900000.sip-uri.voice-api.bandwidth.com"
+            ],
+            "status": "PENDING",
+            "failureReason": null,
+            "userIds": [],
+            "createdAt": "2026-04-29T12:34:56.789012\u002B00:00"
+          },
+          "errors": []
+        }
+      },
+      "sipDomainResponseExample": {
+        "summary": "A bound, active SIP domain with users and an IP access list attached",
+        "value": {
+          "links": [],
+          "data": {
+            "domain": "mycompany",
+            "name": "Acme Support Domain",
+            "applicationId": "15f99d57-f823-4718-80cc-5d95d5b83e59",
+            "regions": [
+              "US",
+              "EU"
+            ],
+            "ipAccessListIds": [
+              "6d8e9b22-4c2c-4a37-8f54-1be0eaf6b3e2"
+            ],
+            "fqdns": [
+              "mycompany.9900000.sip-uri.voice-api.bandwidth.com",
+              "us.mycompany.9900000.sip-uri.voice-api.bandwidth.com",
+              "eu.mycompany.9900000.sip-uri.voice-api.bandwidth.com"
+            ],
+            "status": "ACTIVE",
+            "failureReason": null,
+            "userIds": [
+              "alice",
+              "support"
+            ],
+            "createdAt": "2026-04-29T12:34:56.789012\u002B00:00"
+          },
+          "errors": []
+        }
+      },
+      "listSipDomainsExample": {
+        "summary": "A page of SIP domains, with more to follow",
+        "value": {
+          "links": [
+            {
+              "href": "https://api.bandwidth.com/v2/accounts/9900000/voice-applications/sip-domains?pageSize=2",
+              "rel": "self",
+              "method": "GET"
+            },
+            {
+              "href": "https://api.bandwidth.com/v2/accounts/9900000/voice-applications/sip-domains?pageSize=2\u0026afterCursor=eyJhY2NvdW50SWQiOiI5OTAwMDAwIn0%3D",
+              "rel": "next",
+              "method": "GET"
+            }
+          ],
+          "data": [
+            {
+              "domain": "mycompany",
+              "name": "Acme Support Domain",
+              "applicationId": "15f99d57-f823-4718-80cc-5d95d5b83e59",
+              "regions": [
+                "US"
+              ],
+              "ipAccessListIds": [],
+              "fqdns": [
+                "mycompany.9900000.sip-uri.voice-api.bandwidth.com",
+                "us.mycompany.9900000.sip-uri.voice-api.bandwidth.com"
+              ],
+              "status": "ACTIVE",
+              "failureReason": null,
+              "userIds": [
+                "alice"
+              ],
+              "createdAt": "2026-04-29T12:34:56.789012\u002B00:00"
+            },
+            {
+              "domain": "sales",
+              "name": "Sales Domain",
+              "applicationId": null,
+              "regions": [
+                "US"
+              ],
+              "ipAccessListIds": [
+                "6d8e9b22-4c2c-4a37-8f54-1be0eaf6b3e2"
+              ],
+              "fqdns": [
+                "sales.9900000.sip-uri.voice-api.bandwidth.com",
+                "us.sales.9900000.sip-uri.voice-api.bandwidth.com"
+              ],
+              "status": "FAILED",
+              "failureReason": "Domain provisioning failed",
+              "userIds": [],
+              "createdAt": "2026-04-28T09:00:00.000000\u002B00:00"
+            }
+          ],
+          "errors": [],
+          "page": {
+            "pageSize": 2
+          }
+        }
+      },
+      "createSipDomainUnboundRequestExample": {
+        "summary": "Create an unbound SIP domain",
+        "value": {
+          "domain": "sales",
+          "name": "Sales Domain",
+          "regions": [
+            "US"
+          ]
+        }
+      },
+      "createSipDomainBoundRequestExample": {
+        "summary": "Create a SIP domain bound to an application, with an IP access list",
+        "value": {
+          "domain": "mycompany",
+          "name": "Acme Support Domain",
+          "applicationId": "15f99d57-f823-4718-80cc-5d95d5b83e59",
+          "regions": [
+            "US",
+            "EU"
+          ],
+          "ipAccessListIds": [
+            "6d8e9b22-4c2c-4a37-8f54-1be0eaf6b3e2"
+          ]
+        }
+      },
+      "updateSipDomainBindApplicationRequestExample": {
+        "summary": "Bind an existing domain to an application",
+        "value": {
+          "applicationId": "15f99d57-f823-4718-80cc-5d95d5b83e59"
+        }
+      },
+      "updateSipDomainIpAccessListsRequestExample": {
+        "summary": "Replace the domain\u0027s attached IP access lists",
+        "value": {
+          "ipAccessListIds": [
+            "6d8e9b22-4c2c-4a37-8f54-1be0eaf6b3e2"
+          ]
+        }
+      },
+      "updateSipDomainRegionsRequestExample": {
+        "summary": "Add a region to an existing domain",
+        "value": {
+          "regions": [
+            "US",
+            "EU"
+          ]
+        }
+      },
+      "createSipUserAssignedRequestExample": {
+        "summary": "Create a SIP user assigned to a domain",
+        "value": {
+          "userId": "alice",
+          "name": "Alice Support Line",
+          "password": "s0meRand0mP4ssw0rd!",
+          "domain": "mycompany",
+          "allowedRegions": [
+            "US"
+          ]
+        }
+      },
+      "createSipUserUnassignedRequestExample": {
+        "summary": "Create an unassigned SIP user",
+        "value": {
+          "userId": "bob",
+          "name": "Bob",
+          "password": "an0therStr0ngP4ss#",
+          "allowedRegions": [
+            "US",
+            "EU"
+          ]
+        }
+      },
+      "createSipUserAssignedResponseExample": {
+        "summary": "Response after creating an assigned SIP user",
+        "value": {
+          "links": [],
+          "data": {
+            "userId": "alice",
+            "name": "Alice Support Line",
+            "domain": "mycompany",
+            "allowedRegions": [
+              "US"
+            ],
+            "createdAt": "2026-04-29T12:34:56.789012\u002B00:00"
+          },
+          "errors": []
+        }
+      },
+      "createSipUserUnassignedResponseExample": {
+        "summary": "Response after creating an unassigned SIP user",
+        "value": {
+          "links": [],
+          "data": {
+            "userId": "bob",
+            "name": "Bob",
+            "domain": null,
+            "allowedRegions": [
+              "US",
+              "EU"
+            ],
+            "createdAt": "2026-04-29T12:34:56.789012\u002B00:00"
+          },
+          "errors": []
+        }
+      },
+      "getSipUserResponseExample": {
+        "summary": "Retrieve a SIP user (password never returned)",
+        "value": {
+          "links": [],
+          "data": {
+            "userId": "alice",
+            "name": "Alice Support Line",
+            "domain": "mycompany",
+            "allowedRegions": [
+              "US"
+            ],
+            "createdAt": "2026-04-29T12:34:56.789012\u002B00:00"
+          },
+          "errors": []
+        }
+      },
+      "listSipUsersExample": {
+        "summary": "The last page of SIP users (no \u0060next\u0060 link)",
+        "value": {
+          "links": [
+            {
+              "href": "https://api.bandwidth.com/v2/accounts/9900000/voice-applications/sip-users?pageSize=2\u0026afterCursor=eyJhY2NvdW50SWQiOiI5OTAwMDAwIn0%3D",
+              "rel": "self",
+              "method": "GET"
+            }
+          ],
+          "data": [
+            {
+              "userId": "alice",
+              "name": "Alice Support Line",
+              "domain": "mycompany",
+              "allowedRegions": [
+                "US"
+              ],
+              "createdAt": "2026-04-29T12:34:56.789012\u002B00:00"
+            },
+            {
+              "userId": "bob",
+              "name": "Bob",
+              "domain": null,
+              "allowedRegions": [
+                "US",
+                "EU"
+              ],
+              "createdAt": "2026-04-28T09:00:00.000000\u002B00:00"
+            }
+          ],
+          "errors": [],
+          "page": {
+            "pageSize": 2
+          }
+        }
+      },
+      "updateSipUserReassignDomainRequestExample": {
+        "summary": "Reassign a user to a different domain",
+        "value": {
+          "domain": "sales"
+        }
+      },
+      "updateSipUserUnassignDomainRequestExample": {
+        "summary": "Unassign a user from any domain",
+        "value": {
+          "domain": ""
+        }
+      },
+      "updateSipUserRotatePasswordRequestExample": {
+        "summary": "Rotate a user\u0027s password",
+        "value": {
+          "password": "aBr4ndN3wP4ssw0rd$"
+        }
+      },
+      "updateSipUserUpdateRegionsRequestExample": {
+        "summary": "Update a user\u0027s allowed regions",
+        "value": {
+          "allowedRegions": [
+            "US",
+            "EU"
+          ]
+        }
+      },
+      "updateSipUserReassignDomainResponseExample": {
+        "summary": "Response after reassigning a user\u0027s domain",
+        "value": {
+          "links": [],
+          "data": {
+            "userId": "alice",
+            "name": "Alice Support Line",
+            "domain": "sales",
+            "allowedRegions": [
+              "US"
+            ],
+            "createdAt": "2026-04-29T12:34:56.789012\u002B00:00"
+          },
+          "errors": []
+        }
+      },
+      "updateSipUserRotatePasswordResponseExample": {
+        "summary": "Response after rotating a user\u0027s password (plaintext never echoed)",
+        "value": {
+          "links": [],
+          "data": {
+            "userId": "alice",
+            "name": "Alice Support Line",
+            "domain": "mycompany",
+            "allowedRegions": [
+              "US"
+            ],
+            "createdAt": "2026-04-29T12:34:56.789012\u002B00:00"
+          },
+          "errors": []
+        }
+      },
+      "updateSipUserUpdateRegionsResponseExample": {
+        "summary": "Response after updating a user\u0027s allowed regions",
+        "value": {
+          "links": [],
+          "data": {
+            "userId": "alice",
+            "name": "Alice Support Line",
+            "domain": "mycompany",
+            "allowedRegions": [
+              "US",
+              "EU"
+            ],
+            "createdAt": "2026-04-29T12:34:56.789012\u002B00:00"
+          },
+          "errors": []
+        }
+      },
+      "createIpAccessListRequestExample": {
+        "summary": "Create an IP access list with two CIDRs",
+        "value": {
+          "name": "Office NAT",
+          "cidrs": [
+            "203.0.113.0/24",
+            "198.51.100.7/32"
+          ]
+        }
+      },
+      "createOpenIpAccessListRequestExample": {
+        "summary": "Create an \u0022Open\u0022 IP access list (0.0.0.0/0) \u2014 use with caution",
+        "value": {
+          "name": "Open (unrestricted)",
+          "cidrs": [
+            "0.0.0.0/0"
+          ]
+        }
+      },
+      "updateIpAccessListRequestExample": {
+        "summary": "Rename an IP access list and replace its CIDRs",
+        "value": {
+          "name": "Office NAT (renamed)",
+          "cidrs": [
+            "203.0.113.0/24"
+          ]
+        }
+      },
+      "ipAccessListResponseExample": {
+        "summary": "An IP access list with two CIDRs",
+        "value": {
+          "links": [],
+          "data": {
+            "id": "6d8e9b22-4c2c-4a37-8f54-1be0eaf6b3e2",
+            "name": "Office NAT",
+            "cidrs": [
+              "203.0.113.0/24",
+              "198.51.100.7/32"
+            ],
+            "createdAt": "2026-04-29T12:34:56.789012\u002B00:00"
+          },
+          "errors": []
+        }
+      },
+      "openIpAccessListResponseExample": {
+        "summary": "An \u0022Open\u0022 IP access list (0.0.0.0/0)",
+        "value": {
+          "links": [],
+          "data": {
+            "id": "9b1e2f3a-4c2c-4a37-8f54-1be0eaf6b3e2",
+            "name": "Open (unrestricted)",
+            "cidrs": [
+              "0.0.0.0/0"
+            ],
+            "createdAt": "2026-04-29T12:34:56.789012\u002B00:00"
+          },
+          "errors": []
+        }
+      },
+      "listIpAccessListsExample": {
+        "summary": "The last page of IP access lists (no \u0060next\u0060 link)",
+        "value": {
+          "links": [
+            {
+              "href": "https://api.bandwidth.com/v2/accounts/9900000/voice-applications/ip-access-lists",
+              "rel": "self",
+              "method": "GET"
+            }
+          ],
+          "data": [
+            {
+              "id": "6d8e9b22-4c2c-4a37-8f54-1be0eaf6b3e2",
+              "name": "Office NAT",
+              "cidrs": [
+                "203.0.113.0/24",
+                "198.51.100.7/32"
+              ],
+              "createdAt": "2026-04-29T12:34:56.789012\u002B00:00"
+            }
+          ],
+          "errors": [],
+          "page": {
+            "pageSize": 1
+          }
         }
       },
       "weightedRouteRequestExample": {
@@ -201093,6 +203884,120 @@
         },
         "required": true
       },
+      "createSipDomainRequestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateSipDomainRequest"
+            },
+            "examples": {
+              "createSipDomainUnbound": {
+                "$ref": "#/components/examples/createSipDomainUnboundRequestExample"
+              },
+              "createSipDomainBound": {
+                "$ref": "#/components/examples/createSipDomainBoundRequestExample"
+              }
+            }
+          }
+        },
+        "required": true
+      },
+      "updateSipDomainRequestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateSipDomainRequest"
+            },
+            "examples": {
+              "bindApplication": {
+                "$ref": "#/components/examples/updateSipDomainBindApplicationRequestExample"
+              },
+              "updateIpAccessLists": {
+                "$ref": "#/components/examples/updateSipDomainIpAccessListsRequestExample"
+              },
+              "updateRegions": {
+                "$ref": "#/components/examples/updateSipDomainRegionsRequestExample"
+              }
+            }
+          }
+        },
+        "required": true
+      },
+      "createSipUserRequestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateSipUserRequest"
+            },
+            "examples": {
+              "createSipUserAssigned": {
+                "$ref": "#/components/examples/createSipUserAssignedRequestExample"
+              },
+              "createSipUserUnassigned": {
+                "$ref": "#/components/examples/createSipUserUnassignedRequestExample"
+              }
+            }
+          }
+        },
+        "required": true
+      },
+      "updateSipUserRequestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateSipUserRequest"
+            },
+            "examples": {
+              "reassignDomain": {
+                "$ref": "#/components/examples/updateSipUserReassignDomainRequestExample"
+              },
+              "unassignDomain": {
+                "$ref": "#/components/examples/updateSipUserUnassignDomainRequestExample"
+              },
+              "rotatePassword": {
+                "$ref": "#/components/examples/updateSipUserRotatePasswordRequestExample"
+              },
+              "updateRegions": {
+                "$ref": "#/components/examples/updateSipUserUpdateRegionsRequestExample"
+              }
+            }
+          }
+        },
+        "required": true
+      },
+      "createIpAccessListRequestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateIpAccessListRequest"
+            },
+            "examples": {
+              "createIpAccessList": {
+                "$ref": "#/components/examples/createIpAccessListRequestExample"
+              },
+              "createOpenIpAccessList": {
+                "$ref": "#/components/examples/createOpenIpAccessListRequestExample"
+              }
+            }
+          }
+        },
+        "required": true
+      },
+      "updateIpAccessListRequestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateIpAccessListRequest"
+            },
+            "examples": {
+              "renameIpAccessList": {
+                "$ref": "#/components/examples/updateIpAccessListRequestExample"
+              }
+            }
+          }
+        },
+        "required": true
+      },
       "searchVoiceConfigurationPackageRequest": {
         "content": {
           "application/json": {
@@ -202361,6 +205266,9 @@
                     },
                     "mmsMessageReceivedCallback": {
                       "$ref": "#/components/examples/mmsMessageReceivedCallbackExample"
+                    },
+                    "rbmMessageReceivedSessionCallback": {
+                      "$ref": "#/components/examples/rbmMessageReceivedSessionCallbackExample"
                     }
                   }
                 }
@@ -202397,7 +205305,7 @@
           "post": {
             "operationId": "messaging_components_callbacks_statusCallback_statusCallbackUrl_post",
             "requestBody": {
-              "description": "\u003Cp\u003EThis Outbound Message Webhook is an envelope containing status information regarding a message sent (MT)\nfrom your message-enabled Bandwidth telephone number.\n \u003Cp\u003EThe payload type will be one of \u003Ccode\u003Emessage-sending\u003C/code\u003E, \u003Ccode\u003Emessage-sent\u003C/code\u003E, \u003Ccode\u003Emessage-delivered\u003C/code\u003E, \u003Ccode\u003Emessage-failed\u003C/code\u003E or \u003Ccode\u003Emessage-read\u003C/code\u003E.\n \u003Cp\u003ENote that \u003Ccode\u003Emessage-read\u003C/code\u003E callbacks are pertinent only for RBM messages sent from the \u003Ccode\u003E/messages/multiChannel\u003C/code\u003E endpoint.\n\u003C/p\u003E\u003Cp\u003EPlease visit \u003Ca href=\u0027/docs/messaging/webhooks/\u0027\u003EWebhooks\u003C/a\u003E\u003C/p\u003E",
+              "description": "\u003Cp\u003EThis Outbound Message Webhook is an envelope containing status information regarding a message sent (MT)\nfrom your message-enabled Bandwidth telephone number.\n \u003Cp\u003EThe payload type will be one of \u003Ccode\u003Emessage-sending\u003C/code\u003E, \u003Ccode\u003Emessage-sent\u003C/code\u003E, \u003Ccode\u003Emessage-delivered\u003C/code\u003E, \u003Ccode\u003Emessage-failed\u003C/code\u003E, \u003Ccode\u003Emessage-read\u003C/code\u003E or \u003Ccode\u003Esession-started\u003C/code\u003E.\n \u003Cp\u003ENote that \u003Ccode\u003Emessage-read\u003C/code\u003E and \u003Ccode\u003Esession-started\u003C/code\u003E callbacks are pertinent only for RBM messages sent from the \u003Ccode\u003E/messages/multiChannel\u003C/code\u003E endpoint.\n \u003Cp\u003ENote that \u003Ccode\u003Esession-started\u003C/code\u003E callbacks are pertinent only for RBM messages of agents with the Conversational billing category.\n\u003C/p\u003E\u003Cp\u003EPlease visit \u003Ca href=\u0027/docs/messaging/webhooks/\u0027\u003EWebhooks\u003C/a\u003E\u003C/p\u003E",
               "content": {
                 "application/json": {
                   "schema": {
@@ -202419,8 +205327,17 @@
                     "groupMmsMessageDeliveredCallback": {
                       "$ref": "#/components/examples/groupMmsMessageDeliveredCallbackExample"
                     },
+                    "rbmMessageDeliveredSessionCallback": {
+                      "$ref": "#/components/examples/rbmMessageDeliveredSessionCallbackExample"
+                    },
+                    "rbmMessageDeliveredCanInitiateSessionCallback": {
+                      "$ref": "#/components/examples/rbmMessageDeliveredCanInitiateSessionCallbackExample"
+                    },
                     "messageFailedCallback": {
                       "$ref": "#/components/examples/messageFailedCallbackExample"
+                    },
+                    "sessionStartedCallback": {
+                      "$ref": "#/components/examples/sessionStartedCallbackExample"
                     }
                   }
                 }
@@ -202903,7 +205820,20 @@
       "name": "Audit Logs"
     },
     {
-      "name": "Voice Applications"
+      "name": "Voice Applications",
+      "description": "Default-realm SIP settings (\u0060sip:{applicationId}@{auth_realm}\u0060) for a voice application. These do not apply to custom SIP domains."
+    },
+    {
+      "name": "SIP Domains",
+      "description": "Account-scoped custom SIP domains. Not affected by a voice application\u0027s default-realm SIP settings."
+    },
+    {
+      "name": "SIP Users",
+      "description": "Per-user digest credentials for custom SIP domains. Not used by the default-realm SIP identity."
+    },
+    {
+      "name": "IP Access Lists",
+      "description": "Reusable CIDR allowlists for custom SIP domains. Not used by the default-realm SIP identity."
     },
     {
       "name": "Voice Configuration Package",
