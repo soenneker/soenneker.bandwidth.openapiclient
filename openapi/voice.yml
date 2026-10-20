@@ -123,6 +123,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new CallsApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -163,6 +165,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 CallsApi apiInstance = new CallsApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 CreateCall createCall = new CreateCall(); // CreateCall | JSON object containing information to create an outbound call
@@ -179,41 +185,53 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
-              
-            require "vendor/autoload.php";
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
-            1234-qwer = "1234-qwer";
-            +15554443333 = "+15554443333";
-            +15553334444 = "+15553334444";
-            $VOICE_CALLBACK_URL = "https://sample.com";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'voiceBasicAuthUserName' => $BW_USERNAME,
-                    'voiceBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\CallsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $voiceClient = $client->getVoice()->getClient();
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
 
-            $body = new BandwidthLib\Voice\Models\CreateCallRequest();
-            $body->from = $BW_NUMBER;
-            $body->to = $USER_NUMBER;
-            $body->answerUrl = $VOICE_CALLBACK_URL;
-            $body->applicationId = $BW_VOICE_APPLICATION_ID;
+            $create_call = new \Bandwidth\Model\CreateCall(); //
+            \Bandwidth\Model\CreateCall | JSON object containing information to
+            create an outbound call
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $response = $voiceClient->createCall($BW_ACCOUNT_ID, $body);
-                print_r($response->getResult()->callId);
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
-            } 
+                $result = $apiInstance->createCall($account_id, $create_call, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling CallsApi->createCall: ', $e->getMessage(), PHP_EOL;
+            }
         - lang: Python
           source: >
             import bandwidth
@@ -256,6 +274,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -283,6 +309,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -402,6 +431,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new CallsApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -448,6 +479,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 CallsApi apiInstance = new CallsApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String to = "%2b19195551234"; // String | Filter results by the `to` field.
@@ -468,6 +503,73 @@ paths:
                   e.printStackTrace();
                 }
               }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\CallsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $to = %2b19195551234; // string | Filter results by the `to` field.
+
+            $from = %2b19195554321; // string | Filter results by the `from`
+            field.
+
+            $min_start_time = 2022-06-21T19:13:21Z; // string | Filter results
+            to calls which have a `startTime` after or including `minStartTime`
+            (in ISO8601 format).
+
+            $max_start_time = 2022-06-21T19:13:21Z; // string | Filter results
+            to calls which have a `startTime` before or including `maxStartTime`
+            (in ISO8601 format).
+
+            $disconnect_cause = hangup; // string | Filter results to calls with
+            specified call Disconnect Cause.
+
+            $page_size = 500; // int | Specifies the max number of calls that
+            will be returned.
+
+            $page_token = eyJwYWdlVG9rZW4iOiJ0b2tlbiJ9; // string | Not intended
+            for explicit use. To use pagination, follow the links in the `Link`
+            header of the response, as indicated in the endpoint description.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $result = $apiInstance->listCalls($account_id, $to, $from, $min_start_time, $max_start_time, $disconnect_cause, $page_size, $page_token, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling CallsApi->listCalls: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -509,6 +611,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -539,6 +649,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
             api_instance = Bandwidth::CallsApi.new
@@ -676,6 +789,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new CallsApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -716,6 +831,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 CallsApi apiInstance = new CallsApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85"; // String | Programmable Voice API Call ID.
@@ -732,32 +851,51 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
 
-            require "vendor/autoload.php";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'voiceBasicAuthUserName' => $BW_USERNAME,
-                    'voiceBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\CallsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $voiceClient = $client->getVoice()->getClient();
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
 
-            $callId = "c-1234";
+            $call_id = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Call ID.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $response = $voiceClient->getCall($BW_ACCOUNT_ID, $callId);
-                print_r($response->getResult()->state);
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $result = $apiInstance->getCallState($account_id, $call_id, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling CallsApi->getCallState: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -799,6 +937,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -826,6 +972,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -942,6 +1091,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new CallsApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -982,6 +1133,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 CallsApi apiInstance = new CallsApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85"; // String | Programmable Voice API Call ID.
@@ -998,35 +1153,54 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
 
-            require "vendor/autoload.php";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'voiceBasicAuthUserName' => $BW_USERNAME,
-                    'voiceBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\CallsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $voiceClient = $client->getVoice()->getClient();
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
 
-            $callId = "c-1234";
+            $call_id = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Call ID.
 
-            $body = new BandwidthLib\Voice\Models\ModifyCallRequest();
-            $body->redirectUrl = "http://www.myapp.com/new";
-            $body->state = "active";
+            $update_call = new \Bandwidth\Model\UpdateCall(); //
+            \Bandwidth\Model\UpdateCall | JSON object containing information to
+            redirect an existing call to a new BXML document
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $voiceClient->modifyCall($BW_ACCOUNT_ID, $callId, $body);
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $apiInstance->updateCall($account_id, $call_id, $update_call, $hostIndex, $variables);
+            } catch (Exception $e) {
+                echo 'Exception when calling CallsApi->updateCall: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -1068,6 +1242,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -1094,6 +1276,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -1210,6 +1395,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new CallsApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -1253,6 +1440,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 CallsApi apiInstance = new CallsApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85"; // String | Programmable Voice API Call ID.
@@ -1270,6 +1461,58 @@ paths:
                   e.printStackTrace();
                 }
               }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\CallsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $call_id = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Call ID.
+
+            $body = <?xml version=\"1.0\" encoding=\"UTF-8\"?>
+
+            <Bxml>
+              <SpeakSentence>This is a test sentence.</SpeakSentence>
+            </Bxml>; // string
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $apiInstance->updateCallBxml($account_id, $call_id, $body, $hostIndex, $variables);
+            } catch (Exception $e) {
+                echo 'Exception when calling CallsApi->updateCallBxml: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -1309,6 +1552,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -1338,6 +1589,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -1456,6 +1710,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new ConferencesApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -1500,6 +1756,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 ConferencesApi apiInstance = new ConferencesApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String name = "my-custom-name"; // String | Filter results by the `name` field.
@@ -1520,32 +1780,66 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
 
-            require "vendor/autoload.php";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'voiceBasicAuthUserName' => $BW_USERNAME,
-                    'voiceBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\ConferencesApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $voiceClient = $client->getVoice()->getClient();
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $name = my-custom-name; // string | Filter results by the `name`
+            field.
+
+            $min_created_time = 2022-06-21T19:13:21Z; // string | Filter results
+            to conferences which have a `createdTime` after or at
+            `minCreatedTime` (in ISO8601 format).
+
+            $max_created_time = 2022-06-21T19:13:21Z; // string | Filter results
+            to conferences which have a `createdTime` before or at
+            `maxCreatedTime` (in ISO8601 format).
+
+            $page_size = 500; // int | Specifies the max number of conferences
+            that will be returned.
+
+            $page_token = eyJwYWdlVG9rZW4iOiJ0b2tlbiJ9; // string | Not intended
+            for explicit use. To use pagination, follow the links in the `Link`
+            header of the response, as indicated in the endpoint description.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $response = $voiceClient->getConferences($BW_ACCOUNT_ID);
-                if (count($response->getResult()) > 0) {
-                    print_r($response->getResult()[0]->id);
-                }
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $result = $apiInstance->listConferences($account_id, $name, $min_created_time, $max_created_time, $page_size, $page_token, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling ConferencesApi->listConferences: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -1587,6 +1881,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -1615,6 +1917,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
             api_instance = Bandwidth::ConferencesApi.new
@@ -1734,6 +2039,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new ConferencesApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -1774,6 +2081,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 ConferencesApi apiInstance = new ConferencesApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String conferenceId = "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9"; // String | Programmable Voice API Conference ID.
@@ -1790,32 +2101,51 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
 
-            require "vendor/autoload.php";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'voiceBasicAuthUserName' => $BW_USERNAME,
-                    'voiceBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\ConferencesApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $voiceClient = $client->getVoice()->getClient();
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
 
-            $conferenceId = "conf-1234";
+            $conference_id = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;
+            // string | Programmable Voice API Conference ID.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $response = $voiceClient->getConference($BW_ACCOUNT_ID, $conferenceId);
-                print_r($response->getResult()->name);
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $result = $apiInstance->getConference($account_id, $conference_id, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling ConferencesApi->getConference: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -1857,6 +2187,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -1884,6 +2222,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -1995,6 +2336,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new ConferencesApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -2035,6 +2378,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 ConferencesApi apiInstance = new ConferencesApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String conferenceId = "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9"; // String | Programmable Voice API Conference ID.
@@ -2051,34 +2398,53 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
-              
-            require "vendor/autoload.php";
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'voiceBasicAuthUserName' => $BW_USERNAME,
-                    'voiceBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\ConferencesApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $voiceClient = $client->getVoice()->getClient();
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
 
-            $conferenceId = "conf-1234";
+            $conference_id = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;
+            // string | Programmable Voice API Conference ID.
 
-            $body = new BandwidthLib\Voice\Models\ModifyConferenceRequest();
-            $body->state = "active";
+            $update_conference = new \Bandwidth\Model\UpdateConference(); //
+            \Bandwidth\Model\UpdateConference
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $voiceClient->modifyConference($BW_ACCOUNT_ID, $conferenceId, $body);
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $apiInstance->updateConference($account_id, $conference_id, $update_conference, $hostIndex, $variables);
+            } catch (Exception $e) {
+                echo 'Exception when calling ConferencesApi->updateConference: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -2120,6 +2486,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -2146,6 +2520,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -2257,6 +2634,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new ConferencesApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -2300,6 +2679,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 ConferencesApi apiInstance = new ConferencesApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String conferenceId = "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9"; // String | Programmable Voice API Conference ID.
@@ -2317,6 +2700,58 @@ paths:
                   e.printStackTrace();
                 }
               }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\ConferencesApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $conference_id = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;
+            // string | Programmable Voice API Conference ID.
+
+            $body = <?xml version="1.0" encoding="UTF-8"?>
+
+            <Bxml>
+                <StopRecording/>
+            </Bxml>; // string
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $apiInstance->updateConferenceBxml($account_id, $conference_id, $body, $hostIndex, $variables);
+            } catch (Exception $e) {
+                echo 'Exception when calling ConferencesApi->updateConferenceBxml: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -2356,6 +2791,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -2385,6 +2828,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -2492,6 +2938,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new ConferencesApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -2533,6 +2981,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 ConferencesApi apiInstance = new ConferencesApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String conferenceId = "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9"; // String | Programmable Voice API Conference ID.
@@ -2550,33 +3002,54 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
 
-            require "vendor/autoload.php";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'voiceBasicAuthUserName' => $BW_USERNAME,
-                    'voiceBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\ConferencesApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $voiceClient = $client->getVoice()->getClient();
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
 
-            $conferenceId = "conf-1234";
-            $memberId = "m-1234";
+            $conference_id = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;
+            // string | Programmable Voice API Conference ID.
+
+            $member_id = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Conference Member ID.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $response = $voiceClient->getConferenceMember($BW_ACCOUNT_ID, $conferenceId, $memberId);
-                print_r($response->getResult()->memberUrl);
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $result = $apiInstance->getConferenceMember($account_id, $conference_id, $member_id, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling ConferencesApi->getConferenceMember: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -2618,6 +3091,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -2646,6 +3127,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -2761,6 +3245,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new ConferencesApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -2802,6 +3288,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 ConferencesApi apiInstance = new ConferencesApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String conferenceId = "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9"; // String | Programmable Voice API Conference ID.
@@ -2819,35 +3309,57 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
-              
-            require "vendor/autoload.php";
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'voiceBasicAuthUserName' => $BW_USERNAME,
-                    'voiceBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\ConferencesApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $voiceClient = $client->getVoice()->getClient();
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
 
-            $conferenceId = "conf-1234";
-            $callId = "c-1234";
+            $conference_id = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;
+            // string | Programmable Voice API Conference ID.
 
-            $body = new BandwidthLib\Voice\Models\ConferenceMemberState();
-            $body->mute = true;
+            $member_id = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Conference Member ID.
+
+            $update_conference_member = new
+            \Bandwidth\Model\UpdateConferenceMember(); //
+            \Bandwidth\Model\UpdateConferenceMember
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $voiceClient->modifyConferenceMember($BW_ACCOUNT_ID, $conferenceId, $callId, $body);
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $apiInstance->updateConferenceMember($account_id, $conference_id, $member_id, $update_conference_member, $hostIndex, $variables);
+            } catch (Exception $e) {
+                echo 'Exception when calling ConferencesApi->updateConferenceMember: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -2890,6 +3402,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -2917,6 +3437,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -3030,6 +3553,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new ConferencesApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -3070,6 +3595,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 ConferencesApi apiInstance = new ConferencesApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String conferenceId = "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9"; // String | Programmable Voice API Conference ID.
@@ -3086,34 +3615,51 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
 
-            require "vendor/autoload.php";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'voiceBasicAuthUserName' => $BW_USERNAME,
-                    'voiceBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\ConferencesApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $voiceClient = $client->getVoice()->getClient();
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
 
-            $conferenceId = "c-1234";
+            $conference_id = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;
+            // string | Programmable Voice API Conference ID.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $response = $voiceClient->getConferenceRecordings($BW_ACCOUNT_ID, $conferenceId);
-                if (count($response->getResult()) > 0) {
-                    print_r($response->getResult()[0]->name);
-                }
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $result = $apiInstance->listConferenceRecordings($account_id, $conference_id, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling ConferencesApi->listConferenceRecordings: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -3156,6 +3702,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -3183,6 +3737,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -3282,6 +3839,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new ConferencesApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -3323,6 +3882,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 ConferencesApi apiInstance = new ConferencesApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String conferenceId = "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9"; // String | Programmable Voice API Conference ID.
@@ -3340,33 +3903,54 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
 
-            require "vendor/autoload.php";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'voiceBasicAuthUserName' => $BW_USERNAME,
-                    'voiceBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\ConferencesApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $voiceClient = $client->getVoice()->getClient();
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
 
-            $conferenceId = "c-1234";
-            $recordingId = "r-1234";
+            $conference_id = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;
+            // string | Programmable Voice API Conference ID.
+
+            $recording_id = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Recording ID.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $response = $voiceClient->getConferenceRecording($BW_ACCOUNT_ID, $conferenceId, $recordingId);
-                print_r($response->getResult()->applicationId);
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $result = $apiInstance->getConferenceRecording($account_id, $conference_id, $recording_id, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling ConferencesApi->getConferenceRecording: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -3409,6 +3993,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -3437,6 +4029,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -3543,6 +4138,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new ConferencesApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -3584,6 +4181,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 ConferencesApi apiInstance = new ConferencesApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String conferenceId = "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9"; // String | Programmable Voice API Conference ID.
@@ -3601,33 +4202,54 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
-              
-            require "vendor/autoload.php";
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'voiceBasicAuthUserName' => $BW_USERNAME,
-                    'voiceBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\ConferencesApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $voiceClient = $client->getVoice()->getClient();
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
 
-            $conferenceId = "conf-1234";
-            $recordingId = "r-1234";
+            $conference_id = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;
+            // string | Programmable Voice API Conference ID.
+
+            $recording_id = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Recording ID.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $response = $voiceClient->getDownloadConferenceRecording($BW_ACCOUNT_ID, $conferenceId, $recordingId);
-                $downloaded_recording = $response->getResult();
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $result = $apiInstance->downloadConferenceRecording($account_id, $conference_id, $recording_id, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling ConferencesApi->downloadConferenceRecording: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -3667,6 +4289,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -3695,6 +4325,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -3813,6 +4446,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new RecordingsApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -3856,6 +4491,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 RecordingsApi apiInstance = new RecordingsApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String to = "%2b19195551234"; // String | Filter results by the `to` field.
@@ -3875,32 +4514,61 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
-              
-            require "vendor/autoload.php";
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'voiceBasicAuthUserName' => $BW_USERNAME,
-                    'voiceBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\RecordingsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $voiceClient = $client->getVoice()->getClient();
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $to = %2b19195551234; // string | Filter results by the `to` field.
+
+            $from = %2b19195554321; // string | Filter results by the `from`
+            field.
+
+            $min_start_time = 2022-06-21T19:13:21Z; // string | Filter results
+            to recordings which have a `startTime` after or including
+            `minStartTime` (in ISO8601 format).
+
+            $max_start_time = 2022-06-21T19:13:21Z; // string | Filter results
+            to recordings which have a `startTime` before `maxStartTime` (in
+            ISO8601 format).
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $response = $voiceClient->getQueryCallRecordings($BW_ACCOUNT_ID);
-                if (count($response->getResult()) > 0) {
-                    print_r($response->getResult()[0]->recordingId);
-                }
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $result = $apiInstance->listAccountCallRecordings($account_id, $to, $from, $min_start_time, $max_start_time, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling RecordingsApi->listAccountCallRecordings: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -3943,6 +4611,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -3970,6 +4646,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
             api_instance = Bandwidth::RecordingsApi.new
@@ -4089,6 +4768,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new RecordingsApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -4129,6 +4810,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 RecordingsApi apiInstance = new RecordingsApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85"; // String | Programmable Voice API Call ID.
@@ -4145,35 +4830,53 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
-              
-            require "vendor/autoload.php";
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'voiceBasicAuthUserName' => $BW_USERNAME,
-                    'voiceBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\RecordingsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $voiceClient = $client->getVoice()->getClient();
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
 
-            $callId = "c-1234";
+            $call_id = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Call ID.
 
-            $body = new BandwidthLib\Voice\Models\ModifyCallRecordingRequest();
-            $body->redirectUrl = "http://www.myapp.com/new";
-            $body->state = "paused";
+            $update_call_recording = new \Bandwidth\Model\UpdateCallRecording();
+            // \Bandwidth\Model\UpdateCallRecording
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $voiceClient->modifyCallRecordingState($BW_ACCOUNT_ID, $callId, $body);
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $apiInstance->updateCallRecordingState($account_id, $call_id, $update_call_recording, $hostIndex, $variables);
+            } catch (Exception $e) {
+                echo 'Exception when calling RecordingsApi->updateCallRecordingState: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -4216,6 +4919,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -4242,6 +4953,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -4348,6 +5062,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new RecordingsApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -4388,6 +5104,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 RecordingsApi apiInstance = new RecordingsApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85"; // String | Programmable Voice API Call ID.
@@ -4404,34 +5124,51 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
 
-            require "vendor/autoload.php";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'voiceBasicAuthUserName' => $BW_USERNAME,
-                    'voiceBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\RecordingsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $voiceClient = $client->getVoice()->getClient();
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
 
-            $callId = "c-1234";
+            $call_id = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Call ID.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $response = $voiceClient->getCallRecordings($BW_ACCOUNT_ID, $callId);
-                if (count($response->getResult()) > 0) {
-                    print_r($response->getResult()[0]->recordingId);
-                }
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $result = $apiInstance->listCallRecordings($account_id, $call_id, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling RecordingsApi->listCallRecordings: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -4474,6 +5211,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -4501,6 +5246,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -4600,6 +5348,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new RecordingsApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -4641,6 +5391,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 RecordingsApi apiInstance = new RecordingsApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85"; // String | Programmable Voice API Call ID.
@@ -4658,33 +5412,54 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
 
-            require "vendor/autoload.php";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'voiceBasicAuthUserName' => $BW_USERNAME,
-                    'voiceBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\RecordingsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $voiceClient = $client->getVoice()->getClient();
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
 
-            $callId = "c-1234";
-            $recordingId = "r-1234";
+            $call_id = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Call ID.
+
+            $recording_id = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Recording ID.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $response = $voiceClient->getCallRecording($BW_ACCOUNT_ID, $callId, $recordingId);
-                print_r($response->getResult()->applicationId);
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $result = $apiInstance->getCallRecording($account_id, $call_id, $recording_id, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling RecordingsApi->getCallRecording: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -4727,6 +5502,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -4755,6 +5538,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -4868,6 +5654,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new RecordingsApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -4908,6 +5696,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 RecordingsApi apiInstance = new RecordingsApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85"; // String | Programmable Voice API Call ID.
@@ -4924,32 +5716,53 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
 
-            require "vendor/autoload.php";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'voiceBasicAuthUserName' => $BW_USERNAME,
-                    'voiceBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\RecordingsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $voiceClient = $client->getVoice()->getClient();
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
 
-            $callId = "c-1234";
-            $recordingId = "r-1234";
+            $call_id = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Call ID.
+
+            $recording_id = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Recording ID.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $voiceClient->deleteRecording($BW_ACCOUNT_ID, $callId, $recordingId);
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $apiInstance->deleteRecording($account_id, $call_id, $recording_id, $hostIndex, $variables);
+            } catch (Exception $e) {
+                echo 'Exception when calling RecordingsApi->deleteRecording: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -4989,6 +5802,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -5015,6 +5836,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -5120,6 +5944,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new RecordingsApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -5161,6 +5987,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 RecordingsApi apiInstance = new RecordingsApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85"; // String | Programmable Voice API Call ID.
@@ -5178,33 +6008,54 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
-              
-            require "vendor/autoload.php";
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'voiceBasicAuthUserName' => $BW_USERNAME,
-                    'voiceBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\RecordingsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $voiceClient = $client->getVoice()->getClient();
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
 
-            $callId = "c-1234";
-            $recordingId = "r-1234";
+            $call_id = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Call ID.
+
+            $recording_id = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Recording ID.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $response = $voiceClient->getDownloadCallRecording($BW_ACCOUNT_ID, $callId, $recordingId);
-                $downloaded_recording = $response->getResult();
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $result = $apiInstance->downloadCallRecording($account_id, $call_id, $recording_id, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling RecordingsApi->downloadCallRecording: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -5244,6 +6095,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -5272,6 +6131,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -5377,6 +6239,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new RecordingsApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -5417,6 +6281,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 RecordingsApi apiInstance = new RecordingsApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85"; // String | Programmable Voice API Call ID.
@@ -5433,32 +6301,53 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
 
-            require "vendor/autoload.php";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'voiceBasicAuthUserName' => $BW_USERNAME,
-                    'voiceBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\RecordingsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $voiceClient = $client->getVoice()->getClient();
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
 
-            $callId = "c-1234";
-            $recordingId = "r-1234";
+            $call_id = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Call ID.
+
+            $recording_id = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Recording ID.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $voiceClient->deleteRecordingMedia($BW_ACCOUNT_ID, $callId, $recordingId);
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $apiInstance->deleteRecordingMedia($account_id, $call_id, $recording_id, $hostIndex, $variables);
+            } catch (Exception $e) {
+                echo 'Exception when calling RecordingsApi->deleteRecordingMedia: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -5498,6 +6387,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -5524,6 +6421,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -5641,6 +6541,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new RecordingsApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -5682,6 +6584,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 RecordingsApi apiInstance = new RecordingsApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85"; // String | Programmable Voice API Call ID.
@@ -5697,6 +6603,56 @@ paths:
                   e.printStackTrace();
                 }
               }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\RecordingsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $call_id = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Call ID.
+
+            $recording_id = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Recording ID.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $result = $apiInstance->getRecordingTranscription($account_id, $call_id, $recording_id, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling RecordingsApi->getRecordingTranscription: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -5739,6 +6695,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -5767,6 +6731,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -5891,6 +6858,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new RecordingsApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -5932,6 +6901,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 RecordingsApi apiInstance = new RecordingsApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85"; // String | Programmable Voice API Call ID.
@@ -5949,35 +6922,56 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
-              
-            require "vendor/autoload.php";
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'voiceBasicAuthUserName' => $BW_USERNAME,
-                    'voiceBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\RecordingsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $voiceClient = $client->getVoice()->getClient();
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
 
-            $callId = "c-1234";
-            $recordingId = "r-1234";
+            $call_id = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Call ID.
 
-            $body = new BandwidthLib\Voice\Models\TranscribeRecordingRequest();
-            $body->callbackUrl = "https://callback-url.com";
+            $recording_id = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Recording ID.
+
+            $transcribe_recording = new \Bandwidth\Model\TranscribeRecording();
+            // \Bandwidth\Model\TranscribeRecording
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $voiceClient->createTranscribeCallRecording($BW_ACCOUNT_ID, $callId, $recordingId, $body);
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $apiInstance->transcribeCallRecording($account_id, $call_id, $recording_id, $transcribe_recording, $hostIndex, $variables);
+            } catch (Exception $e) {
+                echo 'Exception when calling RecordingsApi->transcribeCallRecording: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -6020,6 +7014,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -6047,6 +7049,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -6165,6 +7170,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new RecordingsApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -6205,6 +7212,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 RecordingsApi apiInstance = new RecordingsApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85"; // String | Programmable Voice API Call ID.
@@ -6219,6 +7230,55 @@ paths:
                   e.printStackTrace();
                 }
               }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\RecordingsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $call_id = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Call ID.
+
+            $recording_id = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Recording ID.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $apiInstance->deleteRecordingTranscription($account_id, $call_id, $recording_id, $hostIndex, $variables);
+            } catch (Exception $e) {
+                echo 'Exception when calling RecordingsApi->deleteRecordingTranscription: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -6258,6 +7318,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -6284,6 +7352,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -6387,6 +7458,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new StatisticsApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -6426,6 +7499,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 StatisticsApi apiInstance = new StatisticsApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 try {
@@ -6439,6 +7516,50 @@ paths:
                   e.printStackTrace();
                 }
               }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\StatisticsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $result = $apiInstance->getStatistics($account_id, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling StatisticsApi->getStatistics: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -6480,6 +7601,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -6503,6 +7632,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
             api_instance = Bandwidth::StatisticsApi.new
@@ -6593,6 +7725,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new TranscriptionsApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -6600,7 +7734,7 @@ paths:
 
                         try
                         {
-                            // Enumerate transcriptions made with StartTranscription
+                            // List Real-time Transcriptions
                             List<CallTranscriptionMetadata> result = apiInstance.ListRealTimeTranscriptions(accountId, callId);
                             Debug.WriteLine(result);
                         }
@@ -6633,6 +7767,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 TranscriptionsApi apiInstance = new TranscriptionsApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85"; // String | Programmable Voice API Call ID.
@@ -6647,6 +7785,53 @@ paths:
                   e.printStackTrace();
                 }
               }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\TranscriptionsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $call_id = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Call ID.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $result = $apiInstance->listRealTimeTranscriptions($account_id, $call_id, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling TranscriptionsApi->listRealTimeTranscriptions: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -6689,6 +7874,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -6698,7 +7891,7 @@ paths:
                 call_id = 'c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # str | Programmable Voice API Call ID.
 
                 try:
-                    # Enumerate transcriptions made with StartTranscription
+                    # List Real-time Transcriptions
                     api_response = api_instance.list_real_time_transcriptions(account_id, call_id)
                     print("The response of TranscriptionsApi->list_real_time_transcriptions:\n")
                     pprint(api_response)
@@ -6716,6 +7909,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -6728,7 +7924,7 @@ paths:
 
 
             begin
-              # Enumerate transcriptions made with StartTranscription
+              # List Real-time Transcriptions
               result = api_instance.list_real_time_transcriptions(account_id, call_id)
               p result
             rescue Bandwidth::ApiError => e
@@ -6818,6 +8014,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new TranscriptionsApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -6826,7 +8024,7 @@ paths:
 
                         try
                         {
-                            // Retrieve a specific transcription
+                            // Get Real-time Transcription
                             CallTranscriptionResponse result = apiInstance.GetRealTimeTranscription(accountId, callId, transcriptionId);
                             Debug.WriteLine(result);
                         }
@@ -6859,6 +8057,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 TranscriptionsApi apiInstance = new TranscriptionsApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85"; // String | Programmable Voice API Call ID.
@@ -6874,6 +8076,56 @@ paths:
                   e.printStackTrace();
                 }
               }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\TranscriptionsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $call_id = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Call ID.
+
+            $transcription_id = t-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;
+            // string | Programmable Voice API Transcription ID.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $result = $apiInstance->getRealTimeTranscription($account_id, $call_id, $transcription_id, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling TranscriptionsApi->getRealTimeTranscription: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -6916,6 +8168,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -6926,7 +8186,7 @@ paths:
                 transcription_id = 't-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # str | Programmable Voice API Transcription ID.
 
                 try:
-                    # Retrieve a specific transcription
+                    # Get Real-time Transcription
                     api_response = api_instance.get_real_time_transcription(account_id, call_id, transcription_id)
                     print("The response of TranscriptionsApi->get_real_time_transcription:\n")
                     pprint(api_response)
@@ -6944,6 +8204,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -6959,7 +8222,7 @@ paths:
 
 
             begin
-              # Retrieve a specific transcription
+              # Get Real-time Transcription
               result = api_instance.get_real_time_transcription(account_id, call_id, transcription_id)
               p result
             rescue Bandwidth::ApiError => e
@@ -7057,6 +8320,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new TranscriptionsApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -7065,7 +8330,7 @@ paths:
 
                         try
                         {
-                            // Delete a specific transcription
+                            // Delete Real-time Transcription
                             apiInstance.DeleteRealTimeTranscription(accountId, callId, transcriptionId);
                         }
                         catch (ApiException  e)
@@ -7097,6 +8362,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 TranscriptionsApi apiInstance = new TranscriptionsApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85"; // String | Programmable Voice API Call ID.
@@ -7111,6 +8380,55 @@ paths:
                   e.printStackTrace();
                 }
               }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\TranscriptionsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $call_id = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | Programmable Voice API Call ID.
+
+            $transcription_id = t-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;
+            // string | Programmable Voice API Transcription ID.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $apiInstance->deleteRealTimeTranscription($account_id, $call_id, $transcription_id, $hostIndex, $variables);
+            } catch (Exception $e) {
+                echo 'Exception when calling TranscriptionsApi->deleteRealTimeTranscription: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -7150,6 +8468,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -7160,7 +8486,7 @@ paths:
                 transcription_id = 't-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # str | Programmable Voice API Transcription ID.
 
                 try:
-                    # Delete a specific transcription
+                    # Delete Real-time Transcription
                     api_instance.delete_real_time_transcription(account_id, call_id, transcription_id)
                 except Exception as e:
                     print("Exception when calling TranscriptionsApi->delete_real_time_transcription: %s\n" % e)
@@ -7176,6 +8502,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -7191,7 +8520,7 @@ paths:
 
 
             begin
-              # Delete a specific transcription
+              # Delete Real-time Transcription
               api_instance.delete_real_time_transcription(account_id, call_id, transcription_id)
             rescue Bandwidth::ApiError => e
               puts "Error when calling TranscriptionsApi->delete_real_time_transcription: #{e}"

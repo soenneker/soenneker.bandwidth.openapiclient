@@ -40,7 +40,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.TollFreeVerification.Accounts.Item.T
         {
         }
         /// <summary>
-        /// Submit a request for verification of a toll-free phone number.
+        /// Submit a request for verification of a toll-free phone number.**Upcoming change (effective January 2027):** If any phone number in the request already has a verification in progress, the request will be rejected with a `409 Conflict`.This check is all-or-nothing: if a single phone number conflicts, the entire request is rejected and **none** of the phone numbers in the request are submitted.Today, these requests are accepted with a `202`.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -49,6 +49,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.TollFreeVerification.Accounts.Item.T
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError">When receiving a 401 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError">When receiving a 403 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError">When receiving a 405 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError">When receiving a 409 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError">When receiving a 429 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError">When receiving a 500 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError">When receiving a 503 status code</exception>
@@ -69,6 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.TollFreeVerification.Accounts.Item.T
                 { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError.CreateFromDiscriminatorValue },
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError.CreateFromDiscriminatorValue },
+                { "409", global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError.CreateFromDiscriminatorValue },
                 { "503", global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError.CreateFromDiscriminatorValue },
@@ -76,7 +78,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.TollFreeVerification.Accounts.Item.T
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Submit a request for verification of a toll-free phone number.
+        /// Submit a request for verification of a toll-free phone number.**Upcoming change (effective January 2027):** If any phone number in the request already has a verification in progress, the request will be rejected with a `409 Conflict`.This check is all-or-nothing: if a single phone number conflicts, the entire request is rejected and **none** of the phone numbers in the request are submitted.Today, these requests are accepted with a `202`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -7,12 +7,43 @@ info:
     url: https://support.bandwidth.com
     email: support@bandwidth.com
   termsOfService: https://www.bandwidth.com/legal/terms-of-use-bandwidthcom-web-sites/
-  description: |-
+  description: >-
     The API Specification for Toll-Free Verification Platform
+
 
     ## Base URL
 
+
     `https://api.bandwidth.com/api/v2`
+
+
+    ## Upcoming Behavior Changes (January 2027)
+
+
+    Starting in January 2027, the Toll-Free Verification API will reject
+    requests that would conflict with a verification that is already in
+    progress:
+
+
+    - **Submit** (`POST /accounts/{accountId}/tollFreeVerification`) returns
+    `409 Conflict` if any phone number in the request already has a verification
+    in progress. The entire request is rejected and none of the phone numbers
+    are submitted.
+
+    - **Update** (`PUT
+    /accounts/{accountId}/phoneNumbers/{phoneNumber}/tollFreeVerification`)
+    returns `409 Conflict` if a verification for the phone number is in
+    progress.
+
+    - **Delete** (`DELETE
+    /accounts/{accountId}/phoneNumbers/{phoneNumber}/tollFreeVerification`)
+    cancels any verification in progress for the phone number before the
+    submission is deleted.
+
+
+    Update your integration to handle `409 Conflict` responses. Wait for the
+    in-progress verification to finish (for example, by watching for its webhook
+    status update) or call the `DELETE` endpoint before you retry.
 security:
   - Basic: []
   - OAuth2: []
@@ -27,7 +58,19 @@ paths:
       tags:
         - Toll-Free Verification
       summary: Request Toll-Free Verification
-      description: Submit a request for verification of a toll-free phone number.
+      description: >-
+        Submit a request for verification of a toll-free phone number.
+
+
+        **Upcoming change (effective January 2027):** If any phone number in the
+        request already has a verification in progress, the request will be
+        rejected with a `409 Conflict`.
+
+        This check is all-or-nothing: if a single phone number conflicts, the
+        entire request is rejected and **none** of the phone numbers in the
+        request are submitted.
+
+        Today, these requests are accepted with a `202`.
       operationId: requestTollFreeVerification
       parameters:
         - $ref: '#/components/parameters/accountId'
@@ -44,6 +87,8 @@ paths:
           $ref: '#/components/responses/tfvForbiddenResponse'
         '405':
           $ref: '#/components/responses/tfvNotAllowedResponse'
+        '409':
+          $ref: '#/components/responses/tfvConflictResponse'
         '429':
           $ref: '#/components/responses/tfvTooManyRequestsResponse'
         '500':
@@ -90,13 +135,21 @@ paths:
                   "imageUrls": [
                     "https://www.example.com/path/to/resource",
                     "https://www.example.com/path/to/resource"
-                  ]
+                  ],
+                  "confirmationResponse": "Thank you for opting in!"
                 },
+                "businessEntityType": "PRIVATE_PROFIT",
                 "additionalInformation": "Any additional information",
                 "isvReseller": "Test ISV",
                 "privacyPolicyUrl": "http://your-company.com/privacyPolicy",
                 "termsAndConditionsUrl": "http://your-company.com/termsAndConditions",
-                "businessDba": "Another Company Name Inc."
+                "businessDba": "Another Company Name Inc.",
+                "businessRegistrationNumber": "12-3456789",
+                "businessRegistrationType": "EIN",
+                "businessRegistrationIssuingCountry": "USA",
+                "helpMessageResponse": "Please contact support for assistance.",
+                "ageGatedContent": false,
+                "cvToken": "cv.user123|sess456|mno|tfree|read_write|X7yZ9aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVw"
               }'
         - lang: C#
           source: |
@@ -117,6 +170,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new TollFreeVerificationApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -156,6 +211,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 TollFreeVerificationApi apiInstance = new TollFreeVerificationApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 VerificationRequest verificationRequest = new VerificationRequest(); // VerificationRequest | Request for verification of a toll-free phone number.
@@ -169,6 +228,53 @@ paths:
                   e.printStackTrace();
                 }
               }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\TollFreeVerificationApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $verification_request = new \Bandwidth\Model\VerificationRequest();
+            // \Bandwidth\Model\VerificationRequest | Request for verification
+            of a toll-free phone number.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $apiInstance->requestTollFreeVerification($account_id, $verification_request, $hostIndex, $variables);
+            } catch (Exception $e) {
+                echo 'Exception when calling TollFreeVerificationApi->requestTollFreeVerification: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -211,6 +317,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -236,6 +350,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -254,9 +371,11 @@ paths:
             use_case_summary: 'Text summarizing the use case for the toll-free
             number', production_message_content: 'Production message content',
             opt_in_workflow: Bandwidth::OptInWorkflow.new({description: 'Opt In
-            Flow', image_urls: ['https://www.example.com/path/to/resource']})})
-            # VerificationRequest | Request for verification of a toll-free
-            phone number.
+            Flow', image_urls: ['https://www.example.com/path/to/resource']}),
+            business_entity_type:
+            Bandwidth::BusinessEntityTypeEnum::SOLE_PROPRIETOR}) #
+            VerificationRequest | Request for verification of a toll-free phone
+            number.
 
 
             begin
@@ -352,6 +471,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new TollFreeVerificationApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -392,6 +513,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 TollFreeVerificationApi apiInstance = new TollFreeVerificationApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String phoneNumber = "+18885555555"; // String | Valid Toll-Free telephone number in E.164 format.
@@ -406,6 +531,53 @@ paths:
                   e.printStackTrace();
                 }
               }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\TollFreeVerificationApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $phone_number = +18885555555; // string | Valid Toll-Free telephone
+            number in E.164 format.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $result = $apiInstance->getTollFreeVerificationStatus($account_id, $phone_number, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling TollFreeVerificationApi->getTollFreeVerificationStatus: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -447,6 +619,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -474,6 +654,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -527,6 +710,14 @@ paths:
         Submissions are only eligible for resubmission for 7 days within being
         processed and if resubmission is allowed (resubmitAllowed field is
         true).
+
+        Returns a `404` if no verification request exists for the phone number,
+        and a `400` if the existing request is not eligible for resubmission.
+
+
+        **Upcoming change (effective January 2027):** If a verification for the
+        phone number is in progress, the update will be rejected with a `409
+        Conflict`.
       operationId: updateTollFreeVerificationRequest
       parameters:
         - $ref: '#/components/parameters/accountId'
@@ -542,8 +733,12 @@ paths:
           $ref: '#/components/responses/tfvUnauthorizedResponse'
         '403':
           $ref: '#/components/responses/tfvForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/tfvNotFoundResponse'
         '405':
           $ref: '#/components/responses/tfvNotAllowedResponse'
+        '409':
+          $ref: '#/components/responses/tfvConflictResponse'
         '429':
           $ref: '#/components/responses/tfvTooManyRequestsResponse'
         '500':
@@ -588,13 +783,21 @@ paths:
                     "imageUrls": [
                       "https://www.example.com/path/to/resource",
                       "https://www.example.com/path/to/resource"
-                    ]
+                    ],
+                    "confirmationResponse": "Thank you for opting in!"
                   },
+                  "businessEntityType": "PRIVATE_PROFIT",
                   "additionalInformation": "Any additional information",
                   "isvReseller": "Test ISV",
                   "privacyPolicyUrl": "http://your-company.com/privacyPolicy",
                   "termsAndConditionsUrl": "http://your-company.com/termsAndConditions",
-                  "businessDba": "Another Company Name Inc."
+                  "businessDba": "Another Company Name Inc.",
+                  "businessRegistrationNumber": "12-3456789",
+                  "businessRegistrationType": "EIN",
+                  "businessRegistrationIssuingCountry": "USA",
+                  "helpMessageResponse": "Please contact support for assistance.",
+                  "ageGatedContent": false,
+                  "cvToken": "cv.user123|sess456|mno|tfree|read_write|X7yZ9aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVw"
                 }
               }'
         - lang: C#
@@ -616,6 +819,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new TollFreeVerificationApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -656,6 +861,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 TollFreeVerificationApi apiInstance = new TollFreeVerificationApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String phoneNumber = "+18885555555"; // String | Valid Toll-Free telephone number in E.164 format.
@@ -670,6 +879,57 @@ paths:
                   e.printStackTrace();
                 }
               }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\TollFreeVerificationApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $phone_number = +18885555555; // string | Valid Toll-Free telephone
+            number in E.164 format.
+
+            $tfv_submission_wrapper = new
+            \Bandwidth\Model\TfvSubmissionWrapper(); //
+            \Bandwidth\Model\TfvSubmissionWrapper | Update a request for
+            verification of a toll-free phone number.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $apiInstance->updateTollFreeVerificationRequest($account_id, $phone_number, $tfv_submission_wrapper, $hostIndex, $variables);
+            } catch (Exception $e) {
+                echo 'Exception when calling TollFreeVerificationApi->updateTollFreeVerificationRequest: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -712,6 +972,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -738,6 +1006,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -790,7 +1061,13 @@ paths:
                 tfvSubmissionWrapper
             );
     delete:
-      description: Delete a toll-free verification submission for a toll-free number.
+      description: >-
+        Delete a toll-free verification submission for a toll-free number.
+
+
+        **Upcoming change (effective January 2027):** If a verification for the
+        phone number is in progress, it will be cancelled and the submission
+        will then be deleted asynchronously.
       operationId: deleteVerificationRequest
       parameters:
         - $ref: '#/components/parameters/accountId'
@@ -817,6 +1094,254 @@ paths:
       summary: Delete a Toll-Free Verification Submission
       tags:
         - Toll-Free Verification
+      x-codeSamples:
+        - lang: cURL
+          source: >-
+            curl -X DELETE
+            'https://api.bandwidth.com/api/v2/accounts/9900000/phoneNumbers/+18885555555/tollFreeVerification'
+            \
+              -H 'Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=' \
+              -H 'Accept: application/json'
+        - lang: C#
+          source: |
+            using System.Collections.Generic;
+            using System.Diagnostics;
+            using Bandwidth.Standard.Api;
+            using Bandwidth.Standard.Client;
+            using Bandwidth.Standard.Model;
+
+            namespace Example
+            {
+                public class DeleteVerificationRequestExample
+                {
+                    public static void Main()
+                    {
+                        Configuration config = new Configuration();
+                        config.BasePath = "http://localhost";
+                        // Configure HTTP basic authorization: Basic
+                        config.Username = "YOUR_USERNAME";
+                        config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+                        var apiInstance = new TollFreeVerificationApi(config);
+                        var accountId = 9900000;  // string | Your Bandwidth Account ID.
+                        var phoneNumber = +18885555555;  // string | Valid Toll-Free telephone number in E.164 format.
+
+                        try
+                        {
+                            // Delete a Toll-Free Verification Submission
+                            apiInstance.DeleteVerificationRequest(accountId, phoneNumber);
+                        }
+                        catch (ApiException  e)
+                        {
+                            Debug.Print("Exception when calling TollFreeVerificationApi.DeleteVerificationRequest: " + e.Message);
+                            Debug.Print("Status Code: " + e.ErrorCode);
+                            Debug.Print(e.StackTrace);
+                        }
+                    }
+                }
+            }
+        - lang: Java
+          source: |
+            // Import classes:
+            import com.bandwidth.sdk.ApiClient;
+            import com.bandwidth.sdk.ApiException;
+            import com.bandwidth.sdk.Configuration;
+            import com.bandwidth.sdk.auth.*;
+            import com.bandwidth.sdk.models.*;
+            import com.bandwidth.sdk.api.TollFreeVerificationApi;
+
+            public class Example {
+              public static void main(String[] args) {
+                ApiClient defaultClient = Configuration.getDefaultApiClient();
+                defaultClient.setBasePath("http://localhost");
+                
+                // Configure HTTP basic authorization: Basic
+                HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
+                Basic.setUsername("YOUR USERNAME");
+                Basic.setPassword("YOUR PASSWORD");
+
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+                TollFreeVerificationApi apiInstance = new TollFreeVerificationApi(defaultClient);
+                String accountId = "9900000"; // String | Your Bandwidth Account ID.
+                String phoneNumber = "+18885555555"; // String | Valid Toll-Free telephone number in E.164 format.
+                try {
+                  apiInstance.deleteVerificationRequest(accountId, phoneNumber);
+                } catch (ApiException e) {
+                  System.err.println("Exception when calling TollFreeVerificationApi#deleteVerificationRequest");
+                  System.err.println("Status code: " + e.getCode());
+                  System.err.println("Reason: " + e.getResponseBody());
+                  System.err.println("Response headers: " + e.getResponseHeaders());
+                  e.printStackTrace();
+                }
+              }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\TollFreeVerificationApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $phone_number = +18885555555; // string | Valid Toll-Free telephone
+            number in E.164 format.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $apiInstance->deleteVerificationRequest($account_id, $phone_number, $hostIndex, $variables);
+            } catch (Exception $e) {
+                echo 'Exception when calling TollFreeVerificationApi->deleteVerificationRequest: ', $e->getMessage(), PHP_EOL;
+            }
+        - lang: Python
+          source: >
+            import bandwidth
+
+            from bandwidth.rest import ApiException
+
+            from pprint import pprint
+
+
+            # Defining the host is optional and defaults to http://localhost
+
+            # See configuration.py for a list of all supported configuration
+            parameters.
+
+            configuration = bandwidth.Configuration(
+                host = "http://localhost"
+            )
+
+
+            # The client must configure the authentication and authorization
+            parameters
+
+            # in accordance with the API server security policy.
+
+            # Examples for each auth method are provided below, use the example
+            that
+
+            # satisfies your auth use case.
+
+
+            # Configure HTTP basic authorization: Basic
+
+            configuration = bandwidth.Configuration(
+                username = os.environ["USERNAME"],
+                password = os.environ["PASSWORD"]
+            )
+
+
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
+            # Enter a context with an instance of the API client
+
+            with bandwidth.ApiClient(configuration) as api_client:
+                # Create an instance of the API class
+                api_instance = bandwidth.TollFreeVerificationApi(api_client)
+                account_id = '9900000' # str | Your Bandwidth Account ID.
+                phone_number = '+18885555555' # str | Valid Toll-Free telephone number in E.164 format.
+
+                try:
+                    # Delete a Toll-Free Verification Submission
+                    api_instance.delete_verification_request(account_id, phone_number)
+                except Exception as e:
+                    print("Exception when calling TollFreeVerificationApi->delete_verification_request: %s\n" % e)
+        - lang: Ruby
+          source: >
+            require 'time'
+
+            require 'bandwidth-sdk'
+
+            # setup authorization
+
+            Bandwidth.configure do |config|
+              # Configure HTTP basic authorization: Basic
+              config.username = 'YOUR USERNAME'
+              config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
+            end
+
+
+            api_instance = Bandwidth::TollFreeVerificationApi.new
+
+            account_id = '9900000' # String | Your Bandwidth Account ID.
+
+            phone_number = '+18885555555' # String | Valid Toll-Free telephone
+            number in E.164 format.
+
+
+            begin
+              # Delete a Toll-Free Verification Submission
+              api_instance.delete_verification_request(account_id, phone_number)
+            rescue Bandwidth::ApiError => e
+              puts "Error when calling TollFreeVerificationApi->delete_verification_request: #{e}"
+            end
+        - lang: TypeScript
+          source: >
+            import {
+                TollFreeVerificationApi,
+                Configuration
+            } from 'bandwidth-sdk';
+
+
+            const configuration = new Configuration();
+
+            const apiInstance = new TollFreeVerificationApi(configuration);
+
+
+            let accountId: string; //Your Bandwidth Account ID. (default to
+            undefined)
+
+            let phoneNumber: string; //Valid Toll-Free telephone number in E.164
+            format. (default to undefined)
+
+
+            const { status, data } = await
+            apiInstance.deleteVerificationRequest(
+                accountId,
+                phoneNumber
+            );
   /accounts/{accountId}/tollFreeVerification/webhooks/subscriptions:
     get:
       tags:
@@ -876,6 +1401,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new TollFreeVerificationApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -915,6 +1442,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 TollFreeVerificationApi apiInstance = new TollFreeVerificationApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 try {
@@ -928,6 +1459,50 @@ paths:
                   e.printStackTrace();
                 }
               }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\TollFreeVerificationApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $result = $apiInstance->listWebhookSubscriptions($account_id, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling TollFreeVerificationApi->listWebhookSubscriptions: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -970,6 +1545,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -993,6 +1576,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
             api_instance = Bandwidth::TollFreeVerificationApi.new
@@ -1098,6 +1684,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new TollFreeVerificationApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -1138,6 +1726,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 TollFreeVerificationApi apiInstance = new TollFreeVerificationApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 WebhookSubscriptionRequestSchema webhookSubscriptionRequestSchema = new WebhookSubscriptionRequestSchema(); // WebhookSubscriptionRequestSchema | Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to.
@@ -1152,6 +1744,56 @@ paths:
                   e.printStackTrace();
                 }
               }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\TollFreeVerificationApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $webhook_subscription_request_schema = new
+            \Bandwidth\Model\WebhookSubscriptionRequestSchema(); //
+            \Bandwidth\Model\WebhookSubscriptionRequestSchema | Information
+            about a webhook that Bandwidth should send upon the completion of
+            event customer is trying to subscribe to.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $result = $apiInstance->createWebhookSubscription($account_id, $webhook_subscription_request_schema, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling TollFreeVerificationApi->createWebhookSubscription: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -1197,6 +1839,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -1224,6 +1874,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -1330,6 +1983,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new TollFreeVerificationApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -1369,6 +2024,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 TollFreeVerificationApi apiInstance = new TollFreeVerificationApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String id = "7bt57JcsVYJrN9K1OcV1Nu"; // String | Webhook subscription ID
@@ -1382,6 +2041,51 @@ paths:
                   e.printStackTrace();
                 }
               }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\TollFreeVerificationApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $id = 7bt57JcsVYJrN9K1OcV1Nu; // string | Webhook subscription ID
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $apiInstance->deleteWebhookSubscription($account_id, $id, $hostIndex, $variables);
+            } catch (Exception $e) {
+                echo 'Exception when calling TollFreeVerificationApi->deleteWebhookSubscription: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -1421,6 +2125,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -1443,6 +2155,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
             api_instance = Bandwidth::TollFreeVerificationApi.new
@@ -1547,6 +2262,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new TollFreeVerificationApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -1588,6 +2305,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 TollFreeVerificationApi apiInstance = new TollFreeVerificationApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 String id = "7bt57JcsVYJrN9K1OcV1Nu"; // String | Webhook subscription ID
@@ -1603,6 +2324,58 @@ paths:
                   e.printStackTrace();
                 }
               }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\TollFreeVerificationApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $id = 7bt57JcsVYJrN9K1OcV1Nu; // string | Webhook subscription ID
+
+            $webhook_subscription_request_schema = new
+            \Bandwidth\Model\WebhookSubscriptionRequestSchema(); //
+            \Bandwidth\Model\WebhookSubscriptionRequestSchema | Information
+            about a webhook that Bandwidth should send upon the completion of
+            event customer is trying to subscribe to.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $result = $apiInstance->updateWebhookSubscription($account_id, $id, $webhook_subscription_request_schema, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling TollFreeVerificationApi->updateWebhookSubscription: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -1648,6 +2421,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -1676,6 +2457,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -1783,6 +2567,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new TollFreeVerificationApi(config);
 
@@ -1821,6 +2607,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 TollFreeVerificationApi apiInstance = new TollFreeVerificationApi(defaultClient);
                 try {
                   List<String> result = apiInstance.listTollFreeUseCases();
@@ -1833,6 +2623,48 @@ paths:
                   e.printStackTrace();
                 }
               }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\TollFreeVerificationApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $result = $apiInstance->listTollFreeUseCases($hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling TollFreeVerificationApi->listTollFreeUseCases: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -1872,6 +2704,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -1894,6 +2734,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
             api_instance = Bandwidth::TollFreeVerificationApi.new
@@ -2058,6 +2901,17 @@ components:
           example:
             description: Cannot find the requested resource.
             type: Not Found
+    tfvConflictResponse:
+      description: >-
+        Conflict. A toll-free verification for the phone number is already in
+        progress.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/tfvError'
+          example:
+            description: 'TFV request already in progress for phone number: +18005551234'
+            type: conflict
     tfvNotAllowedResponse:
       description: Method Not Allowed
       content:
@@ -2193,7 +3047,7 @@ components:
         Government-issued business identifying number.
 
 
-        **Note: As of October 19th, 2026 this field will be required when
+        **As of October 19th, 2026 this field is required when
         `businessEntityType` is _not_ `SOLE_PROPRIETOR`. If this field is
         provided, `businessRegistrationType` and
         `businessRegistrationIssuingCountry` are also required.**
@@ -2206,7 +3060,7 @@ components:
         The type of business registration number.
 
 
-        **Note: As of October 19th, 2026 this field will be required when
+        **As of October 19th, 2026 this field is required when
         `businessRegistrationNumber` is provided.**
       enum:
         - EIN
@@ -2237,7 +3091,7 @@ components:
         encouraged.
 
 
-        **Note: As of October 19th, 2026 this field will be required when
+        **As of October 19th, 2026 this field is required when
         `businessRegistrationNumber` is provided.**
 
 
@@ -2288,9 +3142,9 @@ components:
         The type of registered business.
 
 
-        **Note: As of October 19th, 2026 submissions using a value other than
+        **As of October 19th, 2026 submissions using a value other than
         `SOLE_PROPRIETOR` must provide a value for `businessRegistrationNumber`,
-        `businessRegistrationType`, and `businessRegistrationIssuingCountry`. 
+        `businessRegistrationType`, and `businessRegistrationIssuingCountry`.
 
         Submissions using `SOLE_PROPRIETOR` must _omit_
         `businessRegistrationNumber`, `businessRegistrationType`, and
@@ -2410,6 +3264,7 @@ components:
         - useCaseSummary
         - productionMessageContent
         - optInWorkflow
+        - businessEntityType
       properties:
         businessAddress:
           $ref: '#/components/schemas/address'

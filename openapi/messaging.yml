@@ -72,9 +72,11 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new MediaApi(config);
-                        var accountId = 9900000;  // string | Your Bandwidth Account ID.
+                        var accountId = 9900000;  // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
                         var continuationToken = 1XEi2tsFtLo1JbtLwETnM1ZJ+PqAa8w6ENvC5QKvwyrCDYII663Gy5M4s40owR1tjkuWUif6qbWvFtQJR5/ipqbUnfAqL254LKNlPy6tATCzioKSuHuOqgzloDkSwRtX0LtcL2otHS69hK343m+SjdL+vlj71tT39;  // string | Continuation token used to retrieve subsequent media. (optional) 
 
                         try
@@ -112,8 +114,12 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 MediaApi apiInstance = new MediaApi(defaultClient);
-                String accountId = "9900000"; // String | Your Bandwidth Account ID.
+                String accountId = "9900000"; // String | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
                 String continuationToken = "1XEi2tsFtLo1JbtLwETnM1ZJ+PqAa8w6ENvC5QKvwyrCDYII663Gy5M4s40owR1tjkuWUif6qbWvFtQJR5/ipqbUnfAqL254LKNlPy6tATCzioKSuHuOqgzloDkSwRtX0LtcL2otHS69hK343m+SjdL+vlj71tT39"; // String | Continuation token used to retrieve subsequent media.
                 try {
                   List<Media> result = apiInstance.listMedia(accountId, continuationToken);
@@ -128,32 +134,55 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
 
-            require "vendor/autoload.php";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'messagingBasicAuthUserName' => $BW_USERNAME,
-                    'messagingBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\MediaApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $messagingClient = $client->getMessaging()->getClient();
+            $account_id = 9900000; // string | This is your 7-digit Bandwidth
+            Account ID, as shown in the Bandwidth App. The older ID format
+            (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to
+            OAuth authentication, you must use the 7-digit Account ID.**
+
+            $continuation_token =
+            1XEi2tsFtLo1JbtLwETnM1ZJ+PqAa8w6ENvC5QKvwyrCDYII663Gy5M4s40owR1tjkuWUif6qbWvFtQJR5/ipqbUnfAqL254LKNlPy6tATCzioKSuHuOqgzloDkSwRtX0LtcL2otHS69hK343m+SjdL+vlj71tT39;
+            // string | Continuation token used to retrieve subsequent media.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $response = $messagingClient->listMedia($BW_ACCOUNT_ID);
-                if (count($response->getResult()) > 0) {
-                    print_r($response->getResult()[0]->mediaName);
-                }
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $result = $apiInstance->listMedia($account_id, $continuation_token, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling MediaApi->listMedia: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -195,12 +224,20 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
                 # Create an instance of the API class
                 api_instance = bandwidth.MediaApi(api_client)
-                account_id = '9900000' # str | Your Bandwidth Account ID.
+                account_id = '9900000' # str | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
                 continuation_token = '1XEi2tsFtLo1JbtLwETnM1ZJ+PqAa8w6ENvC5QKvwyrCDYII663Gy5M4s40owR1tjkuWUif6qbWvFtQJR5/ipqbUnfAqL254LKNlPy6tATCzioKSuHuOqgzloDkSwRtX0LtcL2otHS69hK343m+SjdL+vlj71tT39' # str | Continuation token used to retrieve subsequent media. (optional)
 
                 try:
@@ -211,21 +248,34 @@ paths:
                 except Exception as e:
                     print("Exception when calling MediaApi->list_media: %s\n" % e)
         - lang: Ruby
-          source: |
+          source: >
             require 'time'
+
             require 'bandwidth-sdk'
+
             # setup authorization
+
             Bandwidth.configure do |config|
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
+
             api_instance = Bandwidth::MediaApi.new
-            account_id = '9900000' # String | Your Bandwidth Account ID.
+
+            account_id = '9900000' # String | This is your 7-digit Bandwidth
+            Account ID, as shown in the Bandwidth App. The older ID format
+            (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to
+            OAuth authentication, you must use the 7-digit Account ID.** 
+
             opts = {
               continuation_token: '1XEi2tsFtLo1JbtLwETnM1ZJ+PqAa8w6ENvC5QKvwyrCDYII663Gy5M4s40owR1tjkuWUif6qbWvFtQJR5/ipqbUnfAqL254LKNlPy6tATCzioKSuHuOqgzloDkSwRtX0LtcL2otHS69hK343m+SjdL+vlj71tT39' # String | Continuation token used to retrieve subsequent media.
             }
+
 
             begin
               # List Media
@@ -247,8 +297,11 @@ paths:
             const apiInstance = new MediaApi(configuration);
 
 
-            let accountId: string; //Your Bandwidth Account ID. (default to
-            undefined)
+            let accountId: string; //This is your 7-digit Bandwidth Account ID,
+            as shown in the Bandwidth App. The older ID format
+            (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to
+            OAuth authentication, you must use the 7-digit Account ID.** 
+            (default to undefined)
 
             let continuationToken: string; //Continuation token used to retrieve
             subsequent media. (optional) (default to undefined)
@@ -291,7 +344,7 @@ paths:
         - lang: cURL
           source: >-
             curl
-            'https://messaging.bandwidth.com/api/v2/users/9900000/media/14762070468292kw2fuqty55yp2b2/0/bw.png'
+            'https://messaging.bandwidth.com/api/v2/users/9900000/media/bw.png'
             \
               -H 'Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=' \
               -H 'Accept: application/octet-stream'
@@ -314,10 +367,12 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new MediaApi(config);
-                        var accountId = 9900000;  // string | Your Bandwidth Account ID.
-                        var mediaId = 14762070468292kw2fuqty55yp2b2/0/bw.png;  // string | Media ID to retrieve.
+                        var accountId = 9900000;  // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
+                        var mediaId = bw.png;  // string | The ID of the media file.
 
                         try
                         {
@@ -354,9 +409,13 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 MediaApi apiInstance = new MediaApi(defaultClient);
-                String accountId = "9900000"; // String | Your Bandwidth Account ID.
-                String mediaId = "14762070468292kw2fuqty55yp2b2/0/bw.png"; // String | Media ID to retrieve.
+                String accountId = "9900000"; // String | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
+                String mediaId = "bw.png"; // String | The ID of the media file.
                 try {
                   File result = apiInstance.getMedia(accountId, mediaId);
                   System.out.println(result);
@@ -370,32 +429,53 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
 
-            require "vendor/autoload.php";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'messagingBasicAuthUserName' => $BW_USERNAME,
-                    'messagingBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\MediaApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $messagingClient = $client->getMessaging()->getClient();
+            $account_id = 9900000; // string | This is your 7-digit Bandwidth
+            Account ID, as shown in the Bandwidth App. The older ID format
+            (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to
+            OAuth authentication, you must use the 7-digit Account ID.**
 
-            $mediaFileName = "media-id-123";
+            $media_id = bw.png; // string | The ID of the media file.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $response = $messagingClient->getMedia($BW_ACCOUNT_ID, $mediaFileName);
-                $downloadedMediaFile = $response->getResult();
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $result = $apiInstance->getMedia($account_id, $media_id, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling MediaApi->getMedia: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -435,13 +515,21 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
                 # Create an instance of the API class
                 api_instance = bandwidth.MediaApi(api_client)
-                account_id = '9900000' # str | Your Bandwidth Account ID.
-                media_id = '14762070468292kw2fuqty55yp2b2/0/bw.png' # str | Media ID to retrieve.
+                account_id = '9900000' # str | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
+                media_id = 'bw.png' # str | The ID of the media file.
 
                 try:
                     # Get Media
@@ -462,15 +550,20 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
             api_instance = Bandwidth::MediaApi.new
 
-            account_id = '9900000' # String | Your Bandwidth Account ID.
+            account_id = '9900000' # String | This is your 7-digit Bandwidth
+            Account ID, as shown in the Bandwidth App. The older ID format
+            (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to
+            OAuth authentication, you must use the 7-digit Account ID.** 
 
-            media_id = '14762070468292kw2fuqty55yp2b2/0/bw.png' # String | Media
-            ID to retrieve.
+            media_id = 'bw.png' # String | The ID of the media file.
 
 
             begin
@@ -493,10 +586,14 @@ paths:
             const apiInstance = new MediaApi(configuration);
 
 
-            let accountId: string; //Your Bandwidth Account ID. (default to
-            undefined)
+            let accountId: string; //This is your 7-digit Bandwidth Account ID,
+            as shown in the Bandwidth App. The older ID format
+            (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to
+            OAuth authentication, you must use the 7-digit Account ID.** 
+            (default to undefined)
 
-            let mediaId: string; //Media ID to retrieve. (default to undefined)
+            let mediaId: string; //The ID of the media file. (default to
+            undefined)
 
 
             const { status, data } = await apiInstance.getMedia(
@@ -506,12 +603,11 @@ paths:
     put:
       summary: Upload Media
       description: >-
-        Upload a file. You may add headers to the request in order to provide
-        some control to your media file.
+        Upload a file.
 
 
-        If a file is uploaded with the same name as a file that already exists
-        under this account, the previous file will be overwritten.
+        Filename should always be unique. Reusing filenames may result in the
+        wrong media being sent.
 
 
         A list of supported media types can be found at [Bandwidth
@@ -573,13 +669,15 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new MediaApi(config);
-                        var accountId = 9900000;  // string | Your Bandwidth Account ID.
-                        var mediaId = 14762070468292kw2fuqty55yp2b2/0/bw.png;  // string | Media ID to retrieve.
+                        var accountId = 9900000;  // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
+                        var mediaId = bw.png;  // string | The ID of the media file.
                         var body = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // System.IO.Stream | 
                         var contentType = audio/wav;  // string | The media type of the entity-body. (optional) 
-                        var cacheControl = no-cache;  // string | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional) 
+                        var cacheControl = no-cache;  // string | Pass-through header stored with the media and returned when the media is retrieved by the user. Does not affect internal server caching behavior. (optional) 
 
                         try
                         {
@@ -615,12 +713,16 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 MediaApi apiInstance = new MediaApi(defaultClient);
-                String accountId = "9900000"; // String | Your Bandwidth Account ID.
-                String mediaId = "14762070468292kw2fuqty55yp2b2/0/bw.png"; // String | Media ID to retrieve.
+                String accountId = "9900000"; // String | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
+                String mediaId = "bw.png"; // String | The ID of the media file.
                 File body = new File("/path/to/file"); // File | 
                 String contentType = "audio/wav"; // String | The media type of the entity-body.
-                String cacheControl = "no-cache"; // String | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.
+                String cacheControl = "no-cache"; // String | Pass-through header stored with the media and returned when the media is retrieved by the user. Does not affect internal server caching behavior.
                 try {
                   apiInstance.uploadMedia(accountId, mediaId, body, contentType, cacheControl);
                 } catch (ApiException e) {
@@ -636,40 +738,58 @@ paths:
           source: >
             <?php
 
-
-            require "vendor/autoload.php";
-
-
-            api-username = "api-username";
-
-            api-password = "api-pasword";
-
-            12345 = "12345";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'messagingBasicAuthUserName' => $BW_USERNAME,
-                    'messagingBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\MediaApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
 
-            $client = new BandwidthLib\BandwidthClient($config);
+            $account_id = 9900000; // string | This is your 7-digit Bandwidth
+            Account ID, as shown in the Bandwidth App. The older ID format
+            (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to
+            OAuth authentication, you must use the 7-digit Account ID.**
+
+            $media_id = bw.png; // string | The ID of the media file.
+
+            $body = '/path/to/file.txt'; // \SplFileObject
+
+            $content_type = audio/wav; // string | The media type of the
+            entity-body.
+
+            $cache_control = no-cache; // string | Pass-through header stored
+            with the media and returned when the media is retrieved by the user.
+            Does not affect internal server caching behavior.
 
 
-            $messagingClient = $client->getMessaging()->getClient();
+            $hostIndex = 0;
 
+            $variables = [
 
-            $mediaFileName = "sample_file_name";
-
-            $mediaFile = "12345"; //Any binary string will work for the upload.
-            This includes file contents
+            ];
 
 
             try {
-                $messagingClient->uploadMedia($BW_ACCOUNT_ID, $mediaFileName, $mediaFile);
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $apiInstance->uploadMedia($account_id, $media_id, $body, $content_type, $cache_control, $hostIndex, $variables);
+            } catch (Exception $e) {
+                echo 'Exception when calling MediaApi->uploadMedia: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -709,16 +829,24 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
                 # Create an instance of the API class
                 api_instance = bandwidth.MediaApi(api_client)
-                account_id = '9900000' # str | Your Bandwidth Account ID.
-                media_id = '14762070468292kw2fuqty55yp2b2/0/bw.png' # str | Media ID to retrieve.
+                account_id = '9900000' # str | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
+                media_id = 'bw.png' # str | The ID of the media file.
                 body = None # bytearray | 
                 content_type = 'audio/wav' # str | The media type of the entity-body. (optional)
-                cache_control = 'no-cache' # str | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)
+                cache_control = 'no-cache' # str | Pass-through header stored with the media and returned when the media is retrieved by the user. Does not affect internal server caching behavior. (optional)
 
                 try:
                     # Upload Media
@@ -737,21 +865,26 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
             api_instance = Bandwidth::MediaApi.new
 
-            account_id = '9900000' # String | Your Bandwidth Account ID.
+            account_id = '9900000' # String | This is your 7-digit Bandwidth
+            Account ID, as shown in the Bandwidth App. The older ID format
+            (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to
+            OAuth authentication, you must use the 7-digit Account ID.** 
 
-            media_id = '14762070468292kw2fuqty55yp2b2/0/bw.png' # String | Media
-            ID to retrieve.
+            media_id = 'bw.png' # String | The ID of the media file.
 
             body = File.new('/path/to/some/file') # File | 
 
             opts = {
               content_type: 'audio/wav', # String | The media type of the entity-body.
-              cache_control: 'no-cache' # String | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.
+              cache_control: 'no-cache' # String | Pass-through header stored with the media and returned when the media is retrieved by the user. Does not affect internal server caching behavior.
             }
 
 
@@ -774,19 +907,24 @@ paths:
             const apiInstance = new MediaApi(configuration);
 
 
-            let accountId: string; //Your Bandwidth Account ID. (default to
-            undefined)
+            let accountId: string; //This is your 7-digit Bandwidth Account ID,
+            as shown in the Bandwidth App. The older ID format
+            (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to
+            OAuth authentication, you must use the 7-digit Account ID.** 
+            (default to undefined)
 
-            let mediaId: string; //Media ID to retrieve. (default to undefined)
+            let mediaId: string; //The ID of the media file. (default to
+            undefined)
 
             let body: File; //
 
             let contentType: string; //The media type of the entity-body.
             (optional) (default to undefined)
 
-            let cacheControl: string; //General-header field is used to specify
-            directives that MUST be obeyed by all caching mechanisms along the
-            request/response chain. (optional) (default to undefined)
+            let cacheControl: string; //Pass-through header stored with the
+            media and returned when the media is retrieved by the user. Does not
+            affect internal server caching behavior. (optional) (default to
+            undefined)
 
 
             const { status, data } = await apiInstance.uploadMedia(
@@ -833,7 +971,7 @@ paths:
         - lang: cURL
           source: >-
             curl -X DELETE
-            'https://messaging.bandwidth.com/api/v2/users/9900000/media/14762070468292kw2fuqty55yp2b2/0/bw.png'
+            'https://messaging.bandwidth.com/api/v2/users/9900000/media/bw.png'
             \
               -H 'Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=' \
               -H 'Accept: application/json'
@@ -856,10 +994,12 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new MediaApi(config);
-                        var accountId = 9900000;  // string | Your Bandwidth Account ID.
-                        var mediaId = 14762070468292kw2fuqty55yp2b2/0/bw.png;  // string | Media ID to retrieve.
+                        var accountId = 9900000;  // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
+                        var mediaId = bw.png;  // string | The ID of the media file.
 
                         try
                         {
@@ -895,9 +1035,13 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 MediaApi apiInstance = new MediaApi(defaultClient);
-                String accountId = "9900000"; // String | Your Bandwidth Account ID.
-                String mediaId = "14762070468292kw2fuqty55yp2b2/0/bw.png"; // String | Media ID to retrieve.
+                String accountId = "9900000"; // String | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
+                String mediaId = "bw.png"; // String | The ID of the media file.
                 try {
                   apiInstance.deleteMedia(accountId, mediaId);
                 } catch (ApiException e) {
@@ -910,34 +1054,52 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
-              
-            require "vendor/autoload.php";
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
-            1234-asdf = "1234-asdf";
-            +15554443333 = "+15554443333";
-            +15553334444 = "+15553334444";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'messagingBasicAuthUserName' => $BW_USERNAME,
-                    'messagingBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\MediaApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $messagingClient = $client->getMessaging()->getClient();
+            $account_id = 9900000; // string | This is your 7-digit Bandwidth
+            Account ID, as shown in the Bandwidth App. The older ID format
+            (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to
+            OAuth authentication, you must use the 7-digit Account ID.**
 
-            $mediaId = "m-1234";
+            $media_id = bw.png; // string | The ID of the media file.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $messagingClient->deleteMedia($BW_ACCOUNT_ID, $mediaId);
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $apiInstance->deleteMedia($account_id, $media_id, $hostIndex, $variables);
+            } catch (Exception $e) {
+                echo 'Exception when calling MediaApi->deleteMedia: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -977,13 +1139,21 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
                 # Create an instance of the API class
                 api_instance = bandwidth.MediaApi(api_client)
-                account_id = '9900000' # str | Your Bandwidth Account ID.
-                media_id = '14762070468292kw2fuqty55yp2b2/0/bw.png' # str | Media ID to retrieve.
+                account_id = '9900000' # str | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
+                media_id = 'bw.png' # str | The ID of the media file.
 
                 try:
                     # Delete Media
@@ -1002,15 +1172,20 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
             api_instance = Bandwidth::MediaApi.new
 
-            account_id = '9900000' # String | Your Bandwidth Account ID.
+            account_id = '9900000' # String | This is your 7-digit Bandwidth
+            Account ID, as shown in the Bandwidth App. The older ID format
+            (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to
+            OAuth authentication, you must use the 7-digit Account ID.** 
 
-            media_id = '14762070468292kw2fuqty55yp2b2/0/bw.png' # String | Media
-            ID to retrieve.
+            media_id = 'bw.png' # String | The ID of the media file.
 
 
             begin
@@ -1032,10 +1207,14 @@ paths:
             const apiInstance = new MediaApi(configuration);
 
 
-            let accountId: string; //Your Bandwidth Account ID. (default to
-            undefined)
+            let accountId: string; //This is your 7-digit Bandwidth Account ID,
+            as shown in the Bandwidth App. The older ID format
+            (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to
+            OAuth authentication, you must use the 7-digit Account ID.** 
+            (default to undefined)
 
-            let mediaId: string; //Media ID to retrieve. (default to undefined)
+            let mediaId: string; //The ID of the media file. (default to
+            undefined)
 
 
             const { status, data } = await apiInstance.deleteMedia(
@@ -1107,7 +1286,7 @@ paths:
         - lang: cURL
           source: >-
             curl
-            'https://messaging.bandwidth.com/api/v2/users/9900000/messages?messageId=9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6&sourceTn=%2B15554443333&destinationTn=%2B15554443333&messageStatus=RECEIVED&messageDirection=INBOUND&carrierName=Verizon&messageType=sms&errorCode=9902&fromDateTime=2022-09-14T18%3A20%3A16.000Z&toDateTime=2022-09-14T18%3A20%3A16.000Z&campaignId=CJEUMDK&sort=sourceTn%3Adesc&pageToken=gdEewhcJLQRB5&limit=50&limitTotalCount=true'
+            'https://messaging.bandwidth.com/api/v2/users/9900000/messages?messageId=9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6&sourceTn=%2B15554443333&destinationTn=%2B15554443333&messageStatus=RECEIVED&messageDirection=INBOUND&carrierName=Verizon&messageType=sms&errorCode=9902&fromDateTime=2022-09-14T18%3A20%3A16.000Z&toDateTime=2022-09-14T18%3A20%3A16.000Z&campaignId=CJEUMDK&fromBwLatency=5&bwQueued=true&product=P2P&location=123ABC&carrierQueued=true&fromCarrierLatency=50&callingNumberCountryA3=USA&calledNumberCountryA3=USA&fromSegmentCount=1&toSegmentCount=3&fromMessageSize=100&toMessageSize=120&sort=sourceTn%3Adesc&pageToken=gdEewhcJLQRB5&limit=50&limitTotalCount=true'
             \
               -H 'Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=' \
               -H 'Accept: application/json'
@@ -1130,9 +1309,11 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new MessagesApi(config);
-                        var accountId = 9900000;  // string | Your Bandwidth Account ID.
+                        var accountId = 9900000;  // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
                         var messageId = 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6;  // string | The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional) 
                         var sourceTn = %2B15554443333;  // string | The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919'). (optional) 
                         var destinationTn = %2B15554443333;  // string | The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919'). (optional) 
@@ -1144,6 +1325,18 @@ paths:
                         var fromDateTime = 2022-09-14T18:20:16.000Z;  // string | The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional) 
                         var toDateTime = 2022-09-14T18:20:16.000Z;  // string | The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional) 
                         var campaignId = CJEUMDK;  // string | The campaign ID of the message. (optional) 
+                        var fromBwLatency = 5;  // int? | The minimum Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled. (optional) 
+                        var bwQueued = true;  // bool? | A boolean value indicating whether the message is queued in the Bandwidth network. (optional) 
+                        var product = P2P;  // ProductTypeEnum? | Messaging product associated with the message. (optional) 
+                        var location = 123ABC;  // string | Location Id associated with the message. (optional) 
+                        var carrierQueued = true;  // bool? | A boolean value indicating whether the message is queued in the carrier network. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. (optional) 
+                        var fromCarrierLatency = 50;  // int? | The minimum carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. (optional) 
+                        var callingNumberCountryA3 = USA;  // string | Calling number country in A3 format. (optional) 
+                        var calledNumberCountryA3 = USA;  // string | Called number country in A3 format. (optional) 
+                        var fromSegmentCount = 1;  // int? | Segment count (start range). (optional) 
+                        var toSegmentCount = 3;  // int? | Segment count (end range). (optional) 
+                        var fromMessageSize = 100;  // int? | Message size (start range). (optional) 
+                        var toMessageSize = 120;  // int? | Message size (end range). (optional) 
                         var sort = sourceTn:desc;  // string | The field and direction to sort by combined with a colon. Direction is either asc or desc. (optional) 
                         var pageToken = gdEewhcJLQRB5;  // string | A base64 encoded value used for pagination of results. (optional) 
                         var limit = 50;  // int? | The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. (optional) 
@@ -1152,7 +1345,7 @@ paths:
                         try
                         {
                             // List Messages
-                            MessagesList result = apiInstance.ListMessages(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, sort, pageToken, limit, limitTotalCount);
+                            MessagesList result = apiInstance.ListMessages(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, fromBwLatency, bwQueued, product, location, carrierQueued, fromCarrierLatency, callingNumberCountryA3, calledNumberCountryA3, fromSegmentCount, toSegmentCount, fromMessageSize, toMessageSize, sort, pageToken, limit, limitTotalCount);
                             Debug.WriteLine(result);
                         }
                         catch (ApiException  e)
@@ -1184,8 +1377,12 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 MessagesApi apiInstance = new MessagesApi(defaultClient);
-                String accountId = "9900000"; // String | Your Bandwidth Account ID.
+                String accountId = "9900000"; // String | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
                 String messageId = "9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6"; // String | The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter.
                 String sourceTn = "%2B15554443333"; // String | The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919').
                 String destinationTn = "%2B15554443333"; // String | The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919').
@@ -1197,12 +1394,24 @@ paths:
                 String fromDateTime = "2022-09-14T18:20:16.000Z"; // String | The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
                 String toDateTime = "2022-09-14T18:20:16.000Z"; // String | The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
                 String campaignId = "CJEUMDK"; // String | The campaign ID of the message.
+                Integer fromBwLatency = 5; // Integer | The minimum Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled.
+                Boolean bwQueued = true; // Boolean | A boolean value indicating whether the message is queued in the Bandwidth network.
+                ProductTypeEnum product = ProductTypeEnum.fromValue("LOCAL_A2P"); // ProductTypeEnum | Messaging product associated with the message.
+                String location = "123ABC"; // String | Location Id associated with the message.
+                Boolean carrierQueued = true; // Boolean | A boolean value indicating whether the message is queued in the carrier network. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled.
+                Integer fromCarrierLatency = 50; // Integer | The minimum carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled.
+                String callingNumberCountryA3 = "USA"; // String | Calling number country in A3 format.
+                String calledNumberCountryA3 = "USA"; // String | Called number country in A3 format.
+                Integer fromSegmentCount = 1; // Integer | Segment count (start range).
+                Integer toSegmentCount = 3; // Integer | Segment count (end range).
+                Integer fromMessageSize = 100; // Integer | Message size (start range).
+                Integer toMessageSize = 120; // Integer | Message size (end range).
                 String sort = "sourceTn:desc"; // String | The field and direction to sort by combined with a colon. Direction is either asc or desc.
                 String pageToken = "gdEewhcJLQRB5"; // String | A base64 encoded value used for pagination of results.
                 Integer limit = 50; // Integer | The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.
                 Boolean limitTotalCount = true; // Boolean | When set to true, the response's totalCount field will have a maximum value of 10,000. When set to false, or excluded, this will give an accurate totalCount of all messages that match the provided filters. If you are experiencing latency, try using this parameter to limit your results.
                 try {
-                  MessagesList result = apiInstance.listMessages(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, sort, pageToken, limit, limitTotalCount);
+                  MessagesList result = apiInstance.listMessages(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, fromBwLatency, bwQueued, product, location, carrierQueued, fromCarrierLatency, callingNumberCountryA3, calledNumberCountryA3, fromSegmentCount, toSegmentCount, fromMessageSize, toMessageSize, sort, pageToken, limit, limitTotalCount);
                   System.out.println(result);
                 } catch (ApiException e) {
                   System.err.println("Exception when calling MessagesApi#listMessages");
@@ -1214,31 +1423,155 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
 
-            require "vendor/autoload.php";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
-            +15554443333 = "+15554443333";
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'messagingBasicAuthUserName' => $BW_USERNAME,
-                    'messagingBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\MessagesApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $messagingClient = $client->getMessaging()->getClient();
+            $account_id = 9900000; // string | This is your 7-digit Bandwidth
+            Account ID, as shown in the Bandwidth App. The older ID format
+            (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to
+            OAuth authentication, you must use the 7-digit Account ID.**
+
+            $message_id = 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6; // string | The
+            ID of the message to search for. Special characters need to be
+            encoded using URL encoding. Message IDs could come in different
+            formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and
+            1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note
+            that you must include at least one query parameter.
+
+            $source_tn = %2B15554443333; // string | The phone number that sent
+            the message. Accepted values are: a single full phone number a comma
+            separated list of full phone numbers (maximum of 10) or a single
+            partial phone number (minimum of 5 characters e.g. '%2B1919').
+
+            $destination_tn = %2B15554443333; // string | The phone number that
+            received the message. Accepted values are: a single full phone
+            number a comma separated list of full phone numbers (maximum of 10)
+            or a single partial phone number (minimum of 5 characters e.g.
+            '%2B1919').
+
+            $message_status = new
+            \Bandwidth\Model\\Bandwidth\Model\MessageStatusEnum(); //
+            \Bandwidth\Model\MessageStatusEnum | The status of the message. One
+            of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED
+            UNDELIVERED.
+
+            $message_direction = new
+            \Bandwidth\Model\\Bandwidth\Model\ListMessageDirectionEnum(); //
+            \Bandwidth\Model\ListMessageDirectionEnum | The direction of the
+            message. One of INBOUND OUTBOUND.
+
+            $carrier_name = Verizon; // string | The name of the carrier used
+            for this message. Possible values include but are not limited to
+            Verizon and TMobile. Special characters need to be encoded using URL
+            encoding (i.e. AT&T should be passed as AT%26T).
+
+            $message_type = new
+            \Bandwidth\Model\\Bandwidth\Model\MessageTypeEnum(); //
+            \Bandwidth\Model\MessageTypeEnum | The type of message. Either sms
+            or mms.
+
+            $error_code = 9902; // int | The error code of the message.
+
+            $from_date_time = 2022-09-14T18:20:16.000Z; // string | The start of
+            the date range to search in ISO 8601 format. Uses the message
+            receive time. The date range to search in is currently 14 days.
+
+            $to_date_time = 2022-09-14T18:20:16.000Z; // string | The end of the
+            date range to search in ISO 8601 format. Uses the message receive
+            time. The date range to search in is currently 14 days.
+
+            $campaign_id = CJEUMDK; // string | The campaign ID of the message.
+
+            $from_bw_latency = 5; // int | The minimum Bandwidth latency of the
+            message in seconds. Only available for accounts with the Advanced
+            Quality Metrics feature enabled.
+
+            $bw_queued = true; // bool | A boolean value indicating whether the
+            message is queued in the Bandwidth network.
+
+            $product = P2P; // \Bandwidth\Model\ProductTypeEnum | Messaging
+            product associated with the message.
+
+            $location = 123ABC; // string | Location Id associated with the
+            message.
+
+            $carrier_queued = true; // bool | A boolean value indicating whether
+            the message is queued in the carrier network. Only available for
+            OUTBOUND messages from accounts with the Advanced Quality Metrics
+            feature enabled.
+
+            $from_carrier_latency = 50; // int | The minimum carrier latency of
+            the message in seconds. Only available for OUTBOUND messages from
+            accounts with the Advanced Quality Metrics feature enabled.
+
+            $calling_number_country_a3 = USA; // string | Calling number country
+            in A3 format.
+
+            $called_number_country_a3 = USA; // string | Called number country
+            in A3 format.
+
+            $from_segment_count = 1; // int | Segment count (start range).
+
+            $to_segment_count = 3; // int | Segment count (end range).
+
+            $from_message_size = 100; // int | Message size (start range).
+
+            $to_message_size = 120; // int | Message size (end range).
+
+            $sort = sourceTn:desc; // string | The field and direction to sort
+            by combined with a colon. Direction is either asc or desc.
+
+            $page_token = gdEewhcJLQRB5; // string | A base64 encoded value used
+            for pagination of results.
+
+            $limit = 50; // int | The maximum records requested in search
+            result. Default 100. The sum of limit and after cannot be more than
+            10000.
+
+            $limit_total_count = true; // bool | When set to true, the
+            response's totalCount field will have a maximum value of 10,000.
+            When set to false, or excluded, this will give an accurate
+            totalCount of all messages that match the provided filters. If you
+            are experiencing latency, try using this parameter to limit your
+            results.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $response = $messagingClient->getMessages($BW_ACCOUNT_ID, $sourceTn = $BW_NUMBER);
-                print_r($response->getResult()->totalCount);
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $result = $apiInstance->listMessages($account_id, $message_id, $source_tn, $destination_tn, $message_status, $message_direction, $carrier_name, $message_type, $error_code, $from_date_time, $to_date_time, $campaign_id, $from_bw_latency, $bw_queued, $product, $location, $carrier_queued, $from_carrier_latency, $calling_number_country_a3, $called_number_country_a3, $from_segment_count, $to_segment_count, $from_message_size, $to_message_size, $sort, $page_token, $limit, $limit_total_count, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling MessagesApi->listMessages: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -1252,6 +1585,8 @@ paths:
             from bandwidth.models.message_type_enum import MessageTypeEnum
 
             from bandwidth.models.messages_list import MessagesList
+
+            from bandwidth.models.product_type_enum import ProductTypeEnum
 
             from bandwidth.rest import ApiException
 
@@ -1287,12 +1622,20 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
                 # Create an instance of the API class
                 api_instance = bandwidth.MessagesApi(api_client)
-                account_id = '9900000' # str | Your Bandwidth Account ID.
+                account_id = '9900000' # str | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
                 message_id = '9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6' # str | The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional)
                 source_tn = '%2B15554443333' # str | The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919'). (optional)
                 destination_tn = '%2B15554443333' # str | The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919'). (optional)
@@ -1304,6 +1647,18 @@ paths:
                 from_date_time = '2022-09-14T18:20:16.000Z' # str | The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)
                 to_date_time = '2022-09-14T18:20:16.000Z' # str | The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)
                 campaign_id = 'CJEUMDK' # str | The campaign ID of the message. (optional)
+                from_bw_latency = 5 # int | The minimum Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled. (optional)
+                bw_queued = true # bool | A boolean value indicating whether the message is queued in the Bandwidth network. (optional)
+                product = bandwidth.ProductTypeEnum() # ProductTypeEnum | Messaging product associated with the message. (optional)
+                location = '123ABC' # str | Location Id associated with the message. (optional)
+                carrier_queued = true # bool | A boolean value indicating whether the message is queued in the carrier network. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. (optional)
+                from_carrier_latency = 50 # int | The minimum carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. (optional)
+                calling_number_country_a3 = 'USA' # str | Calling number country in A3 format. (optional)
+                called_number_country_a3 = 'USA' # str | Called number country in A3 format. (optional)
+                from_segment_count = 1 # int | Segment count (start range). (optional)
+                to_segment_count = 3 # int | Segment count (end range). (optional)
+                from_message_size = 100 # int | Message size (start range). (optional)
+                to_message_size = 120 # int | Message size (end range). (optional)
                 sort = 'sourceTn:desc' # str | The field and direction to sort by combined with a colon. Direction is either asc or desc. (optional)
                 page_token = 'gdEewhcJLQRB5' # str | A base64 encoded value used for pagination of results. (optional)
                 limit = 50 # int | The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. (optional)
@@ -1311,24 +1666,36 @@ paths:
 
                 try:
                     # List Messages
-                    api_response = api_instance.list_messages(account_id, message_id=message_id, source_tn=source_tn, destination_tn=destination_tn, message_status=message_status, message_direction=message_direction, carrier_name=carrier_name, message_type=message_type, error_code=error_code, from_date_time=from_date_time, to_date_time=to_date_time, campaign_id=campaign_id, sort=sort, page_token=page_token, limit=limit, limit_total_count=limit_total_count)
+                    api_response = api_instance.list_messages(account_id, message_id=message_id, source_tn=source_tn, destination_tn=destination_tn, message_status=message_status, message_direction=message_direction, carrier_name=carrier_name, message_type=message_type, error_code=error_code, from_date_time=from_date_time, to_date_time=to_date_time, campaign_id=campaign_id, from_bw_latency=from_bw_latency, bw_queued=bw_queued, product=product, location=location, carrier_queued=carrier_queued, from_carrier_latency=from_carrier_latency, calling_number_country_a3=calling_number_country_a3, called_number_country_a3=called_number_country_a3, from_segment_count=from_segment_count, to_segment_count=to_segment_count, from_message_size=from_message_size, to_message_size=to_message_size, sort=sort, page_token=page_token, limit=limit, limit_total_count=limit_total_count)
                     print("The response of MessagesApi->list_messages:\n")
                     pprint(api_response)
                 except Exception as e:
                     print("Exception when calling MessagesApi->list_messages: %s\n" % e)
         - lang: Ruby
-          source: |
+          source: >
             require 'time'
+
             require 'bandwidth-sdk'
+
             # setup authorization
+
             Bandwidth.configure do |config|
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
+
             api_instance = Bandwidth::MessagesApi.new
-            account_id = '9900000' # String | Your Bandwidth Account ID.
+
+            account_id = '9900000' # String | This is your 7-digit Bandwidth
+            Account ID, as shown in the Bandwidth App. The older ID format
+            (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to
+            OAuth authentication, you must use the 7-digit Account ID.** 
+
             opts = {
               message_id: '9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6', # String | The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter.
               source_tn: '%2B15554443333', # String | The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919').
@@ -1341,11 +1708,24 @@ paths:
               from_date_time: '2022-09-14T18:20:16.000Z', # String | The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
               to_date_time: '2022-09-14T18:20:16.000Z', # String | The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
               campaign_id: 'CJEUMDK', # String | The campaign ID of the message.
+              from_bw_latency: 5, # Integer | The minimum Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled.
+              bw_queued: true, # Boolean | A boolean value indicating whether the message is queued in the Bandwidth network.
+              product: Bandwidth::ProductTypeEnum::LOCAL_A2_P, # ProductTypeEnum | Messaging product associated with the message.
+              location: '123ABC', # String | Location Id associated with the message.
+              carrier_queued: true, # Boolean | A boolean value indicating whether the message is queued in the carrier network. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled.
+              from_carrier_latency: 50, # Integer | The minimum carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled.
+              calling_number_country_a3: 'USA', # String | Calling number country in A3 format.
+              called_number_country_a3: 'USA', # String | Called number country in A3 format.
+              from_segment_count: 1, # Integer | Segment count (start range).
+              to_segment_count: 3, # Integer | Segment count (end range).
+              from_message_size: 100, # Integer | Message size (start range).
+              to_message_size: 120, # Integer | Message size (end range).
               sort: 'sourceTn:desc', # String | The field and direction to sort by combined with a colon. Direction is either asc or desc.
               page_token: 'gdEewhcJLQRB5', # String | A base64 encoded value used for pagination of results.
               limit: 50, # Integer | The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.
               limit_total_count: true # Boolean | When set to true, the response's totalCount field will have a maximum value of 10,000. When set to false, or excluded, this will give an accurate totalCount of all messages that match the provided filters. If you are experiencing latency, try using this parameter to limit your results.
             }
+
 
             begin
               # List Messages
@@ -1367,8 +1747,11 @@ paths:
             const apiInstance = new MessagesApi(configuration);
 
 
-            let accountId: string; //Your Bandwidth Account ID. (default to
-            undefined)
+            let accountId: string; //This is your 7-digit Bandwidth Account ID,
+            as shown in the Bandwidth App. The older ID format
+            (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to
+            OAuth authentication, you must use the 7-digit Account ID.** 
+            (default to undefined)
 
             let messageId: string; //The ID of the message to search for.
             Special characters need to be encoded using URL encoding. Message
@@ -1421,6 +1804,48 @@ paths:
             let campaignId: string; //The campaign ID of the message. (optional)
             (default to undefined)
 
+            let fromBwLatency: number; //The minimum Bandwidth latency of the
+            message in seconds. Only available for accounts with the Advanced
+            Quality Metrics feature enabled. (optional) (default to undefined)
+
+            let bwQueued: boolean; //A boolean value indicating whether the
+            message is queued in the Bandwidth network. (optional) (default to
+            undefined)
+
+            let product: ProductTypeEnum; //Messaging product associated with
+            the message. (optional) (default to undefined)
+
+            let location: string; //Location Id associated with the message.
+            (optional) (default to undefined)
+
+            let carrierQueued: boolean; //A boolean value indicating whether the
+            message is queued in the carrier network. Only available for
+            OUTBOUND messages from accounts with the Advanced Quality Metrics
+            feature enabled. (optional) (default to undefined)
+
+            let fromCarrierLatency: number; //The minimum carrier latency of the
+            message in seconds. Only available for OUTBOUND messages from
+            accounts with the Advanced Quality Metrics feature enabled.
+            (optional) (default to undefined)
+
+            let callingNumberCountryA3: string; //Calling number country in A3
+            format. (optional) (default to undefined)
+
+            let calledNumberCountryA3: string; //Called number country in A3
+            format. (optional) (default to undefined)
+
+            let fromSegmentCount: number; //Segment count (start range).
+            (optional) (default to undefined)
+
+            let toSegmentCount: number; //Segment count (end range). (optional)
+            (default to undefined)
+
+            let fromMessageSize: number; //Message size (start range).
+            (optional) (default to undefined)
+
+            let toMessageSize: number; //Message size (end range). (optional)
+            (default to undefined)
+
             let sort: string; //The field and direction to sort by combined with
             a colon. Direction is either asc or desc. (optional) (default to
             undefined)
@@ -1453,6 +1878,18 @@ paths:
                 fromDateTime,
                 toDateTime,
                 campaignId,
+                fromBwLatency,
+                bwQueued,
+                product,
+                location,
+                carrierQueued,
+                fromCarrierLatency,
+                callingNumberCountryA3,
+                calledNumberCountryA3,
+                fromSegmentCount,
+                toSegmentCount,
+                fromMessageSize,
+                toMessageSize,
                 sort,
                 pageToken,
                 limit,
@@ -1537,9 +1974,11 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new MessagesApi(config);
-                        var accountId = 9900000;  // string | Your Bandwidth Account ID.
+                        var accountId = 9900000;  // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
                         var messageRequest = new MessageRequest(); // MessageRequest | 
 
                         try
@@ -1577,8 +2016,12 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 MessagesApi apiInstance = new MessagesApi(defaultClient);
-                String accountId = "9900000"; // String | Your Bandwidth Account ID.
+                String accountId = "9900000"; // String | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
                 MessageRequest messageRequest = new MessageRequest(); // MessageRequest | 
                 try {
                   Message result = apiInstance.createMessage(accountId, messageRequest);
@@ -1593,39 +2036,54 @@ paths:
               }
             }
         - lang: PHP
-          source: |
+          source: >
             <?php
 
-            require "vendor/autoload.php";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
-            api-username = "api-username";
-            api-password = "api-pasword";
-            12345 = "12345";
-            1234-asdf = "1234-asdf";
-            +15554443333 = "+15554443333";
-            +15553334444 = "+15553334444";
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'messagingBasicAuthUserName' => $BW_USERNAME,
-                    'messagingBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\MessagesApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
-            $client = new BandwidthLib\BandwidthClient($config);
 
-            $messagingClient = $client->getMessaging()->getClient();
+            $account_id = 9900000; // string | This is your 7-digit Bandwidth
+            Account ID, as shown in the Bandwidth App. The older ID format
+            (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to
+            OAuth authentication, you must use the 7-digit Account ID.**
 
-            $body = new BandwidthLib\Messaging\Models\MessageRequest();
-            $body->from = $BW_NUMBER;
-            $body->to = array($USER_NUMBER);
-            $body->applicationId = $BW_MESSAGING_APPLICATION_ID;
-            $body->text = "Hello world";
+            $message_request = new \Bandwidth\Model\MessageRequest(); //
+            \Bandwidth\Model\MessageRequest
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
 
             try {
-                $response = $messagingClient->createMessage($BW_ACCOUNT_ID, $body);
-                print_r($response->getResult()->id);
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $result = $apiInstance->createMessage($account_id, $message_request, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling MessagesApi->createMessage: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -1669,12 +2127,20 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
                 # Create an instance of the API class
                 api_instance = bandwidth.MessagesApi(api_client)
-                account_id = '9900000' # str | Your Bandwidth Account ID.
+                account_id = '9900000' # str | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
                 message_request = bandwidth.MessageRequest() # MessageRequest | 
 
                 try:
@@ -1696,12 +2162,18 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
             api_instance = Bandwidth::MessagesApi.new
 
-            account_id = '9900000' # String | Your Bandwidth Account ID.
+            account_id = '9900000' # String | This is your 7-digit Bandwidth
+            Account ID, as shown in the Bandwidth App. The older ID format
+            (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to
+            OAuth authentication, you must use the 7-digit Account ID.** 
 
             message_request = Bandwidth::MessageRequest.new({application_id:
             '93de2206-9669-4e07-948d-329f4b722ee2', to: ["+15554443333",
@@ -1729,8 +2201,11 @@ paths:
             const apiInstance = new MessagesApi(configuration);
 
 
-            let accountId: string; //Your Bandwidth Account ID. (default to
-            undefined)
+            let accountId: string; //This is your 7-digit Bandwidth Account ID,
+            as shown in the Bandwidth App. The older ID format
+            (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to
+            OAuth authentication, you must use the 7-digit Account ID.** 
+            (default to undefined)
 
             let messageRequest: MessageRequest; //
 
@@ -1834,6 +2309,275 @@ paths:
                 "priority": "default",
                 "expiration": "2021-02-01T11:29:18-05:00"
               }'
+        - lang: C#
+          source: |
+            using System.Collections.Generic;
+            using System.Diagnostics;
+            using Bandwidth.Standard.Api;
+            using Bandwidth.Standard.Client;
+            using Bandwidth.Standard.Model;
+
+            namespace Example
+            {
+                public class CreateMultiChannelMessageExample
+                {
+                    public static void Main()
+                    {
+                        Configuration config = new Configuration();
+                        config.BasePath = "http://localhost";
+                        // Configure HTTP basic authorization: Basic
+                        config.Username = "YOUR_USERNAME";
+                        config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+                        var apiInstance = new MultiChannelApi(config);
+                        var accountId = 9900000;  // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
+                        var multiChannelMessageRequest = new MultiChannelMessageRequest(); // MultiChannelMessageRequest | 
+
+                        try
+                        {
+                            // Create Multi-Channel Message
+                            CreateMultiChannelMessageResponse result = apiInstance.CreateMultiChannelMessage(accountId, multiChannelMessageRequest);
+                            Debug.WriteLine(result);
+                        }
+                        catch (ApiException  e)
+                        {
+                            Debug.Print("Exception when calling MultiChannelApi.CreateMultiChannelMessage: " + e.Message);
+                            Debug.Print("Status Code: " + e.ErrorCode);
+                            Debug.Print(e.StackTrace);
+                        }
+                    }
+                }
+            }
+        - lang: Java
+          source: |
+            // Import classes:
+            import com.bandwidth.sdk.ApiClient;
+            import com.bandwidth.sdk.ApiException;
+            import com.bandwidth.sdk.Configuration;
+            import com.bandwidth.sdk.auth.*;
+            import com.bandwidth.sdk.models.*;
+            import com.bandwidth.sdk.api.MultiChannelApi;
+
+            public class Example {
+              public static void main(String[] args) {
+                ApiClient defaultClient = Configuration.getDefaultApiClient();
+                defaultClient.setBasePath("http://localhost");
+                
+                // Configure HTTP basic authorization: Basic
+                HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
+                Basic.setUsername("YOUR USERNAME");
+                Basic.setPassword("YOUR PASSWORD");
+
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+                MultiChannelApi apiInstance = new MultiChannelApi(defaultClient);
+                String accountId = "9900000"; // String | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
+                MultiChannelMessageRequest multiChannelMessageRequest = new MultiChannelMessageRequest(); // MultiChannelMessageRequest | 
+                try {
+                  CreateMultiChannelMessageResponse result = apiInstance.createMultiChannelMessage(accountId, multiChannelMessageRequest);
+                  System.out.println(result);
+                } catch (ApiException e) {
+                  System.err.println("Exception when calling MultiChannelApi#createMultiChannelMessage");
+                  System.err.println("Status code: " + e.getCode());
+                  System.err.println("Reason: " + e.getResponseBody());
+                  System.err.println("Response headers: " + e.getResponseHeaders());
+                  e.printStackTrace();
+                }
+              }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\MultiChannelApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | This is your 7-digit Bandwidth
+            Account ID, as shown in the Bandwidth App. The older ID format
+            (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to
+            OAuth authentication, you must use the 7-digit Account ID.**
+
+            $multi_channel_message_request = new
+            \Bandwidth\Model\MultiChannelMessageRequest(); //
+            \Bandwidth\Model\MultiChannelMessageRequest
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $result = $apiInstance->createMultiChannelMessage($account_id, $multi_channel_message_request, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling MultiChannelApi->createMultiChannelMessage: ', $e->getMessage(), PHP_EOL;
+            }
+        - lang: Python
+          source: >
+            import bandwidth
+
+            from bandwidth.models.create_multi_channel_message_response import
+            CreateMultiChannelMessageResponse
+
+            from bandwidth.models.multi_channel_message_request import
+            MultiChannelMessageRequest
+
+            from bandwidth.rest import ApiException
+
+            from pprint import pprint
+
+
+            # Defining the host is optional and defaults to http://localhost
+
+            # See configuration.py for a list of all supported configuration
+            parameters.
+
+            configuration = bandwidth.Configuration(
+                host = "http://localhost"
+            )
+
+
+            # The client must configure the authentication and authorization
+            parameters
+
+            # in accordance with the API server security policy.
+
+            # Examples for each auth method are provided below, use the example
+            that
+
+            # satisfies your auth use case.
+
+
+            # Configure HTTP basic authorization: Basic
+
+            configuration = bandwidth.Configuration(
+                username = os.environ["USERNAME"],
+                password = os.environ["PASSWORD"]
+            )
+
+
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
+            # Enter a context with an instance of the API client
+
+            with bandwidth.ApiClient(configuration) as api_client:
+                # Create an instance of the API class
+                api_instance = bandwidth.MultiChannelApi(api_client)
+                account_id = '9900000' # str | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
+                multi_channel_message_request = bandwidth.MultiChannelMessageRequest() # MultiChannelMessageRequest | 
+
+                try:
+                    # Create Multi-Channel Message
+                    api_response = api_instance.create_multi_channel_message(account_id, multi_channel_message_request)
+                    print("The response of MultiChannelApi->create_multi_channel_message:\n")
+                    pprint(api_response)
+                except Exception as e:
+                    print("Exception when calling MultiChannelApi->create_multi_channel_message: %s\n" % e)
+        - lang: Ruby
+          source: >
+            require 'time'
+
+            require 'bandwidth-sdk'
+
+            # setup authorization
+
+            Bandwidth.configure do |config|
+              # Configure HTTP basic authorization: Basic
+              config.username = 'YOUR USERNAME'
+              config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
+            end
+
+
+            api_instance = Bandwidth::MultiChannelApi.new
+
+            account_id = '9900000' # String | This is your 7-digit Bandwidth
+            Account ID, as shown in the Bandwidth App. The older ID format
+            (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to
+            OAuth authentication, you must use the 7-digit Account ID.** 
+
+            multi_channel_message_request =
+            Bandwidth::MultiChannelMessageRequest.new({to: '+15552223333',
+            channel_list:
+            [Bandwidth::MultiChannelChannelListRequestObject.new({from:
+            'BandwidthRBM', application_id:
+            '93de2206-9669-4e07-948d-329f4b722ee2', channel:
+            Bandwidth::MultiChannelMessageChannelEnum::RBM, content:
+            Bandwidth::MmsMessageContent.new})]}) # MultiChannelMessageRequest
+            | 
+
+
+            begin
+              # Create Multi-Channel Message
+              result = api_instance.create_multi_channel_message(account_id, multi_channel_message_request)
+              p result
+            rescue Bandwidth::ApiError => e
+              puts "Error when calling MultiChannelApi->create_multi_channel_message: #{e}"
+            end
+        - lang: TypeScript
+          source: >
+            import {
+                MultiChannelApi,
+                Configuration,
+                MultiChannelMessageRequest
+            } from 'bandwidth-sdk';
+
+
+            const configuration = new Configuration();
+
+            const apiInstance = new MultiChannelApi(configuration);
+
+
+            let accountId: string; //This is your 7-digit Bandwidth Account ID,
+            as shown in the Bandwidth App. The older ID format
+            (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to
+            OAuth authentication, you must use the 7-digit Account ID.** 
+            (default to undefined)
+
+            let multiChannelMessageRequest: MultiChannelMessageRequest; //
+
+
+            const { status, data } = await
+            apiInstance.createMultiChannelMessage(
+                accountId,
+                multiChannelMessageRequest
+            );
 components:
   parameters:
     accountId:
@@ -1873,8 +2617,8 @@ components:
       style: simple
       explode: false
       description: >-
-        General-header field is used to specify directives that MUST be obeyed
-        by all caching mechanisms along the request/response chain.
+        Pass-through header stored with the media and returned when the media is
+        retrieved by the user. Does not affect internal server caching behavior.
       example: no-cache
       schema:
         type: string

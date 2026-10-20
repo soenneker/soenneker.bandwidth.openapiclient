@@ -15,6 +15,7 @@ using Soenneker.Bandwidth.OpenApiClient.AuthServiceOauth;
 using Soenneker.Bandwidth.OpenApiClient.BillingModel;
 using Soenneker.Bandwidth.OpenApiClient.Brtc;
 using Soenneker.Bandwidth.OpenApiClient.BulkPortins;
+using Soenneker.Bandwidth.OpenApiClient.Cnam;
 using Soenneker.Bandwidth.OpenApiClient.Dash;
 using Soenneker.Bandwidth.OpenApiClient.DashNotifications;
 using Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning;
@@ -108,6 +109,11 @@ namespace Soenneker.Bandwidth.OpenApiClient
         public global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.BulkPortinsRequestBuilder BulkPortins
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.BulkPortinsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The cnam property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Cnam.CnamRequestBuilder Cnam
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.Cnam.CnamRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The dash property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Dash.DashRequestBuilder Dash

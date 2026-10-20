@@ -107,7 +107,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Media.Item
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Upload a file. You may add headers to the request in order to provide some control to your media file.If a file is uploaded with the same name as a file that already exists under this account, the previous file will be overwritten.A list of supported media types can be found at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823220-what-mms-file-types-are-supported).
+        /// Upload a file.Filename should always be unique. Reusing filenames may result in the wrong media being sent.A list of supported media types can be found at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823220-what-mms-file-types-are-supported).
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -183,7 +183,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Media.Item
             return requestInfo;
         }
         /// <summary>
-        /// Upload a file. You may add headers to the request in order to provide some control to your media file.If a file is uploaded with the same name as a file that already exists under this account, the previous file will be overwritten.A list of supported media types can be found at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823220-what-mms-file-types-are-supported).
+        /// Upload a file.Filename should always be unique. Reusing filenames may result in the wrong media being sent.A list of supported media types can be found at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823220-what-mms-file-types-are-supported).
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

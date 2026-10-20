@@ -34,7 +34,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.TollFreeVerification.Accounts.Item.P
         {
         }
         /// <summary>
-        /// Delete a toll-free verification submission for a toll-free number.
+        /// Delete a toll-free verification submission for a toll-free number.**Upcoming change (effective January 2027):** If a verification for the phone number is in progress, it will be cancelled and the submission will then be deleted asynchronously.
         /// </summary>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -107,7 +107,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.TollFreeVerification.Accounts.Item.P
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.TfvStatus>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.TfvStatus.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Updates a toll-free verification request.Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true).
+        /// Updates a toll-free verification request.Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true).Returns a `404` if no verification request exists for the phone number, and a `400` if the existing request is not eligible for resubmission.**Upcoming change (effective January 2027):** If a verification for the phone number is in progress, the update will be rejected with a `409 Conflict`.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -115,7 +115,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.TollFreeVerification.Accounts.Item.P
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError">When receiving a 400 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError">When receiving a 401 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError">When receiving a 404 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError">When receiving a 405 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError">When receiving a 409 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError">When receiving a 429 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError">When receiving a 500 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError">When receiving a 503 status code</exception>
@@ -135,7 +137,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.TollFreeVerification.Accounts.Item.P
                 { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError.CreateFromDiscriminatorValue },
                 { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError.CreateFromDiscriminatorValue },
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError.CreateFromDiscriminatorValue },
+                { "409", global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError.CreateFromDiscriminatorValue },
                 { "503", global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError.CreateFromDiscriminatorValue },
@@ -143,7 +147,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.TollFreeVerification.Accounts.Item.P
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Delete a toll-free verification submission for a toll-free number.
+        /// Delete a toll-free verification submission for a toll-free number.**Upcoming change (effective January 2027):** If a verification for the phone number is in progress, it will be cancelled and the submission will then be deleted asynchronously.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -181,7 +185,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.TollFreeVerification.Accounts.Item.P
             return requestInfo;
         }
         /// <summary>
-        /// Updates a toll-free verification request.Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true).
+        /// Updates a toll-free verification request.Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true).Returns a `404` if no verification request exists for the phone number, and a `400` if the existing request is not eligible for resubmission.**Upcoming change (effective January 2027):** If a verification for the phone number is in progress, the update will be rejected with a `409 Conflict`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

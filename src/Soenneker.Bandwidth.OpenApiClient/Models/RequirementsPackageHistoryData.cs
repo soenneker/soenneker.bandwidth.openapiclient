@@ -43,6 +43,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string Remarks { get; set; }
 #endif
+        /// <summary>Any additional state specific context data associated with the package’s current status/state.Can be added by admin or system</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext? StateContext { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext StateContext { get; set; }
+#endif
         /// <summary>Status of the Requirements package</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStatusEnum? Status { get; set; }
         /// <summary>
@@ -75,6 +83,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "customReference", n => { CustomReference = n.GetStringValue(); } },
                 { "dateTime", n => { DateTime = n.GetDateTimeOffsetValue(); } },
                 { "remarks", n => { Remarks = n.GetStringValue(); } },
+                { "stateContext", n => { StateContext = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext>(global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext.CreateFromDiscriminatorValue); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStatusEnum>(); } },
             };
         }
@@ -90,6 +99,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("customReference", CustomReference);
             writer.WriteDateTimeOffsetValue("dateTime", DateTime);
             writer.WriteStringValue("remarks", Remarks);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext>("stateContext", StateContext);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStatusEnum>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -82,7 +82,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.UserManagement.Users.Item.AuditLogRe
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ListUserAuditLogReportsResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ListUserAuditLogReportsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Starts an asynchronous job to generate a report of audit log events for the specified user. Returns `202 Accepted` immediately with the new report&apos;s `reportId` and `PENDING` status.Poll `GET /users/{userId}/audit-log-reports/{reportId}` to check status, then `GET /users/{userId}/audit-log-reports/{reportId}/file` to download the report once its status is `COMPLETE`.
+        /// Starts an asynchronous job to generate a report of audit log events for the specified user. Reports can include up to 611 days of data, compared to 60 days for List User Audit Logs. Returns `202 Accepted` immediately with the new report&apos;s `reportId` and `PENDING` status.Poll `GET /users/{userId}/audit-log-reports/{reportId}` to check status, then `GET /users/{userId}/audit-log-reports/{reportId}/file` to download the report once its status is `COMPLETE`.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogReportResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -140,7 +140,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.UserManagement.Users.Item.AuditLogRe
             return requestInfo;
         }
         /// <summary>
-        /// Starts an asynchronous job to generate a report of audit log events for the specified user. Returns `202 Accepted` immediately with the new report&apos;s `reportId` and `PENDING` status.Poll `GET /users/{userId}/audit-log-reports/{reportId}` to check status, then `GET /users/{userId}/audit-log-reports/{reportId}/file` to download the report once its status is `COMPLETE`.
+        /// Starts an asynchronous job to generate a report of audit log events for the specified user. Reports can include up to 611 days of data, compared to 60 days for List User Audit Logs. Returns `202 Accepted` immediately with the new report&apos;s `reportId` and `PENDING` status.Poll `GET /users/{userId}/audit-log-reports/{reportId}` to check status, then `GET /users/{userId}/audit-log-reports/{reportId}/file` to download the report once its status is `COMPLETE`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

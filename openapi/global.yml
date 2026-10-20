@@ -4137,7 +4137,6 @@ paths:
           $ref: '#/components/responses/internalErrorResponse'
   /upgrade/movePhoneNumbers:
     post:
-      deprecated: true
       summary: Move phone numbers from Legacy Global Network to Universal Platform
       parameters:
         - $ref: '#/components/parameters/BandwidthAuthorizationHeader'
@@ -4191,7 +4190,6 @@ paths:
           $ref: '#/components/responses/serviceUnavailableResponse'
   /upgrade/movePhoneNumbers/status/{orderId}:
     get:
-      deprecated: true
       tags:
         - Move Phone Numbers
       summary: Get phone number move order status
@@ -4224,7 +4222,6 @@ paths:
           $ref: '#/components/responses/serviceUnavailableResponse'
   /upgrade/movePhoneNumbers/complete:
     post:
-      deprecated: true
       tags:
         - Move Phone Numbers
       operationId: completeMoveRequest
@@ -4256,7 +4253,6 @@ paths:
           $ref: '#/components/responses/serviceUnavailableResponse'
   /upgrade/movePhoneNumbers/complete/status/{orderId}:
     get:
-      deprecated: true
       tags:
         - Move Phone Numbers
       summary: Get complete phone number move order status

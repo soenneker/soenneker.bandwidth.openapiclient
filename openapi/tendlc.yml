@@ -1417,7 +1417,10 @@ components:
     brandIdentityStatusParam:
       name: brandIdentityStatus
       in: query
-      description: Filtering and sorting parameter for `brandIdentityStatus`
+      description: >-
+        Filtering and sorting parameter for `brandIdentityStatus`. `eq` accepts
+        a single status or a list of statuses, e.g.
+        `brandIdentityStatus[eq]=[VERIFIED,VETTED_VERIFIED]`.
       style: deepObject
       explode: true
       required: false
@@ -1427,10 +1430,20 @@ components:
         properties:
           contains:
             $ref: '#/components/schemas/enumBrandIdentityStatus'
+          eq:
+            oneOf:
+              - $ref: '#/components/schemas/enumBrandIdentityStatus'
+              - type: array
+                items:
+                  $ref: '#/components/schemas/enumBrandIdentityStatus'
           sort:
             $ref: '#/components/schemas/sort'
         examples:
           - contains: VERIFIED
+          - eq: VERIFIED
+          - eq:
+              - VERIFIED
+              - VETTED_VERIFIED
           - sort: DESC
     brandIdParam:
       name: brandId

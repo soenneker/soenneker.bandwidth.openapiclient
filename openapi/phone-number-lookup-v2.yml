@@ -73,6 +73,272 @@ paths:
           $ref: '#/components/responses/createSyncLookupResponse'
         default:
           $ref: '#/components/responses/tnLookupDefaultResponse'
+      x-codeSamples:
+        - lang: cURL
+          source: >-
+            curl
+            'https://api.bandwidth.com/v2/accounts/9900000/phoneNumberLookup' \
+              -H 'Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=' \
+              -H 'Content-Type: application/json' \
+              -H 'Accept: application/json' \
+              -d '{
+                "phoneNumbers": [
+                  "+19196104423"
+                ]
+              }'
+        - lang: C#
+          source: |
+            using System.Collections.Generic;
+            using System.Diagnostics;
+            using Bandwidth.Standard.Api;
+            using Bandwidth.Standard.Client;
+            using Bandwidth.Standard.Model;
+
+            namespace Example
+            {
+                public class CreateSyncLookupExample
+                {
+                    public static void Main()
+                    {
+                        Configuration config = new Configuration();
+                        config.BasePath = "http://localhost";
+                        // Configure HTTP basic authorization: Basic
+                        config.Username = "YOUR_USERNAME";
+                        config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+                        var apiInstance = new PhoneNumberLookupApi(config);
+                        var accountId = 9900000;  // string | 
+                        var syncLookupRequest = new SyncLookupRequest(); // SyncLookupRequest | Synchronous phone number lookup request.
+
+                        try
+                        {
+                            // Create Synchronous Number Lookup
+                            CreateSyncLookupResponse result = apiInstance.CreateSyncLookup(accountId, syncLookupRequest);
+                            Debug.WriteLine(result);
+                        }
+                        catch (ApiException  e)
+                        {
+                            Debug.Print("Exception when calling PhoneNumberLookupApi.CreateSyncLookup: " + e.Message);
+                            Debug.Print("Status Code: " + e.ErrorCode);
+                            Debug.Print(e.StackTrace);
+                        }
+                    }
+                }
+            }
+        - lang: Java
+          source: |
+            // Import classes:
+            import com.bandwidth.sdk.ApiClient;
+            import com.bandwidth.sdk.ApiException;
+            import com.bandwidth.sdk.Configuration;
+            import com.bandwidth.sdk.auth.*;
+            import com.bandwidth.sdk.models.*;
+            import com.bandwidth.sdk.api.PhoneNumberLookupApi;
+
+            public class Example {
+              public static void main(String[] args) {
+                ApiClient defaultClient = Configuration.getDefaultApiClient();
+                defaultClient.setBasePath("http://localhost");
+                
+                // Configure HTTP basic authorization: Basic
+                HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
+                Basic.setUsername("YOUR USERNAME");
+                Basic.setPassword("YOUR PASSWORD");
+
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+                PhoneNumberLookupApi apiInstance = new PhoneNumberLookupApi(defaultClient);
+                String accountId = "9900000"; // String | 
+                SyncLookupRequest syncLookupRequest = new SyncLookupRequest(); // SyncLookupRequest | Synchronous phone number lookup request.
+                try {
+                  CreateSyncLookupResponse result = apiInstance.createSyncLookup(accountId, syncLookupRequest);
+                  System.out.println(result);
+                } catch (ApiException e) {
+                  System.err.println("Exception when calling PhoneNumberLookupApi#createSyncLookup");
+                  System.err.println("Status code: " + e.getCode());
+                  System.err.println("Reason: " + e.getResponseBody());
+                  System.err.println("Response headers: " + e.getResponseHeaders());
+                  e.printStackTrace();
+                }
+              }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\PhoneNumberLookupApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string
+
+            $sync_lookup_request = new \Bandwidth\Model\SyncLookupRequest(); //
+            \Bandwidth\Model\SyncLookupRequest | Synchronous phone number lookup
+            request.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $result = $apiInstance->createSyncLookup($account_id, $sync_lookup_request, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling PhoneNumberLookupApi->createSyncLookup: ', $e->getMessage(), PHP_EOL;
+            }
+        - lang: Python
+          source: >
+            import bandwidth
+
+            from bandwidth.models.create_sync_lookup_response import
+            CreateSyncLookupResponse
+
+            from bandwidth.models.sync_lookup_request import SyncLookupRequest
+
+            from bandwidth.rest import ApiException
+
+            from pprint import pprint
+
+
+            # Defining the host is optional and defaults to http://localhost
+
+            # See configuration.py for a list of all supported configuration
+            parameters.
+
+            configuration = bandwidth.Configuration(
+                host = "http://localhost"
+            )
+
+
+            # The client must configure the authentication and authorization
+            parameters
+
+            # in accordance with the API server security policy.
+
+            # Examples for each auth method are provided below, use the example
+            that
+
+            # satisfies your auth use case.
+
+
+            # Configure HTTP basic authorization: Basic
+
+            configuration = bandwidth.Configuration(
+                username = os.environ["USERNAME"],
+                password = os.environ["PASSWORD"]
+            )
+
+
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
+            # Enter a context with an instance of the API client
+
+            with bandwidth.ApiClient(configuration) as api_client:
+                # Create an instance of the API class
+                api_instance = bandwidth.PhoneNumberLookupApi(api_client)
+                account_id = '9900000' # str | 
+                sync_lookup_request = bandwidth.SyncLookupRequest() # SyncLookupRequest | Synchronous phone number lookup request.
+
+                try:
+                    # Create Synchronous Number Lookup
+                    api_response = api_instance.create_sync_lookup(account_id, sync_lookup_request)
+                    print("The response of PhoneNumberLookupApi->create_sync_lookup:\n")
+                    pprint(api_response)
+                except Exception as e:
+                    print("Exception when calling PhoneNumberLookupApi->create_sync_lookup: %s\n" % e)
+        - lang: Ruby
+          source: >
+            require 'time'
+
+            require 'bandwidth-sdk'
+
+            # setup authorization
+
+            Bandwidth.configure do |config|
+              # Configure HTTP basic authorization: Basic
+              config.username = 'YOUR USERNAME'
+              config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
+            end
+
+
+            api_instance = Bandwidth::PhoneNumberLookupApi.new
+
+            account_id = '9900000' # String | 
+
+            sync_lookup_request =
+            Bandwidth::SyncLookupRequest.new({phone_numbers:
+            ['phone_numbers_example']}) # SyncLookupRequest | Synchronous phone
+            number lookup request.
+
+
+            begin
+              # Create Synchronous Number Lookup
+              result = api_instance.create_sync_lookup(account_id, sync_lookup_request)
+              p result
+            rescue Bandwidth::ApiError => e
+              puts "Error when calling PhoneNumberLookupApi->create_sync_lookup: #{e}"
+            end
+        - lang: TypeScript
+          source: >
+            import {
+                PhoneNumberLookupApi,
+                Configuration,
+                SyncLookupRequest
+            } from 'bandwidth-sdk';
+
+
+            const configuration = new Configuration();
+
+            const apiInstance = new PhoneNumberLookupApi(configuration);
+
+
+            let accountId: string; // (default to undefined)
+
+            let syncLookupRequest: SyncLookupRequest; //Synchronous phone number
+            lookup request.
+
+
+            const { status, data } = await apiInstance.createSyncLookup(
+                accountId,
+                syncLookupRequest
+            );
   /accounts/{accountId}/phoneNumberLookup/bulk:
     post:
       summary: Create Asynchronous Bulk Number Lookup
@@ -93,6 +359,274 @@ paths:
           $ref: '#/components/responses/createAsyncBulkLookupResponse'
         default:
           $ref: '#/components/responses/tnLookupDefaultResponse'
+      x-codeSamples:
+        - lang: cURL
+          source: >-
+            curl
+            'https://api.bandwidth.com/v2/accounts/9900000/phoneNumberLookup/bulk'
+            \
+              -H 'Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=' \
+              -H 'Content-Type: application/json' \
+              -H 'Accept: application/json' \
+              -d '{
+                "phoneNumbers": [
+                  "+19196104423",
+                  "+19196104424"
+                ]
+              }'
+        - lang: C#
+          source: |
+            using System.Collections.Generic;
+            using System.Diagnostics;
+            using Bandwidth.Standard.Api;
+            using Bandwidth.Standard.Client;
+            using Bandwidth.Standard.Model;
+
+            namespace Example
+            {
+                public class CreateAsyncBulkLookupExample
+                {
+                    public static void Main()
+                    {
+                        Configuration config = new Configuration();
+                        config.BasePath = "http://localhost";
+                        // Configure HTTP basic authorization: Basic
+                        config.Username = "YOUR_USERNAME";
+                        config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+                        var apiInstance = new PhoneNumberLookupApi(config);
+                        var accountId = 9900000;  // string | 
+                        var asyncLookupRequest = new AsyncLookupRequest(); // AsyncLookupRequest | Asynchronous bulk phone number lookup request.
+
+                        try
+                        {
+                            // Create Asynchronous Bulk Number Lookup
+                            CreateAsyncBulkLookupResponse result = apiInstance.CreateAsyncBulkLookup(accountId, asyncLookupRequest);
+                            Debug.WriteLine(result);
+                        }
+                        catch (ApiException  e)
+                        {
+                            Debug.Print("Exception when calling PhoneNumberLookupApi.CreateAsyncBulkLookup: " + e.Message);
+                            Debug.Print("Status Code: " + e.ErrorCode);
+                            Debug.Print(e.StackTrace);
+                        }
+                    }
+                }
+            }
+        - lang: Java
+          source: |
+            // Import classes:
+            import com.bandwidth.sdk.ApiClient;
+            import com.bandwidth.sdk.ApiException;
+            import com.bandwidth.sdk.Configuration;
+            import com.bandwidth.sdk.auth.*;
+            import com.bandwidth.sdk.models.*;
+            import com.bandwidth.sdk.api.PhoneNumberLookupApi;
+
+            public class Example {
+              public static void main(String[] args) {
+                ApiClient defaultClient = Configuration.getDefaultApiClient();
+                defaultClient.setBasePath("http://localhost");
+                
+                // Configure HTTP basic authorization: Basic
+                HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
+                Basic.setUsername("YOUR USERNAME");
+                Basic.setPassword("YOUR PASSWORD");
+
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+                PhoneNumberLookupApi apiInstance = new PhoneNumberLookupApi(defaultClient);
+                String accountId = "9900000"; // String | 
+                AsyncLookupRequest asyncLookupRequest = new AsyncLookupRequest(); // AsyncLookupRequest | Asynchronous bulk phone number lookup request.
+                try {
+                  CreateAsyncBulkLookupResponse result = apiInstance.createAsyncBulkLookup(accountId, asyncLookupRequest);
+                  System.out.println(result);
+                } catch (ApiException e) {
+                  System.err.println("Exception when calling PhoneNumberLookupApi#createAsyncBulkLookup");
+                  System.err.println("Status code: " + e.getCode());
+                  System.err.println("Reason: " + e.getResponseBody());
+                  System.err.println("Response headers: " + e.getResponseHeaders());
+                  e.printStackTrace();
+                }
+              }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\PhoneNumberLookupApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string
+
+            $async_lookup_request = new \Bandwidth\Model\AsyncLookupRequest();
+            // \Bandwidth\Model\AsyncLookupRequest | Asynchronous bulk phone
+            number lookup request.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $result = $apiInstance->createAsyncBulkLookup($account_id, $async_lookup_request, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling PhoneNumberLookupApi->createAsyncBulkLookup: ', $e->getMessage(), PHP_EOL;
+            }
+        - lang: Python
+          source: >
+            import bandwidth
+
+            from bandwidth.models.async_lookup_request import AsyncLookupRequest
+
+            from bandwidth.models.create_async_bulk_lookup_response import
+            CreateAsyncBulkLookupResponse
+
+            from bandwidth.rest import ApiException
+
+            from pprint import pprint
+
+
+            # Defining the host is optional and defaults to http://localhost
+
+            # See configuration.py for a list of all supported configuration
+            parameters.
+
+            configuration = bandwidth.Configuration(
+                host = "http://localhost"
+            )
+
+
+            # The client must configure the authentication and authorization
+            parameters
+
+            # in accordance with the API server security policy.
+
+            # Examples for each auth method are provided below, use the example
+            that
+
+            # satisfies your auth use case.
+
+
+            # Configure HTTP basic authorization: Basic
+
+            configuration = bandwidth.Configuration(
+                username = os.environ["USERNAME"],
+                password = os.environ["PASSWORD"]
+            )
+
+
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
+            # Enter a context with an instance of the API client
+
+            with bandwidth.ApiClient(configuration) as api_client:
+                # Create an instance of the API class
+                api_instance = bandwidth.PhoneNumberLookupApi(api_client)
+                account_id = '9900000' # str | 
+                async_lookup_request = bandwidth.AsyncLookupRequest() # AsyncLookupRequest | Asynchronous bulk phone number lookup request.
+
+                try:
+                    # Create Asynchronous Bulk Number Lookup
+                    api_response = api_instance.create_async_bulk_lookup(account_id, async_lookup_request)
+                    print("The response of PhoneNumberLookupApi->create_async_bulk_lookup:\n")
+                    pprint(api_response)
+                except Exception as e:
+                    print("Exception when calling PhoneNumberLookupApi->create_async_bulk_lookup: %s\n" % e)
+        - lang: Ruby
+          source: >
+            require 'time'
+
+            require 'bandwidth-sdk'
+
+            # setup authorization
+
+            Bandwidth.configure do |config|
+              # Configure HTTP basic authorization: Basic
+              config.username = 'YOUR USERNAME'
+              config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
+            end
+
+
+            api_instance = Bandwidth::PhoneNumberLookupApi.new
+
+            account_id = '9900000' # String | 
+
+            async_lookup_request =
+            Bandwidth::AsyncLookupRequest.new({phone_numbers:
+            ['phone_numbers_example']}) # AsyncLookupRequest | Asynchronous bulk
+            phone number lookup request.
+
+
+            begin
+              # Create Asynchronous Bulk Number Lookup
+              result = api_instance.create_async_bulk_lookup(account_id, async_lookup_request)
+              p result
+            rescue Bandwidth::ApiError => e
+              puts "Error when calling PhoneNumberLookupApi->create_async_bulk_lookup: #{e}"
+            end
+        - lang: TypeScript
+          source: >
+            import {
+                PhoneNumberLookupApi,
+                Configuration,
+                AsyncLookupRequest
+            } from 'bandwidth-sdk';
+
+
+            const configuration = new Configuration();
+
+            const apiInstance = new PhoneNumberLookupApi(configuration);
+
+
+            let accountId: string; // (default to undefined)
+
+            let asyncLookupRequest: AsyncLookupRequest; //Asynchronous bulk
+            phone number lookup request.
+
+
+            const { status, data } = await apiInstance.createAsyncBulkLookup(
+                accountId,
+                asyncLookupRequest
+            );
   /accounts/{accountId}/phoneNumberLookup/bulk/{requestId}:
     get:
       summary: Get Asynchronous Bulk Number Lookup
@@ -111,6 +645,246 @@ paths:
           $ref: '#/components/responses/getAsyncBulkLookupResponse'
         default:
           $ref: '#/components/responses/tnLookupDefaultResponse'
+      x-codeSamples:
+        - lang: cURL
+          source: >-
+            curl
+            'https://api.bandwidth.com/v2/accounts/9900000/phoneNumberLookup/bulk/004223a0-8b17-41b1-bf81-20732adf5590'
+            \
+              -H 'Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=' \
+              -H 'Accept: application/json'
+        - lang: C#
+          source: |
+            using System.Collections.Generic;
+            using System.Diagnostics;
+            using Bandwidth.Standard.Api;
+            using Bandwidth.Standard.Client;
+            using Bandwidth.Standard.Model;
+
+            namespace Example
+            {
+                public class GetAsyncBulkLookupExample
+                {
+                    public static void Main()
+                    {
+                        Configuration config = new Configuration();
+                        config.BasePath = "http://localhost";
+                        // Configure HTTP basic authorization: Basic
+                        config.Username = "YOUR_USERNAME";
+                        config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+                        var apiInstance = new PhoneNumberLookupApi(config);
+                        var accountId = 9900000;  // string | 
+                        var requestId = 004223a0-8b17-41b1-bf81-20732adf5590;  // Guid | 
+
+                        try
+                        {
+                            // Get Asynchronous Bulk Number Lookup
+                            GetAsyncBulkLookupResponse result = apiInstance.GetAsyncBulkLookup(accountId, requestId);
+                            Debug.WriteLine(result);
+                        }
+                        catch (ApiException  e)
+                        {
+                            Debug.Print("Exception when calling PhoneNumberLookupApi.GetAsyncBulkLookup: " + e.Message);
+                            Debug.Print("Status Code: " + e.ErrorCode);
+                            Debug.Print(e.StackTrace);
+                        }
+                    }
+                }
+            }
+        - lang: Java
+          source: |
+            // Import classes:
+            import com.bandwidth.sdk.ApiClient;
+            import com.bandwidth.sdk.ApiException;
+            import com.bandwidth.sdk.Configuration;
+            import com.bandwidth.sdk.auth.*;
+            import com.bandwidth.sdk.models.*;
+            import com.bandwidth.sdk.api.PhoneNumberLookupApi;
+
+            public class Example {
+              public static void main(String[] args) {
+                ApiClient defaultClient = Configuration.getDefaultApiClient();
+                defaultClient.setBasePath("http://localhost");
+                
+                // Configure HTTP basic authorization: Basic
+                HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
+                Basic.setUsername("YOUR USERNAME");
+                Basic.setPassword("YOUR PASSWORD");
+
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+                PhoneNumberLookupApi apiInstance = new PhoneNumberLookupApi(defaultClient);
+                String accountId = "9900000"; // String | 
+                UUID requestId = UUID.fromString("004223a0-8b17-41b1-bf81-20732adf5590"); // UUID | 
+                try {
+                  GetAsyncBulkLookupResponse result = apiInstance.getAsyncBulkLookup(accountId, requestId);
+                  System.out.println(result);
+                } catch (ApiException e) {
+                  System.err.println("Exception when calling PhoneNumberLookupApi#getAsyncBulkLookup");
+                  System.err.println("Status code: " + e.getCode());
+                  System.err.println("Reason: " + e.getResponseBody());
+                  System.err.println("Response headers: " + e.getResponseHeaders());
+                  e.printStackTrace();
+                }
+              }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\PhoneNumberLookupApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string
+
+            $request_id = 004223a0-8b17-41b1-bf81-20732adf5590; // string
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $result = $apiInstance->getAsyncBulkLookup($account_id, $request_id, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling PhoneNumberLookupApi->getAsyncBulkLookup: ', $e->getMessage(), PHP_EOL;
+            }
+        - lang: Python
+          source: >
+            import bandwidth
+
+            from bandwidth.models.get_async_bulk_lookup_response import
+            GetAsyncBulkLookupResponse
+
+            from bandwidth.rest import ApiException
+
+            from pprint import pprint
+
+
+            # Defining the host is optional and defaults to http://localhost
+
+            # See configuration.py for a list of all supported configuration
+            parameters.
+
+            configuration = bandwidth.Configuration(
+                host = "http://localhost"
+            )
+
+
+            # The client must configure the authentication and authorization
+            parameters
+
+            # in accordance with the API server security policy.
+
+            # Examples for each auth method are provided below, use the example
+            that
+
+            # satisfies your auth use case.
+
+
+            # Configure HTTP basic authorization: Basic
+
+            configuration = bandwidth.Configuration(
+                username = os.environ["USERNAME"],
+                password = os.environ["PASSWORD"]
+            )
+
+
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
+            # Enter a context with an instance of the API client
+
+            with bandwidth.ApiClient(configuration) as api_client:
+                # Create an instance of the API class
+                api_instance = bandwidth.PhoneNumberLookupApi(api_client)
+                account_id = '9900000' # str | 
+                request_id = '004223a0-8b17-41b1-bf81-20732adf5590' # str | 
+
+                try:
+                    # Get Asynchronous Bulk Number Lookup
+                    api_response = api_instance.get_async_bulk_lookup(account_id, request_id)
+                    print("The response of PhoneNumberLookupApi->get_async_bulk_lookup:\n")
+                    pprint(api_response)
+                except Exception as e:
+                    print("Exception when calling PhoneNumberLookupApi->get_async_bulk_lookup: %s\n" % e)
+        - lang: Ruby
+          source: |
+            require 'time'
+            require 'bandwidth-sdk'
+            # setup authorization
+            Bandwidth.configure do |config|
+              # Configure HTTP basic authorization: Basic
+              config.username = 'YOUR USERNAME'
+              config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
+            end
+
+            api_instance = Bandwidth::PhoneNumberLookupApi.new
+            account_id = '9900000' # String | 
+            request_id = '004223a0-8b17-41b1-bf81-20732adf5590' # String | 
+
+            begin
+              # Get Asynchronous Bulk Number Lookup
+              result = api_instance.get_async_bulk_lookup(account_id, request_id)
+              p result
+            rescue Bandwidth::ApiError => e
+              puts "Error when calling PhoneNumberLookupApi->get_async_bulk_lookup: #{e}"
+            end
+        - lang: TypeScript
+          source: |
+            import {
+                PhoneNumberLookupApi,
+                Configuration
+            } from 'bandwidth-sdk';
+
+            const configuration = new Configuration();
+            const apiInstance = new PhoneNumberLookupApi(configuration);
+
+            let accountId: string; // (default to undefined)
+            let requestId: string; // (default to undefined)
+
+            const { status, data } = await apiInstance.getAsyncBulkLookup(
+                accountId,
+                requestId
+            );
 components:
   schemas:
     completedLookupStatusEnum:

@@ -82,6 +82,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string RequirementsPackageId { get; set; }
 #endif
+        /// <summary>Any additional state specific context data associated with the package’s current status/state.Can be added by admin or system</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext? StateContext { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext StateContext { get; set; }
+#endif
         /// <summary>Status of the Requirements package</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStatusEnum? Status { get; set; }
         /// <summary>The date and time this object was last updated in ISO 8601 format</summary>
@@ -127,6 +135,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "phoneNumberType", n => { PhoneNumberType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum>(); } },
                 { "remarks", n => { Remarks = n.GetStringValue(); } },
                 { "requirementsPackageId", n => { RequirementsPackageId = n.GetStringValue(); } },
+                { "stateContext", n => { StateContext = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext>(global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext.CreateFromDiscriminatorValue); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStatusEnum>(); } },
                 { "updatedDateTime", n => { UpdatedDateTime = n.GetStringValue(); } },
             };
@@ -148,6 +157,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum>("phoneNumberType", PhoneNumberType);
             writer.WriteStringValue("remarks", Remarks);
             writer.WriteStringValue("requirementsPackageId", RequirementsPackageId);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext>("stateContext", StateContext);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStatusEnum>("status", Status);
             writer.WriteStringValue("updatedDateTime", UpdatedDateTime);
             writer.WriteAdditionalData(AdditionalData);

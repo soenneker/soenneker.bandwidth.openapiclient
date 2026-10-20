@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiError>? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalApiError>? Errors { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiError> Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalApiError> Errors { get; set; }
 #endif
         /// <summary>The genericErrorMessage property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -60,7 +60,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiError>(global::Soenneker.Bandwidth.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalApiError>(global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalApiError.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "genericErrorMessage", n => { GenericErrorMessage = n.GetStringValue(); } },
                 { "httpStatusCode", n => { HttpStatusCode = n.GetIntValue(); } },
             };
@@ -72,7 +72,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiError>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalApiError>("errors", Errors);
             writer.WriteStringValue("genericErrorMessage", GenericErrorMessage);
             writer.WriteIntValue("httpStatusCode", HttpStatusCode);
             writer.WriteAdditionalData(AdditionalData);

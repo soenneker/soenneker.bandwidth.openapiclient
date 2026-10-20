@@ -18,7 +18,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Upgrade.MovePhoneNumbers.Stat
         /// <summary>Gets an item from the Soenneker.Bandwidth.OpenApiClient.global.upgrade.movePhoneNumbers.status.item collection</summary>
         /// <param name="position">Unique reference ID of the move request</param>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Global.Upgrade.MovePhoneNumbers.Status.Item.WithOrderItemRequestBuilder"/></returns>
-        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Upgrade.MovePhoneNumbers.Status.Item.WithOrderItemRequestBuilder this[string position]
         {
             get

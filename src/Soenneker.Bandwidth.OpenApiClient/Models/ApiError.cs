@@ -14,21 +14,37 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The apiErrorCode property</summary>
+        /// <summary>An application-specific error code for services with extensive error scenarios to supplement `description`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ApiErrorCode { get; set; }
+        public string? Code { get; set; }
 #nullable restore
 #else
-        public string ApiErrorCode { get; set; }
+        public string Code { get; set; }
 #endif
-        /// <summary>The apiErrorMessage property</summary>
+        /// <summary>A human-readable explanation that SHOULD be specific to this occurrence of the problem.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ApiErrorMessage { get; set; }
+        public string? Description { get; set; }
 #nullable restore
 #else
-        public string ApiErrorMessage { get; set; }
+        public string Description { get; set; }
+#endif
+        /// <summary>The source property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorSource? Source { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorSource Source { get; set; }
+#endif
+        /// <summary>A short, human-readable summary of the problem that SHOULD NOT change from occurrence to occurrence of the problem.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Type { get; set; }
+#nullable restore
+#else
+        public string Type { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ApiError"/> and sets the default values.
@@ -55,8 +71,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "apiErrorCode", n => { ApiErrorCode = n.GetStringValue(); } },
-                { "apiErrorMessage", n => { ApiErrorMessage = n.GetStringValue(); } },
+                { "code", n => { Code = n.GetStringValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "source", n => { Source = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorSource>(global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorSource.CreateFromDiscriminatorValue); } },
+                { "type", n => { Type = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -66,8 +84,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("apiErrorCode", ApiErrorCode);
-            writer.WriteStringValue("apiErrorMessage", ApiErrorMessage);
+            writer.WriteStringValue("code", Code);
+            writer.WriteStringValue("description", Description);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorSource>("source", Source);
+            writer.WriteStringValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

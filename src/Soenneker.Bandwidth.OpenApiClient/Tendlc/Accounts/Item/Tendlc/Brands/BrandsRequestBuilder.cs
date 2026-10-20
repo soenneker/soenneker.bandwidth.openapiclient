@@ -198,7 +198,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Tendlc.Accounts.Item.Tendlc.Brands
             [QueryParameter("brandId")]
             public string BrandId { get; set; }
 #endif
-            /// <summary>Filtering and sorting parameter for `brandIdentityStatus`</summary>
+            /// <summary>Filtering and sorting parameter for `brandIdentityStatus`. `eq` accepts a single status or a list of statuses, e.g. `brandIdentityStatus[eq]=[VERIFIED,VETTED_VERIFIED]`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("brandIdentityStatus")]

@@ -688,20 +688,17 @@ paths:
         The results are sorted by last updated time in reverse chronological
         order by default without any query filters.
 
-
         Following filters can be used to filter the result
 
-        * Country Code : List requirements packages based on the country code.
+        * countryCodeA3
 
-        * Phone Number Type : List requirements packages based on the phone
-        number type.
+        * phoneNumberType
 
-        * End user Type : List requirements packages based on the End user type.
+        * endUserType
 
-        * Custom Reference : List requirements packages based on the custom
-        reference.
+        * customReference
 
-        * Status : List requirements packages based on the status.
+        * status
       tags:
         - Requirements Packages
       parameters:
@@ -1064,48 +1061,6 @@ paths:
       summary: Add, Move, or Remove Numbers from a Requirements Package
       tags:
         - Requirements Packages
-  /accounts/{accountId}/compliance/admin/requirementsPackages/{requirementsPackageId}/legacy:
-    patch:
-      description: >
-        Update Requirements package status to `VERIFIED` to submit a legacy
-        address.
-
-        This will execute the validations and store the failures but will not
-        fail the update. Only an admin can perform this operation.
-
-        * 'acknowledgements' is required for submitting the package with
-        'allDetailsAccurate' set to true.
-
-        * Once submitted, all associated assets will be locked and cannot be
-        modified.
-
-        Update custom reference.
-      operationId: updateLegacyRequirementsPackage
-      parameters:
-        - $ref: '#/components/parameters/accountId'
-        - $ref: '#/components/parameters/requirementsPackageIdPathParam'
-      requestBody:
-        $ref: '#/components/requestBodies/patchMigrationRequirementsPackageBody'
-      responses:
-        '200':
-          $ref: '#/components/responses/updateMigrationRequirementsPackageSuccess'
-        '400':
-          $ref: '#/components/responses/badRequestErrorComplianceRps'
-        '401':
-          $ref: '#/components/responses/unauthorizedErrorBasic'
-        '403':
-          $ref: '#/components/responses/forbiddenErrorComplianceRps'
-        '404':
-          $ref: '#/components/responses/notFoundErrorComplianceRps'
-        '405':
-          $ref: '#/components/responses/notAllowedErrorComplianceRps'
-        '429':
-          $ref: '#/components/responses/tooManyRequestsError'
-        '500':
-          $ref: '#/components/responses/internalServerErrorComplianceRps'
-      summary: Submit Legacy Requirements Package
-      tags:
-        - Requirements Packages
   /accounts/{accountId}/compliance/requirementsPackages/{requirementsPackageId}/phoneNumbers:
     delete:
       description: >-
@@ -1165,16 +1120,16 @@ components:
       required: true
       schema:
         type: string
+        example: '9900000'
       description: Your Bandwidth Account ID.
-      example: '9900000'
     accountIdInteger:
       in: path
       name: accountId
       required: true
       schema:
         type: integer
+        example: 9900000
       description: Your Bandwidth Account ID.
-      example: 9900000
     addressIdPathParam:
       in: path
       name: addressId
@@ -1190,7 +1145,7 @@ components:
       required: true
       schema:
         type: string
-      example: DEU
+        example: DEU
     countryCodeA3PathParam:
       name: countryCodeA3
       description: Country Code A3
@@ -1198,7 +1153,7 @@ components:
       required: true
       schema:
         type: string
-      example: FRA
+        example: FRA
     cityInfoCityQueryParamEqStartsWith:
       in: query
       name: city
@@ -1227,10 +1182,8 @@ components:
       explode: true
       schema:
         $ref: '#/components/schemas/queryParamStringStartsWith'
-      examples:
-        startsWith:
-          value:
-            startsWith: '734'
+        example:
+          startsWith: '734'
       description: >
         The postal code of the address. The system defaults to return all
 
@@ -1297,8 +1250,8 @@ components:
         properties:
           eq:
             $ref: '#/components/schemas/geoValidationStatusEnum'
-      example:
-        eq: GEO_VALID
+        example:
+          eq: GEO_VALID
       description: |
         Geo validation status which can be one of:
           GEO_VALID, NOT_GEO_VALID, or NOT_GEO_VALIDATED.
@@ -1310,8 +1263,8 @@ components:
       explode: true
       schema:
         $ref: '#/components/schemas/queryParamStringEq'
-      example:
-        eq: USA
+        example:
+          eq: USA
       description: Country code of the address in ISO 3166-1 alpha-3 format.
     cityQueryParamEqStartsWith:
       in: query
@@ -1360,10 +1313,6 @@ components:
         required parameter with postalCode.
     addressFieldsQueryParamContains:
       description: Any of the location-related fields in the address can be used.
-      examples:
-        contains:
-          value:
-            contains: 123 Main
       style: deepObject
       explode: true
       in: query
@@ -1371,13 +1320,17 @@ components:
       required: false
       schema:
         $ref: '#/components/schemas/queryParamStringContains'
+      examples:
+        contains:
+          value:
+            contains: 123 Main
     afterCursorQueryParam:
       in: query
       name: afterCursor
       required: false
       schema:
         type: string
-      example: ArAnD0m1d
+        example: bWF5IHRoZSBmb3JjZSBiZSB3aXRoIHlvdQ
       description: Returns the page after the last record on the current page.
     limitQueryParam:
       in: query
@@ -1397,7 +1350,7 @@ components:
       required: true
       schema:
         type: string
-      example: dcb9dd0f-de97-4103-8530-b31bf4be8fc0
+        example: dcb9dd0f-de97-4103-8530-b31bf4be8fc0
     endUserTypeQueryParamEq:
       in: query
       name: type
@@ -1409,8 +1362,8 @@ components:
         properties:
           eq:
             $ref: '#/components/schemas/endUserTypeEnum'
-      example:
-        eq: BUSINESS
+        example:
+          eq: BUSINESS
       description: The type of end user.
     rpEndUserTypeQueryParamEq:
       in: query
@@ -1423,8 +1376,8 @@ components:
         properties:
           eq:
             $ref: '#/components/schemas/endUserTypeEnum'
-      example:
-        eq: RESIDENTIAL
+        example:
+          eq: RESIDENTIAL
       description: The type of end user.
     endUserNameQueryParam:
       in: query
@@ -1473,8 +1426,13 @@ components:
             properties:
               sort:
                 $ref: '#/components/schemas/sortEnum'
-      example:
-        startsWith: home
+      examples:
+        startsWith:
+          value:
+            startsWith: home_office
+        sort:
+          value:
+            sort: ASC
       description: >-
         Custom reference filter, and can be combined with
         'customReference[sort]'
@@ -1484,7 +1442,7 @@ components:
       required: true
       schema:
         type: string
-      example: ArAnD0m1d
+        example: cdb9dd0f-de97-4103-8530-b31bf4be8fc0
       description: Document ID.
     phoneNumberTypeQueryParamEq:
       in: query
@@ -1496,8 +1454,8 @@ components:
         properties:
           eq:
             $ref: '#/components/schemas/phoneNumberTypeEnum'
-      example:
-        eq: GEOGRAPHIC
+        example:
+          eq: GEOGRAPHIC
       description: The type of phone number.
     requirementsPackageAssetIdPathParam:
       name: assetId
@@ -1506,7 +1464,7 @@ components:
       required: true
       schema:
         type: string
-      example: 925e38bb-6d09-4b25-9828-afcbe9417e53
+        example: 925e38bb-6d09-4b25-9828-afcbe9417e53
     statusQueryParamEq:
       in: query
       name: status
@@ -1516,8 +1474,8 @@ components:
       explode: true
       schema:
         $ref: '#/components/schemas/queryParamStringEq'
-      example:
-        eq: VERIFIED
+        example:
+          eq: VERIFIED
     rpCustomReferenceQueryParamStartsWith:
       in: query
       name: customReference
@@ -1531,8 +1489,8 @@ components:
           startsWith:
             minLength: 1
             maxLength: 100
-      example:
-        startsWith: home
+        example:
+          startsWith: home
     rpCountryCodeA3QueryParamEq:
       in: query
       name: countryCodeA3
@@ -1542,8 +1500,8 @@ components:
       explode: true
       schema:
         $ref: '#/components/schemas/queryParamStringEq'
-      example:
-        eq: USA
+        example:
+          eq: USA
     rpPhoneNumberTypeQueryParamEq:
       in: query
       name: phoneNumberType
@@ -1556,8 +1514,8 @@ components:
         properties:
           eq:
             $ref: '#/components/schemas/phoneNumberTypeEnum'
-      example:
-        eq: GEOGRAPHIC
+        example:
+          eq: GEOGRAPHIC
     requirementsPackageIdPathParam:
       name: requirementsPackageId
       description: Requirements Package ID
@@ -1565,7 +1523,7 @@ components:
       required: true
       schema:
         type: string
-      example: 815e38bb-6d09-4b25-9828-afcbe9417e53
+        example: 815e38bb-6d09-4b25-9828-afcbe9417e53
     pageQueryParam:
       description: >-
         An ID of the first element in a page.  This value will indicate the
@@ -1741,32 +1699,6 @@ components:
                 #/components/examples/complianceRequirementsPackageBulkRequestMoveActionExample
           schema:
             $ref: '#/components/schemas/complianceRequirementsPackageBulkRequest'
-    patchMigrationRequirementsPackageBody:
-      content:
-        application/json:
-          schema:
-            allOf:
-              - $ref: '#/components/schemas/legacyRequirementsPackageData'
-            example:
-              customReference: vb_runscope
-              status: VERIFIED
-            properties:
-              countryCodeA3:
-                readOnly: true
-              endUserType:
-                readOnly: true
-              phoneNumberType:
-                readOnly: true
-              status:
-                description: >-
-                  Status change to requirement package. Only allowed value is
-                  VERIFIED
-                example: VERIFIED
-                readOnly: false
-                type: string
-            required:
-              - status
-              - customReference
   responses:
     createAddressResponse:
       description: Created
@@ -2006,6 +1938,9 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/requirementsPackageHistoryResponse'
+          examples:
+            requirementsPackageHistoryResponseExample:
+              $ref: '#/components/examples/requirementsPackageHistoryResponseExample'
     createRequirementsPackageAssetResponse:
       description: Created
       content:
@@ -2018,6 +1953,9 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/requirementsPackageListResponse'
+          examples:
+            requirementsPackageListResponseExample:
+              $ref: '#/components/examples/requirementsPackageListResponseExample'
     getRequirementsPackageAssetsResponse:
       description: OK
       content:
@@ -2123,15 +2061,6 @@ components:
           schema:
             $ref: '#/components/schemas/genericError'
       description: Internal Server Error
-    badRequestErrorComplianceRps:
-      content:
-        application/json:
-          examples:
-            badRequestErrorExample:
-              $ref: '#/components/examples/badRequestErrorExampleComplianceRps'
-          schema:
-            $ref: '#/components/schemas/genericError'
-      description: Bad Request
     complianceRequirementsPackageResourceNotFoundError:
       content:
         application/json:
@@ -2161,40 +2090,6 @@ components:
                 #/components/examples/complianceRequirementsPaginationResponseExample
           schema:
             $ref: '#/components/schemas/complianceRequirementsPaginationResponse'
-      description: OK
-    forbiddenErrorComplianceRps:
-      content:
-        application/json:
-          examples:
-            forbiddenErrorExample:
-              $ref: '#/components/examples/forbiddenErrorExampleComplianceRps'
-          schema:
-            $ref: '#/components/schemas/genericError'
-      description: Forbidden
-    notAllowedErrorComplianceRps:
-      content:
-        application/json:
-          examples:
-            notAllowedErrorExample:
-              $ref: '#/components/examples/notAllowedErrorExampleComplianceRps'
-          schema:
-            $ref: '#/components/schemas/genericError'
-      description: Method Not Allowed
-    notFoundErrorComplianceRps:
-      content:
-        application/json:
-          examples:
-            notFoundErrorExample:
-              $ref: '#/components/examples/notFoundErrorExampleComplianceRps'
-          schema:
-            $ref: '#/components/schemas/genericError'
-      description: Not Found
-    updateMigrationRequirementsPackageSuccess:
-      content:
-        application/json:
-          schema:
-            $ref: >-
-              #/components/schemas/migrationRequirementsPackageCreateUpdateResponse
       description: OK
   schemas:
     sortEnum:
@@ -2231,16 +2126,6 @@ components:
         - TOLL_FREE
         - SHARED_COST
       example: GEOGRAPHIC
-    endUserType:
-      description: Type of end user. Values - BUSINESS, RESIDENTIAL, SOLE_PROPRIETOR
-      example: BUSINESS
-      type: string
-    phoneNumberTypeString:
-      description: >-
-        Type of the phone number. Values - GEOGRAPHIC, NATIONAL, MOBILE,
-        TOLL_FREE, SHARED_COST
-      example: GEOGRAPHIC
-      type: string
     createAddressRequestData:
       allOf:
         - $ref: '#/components/schemas/validateAddressRequestData'
@@ -3295,9 +3180,12 @@ components:
       enum:
         - DRAFT
         - SUBMITTED
-        - PROCESSING
+        - AUTO_VALIDATED
         - VERIFIED
         - VERIFICATION_FAILED
+        - DISABLED
+        - DISABLED_FRAUD
+        - ACTION_REQUIRED
       example: SUBMITTED
     complianceDocumentType:
       type: string
@@ -3413,8 +3301,12 @@ components:
       enum:
         - DRAFT
         - SUBMITTED
+        - AUTO_VALIDATED
         - VERIFIED
         - VERIFICATION_FAILED
+        - DISABLED
+        - DISABLED_FRAUD
+        - ACTION_REQUIRED
       example: DRAFT
     countryCodeA3String:
       type: string
@@ -3758,6 +3650,8 @@ components:
       properties:
         status:
           $ref: '#/components/schemas/requirementsPackageStatusEnum'
+        stateContext:
+          $ref: '#/components/schemas/requirementsPackageStateContext'
         customReference:
           type: string
           description: The customReference of the requirements package
@@ -3791,11 +3685,31 @@ components:
       enum:
         - DRAFT
         - SUBMITTED
+        - AUTO_VALIDATED
         - VERIFIED
         - VERIFICATION_FAILED
         - DISABLED
-        - AUTO_VALIDATED
+        - DISABLED_FRAUD
+        - ACTION_REQUIRED
       example: SUBMITTED
+    requirementsPackageStateContext:
+      title: State Context
+      description: >
+        Any additional state specific context data associated with the package’s
+        current status/state.
+
+        Can be added by admin or system
+      type: object
+      properties:
+        leadTime:
+          description: >
+            Lead time for action on a requirements package while it is in the
+            `ACTION_REQUIRED` state.
+
+            Not applicable for with other statuses now.
+          type: string
+          format: date
+          example: '2030-01-01'
     requirementsPackageData:
       description: Details of the Requirements package
       type: object
@@ -3815,6 +3729,9 @@ components:
           $ref: '#/components/schemas/requirementsPackageAcknowledgements'
         status:
           $ref: '#/components/schemas/requirementsPackageStatusEnum'
+          readOnly: true
+        stateContext:
+          $ref: '#/components/schemas/requirementsPackageStateContext'
           readOnly: true
         createdDateTime:
           $ref: '#/components/schemas/createdDateTime'
@@ -4179,91 +4096,6 @@ components:
             $ref: '#/components/schemas/link'
           type: array
       type: object
-    createUpdateLinks:
-      example:
-        - href: /self-resource/{id}
-          method: GET
-          rel: self
-        - href: /accounts/{accountId}/self-resource/{id}
-          method: PUT
-          rel: update
-      items:
-        $ref: '#/components/schemas/link'
-      title: Links
-      type: array
-    legacyCountryCodeA3String:
-      description: Country code in ISO 3166-1 alpha-3 format
-      example: GBR
-      type: string
-    legacyCustomReference:
-      description: >
-        Customer username from BWI/legacy platform.
-
-        It can be used for your own reference to the item to easily identify one
-        of your customers, requirements package, enduser etc.
-      example: vb_runscope
-      maxLength: 100
-      minLength: 1
-      type: string
-    migrationRequirementsPackageStatus:
-      description: >-
-        Statuses. Values - DRAFT, SUBMITTED, VERIFIED, VERIFICATION_FAILED,
-        DISABLED
-      example: VERIFIED
-      type: string
-    legacyRequirementsPackageData:
-      type: object
-      properties:
-        acknowledgements:
-          $ref: '#/components/schemas/requirementsPackageAcknowledgements'
-        countryCodeA3:
-          $ref: '#/components/schemas/legacyCountryCodeA3String'
-        createdDateTime:
-          allOf:
-            - $ref: '#/components/schemas/createdDateTime'
-          readOnly: true
-        customReference:
-          $ref: '#/components/schemas/legacyCustomReference'
-        endUserType:
-          $ref: '#/components/schemas/endUserType'
-        phoneNumberType:
-          $ref: '#/components/schemas/phoneNumberTypeString'
-        remarks:
-          allOf:
-            - $ref: '#/components/schemas/remarks'
-          readOnly: true
-        requirementsPackageId:
-          allOf:
-            - $ref: '#/components/schemas/requirementsPackageId'
-          readOnly: true
-        status:
-          allOf:
-            - $ref: '#/components/schemas/migrationRequirementsPackageStatus'
-          readOnly: true
-        updatedDateTime:
-          allOf:
-            - $ref: '#/components/schemas/updatedDateTime'
-          readOnly: true
-      description: Details of the Requirements package
-      title: Legacy Requirements package Data
-    migrationRequirementsPackageCreateUpdateResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/legacyRequirementsPackageData'
-        errors:
-          allOf:
-            - $ref: '#/components/schemas/errors'
-          example: []
-        links:
-          allOf:
-            - $ref: '#/components/schemas/createUpdateLinks'
-          example:
-            - href: >-
-                https://api.bandwidth.com/api/v2/accounts/{accountId}/compliance/admin/requirementsPackages/{requirementsPackageId}/legacy
-              rel: get-requirements-package
-              type: GET
-      title: Create or update requirements package Response
-      type: object
     complianceRequirementsPackageResourceNotFound:
       description: complianceRequirementsPackageResourceNotFound
       properties:
@@ -4530,17 +4362,19 @@ components:
             rel: self
             method: GET
         data:
-          requirementsPackageId: 93ac73e8-20a7-95ec-bd32-4e8270e66c31
+          requirementsPackageId: 93ac73e8-20a7-95ec-bd32-4e8270e66c32
           countryCodeA3: FRA
           phoneNumberType: GEOGRAPHIC
           endUserType: BUSINESS
-          customReference: home_office
+          customReference: home_office_fra
           acknowledgements:
             allDetailsAccurate: true
-          status: SUBMITTED
+          status: ACTION_REQUIRED
+          stateContext:
+            leadTime: '2030-02-02'
           createdDateTime: '2024-03-11T04:09:25.399Z'
           updatedDateTime: '2024-03-11T04:09:25.399Z'
-          remarks: Remarks provided by Admin
+          remarks: Id proof expired, please upload the id proof again
         errors: []
     requirementsPackageGetVerboseResponseExample:
       summary: Get Requirements Package Verbose Response
@@ -4558,10 +4392,10 @@ components:
           customReference: home_office
           acknowledgements:
             allDetailsAccurate: true
-          status: SUBMITTED
+          status: VERIFIED
           createdDateTime: '2024-03-11T04:09:25.399Z'
           updatedDateTime: '2024-03-11T04:09:25.399Z'
-          remarks: Remarks provided by Admin
+          remarks: Verified OK
           deletability:
             deletable: false
             reason: >-
@@ -4574,6 +4408,74 @@ components:
             children:
               - requirementsPackageId: e1b7c4d9-5f2a-48b6-a3e1-7c8d2f4b9a6e
                 accountId: '6777777'
+        errors: []
+    requirementsPackageListResponseExample:
+      summary: Search Requirements Package Response
+      value:
+        links:
+          - href: >-
+              https://api.bandwidth.com/api/v2/accounts/9900000/compliance/requirementsPackages
+            rel: self
+            method: GET
+          - href: >-
+              https://api.bandwidth.com/api/v2/accounts/9900000/compliance/requirementsPackages?limit=10&afterCursor=cGs9UlBHIzEmc2s9MjI3ZDU5YjYtYTdlNy00NGI5LWE2ODAtZGU4OTQxZGFhMmI5JnVwZGF0ZWREYXRlVGltZT0xNzU3NjYzNDA0NzY0
+            rel: next
+            method: GET
+        data:
+          - requirementsPackageId: 93ac73e8-20a7-95ec-bd32-4e8270e66c31
+            countryCodeA3: FRA
+            phoneNumberType: GEOGRAPHIC
+            endUserType: BUSINESS
+            customReference: home_office_fra
+            acknowledgements:
+              allDetailsAccurate: true
+            status: VERIFIED
+            createdDateTime: '2024-03-11T04:09:25.399Z'
+            updatedDateTime: '2024-03-11T04:09:25.399Z'
+            remarks: Verified OK
+          - requirementsPackageId: 93ac73e8-20a7-95ec-bd32-4e8270e66c32
+            countryCodeA3: DEU
+            phoneNumberType: GEOGRAPHIC
+            endUserType: BUSINESS
+            customReference: home_office_deu
+            acknowledgements:
+              allDetailsAccurate: true
+            status: ACTION_REQUIRED
+            stateContext:
+              leadTime: '2030-02-02'
+            createdDateTime: '2024-03-11T04:09:25.399Z'
+            updatedDateTime: '2024-03-11T04:09:25.399Z'
+            remarks: Id proof expired, please upload the id proof again
+        errors: []
+    requirementsPackageHistoryResponseExample:
+      summary: Requirements Package History Response
+      value:
+        links:
+          - href: >-
+              https://api.bandwidth.com/api/v2/accounts/9900000/compliance/requirementsPackages/815e38bb-6d09-4b25-9828-afcbe9417e53/history
+            rel: self
+            method: GET
+        data:
+          - status: SUBMITTED
+            customReference: home
+            dateTime: '2026-03-11T04:09:25.399Z'
+            author: User
+            remarks: Submitted for review
+            allDetailsAccurate: true
+          - status: VERIFIED
+            customReference: home
+            dateTime: '2026-03-12T04:09:25.399Z'
+            author: Bandwidth User
+            remarks: Verified OK
+            allDetailsAccurate: true
+          - status: ACTION_REQUIRED
+            stateContext:
+              leadTime: '2026-11-01'
+            customReference: home
+            dateTime: '2026-08-01T04:09:25.399Z'
+            author: Bandwidth User
+            remarks: Id proof has expired, please upload a latest one
+            allDetailsAccurate: true
         errors: []
     internalServerErrorExampleComplianceRps:
       summary: An example of a generic Internal Server Error
@@ -4764,44 +4666,6 @@ components:
               https://api.bandwidth.com/api/v2/accounts/1234/compliance/requirementsPackages/55f9f932-6136-48cf-a724-401ec8fe5ff2/phoneNumbers/bulk
             method: POST
             rel: self
-    badRequestErrorExampleComplianceRps:
-      summary: An example of a generic Bad Request Error
-      value:
-        data: null
-        errors:
-          - code: 20011
-            description: There was an issue with your request.
-            type: bad-request
-        links: []
-    forbiddenErrorExampleComplianceRps:
-      summary: An example of a generic Unauthorized Error
-      value:
-        data: null
-        errors:
-          - code: 20015
-            description: User does not have permissions to access this resource.
-            type: resource-permissions
-        links: []
-    notAllowedErrorExampleComplianceRps:
-      summary: An example of a generic Not Allowed Error
-      value:
-        data: null
-        errors:
-          - code: 20013
-            description: The HTTP method used is not supported by this resource.
-            meta:
-              method: TRACE
-            type: http-method-not-supported
-        links: []
-    notFoundErrorExampleComplianceRps:
-      summary: An example of a generic Not Found Error
-      value:
-        data: null
-        errors:
-          - code: 20016
-            description: The resource specified cannot be found.
-            type: resource-not-found
-        links: []
     complianceRequirementsPackageResourceNotFoundExample:
       value:
         data: null

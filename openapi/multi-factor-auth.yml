@@ -74,6 +74,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new MFAApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -114,6 +116,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 MfaApi apiInstance = new MfaApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 CodeRequest codeRequest = new CodeRequest(); // CodeRequest | MFA code request body.
@@ -133,56 +139,48 @@ paths:
           source: >
             <?php
 
-
-            require "vendor/autoload.php";
-
-
-            api-username = "api-username";
-
-            api-password = "api-pasword";
-
-            12345 = "12345";
-
-            1234-qwer = "1234-qwer";
-
-            +15554443333 = "+15554443333";
-
-            +15553334444 = "+15553334444";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'multiFactorAuthBasicAuthUserName' => $BW_USERNAME,
-                    'multiFactorAuthBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\MFAApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
 
-            $client = new BandwidthLib\BandwidthClient($config);
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $code_request = new \Bandwidth\Model\CodeRequest(); //
+            \Bandwidth\Model\CodeRequest | MFA code request body.
 
 
-            $mfaClient = $client->getMultiFactorAuth()->getMFA();
+            $hostIndex = 0;
 
+            $variables = [
 
-            $body = new
-            BandwidthLib\MultiFactorAuth\Models\TwoFactorCodeRequestSchema();
-
-            $body->from = $BW_MFA_NUMBER;
-
-            $body->to = $USER_NUMBER;
-
-            $body->applicationId = $BW_MFA_VOICE_APPLICATION_ID;
-
-            $body->scope = "scope";
-
-            $body->digits = 6;
-
-            $body->message = "Your temporary {NAME} {SCOPE} code is {CODE}";
+            ];
 
 
             try {
-                $mfaClient->createVoiceTwoFactor($BW_ACCOUNT_ID, $body);
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $result = $apiInstance->generateVoiceCode($account_id, $code_request, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling MFAApi->generateVoiceCode: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -226,6 +224,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -253,6 +259,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -355,6 +364,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new MFAApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -395,6 +406,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 MfaApi apiInstance = new MfaApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 CodeRequest codeRequest = new CodeRequest(); // CodeRequest | MFA code request body.
@@ -414,56 +429,48 @@ paths:
           source: >
             <?php
 
-
-            require "vendor/autoload.php";
-
-
-            api-username = "api-username";
-
-            api-password = "api-pasword";
-
-            12345 = "12345";
-
-            1234-asdf = "1234-asdf";
-
-            +15554443333 = "+15554443333";
-
-            +15553334444 = "+15553334444";
+            require_once(__DIR__ . '/vendor/autoload.php');
 
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'multiFactorAuthBasicAuthUserName' => $BW_USERNAME,
-                    'multiFactorAuthBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\MFAApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
 
-            $client = new BandwidthLib\BandwidthClient($config);
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $code_request = new \Bandwidth\Model\CodeRequest(); //
+            \Bandwidth\Model\CodeRequest | MFA code request body.
 
 
-            $mfaClient = $client->getMultiFactorAuth()->getMFA();
+            $hostIndex = 0;
 
+            $variables = [
 
-            $body = new
-            BandwidthLib\MultiFactorAuth\Models\TwoFactorCodeRequestSchema();
-
-            $body->from = $BW_MFA_NUMBER;
-
-            $body->to = $USER_NUMBER;
-
-            $body->applicationId = $BW_MFA_MESSAGING_APPLICATION_ID;
-
-            $body->scope = "scope";
-
-            $body->digits = 6;
-
-            $body->message = "Your temporary {NAME} {SCOPE} code is {CODE}";
+            ];
 
 
             try {
-                $mfaClient->createMessagingTwoFactor($BW_ACCOUNT_ID, $body);
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $result = $apiInstance->generateMessagingCode($account_id, $code_request, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling MFAApi->generateMessagingCode: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -508,6 +515,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -535,6 +550,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 
@@ -637,6 +655,8 @@ paths:
                         // Configure HTTP basic authorization: Basic
                         config.Username = "YOUR_USERNAME";
                         config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
 
                         var apiInstance = new MFAApi(config);
                         var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -677,6 +697,10 @@ paths:
                 Basic.setUsername("YOUR USERNAME");
                 Basic.setPassword("YOUR PASSWORD");
 
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
                 MfaApi apiInstance = new MfaApi(defaultClient);
                 String accountId = "9900000"; // String | Your Bandwidth Account ID.
                 VerifyCodeRequest verifyCodeRequest = new VerifyCodeRequest(); // VerifyCodeRequest | MFA code verify request body.
@@ -695,69 +719,49 @@ paths:
         - lang: PHP
           source: >
             <?php
-              
-            require "vendor/autoload.php";
+
+            require_once(__DIR__ . '/vendor/autoload.php');
 
 
-            api-username = "api-username";
 
-            api-password = "api-pasword";
+            // Configure HTTP basic authorization: Basic
 
-            12345 = "12345";
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
 
-            1234-asdf = "1234-asdf";
+            // Configure OAuth2 access token for authorization: OAuth2
 
-            //$BW_MFA_MESSAGING_APPLICATION_ID =
-            getenv("BW_MFA_MESSAGING_APPLICATION_ID");
-
-            //Both voice and messaging application IDs can be used. The verify
-            request
-
-            //must have the same ID as the code request.
-
-            +15554443333 = "+15554443333";
-
-            +15553334444 = "+15553334444";
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-            $config = new BandwidthLib\Configuration(
-                array(
-                    'multiFactorAuthBasicAuthUserName' => $BW_USERNAME,
-                    'multiFactorAuthBasicAuthPassword' => $BW_PASSWORD,
-                )
+
+            $apiInstance = new Bandwidth\Api\MFAApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
             );
 
-            $client = new BandwidthLib\BandwidthClient($config);
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $verify_code_request = new \Bandwidth\Model\VerifyCodeRequest(); //
+            \Bandwidth\Model\VerifyCodeRequest | MFA code verify request body.
 
 
-            $mfaClient = $client->getMultiFactorAuth()->getMFA();
+            $hostIndex = 0;
 
+            $variables = [
 
-            $body = new
-            BandwidthLib\MultiFactorAuth\Models\TwoFactorVerifyRequestSchema();
-
-            $body->from = $BW_MFA_NUMBER;
-
-            $body->to = $USER_NUMBER;
-
-            $body->applicationId = $BW_MFA_MESSAGING_APPLICATION_ID;
-
-            //$body->applicationId = 1234-qwer;
-
-            $body->scope = "scope";
-
-            $body->code = "123456"; //This is the user's input to validate
-
-            $body->digits = 6;
-
-            $body->expirationTimeInMinutes = 3;
+            ];
 
 
             try {
-                $response = $mfaClient->createVerifyTwoFactor($BW_ACCOUNT_ID, $body);
-                print_r($response->getResult()->valid);
-            } catch (BandwidthLib\APIException $e) {
-                print_r($e->getResponseCode());
+                $result = $apiInstance->verifyCode($account_id, $verify_code_request, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling MFAApi->verifyCode: ', $e->getMessage(), PHP_EOL;
             }
         - lang: Python
           source: >
@@ -801,6 +805,14 @@ paths:
             )
 
 
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
             # Enter a context with an instance of the API client
 
             with bandwidth.ApiClient(configuration) as api_client:
@@ -828,6 +840,9 @@ paths:
               # Configure HTTP basic authorization: Basic
               config.username = 'YOUR USERNAME'
               config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
             end
 
 

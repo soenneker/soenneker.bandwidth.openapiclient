@@ -49,6 +49,296 @@ paths:
           $ref: '#/components/responses/tooManyRequestsErrorResponse'
         '500':
           $ref: '#/components/responses/serviceUnavailableErrorResponse'
+      x-codeSamples:
+        - lang: cURL
+          source: >-
+            curl
+            'https://api.bandwidth.com/v2/accounts/9900000/endpoints?type=WEBRTC&status=CONNECTED&afterCursor=TWF5IHRoZSBmb3JjZSBiZSB3aXRoIHlvdQ%3D%3D&limit=2'
+            \
+              -H 'Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=' \
+              -H 'Accept: application/json'
+        - lang: C#
+          source: |
+            using System.Collections.Generic;
+            using System.Diagnostics;
+            using Bandwidth.Standard.Api;
+            using Bandwidth.Standard.Client;
+            using Bandwidth.Standard.Model;
+
+            namespace Example
+            {
+                public class ListEndpointsExample
+                {
+                    public static void Main()
+                    {
+                        Configuration config = new Configuration();
+                        config.BasePath = "http://localhost";
+                        // Configure HTTP basic authorization: Basic
+                        config.Username = "YOUR_USERNAME";
+                        config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+                        var apiInstance = new EndpointsApi(config);
+                        var accountId = 9900000;  // string | Your Bandwidth Account ID.
+                        var type = (EndpointTypeEnum) "WEBRTC";  // EndpointTypeEnum? | The type of endpoint. (optional) 
+                        var status = (EndpointStatusEnum) "CONNECTED";  // EndpointStatusEnum? | The status of the endpoint. (optional) 
+                        var afterCursor = TWF5IHRoZSBmb3JjZSBiZSB3aXRoIHlvdQ==;  // string | The cursor to use for pagination. This is the value of the `next` link in the previous response. (optional) 
+                        var limit = 2;  // int? | The maximum number of endpoints to return in the response. (optional)  (default to 100)
+
+                        try
+                        {
+                            // List Endpoints
+                            ListEndpointsResponse result = apiInstance.ListEndpoints(accountId, type, status, afterCursor, limit);
+                            Debug.WriteLine(result);
+                        }
+                        catch (ApiException  e)
+                        {
+                            Debug.Print("Exception when calling EndpointsApi.ListEndpoints: " + e.Message);
+                            Debug.Print("Status Code: " + e.ErrorCode);
+                            Debug.Print(e.StackTrace);
+                        }
+                    }
+                }
+            }
+        - lang: Java
+          source: |
+            // Import classes:
+            import com.bandwidth.sdk.ApiClient;
+            import com.bandwidth.sdk.ApiException;
+            import com.bandwidth.sdk.Configuration;
+            import com.bandwidth.sdk.auth.*;
+            import com.bandwidth.sdk.models.*;
+            import com.bandwidth.sdk.api.EndpointsApi;
+
+            public class Example {
+              public static void main(String[] args) {
+                ApiClient defaultClient = Configuration.getDefaultApiClient();
+                defaultClient.setBasePath("http://localhost");
+                
+                // Configure HTTP basic authorization: Basic
+                HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
+                Basic.setUsername("YOUR USERNAME");
+                Basic.setPassword("YOUR PASSWORD");
+
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+                EndpointsApi apiInstance = new EndpointsApi(defaultClient);
+                String accountId = "9900000"; // String | Your Bandwidth Account ID.
+                EndpointTypeEnum type = EndpointTypeEnum.fromValue("WEBRTC"); // EndpointTypeEnum | The type of endpoint.
+                EndpointStatusEnum status = EndpointStatusEnum.fromValue("CONNECTED"); // EndpointStatusEnum | The status of the endpoint.
+                String afterCursor = "TWF5IHRoZSBmb3JjZSBiZSB3aXRoIHlvdQ=="; // String | The cursor to use for pagination. This is the value of the `next` link in the previous response.
+                Integer limit = 100; // Integer | The maximum number of endpoints to return in the response.
+                try {
+                  ListEndpointsResponse result = apiInstance.listEndpoints(accountId, type, status, afterCursor, limit);
+                  System.out.println(result);
+                } catch (ApiException e) {
+                  System.err.println("Exception when calling EndpointsApi#listEndpoints");
+                  System.err.println("Status code: " + e.getCode());
+                  System.err.println("Reason: " + e.getResponseBody());
+                  System.err.println("Response headers: " + e.getResponseHeaders());
+                  e.printStackTrace();
+                }
+              }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\EndpointsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $type = new \Bandwidth\Model\\Bandwidth\Model\EndpointTypeEnum(); //
+            \Bandwidth\Model\EndpointTypeEnum | The type of endpoint.
+
+            $status = new
+            \Bandwidth\Model\\Bandwidth\Model\EndpointStatusEnum(); //
+            \Bandwidth\Model\EndpointStatusEnum | The status of the endpoint.
+
+            $after_cursor = TWF5IHRoZSBmb3JjZSBiZSB3aXRoIHlvdQ==; // string |
+            The cursor to use for pagination. This is the value of the `next`
+            link in the previous response.
+
+            $limit = 2; // int | The maximum number of endpoints to return in
+            the response.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $result = $apiInstance->listEndpoints($account_id, $type, $status, $after_cursor, $limit, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling EndpointsApi->listEndpoints: ', $e->getMessage(), PHP_EOL;
+            }
+        - lang: Python
+          source: >
+            import bandwidth
+
+            from bandwidth.models.endpoint_status_enum import EndpointStatusEnum
+
+            from bandwidth.models.endpoint_type_enum import EndpointTypeEnum
+
+            from bandwidth.models.list_endpoints_response import
+            ListEndpointsResponse
+
+            from bandwidth.rest import ApiException
+
+            from pprint import pprint
+
+
+            # Defining the host is optional and defaults to http://localhost
+
+            # See configuration.py for a list of all supported configuration
+            parameters.
+
+            configuration = bandwidth.Configuration(
+                host = "http://localhost"
+            )
+
+
+            # The client must configure the authentication and authorization
+            parameters
+
+            # in accordance with the API server security policy.
+
+            # Examples for each auth method are provided below, use the example
+            that
+
+            # satisfies your auth use case.
+
+
+            # Configure HTTP basic authorization: Basic
+
+            configuration = bandwidth.Configuration(
+                username = os.environ["USERNAME"],
+                password = os.environ["PASSWORD"]
+            )
+
+
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
+            # Enter a context with an instance of the API client
+
+            with bandwidth.ApiClient(configuration) as api_client:
+                # Create an instance of the API class
+                api_instance = bandwidth.EndpointsApi(api_client)
+                account_id = '9900000' # str | Your Bandwidth Account ID.
+                type = bandwidth.EndpointTypeEnum() # EndpointTypeEnum | The type of endpoint. (optional)
+                status = bandwidth.EndpointStatusEnum() # EndpointStatusEnum | The status of the endpoint. (optional)
+                after_cursor = 'TWF5IHRoZSBmb3JjZSBiZSB3aXRoIHlvdQ==' # str | The cursor to use for pagination. This is the value of the `next` link in the previous response. (optional)
+                limit = 100 # int | The maximum number of endpoints to return in the response. (optional) (default to 100)
+
+                try:
+                    # List Endpoints
+                    api_response = api_instance.list_endpoints(account_id, type=type, status=status, after_cursor=after_cursor, limit=limit)
+                    print("The response of EndpointsApi->list_endpoints:\n")
+                    pprint(api_response)
+                except Exception as e:
+                    print("Exception when calling EndpointsApi->list_endpoints: %s\n" % e)
+        - lang: Ruby
+          source: |
+            require 'time'
+            require 'bandwidth-sdk'
+            # setup authorization
+            Bandwidth.configure do |config|
+              # Configure HTTP basic authorization: Basic
+              config.username = 'YOUR USERNAME'
+              config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
+            end
+
+            api_instance = Bandwidth::EndpointsApi.new
+            account_id = '9900000' # String | Your Bandwidth Account ID.
+            opts = {
+              type: Bandwidth::EndpointTypeEnum::WEBRTC, # EndpointTypeEnum | The type of endpoint.
+              status: Bandwidth::EndpointStatusEnum::CONNECTED, # EndpointStatusEnum | The status of the endpoint.
+              after_cursor: 'TWF5IHRoZSBmb3JjZSBiZSB3aXRoIHlvdQ==', # String | The cursor to use for pagination. This is the value of the `next` link in the previous response.
+              limit: 2 # Integer | The maximum number of endpoints to return in the response.
+            }
+
+            begin
+              # List Endpoints
+              result = api_instance.list_endpoints(account_id, opts)
+              p result
+            rescue Bandwidth::ApiError => e
+              puts "Error when calling EndpointsApi->list_endpoints: #{e}"
+            end
+        - lang: TypeScript
+          source: >
+            import {
+                EndpointsApi,
+                Configuration
+            } from 'bandwidth-sdk';
+
+
+            const configuration = new Configuration();
+
+            const apiInstance = new EndpointsApi(configuration);
+
+
+            let accountId: string; //Your Bandwidth Account ID. (default to
+            undefined)
+
+            let type: EndpointTypeEnum; //The type of endpoint. (optional)
+            (default to undefined)
+
+            let status: EndpointStatusEnum; //The status of the endpoint.
+            (optional) (default to undefined)
+
+            let afterCursor: string; //The cursor to use for pagination. This is
+            the value of the `next` link in the previous response. (optional)
+            (default to undefined)
+
+            let limit: number; //The maximum number of endpoints to return in
+            the response. (optional) (default to 100)
+
+
+            const { status, data } = await apiInstance.listEndpoints(
+                accountId,
+                type,
+                status,
+                afterCursor,
+                limit
+            );
     post:
       tags:
         - Endpoints
@@ -81,6 +371,262 @@ paths:
       callbacks:
         endpointEventCallback:
           $ref: '#/components/callbacks/endpointEvent'
+      x-codeSamples:
+        - lang: cURL
+          source: |-
+            curl 'https://api.bandwidth.com/v2/accounts/9900000/endpoints' \
+              -H 'Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=' \
+              -H 'Content-Type: application/json' \
+              -H 'Accept: application/json' \
+              -d '{
+                "type": "WEBRTC",
+                "direction": "BIDIRECTIONAL",
+                "eventCallbackUrl": "https://myEventCallbackUrl.com/callbacks/bandwidth",
+                "eventFallbackUrl": "https://fallback.myEventCallbackUrl.com/callbacks/bandwidth",
+                "tag": "{\"myTag\": \"myTagValue\"}"
+              }'
+        - lang: C#
+          source: |
+            using System.Collections.Generic;
+            using System.Diagnostics;
+            using Bandwidth.Standard.Api;
+            using Bandwidth.Standard.Client;
+            using Bandwidth.Standard.Model;
+
+            namespace Example
+            {
+                public class CreateEndpointExample
+                {
+                    public static void Main()
+                    {
+                        Configuration config = new Configuration();
+                        config.BasePath = "http://localhost";
+                        // Configure HTTP basic authorization: Basic
+                        config.Username = "YOUR_USERNAME";
+                        config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+                        var apiInstance = new EndpointsApi(config);
+                        var accountId = 9900000;  // string | Your Bandwidth Account ID.
+                        var createEndpointRequest = new CreateEndpointRequest(); // CreateEndpointRequest | 
+
+                        try
+                        {
+                            // Create Endpoint
+                            CreateEndpointResponse result = apiInstance.CreateEndpoint(accountId, createEndpointRequest);
+                            Debug.WriteLine(result);
+                        }
+                        catch (ApiException  e)
+                        {
+                            Debug.Print("Exception when calling EndpointsApi.CreateEndpoint: " + e.Message);
+                            Debug.Print("Status Code: " + e.ErrorCode);
+                            Debug.Print(e.StackTrace);
+                        }
+                    }
+                }
+            }
+        - lang: Java
+          source: |
+            // Import classes:
+            import com.bandwidth.sdk.ApiClient;
+            import com.bandwidth.sdk.ApiException;
+            import com.bandwidth.sdk.Configuration;
+            import com.bandwidth.sdk.auth.*;
+            import com.bandwidth.sdk.models.*;
+            import com.bandwidth.sdk.api.EndpointsApi;
+
+            public class Example {
+              public static void main(String[] args) {
+                ApiClient defaultClient = Configuration.getDefaultApiClient();
+                defaultClient.setBasePath("http://localhost");
+                
+                // Configure HTTP basic authorization: Basic
+                HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
+                Basic.setUsername("YOUR USERNAME");
+                Basic.setPassword("YOUR PASSWORD");
+
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+                EndpointsApi apiInstance = new EndpointsApi(defaultClient);
+                String accountId = "9900000"; // String | Your Bandwidth Account ID.
+                CreateWebRtcConnectionRequest body = new CreateWebRtcConnectionRequest(); // CreateWebRtcConnectionRequest | 
+                try {
+                  CreateEndpointResponse result = apiInstance.createEndpoint(accountId, body);
+                  System.out.println(result);
+                } catch (ApiException e) {
+                  System.err.println("Exception when calling EndpointsApi#createEndpoint");
+                  System.err.println("Status code: " + e.getCode());
+                  System.err.println("Reason: " + e.getResponseBody());
+                  System.err.println("Response headers: " + e.getResponseHeaders());
+                  e.printStackTrace();
+                }
+              }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\EndpointsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $body = new \Bandwidth\Model\CreateWebRtcConnectionRequest(); //
+            \Bandwidth\Model\CreateWebRtcConnectionRequest
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $result = $apiInstance->createEndpoint($account_id, $body, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling EndpointsApi->createEndpoint: ', $e->getMessage(), PHP_EOL;
+            }
+        - lang: Python
+          source: >
+            import bandwidth
+
+            from bandwidth.models.create_endpoint_response import
+            CreateEndpointResponse
+
+            from bandwidth.models.create_web_rtc_connection_request import
+            CreateWebRtcConnectionRequest
+
+            from bandwidth.rest import ApiException
+
+            from pprint import pprint
+
+
+            # Defining the host is optional and defaults to http://localhost
+
+            # See configuration.py for a list of all supported configuration
+            parameters.
+
+            configuration = bandwidth.Configuration(
+                host = "http://localhost"
+            )
+
+
+            # The client must configure the authentication and authorization
+            parameters
+
+            # in accordance with the API server security policy.
+
+            # Examples for each auth method are provided below, use the example
+            that
+
+            # satisfies your auth use case.
+
+
+            # Configure HTTP basic authorization: Basic
+
+            configuration = bandwidth.Configuration(
+                username = os.environ["USERNAME"],
+                password = os.environ["PASSWORD"]
+            )
+
+
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
+            # Enter a context with an instance of the API client
+
+            with bandwidth.ApiClient(configuration) as api_client:
+                # Create an instance of the API class
+                api_instance = bandwidth.EndpointsApi(api_client)
+                account_id = '9900000' # str | Your Bandwidth Account ID.
+                body = bandwidth.CreateWebRtcConnectionRequest() # CreateWebRtcConnectionRequest | 
+
+                try:
+                    # Create Endpoint
+                    api_response = api_instance.create_endpoint(account_id, body)
+                    print("The response of EndpointsApi->create_endpoint:\n")
+                    pprint(api_response)
+                except Exception as e:
+                    print("Exception when calling EndpointsApi->create_endpoint: %s\n" % e)
+        - lang: Ruby
+          source: |
+            require 'time'
+            require 'bandwidth-sdk'
+            # setup authorization
+            Bandwidth.configure do |config|
+              # Configure HTTP basic authorization: Basic
+              config.username = 'YOUR USERNAME'
+              config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
+            end
+
+            api_instance = Bandwidth::EndpointsApi.new
+            account_id = '9900000' # String | Your Bandwidth Account ID.
+            body = 3.56 # CreateWebRtcConnectionRequest | 
+
+            begin
+              # Create Endpoint
+              result = api_instance.create_endpoint(account_id, body)
+              p result
+            rescue Bandwidth::ApiError => e
+              puts "Error when calling EndpointsApi->create_endpoint: #{e}"
+            end
+        - lang: TypeScript
+          source: >
+            import {
+                EndpointsApi,
+                Configuration
+            } from 'bandwidth-sdk';
+
+
+            const configuration = new Configuration();
+
+            const apiInstance = new EndpointsApi(configuration);
+
+
+            let accountId: string; //Your Bandwidth Account ID. (default to
+            undefined)
+
+            let body: CreateWebRtcConnectionRequest; //
+
+
+            const { status, data } = await apiInstance.createEndpoint(
+                accountId,
+                body
+            );
   /accounts/{accountId}/endpoints/{endpointId}:
     get:
       tags:
@@ -110,6 +656,260 @@ paths:
           $ref: '#/components/responses/tooManyRequestsErrorResponse'
         '500':
           $ref: '#/components/responses/serviceUnavailableErrorResponse'
+      x-codeSamples:
+        - lang: cURL
+          source: >-
+            curl
+            'https://api.bandwidth.com/v2/accounts/9900000/endpoints/e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85'
+            \
+              -H 'Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=' \
+              -H 'Accept: application/json'
+        - lang: C#
+          source: |
+            using System.Collections.Generic;
+            using System.Diagnostics;
+            using Bandwidth.Standard.Api;
+            using Bandwidth.Standard.Client;
+            using Bandwidth.Standard.Model;
+
+            namespace Example
+            {
+                public class GetEndpointExample
+                {
+                    public static void Main()
+                    {
+                        Configuration config = new Configuration();
+                        config.BasePath = "http://localhost";
+                        // Configure HTTP basic authorization: Basic
+                        config.Username = "YOUR_USERNAME";
+                        config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+                        var apiInstance = new EndpointsApi(config);
+                        var accountId = 9900000;  // string | Your Bandwidth Account ID.
+                        var endpointId = e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | BRTC Endpoint ID.
+
+                        try
+                        {
+                            // Get Endpoint
+                            EndpointResponse result = apiInstance.GetEndpoint(accountId, endpointId);
+                            Debug.WriteLine(result);
+                        }
+                        catch (ApiException  e)
+                        {
+                            Debug.Print("Exception when calling EndpointsApi.GetEndpoint: " + e.Message);
+                            Debug.Print("Status Code: " + e.ErrorCode);
+                            Debug.Print(e.StackTrace);
+                        }
+                    }
+                }
+            }
+        - lang: Java
+          source: |
+            // Import classes:
+            import com.bandwidth.sdk.ApiClient;
+            import com.bandwidth.sdk.ApiException;
+            import com.bandwidth.sdk.Configuration;
+            import com.bandwidth.sdk.auth.*;
+            import com.bandwidth.sdk.models.*;
+            import com.bandwidth.sdk.api.EndpointsApi;
+
+            public class Example {
+              public static void main(String[] args) {
+                ApiClient defaultClient = Configuration.getDefaultApiClient();
+                defaultClient.setBasePath("http://localhost");
+                
+                // Configure HTTP basic authorization: Basic
+                HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
+                Basic.setUsername("YOUR USERNAME");
+                Basic.setPassword("YOUR PASSWORD");
+
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+                EndpointsApi apiInstance = new EndpointsApi(defaultClient);
+                String accountId = "9900000"; // String | Your Bandwidth Account ID.
+                String endpointId = "e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85"; // String | BRTC Endpoint ID.
+                try {
+                  EndpointResponse result = apiInstance.getEndpoint(accountId, endpointId);
+                  System.out.println(result);
+                } catch (ApiException e) {
+                  System.err.println("Exception when calling EndpointsApi#getEndpoint");
+                  System.err.println("Status code: " + e.getCode());
+                  System.err.println("Reason: " + e.getResponseBody());
+                  System.err.println("Response headers: " + e.getResponseHeaders());
+                  e.printStackTrace();
+                }
+              }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\EndpointsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $endpoint_id = e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | BRTC Endpoint ID.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $result = $apiInstance->getEndpoint($account_id, $endpoint_id, $hostIndex, $variables);
+                print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling EndpointsApi->getEndpoint: ', $e->getMessage(), PHP_EOL;
+            }
+        - lang: Python
+          source: >
+            import bandwidth
+
+            from bandwidth.models.endpoint_response import EndpointResponse
+
+            from bandwidth.rest import ApiException
+
+            from pprint import pprint
+
+
+            # Defining the host is optional and defaults to http://localhost
+
+            # See configuration.py for a list of all supported configuration
+            parameters.
+
+            configuration = bandwidth.Configuration(
+                host = "http://localhost"
+            )
+
+
+            # The client must configure the authentication and authorization
+            parameters
+
+            # in accordance with the API server security policy.
+
+            # Examples for each auth method are provided below, use the example
+            that
+
+            # satisfies your auth use case.
+
+
+            # Configure HTTP basic authorization: Basic
+
+            configuration = bandwidth.Configuration(
+                username = os.environ["USERNAME"],
+                password = os.environ["PASSWORD"]
+            )
+
+
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
+            # Enter a context with an instance of the API client
+
+            with bandwidth.ApiClient(configuration) as api_client:
+                # Create an instance of the API class
+                api_instance = bandwidth.EndpointsApi(api_client)
+                account_id = '9900000' # str | Your Bandwidth Account ID.
+                endpoint_id = 'e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # str | BRTC Endpoint ID.
+
+                try:
+                    # Get Endpoint
+                    api_response = api_instance.get_endpoint(account_id, endpoint_id)
+                    print("The response of EndpointsApi->get_endpoint:\n")
+                    pprint(api_response)
+                except Exception as e:
+                    print("Exception when calling EndpointsApi->get_endpoint: %s\n" % e)
+        - lang: Ruby
+          source: >
+            require 'time'
+
+            require 'bandwidth-sdk'
+
+            # setup authorization
+
+            Bandwidth.configure do |config|
+              # Configure HTTP basic authorization: Basic
+              config.username = 'YOUR USERNAME'
+              config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
+            end
+
+
+            api_instance = Bandwidth::EndpointsApi.new
+
+            account_id = '9900000' # String | Your Bandwidth Account ID.
+
+            endpoint_id = 'e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' #
+            String | BRTC Endpoint ID.
+
+
+            begin
+              # Get Endpoint
+              result = api_instance.get_endpoint(account_id, endpoint_id)
+              p result
+            rescue Bandwidth::ApiError => e
+              puts "Error when calling EndpointsApi->get_endpoint: #{e}"
+            end
+        - lang: TypeScript
+          source: >
+            import {
+                EndpointsApi,
+                Configuration
+            } from 'bandwidth-sdk';
+
+
+            const configuration = new Configuration();
+
+            const apiInstance = new EndpointsApi(configuration);
+
+
+            let accountId: string; //Your Bandwidth Account ID. (default to
+            undefined)
+
+            let endpointId: string; //BRTC Endpoint ID. (default to undefined)
+
+
+            const { status, data } = await apiInstance.getEndpoint(
+                accountId,
+                endpointId
+            );
     delete:
       tags:
         - Endpoints
@@ -140,6 +940,252 @@ paths:
           $ref: '#/components/responses/tooManyRequestsErrorResponse'
         '500':
           $ref: '#/components/responses/serviceUnavailableErrorResponse'
+      x-codeSamples:
+        - lang: cURL
+          source: >-
+            curl -X DELETE
+            'https://api.bandwidth.com/v2/accounts/9900000/endpoints/e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85'
+            \
+              -H 'Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=' \
+              -H 'Accept: application/json'
+        - lang: C#
+          source: |
+            using System.Collections.Generic;
+            using System.Diagnostics;
+            using Bandwidth.Standard.Api;
+            using Bandwidth.Standard.Client;
+            using Bandwidth.Standard.Model;
+
+            namespace Example
+            {
+                public class DeleteEndpointExample
+                {
+                    public static void Main()
+                    {
+                        Configuration config = new Configuration();
+                        config.BasePath = "http://localhost";
+                        // Configure HTTP basic authorization: Basic
+                        config.Username = "YOUR_USERNAME";
+                        config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+                        var apiInstance = new EndpointsApi(config);
+                        var accountId = 9900000;  // string | Your Bandwidth Account ID.
+                        var endpointId = e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | BRTC Endpoint ID.
+
+                        try
+                        {
+                            // Delete Endpoint
+                            apiInstance.DeleteEndpoint(accountId, endpointId);
+                        }
+                        catch (ApiException  e)
+                        {
+                            Debug.Print("Exception when calling EndpointsApi.DeleteEndpoint: " + e.Message);
+                            Debug.Print("Status Code: " + e.ErrorCode);
+                            Debug.Print(e.StackTrace);
+                        }
+                    }
+                }
+            }
+        - lang: Java
+          source: |
+            // Import classes:
+            import com.bandwidth.sdk.ApiClient;
+            import com.bandwidth.sdk.ApiException;
+            import com.bandwidth.sdk.Configuration;
+            import com.bandwidth.sdk.auth.*;
+            import com.bandwidth.sdk.models.*;
+            import com.bandwidth.sdk.api.EndpointsApi;
+
+            public class Example {
+              public static void main(String[] args) {
+                ApiClient defaultClient = Configuration.getDefaultApiClient();
+                defaultClient.setBasePath("http://localhost");
+                
+                // Configure HTTP basic authorization: Basic
+                HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
+                Basic.setUsername("YOUR USERNAME");
+                Basic.setPassword("YOUR PASSWORD");
+
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+                EndpointsApi apiInstance = new EndpointsApi(defaultClient);
+                String accountId = "9900000"; // String | Your Bandwidth Account ID.
+                String endpointId = "e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85"; // String | BRTC Endpoint ID.
+                try {
+                  apiInstance.deleteEndpoint(accountId, endpointId);
+                } catch (ApiException e) {
+                  System.err.println("Exception when calling EndpointsApi#deleteEndpoint");
+                  System.err.println("Status code: " + e.getCode());
+                  System.err.println("Reason: " + e.getResponseBody());
+                  System.err.println("Response headers: " + e.getResponseHeaders());
+                  e.printStackTrace();
+                }
+              }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\EndpointsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $endpoint_id = e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | BRTC Endpoint ID.
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $apiInstance->deleteEndpoint($account_id, $endpoint_id, $hostIndex, $variables);
+            } catch (Exception $e) {
+                echo 'Exception when calling EndpointsApi->deleteEndpoint: ', $e->getMessage(), PHP_EOL;
+            }
+        - lang: Python
+          source: >
+            import bandwidth
+
+            from bandwidth.rest import ApiException
+
+            from pprint import pprint
+
+
+            # Defining the host is optional and defaults to http://localhost
+
+            # See configuration.py for a list of all supported configuration
+            parameters.
+
+            configuration = bandwidth.Configuration(
+                host = "http://localhost"
+            )
+
+
+            # The client must configure the authentication and authorization
+            parameters
+
+            # in accordance with the API server security policy.
+
+            # Examples for each auth method are provided below, use the example
+            that
+
+            # satisfies your auth use case.
+
+
+            # Configure HTTP basic authorization: Basic
+
+            configuration = bandwidth.Configuration(
+                username = os.environ["USERNAME"],
+                password = os.environ["PASSWORD"]
+            )
+
+
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
+            # Enter a context with an instance of the API client
+
+            with bandwidth.ApiClient(configuration) as api_client:
+                # Create an instance of the API class
+                api_instance = bandwidth.EndpointsApi(api_client)
+                account_id = '9900000' # str | Your Bandwidth Account ID.
+                endpoint_id = 'e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # str | BRTC Endpoint ID.
+
+                try:
+                    # Delete Endpoint
+                    api_instance.delete_endpoint(account_id, endpoint_id)
+                except Exception as e:
+                    print("Exception when calling EndpointsApi->delete_endpoint: %s\n" % e)
+        - lang: Ruby
+          source: >
+            require 'time'
+
+            require 'bandwidth-sdk'
+
+            # setup authorization
+
+            Bandwidth.configure do |config|
+              # Configure HTTP basic authorization: Basic
+              config.username = 'YOUR USERNAME'
+              config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
+            end
+
+
+            api_instance = Bandwidth::EndpointsApi.new
+
+            account_id = '9900000' # String | Your Bandwidth Account ID.
+
+            endpoint_id = 'e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' #
+            String | BRTC Endpoint ID.
+
+
+            begin
+              # Delete Endpoint
+              api_instance.delete_endpoint(account_id, endpoint_id)
+            rescue Bandwidth::ApiError => e
+              puts "Error when calling EndpointsApi->delete_endpoint: #{e}"
+            end
+        - lang: TypeScript
+          source: >
+            import {
+                EndpointsApi,
+                Configuration
+            } from 'bandwidth-sdk';
+
+
+            const configuration = new Configuration();
+
+            const apiInstance = new EndpointsApi(configuration);
+
+
+            let accountId: string; //Your Bandwidth Account ID. (default to
+            undefined)
+
+            let endpointId: string; //BRTC Endpoint ID. (default to undefined)
+
+
+            const { status, data } = await apiInstance.deleteEndpoint(
+                accountId,
+                endpointId
+            );
   /accounts/{accountId}/endpoints/{endpointId}/bxml:
     put:
       tags:
@@ -171,6 +1217,265 @@ paths:
           $ref: '#/components/responses/tooManyRequestsErrorResponse'
         '500':
           $ref: '#/components/responses/serviceUnavailableErrorResponse'
+      x-codeSamples:
+        - lang: cURL
+          source: >-
+            curl -X PUT
+            'https://api.bandwidth.com/v2/accounts/9900000/endpoints/e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85/bxml'
+            \
+              -H 'Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=' \
+              -H 'Content-Type: application/xml' \
+              -H 'Accept: application/json' \
+              -d '<?xml version="1.0" encoding="UTF-8"?>
+              <element><Response><StartRecording /></Response></element>'
+        - lang: C#
+          source: |
+            using System.Collections.Generic;
+            using System.Diagnostics;
+            using Bandwidth.Standard.Api;
+            using Bandwidth.Standard.Client;
+            using Bandwidth.Standard.Model;
+
+            namespace Example
+            {
+                public class UpdateEndpointBxmlExample
+                {
+                    public static void Main()
+                    {
+                        Configuration config = new Configuration();
+                        config.BasePath = "http://localhost";
+                        // Configure HTTP basic authorization: Basic
+                        config.Username = "YOUR_USERNAME";
+                        config.Password = "YOUR_PASSWORD";
+                        // Configure OAuth2 access token for authorization: OAuth2
+                        config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+                        var apiInstance = new EndpointsApi(config);
+                        var accountId = 9900000;  // string | Your Bandwidth Account ID.
+                        var endpointId = e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | BRTC Endpoint ID.
+                        var body = "body_example";  // string | 
+
+                        try
+                        {
+                            // Update Endpoint BXML
+                            apiInstance.UpdateEndpointBxml(accountId, endpointId, body);
+                        }
+                        catch (ApiException  e)
+                        {
+                            Debug.Print("Exception when calling EndpointsApi.UpdateEndpointBxml: " + e.Message);
+                            Debug.Print("Status Code: " + e.ErrorCode);
+                            Debug.Print(e.StackTrace);
+                        }
+                    }
+                }
+            }
+        - lang: Java
+          source: |
+            // Import classes:
+            import com.bandwidth.sdk.ApiClient;
+            import com.bandwidth.sdk.ApiException;
+            import com.bandwidth.sdk.Configuration;
+            import com.bandwidth.sdk.auth.*;
+            import com.bandwidth.sdk.models.*;
+            import com.bandwidth.sdk.api.EndpointsApi;
+
+            public class Example {
+              public static void main(String[] args) {
+                ApiClient defaultClient = Configuration.getDefaultApiClient();
+                defaultClient.setBasePath("http://localhost");
+                
+                // Configure HTTP basic authorization: Basic
+                HttpBasicAuth Basic = (HttpBasicAuth) defaultClient.getAuthentication("Basic");
+                Basic.setUsername("YOUR USERNAME");
+                Basic.setPassword("YOUR PASSWORD");
+
+                // Configure OAuth2 access token for authorization: OAuth2
+                OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+                OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+                EndpointsApi apiInstance = new EndpointsApi(defaultClient);
+                String accountId = "9900000"; // String | Your Bandwidth Account ID.
+                String endpointId = "e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85"; // String | BRTC Endpoint ID.
+                String body = "body_example"; // String | 
+                try {
+                  apiInstance.updateEndpointBxml(accountId, endpointId, body);
+                } catch (ApiException e) {
+                  System.err.println("Exception when calling EndpointsApi#updateEndpointBxml");
+                  System.err.println("Status code: " + e.getCode());
+                  System.err.println("Reason: " + e.getResponseBody());
+                  System.err.println("Response headers: " + e.getResponseHeaders());
+                  e.printStackTrace();
+                }
+              }
+            }
+        - lang: PHP
+          source: >
+            <?php
+
+            require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+            // Configure HTTP basic authorization: Basic
+
+            $config = Bandwidth\Configuration::getDefaultConfiguration()
+                          ->setUsername('YOUR_USERNAME')
+                          ->setPassword('YOUR_PASSWORD');
+
+            // Configure OAuth2 access token for authorization: OAuth2
+
+            $config =
+            Bandwidth\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+
+            $apiInstance = new Bandwidth\Api\EndpointsApi(
+                // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+                // This is optional, `GuzzleHttp\Client` will be used as default.
+                new GuzzleHttp\Client(),
+                $config
+            );
+
+            $account_id = 9900000; // string | Your Bandwidth Account ID.
+
+            $endpoint_id = e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85; //
+            string | BRTC Endpoint ID.
+
+            $body = 'body_example'; // string
+
+
+            $hostIndex = 0;
+
+            $variables = [
+
+            ];
+
+
+            try {
+                $apiInstance->updateEndpointBxml($account_id, $endpoint_id, $body, $hostIndex, $variables);
+            } catch (Exception $e) {
+                echo 'Exception when calling EndpointsApi->updateEndpointBxml: ', $e->getMessage(), PHP_EOL;
+            }
+        - lang: Python
+          source: >
+            import bandwidth
+
+            from bandwidth.rest import ApiException
+
+            from pprint import pprint
+
+
+            # Defining the host is optional and defaults to http://localhost
+
+            # See configuration.py for a list of all supported configuration
+            parameters.
+
+            configuration = bandwidth.Configuration(
+                host = "http://localhost"
+            )
+
+
+            # The client must configure the authentication and authorization
+            parameters
+
+            # in accordance with the API server security policy.
+
+            # Examples for each auth method are provided below, use the example
+            that
+
+            # satisfies your auth use case.
+
+
+            # Configure HTTP basic authorization: Basic
+
+            configuration = bandwidth.Configuration(
+                username = os.environ["USERNAME"],
+                password = os.environ["PASSWORD"]
+            )
+
+
+            # Configure your client ID and secret for OAuth
+
+            configuration = bandwidth.Configuration(
+                client_id = os.environ["CLIENT_ID"],
+                client_secret = os.environ["CLIENT_SECRET"]
+            )
+
+
+            # Enter a context with an instance of the API client
+
+            with bandwidth.ApiClient(configuration) as api_client:
+                # Create an instance of the API class
+                api_instance = bandwidth.EndpointsApi(api_client)
+                account_id = '9900000' # str | Your Bandwidth Account ID.
+                endpoint_id = 'e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' # str | BRTC Endpoint ID.
+                body = 'body_example' # str | 
+
+                try:
+                    # Update Endpoint BXML
+                    api_instance.update_endpoint_bxml(account_id, endpoint_id, body)
+                except Exception as e:
+                    print("Exception when calling EndpointsApi->update_endpoint_bxml: %s\n" % e)
+        - lang: Ruby
+          source: >
+            require 'time'
+
+            require 'bandwidth-sdk'
+
+            # setup authorization
+
+            Bandwidth.configure do |config|
+              # Configure HTTP basic authorization: Basic
+              config.username = 'YOUR USERNAME'
+              config.password = 'YOUR PASSWORD'
+
+              # Configure OAuth2 access token for authorization: OAuth2
+              config.access_token = 'YOUR ACCESS TOKEN'
+            end
+
+
+            api_instance = Bandwidth::EndpointsApi.new
+
+            account_id = '9900000' # String | Your Bandwidth Account ID.
+
+            endpoint_id = 'e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85' #
+            String | BRTC Endpoint ID.
+
+            body = 'body_example' # String | 
+
+
+            begin
+              # Update Endpoint BXML
+              api_instance.update_endpoint_bxml(account_id, endpoint_id, body)
+            rescue Bandwidth::ApiError => e
+              puts "Error when calling EndpointsApi->update_endpoint_bxml: #{e}"
+            end
+        - lang: TypeScript
+          source: >
+            import {
+                EndpointsApi,
+                Configuration
+            } from 'bandwidth-sdk';
+
+
+            const configuration = new Configuration();
+
+            const apiInstance = new EndpointsApi(configuration);
+
+
+            let accountId: string; //Your Bandwidth Account ID. (default to
+            undefined)
+
+            let endpointId: string; //BRTC Endpoint ID. (default to undefined)
+
+            let body: string; //
+
+
+            const { status, data } = await apiInstance.updateEndpointBxml(
+                accountId,
+                endpointId,
+                body
+            );
 components:
   parameters:
     accountId:

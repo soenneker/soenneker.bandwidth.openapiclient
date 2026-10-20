@@ -583,6 +583,32 @@ paths:
           $ref: '#/components/responses/tooManyRequestsError'
         '500':
           $ref: '#/components/responses/internalServerError'
+  /accounts/{accountId}/numberReputationManagement:
+    get:
+      tags:
+        - Number Reputation Management
+      description: Get Number Reputation Management account data for the specified account.
+      operationId: getNumberReputationManagementAccount
+      summary: Get Account
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/getAccount200Response'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedErrorBasic'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/accountNotFoundError'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
   /accounts/{accountId}/numberReputationManagement/customers:
     get:
       tags:
@@ -3209,6 +3235,15 @@ components:
         - APPROVED
         - REJECTED
       example: APPROVED
+    accountTypeEnum:
+      type: string
+      nullable: true
+      title: Account Type
+      description: The type of the account.
+      enum:
+        - ENTERPRISE
+        - RESELLER
+      example: ENTERPRISE
     groupBaseProperties:
       type: object
       title: Group Base Properties
@@ -3791,6 +3826,56 @@ components:
             $ref: '#/components/schemas/error'
           nullable: true
           example: null
+      required:
+        - data
+        - links
+        - errors
+    getAccount200Response:
+      type: object
+      properties:
+        data:
+          type: object
+          nullable: true
+          properties:
+            accountId:
+              type: string
+              description: The unique identifier of the account.
+              example: '5011374'
+            createdAt:
+              type: string
+              format: date-time
+              description: The date and time when the account was created.
+              example: '2024-01-01T12:00:00Z'
+            status:
+              type: string
+              description: The status of the account.
+              example: Active
+            accountType:
+              $ref: '#/components/schemas/accountTypeEnum'
+            customersEnabled:
+              type: boolean
+              description: Whether the account can manage end-user customers.
+              example: false
+            features:
+              type: array
+              items:
+                type: string
+              description: >-
+                The list of Number Reputation Management features enabled for
+                the account.
+              example:
+                - CARRIER_MONITORING
+                - CONSUMER_APP_MONITORING
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          example: []
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+          example: []
       required:
         - data
         - links
@@ -4934,6 +5019,12 @@ components:
           examples:
             example:
               $ref: '#/components/examples/getCustomer200ResponseExample'
+    getAccount200Response:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/getAccount200Response'
     badRequestError:
       description: Bad Request
       content:

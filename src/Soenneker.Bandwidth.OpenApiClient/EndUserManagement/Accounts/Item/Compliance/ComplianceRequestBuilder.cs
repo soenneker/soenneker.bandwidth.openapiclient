@@ -2,7 +2,6 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
-using Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Compliance.Admin;
 using Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Compliance.Documents;
 using Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Compliance.EndUsers;
 using Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Compliance.NumberActivation;
@@ -20,11 +19,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Comp
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ComplianceRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The admin property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Compliance.Admin.AdminRequestBuilder Admin
-        {
-            get => new global::Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Compliance.Admin.AdminRequestBuilder(PathParameters, RequestAdapter);
-        }
         /// <summary>The documents property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Accounts.Item.Compliance.Documents.DocumentsRequestBuilder Documents
         {

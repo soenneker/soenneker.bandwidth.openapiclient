@@ -15,6 +15,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         #pragma warning disable CS1591
         Submitted,
         #pragma warning restore CS1591
+        [EnumMember(Value = "AUTO_VALIDATED")]
+        #pragma warning disable CS1591
+        AutoValidated,
+        #pragma warning restore CS1591
         [EnumMember(Value = "VERIFIED")]
         #pragma warning disable CS1591
         Verified,
@@ -27,9 +31,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         #pragma warning disable CS1591
         Disabled,
         #pragma warning restore CS1591
-        [EnumMember(Value = "AUTO_VALIDATED")]
+        [EnumMember(Value = "DISABLED_FRAUD")]
         #pragma warning disable CS1591
-        AutoValidated,
+        DisabledFraud,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "ACTION_REQUIRED")]
+        #pragma warning disable CS1591
+        ActionRequired,
         #pragma warning restore CS1591
     }
 }

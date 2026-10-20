@@ -1,12 +1,29 @@
 openapi: 3.0.0
 info:
   title: User Management
-  description: |-
+  description: >-
     Bandwidth's User Management
+
 
     ## Base URL
 
+
     `https://api.bandwidth.com/api/v1`
+
+
+    ## Authorization
+
+
+    The Users and Audit Logs endpoints require a credential with `ACCOUNT_ADMIN`
+    scope and the `accountAdminUserManagementRole` role, as well as access to
+    the accounts the user belongs to. A credential without these receives a `403
+    Forbidden` response.
+
+
+    The MFA endpoints are different: enrolling, activating, and resetting a
+    factor must be done as the user themselves, while an account admin can list
+    the factors of users they have access to. See the [User Management
+    guide](https://dev.bandwidth.com/docs/account/users/management) for details.
   version: 1.0.0
   contact:
     name: Bandwidth
@@ -350,8 +367,9 @@ paths:
       summary: Create User Audit Log Report
       description: >-
         Starts an asynchronous job to generate a report of audit log events for
-        the specified user. Returns `202 Accepted` immediately with the new
-        report's `reportId` and `PENDING` status.
+        the specified user. Reports can include up to 611 days of data, compared
+        to 60 days for List User Audit Logs. Returns `202 Accepted` immediately
+        with the new report's `reportId` and `PENDING` status.
 
 
         Poll `GET /users/{userId}/audit-log-reports/{reportId}` to check status,

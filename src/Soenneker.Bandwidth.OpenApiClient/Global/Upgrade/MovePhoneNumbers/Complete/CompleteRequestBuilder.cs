@@ -19,7 +19,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Upgrade.MovePhoneNumbers.Comp
     public partial class CompleteRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The status property</summary>
-        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Upgrade.MovePhoneNumbers.Complete.Status.StatusRequestBuilder Status
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Upgrade.MovePhoneNumbers.Complete.Status.StatusRequestBuilder(PathParameters, RequestAdapter);
@@ -54,7 +53,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Upgrade.MovePhoneNumbers.Comp
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalErrorResponse">When receiving a 409 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalErrorResponse">When receiving a 500 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalErrorResponse">When receiving a 503 status code</exception>
-        [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumbersCompletionResponse?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.CompleteMoveRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -84,7 +82,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Upgrade.MovePhoneNumbers.Comp
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public RequestInformation ToPostRequestInformation(global::Soenneker.Bandwidth.OpenApiClient.Models.CompleteMoveRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
@@ -106,7 +103,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Upgrade.MovePhoneNumbers.Comp
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Global.Upgrade.MovePhoneNumbers.Complete.CompleteRequestBuilder"/></returns>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Upgrade.MovePhoneNumbers.Complete.CompleteRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Bandwidth.OpenApiClient.Global.Upgrade.MovePhoneNumbers.Complete.CompleteRequestBuilder(rawUrl, RequestAdapter);
