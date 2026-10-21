@@ -12,6 +12,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     public partial class LnpOrderSuppAutomatedTollFreeJson : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>Set to `true` to acknowledge and override request warnings. Currently this applies to the FOC hold window warning (error 7910): set it to `true` to acknowledge that the `requestedFocDate` is later than the losing RespOrg&apos;s translation hold window (or the default 10 business days if the RespOrg has no configured window). If the requested FOC date is outside the hold window and this field is omitted or `false`, the request is rejected with error 7910 and nothing is saved. Resubmit the same request with this field set to `true` to proceed; Bandwidth then records a note on the order. Applies to toll-free port-ins with Toll-Free Automation only.</summary>
+        public bool? AcknowledgeAndOverrideAllWarnings { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`. This field is removed from the order if not included in the PUT payload.</summary>
@@ -115,6 +117,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "acknowledgeAndOverrideAllWarnings", n => { AcknowledgeAndOverrideAllWarnings = n.GetBoolValue(); } },
                 { "customerOrderId", n => { CustomerOrderId = n.GetStringValue(); } },
                 { "loaAuthorizingPerson", n => { LoaAuthorizingPerson = n.GetStringValue(); } },
                 { "locationId", n => { LocationId = n.GetStringValue(); } },
@@ -135,6 +138,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteBoolValue("acknowledgeAndOverrideAllWarnings", AcknowledgeAndOverrideAllWarnings);
             writer.WriteStringValue("customerOrderId", CustomerOrderId);
             writer.WriteStringValue("loaAuthorizingPerson", LoaAuthorizingPerson);
             writer.WriteStringValue("locationId", LocationId);

@@ -30956,6 +30956,7 @@
                         "tagValue": "11111111-1111-1111-1111-111111111111"
                       }
                     ],
+                    "acknowledgeAndOverrideAllWarnings": true,
                     "targetRespOrgId": "JYT01"
                   }
                 },
@@ -31186,7 +31187,7 @@
               },
               "examples": {
                 "Automated NANP Toll-Free Port-in": {
-                  "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CLnpOrder\u003E\n  \u003CCustomerOrderId\u003EMy order id\u003C/CustomerOrderId\u003E\n  \u003CRequestedFocDate\u003E2021-06-16Z\u003C/RequestedFocDate\u003E\n  \u003CSiteId\u003E2439\u003C/SiteId\u003E\n  \u003CPeerId\u003E23432\u003C/PeerId\u003E\n  \u003CLoaAuthorizingPerson\u003EThe Authgal\u003C/LoaAuthorizingPerson\u003E\n  \u003CTargetRespOrgId\u003EJYT01\u003C/TargetRespOrgId\u003E\n  \u003CListOfPhoneNumbers\u003E\n    \u003CPhoneNumber\u003E\u002B18774809871\u003C/PhoneNumber\u003E\n  \u003C/ListOfPhoneNumbers\u003E\n  \u003CTags\u003E\n    \u003CTag\u003E\n      \u003CTagName\u003EcustomerId\u003C/TagName\u003E\n      \u003CTagValue\u003E11111111-1111-1111-1111-111111111111\u003C/TagValue\u003E\n    \u003C/Tag\u003E\n  \u003C/Tags\u003E\n\u003C/LnpOrder\u003E"
+                  "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CLnpOrder\u003E\n  \u003CCustomerOrderId\u003EMy order id\u003C/CustomerOrderId\u003E\n  \u003CRequestedFocDate\u003E2021-06-16Z\u003C/RequestedFocDate\u003E\n  \u003CSiteId\u003E2439\u003C/SiteId\u003E\n  \u003CPeerId\u003E23432\u003C/PeerId\u003E\n  \u003CLoaAuthorizingPerson\u003EThe Authgal\u003C/LoaAuthorizingPerson\u003E\n  \u003CTargetRespOrgId\u003EJYT01\u003C/TargetRespOrgId\u003E\n  \u003CAcknowledgeAndOverrideAllWarnings\u003Etrue\u003C/AcknowledgeAndOverrideAllWarnings\u003E\n  \u003CListOfPhoneNumbers\u003E\n    \u003CPhoneNumber\u003E\u002B18774809871\u003C/PhoneNumber\u003E\n  \u003C/ListOfPhoneNumbers\u003E\n  \u003CTags\u003E\n    \u003CTag\u003E\n      \u003CTagName\u003EcustomerId\u003C/TagName\u003E\n      \u003CTagValue\u003E11111111-1111-1111-1111-111111111111\u003C/TagValue\u003E\n    \u003C/Tag\u003E\n  \u003C/Tags\u003E\n\u003C/LnpOrder\u003E"
                 },
                 "Global Port-In with Hosted Number": {
                   "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CLnpOrder\u003E\n  \u003CRequestedFocDate\u003E2024-08-5\u003C/RequestedFocDate\u003E\n  \u003CLoaAuthorizingPerson\u003EUser Name\u003C/LoaAuthorizingPerson\u003E\n  \u003CLosingCarrierName\u003EVortexNet Global\u003C/LosingCarrierName\u003E\n  \u003CListOfPhoneNumbers\u003E\n    \u003CPhoneNumber\u003E\u002B33109753125\u003C/PhoneNumber\u003E\n  \u003C/ListOfPhoneNumbers\u003E\n  \u003CSiteId\u003E5\u003C/SiteId\u003E\n  \u003CPeerId\u003E500020\u003C/PeerId\u003E\n  \u003CSubscriber\u003E\n      \u003CSubscriberType\u003ERESIDENTIAL\u003C/SubscriberType\u003E\n      \u003CFirstName\u003EUser\u003C/FirstName\u003E\n      \u003CLastName\u003EName\u003C/LastName\u003E\n      \u003CAddressId\u003Eae8782b9-0324-4917-a773-6ee0e8d9146e\u003C/AddressId\u003E\n  \u003C/Subscriber\u003E\n  \u003COperatorCode\u003EOPR1\u003C/OperatorCode\u003E\n  \u003CTags\u003E\n    \u003CTag\u003E\n      \u003CTagName\u003EcustomerId\u003C/TagName\u003E\n      \u003CTagValue\u003E11111111-1111-1111-1111-111111111111\u003C/TagValue\u003E\n    \u003C/Tag\u003E\n  \u003C/Tags\u003E\n\u003C/LnpOrder\u003E"
@@ -32212,6 +32213,7 @@
                         "tagValue": "11111111-1111-1111-1111-111111111111"
                       }
                     ],
+                    "acknowledgeAndOverrideAllWarnings": true,
                     "targetRespOrgId": "JYT01"
                   }
                 },
@@ -32325,7 +32327,7 @@
               },
               "examples": {
                 "Automated Toll-Free Request": {
-                  "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CLnpOrderSupp\u003E\n  \u003CCustomerOrderId\u003ESJM00002\u003C/CustomerOrderId\u003E\n  \u003CRequestedFocDate\u003E2022-12-04T11:30:00-04:00\u003C/RequestedFocDate\u003E\n  \u003CSiteId\u003E743\u003C/SiteId\u003E\n  \u003CPeerId\u003E28845\u003C/PeerId\u003E\n  \u003CListOfPhoneNumbers\u003E\n    \u003CPhoneNumber\u003E\u002B12019721004\u003C/PhoneNumber\u003E\n    \u003CPhoneNumber\u003E\u002B12019721005\u003C/PhoneNumber\u003E\n  \u003C/ListOfPhoneNumbers\u003E\n  \u003CLoaAuthorizingPerson\u003ETestName TestLastName\u003C/LoaAuthorizingPerson\u003E\n  \u003CTargetRespOrgId\u003EJYT01\u003C/TargetRespOrgId\u003E\n  \u003CTags\u003E\n    \u003CTag\u003E\n      \u003CTagName\u003EcustomerId\u003C/TagName\u003E\n      \u003CTagValue\u003E11111111-1111-1111-1111-111111111111\u003C/TagValue\u003E\n    \u003C/Tag\u003E\n  \u003C/Tags\u003E\n\u003C/LnpOrderSupp\u003E"
+                  "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CLnpOrderSupp\u003E\n  \u003CCustomerOrderId\u003ESJM00002\u003C/CustomerOrderId\u003E\n  \u003CRequestedFocDate\u003E2022-12-04T11:30:00-04:00\u003C/RequestedFocDate\u003E\n  \u003CSiteId\u003E743\u003C/SiteId\u003E\n  \u003CPeerId\u003E28845\u003C/PeerId\u003E\n  \u003CListOfPhoneNumbers\u003E\n    \u003CPhoneNumber\u003E\u002B12019721004\u003C/PhoneNumber\u003E\n    \u003CPhoneNumber\u003E\u002B12019721005\u003C/PhoneNumber\u003E\n  \u003C/ListOfPhoneNumbers\u003E\n  \u003CLoaAuthorizingPerson\u003ETestName TestLastName\u003C/LoaAuthorizingPerson\u003E\n  \u003CTargetRespOrgId\u003EJYT01\u003C/TargetRespOrgId\u003E\n  \u003CAcknowledgeAndOverrideAllWarnings\u003Etrue\u003C/AcknowledgeAndOverrideAllWarnings\u003E\n  \u003CTags\u003E\n    \u003CTag\u003E\n      \u003CTagName\u003EcustomerId\u003C/TagName\u003E\n      \u003CTagValue\u003E11111111-1111-1111-1111-111111111111\u003C/TagValue\u003E\n    \u003C/Tag\u003E\n  \u003C/Tags\u003E\n\u003C/LnpOrderSupp\u003E"
                 },
                 "Hosted Number Request": {
                   "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CLnpOrderSupp\u003E\n  \u003CRequestedFocDate\u003E2023-09-01\u003C/RequestedFocDate\u003E\n  \u003CSubscriber\u003E\n    \u003CSubscriberType\u003EBUSINESS\u003C/SubscriberType\u003E\n    \u003CBusinessName\u003EAcme, Inc.\u003C/BusinessName\u003E\n    \u003CVatNumber\u003EIE1234567T\u003C/VatNumber\u003E\n    \u003CAddressId\u003Eba4bb1f3-4358-4a46-883f-6376539ff94e\u003C/AddressId\u003E\n  \u003C/Subscriber\u003E\n  \u003COperatorCode\u003EOPR1\u003C/OperatorCode\u003E\n  \u003CTags\u003E\n    \u003CTag\u003E\n      \u003CTagName\u003EcustomerId\u003C/TagName\u003E\n      \u003CTagValue\u003E11111111-1111-1111-1111-111111111111\u003C/TagValue\u003E\n    \u003C/Tag\u003E\n  \u003C/Tags\u003E\n\u003C/LnpOrderSupp\u003E"
@@ -114512,6 +114514,14 @@
             "minLength": 5,
             "type": "string",
             "description": "This is the RespOrg ID that you want the toll free numbers ported to. Normally it will specify a Bandwidth RespOrg ID like JYT01, but it could be something else for RespOrg Exception customers. This field is mandatory for non-draft toll free port-in orders."
+          },
+          "AcknowledgeAndOverrideAllWarnings": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Set to \u0060true\u0060 to acknowledge and override request warnings. Currently this applies to the FOC hold window warning (error 7910): set it to \u0060true\u0060 to acknowledge that the \u0060RequestedFocDate\u0060 is later than the losing RespOrg\u0027s translation hold window (or the default 10 business days if the RespOrg has no configured window). The losing RespOrg is determined after the toll-free numbers are validated, so the order is accepted and is not rejected with error 7910. When the requested FOC date is outside the hold window, Bandwidth records a note on the order with the hold-window warning. Applies to toll-free port-ins with Toll-Free Automation only.",
+            "example": true
           }
         }
       },
@@ -114526,6 +114536,14 @@
             "minLength": 5,
             "type": "string",
             "description": "This is the RespOrg ID that you want the toll free numbers ported to. Normally it will specify a Bandwidth RespOrg ID like JYT01, but it could be something else for RespOrg Exception customers. This field is mandatory for non-draft toll free port-in orders."
+          },
+          "acknowledgeAndOverrideAllWarnings": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Set to \u0060true\u0060 to acknowledge and override request warnings. Currently this applies to the FOC hold window warning (error 7910): set it to \u0060true\u0060 to acknowledge that the \u0060requestedFocDate\u0060 is later than the losing RespOrg\u0027s translation hold window (or the default 10 business days if the RespOrg has no configured window). The losing RespOrg is determined after the toll-free numbers are validated, so the order is accepted and is not rejected with error 7910. When the requested FOC date is outside the hold window, Bandwidth records a note on the order with the hold-window warning. Applies to toll-free port-ins with Toll-Free Automation only.",
+            "example": true
           }
         }
       },
@@ -115336,6 +115354,14 @@
         "title": "LnpOrderSupp",
         "type": "object",
         "properties": {
+          "AcknowledgeAndOverrideAllWarnings": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Set to \u0060true\u0060 to acknowledge and override request warnings. Currently this applies to the FOC hold window warning (error 7910): set it to \u0060true\u0060 to acknowledge that the \u0060RequestedFocDate\u0060 is later than the losing RespOrg\u0027s translation hold window (or the default 10 business days if the RespOrg has no configured window). If the requested FOC date is outside the hold window and this field is omitted or \u0060false\u0060, the request is rejected with error 7910 and nothing is saved. Resubmit the same request with this field set to \u0060true\u0060 to proceed; Bandwidth then records a note on the order. Applies to toll-free port-ins with Toll-Free Automation only.",
+            "example": true
+          },
           "ListOfPhoneNumbers": {
             "type": "array",
             "items": {
@@ -115388,6 +115414,14 @@
         "title": "LnpOrderSupp",
         "type": "object",
         "properties": {
+          "acknowledgeAndOverrideAllWarnings": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Set to \u0060true\u0060 to acknowledge and override request warnings. Currently this applies to the FOC hold window warning (error 7910): set it to \u0060true\u0060 to acknowledge that the \u0060requestedFocDate\u0060 is later than the losing RespOrg\u0027s translation hold window (or the default 10 business days if the RespOrg has no configured window). If the requested FOC date is outside the hold window and this field is omitted or \u0060false\u0060, the request is rejected with error 7910 and nothing is saved. Resubmit the same request with this field set to \u0060true\u0060 to proceed; Bandwidth then records a note on the order. Applies to toll-free port-ins with Toll-Free Automation only.",
+            "example": true
+          },
           "loaAuthorizingPerson": {
             "type": "string"
           },
@@ -118209,6 +118243,14 @@
             },
             "description": "May be SUPPed only in DRAFT state"
           },
+          "acknowledgeAndOverrideAllWarnings": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Set to \u0060true\u0060 to acknowledge and override request warnings. Currently this applies to the FOC hold window warning (error 7910): set it to \u0060true\u0060 to acknowledge that the \u0060requestedFocDate\u0060 is later than the losing RespOrg\u0027s translation hold window (or the default 10 business days if the RespOrg has no configured window). If the requested FOC date is outside the hold window and this field is omitted or \u0060false\u0060, the request is rejected with error 7910 and nothing is saved. Resubmit the same request with this field set to \u0060true\u0060 to proceed; Bandwidth then records a note on the order. Applies to toll-free port-ins with Toll-Free Automation only.",
+            "example": true
+          },
           "retryValidation": {
             "type": "boolean",
             "description": "If \u0027TOLL_FREE_PORT_INS_PHASE_1\u0027 feature is enabled for account, Bandwidth accesses a vendor to determine if the numbers are portable, and if so, from which RespOrg. In the event that we do not receive a response from our vendor after a number of retries, we give up and place the order in the INVALID_TFNS or INVALID_DRAFT_TFNS state. This scenario can occur if our toll free porting vendor is performing maintenance, for example. Including RetryValidation with a value of true will cause the order to return to VALIDATE_TFNS or VALIDATE_DRAFT_TFNS and we will repeat our attempts to retrieve the portability data from the vendor. This element is included in the synchronous response to the PUT, when included in the request, but is not included in subsequent GET requests for the order."
@@ -118338,6 +118380,14 @@
             "minLength": 5,
             "type": "string",
             "description": "This is the RespOrg ID that you want the toll free numbers ported to. Normally it will specify a Bandwidth RespOrg ID like JYT01, but it could be something else for RespOrg Exception customers. This field is mandatory for non-draft toll free port-in orders."
+          },
+          "AcknowledgeAndOverrideAllWarnings": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Set to \u0060true\u0060 to acknowledge and override request warnings. Currently this applies to the FOC hold window warning (error 7910): set it to \u0060true\u0060 to acknowledge that the \u0060RequestedFocDate\u0060 is later than the losing RespOrg\u0027s translation hold window (or the default 10 business days if the RespOrg has no configured window). The losing RespOrg is determined after the toll-free numbers are validated, so the order is accepted and is not rejected with error 7910. When the requested FOC date is outside the hold window, Bandwidth records a note on the order with the hold-window warning. Applies to toll-free port-ins with Toll-Free Automation only.",
+            "example": true
           }
         }
       },
@@ -118357,6 +118407,14 @@
             "minLength": 5,
             "type": "string",
             "description": "This is the RespOrg ID that you want the toll free numbers ported to. Normally it will specify a Bandwidth RespOrg ID like JYT01, but it could be something else for RespOrg Exception customers. This field is mandatory for non-draft toll free port-in orders."
+          },
+          "acknowledgeAndOverrideAllWarnings": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Set to \u0060true\u0060 to acknowledge and override request warnings. Currently this applies to the FOC hold window warning (error 7910): set it to \u0060true\u0060 to acknowledge that the \u0060requestedFocDate\u0060 is later than the losing RespOrg\u0027s translation hold window (or the default 10 business days if the RespOrg has no configured window). The losing RespOrg is determined after the toll-free numbers are validated, so the order is accepted and is not rejected with error 7910. When the requested FOC date is outside the hold window, Bandwidth records a note on the order with the hold-window warning. Applies to toll-free port-ins with Toll-Free Automation only.",
+            "example": true
           },
           "requestedFocDate": {
             "type": "string",

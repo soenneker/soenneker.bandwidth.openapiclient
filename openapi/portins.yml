@@ -439,6 +439,7 @@ paths:
                   tags:
                     - tagName: customerId
                       tagValue: 11111111-1111-1111-1111-111111111111
+                  acknowledgeAndOverrideAllWarnings: true
                   targetRespOrgId: JYT01
               Global Port-In with Hosted Number:
                 value:
@@ -628,6 +629,7 @@ paths:
                     <PeerId>23432</PeerId>
                     <LoaAuthorizingPerson>The Authgal</LoaAuthorizingPerson>
                     <TargetRespOrgId>JYT01</TargetRespOrgId>
+                    <AcknowledgeAndOverrideAllWarnings>true</AcknowledgeAndOverrideAllWarnings>
                     <ListOfPhoneNumbers>
                       <PhoneNumber>+18774809871</PhoneNumber>
                     </ListOfPhoneNumbers>
@@ -2393,6 +2395,7 @@ paths:
                   tags:
                     - tagName: customerId
                       tagValue: 11111111-1111-1111-1111-111111111111
+                  acknowledgeAndOverrideAllWarnings: true
                   targetRespOrgId: JYT01
               Hosted Number Request:
                 value:
@@ -2496,6 +2499,7 @@ paths:
                     </ListOfPhoneNumbers>
                     <LoaAuthorizingPerson>TestName TestLastName</LoaAuthorizingPerson>
                     <TargetRespOrgId>JYT01</TargetRespOrgId>
+                    <AcknowledgeAndOverrideAllWarnings>true</AcknowledgeAndOverrideAllWarnings>
                     <Tags>
                       <Tag>
                         <TagName>customerId</TagName>
@@ -6508,6 +6512,21 @@ components:
           maxLength: 5
           minLength: 5
           type: string
+        AcknowledgeAndOverrideAllWarnings:
+          description: >-
+            Set to `true` to acknowledge and override request warnings.
+            Currently this applies to the FOC hold window warning (error 7910):
+            set it to `true` to acknowledge that the `RequestedFocDate` is later
+            than the losing RespOrg's translation hold window (or the default 10
+            business days if the RespOrg has no configured window). The losing
+            RespOrg is determined after the toll-free numbers are validated, so
+            the order is accepted and is not rejected with error 7910. When the
+            requested FOC date is outside the hold window, Bandwidth records a
+            note on the order with the hold-window warning. Applies to toll-free
+            port-ins with Toll-Free Automation only.
+          example: true
+          nullable: true
+          type: boolean
       required:
         - TargetRespOrgId
       type: object
@@ -6522,6 +6541,21 @@ components:
           maxLength: 5
           minLength: 5
           type: string
+        acknowledgeAndOverrideAllWarnings:
+          description: >-
+            Set to `true` to acknowledge and override request warnings.
+            Currently this applies to the FOC hold window warning (error 7910):
+            set it to `true` to acknowledge that the `requestedFocDate` is later
+            than the losing RespOrg's translation hold window (or the default 10
+            business days if the RespOrg has no configured window). The losing
+            RespOrg is determined after the toll-free numbers are validated, so
+            the order is accepted and is not rejected with error 7910. When the
+            requested FOC date is outside the hold window, Bandwidth records a
+            note on the order with the hold-window warning. Applies to toll-free
+            port-ins with Toll-Free Automation only.
+          example: true
+          nullable: true
+          type: boolean
       required:
         - targetRespOrgId
       type: object
@@ -7249,6 +7283,21 @@ components:
       allOf:
         - $ref: '#/components/schemas/lnpOrderBasicModifiableFields'
       properties:
+        AcknowledgeAndOverrideAllWarnings:
+          description: >-
+            Set to `true` to acknowledge and override request warnings.
+            Currently this applies to the FOC hold window warning (error 7910):
+            set it to `true` to acknowledge that the `RequestedFocDate` is later
+            than the losing RespOrg's translation hold window (or the default 10
+            business days if the RespOrg has no configured window). If the
+            requested FOC date is outside the hold window and this field is
+            omitted or `false`, the request is rejected with error 7910 and
+            nothing is saved. Resubmit the same request with this field set to
+            `true` to proceed; Bandwidth then records a note on the order.
+            Applies to toll-free port-ins with Toll-Free Automation only.
+          example: true
+          nullable: true
+          type: boolean
         ListOfPhoneNumbers:
           description: >-
             May be SUPPed only in draft states (i.e. DRAFT, VALIDATE_DRAFT_TFNS,
@@ -7292,6 +7341,21 @@ components:
       allOf:
         - $ref: '#/components/schemas/lnpOrderBasicModifiableFieldsJson'
       properties:
+        acknowledgeAndOverrideAllWarnings:
+          description: >-
+            Set to `true` to acknowledge and override request warnings.
+            Currently this applies to the FOC hold window warning (error 7910):
+            set it to `true` to acknowledge that the `requestedFocDate` is later
+            than the losing RespOrg's translation hold window (or the default 10
+            business days if the RespOrg has no configured window). If the
+            requested FOC date is outside the hold window and this field is
+            omitted or `false`, the request is rejected with error 7910 and
+            nothing is saved. Resubmit the same request with this field set to
+            `true` to proceed; Bandwidth then records a note on the order.
+            Applies to toll-free port-ins with Toll-Free Automation only.
+          example: true
+          nullable: true
+          type: boolean
         loaAuthorizingPerson:
           type: string
         phoneNumbers:
