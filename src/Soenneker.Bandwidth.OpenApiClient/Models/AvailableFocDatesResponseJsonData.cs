@@ -22,6 +22,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.FocDateWindow> FocDates { get; set; }
 #endif
+        /// <summary>Dates that fall strictly between the first and last `focDates` window but are not bookable,along with the reason. Always present on 200 responses; an empty array when there are no gaps.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnavailableFocDate>? UnavailableFocDates { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnavailableFocDate> UnavailableFocDates { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AvailableFocDatesResponseJsonData"/> and sets the default values.
         /// </summary>
@@ -48,6 +56,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "focDates", n => { FocDates = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.FocDateWindow>(global::Soenneker.Bandwidth.OpenApiClient.Models.FocDateWindow.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "unavailableFocDates", n => { UnavailableFocDates = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.UnavailableFocDate>(global::Soenneker.Bandwidth.OpenApiClient.Models.UnavailableFocDate.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -58,6 +67,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.FocDateWindow>("focDates", FocDates);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.UnavailableFocDate>("unavailableFocDates", UnavailableFocDates);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

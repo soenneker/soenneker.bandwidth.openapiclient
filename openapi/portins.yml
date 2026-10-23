@@ -3367,6 +3367,27 @@ paths:
         is the latest
 
         date that port type allows.
+
+
+        The response also includes `unavailableFocDates`, which explains the
+        gaps in `focDates` so
+
+        clients building date pickers don't have to infer them. It only contains
+        dates strictly between
+
+        the first and last `focDates` window; days before the first window (lead
+        time, same-day cutoff)
+
+        are not listed. NANP ports cover today + 30 days, and Global ports cover
+        the country/number-type
+
+        lead time + 30 days, so the only possible gaps are weekends and
+        holidays. Each entry has a
+
+        `reason` of `WEEKEND` or `HOLIDAY`; `HOLIDAY` takes precedence when a
+        date is both a weekend
+
+        and a holiday, and `description` carries the holiday name.
       operationId: listPortinAvailableFocDates
       summary: Retrieve available FOC dates for a port-in order
       parameters:
@@ -5132,6 +5153,38 @@ components:
       required:
         - start
         - end
+    unavailableFocDateReason:
+      title: Unavailable FOC Date Reason
+      description: >-
+        The reason a date is not bookable as a FOC date. Clients must tolerate
+        new values being added in the future.
+      type: string
+      enum:
+        - WEEKEND
+        - HOLIDAY
+    unavailableFocDate:
+      title: Unavailable FOC Date
+      description: >-
+        A date within the available FOC date range that is not bookable, and
+        why.
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          description: The date that is not bookable.
+          example: '2024-07-04'
+        reason:
+          $ref: '#/components/schemas/unavailableFocDateReason'
+        description:
+          type: string
+          description: >-
+            Holiday name from the holiday calendar. Present only when `reason`
+            is `HOLIDAY`.
+          example: Independence Day
+      required:
+        - date
+        - reason
     availableFocDatesResponseJson:
       type: object
       description: Response containing the set of valid FOC dates for a port-in order.
@@ -5144,6 +5197,19 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/focDateWindow'
+            unavailableFocDates:
+              type: array
+              description: >-
+                Dates that fall strictly between the first and last `focDates`
+                window but are not bookable,
+
+                along with the reason. Always present on 200 responses; an empty
+                array when there are no gaps.
+              items:
+                $ref: '#/components/schemas/unavailableFocDate'
+          required:
+            - focDates
+            - unavailableFocDates
           example:
             focDates:
               - start: '2024-07-01T11:00:00Z'
@@ -5154,6 +5220,10 @@ components:
                 end: '2024-07-04T00:00:00Z'
               - start: '2024-07-05T11:00:00Z'
                 end: '2024-07-06T00:00:00Z'
+            unavailableFocDates:
+              - date: '2024-07-04'
+                reason: HOLIDAY
+                description: Independence Day
         errors:
           type: array
           nullable: true

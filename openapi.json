@@ -31186,7 +31186,7 @@
           "Porting"
         ],
         "summary": "Retrieve available FOC dates for a port-in order",
-        "description": "Retrieves the set of valid FOC (Firm Order Commitment) dates that would currently pass\nFOC date validation for this port-in order, expressed as bookable date/time windows.\nThese are the dates that will be accepted if submitted as the order's requestedFocDate,\nrather than validating after the fact. Both bounds are driven by the order's port type:\nthe lower bound is the earliest available FOC date, and the upper bound is the latest\ndate that port type allows.",
+        "description": "Retrieves the set of valid FOC (Firm Order Commitment) dates that would currently pass\nFOC date validation for this port-in order, expressed as bookable date/time windows.\nThese are the dates that will be accepted if submitted as the order's requestedFocDate,\nrather than validating after the fact. Both bounds are driven by the order's port type:\nthe lower bound is the earliest available FOC date, and the upper bound is the latest\ndate that port type allows.\n\nThe response also includes `unavailableFocDates`, which explains the gaps in `focDates` so\nclients building date pickers don't have to infer them. It only contains dates strictly between\nthe first and last `focDates` window; days before the first window (lead time, same-day cutoff)\nare not listed. NANP ports cover today + 30 days, and Global ports cover the country/number-type\nlead time + 30 days, so the only possible gaps are weekends and holidays. Each entry has a\n`reason` of `WEEKEND` or `HOLIDAY`; `HOLIDAY` takes precedence when a date is both a weekend\nand a holiday, and `description` carries the holiday name.",
         "operationId": "portins_ListPortinAvailableFocDates",
         "parameters": [
           {
@@ -110214,6 +110214,57 @@
         },
         "description": "A single bookable FOC date window."
       },
+      "UnavailableFocDateReason": {
+        "title": "Unavailable FOC Date Reason",
+        "enum": [
+          "WEEKEND",
+          "HOLIDAY"
+        ],
+        "type": "string",
+        "additionalProperties": {
+          "not": { }
+        },
+        "description": "The reason a date is not bookable as a FOC date. Clients must tolerate new values being added in the future.",
+        "x-ms-enum": {
+          "name": "UnavailableFocDateReason",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "WEEKEND",
+              "name": "Weekend"
+            },
+            {
+              "value": "HOLIDAY",
+              "name": "Holiday"
+            }
+          ]
+        }
+      },
+      "UnavailableFocDate": {
+        "title": "Unavailable FOC Date",
+        "required": [
+          "date",
+          "reason"
+        ],
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "The date that is not bookable.",
+            "format": "date",
+            "example": "2024-07-04"
+          },
+          "reason": {
+            "$ref": "#/components/schemas/UnavailableFocDateReason"
+          },
+          "description": {
+            "type": "string",
+            "description": "Holiday name from the holiday calendar. Present only when `reason` is `HOLIDAY`.",
+            "example": "Independence Day"
+          }
+        },
+        "description": "A date within the available FOC date range that is not bookable, and why."
+      },
       "AvailableFocDatesResponseJson": {
         "required": [
           "data",
@@ -117274,6 +117325,10 @@
         "example": null
       },
       "AvailableFocDatesResponseJsonData": {
+        "required": [
+          "focDates",
+          "unavailableFocDates"
+        ],
         "type": [
           "null",
           "object"
@@ -117284,6 +117339,13 @@
             "items": {
               "$ref": "#/components/schemas/FocDateWindow"
             }
+          },
+          "unavailableFocDates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UnavailableFocDate"
+            },
+            "description": "Dates that fall strictly between the first and last `focDates` window but are not bookable,\nalong with the reason. Always present on 200 responses; an empty array when there are no gaps."
           }
         },
         "example": {
@@ -117303,6 +117365,13 @@
             {
               "start": "2024-07-05T11:00:00Z",
               "end": "2024-07-06T00:00:00Z"
+            }
+          ],
+          "unavailableFocDates": [
+            {
+              "date": "2024-07-04",
+              "reason": "HOLIDAY",
+              "description": "Independence Day"
             }
           ]
         }
