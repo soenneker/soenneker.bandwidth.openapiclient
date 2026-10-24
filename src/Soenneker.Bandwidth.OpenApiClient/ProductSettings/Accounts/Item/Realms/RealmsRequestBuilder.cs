@@ -20,14 +20,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.ProductSettings.Accounts.Item.Realms
     {
         /// <summary>Gets an item from the Soenneker.Bandwidth.OpenApiClient.productSettings.accounts.item.realms.item collection</summary>
         /// <param name="position">Name or ID of the realm</param>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.ProductSettings.Accounts.Item.Realms.Item.RealmItemRequestBuilder"/></returns>
-        public global::Soenneker.Bandwidth.OpenApiClient.ProductSettings.Accounts.Item.Realms.Item.RealmItemRequestBuilder this[string position]
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.ProductSettings.Accounts.Item.Realms.Item.WithRealmItemRequestBuilder"/></returns>
+        public global::Soenneker.Bandwidth.OpenApiClient.ProductSettings.Accounts.Item.Realms.Item.WithRealmItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("realm%2Did", position);
-                return new global::Soenneker.Bandwidth.OpenApiClient.ProductSettings.Accounts.Item.Realms.Item.RealmItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("realm", position);
+                return new global::Soenneker.Bandwidth.OpenApiClient.ProductSettings.Accounts.Item.Realms.Item.WithRealmItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>

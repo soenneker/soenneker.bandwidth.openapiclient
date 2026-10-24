@@ -37,6 +37,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public AlertRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            TestAlert = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

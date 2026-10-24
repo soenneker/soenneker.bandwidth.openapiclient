@@ -8,27 +8,21 @@ using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspidBranch1"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspidWrapper"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspidAnyOf2"/>, <see cref="string"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TnOptionGroupJsonVcpDisabledRequestEspid : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspidBranch1"/></summary>
+        /// <summary>Composed type representation for type <see cref="string"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspidBranch1? TnOptionGroupJsonVcpDisabledRequestEspidBranch1 { get; set; }
+        public string? String { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspidBranch1 TnOptionGroupJsonVcpDisabledRequestEspidBranch1 { get; set; }
+        public string String { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspidWrapper"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspidWrapper? TnOptionGroupJsonVcpDisabledRequestEspidWrapper { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspidWrapper TnOptionGroupJsonVcpDisabledRequestEspidWrapper { get; set; }
-#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspidAnyOf2"/></summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspidAnyOf2? TnOptionGroupJsonVcpDisabledRequestEspidAnyOf2 { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -38,8 +32,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspid();
-            result.TnOptionGroupJsonVcpDisabledRequestEspidBranch1 = new global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspidBranch1();
-            result.TnOptionGroupJsonVcpDisabledRequestEspidWrapper = new global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspidWrapper();
+            if(parseNode.GetStringValue() is string stringValue)
+            {
+                result.String = stringValue;
+            }
+            else if(parseNode.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspidAnyOf2>() is global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspidAnyOf2 tnOptionGroupJsonVcpDisabledRequestEspidAnyOf2Value)
+            {
+                result.TnOptionGroupJsonVcpDisabledRequestEspidAnyOf2 = tnOptionGroupJsonVcpDisabledRequestEspidAnyOf2Value;
+            }
             return result;
         }
         /// <summary>
@@ -48,10 +48,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(TnOptionGroupJsonVcpDisabledRequestEspidBranch1 != null || TnOptionGroupJsonVcpDisabledRequestEspidWrapper != null)
-            {
-                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(TnOptionGroupJsonVcpDisabledRequestEspidBranch1, TnOptionGroupJsonVcpDisabledRequestEspidWrapper);
-            }
             return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
@@ -61,7 +57,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspidBranch1>(null, TnOptionGroupJsonVcpDisabledRequestEspidBranch1, TnOptionGroupJsonVcpDisabledRequestEspidWrapper);
+            if(String != null)
+            {
+                writer.WriteStringValue(null, String);
+            }
+            else if(TnOptionGroupJsonVcpDisabledRequestEspidAnyOf2 != null)
+            {
+                writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspidAnyOf2>(null, TnOptionGroupJsonVcpDisabledRequestEspidAnyOf2);
+            }
         }
     }
 }

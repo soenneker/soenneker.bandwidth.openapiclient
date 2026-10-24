@@ -37,9 +37,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.ManualGlobalLnpOrderResponseJsonSubscriber CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("subscriberType")?.GetStringValue();
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.ManualGlobalLnpOrderResponseJsonSubscriber();
-            if("ManualGlobalSubscriberBusinessJson".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("BUSINESS".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ManualGlobalSubscriberBusinessJson = new global::Soenneker.Bandwidth.OpenApiClient.Models.ManualGlobalSubscriberBusinessJson();
             }

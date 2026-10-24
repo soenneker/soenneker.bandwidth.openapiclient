@@ -34,10 +34,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>A customer-chosen friendly name for the SIP domain.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipDomainRequestName? Name { get; set; }
+        public string? Name { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipDomainRequestName Name { get; set; }
+        public string Name { get; set; }
 #endif
         /// <summary>Replaces the domain&apos;s region set; send an empty array to clear it. `null` leaves it unchanged. If the set changes, DNS records are reprovisioned and `status` returns to `PENDING`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -74,7 +74,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "applicationId", n => { ApplicationId = n.GetStringValue(); } },
                 { "ipAccessListIds", n => { IpAccessListIds = n.GetCollectionOfPrimitiveValues<Guid?>()?.AsList(); } },
-                { "name", n => { Name = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipDomainRequestName>(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipDomainRequestName.CreateFromDiscriminatorValue); } },
+                { "name", n => { Name = n.GetStringValue(); } },
                 { "regions", n => { Regions = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion>()?.AsList(); } },
             };
         }
@@ -87,7 +87,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("applicationId", ApplicationId);
             writer.WriteCollectionOfPrimitiveValues<Guid?>("ipAccessListIds", IpAccessListIds);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipDomainRequestName>("name", Name);
+            writer.WriteStringValue("name", Name);
             writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion>("regions", Regions);
             writer.WriteAdditionalData(AdditionalData);
         }

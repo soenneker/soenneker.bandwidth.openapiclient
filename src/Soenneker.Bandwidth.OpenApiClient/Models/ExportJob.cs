@@ -47,14 +47,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public int? RecordCount { get; set; }
         /// <summary>RFC 3339 UTC timestamp when the export job was requested.</summary>
         public DateTimeOffset? RequestedAt { get; set; }
-        /// <summary>Current state of the export job.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
+        /// <summary>Current state of an export job. `NO_RESULTS` means the export ransuccessfully but no events matched the filters — it still has adownloadable (empty) file, same as `COMPLETED`.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobStatus? Status { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobStatus Status { get; set; }
-#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJob"/> and sets the default values.
         /// </summary>
@@ -87,7 +81,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "filters", n => { Filters = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExportRequest>(global::Soenneker.Bandwidth.OpenApiClient.Models.ExportRequest.CreateFromDiscriminatorValue); } },
                 { "recordCount", n => { RecordCount = n.GetIntValue(); } },
                 { "requestedAt", n => { RequestedAt = n.GetDateTimeOffsetValue(); } },
-                { "status", n => { Status = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobStatus>(global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobStatus.CreateFromDiscriminatorValue); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobStatus>(); } },
             };
         }
         /// <summary>
@@ -104,7 +98,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExportRequest>("filters", Filters);
             writer.WriteIntValue("recordCount", RecordCount);
             writer.WriteDateTimeOffsetValue("requestedAt", RequestedAt);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobStatus>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExportJobStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

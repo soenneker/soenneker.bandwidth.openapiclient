@@ -34,18 +34,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>A customer-chosen friendly name for the SIP user, distinct from the immutable `userId`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipUserRequestName? Name { get; set; }
+        public string? Name { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipUserRequestName Name { get; set; }
+        public string Name { get; set; }
 #endif
         /// <summary>The customer-supplied plaintext digest password. Must be 8-128 printable ASCII characters and include at least one uppercase letter, one lowercase letter, one number, and one special character. Required on create; supply again on `PATCH` to rotate it. Bandwidth never stores or returns the plaintext — it is not recoverable, and this field never appears in a response.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipUserRequestPassword? Password { get; set; }
+        public string? Password { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipUserRequestPassword Password { get; set; }
+        public string Password { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipUserRequest"/> and sets the default values.
@@ -74,8 +74,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "allowedRegions", n => { AllowedRegions = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion>()?.AsList(); } },
                 { "domain", n => { Domain = n.GetStringValue(); } },
-                { "name", n => { Name = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipUserRequestName>(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipUserRequestName.CreateFromDiscriminatorValue); } },
-                { "password", n => { Password = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipUserRequestPassword>(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipUserRequestPassword.CreateFromDiscriminatorValue); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "password", n => { Password = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -87,8 +87,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion>("allowedRegions", AllowedRegions);
             writer.WriteStringValue("domain", Domain);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipUserRequestName>("name", Name);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipUserRequestPassword>("password", Password);
+            writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("password", Password);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

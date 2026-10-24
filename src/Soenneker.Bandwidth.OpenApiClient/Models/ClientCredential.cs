@@ -49,7 +49,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string CreatedBy { get; private set; }
 #endif
         /// <summary>The date and time when the client credentials were created.</summary>
-        public DateTimeOffset? CreationDate { get; set; }
+        public DateTimeOffset? CreationDate { get; private set; }
         /// <summary>A description of the client credentials.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -59,9 +59,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string Description { get; set; }
 #endif
         /// <summary>The date and time when the client credentials were last used to authenticate.</summary>
-        public DateTimeOffset? LastAuthenticationAttemptDate { get; set; }
+        public DateTimeOffset? LastAuthenticationAttemptDate { get; private set; }
         /// <summary>The date and time when the client credentials were last modified.</summary>
-        public DateTimeOffset? LastModifiedDate { get; set; }
+        public DateTimeOffset? LastModifiedDate { get; private set; }
         /// <summary>A list of roles.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -71,7 +71,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public List<string> Roles { get; set; }
 #endif
         /// <summary>The soonest expiration date of any secret within the client credential set.</summary>
-        public DateTimeOffset? SoonestExpirationDate { get; set; }
+        public DateTimeOffset? SoonestExpirationDate { get; private set; }
         /// <summary>The status of the credentials.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.CredentialStatusEnum? Status { get; set; }
         /// <summary>
@@ -123,12 +123,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfPrimitiveValues<string>("accounts", Accounts);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AccountScopeEnum>("accountScope", AccountScope);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ClientSecret>("clientSecrets", ClientSecrets);
-            writer.WriteDateTimeOffsetValue("creationDate", CreationDate);
             writer.WriteStringValue("description", Description);
-            writer.WriteDateTimeOffsetValue("lastAuthenticationAttemptDate", LastAuthenticationAttemptDate);
-            writer.WriteDateTimeOffsetValue("lastModifiedDate", LastModifiedDate);
             writer.WriteCollectionOfPrimitiveValues<string>("roles", Roles);
-            writer.WriteDateTimeOffsetValue("soonestExpirationDate", SoonestExpirationDate);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CredentialStatusEnum>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }

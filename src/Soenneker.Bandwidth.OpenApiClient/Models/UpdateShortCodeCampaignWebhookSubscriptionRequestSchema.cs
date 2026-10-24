@@ -42,10 +42,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The ID of the webhook subscription that is associated with a callback URL.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? WebhookSubscriptionId { get; set; }
+        public string? WebhookSubscriptionId { get; private set; }
 #nullable restore
 #else
-        public string WebhookSubscriptionId { get; set; }
+        public string WebhookSubscriptionId { get; private set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateShortCodeCampaignWebhookSubscriptionRequestSchema"/> and sets the default values.
@@ -88,7 +88,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackBasicAuthentication>("basicAuthentication", BasicAuthentication);
             writer.WriteStringValue("callbackUrl", CallbackUrl);
             writer.WriteStringValue("sharedSecretKey", SharedSecretKey);
-            writer.WriteStringValue("webhookSubscriptionId", WebhookSubscriptionId);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

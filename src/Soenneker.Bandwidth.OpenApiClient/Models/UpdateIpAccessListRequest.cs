@@ -15,21 +15,21 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The IPv4 CIDR blocks in this access list. Entries must be unique after normalization.</summary>
+        /// <summary>Replaces the full CIDR list for this IP access list. Omit to leave unchanged.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateIpAccessListRequestCidrs? Cidrs { get; set; }
+        public List<string>? Cidrs { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateIpAccessListRequestCidrs Cidrs { get; set; }
+        public List<string> Cidrs { get; set; }
 #endif
         /// <summary>Human-readable label for the IP access list. Does not need to be unique.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateIpAccessListRequestName? Name { get; set; }
+        public string? Name { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateIpAccessListRequestName Name { get; set; }
+        public string Name { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateIpAccessListRequest"/> and sets the default values.
@@ -56,8 +56,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "cidrs", n => { Cidrs = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateIpAccessListRequestCidrs>(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateIpAccessListRequestCidrs.CreateFromDiscriminatorValue); } },
-                { "name", n => { Name = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateIpAccessListRequestName>(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateIpAccessListRequestName.CreateFromDiscriminatorValue); } },
+                { "cidrs", n => { Cidrs = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -67,8 +67,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateIpAccessListRequestCidrs>("cidrs", Cidrs);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateIpAccessListRequestName>("name", Name);
+            writer.WriteCollectionOfPrimitiveValues<string>("cidrs", Cidrs);
+            writer.WriteStringValue("name", Name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

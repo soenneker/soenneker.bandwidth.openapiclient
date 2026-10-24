@@ -21,13 +21,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string AccountId { get; set; }
 #endif
         /// <summary>Whether the order imports or removes telephone numbers.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
         public global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItemAction? Action { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItemAction Action { get; set; }
-#endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The user who created the order.</summary>
@@ -56,14 +50,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>ISO 8601 timestamp when the order was last modified.</summary>
         public DateTimeOffset? LastModifiedDate { get; set; }
-        /// <summary>The type of Letter of Authorization for NANP numbers.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
+        /// <summary>The type of LOA authorization.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItemLoaType? LoaType { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItemLoaType LoaType { get; set; }
-#endif
         /// <summary>The location (SIP peer) ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -90,14 +78,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public List<string> PhoneNumbers { get; set; }
 #endif
-        /// <summary>The processing status of the order.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
+        /// <summary>The status of an order.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItemProcessingStatus? ProcessingStatus { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItemProcessingStatus ProcessingStatus { get; set; }
-#endif
         /// <summary>The sub-account (site) ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -132,17 +114,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "accountId", n => { AccountId = n.GetStringValue(); } },
-                { "action", n => { Action = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItemAction>(global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItemAction.CreateFromDiscriminatorValue); } },
+                { "action", n => { Action = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItemAction>(); } },
                 { "createdByUser", n => { CreatedByUser = n.GetStringValue(); } },
                 { "customerOrderId", n => { CustomerOrderId = n.GetStringValue(); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderError>(global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderError.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "lastModifiedDate", n => { LastModifiedDate = n.GetDateTimeOffsetValue(); } },
-                { "loaType", n => { LoaType = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItemLoaType>(global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItemLoaType.CreateFromDiscriminatorValue); } },
+                { "loaType", n => { LoaType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItemLoaType>(); } },
                 { "locationId", n => { LocationId = n.GetStringValue(); } },
                 { "orderCreateDate", n => { OrderCreateDate = n.GetDateTimeOffsetValue(); } },
                 { "orderId", n => { OrderId = n.GetStringValue(); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "processingStatus", n => { ProcessingStatus = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItemProcessingStatus>(global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItemProcessingStatus.CreateFromDiscriminatorValue); } },
+                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItemProcessingStatus>(); } },
                 { "subAccountId", n => { SubAccountId = n.GetStringValue(); } },
             };
         }
@@ -154,17 +136,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("accountId", AccountId);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItemAction>("action", Action);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItemAction>("action", Action);
             writer.WriteStringValue("createdByUser", CreatedByUser);
             writer.WriteStringValue("customerOrderId", CustomerOrderId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderError>("errors", Errors);
             writer.WriteDateTimeOffsetValue("lastModifiedDate", LastModifiedDate);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItemLoaType>("loaType", LoaType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItemLoaType>("loaType", LoaType);
             writer.WriteStringValue("locationId", LocationId);
             writer.WriteDateTimeOffsetValue("orderCreateDate", OrderCreateDate);
             writer.WriteStringValue("orderId", OrderId);
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItemProcessingStatus>("processingStatus", ProcessingStatus);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderItemProcessingStatus>("processingStatus", ProcessingStatus);
             writer.WriteStringValue("subAccountId", SubAccountId);
             writer.WriteAdditionalData(AdditionalData);
         }

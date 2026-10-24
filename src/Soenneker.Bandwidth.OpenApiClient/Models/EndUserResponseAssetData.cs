@@ -31,7 +31,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string CustomReference { get; set; }
 #endif
         /// <summary>Unique identifier of the endUser</summary>
-        public Guid? EndUserId { get; set; }
+        public Guid? EndUserId { get; private set; }
         /// <summary>Field is a key value pair of attribute name and value. All Date or Number type values should be provided as a &apos;string&apos;. Format for the Date type is YYYY-MM-DD.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -95,7 +95,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("customReference", CustomReference);
-            writer.WriteGuidValue("endUserId", EndUserId);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserResponseAssetDataFieldsProperty>("fields", Fields);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserStatusEnum>("status", Status);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum>("type", Type);

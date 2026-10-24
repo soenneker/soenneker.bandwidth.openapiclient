@@ -54,10 +54,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Remarks provided by the user or admin</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Remarks { get; set; }
+        public string? Remarks { get; private set; }
 #nullable restore
 #else
-        public string Remarks { get; set; }
+        public string Remarks { get; private set; }
 #endif
         /// <summary>Unique identifier for requirements package</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -136,7 +136,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("customReference", CustomReference);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum>("endUserType", EndUserType);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum>("phoneNumberType", PhoneNumberType);
-            writer.WriteStringValue("remarks", Remarks);
             writer.WriteStringValue("requirementsPackageId", RequirementsPackageId);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext>("stateContext", StateContext);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStatusEnum>("status", Status);

@@ -15,7 +15,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The expiration date for this client secret.</summary>
-        public DateTimeOffset? ExpirationDate { get; set; }
+        public DateTimeOffset? ExpirationDate { get; private set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ClientSecretRequest"/> and sets the default values.
         /// </summary>
@@ -51,7 +51,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteDateTimeOffsetValue("expirationDate", ExpirationDate);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

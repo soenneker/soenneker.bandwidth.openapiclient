@@ -69,17 +69,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequest();
-            if("BotEndpointRequest".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("BOT".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.BotEndpointRequest = new global::Soenneker.Bandwidth.OpenApiClient.Models.BotEndpointRequest();
             }
-            else if("FqdnEndpointRequest".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("FQDN".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.FqdnEndpointRequest = new global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequest();
             }
-            else if("IntegrationEndpointRequest".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("INTEGRATION".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.IntegrationEndpointRequest = new global::Soenneker.Bandwidth.OpenApiClient.Models.IntegrationEndpointRequest();
             }
@@ -87,11 +87,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 result.Ipv4EndpointRequest = new global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointRequest();
             }
-            else if("SipEndpointRequest".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("SIP".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.SipEndpointRequest = new global::Soenneker.Bandwidth.OpenApiClient.Models.SipEndpointRequest();
             }
-            else if("TnEndpointRequest".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("TN".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.TnEndpointRequest = new global::Soenneker.Bandwidth.OpenApiClient.Models.TnEndpointRequest();
             }

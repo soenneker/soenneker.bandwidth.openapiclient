@@ -18,10 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The endpoints property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AddEndpointsNorthAmericaBaseEndpointsItem>? Endpoints { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressIdEndpoints? Endpoints { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AddEndpointsNorthAmericaBaseEndpointsItem> Endpoints { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressIdEndpoints Endpoints { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressId"/> and sets the default values.
@@ -48,7 +48,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "endpoints", n => { Endpoints = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AddEndpointsNorthAmericaBaseEndpointsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.AddEndpointsNorthAmericaBaseEndpointsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "endpoints", n => { Endpoints = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressIdEndpoints>(global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressIdEndpoints.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AddEndpointsNorthAmericaBaseEndpointsItem>("endpoints", Endpoints);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressIdEndpoints>("endpoints", Endpoints);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

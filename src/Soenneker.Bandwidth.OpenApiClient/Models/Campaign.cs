@@ -270,6 +270,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             AdditionalData = new Dictionary<string, object>();
             AgeGated = false;
+            AutoRenewal = true;
             DirectLending = false;
             EmbeddedLink = false;
             EmbeddedPhone = false;

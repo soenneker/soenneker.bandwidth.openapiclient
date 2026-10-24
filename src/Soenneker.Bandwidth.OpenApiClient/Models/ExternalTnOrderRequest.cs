@@ -12,14 +12,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     public partial class ExternalTnOrderRequest : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>Whether to import or remove the telephone numbers.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
+        /// <summary>Whether the order imports or removes telephone numbers.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderRequestAction? Action { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderRequestAction Action { get; set; }
-#endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Customer-assigned reference ID for the order.</summary>
@@ -30,14 +24,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string CustomerOrderId { get; set; }
 #endif
-        /// <summary>The type of Letter of Authorization for NANP numbers.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
+        /// <summary>The type of LOA authorization.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderRequestLoaType? LoaType { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderRequestLoaType LoaType { get; set; }
-#endif
         /// <summary>The location (SIP peer) ID. If not specified, the default location for the sub-account is used.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -87,9 +75,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "action", n => { Action = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderRequestAction>(global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderRequestAction.CreateFromDiscriminatorValue); } },
+                { "action", n => { Action = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderRequestAction>(); } },
                 { "customerOrderId", n => { CustomerOrderId = n.GetStringValue(); } },
-                { "loaType", n => { LoaType = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderRequestLoaType>(global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderRequestLoaType.CreateFromDiscriminatorValue); } },
+                { "loaType", n => { LoaType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderRequestLoaType>(); } },
                 { "locationId", n => { LocationId = n.GetStringValue(); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "subAccountId", n => { SubAccountId = n.GetStringValue(); } },
@@ -102,9 +90,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderRequestAction>("action", Action);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderRequestAction>("action", Action);
             writer.WriteStringValue("customerOrderId", CustomerOrderId);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderRequestLoaType>("loaType", LoaType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalTnOrderRequestLoaType>("loaType", LoaType);
             writer.WriteStringValue("locationId", LocationId);
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
             writer.WriteStringValue("subAccountId", SubAccountId);

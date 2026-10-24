@@ -37,13 +37,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderAdditionalFieldsJsonSubscriber CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("subscriberType")?.GetStringValue();
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderAdditionalFieldsJsonSubscriber();
-            if("SubscriberBusinessJson".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("BUSINESS".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.SubscriberBusinessJson = new global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberBusinessJson();
             }
-            else if("SubscriberResidentialJson".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("RESIDENTIAL".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.SubscriberResidentialJson = new global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberResidentialJson();
             }

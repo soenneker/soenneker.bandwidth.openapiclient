@@ -30,14 +30,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string LoaAuthorizingPerson { get; set; }
 #endif
-        /// <summary>Identify the LoaType on TNs.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
+        /// <summary>The type of LOA authorization.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersRequestLoaType? LoaType { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersRequestLoaType LoaType { get; set; }
-#endif
         /// <summary>A location ID of provided site to which telephone number will be moved</summary>
         public int? LocationId { get; set; }
         /// <summary>List of telephone numbers to be moved</summary>
@@ -85,7 +79,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "customerOrderId", n => { CustomerOrderId = n.GetStringValue(); } },
                 { "loaAuthorizingPerson", n => { LoaAuthorizingPerson = n.GetStringValue(); } },
-                { "loaType", n => { LoaType = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersRequestLoaType>(global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersRequestLoaType.CreateFromDiscriminatorValue); } },
+                { "loaType", n => { LoaType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersRequestLoaType>(); } },
                 { "locationId", n => { LocationId = n.GetIntValue(); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "subAccountId", n => { SubAccountId = n.GetIntValue(); } },
@@ -101,7 +95,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("customerOrderId", CustomerOrderId);
             writer.WriteStringValue("loaAuthorizingPerson", LoaAuthorizingPerson);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersRequestLoaType>("loaType", LoaType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ImportPhoneNumberOrdersRequestLoaType>("loaType", LoaType);
             writer.WriteIntValue("locationId", LocationId);
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
             writer.WriteIntValue("subAccountId", SubAccountId);

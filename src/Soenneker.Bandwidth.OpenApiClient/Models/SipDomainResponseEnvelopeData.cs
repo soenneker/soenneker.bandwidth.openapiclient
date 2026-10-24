@@ -72,14 +72,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?> Regions { get; set; }
 #endif
-        /// <summary>The status property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
+        /// <summary>The provisioning status of the SIP domain&apos;s DNS records. `PENDING` immediately after create, or after a `regions` update that changes the region set, while provisioning runs asynchronously; `ACTIVE` once provisioning completes; `FAILED` if provisioning could not complete (see `failureReason`). A domain still `PENDING` after 10 minutes is reported as `FAILED`. Inbound calls are only accepted on an `ACTIVE` domain.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.SipDomainStatusComposed? Status { get; private set; }
-#nullable restore
-#else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SipDomainStatusComposed Status { get; private set; }
-#endif
         /// <summary>**Read-only / derived.** The SIP user IDs currently assigned to this domain (i.e. the users whose `domain` field equals this domain). Inbound SIP calls to `&lt;userId&gt;@&lt;fqdn&gt;` authenticate against the named user&apos;s credentials. Always empty in the response to the create request. To assign or unassign a user, `PATCH /sip-users/{userId}` with the new `domain` value (or an empty string, `&quot;&quot;`, to unassign).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -121,7 +115,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "ipAccessListIds", n => { IpAccessListIds = n.GetCollectionOfPrimitiveValues<Guid?>()?.AsList(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "regions", n => { Regions = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion>()?.AsList(); } },
-                { "status", n => { Status = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SipDomainStatusComposed>(global::Soenneker.Bandwidth.OpenApiClient.Models.SipDomainStatusComposed.CreateFromDiscriminatorValue); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SipDomainStatusComposed>(); } },
                 { "userIds", n => { UserIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }

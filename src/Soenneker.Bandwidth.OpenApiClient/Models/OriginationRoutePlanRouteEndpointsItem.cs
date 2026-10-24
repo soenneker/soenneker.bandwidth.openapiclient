@@ -69,17 +69,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItem();
-            if("BotEndpoint".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("BOT".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.BotEndpoint = new global::Soenneker.Bandwidth.OpenApiClient.Models.BotEndpoint();
             }
-            else if("FqdnEndpointWithoutTrunk".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("FQDN".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.FqdnEndpointWithoutTrunk = new global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointWithoutTrunk();
             }
-            else if("IntegrationEndpointWithoutTrunk".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("INTEGRATION".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.IntegrationEndpointWithoutTrunk = new global::Soenneker.Bandwidth.OpenApiClient.Models.IntegrationEndpointWithoutTrunk();
             }
@@ -87,11 +87,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 result.Ipv4EndpointWithoutTrunk = new global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointWithoutTrunk();
             }
-            else if("SipEndpointWithoutTrunk".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("SIP".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.SipEndpointWithoutTrunk = new global::Soenneker.Bandwidth.OpenApiClient.Models.SipEndpointWithoutTrunk();
             }
-            else if("TnEndpointWithoutTrunk".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("TN".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.TnEndpointWithoutTrunk = new global::Soenneker.Bandwidth.OpenApiClient.Models.TnEndpointWithoutTrunk();
             }

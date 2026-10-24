@@ -27,10 +27,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The phoneNumbers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrderRequestOrderDetailsItemPhoneNumbers? PhoneNumbers { get; set; }
+        public List<string>? PhoneNumbers { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrderRequestOrderDetailsItemPhoneNumbers PhoneNumbers { get; set; }
+        public List<string> PhoneNumbers { get; set; }
 #endif
         /// <summary>The identifier of the requirements package containing the end user details for the telephone numbers. Thisis required if the numbers are being moved across accounts and if they are a part of a country and number typewhich has end user validation requirements. The provided requirements package must be approved and compatiblewith the telephone numbers being moved.</summary>
         public Guid? RequirementsPackageId { get; set; }
@@ -70,7 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "e911ServiceAction", n => { E911ServiceAction = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.E911ServiceAction>(); } },
                 { "locationId", n => { LocationId = n.GetDoubleValue(); } },
                 { "messagingService", n => { MessagingService = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingService>(); } },
-                { "phoneNumbers", n => { PhoneNumbers = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrderRequestOrderDetailsItemPhoneNumbers>(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrderRequestOrderDetailsItemPhoneNumbers.CreateFromDiscriminatorValue); } },
+                { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "requirementsPackageId", n => { RequirementsPackageId = n.GetGuidValue(); } },
                 { "sourceAccountId", n => { SourceAccountId = n.GetDoubleValue(); } },
                 { "subAccountId", n => { SubAccountId = n.GetDoubleValue(); } },
@@ -89,7 +89,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.E911ServiceAction>("e911ServiceAction", E911ServiceAction);
             writer.WriteDoubleValue("locationId", LocationId);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingService>("messagingService", MessagingService);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrderRequestOrderDetailsItemPhoneNumbers>("phoneNumbers", PhoneNumbers);
+            writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
             writer.WriteGuidValue("requirementsPackageId", RequirementsPackageId);
             writer.WriteDoubleValue("sourceAccountId", SourceAccountId);
             writer.WriteDoubleValue("subAccountId", SubAccountId);

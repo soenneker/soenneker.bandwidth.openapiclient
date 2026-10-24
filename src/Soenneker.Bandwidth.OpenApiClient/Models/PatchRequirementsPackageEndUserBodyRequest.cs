@@ -31,7 +31,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string CustomReference { get; set; }
 #endif
         /// <summary>Unique identifier of the endUser</summary>
-        public Guid? EndUserId { get; set; }
+        public Guid? EndUserId { get; private set; }
         /// <summary>Field is a key value pair of attribute name and value. All Date or Number type values should be provided as a &apos;string&apos;. Format for the Date type is YYYY-MM-DD.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -42,14 +42,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>End user status</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserStatusEnum? Status { get; set; }
-        /// <summary>The type property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageEndUserBodyRequestTypeProperty? Type { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageEndUserBodyRequestTypeProperty Type { get; set; }
-#endif
+        /// <summary>The type of end user</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageEndUserBodyRequestType? Type { get; private set; }
         /// <summary>The date and time this object was last updated in ISO 8601 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -88,7 +82,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "endUserId", n => { EndUserId = n.GetGuidValue(); } },
                 { "fields", n => { Fields = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageEndUserBodyRequestFieldsProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageEndUserBodyRequestFieldsProperty.CreateFromDiscriminatorValue); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserStatusEnum>(); } },
-                { "type", n => { Type = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageEndUserBodyRequestTypeProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageEndUserBodyRequestTypeProperty.CreateFromDiscriminatorValue); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageEndUserBodyRequestType>(); } },
                 { "updatedDateTime", n => { UpdatedDateTime = n.GetStringValue(); } },
             };
         }
@@ -101,10 +95,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("customReference", CustomReference);
-            writer.WriteGuidValue("endUserId", EndUserId);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageEndUserBodyRequestFieldsProperty>("fields", Fields);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserStatusEnum>("status", Status);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageEndUserBodyRequestTypeProperty>("type", Type);
             writer.WriteStringValue("updatedDateTime", UpdatedDateTime);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -9,9 +9,121 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class UpdateVoiceApplicationResponseData : global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationData, IParsable
+    public partial class UpdateVoiceApplicationResponseData : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The regions where calls to the application&apos;s default-realm SIP identity are permitted to authenticate. An application with no allowed regions cannot authenticate. Custom SIP domains use each SIP user&apos;s `allowedRegions` instead.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?>? AllowedRegions { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?> AllowedRegions { get; set; }
+#endif
+        /// <summary>IPv4 CIDR blocks allowed to send SIP traffic to the application&apos;s default-realm SIP identity. An empty array means no IP restriction is applied. Maximum 25 entries. Custom SIP domains use IP access lists instead.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? AllowedSourceIps { get; set; }
+#nullable restore
+#else
+        public List<string> AllowedSourceIps { get; set; }
+#endif
+        /// <summary>The unique ID of the application.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ApplicationId { get; set; }
+#nullable restore
+#else
+        public string ApplicationId { get; set; }
+#endif
+        /// <summary>The name of the application.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ApplicationName { get; set; }
+#nullable restore
+#else
+        public string ApplicationName { get; set; }
+#endif
+        /// <summary>The callbackCreds property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds? CallbackCreds { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds CallbackCreds { get; set; }
+#endif
+        /// <summary>The timeout in seconds for callbacks.</summary>
+        public int? CallbackTimeout { get; set; }
+        /// <summary>The URL to receive call initiated callbacks.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CallInitiatedCallbackUrl { get; set; }
+#nullable restore
+#else
+        public string CallInitiatedCallbackUrl { get; set; }
+#endif
+        /// <summary>The callInitiatedFallbackCreds property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds? CallInitiatedFallbackCreds { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds CallInitiatedFallbackCreds { get; set; }
+#endif
+        /// <summary>The HTTP method used for the call initiated fallback callback.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CallInitiatedFallbackMethod { get; set; }
+#nullable restore
+#else
+        public string CallInitiatedFallbackMethod { get; set; }
+#endif
+        /// <summary>The fallback URL to receive call initiated callbacks.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CallInitiatedFallbackUrl { get; set; }
+#nullable restore
+#else
+        public string CallInitiatedFallbackUrl { get; set; }
+#endif
+        /// <summary>The HTTP method used for call initiated callbacks.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CallInitiatedMethod { get; set; }
+#nullable restore
+#else
+        public string CallInitiatedMethod { get; set; }
+#endif
+        /// <summary>The URL to receive call status callbacks.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CallStatusCallbackUrl { get; set; }
+#nullable restore
+#else
+        public string CallStatusCallbackUrl { get; set; }
+#endif
+        /// <summary>The HTTP method used for call status callbacks.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CallStatusMethod { get; set; }
+#nullable restore
+#else
+        public string CallStatusMethod { get; set; }
+#endif
+        /// <summary>Whether the application accepts inbound SIP calls on its default-realm SIP identity (`sip:{applicationId}@{auth_realm}`). Does not affect calls to custom SIP domains bound to the application.</summary>
+        public bool? InboundSipCallsEnabled { get; set; }
+        /// <summary>Whether SIP digest authentication (407 challenge) is required for inbound SIP calls on the application&apos;s default-realm SIP identity. Custom SIP domains authenticate with per-user credentials from SIP Users instead.</summary>
+        public bool? PasswordAuthEnabled { get; set; }
+        /// <summary>The service type of the application.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ServiceType { get; set; }
+#nullable restore
+#else
+        public string ServiceType { get; set; }
+#endif
         /// <summary>The newly generated password to be used for SIP digest authentication. Only present when the request included `passwordAuthEnabled: true`; it is not returned again.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -20,12 +132,27 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string SipAuthPassword { get; set; }
 #endif
+        /// <summary>The application&apos;s default-realm SIP URI (`sip:{applicationId}@{auth_realm}`). `null` when inbound SIP calls are disabled. Custom SIP domain hosts are listed in each SIP domain&apos;s `fqdns`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SipUri { get; set; }
+#nullable restore
+#else
+        public string SipUri { get; set; }
+#endif
+        /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateVoiceApplicationResponseData"/> and sets the default values.
+        /// </summary>
+        public UpdateVoiceApplicationResponseData()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateVoiceApplicationResponseData"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateVoiceApplicationResponseData CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateVoiceApplicationResponseData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateVoiceApplicationResponseData();
@@ -34,22 +161,56 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// The deserialization information for the current model
         /// </summary>
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            return new Dictionary<string, Action<IParseNode>>
             {
+                { "allowedRegions", n => { AllowedRegions = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion>()?.AsList(); } },
+                { "allowedSourceIps", n => { AllowedSourceIps = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "applicationId", n => { ApplicationId = n.GetStringValue(); } },
+                { "applicationName", n => { ApplicationName = n.GetStringValue(); } },
+                { "callInitiatedCallbackUrl", n => { CallInitiatedCallbackUrl = n.GetStringValue(); } },
+                { "callInitiatedFallbackCreds", n => { CallInitiatedFallbackCreds = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds.CreateFromDiscriminatorValue); } },
+                { "callInitiatedFallbackMethod", n => { CallInitiatedFallbackMethod = n.GetStringValue(); } },
+                { "callInitiatedFallbackUrl", n => { CallInitiatedFallbackUrl = n.GetStringValue(); } },
+                { "callInitiatedMethod", n => { CallInitiatedMethod = n.GetStringValue(); } },
+                { "callStatusCallbackUrl", n => { CallStatusCallbackUrl = n.GetStringValue(); } },
+                { "callStatusMethod", n => { CallStatusMethod = n.GetStringValue(); } },
+                { "callbackCreds", n => { CallbackCreds = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds.CreateFromDiscriminatorValue); } },
+                { "callbackTimeout", n => { CallbackTimeout = n.GetIntValue(); } },
+                { "inboundSipCallsEnabled", n => { InboundSipCallsEnabled = n.GetBoolValue(); } },
+                { "passwordAuthEnabled", n => { PasswordAuthEnabled = n.GetBoolValue(); } },
+                { "serviceType", n => { ServiceType = n.GetStringValue(); } },
                 { "sipAuthPassword", n => { SipAuthPassword = n.GetStringValue(); } },
+                { "sipUri", n => { SipUri = n.GetStringValue(); } },
             };
         }
         /// <summary>
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer)
+        public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            base.Serialize(writer);
+            writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion>("allowedRegions", AllowedRegions);
+            writer.WriteCollectionOfPrimitiveValues<string>("allowedSourceIps", AllowedSourceIps);
+            writer.WriteStringValue("applicationId", ApplicationId);
+            writer.WriteStringValue("applicationName", ApplicationName);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds>("callbackCreds", CallbackCreds);
+            writer.WriteIntValue("callbackTimeout", CallbackTimeout);
+            writer.WriteStringValue("callInitiatedCallbackUrl", CallInitiatedCallbackUrl);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds>("callInitiatedFallbackCreds", CallInitiatedFallbackCreds);
+            writer.WriteStringValue("callInitiatedFallbackMethod", CallInitiatedFallbackMethod);
+            writer.WriteStringValue("callInitiatedFallbackUrl", CallInitiatedFallbackUrl);
+            writer.WriteStringValue("callInitiatedMethod", CallInitiatedMethod);
+            writer.WriteStringValue("callStatusCallbackUrl", CallStatusCallbackUrl);
+            writer.WriteStringValue("callStatusMethod", CallStatusMethod);
+            writer.WriteBoolValue("inboundSipCallsEnabled", InboundSipCallsEnabled);
+            writer.WriteBoolValue("passwordAuthEnabled", PasswordAuthEnabled);
+            writer.WriteStringValue("serviceType", ServiceType);
             writer.WriteStringValue("sipAuthPassword", SipAuthPassword);
+            writer.WriteStringValue("sipUri", SipUri);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

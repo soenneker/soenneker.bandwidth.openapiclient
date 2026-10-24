@@ -17,10 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The connectionMetadata property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequestConnectionMetadata? ConnectionMetadata { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateWebRtcConnectionRequestConnectionMetadataProperty? ConnectionMetadata { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequestConnectionMetadata ConnectionMetadata { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateWebRtcConnectionRequestConnectionMetadataProperty ConnectionMetadata { get; set; }
 #endif
         /// <summary>The direction property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointDirectionEnum? Direction { get; set; }
@@ -49,7 +49,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string Tag { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointTypeEnum? Type { get; set; }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Type { get; set; }
+#nullable restore
+#else
+        public string Type { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequest"/> and sets the default values.
         /// </summary>
@@ -75,12 +81,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "connectionMetadata", n => { ConnectionMetadata = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequestConnectionMetadata>(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequestConnectionMetadata.CreateFromDiscriminatorValue); } },
+                { "connectionMetadata", n => { ConnectionMetadata = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateWebRtcConnectionRequestConnectionMetadataProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateWebRtcConnectionRequestConnectionMetadataProperty.CreateFromDiscriminatorValue); } },
                 { "direction", n => { Direction = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointDirectionEnum>(); } },
                 { "eventCallbackUrl", n => { EventCallbackUrl = n.GetStringValue(); } },
                 { "eventFallbackUrl", n => { EventFallbackUrl = n.GetStringValue(); } },
                 { "tag", n => { Tag = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointTypeEnum>(); } },
+                { "type", n => { Type = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -90,12 +96,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequestConnectionMetadata>("connectionMetadata", ConnectionMetadata);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateWebRtcConnectionRequestConnectionMetadataProperty>("connectionMetadata", ConnectionMetadata);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointDirectionEnum>("direction", Direction);
             writer.WriteStringValue("eventCallbackUrl", EventCallbackUrl);
             writer.WriteStringValue("eventFallbackUrl", EventFallbackUrl);
             writer.WriteStringValue("tag", Tag);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointTypeEnum>("type", Type);
+            writer.WriteStringValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

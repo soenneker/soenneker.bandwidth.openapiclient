@@ -34,10 +34,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsLinksItemProperty>? Links { get; set; }
+        public UntypedNode? Links { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsLinksItemProperty> Links { get; set; }
+        public UntypedNode Links { get; set; }
 #endif
         /// <summary>The primary error message.</summary>
         public override string Message { get => base.Message; }
@@ -68,7 +68,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "data", n => { DataEscaped = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsDataProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsDataProperty2.CreateFromDiscriminatorValue); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsErrorsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsLinksItemProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsLinksItemProperty.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "links", n => { Links = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -80,7 +80,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsDataProperty2>("data", DataEscaped);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsErrorsItem>("errors", Errors);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiErrorsLinksItemProperty>("links", Links);
+            writer.WriteObjectValue<UntypedNode>("links", Links);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

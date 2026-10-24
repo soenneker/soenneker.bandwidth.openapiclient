@@ -45,17 +45,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.NewPhoneNumberOrderResponseOrderType CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.NewPhoneNumberOrderResponseOrderType();
-            if("CombinedSearchAndOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("combinedSearchAndOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.CombinedSearchAndOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType();
             }
-            else if("CountryAndPhoneNumberTypeSearchAndOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("countryAndPhoneNumberTypeSearchAndOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.CountryAndPhoneNumberTypeSearchAndOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.CountryAndPhoneNumberTypeSearchAndOrderType();
             }
-            else if("ExistingPhoneNumberOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("existingPhoneNumberOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ExistingPhoneNumberOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType();
             }

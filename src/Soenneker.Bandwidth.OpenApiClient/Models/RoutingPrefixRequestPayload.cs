@@ -23,7 +23,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string Code { get; set; }
 #endif
         /// <summary>A list of Phone number type GEOGRAPHIC, NATIONAL, MOBILE, TOLL_FREE, SHARED_COST.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypes? PhoneNumberTypes { get; set; }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? PhoneNumberTypes { get; set; }
+#nullable restore
+#else
+        public List<string> PhoneNumberTypes { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RoutingPrefixRequestPayload"/> and sets the default values.
         /// </summary>
@@ -50,7 +56,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "code", n => { Code = n.GetStringValue(); } },
-                { "phoneNumberTypes", n => { PhoneNumberTypes = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypes>(); } },
+                { "phoneNumberTypes", n => { PhoneNumberTypes = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -61,7 +67,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("code", Code);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypes>("phoneNumberTypes", PhoneNumberTypes);
+            writer.WriteCollectionOfPrimitiveValues<string>("phoneNumberTypes", PhoneNumberTypes);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

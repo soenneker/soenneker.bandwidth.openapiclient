@@ -12,14 +12,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     public partial class NumbersAssignmentOrderRequest : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>The assignment action to perform on the provided phone numbers.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
+        /// <summary>Assignment action performed on phone numbers.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderRequestAction? Action { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderRequestAction Action { get; set; }
-#endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`.</summary>
@@ -63,7 +57,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "action", n => { Action = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderRequestAction>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderRequestAction.CreateFromDiscriminatorValue); } },
+                { "action", n => { Action = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderRequestAction>(); } },
                 { "customerOrderId", n => { CustomerOrderId = n.GetStringValue(); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
@@ -75,7 +69,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderRequestAction>("action", Action);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderRequestAction>("action", Action);
             writer.WriteStringValue("customerOrderId", CustomerOrderId);
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
             writer.WriteAdditionalData(AdditionalData);

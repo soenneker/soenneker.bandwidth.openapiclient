@@ -25,10 +25,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Country code in ISO 3166-1 alpha-3 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CountryCodeA3 { get; set; }
+        public string? CountryCodeA3 { get; private set; }
 #nullable restore
 #else
-        public string CountryCodeA3 { get; set; }
+        public string CountryCodeA3 { get; private set; }
 #endif
         /// <summary>The date and time this object was created in ISO 8601 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -47,16 +47,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string CustomReference { get; set; }
 #endif
         /// <summary>The type of end user</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum? EndUserType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageBodyRequestEndUserType? EndUserType { get; private set; }
         /// <summary>The type of phone number.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum? PhoneNumberType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageBodyRequestPhoneNumberType? PhoneNumberType { get; private set; }
         /// <summary>Remarks provided by the user or admin</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Remarks { get; set; }
+        public string? Remarks { get; private set; }
 #nullable restore
 #else
-        public string Remarks { get; set; }
+        public string Remarks { get; private set; }
 #endif
         /// <summary>Unique identifier for requirements package</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -75,7 +75,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext StateContext { get; set; }
 #endif
         /// <summary>Status of the Requirements package</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStatusEnum? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageBodyRequestStatus? Status { get; set; }
         /// <summary>The date and time this object was last updated in ISO 8601 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -113,12 +113,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "countryCodeA3", n => { CountryCodeA3 = n.GetStringValue(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetStringValue(); } },
                 { "customReference", n => { CustomReference = n.GetStringValue(); } },
-                { "endUserType", n => { EndUserType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum>(); } },
-                { "phoneNumberType", n => { PhoneNumberType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum>(); } },
+                { "endUserType", n => { EndUserType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageBodyRequestEndUserType>(); } },
+                { "phoneNumberType", n => { PhoneNumberType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageBodyRequestPhoneNumberType>(); } },
                 { "remarks", n => { Remarks = n.GetStringValue(); } },
                 { "requirementsPackageId", n => { RequirementsPackageId = n.GetStringValue(); } },
                 { "stateContext", n => { StateContext = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext>(global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext.CreateFromDiscriminatorValue); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStatusEnum>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageBodyRequestStatus>(); } },
                 { "updatedDateTime", n => { UpdatedDateTime = n.GetStringValue(); } },
             };
         }
@@ -130,15 +130,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements>("acknowledgements", Acknowledgements);
-            writer.WriteStringValue("countryCodeA3", CountryCodeA3);
             writer.WriteStringValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("customReference", CustomReference);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum>("endUserType", EndUserType);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum>("phoneNumberType", PhoneNumberType);
-            writer.WriteStringValue("remarks", Remarks);
             writer.WriteStringValue("requirementsPackageId", RequirementsPackageId);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext>("stateContext", StateContext);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStatusEnum>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageBodyRequestStatus>("status", Status);
             writer.WriteStringValue("updatedDateTime", UpdatedDateTime);
             writer.WriteAdditionalData(AdditionalData);
         }

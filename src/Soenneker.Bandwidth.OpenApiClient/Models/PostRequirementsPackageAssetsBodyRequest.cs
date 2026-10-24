@@ -43,18 +43,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The date and time this object was created in ISO 8601 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CreatedDateTime { get; set; }
+        public string? CreatedDateTime { get; private set; }
 #nullable restore
 #else
-        public string CreatedDateTime { get; set; }
+        public string CreatedDateTime { get; private set; }
 #endif
         /// <summary>The date and time this object was last updated in ISO 8601 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? UpdatedDateTime { get; set; }
+        public string? UpdatedDateTime { get; private set; }
 #nullable restore
 #else
-        public string UpdatedDateTime { get; set; }
+        public string UpdatedDateTime { get; private set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PostRequirementsPackageAssetsBodyRequest"/> and sets the default values.
@@ -98,8 +98,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("assetReferenceId", AssetReferenceId);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AssetTypeEnum>("assetType", AssetType);
-            writer.WriteStringValue("createdDateTime", CreatedDateTime);
-            writer.WriteStringValue("updatedDateTime", UpdatedDateTime);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

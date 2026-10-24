@@ -20,10 +20,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The properties property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ForbiddenErrorResponseResponsePropertiesProperty? Properties { get; set; }
+        public UntypedNode? Properties { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ForbiddenErrorResponseResponsePropertiesProperty Properties { get; set; }
+        public UntypedNode Properties { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ForbiddenErrorResponseResponse"/> and sets the default values.
@@ -50,7 +50,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "properties", n => { Properties = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ForbiddenErrorResponseResponsePropertiesProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.ForbiddenErrorResponseResponsePropertiesProperty.CreateFromDiscriminatorValue); } },
+                { "properties", n => { Properties = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -60,7 +60,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ForbiddenErrorResponseResponsePropertiesProperty>("properties", Properties);
+            writer.WriteObjectValue<UntypedNode>("properties", Properties);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

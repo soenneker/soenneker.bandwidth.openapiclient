@@ -8,27 +8,21 @@ using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponseCallForwardBranch2"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponseCallForwardWrapper"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponseCallForwardAnyOf1"/>, <see cref="string"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TnOptionGroupJsonVcpDisabledResponseCallForward : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponseCallForwardBranch2"/></summary>
+        /// <summary>Composed type representation for type <see cref="string"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponseCallForwardBranch2? TnOptionGroupJsonVcpDisabledResponseCallForwardBranch2 { get; set; }
+        public string? String { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponseCallForwardBranch2 TnOptionGroupJsonVcpDisabledResponseCallForwardBranch2 { get; set; }
+        public string String { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponseCallForwardWrapper"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponseCallForwardWrapper? TnOptionGroupJsonVcpDisabledResponseCallForwardWrapper { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponseCallForwardWrapper TnOptionGroupJsonVcpDisabledResponseCallForwardWrapper { get; set; }
-#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponseCallForwardAnyOf1"/></summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponseCallForwardAnyOf1? TnOptionGroupJsonVcpDisabledResponseCallForwardAnyOf1 { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -38,8 +32,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponseCallForward();
-            result.TnOptionGroupJsonVcpDisabledResponseCallForwardBranch2 = new global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponseCallForwardBranch2();
-            result.TnOptionGroupJsonVcpDisabledResponseCallForwardWrapper = new global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponseCallForwardWrapper();
+            if(parseNode.GetStringValue() is string stringValue)
+            {
+                result.String = stringValue;
+            }
+            else if(parseNode.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponseCallForwardAnyOf1>() is global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponseCallForwardAnyOf1 tnOptionGroupJsonVcpDisabledResponseCallForwardAnyOf1Value)
+            {
+                result.TnOptionGroupJsonVcpDisabledResponseCallForwardAnyOf1 = tnOptionGroupJsonVcpDisabledResponseCallForwardAnyOf1Value;
+            }
             return result;
         }
         /// <summary>
@@ -48,10 +48,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(TnOptionGroupJsonVcpDisabledResponseCallForwardBranch2 != null || TnOptionGroupJsonVcpDisabledResponseCallForwardWrapper != null)
-            {
-                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(TnOptionGroupJsonVcpDisabledResponseCallForwardBranch2, TnOptionGroupJsonVcpDisabledResponseCallForwardWrapper);
-            }
             return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
@@ -61,7 +57,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponseCallForwardBranch2>(null, TnOptionGroupJsonVcpDisabledResponseCallForwardBranch2, TnOptionGroupJsonVcpDisabledResponseCallForwardWrapper);
+            if(String != null)
+            {
+                writer.WriteStringValue(null, String);
+            }
+            else if(TnOptionGroupJsonVcpDisabledResponseCallForwardAnyOf1 != null)
+            {
+                writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledResponseCallForwardAnyOf1>(null, TnOptionGroupJsonVcpDisabledResponseCallForwardAnyOf1);
+            }
         }
     }
 }

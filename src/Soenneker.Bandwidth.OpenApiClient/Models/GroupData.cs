@@ -24,13 +24,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string BrandId { get; set; }
 #endif
         /// <summary>Approval status of the associated brand with First Orion. Present only when brandId is populated.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnumWrapper? BrandStatus { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnumWrapper BrandStatus { get; set; }
-#endif
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnum? BrandStatus { get; set; }
         /// <summary>The date and time the group was created.</summary>
         public DateTimeOffset? CreatedAt { get; set; }
         /// <summary>The description of the group.</summary>
@@ -81,7 +75,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "brandId", n => { BrandId = n.GetStringValue(); } },
-                { "brandStatus", n => { BrandStatus = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnumWrapper>(global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnumWrapper.CreateFromDiscriminatorValue); } },
+                { "brandStatus", n => { BrandStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnum>(); } },
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "groupId", n => { GroupId = n.GetDoubleValue(); } },
@@ -98,7 +92,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("brandId", BrandId);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnumWrapper>("brandStatus", BrandStatus);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnum>("brandStatus", BrandStatus);
             writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
             writer.WriteStringValue("description", Description);
             writer.WriteDoubleValue("groupId", GroupId);

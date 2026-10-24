@@ -12,7 +12,7 @@ using System;
 namespace Soenneker.Bandwidth.OpenApiClient.ProductSettings.Accounts.Item.Realms.Item.Sipcredentials.Item
 {
     /// <summary>
-    /// Builds and executes requests for operations under \product-settings\accounts\{accountId}\realms\{realm-id}\sipcredentials\{credentialId}
+    /// Builds and executes requests for operations under \product-settings\accounts\{accountId}\realms\{realm}\sipcredentials\{credentialId}
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithCredentialItemRequestBuilder : BaseRequestBuilder
@@ -22,7 +22,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.ProductSettings.Accounts.Item.Realms
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithCredentialItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/product-settings/accounts/{accountId}/realms/{realm%2Did}/sipcredentials/{credentialId}", pathParameters)
+        public WithCredentialItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/product-settings/accounts/{accountId}/realms/{realm}/sipcredentials/{credentialId}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.ProductSettings.Accounts.Item.Realms
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithCredentialItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/product-settings/accounts/{accountId}/realms/{realm%2Did}/sipcredentials/{credentialId}", rawUrl)
+        public WithCredentialItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/product-settings/accounts/{accountId}/realms/{realm}/sipcredentials/{credentialId}", rawUrl)
         {
         }
         /// <summary>

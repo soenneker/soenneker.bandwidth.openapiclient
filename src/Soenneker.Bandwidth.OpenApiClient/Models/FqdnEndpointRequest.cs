@@ -48,7 +48,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceTrunkInfo TrunkInfo { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequestType? Type { get; set; }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Type { get; set; }
+#nullable restore
+#else
+        public string Type { get; set; }
+#endif
         /// <summary>Weighted-routing weight.</summary>
         public int? Weight { get; set; }
         /// <summary>
@@ -80,7 +86,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "prefix", n => { Prefix = n.GetStringValue(); } },
                 { "rewriteUser", n => { RewriteUser = n.GetStringValue(); } },
                 { "trunkInfo", n => { TrunkInfo = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceTrunkInfo>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceTrunkInfo.CreateFromDiscriminatorValue); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequestType>(); } },
+                { "type", n => { Type = n.GetStringValue(); } },
                 { "weight", n => { Weight = n.GetIntValue(); } },
             };
         }
@@ -95,7 +101,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("prefix", Prefix);
             writer.WriteStringValue("rewriteUser", RewriteUser);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceTrunkInfo>("trunkInfo", TrunkInfo);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequestType>("type", Type);
+            writer.WriteStringValue("type", Type);
             writer.WriteIntValue("weight", Weight);
             writer.WriteAdditionalData(AdditionalData);
         }

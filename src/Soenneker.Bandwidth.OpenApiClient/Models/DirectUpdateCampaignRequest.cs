@@ -169,6 +169,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public DirectUpdateCampaignRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            AgeGated = false;
+            AutoRenewal = true;
+            DirectLending = false;
+            EmbeddedLink = false;
+            EmbeddedPhone = false;
+            NumberPool = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

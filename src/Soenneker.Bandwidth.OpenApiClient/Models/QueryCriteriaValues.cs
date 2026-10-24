@@ -8,28 +8,28 @@ using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="bool"/>, <see cref="string"/>, List&lt;global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValuesOneOf3Item&gt;
+    /// Composed type wrapper for classes <see cref="bool"/>, <see cref="string"/>, List&lt;string&gt;
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class QueryCriteriaValues : IComposedTypeWrapper, IParsable
     {
         /// <summary>Composed type representation for type <see cref="bool"/></summary>
         public bool? Boolean { get; set; }
-        /// <summary>Composed type representation for type List&lt;global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValuesOneOf3Item&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValuesOneOf3Item>? QueryCriteriaValuesOneOf3Item { get; set; }
-#nullable restore
-#else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValuesOneOf3Item> QueryCriteriaValuesOneOf3Item { get; set; }
-#endif
         /// <summary>Composed type representation for type <see cref="string"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? String { get; set; }
+        public string? QueryCriteriaValuesString { get; set; }
 #nullable restore
 #else
-        public string String { get; set; }
+        public string QueryCriteriaValuesString { get; set; }
+#endif
+        /// <summary>Composed type representation for type List&lt;string&gt;</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? String { get; set; }
+#nullable restore
+#else
+        public List<string> String { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -45,13 +45,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 result.Boolean = booleanValue;
             }
-            else if(parseNode.GetStringValue() is string stringValue)
+            else if(parseNode.GetStringValue() is string queryCriteriaValuesStringValue)
+            {
+                result.QueryCriteriaValuesString = queryCriteriaValuesStringValue;
+            }
+            else if(parseNode.GetCollectionOfPrimitiveValues<string>()?.AsList() is List<string> stringValue)
             {
                 result.String = stringValue;
-            }
-            else if(parseNode.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValuesOneOf3Item>(global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValuesOneOf3Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValuesOneOf3Item> queryCriteriaValuesOneOf3ItemValue)
-            {
-                result.QueryCriteriaValuesOneOf3Item = queryCriteriaValuesOneOf3ItemValue;
             }
             return result;
         }
@@ -74,13 +74,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 writer.WriteBoolValue(null, Boolean);
             }
+            else if(QueryCriteriaValuesString != null)
+            {
+                writer.WriteStringValue(null, QueryCriteriaValuesString);
+            }
             else if(String != null)
             {
-                writer.WriteStringValue(null, String);
-            }
-            else if(QueryCriteriaValuesOneOf3Item != null)
-            {
-                writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValuesOneOf3Item>(null, QueryCriteriaValuesOneOf3Item);
+                writer.WriteCollectionOfPrimitiveValues<string>(null, String);
             }
         }
     }

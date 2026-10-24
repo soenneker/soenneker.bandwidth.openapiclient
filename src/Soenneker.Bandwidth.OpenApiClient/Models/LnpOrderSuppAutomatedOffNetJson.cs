@@ -88,13 +88,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #endif
         /// <summary>The subAccountId property</summary>
         public int? SubAccountId { get; set; }
-        /// <summary>Cannot be SUPPed after FOC received.</summary>
+        /// <summary>The subscriber property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedOffNetJsonSubscriber? Subscriber { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedOffNetJsonSubscriberComposed? Subscriber { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedOffNetJsonSubscriber Subscriber { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedOffNetJsonSubscriberComposed Subscriber { get; set; }
 #endif
         /// <summary>Tags to associate with the phone numbers being ported in on order completion. No duplicate tag names are allowed within an order, and a maximum of 10 tags may be specified. If `tags` is not present on a SUPP, existing tags are left unchanged; if present, it replaces all tags on the order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -141,7 +141,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "processingStatus", n => { ProcessingStatus = n.GetStringValue(); } },
                 { "requestedFocDate", n => { RequestedFocDate = n.GetStringValue(); } },
                 { "subAccountId", n => { SubAccountId = n.GetIntValue(); } },
-                { "subscriber", n => { Subscriber = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedOffNetJsonSubscriber>(global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedOffNetJsonSubscriber.CreateFromDiscriminatorValue); } },
+                { "subscriber", n => { Subscriber = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedOffNetJsonSubscriberComposed>(global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedOffNetJsonSubscriberComposed.CreateFromDiscriminatorValue); } },
                 { "tags", n => { Tags = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsPhoneNumberTag>(global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsPhoneNumberTag.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "triggered", n => { Triggered = n.GetBoolValue(); } },
             };
@@ -163,7 +163,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("processingStatus", ProcessingStatus);
             writer.WriteStringValue("requestedFocDate", RequestedFocDate);
             writer.WriteIntValue("subAccountId", SubAccountId);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedOffNetJsonSubscriber>("subscriber", Subscriber);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedOffNetJsonSubscriberComposed>("subscriber", Subscriber);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsPhoneNumberTag>("tags", Tags);
             writer.WriteBoolValue("triggered", Triggered);
             writer.WriteAdditionalData(AdditionalData);

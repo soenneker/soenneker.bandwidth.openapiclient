@@ -23,11 +23,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string CreatedBy { get; private set; }
 #endif
         /// <summary>The date and time when the client secret was created.</summary>
-        public DateTimeOffset? CreationDate { get; set; }
+        public DateTimeOffset? CreationDate { get; private set; }
         /// <summary>The date and time when the client secret will expire.</summary>
-        public DateTimeOffset? ExpirationDate { get; set; }
+        public DateTimeOffset? ExpirationDate { get; private set; }
         /// <summary>The date and time when the client secret was last used to authenticate.</summary>
-        public DateTimeOffset? LastUsedDate { get; set; }
+        public DateTimeOffset? LastUsedDate { get; private set; }
         /// <summary>The unique identifier for the client secret.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -84,9 +84,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteDateTimeOffsetValue("creationDate", CreationDate);
-            writer.WriteDateTimeOffsetValue("expirationDate", ExpirationDate);
-            writer.WriteDateTimeOffsetValue("lastUsedDate", LastUsedDate);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -11,10 +11,40 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// Subscription Response Object
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class SubscriptionResponse : global::Soenneker.Bandwidth.OpenApiClient.Models.Subscription, IParsable
+    public partial class SubscriptionResponse : IAdditionalDataHolder, IParsable
     {
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Last Modified date</summary>
         public DateTimeOffset? DateOfLastModification { get; set; }
+        /// <summary>Unique Id of object/action processed which generates Event for Notification. eventType value is Required when this value is present. Must be alphanumeric, can contain dashes and underscores.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EntityId { get; set; }
+#nullable restore
+#else
+        public string EntityId { get; set; }
+#endif
+        /// <summary>The Event Type of the Subscription. This value is Required when entityId is present</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeEnum? EventType { get; set; }
+        /// <summary>NOTE: When a request without the `Authorization` header is made to a callback url that supports basic authentication, then the expected behavior is:1. Response code is `401` or `407`. 2. Response headers should contain `WWW-Authenticate` or `Proxy-Authenticate` specifying basic authentication as a scheme. For example `WWW-Authenticate&quot;:&quot;Basic realm=&quot;Bandwidth API&quot;`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationChannel>? NotificationChannel { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationChannel> NotificationChannel { get; set; }
+#endif
+        /// <summary>The notifyStates property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnum?>? NotifyStates { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnum?> NotifyStates { get; set; }
+#endif
+        /// <summary>The Product of the Subscription</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ProductEnum? Product { get; set; }
         /// <summary>The subscriptionId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -23,12 +53,29 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 #else
         public string SubscriptionId { get; set; }
 #endif
+        /// <summary>The Status of the Subscription</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionSubscriptionStatus? SubscriptionStatus { get; set; }
+        /// <summary>Tag key and value must consist of alphanumeric characters, hyphens, and underscores</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Tag>? Tags { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Tag> Tags { get; set; }
+#endif
+        /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse"/> and sets the default values.
+        /// </summary>
+        public SubscriptionResponse()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionResponse();
@@ -37,24 +84,38 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// The deserialization information for the current model
         /// </summary>
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            return new Dictionary<string, Action<IParseNode>>
             {
                 { "dateOfLastModification", n => { DateOfLastModification = n.GetDateTimeOffsetValue(); } },
+                { "entityId", n => { EntityId = n.GetStringValue(); } },
+                { "eventType", n => { EventType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeEnum>(); } },
+                { "notificationChannel", n => { NotificationChannel = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationChannel>(global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationChannel.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "notifyStates", n => { NotifyStates = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnum>()?.AsList(); } },
+                { "product", n => { Product = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductEnum>(); } },
                 { "subscriptionId", n => { SubscriptionId = n.GetStringValue(); } },
+                { "subscriptionStatus", n => { SubscriptionStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionSubscriptionStatus>(); } },
+                { "tags", n => { Tags = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Tag>(global::Soenneker.Bandwidth.OpenApiClient.Models.Tag.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer)
+        public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("dateOfLastModification", DateOfLastModification);
+            writer.WriteStringValue("entityId", EntityId);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeEnum>("eventType", EventType);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationChannel>("notificationChannel", NotificationChannel);
+            writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnum>("notifyStates", NotifyStates);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductEnum>("product", Product);
             writer.WriteStringValue("subscriptionId", SubscriptionId);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionSubscriptionStatus>("subscriptionStatus", SubscriptionStatus);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Tag>("tags", Tags);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }
