@@ -231,6 +231,7 @@ paths:
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/region'
+        - $ref: '#/components/parameters/endpointIdFilterParam'
       responses:
         '200':
           $ref: '#/components/responses/listAddresses'
@@ -3392,6 +3393,15 @@ components:
       schema:
         $ref: '#/components/schemas/stringEqFilter'
       description: Filter and/or sort by id.
+    endpointIdFilterParam:
+      name: endpointId
+      in: query
+      required: false
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/stringEqFilter'
+      description: Filter locations by the endpoint they are associated with.
     orderType:
       name: orderType
       in: query

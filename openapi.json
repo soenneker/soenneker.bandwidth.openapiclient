@@ -6361,6 +6361,9 @@
             "example": "9900000"
           },
           {
+            "$ref": "#/components/parameters/endpointIdFilterParam"
+          },
+          {
             "$ref": "#/components/parameters/externalId"
           },
           {
@@ -175863,6 +175866,16 @@
         "name": "id",
         "in": "query",
         "description": "Filter and/or sort by id.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/StringEqFilter"
+        }
+      },
+      "endpointIdFilterParam": {
+        "name": "endpointId",
+        "in": "query",
+        "description": "Filter locations by the endpoint they are associated with.",
         "style": "deepObject",
         "explode": true,
         "schema": {
