@@ -6754,8 +6754,8 @@
             "$ref": "#/components/parameters/endpointIdFilterParam"
           },
           {
-            "description": "Substring of an address ID",
-            "$ref": "#/components/parameters/externalId"
+            "description": "Filter by address ID. Use \u0060contains\u0060 for a substring match on a single address ID, or \u0060eq\u0060 with a comma-separated list of complete address IDs to fetch multiple addresses in a single request instead of one request per address (limited to 100 IDs).",
+            "$ref": "#/components/parameters/addressIdFilterParam"
           },
           {
             "description": "Limit the number of returned record.",
@@ -57084,7 +57084,44 @@
         }
       },
       "SubAccountBadRequestErrorResponseResponse": {
-        "anyOf": [
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "integer",
+            "description": "Numeric designation of corresponding error",
+            "example": 1010
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed explanation about error",
+            "example": "Invalid request"
+          },
+          "data": {
+            "$ref": "#/components/schemas/SubAccountBadRequestErrorResponseResponseData"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "description": "list of error objects"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "description": "list of useful links"
+          },
+          "addressInconsistencies": {
+            "type": "string",
+            "description": "Indicates discrepancies found in the provided address details"
+          },
+          "recommendedAddress": {
+            "$ref": "#/components/schemas/AddressJson"
+          }
+        },
+        "x-client-original-anyOf": [
           {
             "$ref": "#/components/schemas/ErrorResponseJson"
           },
@@ -57097,7 +57134,44 @@
         ]
       },
       "SubAccountBadRequestErrorResponsePutResponse": {
-        "anyOf": [
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "integer",
+            "description": "Numeric designation of corresponding error",
+            "example": 1010
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed explanation about error",
+            "example": "Invalid request"
+          },
+          "data": {
+            "$ref": "#/components/schemas/SubAccountBadRequestErrorResponsePutResponseData"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "description": "list of error objects"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "description": "list of useful links"
+          },
+          "addressInconsistencies": {
+            "type": "string",
+            "description": "Indicates discrepancies found in the provided address details"
+          },
+          "recommendedAddress": {
+            "$ref": "#/components/schemas/AddressJson"
+          }
+        },
+        "x-client-original-anyOf": [
           {
             "$ref": "#/components/schemas/ErrorResponseJson"
           },
@@ -67220,6 +67294,23 @@
           }
         },
         "description": "Query filter supporting exact-match (\u0060eq\u0060), substring (\u0060contains\u0060) filtering, and sorting for email fields."
+      },
+      "AddressIdFilter": {
+        "title": "Address ID Filter",
+        "type": "object",
+        "properties": {
+          "eq": {
+            "type": "string",
+            "description": "One or more complete address IDs to fetch, comma-separated.",
+            "example": "2719869810319,2590572226497"
+          },
+          "contains": {
+            "type": "string",
+            "description": "Substring to match against a single address ID.",
+            "example": "2719869810"
+          }
+        },
+        "description": "Query filter supporting substring (\u0060contains\u0060) match on a single address ID, or exact-match (\u0060eq\u0060) on one or more comma-separated address IDs."
       },
       "AddEndUserMappingRequest": {
         "title": "Add End User Mapping Request",
@@ -161488,6 +161579,14 @@
         "type": "object",
         "description": "the main data payload of the response"
       },
+      "SubAccountBadRequestErrorResponseResponseData": {
+        "type": "object",
+        "description": "the main data payload of the response"
+      },
+      "SubAccountBadRequestErrorResponsePutResponseData": {
+        "type": "object",
+        "description": "the main data payload of the response"
+      },
       "ApiErrorsDataProperty2": {
         "type": [
           "null",
@@ -181797,12 +181896,14 @@
           "type": "string"
         }
       },
-      "externalId": {
+      "addressIdFilterParam": {
         "name": "id",
         "in": "query",
-        "description": "Substring of an address ID",
+        "description": "Filter by address ID. Use \u0060contains\u0060 for a substring match on a single address ID, or \u0060eq\u0060 with a comma-separated list of complete address IDs to fetch multiple addresses in a single request instead of one request per address (limited to 100 IDs).",
+        "style": "deepObject",
+        "explode": true,
         "schema": {
-          "type": "string"
+          "$ref": "#/components/schemas/AddressIdFilter"
         }
       },
       "emergency_provisioning_limit": {
@@ -187673,8 +187774,7 @@
         "in": "query",
         "description": "Filter parameter for name.",
         "schema": {
-          "type": "string",
-          "format": "string"
+          "type": "string"
         }
       },
       "externalIdParam": {
@@ -187682,8 +187782,7 @@
         "in": "query",
         "description": "Filter parameter for external id.",
         "schema": {
-          "type": "string",
-          "format": "string"
+          "type": "string"
         }
       },
       "voice_integrations_accountId": {
@@ -187733,8 +187832,7 @@
         "description": "Number path parameter.",
         "required": true,
         "schema": {
-          "type": "string",
-          "format": "string"
+          "type": "string"
         }
       },
       "voice_phone_numbers_accountId": {

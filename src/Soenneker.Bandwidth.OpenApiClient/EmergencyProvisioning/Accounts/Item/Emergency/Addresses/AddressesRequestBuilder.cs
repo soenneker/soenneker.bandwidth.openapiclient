@@ -184,7 +184,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.EmergencyProvisioning.Accounts.Item.
             [QueryParameter("endpointId")]
             public string EndpointId { get; set; }
 #endif
-            /// <summary>Substring of an address ID</summary>
+            /// <summary>Filter by address ID. Use `contains` for a substring match on a single address ID, or `eq` with a comma-separated list of complete address IDs to fetch multiple addresses in a single request instead of one request per address (limited to 100 IDs).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("id")]

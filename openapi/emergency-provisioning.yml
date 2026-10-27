@@ -227,7 +227,7 @@ paths:
         - Addresses
       parameters:
         - $ref: '#/components/parameters/accountId'
-        - $ref: '#/components/parameters/externalId'
+        - $ref: '#/components/parameters/addressIdFilterParam'
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/region'
@@ -2464,6 +2464,21 @@ components:
           type: string
         sort:
           $ref: '#/components/schemas/sortDirection'
+    addressIdFilter:
+      title: Address ID Filter
+      description: >-
+        Query filter supporting substring (`contains`) match on a single address
+        ID, or exact-match (`eq`) on one or more comma-separated address IDs.
+      type: object
+      properties:
+        eq:
+          type: string
+          description: One or more complete address IDs to fetch, comma-separated.
+          example: 2719869810319,2590572226497
+        contains:
+          type: string
+          description: Substring to match against a single address ID.
+          example: '2719869810'
     addEndUserMappingRequest:
       title: Add End User Mapping Request
       description: >-
@@ -3303,13 +3318,19 @@ components:
       schema:
         type: string
       description: Substring of an endpoint ID
-    externalId:
+    addressIdFilterParam:
       name: id
       in: query
       required: false
+      style: deepObject
+      explode: true
       schema:
-        type: string
-      description: Substring of an address ID
+        $ref: '#/components/schemas/addressIdFilter'
+      description: >-
+        Filter by address ID. Use `contains` for a substring match on a single
+        address ID, or `eq` with a comma-separated list of complete address IDs
+        to fetch multiple addresses in a single request instead of one request
+        per address (limited to 100 IDs).
     limit:
       name: limit
       in: query
