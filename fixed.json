@@ -159158,8 +159158,16 @@
           },
           "sipResponseCode": {
             "type": "integer",
-            "description": "(optional) The SIP status code returned by Bandwidth\u0027s SBC when it rejected an outbound call\u0027s INVITE (e.g. 486 for busy, 603 for decline). Present only when an outbound call was rejected by the SBC.",
+            "description": "(optional) The SIP status code of the final response that rejected an outbound call\u0027s (or transferred leg\u0027s) INVITE (e.g. 486 for busy, 603 for decline). Present only when the call was rejected with a SIP response.",
             "example": 486
+          },
+          "sipStatusLine": {
+            "type": "string",
+            "description": "(optional) The full SIP status line, exactly as received, of the final response that rejected an outbound call\u0027s INVITE. The reason phrase can help distinguish outcomes that share a status code, such as \u0060603 Network Blocked\u0060 and \u0060603 Decline\u0060. Present only when an outbound call was rejected with a SIP response.",
+            "example": "SIP/2.0 603 Network Blocked"
+          },
+          "sipHeaders": {
+            "$ref": "#/components/schemas/DisconnectCallbackSipHeadersProperty"
           }
         },
         "description": "The Disconnect event is fired when a call ends, for any reason."
@@ -160267,6 +160275,19 @@
           "errorId": {
             "description": "Bandwidth\u0027s internal id that references the error event.",
             "$ref": "#/components/schemas/ErrorId"
+          },
+          "sipResponseCode": {
+            "type": "integer",
+            "description": "(optional) The SIP status code of the final response that rejected an outbound call\u0027s (or transferred leg\u0027s) INVITE (e.g. 486 for busy, 603 for decline). Present only when the call was rejected with a SIP response.",
+            "example": 486
+          },
+          "sipStatusLine": {
+            "type": "string",
+            "description": "(optional) The full SIP status line, exactly as received, of the final response that rejected an outbound call\u0027s INVITE. The reason phrase can help distinguish outcomes that share a status code, such as \u0060603 Network Blocked\u0060 and \u0060603 Decline\u0060. Present only when an outbound call was rejected with a SIP response.",
+            "example": "SIP/2.0 603 Network Blocked"
+          },
+          "sipHeaders": {
+            "$ref": "#/components/schemas/TransferDisconnectCallbackSipHeadersProperty"
           }
         },
         "description": "This event is sent to the transferDisconnectUrl of each \u003CPhoneNumber\u003E tag when its respective call leg ends for any reason. The event is sent in the normal case, when the transferred leg is answered and later hung up, but is also sent if the new leg was never answered in the first place, if it was rejected, and if the original call leg hung up before the transferred leg."
@@ -160573,7 +160594,7 @@
         "additionalProperties": {
           "type": "string"
         },
-        "description": "(optional) Map of customer-supplied X-* headers from the original INVITE. Keys are lowercase (SIP headers are case-insensitive). Present only for inbound SIP URI calls with custom headers. Note - keys preserve the original SIP header name in lowercase rather than Bandwidth\u0027s usual camelCase JSON convention, since these are passthrough values from the caller\u0027s SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept.",
+        "description": "(optional) Map of SIP headers, with lowercase keys (SIP headers are case-insensitive). On the Initiate callback, contains the customer-supplied X-* headers from the original INVITE; present only for inbound SIP URI calls with custom headers. On the Disconnect and Transfer Disconnect callbacks, contains a single \u0060reason\u0060 key holding the raw, unmodified \u0060Reason\u0060 header value from the final SIP response that rejected an outbound call (or transferred leg); present only when that response included a \u0060Reason\u0060 header (for example, \u0060v=analytics1\u0060 call-analytics block information from a terminating carrier). If the response carries more than one \u0060Reason\u0060 header, all values are returned in the order received, separated by \u0060, \u0060. Note - on the Initiate callback, keys preserve the original SIP header name in lowercase rather than Bandwidth\u0027s usual camelCase JSON convention, since these are passthrough values from the caller\u0027s SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept. The example shown is for the Initiate callback; on the Disconnect and Transfer Disconnect callbacks the only key is \u0060reason\u0060.",
         "example": {
           "x-custom-header": "customer-value",
           "x-session-id": "sess-12345"
@@ -160581,8 +160602,13 @@
       },
       "SipResponseCode": {
         "type": "integer",
-        "description": "(optional) The SIP status code returned by Bandwidth\u0027s SBC when it rejected an outbound call\u0027s INVITE (e.g. 486 for busy, 603 for decline). Present only when an outbound call was rejected by the SBC.",
+        "description": "(optional) The SIP status code of the final response that rejected an outbound call\u0027s (or transferred leg\u0027s) INVITE (e.g. 486 for busy, 603 for decline). Present only when the call was rejected with a SIP response.",
         "example": 486
+      },
+      "SipStatusLine": {
+        "type": "string",
+        "description": "(optional) The full SIP status line, exactly as received, of the final response that rejected an outbound call\u0027s INVITE. The reason phrase can help distinguish outcomes that share a status code, such as \u0060603 Network Blocked\u0060 and \u0060603 Decline\u0060. Present only when an outbound call was rejected with a SIP response.",
+        "example": "SIP/2.0 603 Network Blocked"
       },
       "UpdateCallBxmlRequestRequestXml": {
         "type": "string",
@@ -160711,12 +160737,34 @@
           "originatingId": "abc123"
         }
       },
+      "DisconnectCallbackSipHeaders": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "(optional) Map of SIP headers, with lowercase keys (SIP headers are case-insensitive). On the Initiate callback, contains the customer-supplied X-* headers from the original INVITE; present only for inbound SIP URI calls with custom headers. On the Disconnect and Transfer Disconnect callbacks, contains a single \u0060reason\u0060 key holding the raw, unmodified \u0060Reason\u0060 header value from the final SIP response that rejected an outbound call (or transferred leg); present only when that response included a \u0060Reason\u0060 header (for example, \u0060v=analytics1\u0060 call-analytics block information from a terminating carrier). If the response carries more than one \u0060Reason\u0060 header, all values are returned in the order received, separated by \u0060, \u0060. Note - on the Initiate callback, keys preserve the original SIP header name in lowercase rather than Bandwidth\u0027s usual camelCase JSON convention, since these are passthrough values from the caller\u0027s SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept. The example shown is for the Initiate callback; on the Disconnect and Transfer Disconnect callbacks the only key is \u0060reason\u0060.",
+        "example": {
+          "x-custom-header": "customer-value",
+          "x-session-id": "sess-12345"
+        }
+      },
       "InitiateCallbackSipHeaders": {
         "type": "object",
         "additionalProperties": {
           "type": "string"
         },
-        "description": "(optional) Map of customer-supplied X-* headers from the original INVITE. Keys are lowercase (SIP headers are case-insensitive). Present only for inbound SIP URI calls with custom headers. Note - keys preserve the original SIP header name in lowercase rather than Bandwidth\u0027s usual camelCase JSON convention, since these are passthrough values from the caller\u0027s SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept.",
+        "description": "(optional) Map of SIP headers, with lowercase keys (SIP headers are case-insensitive). On the Initiate callback, contains the customer-supplied X-* headers from the original INVITE; present only for inbound SIP URI calls with custom headers. On the Disconnect and Transfer Disconnect callbacks, contains a single \u0060reason\u0060 key holding the raw, unmodified \u0060Reason\u0060 header value from the final SIP response that rejected an outbound call (or transferred leg); present only when that response included a \u0060Reason\u0060 header (for example, \u0060v=analytics1\u0060 call-analytics block information from a terminating carrier). If the response carries more than one \u0060Reason\u0060 header, all values are returned in the order received, separated by \u0060, \u0060. Note - on the Initiate callback, keys preserve the original SIP header name in lowercase rather than Bandwidth\u0027s usual camelCase JSON convention, since these are passthrough values from the caller\u0027s SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept. The example shown is for the Initiate callback; on the Disconnect and Transfer Disconnect callbacks the only key is \u0060reason\u0060.",
+        "example": {
+          "x-custom-header": "customer-value",
+          "x-session-id": "sess-12345"
+        }
+      },
+      "TransferDisconnectCallbackSipHeaders": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "(optional) Map of SIP headers, with lowercase keys (SIP headers are case-insensitive). On the Initiate callback, contains the customer-supplied X-* headers from the original INVITE; present only for inbound SIP URI calls with custom headers. On the Disconnect and Transfer Disconnect callbacks, contains a single \u0060reason\u0060 key holding the raw, unmodified \u0060Reason\u0060 header value from the final SIP response that rejected an outbound call (or transferred leg); present only when that response included a \u0060Reason\u0060 header (for example, \u0060v=analytics1\u0060 call-analytics block information from a terminating carrier). If the response carries more than one \u0060Reason\u0060 header, all values are returned in the order received, separated by \u0060, \u0060. Note - on the Initiate callback, keys preserve the original SIP header name in lowercase rather than Bandwidth\u0027s usual camelCase JSON convention, since these are passthrough values from the caller\u0027s SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept. The example shown is for the Initiate callback; on the Disconnect and Transfer Disconnect callbacks the only key is \u0060reason\u0060.",
         "example": {
           "x-custom-header": "customer-value",
           "x-session-id": "sess-12345"
@@ -162644,12 +162692,34 @@
           "originatingId": "abc123"
         }
       },
+      "DisconnectCallbackSipHeadersProperty": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "(optional) Map of SIP headers, with lowercase keys (SIP headers are case-insensitive). On the Initiate callback, contains the customer-supplied X-* headers from the original INVITE; present only for inbound SIP URI calls with custom headers. On the Disconnect and Transfer Disconnect callbacks, contains a single \u0060reason\u0060 key holding the raw, unmodified \u0060Reason\u0060 header value from the final SIP response that rejected an outbound call (or transferred leg); present only when that response included a \u0060Reason\u0060 header (for example, \u0060v=analytics1\u0060 call-analytics block information from a terminating carrier). If the response carries more than one \u0060Reason\u0060 header, all values are returned in the order received, separated by \u0060, \u0060. Note - on the Initiate callback, keys preserve the original SIP header name in lowercase rather than Bandwidth\u0027s usual camelCase JSON convention, since these are passthrough values from the caller\u0027s SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept. The example shown is for the Initiate callback; on the Disconnect and Transfer Disconnect callbacks the only key is \u0060reason\u0060.",
+        "example": {
+          "x-custom-header": "customer-value",
+          "x-session-id": "sess-12345"
+        }
+      },
       "InitiateCallbackSipHeadersProperty": {
         "type": "object",
         "additionalProperties": {
           "type": "string"
         },
-        "description": "(optional) Map of customer-supplied X-* headers from the original INVITE. Keys are lowercase (SIP headers are case-insensitive). Present only for inbound SIP URI calls with custom headers. Note - keys preserve the original SIP header name in lowercase rather than Bandwidth\u0027s usual camelCase JSON convention, since these are passthrough values from the caller\u0027s SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept.",
+        "description": "(optional) Map of SIP headers, with lowercase keys (SIP headers are case-insensitive). On the Initiate callback, contains the customer-supplied X-* headers from the original INVITE; present only for inbound SIP URI calls with custom headers. On the Disconnect and Transfer Disconnect callbacks, contains a single \u0060reason\u0060 key holding the raw, unmodified \u0060Reason\u0060 header value from the final SIP response that rejected an outbound call (or transferred leg); present only when that response included a \u0060Reason\u0060 header (for example, \u0060v=analytics1\u0060 call-analytics block information from a terminating carrier). If the response carries more than one \u0060Reason\u0060 header, all values are returned in the order received, separated by \u0060, \u0060. Note - on the Initiate callback, keys preserve the original SIP header name in lowercase rather than Bandwidth\u0027s usual camelCase JSON convention, since these are passthrough values from the caller\u0027s SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept. The example shown is for the Initiate callback; on the Disconnect and Transfer Disconnect callbacks the only key is \u0060reason\u0060.",
+        "example": {
+          "x-custom-header": "customer-value",
+          "x-session-id": "sess-12345"
+        }
+      },
+      "TransferDisconnectCallbackSipHeadersProperty": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "(optional) Map of SIP headers, with lowercase keys (SIP headers are case-insensitive). On the Initiate callback, contains the customer-supplied X-* headers from the original INVITE; present only for inbound SIP URI calls with custom headers. On the Disconnect and Transfer Disconnect callbacks, contains a single \u0060reason\u0060 key holding the raw, unmodified \u0060Reason\u0060 header value from the final SIP response that rejected an outbound call (or transferred leg); present only when that response included a \u0060Reason\u0060 header (for example, \u0060v=analytics1\u0060 call-analytics block information from a terminating carrier). If the response carries more than one \u0060Reason\u0060 header, all values are returned in the order received, separated by \u0060, \u0060. Note - on the Initiate callback, keys preserve the original SIP header name in lowercase rather than Bandwidth\u0027s usual camelCase JSON convention, since these are passthrough values from the caller\u0027s SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept. The example shown is for the Initiate callback; on the Disconnect and Transfer Disconnect callbacks the only key is \u0060reason\u0060.",
         "example": {
           "x-custom-header": "customer-value",
           "x-session-id": "sess-12345"
