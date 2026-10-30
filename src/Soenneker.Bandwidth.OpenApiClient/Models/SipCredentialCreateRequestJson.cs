@@ -11,56 +11,81 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class SipCredentialCreateRequestJson : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("domain") is { } nullNodeDomain && nullNodeDomain.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Domain = null;
+            if (parseNode.GetChildNode("hash1") is { } nullNodeHash1 && nullNodeHash1.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Hash1 = null;
+            if (parseNode.GetChildNode("hash1b") is { } nullNodeHash1b && nullNodeHash1b.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Hash1b = null;
+            if (parseNode.GetChildNode("httpVoiceV2AppId") is { } nullNodeHttpVoiceV2AppId && nullNodeHttpVoiceV2AppId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HttpVoiceV2AppId = null;
+            if (parseNode.GetChildNode("realm") is { } nullNodeRealm && nullNodeRealm.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Realm = null;
+            if (parseNode.GetChildNode("userName") is { } nullNodeUserName && nullNodeUserName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserName = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Subscriber domain. Will be appended to the userName with an &apos;@&apos;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Domain { get; set; }
+        public string? Domain { get => _explicitNullValueDomain; set { _explicitNullValueDomain = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("domain"); else _explicitNullProperties?.Remove("domain"); } }
+        private string? _explicitNullValueDomain = default!;
 #nullable restore
 #else
-        public string Domain { get; set; }
+        public string Domain { get => _explicitNullValueDomain; set { _explicitNullValueDomain = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("domain"); else _explicitNullProperties?.Remove("domain"); } }
+        private string _explicitNullValueDomain = default!;
 #endif
         /// <summary>Hash value #1 in MD5 representation</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Hash1 { get; set; }
+        public string? Hash1 { get => _explicitNullValueHash1; set { _explicitNullValueHash1 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hash1"); else _explicitNullProperties?.Remove("hash1"); } }
+        private string? _explicitNullValueHash1 = default!;
 #nullable restore
 #else
-        public string Hash1 { get; set; }
+        public string Hash1 { get => _explicitNullValueHash1; set { _explicitNullValueHash1 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hash1"); else _explicitNullProperties?.Remove("hash1"); } }
+        private string _explicitNullValueHash1 = default!;
 #endif
         /// <summary>Hash value #2 in MD5 representation</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Hash1b { get; set; }
+        public string? Hash1b { get => _explicitNullValueHash1b; set { _explicitNullValueHash1b = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hash1b"); else _explicitNullProperties?.Remove("hash1b"); } }
+        private string? _explicitNullValueHash1b = default!;
 #nullable restore
 #else
-        public string Hash1b { get; set; }
+        public string Hash1b { get => _explicitNullValueHash1b; set { _explicitNullValueHash1b = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hash1b"); else _explicitNullProperties?.Remove("hash1b"); } }
+        private string _explicitNullValueHash1b = default!;
 #endif
         /// <summary>Application id associated with subscriber</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? HttpVoiceV2AppId { get; set; }
+        public string? HttpVoiceV2AppId { get => _explicitNullValueHttpVoiceV2AppId; set { _explicitNullValueHttpVoiceV2AppId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("httpVoiceV2AppId"); else _explicitNullProperties?.Remove("httpVoiceV2AppId"); } }
+        private string? _explicitNullValueHttpVoiceV2AppId = default!;
 #nullable restore
 #else
-        public string HttpVoiceV2AppId { get; set; }
+        public string HttpVoiceV2AppId { get => _explicitNullValueHttpVoiceV2AppId; set { _explicitNullValueHttpVoiceV2AppId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("httpVoiceV2AppId"); else _explicitNullProperties?.Remove("httpVoiceV2AppId"); } }
+        private string _explicitNullValueHttpVoiceV2AppId = default!;
 #endif
         /// <summary>Subscriber realm</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Realm { get; set; }
+        public string? Realm { get => _explicitNullValueRealm; set { _explicitNullValueRealm = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("realm"); else _explicitNullProperties?.Remove("realm"); } }
+        private string? _explicitNullValueRealm = default!;
 #nullable restore
 #else
-        public string Realm { get; set; }
+        public string Realm { get => _explicitNullValueRealm; set { _explicitNullValueRealm = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("realm"); else _explicitNullProperties?.Remove("realm"); } }
+        private string _explicitNullValueRealm = default!;
 #endif
         /// <summary>Subscriber name or aggregated name and domain value(ex: Mike@bw.com)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? UserName { get; set; }
+        public string? UserName { get => _explicitNullValueUserName; set { _explicitNullValueUserName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userName"); else _explicitNullProperties?.Remove("userName"); } }
+        private string? _explicitNullValueUserName = default!;
 #nullable restore
 #else
-        public string UserName { get; set; }
+        public string UserName { get => _explicitNullValueUserName; set { _explicitNullValueUserName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userName"); else _explicitNullProperties?.Remove("userName"); } }
+        private string _explicitNullValueUserName = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SipCredentialCreateRequestJson"/> and sets the default values.
@@ -77,7 +102,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.SipCredentialCreateRequestJson CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.SipCredentialCreateRequestJson();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.SipCredentialCreateRequestJson(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -108,6 +133,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("httpVoiceV2AppId", HttpVoiceV2AppId);
             writer.WriteStringValue("realm", Realm);
             writer.WriteStringValue("userName", UserName);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

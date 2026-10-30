@@ -11,68 +11,100 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class SmsRequest : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("auth") is { } nullNodeAuth && nullNodeAuth.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Auth = null;
+            if (parseNode.GetChildNode("dcs") is { } nullNodeDcs && nullNodeDcs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Dcs = null;
+            if (parseNode.GetChildNode("dlrMask") is { } nullNodeDlrMask && nullNodeDlrMask.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DlrMask = null;
+            if (parseNode.GetChildNode("dlrUrl") is { } nullNodeDlrUrl && nullNodeDlrUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DlrUrl = null;
+            if (parseNode.GetChildNode("flash") is { } nullNodeFlash && nullNodeFlash.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Flash = null;
+            if (parseNode.GetChildNode("receiver") is { } nullNodeReceiver && nullNodeReceiver.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Receiver = null;
+            if (parseNode.GetChildNode("sender") is { } nullNodeSender && nullNodeSender.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Sender = null;
+            if (parseNode.GetChildNode("text") is { } nullNodeText && nullNodeText.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Text = null;
+            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The auth property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Auth? Auth { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.Auth? Auth { get => _explicitNullValueAuth; set { _explicitNullValueAuth = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("auth"); else _explicitNullProperties?.Remove("auth"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.Auth? _explicitNullValueAuth = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Auth Auth { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.Auth Auth { get => _explicitNullValueAuth; set { _explicitNullValueAuth = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("auth"); else _explicitNullProperties?.Remove("auth"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.Auth _explicitNullValueAuth = default!;
 #endif
         /// <summary>if type=text this is encoding, GSM or UCS</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Dcs { get; set; }
+        public string? Dcs { get => _explicitNullValueDcs; set { _explicitNullValueDcs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dcs"); else _explicitNullProperties?.Remove("dcs"); } }
+        private string? _explicitNullValueDcs = default!;
 #nullable restore
 #else
-        public string Dcs { get; set; }
+        public string Dcs { get => _explicitNullValueDcs; set { _explicitNullValueDcs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dcs"); else _explicitNullProperties?.Remove("dcs"); } }
+        private string _explicitNullValueDcs = default!;
 #endif
         /// <summary>Delivery report mask:  1 - Delivered,  2 - Undelivered,  4 - Buffered  8 - Sent to SMSC  16 - Rejected.Recommended value is 19.</summary>
-        public int? DlrMask { get; set; }
+        public int? DlrMask { get => _explicitNullValueDlrMask; set { _explicitNullValueDlrMask = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dlrMask"); else _explicitNullProperties?.Remove("dlrMask"); } }
+        private int? _explicitNullValueDlrMask = default!;
         /// <summary>URL where to send callbacks</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DlrUrl { get; set; }
+        public string? DlrUrl { get => _explicitNullValueDlrUrl; set { _explicitNullValueDlrUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dlrUrl"); else _explicitNullProperties?.Remove("dlrUrl"); } }
+        private string? _explicitNullValueDlrUrl = default!;
 #nullable restore
 #else
-        public string DlrUrl { get; set; }
+        public string DlrUrl { get => _explicitNullValueDlrUrl; set { _explicitNullValueDlrUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dlrUrl"); else _explicitNullProperties?.Remove("dlrUrl"); } }
+        private string _explicitNullValueDlrUrl = default!;
 #endif
         /// <summary>Use true for flash message, false otherwise</summary>
-        public bool? Flash { get; set; }
+        public bool? Flash { get => _explicitNullValueFlash; set { _explicitNullValueFlash = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("flash"); else _explicitNullProperties?.Remove("flash"); } }
+        private bool? _explicitNullValueFlash = default!;
         /// <summary>SMS Receiver (mobile phone number in international format)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Receiver { get; set; }
+        public string? Receiver { get => _explicitNullValueReceiver; set { _explicitNullValueReceiver = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("receiver"); else _explicitNullProperties?.Remove("receiver"); } }
+        private string? _explicitNullValueReceiver = default!;
 #nullable restore
 #else
-        public string Receiver { get; set; }
+        public string Receiver { get => _explicitNullValueReceiver; set { _explicitNullValueReceiver = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("receiver"); else _explicitNullProperties?.Remove("receiver"); } }
+        private string _explicitNullValueReceiver = default!;
 #endif
         /// <summary>SMS Sender</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Sender { get; set; }
+        public string? Sender { get => _explicitNullValueSender; set { _explicitNullValueSender = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sender"); else _explicitNullProperties?.Remove("sender"); } }
+        private string? _explicitNullValueSender = default!;
 #nullable restore
 #else
-        public string Sender { get; set; }
+        public string Sender { get => _explicitNullValueSender; set { _explicitNullValueSender = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sender"); else _explicitNullProperties?.Remove("sender"); } }
+        private string _explicitNullValueSender = default!;
 #endif
         /// <summary>if type=text this is message text</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Text { get; set; }
+        public string? Text { get => _explicitNullValueText; set { _explicitNullValueText = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("text"); else _explicitNullProperties?.Remove("text"); } }
+        private string? _explicitNullValueText = default!;
 #nullable restore
 #else
-        public string Text { get; set; }
+        public string Text { get => _explicitNullValueText; set { _explicitNullValueText = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("text"); else _explicitNullProperties?.Remove("text"); } }
+        private string _explicitNullValueText = default!;
 #endif
         /// <summary>Type of SMS (text, wsi)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Type { get; set; }
+        public string? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private string? _explicitNullValueType = default!;
 #nullable restore
 #else
-        public string Type { get; set; }
+        public string Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private string _explicitNullValueType = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SmsRequest"/> and sets the default values.
@@ -89,7 +121,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.SmsRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.SmsRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.SmsRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -126,6 +158,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("sender", Sender);
             writer.WriteStringValue("text", Text);
             writer.WriteStringValue("type", Type);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

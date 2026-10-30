@@ -74,6 +74,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Subscriptions.SubscriptionDefinition
                 { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionDefinitionListResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionDefinitionListResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

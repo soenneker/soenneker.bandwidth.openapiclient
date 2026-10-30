@@ -11,24 +11,37 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class WebhookAuthenticationRequest : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("basicAuthentication") is { } nullNodeBasicAuthentication && nullNodeBasicAuthentication.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BasicAuthentication = null;
+            if (parseNode.GetChildNode("hmacAuthentication") is { } nullNodeHmacAuthentication && nullNodeHmacAuthentication.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HmacAuthentication = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The Username and Password to be used for basic authentication.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BasicAuthenticationRequest? BasicAuthentication { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BasicAuthenticationRequest? BasicAuthentication { get => _explicitNullValueBasicAuthentication; set { _explicitNullValueBasicAuthentication = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("basicAuthentication"); else _explicitNullProperties?.Remove("basicAuthentication"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.BasicAuthenticationRequest? _explicitNullValueBasicAuthentication = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BasicAuthenticationRequest BasicAuthentication { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BasicAuthenticationRequest BasicAuthentication { get => _explicitNullValueBasicAuthentication; set { _explicitNullValueBasicAuthentication = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("basicAuthentication"); else _explicitNullProperties?.Remove("basicAuthentication"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.BasicAuthenticationRequest _explicitNullValueBasicAuthentication = default!;
 #endif
         /// <summary>The `hmacAuthentication` object determines how webhook authentication is handled and captures HMAC details like the `sharedSecretKey`:- If omitted or `null`:    - No HMAC authentication is applied.    - Any existing `hmacAuthentication` is removed during updates.- If an empty object ({}) is provided:    - It is not valid for a create/POST request.    - For update/PUT requests, the existing hmacAuthentication remains unchanged.- If `sharedSecretKey` is provided:    - It is encrypted and used for HMAC authentication.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.HmacAuthenticationRequest? HmacAuthentication { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.HmacAuthenticationRequest? HmacAuthentication { get => _explicitNullValueHmacAuthentication; set { _explicitNullValueHmacAuthentication = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hmacAuthentication"); else _explicitNullProperties?.Remove("hmacAuthentication"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.HmacAuthenticationRequest? _explicitNullValueHmacAuthentication = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.HmacAuthenticationRequest HmacAuthentication { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.HmacAuthenticationRequest HmacAuthentication { get => _explicitNullValueHmacAuthentication; set { _explicitNullValueHmacAuthentication = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hmacAuthentication"); else _explicitNullProperties?.Remove("hmacAuthentication"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.HmacAuthenticationRequest _explicitNullValueHmacAuthentication = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookAuthenticationRequest"/> and sets the default values.
@@ -45,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookAuthenticationRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookAuthenticationRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookAuthenticationRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,6 +81,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BasicAuthenticationRequest>("basicAuthentication", BasicAuthentication);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HmacAuthenticationRequest>("hmacAuthentication", HmacAuthentication);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

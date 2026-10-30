@@ -11,30 +11,49 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class SearchVoiceIntegrationsRequest : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("multipleCriteriaOperator") is { } nullNodeMultipleCriteriaOperator && nullNodeMultipleCriteriaOperator.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MultipleCriteriaOperator = null;
+            if (parseNode.GetChildNode("pageNumber") is { } nullNodePageNumber && nullNodePageNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PageNumber = null;
+            if (parseNode.GetChildNode("pageSize") is { } nullNodePageSize && nullNodePageSize.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PageSize = null;
+            if (parseNode.GetChildNode("queryCriteria") is { } nullNodeQueryCriteria && nullNodeQueryCriteria.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) QueryCriteria = null;
+            if (parseNode.GetChildNode("sort") is { } nullNodeSort && nullNodeSort.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Sort = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The operator to use for multiple criteria.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestMultipleCriteriaOperator? MultipleCriteriaOperator { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestMultipleCriteriaOperator? MultipleCriteriaOperator { get => _explicitNullValueMultipleCriteriaOperator; set { _explicitNullValueMultipleCriteriaOperator = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("multipleCriteriaOperator"); else _explicitNullProperties?.Remove("multipleCriteriaOperator"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestMultipleCriteriaOperator? _explicitNullValueMultipleCriteriaOperator = default!;
         /// <summary>Page number parameter.</summary>
-        public double? PageNumber { get; set; }
+        public double? PageNumber { get => _explicitNullValuePageNumber; set { _explicitNullValuePageNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pageNumber"); else _explicitNullProperties?.Remove("pageNumber"); } }
+        private double? _explicitNullValuePageNumber = default!;
         /// <summary>Page Size parameter.</summary>
-        public double? PageSize { get; set; }
+        public double? PageSize { get => _explicitNullValuePageSize; set { _explicitNullValuePageSize = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pageSize"); else _explicitNullProperties?.Remove("pageSize"); } }
+        private double? _explicitNullValuePageSize = default!;
         /// <summary>The queryCriteria property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestQueryCriteriaItem>? QueryCriteria { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestQueryCriteriaItem>? QueryCriteria { get => _explicitNullValueQueryCriteria; set { _explicitNullValueQueryCriteria = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("queryCriteria"); else _explicitNullProperties?.Remove("queryCriteria"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestQueryCriteriaItem>? _explicitNullValueQueryCriteria = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestQueryCriteriaItem> QueryCriteria { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestQueryCriteriaItem> QueryCriteria { get => _explicitNullValueQueryCriteria; set { _explicitNullValueQueryCriteria = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("queryCriteria"); else _explicitNullProperties?.Remove("queryCriteria"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestQueryCriteriaItem> _explicitNullValueQueryCriteria = default!;
 #endif
         /// <summary>The sort property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort? Sort { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort? Sort { get => _explicitNullValueSort; set { _explicitNullValueSort = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sort"); else _explicitNullProperties?.Remove("sort"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort? _explicitNullValueSort = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort Sort { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort Sort { get => _explicitNullValueSort; set { _explicitNullValueSort = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sort"); else _explicitNullProperties?.Remove("sort"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort _explicitNullValueSort = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequest"/> and sets the default values.
@@ -53,7 +72,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -82,6 +101,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteDoubleValue("pageSize", PageSize);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestQueryCriteriaItem>("queryCriteria", QueryCriteria);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort>("sort", Sort);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

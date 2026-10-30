@@ -7,43 +7,98 @@ using System.IO;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
+    /// <summary>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf1"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2"/>
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class BillingModelUpdateRequest : global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequest, IParsable
-    #pragma warning restore CS1591
-    {
-        /// <summary>The unique identifier for the billing model.</summary>
-        public Guid? BillingModelId { get; set; }
+    public partial class BillingModelUpdateRequest : IComposedTypeWrapper, IParsable
+    , global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder {
+        // Preserve ambiguous union payloads without inventing a discriminator.
+        /// <summary>The complete payload when no unique typed union branch can be selected.</summary>
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode UnrecognizedValue { get; set; } = null!;
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalData { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf1"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf1? BillingModelUpdateRequestOneOf1 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf1 BillingModelUpdateRequestOneOf1 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2? BillingModelUpdateRequestOneOf2 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2 BillingModelUpdateRequestOneOf2 { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequest();
+            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequest();
+            if("BillingModelUpdateRequestOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                
+            }
+            else if("BillingModelUpdateRequestOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                
+            }
+            
+            var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
+            bool matchesUnionBranch0 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("voiceCapacityThreshold") != null && parseNode.GetChildNode("accountId") != null && parseNode.GetChildNode("modelType") != null && parseNode.GetChildNode("billingModelId") != null))();
+            bool matchesUnionBranch1 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("accountId") != null && parseNode.GetChildNode("modelType") != null && parseNode.GetChildNode("billingModelId") != null))();
+            if (result.BillingModelUpdateRequestOneOf1 == null && result.BillingModelUpdateRequestOneOf2 == null && matchesUnionBranch0 && !matchesUnionBranch1) result.BillingModelUpdateRequestOneOf1 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf1(), parseNode);
+            if (result.BillingModelUpdateRequestOneOf1 == null && result.BillingModelUpdateRequestOneOf2 == null && matchesUnionBranch1 && !matchesUnionBranch0) result.BillingModelUpdateRequestOneOf2 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2(), parseNode);
+            if (result.BillingModelUpdateRequestOneOf1 == null && result.BillingModelUpdateRequestOneOf2 == null) result.UnrecognizedValue = unionPayload;
+return result;
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            if(BillingModelUpdateRequestOneOf1 != null)
             {
-                { "billingModelId", n => { BillingModelId = n.GetGuidValue(); } },
-            };
+                return BillingModelUpdateRequestOneOf1.GetFieldDeserializers();
+            }
+            else if(BillingModelUpdateRequestOneOf2 != null)
+            {
+                return BillingModelUpdateRequestOneOf2.GetFieldDeserializers();
+            }
+            return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer)
+        public virtual void Serialize(ISerializationWriter writer)
         {
+            if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
+            if (BillingModelUpdateRequestOneOf1 == null && BillingModelUpdateRequestOneOf2 == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
+            if (BillingModelUpdateRequestOneOf1 != null && BillingModelUpdateRequestOneOf2 == null) { if (BillingModelUpdateRequestOneOf1 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, BillingModelUpdateRequestOneOf1); return; }
+            if (BillingModelUpdateRequestOneOf2 != null && BillingModelUpdateRequestOneOf1 == null) { if (BillingModelUpdateRequestOneOf2 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, BillingModelUpdateRequestOneOf2); return; }
+
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            base.Serialize(writer);
-            writer.WriteGuidValue("billingModelId", BillingModelId);
+            if(BillingModelUpdateRequestOneOf1 != null)
+            {
+                if (BillingModelUpdateRequestOneOf1 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
+                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf1>(null, BillingModelUpdateRequestOneOf1);
+            }
+            else if(BillingModelUpdateRequestOneOf2 != null)
+            {
+                if (BillingModelUpdateRequestOneOf2 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
+                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2>(null, BillingModelUpdateRequestOneOf2);
+            }
         }
     }
 }

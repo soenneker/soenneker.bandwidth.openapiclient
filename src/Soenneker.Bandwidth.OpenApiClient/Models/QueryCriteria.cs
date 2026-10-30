@@ -12,20 +12,34 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class QueryCriteria : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("operator") is { } nullNodeOperator && nullNodeOperator.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Operator = null;
+            if (parseNode.GetChildNode("parameter") is { } nullNodeParameter && nullNodeParameter.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Parameter = null;
+            if (parseNode.GetChildNode("values") is { } nullNodeValues && nullNodeValues.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Values = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The comparison operator to use.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.QueryOperatorEnum? Operator { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.QueryOperatorEnum? Operator { get => _explicitNullValueOperator; set { _explicitNullValueOperator = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operator"); else _explicitNullProperties?.Remove("operator"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.QueryOperatorEnum? _explicitNullValueOperator = default!;
         /// <summary>The parameter name to filter by.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.QueryParameterEnum? Parameter { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.QueryParameterEnum? Parameter { get => _explicitNullValueParameter; set { _explicitNullValueParameter = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("parameter"); else _explicitNullProperties?.Remove("parameter"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.QueryParameterEnum? _explicitNullValueParameter = default!;
         /// <summary>The parameter value(s) for filtering.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues? Values { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues? Values { get => _explicitNullValueValues; set { _explicitNullValueValues = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("values"); else _explicitNullProperties?.Remove("values"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues? _explicitNullValueValues = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues Values { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues Values { get => _explicitNullValueValues; set { _explicitNullValueValues = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("values"); else _explicitNullProperties?.Remove("values"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues _explicitNullValueValues = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria"/> and sets the default values.
@@ -42,7 +56,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -67,6 +81,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryOperatorEnum>("operator", Operator);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryParameterEnum>("parameter", Parameter);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteriaValues>("values", Values);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

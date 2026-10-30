@@ -12,27 +12,42 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class DocumentRequirement : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("description") is { } nullNodeDescription && nullNodeDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Description = null;
+            if (parseNode.GetChildNode("supportedFileTypes") is { } nullNodeSupportedFileTypes && nullNodeSupportedFileTypes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SupportedFileTypes = null;
+            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Description of documents.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Description { get; set; }
+        public string? Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        private string? _explicitNullValueDescription = default!;
 #nullable restore
 #else
-        public string Description { get; set; }
+        public string Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        private string _explicitNullValueDescription = default!;
 #endif
         /// <summary>Supported file extensions.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentRequirementSupportedFileTypesItem?>? SupportedFileTypes { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentRequirementSupportedFileTypesItem?>? SupportedFileTypes { get => _explicitNullValueSupportedFileTypes; set { _explicitNullValueSupportedFileTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("supportedFileTypes"); else _explicitNullProperties?.Remove("supportedFileTypes"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentRequirementSupportedFileTypesItem?>? _explicitNullValueSupportedFileTypes = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentRequirementSupportedFileTypesItem?> SupportedFileTypes { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentRequirementSupportedFileTypesItem?> SupportedFileTypes { get => _explicitNullValueSupportedFileTypes; set { _explicitNullValueSupportedFileTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("supportedFileTypes"); else _explicitNullProperties?.Remove("supportedFileTypes"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentRequirementSupportedFileTypesItem?> _explicitNullValueSupportedFileTypes = default!;
 #endif
         /// <summary>Types of documents.**The table below defines types of documents.**| Type of document      | Description  || ----------- | ------------ || ALLO        | A local allocation letter / Bakom Ownership Letter / BNetZa Allocation Certificate. | | CAN         | A cancellation notice. | | COB         | Last invoice. || COURT       | Copy of Court Registration. || CSR         | A customer service record. || DIREC       | Copy of Certificate of Directors and Secretary of the company. | | FORM        | A local regulated porting form. | | INCORP      | Copy of Certificate of Incorporation / Company Registration Certificate. | | LEG_ID      | Copy of legal representative&apos;s photo ID. || LOA         | A letter of authority. || OFF_SGN     | Official proof of signature. || POA         | Copy of power of attorney. || TAX         | Copy of the registration at the tax office. |</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentTypeEnum? Type { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentTypeEnum? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentTypeEnum? _explicitNullValueType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentRequirement"/> and sets the default values.
         /// </summary>
@@ -48,7 +63,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentRequirement CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentRequirement();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentRequirement(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -73,6 +88,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("description", Description);
             writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentRequirementSupportedFileTypesItem>("supportedFileTypes", SupportedFileTypes);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentTypeEnum>("type", Type);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -65,6 +65,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Compliance.Documen
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementGenericError.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementGenericError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementGenericError.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentTypesListResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.DocumentTypesListResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

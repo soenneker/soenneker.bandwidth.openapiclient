@@ -11,17 +11,32 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class MonitorSliceTotalShortCallsData : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("callPercentageLessThanOrEqualTo60Seconds") is { } nullNodeCallPercentageLessThanOrEqualTo60Seconds && nullNodeCallPercentageLessThanOrEqualTo60Seconds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallPercentageLessThanOrEqualTo60Seconds = null;
+            if (parseNode.GetChildNode("callPercentageLessThanOrEqualTo6Seconds") is { } nullNodeCallPercentageLessThanOrEqualTo6Seconds && nullNodeCallPercentageLessThanOrEqualTo6Seconds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallPercentageLessThanOrEqualTo6Seconds = null;
+            if (parseNode.GetChildNode("callsLessThanOrEqualTo60Seconds") is { } nullNodeCallsLessThanOrEqualTo60Seconds && nullNodeCallsLessThanOrEqualTo60Seconds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallsLessThanOrEqualTo60Seconds = null;
+            if (parseNode.GetChildNode("callsLessThanOrEqualTo6Seconds") is { } nullNodeCallsLessThanOrEqualTo6Seconds && nullNodeCallsLessThanOrEqualTo6Seconds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallsLessThanOrEqualTo6Seconds = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Percentage of calls less than or equal to 60 seconds (0-100)</summary>
-        public float? CallPercentageLessThanOrEqualTo60Seconds { get; set; }
+        public float? CallPercentageLessThanOrEqualTo60Seconds { get => _explicitNullValueCallPercentageLessThanOrEqualTo60Seconds; set { _explicitNullValueCallPercentageLessThanOrEqualTo60Seconds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callPercentageLessThanOrEqualTo60Seconds"); else _explicitNullProperties?.Remove("callPercentageLessThanOrEqualTo60Seconds"); } }
+        private float? _explicitNullValueCallPercentageLessThanOrEqualTo60Seconds = default!;
         /// <summary>Percentage of calls less than or equal to 6 seconds (0-100)</summary>
-        public float? CallPercentageLessThanOrEqualTo6Seconds { get; set; }
+        public float? CallPercentageLessThanOrEqualTo6Seconds { get => _explicitNullValueCallPercentageLessThanOrEqualTo6Seconds; set { _explicitNullValueCallPercentageLessThanOrEqualTo6Seconds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callPercentageLessThanOrEqualTo6Seconds"); else _explicitNullProperties?.Remove("callPercentageLessThanOrEqualTo6Seconds"); } }
+        private float? _explicitNullValueCallPercentageLessThanOrEqualTo6Seconds = default!;
         /// <summary>Total number of calls less than or equal to 60 seconds</summary>
-        public int? CallsLessThanOrEqualTo60Seconds { get; set; }
+        public int? CallsLessThanOrEqualTo60Seconds { get => _explicitNullValueCallsLessThanOrEqualTo60Seconds; set { _explicitNullValueCallsLessThanOrEqualTo60Seconds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callsLessThanOrEqualTo60Seconds"); else _explicitNullProperties?.Remove("callsLessThanOrEqualTo60Seconds"); } }
+        private int? _explicitNullValueCallsLessThanOrEqualTo60Seconds = default!;
         /// <summary>Total number of calls less than or equal to 6 seconds</summary>
-        public int? CallsLessThanOrEqualTo6Seconds { get; set; }
+        public int? CallsLessThanOrEqualTo6Seconds { get => _explicitNullValueCallsLessThanOrEqualTo6Seconds; set { _explicitNullValueCallsLessThanOrEqualTo6Seconds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callsLessThanOrEqualTo6Seconds"); else _explicitNullProperties?.Remove("callsLessThanOrEqualTo6Seconds"); } }
+        private int? _explicitNullValueCallsLessThanOrEqualTo6Seconds = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorSliceTotalShortCallsData"/> and sets the default values.
         /// </summary>
@@ -37,7 +52,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorSliceTotalShortCallsData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorSliceTotalShortCallsData();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorSliceTotalShortCallsData(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -64,6 +79,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteFloatValue("callPercentageLessThanOrEqualTo6Seconds", CallPercentageLessThanOrEqualTo6Seconds);
             writer.WriteIntValue("callsLessThanOrEqualTo60Seconds", CallsLessThanOrEqualTo60Seconds);
             writer.WriteIntValue("callsLessThanOrEqualTo6Seconds", CallsLessThanOrEqualTo6Seconds);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

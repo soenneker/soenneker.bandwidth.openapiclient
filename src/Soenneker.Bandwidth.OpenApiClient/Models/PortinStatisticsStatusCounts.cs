@@ -12,25 +12,48 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PortinStatisticsStatusCounts : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("EXCEPTION") is { } nullNodeEXCEPTION && nullNodeEXCEPTION.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EXCEPTION = null;
+            if (parseNode.GetChildNode("FOC") is { } nullNodeFOC && nullNodeFOC.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FOC = null;
+            if (parseNode.GetChildNode("MISSING_REQUIREMENT") is { } nullNodeMISSINGREQUIREMENT && nullNodeMISSINGREQUIREMENT.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MISSINGREQUIREMENT = null;
+            if (parseNode.GetChildNode("PENDING_CARRIER_APPROVAL") is { } nullNodePENDINGCARRIERAPPROVAL && nullNodePENDINGCARRIERAPPROVAL.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PENDINGCARRIERAPPROVAL = null;
+            if (parseNode.GetChildNode("PENDING_DOCUMENTS") is { } nullNodePENDINGDOCUMENTS && nullNodePENDINGDOCUMENTS.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PENDINGDOCUMENTS = null;
+            if (parseNode.GetChildNode("REQUESTED_CANCEL") is { } nullNodeREQUESTEDCANCEL && nullNodeREQUESTEDCANCEL.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) REQUESTEDCANCEL = null;
+            if (parseNode.GetChildNode("REQUESTED_SUPP") is { } nullNodeREQUESTEDSUPP && nullNodeREQUESTEDSUPP.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) REQUESTEDSUPP = null;
+            if (parseNode.GetChildNode("SUBMITTED") is { } nullNodeSUBMITTED && nullNodeSUBMITTED.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SUBMITTED = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The EXCEPTION property</summary>
-        public int? EXCEPTION { get; set; }
+        public int? EXCEPTION { get => _explicitNullValueEXCEPTION; set { _explicitNullValueEXCEPTION = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("EXCEPTION"); else _explicitNullProperties?.Remove("EXCEPTION"); } }
+        private int? _explicitNullValueEXCEPTION = default!;
         /// <summary>The FOC property</summary>
-        public int? FOC { get; set; }
+        public int? FOC { get => _explicitNullValueFOC; set { _explicitNullValueFOC = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("FOC"); else _explicitNullProperties?.Remove("FOC"); } }
+        private int? _explicitNullValueFOC = default!;
         /// <summary>The MISSING_REQUIREMENT property</summary>
-        public int? MISSINGREQUIREMENT { get; set; }
+        public int? MISSINGREQUIREMENT { get => _explicitNullValueMISSINGREQUIREMENT; set { _explicitNullValueMISSINGREQUIREMENT = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("MISSING_REQUIREMENT"); else _explicitNullProperties?.Remove("MISSING_REQUIREMENT"); } }
+        private int? _explicitNullValueMISSINGREQUIREMENT = default!;
         /// <summary>The PENDING_CARRIER_APPROVAL property</summary>
-        public int? PENDINGCARRIERAPPROVAL { get; set; }
+        public int? PENDINGCARRIERAPPROVAL { get => _explicitNullValuePENDINGCARRIERAPPROVAL; set { _explicitNullValuePENDINGCARRIERAPPROVAL = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("PENDING_CARRIER_APPROVAL"); else _explicitNullProperties?.Remove("PENDING_CARRIER_APPROVAL"); } }
+        private int? _explicitNullValuePENDINGCARRIERAPPROVAL = default!;
         /// <summary>The PENDING_DOCUMENTS property</summary>
-        public int? PENDINGDOCUMENTS { get; set; }
+        public int? PENDINGDOCUMENTS { get => _explicitNullValuePENDINGDOCUMENTS; set { _explicitNullValuePENDINGDOCUMENTS = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("PENDING_DOCUMENTS"); else _explicitNullProperties?.Remove("PENDING_DOCUMENTS"); } }
+        private int? _explicitNullValuePENDINGDOCUMENTS = default!;
         /// <summary>The REQUESTED_CANCEL property</summary>
-        public int? REQUESTEDCANCEL { get; set; }
+        public int? REQUESTEDCANCEL { get => _explicitNullValueREQUESTEDCANCEL; set { _explicitNullValueREQUESTEDCANCEL = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("REQUESTED_CANCEL"); else _explicitNullProperties?.Remove("REQUESTED_CANCEL"); } }
+        private int? _explicitNullValueREQUESTEDCANCEL = default!;
         /// <summary>The REQUESTED_SUPP property</summary>
-        public int? REQUESTEDSUPP { get; set; }
+        public int? REQUESTEDSUPP { get => _explicitNullValueREQUESTEDSUPP; set { _explicitNullValueREQUESTEDSUPP = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("REQUESTED_SUPP"); else _explicitNullProperties?.Remove("REQUESTED_SUPP"); } }
+        private int? _explicitNullValueREQUESTEDSUPP = default!;
         /// <summary>The SUBMITTED property</summary>
-        public int? SUBMITTED { get; set; }
+        public int? SUBMITTED { get => _explicitNullValueSUBMITTED; set { _explicitNullValueSUBMITTED = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("SUBMITTED"); else _explicitNullProperties?.Remove("SUBMITTED"); } }
+        private int? _explicitNullValueSUBMITTED = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PortinStatisticsStatusCounts"/> and sets the default values.
         /// </summary>
@@ -46,7 +69,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.PortinStatisticsStatusCounts CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.PortinStatisticsStatusCounts();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.PortinStatisticsStatusCounts(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -81,6 +104,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteIntValue("REQUESTED_CANCEL", REQUESTEDCANCEL);
             writer.WriteIntValue("REQUESTED_SUPP", REQUESTEDSUPP);
             writer.WriteIntValue("SUBMITTED", SUBMITTED);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

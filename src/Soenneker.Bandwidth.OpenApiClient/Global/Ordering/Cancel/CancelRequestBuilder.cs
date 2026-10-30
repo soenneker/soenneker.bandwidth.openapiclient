@@ -54,7 +54,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Ordering.Cancel
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             if(string.IsNullOrEmpty(contentType)) throw new ArgumentNullException(nameof(contentType));
             var requestInfo = ToPostRequestInformation(body, contentType, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CancelDidsResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CancelDidsResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CancelDidsResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CancelDidsResponse.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Cancel number subscription

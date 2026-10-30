@@ -1336,7 +1336,7 @@ components:
             request.
           example:
             - '+12345678910'
-            - '+13345672839'
+            - '+1334567'
         name:
           type: string
           description: A display name that describes the LRN Configuration.
@@ -1545,8 +1545,9 @@ components:
         routing phone calls through the U.S. public switched telephone network
         (PSTN).
 
-        An LRN has the format of a 10-digit North American Numbering Plan (NANP)
-        phone number, and is required for local number portability (LNP).
+        An LRN may be expressed either as a full E.164 NANP phone number (`+1`
+        followed by the 10-digit NPA-NXX-XXXX), or as an entire A-block (`+1`
+        followed by the 6-digit NPA-NXX, with no line/station number).
       example:
         lrn: '+11234567890'
         added: '2025-07-14T22:21:08Z'
@@ -1581,7 +1582,7 @@ components:
             request.
           example:
             - '+12345678910'
-            - '+13345672839'
+            - '+1334567'
         name:
           type: string
           description: A display name that describes the LRN Configuration.
@@ -1896,7 +1897,7 @@ components:
             request.
           example:
             - '+12345678910'
-            - '+13345672839'
+            - '+1334567'
         name:
           type: string
           description: A display name that describes the LRN Configuration.
@@ -1926,7 +1927,7 @@ components:
             request.
           example:
             - '+12345678910'
-            - '+13345672839'
+            - '+1334567'
         name:
           type: string
           description: A display name that describes the LRN Configuration.
@@ -1959,7 +1960,7 @@ components:
           description: One or more LRNs that should receive the same feature settings.
           example:
             - '+12073361296'
-            - '+12073361297'
+            - '+1207336'
         hostedVoice:
           type: boolean
           description: |-
@@ -1984,7 +1985,7 @@ components:
       example:
         lrns:
           - '+12073361296'
-          - '+12073361297'
+          - '+1207336'
         hostedVoice: true
         accessHomingTandem: false
         lrnConfigUuid: 9C88F137-B2DE-55B1-9D13-AB12CA84E7B1
@@ -2013,13 +2014,13 @@ components:
       example:
         - lrns:
             - '+12073361296'
-            - '+12073361297'
+            - '+1207336'
           hostedVoice: true
           accessHomingTandem: false
           lrnConfigUuid: 9C88F137-B2DE-55B1-9D13-AB12CA84E7B1
         - lrns:
             - '+12073361298'
-            - '+12073361299'
+            - '+1207337'
           hostedVoice: false
           accessHomingTandem: true
           lrnConfigUuid: null
@@ -2066,10 +2067,14 @@ components:
         errors: []
     e164:
       type: string
-      minLength: 2
-      maxLength: 16
-      pattern: ^\+1\d{1,14}$
-      description: A NANPA phone number.
+      minLength: 8
+      maxLength: 12
+      pattern: ^\+1(\d{10}|\d{6})$
+      description: >-
+        A Location Routing Number (LRN), which may be expressed either as a full
+        E.164 NANPA phone number (`+1` followed by the 10-digit NPA-NXX-XXXX),
+        or as an entire A-block (`+1` followed by the 6-digit NPA-NXX, with no
+        line/station number).
       example: '+12223334444'
     uuid:
       type: string

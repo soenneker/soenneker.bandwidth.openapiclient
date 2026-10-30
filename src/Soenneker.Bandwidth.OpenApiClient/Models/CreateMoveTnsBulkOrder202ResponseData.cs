@@ -11,32 +11,53 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class CreateMoveTnsBulkOrder202ResponseData : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("customerOrderId") is { } nullNodeCustomerOrderId && nullNodeCustomerOrderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerOrderId = null;
+            if (parseNode.GetChildNode("lastModifiedDate") is { } nullNodeLastModifiedDate && nullNodeLastModifiedDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastModifiedDate = null;
+            if (parseNode.GetChildNode("orderDate") is { } nullNodeOrderDate && nullNodeOrderDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrderDate = null;
+            if (parseNode.GetChildNode("orderId") is { } nullNodeOrderId && nullNodeOrderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrderId = null;
+            if (parseNode.GetChildNode("orderStatus") is { } nullNodeOrderStatus && nullNodeOrderStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrderStatus = null;
+            if (parseNode.GetChildNode("userId") is { } nullNodeUserId && nullNodeUserId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserId = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>An optional customer-defined reference ID for this order. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`. Only alphanumeric values, dashes, and spaces are allowed. Max length is 255 characters.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CustomerOrderId { get; set; }
+        public string? CustomerOrderId { get => _explicitNullValueCustomerOrderId; set { _explicitNullValueCustomerOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerOrderId"); else _explicitNullProperties?.Remove("customerOrderId"); } }
+        private string? _explicitNullValueCustomerOrderId = default!;
 #nullable restore
 #else
-        public string CustomerOrderId { get; set; }
+        public string CustomerOrderId { get => _explicitNullValueCustomerOrderId; set { _explicitNullValueCustomerOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerOrderId"); else _explicitNullProperties?.Remove("customerOrderId"); } }
+        private string _explicitNullValueCustomerOrderId = default!;
 #endif
         /// <summary>The date/time when the order was last modified.</summary>
-        public DateTimeOffset? LastModifiedDate { get; set; }
+        public DateTimeOffset? LastModifiedDate { get => _explicitNullValueLastModifiedDate; set { _explicitNullValueLastModifiedDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastModifiedDate"); else _explicitNullProperties?.Remove("lastModifiedDate"); } }
+        private DateTimeOffset? _explicitNullValueLastModifiedDate = default!;
         /// <summary>The date/time when the order was created.</summary>
-        public DateTimeOffset? OrderDate { get; set; }
+        public DateTimeOffset? OrderDate { get => _explicitNullValueOrderDate; set { _explicitNullValueOrderDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderDate"); else _explicitNullProperties?.Remove("orderDate"); } }
+        private DateTimeOffset? _explicitNullValueOrderDate = default!;
         /// <summary>Unique identifier for the order that was created.</summary>
-        public Guid? OrderId { get; set; }
+        public Guid? OrderId { get => _explicitNullValueOrderId; set { _explicitNullValueOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderId"); else _explicitNullProperties?.Remove("orderId"); } }
+        private Guid? _explicitNullValueOrderId = default!;
         /// <summary>Processing status of the bulk Move TNs order.RECEIVED - Order has been received without any synchronous errors and will be processed through further validation.PROCESSING - Order has passed validation and is being processed asynchronously. Some child orders may have completed, but at least one is in progress.FAILED - This implies that the order did not pass synchronous validation (Either number specific or non-number specific errors will be displayed).COMPLETE - All child orders have been processed and the order is complete. Review the statuses of each child order for details on the outcome.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkMoveTnsOrderStatus? OrderStatus { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkMoveTnsOrderStatus? OrderStatus { get => _explicitNullValueOrderStatus; set { _explicitNullValueOrderStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderStatus"); else _explicitNullProperties?.Remove("orderStatus"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.BulkMoveTnsOrderStatus? _explicitNullValueOrderStatus = default!;
         /// <summary>The ID of the user who created the order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? UserId { get; set; }
+        public string? UserId { get => _explicitNullValueUserId; set { _explicitNullValueUserId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userId"); else _explicitNullProperties?.Remove("userId"); } }
+        private string? _explicitNullValueUserId = default!;
 #nullable restore
 #else
-        public string UserId { get; set; }
+        public string UserId { get => _explicitNullValueUserId; set { _explicitNullValueUserId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userId"); else _explicitNullProperties?.Remove("userId"); } }
+        private string _explicitNullValueUserId = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrder202ResponseData"/> and sets the default values.
@@ -53,7 +74,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrder202ResponseData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrder202ResponseData();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrder202ResponseData(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -84,6 +105,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteGuidValue("orderId", OrderId);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkMoveTnsOrderStatus>("orderStatus", OrderStatus);
             writer.WriteStringValue("userId", UserId);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -22,36 +22,43 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Inventory
     public partial class InventoryRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The country property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Inventory.Country.CountryRequestBuilder Country
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Inventory.Country.CountryRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The creditpackage property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Inventory.Creditpackage.CreditpackageRequestBuilder Creditpackage
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Inventory.Creditpackage.CreditpackageRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The did property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Inventory.Did.DidRequestBuilder Did
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Inventory.Did.DidRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The didgroup property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Inventory.Didgroup.DidgroupRequestBuilder Didgroup
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Inventory.Didgroup.DidgroupRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The feature property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Inventory.Feature.FeatureRequestBuilder Feature
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Inventory.Feature.FeatureRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The trunk property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Inventory.Trunk.TrunkRequestBuilder Trunk
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Inventory.Trunk.TrunkRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The zone property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Inventory.Zone.ZoneRequestBuilder Zone
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Inventory.Zone.ZoneRequestBuilder(PathParameters, RequestAdapter);

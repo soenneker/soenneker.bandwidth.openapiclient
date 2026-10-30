@@ -8,58 +8,63 @@ using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BotEndpointRequest"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequest"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.IntegrationEndpointRequest"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointRequest"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SipEndpointRequest"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnEndpointRequest"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf1"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf2"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf3"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf4"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf5"/>, <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf6"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class OriginationRoutePlanEndpointRequest : IComposedTypeWrapper, IParsable
-    {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BotEndpointRequest"/></summary>
+    , global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder {
+        // Preserve ambiguous union payloads without inventing a discriminator.
+        /// <summary>The complete payload when no unique typed union branch can be selected.</summary>
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode UnrecognizedValue { get; set; } = null!;
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalData { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BotEndpointRequest? BotEndpointRequest { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf1? OriginationRoutePlanEndpointRequestOneOf1 { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BotEndpointRequest BotEndpointRequest { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf1 OriginationRoutePlanEndpointRequestOneOf1 { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequest"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf2"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequest? FqdnEndpointRequest { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf2? OriginationRoutePlanEndpointRequestOneOf2 { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequest FqdnEndpointRequest { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf2 OriginationRoutePlanEndpointRequestOneOf2 { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.IntegrationEndpointRequest"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf3"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.IntegrationEndpointRequest? IntegrationEndpointRequest { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf3? OriginationRoutePlanEndpointRequestOneOf3 { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.IntegrationEndpointRequest IntegrationEndpointRequest { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf3 OriginationRoutePlanEndpointRequestOneOf3 { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointRequest"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf4"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointRequest? Ipv4EndpointRequest { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf4? OriginationRoutePlanEndpointRequestOneOf4 { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointRequest Ipv4EndpointRequest { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf4 OriginationRoutePlanEndpointRequestOneOf4 { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SipEndpointRequest"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf5"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SipEndpointRequest? SipEndpointRequest { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf5? OriginationRoutePlanEndpointRequestOneOf5 { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SipEndpointRequest SipEndpointRequest { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf5 OriginationRoutePlanEndpointRequestOneOf5 { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnEndpointRequest"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf6"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnEndpointRequest? TnEndpointRequest { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf6? OriginationRoutePlanEndpointRequestOneOf6 { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnEndpointRequest TnEndpointRequest { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf6 OriginationRoutePlanEndpointRequestOneOf6 { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -69,33 +74,48 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequest();
-            if("BOT".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("OriginationRoutePlanEndpointRequestOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.BotEndpointRequest = new global::Soenneker.Bandwidth.OpenApiClient.Models.BotEndpointRequest();
+                
             }
-            else if("FQDN".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("OriginationRoutePlanEndpointRequestOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.FqdnEndpointRequest = new global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequest();
+                
             }
-            else if("INTEGRATION".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("OriginationRoutePlanEndpointRequestOneOf3".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.IntegrationEndpointRequest = new global::Soenneker.Bandwidth.OpenApiClient.Models.IntegrationEndpointRequest();
+                
             }
-            else if("Ipv4EndpointRequest".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("OriginationRoutePlanEndpointRequestOneOf4".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.Ipv4EndpointRequest = new global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointRequest();
+                
             }
-            else if("SIP".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("OriginationRoutePlanEndpointRequestOneOf5".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.SipEndpointRequest = new global::Soenneker.Bandwidth.OpenApiClient.Models.SipEndpointRequest();
+                
             }
-            else if("TN".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("OriginationRoutePlanEndpointRequestOneOf6".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.TnEndpointRequest = new global::Soenneker.Bandwidth.OpenApiClient.Models.TnEndpointRequest();
+                
             }
-            return result;
+            
+            var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
+            bool matchesUnionBranch0 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("type") != null))();
+            bool matchesUnionBranch1 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("type") != null))();
+            bool matchesUnionBranch2 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("type") != null))();
+            bool matchesUnionBranch3 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("type") != null))();
+            bool matchesUnionBranch4 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("type") != null))();
+            bool matchesUnionBranch5 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("type") != null))();
+            if (result.OriginationRoutePlanEndpointRequestOneOf1 == null && result.OriginationRoutePlanEndpointRequestOneOf2 == null && result.OriginationRoutePlanEndpointRequestOneOf3 == null && result.OriginationRoutePlanEndpointRequestOneOf4 == null && result.OriginationRoutePlanEndpointRequestOneOf5 == null && result.OriginationRoutePlanEndpointRequestOneOf6 == null && matchesUnionBranch0 && !matchesUnionBranch1 && !matchesUnionBranch2 && !matchesUnionBranch3 && !matchesUnionBranch4 && !matchesUnionBranch5) result.OriginationRoutePlanEndpointRequestOneOf1 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf1(), parseNode);
+            if (result.OriginationRoutePlanEndpointRequestOneOf1 == null && result.OriginationRoutePlanEndpointRequestOneOf2 == null && result.OriginationRoutePlanEndpointRequestOneOf3 == null && result.OriginationRoutePlanEndpointRequestOneOf4 == null && result.OriginationRoutePlanEndpointRequestOneOf5 == null && result.OriginationRoutePlanEndpointRequestOneOf6 == null && matchesUnionBranch1 && !matchesUnionBranch0 && !matchesUnionBranch2 && !matchesUnionBranch3 && !matchesUnionBranch4 && !matchesUnionBranch5) result.OriginationRoutePlanEndpointRequestOneOf2 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf2(), parseNode);
+            if (result.OriginationRoutePlanEndpointRequestOneOf1 == null && result.OriginationRoutePlanEndpointRequestOneOf2 == null && result.OriginationRoutePlanEndpointRequestOneOf3 == null && result.OriginationRoutePlanEndpointRequestOneOf4 == null && result.OriginationRoutePlanEndpointRequestOneOf5 == null && result.OriginationRoutePlanEndpointRequestOneOf6 == null && matchesUnionBranch2 && !matchesUnionBranch0 && !matchesUnionBranch1 && !matchesUnionBranch3 && !matchesUnionBranch4 && !matchesUnionBranch5) result.OriginationRoutePlanEndpointRequestOneOf3 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf3(), parseNode);
+            if (result.OriginationRoutePlanEndpointRequestOneOf1 == null && result.OriginationRoutePlanEndpointRequestOneOf2 == null && result.OriginationRoutePlanEndpointRequestOneOf3 == null && result.OriginationRoutePlanEndpointRequestOneOf4 == null && result.OriginationRoutePlanEndpointRequestOneOf5 == null && result.OriginationRoutePlanEndpointRequestOneOf6 == null && matchesUnionBranch3 && !matchesUnionBranch0 && !matchesUnionBranch1 && !matchesUnionBranch2 && !matchesUnionBranch4 && !matchesUnionBranch5) result.OriginationRoutePlanEndpointRequestOneOf4 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf4(), parseNode);
+            if (result.OriginationRoutePlanEndpointRequestOneOf1 == null && result.OriginationRoutePlanEndpointRequestOneOf2 == null && result.OriginationRoutePlanEndpointRequestOneOf3 == null && result.OriginationRoutePlanEndpointRequestOneOf4 == null && result.OriginationRoutePlanEndpointRequestOneOf5 == null && result.OriginationRoutePlanEndpointRequestOneOf6 == null && matchesUnionBranch4 && !matchesUnionBranch0 && !matchesUnionBranch1 && !matchesUnionBranch2 && !matchesUnionBranch3 && !matchesUnionBranch5) result.OriginationRoutePlanEndpointRequestOneOf5 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf5(), parseNode);
+            if (result.OriginationRoutePlanEndpointRequestOneOf1 == null && result.OriginationRoutePlanEndpointRequestOneOf2 == null && result.OriginationRoutePlanEndpointRequestOneOf3 == null && result.OriginationRoutePlanEndpointRequestOneOf4 == null && result.OriginationRoutePlanEndpointRequestOneOf5 == null && result.OriginationRoutePlanEndpointRequestOneOf6 == null && matchesUnionBranch5 && !matchesUnionBranch0 && !matchesUnionBranch1 && !matchesUnionBranch2 && !matchesUnionBranch3 && !matchesUnionBranch4) result.OriginationRoutePlanEndpointRequestOneOf6 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf6(), parseNode);
+            if (result.OriginationRoutePlanEndpointRequestOneOf1 == null && result.OriginationRoutePlanEndpointRequestOneOf2 == null && result.OriginationRoutePlanEndpointRequestOneOf3 == null && result.OriginationRoutePlanEndpointRequestOneOf4 == null && result.OriginationRoutePlanEndpointRequestOneOf5 == null && result.OriginationRoutePlanEndpointRequestOneOf6 == null) result.UnrecognizedValue = unionPayload;
+return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -103,29 +123,29 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(BotEndpointRequest != null)
+            if(OriginationRoutePlanEndpointRequestOneOf1 != null)
             {
-                return BotEndpointRequest.GetFieldDeserializers();
+                return OriginationRoutePlanEndpointRequestOneOf1.GetFieldDeserializers();
             }
-            else if(FqdnEndpointRequest != null)
+            else if(OriginationRoutePlanEndpointRequestOneOf2 != null)
             {
-                return FqdnEndpointRequest.GetFieldDeserializers();
+                return OriginationRoutePlanEndpointRequestOneOf2.GetFieldDeserializers();
             }
-            else if(IntegrationEndpointRequest != null)
+            else if(OriginationRoutePlanEndpointRequestOneOf3 != null)
             {
-                return IntegrationEndpointRequest.GetFieldDeserializers();
+                return OriginationRoutePlanEndpointRequestOneOf3.GetFieldDeserializers();
             }
-            else if(Ipv4EndpointRequest != null)
+            else if(OriginationRoutePlanEndpointRequestOneOf4 != null)
             {
-                return Ipv4EndpointRequest.GetFieldDeserializers();
+                return OriginationRoutePlanEndpointRequestOneOf4.GetFieldDeserializers();
             }
-            else if(SipEndpointRequest != null)
+            else if(OriginationRoutePlanEndpointRequestOneOf5 != null)
             {
-                return SipEndpointRequest.GetFieldDeserializers();
+                return OriginationRoutePlanEndpointRequestOneOf5.GetFieldDeserializers();
             }
-            else if(TnEndpointRequest != null)
+            else if(OriginationRoutePlanEndpointRequestOneOf6 != null)
             {
-                return TnEndpointRequest.GetFieldDeserializers();
+                return OriginationRoutePlanEndpointRequestOneOf6.GetFieldDeserializers();
             }
             return new Dictionary<string, Action<IParseNode>>();
         }
@@ -135,30 +155,45 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
+            if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
+            if (OriginationRoutePlanEndpointRequestOneOf1 == null && OriginationRoutePlanEndpointRequestOneOf2 == null && OriginationRoutePlanEndpointRequestOneOf3 == null && OriginationRoutePlanEndpointRequestOneOf4 == null && OriginationRoutePlanEndpointRequestOneOf5 == null && OriginationRoutePlanEndpointRequestOneOf6 == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
+            if (OriginationRoutePlanEndpointRequestOneOf1 != null && OriginationRoutePlanEndpointRequestOneOf2 == null && OriginationRoutePlanEndpointRequestOneOf3 == null && OriginationRoutePlanEndpointRequestOneOf4 == null && OriginationRoutePlanEndpointRequestOneOf5 == null && OriginationRoutePlanEndpointRequestOneOf6 == null) { if (OriginationRoutePlanEndpointRequestOneOf1 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, OriginationRoutePlanEndpointRequestOneOf1); return; }
+            if (OriginationRoutePlanEndpointRequestOneOf2 != null && OriginationRoutePlanEndpointRequestOneOf1 == null && OriginationRoutePlanEndpointRequestOneOf3 == null && OriginationRoutePlanEndpointRequestOneOf4 == null && OriginationRoutePlanEndpointRequestOneOf5 == null && OriginationRoutePlanEndpointRequestOneOf6 == null) { if (OriginationRoutePlanEndpointRequestOneOf2 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, OriginationRoutePlanEndpointRequestOneOf2); return; }
+            if (OriginationRoutePlanEndpointRequestOneOf3 != null && OriginationRoutePlanEndpointRequestOneOf1 == null && OriginationRoutePlanEndpointRequestOneOf2 == null && OriginationRoutePlanEndpointRequestOneOf4 == null && OriginationRoutePlanEndpointRequestOneOf5 == null && OriginationRoutePlanEndpointRequestOneOf6 == null) { if (OriginationRoutePlanEndpointRequestOneOf3 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, OriginationRoutePlanEndpointRequestOneOf3); return; }
+            if (OriginationRoutePlanEndpointRequestOneOf4 != null && OriginationRoutePlanEndpointRequestOneOf1 == null && OriginationRoutePlanEndpointRequestOneOf2 == null && OriginationRoutePlanEndpointRequestOneOf3 == null && OriginationRoutePlanEndpointRequestOneOf5 == null && OriginationRoutePlanEndpointRequestOneOf6 == null) { if (OriginationRoutePlanEndpointRequestOneOf4 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, OriginationRoutePlanEndpointRequestOneOf4); return; }
+            if (OriginationRoutePlanEndpointRequestOneOf5 != null && OriginationRoutePlanEndpointRequestOneOf1 == null && OriginationRoutePlanEndpointRequestOneOf2 == null && OriginationRoutePlanEndpointRequestOneOf3 == null && OriginationRoutePlanEndpointRequestOneOf4 == null && OriginationRoutePlanEndpointRequestOneOf6 == null) { if (OriginationRoutePlanEndpointRequestOneOf5 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, OriginationRoutePlanEndpointRequestOneOf5); return; }
+            if (OriginationRoutePlanEndpointRequestOneOf6 != null && OriginationRoutePlanEndpointRequestOneOf1 == null && OriginationRoutePlanEndpointRequestOneOf2 == null && OriginationRoutePlanEndpointRequestOneOf3 == null && OriginationRoutePlanEndpointRequestOneOf4 == null && OriginationRoutePlanEndpointRequestOneOf5 == null) { if (OriginationRoutePlanEndpointRequestOneOf6 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, OriginationRoutePlanEndpointRequestOneOf6); return; }
+
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            if(BotEndpointRequest != null)
+            if(OriginationRoutePlanEndpointRequestOneOf1 != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BotEndpointRequest>(null, BotEndpointRequest);
+                if (OriginationRoutePlanEndpointRequestOneOf1 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
+                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf1>(null, OriginationRoutePlanEndpointRequestOneOf1);
             }
-            else if(FqdnEndpointRequest != null)
+            else if(OriginationRoutePlanEndpointRequestOneOf2 != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequest>(null, FqdnEndpointRequest);
+                if (OriginationRoutePlanEndpointRequestOneOf2 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
+                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf2>(null, OriginationRoutePlanEndpointRequestOneOf2);
             }
-            else if(IntegrationEndpointRequest != null)
+            else if(OriginationRoutePlanEndpointRequestOneOf3 != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.IntegrationEndpointRequest>(null, IntegrationEndpointRequest);
+                if (OriginationRoutePlanEndpointRequestOneOf3 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
+                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf3>(null, OriginationRoutePlanEndpointRequestOneOf3);
             }
-            else if(Ipv4EndpointRequest != null)
+            else if(OriginationRoutePlanEndpointRequestOneOf4 != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4EndpointRequest>(null, Ipv4EndpointRequest);
+                if (OriginationRoutePlanEndpointRequestOneOf4 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
+                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf4>(null, OriginationRoutePlanEndpointRequestOneOf4);
             }
-            else if(SipEndpointRequest != null)
+            else if(OriginationRoutePlanEndpointRequestOneOf5 != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SipEndpointRequest>(null, SipEndpointRequest);
+                if (OriginationRoutePlanEndpointRequestOneOf5 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
+                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf5>(null, OriginationRoutePlanEndpointRequestOneOf5);
             }
-            else if(TnEndpointRequest != null)
+            else if(OriginationRoutePlanEndpointRequestOneOf6 != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnEndpointRequest>(null, TnEndpointRequest);
+                if (OriginationRoutePlanEndpointRequestOneOf6 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
+                writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf6>(null, OriginationRoutePlanEndpointRequestOneOf6);
             }
         }
     }

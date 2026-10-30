@@ -12,7 +12,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class AddEndpointsRequest : IComposedTypeWrapper, IParsable
-    {
+    , global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder {
+        // Preserve ambiguous union payloads without inventing a discriminator.
+        /// <summary>The complete payload when no unique typed union branch can be selected.</summary>
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode UnrecognizedValue { get; set; } = null!;
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalData { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithAddressId"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -73,29 +78,32 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddEndpointsRequest();
             if("AddNomadicNorthAmericaEndpointsWithAddressId".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.AddNomadicNorthAmericaEndpointsWithAddressId = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithAddressId();
+                
             }
             else if("AddNomadicNorthAmericaEndpointsWithFullAddress".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.AddNomadicNorthAmericaEndpointsWithFullAddress = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithFullAddress();
+                
             }
             else if("AddRowEndpointsWithAddressId".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.AddRowEndpointsWithAddressId = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithAddressId();
+                
             }
             else if("AddRowEndpointsWithFullAddress".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.AddRowEndpointsWithFullAddress = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithFullAddress();
+                
             }
             else if("AddStandardNorthAmericaEndpointsWithAddressId".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.AddStandardNorthAmericaEndpointsWithAddressId = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressId();
+                
             }
             else if("AddStandardNorthAmericaEndpointsWithFullAddress".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.AddStandardNorthAmericaEndpointsWithFullAddress = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithFullAddress();
+                
             }
-            return result;
+            
+            var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
+            if (result.AddNomadicNorthAmericaEndpointsWithAddressId == null && result.AddNomadicNorthAmericaEndpointsWithFullAddress == null && result.AddRowEndpointsWithAddressId == null && result.AddRowEndpointsWithFullAddress == null && result.AddStandardNorthAmericaEndpointsWithAddressId == null && result.AddStandardNorthAmericaEndpointsWithFullAddress == null) result.UnrecognizedValue = unionPayload;
+return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -135,29 +143,44 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
+            if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
+            if (AddNomadicNorthAmericaEndpointsWithAddressId == null && AddNomadicNorthAmericaEndpointsWithFullAddress == null && AddRowEndpointsWithAddressId == null && AddRowEndpointsWithFullAddress == null && AddStandardNorthAmericaEndpointsWithAddressId == null && AddStandardNorthAmericaEndpointsWithFullAddress == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
+            if (AddNomadicNorthAmericaEndpointsWithAddressId != null && AddNomadicNorthAmericaEndpointsWithFullAddress == null && AddRowEndpointsWithAddressId == null && AddRowEndpointsWithFullAddress == null && AddStandardNorthAmericaEndpointsWithAddressId == null && AddStandardNorthAmericaEndpointsWithFullAddress == null) { if (AddNomadicNorthAmericaEndpointsWithAddressId is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, AddNomadicNorthAmericaEndpointsWithAddressId); return; }
+            if (AddNomadicNorthAmericaEndpointsWithFullAddress != null && AddNomadicNorthAmericaEndpointsWithAddressId == null && AddRowEndpointsWithAddressId == null && AddRowEndpointsWithFullAddress == null && AddStandardNorthAmericaEndpointsWithAddressId == null && AddStandardNorthAmericaEndpointsWithFullAddress == null) { if (AddNomadicNorthAmericaEndpointsWithFullAddress is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, AddNomadicNorthAmericaEndpointsWithFullAddress); return; }
+            if (AddRowEndpointsWithAddressId != null && AddNomadicNorthAmericaEndpointsWithAddressId == null && AddNomadicNorthAmericaEndpointsWithFullAddress == null && AddRowEndpointsWithFullAddress == null && AddStandardNorthAmericaEndpointsWithAddressId == null && AddStandardNorthAmericaEndpointsWithFullAddress == null) { if (AddRowEndpointsWithAddressId is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, AddRowEndpointsWithAddressId); return; }
+            if (AddRowEndpointsWithFullAddress != null && AddNomadicNorthAmericaEndpointsWithAddressId == null && AddNomadicNorthAmericaEndpointsWithFullAddress == null && AddRowEndpointsWithAddressId == null && AddStandardNorthAmericaEndpointsWithAddressId == null && AddStandardNorthAmericaEndpointsWithFullAddress == null) { if (AddRowEndpointsWithFullAddress is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, AddRowEndpointsWithFullAddress); return; }
+            if (AddStandardNorthAmericaEndpointsWithAddressId != null && AddNomadicNorthAmericaEndpointsWithAddressId == null && AddNomadicNorthAmericaEndpointsWithFullAddress == null && AddRowEndpointsWithAddressId == null && AddRowEndpointsWithFullAddress == null && AddStandardNorthAmericaEndpointsWithFullAddress == null) { if (AddStandardNorthAmericaEndpointsWithAddressId is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, AddStandardNorthAmericaEndpointsWithAddressId); return; }
+            if (AddStandardNorthAmericaEndpointsWithFullAddress != null && AddNomadicNorthAmericaEndpointsWithAddressId == null && AddNomadicNorthAmericaEndpointsWithFullAddress == null && AddRowEndpointsWithAddressId == null && AddRowEndpointsWithFullAddress == null && AddStandardNorthAmericaEndpointsWithAddressId == null) { if (AddStandardNorthAmericaEndpointsWithFullAddress is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, AddStandardNorthAmericaEndpointsWithFullAddress); return; }
+
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             if(AddNomadicNorthAmericaEndpointsWithAddressId != null)
             {
+                if (AddNomadicNorthAmericaEndpointsWithAddressId is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithAddressId>(null, AddNomadicNorthAmericaEndpointsWithAddressId);
             }
             else if(AddNomadicNorthAmericaEndpointsWithFullAddress != null)
             {
+                if (AddNomadicNorthAmericaEndpointsWithFullAddress is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddNomadicNorthAmericaEndpointsWithFullAddress>(null, AddNomadicNorthAmericaEndpointsWithFullAddress);
             }
             else if(AddRowEndpointsWithAddressId != null)
             {
+                if (AddRowEndpointsWithAddressId is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithAddressId>(null, AddRowEndpointsWithAddressId);
             }
             else if(AddRowEndpointsWithFullAddress != null)
             {
+                if (AddRowEndpointsWithFullAddress is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddRowEndpointsWithFullAddress>(null, AddRowEndpointsWithFullAddress);
             }
             else if(AddStandardNorthAmericaEndpointsWithAddressId != null)
             {
+                if (AddStandardNorthAmericaEndpointsWithAddressId is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithAddressId>(null, AddStandardNorthAmericaEndpointsWithAddressId);
             }
             else if(AddStandardNorthAmericaEndpointsWithFullAddress != null)
             {
+                if (AddStandardNorthAmericaEndpointsWithFullAddress is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddStandardNorthAmericaEndpointsWithFullAddress>(null, AddStandardNorthAmericaEndpointsWithFullAddress);
             }
         }

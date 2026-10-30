@@ -12,7 +12,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class MultiChannelChannelListRbmObjectAllOf2Content : IComposedTypeWrapper, IParsable
-    {
+    , global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder {
+        // Preserve ambiguous union payloads without inventing a discriminator.
+        /// <summary>The complete payload when no unique typed union branch can be selected.</summary>
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode UnrecognizedValue { get; set; } = null!;
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalData { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RbmMessageContentRichCard"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -49,13 +54,20 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListRbmObjectAllOf2Content();
             if("RbmMessageContentText".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.RbmMessageContentText = new global::Soenneker.Bandwidth.OpenApiClient.Models.RbmMessageContentText();
+                
             }
             else if("RbmMessageMedia".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.RbmMessageMedia = new global::Soenneker.Bandwidth.OpenApiClient.Models.RbmMessageMedia();
+                
             }
-            return result;
+            
+            var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
+            bool matchesUnionBranch0 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("text") != null))();
+            bool matchesUnionBranch1 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("media") != null))();
+            if (result.RbmMessageContentRichCard == null && result.RbmMessageContentText == null && result.RbmMessageMedia == null && matchesUnionBranch0 && !matchesUnionBranch1) result.RbmMessageContentText = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.RbmMessageContentText(), parseNode);
+            if (result.RbmMessageContentRichCard == null && result.RbmMessageContentText == null && result.RbmMessageMedia == null && matchesUnionBranch1 && !matchesUnionBranch0) result.RbmMessageMedia = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.RbmMessageMedia(), parseNode);
+            if (result.RbmMessageContentRichCard == null && result.RbmMessageContentText == null && result.RbmMessageMedia == null) result.UnrecognizedValue = unionPayload;
+return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -83,17 +95,25 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
+            if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
+            if (RbmMessageContentRichCard == null && RbmMessageContentText == null && RbmMessageMedia == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
+            if (RbmMessageContentText != null && RbmMessageContentRichCard == null && RbmMessageMedia == null) { if (RbmMessageContentText is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, RbmMessageContentText); return; }
+            if (RbmMessageMedia != null && RbmMessageContentRichCard == null && RbmMessageContentText == null) { if (RbmMessageMedia is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, RbmMessageMedia); return; }
+
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             if(RbmMessageContentRichCard != null)
             {
+                if (RbmMessageContentRichCard is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RbmMessageContentRichCard>(null, RbmMessageContentRichCard);
             }
             else if(RbmMessageContentText != null)
             {
+                if (RbmMessageContentText is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RbmMessageContentText>(null, RbmMessageContentText);
             }
             else if(RbmMessageMedia != null)
             {
+                if (RbmMessageMedia is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RbmMessageMedia>(null, RbmMessageMedia);
             }
         }

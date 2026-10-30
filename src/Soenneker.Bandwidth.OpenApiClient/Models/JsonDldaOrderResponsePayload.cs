@@ -11,63 +11,94 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class JsonDldaOrderResponsePayload : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("accountId") is { } nullNodeAccountId && nullNodeAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountId = null;
+            if (parseNode.GetChildNode("createdByUser") is { } nullNodeCreatedByUser && nullNodeCreatedByUser.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedByUser = null;
+            if (parseNode.GetChildNode("customerOrderId") is { } nullNodeCustomerOrderId && nullNodeCustomerOrderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerOrderId = null;
+            if (parseNode.GetChildNode("dldaPhoneNumberGroups") is { } nullNodeDldaPhoneNumberGroups && nullNodeDldaPhoneNumberGroups.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DldaPhoneNumberGroups = null;
+            if (parseNode.GetChildNode("errors") is { } nullNodeErrors && nullNodeErrors.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Errors = null;
+            if (parseNode.GetChildNode("lastModifiedDate") is { } nullNodeLastModifiedDate && nullNodeLastModifiedDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastModifiedDate = null;
+            if (parseNode.GetChildNode("orderCreateDate") is { } nullNodeOrderCreateDate && nullNodeOrderCreateDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrderCreateDate = null;
+            if (parseNode.GetChildNode("orderId") is { } nullNodeOrderId && nullNodeOrderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrderId = null;
+            if (parseNode.GetChildNode("processingStatus") is { } nullNodeProcessingStatus && nullNodeProcessingStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProcessingStatus = null;
+        }
+
         /// <summary>The accountId property</summary>
-        public int? AccountId { get; set; }
+        public int? AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
+        private int? _explicitNullValueAccountId = default!;
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The createdByUser property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CreatedByUser { get; set; }
+        public string? CreatedByUser { get => _explicitNullValueCreatedByUser; set { _explicitNullValueCreatedByUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdByUser"); else _explicitNullProperties?.Remove("createdByUser"); } }
+        private string? _explicitNullValueCreatedByUser = default!;
 #nullable restore
 #else
-        public string CreatedByUser { get; set; }
+        public string CreatedByUser { get => _explicitNullValueCreatedByUser; set { _explicitNullValueCreatedByUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdByUser"); else _explicitNullProperties?.Remove("createdByUser"); } }
+        private string _explicitNullValueCreatedByUser = default!;
 #endif
         /// <summary>The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Order. Only alphanumeric values, dashes and spaces are allowed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CustomerOrderId { get; set; }
+        public string? CustomerOrderId { get => _explicitNullValueCustomerOrderId; set { _explicitNullValueCustomerOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerOrderId"); else _explicitNullProperties?.Remove("customerOrderId"); } }
+        private string? _explicitNullValueCustomerOrderId = default!;
 #nullable restore
 #else
-        public string CustomerOrderId { get; set; }
+        public string CustomerOrderId { get => _explicitNullValueCustomerOrderId; set { _explicitNullValueCustomerOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerOrderId"); else _explicitNullProperties?.Remove("customerOrderId"); } }
+        private string _explicitNullValueCustomerOrderId = default!;
 #endif
         /// <summary>The dldaPhoneNumberGroups property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup>? DldaPhoneNumberGroups { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup>? DldaPhoneNumberGroups { get => _explicitNullValueDldaPhoneNumberGroups; set { _explicitNullValueDldaPhoneNumberGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dldaPhoneNumberGroups"); else _explicitNullProperties?.Remove("dldaPhoneNumberGroups"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup>? _explicitNullValueDldaPhoneNumberGroups = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup> DldaPhoneNumberGroups { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup> DldaPhoneNumberGroups { get => _explicitNullValueDldaPhoneNumberGroups; set { _explicitNullValueDldaPhoneNumberGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dldaPhoneNumberGroups"); else _explicitNullProperties?.Remove("dldaPhoneNumberGroups"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup> _explicitNullValueDldaPhoneNumberGroups = default!;
 #endif
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayloadErrorsItem>? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayloadErrorsItem>? Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayloadErrorsItem>? _explicitNullValueErrors = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayloadErrorsItem> Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayloadErrorsItem> Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayloadErrorsItem> _explicitNullValueErrors = default!;
 #endif
         /// <summary>The lastModifiedDate property</summary>
-        public DateTimeOffset? LastModifiedDate { get; set; }
+        public DateTimeOffset? LastModifiedDate { get => _explicitNullValueLastModifiedDate; set { _explicitNullValueLastModifiedDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastModifiedDate"); else _explicitNullProperties?.Remove("lastModifiedDate"); } }
+        private DateTimeOffset? _explicitNullValueLastModifiedDate = default!;
         /// <summary>The orderCreateDate property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? OrderCreateDate { get; set; }
+        public string? OrderCreateDate { get => _explicitNullValueOrderCreateDate; set { _explicitNullValueOrderCreateDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderCreateDate"); else _explicitNullProperties?.Remove("orderCreateDate"); } }
+        private string? _explicitNullValueOrderCreateDate = default!;
 #nullable restore
 #else
-        public string OrderCreateDate { get; set; }
+        public string OrderCreateDate { get => _explicitNullValueOrderCreateDate; set { _explicitNullValueOrderCreateDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderCreateDate"); else _explicitNullProperties?.Remove("orderCreateDate"); } }
+        private string _explicitNullValueOrderCreateDate = default!;
 #endif
         /// <summary>The orderId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? OrderId { get; set; }
+        public string? OrderId { get => _explicitNullValueOrderId; set { _explicitNullValueOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderId"); else _explicitNullProperties?.Remove("orderId"); } }
+        private string? _explicitNullValueOrderId = default!;
 #nullable restore
 #else
-        public string OrderId { get; set; }
+        public string OrderId { get => _explicitNullValueOrderId; set { _explicitNullValueOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderId"); else _explicitNullProperties?.Remove("orderId"); } }
+        private string _explicitNullValueOrderId = default!;
 #endif
         /// <summary>Order status.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayloadProcessingStatus? ProcessingStatus { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayloadProcessingStatus? ProcessingStatus { get => _explicitNullValueProcessingStatus; set { _explicitNullValueProcessingStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("processingStatus"); else _explicitNullProperties?.Remove("processingStatus"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayloadProcessingStatus? _explicitNullValueProcessingStatus = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayload"/> and sets the default values.
         /// </summary>
@@ -83,7 +114,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayload CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayload();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayload(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -120,6 +151,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("orderCreateDate", OrderCreateDate);
             writer.WriteStringValue("orderId", OrderId);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrderResponsePayloadProcessingStatus>("processingStatus", ProcessingStatus);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -11,40 +11,59 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class OperatorRequestPayload : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("countryCodeA3") is { } nullNodeCountryCodeA3 && nullNodeCountryCodeA3.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CountryCodeA3 = null;
+            if (parseNode.GetChildNode("operatorCode") is { } nullNodeOperatorCode && nullNodeOperatorCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OperatorCode = null;
+            if (parseNode.GetChildNode("operatorName") is { } nullNodeOperatorName && nullNodeOperatorName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OperatorName = null;
+            if (parseNode.GetChildNode("routingPrefixes") is { } nullNodeRoutingPrefixes && nullNodeRoutingPrefixes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RoutingPrefixes = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>It used to store country code.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CountryCodeA3 { get; set; }
+        public string? CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
+        private string? _explicitNullValueCountryCodeA3 = default!;
 #nullable restore
 #else
-        public string CountryCodeA3 { get; set; }
+        public string CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
+        private string _explicitNullValueCountryCodeA3 = default!;
 #endif
         /// <summary>It used to store operator code.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? OperatorCode { get; set; }
+        public string? OperatorCode { get => _explicitNullValueOperatorCode; set { _explicitNullValueOperatorCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operatorCode"); else _explicitNullProperties?.Remove("operatorCode"); } }
+        private string? _explicitNullValueOperatorCode = default!;
 #nullable restore
 #else
-        public string OperatorCode { get; set; }
+        public string OperatorCode { get => _explicitNullValueOperatorCode; set { _explicitNullValueOperatorCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operatorCode"); else _explicitNullProperties?.Remove("operatorCode"); } }
+        private string _explicitNullValueOperatorCode = default!;
 #endif
         /// <summary>It used to store operator name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? OperatorName { get; set; }
+        public string? OperatorName { get => _explicitNullValueOperatorName; set { _explicitNullValueOperatorName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operatorName"); else _explicitNullProperties?.Remove("operatorName"); } }
+        private string? _explicitNullValueOperatorName = default!;
 #nullable restore
 #else
-        public string OperatorName { get; set; }
+        public string OperatorName { get => _explicitNullValueOperatorName; set { _explicitNullValueOperatorName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operatorName"); else _explicitNullProperties?.Remove("operatorName"); } }
+        private string _explicitNullValueOperatorName = default!;
 #endif
         /// <summary>It used to store routing prefixes.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RoutingPrefixRequestPayload>? RoutingPrefixes { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RoutingPrefixRequestPayload>? RoutingPrefixes { get => _explicitNullValueRoutingPrefixes; set { _explicitNullValueRoutingPrefixes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("routingPrefixes"); else _explicitNullProperties?.Remove("routingPrefixes"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.RoutingPrefixRequestPayload>? _explicitNullValueRoutingPrefixes = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RoutingPrefixRequestPayload> RoutingPrefixes { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RoutingPrefixRequestPayload> RoutingPrefixes { get => _explicitNullValueRoutingPrefixes; set { _explicitNullValueRoutingPrefixes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("routingPrefixes"); else _explicitNullProperties?.Remove("routingPrefixes"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.RoutingPrefixRequestPayload> _explicitNullValueRoutingPrefixes = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorRequestPayload"/> and sets the default values.
@@ -61,7 +80,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorRequestPayload CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorRequestPayload();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorRequestPayload(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -88,6 +107,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("operatorCode", OperatorCode);
             writer.WriteStringValue("operatorName", OperatorName);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.RoutingPrefixRequestPayload>("routingPrefixes", RoutingPrefixes);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

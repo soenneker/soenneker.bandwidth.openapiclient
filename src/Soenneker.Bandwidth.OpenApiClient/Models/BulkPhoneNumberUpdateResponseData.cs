@@ -11,20 +11,34 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class BulkPhoneNumberUpdateResponseData : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("action") is { } nullNodeAction && nullNodeAction.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Action = null;
+            if (parseNode.GetChildNode("groupId") is { } nullNodeGroupId && nullNodeGroupId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) GroupId = null;
+            if (parseNode.GetChildNode("updatedPhoneNumbers") is { } nullNodeUpdatedPhoneNumbers && nullNodeUpdatedPhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UpdatedPhoneNumbers = null;
+        }
+
         /// <summary>The action to take with the specified phone numbers.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ActionEnum? Action { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ActionEnum? Action { get => _explicitNullValueAction; set { _explicitNullValueAction = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("action"); else _explicitNullProperties?.Remove("action"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ActionEnum? _explicitNullValueAction = default!;
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The ID of the group to which phone numbers are being added. Required for the `ADD` action and ignored for the `REMOVE` action.</summary>
-        public double? GroupId { get; set; }
+        public double? GroupId { get => _explicitNullValueGroupId; set { _explicitNullValueGroupId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("groupId"); else _explicitNullProperties?.Remove("groupId"); } }
+        private double? _explicitNullValueGroupId = default!;
         /// <summary>The list of phone numbers in E.164 format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? UpdatedPhoneNumbers { get; set; }
+        public List<string>? UpdatedPhoneNumbers { get => _explicitNullValueUpdatedPhoneNumbers; set { _explicitNullValueUpdatedPhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updatedPhoneNumbers"); else _explicitNullProperties?.Remove("updatedPhoneNumbers"); } }
+        private List<string>? _explicitNullValueUpdatedPhoneNumbers = default!;
 #nullable restore
 #else
-        public List<string> UpdatedPhoneNumbers { get; set; }
+        public List<string> UpdatedPhoneNumbers { get => _explicitNullValueUpdatedPhoneNumbers; set { _explicitNullValueUpdatedPhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updatedPhoneNumbers"); else _explicitNullProperties?.Remove("updatedPhoneNumbers"); } }
+        private List<string> _explicitNullValueUpdatedPhoneNumbers = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPhoneNumberUpdateResponseData"/> and sets the default values.
@@ -41,7 +55,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPhoneNumberUpdateResponseData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPhoneNumberUpdateResponseData();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPhoneNumberUpdateResponseData(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -66,6 +80,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ActionEnum>("action", Action);
             writer.WriteDoubleValue("groupId", GroupId);
             writer.WriteCollectionOfPrimitiveValues<string>("updatedPhoneNumbers", UpdatedPhoneNumbers);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

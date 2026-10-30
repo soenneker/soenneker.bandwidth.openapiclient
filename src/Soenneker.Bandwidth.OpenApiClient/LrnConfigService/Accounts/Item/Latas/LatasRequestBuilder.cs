@@ -65,6 +65,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Latas
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorBody.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorBody.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorBody.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ListLataOkResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ListLataOkResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

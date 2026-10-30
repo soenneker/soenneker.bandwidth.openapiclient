@@ -11,27 +11,42 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class Restriction : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("countryCodeA3") is { } nullNodeCountryCodeA3 && nullNodeCountryCodeA3.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CountryCodeA3 = null;
+            if (parseNode.GetChildNode("restrictionMessage") is { } nullNodeRestrictionMessage && nullNodeRestrictionMessage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RestrictionMessage = null;
+            if (parseNode.GetChildNode("restrictionType") is { } nullNodeRestrictionType && nullNodeRestrictionType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RestrictionType = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The three letter identifier of the country.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CountryCodeA3 { get; set; }
+        public string? CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
+        private string? _explicitNullValueCountryCodeA3 = default!;
 #nullable restore
 #else
-        public string CountryCodeA3 { get; set; }
+        public string CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
+        private string _explicitNullValueCountryCodeA3 = default!;
 #endif
         /// <summary>The restriction details in plain text, e.g. &apos;Calling a toll free number from a mobile phone is not free of charge.&apos;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RestrictionMessage { get; set; }
+        public string? RestrictionMessage { get => _explicitNullValueRestrictionMessage; set { _explicitNullValueRestrictionMessage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("restrictionMessage"); else _explicitNullProperties?.Remove("restrictionMessage"); } }
+        private string? _explicitNullValueRestrictionMessage = default!;
 #nullable restore
 #else
-        public string RestrictionMessage { get; set; }
+        public string RestrictionMessage { get => _explicitNullValueRestrictionMessage; set { _explicitNullValueRestrictionMessage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("restrictionMessage"); else _explicitNullProperties?.Remove("restrictionMessage"); } }
+        private string _explicitNullValueRestrictionMessage = default!;
 #endif
         /// <summary>The type of restriction.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RestrictionRestrictionType? RestrictionType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RestrictionRestrictionType? RestrictionType { get => _explicitNullValueRestrictionType; set { _explicitNullValueRestrictionType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("restrictionType"); else _explicitNullProperties?.Remove("restrictionType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RestrictionRestrictionType? _explicitNullValueRestrictionType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Restriction"/> and sets the default values.
         /// </summary>
@@ -47,7 +62,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.Restriction CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.Restriction();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.Restriction(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,6 +87,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("countryCodeA3", CountryCodeA3);
             writer.WriteStringValue("restrictionMessage", RestrictionMessage);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RestrictionRestrictionType>("restrictionType", RestrictionType);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

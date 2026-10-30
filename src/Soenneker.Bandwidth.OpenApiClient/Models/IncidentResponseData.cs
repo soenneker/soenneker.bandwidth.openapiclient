@@ -11,31 +11,50 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class IncidentResponseData : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("alerts") is { } nullNodeAlerts && nullNodeAlerts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Alerts = null;
+            if (parseNode.GetChildNode("incidentId") is { } nullNodeIncidentId && nullNodeIncidentId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IncidentId = null;
+            if (parseNode.GetChildNode("lastUpdated") is { } nullNodeLastUpdated && nullNodeLastUpdated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastUpdated = null;
+            if (parseNode.GetChildNode("startTime") is { } nullNodeStartTime && nullNodeStartTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StartTime = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The alerts property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.IncidentResponseDataAlertsItem>? Alerts { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.IncidentResponseDataAlertsItem>? Alerts { get => _explicitNullValueAlerts; set { _explicitNullValueAlerts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alerts"); else _explicitNullProperties?.Remove("alerts"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.IncidentResponseDataAlertsItem>? _explicitNullValueAlerts = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.IncidentResponseDataAlertsItem> Alerts { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.IncidentResponseDataAlertsItem> Alerts { get => _explicitNullValueAlerts; set { _explicitNullValueAlerts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alerts"); else _explicitNullProperties?.Remove("alerts"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.IncidentResponseDataAlertsItem> _explicitNullValueAlerts = default!;
 #endif
         /// <summary>A unique numeric identifier for the incident.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? IncidentId { get; set; }
+        public string? IncidentId { get => _explicitNullValueIncidentId; set { _explicitNullValueIncidentId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incidentId"); else _explicitNullProperties?.Remove("incidentId"); } }
+        private string? _explicitNullValueIncidentId = default!;
 #nullable restore
 #else
-        public string IncidentId { get; set; }
+        public string IncidentId { get => _explicitNullValueIncidentId; set { _explicitNullValueIncidentId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incidentId"); else _explicitNullProperties?.Remove("incidentId"); } }
+        private string _explicitNullValueIncidentId = default!;
 #endif
         /// <summary>The time the incident was last updated.</summary>
-        public DateTimeOffset? LastUpdated { get; set; }
+        public DateTimeOffset? LastUpdated { get => _explicitNullValueLastUpdated; set { _explicitNullValueLastUpdated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastUpdated"); else _explicitNullProperties?.Remove("lastUpdated"); } }
+        private DateTimeOffset? _explicitNullValueLastUpdated = default!;
         /// <summary>The time the incident started. This information is included in the initial alert that is sent to the PSAPs.</summary>
-        public DateTimeOffset? StartTime { get; set; }
+        public DateTimeOffset? StartTime { get => _explicitNullValueStartTime; set { _explicitNullValueStartTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("startTime"); else _explicitNullProperties?.Remove("startTime"); } }
+        private DateTimeOffset? _explicitNullValueStartTime = default!;
         /// <summary>The status of the incident.- CREATED: The incident has been created but no alerts have been triggered.- ACTIVE: Alerts have been triggered for the incident and it is ongoing.- RESOLVED: The incident has been resolved. No additional alerts can be created or triggered for this incident.- TESTING: The incident has been created and contains only test alerts. Test alerts are only used for testing and are not sent to the PSAPs. Test alerts are excluded           from the GET /incidents response, and can be retrieved using the includeTestAlerts query parameter via the GET /incidents/{incidentId} endpoint.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.IncidentStatus? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.IncidentStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.IncidentStatus? _explicitNullValueStatus = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.IncidentResponseData"/> and sets the default values.
         /// </summary>
@@ -51,7 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.IncidentResponseData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.IncidentResponseData();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.IncidentResponseData(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -80,6 +99,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteDateTimeOffsetValue("lastUpdated", LastUpdated);
             writer.WriteDateTimeOffsetValue("startTime", StartTime);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.IncidentStatus>("status", Status);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -11,84 +11,122 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class LnpOrderPutResponseJsonLnpOrderResponse : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("billingTelephoneNumber") is { } nullNodeBillingTelephoneNumber && nullNodeBillingTelephoneNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BillingTelephoneNumber = null;
+            if (parseNode.GetChildNode("losingResellerName") is { } nullNodeLosingResellerName && nullNodeLosingResellerName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LosingResellerName = null;
+            if (parseNode.GetChildNode("newBillingTelephoneNumber") is { } nullNodeNewBillingTelephoneNumber && nullNodeNewBillingTelephoneNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NewBillingTelephoneNumber = null;
+            if (parseNode.GetChildNode("orderId") is { } nullNodeOrderId && nullNodeOrderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrderId = null;
+            if (parseNode.GetChildNode("phoneNumberGroups") is { } nullNodePhoneNumberGroups && nullNodePhoneNumberGroups.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumberGroups = null;
+            if (parseNode.GetChildNode("processingStatus") is { } nullNodeProcessingStatus && nullNodeProcessingStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProcessingStatus = null;
+            if (parseNode.GetChildNode("requestedFocDate") is { } nullNodeRequestedFocDate && nullNodeRequestedFocDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RequestedFocDate = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("tags") is { } nullNodeTags && nullNodeTags.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tags = null;
+            if (parseNode.GetChildNode("targetRespOrgId") is { } nullNodeTargetRespOrgId && nullNodeTargetRespOrgId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TargetRespOrgId = null;
+            if (parseNode.GetChildNode("triggered") is { } nullNodeTriggered && nullNodeTriggered.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Triggered = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The BillingTelephoneNumber is the primary telephone number associated with the invoice that the subscriber gets from the losing carrier.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BillingTelephoneNumber { get; set; }
+        public string? BillingTelephoneNumber { get => _explicitNullValueBillingTelephoneNumber; set { _explicitNullValueBillingTelephoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("billingTelephoneNumber"); else _explicitNullProperties?.Remove("billingTelephoneNumber"); } }
+        private string? _explicitNullValueBillingTelephoneNumber = default!;
 #nullable restore
 #else
-        public string BillingTelephoneNumber { get; set; }
+        public string BillingTelephoneNumber { get => _explicitNullValueBillingTelephoneNumber; set { _explicitNullValueBillingTelephoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("billingTelephoneNumber"); else _explicitNullProperties?.Remove("billingTelephoneNumber"); } }
+        private string _explicitNullValueBillingTelephoneNumber = default!;
 #endif
         /// <summary>Name of the company serving the telephone numbers prior to the port. Some Canada ports may be rejected unless this information is supplied.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LosingResellerName { get; set; }
+        public string? LosingResellerName { get => _explicitNullValueLosingResellerName; set { _explicitNullValueLosingResellerName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("losingResellerName"); else _explicitNullProperties?.Remove("losingResellerName"); } }
+        private string? _explicitNullValueLosingResellerName = default!;
 #nullable restore
 #else
-        public string LosingResellerName { get; set; }
+        public string LosingResellerName { get => _explicitNullValueLosingResellerName; set { _explicitNullValueLosingResellerName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("losingResellerName"); else _explicitNullProperties?.Remove("losingResellerName"); } }
+        private string _explicitNullValueLosingResellerName = default!;
 #endif
         /// <summary>This field is used to specify a new billing telephone number on the losing carrier account.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? NewBillingTelephoneNumber { get; set; }
+        public string? NewBillingTelephoneNumber { get => _explicitNullValueNewBillingTelephoneNumber; set { _explicitNullValueNewBillingTelephoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newBillingTelephoneNumber"); else _explicitNullProperties?.Remove("newBillingTelephoneNumber"); } }
+        private string? _explicitNullValueNewBillingTelephoneNumber = default!;
 #nullable restore
 #else
-        public string NewBillingTelephoneNumber { get; set; }
+        public string NewBillingTelephoneNumber { get => _explicitNullValueNewBillingTelephoneNumber; set { _explicitNullValueNewBillingTelephoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newBillingTelephoneNumber"); else _explicitNullProperties?.Remove("newBillingTelephoneNumber"); } }
+        private string _explicitNullValueNewBillingTelephoneNumber = default!;
 #endif
         /// <summary>Unique orderId that is used to manage the order.</summary>
-        public Guid? OrderId { get; set; }
+        public Guid? OrderId { get => _explicitNullValueOrderId; set { _explicitNullValueOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderId"); else _explicitNullProperties?.Remove("orderId"); } }
+        private Guid? _explicitNullValueOrderId = default!;
         /// <summary>The phone number groups associated with this port-in order, when the order was created using the multi-group phone number assignment.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinPhoneNumberGroupJson>? PhoneNumberGroups { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinPhoneNumberGroupJson>? PhoneNumberGroups { get => _explicitNullValuePhoneNumberGroups; set { _explicitNullValuePhoneNumberGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumberGroups"); else _explicitNullProperties?.Remove("phoneNumberGroups"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinPhoneNumberGroupJson>? _explicitNullValuePhoneNumberGroups = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinPhoneNumberGroupJson> PhoneNumberGroups { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinPhoneNumberGroupJson> PhoneNumberGroups { get => _explicitNullValuePhoneNumberGroups; set { _explicitNullValuePhoneNumberGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumberGroups"); else _explicitNullProperties?.Remove("phoneNumberGroups"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinPhoneNumberGroupJson> _explicitNullValuePhoneNumberGroups = default!;
 #endif
         /// <summary>The processingStatus property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequestedSuppProcessingStatus? ProcessingStatus { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequestedSuppProcessingStatus? ProcessingStatus { get => _explicitNullValueProcessingStatus; set { _explicitNullValueProcessingStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("processingStatus"); else _explicitNullProperties?.Remove("processingStatus"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RequestedSuppProcessingStatus? _explicitNullValueProcessingStatus = default!;
         /// <summary>This is the FOC (Firm Order Commitment) Date requested by the person (or machine) creating the Port-in Order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RequestedFocDate { get; set; }
+        public string? RequestedFocDate { get => _explicitNullValueRequestedFocDate; set { _explicitNullValueRequestedFocDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requestedFocDate"); else _explicitNullProperties?.Remove("requestedFocDate"); } }
+        private string? _explicitNullValueRequestedFocDate = default!;
 #nullable restore
 #else
-        public string RequestedFocDate { get; set; }
+        public string RequestedFocDate { get => _explicitNullValueRequestedFocDate; set { _explicitNullValueRequestedFocDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requestedFocDate"); else _explicitNullProperties?.Remove("requestedFocDate"); } }
+        private string _explicitNullValueRequestedFocDate = default!;
 #endif
         /// <summary>The status property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderPutResponseJsonLnpOrderResponseStatus? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderPutResponseJsonLnpOrderResponseStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderPutResponseJsonLnpOrderResponseStatus? _explicitNullValueStatus = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderPutResponseJsonLnpOrderResponseStatus Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderPutResponseJsonLnpOrderResponseStatus Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderPutResponseJsonLnpOrderResponseStatus _explicitNullValueStatus = default!;
 #endif
         /// <summary>Tags to associate with the phone numbers being ported in on order completion. No duplicate tag names are allowed within an order, and a maximum of 10 tags may be specified. If `tags` is not present on a SUPP, existing tags are left unchanged; if present, it replaces all tags on the order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsPhoneNumberTag>? Tags { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsPhoneNumberTag>? Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsPhoneNumberTag>? _explicitNullValueTags = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsPhoneNumberTag> Tags { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsPhoneNumberTag> Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsPhoneNumberTag> _explicitNullValueTags = default!;
 #endif
         /// <summary>This is the RespOrg ID that you want the toll-free numbers ported to. Normally it will specify a Bandwidth RespOrg ID like JYT01, but it could be something else for RespOrg Exception customers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TargetRespOrgId { get; set; }
+        public string? TargetRespOrgId { get => _explicitNullValueTargetRespOrgId; set { _explicitNullValueTargetRespOrgId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("targetRespOrgId"); else _explicitNullProperties?.Remove("targetRespOrgId"); } }
+        private string? _explicitNullValueTargetRespOrgId = default!;
 #nullable restore
 #else
-        public string TargetRespOrgId { get; set; }
+        public string TargetRespOrgId { get => _explicitNullValueTargetRespOrgId; set { _explicitNullValueTargetRespOrgId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("targetRespOrgId"); else _explicitNullProperties?.Remove("targetRespOrgId"); } }
+        private string _explicitNullValueTargetRespOrgId = default!;
 #endif
         /// <summary>The Triggered field must be set to true if you want an activation time other than the 11:30 AM ET default. The desired activation time can then be specified in the time portion of the RequestedFocDate. Triggered activation is not yet supported for toll-free port-in orders.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Triggered { get; set; }
+        public string? Triggered { get => _explicitNullValueTriggered; set { _explicitNullValueTriggered = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("triggered"); else _explicitNullProperties?.Remove("triggered"); } }
+        private string? _explicitNullValueTriggered = default!;
 #nullable restore
 #else
-        public string Triggered { get; set; }
+        public string Triggered { get => _explicitNullValueTriggered; set { _explicitNullValueTriggered = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("triggered"); else _explicitNullProperties?.Remove("triggered"); } }
+        private string _explicitNullValueTriggered = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderPutResponseJsonLnpOrderResponse"/> and sets the default values.
@@ -105,7 +143,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderPutResponseJsonLnpOrderResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderPutResponseJsonLnpOrderResponse();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderPutResponseJsonLnpOrderResponse(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -146,6 +184,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsPhoneNumberTag>("tags", Tags);
             writer.WriteStringValue("targetRespOrgId", TargetRespOrgId);
             writer.WriteStringValue("triggered", Triggered);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

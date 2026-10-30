@@ -12,57 +12,87 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PhoneNumberDetails : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("areaCode") is { } nullNodeAreaCode && nullNodeAreaCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AreaCode = null;
+            if (parseNode.GetChildNode("countryCallingCode") is { } nullNodeCountryCallingCode && nullNodeCountryCallingCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CountryCallingCode = null;
+            if (parseNode.GetChildNode("countryCodeA3") is { } nullNodeCountryCodeA3 && nullNodeCountryCodeA3.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CountryCodeA3 = null;
+            if (parseNode.GetChildNode("internalMigration") is { } nullNodeInternalMigration && nullNodeInternalMigration.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InternalMigration = null;
+            if (parseNode.GetChildNode("leadTime") is { } nullNodeLeadTime && nullNodeLeadTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LeadTime = null;
+            if (parseNode.GetChildNode("notPortableReason") is { } nullNodeNotPortableReason && nullNodeNotPortableReason.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NotPortableReason = null;
+            if (parseNode.GetChildNode("phoneNumber") is { } nullNodePhoneNumber && nullNodePhoneNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumber = null;
+            if (parseNode.GetChildNode("phoneNumberType") is { } nullNodePhoneNumberType && nullNodePhoneNumberType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumberType = null;
+            if (parseNode.GetChildNode("portable") is { } nullNodePortable && nullNodePortable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Portable = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Phone area code. Can be empty for mobile phone numbers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AreaCode { get; set; }
+        public string? AreaCode { get => _explicitNullValueAreaCode; set { _explicitNullValueAreaCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("areaCode"); else _explicitNullProperties?.Remove("areaCode"); } }
+        private string? _explicitNullValueAreaCode = default!;
 #nullable restore
 #else
-        public string AreaCode { get; set; }
+        public string AreaCode { get => _explicitNullValueAreaCode; set { _explicitNullValueAreaCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("areaCode"); else _explicitNullProperties?.Remove("areaCode"); } }
+        private string _explicitNullValueAreaCode = default!;
 #endif
         /// <summary>Country calling code. E.g. 44 for UK</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CountryCallingCode { get; set; }
+        public string? CountryCallingCode { get => _explicitNullValueCountryCallingCode; set { _explicitNullValueCountryCallingCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCallingCode"); else _explicitNullProperties?.Remove("countryCallingCode"); } }
+        private string? _explicitNullValueCountryCallingCode = default!;
 #nullable restore
 #else
-        public string CountryCallingCode { get; set; }
+        public string CountryCallingCode { get => _explicitNullValueCountryCallingCode; set { _explicitNullValueCountryCallingCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCallingCode"); else _explicitNullProperties?.Remove("countryCallingCode"); } }
+        private string _explicitNullValueCountryCallingCode = default!;
 #endif
         /// <summary>ISO 3166-1 standard 3-letter country code.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CountryCodeA3 { get; set; }
+        public string? CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
+        private string? _explicitNullValueCountryCodeA3 = default!;
 #nullable restore
 #else
-        public string CountryCodeA3 { get; set; }
+        public string CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
+        private string _explicitNullValueCountryCodeA3 = default!;
 #endif
         /// <summary>Indicates if the number is already in our network and we only need to move the number to your account.</summary>
-        public bool? InternalMigration { get; set; }
+        public bool? InternalMigration { get => _explicitNullValueInternalMigration; set { _explicitNullValueInternalMigration = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("internalMigration"); else _explicitNullProperties?.Remove("internalMigration"); } }
+        private bool? _explicitNullValueInternalMigration = default!;
         /// <summary>Amount of days it takes to complete a order in a happy flow from the moment of submission.</summary>
-        public double? LeadTime { get; set; }
+        public double? LeadTime { get => _explicitNullValueLeadTime; set { _explicitNullValueLeadTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("leadTime"); else _explicitNullProperties?.Remove("leadTime"); } }
+        private double? _explicitNullValueLeadTime = default!;
         /// <summary>Generic error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Error? NotPortableReason { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Error? NotPortableReason { get => _explicitNullValueNotPortableReason; set { _explicitNullValueNotPortableReason = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notPortableReason"); else _explicitNullProperties?.Remove("notPortableReason"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Error? _explicitNullValueNotPortableReason = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Error NotPortableReason { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Error NotPortableReason { get => _explicitNullValueNotPortableReason; set { _explicitNullValueNotPortableReason = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notPortableReason"); else _explicitNullProperties?.Remove("notPortableReason"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Error _explicitNullValueNotPortableReason = default!;
 #endif
         /// <summary>Phone number in E.164 format that the portability check response is executed against. E.g: +19995550123, +33123456789.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PhoneNumber { get; set; }
+        public string? PhoneNumber { get => _explicitNullValuePhoneNumber; set { _explicitNullValuePhoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumber"); else _explicitNullProperties?.Remove("phoneNumber"); } }
+        private string? _explicitNullValuePhoneNumber = default!;
 #nullable restore
 #else
-        public string PhoneNumber { get; set; }
+        public string PhoneNumber { get => _explicitNullValuePhoneNumber; set { _explicitNullValuePhoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumber"); else _explicitNullProperties?.Remove("phoneNumber"); } }
+        private string _explicitNullValuePhoneNumber = default!;
 #endif
         /// <summary>This is the list of supported phone number types:- National numbers: is a phone number designated to be reachable from the entire country at the same price anywhere in the country as a local phone call.- Geographic number: is a fixed-line telephone numbers beginning with a geographically assigned area code.- Mobile number: a telephone number which is registered to a mobile phone/mobile network.- Shared cost number: is a premium number in the UK, Australia, Germany, Switzerland, France, Portugal and the Netherlands, often used by businesses and other institutions.- Toll-free number: is a telephone number that is billed for all arriving calls. For the calling party, a call to a toll-free number from a landline is free of charge.- Special number: is a telephone number that can be used by a business as contact numbers for a number of reasons, including improving the callers experience through the use of network intelligent routing of calls (call recording, calls being automatically delivered to the nearest office, etc,), sharing the cost paid by the caller.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3PhoneNumberTypeEnum? PhoneNumberType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3PhoneNumberTypeEnum? PhoneNumberType { get => _explicitNullValuePhoneNumberType; set { _explicitNullValuePhoneNumberType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumberType"); else _explicitNullProperties?.Remove("phoneNumberType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3PhoneNumberTypeEnum? _explicitNullValuePhoneNumberType = default!;
         /// <summary>Indicates if the number is portable.</summary>
-        public bool? Portable { get; set; }
+        public bool? Portable { get => _explicitNullValuePortable; set { _explicitNullValuePortable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("portable"); else _explicitNullProperties?.Remove("portable"); } }
+        private bool? _explicitNullValuePortable = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails"/> and sets the default values.
         /// </summary>
@@ -78,7 +108,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -115,6 +145,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("phoneNumber", PhoneNumber);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3PhoneNumberTypeEnum>("phoneNumberType", PhoneNumberType);
             writer.WriteBoolValue("portable", Portable);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -12,67 +12,122 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SingleDidConfigurationRequest : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("blockCellular") is { } nullNodeBlockCellular && nullNodeBlockCellular.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BlockCellular = null;
+            if (parseNode.GetChildNode("blockOrdinary") is { } nullNodeBlockOrdinary && nullNodeBlockOrdinary.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BlockOrdinary = null;
+            if (parseNode.GetChildNode("blockPayphone") is { } nullNodeBlockPayphone && nullNodeBlockPayphone.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BlockPayphone = null;
+            if (parseNode.GetChildNode("callerId") is { } nullNodeCallerId && nullNodeCallerId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallerId = null;
+            if (parseNode.GetChildNode("capacityGroupId") is { } nullNodeCapacityGroupId && nullNodeCapacityGroupId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CapacityGroupId = null;
+            if (parseNode.GetChildNode("cliPrivacy") is { } nullNodeCliPrivacy && nullNodeCliPrivacy.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CliPrivacy = null;
+            if (parseNode.GetChildNode("deliveryId") is { } nullNodeDeliveryId && nullNodeDeliveryId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DeliveryId = null;
+            if (parseNode.GetChildNode("didId") is { } nullNodeDidId && nullNodeDidId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DidId = null;
+            if (parseNode.GetChildNode("dnisEnabled") is { } nullNodeDnisEnabled && nullNodeDnisEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DnisEnabled = null;
+            if (parseNode.GetChildNode("faxUriId") is { } nullNodeFaxUriId && nullNodeFaxUriId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FaxUriId = null;
+            if (parseNode.GetChildNode("limitChannels") is { } nullNodeLimitChannels && nullNodeLimitChannels.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LimitChannels = null;
+            if (parseNode.GetChildNode("limitChannelsOutbound") is { } nullNodeLimitChannelsOutbound && nullNodeLimitChannelsOutbound.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LimitChannelsOutbound = null;
+            if (parseNode.GetChildNode("peer") is { } nullNodePeer && nullNodePeer.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Peer = null;
+            if (parseNode.GetChildNode("ringback") is { } nullNodeRingback && nullNodeRingback.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Ringback = null;
+            if (parseNode.GetChildNode("smsLinkGroupId") is { } nullNodeSmsLinkGroupId && nullNodeSmsLinkGroupId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SmsLinkGroupId = null;
+            if (parseNode.GetChildNode("smsOutbound") is { } nullNodeSmsOutbound && nullNodeSmsOutbound.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SmsOutbound = null;
+            if (parseNode.GetChildNode("srvLookup") is { } nullNodeSrvLookup && nullNodeSrvLookup.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SrvLookup = null;
+            if (parseNode.GetChildNode("trunkId") is { } nullNodeTrunkId && nullNodeTrunkId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TrunkId = null;
+            if (parseNode.GetChildNode("voiceUriId") is { } nullNodeVoiceUriId && nullNodeVoiceUriId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoiceUriId = null;
+            if (parseNode.GetChildNode("voxFaxEnabled") is { } nullNodeVoxFaxEnabled && nullNodeVoxFaxEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoxFaxEnabled = null;
+            if (parseNode.GetChildNode("voxoutInternationalEnabled") is { } nullNodeVoxoutInternationalEnabled && nullNodeVoxoutInternationalEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoxoutInternationalEnabled = null;
+            if (parseNode.GetChildNode("voxoutNationalEnabled") is { } nullNodeVoxoutNationalEnabled && nullNodeVoxoutNationalEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoxoutNationalEnabled = null;
+            if (parseNode.GetChildNode("webRtcEnabled") is { } nullNodeWebRtcEnabled && nullNodeWebRtcEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WebRtcEnabled = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Indicates the current CPC configuration for a given DID. For toll-free numbers, it can be useful to block certain calling party categories (CPC) since the call rates can hugely differ. It is to block calls from mobile networks.</summary>
-        public bool? BlockCellular { get; set; }
+        public bool? BlockCellular { get => _explicitNullValueBlockCellular; set { _explicitNullValueBlockCellular = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blockCellular"); else _explicitNullProperties?.Remove("blockCellular"); } }
+        private bool? _explicitNullValueBlockCellular = default!;
         /// <summary>Indicates the current CPC configuration for a given DID. For toll-free numbers, it can be useful to block certain calling party categories (CPC) since the call rates can hugely differ. It is to block calls from fixed lines networks.</summary>
-        public bool? BlockOrdinary { get; set; }
+        public bool? BlockOrdinary { get => _explicitNullValueBlockOrdinary; set { _explicitNullValueBlockOrdinary = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blockOrdinary"); else _explicitNullProperties?.Remove("blockOrdinary"); } }
+        private bool? _explicitNullValueBlockOrdinary = default!;
         /// <summary>Indicates the current CPC configuration for a given DID. For toll-free numbers, it can be useful to block certain calling party categories (CPC) since the call rates can hugely differ. It is to block calls from payphones.</summary>
-        public bool? BlockPayphone { get; set; }
+        public bool? BlockPayphone { get => _explicitNullValueBlockPayphone; set { _explicitNullValueBlockPayphone = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blockPayphone"); else _explicitNullProperties?.Remove("blockPayphone"); } }
+        private bool? _explicitNullValueBlockPayphone = default!;
         /// <summary>The callerId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallerId? CallerId { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallerId? CallerId { get => _explicitNullValueCallerId; set { _explicitNullValueCallerId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callerId"); else _explicitNullProperties?.Remove("callerId"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CallerId? _explicitNullValueCallerId = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallerId CallerId { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallerId CallerId { get => _explicitNullValueCallerId; set { _explicitNullValueCallerId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callerId"); else _explicitNullProperties?.Remove("callerId"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CallerId _explicitNullValueCallerId = default!;
 #endif
         /// <summary>This is the ID of the capacity group to which you want to map the DIDs. The current capacityGroupId can be unset by using `null` as the value.</summary>
-        public int? CapacityGroupId { get; set; }
+        public int? CapacityGroupId { get => _explicitNullValueCapacityGroupId; set { _explicitNullValueCapacityGroupId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("capacityGroupId"); else _explicitNullProperties?.Remove("capacityGroupId"); } }
+        private int? _explicitNullValueCapacityGroupId = default!;
         /// <summary>this option is only available to certain Bandwidth customers who are authorized to change the privacy settings on a per DID basis. Please check with your account manager if you need that option enabled. The possible values are P_ASSERTED_ID, REMOTE_PARTY_ID or DISABLED</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequestCliPrivacy? CliPrivacy { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequestCliPrivacy? CliPrivacy { get => _explicitNullValueCliPrivacy; set { _explicitNullValueCliPrivacy = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cliPrivacy"); else _explicitNullProperties?.Remove("cliPrivacy"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequestCliPrivacy? _explicitNullValueCliPrivacy = default!;
         /// <summary>This is the ID of the POP on which you want to map the DIDs.</summary>
-        public int? DeliveryId { get; set; }
+        public int? DeliveryId { get => _explicitNullValueDeliveryId; set { _explicitNullValueDeliveryId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deliveryId"); else _explicitNullProperties?.Remove("deliveryId"); } }
+        private int? _explicitNullValueDeliveryId = default!;
         /// <summary>This is the single didId to be configured. Returned in checkoutCart() and listDid().</summary>
-        public int? DidId { get; set; }
+        public int? DidId { get => _explicitNullValueDidId; set { _explicitNullValueDidId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("didId"); else _explicitNullProperties?.Remove("didId"); } }
+        private int? _explicitNullValueDidId = default!;
         /// <summary>Indicates whether the DNIS service is enabled for a given DID. When enabled, this option sends the DID&apos;s E.164 number in the To header of the SIP INVITE, while the SIP Request-URI is set to the URI you configure. This can be helpful in providing account information inside VoiceXML applications</summary>
-        public bool? DnisEnabled { get; set; }
+        public bool? DnisEnabled { get => _explicitNullValueDnisEnabled; set { _explicitNullValueDnisEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dnisEnabled"); else _explicitNullProperties?.Remove("dnisEnabled"); } }
+        private bool? _explicitNullValueDnisEnabled = default!;
         /// <summary>This is the ID of the Fax URI to which you want to map the DIDs. The current faxUriId can be unset by using `null` as the value.</summary>
-        public int? FaxUriId { get; set; }
+        public int? FaxUriId { get => _explicitNullValueFaxUriId; set { _explicitNullValueFaxUriId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("faxUriId"); else _explicitNullProperties?.Remove("faxUriId"); } }
+        private int? _explicitNullValueFaxUriId = default!;
         /// <summary>Allows you to specify an inbound concurrent limit for the DID. The current limit can be unset by using `null` which will allow the maximum inbound concurrent limit set on the Capacity Group.</summary>
-        public double? LimitChannels { get; set; }
+        public double? LimitChannels { get => _explicitNullValueLimitChannels; set { _explicitNullValueLimitChannels = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("limitChannels"); else _explicitNullProperties?.Remove("limitChannels"); } }
+        private double? _explicitNullValueLimitChannels = default!;
         /// <summary>Allows you to specify an outbound concurrent limit for the DID. The current limit can be unset by using `null` which will allow the maximum outbound concurrent limit set on the Capacity Group.</summary>
-        public double? LimitChannelsOutbound { get; set; }
+        public double? LimitChannelsOutbound { get => _explicitNullValueLimitChannelsOutbound; set { _explicitNullValueLimitChannelsOutbound = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("limitChannelsOutbound"); else _explicitNullProperties?.Remove("limitChannelsOutbound"); } }
+        private double? _explicitNullValueLimitChannelsOutbound = default!;
         /// <summary>The peer property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Peer? Peer { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.Peer? Peer { get => _explicitNullValuePeer; set { _explicitNullValuePeer = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("peer"); else _explicitNullProperties?.Remove("peer"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.Peer? _explicitNullValuePeer = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Peer Peer { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.Peer Peer { get => _explicitNullValuePeer; set { _explicitNullValuePeer = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("peer"); else _explicitNullProperties?.Remove("peer"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.Peer _explicitNullValuePeer = default!;
 #endif
         /// <summary>indicates the ringback method that is applied to the DID. The possible values are STANDARD, RINGING, PROGRESS</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequestRingback? Ringback { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequestRingback? Ringback { get => _explicitNullValueRingback; set { _explicitNullValueRingback = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ringback"); else _explicitNullProperties?.Remove("ringback"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequestRingback? _explicitNullValueRingback = default!;
         /// <summary>This is the ID of the SMS Link Group to which you want to map the DIDs. The current smsLinkGroupId can be unset by using `null` as the value.</summary>
-        public int? SmsLinkGroupId { get; set; }
+        public int? SmsLinkGroupId { get => _explicitNullValueSmsLinkGroupId; set { _explicitNullValueSmsLinkGroupId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("smsLinkGroupId"); else _explicitNullProperties?.Remove("smsLinkGroupId"); } }
+        private int? _explicitNullValueSmsLinkGroupId = default!;
         /// <summary>Allows you to enable the outbound SMS service for the DID.</summary>
-        public bool? SmsOutbound { get; set; }
+        public bool? SmsOutbound { get => _explicitNullValueSmsOutbound; set { _explicitNullValueSmsOutbound = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("smsOutbound"); else _explicitNullProperties?.Remove("smsOutbound"); } }
+        private bool? _explicitNullValueSmsOutbound = default!;
         /// <summary>Indicates whether you want to enable DNS SRV on the DID(s). While a standard DNS record maps one domain name to one IP address, a DNS SRV record maps one domain name to multiple IP addresses. When Bandwidth performs a DNS SRV request on your DNS server, it selects only one of these IP addresses returned by the DNS.</summary>
-        public bool? SrvLookup { get; set; }
+        public bool? SrvLookup { get => _explicitNullValueSrvLookup; set { _explicitNullValueSrvLookup = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("srvLookup"); else _explicitNullProperties?.Remove("srvLookup"); } }
+        private bool? _explicitNullValueSrvLookup = default!;
         /// <summary>This is the ID of the trunk (cf. listTrunk method in Inventory module) to which you want to map the DIDs. The current trunkId can be unset by using `null` as the value.</summary>
-        public int? TrunkId { get; set; }
+        public int? TrunkId { get => _explicitNullValueTrunkId; set { _explicitNullValueTrunkId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("trunkId"); else _explicitNullProperties?.Remove("trunkId"); } }
+        private int? _explicitNullValueTrunkId = default!;
         /// <summary>This is the ID of the Voice URI to which you want to map the DIDs. The current voiceUriID can be unset by using `null` as the value.</summary>
-        public int? VoiceUriId { get; set; }
+        public int? VoiceUriId { get => _explicitNullValueVoiceUriId; set { _explicitNullValueVoiceUriId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceUriId"); else _explicitNullProperties?.Remove("voiceUriId"); } }
+        private int? _explicitNullValueVoiceUriId = default!;
         /// <summary>Allows you to enable the VoxFax service for the DID.</summary>
-        public bool? VoxFaxEnabled { get; set; }
+        public bool? VoxFaxEnabled { get => _explicitNullValueVoxFaxEnabled; set { _explicitNullValueVoxFaxEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voxFaxEnabled"); else _explicitNullProperties?.Remove("voxFaxEnabled"); } }
+        private bool? _explicitNullValueVoxFaxEnabled = default!;
         /// <summary>Allows you to enable the outbound service for the DID.</summary>
-        public bool? VoxoutInternationalEnabled { get; set; }
+        public bool? VoxoutInternationalEnabled { get => _explicitNullValueVoxoutInternationalEnabled; set { _explicitNullValueVoxoutInternationalEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voxoutInternationalEnabled"); else _explicitNullProperties?.Remove("voxoutInternationalEnabled"); } }
+        private bool? _explicitNullValueVoxoutInternationalEnabled = default!;
         /// <summary>Allows you to enable the voxout national service for the DID.</summary>
-        public bool? VoxoutNationalEnabled { get; set; }
+        public bool? VoxoutNationalEnabled { get => _explicitNullValueVoxoutNationalEnabled; set { _explicitNullValueVoxoutNationalEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voxoutNationalEnabled"); else _explicitNullProperties?.Remove("voxoutNationalEnabled"); } }
+        private bool? _explicitNullValueVoxoutNationalEnabled = default!;
         /// <summary>Allows you to enable the WebRTC service for the DID.</summary>
-        public bool? WebRtcEnabled { get; set; }
+        public bool? WebRtcEnabled { get => _explicitNullValueWebRtcEnabled; set { _explicitNullValueWebRtcEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("webRtcEnabled"); else _explicitNullProperties?.Remove("webRtcEnabled"); } }
+        private bool? _explicitNullValueWebRtcEnabled = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequest"/> and sets the default values.
         /// </summary>
@@ -88,7 +143,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.SingleDidConfigurationRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -153,6 +208,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteBoolValue("voxoutInternationalEnabled", VoxoutInternationalEnabled);
             writer.WriteBoolValue("voxoutNationalEnabled", VoxoutNationalEnabled);
             writer.WriteBoolValue("webRtcEnabled", WebRtcEnabled);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -12,7 +12,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class AddToCartRequest : IComposedTypeWrapper, IParsable
-    {
+    , global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder {
+        // Preserve ambiguous union payloads without inventing a discriminator.
+        /// <summary>The complete payload when no unique typed union branch can be selected.</summary>
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode UnrecognizedValue { get; set; } = null!;
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalData { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddCapacityToCartRequest"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -57,21 +62,24 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddToCartRequest();
             if("AddCapacityToCartRequest".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.AddCapacityToCartRequest = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddCapacityToCartRequest();
+                
             }
             else if("AddCreditPackageToCartRequest".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.AddCreditPackageToCartRequest = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddCreditPackageToCartRequest();
+                
             }
             else if("AddDidToCartRequest".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.AddDidToCartRequest = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddDidToCartRequest();
+                
             }
             else if("AddPhoneNumbersToCartRequest".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.AddPhoneNumbersToCartRequest = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddPhoneNumbersToCartRequest();
+                
             }
-            return result;
+            
+            var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
+            if (result.AddCapacityToCartRequest == null && result.AddCreditPackageToCartRequest == null && result.AddDidToCartRequest == null && result.AddPhoneNumbersToCartRequest == null) result.UnrecognizedValue = unionPayload;
+return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -103,21 +111,32 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
+            if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
+            if (AddCapacityToCartRequest == null && AddCreditPackageToCartRequest == null && AddDidToCartRequest == null && AddPhoneNumbersToCartRequest == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
+            if (AddCapacityToCartRequest != null && AddCreditPackageToCartRequest == null && AddDidToCartRequest == null && AddPhoneNumbersToCartRequest == null) { if (AddCapacityToCartRequest is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, AddCapacityToCartRequest); return; }
+            if (AddCreditPackageToCartRequest != null && AddCapacityToCartRequest == null && AddDidToCartRequest == null && AddPhoneNumbersToCartRequest == null) { if (AddCreditPackageToCartRequest is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, AddCreditPackageToCartRequest); return; }
+            if (AddDidToCartRequest != null && AddCapacityToCartRequest == null && AddCreditPackageToCartRequest == null && AddPhoneNumbersToCartRequest == null) { if (AddDidToCartRequest is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, AddDidToCartRequest); return; }
+            if (AddPhoneNumbersToCartRequest != null && AddCapacityToCartRequest == null && AddCreditPackageToCartRequest == null && AddDidToCartRequest == null) { if (AddPhoneNumbersToCartRequest is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, AddPhoneNumbersToCartRequest); return; }
+
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             if(AddCapacityToCartRequest != null)
             {
+                if (AddCapacityToCartRequest is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddCapacityToCartRequest>(null, AddCapacityToCartRequest);
             }
             else if(AddCreditPackageToCartRequest != null)
             {
+                if (AddCreditPackageToCartRequest is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddCreditPackageToCartRequest>(null, AddCreditPackageToCartRequest);
             }
             else if(AddDidToCartRequest != null)
             {
+                if (AddDidToCartRequest is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddDidToCartRequest>(null, AddDidToCartRequest);
             }
             else if(AddPhoneNumbersToCartRequest != null)
             {
+                if (AddPhoneNumbersToCartRequest is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddPhoneNumbersToCartRequest>(null, AddPhoneNumbersToCartRequest);
             }
         }

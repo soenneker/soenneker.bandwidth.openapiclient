@@ -12,27 +12,42 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GlobalErrorResponse : ApiException, IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("errors") is { } nullNodeErrors && nullNodeErrors.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Errors = null;
+            if (parseNode.GetChildNode("genericErrorMessage") is { } nullNodeGenericErrorMessage && nullNodeGenericErrorMessage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) GenericErrorMessage = null;
+            if (parseNode.GetChildNode("httpStatusCode") is { } nullNodeHttpStatusCode && nullNodeHttpStatusCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HttpStatusCode = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalApiError>? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalApiError>? Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalApiError>? _explicitNullValueErrors = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalApiError> Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalApiError> Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalApiError> _explicitNullValueErrors = default!;
 #endif
         /// <summary>The genericErrorMessage property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? GenericErrorMessage { get; set; }
+        public string? GenericErrorMessage { get => _explicitNullValueGenericErrorMessage; set { _explicitNullValueGenericErrorMessage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("genericErrorMessage"); else _explicitNullProperties?.Remove("genericErrorMessage"); } }
+        private string? _explicitNullValueGenericErrorMessage = default!;
 #nullable restore
 #else
-        public string GenericErrorMessage { get; set; }
+        public string GenericErrorMessage { get => _explicitNullValueGenericErrorMessage; set { _explicitNullValueGenericErrorMessage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("genericErrorMessage"); else _explicitNullProperties?.Remove("genericErrorMessage"); } }
+        private string _explicitNullValueGenericErrorMessage = default!;
 #endif
         /// <summary>The httpStatusCode property</summary>
-        public int? HttpStatusCode { get; set; }
+        public int? HttpStatusCode { get => _explicitNullValueHttpStatusCode; set { _explicitNullValueHttpStatusCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("httpStatusCode"); else _explicitNullProperties?.Remove("httpStatusCode"); } }
+        private int? _explicitNullValueHttpStatusCode = default!;
         /// <summary>The primary error message.</summary>
         public override string Message { get => base.Message; }
         /// <summary>
@@ -50,7 +65,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalErrorResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalErrorResponse();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalErrorResponse(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -75,6 +90,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalApiError>("errors", Errors);
             writer.WriteStringValue("genericErrorMessage", GenericErrorMessage);
             writer.WriteIntValue("httpStatusCode", HttpStatusCode);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

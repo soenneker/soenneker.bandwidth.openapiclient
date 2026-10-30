@@ -506,8 +506,8 @@ components:
                 errors:
                   - type: bad-request
                     description: >-
-                      Attest level cannot be blank when the region is US or
-                      Canada
+                      Attest level cannot be blank for indirect or fixed
+                      assignments
                     code: 400
             notfound:
               summary: Certificate not associated with account id
@@ -1022,10 +1022,17 @@ components:
         - B
         - C
       nullable: true
-      description: >-
-        Attestation level. A (Full), B (Partial), or C (Gateway). Required for
-        US/CAN hosted signing cert assignments. For FR hosted assignments, this
-        can be null as the 'indirect' profileType will dictate the attestLevel.
+      description: >
+        Attestation level. A (Full), B (Partial), or C (Gateway).
+
+
+        Required when you create or replace an `INDIRECT` profile, in every
+        region. For US and FR hosted signing, this is the attestation level used
+        at call time.
+
+
+        The value can be null in a response, because older profiles can have no
+        attestation level.
       examples:
         - A
     certificateUploadResponse:
@@ -1285,6 +1292,7 @@ components:
       type: string
       enum:
         - US
+        - CA
         - FR
       description: The region for the certificate.
       examples:

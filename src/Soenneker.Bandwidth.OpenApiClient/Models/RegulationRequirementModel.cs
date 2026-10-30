@@ -11,13 +11,24 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class RegulationRequirementModel : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("addressType") is { } nullNodeAddressType && nullNodeAddressType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AddressType = null;
+            if (parseNode.GetChildNode("proofRequired") is { } nullNodeProofRequired && nullNodeProofRequired.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProofRequired = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Type of address required.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModelAddressType? AddressType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModelAddressType? AddressType { get => _explicitNullValueAddressType; set { _explicitNullValueAddressType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("addressType"); else _explicitNullProperties?.Remove("addressType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModelAddressType? _explicitNullValueAddressType = default!;
         /// <summary>Whether a proof of address is required.</summary>
-        public bool? ProofRequired { get; set; }
+        public bool? ProofRequired { get => _explicitNullValueProofRequired; set { _explicitNullValueProofRequired = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("proofRequired"); else _explicitNullProperties?.Remove("proofRequired"); } }
+        private bool? _explicitNullValueProofRequired = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModel"/> and sets the default values.
         /// </summary>
@@ -34,7 +45,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModel CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModel();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModel(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -57,6 +68,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModelAddressType>("addressType", AddressType);
             writer.WriteBoolValue("proofRequired", ProofRequired);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

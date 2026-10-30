@@ -57,6 +57,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item.A
                 { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorEnvelopeJson.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorEnvelopeJson.CreateFromDiscriminatorValue },
                 { "409", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorEnvelopeJson.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.AvailableFocDatesResponseJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.AvailableFocDatesResponseJson.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

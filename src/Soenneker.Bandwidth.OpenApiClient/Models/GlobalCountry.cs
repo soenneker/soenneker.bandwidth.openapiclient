@@ -11,31 +11,50 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GlobalCountry : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("countryCodeA3") is { } nullNodeCountryCodeA3 && nullNodeCountryCodeA3.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CountryCodeA3 = null;
+            if (parseNode.GetChildNode("countryName") is { } nullNodeCountryName && nullNodeCountryName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CountryName = null;
+            if (parseNode.GetChildNode("hasRegulationRequirement") is { } nullNodeHasRegulationRequirement && nullNodeHasRegulationRequirement.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HasRegulationRequirement = null;
+            if (parseNode.GetChildNode("hasStates") is { } nullNodeHasStates && nullNodeHasStates.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HasStates = null;
+            if (parseNode.GetChildNode("phoneCode") is { } nullNodePhoneCode && nullNodePhoneCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneCode = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The country code for the DID in its ISO 3166-1 alpha-3 format (e.g. &apos;GBR&apos; for United Kingdom, &apos;USA&apos; for United States of America, &apos;BEL&apos; for Belgium, and special code &apos;WLD&apos; for iNum numbers).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CountryCodeA3 { get; set; }
+        public string? CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
+        private string? _explicitNullValueCountryCodeA3 = default!;
 #nullable restore
 #else
-        public string CountryCodeA3 { get; set; }
+        public string CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
+        private string _explicitNullValueCountryCodeA3 = default!;
 #endif
         /// <summary>The full name of the country.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CountryName { get; set; }
+        public string? CountryName { get => _explicitNullValueCountryName; set { _explicitNullValueCountryName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryName"); else _explicitNullProperties?.Remove("countryName"); } }
+        private string? _explicitNullValueCountryName = default!;
 #nullable restore
 #else
-        public string CountryName { get; set; }
+        public string CountryName { get => _explicitNullValueCountryName; set { _explicitNullValueCountryName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryName"); else _explicitNullProperties?.Remove("countryName"); } }
+        private string _explicitNullValueCountryName = default!;
 #endif
         /// <summary>Indicates whether the country has any address regulation requirements for example like in Germany (DEU) where a DID is required to be linked to an address and a proof of address.</summary>
-        public bool? HasRegulationRequirement { get; set; }
+        public bool? HasRegulationRequirement { get => _explicitNullValueHasRegulationRequirement; set { _explicitNullValueHasRegulationRequirement = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hasRegulationRequirement"); else _explicitNullProperties?.Remove("hasRegulationRequirement"); } }
+        private bool? _explicitNullValueHasRegulationRequirement = default!;
         /// <summary>Indicates whether the country has states (e.g. USA or CAN).</summary>
-        public bool? HasStates { get; set; }
+        public bool? HasStates { get => _explicitNullValueHasStates; set { _explicitNullValueHasStates = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hasStates"); else _explicitNullProperties?.Remove("hasStates"); } }
+        private bool? _explicitNullValueHasStates = default!;
         /// <summary>The dial code of the country (e.g. 32 for BEL or 33 for FRA).</summary>
-        public int? PhoneCode { get; set; }
+        public int? PhoneCode { get => _explicitNullValuePhoneCode; set { _explicitNullValuePhoneCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneCode"); else _explicitNullProperties?.Remove("phoneCode"); } }
+        private int? _explicitNullValuePhoneCode = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalCountry"/> and sets the default values.
         /// </summary>
@@ -51,7 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalCountry CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalCountry();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalCountry(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -80,6 +99,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteBoolValue("hasRegulationRequirement", HasRegulationRequirement);
             writer.WriteBoolValue("hasStates", HasStates);
             writer.WriteIntValue("phoneCode", PhoneCode);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

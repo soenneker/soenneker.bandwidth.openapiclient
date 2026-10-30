@@ -50,7 +50,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Faxuri.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.DeleteFaxUriResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.DeleteFaxUriResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.DeleteFaxUriResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.DeleteFaxUriResponse.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Get specific Fax URI with id
@@ -69,7 +69,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Faxuri.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ListFaxUriResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ListFaxUriResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ListFaxUriResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ListFaxUriResponse.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Update existing Fax URI
@@ -92,7 +92,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Faxuri.Item
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             if(string.IsNullOrEmpty(contentType)) throw new ArgumentNullException(nameof(contentType));
             var requestInfo = ToPutRequestInformation(body, contentType, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriResponse.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Delete a Fax URI

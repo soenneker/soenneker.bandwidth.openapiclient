@@ -67,6 +67,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.TollFreeVerification.TollFreeVerific
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError.CreateFromDiscriminatorValue },
                 { "503", global::Soenneker.Bandwidth.OpenApiClient.Models.TfvError.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             var collectionResult = await RequestAdapter.SendPrimitiveCollectionAsync<string>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();

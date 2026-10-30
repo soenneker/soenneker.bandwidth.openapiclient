@@ -12,26 +12,41 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class StirShakenCertificatesAccountSpcsResponseData : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("gan") is { } nullNodeGan && nullNodeGan.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Gan = null;
+            if (parseNode.GetChildNode("region") is { } nullNodeRegion && nullNodeRegion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Region = null;
+            if (parseNode.GetChildNode("spc") is { } nullNodeSpc && nullNodeSpc.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Spc = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The Global Account Number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Gan { get; set; }
+        public string? Gan { get => _explicitNullValueGan; set { _explicitNullValueGan = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("gan"); else _explicitNullProperties?.Remove("gan"); } }
+        private string? _explicitNullValueGan = default!;
 #nullable restore
 #else
-        public string Gan { get; set; }
+        public string Gan { get => _explicitNullValueGan; set { _explicitNullValueGan = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("gan"); else _explicitNullProperties?.Remove("gan"); } }
+        private string _explicitNullValueGan = default!;
 #endif
         /// <summary>The region for the certificate.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegionAll? Region { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegionAll? Region { get => _explicitNullValueRegion; set { _explicitNullValueRegion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("region"); else _explicitNullProperties?.Remove("region"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RegionAll? _explicitNullValueRegion = default!;
         /// <summary>The Service Provider Code token.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Spc { get; set; }
+        public string? Spc { get => _explicitNullValueSpc; set { _explicitNullValueSpc = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("spc"); else _explicitNullProperties?.Remove("spc"); } }
+        private string? _explicitNullValueSpc = default!;
 #nullable restore
 #else
-        public string Spc { get; set; }
+        public string Spc { get => _explicitNullValueSpc; set { _explicitNullValueSpc = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("spc"); else _explicitNullProperties?.Remove("spc"); } }
+        private string _explicitNullValueSpc = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountSpcsResponseData"/> and sets the default values.
@@ -48,7 +63,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountSpcsResponseData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountSpcsResponseData();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountSpcsResponseData(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -73,6 +88,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("gan", Gan);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegionAll>("region", Region);
             writer.WriteStringValue("spc", Spc);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

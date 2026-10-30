@@ -11,32 +11,48 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ServiceActivationOrderPhoneNumberObjectItemServices : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("emergency") is { } nullNodeEmergency && nullNodeEmergency.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Emergency = null;
+            if (parseNode.GetChildNode("messaging") is { } nullNodeMessaging && nullNodeMessaging.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Messaging = null;
+            if (parseNode.GetChildNode("voice") is { } nullNodeVoice && nullNodeVoice.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Voice = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The emergency property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceType? Emergency { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceType? Emergency { get => _explicitNullValueEmergency; set { _explicitNullValueEmergency = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("emergency"); else _explicitNullProperties?.Remove("emergency"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceType? _explicitNullValueEmergency = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceType Emergency { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceType Emergency { get => _explicitNullValueEmergency; set { _explicitNullValueEmergency = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("emergency"); else _explicitNullProperties?.Remove("emergency"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceType _explicitNullValueEmergency = default!;
 #endif
         /// <summary>The messaging property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceType? Messaging { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceType? Messaging { get => _explicitNullValueMessaging; set { _explicitNullValueMessaging = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messaging"); else _explicitNullProperties?.Remove("messaging"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceType? _explicitNullValueMessaging = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceType Messaging { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceType Messaging { get => _explicitNullValueMessaging; set { _explicitNullValueMessaging = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messaging"); else _explicitNullProperties?.Remove("messaging"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceType _explicitNullValueMessaging = default!;
 #endif
         /// <summary>The voice property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServices? Voice { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServices? Voice { get => _explicitNullValueVoice; set { _explicitNullValueVoice = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voice"); else _explicitNullProperties?.Remove("voice"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServices? _explicitNullValueVoice = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServices Voice { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServices Voice { get => _explicitNullValueVoice; set { _explicitNullValueVoice = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voice"); else _explicitNullProperties?.Remove("voice"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServices _explicitNullValueVoice = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderPhoneNumberObjectItemServices"/> and sets the default values.
@@ -53,7 +69,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderPhoneNumberObjectItemServices CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderPhoneNumberObjectItemServices();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderPhoneNumberObjectItemServices(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -78,6 +94,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceType>("emergency", Emergency);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerServiceType>("messaging", Messaging);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServices>("voice", Voice);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

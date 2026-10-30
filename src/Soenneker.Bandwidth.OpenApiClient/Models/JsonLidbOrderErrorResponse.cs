@@ -12,34 +12,50 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class JsonLidbOrderErrorResponse : ApiException, IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("errors") is { } nullNodeErrors && nullNodeErrors.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Errors = null;
+            if (parseNode.GetChildNode("lidbOrder") is { } nullNodeLidbOrder && nullNodeLidbOrder.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LidbOrder = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderError>? Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderError>? Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderError>? _explicitNullValueErrors = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderError> Errors { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderError> Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderError> _explicitNullValueErrors = default!;
 #endif
         /// <summary>The lidbOrder property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderPayload? LidbOrder { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderPayload? LidbOrder { get => _explicitNullValueLidbOrder; set { _explicitNullValueLidbOrder = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lidbOrder"); else _explicitNullProperties?.Remove("lidbOrder"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderPayload? _explicitNullValueLidbOrder = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderPayload LidbOrder { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderPayload LidbOrder { get => _explicitNullValueLidbOrder; set { _explicitNullValueLidbOrder = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lidbOrder"); else _explicitNullProperties?.Remove("lidbOrder"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderPayload _explicitNullValueLidbOrder = default!;
 #endif
         /// <summary>The primary error message.</summary>
         public override string Message { get => base.Message; }
         /// <summary>The status property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderErrorResponseStatus? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderErrorResponseStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderErrorResponseStatus? _explicitNullValueStatus = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderErrorResponseStatus Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderErrorResponseStatus Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderErrorResponseStatus _explicitNullValueStatus = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderErrorResponse"/> and sets the default values.
@@ -56,7 +72,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderErrorResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderErrorResponse();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderErrorResponse(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -81,6 +97,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderError>("errors", Errors);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderPayload>("lidbOrder", LidbOrder);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderErrorResponseStatus>("status", Status);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

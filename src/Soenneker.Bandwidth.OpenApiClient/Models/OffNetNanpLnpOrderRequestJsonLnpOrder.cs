@@ -12,47 +12,72 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     public partial class OffNetNanpLnpOrderRequestJsonLnpOrder : global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderBasicJson, IParsable
     #pragma warning restore CS1591
     {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public override void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            base.CaptureExplicitNulls(parseNode);
+            if (parseNode.GetChildNode("alternateSpid") is { } nullNodeAlternateSpid && nullNodeAlternateSpid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AlternateSpid = null;
+            if (parseNode.GetChildNode("billingTelephoneNumber") is { } nullNodeBillingTelephoneNumber && nullNodeBillingTelephoneNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BillingTelephoneNumber = null;
+            if (parseNode.GetChildNode("losingResellerName") is { } nullNodeLosingResellerName && nullNodeLosingResellerName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LosingResellerName = null;
+            if (parseNode.GetChildNode("subscriber") is { } nullNodeSubscriber && nullNodeSubscriber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Subscriber = null;
+            if (parseNode.GetChildNode("triggered") is { } nullNodeTriggered && nullNodeTriggered.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Triggered = null;
+            if (parseNode.GetChildNode("wirelessInfo") is { } nullNodeWirelessInfo && nullNodeWirelessInfo.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WirelessInfo = null;
+        }
+
         /// <summary>Even though the telephone numbers are being ported into Bandwidth’s SPID, some of Bandwidth’s wholesale customers have an alternate SPID that is used to identify the telephone number with that customer.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AlternateSpid { get; set; }
+        public string? AlternateSpid { get => _explicitNullValueAlternateSpid; set { _explicitNullValueAlternateSpid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alternateSpid"); else _explicitNullProperties?.Remove("alternateSpid"); } }
+        private string? _explicitNullValueAlternateSpid = default!;
 #nullable restore
 #else
-        public string AlternateSpid { get; set; }
+        public string AlternateSpid { get => _explicitNullValueAlternateSpid; set { _explicitNullValueAlternateSpid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alternateSpid"); else _explicitNullProperties?.Remove("alternateSpid"); } }
+        private string _explicitNullValueAlternateSpid = default!;
 #endif
         /// <summary>The `BillingTelephoneNumber` is the primary telephone number associated with the invoice that the subscriber gets from the losing carrier. For wireline port-in, the BillingTelephoneNumber is typically the telephone number being ported in.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BillingTelephoneNumber { get; set; }
+        public string? BillingTelephoneNumber { get => _explicitNullValueBillingTelephoneNumber; set { _explicitNullValueBillingTelephoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("billingTelephoneNumber"); else _explicitNullProperties?.Remove("billingTelephoneNumber"); } }
+        private string? _explicitNullValueBillingTelephoneNumber = default!;
 #nullable restore
 #else
-        public string BillingTelephoneNumber { get; set; }
+        public string BillingTelephoneNumber { get => _explicitNullValueBillingTelephoneNumber; set { _explicitNullValueBillingTelephoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("billingTelephoneNumber"); else _explicitNullProperties?.Remove("billingTelephoneNumber"); } }
+        private string _explicitNullValueBillingTelephoneNumber = default!;
 #endif
         /// <summary>Name of the company serving the telephone numbers prior to the port. Some Canada ports may be rejected unless this information is supplied.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LosingResellerName { get; set; }
+        public string? LosingResellerName { get => _explicitNullValueLosingResellerName; set { _explicitNullValueLosingResellerName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("losingResellerName"); else _explicitNullProperties?.Remove("losingResellerName"); } }
+        private string? _explicitNullValueLosingResellerName = default!;
 #nullable restore
 #else
-        public string LosingResellerName { get; set; }
+        public string LosingResellerName { get => _explicitNullValueLosingResellerName; set { _explicitNullValueLosingResellerName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("losingResellerName"); else _explicitNullProperties?.Remove("losingResellerName"); } }
+        private string _explicitNullValueLosingResellerName = default!;
 #endif
         /// <summary>The subscriber property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderAdditionalFieldsJsonSubscriber? Subscriber { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderAdditionalFieldsJsonSubscriber? Subscriber { get => _explicitNullValueSubscriber; set { _explicitNullValueSubscriber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriber"); else _explicitNullProperties?.Remove("subscriber"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderAdditionalFieldsJsonSubscriber? _explicitNullValueSubscriber = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderAdditionalFieldsJsonSubscriber Subscriber { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderAdditionalFieldsJsonSubscriber Subscriber { get => _explicitNullValueSubscriber; set { _explicitNullValueSubscriber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriber"); else _explicitNullProperties?.Remove("subscriber"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderAdditionalFieldsJsonSubscriber _explicitNullValueSubscriber = default!;
 #endif
         /// <summary>The `Triggered` field must be set to `true` if you want an activation time other than the 11:30 AM ET default. The desired activation time can then be specified in the time portion of the `RequestedFocDate`. This field will be ignored if set for port-ins with the `MANUAL_TOLLFREE`, `MANUAL_ON_NET`, or `MANUALOFFNET` port types, as all manual port-ins are activated at 11:30 AM ET.</summary>
-        public bool? Triggered { get; set; }
+        public bool? Triggered { get => _explicitNullValueTriggered; set { _explicitNullValueTriggered = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("triggered"); else _explicitNullProperties?.Remove("triggered"); } }
+        private bool? _explicitNullValueTriggered = default!;
         /// <summary>Most common for telephone numbers that were formerly wireless.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderAdditionalFieldsJsonWirelessInfo? WirelessInfo { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderAdditionalFieldsJsonWirelessInfo? WirelessInfo { get => _explicitNullValueWirelessInfo; set { _explicitNullValueWirelessInfo = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("wirelessInfo"); else _explicitNullProperties?.Remove("wirelessInfo"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderAdditionalFieldsJsonWirelessInfo? _explicitNullValueWirelessInfo = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderAdditionalFieldsJsonWirelessInfo WirelessInfo { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderAdditionalFieldsJsonWirelessInfo WirelessInfo { get => _explicitNullValueWirelessInfo; set { _explicitNullValueWirelessInfo = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("wirelessInfo"); else _explicitNullProperties?.Remove("wirelessInfo"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderAdditionalFieldsJsonWirelessInfo _explicitNullValueWirelessInfo = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -62,7 +87,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static new global::Soenneker.Bandwidth.OpenApiClient.Models.OffNetNanpLnpOrderRequestJsonLnpOrder CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.OffNetNanpLnpOrderRequestJsonLnpOrder();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.OffNetNanpLnpOrderRequestJsonLnpOrder(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -93,7 +118,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("losingResellerName", LosingResellerName);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderAdditionalFieldsJsonSubscriber>("subscriber", Subscriber);
             writer.WriteBoolValue("triggered", Triggered);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderAdditionalFieldsJsonWirelessInfo>("wirelessInfo", WirelessInfo);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderAdditionalFieldsJsonWirelessInfo>("wirelessInfo", WirelessInfo);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

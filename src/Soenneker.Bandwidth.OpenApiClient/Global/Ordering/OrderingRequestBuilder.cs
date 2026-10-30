@@ -19,21 +19,25 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Ordering
     public partial class OrderingRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The accountbalance property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Ordering.Accountbalance.AccountbalanceRequestBuilder Accountbalance
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Ordering.Accountbalance.AccountbalanceRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The cancel property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Ordering.Cancel.CancelRequestBuilder Cancel
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Ordering.Cancel.CancelRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The cart property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Ordering.Cart.CartRequestBuilder Cart
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Ordering.Cart.CartRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The order property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Ordering.Order.OrderRequestBuilder Order
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Ordering.Order.OrderRequestBuilder(PathParameters, RequestAdapter);

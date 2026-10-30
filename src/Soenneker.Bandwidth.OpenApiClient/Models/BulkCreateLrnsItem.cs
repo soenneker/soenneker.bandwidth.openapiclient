@@ -12,22 +12,38 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class BulkCreateLrnsItem : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("accessHomingTandem") is { } nullNodeAccessHomingTandem && nullNodeAccessHomingTandem.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccessHomingTandem = null;
+            if (parseNode.GetChildNode("hostedVoice") is { } nullNodeHostedVoice && nullNodeHostedVoice.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HostedVoice = null;
+            if (parseNode.GetChildNode("lrnConfigUuid") is { } nullNodeLrnConfigUuid && nullNodeLrnConfigUuid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LrnConfigUuid = null;
+            if (parseNode.GetChildNode("lrns") is { } nullNodeLrns && nullNodeLrns.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Lrns = null;
+        }
+
         /// <summary>Whether the access homing tandem feature is enabled on this LRN.Must be enabled on the LATA prior to being enabled on the LRN.</summary>
-        public bool? AccessHomingTandem { get; set; }
+        public bool? AccessHomingTandem { get => _explicitNullValueAccessHomingTandem; set { _explicitNullValueAccessHomingTandem = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accessHomingTandem"); else _explicitNullProperties?.Remove("accessHomingTandem"); } }
+        private bool? _explicitNullValueAccessHomingTandem = default!;
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether the hosted voice feature is enabled on this LRN.Must be enabled on the LATA prior to being enabled on the LRN.</summary>
-        public bool? HostedVoice { get; set; }
+        public bool? HostedVoice { get => _explicitNullValueHostedVoice; set { _explicitNullValueHostedVoice = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hostedVoice"); else _explicitNullProperties?.Remove("hostedVoice"); } }
+        private bool? _explicitNullValueHostedVoice = default!;
         /// <summary>The UUID of the LRN Configuration to assign this LRN to at creation time.If `null` or omitted, the LRN will be created without being assigned to any LRN Configuration.</summary>
-        public Guid? LrnConfigUuid { get; set; }
+        public Guid? LrnConfigUuid { get => _explicitNullValueLrnConfigUuid; set { _explicitNullValueLrnConfigUuid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lrnConfigUuid"); else _explicitNullProperties?.Remove("lrnConfigUuid"); } }
+        private Guid? _explicitNullValueLrnConfigUuid = default!;
         /// <summary>One or more LRNs that should receive the same feature settings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Lrns { get; set; }
+        public List<string>? Lrns { get => _explicitNullValueLrns; set { _explicitNullValueLrns = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lrns"); else _explicitNullProperties?.Remove("lrns"); } }
+        private List<string>? _explicitNullValueLrns = default!;
 #nullable restore
 #else
-        public List<string> Lrns { get; set; }
+        public List<string> Lrns { get => _explicitNullValueLrns; set { _explicitNullValueLrns = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lrns"); else _explicitNullProperties?.Remove("lrns"); } }
+        private List<string> _explicitNullValueLrns = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BulkCreateLrnsItem"/> and sets the default values.
@@ -44,7 +60,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.BulkCreateLrnsItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.BulkCreateLrnsItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.BulkCreateLrnsItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -71,6 +87,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteBoolValue("hostedVoice", HostedVoice);
             writer.WriteGuidValue("lrnConfigUuid", LrnConfigUuid);
             writer.WriteCollectionOfPrimitiveValues<string>("lrns", Lrns);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

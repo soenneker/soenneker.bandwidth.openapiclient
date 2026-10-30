@@ -12,42 +12,63 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class NumberActivationRequirementsData : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("areaCodes") is { } nullNodeAreaCodes && nullNodeAreaCodes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AreaCodes = null;
+            if (parseNode.GetChildNode("countryCodeA3") is { } nullNodeCountryCodeA3 && nullNodeCountryCodeA3.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CountryCodeA3 = null;
+            if (parseNode.GetChildNode("phoneNumberType") is { } nullNodePhoneNumberType && nullNodePhoneNumberType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumberType = null;
+            if (parseNode.GetChildNode("referenceId") is { } nullNodeReferenceId && nullNodeReferenceId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReferenceId = null;
+            if (parseNode.GetChildNode("requirementsPackageId") is { } nullNodeRequirementsPackageId && nullNodeRequirementsPackageId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RequirementsPackageId = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The areaCodes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? AreaCodes { get; set; }
+        public List<string>? AreaCodes { get => _explicitNullValueAreaCodes; set { _explicitNullValueAreaCodes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("areaCodes"); else _explicitNullProperties?.Remove("areaCodes"); } }
+        private List<string>? _explicitNullValueAreaCodes = default!;
 #nullable restore
 #else
-        public List<string> AreaCodes { get; set; }
+        public List<string> AreaCodes { get => _explicitNullValueAreaCodes; set { _explicitNullValueAreaCodes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("areaCodes"); else _explicitNullProperties?.Remove("areaCodes"); } }
+        private List<string> _explicitNullValueAreaCodes = default!;
 #endif
         /// <summary>Country code in ISO 3166-1 alpha-3 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CountryCodeA3 { get; set; }
+        public string? CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
+        private string? _explicitNullValueCountryCodeA3 = default!;
 #nullable restore
 #else
-        public string CountryCodeA3 { get; set; }
+        public string CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
+        private string _explicitNullValueCountryCodeA3 = default!;
 #endif
         /// <summary>The type of phone number.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum? PhoneNumberType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum? PhoneNumberType { get => _explicitNullValuePhoneNumberType; set { _explicitNullValuePhoneNumberType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumberType"); else _explicitNullProperties?.Remove("phoneNumberType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum? _explicitNullValuePhoneNumberType = default!;
         /// <summary>A unique reference ID to the requirement set</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ReferenceId { get; set; }
+        public string? ReferenceId { get => _explicitNullValueReferenceId; set { _explicitNullValueReferenceId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("referenceId"); else _explicitNullProperties?.Remove("referenceId"); } }
+        private string? _explicitNullValueReferenceId = default!;
 #nullable restore
 #else
-        public string ReferenceId { get; set; }
+        public string ReferenceId { get => _explicitNullValueReferenceId; set { _explicitNullValueReferenceId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("referenceId"); else _explicitNullProperties?.Remove("referenceId"); } }
+        private string _explicitNullValueReferenceId = default!;
 #endif
         /// <summary>Unique identifier for requirements package</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RequirementsPackageId { get; set; }
+        public string? RequirementsPackageId { get => _explicitNullValueRequirementsPackageId; set { _explicitNullValueRequirementsPackageId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requirementsPackageId"); else _explicitNullProperties?.Remove("requirementsPackageId"); } }
+        private string? _explicitNullValueRequirementsPackageId = default!;
 #nullable restore
 #else
-        public string RequirementsPackageId { get; set; }
+        public string RequirementsPackageId { get => _explicitNullValueRequirementsPackageId; set { _explicitNullValueRequirementsPackageId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requirementsPackageId"); else _explicitNullProperties?.Remove("requirementsPackageId"); } }
+        private string _explicitNullValueRequirementsPackageId = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationRequirementsData"/> and sets the default values.
@@ -64,7 +85,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationRequirementsData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationRequirementsData();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationRequirementsData(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -93,6 +114,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum>("phoneNumberType", PhoneNumberType);
             writer.WriteStringValue("referenceId", ReferenceId);
             writer.WriteStringValue("requirementsPackageId", RequirementsPackageId);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

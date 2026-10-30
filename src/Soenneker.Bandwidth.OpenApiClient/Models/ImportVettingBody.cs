@@ -11,18 +11,30 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ImportVettingBody : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("evpId") is { } nullNodeEvpId && nullNodeEvpId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EvpId = null;
+            if (parseNode.GetChildNode("vettingToken") is { } nullNodeVettingToken && nullNodeVettingToken.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VettingToken = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The external vetting companies that can be used to vet brands. Aegis Mobile accepts standard, enhanced, political, Auth+, and RCS vetting requests; Campaign Verify (CV) vets federal political brands (import only); WMC Global supports standard vetting.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingProviderId? EvpId { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingProviderId? EvpId { get => _explicitNullValueEvpId; set { _explicitNullValueEvpId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("evpId"); else _explicitNullProperties?.Remove("evpId"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingProviderId? _explicitNullValueEvpId = default!;
         /// <summary>The vetting token, required for Aegis vettings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? VettingToken { get; set; }
+        public string? VettingToken { get => _explicitNullValueVettingToken; set { _explicitNullValueVettingToken = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("vettingToken"); else _explicitNullProperties?.Remove("vettingToken"); } }
+        private string? _explicitNullValueVettingToken = default!;
 #nullable restore
 #else
-        public string VettingToken { get; set; }
+        public string VettingToken { get => _explicitNullValueVettingToken; set { _explicitNullValueVettingToken = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("vettingToken"); else _explicitNullProperties?.Remove("vettingToken"); } }
+        private string _explicitNullValueVettingToken = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ImportVettingBody"/> and sets the default values.
@@ -39,7 +51,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.ImportVettingBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.ImportVettingBody();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.ImportVettingBody(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,6 +74,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingProviderId>("evpId", EvpId);
             writer.WriteStringValue("vettingToken", VettingToken);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

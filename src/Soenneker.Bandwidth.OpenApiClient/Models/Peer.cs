@@ -11,34 +11,52 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class Peer : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("codecs") is { } nullNodeCodecs && nullNodeCodecs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Codecs = null;
+            if (parseNode.GetChildNode("dtmf") is { } nullNodeDtmf && nullNodeDtmf.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Dtmf = null;
+            if (parseNode.GetChildNode("dtmfInbandMute") is { } nullNodeDtmfInbandMute && nullNodeDtmfInbandMute.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DtmfInbandMute = null;
+            if (parseNode.GetChildNode("t38Enabled") is { } nullNodeT38Enabled && nullNodeT38Enabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) T38Enabled = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>List of codecs that are supported for the calls on a given DID. The possible values are: G711A, G711U, G729.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PeerCodecsItem?>? Codecs { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PeerCodecsItem?>? Codecs { get => _explicitNullValueCodecs; set { _explicitNullValueCodecs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("codecs"); else _explicitNullProperties?.Remove("codecs"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PeerCodecsItem?>? _explicitNullValueCodecs = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PeerCodecsItem?> Codecs { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PeerCodecsItem?> Codecs { get => _explicitNullValueCodecs; set { _explicitNullValueCodecs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("codecs"); else _explicitNullProperties?.Remove("codecs"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PeerCodecsItem?> _explicitNullValueCodecs = default!;
 #endif
         /// <summary>Dtmf and dtmfInbandMute indicate the current DMTF configuration for the calls on a given DID. The possible values for dtmf are INBAND, INFO, RFC2833, RFC2833_INFO, RFC2833_INBAND. For the last two values, the system will automatically choose between RFC2833 and INFO or INBAND. The standard way to carry out-of-band DTMF via SIP is as RTP payload (see RFC 2833). It has the advantage that it provides accurate timing and alignment with the speech RTP packets.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PeerDtmf? Dtmf { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PeerDtmf? Dtmf { get => _explicitNullValueDtmf; set { _explicitNullValueDtmf = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dtmf"); else _explicitNullProperties?.Remove("dtmf"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.PeerDtmf? _explicitNullValueDtmf = default!;
         /// <summary>By activating dtmfInbandMute on a number, the inband DTMF tones are removed from the audio stream. This is recommended when you add inband DTMF tones yourself to the audio stream afterwards (which can be the case for example when the call is sent back to the PSTN).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DtmfInbandMute { get; set; }
+        public string? DtmfInbandMute { get => _explicitNullValueDtmfInbandMute; set { _explicitNullValueDtmfInbandMute = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dtmfInbandMute"); else _explicitNullProperties?.Remove("dtmfInbandMute"); } }
+        private string? _explicitNullValueDtmfInbandMute = default!;
 #nullable restore
 #else
-        public string DtmfInbandMute { get; set; }
+        public string DtmfInbandMute { get => _explicitNullValueDtmfInbandMute; set { _explicitNullValueDtmfInbandMute = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dtmfInbandMute"); else _explicitNullProperties?.Remove("dtmfInbandMute"); } }
+        private string _explicitNullValueDtmfInbandMute = default!;
 #endif
         /// <summary>Indicates whether a DID is T.38 enabled. It can be configured per DID in the configuration module using the applyConfiguration method.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? T38Enabled { get; set; }
+        public string? T38Enabled { get => _explicitNullValueT38Enabled; set { _explicitNullValueT38Enabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("t38Enabled"); else _explicitNullProperties?.Remove("t38Enabled"); } }
+        private string? _explicitNullValueT38Enabled = default!;
 #nullable restore
 #else
-        public string T38Enabled { get; set; }
+        public string T38Enabled { get => _explicitNullValueT38Enabled; set { _explicitNullValueT38Enabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("t38Enabled"); else _explicitNullProperties?.Remove("t38Enabled"); } }
+        private string _explicitNullValueT38Enabled = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Peer"/> and sets the default values.
@@ -55,7 +73,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.Peer CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.Peer();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.Peer(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -82,6 +100,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PeerDtmf>("dtmf", Dtmf);
             writer.WriteStringValue("dtmfInbandMute", DtmfInbandMute);
             writer.WriteStringValue("t38Enabled", T38Enabled);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

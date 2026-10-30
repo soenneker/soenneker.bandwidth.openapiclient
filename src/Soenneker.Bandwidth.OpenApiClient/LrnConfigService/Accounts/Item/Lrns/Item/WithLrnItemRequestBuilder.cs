@@ -64,6 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Lrns.
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorBody.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorBody.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorBody.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -101,6 +102,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Lrns.
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorBody.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorBody.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorBody.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnUpdateResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.LrnUpdateResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -138,6 +140,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Lrns.
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorBody.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorBody.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorBody.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnCreatedResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.LrnCreatedResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

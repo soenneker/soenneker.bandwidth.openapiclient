@@ -77,31 +77,33 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderPutResponseJson.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderResponseCancelJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderResponseCancelJson.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves the information associated with the specified port-in ID number. Note: For users of Enterprise Telephony accounts, AlternateSpid, LosingCarrierSPID, LosingCarrierName, and LosingCarrierIsWireless, are omitted from the success output.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RetrievePortin200Response"/></returns>
+        /// <returns>A <see cref="Stream"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.RetrievePortin200Response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.RetrievePortin200Response> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.RetrievePortin200Response>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.RetrievePortin200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &lt;p&gt;It is possible to change (&quot;SUPP&quot; in LNP terms) an existing LNP order. This is done via a PUT on the existing order-id.  If a field is present in the PUT /portins/{orderId} payload, the value of the field will be updated for the order, subject to existing rules about the field. If a field is NOT present in the PUT /portins/{orderId} payload, behavior varies as to whether the missing field is removed from the port-in, set to a default value, or left unchanged. Therefore, the LnpOrderSupp request payload must include all the fields specified in the schema. We strongly recommend performing a GET request on the order first and copying the values for all elements that you do not intend to change. Please note that some fields returned in the GET response are not part of the schema and cannot be included in the request payload.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; &lt;ul&gt;&lt;li&gt; If the order ProcessingStatus is DRAFT, the rules about what can be changed are much more relaxed. Most of the validation is performed when the ProcessingStatus is changed from DRAFT to SUBMITTED.  If SUPP is performed on a draft portin, no validations are applied except validation of the ListOfPhoneNumbers, if at least 1 PhoneNumber is provided.&lt;/li&gt; &lt;li&gt;Submitting the parent bulk port-in will trigger the submission of child port-in orders.&lt;/li&gt;&lt;/ul&gt; &lt;/p&gt;Please visit &lt;a href=&apos;/docs/numbers/porting/port-ins/stand-alone-port-ins&apos;&gt;How to Manage Port in&lt;/a&gt; guide. Also you can find more information about port types on &lt;a href=&apos;/docs/numbers/porting/port-ins/stand-alone-portins/lnpChecker&apos;&gt;Port Types section of this &lt;/a&gt; guide
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdatePortin200Response"/></returns>
+        /// <returns>A <see cref="Stream"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -109,11 +111,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderPutResponseJson">When receiving a 409 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdatePortin200Response?> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdatePortinJsonRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream?> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdatePortinJsonRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdatePortin200Response> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdatePortinJsonRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdatePortinJsonRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -122,8 +124,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Item
             {
                 { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderPutResponseJson.CreateFromDiscriminatorValue },
                 { "409", global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderPutResponseJson.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdatePortin200Response>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.UpdatePortin200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// If port-in order is in DRAFT state the order will be deleted.  Otherwise the call simplyplaces the existing order in a requested_cancel state.  The order will transition to CANCELLEDas soon as the cancellation is conveyed to our porting vendor.  For non-draft orders, DELETEdoes not actually remove the order, but cancels it.  DELETE has no effect on orders alreadyin a terminal state (i.e. COMPLETE, CANCELLED).

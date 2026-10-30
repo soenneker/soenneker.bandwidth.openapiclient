@@ -11,64 +11,92 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class QualityAttributes : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("avgMos") is { } nullNodeAvgMos && nullNodeAvgMos.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AvgMos = null;
+            if (parseNode.GetChildNode("codec") is { } nullNodeCodec && nullNodeCodec.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Codec = null;
+            if (parseNode.GetChildNode("jitter") is { } nullNodeJitter && nullNodeJitter.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Jitter = null;
+            if (parseNode.GetChildNode("maxMos") is { } nullNodeMaxMos && nullNodeMaxMos.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxMos = null;
+            if (parseNode.GetChildNode("minMos") is { } nullNodeMinMos && nullNodeMinMos.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MinMos = null;
+            if (parseNode.GetChildNode("packetLoss") is { } nullNodePacketLoss && nullNodePacketLoss.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PacketLoss = null;
+            if (parseNode.GetChildNode("rtt") is { } nullNodeRtt && nullNodeRtt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Rtt = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The average Mean Opinion Score between 1-5 used to predict the call quality. The MOS score will depend on Codec.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AvgMos { get; set; }
+        public string? AvgMos { get => _explicitNullValueAvgMos; set { _explicitNullValueAvgMos = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("avgMos"); else _explicitNullProperties?.Remove("avgMos"); } }
+        private string? _explicitNullValueAvgMos = default!;
 #nullable restore
 #else
-        public string AvgMos { get; set; }
+        public string AvgMos { get => _explicitNullValueAvgMos; set { _explicitNullValueAvgMos = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("avgMos"); else _explicitNullProperties?.Remove("avgMos"); } }
+        private string _explicitNullValueAvgMos = default!;
 #endif
         /// <summary>The delivery codec used for this call.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Codec { get; set; }
+        public string? Codec { get => _explicitNullValueCodec; set { _explicitNullValueCodec = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("codec"); else _explicitNullProperties?.Remove("codec"); } }
+        private string? _explicitNullValueCodec = default!;
 #nullable restore
 #else
-        public string Codec { get; set; }
+        public string Codec { get => _explicitNullValueCodec; set { _explicitNullValueCodec = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("codec"); else _explicitNullProperties?.Remove("codec"); } }
+        private string _explicitNullValueCodec = default!;
 #endif
         /// <summary>Variation in the delay of received packets measured in microseconds.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Jitter { get; set; }
+        public string? Jitter { get => _explicitNullValueJitter; set { _explicitNullValueJitter = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("jitter"); else _explicitNullProperties?.Remove("jitter"); } }
+        private string? _explicitNullValueJitter = default!;
 #nullable restore
 #else
-        public string Jitter { get; set; }
+        public string Jitter { get => _explicitNullValueJitter; set { _explicitNullValueJitter = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("jitter"); else _explicitNullProperties?.Remove("jitter"); } }
+        private string _explicitNullValueJitter = default!;
 #endif
         /// <summary>The maximum MOS score achieved on this call.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? MaxMos { get; set; }
+        public string? MaxMos { get => _explicitNullValueMaxMos; set { _explicitNullValueMaxMos = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxMos"); else _explicitNullProperties?.Remove("maxMos"); } }
+        private string? _explicitNullValueMaxMos = default!;
 #nullable restore
 #else
-        public string MaxMos { get; set; }
+        public string MaxMos { get => _explicitNullValueMaxMos; set { _explicitNullValueMaxMos = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxMos"); else _explicitNullProperties?.Remove("maxMos"); } }
+        private string _explicitNullValueMaxMos = default!;
 #endif
         /// <summary>The minimum MOS score determined on this call.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? MinMos { get; set; }
+        public string? MinMos { get => _explicitNullValueMinMos; set { _explicitNullValueMinMos = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("minMos"); else _explicitNullProperties?.Remove("minMos"); } }
+        private string? _explicitNullValueMinMos = default!;
 #nullable restore
 #else
-        public string MinMos { get; set; }
+        public string MinMos { get => _explicitNullValueMinMos; set { _explicitNullValueMinMos = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("minMos"); else _explicitNullProperties?.Remove("minMos"); } }
+        private string _explicitNullValueMinMos = default!;
 #endif
         /// <summary>A percentage for the number of packets that failed to reach their destination.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PacketLoss { get; set; }
+        public string? PacketLoss { get => _explicitNullValuePacketLoss; set { _explicitNullValuePacketLoss = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("packetLoss"); else _explicitNullProperties?.Remove("packetLoss"); } }
+        private string? _explicitNullValuePacketLoss = default!;
 #nullable restore
 #else
-        public string PacketLoss { get; set; }
+        public string PacketLoss { get => _explicitNullValuePacketLoss; set { _explicitNullValuePacketLoss = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("packetLoss"); else _explicitNullProperties?.Remove("packetLoss"); } }
+        private string _explicitNullValuePacketLoss = default!;
 #endif
         /// <summary>The Round Trip Time or Post Dial Delay measured in milliseconds.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Rtt { get; set; }
+        public string? Rtt { get => _explicitNullValueRtt; set { _explicitNullValueRtt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rtt"); else _explicitNullProperties?.Remove("rtt"); } }
+        private string? _explicitNullValueRtt = default!;
 #nullable restore
 #else
-        public string Rtt { get; set; }
+        public string Rtt { get => _explicitNullValueRtt; set { _explicitNullValueRtt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rtt"); else _explicitNullProperties?.Remove("rtt"); } }
+        private string _explicitNullValueRtt = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.QualityAttributes"/> and sets the default values.
@@ -85,7 +113,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.QualityAttributes CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.QualityAttributes();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.QualityAttributes(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -118,6 +146,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("minMos", MinMos);
             writer.WriteStringValue("packetLoss", PacketLoss);
             writer.WriteStringValue("rtt", Rtt);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

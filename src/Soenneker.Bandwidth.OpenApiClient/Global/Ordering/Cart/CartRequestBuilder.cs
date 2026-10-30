@@ -64,7 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Ordering.Cart
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCartResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ListCartResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCartResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ListCartResponse.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// The creation of a cart depends on your own business logic, but you&apos;ll always need to create at least one cart to place an order (checkoutCart). You can place multiple orders per cart or you can create separate carts for each order. Note that different product types (DID, Capacity or prepaid credits) can be added into one single cart. You cannot add a didGroup and quantity, and a list of phoneNumbers of the same didGroup in the same cart.
@@ -85,7 +85,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Ordering.Cart
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateCartResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CreateCartResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateCartResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CreateCartResponse.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// List and filter created carts

@@ -41,6 +41,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Regulation.RegulationRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The subscriptions property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.SubscriptionsRequestBuilder Subscriptions
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Subscriptions.SubscriptionsRequestBuilder(PathParameters, RequestAdapter);

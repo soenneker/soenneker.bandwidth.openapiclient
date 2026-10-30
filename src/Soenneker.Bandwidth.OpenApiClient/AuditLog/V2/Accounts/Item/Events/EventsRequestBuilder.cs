@@ -65,6 +65,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.AuditLog.V2.Accounts.Item.Events
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.GenericError.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.GenericError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.GenericError.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ListEventsResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ListEventsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

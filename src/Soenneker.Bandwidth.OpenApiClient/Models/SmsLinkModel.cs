@@ -11,67 +11,107 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class SmsLinkModel : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("deliveryStatusReport") is { } nullNodeDeliveryStatusReport && nullNodeDeliveryStatusReport.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DeliveryStatusReport = null;
+            if (parseNode.GetChildNode("direction") is { } nullNodeDirection && nullNodeDirection.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Direction = null;
+            if (parseNode.GetChildNode("groupId") is { } nullNodeGroupId && nullNodeGroupId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) GroupId = null;
+            if (parseNode.GetChildNode("login") is { } nullNodeLogin && nullNodeLogin.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Login = null;
+            if (parseNode.GetChildNode("monitorInterval") is { } nullNodeMonitorInterval && nullNodeMonitorInterval.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MonitorInterval = null;
+            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("password") is { } nullNodePassword && nullNodePassword.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Password = null;
+            if (parseNode.GetChildNode("smsLinkId") is { } nullNodeSmsLinkId && nullNodeSmsLinkId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SmsLinkId = null;
+            if (parseNode.GetChildNode("systemType") is { } nullNodeSystemType && nullNodeSystemType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SystemType = null;
+            if (parseNode.GetChildNode("transactionTimeout") is { } nullNodeTransactionTimeout && nullNodeTransactionTimeout.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TransactionTimeout = null;
+            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+            if (parseNode.GetChildNode("url") is { } nullNodeUrl && nullNodeUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Url = null;
+            if (parseNode.GetChildNode("useSSL") is { } nullNodeUseSSL && nullNodeUseSSL.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UseSSL = null;
+            if (parseNode.GetChildNode("weight") is { } nullNodeWeight && nullNodeWeight.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Weight = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>A flag indicating if delivery reports are enabled on the link.</summary>
-        public bool? DeliveryStatusReport { get; set; }
+        public bool? DeliveryStatusReport { get => _explicitNullValueDeliveryStatusReport; set { _explicitNullValueDeliveryStatusReport = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deliveryStatusReport"); else _explicitNullProperties?.Remove("deliveryStatusReport"); } }
+        private bool? _explicitNullValueDeliveryStatusReport = default!;
         /// <summary>This is the direction of the link: FROM_VOXBONE”, “TO_VOXBONE” or “BIDIRECTIONAL”.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModelDirection? Direction { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModelDirection? Direction { get => _explicitNullValueDirection; set { _explicitNullValueDirection = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("direction"); else _explicitNullProperties?.Remove("direction"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModelDirection? _explicitNullValueDirection = default!;
         /// <summary>Every SMS link must be in a link group. If you don’t need multiple groups, then you can create one single link group in which you place all your SMS links. This can be used to filter based on the SMS link group and get the list of your SMS links within that SMS link group.</summary>
-        public int? GroupId { get; set; }
+        public int? GroupId { get => _explicitNullValueGroupId; set { _explicitNullValueGroupId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("groupId"); else _explicitNullProperties?.Remove("groupId"); } }
+        private int? _explicitNullValueGroupId = default!;
         /// <summary>The login used for certain SMS link types. (REST_JSON)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Login { get; set; }
+        public string? Login { get => _explicitNullValueLogin; set { _explicitNullValueLogin = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("login"); else _explicitNullProperties?.Remove("login"); } }
+        private string? _explicitNullValueLogin = default!;
 #nullable restore
 #else
-        public string Login { get; set; }
+        public string Login { get => _explicitNullValueLogin; set { _explicitNullValueLogin = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("login"); else _explicitNullProperties?.Remove("login"); } }
+        private string _explicitNullValueLogin = default!;
 #endif
         /// <summary>This is a parameter (in seconds) used for SMPP default will be 60 if not specified.</summary>
-        public int? MonitorInterval { get; set; }
+        public int? MonitorInterval { get => _explicitNullValueMonitorInterval; set { _explicitNullValueMonitorInterval = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("monitorInterval"); else _explicitNullProperties?.Remove("monitorInterval"); } }
+        private int? _explicitNullValueMonitorInterval = default!;
         /// <summary>This is the name of your SMS Link and should be less than 20 characters.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string _explicitNullValueName = default!;
 #endif
         /// <summary>This is required when using SMPP or SOAP. A strong password is required with: 1 numeric, 1 upper case, 1 lower case and 1 special character. The password should be at least 8 characters (and no more than 9 characters for SMPP).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Password { get; set; }
+        public string? Password { get => _explicitNullValuePassword; set { _explicitNullValuePassword = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("password"); else _explicitNullProperties?.Remove("password"); } }
+        private string? _explicitNullValuePassword = default!;
 #nullable restore
 #else
-        public string Password { get; set; }
+        public string Password { get => _explicitNullValuePassword; set { _explicitNullValuePassword = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("password"); else _explicitNullProperties?.Remove("password"); } }
+        private string _explicitNullValuePassword = default!;
 #endif
         /// <summary>The identifier of the sms link.</summary>
-        public int? SmsLinkId { get; set; }
+        public int? SmsLinkId { get => _explicitNullValueSmsLinkId; set { _explicitNullValueSmsLinkId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("smsLinkId"); else _explicitNullProperties?.Remove("smsLinkId"); } }
+        private int? _explicitNullValueSmsLinkId = default!;
         /// <summary>Free text parameter in SMPP that can be used at your own discretion. This can be ignored, left empty or you can define your own value.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SystemType { get; set; }
+        public string? SystemType { get => _explicitNullValueSystemType; set { _explicitNullValueSystemType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("systemType"); else _explicitNullProperties?.Remove("systemType"); } }
+        private string? _explicitNullValueSystemType = default!;
 #nullable restore
 #else
-        public string SystemType { get; set; }
+        public string SystemType { get => _explicitNullValueSystemType; set { _explicitNullValueSystemType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("systemType"); else _explicitNullProperties?.Remove("systemType"); } }
+        private string _explicitNullValueSystemType = default!;
 #endif
         /// <summary>This is a parameter (in milliseconds) used for SMPP default will be 60000 if not specified.</summary>
-        public long? TransactionTimeout { get; set; }
+        public long? TransactionTimeout { get => _explicitNullValueTransactionTimeout; set { _explicitNullValueTransactionTimeout = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transactionTimeout"); else _explicitNullProperties?.Remove("transactionTimeout"); } }
+        private long? _explicitNullValueTransactionTimeout = default!;
         /// <summary>This is the type (or protocol) of the SMS Link. For SMS inbound services (when direction is “FROM_VOXBONE” or “BIDIRECTIONAL”), the possible protocols are REST_JSON, SMPP_SMSC, SMPP_ESME, SIP, SOAP (Parlay-X) and SMTP. For SMS outbound services (when direction is “TO_VOXBONE”), the possible protocols type are REST_JSON, SMPP_SMSC or SMPP_ESME.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModelType? Type { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModelType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModelType? _explicitNullValueType = default!;
         /// <summary>This is the URL to which Bandwidth sends the traffic to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Url { get; set; }
+        public string? Url { get => _explicitNullValueUrl; set { _explicitNullValueUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("url"); else _explicitNullProperties?.Remove("url"); } }
+        private string? _explicitNullValueUrl = default!;
 #nullable restore
 #else
-        public string Url { get; set; }
+        public string Url { get => _explicitNullValueUrl; set { _explicitNullValueUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("url"); else _explicitNullProperties?.Remove("url"); } }
+        private string _explicitNullValueUrl = default!;
 #endif
         /// <summary>This is used for SMPP to secure the interconnection with Bandwidth for secure communication between your servers and our SMS platform. TLSv1.2 and above are supported.</summary>
-        public bool? UseSSL { get; set; }
+        public bool? UseSSL { get => _explicitNullValueUseSSL; set { _explicitNullValueUseSSL = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("useSSL"); else _explicitNullProperties?.Remove("useSSL"); } }
+        private bool? _explicitNullValueUseSSL = default!;
         /// <summary>This parameter can be ignored for outbound links. It is useful for inbound connections on which you want to enable load balancing within a link group. A higher value means more preferred. For example if you have a link group that contains 5 connections with a weight of 1, each connection will receive one fifth of the incoming traffic.</summary>
-        public int? Weight { get; set; }
+        public int? Weight { get => _explicitNullValueWeight; set { _explicitNullValueWeight = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("weight"); else _explicitNullProperties?.Remove("weight"); } }
+        private int? _explicitNullValueWeight = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModel"/> and sets the default values.
         /// </summary>
@@ -87,7 +127,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModel CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModel();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkModel(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -134,6 +174,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("url", Url);
             writer.WriteBoolValue("useSSL", UseSSL);
             writer.WriteIntValue("weight", Weight);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

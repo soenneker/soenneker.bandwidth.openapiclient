@@ -64,6 +64,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.PsapAlerts.Accounts.Item.Emergency.P
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.PsapAlertsErrorResponse.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.PsapAlertsErrorResponse.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.PsapAlertsErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }

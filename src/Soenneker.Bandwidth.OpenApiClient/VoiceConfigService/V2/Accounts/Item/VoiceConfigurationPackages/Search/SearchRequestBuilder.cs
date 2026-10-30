@@ -67,6 +67,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceConfigService.V2.Accounts.Item.
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceErrorResponse.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceErrorResponse.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceConfigurationPackagesResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceConfigurationPackagesResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

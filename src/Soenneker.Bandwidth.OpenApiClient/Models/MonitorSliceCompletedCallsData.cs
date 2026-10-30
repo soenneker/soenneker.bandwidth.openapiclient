@@ -11,13 +11,24 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class MonitorSliceCompletedCallsData : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("connectedCallCount") is { } nullNodeConnectedCallCount && nullNodeConnectedCallCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConnectedCallCount = null;
+            if (parseNode.GetChildNode("hangupSource") is { } nullNodeHangupSource && nullNodeHangupSource.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HangupSource = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Number of successfully connected calls</summary>
-        public int? ConnectedCallCount { get; set; }
+        public int? ConnectedCallCount { get => _explicitNullValueConnectedCallCount; set { _explicitNullValueConnectedCallCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("connectedCallCount"); else _explicitNullProperties?.Remove("connectedCallCount"); } }
+        private int? _explicitNullValueConnectedCallCount = default!;
         /// <summary>The hangupSource property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorHangUpSourceResponse? HangupSource { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorHangUpSourceResponse? HangupSource { get => _explicitNullValueHangupSource; set { _explicitNullValueHangupSource = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hangupSource"); else _explicitNullProperties?.Remove("hangupSource"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorHangUpSourceResponse? _explicitNullValueHangupSource = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorSliceCompletedCallsData"/> and sets the default values.
         /// </summary>
@@ -33,7 +44,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorSliceCompletedCallsData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorSliceCompletedCallsData();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorSliceCompletedCallsData(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -56,6 +67,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("connectedCallCount", ConnectedCallCount);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorHangUpSourceResponse>("hangupSource", HangupSource);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

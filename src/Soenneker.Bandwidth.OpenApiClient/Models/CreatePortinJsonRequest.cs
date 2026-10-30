@@ -12,7 +12,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CreatePortinJsonRequest : IComposedTypeWrapper, IParsable
-    {
+    , global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder {
+        // Preserve ambiguous union payloads without inventing a discriminator.
+        /// <summary>The complete payload when no unique typed union branch can be selected.</summary>
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode UnrecognizedValue { get; set; } = null!;
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalData { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AutomatedNanpTollFreeLnpOrderRequestJson"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -97,41 +102,44 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.CreatePortinJsonRequest();
             if("AutomatedNanpTollFreeLnpOrderRequestJson".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.AutomatedNanpTollFreeLnpOrderRequestJson = new global::Soenneker.Bandwidth.OpenApiClient.Models.AutomatedNanpTollFreeLnpOrderRequestJson();
+                
             }
             else if("HostedTnLnpOrderRequestJson".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.HostedTnLnpOrderRequestJson = new global::Soenneker.Bandwidth.OpenApiClient.Models.HostedTnLnpOrderRequestJson();
+                
             }
             else if("InternalNanpLnpOrderRequestJson".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.InternalNanpLnpOrderRequestJson = new global::Soenneker.Bandwidth.OpenApiClient.Models.InternalNanpLnpOrderRequestJson();
+                
             }
             else if("ManualGlobalBetaLnpOrderRequestJson".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.ManualGlobalBetaLnpOrderRequestJson = new global::Soenneker.Bandwidth.OpenApiClient.Models.ManualGlobalBetaLnpOrderRequestJson();
+                
             }
             else if("ManualGlobalDraftLnpOrderRequestJson".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.ManualGlobalDraftLnpOrderRequestJson = new global::Soenneker.Bandwidth.OpenApiClient.Models.ManualGlobalDraftLnpOrderRequestJson();
+                
             }
             else if("ManualGlobalLarLnpOrderRequestJson".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.ManualGlobalLarLnpOrderRequestJson = new global::Soenneker.Bandwidth.OpenApiClient.Models.ManualGlobalLarLnpOrderRequestJson();
+                
             }
             else if("ManualNanpTollFreeLnpOrderRequestJson".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.ManualNanpTollFreeLnpOrderRequestJson = new global::Soenneker.Bandwidth.OpenApiClient.Models.ManualNanpTollFreeLnpOrderRequestJson();
+                
             }
             else if("OffNetNanpLnpOrderRequestJson".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.OffNetNanpLnpOrderRequestJson = new global::Soenneker.Bandwidth.OpenApiClient.Models.OffNetNanpLnpOrderRequestJson();
+                
             }
             else if("OnNetNanpLnpOrderRequestJson".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.OnNetNanpLnpOrderRequestJson = new global::Soenneker.Bandwidth.OpenApiClient.Models.OnNetNanpLnpOrderRequestJson();
+                
             }
-            return result;
+            
+            var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
+            if (result.AutomatedNanpTollFreeLnpOrderRequestJson == null && result.HostedTnLnpOrderRequestJson == null && result.InternalNanpLnpOrderRequestJson == null && result.ManualGlobalBetaLnpOrderRequestJson == null && result.ManualGlobalDraftLnpOrderRequestJson == null && result.ManualGlobalLarLnpOrderRequestJson == null && result.ManualNanpTollFreeLnpOrderRequestJson == null && result.OffNetNanpLnpOrderRequestJson == null && result.OnNetNanpLnpOrderRequestJson == null) result.UnrecognizedValue = unionPayload;
+return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -183,41 +191,62 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
+            if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
+            if (AutomatedNanpTollFreeLnpOrderRequestJson == null && HostedTnLnpOrderRequestJson == null && InternalNanpLnpOrderRequestJson == null && ManualGlobalBetaLnpOrderRequestJson == null && ManualGlobalDraftLnpOrderRequestJson == null && ManualGlobalLarLnpOrderRequestJson == null && ManualNanpTollFreeLnpOrderRequestJson == null && OffNetNanpLnpOrderRequestJson == null && OnNetNanpLnpOrderRequestJson == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
+            if (AutomatedNanpTollFreeLnpOrderRequestJson != null && HostedTnLnpOrderRequestJson == null && InternalNanpLnpOrderRequestJson == null && ManualGlobalBetaLnpOrderRequestJson == null && ManualGlobalDraftLnpOrderRequestJson == null && ManualGlobalLarLnpOrderRequestJson == null && ManualNanpTollFreeLnpOrderRequestJson == null && OffNetNanpLnpOrderRequestJson == null && OnNetNanpLnpOrderRequestJson == null) { if (AutomatedNanpTollFreeLnpOrderRequestJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, AutomatedNanpTollFreeLnpOrderRequestJson); return; }
+            if (HostedTnLnpOrderRequestJson != null && AutomatedNanpTollFreeLnpOrderRequestJson == null && InternalNanpLnpOrderRequestJson == null && ManualGlobalBetaLnpOrderRequestJson == null && ManualGlobalDraftLnpOrderRequestJson == null && ManualGlobalLarLnpOrderRequestJson == null && ManualNanpTollFreeLnpOrderRequestJson == null && OffNetNanpLnpOrderRequestJson == null && OnNetNanpLnpOrderRequestJson == null) { if (HostedTnLnpOrderRequestJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, HostedTnLnpOrderRequestJson); return; }
+            if (InternalNanpLnpOrderRequestJson != null && AutomatedNanpTollFreeLnpOrderRequestJson == null && HostedTnLnpOrderRequestJson == null && ManualGlobalBetaLnpOrderRequestJson == null && ManualGlobalDraftLnpOrderRequestJson == null && ManualGlobalLarLnpOrderRequestJson == null && ManualNanpTollFreeLnpOrderRequestJson == null && OffNetNanpLnpOrderRequestJson == null && OnNetNanpLnpOrderRequestJson == null) { if (InternalNanpLnpOrderRequestJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, InternalNanpLnpOrderRequestJson); return; }
+            if (ManualGlobalBetaLnpOrderRequestJson != null && AutomatedNanpTollFreeLnpOrderRequestJson == null && HostedTnLnpOrderRequestJson == null && InternalNanpLnpOrderRequestJson == null && ManualGlobalDraftLnpOrderRequestJson == null && ManualGlobalLarLnpOrderRequestJson == null && ManualNanpTollFreeLnpOrderRequestJson == null && OffNetNanpLnpOrderRequestJson == null && OnNetNanpLnpOrderRequestJson == null) { if (ManualGlobalBetaLnpOrderRequestJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, ManualGlobalBetaLnpOrderRequestJson); return; }
+            if (ManualGlobalDraftLnpOrderRequestJson != null && AutomatedNanpTollFreeLnpOrderRequestJson == null && HostedTnLnpOrderRequestJson == null && InternalNanpLnpOrderRequestJson == null && ManualGlobalBetaLnpOrderRequestJson == null && ManualGlobalLarLnpOrderRequestJson == null && ManualNanpTollFreeLnpOrderRequestJson == null && OffNetNanpLnpOrderRequestJson == null && OnNetNanpLnpOrderRequestJson == null) { if (ManualGlobalDraftLnpOrderRequestJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, ManualGlobalDraftLnpOrderRequestJson); return; }
+            if (ManualGlobalLarLnpOrderRequestJson != null && AutomatedNanpTollFreeLnpOrderRequestJson == null && HostedTnLnpOrderRequestJson == null && InternalNanpLnpOrderRequestJson == null && ManualGlobalBetaLnpOrderRequestJson == null && ManualGlobalDraftLnpOrderRequestJson == null && ManualNanpTollFreeLnpOrderRequestJson == null && OffNetNanpLnpOrderRequestJson == null && OnNetNanpLnpOrderRequestJson == null) { if (ManualGlobalLarLnpOrderRequestJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, ManualGlobalLarLnpOrderRequestJson); return; }
+            if (ManualNanpTollFreeLnpOrderRequestJson != null && AutomatedNanpTollFreeLnpOrderRequestJson == null && HostedTnLnpOrderRequestJson == null && InternalNanpLnpOrderRequestJson == null && ManualGlobalBetaLnpOrderRequestJson == null && ManualGlobalDraftLnpOrderRequestJson == null && ManualGlobalLarLnpOrderRequestJson == null && OffNetNanpLnpOrderRequestJson == null && OnNetNanpLnpOrderRequestJson == null) { if (ManualNanpTollFreeLnpOrderRequestJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, ManualNanpTollFreeLnpOrderRequestJson); return; }
+            if (OffNetNanpLnpOrderRequestJson != null && AutomatedNanpTollFreeLnpOrderRequestJson == null && HostedTnLnpOrderRequestJson == null && InternalNanpLnpOrderRequestJson == null && ManualGlobalBetaLnpOrderRequestJson == null && ManualGlobalDraftLnpOrderRequestJson == null && ManualGlobalLarLnpOrderRequestJson == null && ManualNanpTollFreeLnpOrderRequestJson == null && OnNetNanpLnpOrderRequestJson == null) { if (OffNetNanpLnpOrderRequestJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, OffNetNanpLnpOrderRequestJson); return; }
+            if (OnNetNanpLnpOrderRequestJson != null && AutomatedNanpTollFreeLnpOrderRequestJson == null && HostedTnLnpOrderRequestJson == null && InternalNanpLnpOrderRequestJson == null && ManualGlobalBetaLnpOrderRequestJson == null && ManualGlobalDraftLnpOrderRequestJson == null && ManualGlobalLarLnpOrderRequestJson == null && ManualNanpTollFreeLnpOrderRequestJson == null && OffNetNanpLnpOrderRequestJson == null) { if (OnNetNanpLnpOrderRequestJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, OnNetNanpLnpOrderRequestJson); return; }
+
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             if(AutomatedNanpTollFreeLnpOrderRequestJson != null)
             {
+                if (AutomatedNanpTollFreeLnpOrderRequestJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AutomatedNanpTollFreeLnpOrderRequestJson>(null, AutomatedNanpTollFreeLnpOrderRequestJson);
             }
             else if(HostedTnLnpOrderRequestJson != null)
             {
+                if (HostedTnLnpOrderRequestJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedTnLnpOrderRequestJson>(null, HostedTnLnpOrderRequestJson);
             }
             else if(InternalNanpLnpOrderRequestJson != null)
             {
+                if (InternalNanpLnpOrderRequestJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.InternalNanpLnpOrderRequestJson>(null, InternalNanpLnpOrderRequestJson);
             }
             else if(ManualGlobalBetaLnpOrderRequestJson != null)
             {
+                if (ManualGlobalBetaLnpOrderRequestJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ManualGlobalBetaLnpOrderRequestJson>(null, ManualGlobalBetaLnpOrderRequestJson);
             }
             else if(ManualGlobalDraftLnpOrderRequestJson != null)
             {
+                if (ManualGlobalDraftLnpOrderRequestJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ManualGlobalDraftLnpOrderRequestJson>(null, ManualGlobalDraftLnpOrderRequestJson);
             }
             else if(ManualGlobalLarLnpOrderRequestJson != null)
             {
+                if (ManualGlobalLarLnpOrderRequestJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ManualGlobalLarLnpOrderRequestJson>(null, ManualGlobalLarLnpOrderRequestJson);
             }
             else if(ManualNanpTollFreeLnpOrderRequestJson != null)
             {
+                if (ManualNanpTollFreeLnpOrderRequestJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ManualNanpTollFreeLnpOrderRequestJson>(null, ManualNanpTollFreeLnpOrderRequestJson);
             }
             else if(OffNetNanpLnpOrderRequestJson != null)
             {
+                if (OffNetNanpLnpOrderRequestJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OffNetNanpLnpOrderRequestJson>(null, OffNetNanpLnpOrderRequestJson);
             }
             else if(OnNetNanpLnpOrderRequestJson != null)
             {
+                if (OnNetNanpLnpOrderRequestJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OnNetNanpLnpOrderRequestJson>(null, OnNetNanpLnpOrderRequestJson);
             }
         }

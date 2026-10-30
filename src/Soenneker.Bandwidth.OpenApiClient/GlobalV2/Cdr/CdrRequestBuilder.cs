@@ -16,6 +16,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr
     public partial class CdrRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The calls property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.CallsRequestBuilder Calls
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.GlobalV2.Cdr.Calls.CallsRequestBuilder(PathParameters, RequestAdapter);

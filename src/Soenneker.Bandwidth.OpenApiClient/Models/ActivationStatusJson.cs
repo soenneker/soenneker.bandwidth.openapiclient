@@ -11,28 +11,45 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ActivationStatusJson : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("activatedPhoneNumbers") is { } nullNodeActivatedPhoneNumbers && nullNodeActivatedPhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ActivatedPhoneNumbers = null;
+            if (parseNode.GetChildNode("activationInProgress") is { } nullNodeActivationInProgress && nullNodeActivationInProgress.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ActivationInProgress = null;
+            if (parseNode.GetChildNode("autoActivationDate") is { } nullNodeAutoActivationDate && nullNodeAutoActivationDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AutoActivationDate = null;
+            if (parseNode.GetChildNode("notYetActivatedPhoneNumbers") is { } nullNodeNotYetActivatedPhoneNumbers && nullNodeNotYetActivatedPhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NotYetActivatedPhoneNumbers = null;
+        }
+
         /// <summary>List of phone numbers that have been activated for the port-in order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? ActivatedPhoneNumbers { get; set; }
+        public List<string>? ActivatedPhoneNumbers { get => _explicitNullValueActivatedPhoneNumbers; set { _explicitNullValueActivatedPhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activatedPhoneNumbers"); else _explicitNullProperties?.Remove("activatedPhoneNumbers"); } }
+        private List<string>? _explicitNullValueActivatedPhoneNumbers = default!;
 #nullable restore
 #else
-        public List<string> ActivatedPhoneNumbers { get; set; }
+        public List<string> ActivatedPhoneNumbers { get => _explicitNullValueActivatedPhoneNumbers; set { _explicitNullValueActivatedPhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activatedPhoneNumbers"); else _explicitNullProperties?.Remove("activatedPhoneNumbers"); } }
+        private List<string> _explicitNullValueActivatedPhoneNumbers = default!;
 #endif
         /// <summary>Indicates whether toll-free on-demand activation has been triggered but is not yet complete. When `true`, a duplicate activation request via PUT will be rejected with a 400 response.</summary>
-        public bool? ActivationInProgress { get; set; }
+        public bool? ActivationInProgress { get => _explicitNullValueActivationInProgress; set { _explicitNullValueActivationInProgress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activationInProgress"); else _explicitNullProperties?.Remove("activationInProgress"); } }
+        private bool? _explicitNullValueActivationInProgress = default!;
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The date when auto activation is requested. RFC 3339 format.</summary>
-        public DateTimeOffset? AutoActivationDate { get; set; }
+        public DateTimeOffset? AutoActivationDate { get => _explicitNullValueAutoActivationDate; set { _explicitNullValueAutoActivationDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("autoActivationDate"); else _explicitNullProperties?.Remove("autoActivationDate"); } }
+        private DateTimeOffset? _explicitNullValueAutoActivationDate = default!;
         /// <summary>List of phone numbers that have not yet been activated for the port-in order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? NotYetActivatedPhoneNumbers { get; set; }
+        public List<string>? NotYetActivatedPhoneNumbers { get => _explicitNullValueNotYetActivatedPhoneNumbers; set { _explicitNullValueNotYetActivatedPhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notYetActivatedPhoneNumbers"); else _explicitNullProperties?.Remove("notYetActivatedPhoneNumbers"); } }
+        private List<string>? _explicitNullValueNotYetActivatedPhoneNumbers = default!;
 #nullable restore
 #else
-        public List<string> NotYetActivatedPhoneNumbers { get; set; }
+        public List<string> NotYetActivatedPhoneNumbers { get => _explicitNullValueNotYetActivatedPhoneNumbers; set { _explicitNullValueNotYetActivatedPhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notYetActivatedPhoneNumbers"); else _explicitNullProperties?.Remove("notYetActivatedPhoneNumbers"); } }
+        private List<string> _explicitNullValueNotYetActivatedPhoneNumbers = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ActivationStatusJson"/> and sets the default values.
@@ -49,7 +66,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.ActivationStatusJson CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.ActivationStatusJson();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.ActivationStatusJson(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -76,6 +93,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteBoolValue("activationInProgress", ActivationInProgress);
             writer.WriteDateTimeOffsetValue("autoActivationDate", AutoActivationDate);
             writer.WriteCollectionOfPrimitiveValues<string>("notYetActivatedPhoneNumbers", NotYetActivatedPhoneNumbers);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

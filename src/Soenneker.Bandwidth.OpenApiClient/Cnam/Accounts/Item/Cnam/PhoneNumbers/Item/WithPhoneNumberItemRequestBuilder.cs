@@ -65,6 +65,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Cnam.Accounts.Item.Cnam.PhoneNumbers
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.CnamApiErrors.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.CnamApiErrors.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.CnamApiErrors.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CnamInfo>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CnamInfo.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

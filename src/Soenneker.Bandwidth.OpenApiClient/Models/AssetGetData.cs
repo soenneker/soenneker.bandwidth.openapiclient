@@ -12,7 +12,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class AssetGetData : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("assetReferenceId") is { } nullNodeAssetReferenceId && nullNodeAssetReferenceId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AssetReferenceId = null;
+            if (parseNode.GetChildNode("assetType") is { } nullNodeAssetType && nullNodeAssetType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AssetType = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Unique id of the asset</summary>
@@ -34,13 +43,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Id of the referenced asset object</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AssetReferenceId { get; set; }
+        public string? AssetReferenceId { get => _explicitNullValueAssetReferenceId; set { _explicitNullValueAssetReferenceId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("assetReferenceId"); else _explicitNullProperties?.Remove("assetReferenceId"); } }
+        private string? _explicitNullValueAssetReferenceId = default!;
 #nullable restore
 #else
-        public string AssetReferenceId { get; set; }
+        public string AssetReferenceId { get => _explicitNullValueAssetReferenceId; set { _explicitNullValueAssetReferenceId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("assetReferenceId"); else _explicitNullProperties?.Remove("assetReferenceId"); } }
+        private string _explicitNullValueAssetReferenceId = default!;
 #endif
         /// <summary>Type of the asset</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AssetTypeEnum? AssetType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AssetTypeEnum? AssetType { get => _explicitNullValueAssetType; set { _explicitNullValueAssetType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("assetType"); else _explicitNullProperties?.Remove("assetType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.AssetTypeEnum? _explicitNullValueAssetType = default!;
         /// <summary>The date and time this object was created in ISO 8601 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -72,7 +84,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetData();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetData(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -99,6 +111,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("assetReferenceId", AssetReferenceId);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AssetTypeEnum>("assetType", AssetType);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

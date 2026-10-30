@@ -12,7 +12,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CreateOrImportCampaignRequest : IComposedTypeWrapper, IParsable
-    {
+    , global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder {
+        // Preserve ambiguous union payloads without inventing a discriminator.
+        /// <summary>The complete payload when no unique typed union branch can be selected.</summary>
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode UnrecognizedValue { get; set; } = null!;
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalData { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateCampaignRequest"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -41,13 +46,20 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateOrImportCampaignRequest();
             if("CreateCampaignRequest".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.CreateCampaignRequest = new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateCampaignRequest();
+                
             }
             else if("ImportOrRefreshCampaignRequest".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.ImportOrRefreshCampaignRequest = new global::Soenneker.Bandwidth.OpenApiClient.Models.ImportOrRefreshCampaignRequest();
+                
             }
-            return result;
+            
+            var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
+            bool matchesUnionBranch0 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("campaignId") != null))();
+            bool matchesUnionBranch1 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("brandId") != null && parseNode.GetChildNode("usecase") != null && (parseNode.GetChildNode("usecase")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag2 && ("2FA".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "ACCOUNT_NOTIFICATION".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "CARRIER_EXEMPT".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "CHARITY".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "CONVERSATIONAL".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "CUSTOMER_CARE".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "DELIVERY_NOTIFICATION".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "EMERGENCY".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "FRAUD_ALERT".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "HIGHER_EDUCATION".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "K12_EDUCATION".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "LOW_VOLUME".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "MARKETING".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "MIXED".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "POLITICAL".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "POLLING_VOTING".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "PUBLIC_SERVICE_ANNOUNCEMENT".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "SECURITY_ALERT".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "SOCIAL".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "SWEEPSTAKE".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "TRIAL".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "AGENTS_FRANCHISES".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "PROXY".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "UCAAS_HIGH".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "UCAAS_LOW".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "M2M".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal))) && parseNode.GetChildNode("description") != null && parseNode.GetChildNode("sample1") != null && parseNode.GetChildNode("messageFlow") != null && parseNode.GetChildNode("helpMessage") != null && parseNode.GetChildNode("helpKeywords") != null))();
+            if (result.CreateCampaignRequest == null && result.ImportOrRefreshCampaignRequest == null && matchesUnionBranch0 && !matchesUnionBranch1) result.ImportOrRefreshCampaignRequest = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.ImportOrRefreshCampaignRequest(), parseNode);
+            if (result.CreateCampaignRequest == null && result.ImportOrRefreshCampaignRequest == null && matchesUnionBranch1 && !matchesUnionBranch0) result.CreateCampaignRequest = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateCampaignRequest(), parseNode);
+            if (result.CreateCampaignRequest == null && result.ImportOrRefreshCampaignRequest == null) result.UnrecognizedValue = unionPayload;
+return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -71,13 +83,20 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
+            if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
+            if (CreateCampaignRequest == null && ImportOrRefreshCampaignRequest == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
+            if (CreateCampaignRequest != null && ImportOrRefreshCampaignRequest == null) { if (CreateCampaignRequest is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, CreateCampaignRequest); return; }
+            if (ImportOrRefreshCampaignRequest != null && CreateCampaignRequest == null) { if (ImportOrRefreshCampaignRequest is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, ImportOrRefreshCampaignRequest); return; }
+
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             if(CreateCampaignRequest != null)
             {
+                if (CreateCampaignRequest is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateCampaignRequest>(null, CreateCampaignRequest);
             }
             else if(ImportOrRefreshCampaignRequest != null)
             {
+                if (ImportOrRefreshCampaignRequest is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ImportOrRefreshCampaignRequest>(null, ImportOrRefreshCampaignRequest);
             }
         }

@@ -63,6 +63,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.AuthServiceOauth.Api.V1.Oauth2.Keys
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorResponse.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorResponse.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.Keys>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.Keys.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

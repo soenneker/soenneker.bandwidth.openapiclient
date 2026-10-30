@@ -11,24 +11,37 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class BrandAcceptedResponseObjectData : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("bandwidthId") is { } nullNodeBandwidthId && nullNodeBandwidthId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BandwidthId = null;
+            if (parseNode.GetChildNode("brandId") is { } nullNodeBrandId && nullNodeBrandId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BrandId = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The Bandwidth-generated identifier for this entity. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the entity.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BandwidthId { get; set; }
+        public string? BandwidthId { get => _explicitNullValueBandwidthId; set { _explicitNullValueBandwidthId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bandwidthId"); else _explicitNullProperties?.Remove("bandwidthId"); } }
+        private string? _explicitNullValueBandwidthId = default!;
 #nullable restore
 #else
-        public string BandwidthId { get; set; }
+        public string BandwidthId { get => _explicitNullValueBandwidthId; set { _explicitNullValueBandwidthId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bandwidthId"); else _explicitNullProperties?.Remove("bandwidthId"); } }
+        private string _explicitNullValueBandwidthId = default!;
 #endif
         /// <summary>The TCR-generated identifier for the brand. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the brand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BrandId { get; set; }
+        public string? BrandId { get => _explicitNullValueBrandId; set { _explicitNullValueBrandId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("brandId"); else _explicitNullProperties?.Remove("brandId"); } }
+        private string? _explicitNullValueBrandId = default!;
 #nullable restore
 #else
-        public string BrandId { get; set; }
+        public string BrandId { get => _explicitNullValueBrandId; set { _explicitNullValueBrandId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("brandId"); else _explicitNullProperties?.Remove("brandId"); } }
+        private string _explicitNullValueBrandId = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAcceptedResponseObjectData"/> and sets the default values.
@@ -45,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAcceptedResponseObjectData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAcceptedResponseObjectData();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAcceptedResponseObjectData(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,6 +81,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("bandwidthId", BandwidthId);
             writer.WriteStringValue("brandId", BrandId);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

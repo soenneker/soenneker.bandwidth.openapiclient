@@ -12,24 +12,37 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class BadRequestResponseErrorsItem : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("apiErrorCode") is { } nullNodeApiErrorCode && nullNodeApiErrorCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ApiErrorCode = null;
+            if (parseNode.GetChildNode("apiErrorMessage") is { } nullNodeApiErrorMessage && nullNodeApiErrorMessage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ApiErrorMessage = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Designated error code for the error object. Can be used to look up how to fix in documentation or share via support request</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ApiErrorCode { get; set; }
+        public string? ApiErrorCode { get => _explicitNullValueApiErrorCode; set { _explicitNullValueApiErrorCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("apiErrorCode"); else _explicitNullProperties?.Remove("apiErrorCode"); } }
+        private string? _explicitNullValueApiErrorCode = default!;
 #nullable restore
 #else
-        public string ApiErrorCode { get; set; }
+        public string ApiErrorCode { get => _explicitNullValueApiErrorCode; set { _explicitNullValueApiErrorCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("apiErrorCode"); else _explicitNullProperties?.Remove("apiErrorCode"); } }
+        private string _explicitNullValueApiErrorCode = default!;
 #endif
         /// <summary>Descriptive error message indicating the cause of failed request</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ApiErrorMessage { get; set; }
+        public string? ApiErrorMessage { get => _explicitNullValueApiErrorMessage; set { _explicitNullValueApiErrorMessage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("apiErrorMessage"); else _explicitNullProperties?.Remove("apiErrorMessage"); } }
+        private string? _explicitNullValueApiErrorMessage = default!;
 #nullable restore
 #else
-        public string ApiErrorMessage { get; set; }
+        public string ApiErrorMessage { get => _explicitNullValueApiErrorMessage; set { _explicitNullValueApiErrorMessage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("apiErrorMessage"); else _explicitNullProperties?.Remove("apiErrorMessage"); } }
+        private string _explicitNullValueApiErrorMessage = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BadRequestResponseErrorsItem"/> and sets the default values.
@@ -46,7 +59,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.BadRequestResponseErrorsItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.BadRequestResponseErrorsItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.BadRequestResponseErrorsItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,6 +82,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("apiErrorCode", ApiErrorCode);
             writer.WriteStringValue("apiErrorMessage", ApiErrorMessage);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

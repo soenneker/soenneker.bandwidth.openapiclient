@@ -64,7 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Smslinkgroup
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ListSmsLinkGroupResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ListSmsLinkGroupResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ListSmsLinkGroupResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ListSmsLinkGroupResponse.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Create a new SMS Link Group or Update
@@ -85,7 +85,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Smslinkgroup
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveSmsLinkGroupResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.SaveSmsLinkGroupResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveSmsLinkGroupResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.SaveSmsLinkGroupResponse.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Allows you to retrieve the list of your SMS Link Groups. The `id` of the SMS Link Group returned by this method will be needed to edit or delete that SMS Link Group.

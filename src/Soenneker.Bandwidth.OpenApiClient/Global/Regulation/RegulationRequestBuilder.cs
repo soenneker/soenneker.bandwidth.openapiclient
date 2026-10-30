@@ -18,16 +18,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Regulation
     public partial class RegulationRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The address property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Regulation.Address.AddressRequestBuilder Address
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Regulation.Address.AddressRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The identitydocument property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Regulation.Identitydocument.IdentitydocumentRequestBuilder Identitydocument
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Regulation.Identitydocument.IdentitydocumentRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The zipcode property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Regulation.Zipcode.ZipcodeRequestBuilder Zipcode
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Regulation.Zipcode.ZipcodeRequestBuilder(PathParameters, RequestAdapter);

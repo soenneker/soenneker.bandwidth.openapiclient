@@ -12,32 +12,48 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Requirement : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("address") is { } nullNodeAddress && nullNodeAddress.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Address = null;
+            if (parseNode.GetChildNode("endUser") is { } nullNodeEndUser && nullNodeEndUser.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EndUser = null;
+            if (parseNode.GetChildNode("supportingDocuments") is { } nullNodeSupportingDocuments && nullNodeSupportingDocuments.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SupportingDocuments = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Address requirement specification</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AddressRequirement? Address { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AddressRequirement? Address { get => _explicitNullValueAddress; set { _explicitNullValueAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("address"); else _explicitNullProperties?.Remove("address"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.AddressRequirement? _explicitNullValueAddress = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AddressRequirement Address { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AddressRequirement Address { get => _explicitNullValueAddress; set { _explicitNullValueAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("address"); else _explicitNullProperties?.Remove("address"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.AddressRequirement _explicitNullValueAddress = default!;
 #endif
         /// <summary>EndUser requirement specification</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserRequirement? EndUser { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserRequirement? EndUser { get => _explicitNullValueEndUser; set { _explicitNullValueEndUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endUser"); else _explicitNullProperties?.Remove("endUser"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserRequirement? _explicitNullValueEndUser = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserRequirement EndUser { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserRequirement EndUser { get => _explicitNullValueEndUser; set { _explicitNullValueEndUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endUser"); else _explicitNullProperties?.Remove("endUser"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserRequirement _explicitNullValueEndUser = default!;
 #endif
         /// <summary>List of all document requirements</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SupportingDocumentsRequirement>? SupportingDocuments { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SupportingDocumentsRequirement>? SupportingDocuments { get => _explicitNullValueSupportingDocuments; set { _explicitNullValueSupportingDocuments = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("supportingDocuments"); else _explicitNullProperties?.Remove("supportingDocuments"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.SupportingDocumentsRequirement>? _explicitNullValueSupportingDocuments = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SupportingDocumentsRequirement> SupportingDocuments { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SupportingDocumentsRequirement> SupportingDocuments { get => _explicitNullValueSupportingDocuments; set { _explicitNullValueSupportingDocuments = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("supportingDocuments"); else _explicitNullProperties?.Remove("supportingDocuments"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.SupportingDocumentsRequirement> _explicitNullValueSupportingDocuments = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Requirement"/> and sets the default values.
@@ -54,7 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.Requirement CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.Requirement();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.Requirement(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -79,6 +95,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressRequirement>("address", Address);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserRequirement>("endUser", EndUser);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SupportingDocumentsRequirement>("supportingDocuments", SupportingDocuments);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

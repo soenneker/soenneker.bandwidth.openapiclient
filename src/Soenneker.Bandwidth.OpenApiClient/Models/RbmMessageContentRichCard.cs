@@ -11,39 +11,61 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class RbmMessageContentRichCard : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("cardContent") is { } nullNodeCardContent && nullNodeCardContent.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CardContent = null;
+            if (parseNode.GetChildNode("cardContents") is { } nullNodeCardContents && nullNodeCardContents.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CardContents = null;
+            if (parseNode.GetChildNode("cardWidth") is { } nullNodeCardWidth && nullNodeCardWidth.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CardWidth = null;
+            if (parseNode.GetChildNode("orientation") is { } nullNodeOrientation && nullNodeOrientation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Orientation = null;
+            if (parseNode.GetChildNode("suggestions") is { } nullNodeSuggestions && nullNodeSuggestions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Suggestions = null;
+            if (parseNode.GetChildNode("thumbnailImageAlignment") is { } nullNodeThumbnailImageAlignment && nullNodeThumbnailImageAlignment.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ThumbnailImageAlignment = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Must contain at least one of title, description, or media to be valid.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RbmCardContent? CardContent { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RbmCardContent? CardContent { get => _explicitNullValueCardContent; set { _explicitNullValueCardContent = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cardContent"); else _explicitNullProperties?.Remove("cardContent"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RbmCardContent? _explicitNullValueCardContent = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RbmCardContent CardContent { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RbmCardContent CardContent { get => _explicitNullValueCardContent; set { _explicitNullValueCardContent = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cardContent"); else _explicitNullProperties?.Remove("cardContent"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RbmCardContent _explicitNullValueCardContent = default!;
 #endif
         /// <summary>The cardContents property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RbmCardContent>? CardContents { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RbmCardContent>? CardContents { get => _explicitNullValueCardContents; set { _explicitNullValueCardContents = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cardContents"); else _explicitNullProperties?.Remove("cardContents"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.RbmCardContent>? _explicitNullValueCardContents = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RbmCardContent> CardContents { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RbmCardContent> CardContents { get => _explicitNullValueCardContents; set { _explicitNullValueCardContents = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cardContents"); else _explicitNullProperties?.Remove("cardContents"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.RbmCardContent> _explicitNullValueCardContents = default!;
 #endif
         /// <summary>The cardWidth property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CardWidthEnum? CardWidth { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CardWidthEnum? CardWidth { get => _explicitNullValueCardWidth; set { _explicitNullValueCardWidth = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cardWidth"); else _explicitNullProperties?.Remove("cardWidth"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CardWidthEnum? _explicitNullValueCardWidth = default!;
         /// <summary>The orientation property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.StandaloneCardOrientationEnum? Orientation { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.StandaloneCardOrientationEnum? Orientation { get => _explicitNullValueOrientation; set { _explicitNullValueOrientation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orientation"); else _explicitNullProperties?.Remove("orientation"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.StandaloneCardOrientationEnum? _explicitNullValueOrientation = default!;
         /// <summary>An array of suggested actions for the recipient.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelAction>? Suggestions { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelAction>? Suggestions { get => _explicitNullValueSuggestions; set { _explicitNullValueSuggestions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("suggestions"); else _explicitNullProperties?.Remove("suggestions"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelAction>? _explicitNullValueSuggestions = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelAction> Suggestions { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelAction> Suggestions { get => _explicitNullValueSuggestions; set { _explicitNullValueSuggestions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("suggestions"); else _explicitNullProperties?.Remove("suggestions"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelAction> _explicitNullValueSuggestions = default!;
 #endif
         /// <summary>The alignment of the thumbnail image in the card. Required when orientation is HORIZONTAL.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ThumbnailAlignmentEnum? ThumbnailImageAlignment { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ThumbnailAlignmentEnum? ThumbnailImageAlignment { get => _explicitNullValueThumbnailImageAlignment; set { _explicitNullValueThumbnailImageAlignment = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("thumbnailImageAlignment"); else _explicitNullProperties?.Remove("thumbnailImageAlignment"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ThumbnailAlignmentEnum? _explicitNullValueThumbnailImageAlignment = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RbmMessageContentRichCard"/> and sets the default values.
         /// </summary>
@@ -59,7 +81,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.RbmMessageContentRichCard CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.RbmMessageContentRichCard();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.RbmMessageContentRichCard(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -90,6 +112,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.StandaloneCardOrientationEnum>("orientation", Orientation);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelAction>("suggestions", Suggestions);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ThumbnailAlignmentEnum>("thumbnailImageAlignment", ThumbnailImageAlignment);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

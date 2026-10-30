@@ -12,32 +12,48 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TrunkWhitelistResponse : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("e911Whitelists") is { } nullNodeE911Whitelists && nullNodeE911Whitelists.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) E911Whitelists = null;
+            if (parseNode.GetChildNode("operation") is { } nullNodeOperation && nullNodeOperation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Operation = null;
+            if (parseNode.GetChildNode("voiceWhitelists") is { } nullNodeVoiceWhitelists && nullNodeVoiceWhitelists.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoiceWhitelists = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Complete list of all E911 whitelist entries after the update operation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.E911WhitelistEntry>? E911Whitelists { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.E911WhitelistEntry>? E911Whitelists { get => _explicitNullValueE911Whitelists; set { _explicitNullValueE911Whitelists = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("e911Whitelists"); else _explicitNullProperties?.Remove("e911Whitelists"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.E911WhitelistEntry>? _explicitNullValueE911Whitelists = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.E911WhitelistEntry> E911Whitelists { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.E911WhitelistEntry> E911Whitelists { get => _explicitNullValueE911Whitelists; set { _explicitNullValueE911Whitelists = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("e911Whitelists"); else _explicitNullProperties?.Remove("e911Whitelists"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.E911WhitelistEntry> _explicitNullValueE911Whitelists = default!;
 #endif
         /// <summary>The operation that was performed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Operation { get; set; }
+        public string? Operation { get => _explicitNullValueOperation; set { _explicitNullValueOperation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operation"); else _explicitNullProperties?.Remove("operation"); } }
+        private string? _explicitNullValueOperation = default!;
 #nullable restore
 #else
-        public string Operation { get; set; }
+        public string Operation { get => _explicitNullValueOperation; set { _explicitNullValueOperation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operation"); else _explicitNullProperties?.Remove("operation"); } }
+        private string _explicitNullValueOperation = default!;
 #endif
         /// <summary>Complete list of all voice whitelist entries after the update operation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceWhitelistEntry>? VoiceWhitelists { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceWhitelistEntry>? VoiceWhitelists { get => _explicitNullValueVoiceWhitelists; set { _explicitNullValueVoiceWhitelists = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceWhitelists"); else _explicitNullProperties?.Remove("voiceWhitelists"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceWhitelistEntry>? _explicitNullValueVoiceWhitelists = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceWhitelistEntry> VoiceWhitelists { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceWhitelistEntry> VoiceWhitelists { get => _explicitNullValueVoiceWhitelists; set { _explicitNullValueVoiceWhitelists = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceWhitelists"); else _explicitNullProperties?.Remove("voiceWhitelists"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceWhitelistEntry> _explicitNullValueVoiceWhitelists = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistResponse"/> and sets the default values.
@@ -54,7 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistResponse();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkWhitelistResponse(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -79,6 +95,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.E911WhitelistEntry>("e911Whitelists", E911Whitelists);
             writer.WriteStringValue("operation", Operation);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceWhitelistEntry>("voiceWhitelists", VoiceWhitelists);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

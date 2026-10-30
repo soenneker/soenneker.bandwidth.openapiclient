@@ -11,27 +11,42 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ManualNanpTollFreeLnpOrderRequestJsonLnpOrderSubscriber : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("businessName") is { } nullNodeBusinessName && nullNodeBusinessName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BusinessName = null;
+            if (parseNode.GetChildNode("serviceAddress") is { } nullNodeServiceAddress && nullNodeServiceAddress.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ServiceAddress = null;
+            if (parseNode.GetChildNode("subscriberType") is { } nullNodeSubscriberType && nullNodeSubscriberType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SubscriberType = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The businessName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BusinessName { get; set; }
+        public string? BusinessName { get => _explicitNullValueBusinessName; set { _explicitNullValueBusinessName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("businessName"); else _explicitNullProperties?.Remove("businessName"); } }
+        private string? _explicitNullValueBusinessName = default!;
 #nullable restore
 #else
-        public string BusinessName { get; set; }
+        public string BusinessName { get => _explicitNullValueBusinessName; set { _explicitNullValueBusinessName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("businessName"); else _explicitNullProperties?.Remove("businessName"); } }
+        private string _explicitNullValueBusinessName = default!;
 #endif
         /// <summary>The serviceAddress property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortInCreateSubscriberServiceAddressJson? ServiceAddress { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortInCreateSubscriberServiceAddressJson? ServiceAddress { get => _explicitNullValueServiceAddress; set { _explicitNullValueServiceAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("serviceAddress"); else _explicitNullProperties?.Remove("serviceAddress"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.PortInCreateSubscriberServiceAddressJson? _explicitNullValueServiceAddress = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortInCreateSubscriberServiceAddressJson ServiceAddress { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortInCreateSubscriberServiceAddressJson ServiceAddress { get => _explicitNullValueServiceAddress; set { _explicitNullValueServiceAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("serviceAddress"); else _explicitNullProperties?.Remove("serviceAddress"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.PortInCreateSubscriberServiceAddressJson _explicitNullValueServiceAddress = default!;
 #endif
         /// <summary>The subscriberType property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessSubscriberType? SubscriberType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessSubscriberType? SubscriberType { get => _explicitNullValueSubscriberType; set { _explicitNullValueSubscriberType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriberType"); else _explicitNullProperties?.Remove("subscriberType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessSubscriberType? _explicitNullValueSubscriberType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ManualNanpTollFreeLnpOrderRequestJsonLnpOrderSubscriber"/> and sets the default values.
         /// </summary>
@@ -47,7 +62,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.ManualNanpTollFreeLnpOrderRequestJsonLnpOrderSubscriber CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.ManualNanpTollFreeLnpOrderRequestJsonLnpOrderSubscriber();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.ManualNanpTollFreeLnpOrderRequestJsonLnpOrderSubscriber(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,6 +87,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("businessName", BusinessName);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PortInCreateSubscriberServiceAddressJson>("serviceAddress", ServiceAddress);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessSubscriberType>("subscriberType", SubscriberType);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

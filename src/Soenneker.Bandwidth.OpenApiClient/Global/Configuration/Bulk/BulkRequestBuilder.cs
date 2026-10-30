@@ -56,6 +56,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Bulk
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.BadRequestResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkDidConfigurationResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.BulkDidConfigurationResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

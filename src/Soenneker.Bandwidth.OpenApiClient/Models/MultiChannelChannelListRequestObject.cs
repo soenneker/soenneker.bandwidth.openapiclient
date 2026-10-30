@@ -12,7 +12,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class MultiChannelChannelListRequestObject : IComposedTypeWrapper, IParsable
-    {
+    , global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder {
+        // Preserve ambiguous union payloads without inventing a discriminator.
+        /// <summary>The complete payload when no unique typed union branch can be selected.</summary>
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode UnrecognizedValue { get; set; } = null!;
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalData { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListMmsObject"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -46,10 +51,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListRequestObject();
-            result.MultiChannelChannelListMmsObject = new global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListMmsObject();
-            result.MultiChannelChannelListRbmObject = new global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListRbmObject();
-            result.MultiChannelChannelListSmsObject = new global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListSmsObject();
-            return result;
+            
+            
+            
+            
+            var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
+            bool matchesUnionBranch0 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("content") != null && parseNode.GetChildNode("from") != null && parseNode.GetChildNode("applicationId") != null && parseNode.GetChildNode("channel") != null && (parseNode.GetChildNode("channel")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag4 && ("RBM".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal) || "SMS".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal) || "MMS".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal)))))();
+            bool matchesUnionBranch1 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("content") != null && parseNode.GetChildNode("from") != null && parseNode.GetChildNode("applicationId") != null && parseNode.GetChildNode("channel") != null && (parseNode.GetChildNode("channel")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag4 && ("RBM".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal) || "SMS".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal) || "MMS".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal)))))();
+            bool matchesUnionBranch2 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("content") != null && parseNode.GetChildNode("from") != null && parseNode.GetChildNode("applicationId") != null && parseNode.GetChildNode("channel") != null && (parseNode.GetChildNode("channel")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag4 && ("RBM".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal) || "SMS".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal) || "MMS".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal)))))();
+            if (result.MultiChannelChannelListMmsObject == null && result.MultiChannelChannelListRbmObject == null && result.MultiChannelChannelListSmsObject == null && matchesUnionBranch0 && !matchesUnionBranch1 && !matchesUnionBranch2) result.MultiChannelChannelListRbmObject = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListRbmObject(), parseNode);
+            if (result.MultiChannelChannelListMmsObject == null && result.MultiChannelChannelListRbmObject == null && result.MultiChannelChannelListSmsObject == null && matchesUnionBranch1 && !matchesUnionBranch0 && !matchesUnionBranch2) result.MultiChannelChannelListSmsObject = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListSmsObject(), parseNode);
+            if (result.MultiChannelChannelListMmsObject == null && result.MultiChannelChannelListRbmObject == null && result.MultiChannelChannelListSmsObject == null && matchesUnionBranch2 && !matchesUnionBranch0 && !matchesUnionBranch1) result.MultiChannelChannelListMmsObject = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListMmsObject(), parseNode);
+            if (result.MultiChannelChannelListMmsObject == null && result.MultiChannelChannelListRbmObject == null && result.MultiChannelChannelListSmsObject == null) result.UnrecognizedValue = unionPayload;
+return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,6 +83,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
+            if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
+            if (MultiChannelChannelListMmsObject == null && MultiChannelChannelListRbmObject == null && MultiChannelChannelListSmsObject == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
+            if (MultiChannelChannelListMmsObject != null && MultiChannelChannelListRbmObject == null && MultiChannelChannelListSmsObject == null) { if (MultiChannelChannelListMmsObject is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, MultiChannelChannelListMmsObject); return; }
+            if (MultiChannelChannelListRbmObject != null && MultiChannelChannelListMmsObject == null && MultiChannelChannelListSmsObject == null) { if (MultiChannelChannelListRbmObject is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, MultiChannelChannelListRbmObject); return; }
+            if (MultiChannelChannelListSmsObject != null && MultiChannelChannelListMmsObject == null && MultiChannelChannelListRbmObject == null) { if (MultiChannelChannelListSmsObject is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, MultiChannelChannelListSmsObject); return; }
+
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelChannelListMmsObject>(null, MultiChannelChannelListMmsObject, MultiChannelChannelListRbmObject, MultiChannelChannelListSmsObject);
         }

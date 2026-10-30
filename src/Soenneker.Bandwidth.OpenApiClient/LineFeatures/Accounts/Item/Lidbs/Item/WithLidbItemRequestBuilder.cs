@@ -36,18 +36,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Lidbs.Ite
         /// <summary>
         /// The descriptive payload for the LIDB Orders query provides a broad range of information about the LIDB Order identified in the URL. Included amongst the information is:        - **errors**: The errors discovered with codes and explanations.  - **Various Dates**: Such as order creation, modification, and completion dates.  - **processingStatus** (`RECEIVED`, `PROCESSING`, `COMPLETE`, `PARTIAL`, `FAILED`): The overall status of the order.  - **lidbPhoneNumberGroups**: List of LidbTnGroup elements that contains a list of TNs with SubscriberInformation, UseType (`RESIDENTIAL` or `BUSINESS`), and Visibility (`PUBLIC` or `PRIVATE`).
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderResponsePayload"/></returns>
+        /// <returns>A <see cref="Stream"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderReportErrorResponse">When receiving a 400 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderReportErrorResponse">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderResponsePayload?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderResponsePayload> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -55,8 +55,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.LineFeatures.Accounts.Item.Lidbs.Ite
             {
                 { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderReportErrorResponse.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderReportErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderResponsePayload>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderResponsePayload.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// The descriptive payload for the LIDB Orders query provides a broad range of information about the LIDB Order identified in the URL. Included amongst the information is:        - **errors**: The errors discovered with codes and explanations.  - **Various Dates**: Such as order creation, modification, and completion dates.  - **processingStatus** (`RECEIVED`, `PROCESSING`, `COMPLETE`, `PARTIAL`, `FAILED`): The overall status of the order.  - **lidbPhoneNumberGroups**: List of LidbTnGroup elements that contains a list of TNs with SubscriberInformation, UseType (`RESIDENTIAL` or `BUSINESS`), and Visibility (`PUBLIC` or `PRIVATE`).

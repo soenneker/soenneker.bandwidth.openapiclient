@@ -11,79 +11,121 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class DidGroup : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("areaCode") is { } nullNodeAreaCode && nullNodeAreaCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AreaCode = null;
+            if (parseNode.GetChildNode("available") is { } nullNodeAvailable && nullNodeAvailable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Available = null;
+            if (parseNode.GetChildNode("cityName") is { } nullNodeCityName && nullNodeCityName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CityName = null;
+            if (parseNode.GetChildNode("countryCodeA3") is { } nullNodeCountryCodeA3 && nullNodeCountryCodeA3.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CountryCodeA3 = null;
+            if (parseNode.GetChildNode("didGroupId") is { } nullNodeDidGroupId && nullNodeDidGroupId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DidGroupId = null;
+            if (parseNode.GetChildNode("didType") is { } nullNodeDidType && nullNodeDidType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DidType = null;
+            if (parseNode.GetChildNode("features") is { } nullNodeFeatures && nullNodeFeatures.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Features = null;
+            if (parseNode.GetChildNode("monthly100") is { } nullNodeMonthly100 && nullNodeMonthly100.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Monthly100 = null;
+            if (parseNode.GetChildNode("phoneNumbers") is { } nullNodePhoneNumbers && nullNodePhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumbers = null;
+            if (parseNode.GetChildNode("rateCenter") is { } nullNodeRateCenter && nullNodeRateCenter.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RateCenter = null;
+            if (parseNode.GetChildNode("regulationRequirement") is { } nullNodeRegulationRequirement && nullNodeRegulationRequirement.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RegulationRequirement = null;
+            if (parseNode.GetChildNode("setup100") is { } nullNodeSetup100 && nullNodeSetup100.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Setup100 = null;
+            if (parseNode.GetChildNode("stateId") is { } nullNodeStateId && nullNodeStateId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StateId = null;
+            if (parseNode.GetChildNode("stock") is { } nullNodeStock && nullNodeStock.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Stock = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The area code of the DID group.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AreaCode { get; set; }
+        public string? AreaCode { get => _explicitNullValueAreaCode; set { _explicitNullValueAreaCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("areaCode"); else _explicitNullProperties?.Remove("areaCode"); } }
+        private string? _explicitNullValueAreaCode = default!;
 #nullable restore
 #else
-        public string AreaCode { get; set; }
+        public string AreaCode { get => _explicitNullValueAreaCode; set { _explicitNullValueAreaCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("areaCode"); else _explicitNullProperties?.Remove("areaCode"); } }
+        private string _explicitNullValueAreaCode = default!;
 #endif
         /// <summary>Returns information about whether this DIDGroup is available or out of stock (true/false).</summary>
-        public bool? Available { get; set; }
+        public bool? Available { get => _explicitNullValueAvailable; set { _explicitNullValueAvailable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("available"); else _explicitNullProperties?.Remove("available"); } }
+        private bool? _explicitNullValueAvailable = default!;
         /// <summary>The name of the city of the DID group.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CityName { get; set; }
+        public string? CityName { get => _explicitNullValueCityName; set { _explicitNullValueCityName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cityName"); else _explicitNullProperties?.Remove("cityName"); } }
+        private string? _explicitNullValueCityName = default!;
 #nullable restore
 #else
-        public string CityName { get; set; }
+        public string CityName { get => _explicitNullValueCityName; set { _explicitNullValueCityName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cityName"); else _explicitNullProperties?.Remove("cityName"); } }
+        private string _explicitNullValueCityName = default!;
 #endif
         /// <summary>Indicates the country code of the DID group in its ISO 3166-1 alpha-3 format (e.g. &apos;GBR&apos; for United Kingdom, &apos;USA&apos; for United States of America, &apos;BEL&apos; for Belgium, etc.).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CountryCodeA3 { get; set; }
+        public string? CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
+        private string? _explicitNullValueCountryCodeA3 = default!;
 #nullable restore
 #else
-        public string CountryCodeA3 { get; set; }
+        public string CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
+        private string _explicitNullValueCountryCodeA3 = default!;
 #endif
         /// <summary>The ID of the DID group.</summary>
-        public int? DidGroupId { get; set; }
+        public int? DidGroupId { get => _explicitNullValueDidGroupId; set { _explicitNullValueDidGroupId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("didGroupId"); else _explicitNullProperties?.Remove("didGroupId"); } }
+        private int? _explicitNullValueDidGroupId = default!;
         /// <summary>The DID type of the DID group.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroupDidType? DidType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroupDidType? DidType { get => _explicitNullValueDidType; set { _explicitNullValueDidType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("didType"); else _explicitNullProperties?.Remove("didType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroupDidType? _explicitNullValueDidType = default!;
         /// <summary>The features property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Feature>? Features { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Feature>? Features { get => _explicitNullValueFeatures; set { _explicitNullValueFeatures = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("features"); else _explicitNullProperties?.Remove("features"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.Feature>? _explicitNullValueFeatures = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Feature> Features { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Feature> Features { get => _explicitNullValueFeatures; set { _explicitNullValueFeatures = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("features"); else _explicitNullProperties?.Remove("features"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.Feature> _explicitNullValueFeatures = default!;
 #endif
         /// <summary>The monthly recurring charge (MRC) per DID multiplied by 100 (i.e. expressed in cents) in the currency of the account. Note that the month of ordering is fully due and that when a DID order is placed both the setup and the monthly are charged.</summary>
-        public int? Monthly100 { get; set; }
+        public int? Monthly100 { get => _explicitNullValueMonthly100; set { _explicitNullValueMonthly100 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("monthly100"); else _explicitNullProperties?.Remove("monthly100"); } }
+        private int? _explicitNullValueMonthly100 = default!;
         /// <summary>The phoneNumbers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalPhoneNumber>? PhoneNumbers { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalPhoneNumber>? PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalPhoneNumber>? _explicitNullValuePhoneNumbers = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalPhoneNumber> PhoneNumbers { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalPhoneNumber> PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalPhoneNumber> _explicitNullValuePhoneNumbers = default!;
 #endif
         /// <summary>The rate center can be defined as a zone (which can be equivalent to a city or the area of a city) e.g. the rate center of &apos;NEW YORK CITY ZONE 1&apos; would be &apos;NWYRCYZN01&apos;. The rate center is a notion usually used in north America.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RateCenter { get; set; }
+        public string? RateCenter { get => _explicitNullValueRateCenter; set { _explicitNullValueRateCenter = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rateCenter"); else _explicitNullProperties?.Remove("rateCenter"); } }
+        private string? _explicitNullValueRateCenter = default!;
 #nullable restore
 #else
-        public string RateCenter { get; set; }
+        public string RateCenter { get => _explicitNullValueRateCenter; set { _explicitNullValueRateCenter = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rateCenter"); else _explicitNullProperties?.Remove("rateCenter"); } }
+        private string _explicitNullValueRateCenter = default!;
 #endif
         /// <summary>The regulationRequirement property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModel? RegulationRequirement { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModel? RegulationRequirement { get => _explicitNullValueRegulationRequirement; set { _explicitNullValueRegulationRequirement = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("regulationRequirement"); else _explicitNullProperties?.Remove("regulationRequirement"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModel? _explicitNullValueRegulationRequirement = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModel RegulationRequirement { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModel RegulationRequirement { get => _explicitNullValueRegulationRequirement; set { _explicitNullValueRegulationRequirement = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("regulationRequirement"); else _explicitNullProperties?.Remove("regulationRequirement"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModel _explicitNullValueRegulationRequirement = default!;
 #endif
         /// <summary>The price of the DID setup multiplied by 100 (i.e. expressed in cents) in the currency of the account.</summary>
-        public int? Setup100 { get; set; }
+        public int? Setup100 { get => _explicitNullValueSetup100; set { _explicitNullValueSetup100 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("setup100"); else _explicitNullProperties?.Remove("setup100"); } }
+        private int? _explicitNullValueSetup100 = default!;
         /// <summary>The ID of the state of the DID group, if the country has any state.</summary>
-        public int? StateId { get; set; }
+        public int? StateId { get => _explicitNullValueStateId; set { _explicitNullValueStateId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stateId"); else _explicitNullProperties?.Remove("stateId"); } }
+        private int? _explicitNullValueStateId = default!;
         /// <summary>The amount of DIDs that Bandwidth has in stock for this DID group. Note that even if the stock is null, it is still possible to order DIDs. In that case the order is not fulfilled in real time.</summary>
-        public int? Stock { get; set; }
+        public int? Stock { get => _explicitNullValueStock; set { _explicitNullValueStock = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stock"); else _explicitNullProperties?.Remove("stock"); } }
+        private int? _explicitNullValueStock = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroup"/> and sets the default values.
         /// </summary>
@@ -100,7 +142,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroup CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroup();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroup(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -147,6 +189,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteIntValue("setup100", Setup100);
             writer.WriteIntValue("stateId", StateId);
             writer.WriteIntValue("stock", Stock);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

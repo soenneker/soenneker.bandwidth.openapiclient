@@ -65,6 +65,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.EndUserManagement.Addresses.Fields.I
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementGenericError.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementGenericError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserManagementGenericError.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.GetAddressFieldsResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.GetAddressFieldsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

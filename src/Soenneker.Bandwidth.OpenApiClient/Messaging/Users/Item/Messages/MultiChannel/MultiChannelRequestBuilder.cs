@@ -69,6 +69,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Messages.MultiC
                 { "415", global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelError.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.MultiChannelError.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMultiChannelMessageResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMultiChannelMessageResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

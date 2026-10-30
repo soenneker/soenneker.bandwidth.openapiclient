@@ -11,149 +11,209 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ApplicationJson : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("applicationName") is { } nullNodeApplicationName && nullNodeApplicationName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ApplicationName = null;
+            if (parseNode.GetChildNode("callbackCreds") is { } nullNodeCallbackCreds && nullNodeCallbackCreds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallbackCreds = null;
+            if (parseNode.GetChildNode("callbackTimeout") is { } nullNodeCallbackTimeout && nullNodeCallbackTimeout.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallbackTimeout = null;
+            if (parseNode.GetChildNode("callbackUrl") is { } nullNodeCallbackUrl && nullNodeCallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallbackUrl = null;
+            if (parseNode.GetChildNode("callInitiatedCallbackUrl") is { } nullNodeCallInitiatedCallbackUrl && nullNodeCallInitiatedCallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallInitiatedCallbackUrl = null;
+            if (parseNode.GetChildNode("callInitiatedFallbackCreds") is { } nullNodeCallInitiatedFallbackCreds && nullNodeCallInitiatedFallbackCreds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallInitiatedFallbackCreds = null;
+            if (parseNode.GetChildNode("callInitiatedFallbackMethod") is { } nullNodeCallInitiatedFallbackMethod && nullNodeCallInitiatedFallbackMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallInitiatedFallbackMethod = null;
+            if (parseNode.GetChildNode("callInitiatedFallbackUrl") is { } nullNodeCallInitiatedFallbackUrl && nullNodeCallInitiatedFallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallInitiatedFallbackUrl = null;
+            if (parseNode.GetChildNode("callInitiatedMethod") is { } nullNodeCallInitiatedMethod && nullNodeCallInitiatedMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallInitiatedMethod = null;
+            if (parseNode.GetChildNode("callStatusCallbackUrl") is { } nullNodeCallStatusCallbackUrl && nullNodeCallStatusCallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallStatusCallbackUrl = null;
+            if (parseNode.GetChildNode("callStatusMethod") is { } nullNodeCallStatusMethod && nullNodeCallStatusMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallStatusMethod = null;
+            if (parseNode.GetChildNode("inboundCallbackCreds") is { } nullNodeInboundCallbackCreds && nullNodeInboundCallbackCreds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InboundCallbackCreds = null;
+            if (parseNode.GetChildNode("inboundCallbackUrl") is { } nullNodeInboundCallbackUrl && nullNodeInboundCallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InboundCallbackUrl = null;
+            if (parseNode.GetChildNode("msgCallbackUrl") is { } nullNodeMsgCallbackUrl && nullNodeMsgCallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MsgCallbackUrl = null;
+            if (parseNode.GetChildNode("outboundCallbackCreds") is { } nullNodeOutboundCallbackCreds && nullNodeOutboundCallbackCreds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OutboundCallbackCreds = null;
+            if (parseNode.GetChildNode("outboundCallbackUrl") is { } nullNodeOutboundCallbackUrl && nullNodeOutboundCallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OutboundCallbackUrl = null;
+            if (parseNode.GetChildNode("requestedCallbackTypes") is { } nullNodeRequestedCallbackTypes && nullNodeRequestedCallbackTypes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RequestedCallbackTypes = null;
+            if (parseNode.GetChildNode("serviceType") is { } nullNodeServiceType && nullNodeServiceType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ServiceType = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The applicationName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ApplicationName { get; set; }
+        public string? ApplicationName { get => _explicitNullValueApplicationName; set { _explicitNullValueApplicationName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("applicationName"); else _explicitNullProperties?.Remove("applicationName"); } }
+        private string? _explicitNullValueApplicationName = default!;
 #nullable restore
 #else
-        public string ApplicationName { get; set; }
+        public string ApplicationName { get => _explicitNullValueApplicationName; set { _explicitNullValueApplicationName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("applicationName"); else _explicitNullProperties?.Remove("applicationName"); } }
+        private string _explicitNullValueApplicationName = default!;
 #endif
         /// <summary>The callbackCreds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson? CallbackCreds { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson? CallbackCreds { get => _explicitNullValueCallbackCreds; set { _explicitNullValueCallbackCreds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackCreds"); else _explicitNullProperties?.Remove("callbackCreds"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson? _explicitNullValueCallbackCreds = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson CallbackCreds { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson CallbackCreds { get => _explicitNullValueCallbackCreds; set { _explicitNullValueCallbackCreds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackCreds"); else _explicitNullProperties?.Remove("callbackCreds"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson _explicitNullValueCallbackCreds = default!;
 #endif
         /// <summary>The callbackTimeout property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallbackTimeout { get; set; }
+        public string? CallbackTimeout { get => _explicitNullValueCallbackTimeout; set { _explicitNullValueCallbackTimeout = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackTimeout"); else _explicitNullProperties?.Remove("callbackTimeout"); } }
+        private string? _explicitNullValueCallbackTimeout = default!;
 #nullable restore
 #else
-        public string CallbackTimeout { get; set; }
+        public string CallbackTimeout { get => _explicitNullValueCallbackTimeout; set { _explicitNullValueCallbackTimeout = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackTimeout"); else _explicitNullProperties?.Remove("callbackTimeout"); } }
+        private string _explicitNullValueCallbackTimeout = default!;
 #endif
         /// <summary>The callbackUrl property</summary>
         [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallbackUrl { get; set; }
+        public string? CallbackUrl { get => _explicitNullValueCallbackUrl; set { _explicitNullValueCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackUrl"); else _explicitNullProperties?.Remove("callbackUrl"); } }
+        private string? _explicitNullValueCallbackUrl = default!;
 #nullable restore
 #else
-        public string CallbackUrl { get; set; }
+        public string CallbackUrl { get => _explicitNullValueCallbackUrl; set { _explicitNullValueCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackUrl"); else _explicitNullProperties?.Remove("callbackUrl"); } }
+        private string _explicitNullValueCallbackUrl = default!;
 #endif
         /// <summary>The callInitiatedCallbackUrl property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallInitiatedCallbackUrl { get; set; }
+        public string? CallInitiatedCallbackUrl { get => _explicitNullValueCallInitiatedCallbackUrl; set { _explicitNullValueCallInitiatedCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedCallbackUrl"); else _explicitNullProperties?.Remove("callInitiatedCallbackUrl"); } }
+        private string? _explicitNullValueCallInitiatedCallbackUrl = default!;
 #nullable restore
 #else
-        public string CallInitiatedCallbackUrl { get; set; }
+        public string CallInitiatedCallbackUrl { get => _explicitNullValueCallInitiatedCallbackUrl; set { _explicitNullValueCallInitiatedCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedCallbackUrl"); else _explicitNullProperties?.Remove("callInitiatedCallbackUrl"); } }
+        private string _explicitNullValueCallInitiatedCallbackUrl = default!;
 #endif
         /// <summary>The callInitiatedFallbackCreds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson? CallInitiatedFallbackCreds { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson? CallInitiatedFallbackCreds { get => _explicitNullValueCallInitiatedFallbackCreds; set { _explicitNullValueCallInitiatedFallbackCreds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedFallbackCreds"); else _explicitNullProperties?.Remove("callInitiatedFallbackCreds"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson? _explicitNullValueCallInitiatedFallbackCreds = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson CallInitiatedFallbackCreds { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson CallInitiatedFallbackCreds { get => _explicitNullValueCallInitiatedFallbackCreds; set { _explicitNullValueCallInitiatedFallbackCreds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedFallbackCreds"); else _explicitNullProperties?.Remove("callInitiatedFallbackCreds"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson _explicitNullValueCallInitiatedFallbackCreds = default!;
 #endif
         /// <summary>The callInitiatedFallbackMethod property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallInitiatedFallbackMethod { get; set; }
+        public string? CallInitiatedFallbackMethod { get => _explicitNullValueCallInitiatedFallbackMethod; set { _explicitNullValueCallInitiatedFallbackMethod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedFallbackMethod"); else _explicitNullProperties?.Remove("callInitiatedFallbackMethod"); } }
+        private string? _explicitNullValueCallInitiatedFallbackMethod = default!;
 #nullable restore
 #else
-        public string CallInitiatedFallbackMethod { get; set; }
+        public string CallInitiatedFallbackMethod { get => _explicitNullValueCallInitiatedFallbackMethod; set { _explicitNullValueCallInitiatedFallbackMethod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedFallbackMethod"); else _explicitNullProperties?.Remove("callInitiatedFallbackMethod"); } }
+        private string _explicitNullValueCallInitiatedFallbackMethod = default!;
 #endif
         /// <summary>The callInitiatedFallbackUrl property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallInitiatedFallbackUrl { get; set; }
+        public string? CallInitiatedFallbackUrl { get => _explicitNullValueCallInitiatedFallbackUrl; set { _explicitNullValueCallInitiatedFallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedFallbackUrl"); else _explicitNullProperties?.Remove("callInitiatedFallbackUrl"); } }
+        private string? _explicitNullValueCallInitiatedFallbackUrl = default!;
 #nullable restore
 #else
-        public string CallInitiatedFallbackUrl { get; set; }
+        public string CallInitiatedFallbackUrl { get => _explicitNullValueCallInitiatedFallbackUrl; set { _explicitNullValueCallInitiatedFallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedFallbackUrl"); else _explicitNullProperties?.Remove("callInitiatedFallbackUrl"); } }
+        private string _explicitNullValueCallInitiatedFallbackUrl = default!;
 #endif
         /// <summary>The callInitiatedMethod property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallInitiatedMethod { get; set; }
+        public string? CallInitiatedMethod { get => _explicitNullValueCallInitiatedMethod; set { _explicitNullValueCallInitiatedMethod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedMethod"); else _explicitNullProperties?.Remove("callInitiatedMethod"); } }
+        private string? _explicitNullValueCallInitiatedMethod = default!;
 #nullable restore
 #else
-        public string CallInitiatedMethod { get; set; }
+        public string CallInitiatedMethod { get => _explicitNullValueCallInitiatedMethod; set { _explicitNullValueCallInitiatedMethod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedMethod"); else _explicitNullProperties?.Remove("callInitiatedMethod"); } }
+        private string _explicitNullValueCallInitiatedMethod = default!;
 #endif
         /// <summary>The callStatusCallbackUrl property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallStatusCallbackUrl { get; set; }
+        public string? CallStatusCallbackUrl { get => _explicitNullValueCallStatusCallbackUrl; set { _explicitNullValueCallStatusCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callStatusCallbackUrl"); else _explicitNullProperties?.Remove("callStatusCallbackUrl"); } }
+        private string? _explicitNullValueCallStatusCallbackUrl = default!;
 #nullable restore
 #else
-        public string CallStatusCallbackUrl { get; set; }
+        public string CallStatusCallbackUrl { get => _explicitNullValueCallStatusCallbackUrl; set { _explicitNullValueCallStatusCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callStatusCallbackUrl"); else _explicitNullProperties?.Remove("callStatusCallbackUrl"); } }
+        private string _explicitNullValueCallStatusCallbackUrl = default!;
 #endif
         /// <summary>The callStatusMethod property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallStatusMethod { get; set; }
+        public string? CallStatusMethod { get => _explicitNullValueCallStatusMethod; set { _explicitNullValueCallStatusMethod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callStatusMethod"); else _explicitNullProperties?.Remove("callStatusMethod"); } }
+        private string? _explicitNullValueCallStatusMethod = default!;
 #nullable restore
 #else
-        public string CallStatusMethod { get; set; }
+        public string CallStatusMethod { get => _explicitNullValueCallStatusMethod; set { _explicitNullValueCallStatusMethod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callStatusMethod"); else _explicitNullProperties?.Remove("callStatusMethod"); } }
+        private string _explicitNullValueCallStatusMethod = default!;
 #endif
         /// <summary>The inboundCallbackCreds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson? InboundCallbackCreds { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson? InboundCallbackCreds { get => _explicitNullValueInboundCallbackCreds; set { _explicitNullValueInboundCallbackCreds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inboundCallbackCreds"); else _explicitNullProperties?.Remove("inboundCallbackCreds"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson? _explicitNullValueInboundCallbackCreds = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson InboundCallbackCreds { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson InboundCallbackCreds { get => _explicitNullValueInboundCallbackCreds; set { _explicitNullValueInboundCallbackCreds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inboundCallbackCreds"); else _explicitNullProperties?.Remove("inboundCallbackCreds"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson _explicitNullValueInboundCallbackCreds = default!;
 #endif
         /// <summary>The inboundCallbackUrl property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? InboundCallbackUrl { get; set; }
+        public string? InboundCallbackUrl { get => _explicitNullValueInboundCallbackUrl; set { _explicitNullValueInboundCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inboundCallbackUrl"); else _explicitNullProperties?.Remove("inboundCallbackUrl"); } }
+        private string? _explicitNullValueInboundCallbackUrl = default!;
 #nullable restore
 #else
-        public string InboundCallbackUrl { get; set; }
+        public string InboundCallbackUrl { get => _explicitNullValueInboundCallbackUrl; set { _explicitNullValueInboundCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inboundCallbackUrl"); else _explicitNullProperties?.Remove("inboundCallbackUrl"); } }
+        private string _explicitNullValueInboundCallbackUrl = default!;
 #endif
         /// <summary>The msgCallbackUrl property</summary>
         [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? MsgCallbackUrl { get; set; }
+        public string? MsgCallbackUrl { get => _explicitNullValueMsgCallbackUrl; set { _explicitNullValueMsgCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("msgCallbackUrl"); else _explicitNullProperties?.Remove("msgCallbackUrl"); } }
+        private string? _explicitNullValueMsgCallbackUrl = default!;
 #nullable restore
 #else
-        public string MsgCallbackUrl { get; set; }
+        public string MsgCallbackUrl { get => _explicitNullValueMsgCallbackUrl; set { _explicitNullValueMsgCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("msgCallbackUrl"); else _explicitNullProperties?.Remove("msgCallbackUrl"); } }
+        private string _explicitNullValueMsgCallbackUrl = default!;
 #endif
         /// <summary>The outboundCallbackCreds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson? OutboundCallbackCreds { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson? OutboundCallbackCreds { get => _explicitNullValueOutboundCallbackCreds; set { _explicitNullValueOutboundCallbackCreds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outboundCallbackCreds"); else _explicitNullProperties?.Remove("outboundCallbackCreds"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson? _explicitNullValueOutboundCallbackCreds = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson OutboundCallbackCreds { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson OutboundCallbackCreds { get => _explicitNullValueOutboundCallbackCreds; set { _explicitNullValueOutboundCallbackCreds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outboundCallbackCreds"); else _explicitNullProperties?.Remove("outboundCallbackCreds"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackCredsJson _explicitNullValueOutboundCallbackCreds = default!;
 #endif
         /// <summary>The outboundCallbackUrl property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? OutboundCallbackUrl { get; set; }
+        public string? OutboundCallbackUrl { get => _explicitNullValueOutboundCallbackUrl; set { _explicitNullValueOutboundCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outboundCallbackUrl"); else _explicitNullProperties?.Remove("outboundCallbackUrl"); } }
+        private string? _explicitNullValueOutboundCallbackUrl = default!;
 #nullable restore
 #else
-        public string OutboundCallbackUrl { get; set; }
+        public string OutboundCallbackUrl { get => _explicitNullValueOutboundCallbackUrl; set { _explicitNullValueOutboundCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outboundCallbackUrl"); else _explicitNullProperties?.Remove("outboundCallbackUrl"); } }
+        private string _explicitNullValueOutboundCallbackUrl = default!;
 #endif
         /// <summary>The requestedCallbackTypes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RequestedCallbackTypesJson?>? RequestedCallbackTypes { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RequestedCallbackTypesJson?>? RequestedCallbackTypes { get => _explicitNullValueRequestedCallbackTypes; set { _explicitNullValueRequestedCallbackTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requestedCallbackTypes"); else _explicitNullProperties?.Remove("requestedCallbackTypes"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.RequestedCallbackTypesJson?>? _explicitNullValueRequestedCallbackTypes = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RequestedCallbackTypesJson?> RequestedCallbackTypes { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RequestedCallbackTypesJson?> RequestedCallbackTypes { get => _explicitNullValueRequestedCallbackTypes; set { _explicitNullValueRequestedCallbackTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requestedCallbackTypes"); else _explicitNullProperties?.Remove("requestedCallbackTypes"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.RequestedCallbackTypesJson?> _explicitNullValueRequestedCallbackTypes = default!;
 #endif
         /// <summary>The serviceType property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceType? ServiceType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceType? ServiceType { get => _explicitNullValueServiceType; set { _explicitNullValueServiceType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("serviceType"); else _explicitNullProperties?.Remove("serviceType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceType? _explicitNullValueServiceType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ApplicationJson"/> and sets the default values.
         /// </summary>
@@ -169,7 +229,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.ApplicationJson CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.ApplicationJson();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.ApplicationJson(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -224,6 +284,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("outboundCallbackUrl", OutboundCallbackUrl);
             writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.RequestedCallbackTypesJson>("requestedCallbackTypes", RequestedCallbackTypes);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceType>("serviceType", ServiceType);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

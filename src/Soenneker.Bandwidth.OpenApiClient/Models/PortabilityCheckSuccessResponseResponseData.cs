@@ -11,24 +11,37 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PortabilityCheckSuccessResponseResponseData : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("numbersToPort") is { } nullNodeNumbersToPort && nullNodeNumbersToPort.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NumbersToPort = null;
+            if (parseNode.GetChildNode("requirements") is { } nullNodeRequirements && nullNodeRequirements.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Requirements = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The list of phone numbers included in the portability request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails>? NumbersToPort { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails>? NumbersToPort { get => _explicitNullValueNumbersToPort; set { _explicitNullValueNumbersToPort = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("numbersToPort"); else _explicitNullProperties?.Remove("numbersToPort"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails>? _explicitNullValueNumbersToPort = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails> NumbersToPort { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails> NumbersToPort { get => _explicitNullValueNumbersToPort; set { _explicitNullValueNumbersToPort = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("numbersToPort"); else _explicitNullProperties?.Remove("numbersToPort"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails> _explicitNullValueNumbersToPort = default!;
 #endif
         /// <summary>All required information and documents needed to port the requested numbers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Requirement>? Requirements { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Requirement>? Requirements { get => _explicitNullValueRequirements; set { _explicitNullValueRequirements = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requirements"); else _explicitNullProperties?.Remove("requirements"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Requirement>? _explicitNullValueRequirements = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Requirement> Requirements { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Requirement> Requirements { get => _explicitNullValueRequirements; set { _explicitNullValueRequirements = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requirements"); else _explicitNullProperties?.Remove("requirements"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Requirement> _explicitNullValueRequirements = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PortabilityCheckSuccessResponseResponseData"/> and sets the default values.
@@ -45,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.PortabilityCheckSuccessResponseResponseData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.PortabilityCheckSuccessResponseResponseData();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.PortabilityCheckSuccessResponseResponseData(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,6 +81,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails>("numbersToPort", NumbersToPort);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Requirement>("requirements", Requirements);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

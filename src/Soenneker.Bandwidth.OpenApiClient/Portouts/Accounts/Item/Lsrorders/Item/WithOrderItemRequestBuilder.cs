@@ -36,18 +36,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portouts.Accounts.Item.Lsrorders.Ite
         /// <summary>
         /// Retrieves the information associated with the specified LSR order.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderDetailJson"/></returns>
+        /// <returns>A <see cref="Stream"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderErrorResponseJson">When receiving a 400 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LsrErrorResponseJson">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderDetailJson?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderDetailJson> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -55,13 +55,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portouts.Accounts.Item.Lsrorders.Ite
             {
                 { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderErrorResponseJson.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.LsrErrorResponseJson.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderDetailJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderDetailJson.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates the information associated with the specified LSR order. To cancel an order, set `orderStatus` to `CANCELLED`.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderDetailJson"/></returns>
+        /// <returns>A <see cref="Stream"/></returns>
         /// <param name="body">LSR order update/cancel request payload. All fields are optional; to cancel set orderStatus to CANCELLED.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -69,11 +71,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portouts.Accounts.Item.Lsrorders.Ite
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LsrErrorResponseJson">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderDetailJson?> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderUpdateRequestJson body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream?> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderUpdateRequestJson body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderDetailJson> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderUpdateRequestJson body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream> PutAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderUpdateRequestJson body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -82,8 +84,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portouts.Accounts.Item.Lsrorders.Ite
             {
                 { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderErrorResponseJson.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.LsrErrorResponseJson.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderDetailJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderDetailJson.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves the information associated with the specified LSR order.

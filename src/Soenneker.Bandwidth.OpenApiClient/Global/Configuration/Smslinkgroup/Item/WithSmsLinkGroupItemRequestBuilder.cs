@@ -50,7 +50,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Smslinkgroup.It
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.DeleteSmsLinkGroupResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.DeleteSmsLinkGroupResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.DeleteSmsLinkGroupResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.DeleteSmsLinkGroupResponse.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Delete SMS Link Group

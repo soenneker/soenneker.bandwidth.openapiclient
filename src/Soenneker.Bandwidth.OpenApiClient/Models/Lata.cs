@@ -12,15 +12,26 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Lata : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("accessHomingTandem") is { } nullNodeAccessHomingTandem && nullNodeAccessHomingTandem.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccessHomingTandem = null;
+            if (parseNode.GetChildNode("hostedVoice") is { } nullNodeHostedVoice && nullNodeHostedVoice.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HostedVoice = null;
+        }
+
         /// <summary>Whether access homing tandem may be enabled on LRNs belonging to this LATA.</summary>
-        public bool? AccessHomingTandem { get; set; }
+        public bool? AccessHomingTandem { get => _explicitNullValueAccessHomingTandem; set { _explicitNullValueAccessHomingTandem = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accessHomingTandem"); else _explicitNullProperties?.Remove("accessHomingTandem"); } }
+        private bool? _explicitNullValueAccessHomingTandem = default!;
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The number of LRNs in use on the account that belong to the LATA.</summary>
         public int? Count { get; private set; }
         /// <summary>Whether hosted voice may be enabled on LRNs belonging to this LATA.</summary>
-        public bool? HostedVoice { get; set; }
+        public bool? HostedVoice { get => _explicitNullValueHostedVoice; set { _explicitNullValueHostedVoice = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hostedVoice"); else _explicitNullProperties?.Remove("hostedVoice"); } }
+        private bool? _explicitNullValueHostedVoice = default!;
         /// <summary>The code that identifies the LATA.</summary>
         public int? Id { get; private set; }
         /// <summary>The name of the LATA, usually a city.</summary>
@@ -54,7 +65,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.Lata CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.Lata();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.Lata(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -81,6 +92,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("accessHomingTandem", AccessHomingTandem);
             writer.WriteBoolValue("hostedVoice", HostedVoice);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -61,6 +61,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.MultiFactorAuth.Accounts.Item.Code.V
                 { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.MfaUnauthorizedRequestError.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.MfaForbiddenRequestError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.MfaRequestError.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceCodeResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceCodeResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

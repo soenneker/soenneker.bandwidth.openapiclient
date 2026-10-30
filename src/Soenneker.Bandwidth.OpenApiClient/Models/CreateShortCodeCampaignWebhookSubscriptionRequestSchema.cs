@@ -12,32 +12,48 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CreateShortCodeCampaignWebhookSubscriptionRequestSchema : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("basicAuthentication") is { } nullNodeBasicAuthentication && nullNodeBasicAuthentication.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BasicAuthentication = null;
+            if (parseNode.GetChildNode("callbackUrl") is { } nullNodeCallbackUrl && nullNodeCallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallbackUrl = null;
+            if (parseNode.GetChildNode("sharedSecretKey") is { } nullNodeSharedSecretKey && nullNodeSharedSecretKey.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SharedSecretKey = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Basic authentication credentials are not required, but if present, both username and password must be provided.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackBasicAuthentication? BasicAuthentication { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackBasicAuthentication? BasicAuthentication { get => _explicitNullValueBasicAuthentication; set { _explicitNullValueBasicAuthentication = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("basicAuthentication"); else _explicitNullProperties?.Remove("basicAuthentication"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackBasicAuthentication? _explicitNullValueBasicAuthentication = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackBasicAuthentication BasicAuthentication { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackBasicAuthentication BasicAuthentication { get => _explicitNullValueBasicAuthentication; set { _explicitNullValueBasicAuthentication = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("basicAuthentication"); else _explicitNullProperties?.Remove("basicAuthentication"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackBasicAuthentication _explicitNullValueBasicAuthentication = default!;
 #endif
         /// <summary>The URL that the webhook subscription will send messages to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallbackUrl { get; set; }
+        public string? CallbackUrl { get => _explicitNullValueCallbackUrl; set { _explicitNullValueCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackUrl"); else _explicitNullProperties?.Remove("callbackUrl"); } }
+        private string? _explicitNullValueCallbackUrl = default!;
 #nullable restore
 #else
-        public string CallbackUrl { get; set; }
+        public string CallbackUrl { get => _explicitNullValueCallbackUrl; set { _explicitNullValueCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackUrl"); else _explicitNullProperties?.Remove("callbackUrl"); } }
+        private string _explicitNullValueCallbackUrl = default!;
 #endif
         /// <summary>An ASCII string submitted by the user as a shared secret key for generating an HMAC header for callbacks.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SharedSecretKey { get; set; }
+        public string? SharedSecretKey { get => _explicitNullValueSharedSecretKey; set { _explicitNullValueSharedSecretKey = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sharedSecretKey"); else _explicitNullProperties?.Remove("sharedSecretKey"); } }
+        private string? _explicitNullValueSharedSecretKey = default!;
 #nullable restore
 #else
-        public string SharedSecretKey { get; set; }
+        public string SharedSecretKey { get => _explicitNullValueSharedSecretKey; set { _explicitNullValueSharedSecretKey = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sharedSecretKey"); else _explicitNullProperties?.Remove("sharedSecretKey"); } }
+        private string _explicitNullValueSharedSecretKey = default!;
 #endif
         /// <summary>The ID of the webhook subscription that is associated with a callback URL.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -62,7 +78,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.CreateShortCodeCampaignWebhookSubscriptionRequestSchema CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateShortCodeCampaignWebhookSubscriptionRequestSchema();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateShortCodeCampaignWebhookSubscriptionRequestSchema(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -88,6 +104,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackBasicAuthentication>("basicAuthentication", BasicAuthentication);
             writer.WriteStringValue("callbackUrl", CallbackUrl);
             writer.WriteStringValue("sharedSecretKey", SharedSecretKey);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

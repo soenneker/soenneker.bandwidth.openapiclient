@@ -79,6 +79,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoicePhoneNumbers.V2.Accounts.Item.P
                 { "409", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorResponse.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorResponse.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberDetailsResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberDetailsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -118,6 +119,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoicePhoneNumbers.V2.Accounts.Item.P
                 { "409", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorResponse.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorResponse.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberUpdateResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberUpdateResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

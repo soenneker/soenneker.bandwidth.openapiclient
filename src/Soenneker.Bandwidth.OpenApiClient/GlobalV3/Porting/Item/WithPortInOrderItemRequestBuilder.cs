@@ -16,6 +16,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.Item
     public partial class WithPortInOrderItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The documents property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.Item.Documents.DocumentsRequestBuilder Documents
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.Item.Documents.DocumentsRequestBuilder(PathParameters, RequestAdapter);

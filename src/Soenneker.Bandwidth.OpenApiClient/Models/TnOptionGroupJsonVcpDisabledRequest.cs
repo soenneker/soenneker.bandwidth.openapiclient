@@ -11,95 +11,143 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class TnOptionGroupJsonVcpDisabledRequest : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("a2pSettings") is { } nullNodeA2pSettings && nullNodeA2pSettings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) A2pSettings = null;
+            if (parseNode.GetChildNode("callForward") is { } nullNodeCallForward && nullNodeCallForward.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallForward = null;
+            if (parseNode.GetChildNode("callingNameDisplay") is { } nullNodeCallingNameDisplay && nullNodeCallingNameDisplay.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallingNameDisplay = null;
+            if (parseNode.GetChildNode("callVerificationEnabled") is { } nullNodeCallVerificationEnabled && nullNodeCallVerificationEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallVerificationEnabled = null;
+            if (parseNode.GetChildNode("espid") is { } nullNodeEspid && nullNodeEspid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Espid = null;
+            if (parseNode.GetChildNode("finalDestinationUri") is { } nullNodeFinalDestinationUri && nullNodeFinalDestinationUri.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FinalDestinationUri = null;
+            if (parseNode.GetChildNode("nnid") is { } nullNodeNnid && nullNodeNnid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Nnid = null;
+            if (parseNode.GetChildNode("numberFormat") is { } nullNodeNumberFormat && nullNodeNumberFormat.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NumberFormat = null;
+            if (parseNode.GetChildNode("originationRoutePlan") is { } nullNodeOriginationRoutePlan && nullNodeOriginationRoutePlan.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OriginationRoutePlan = null;
+            if (parseNode.GetChildNode("phoneNumbers") is { } nullNodePhoneNumbers && nullNodePhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumbers = null;
+            if (parseNode.GetChildNode("pindropEnabled") is { } nullNodePindropEnabled && nullNodePindropEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PindropEnabled = null;
+            if (parseNode.GetChildNode("portOutPasscode") is { } nullNodePortOutPasscode && nullNodePortOutPasscode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PortOutPasscode = null;
+            if (parseNode.GetChildNode("protected") is { } nullNodeProtected && nullNodeProtected.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Protected = null;
+            if (parseNode.GetChildNode("rewriteUser") is { } nullNodeRewriteUser && nullNodeRewriteUser.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RewriteUser = null;
+            if (parseNode.GetChildNode("rpidFormat") is { } nullNodeRpidFormat && nullNodeRpidFormat.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RpidFormat = null;
+            if (parseNode.GetChildNode("sms") is { } nullNodeSms && nullNodeSms.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Sms = null;
+        }
+
         /// <summary>The a2pSettings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.A2PSettingsJson? A2pSettings { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.A2PSettingsJson? A2pSettings { get => _explicitNullValueA2pSettings; set { _explicitNullValueA2pSettings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("a2pSettings"); else _explicitNullProperties?.Remove("a2pSettings"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.A2PSettingsJson? _explicitNullValueA2pSettings = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.A2PSettingsJson A2pSettings { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.A2PSettingsJson A2pSettings { get => _explicitNullValueA2pSettings; set { _explicitNullValueA2pSettings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("a2pSettings"); else _explicitNullProperties?.Remove("a2pSettings"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.A2PSettingsJson _explicitNullValueA2pSettings = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The callForward property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestCallForward? CallForward { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestCallForward? CallForward { get => _explicitNullValueCallForward; set { _explicitNullValueCallForward = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callForward"); else _explicitNullProperties?.Remove("callForward"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestCallForward? _explicitNullValueCallForward = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestCallForward CallForward { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestCallForward CallForward { get => _explicitNullValueCallForward; set { _explicitNullValueCallForward = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callForward"); else _explicitNullProperties?.Remove("callForward"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestCallForward _explicitNullValueCallForward = default!;
 #endif
         /// <summary>The callingNameDisplay property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestCallingNameDisplay? CallingNameDisplay { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestCallingNameDisplay? CallingNameDisplay { get => _explicitNullValueCallingNameDisplay; set { _explicitNullValueCallingNameDisplay = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callingNameDisplay"); else _explicitNullProperties?.Remove("callingNameDisplay"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestCallingNameDisplay? _explicitNullValueCallingNameDisplay = default!;
         /// <summary>The callVerificationEnabled property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestCallVerificationEnabled? CallVerificationEnabled { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestCallVerificationEnabled? CallVerificationEnabled { get => _explicitNullValueCallVerificationEnabled; set { _explicitNullValueCallVerificationEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callVerificationEnabled"); else _explicitNullProperties?.Remove("callVerificationEnabled"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestCallVerificationEnabled? _explicitNullValueCallVerificationEnabled = default!;
         /// <summary>The espid property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspid? Espid { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspid? Espid { get => _explicitNullValueEspid; set { _explicitNullValueEspid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("espid"); else _explicitNullProperties?.Remove("espid"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspid? _explicitNullValueEspid = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspid Espid { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspid Espid { get => _explicitNullValueEspid; set { _explicitNullValueEspid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("espid"); else _explicitNullProperties?.Remove("espid"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestEspid _explicitNullValueEspid = default!;
 #endif
         /// <summary>The finalDestinationUri property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestFinalDestinationUri? FinalDestinationUri { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestFinalDestinationUri? FinalDestinationUri { get => _explicitNullValueFinalDestinationUri; set { _explicitNullValueFinalDestinationUri = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("finalDestinationUri"); else _explicitNullProperties?.Remove("finalDestinationUri"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestFinalDestinationUri? _explicitNullValueFinalDestinationUri = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestFinalDestinationUri FinalDestinationUri { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestFinalDestinationUri FinalDestinationUri { get => _explicitNullValueFinalDestinationUri; set { _explicitNullValueFinalDestinationUri = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("finalDestinationUri"); else _explicitNullProperties?.Remove("finalDestinationUri"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestFinalDestinationUri _explicitNullValueFinalDestinationUri = default!;
 #endif
         /// <summary>The nnid property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestNnid? Nnid { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestNnid? Nnid { get => _explicitNullValueNnid; set { _explicitNullValueNnid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nnid"); else _explicitNullProperties?.Remove("nnid"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestNnid? _explicitNullValueNnid = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestNnid Nnid { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestNnid Nnid { get => _explicitNullValueNnid; set { _explicitNullValueNnid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nnid"); else _explicitNullProperties?.Remove("nnid"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestNnid _explicitNullValueNnid = default!;
 #endif
         /// <summary>The numberFormat property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestNumberFormat? NumberFormat { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestNumberFormat? NumberFormat { get => _explicitNullValueNumberFormat; set { _explicitNullValueNumberFormat = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("numberFormat"); else _explicitNullProperties?.Remove("numberFormat"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestNumberFormat? _explicitNullValueNumberFormat = default!;
         /// <summary>The originationRoutePlan element consists of an action and a list of prioritized and weighted routes that tell Bandwidth where to send phone calls to phone numbers associated with the route plan.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesOriginationRoutePlanJson? OriginationRoutePlan { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesOriginationRoutePlanJson? OriginationRoutePlan { get => _explicitNullValueOriginationRoutePlan; set { _explicitNullValueOriginationRoutePlan = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("originationRoutePlan"); else _explicitNullProperties?.Remove("originationRoutePlan"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesOriginationRoutePlanJson? _explicitNullValueOriginationRoutePlan = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesOriginationRoutePlanJson OriginationRoutePlan { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesOriginationRoutePlanJson OriginationRoutePlan { get => _explicitNullValueOriginationRoutePlan; set { _explicitNullValueOriginationRoutePlan = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("originationRoutePlan"); else _explicitNullProperties?.Remove("originationRoutePlan"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesOriginationRoutePlanJson _explicitNullValueOriginationRoutePlan = default!;
 #endif
         /// <summary>The phoneNumbers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? PhoneNumbers { get; set; }
+        public List<string>? PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
+        private List<string>? _explicitNullValuePhoneNumbers = default!;
 #nullable restore
 #else
-        public List<string> PhoneNumbers { get; set; }
+        public List<string> PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
+        private List<string> _explicitNullValuePhoneNumbers = default!;
 #endif
         /// <summary>The pindropEnabled property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestPindropEnabled? PindropEnabled { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestPindropEnabled? PindropEnabled { get => _explicitNullValuePindropEnabled; set { _explicitNullValuePindropEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pindropEnabled"); else _explicitNullProperties?.Remove("pindropEnabled"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestPindropEnabled? _explicitNullValuePindropEnabled = default!;
         /// <summary>The portOutPasscode property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestPortOutPasscode? PortOutPasscode { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestPortOutPasscode? PortOutPasscode { get => _explicitNullValuePortOutPasscode; set { _explicitNullValuePortOutPasscode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("portOutPasscode"); else _explicitNullProperties?.Remove("portOutPasscode"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestPortOutPasscode? _explicitNullValuePortOutPasscode = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestPortOutPasscode PortOutPasscode { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestPortOutPasscode PortOutPasscode { get => _explicitNullValuePortOutPasscode; set { _explicitNullValuePortOutPasscode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("portOutPasscode"); else _explicitNullProperties?.Remove("portOutPasscode"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestPortOutPasscode _explicitNullValuePortOutPasscode = default!;
 #endif
         /// <summary>The protected property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestProtected? Protected { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestProtected? Protected { get => _explicitNullValueProtected; set { _explicitNullValueProtected = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("protected"); else _explicitNullProperties?.Remove("protected"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestProtected? _explicitNullValueProtected = default!;
         /// <summary>The rewriteUser property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestRewriteUser? RewriteUser { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestRewriteUser? RewriteUser { get => _explicitNullValueRewriteUser; set { _explicitNullValueRewriteUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rewriteUser"); else _explicitNullProperties?.Remove("rewriteUser"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestRewriteUser? _explicitNullValueRewriteUser = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestRewriteUser RewriteUser { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestRewriteUser RewriteUser { get => _explicitNullValueRewriteUser; set { _explicitNullValueRewriteUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rewriteUser"); else _explicitNullProperties?.Remove("rewriteUser"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestRewriteUser _explicitNullValueRewriteUser = default!;
 #endif
         /// <summary>The rpidFormat property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestRpidFormat? RpidFormat { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestRpidFormat? RpidFormat { get => _explicitNullValueRpidFormat; set { _explicitNullValueRpidFormat = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rpidFormat"); else _explicitNullProperties?.Remove("rpidFormat"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestRpidFormat? _explicitNullValueRpidFormat = default!;
         /// <summary>The sms property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestSms? Sms { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestSms? Sms { get => _explicitNullValueSms; set { _explicitNullValueSms = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sms"); else _explicitNullProperties?.Remove("sms"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestSms? _explicitNullValueSms = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequest"/> and sets the default values.
         /// </summary>
@@ -115,7 +163,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -166,6 +214,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestRewriteUser>("rewriteUser", RewriteUser);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestRpidFormat>("rpidFormat", RpidFormat);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpDisabledRequestSms>("sms", Sms);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

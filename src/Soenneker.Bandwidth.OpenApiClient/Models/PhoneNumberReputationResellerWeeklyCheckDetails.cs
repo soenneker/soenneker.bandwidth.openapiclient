@@ -11,49 +11,81 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PhoneNumberReputationResellerWeeklyCheckDetails : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("attRiskRating") is { } nullNodeAttRiskRating && nullNodeAttRiskRating.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AttRiskRating = null;
+            if (parseNode.GetChildNode("carriersReputationSummary") is { } nullNodeCarriersReputationSummary && nullNodeCarriersReputationSummary.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CarriersReputationSummary = null;
+            if (parseNode.GetChildNode("customerId") is { } nullNodeCustomerId && nullNodeCustomerId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerId = null;
+            if (parseNode.GetChildNode("customerName") is { } nullNodeCustomerName && nullNodeCustomerName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerName = null;
+            if (parseNode.GetChildNode("groupId") is { } nullNodeGroupId && nullNodeGroupId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) GroupId = null;
+            if (parseNode.GetChildNode("groupName") is { } nullNodeGroupName && nullNodeGroupName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) GroupName = null;
+            if (parseNode.GetChildNode("lastFlagged") is { } nullNodeLastFlagged && nullNodeLastFlagged.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastFlagged = null;
+            if (parseNode.GetChildNode("lastTest") is { } nullNodeLastTest && nullNodeLastTest.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastTest = null;
+            if (parseNode.GetChildNode("phoneNumber") is { } nullNodePhoneNumber && nullNodePhoneNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumber = null;
+            if (parseNode.GetChildNode("tmobileRiskRating") is { } nullNodeTmobileRiskRating && nullNodeTmobileRiskRating.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TmobileRiskRating = null;
+            if (parseNode.GetChildNode("verizonRiskRating") is { } nullNodeVerizonRiskRating && nullNodeVerizonRiskRating.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VerizonRiskRating = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The risk rating of the number.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? AttRiskRating { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? AttRiskRating { get => _explicitNullValueAttRiskRating; set { _explicitNullValueAttRiskRating = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("attRiskRating"); else _explicitNullProperties?.Remove("attRiskRating"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? _explicitNullValueAttRiskRating = default!;
         /// <summary>A summary of the number&apos;s reputation based on its status with the three main carriers, AT&amp;T, Verizon, and T-Mobile. This will be set to `FLAGGED` if the number is in a `FLAGGED` status with at least one of those carriers.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CarriersReputationSummaryEnum? CarriersReputationSummary { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CarriersReputationSummaryEnum? CarriersReputationSummary { get => _explicitNullValueCarriersReputationSummary; set { _explicitNullValueCarriersReputationSummary = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carriersReputationSummary"); else _explicitNullProperties?.Remove("carriersReputationSummary"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CarriersReputationSummaryEnum? _explicitNullValueCarriersReputationSummary = default!;
         /// <summary>The ID of the customer the group belongs to</summary>
-        public int? CustomerId { get; set; }
+        public int? CustomerId { get => _explicitNullValueCustomerId; set { _explicitNullValueCustomerId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerId"); else _explicitNullProperties?.Remove("customerId"); } }
+        private int? _explicitNullValueCustomerId = default!;
         /// <summary>The name of the customer the group belongs to</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CustomerName { get; set; }
+        public string? CustomerName { get => _explicitNullValueCustomerName; set { _explicitNullValueCustomerName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerName"); else _explicitNullProperties?.Remove("customerName"); } }
+        private string? _explicitNullValueCustomerName = default!;
 #nullable restore
 #else
-        public string CustomerName { get; set; }
+        public string CustomerName { get => _explicitNullValueCustomerName; set { _explicitNullValueCustomerName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerName"); else _explicitNullProperties?.Remove("customerName"); } }
+        private string _explicitNullValueCustomerName = default!;
 #endif
         /// <summary>The ID of the group</summary>
-        public double? GroupId { get; set; }
+        public double? GroupId { get => _explicitNullValueGroupId; set { _explicitNullValueGroupId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("groupId"); else _explicitNullProperties?.Remove("groupId"); } }
+        private double? _explicitNullValueGroupId = default!;
         /// <summary>The name of the group</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? GroupName { get; set; }
+        public string? GroupName { get => _explicitNullValueGroupName; set { _explicitNullValueGroupName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("groupName"); else _explicitNullProperties?.Remove("groupName"); } }
+        private string? _explicitNullValueGroupName = default!;
 #nullable restore
 #else
-        public string GroupName { get; set; }
+        public string GroupName { get => _explicitNullValueGroupName; set { _explicitNullValueGroupName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("groupName"); else _explicitNullProperties?.Remove("groupName"); } }
+        private string _explicitNullValueGroupName = default!;
 #endif
         /// <summary>The date and time the number was last flagged</summary>
-        public DateTimeOffset? LastFlagged { get; set; }
+        public DateTimeOffset? LastFlagged { get => _explicitNullValueLastFlagged; set { _explicitNullValueLastFlagged = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastFlagged"); else _explicitNullProperties?.Remove("lastFlagged"); } }
+        private DateTimeOffset? _explicitNullValueLastFlagged = default!;
         /// <summary>The date and time the number was last tested</summary>
-        public DateTimeOffset? LastTest { get; set; }
+        public DateTimeOffset? LastTest { get => _explicitNullValueLastTest; set { _explicitNullValueLastTest = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastTest"); else _explicitNullProperties?.Remove("lastTest"); } }
+        private DateTimeOffset? _explicitNullValueLastTest = default!;
         /// <summary>The phone number</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PhoneNumber { get; set; }
+        public string? PhoneNumber { get => _explicitNullValuePhoneNumber; set { _explicitNullValuePhoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumber"); else _explicitNullProperties?.Remove("phoneNumber"); } }
+        private string? _explicitNullValuePhoneNumber = default!;
 #nullable restore
 #else
-        public string PhoneNumber { get; set; }
+        public string PhoneNumber { get => _explicitNullValuePhoneNumber; set { _explicitNullValuePhoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumber"); else _explicitNullProperties?.Remove("phoneNumber"); } }
+        private string _explicitNullValuePhoneNumber = default!;
 #endif
         /// <summary>The risk rating of the number.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? TmobileRiskRating { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? TmobileRiskRating { get => _explicitNullValueTmobileRiskRating; set { _explicitNullValueTmobileRiskRating = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tmobileRiskRating"); else _explicitNullProperties?.Remove("tmobileRiskRating"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? _explicitNullValueTmobileRiskRating = default!;
         /// <summary>The risk rating of the number.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? VerizonRiskRating { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? VerizonRiskRating { get => _explicitNullValueVerizonRiskRating; set { _explicitNullValueVerizonRiskRating = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("verizonRiskRating"); else _explicitNullProperties?.Remove("verizonRiskRating"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? _explicitNullValueVerizonRiskRating = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberReputationResellerWeeklyCheckDetails"/> and sets the default values.
         /// </summary>
@@ -69,7 +101,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberReputationResellerWeeklyCheckDetails CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberReputationResellerWeeklyCheckDetails();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberReputationResellerWeeklyCheckDetails(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -110,6 +142,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("phoneNumber", PhoneNumber);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum>("tmobileRiskRating", TmobileRiskRating);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum>("verizonRiskRating", VerizonRiskRating);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

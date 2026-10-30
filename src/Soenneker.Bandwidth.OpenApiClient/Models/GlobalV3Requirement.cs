@@ -12,35 +12,53 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class GlobalV3Requirement : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("business") is { } nullNodeBusiness && nullNodeBusiness.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Business = null;
+            if (parseNode.GetChildNode("countryCodeA3") is { } nullNodeCountryCodeA3 && nullNodeCountryCodeA3.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CountryCodeA3 = null;
+            if (parseNode.GetChildNode("personal") is { } nullNodePersonal && nullNodePersonal.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Personal = null;
+            if (parseNode.GetChildNode("phoneNumberType") is { } nullNodePhoneNumberType && nullNodePhoneNumberType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumberType = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>All required documents and end user&apos;s information that you have to provide for porting-in a number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRequirement? Business { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRequirement? Business { get => _explicitNullValueBusiness; set { _explicitNullValueBusiness = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("business"); else _explicitNullProperties?.Remove("business"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRequirement? _explicitNullValueBusiness = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRequirement Business { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRequirement Business { get => _explicitNullValueBusiness; set { _explicitNullValueBusiness = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("business"); else _explicitNullProperties?.Remove("business"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.BusinessRequirement _explicitNullValueBusiness = default!;
 #endif
         /// <summary>ISO 3166-1 standard 3-letter country code.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CountryCodeA3 { get; set; }
+        public string? CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
+        private string? _explicitNullValueCountryCodeA3 = default!;
 #nullable restore
 #else
-        public string CountryCodeA3 { get; set; }
+        public string CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
+        private string _explicitNullValueCountryCodeA3 = default!;
 #endif
         /// <summary>All requirements (documents and end user&apos;s information) customers have to provide for porting-in a number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PersonalRequirement? Personal { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PersonalRequirement? Personal { get => _explicitNullValuePersonal; set { _explicitNullValuePersonal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("personal"); else _explicitNullProperties?.Remove("personal"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.PersonalRequirement? _explicitNullValuePersonal = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PersonalRequirement Personal { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PersonalRequirement Personal { get => _explicitNullValuePersonal; set { _explicitNullValuePersonal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("personal"); else _explicitNullProperties?.Remove("personal"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.PersonalRequirement _explicitNullValuePersonal = default!;
 #endif
         /// <summary>This is the list of supported phone number types:- National numbers: is a phone number designated to be reachable from the entire country at the same price anywhere in the country as a local phone call.- Geographic number: is a fixed-line telephone numbers beginning with a geographically assigned area code.- Mobile number: a telephone number which is registered to a mobile phone/mobile network.- Shared cost number: is a premium number in the UK, Australia, Germany, Switzerland, France, Portugal and the Netherlands, often used by businesses and other institutions.- Toll-free number: is a telephone number that is billed for all arriving calls. For the calling party, a call to a toll-free number from a landline is free of charge.- Special number: is a telephone number that can be used by a business as contact numbers for a number of reasons, including improving the callers experience through the use of network intelligent routing of calls (call recording, calls being automatically delivered to the nearest office, etc,), sharing the cost paid by the caller.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3PhoneNumberTypeEnum? PhoneNumberType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3PhoneNumberTypeEnum? PhoneNumberType { get => _explicitNullValuePhoneNumberType; set { _explicitNullValuePhoneNumberType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumberType"); else _explicitNullProperties?.Remove("phoneNumberType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3PhoneNumberTypeEnum? _explicitNullValuePhoneNumberType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Requirement"/> and sets the default values.
         /// </summary>
@@ -56,7 +74,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Requirement CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Requirement();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3Requirement(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -83,6 +101,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("countryCodeA3", CountryCodeA3);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PersonalRequirement>("personal", Personal);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalV3PhoneNumberTypeEnum>("phoneNumberType", PhoneNumberType);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

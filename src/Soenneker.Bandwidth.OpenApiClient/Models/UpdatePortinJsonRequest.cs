@@ -12,7 +12,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UpdatePortinJsonRequest : IComposedTypeWrapper, IParsable
-    {
+    , global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder {
+        // Preserve ambiguous union payloads without inventing a discriminator.
+        /// <summary>The complete payload when no unique typed union branch can be selected.</summary>
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode UnrecognizedValue { get; set; } = null!;
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalData { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedOffNetJson"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -97,41 +102,44 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.UpdatePortinJsonRequest();
             if("LnpOrderSuppAutomatedOffNetJson".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.LnpOrderSuppAutomatedOffNetJson = new global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedOffNetJson();
+                
             }
             else if("LnpOrderSuppAutomatedOnNetJson".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.LnpOrderSuppAutomatedOnNetJson = new global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedOnNetJson();
+                
             }
             else if("LnpOrderSuppAutomatedOnNetWirelessJson".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.LnpOrderSuppAutomatedOnNetWirelessJson = new global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedOnNetWirelessJson();
+                
             }
             else if("LnpOrderSuppAutomatedTollFreeJson".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.LnpOrderSuppAutomatedTollFreeJson = new global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedTollFreeJson();
+                
             }
             else if("LnpOrderSuppGlobalManualJson".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.LnpOrderSuppGlobalManualJson = new global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppGlobalManualJson();
+                
             }
             else if("LnpOrderSuppHostedTnJson".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.LnpOrderSuppHostedTnJson = new global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppHostedTnJson();
+                
             }
             else if("LnpOrderSuppInternalJson".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.LnpOrderSuppInternalJson = new global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppInternalJson();
+                
             }
             else if("LnpOrderSuppManualOnNetOffNetJson".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.LnpOrderSuppManualOnNetOffNetJson = new global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppManualOnNetOffNetJson();
+                
             }
             else if("LnpOrderSuppManualTollFreeJson".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.LnpOrderSuppManualTollFreeJson = new global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppManualTollFreeJson();
+                
             }
-            return result;
+            
+            var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
+            if (result.LnpOrderSuppAutomatedOffNetJson == null && result.LnpOrderSuppAutomatedOnNetJson == null && result.LnpOrderSuppAutomatedOnNetWirelessJson == null && result.LnpOrderSuppAutomatedTollFreeJson == null && result.LnpOrderSuppGlobalManualJson == null && result.LnpOrderSuppHostedTnJson == null && result.LnpOrderSuppInternalJson == null && result.LnpOrderSuppManualOnNetOffNetJson == null && result.LnpOrderSuppManualTollFreeJson == null) result.UnrecognizedValue = unionPayload;
+return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -183,41 +191,62 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
+            if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
+            if (LnpOrderSuppAutomatedOffNetJson == null && LnpOrderSuppAutomatedOnNetJson == null && LnpOrderSuppAutomatedOnNetWirelessJson == null && LnpOrderSuppAutomatedTollFreeJson == null && LnpOrderSuppGlobalManualJson == null && LnpOrderSuppHostedTnJson == null && LnpOrderSuppInternalJson == null && LnpOrderSuppManualOnNetOffNetJson == null && LnpOrderSuppManualTollFreeJson == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
+            if (LnpOrderSuppAutomatedOffNetJson != null && LnpOrderSuppAutomatedOnNetJson == null && LnpOrderSuppAutomatedOnNetWirelessJson == null && LnpOrderSuppAutomatedTollFreeJson == null && LnpOrderSuppGlobalManualJson == null && LnpOrderSuppHostedTnJson == null && LnpOrderSuppInternalJson == null && LnpOrderSuppManualOnNetOffNetJson == null && LnpOrderSuppManualTollFreeJson == null) { if (LnpOrderSuppAutomatedOffNetJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, LnpOrderSuppAutomatedOffNetJson); return; }
+            if (LnpOrderSuppAutomatedOnNetJson != null && LnpOrderSuppAutomatedOffNetJson == null && LnpOrderSuppAutomatedOnNetWirelessJson == null && LnpOrderSuppAutomatedTollFreeJson == null && LnpOrderSuppGlobalManualJson == null && LnpOrderSuppHostedTnJson == null && LnpOrderSuppInternalJson == null && LnpOrderSuppManualOnNetOffNetJson == null && LnpOrderSuppManualTollFreeJson == null) { if (LnpOrderSuppAutomatedOnNetJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, LnpOrderSuppAutomatedOnNetJson); return; }
+            if (LnpOrderSuppAutomatedOnNetWirelessJson != null && LnpOrderSuppAutomatedOffNetJson == null && LnpOrderSuppAutomatedOnNetJson == null && LnpOrderSuppAutomatedTollFreeJson == null && LnpOrderSuppGlobalManualJson == null && LnpOrderSuppHostedTnJson == null && LnpOrderSuppInternalJson == null && LnpOrderSuppManualOnNetOffNetJson == null && LnpOrderSuppManualTollFreeJson == null) { if (LnpOrderSuppAutomatedOnNetWirelessJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, LnpOrderSuppAutomatedOnNetWirelessJson); return; }
+            if (LnpOrderSuppAutomatedTollFreeJson != null && LnpOrderSuppAutomatedOffNetJson == null && LnpOrderSuppAutomatedOnNetJson == null && LnpOrderSuppAutomatedOnNetWirelessJson == null && LnpOrderSuppGlobalManualJson == null && LnpOrderSuppHostedTnJson == null && LnpOrderSuppInternalJson == null && LnpOrderSuppManualOnNetOffNetJson == null && LnpOrderSuppManualTollFreeJson == null) { if (LnpOrderSuppAutomatedTollFreeJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, LnpOrderSuppAutomatedTollFreeJson); return; }
+            if (LnpOrderSuppGlobalManualJson != null && LnpOrderSuppAutomatedOffNetJson == null && LnpOrderSuppAutomatedOnNetJson == null && LnpOrderSuppAutomatedOnNetWirelessJson == null && LnpOrderSuppAutomatedTollFreeJson == null && LnpOrderSuppHostedTnJson == null && LnpOrderSuppInternalJson == null && LnpOrderSuppManualOnNetOffNetJson == null && LnpOrderSuppManualTollFreeJson == null) { if (LnpOrderSuppGlobalManualJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, LnpOrderSuppGlobalManualJson); return; }
+            if (LnpOrderSuppHostedTnJson != null && LnpOrderSuppAutomatedOffNetJson == null && LnpOrderSuppAutomatedOnNetJson == null && LnpOrderSuppAutomatedOnNetWirelessJson == null && LnpOrderSuppAutomatedTollFreeJson == null && LnpOrderSuppGlobalManualJson == null && LnpOrderSuppInternalJson == null && LnpOrderSuppManualOnNetOffNetJson == null && LnpOrderSuppManualTollFreeJson == null) { if (LnpOrderSuppHostedTnJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, LnpOrderSuppHostedTnJson); return; }
+            if (LnpOrderSuppInternalJson != null && LnpOrderSuppAutomatedOffNetJson == null && LnpOrderSuppAutomatedOnNetJson == null && LnpOrderSuppAutomatedOnNetWirelessJson == null && LnpOrderSuppAutomatedTollFreeJson == null && LnpOrderSuppGlobalManualJson == null && LnpOrderSuppHostedTnJson == null && LnpOrderSuppManualOnNetOffNetJson == null && LnpOrderSuppManualTollFreeJson == null) { if (LnpOrderSuppInternalJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, LnpOrderSuppInternalJson); return; }
+            if (LnpOrderSuppManualOnNetOffNetJson != null && LnpOrderSuppAutomatedOffNetJson == null && LnpOrderSuppAutomatedOnNetJson == null && LnpOrderSuppAutomatedOnNetWirelessJson == null && LnpOrderSuppAutomatedTollFreeJson == null && LnpOrderSuppGlobalManualJson == null && LnpOrderSuppHostedTnJson == null && LnpOrderSuppInternalJson == null && LnpOrderSuppManualTollFreeJson == null) { if (LnpOrderSuppManualOnNetOffNetJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, LnpOrderSuppManualOnNetOffNetJson); return; }
+            if (LnpOrderSuppManualTollFreeJson != null && LnpOrderSuppAutomatedOffNetJson == null && LnpOrderSuppAutomatedOnNetJson == null && LnpOrderSuppAutomatedOnNetWirelessJson == null && LnpOrderSuppAutomatedTollFreeJson == null && LnpOrderSuppGlobalManualJson == null && LnpOrderSuppHostedTnJson == null && LnpOrderSuppInternalJson == null && LnpOrderSuppManualOnNetOffNetJson == null) { if (LnpOrderSuppManualTollFreeJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, LnpOrderSuppManualTollFreeJson); return; }
+
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             if(LnpOrderSuppAutomatedOffNetJson != null)
             {
+                if (LnpOrderSuppAutomatedOffNetJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedOffNetJson>(null, LnpOrderSuppAutomatedOffNetJson);
             }
             else if(LnpOrderSuppAutomatedOnNetJson != null)
             {
+                if (LnpOrderSuppAutomatedOnNetJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedOnNetJson>(null, LnpOrderSuppAutomatedOnNetJson);
             }
             else if(LnpOrderSuppAutomatedOnNetWirelessJson != null)
             {
+                if (LnpOrderSuppAutomatedOnNetWirelessJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedOnNetWirelessJson>(null, LnpOrderSuppAutomatedOnNetWirelessJson);
             }
             else if(LnpOrderSuppAutomatedTollFreeJson != null)
             {
+                if (LnpOrderSuppAutomatedTollFreeJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedTollFreeJson>(null, LnpOrderSuppAutomatedTollFreeJson);
             }
             else if(LnpOrderSuppGlobalManualJson != null)
             {
+                if (LnpOrderSuppGlobalManualJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppGlobalManualJson>(null, LnpOrderSuppGlobalManualJson);
             }
             else if(LnpOrderSuppHostedTnJson != null)
             {
+                if (LnpOrderSuppHostedTnJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppHostedTnJson>(null, LnpOrderSuppHostedTnJson);
             }
             else if(LnpOrderSuppInternalJson != null)
             {
+                if (LnpOrderSuppInternalJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppInternalJson>(null, LnpOrderSuppInternalJson);
             }
             else if(LnpOrderSuppManualOnNetOffNetJson != null)
             {
+                if (LnpOrderSuppManualOnNetOffNetJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppManualOnNetOffNetJson>(null, LnpOrderSuppManualOnNetOffNetJson);
             }
             else if(LnpOrderSuppManualTollFreeJson != null)
             {
+                if (LnpOrderSuppManualTollFreeJson is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppManualTollFreeJson>(null, LnpOrderSuppManualTollFreeJson);
             }
         }

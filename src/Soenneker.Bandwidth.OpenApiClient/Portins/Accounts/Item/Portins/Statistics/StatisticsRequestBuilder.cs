@@ -53,6 +53,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.Statis
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.PortinStatisticsForbiddenErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinStatistics>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.PortinStatistics.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

@@ -11,22 +11,38 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class CallTranscription : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("confidence") is { } nullNodeConfidence && nullNodeConfidence.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Confidence = null;
+            if (parseNode.GetChildNode("detectedLanguage") is { } nullNodeDetectedLanguage && nullNodeDetectedLanguage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DetectedLanguage = null;
+            if (parseNode.GetChildNode("track") is { } nullNodeTrack && nullNodeTrack.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Track = null;
+            if (parseNode.GetChildNode("transcript") is { } nullNodeTranscript && nullNodeTranscript.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Transcript = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>How confident the transcription engine was in transcribing the associated audio (from `0` to `1`).</summary>
-        public double? Confidence { get; set; }
+        public double? Confidence { get => _explicitNullValueConfidence; set { _explicitNullValueConfidence = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("confidence"); else _explicitNullProperties?.Remove("confidence"); } }
+        private double? _explicitNullValueConfidence = default!;
         /// <summary>The detected language for this transcription.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallTranscriptionDetectedLanguageEnum? DetectedLanguage { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallTranscriptionDetectedLanguageEnum? DetectedLanguage { get => _explicitNullValueDetectedLanguage; set { _explicitNullValueDetectedLanguage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("detectedLanguage"); else _explicitNullProperties?.Remove("detectedLanguage"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CallTranscriptionDetectedLanguageEnum? _explicitNullValueDetectedLanguage = default!;
         /// <summary>Which `track` this transcription is derived from.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallTranscriptionTrackEnum? Track { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallTranscriptionTrackEnum? Track { get => _explicitNullValueTrack; set { _explicitNullValueTrack = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("track"); else _explicitNullProperties?.Remove("track"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CallTranscriptionTrackEnum? _explicitNullValueTrack = default!;
         /// <summary>The transcription itself.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Transcript { get; set; }
+        public string? Transcript { get => _explicitNullValueTranscript; set { _explicitNullValueTranscript = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transcript"); else _explicitNullProperties?.Remove("transcript"); } }
+        private string? _explicitNullValueTranscript = default!;
 #nullable restore
 #else
-        public string Transcript { get; set; }
+        public string Transcript { get => _explicitNullValueTranscript; set { _explicitNullValueTranscript = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transcript"); else _explicitNullProperties?.Remove("transcript"); } }
+        private string _explicitNullValueTranscript = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CallTranscription"/> and sets the default values.
@@ -43,7 +59,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.CallTranscription CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.CallTranscription();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.CallTranscription(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -70,6 +86,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallTranscriptionDetectedLanguageEnum>("detectedLanguage", DetectedLanguage);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallTranscriptionTrackEnum>("track", Track);
             writer.WriteStringValue("transcript", Transcript);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -12,122 +12,173 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ExtraFields : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("companyVatNumber") is { } nullNodeCompanyVatNumber && nullNodeCompanyVatNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CompanyVatNumber = null;
+            if (parseNode.GetChildNode("dateOfBirth") is { } nullNodeDateOfBirth && nullNodeDateOfBirth.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DateOfBirth = null;
+            if (parseNode.GetChildNode("firstName") is { } nullNodeFirstName && nullNodeFirstName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FirstName = null;
+            if (parseNode.GetChildNode("fiscalIdentificationCode") is { } nullNodeFiscalIdentificationCode && nullNodeFiscalIdentificationCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FiscalIdentificationCode = null;
+            if (parseNode.GetChildNode("idNumber") is { } nullNodeIdNumber && nullNodeIdNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IdNumber = null;
+            if (parseNode.GetChildNode("idType") is { } nullNodeIdType && nullNodeIdType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IdType = null;
+            if (parseNode.GetChildNode("lastName") is { } nullNodeLastName && nullNodeLastName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastName = null;
+            if (parseNode.GetChildNode("municipalityCode") is { } nullNodeMunicipalityCode && nullNodeMunicipalityCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MunicipalityCode = null;
+            if (parseNode.GetChildNode("nationality") is { } nullNodeNationality && nullNodeNationality.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Nationality = null;
+            if (parseNode.GetChildNode("placeOfBirth") is { } nullNodePlaceOfBirth && nullNodePlaceOfBirth.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PlaceOfBirth = null;
+            if (parseNode.GetChildNode("province") is { } nullNodeProvince && nullNodeProvince.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Province = null;
+            if (parseNode.GetChildNode("state") is { } nullNodeState && nullNodeState.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) State = null;
+            if (parseNode.GetChildNode("streetCode") is { } nullNodeStreetCode && nullNodeStreetCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StreetCode = null;
+            if (parseNode.GetChildNode("taxCode") is { } nullNodeTaxCode && nullNodeTaxCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TaxCode = null;
+            if (parseNode.GetChildNode("title") is { } nullNodeTitle && nullNodeTitle.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Title = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Italy / GEOGRAPHIC and TOLL_FREE / String, maximum length: 60. Mandatory for Company end user only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CompanyVatNumber { get; set; }
+        public string? CompanyVatNumber { get => _explicitNullValueCompanyVatNumber; set { _explicitNullValueCompanyVatNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("companyVatNumber"); else _explicitNullProperties?.Remove("companyVatNumber"); } }
+        private string? _explicitNullValueCompanyVatNumber = default!;
 #nullable restore
 #else
-        public string CompanyVatNumber { get; set; }
+        public string CompanyVatNumber { get => _explicitNullValueCompanyVatNumber; set { _explicitNullValueCompanyVatNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("companyVatNumber"); else _explicitNullProperties?.Remove("companyVatNumber"); } }
+        private string _explicitNullValueCompanyVatNumber = default!;
 #endif
         /// <summary>Italy / GEOGRAPHIC and TOLL_FREE / String (yyyy-mm-dd), maximum length: 10. Validation made for age &gt; 18 years.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DateOfBirth { get; set; }
+        public string? DateOfBirth { get => _explicitNullValueDateOfBirth; set { _explicitNullValueDateOfBirth = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dateOfBirth"); else _explicitNullProperties?.Remove("dateOfBirth"); } }
+        private string? _explicitNullValueDateOfBirth = default!;
 #nullable restore
 #else
-        public string DateOfBirth { get; set; }
+        public string DateOfBirth { get => _explicitNullValueDateOfBirth; set { _explicitNullValueDateOfBirth = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dateOfBirth"); else _explicitNullProperties?.Remove("dateOfBirth"); } }
+        private string _explicitNullValueDateOfBirth = default!;
 #endif
         /// <summary>Italy / GEOGRAPHIC and TOLL_FREE / String, maximum length: 60. Mandatory for Company end user only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FirstName { get; set; }
+        public string? FirstName { get => _explicitNullValueFirstName; set { _explicitNullValueFirstName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("firstName"); else _explicitNullProperties?.Remove("firstName"); } }
+        private string? _explicitNullValueFirstName = default!;
 #nullable restore
 #else
-        public string FirstName { get; set; }
+        public string FirstName { get => _explicitNullValueFirstName; set { _explicitNullValueFirstName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("firstName"); else _explicitNullProperties?.Remove("firstName"); } }
+        private string _explicitNullValueFirstName = default!;
 #endif
         /// <summary>Spain / Mobile / String, maximum length: 60. Only required for professional addresses (salutation is COMPANY).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FiscalIdentificationCode { get; set; }
+        public string? FiscalIdentificationCode { get => _explicitNullValueFiscalIdentificationCode; set { _explicitNullValueFiscalIdentificationCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fiscalIdentificationCode"); else _explicitNullProperties?.Remove("fiscalIdentificationCode"); } }
+        private string? _explicitNullValueFiscalIdentificationCode = default!;
 #nullable restore
 #else
-        public string FiscalIdentificationCode { get; set; }
+        public string FiscalIdentificationCode { get => _explicitNullValueFiscalIdentificationCode; set { _explicitNullValueFiscalIdentificationCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fiscalIdentificationCode"); else _explicitNullProperties?.Remove("fiscalIdentificationCode"); } }
+        private string _explicitNullValueFiscalIdentificationCode = default!;
 #endif
         /// <summary>Spain / Mobile / String, maximum length: 60. Only required for personal addresses (salutation is either MR or MS), additional validation is performed depending on the type of ID. DNI: 8 digits followed by 1 letter / NIE: 1 letter (X,Y or Z), followed by 7 digits, followed by 1 letter / NIF: 8 digits followed by 1 letter / PASSPORT: no additional validation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? IdNumber { get; set; }
+        public string? IdNumber { get => _explicitNullValueIdNumber; set { _explicitNullValueIdNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("idNumber"); else _explicitNullProperties?.Remove("idNumber"); } }
+        private string? _explicitNullValueIdNumber = default!;
 #nullable restore
 #else
-        public string IdNumber { get; set; }
+        public string IdNumber { get => _explicitNullValueIdNumber; set { _explicitNullValueIdNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("idNumber"); else _explicitNullProperties?.Remove("idNumber"); } }
+        private string _explicitNullValueIdNumber = default!;
 #endif
         /// <summary>Spain / Mobile / DNI, NIE, NIF, PASSPORT. Only required for personal addresses (salutation is either MR or MS).</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExtraFieldsIdType? IdType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ExtraFieldsIdType? IdType { get => _explicitNullValueIdType; set { _explicitNullValueIdType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("idType"); else _explicitNullProperties?.Remove("idType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ExtraFieldsIdType? _explicitNullValueIdType = default!;
         /// <summary>Italy / GEOGRAPHIC and TOLL_FREE / String, maximum length: 60. Mandatory for Company end user only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LastName { get; set; }
+        public string? LastName { get => _explicitNullValueLastName; set { _explicitNullValueLastName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastName"); else _explicitNullProperties?.Remove("lastName"); } }
+        private string? _explicitNullValueLastName = default!;
 #nullable restore
 #else
-        public string LastName { get; set; }
+        public string LastName { get => _explicitNullValueLastName; set { _explicitNullValueLastName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastName"); else _explicitNullProperties?.Remove("lastName"); } }
+        private string _explicitNullValueLastName = default!;
 #endif
         /// <summary>Denmark / ALL / String, maximum length: 4.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? MunicipalityCode { get; set; }
+        public string? MunicipalityCode { get => _explicitNullValueMunicipalityCode; set { _explicitNullValueMunicipalityCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("municipalityCode"); else _explicitNullProperties?.Remove("municipalityCode"); } }
+        private string? _explicitNullValueMunicipalityCode = default!;
 #nullable restore
 #else
-        public string MunicipalityCode { get; set; }
+        public string MunicipalityCode { get => _explicitNullValueMunicipalityCode; set { _explicitNullValueMunicipalityCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("municipalityCode"); else _explicitNullProperties?.Remove("municipalityCode"); } }
+        private string _explicitNullValueMunicipalityCode = default!;
 #endif
         /// <summary>Spain / Mobile / String, maximum length: 60. The exact format can be chosen freely as long as it allows a human to understand it. We recommend using the full country name but the ISO-3166-1 alpha-3 code is acceptable if it is easier to process by your system.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Nationality { get; set; }
+        public string? Nationality { get => _explicitNullValueNationality; set { _explicitNullValueNationality = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nationality"); else _explicitNullProperties?.Remove("nationality"); } }
+        private string? _explicitNullValueNationality = default!;
 #nullable restore
 #else
-        public string Nationality { get; set; }
+        public string Nationality { get => _explicitNullValueNationality; set { _explicitNullValueNationality = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nationality"); else _explicitNullProperties?.Remove("nationality"); } }
+        private string _explicitNullValueNationality = default!;
 #endif
         /// <summary>Italy / GEOGRAPHIC and TOLL_FREE / String, maximum length: 60. Both City and country of birth is expected.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PlaceOfBirth { get; set; }
+        public string? PlaceOfBirth { get => _explicitNullValuePlaceOfBirth; set { _explicitNullValuePlaceOfBirth = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("placeOfBirth"); else _explicitNullProperties?.Remove("placeOfBirth"); } }
+        private string? _explicitNullValuePlaceOfBirth = default!;
 #nullable restore
 #else
-        public string PlaceOfBirth { get; set; }
+        public string PlaceOfBirth { get => _explicitNullValuePlaceOfBirth; set { _explicitNullValuePlaceOfBirth = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("placeOfBirth"); else _explicitNullProperties?.Remove("placeOfBirth"); } }
+        private string _explicitNullValuePlaceOfBirth = default!;
 #endif
         /// <summary>Italy / GEOGRAPHIC and TOLL_FREE / String, maximum length: 60. Optional field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Province { get; set; }
+        public string? Province { get => _explicitNullValueProvince; set { _explicitNullValueProvince = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("province"); else _explicitNullProperties?.Remove("province"); } }
+        private string? _explicitNullValueProvince = default!;
 #nullable restore
 #else
-        public string Province { get; set; }
+        public string Province { get => _explicitNullValueProvince; set { _explicitNullValueProvince = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("province"); else _explicitNullProperties?.Remove("province"); } }
+        private string _explicitNullValueProvince = default!;
 #endif
         /// <summary> Italy / GEOGRAPHIC and TOLL_FREE / String, maximum length: 60. Optional field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? State { get; set; }
+        public string? State { get => _explicitNullValueState; set { _explicitNullValueState = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("state"); else _explicitNullProperties?.Remove("state"); } }
+        private string? _explicitNullValueState = default!;
 #nullable restore
 #else
-        public string State { get; set; }
+        public string State { get => _explicitNullValueState; set { _explicitNullValueState = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("state"); else _explicitNullProperties?.Remove("state"); } }
+        private string _explicitNullValueState = default!;
 #endif
         /// <summary>Denmark / ALL / String, maximum length: 4.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? StreetCode { get; set; }
+        public string? StreetCode { get => _explicitNullValueStreetCode; set { _explicitNullValueStreetCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("streetCode"); else _explicitNullProperties?.Remove("streetCode"); } }
+        private string? _explicitNullValueStreetCode = default!;
 #nullable restore
 #else
-        public string StreetCode { get; set; }
+        public string StreetCode { get => _explicitNullValueStreetCode; set { _explicitNullValueStreetCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("streetCode"); else _explicitNullProperties?.Remove("streetCode"); } }
+        private string _explicitNullValueStreetCode = default!;
 #endif
         /// <summary>Italy / GEOGRAPHIC and TOLL_FREE / String, maximum length: 60. Mandatory field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TaxCode { get; set; }
+        public string? TaxCode { get => _explicitNullValueTaxCode; set { _explicitNullValueTaxCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("taxCode"); else _explicitNullProperties?.Remove("taxCode"); } }
+        private string? _explicitNullValueTaxCode = default!;
 #nullable restore
 #else
-        public string TaxCode { get; set; }
+        public string TaxCode { get => _explicitNullValueTaxCode; set { _explicitNullValueTaxCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("taxCode"); else _explicitNullProperties?.Remove("taxCode"); } }
+        private string _explicitNullValueTaxCode = default!;
 #endif
         /// <summary>Italy / GEOGRAPHIC and TOLL_FREE / String, maximum length: 60. Mandatory for Company end user only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Title { get; set; }
+        public string? Title { get => _explicitNullValueTitle; set { _explicitNullValueTitle = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("title"); else _explicitNullProperties?.Remove("title"); } }
+        private string? _explicitNullValueTitle = default!;
 #nullable restore
 #else
-        public string Title { get; set; }
+        public string Title { get => _explicitNullValueTitle; set { _explicitNullValueTitle = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("title"); else _explicitNullProperties?.Remove("title"); } }
+        private string _explicitNullValueTitle = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ExtraFields"/> and sets the default values.
@@ -144,7 +195,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.ExtraFields CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.ExtraFields();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.ExtraFields(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -193,6 +244,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("streetCode", StreetCode);
             writer.WriteStringValue("taxCode", TaxCode);
             writer.WriteStringValue("title", Title);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

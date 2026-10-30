@@ -12,39 +12,61 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class JsonDldaPhoneNumberGroup : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("address") is { } nullNodeAddress && nullNodeAddress.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Address = null;
+            if (parseNode.GetChildNode("listAddress") is { } nullNodeListAddress && nullNodeListAddress.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ListAddress = null;
+            if (parseNode.GetChildNode("listingName") is { } nullNodeListingName && nullNodeListingName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ListingName = null;
+            if (parseNode.GetChildNode("listingType") is { } nullNodeListingType && nullNodeListingType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ListingType = null;
+            if (parseNode.GetChildNode("phoneNumbers") is { } nullNodePhoneNumbers && nullNodePhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumbers = null;
+            if (parseNode.GetChildNode("subscriberType") is { } nullNodeSubscriberType && nullNodeSubscriberType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SubscriberType = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The address property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonAddress? Address { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonAddress? Address { get => _explicitNullValueAddress; set { _explicitNullValueAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("address"); else _explicitNullProperties?.Remove("address"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.JsonAddress? _explicitNullValueAddress = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonAddress Address { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonAddress Address { get => _explicitNullValueAddress; set { _explicitNullValueAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("address"); else _explicitNullProperties?.Remove("address"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.JsonAddress _explicitNullValueAddress = default!;
 #endif
         /// <summary>The listAddress property</summary>
-        public bool? ListAddress { get; set; }
+        public bool? ListAddress { get => _explicitNullValueListAddress; set { _explicitNullValueListAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("listAddress"); else _explicitNullProperties?.Remove("listAddress"); } }
+        private bool? _explicitNullValueListAddress = default!;
         /// <summary>The listingName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaListingName? ListingName { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaListingName? ListingName { get => _explicitNullValueListingName; set { _explicitNullValueListingName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("listingName"); else _explicitNullProperties?.Remove("listingName"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaListingName? _explicitNullValueListingName = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaListingName ListingName { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaListingName ListingName { get => _explicitNullValueListingName; set { _explicitNullValueListingName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("listingName"); else _explicitNullProperties?.Remove("listingName"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaListingName _explicitNullValueListingName = default!;
 #endif
         /// <summary>The listingType property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroupListingType? ListingType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroupListingType? ListingType { get => _explicitNullValueListingType; set { _explicitNullValueListingType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("listingType"); else _explicitNullProperties?.Remove("listingType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroupListingType? _explicitNullValueListingType = default!;
         /// <summary>A list of phone numbers you need to bind information from payload</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? PhoneNumbers { get; set; }
+        public List<string>? PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
+        private List<string>? _explicitNullValuePhoneNumbers = default!;
 #nullable restore
 #else
-        public List<string> PhoneNumbers { get; set; }
+        public List<string> PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
+        private List<string> _explicitNullValuePhoneNumbers = default!;
 #endif
         /// <summary>The subscriberType property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroupSubscriberType? SubscriberType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroupSubscriberType? SubscriberType { get => _explicitNullValueSubscriberType; set { _explicitNullValueSubscriberType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriberType"); else _explicitNullProperties?.Remove("subscriberType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroupSubscriberType? _explicitNullValueSubscriberType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup"/> and sets the default values.
         /// </summary>
@@ -60,7 +82,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -91,6 +113,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroupListingType>("listingType", ListingType);
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroupSubscriberType>("subscriberType", SubscriberType);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

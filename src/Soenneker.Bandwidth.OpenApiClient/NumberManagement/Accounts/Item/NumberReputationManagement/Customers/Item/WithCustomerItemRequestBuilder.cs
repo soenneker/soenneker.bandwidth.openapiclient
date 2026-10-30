@@ -67,6 +67,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
                 { "409", global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.GenericErrorCustomer.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.GetCustomer200Response>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.GetCustomer200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

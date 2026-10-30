@@ -8,19 +8,32 @@ using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     /// <summary>
-    /// A Location Routing Number (LRN) identifies telephone switches when routing phone calls through the U.S. public switched telephone network (PSTN).An LRN has the format of a 10-digit North American Numbering Plan (NANP) phone number, and is required for local number portability (LNP).
+    /// A Location Routing Number (LRN) identifies telephone switches when routing phone calls through the U.S. public switched telephone network (PSTN).An LRN may be expressed either as a full E.164 NANP phone number (`+1` followed by the 10-digit NPA-NXX-XXXX), or as an entire A-block (`+1` followed by the 6-digit NPA-NXX, with no line/station number).
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Lrn : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("accessHomingTandem") is { } nullNodeAccessHomingTandem && nullNodeAccessHomingTandem.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccessHomingTandem = null;
+            if (parseNode.GetChildNode("hostedVoice") is { } nullNodeHostedVoice && nullNodeHostedVoice.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HostedVoice = null;
+            if (parseNode.GetChildNode("lrnConfiguration") is { } nullNodeLrnConfiguration && nullNodeLrnConfiguration.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LrnConfiguration = null;
+            if (parseNode.GetChildNode("lrn") is { } nullNodeLrnProp && nullNodeLrnProp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LrnProp = null;
+        }
+
         /// <summary>Whether the accessHomingTandem feature is enabled on this LRN.Must be enabled on the LATA prior to being enabled on the LRN.</summary>
-        public bool? AccessHomingTandem { get; set; }
+        public bool? AccessHomingTandem { get => _explicitNullValueAccessHomingTandem; set { _explicitNullValueAccessHomingTandem = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accessHomingTandem"); else _explicitNullProperties?.Remove("accessHomingTandem"); } }
+        private bool? _explicitNullValueAccessHomingTandem = default!;
         /// <summary>The time the LRN was added to the account, as a UTC timestamp.</summary>
         public DateTimeOffset? Added { get; private set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether the hosted voice feature is enabled on this LRN.Must be enabled on the LATA prior to being enabled on the LRN.</summary>
-        public bool? HostedVoice { get; set; }
+        public bool? HostedVoice { get => _explicitNullValueHostedVoice; set { _explicitNullValueHostedVoice = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hostedVoice"); else _explicitNullProperties?.Remove("hostedVoice"); } }
+        private bool? _explicitNullValueHostedVoice = default!;
         /// <summary>Information about the LATA the LRN belongs to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -30,14 +43,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnLata> Lata { get; private set; }
 #endif
         /// <summary>The lrnConfiguration property</summary>
-        public Guid? LrnConfiguration { get; set; }
-        /// <summary>A NANPA phone number.</summary>
+        public Guid? LrnConfiguration { get => _explicitNullValueLrnConfiguration; set { _explicitNullValueLrnConfiguration = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lrnConfiguration"); else _explicitNullProperties?.Remove("lrnConfiguration"); } }
+        private Guid? _explicitNullValueLrnConfiguration = default!;
+        /// <summary>A Location Routing Number (LRN), which may be expressed either as a full E.164 NANPA phone number (`+1` followed by the 10-digit NPA-NXX-XXXX), or as an entire A-block (`+1` followed by the 6-digit NPA-NXX, with no line/station number).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LrnProp { get; set; }
+        public string? LrnProp { get => _explicitNullValueLrnProp; set { _explicitNullValueLrnProp = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lrn"); else _explicitNullProperties?.Remove("lrn"); } }
+        private string? _explicitNullValueLrnProp = default!;
 #nullable restore
 #else
-        public string LrnProp { get; set; }
+        public string LrnProp { get => _explicitNullValueLrnProp; set { _explicitNullValueLrnProp = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lrn"); else _explicitNullProperties?.Remove("lrn"); } }
+        private string _explicitNullValueLrnProp = default!;
 #endif
         /// <summary>The name of the company that operates the LRN.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -62,7 +78,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.Lrn CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.Lrn();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.Lrn(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -92,6 +108,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteBoolValue("hostedVoice", HostedVoice);
             writer.WriteGuidValue("lrnConfiguration", LrnConfiguration);
             writer.WriteStringValue("lrn", LrnProp);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

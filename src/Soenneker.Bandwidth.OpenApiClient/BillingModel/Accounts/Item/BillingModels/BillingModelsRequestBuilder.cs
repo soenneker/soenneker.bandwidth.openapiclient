@@ -72,6 +72,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.BillingModel.Accounts.Item.BillingMo
                 { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelGenericError.CreateFromDiscriminatorValue },
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelGenericError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelGenericError.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelsListResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelsListResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -105,6 +106,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.BillingModel.Accounts.Item.BillingMo
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelGenericError.CreateFromDiscriminatorValue },
                 { "409", global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelGenericError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelGenericError.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

@@ -11,39 +11,61 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class RbmActionOpenUrl : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("application") is { } nullNodeApplication && nullNodeApplication.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Application = null;
+            if (parseNode.GetChildNode("postbackData") is { } nullNodePostbackData && nullNodePostbackData.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PostbackData = null;
+            if (parseNode.GetChildNode("text") is { } nullNodeText && nullNodeText.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Text = null;
+            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+            if (parseNode.GetChildNode("url") is { } nullNodeUrl && nullNodeUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Url = null;
+            if (parseNode.GetChildNode("webviewViewMode") is { } nullNodeWebviewViewMode && nullNodeWebviewViewMode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WebviewViewMode = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Specifies how the URL should be opened on a mobile device.- `BROWSER` Opens the URL in the device&apos;s default browser. If application is not set or the device doesn&apos;t support WebView, this option is used by default.- `WEBVIEW` Opens the URL in an in-app WebView.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RbmOpenUrlEnum? Application { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RbmOpenUrlEnum? Application { get => _explicitNullValueApplication; set { _explicitNullValueApplication = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("application"); else _explicitNullProperties?.Remove("application"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RbmOpenUrlEnum? _explicitNullValueApplication = default!;
         /// <summary>Payload the customer receives when the reply is clicked.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PostbackData { get; set; }
+        public string? PostbackData { get => _explicitNullValuePostbackData; set { _explicitNullValuePostbackData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("postbackData"); else _explicitNullProperties?.Remove("postbackData"); } }
+        private string? _explicitNullValuePostbackData = default!;
 #nullable restore
 #else
-        public string PostbackData { get; set; }
+        public string PostbackData { get => _explicitNullValuePostbackData; set { _explicitNullValuePostbackData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("postbackData"); else _explicitNullProperties?.Remove("postbackData"); } }
+        private string _explicitNullValuePostbackData = default!;
 #endif
         /// <summary>Displayed text for user to click</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Text { get; set; }
+        public string? Text { get => _explicitNullValueText; set { _explicitNullValueText = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("text"); else _explicitNullProperties?.Remove("text"); } }
+        private string? _explicitNullValueText = default!;
 #nullable restore
 #else
-        public string Text { get; set; }
+        public string Text { get => _explicitNullValueText; set { _explicitNullValueText = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("text"); else _explicitNullProperties?.Remove("text"); } }
+        private string _explicitNullValueText = default!;
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionTypeEnum? Type { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionTypeEnum? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionTypeEnum? _explicitNullValueType = default!;
         /// <summary>The URL to open in browser. Must use http:// or https:// scheme.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Url { get; set; }
+        public string? Url { get => _explicitNullValueUrl; set { _explicitNullValueUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("url"); else _explicitNullProperties?.Remove("url"); } }
+        private string? _explicitNullValueUrl = default!;
 #nullable restore
 #else
-        public string Url { get; set; }
+        public string Url { get => _explicitNullValueUrl; set { _explicitNullValueUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("url"); else _explicitNullProperties?.Remove("url"); } }
+        private string _explicitNullValueUrl = default!;
 #endif
         /// <summary>Defines the layout of the WebView on a mobile device. It must be definedwhen application is set to `WEBVIEW` and must not be set when applicationis set to `BROWSER`.- `FULL` WebView takes the full screen.- `HALF` WebView takes half of the screen.- `TALL` WebView takes three-quarters of the screen.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RbmWebViewEnum? WebviewViewMode { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RbmWebViewEnum? WebviewViewMode { get => _explicitNullValueWebviewViewMode; set { _explicitNullValueWebviewViewMode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("webviewViewMode"); else _explicitNullProperties?.Remove("webviewViewMode"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RbmWebViewEnum? _explicitNullValueWebviewViewMode = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionOpenUrl"/> and sets the default values.
         /// </summary>
@@ -59,7 +81,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionOpenUrl CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionOpenUrl();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionOpenUrl(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -90,6 +112,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RbmActionTypeEnum>("type", Type);
             writer.WriteStringValue("url", Url);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RbmWebViewEnum>("webviewViewMode", WebviewViewMode);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

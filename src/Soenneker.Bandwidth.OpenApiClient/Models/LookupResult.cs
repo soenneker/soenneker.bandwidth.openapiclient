@@ -13,68 +13,105 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class LookupResult : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("countryCodeA3") is { } nullNodeCountryCodeA3 && nullNodeCountryCodeA3.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CountryCodeA3 = null;
+            if (parseNode.GetChildNode("deactivationDate") is { } nullNodeDeactivationDate && nullNodeDeactivationDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DeactivationDate = null;
+            if (parseNode.GetChildNode("deactivationEvent") is { } nullNodeDeactivationEvent && nullNodeDeactivationEvent.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DeactivationEvent = null;
+            if (parseNode.GetChildNode("deactivationReporter") is { } nullNodeDeactivationReporter && nullNodeDeactivationReporter.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DeactivationReporter = null;
+            if (parseNode.GetChildNode("initialMessageDeliveryStatusDate") is { } nullNodeInitialMessageDeliveryStatusDate && nullNodeInitialMessageDeliveryStatusDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InitialMessageDeliveryStatusDate = null;
+            if (parseNode.GetChildNode("latestMessageDeliveryStatus") is { } nullNodeLatestMessageDeliveryStatus && nullNodeLatestMessageDeliveryStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LatestMessageDeliveryStatus = null;
+            if (parseNode.GetChildNode("latestMessageDeliveryStatusDate") is { } nullNodeLatestMessageDeliveryStatusDate && nullNodeLatestMessageDeliveryStatusDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LatestMessageDeliveryStatusDate = null;
+            if (parseNode.GetChildNode("lineType") is { } nullNodeLineType && nullNodeLineType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LineType = null;
+            if (parseNode.GetChildNode("messagingProvider") is { } nullNodeMessagingProvider && nullNodeMessagingProvider.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessagingProvider = null;
+            if (parseNode.GetChildNode("phoneNumber") is { } nullNodePhoneNumber && nullNodePhoneNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumber = null;
+            if (parseNode.GetChildNode("rcsEnabled") is { } nullNodeRcsEnabled && nullNodeRcsEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RcsEnabled = null;
+            if (parseNode.GetChildNode("voiceProvider") is { } nullNodeVoiceProvider && nullNodeVoiceProvider.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoiceProvider = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The country code of the telephone number in ISO 3166-1 alpha-3 format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CountryCodeA3 { get; set; }
+        public string? CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
+        private string? _explicitNullValueCountryCodeA3 = default!;
 #nullable restore
 #else
-        public string CountryCodeA3 { get; set; }
+        public string CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
+        private string _explicitNullValueCountryCodeA3 = default!;
 #endif
         /// <summary>[DNI-Only](#section/DNI-Only). The datetime the carrier reported a deactivation event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DeactivationDate { get; set; }
+        public string? DeactivationDate { get => _explicitNullValueDeactivationDate; set { _explicitNullValueDeactivationDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deactivationDate"); else _explicitNullProperties?.Remove("deactivationDate"); } }
+        private string? _explicitNullValueDeactivationDate = default!;
 #nullable restore
 #else
-        public string DeactivationDate { get; set; }
+        public string DeactivationDate { get => _explicitNullValueDeactivationDate; set { _explicitNullValueDeactivationDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deactivationDate"); else _explicitNullProperties?.Remove("deactivationDate"); } }
+        private string _explicitNullValueDeactivationDate = default!;
 #endif
         /// <summary>[DNI-Only](#section/DNI-Only).`DEACTIVATED` if the carrier reported a deactivation event for this phone number.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.DeactivationEventEnum? DeactivationEvent { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.DeactivationEventEnum? DeactivationEvent { get => _explicitNullValueDeactivationEvent; set { _explicitNullValueDeactivationEvent = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deactivationEvent"); else _explicitNullProperties?.Remove("deactivationEvent"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.DeactivationEventEnum? _explicitNullValueDeactivationEvent = default!;
         /// <summary>[DNI-Only](#section/DNI-Only).The carrier that reported a deactivation event for this phone number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DeactivationReporter { get; set; }
+        public string? DeactivationReporter { get => _explicitNullValueDeactivationReporter; set { _explicitNullValueDeactivationReporter = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deactivationReporter"); else _explicitNullProperties?.Remove("deactivationReporter"); } }
+        private string? _explicitNullValueDeactivationReporter = default!;
 #nullable restore
 #else
-        public string DeactivationReporter { get; set; }
+        public string DeactivationReporter { get => _explicitNullValueDeactivationReporter; set { _explicitNullValueDeactivationReporter = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deactivationReporter"); else _explicitNullProperties?.Remove("deactivationReporter"); } }
+        private string _explicitNullValueDeactivationReporter = default!;
 #endif
         /// <summary>[DNI-Only](#section/DNI-Only). The date the phone number entered the status described in `latestMessageDeliveryStatus`.Think of this as the &quot;start time&quot; for that status.Value resets every time the `latestMessageDeliveryStatus` changes.</summary>
-        public Date? InitialMessageDeliveryStatusDate { get; set; }
+        public Date? InitialMessageDeliveryStatusDate { get => _explicitNullValueInitialMessageDeliveryStatusDate; set { _explicitNullValueInitialMessageDeliveryStatusDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("initialMessageDeliveryStatusDate"); else _explicitNullProperties?.Remove("initialMessageDeliveryStatusDate"); } }
+        private Date? _explicitNullValueInitialMessageDeliveryStatusDate = default!;
         /// <summary>[DNI-Only](#section/DNI-Only). The current delivery status of the phone number.- ACTIVE: A message was successfully sent to the number (delivery code 0).- DEACTIVATED: A message was not delivered to a number (delivery code 720)- UNKNOWN: Bandwidth cannot find an delivery status entry for the number.- NOT_ENABLED: The phone number is not enabled for messaging, so there is no delivery status information.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LatestMessageDeliveryStatusEnum? LatestMessageDeliveryStatus { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LatestMessageDeliveryStatusEnum? LatestMessageDeliveryStatus { get => _explicitNullValueLatestMessageDeliveryStatus; set { _explicitNullValueLatestMessageDeliveryStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("latestMessageDeliveryStatus"); else _explicitNullProperties?.Remove("latestMessageDeliveryStatus"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.LatestMessageDeliveryStatusEnum? _explicitNullValueLatestMessageDeliveryStatus = default!;
         /// <summary>[DNI-Only](#section/DNI-Only). The date bandwidth last received delivery status information for this phone number.Use this field to understand how up-to-date the `latestMessageDeliveryStatus` is.Value resets every time the `latestMessageDeliveryStatus` changes.</summary>
-        public Date? LatestMessageDeliveryStatusDate { get; set; }
+        public Date? LatestMessageDeliveryStatusDate { get => _explicitNullValueLatestMessageDeliveryStatusDate; set { _explicitNullValueLatestMessageDeliveryStatusDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("latestMessageDeliveryStatusDate"); else _explicitNullProperties?.Remove("latestMessageDeliveryStatusDate"); } }
+        private Date? _explicitNullValueLatestMessageDeliveryStatusDate = default!;
         /// <summary>The lineType property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LineTypeEnum? LineType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LineTypeEnum? LineType { get => _explicitNullValueLineType; set { _explicitNullValueLineType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lineType"); else _explicitNullProperties?.Remove("lineType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.LineTypeEnum? _explicitNullValueLineType = default!;
         /// <summary>The messaging service provider of the telephone number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? MessagingProvider { get; set; }
+        public string? MessagingProvider { get => _explicitNullValueMessagingProvider; set { _explicitNullValueMessagingProvider = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messagingProvider"); else _explicitNullProperties?.Remove("messagingProvider"); } }
+        private string? _explicitNullValueMessagingProvider = default!;
 #nullable restore
 #else
-        public string MessagingProvider { get; set; }
+        public string MessagingProvider { get => _explicitNullValueMessagingProvider; set { _explicitNullValueMessagingProvider = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messagingProvider"); else _explicitNullProperties?.Remove("messagingProvider"); } }
+        private string _explicitNullValueMessagingProvider = default!;
 #endif
         /// <summary>The telephone number in E.164 format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PhoneNumber { get; set; }
+        public string? PhoneNumber { get => _explicitNullValuePhoneNumber; set { _explicitNullValuePhoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumber"); else _explicitNullProperties?.Remove("phoneNumber"); } }
+        private string? _explicitNullValuePhoneNumber = default!;
 #nullable restore
 #else
-        public string PhoneNumber { get; set; }
+        public string PhoneNumber { get => _explicitNullValuePhoneNumber; set { _explicitNullValuePhoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumber"); else _explicitNullProperties?.Remove("phoneNumber"); } }
+        private string _explicitNullValuePhoneNumber = default!;
 #endif
         /// <summary>[RCS-Only](#section/RCS-Only). Indicates whether the phone number is capable of receiving RCS messages. Value will be null if account has RCS, but no value was returned. Absent when account does not have RCS.</summary>
-        public bool? RcsEnabled { get; set; }
+        public bool? RcsEnabled { get => _explicitNullValueRcsEnabled; set { _explicitNullValueRcsEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rcsEnabled"); else _explicitNullProperties?.Remove("rcsEnabled"); } }
+        private bool? _explicitNullValueRcsEnabled = default!;
         /// <summary>The voice service provider of the telephone number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? VoiceProvider { get; set; }
+        public string? VoiceProvider { get => _explicitNullValueVoiceProvider; set { _explicitNullValueVoiceProvider = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceProvider"); else _explicitNullProperties?.Remove("voiceProvider"); } }
+        private string? _explicitNullValueVoiceProvider = default!;
 #nullable restore
 #else
-        public string VoiceProvider { get; set; }
+        public string VoiceProvider { get => _explicitNullValueVoiceProvider; set { _explicitNullValueVoiceProvider = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceProvider"); else _explicitNullProperties?.Remove("voiceProvider"); } }
+        private string _explicitNullValueVoiceProvider = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LookupResult"/> and sets the default values.
@@ -91,7 +128,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.LookupResult CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.LookupResult();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.LookupResult(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -134,6 +171,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("phoneNumber", PhoneNumber);
             writer.WriteBoolValue("rcsEnabled", RcsEnabled);
             writer.WriteStringValue("voiceProvider", VoiceProvider);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

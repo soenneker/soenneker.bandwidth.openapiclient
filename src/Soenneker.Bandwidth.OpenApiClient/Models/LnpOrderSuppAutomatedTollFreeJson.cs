@@ -11,86 +11,126 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class LnpOrderSuppAutomatedTollFreeJson : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("acknowledgeAndOverrideAllWarnings") is { } nullNodeAcknowledgeAndOverrideAllWarnings && nullNodeAcknowledgeAndOverrideAllWarnings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AcknowledgeAndOverrideAllWarnings = null;
+            if (parseNode.GetChildNode("customerOrderId") is { } nullNodeCustomerOrderId && nullNodeCustomerOrderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerOrderId = null;
+            if (parseNode.GetChildNode("loaAuthorizingPerson") is { } nullNodeLoaAuthorizingPerson && nullNodeLoaAuthorizingPerson.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LoaAuthorizingPerson = null;
+            if (parseNode.GetChildNode("locationId") is { } nullNodeLocationId && nullNodeLocationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LocationId = null;
+            if (parseNode.GetChildNode("phoneNumberGroups") is { } nullNodePhoneNumberGroups && nullNodePhoneNumberGroups.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumberGroups = null;
+            if (parseNode.GetChildNode("phoneNumbers") is { } nullNodePhoneNumbers && nullNodePhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumbers = null;
+            if (parseNode.GetChildNode("processingStatus") is { } nullNodeProcessingStatus && nullNodeProcessingStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProcessingStatus = null;
+            if (parseNode.GetChildNode("requestedFocDate") is { } nullNodeRequestedFocDate && nullNodeRequestedFocDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RequestedFocDate = null;
+            if (parseNode.GetChildNode("retryValidation") is { } nullNodeRetryValidation && nullNodeRetryValidation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RetryValidation = null;
+            if (parseNode.GetChildNode("subAccountId") is { } nullNodeSubAccountId && nullNodeSubAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SubAccountId = null;
+            if (parseNode.GetChildNode("tags") is { } nullNodeTags && nullNodeTags.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tags = null;
+            if (parseNode.GetChildNode("targetRespOrgId") is { } nullNodeTargetRespOrgId && nullNodeTargetRespOrgId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TargetRespOrgId = null;
+        }
+
         /// <summary>Set to `true` to acknowledge and override request warnings. Currently this applies to the FOC hold window warning (error 7910): set it to `true` to acknowledge that the `requestedFocDate` is later than the losing RespOrg&apos;s translation hold window (or the default 10 business days if the RespOrg has no configured window). If the requested FOC date is outside the hold window and this field is omitted or `false`, the request is rejected with error 7910 and nothing is saved. Resubmit the same request with this field set to `true` to proceed; Bandwidth then records a note on the order. Applies to toll-free port-ins with Toll-Free Automation only.</summary>
-        public bool? AcknowledgeAndOverrideAllWarnings { get; set; }
+        public bool? AcknowledgeAndOverrideAllWarnings { get => _explicitNullValueAcknowledgeAndOverrideAllWarnings; set { _explicitNullValueAcknowledgeAndOverrideAllWarnings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("acknowledgeAndOverrideAllWarnings"); else _explicitNullProperties?.Remove("acknowledgeAndOverrideAllWarnings"); } }
+        private bool? _explicitNullValueAcknowledgeAndOverrideAllWarnings = default!;
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`. This field is removed from the order if not included in the PUT payload.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CustomerOrderId { get; set; }
+        public string? CustomerOrderId { get => _explicitNullValueCustomerOrderId; set { _explicitNullValueCustomerOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerOrderId"); else _explicitNullProperties?.Remove("customerOrderId"); } }
+        private string? _explicitNullValueCustomerOrderId = default!;
 #nullable restore
 #else
-        public string CustomerOrderId { get; set; }
+        public string CustomerOrderId { get => _explicitNullValueCustomerOrderId; set { _explicitNullValueCustomerOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerOrderId"); else _explicitNullProperties?.Remove("customerOrderId"); } }
+        private string _explicitNullValueCustomerOrderId = default!;
 #endif
         /// <summary>The loaAuthorizingPerson property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LoaAuthorizingPerson { get; set; }
+        public string? LoaAuthorizingPerson { get => _explicitNullValueLoaAuthorizingPerson; set { _explicitNullValueLoaAuthorizingPerson = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("loaAuthorizingPerson"); else _explicitNullProperties?.Remove("loaAuthorizingPerson"); } }
+        private string? _explicitNullValueLoaAuthorizingPerson = default!;
 #nullable restore
 #else
-        public string LoaAuthorizingPerson { get; set; }
+        public string LoaAuthorizingPerson { get => _explicitNullValueLoaAuthorizingPerson; set { _explicitNullValueLoaAuthorizingPerson = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("loaAuthorizingPerson"); else _explicitNullProperties?.Remove("loaAuthorizingPerson"); } }
+        private string _explicitNullValueLoaAuthorizingPerson = default!;
 #endif
         /// <summary>The locationId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LocationId { get; set; }
+        public string? LocationId { get => _explicitNullValueLocationId; set { _explicitNullValueLocationId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("locationId"); else _explicitNullProperties?.Remove("locationId"); } }
+        private string? _explicitNullValueLocationId = default!;
 #nullable restore
 #else
-        public string LocationId { get; set; }
+        public string LocationId { get => _explicitNullValueLocationId; set { _explicitNullValueLocationId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("locationId"); else _explicitNullProperties?.Remove("locationId"); } }
+        private string _explicitNullValueLocationId = default!;
 #endif
         /// <summary>An alternative to `phoneNumbers` + `subAccountId` + `locationId` that distributes TNs across multiple location/VCP groups in a single port-in order. Each group specifies its own `locationId`, `phoneNumbers`, and optionally `voiceConfigurationPackageId`. When present, top-level `subAccountId`, `locationId`, and `voiceConfigurationPackageId` are ignored. Mutually exclusive with top-level `phoneNumbers`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinPhoneNumberGroupJson>? PhoneNumberGroups { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinPhoneNumberGroupJson>? PhoneNumberGroups { get => _explicitNullValuePhoneNumberGroups; set { _explicitNullValuePhoneNumberGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumberGroups"); else _explicitNullProperties?.Remove("phoneNumberGroups"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinPhoneNumberGroupJson>? _explicitNullValuePhoneNumberGroups = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinPhoneNumberGroupJson> PhoneNumberGroups { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinPhoneNumberGroupJson> PhoneNumberGroups { get => _explicitNullValuePhoneNumberGroups; set { _explicitNullValuePhoneNumberGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumberGroups"); else _explicitNullProperties?.Remove("phoneNumberGroups"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinPhoneNumberGroupJson> _explicitNullValuePhoneNumberGroups = default!;
 #endif
         /// <summary>May be SUPPed only in draft states (i.e. DRAFT, VALIDATE_DRAFT_TFNS, VALID_DRAFT_TFNS, or INVALID_DRAFT_TFNS)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? PhoneNumbers { get; set; }
+        public List<string>? PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
+        private List<string>? _explicitNullValuePhoneNumbers = default!;
 #nullable restore
 #else
-        public List<string> PhoneNumbers { get; set; }
+        public List<string> PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
+        private List<string> _explicitNullValuePhoneNumbers = default!;
 #endif
         /// <summary>May only be SUPPed for port-in orders in DRAFT state. The only valid value is “SUBMITTED” (not case sensitive).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ProcessingStatus { get; set; }
+        public string? ProcessingStatus { get => _explicitNullValueProcessingStatus; set { _explicitNullValueProcessingStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("processingStatus"); else _explicitNullProperties?.Remove("processingStatus"); } }
+        private string? _explicitNullValueProcessingStatus = default!;
 #nullable restore
 #else
-        public string ProcessingStatus { get; set; }
+        public string ProcessingStatus { get => _explicitNullValueProcessingStatus; set { _explicitNullValueProcessingStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("processingStatus"); else _explicitNullProperties?.Remove("processingStatus"); } }
+        private string _explicitNullValueProcessingStatus = default!;
 #endif
         /// <summary>Is a subject to blackout windows if the current date is too close to an assigned FOC date.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RequestedFocDate { get; set; }
+        public string? RequestedFocDate { get => _explicitNullValueRequestedFocDate; set { _explicitNullValueRequestedFocDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requestedFocDate"); else _explicitNullProperties?.Remove("requestedFocDate"); } }
+        private string? _explicitNullValueRequestedFocDate = default!;
 #nullable restore
 #else
-        public string RequestedFocDate { get; set; }
+        public string RequestedFocDate { get => _explicitNullValueRequestedFocDate; set { _explicitNullValueRequestedFocDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requestedFocDate"); else _explicitNullProperties?.Remove("requestedFocDate"); } }
+        private string _explicitNullValueRequestedFocDate = default!;
 #endif
         /// <summary>If &apos;TOLL_FREE_PORT_INS_PHASE_1&apos; feature is enabled for account, Bandwidth accesses a vendor to determine if the numbers are portable, and if so, from which RespOrg. In the event that we do not receive a response from our vendor after a number of retries, we give up and place the order in the INVALID_TFNS or INVALID_DRAFT_TFNS state. This scenario can occur if our toll free porting vendor is performing maintenance, for example. Including RetryValidation with a value of true will cause the order to return to VALIDATE_TFNS or VALIDATE_DRAFT_TFNS and we will repeat our attempts to retrieve the portability data from the vendor. This element is included in the synchronous response to the PUT, when included in the request, but is not included in subsequent GET requests for the order.</summary>
-        public bool? RetryValidation { get; set; }
+        public bool? RetryValidation { get => _explicitNullValueRetryValidation; set { _explicitNullValueRetryValidation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("retryValidation"); else _explicitNullProperties?.Remove("retryValidation"); } }
+        private bool? _explicitNullValueRetryValidation = default!;
         /// <summary>The subAccountId property</summary>
-        public int? SubAccountId { get; set; }
+        public int? SubAccountId { get => _explicitNullValueSubAccountId; set { _explicitNullValueSubAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subAccountId"); else _explicitNullProperties?.Remove("subAccountId"); } }
+        private int? _explicitNullValueSubAccountId = default!;
         /// <summary>Tags to associate with the phone numbers being ported in on order completion. No duplicate tag names are allowed within an order, and a maximum of 10 tags may be specified. If `tags` is not present on a SUPP, existing tags are left unchanged; if present, it replaces all tags on the order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsPhoneNumberTag>? Tags { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsPhoneNumberTag>? Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsPhoneNumberTag>? _explicitNullValueTags = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsPhoneNumberTag> Tags { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsPhoneNumberTag> Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsPhoneNumberTag> _explicitNullValueTags = default!;
 #endif
         /// <summary>This is the RespOrg ID that you want the toll free numbers ported to. Normally it will specify a Bandwidth RespOrg ID like JYT01, but it could be something else for RespOrg Exception customers. Because the TargetRespOrgId is mandatory for the toll free port-in order (but not mandatory for the PUT operation), omitting it in the PUT leaves the TargetRespOrgId unchanged. This field must be populated when a draft toll free port-in is submitted.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TargetRespOrgId { get; set; }
+        public string? TargetRespOrgId { get => _explicitNullValueTargetRespOrgId; set { _explicitNullValueTargetRespOrgId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("targetRespOrgId"); else _explicitNullProperties?.Remove("targetRespOrgId"); } }
+        private string? _explicitNullValueTargetRespOrgId = default!;
 #nullable restore
 #else
-        public string TargetRespOrgId { get; set; }
+        public string TargetRespOrgId { get => _explicitNullValueTargetRespOrgId; set { _explicitNullValueTargetRespOrgId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("targetRespOrgId"); else _explicitNullProperties?.Remove("targetRespOrgId"); } }
+        private string _explicitNullValueTargetRespOrgId = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedTollFreeJson"/> and sets the default values.
@@ -107,7 +147,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedTollFreeJson CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedTollFreeJson();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderSuppAutomatedTollFreeJson(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -150,6 +190,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteIntValue("subAccountId", SubAccountId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsPhoneNumberTag>("tags", Tags);
             writer.WriteStringValue("targetRespOrgId", TargetRespOrgId);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

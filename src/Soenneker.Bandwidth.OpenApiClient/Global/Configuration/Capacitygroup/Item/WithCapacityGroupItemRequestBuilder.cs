@@ -50,7 +50,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Capacitygroup.I
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.DeleteCapacityGroupResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.DeleteCapacityGroupResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.DeleteCapacityGroupResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.DeleteCapacityGroupResponse.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Get specific capacity group by Id
@@ -69,7 +69,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Capacitygroup.I
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCapacityGroupResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ListCapacityGroupResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCapacityGroupResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ListCapacityGroupResponse.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Update an existing capacity group.
@@ -92,7 +92,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Capacitygroup.I
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             if(string.IsNullOrEmpty(contentType)) throw new ArgumentNullException(nameof(contentType));
             var requestInfo = ToPutRequestInformation(body, contentType, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveCapacityGroupResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.SaveCapacityGroupResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveCapacityGroupResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.SaveCapacityGroupResponse.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Remove a capacity group

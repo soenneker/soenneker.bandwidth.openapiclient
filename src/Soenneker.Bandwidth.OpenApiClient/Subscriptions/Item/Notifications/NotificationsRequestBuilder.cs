@@ -72,6 +72,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Subscriptions.Item.Notifications
                 { "403", global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationListResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationListResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -105,6 +106,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Subscriptions.Item.Notifications
                 { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsGenericError.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsNotificationResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionsNotificationResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

@@ -11,64 +11,97 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PaginatedReportDefinitionObject : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("category") is { } nullNodeCategory && nullNodeCategory.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Category = null;
+            if (parseNode.GetChildNode("description") is { } nullNodeDescription && nullNodeDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Description = null;
+            if (parseNode.GetChildNode("domain") is { } nullNodeDomain && nullNodeDomain.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Domain = null;
+            if (parseNode.GetChildNode("filters") is { } nullNodeFilters && nullNodeFilters.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Filters = null;
+            if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
+            if (parseNode.GetChildNode("maxMonthsBack") is { } nullNodeMaxMonthsBack && nullNodeMaxMonthsBack.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxMonthsBack = null;
+            if (parseNode.GetChildNode("outputFields") is { } nullNodeOutputFields && nullNodeOutputFields.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OutputFields = null;
+            if (parseNode.GetChildNode("regions") is { } nullNodeRegions && nullNodeRegions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Regions = null;
+            if (parseNode.GetChildNode("reportName") is { } nullNodeReportName && nullNodeReportName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReportName = null;
+            if (parseNode.GetChildNode("supportedModes") is { } nullNodeSupportedModes && nullNodeSupportedModes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SupportedModes = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The category classification of the report definition.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Category? Category { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.Category? Category { get => _explicitNullValueCategory; set { _explicitNullValueCategory = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("category"); else _explicitNullProperties?.Remove("category"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.Category? _explicitNullValueCategory = default!;
         /// <summary>Detailed description of the report and its data.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Description { get; set; }
+        public string? Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        private string? _explicitNullValueDescription = default!;
 #nullable restore
 #else
-        public string Description { get; set; }
+        public string Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        private string _explicitNullValueDescription = default!;
 #endif
         /// <summary>The product domain the report definition belongs to.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Domain? Domain { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.Domain? Domain { get => _explicitNullValueDomain; set { _explicitNullValueDomain = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("domain"); else _explicitNullProperties?.Remove("domain"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.Domain? _explicitNullValueDomain = default!;
         /// <summary>List of filter definitions that can be applied when retrieving results for this report.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilter>? Filters { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilter>? Filters { get => _explicitNullValueFilters; set { _explicitNullValueFilters = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filters"); else _explicitNullProperties?.Remove("filters"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilter>? _explicitNullValueFilters = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilter> Filters { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilter> Filters { get => _explicitNullValueFilters; set { _explicitNullValueFilters = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filters"); else _explicitNullProperties?.Remove("filters"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilter> _explicitNullValueFilters = default!;
 #endif
         /// <summary>Unique identifier for the report definition. Use this ID to fetch the full definition via `GET /v2/report-definitions/{reportDefinitionId}` or to retrieve results via `POST /v2/report-definitions/{reportDefinitionId}/results`.</summary>
-        public Guid? Id { get; set; }
+        public Guid? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        private Guid? _explicitNullValueId = default!;
         /// <summary>Maximum number of months of historical data available for this report.</summary>
-        public int? MaxMonthsBack { get; set; }
+        public int? MaxMonthsBack { get => _explicitNullValueMaxMonthsBack; set { _explicitNullValueMaxMonthsBack = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxMonthsBack"); else _explicitNullProperties?.Remove("maxMonthsBack"); } }
+        private int? _explicitNullValueMaxMonthsBack = default!;
         /// <summary>The fields returned in each result row from `POST /v2/report-definitions/{reportDefinitionId}/results`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedOutputField>? OutputFields { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedOutputField>? OutputFields { get => _explicitNullValueOutputFields; set { _explicitNullValueOutputFields = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outputFields"); else _explicitNullProperties?.Remove("outputFields"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedOutputField>? _explicitNullValueOutputFields = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedOutputField> OutputFields { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedOutputField> OutputFields { get => _explicitNullValueOutputFields; set { _explicitNullValueOutputFields = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outputFields"); else _explicitNullProperties?.Remove("outputFields"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedOutputField> _explicitNullValueOutputFields = default!;
 #endif
         /// <summary>Regions where this report is available.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsRegion?>? Regions { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsRegion?>? Regions { get => _explicitNullValueRegions; set { _explicitNullValueRegions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("regions"); else _explicitNullProperties?.Remove("regions"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsRegion?>? _explicitNullValueRegions = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsRegion?> Regions { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsRegion?> Regions { get => _explicitNullValueRegions; set { _explicitNullValueRegions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("regions"); else _explicitNullProperties?.Remove("regions"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsRegion?> _explicitNullValueRegions = default!;
 #endif
         /// <summary>Human-readable name of the report.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ReportName { get; set; }
+        public string? ReportName { get => _explicitNullValueReportName; set { _explicitNullValueReportName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reportName"); else _explicitNullProperties?.Remove("reportName"); } }
+        private string? _explicitNullValueReportName = default!;
 #nullable restore
 #else
-        public string ReportName { get; set; }
+        public string ReportName { get => _explicitNullValueReportName; set { _explicitNullValueReportName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reportName"); else _explicitNullProperties?.Remove("reportName"); } }
+        private string _explicitNullValueReportName = default!;
 #endif
         /// <summary>The execution flows this report definition supports.`SYNC` returns results inline from `POST /v2/report-definitions/{reportDefinitionId}/results`.`ASYNC` is generated via the report instance flow and retrieved as a file.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SupportedMode?>? SupportedModes { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SupportedMode?>? SupportedModes { get => _explicitNullValueSupportedModes; set { _explicitNullValueSupportedModes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("supportedModes"); else _explicitNullProperties?.Remove("supportedModes"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.SupportedMode?>? _explicitNullValueSupportedModes = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SupportedMode?> SupportedModes { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SupportedMode?> SupportedModes { get => _explicitNullValueSupportedModes; set { _explicitNullValueSupportedModes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("supportedModes"); else _explicitNullProperties?.Remove("supportedModes"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.SupportedMode?> _explicitNullValueSupportedModes = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedReportDefinitionObject"/> and sets the default values.
@@ -85,7 +118,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedReportDefinitionObject CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedReportDefinitionObject();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedReportDefinitionObject(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -124,6 +157,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsRegion>("regions", Regions);
             writer.WriteStringValue("reportName", ReportName);
             writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SupportedMode>("supportedModes", SupportedModes);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

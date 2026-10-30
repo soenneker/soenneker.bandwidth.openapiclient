@@ -11,26 +11,44 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class SipDomain : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("applicationId") is { } nullNodeApplicationId && nullNodeApplicationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ApplicationId = null;
+            if (parseNode.GetChildNode("createdAt") is { } nullNodeCreatedAt && nullNodeCreatedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedAt = null;
+            if (parseNode.GetChildNode("domain") is { } nullNodeDomain && nullNodeDomain.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Domain = null;
+            if (parseNode.GetChildNode("ipAccessListIds") is { } nullNodeIpAccessListIds && nullNodeIpAccessListIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IpAccessListIds = null;
+            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("regions") is { } nullNodeRegions && nullNodeRegions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Regions = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The unique ID of the voice application this domain is bound to, or `null` if unbound. A domain with no `applicationId` cannot accept inbound calls until bound; you may set this later via `PATCH`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ApplicationId { get; set; }
+        public string? ApplicationId { get => _explicitNullValueApplicationId; set { _explicitNullValueApplicationId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("applicationId"); else _explicitNullProperties?.Remove("applicationId"); } }
+        private string? _explicitNullValueApplicationId = default!;
 #nullable restore
 #else
-        public string ApplicationId { get; set; }
+        public string ApplicationId { get => _explicitNullValueApplicationId; set { _explicitNullValueApplicationId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("applicationId"); else _explicitNullProperties?.Remove("applicationId"); } }
+        private string _explicitNullValueApplicationId = default!;
 #endif
         /// <summary>RFC 3339 timestamp (UTC) of when the resource was created. Preserved across updates.</summary>
-        public DateTimeOffset? CreatedAt { get; set; }
+        public DateTimeOffset? CreatedAt { get => _explicitNullValueCreatedAt; set { _explicitNullValueCreatedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdAt"); else _explicitNullProperties?.Remove("createdAt"); } }
+        private DateTimeOffset? _explicitNullValueCreatedAt = default!;
         /// <summary>The customer-chosen DNS label that identifies the SIP domain on this account. 1-63 alphanumeric or hyphen characters, no leading or trailing hyphen. Case-insensitive; stored and returned in lowercase.Region codes (`us`, `eu`) are reserved and rejected as a domain label, since they are used as the region prefix in `fqdns`. `null` is also reserved, since it is the list filters&apos; value for an unassigned domain.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Domain { get; set; }
+        public string? Domain { get => _explicitNullValueDomain; set { _explicitNullValueDomain = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("domain"); else _explicitNullProperties?.Remove("domain"); } }
+        private string? _explicitNullValueDomain = default!;
 #nullable restore
 #else
-        public string Domain { get; set; }
+        public string Domain { get => _explicitNullValueDomain; set { _explicitNullValueDomain = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("domain"); else _explicitNullProperties?.Remove("domain"); } }
+        private string _explicitNullValueDomain = default!;
 #endif
         /// <summary>Why provisioning failed when `status` is `FAILED` (`Domain provisioning failed` or `Provisioning timed out`); `null` otherwise.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -51,26 +69,32 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>IDs of account-scoped IP access lists attached to the domain (max 25). Inbound SIP traffic to the domain is allowed from the union of the lists&apos; CIDRs, which may contain at most 50 unique CIDRs. Unknown IDs return `404`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Guid?>? IpAccessListIds { get; set; }
+        public List<Guid?>? IpAccessListIds { get => _explicitNullValueIpAccessListIds; set { _explicitNullValueIpAccessListIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ipAccessListIds"); else _explicitNullProperties?.Remove("ipAccessListIds"); } }
+        private List<Guid?>? _explicitNullValueIpAccessListIds = default!;
 #nullable restore
 #else
-        public List<Guid?> IpAccessListIds { get; set; }
+        public List<Guid?> IpAccessListIds { get => _explicitNullValueIpAccessListIds; set { _explicitNullValueIpAccessListIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ipAccessListIds"); else _explicitNullProperties?.Remove("ipAccessListIds"); } }
+        private List<Guid?> _explicitNullValueIpAccessListIds = default!;
 #endif
         /// <summary>A customer-chosen friendly name for the SIP domain.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string _explicitNullValueName = default!;
 #endif
         /// <summary>The regions this domain provisions DNS records for and accepts calls in. Drives the region-pinned entries in `fqdns`.**At least one region is required for the domain to accept calls.** If `regions` is omitted or empty, every inbound call to the domain is rejected, even though the domain is created and becomes `ACTIVE`.A call to `&lt;userId&gt;@&lt;fqdn&gt;` must also be in one of that SIP user&apos;s `allowedRegions`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?>? Regions { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?>? Regions { get => _explicitNullValueRegions; set { _explicitNullValueRegions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("regions"); else _explicitNullProperties?.Remove("regions"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?>? _explicitNullValueRegions = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?> Regions { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?> Regions { get => _explicitNullValueRegions; set { _explicitNullValueRegions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("regions"); else _explicitNullProperties?.Remove("regions"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?> _explicitNullValueRegions = default!;
 #endif
         /// <summary>The provisioning status of the SIP domain&apos;s DNS records. `PENDING` immediately after create, or after a `regions` update that changes the region set, while provisioning runs asynchronously; `ACTIVE` once provisioning completes; `FAILED` if provisioning could not complete (see `failureReason`). A domain still `PENDING` after 10 minutes is reported as `FAILED`. Inbound calls are only accepted on an `ACTIVE` domain.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.SipDomainStatusComposed? Status { get; private set; }
@@ -97,7 +121,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.SipDomain CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.SipDomain();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.SipDomain(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -132,6 +156,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfPrimitiveValues<Guid?>("ipAccessListIds", IpAccessListIds);
             writer.WriteStringValue("name", Name);
             writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion>("regions", Regions);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

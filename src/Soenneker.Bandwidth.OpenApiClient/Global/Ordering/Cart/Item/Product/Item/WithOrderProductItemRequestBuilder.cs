@@ -52,7 +52,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Ordering.Cart.Item.Product.It
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveFromCartResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveFromCartResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveFromCartResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.RemoveFromCartResponse.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Set quantity to 0 if you want to remove the product from the cart.If phoneNumbers exist in the cart - you will need to submit the E164 of the phoneNumber to remove the number(s). Quantity of an OrderProductId will not remove phoneNumbers, only a didGroup and quantity.

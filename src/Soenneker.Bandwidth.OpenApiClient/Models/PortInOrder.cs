@@ -13,86 +13,131 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PortInOrder : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("createdTimestamp") is { } nullNodeCreatedTimestamp && nullNodeCreatedTimestamp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedTimestamp = null;
+            if (parseNode.GetChildNode("currentProviderName") is { } nullNodeCurrentProviderName && nullNodeCurrentProviderName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CurrentProviderName = null;
+            if (parseNode.GetChildNode("customerReference") is { } nullNodeCustomerReference && nullNodeCustomerReference.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerReference = null;
+            if (parseNode.GetChildNode("documents") is { } nullNodeDocuments && nullNodeDocuments.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Documents = null;
+            if (parseNode.GetChildNode("fees") is { } nullNodeFees && nullNodeFees.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Fees = null;
+            if (parseNode.GetChildNode("lastUpdateTimestamp") is { } nullNodeLastUpdateTimestamp && nullNodeLastUpdateTimestamp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastUpdateTimestamp = null;
+            if (parseNode.GetChildNode("numbersOwner") is { } nullNodeNumbersOwner && nullNodeNumbersOwner.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NumbersOwner = null;
+            if (parseNode.GetChildNode("numbersToPort") is { } nullNodeNumbersToPort && nullNodeNumbersToPort.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NumbersToPort = null;
+            if (parseNode.GetChildNode("plannedDate") is { } nullNodePlannedDate && nullNodePlannedDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PlannedDate = null;
+            if (parseNode.GetChildNode("portInOrderId") is { } nullNodePortInOrderId && nullNodePortInOrderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PortInOrderId = null;
+            if (parseNode.GetChildNode("preferredPortInDate") is { } nullNodePreferredPortInDate && nullNodePreferredPortInDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PreferredPortInDate = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("submittedTimestamp") is { } nullNodeSubmittedTimestamp && nullNodeSubmittedTimestamp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SubmittedTimestamp = null;
+            if (parseNode.GetChildNode("supportRef") is { } nullNodeSupportRef && nullNodeSupportRef.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SupportRef = null;
+            if (parseNode.GetChildNode("supportTicket") is { } nullNodeSupportTicket && nullNodeSupportTicket.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SupportTicket = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Creation date of the port-in order, in RFC 3339 format.</summary>
-        public DateTimeOffset? CreatedTimestamp { get; set; }
+        public DateTimeOffset? CreatedTimestamp { get => _explicitNullValueCreatedTimestamp; set { _explicitNullValueCreatedTimestamp = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdTimestamp"); else _explicitNullProperties?.Remove("createdTimestamp"); } }
+        private DateTimeOffset? _explicitNullValueCreatedTimestamp = default!;
         /// <summary>The losing carrier who&apos;s currently the operator on the number to be ported in.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CurrentProviderName { get; set; }
+        public string? CurrentProviderName { get => _explicitNullValueCurrentProviderName; set { _explicitNullValueCurrentProviderName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentProviderName"); else _explicitNullProperties?.Remove("currentProviderName"); } }
+        private string? _explicitNullValueCurrentProviderName = default!;
 #nullable restore
 #else
-        public string CurrentProviderName { get; set; }
+        public string CurrentProviderName { get => _explicitNullValueCurrentProviderName; set { _explicitNullValueCurrentProviderName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentProviderName"); else _explicitNullProperties?.Remove("currentProviderName"); } }
+        private string _explicitNullValueCurrentProviderName = default!;
 #endif
         /// <summary>Parameter that can be used for your own reference, e.g. to uniquely identify one of your customers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CustomerReference { get; set; }
+        public string? CustomerReference { get => _explicitNullValueCustomerReference; set { _explicitNullValueCustomerReference = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerReference"); else _explicitNullProperties?.Remove("customerReference"); } }
+        private string? _explicitNullValueCustomerReference = default!;
 #nullable restore
 #else
-        public string CustomerReference { get; set; }
+        public string CustomerReference { get => _explicitNullValueCustomerReference; set { _explicitNullValueCustomerReference = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerReference"); else _explicitNullProperties?.Remove("customerReference"); } }
+        private string _explicitNullValueCustomerReference = default!;
 #endif
         /// <summary>Required documents for a port-in order. This object is not present when you have just created a port-in order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Document>? Documents { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Document>? Documents { get => _explicitNullValueDocuments; set { _explicitNullValueDocuments = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("documents"); else _explicitNullProperties?.Remove("documents"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.Document>? _explicitNullValueDocuments = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Document> Documents { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Document> Documents { get => _explicitNullValueDocuments; set { _explicitNullValueDocuments = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("documents"); else _explicitNullProperties?.Remove("documents"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.Document> _explicitNullValueDocuments = default!;
 #endif
         /// <summary>Fees that you have to pay for a number or a set of numbers. The currency will depend on your configuration.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Fees? Fees { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.Fees? Fees { get => _explicitNullValueFees; set { _explicitNullValueFees = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fees"); else _explicitNullProperties?.Remove("fees"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.Fees? _explicitNullValueFees = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Fees Fees { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.Fees Fees { get => _explicitNullValueFees; set { _explicitNullValueFees = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fees"); else _explicitNullProperties?.Remove("fees"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.Fees _explicitNullValueFees = default!;
 #endif
         /// <summary>Last update date of the port-in order, in RFC 3339 format.</summary>
-        public DateTimeOffset? LastUpdateTimestamp { get; set; }
+        public DateTimeOffset? LastUpdateTimestamp { get => _explicitNullValueLastUpdateTimestamp; set { _explicitNullValueLastUpdateTimestamp = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastUpdateTimestamp"); else _explicitNullProperties?.Remove("lastUpdateTimestamp"); } }
+        private DateTimeOffset? _explicitNullValueLastUpdateTimestamp = default!;
         /// <summary>Owner of the numbers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner? NumbersOwner { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner? NumbersOwner { get => _explicitNullValueNumbersOwner; set { _explicitNullValueNumbersOwner = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("numbersOwner"); else _explicitNullProperties?.Remove("numbersOwner"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner? _explicitNullValueNumbersOwner = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner NumbersOwner { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner NumbersOwner { get => _explicitNullValueNumbersOwner; set { _explicitNullValueNumbersOwner = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("numbersOwner"); else _explicitNullProperties?.Remove("numbersOwner"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner _explicitNullValueNumbersOwner = default!;
 #endif
         /// <summary>Array of numbers in E.164 format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails>? NumbersToPort { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails>? NumbersToPort { get => _explicitNullValueNumbersToPort; set { _explicitNullValueNumbersToPort = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("numbersToPort"); else _explicitNullProperties?.Remove("numbersToPort"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails>? _explicitNullValueNumbersToPort = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails> NumbersToPort { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails> NumbersToPort { get => _explicitNullValueNumbersToPort; set { _explicitNullValueNumbersToPort = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("numbersToPort"); else _explicitNullProperties?.Remove("numbersToPort"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberDetails> _explicitNullValueNumbersToPort = default!;
 #endif
         /// <summary>Date when the port is planned, in RFC 3339 format. This date is only present when the port is confirmed.</summary>
-        public Date? PlannedDate { get; set; }
+        public Date? PlannedDate { get => _explicitNullValuePlannedDate; set { _explicitNullValuePlannedDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("plannedDate"); else _explicitNullProperties?.Remove("plannedDate"); } }
+        private Date? _explicitNullValuePlannedDate = default!;
         /// <summary>ID automatically generated when you create a port-in order.</summary>
-        public int? PortInOrderId { get; set; }
+        public int? PortInOrderId { get => _explicitNullValuePortInOrderId; set { _explicitNullValuePortInOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("portInOrderId"); else _explicitNullProperties?.Remove("portInOrderId"); } }
+        private int? _explicitNullValuePortInOrderId = default!;
         /// <summary>Specific date you would prefer the port-into be completed, in RFC 3339 format.</summary>
-        public Date? PreferredPortInDate { get; set; }
+        public Date? PreferredPortInDate { get => _explicitNullValuePreferredPortInDate; set { _explicitNullValuePreferredPortInDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("preferredPortInDate"); else _explicitNullProperties?.Remove("preferredPortInDate"); } }
+        private Date? _explicitNullValuePreferredPortInDate = default!;
         /// <summary>Possible statuses of a port-in order| Status                    | Description  || ------------------------- | ------------ || DRAFT                     | Your port-in order has been created, but not yet submitted. You can change the content of the order or delete it anytime. || SUBMITTED                 | Your port-in order has been submitted, and our LNP team will take care of it shortly. If you need to change your order, you will need  to request a cancellation or ask our LNP team to return your order. || MISSING_DATA              | Your port-in order has been returned by our LNP team  because the order doesn&apos;t contain the required information ( you may be missing data or the document). Your order needs to be amended and resubmitted. || PENDING_CARRIER_APPROVAL  | Your port-in order has been transmitted to our carrier. || ACCEPTED_BY_CARRIER       | Good news! Your port-in has been accepted by our carrier. || READY_FOR_CONFIGURATION   | Your numbers are ready for configuration. You can now assign your configuration profile to your order. || COMPLETED                 | Your port-in order is complete. || REJECTED                  | Your port-in order has been rejected by our LNP team/carrier. Please contact our LNP team for further details. || PROCESSING_CANCELLATION   | You are requesting the cancellation of your order. Our LNP team will get back to you shortly|| CANCELED                  | Your port-in order has been canceled. |</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrderStatusTypeEnum? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrderStatusTypeEnum? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrderStatusTypeEnum? _explicitNullValueStatus = default!;
         /// <summary>Date representing when the order was submitted - only present when relevant, in RFC 3339 format.</summary>
-        public DateTimeOffset? SubmittedTimestamp { get; set; }
+        public DateTimeOffset? SubmittedTimestamp { get => _explicitNullValueSubmittedTimestamp; set { _explicitNullValueSubmittedTimestamp = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("submittedTimestamp"); else _explicitNullProperties?.Remove("submittedTimestamp"); } }
+        private DateTimeOffset? _explicitNullValueSubmittedTimestamp = default!;
         /// <summary>Reference of a port order - to use when you contact our support or our porting teams. Eg: PRT25168668606830</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SupportRef { get; set; }
+        public string? SupportRef { get => _explicitNullValueSupportRef; set { _explicitNullValueSupportRef = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("supportRef"); else _explicitNullProperties?.Remove("supportRef"); } }
+        private string? _explicitNullValueSupportRef = default!;
 #nullable restore
 #else
-        public string SupportRef { get; set; }
+        public string SupportRef { get => _explicitNullValueSupportRef; set { _explicitNullValueSupportRef = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("supportRef"); else _explicitNullProperties?.Remove("supportRef"); } }
+        private string _explicitNullValueSupportRef = default!;
 #endif
         /// <summary>Support ticket associated to the port-in order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SupportTicket? SupportTicket { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SupportTicket? SupportTicket { get => _explicitNullValueSupportTicket; set { _explicitNullValueSupportTicket = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("supportTicket"); else _explicitNullProperties?.Remove("supportTicket"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.SupportTicket? _explicitNullValueSupportTicket = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SupportTicket SupportTicket { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SupportTicket SupportTicket { get => _explicitNullValueSupportTicket; set { _explicitNullValueSupportTicket = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("supportTicket"); else _explicitNullProperties?.Remove("supportTicket"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.SupportTicket _explicitNullValueSupportTicket = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrder"/> and sets the default values.
@@ -109,7 +154,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrder CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrder();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrder(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -158,6 +203,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteDateTimeOffsetValue("submittedTimestamp", SubmittedTimestamp);
             writer.WriteStringValue("supportRef", SupportRef);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SupportTicket>("supportTicket", SupportTicket);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

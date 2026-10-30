@@ -12,87 +12,132 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ShortCodeHistory : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("accountId") is { } nullNodeAccountId && nullNodeAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountId = null;
+            if (parseNode.GetChildNode("carrierStatuses") is { } nullNodeCarrierStatuses && nullNodeCarrierStatuses.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CarrierStatuses = null;
+            if (parseNode.GetChildNode("country") is { } nullNodeCountry && nullNodeCountry.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Country = null;
+            if (parseNode.GetChildNode("createdDateTime") is { } nullNodeCreatedDateTime && nullNodeCreatedDateTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedDateTime = null;
+            if (parseNode.GetChildNode("customerManagedLease") is { } nullNodeCustomerManagedLease && nullNodeCustomerManagedLease.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerManagedLease = null;
+            if (parseNode.GetChildNode("lease") is { } nullNodeLease && nullNodeLease.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Lease = null;
+            if (parseNode.GetChildNode("modifiedDateTime") is { } nullNodeModifiedDateTime && nullNodeModifiedDateTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModifiedDateTime = null;
+            if (parseNode.GetChildNode("operation") is { } nullNodeOperation && nullNodeOperation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Operation = null;
+            if (parseNode.GetChildNode("shortCode") is { } nullNodeShortCode && nullNodeShortCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ShortCode = null;
+            if (parseNode.GetChildNode("sipPeerId") is { } nullNodeSipPeerId && nullNodeSipPeerId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SipPeerId = null;
+            if (parseNode.GetChildNode("siteId") is { } nullNodeSiteId && nullNodeSiteId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SiteId = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+            if (parseNode.GetChildNode("user") is { } nullNodeUser && nullNodeUser.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) User = null;
+            if (parseNode.GetChildNode("version") is { } nullNodeVersion && nullNodeVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Version = null;
+        }
+
         /// <summary>Account ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AccountId { get; set; }
+        public string? AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
+        private string? _explicitNullValueAccountId = default!;
 #nullable restore
 #else
-        public string AccountId { get; set; }
+        public string AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
+        private string _explicitNullValueAccountId = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>List of objects each providing the registration status for each carrier at the time the event occurred.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo>? CarrierStatuses { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo>? CarrierStatuses { get => _explicitNullValueCarrierStatuses; set { _explicitNullValueCarrierStatuses = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carrierStatuses"); else _explicitNullProperties?.Remove("carrierStatuses"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo>? _explicitNullValueCarrierStatuses = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo> CarrierStatuses { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo> CarrierStatuses { get => _explicitNullValueCarrierStatuses; set { _explicitNullValueCarrierStatuses = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carrierStatuses"); else _explicitNullProperties?.Remove("carrierStatuses"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo> _explicitNullValueCarrierStatuses = default!;
 #endif
         /// <summary>The country the short code was registered in.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeHistoryCountry? Country { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeHistoryCountry? Country { get => _explicitNullValueCountry; set { _explicitNullValueCountry = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("country"); else _explicitNullProperties?.Remove("country"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeHistoryCountry? _explicitNullValueCountry = default!;
         /// <summary>The date and time this object was created in ISO 8601 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CreatedDateTime { get; set; }
+        public string? CreatedDateTime { get => _explicitNullValueCreatedDateTime; set { _explicitNullValueCreatedDateTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdDateTime"); else _explicitNullProperties?.Remove("createdDateTime"); } }
+        private string? _explicitNullValueCreatedDateTime = default!;
 #nullable restore
 #else
-        public string CreatedDateTime { get; set; }
+        public string CreatedDateTime { get => _explicitNullValueCreatedDateTime; set { _explicitNullValueCreatedDateTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdDateTime"); else _explicitNullProperties?.Remove("createdDateTime"); } }
+        private string _explicitNullValueCreatedDateTime = default!;
 #endif
         /// <summary>Flag indicating whether the customer is managing the short code lease.</summary>
-        public bool? CustomerManagedLease { get; set; }
+        public bool? CustomerManagedLease { get => _explicitNullValueCustomerManagedLease; set { _explicitNullValueCustomerManagedLease = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerManagedLease"); else _explicitNullProperties?.Remove("customerManagedLease"); } }
+        private bool? _explicitNullValueCustomerManagedLease = default!;
         /// <summary>The lease information for the short code number. This information only applies to Bandwidth managed short code leases (customerManagedLease set to false).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLeaseInfo? Lease { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLeaseInfo? Lease { get => _explicitNullValueLease; set { _explicitNullValueLease = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lease"); else _explicitNullProperties?.Remove("lease"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLeaseInfo? _explicitNullValueLease = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLeaseInfo Lease { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLeaseInfo Lease { get => _explicitNullValueLease; set { _explicitNullValueLease = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lease"); else _explicitNullProperties?.Remove("lease"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLeaseInfo _explicitNullValueLease = default!;
 #endif
         /// <summary>The date and time this object was modified in ISO 8601 format</summary>
-        public DateTimeOffset? ModifiedDateTime { get; set; }
+        public DateTimeOffset? ModifiedDateTime { get => _explicitNullValueModifiedDateTime; set { _explicitNullValueModifiedDateTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modifiedDateTime"); else _explicitNullProperties?.Remove("modifiedDateTime"); } }
+        private DateTimeOffset? _explicitNullValueModifiedDateTime = default!;
         /// <summary>Operation executed over the short code.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeHistoryOperation? Operation { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeHistoryOperation? Operation { get => _explicitNullValueOperation; set { _explicitNullValueOperation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operation"); else _explicitNullProperties?.Remove("operation"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeHistoryOperation? _explicitNullValueOperation = default!;
         /// <summary>The short code.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ShortCode { get; set; }
+        public string? ShortCode { get => _explicitNullValueShortCode; set { _explicitNullValueShortCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("shortCode"); else _explicitNullProperties?.Remove("shortCode"); } }
+        private string? _explicitNullValueShortCode = default!;
 #nullable restore
 #else
-        public string ShortCode { get; set; }
+        public string ShortCode { get => _explicitNullValueShortCode; set { _explicitNullValueShortCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("shortCode"); else _explicitNullProperties?.Remove("shortCode"); } }
+        private string _explicitNullValueShortCode = default!;
 #endif
         /// <summary>Location ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SipPeerId { get; set; }
+        public string? SipPeerId { get => _explicitNullValueSipPeerId; set { _explicitNullValueSipPeerId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sipPeerId"); else _explicitNullProperties?.Remove("sipPeerId"); } }
+        private string? _explicitNullValueSipPeerId = default!;
 #nullable restore
 #else
-        public string SipPeerId { get; set; }
+        public string SipPeerId { get => _explicitNullValueSipPeerId; set { _explicitNullValueSipPeerId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sipPeerId"); else _explicitNullProperties?.Remove("sipPeerId"); } }
+        private string _explicitNullValueSipPeerId = default!;
 #endif
         /// <summary>Sub-account ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SiteId { get; set; }
+        public string? SiteId { get => _explicitNullValueSiteId; set { _explicitNullValueSiteId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("siteId"); else _explicitNullProperties?.Remove("siteId"); } }
+        private string? _explicitNullValueSiteId = default!;
 #nullable restore
 #else
-        public string SiteId { get; set; }
+        public string SiteId { get => _explicitNullValueSiteId; set { _explicitNullValueSiteId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("siteId"); else _explicitNullProperties?.Remove("siteId"); } }
+        private string _explicitNullValueSiteId = default!;
 #endif
         /// <summary>If at least one carrier status is ACTIVE or PENDING, the status will be ACTIVE. If all carrier statues are INACTIVE, the status will be INACTIVE.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeHistoryStatus? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeHistoryStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeHistoryStatus? _explicitNullValueStatus = default!;
         /// <summary>The lease type.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeHistoryType? Type { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeHistoryType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeHistoryType? _explicitNullValueType = default!;
         /// <summary>The customer user ID that initiated the operation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? User { get; set; }
+        public string? User { get => _explicitNullValueUser; set { _explicitNullValueUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("user"); else _explicitNullProperties?.Remove("user"); } }
+        private string? _explicitNullValueUser = default!;
 #nullable restore
 #else
-        public string User { get; set; }
+        public string User { get => _explicitNullValueUser; set { _explicitNullValueUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("user"); else _explicitNullProperties?.Remove("user"); } }
+        private string _explicitNullValueUser = default!;
 #endif
         /// <summary>An internal field that represents the version of the short code data.</summary>
-        public int? Version { get; set; }
+        public int? Version { get => _explicitNullValueVersion; set { _explicitNullValueVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("version"); else _explicitNullProperties?.Remove("version"); } }
+        private int? _explicitNullValueVersion = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeHistory"/> and sets the default values.
         /// </summary>
@@ -108,7 +153,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeHistory CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeHistory();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeHistory(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -157,6 +202,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeHistoryType>("type", Type);
             writer.WriteStringValue("user", User);
             writer.WriteIntValue("version", Version);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

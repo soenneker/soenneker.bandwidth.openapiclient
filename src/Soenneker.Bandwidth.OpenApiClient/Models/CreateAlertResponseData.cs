@@ -11,36 +11,56 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class CreateAlertResponseData : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("alertId") is { } nullNodeAlertId && nullNodeAlertId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AlertId = null;
+            if (parseNode.GetChildNode("alertText") is { } nullNodeAlertText && nullNodeAlertText.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AlertText = null;
+            if (parseNode.GetChildNode("alertType") is { } nullNodeAlertType && nullNodeAlertType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AlertType = null;
+            if (parseNode.GetChildNode("triggered") is { } nullNodeTriggered && nullNodeTriggered.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Triggered = null;
+            if (parseNode.GetChildNode("ttsPreAnnouncement") is { } nullNodeTtsPreAnnouncement && nullNodeTtsPreAnnouncement.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TtsPreAnnouncement = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The unique identifier for the alert.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AlertId { get; set; }
+        public string? AlertId { get => _explicitNullValueAlertId; set { _explicitNullValueAlertId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alertId"); else _explicitNullProperties?.Remove("alertId"); } }
+        private string? _explicitNullValueAlertId = default!;
 #nullable restore
 #else
-        public string AlertId { get; set; }
+        public string AlertId { get => _explicitNullValueAlertId; set { _explicitNullValueAlertId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alertId"); else _explicitNullProperties?.Remove("alertId"); } }
+        private string _explicitNullValueAlertId = default!;
 #endif
         /// <summary>The alert text that will be shared to the PSAP.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AlertText { get; set; }
+        public string? AlertText { get => _explicitNullValueAlertText; set { _explicitNullValueAlertText = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alertText"); else _explicitNullProperties?.Remove("alertText"); } }
+        private string? _explicitNullValueAlertText = default!;
 #nullable restore
 #else
-        public string AlertText { get; set; }
+        public string AlertText { get => _explicitNullValueAlertText; set { _explicitNullValueAlertText = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alertText"); else _explicitNullProperties?.Remove("alertText"); } }
+        private string _explicitNullValueAlertText = default!;
 #endif
         /// <summary>The type of alert.- INITIAL: This is the initial alert that is sent to the PSAPs.- UPDATE: This is an update to the initial alert, indicating that the incident is still ongoing.- ALL_CLEAR: This is an all clear alert, indicating that the incident is now resolved.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AlertType? AlertType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AlertType? AlertType { get => _explicitNullValueAlertType; set { _explicitNullValueAlertType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alertType"); else _explicitNullProperties?.Remove("alertType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.AlertType? _explicitNullValueAlertType = default!;
         /// <summary>Indicates if the alert has been triggered.If true, the alert has been sent to the PSAPs and cannot be triggered again.If false, the alert has not been sent.</summary>
-        public bool? Triggered { get; set; }
+        public bool? Triggered { get => _explicitNullValueTriggered; set { _explicitNullValueTriggered = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("triggered"); else _explicitNullProperties?.Remove("triggered"); } }
+        private bool? _explicitNullValueTriggered = default!;
         /// <summary>The text-to-speech pre-announcement that will be played before the PSAP Outage Alert is played.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TtsPreAnnouncement { get; set; }
+        public string? TtsPreAnnouncement { get => _explicitNullValueTtsPreAnnouncement; set { _explicitNullValueTtsPreAnnouncement = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ttsPreAnnouncement"); else _explicitNullProperties?.Remove("ttsPreAnnouncement"); } }
+        private string? _explicitNullValueTtsPreAnnouncement = default!;
 #nullable restore
 #else
-        public string TtsPreAnnouncement { get; set; }
+        public string TtsPreAnnouncement { get => _explicitNullValueTtsPreAnnouncement; set { _explicitNullValueTtsPreAnnouncement = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ttsPreAnnouncement"); else _explicitNullProperties?.Remove("ttsPreAnnouncement"); } }
+        private string _explicitNullValueTtsPreAnnouncement = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateAlertResponseData"/> and sets the default values.
@@ -57,7 +77,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.CreateAlertResponseData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateAlertResponseData();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateAlertResponseData(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -86,6 +106,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AlertType>("alertType", AlertType);
             writer.WriteBoolValue("triggered", Triggered);
             writer.WriteStringValue("ttsPreAnnouncement", TtsPreAnnouncement);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -18,11 +18,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting
     public partial class PortingRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The portInOrders property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.PortInOrders.PortInOrdersRequestBuilder PortInOrders
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.PortInOrders.PortInOrdersRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The validator property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.Validator.ValidatorRequestBuilder Validator
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.Validator.ValidatorRequestBuilder(PathParameters, RequestAdapter);

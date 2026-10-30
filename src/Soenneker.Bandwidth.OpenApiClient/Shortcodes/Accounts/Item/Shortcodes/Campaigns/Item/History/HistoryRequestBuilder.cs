@@ -65,6 +65,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Shortcodes.Accounts.Item.Shortcodes.
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign405ResponseSchema.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign429ResponseSchema.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCampaign500ResponseSchema.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistoryResponseSchema>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.GetCampaignHistoryResponseSchema.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

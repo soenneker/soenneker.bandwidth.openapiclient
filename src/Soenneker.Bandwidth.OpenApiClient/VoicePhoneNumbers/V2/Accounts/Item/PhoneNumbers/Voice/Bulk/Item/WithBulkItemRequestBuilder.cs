@@ -67,6 +67,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoicePhoneNumbers.V2.Accounts.Item.P
                 { "409", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorResponse.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorResponse.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.GetBulkVoiceProvisioningTaskByIdResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.GetBulkVoiceProvisioningTaskByIdResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

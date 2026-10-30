@@ -11,24 +11,37 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class UpdateAddressData : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("customReference") is { } nullNodeCustomReference && nullNodeCustomReference.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomReference = null;
+            if (parseNode.GetChildNode("geoValidation") is { } nullNodeGeoValidation && nullNodeGeoValidation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) GeoValidation = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>A custom reference name.It can be used for your own reference to the item to easily identify one of your customers,requirements package, enduser etc.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CustomReference { get; set; }
+        public string? CustomReference { get => _explicitNullValueCustomReference; set { _explicitNullValueCustomReference = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customReference"); else _explicitNullProperties?.Remove("customReference"); } }
+        private string? _explicitNullValueCustomReference = default!;
 #nullable restore
 #else
-        public string CustomReference { get; set; }
+        public string CustomReference { get => _explicitNullValueCustomReference; set { _explicitNullValueCustomReference = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customReference"); else _explicitNullProperties?.Remove("customReference"); } }
+        private string _explicitNullValueCustomReference = default!;
 #endif
         /// <summary>The geoValidation property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.GeoValidation? GeoValidation { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.GeoValidation? GeoValidation { get => _explicitNullValueGeoValidation; set { _explicitNullValueGeoValidation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("geoValidation"); else _explicitNullProperties?.Remove("geoValidation"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.GeoValidation? _explicitNullValueGeoValidation = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.GeoValidation GeoValidation { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.GeoValidation GeoValidation { get => _explicitNullValueGeoValidation; set { _explicitNullValueGeoValidation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("geoValidation"); else _explicitNullProperties?.Remove("geoValidation"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.GeoValidation _explicitNullValueGeoValidation = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateAddressData"/> and sets the default values.
@@ -45,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateAddressData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateAddressData();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateAddressData(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,6 +81,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("customReference", CustomReference);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GeoValidation>("geoValidation", GeoValidation);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

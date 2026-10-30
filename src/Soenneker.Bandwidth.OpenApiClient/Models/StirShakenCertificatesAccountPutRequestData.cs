@@ -12,20 +12,34 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class StirShakenCertificatesAccountPutRequestData : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("certificateType") is { } nullNodeCertificateType && nullNodeCertificateType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CertificateType = null;
+            if (parseNode.GetChildNode("region") is { } nullNodeRegion && nullNodeRegion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Region = null;
+            if (parseNode.GetChildNode("regionData") is { } nullNodeRegionData && nullNodeRegionData.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RegionData = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The certificate type.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateType? CertificateType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateType? CertificateType { get => _explicitNullValueCertificateType; set { _explicitNullValueCertificateType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("certificateType"); else _explicitNullProperties?.Remove("certificateType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateType? _explicitNullValueCertificateType = default!;
         /// <summary>The region for the certificate.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegionAccountPut? Region { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegionAccountPut? Region { get => _explicitNullValueRegion; set { _explicitNullValueRegion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("region"); else _explicitNullProperties?.Remove("region"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RegionAccountPut? _explicitNullValueRegion = default!;
         /// <summary>The regionData property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionData? RegionData { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionData? RegionData { get => _explicitNullValueRegionData; set { _explicitNullValueRegionData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("regionData"); else _explicitNullProperties?.Remove("regionData"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionData? _explicitNullValueRegionData = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionData RegionData { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionData RegionData { get => _explicitNullValueRegionData; set { _explicitNullValueRegionData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("regionData"); else _explicitNullProperties?.Remove("regionData"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionData _explicitNullValueRegionData = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestData"/> and sets the default values.
@@ -42,7 +56,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestData();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestData(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -67,6 +81,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CertificateType>("certificateType", CertificateType);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegionAccountPut>("region", Region);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionData>("regionData", RegionData);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

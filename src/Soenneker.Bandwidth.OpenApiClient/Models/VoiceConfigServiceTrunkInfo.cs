@@ -12,24 +12,37 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class VoiceConfigServiceTrunkInfo : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("capabilityPipeId") is { } nullNodeCapabilityPipeId && nullNodeCapabilityPipeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CapabilityPipeId = null;
+            if (parseNode.GetChildNode("trunkId") is { } nullNodeTrunkId && nullNodeTrunkId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TrunkId = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The capability pipe id associated with the selected trunk.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CapabilityPipeId { get; set; }
+        public string? CapabilityPipeId { get => _explicitNullValueCapabilityPipeId; set { _explicitNullValueCapabilityPipeId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("capabilityPipeId"); else _explicitNullProperties?.Remove("capabilityPipeId"); } }
+        private string? _explicitNullValueCapabilityPipeId = default!;
 #nullable restore
 #else
-        public string CapabilityPipeId { get; set; }
+        public string CapabilityPipeId { get => _explicitNullValueCapabilityPipeId; set { _explicitNullValueCapabilityPipeId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("capabilityPipeId"); else _explicitNullProperties?.Remove("capabilityPipeId"); } }
+        private string _explicitNullValueCapabilityPipeId = default!;
 #endif
         /// <summary>The trunk identifier selected for this endpoint.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TrunkId { get; set; }
+        public string? TrunkId { get => _explicitNullValueTrunkId; set { _explicitNullValueTrunkId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("trunkId"); else _explicitNullProperties?.Remove("trunkId"); } }
+        private string? _explicitNullValueTrunkId = default!;
 #nullable restore
 #else
-        public string TrunkId { get; set; }
+        public string TrunkId { get => _explicitNullValueTrunkId; set { _explicitNullValueTrunkId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("trunkId"); else _explicitNullProperties?.Remove("trunkId"); } }
+        private string _explicitNullValueTrunkId = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceTrunkInfo"/> and sets the default values.
@@ -46,7 +59,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceTrunkInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceTrunkInfo();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceTrunkInfo(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,6 +82,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("capabilityPipeId", CapabilityPipeId);
             writer.WriteStringValue("trunkId", TrunkId);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

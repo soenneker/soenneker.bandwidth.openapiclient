@@ -12,7 +12,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class LrnConfig : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("lrns") is { } nullNodeLrns && nullNodeLrns.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Lrns = null;
+            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("originationRoutePlan") is { } nullNodeOriginationRoutePlan && nullNodeOriginationRoutePlan.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OriginationRoutePlan = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The id property</summary>
@@ -26,26 +36,32 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The list of LRNs assigned to the LRN Configuration. LRNs may be assigned or unassigned by modifying this array, usually with a PATCH request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Lrns { get; set; }
+        public List<string>? Lrns { get => _explicitNullValueLrns; set { _explicitNullValueLrns = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lrns"); else _explicitNullProperties?.Remove("lrns"); } }
+        private List<string>? _explicitNullValueLrns = default!;
 #nullable restore
 #else
-        public List<string> Lrns { get; set; }
+        public List<string> Lrns { get => _explicitNullValueLrns; set { _explicitNullValueLrns = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lrns"); else _explicitNullProperties?.Remove("lrns"); } }
+        private List<string> _explicitNullValueLrns = default!;
 #endif
         /// <summary>A display name that describes the LRN Configuration.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string _explicitNullValueName = default!;
 #endif
         /// <summary>The Origination Route Plan (ORP), also known as the Advanced Call Route (ACR),that describes the routing strategy for LRNs assigned to the config.Only a subset of the endpoint types available on a Voice Config Package (VCP) are available on an LRN Configuration.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Orp>? OriginationRoutePlan { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Orp>? OriginationRoutePlan { get => _explicitNullValueOriginationRoutePlan; set { _explicitNullValueOriginationRoutePlan = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("originationRoutePlan"); else _explicitNullProperties?.Remove("originationRoutePlan"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.Orp>? _explicitNullValueOriginationRoutePlan = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Orp> OriginationRoutePlan { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Orp> OriginationRoutePlan { get => _explicitNullValueOriginationRoutePlan; set { _explicitNullValueOriginationRoutePlan = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("originationRoutePlan"); else _explicitNullProperties?.Remove("originationRoutePlan"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.Orp> _explicitNullValueOriginationRoutePlan = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfig"/> and sets the default values.
@@ -62,7 +78,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfig CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfig();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfig(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -88,6 +104,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfPrimitiveValues<string>("lrns", Lrns);
             writer.WriteStringValue("name", Name);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Orp>("originationRoutePlan", OriginationRoutePlan);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

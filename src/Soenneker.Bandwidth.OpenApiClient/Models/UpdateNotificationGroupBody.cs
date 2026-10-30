@@ -12,32 +12,48 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UpdateNotificationGroupBody : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("description") is { } nullNodeDescription && nullNodeDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Description = null;
+            if (parseNode.GetChildNode("notificationIdsToAdd") is { } nullNodeNotificationIdsToAdd && nullNodeNotificationIdsToAdd.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NotificationIdsToAdd = null;
+            if (parseNode.GetChildNode("notificationIdsToDelete") is { } nullNodeNotificationIdsToDelete && nullNodeNotificationIdsToDelete.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NotificationIdsToDelete = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The description property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Description { get; set; }
+        public string? Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        private string? _explicitNullValueDescription = default!;
 #nullable restore
 #else
-        public string Description { get; set; }
+        public string Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        private string _explicitNullValueDescription = default!;
 #endif
         /// <summary>The notificationIdsToAdd property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? NotificationIdsToAdd { get; set; }
+        public List<string>? NotificationIdsToAdd { get => _explicitNullValueNotificationIdsToAdd; set { _explicitNullValueNotificationIdsToAdd = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notificationIdsToAdd"); else _explicitNullProperties?.Remove("notificationIdsToAdd"); } }
+        private List<string>? _explicitNullValueNotificationIdsToAdd = default!;
 #nullable restore
 #else
-        public List<string> NotificationIdsToAdd { get; set; }
+        public List<string> NotificationIdsToAdd { get => _explicitNullValueNotificationIdsToAdd; set { _explicitNullValueNotificationIdsToAdd = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notificationIdsToAdd"); else _explicitNullProperties?.Remove("notificationIdsToAdd"); } }
+        private List<string> _explicitNullValueNotificationIdsToAdd = default!;
 #endif
         /// <summary>The notificationIdsToDelete property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? NotificationIdsToDelete { get; set; }
+        public List<string>? NotificationIdsToDelete { get => _explicitNullValueNotificationIdsToDelete; set { _explicitNullValueNotificationIdsToDelete = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notificationIdsToDelete"); else _explicitNullProperties?.Remove("notificationIdsToDelete"); } }
+        private List<string>? _explicitNullValueNotificationIdsToDelete = default!;
 #nullable restore
 #else
-        public List<string> NotificationIdsToDelete { get; set; }
+        public List<string> NotificationIdsToDelete { get => _explicitNullValueNotificationIdsToDelete; set { _explicitNullValueNotificationIdsToDelete = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notificationIdsToDelete"); else _explicitNullProperties?.Remove("notificationIdsToDelete"); } }
+        private List<string> _explicitNullValueNotificationIdsToDelete = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateNotificationGroupBody"/> and sets the default values.
@@ -54,7 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateNotificationGroupBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateNotificationGroupBody();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateNotificationGroupBody(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -79,6 +95,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("description", Description);
             writer.WriteCollectionOfPrimitiveValues<string>("notificationIdsToAdd", NotificationIdsToAdd);
             writer.WriteCollectionOfPrimitiveValues<string>("notificationIdsToDelete", NotificationIdsToDelete);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

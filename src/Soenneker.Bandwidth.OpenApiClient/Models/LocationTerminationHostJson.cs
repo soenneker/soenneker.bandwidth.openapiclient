@@ -11,26 +11,41 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class LocationTerminationHostJson : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("customerTrafficAllowed") is { } nullNodeCustomerTrafficAllowed && nullNodeCustomerTrafficAllowed.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerTrafficAllowed = null;
+            if (parseNode.GetChildNode("hostName") is { } nullNodeHostName && nullNodeHostName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HostName = null;
+            if (parseNode.GetChildNode("port") is { } nullNodePort && nullNodePort.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Port = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>A TerminationHost can be configured to allow different customer traffic types.  Allowed values are LITE, DOMESTIC and ALL. This is an optional parameter</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CustomerTrafficAllowed? CustomerTrafficAllowed { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CustomerTrafficAllowed? CustomerTrafficAllowed { get => _explicitNullValueCustomerTrafficAllowed; set { _explicitNullValueCustomerTrafficAllowed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerTrafficAllowed"); else _explicitNullProperties?.Remove("customerTrafficAllowed"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CustomerTrafficAllowed? _explicitNullValueCustomerTrafficAllowed = default!;
         /// <summary>The IP address or host name of the address to be used for the voiceHosts or voiceHostGroups addresses</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? HostName { get; set; }
+        public string? HostName { get => _explicitNullValueHostName; set { _explicitNullValueHostName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hostName"); else _explicitNullProperties?.Remove("hostName"); } }
+        private string? _explicitNullValueHostName = default!;
 #nullable restore
 #else
-        public string HostName { get; set; }
+        public string HostName { get => _explicitNullValueHostName; set { _explicitNullValueHostName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hostName"); else _explicitNullProperties?.Remove("hostName"); } }
+        private string _explicitNullValueHostName = default!;
 #endif
         /// <summary>Optional port number for voice and termination hosts. This is an optional parameter with default values that are dependent on the application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Port { get; set; }
+        public string? Port { get => _explicitNullValuePort; set { _explicitNullValuePort = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("port"); else _explicitNullProperties?.Remove("port"); } }
+        private string? _explicitNullValuePort = default!;
 #nullable restore
 #else
-        public string Port { get; set; }
+        public string Port { get => _explicitNullValuePort; set { _explicitNullValuePort = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("port"); else _explicitNullProperties?.Remove("port"); } }
+        private string _explicitNullValuePort = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LocationTerminationHostJson"/> and sets the default values.
@@ -47,7 +62,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.LocationTerminationHostJson CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.LocationTerminationHostJson();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.LocationTerminationHostJson(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,6 +87,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CustomerTrafficAllowed>("customerTrafficAllowed", CustomerTrafficAllowed);
             writer.WriteStringValue("hostName", HostName);
             writer.WriteStringValue("port", Port);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

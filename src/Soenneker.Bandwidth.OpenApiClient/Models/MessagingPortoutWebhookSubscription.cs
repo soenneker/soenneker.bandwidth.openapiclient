@@ -12,55 +12,83 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class MessagingPortoutWebhookSubscription : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("accountId") is { } nullNodeAccountId && nullNodeAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountId = null;
+            if (parseNode.GetChildNode("basicAuthentication") is { } nullNodeBasicAuthentication && nullNodeBasicAuthentication.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BasicAuthentication = null;
+            if (parseNode.GetChildNode("callbackUrl") is { } nullNodeCallbackUrl && nullNodeCallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallbackUrl = null;
+            if (parseNode.GetChildNode("createdDate") is { } nullNodeCreatedDate && nullNodeCreatedDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedDate = null;
+            if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
+            if (parseNode.GetChildNode("modifiedDate") is { } nullNodeModifiedDate && nullNodeModifiedDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModifiedDate = null;
+            if (parseNode.GetChildNode("sharedSecretKey") is { } nullNodeSharedSecretKey && nullNodeSharedSecretKey.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SharedSecretKey = null;
+            if (parseNode.GetChildNode("webhookType") is { } nullNodeWebhookType && nullNodeWebhookType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WebhookType = null;
+        }
+
         /// <summary>The accountId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AccountId { get; set; }
+        public string? AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
+        private string? _explicitNullValueAccountId = default!;
 #nullable restore
 #else
-        public string AccountId { get; set; }
+        public string AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
+        private string _explicitNullValueAccountId = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Basic authentication credentials are not required, but if present, both username and password must be provided.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingPortoutWebhookSubscriptionBasicAuthentication? BasicAuthentication { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingPortoutWebhookSubscriptionBasicAuthentication? BasicAuthentication { get => _explicitNullValueBasicAuthentication; set { _explicitNullValueBasicAuthentication = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("basicAuthentication"); else _explicitNullProperties?.Remove("basicAuthentication"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingPortoutWebhookSubscriptionBasicAuthentication? _explicitNullValueBasicAuthentication = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingPortoutWebhookSubscriptionBasicAuthentication BasicAuthentication { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingPortoutWebhookSubscriptionBasicAuthentication BasicAuthentication { get => _explicitNullValueBasicAuthentication; set { _explicitNullValueBasicAuthentication = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("basicAuthentication"); else _explicitNullProperties?.Remove("basicAuthentication"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingPortoutWebhookSubscriptionBasicAuthentication _explicitNullValueBasicAuthentication = default!;
 #endif
         /// <summary>Callback URL to receive status updates from Bandwidth. When a webhook subscription is registered with Bandwidth under a given account ID, it will be used to send status updates for all requests submitted under that account ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallbackUrl { get; set; }
+        public string? CallbackUrl { get => _explicitNullValueCallbackUrl; set { _explicitNullValueCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackUrl"); else _explicitNullProperties?.Remove("callbackUrl"); } }
+        private string? _explicitNullValueCallbackUrl = default!;
 #nullable restore
 #else
-        public string CallbackUrl { get; set; }
+        public string CallbackUrl { get => _explicitNullValueCallbackUrl; set { _explicitNullValueCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackUrl"); else _explicitNullProperties?.Remove("callbackUrl"); } }
+        private string _explicitNullValueCallbackUrl = default!;
 #endif
         /// <summary>The createdDate property</summary>
-        public DateTimeOffset? CreatedDate { get; set; }
+        public DateTimeOffset? CreatedDate { get => _explicitNullValueCreatedDate; set { _explicitNullValueCreatedDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdDate"); else _explicitNullProperties?.Remove("createdDate"); } }
+        private DateTimeOffset? _explicitNullValueCreatedDate = default!;
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Id { get; set; }
+        public string? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        private string? _explicitNullValueId = default!;
 #nullable restore
 #else
-        public string Id { get; set; }
+        public string Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        private string _explicitNullValueId = default!;
 #endif
         /// <summary>The modifiedDate property</summary>
-        public DateTimeOffset? ModifiedDate { get; set; }
+        public DateTimeOffset? ModifiedDate { get => _explicitNullValueModifiedDate; set { _explicitNullValueModifiedDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modifiedDate"); else _explicitNullProperties?.Remove("modifiedDate"); } }
+        private DateTimeOffset? _explicitNullValueModifiedDate = default!;
         /// <summary>An ASCII string submitted by the user as a shared secret key for generating an HMAC header for callbacks.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SharedSecretKey { get; set; }
+        public string? SharedSecretKey { get => _explicitNullValueSharedSecretKey; set { _explicitNullValueSharedSecretKey = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sharedSecretKey"); else _explicitNullProperties?.Remove("sharedSecretKey"); } }
+        private string? _explicitNullValueSharedSecretKey = default!;
 #nullable restore
 #else
-        public string SharedSecretKey { get; set; }
+        public string SharedSecretKey { get => _explicitNullValueSharedSecretKey; set { _explicitNullValueSharedSecretKey = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sharedSecretKey"); else _explicitNullProperties?.Remove("sharedSecretKey"); } }
+        private string _explicitNullValueSharedSecretKey = default!;
 #endif
         /// <summary>Type of webhook subscription.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortoutRequestWebhookType? WebhookType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortoutRequestWebhookType? WebhookType { get => _explicitNullValueWebhookType; set { _explicitNullValueWebhookType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("webhookType"); else _explicitNullProperties?.Remove("webhookType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.PortoutRequestWebhookType? _explicitNullValueWebhookType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingPortoutWebhookSubscription"/> and sets the default values.
         /// </summary>
@@ -76,7 +104,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingPortoutWebhookSubscription CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingPortoutWebhookSubscription();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingPortoutWebhookSubscription(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -111,6 +139,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteDateTimeOffsetValue("modifiedDate", ModifiedDate);
             writer.WriteStringValue("sharedSecretKey", SharedSecretKey);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PortoutRequestWebhookType>("webhookType", WebhookType);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

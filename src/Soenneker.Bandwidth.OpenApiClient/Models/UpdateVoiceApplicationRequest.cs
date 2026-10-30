@@ -12,29 +12,46 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UpdateVoiceApplicationRequest : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("allowedRegions") is { } nullNodeAllowedRegions && nullNodeAllowedRegions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AllowedRegions = null;
+            if (parseNode.GetChildNode("allowedSourceIps") is { } nullNodeAllowedSourceIps && nullNodeAllowedSourceIps.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AllowedSourceIps = null;
+            if (parseNode.GetChildNode("inboundSipCallsEnabled") is { } nullNodeInboundSipCallsEnabled && nullNodeInboundSipCallsEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InboundSipCallsEnabled = null;
+            if (parseNode.GetChildNode("passwordAuthEnabled") is { } nullNodePasswordAuthEnabled && nullNodePasswordAuthEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PasswordAuthEnabled = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The regions where calls to the application&apos;s default-realm SIP identity are permitted to authenticate. An application with no allowed regions cannot authenticate. Custom SIP domains use each SIP user&apos;s `allowedRegions` instead.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?>? AllowedRegions { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?>? AllowedRegions { get => _explicitNullValueAllowedRegions; set { _explicitNullValueAllowedRegions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowedRegions"); else _explicitNullProperties?.Remove("allowedRegions"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?>? _explicitNullValueAllowedRegions = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?> AllowedRegions { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?> AllowedRegions { get => _explicitNullValueAllowedRegions; set { _explicitNullValueAllowedRegions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowedRegions"); else _explicitNullProperties?.Remove("allowedRegions"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?> _explicitNullValueAllowedRegions = default!;
 #endif
         /// <summary>IPv4 CIDR blocks allowed to send SIP traffic to the application&apos;s default-realm SIP identity. An empty array means no IP restriction is applied. Maximum 25 entries. Custom SIP domains use IP access lists instead.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? AllowedSourceIps { get; set; }
+        public List<string>? AllowedSourceIps { get => _explicitNullValueAllowedSourceIps; set { _explicitNullValueAllowedSourceIps = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowedSourceIps"); else _explicitNullProperties?.Remove("allowedSourceIps"); } }
+        private List<string>? _explicitNullValueAllowedSourceIps = default!;
 #nullable restore
 #else
-        public List<string> AllowedSourceIps { get; set; }
+        public List<string> AllowedSourceIps { get => _explicitNullValueAllowedSourceIps; set { _explicitNullValueAllowedSourceIps = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowedSourceIps"); else _explicitNullProperties?.Remove("allowedSourceIps"); } }
+        private List<string> _explicitNullValueAllowedSourceIps = default!;
 #endif
         /// <summary>Whether the application accepts inbound SIP calls on its default-realm SIP identity (`sip:{applicationId}@{auth_realm}`). Does not affect calls to custom SIP domains bound to the application.</summary>
-        public bool? InboundSipCallsEnabled { get; set; }
+        public bool? InboundSipCallsEnabled { get => _explicitNullValueInboundSipCallsEnabled; set { _explicitNullValueInboundSipCallsEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inboundSipCallsEnabled"); else _explicitNullProperties?.Remove("inboundSipCallsEnabled"); } }
+        private bool? _explicitNullValueInboundSipCallsEnabled = default!;
         /// <summary>Whether SIP digest authentication (407 challenge) is required for inbound SIP calls on the application&apos;s default-realm SIP identity. Custom SIP domains authenticate with per-user credentials from SIP Users instead.</summary>
-        public bool? PasswordAuthEnabled { get; set; }
+        public bool? PasswordAuthEnabled { get => _explicitNullValuePasswordAuthEnabled; set { _explicitNullValuePasswordAuthEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("passwordAuthEnabled"); else _explicitNullProperties?.Remove("passwordAuthEnabled"); } }
+        private bool? _explicitNullValuePasswordAuthEnabled = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateVoiceApplicationRequest"/> and sets the default values.
         /// </summary>
@@ -50,7 +67,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateVoiceApplicationRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateVoiceApplicationRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateVoiceApplicationRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -77,6 +94,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfPrimitiveValues<string>("allowedSourceIps", AllowedSourceIps);
             writer.WriteBoolValue("inboundSipCallsEnabled", InboundSipCallsEnabled);
             writer.WriteBoolValue("passwordAuthEnabled", PasswordAuthEnabled);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

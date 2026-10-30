@@ -80,6 +80,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Voice.Accounts.Item.Calls.Item.Trans
                 { "415", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApiError.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApiError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApiError.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             var collectionResult = await RequestAdapter.SendCollectionAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CallTranscriptionMetadata>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CallTranscriptionMetadata.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();

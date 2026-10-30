@@ -11,38 +11,60 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ListIncidentsResponseDataItemAlertsItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("alertId") is { } nullNodeAlertId && nullNodeAlertId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AlertId = null;
+            if (parseNode.GetChildNode("alertTime") is { } nullNodeAlertTime && nullNodeAlertTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AlertTime = null;
+            if (parseNode.GetChildNode("alertType") is { } nullNodeAlertType && nullNodeAlertType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AlertType = null;
+            if (parseNode.GetChildNode("causeOfOutage") is { } nullNodeCauseOfOutage && nullNodeCauseOfOutage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CauseOfOutage = null;
+            if (parseNode.GetChildNode("expectedRestorationTime") is { } nullNodeExpectedRestorationTime && nullNodeExpectedRestorationTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExpectedRestorationTime = null;
+            if (parseNode.GetChildNode("triggerId") is { } nullNodeTriggerId && nullNodeTriggerId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TriggerId = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The unique identifier for the alert.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AlertId { get; set; }
+        public string? AlertId { get => _explicitNullValueAlertId; set { _explicitNullValueAlertId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alertId"); else _explicitNullProperties?.Remove("alertId"); } }
+        private string? _explicitNullValueAlertId = default!;
 #nullable restore
 #else
-        public string AlertId { get; set; }
+        public string AlertId { get => _explicitNullValueAlertId; set { _explicitNullValueAlertId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alertId"); else _explicitNullProperties?.Remove("alertId"); } }
+        private string _explicitNullValueAlertId = default!;
 #endif
         /// <summary>The time the alert was sent.</summary>
-        public DateTimeOffset? AlertTime { get; set; }
+        public DateTimeOffset? AlertTime { get => _explicitNullValueAlertTime; set { _explicitNullValueAlertTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alertTime"); else _explicitNullProperties?.Remove("alertTime"); } }
+        private DateTimeOffset? _explicitNullValueAlertTime = default!;
         /// <summary>The alert type.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ListIncidentsResponseDataItemAlertsItemAlertType? AlertType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ListIncidentsResponseDataItemAlertsItemAlertType? AlertType { get => _explicitNullValueAlertType; set { _explicitNullValueAlertType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alertType"); else _explicitNullProperties?.Remove("alertType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ListIncidentsResponseDataItemAlertsItemAlertType? _explicitNullValueAlertType = default!;
         /// <summary>The best known cause of the outage. If left blank, the PSAP will be notified that the cause of the outage is unknown.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CauseOfOutage { get; set; }
+        public string? CauseOfOutage { get => _explicitNullValueCauseOfOutage; set { _explicitNullValueCauseOfOutage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("causeOfOutage"); else _explicitNullProperties?.Remove("causeOfOutage"); } }
+        private string? _explicitNullValueCauseOfOutage = default!;
 #nullable restore
 #else
-        public string CauseOfOutage { get; set; }
+        public string CauseOfOutage { get => _explicitNullValueCauseOfOutage; set { _explicitNullValueCauseOfOutage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("causeOfOutage"); else _explicitNullProperties?.Remove("causeOfOutage"); } }
+        private string _explicitNullValueCauseOfOutage = default!;
 #endif
         /// <summary>The expected time the outage will be resolved. This will be shared with the PSAPs. If left blank, the PSAP will be notified that the expected restoration time is unknown.</summary>
-        public DateTimeOffset? ExpectedRestorationTime { get; set; }
+        public DateTimeOffset? ExpectedRestorationTime { get => _explicitNullValueExpectedRestorationTime; set { _explicitNullValueExpectedRestorationTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expectedRestorationTime"); else _explicitNullProperties?.Remove("expectedRestorationTime"); } }
+        private DateTimeOffset? _explicitNullValueExpectedRestorationTime = default!;
         /// <summary>The unique identifier for the PSAP Outage Alert Trigger.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TriggerId { get; set; }
+        public string? TriggerId { get => _explicitNullValueTriggerId; set { _explicitNullValueTriggerId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("triggerId"); else _explicitNullProperties?.Remove("triggerId"); } }
+        private string? _explicitNullValueTriggerId = default!;
 #nullable restore
 #else
-        public string TriggerId { get; set; }
+        public string TriggerId { get => _explicitNullValueTriggerId; set { _explicitNullValueTriggerId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("triggerId"); else _explicitNullProperties?.Remove("triggerId"); } }
+        private string _explicitNullValueTriggerId = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ListIncidentsResponseDataItemAlertsItem"/> and sets the default values.
@@ -59,7 +81,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.ListIncidentsResponseDataItemAlertsItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.ListIncidentsResponseDataItemAlertsItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.ListIncidentsResponseDataItemAlertsItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -90,6 +112,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("causeOfOutage", CauseOfOutage);
             writer.WriteDateTimeOffsetValue("expectedRestorationTime", ExpectedRestorationTime);
             writer.WriteStringValue("triggerId", TriggerId);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

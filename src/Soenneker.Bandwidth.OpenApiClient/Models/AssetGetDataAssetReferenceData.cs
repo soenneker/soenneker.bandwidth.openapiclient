@@ -12,7 +12,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class AssetGetDataAssetReferenceData : IComposedTypeWrapper, IParsable
-    {
+    , global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder {
+        // Preserve ambiguous union payloads without inventing a discriminator.
+        /// <summary>The complete payload when no unique typed union branch can be selected.</summary>
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode UnrecognizedValue { get; set; } = null!;
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalData { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AddressResponseAssetData"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -49,17 +54,20 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetDataAssetReferenceData();
             if("AddressResponseAssetData".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.AddressResponseAssetData = new global::Soenneker.Bandwidth.OpenApiClient.Models.AddressResponseAssetData();
+                
             }
             else if("ComplianceDocumentResponseData".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.ComplianceDocumentResponseData = new global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData();
+                
             }
             else if("EndUserResponseAssetData".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.EndUserResponseAssetData = new global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserResponseAssetData();
+                
             }
-            return result;
+            
+            var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
+            if (result.AddressResponseAssetData == null && result.ComplianceDocumentResponseData == null && result.EndUserResponseAssetData == null) result.UnrecognizedValue = unionPayload;
+return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -87,17 +95,26 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
+            if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
+            if (AddressResponseAssetData == null && ComplianceDocumentResponseData == null && EndUserResponseAssetData == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
+            if (AddressResponseAssetData != null && ComplianceDocumentResponseData == null && EndUserResponseAssetData == null) { if (AddressResponseAssetData is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, AddressResponseAssetData); return; }
+            if (ComplianceDocumentResponseData != null && AddressResponseAssetData == null && EndUserResponseAssetData == null) { if (ComplianceDocumentResponseData is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, ComplianceDocumentResponseData); return; }
+            if (EndUserResponseAssetData != null && AddressResponseAssetData == null && ComplianceDocumentResponseData == null) { if (EndUserResponseAssetData is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, EndUserResponseAssetData); return; }
+
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             if(AddressResponseAssetData != null)
             {
+                if (AddressResponseAssetData is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressResponseAssetData>(null, AddressResponseAssetData);
             }
             else if(ComplianceDocumentResponseData != null)
             {
+                if (ComplianceDocumentResponseData is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ComplianceDocumentResponseData>(null, ComplianceDocumentResponseData);
             }
             else if(EndUserResponseAssetData != null)
             {
+                if (EndUserResponseAssetData is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserResponseAssetData>(null, EndUserResponseAssetData);
             }
         }

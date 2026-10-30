@@ -11,24 +11,37 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PhoneNumberInCart : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("digits") is { } nullNodeDigits && nullNodeDigits.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Digits = null;
+            if (parseNode.GetChildNode("holdingUntil") is { } nullNodeHoldingUntil && nullNodeHoldingUntil.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HoldingUntil = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The phone number digits in E.164 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Digits { get; set; }
+        public string? Digits { get => _explicitNullValueDigits; set { _explicitNullValueDigits = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("digits"); else _explicitNullProperties?.Remove("digits"); } }
+        private string? _explicitNullValueDigits = default!;
 #nullable restore
 #else
-        public string Digits { get; set; }
+        public string Digits { get => _explicitNullValueDigits; set { _explicitNullValueDigits = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("digits"); else _explicitNullProperties?.Remove("digits"); } }
+        private string _explicitNullValueDigits = default!;
 #endif
         /// <summary>The timestamp of the time until the phone number will be held in cart in format &quot;YYYY-MM-DD HH:MM:SS Z&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? HoldingUntil { get; set; }
+        public string? HoldingUntil { get => _explicitNullValueHoldingUntil; set { _explicitNullValueHoldingUntil = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("holdingUntil"); else _explicitNullProperties?.Remove("holdingUntil"); } }
+        private string? _explicitNullValueHoldingUntil = default!;
 #nullable restore
 #else
-        public string HoldingUntil { get; set; }
+        public string HoldingUntil { get => _explicitNullValueHoldingUntil; set { _explicitNullValueHoldingUntil = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("holdingUntil"); else _explicitNullProperties?.Remove("holdingUntil"); } }
+        private string _explicitNullValueHoldingUntil = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberInCart"/> and sets the default values.
@@ -45,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberInCart CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberInCart();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberInCart(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,6 +81,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("digits", Digits);
             writer.WriteStringValue("holdingUntil", HoldingUntil);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

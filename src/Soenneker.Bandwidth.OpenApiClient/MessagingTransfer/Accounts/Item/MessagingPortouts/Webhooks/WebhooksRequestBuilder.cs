@@ -16,6 +16,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.MessagingTransfer.Accounts.Item.Mess
     public partial class WebhooksRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The subscriptions property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.MessagingTransfer.Accounts.Item.MessagingPortouts.Webhooks.Subscriptions.SubscriptionsRequestBuilder Subscriptions
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.MessagingTransfer.Accounts.Item.MessagingPortouts.Webhooks.Subscriptions.SubscriptionsRequestBuilder(PathParameters, RequestAdapter);

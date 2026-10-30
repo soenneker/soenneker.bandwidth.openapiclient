@@ -82,6 +82,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.MessagingTransfer.Accounts.Item.Mess
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse429.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse500.CreateFromDiscriminatorValue },
                 { "503", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse503.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingPortoutWebhookSubscriptionsListBody>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingPortoutWebhookSubscriptionsListBody.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -120,6 +122,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.MessagingTransfer.Accounts.Item.Mess
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse429.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse500.CreateFromDiscriminatorValue },
                 { "503", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorResponse503.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingPortoutWebhookSubscription>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingPortoutWebhookSubscription.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

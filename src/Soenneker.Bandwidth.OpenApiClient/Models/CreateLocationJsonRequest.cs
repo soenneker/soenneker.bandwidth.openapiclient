@@ -11,108 +11,155 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class CreateLocationJsonRequest : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("address") is { } nullNodeAddress && nullNodeAddress.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Address = null;
+            if (parseNode.GetChildNode("callingName") is { } nullNodeCallingName && nullNodeCallingName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallingName = null;
+            if (parseNode.GetChildNode("callVerificationEnabled") is { } nullNodeCallVerificationEnabled && nullNodeCallVerificationEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallVerificationEnabled = null;
+            if (parseNode.GetChildNode("description") is { } nullNodeDescription && nullNodeDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Description = null;
+            if (parseNode.GetChildNode("finalDestinationUri") is { } nullNodeFinalDestinationUri && nullNodeFinalDestinationUri.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FinalDestinationUri = null;
+            if (parseNode.GetChildNode("isDefaultLocation") is { } nullNodeIsDefaultLocation && nullNodeIsDefaultLocation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsDefaultLocation = null;
+            if (parseNode.GetChildNode("locationName") is { } nullNodeLocationName && nullNodeLocationName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LocationName = null;
+            if (parseNode.GetChildNode("originationRoutePlan") is { } nullNodeOriginationRoutePlan && nullNodeOriginationRoutePlan.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OriginationRoutePlan = null;
+            if (parseNode.GetChildNode("pindropEnabled") is { } nullNodePindropEnabled && nullNodePindropEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PindropEnabled = null;
+            if (parseNode.GetChildNode("premiseTrunks") is { } nullNodePremiseTrunks && nullNodePremiseTrunks.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PremiseTrunks = null;
+            if (parseNode.GetChildNode("ssSendToCustomer") is { } nullNodeSsSendToCustomer && nullNodeSsSendToCustomer.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SsSendToCustomer = null;
+            if (parseNode.GetChildNode("terminationHosts") is { } nullNodeTerminationHosts && nullNodeTerminationHosts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TerminationHosts = null;
+            if (parseNode.GetChildNode("voiceHostGroups") is { } nullNodeVoiceHostGroups && nullNodeVoiceHostGroups.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoiceHostGroups = null;
+            if (parseNode.GetChildNode("voiceHosts") is { } nullNodeVoiceHosts && nullNodeVoiceHosts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoiceHosts = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The address property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AddressJson? Address { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AddressJson? Address { get => _explicitNullValueAddress; set { _explicitNullValueAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("address"); else _explicitNullProperties?.Remove("address"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.AddressJson? _explicitNullValueAddress = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AddressJson Address { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AddressJson Address { get => _explicitNullValueAddress; set { _explicitNullValueAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("address"); else _explicitNullProperties?.Remove("address"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.AddressJson _explicitNullValueAddress = default!;
 #endif
         /// <summary>The callingName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LocationLineOptionDto? CallingName { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LocationLineOptionDto? CallingName { get => _explicitNullValueCallingName; set { _explicitNullValueCallingName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callingName"); else _explicitNullProperties?.Remove("callingName"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.LocationLineOptionDto? _explicitNullValueCallingName = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LocationLineOptionDto CallingName { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LocationLineOptionDto CallingName { get => _explicitNullValueCallingName; set { _explicitNullValueCallingName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callingName"); else _explicitNullProperties?.Remove("callingName"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.LocationLineOptionDto _explicitNullValueCallingName = default!;
 #endif
         /// <summary>The callVerificationEnabled property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallVerificationEnabled { get; set; }
+        public string? CallVerificationEnabled { get => _explicitNullValueCallVerificationEnabled; set { _explicitNullValueCallVerificationEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callVerificationEnabled"); else _explicitNullProperties?.Remove("callVerificationEnabled"); } }
+        private string? _explicitNullValueCallVerificationEnabled = default!;
 #nullable restore
 #else
-        public string CallVerificationEnabled { get; set; }
+        public string CallVerificationEnabled { get => _explicitNullValueCallVerificationEnabled; set { _explicitNullValueCallVerificationEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callVerificationEnabled"); else _explicitNullProperties?.Remove("callVerificationEnabled"); } }
+        private string _explicitNullValueCallVerificationEnabled = default!;
 #endif
         /// <summary>The description property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Description { get; set; }
+        public string? Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        private string? _explicitNullValueDescription = default!;
 #nullable restore
 #else
-        public string Description { get; set; }
+        public string Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        private string _explicitNullValueDescription = default!;
 #endif
         /// <summary>The finalDestinationUri property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FinalDestinationUri { get; set; }
+        public string? FinalDestinationUri { get => _explicitNullValueFinalDestinationUri; set { _explicitNullValueFinalDestinationUri = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("finalDestinationUri"); else _explicitNullProperties?.Remove("finalDestinationUri"); } }
+        private string? _explicitNullValueFinalDestinationUri = default!;
 #nullable restore
 #else
-        public string FinalDestinationUri { get; set; }
+        public string FinalDestinationUri { get => _explicitNullValueFinalDestinationUri; set { _explicitNullValueFinalDestinationUri = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("finalDestinationUri"); else _explicitNullProperties?.Remove("finalDestinationUri"); } }
+        private string _explicitNullValueFinalDestinationUri = default!;
 #endif
         /// <summary>Value is true or false. The default location (SIP peer) is the default &quot;destination&quot; for any phone numbers that are ordered for the subaccount (site) in which the location resides.  Each subaccount can have only 1 default location. You can configure multiple locations on a subaccount.</summary>
-        public bool? IsDefaultLocation { get; set; }
+        public bool? IsDefaultLocation { get => _explicitNullValueIsDefaultLocation; set { _explicitNullValueIsDefaultLocation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isDefaultLocation"); else _explicitNullProperties?.Remove("isDefaultLocation"); } }
+        private bool? _explicitNullValueIsDefaultLocation = default!;
         /// <summary>The locationName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LocationName { get; set; }
+        public string? LocationName { get => _explicitNullValueLocationName; set { _explicitNullValueLocationName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("locationName"); else _explicitNullProperties?.Remove("locationName"); } }
+        private string? _explicitNullValueLocationName = default!;
 #nullable restore
 #else
-        public string LocationName { get; set; }
+        public string LocationName { get => _explicitNullValueLocationName; set { _explicitNullValueLocationName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("locationName"); else _explicitNullProperties?.Remove("locationName"); } }
+        private string _explicitNullValueLocationName = default!;
 #endif
         /// <summary>The originationRoutePlan property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestOriginationRoutePlan? OriginationRoutePlan { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestOriginationRoutePlan? OriginationRoutePlan { get => _explicitNullValueOriginationRoutePlan; set { _explicitNullValueOriginationRoutePlan = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("originationRoutePlan"); else _explicitNullProperties?.Remove("originationRoutePlan"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestOriginationRoutePlan? _explicitNullValueOriginationRoutePlan = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestOriginationRoutePlan OriginationRoutePlan { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestOriginationRoutePlan OriginationRoutePlan { get => _explicitNullValueOriginationRoutePlan; set { _explicitNullValueOriginationRoutePlan = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("originationRoutePlan"); else _explicitNullProperties?.Remove("originationRoutePlan"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestOriginationRoutePlan _explicitNullValueOriginationRoutePlan = default!;
 #endif
         /// <summary>The pindropEnabled property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PindropEnabled { get; set; }
+        public string? PindropEnabled { get => _explicitNullValuePindropEnabled; set { _explicitNullValuePindropEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pindropEnabled"); else _explicitNullProperties?.Remove("pindropEnabled"); } }
+        private string? _explicitNullValuePindropEnabled = default!;
 #nullable restore
 #else
-        public string PindropEnabled { get; set; }
+        public string PindropEnabled { get => _explicitNullValuePindropEnabled; set { _explicitNullValuePindropEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pindropEnabled"); else _explicitNullProperties?.Remove("pindropEnabled"); } }
+        private string _explicitNullValuePindropEnabled = default!;
 #endif
         /// <summary>The premiseTrunks property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PremiseTrunks { get; set; }
+        public string? PremiseTrunks { get => _explicitNullValuePremiseTrunks; set { _explicitNullValuePremiseTrunks = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("premiseTrunks"); else _explicitNullProperties?.Remove("premiseTrunks"); } }
+        private string? _explicitNullValuePremiseTrunks = default!;
 #nullable restore
 #else
-        public string PremiseTrunks { get; set; }
+        public string PremiseTrunks { get => _explicitNullValuePremiseTrunks; set { _explicitNullValuePremiseTrunks = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("premiseTrunks"); else _explicitNullProperties?.Remove("premiseTrunks"); } }
+        private string _explicitNullValuePremiseTrunks = default!;
 #endif
         /// <summary>The ssSendToCustomer property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SsSendToCustomer? SsSendToCustomer { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SsSendToCustomer? SsSendToCustomer { get => _explicitNullValueSsSendToCustomer; set { _explicitNullValueSsSendToCustomer = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ssSendToCustomer"); else _explicitNullProperties?.Remove("ssSendToCustomer"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.SsSendToCustomer? _explicitNullValueSsSendToCustomer = default!;
         /// <summary>These addresses, comprised of IP or Subnet(CIDR format) and optional Port, are used by the Bandwidth network to send calls to for Termination services. Maximum of 10 hosts - can be IP address or subnets. In case of subnet you should specify NetworkAddress of subnet as IP</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestTerminationHosts? TerminationHosts { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestTerminationHosts? TerminationHosts { get => _explicitNullValueTerminationHosts; set { _explicitNullValueTerminationHosts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("terminationHosts"); else _explicitNullProperties?.Remove("terminationHosts"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestTerminationHosts? _explicitNullValueTerminationHosts = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestTerminationHosts TerminationHosts { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestTerminationHosts TerminationHosts { get => _explicitNullValueTerminationHosts; set { _explicitNullValueTerminationHosts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("terminationHosts"); else _explicitNullProperties?.Remove("terminationHosts"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestTerminationHosts _explicitNullValueTerminationHosts = default!;
 #endif
         /// <summary>The VoiceHostGroups element is comprised of one VoiceHostGroup element, which is used to randomly distribute traffic amongst up to 10 IP addresses. Failover behavior is retained within the group</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestVoiceHostGroupsItem>? VoiceHostGroups { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestVoiceHostGroupsItem>? VoiceHostGroups { get => _explicitNullValueVoiceHostGroups; set { _explicitNullValueVoiceHostGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceHostGroups"); else _explicitNullProperties?.Remove("voiceHostGroups"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestVoiceHostGroupsItem>? _explicitNullValueVoiceHostGroups = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestVoiceHostGroupsItem> VoiceHostGroups { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestVoiceHostGroupsItem> VoiceHostGroups { get => _explicitNullValueVoiceHostGroups; set { _explicitNullValueVoiceHostGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceHostGroups"); else _explicitNullProperties?.Remove("voiceHostGroups"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestVoiceHostGroupsItem> _explicitNullValueVoiceHostGroups = default!;
 #endif
         /// <summary>These addresses, comprised of a `hostName` and an optional `port`, are used by the Bandwidth network to send calls for origination services. The voiceHosts list of IP addresses are used for an active/standby address selection mechanism, where the first address is attempted, followed by the second address, and so on. Except under failure situations, the first address in the list is preferred. Maximum of 10 hosts - can be IP address or a fully qualified domain name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestVoiceHosts? VoiceHosts { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestVoiceHosts? VoiceHosts { get => _explicitNullValueVoiceHosts; set { _explicitNullValueVoiceHosts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceHosts"); else _explicitNullProperties?.Remove("voiceHosts"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestVoiceHosts? _explicitNullValueVoiceHosts = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestVoiceHosts VoiceHosts { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestVoiceHosts VoiceHosts { get => _explicitNullValueVoiceHosts; set { _explicitNullValueVoiceHosts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceHosts"); else _explicitNullProperties?.Remove("voiceHosts"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestVoiceHosts _explicitNullValueVoiceHosts = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequest"/> and sets the default values.
@@ -129,7 +176,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -176,6 +223,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestTerminationHosts>("terminationHosts", TerminationHosts);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestVoiceHostGroupsItem>("voiceHostGroups", VoiceHostGroups);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateLocationJsonRequestVoiceHosts>("voiceHosts", VoiceHosts);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

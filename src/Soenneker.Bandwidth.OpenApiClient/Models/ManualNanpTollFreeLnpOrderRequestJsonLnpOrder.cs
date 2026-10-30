@@ -12,13 +12,24 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     public partial class ManualNanpTollFreeLnpOrderRequestJsonLnpOrder : global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderBasicJson, IParsable
     #pragma warning restore CS1591
     {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public override void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            base.CaptureExplicitNulls(parseNode);
+            if (parseNode.GetChildNode("subscriber") is { } nullNodeSubscriber && nullNodeSubscriber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Subscriber = null;
+        }
+
         /// <summary>The subscriber property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ManualNanpTollFreeLnpOrderRequestJsonLnpOrderSubscriber? Subscriber { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ManualNanpTollFreeLnpOrderRequestJsonLnpOrderSubscriber? Subscriber { get => _explicitNullValueSubscriber; set { _explicitNullValueSubscriber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriber"); else _explicitNullProperties?.Remove("subscriber"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ManualNanpTollFreeLnpOrderRequestJsonLnpOrderSubscriber? _explicitNullValueSubscriber = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ManualNanpTollFreeLnpOrderRequestJsonLnpOrderSubscriber Subscriber { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ManualNanpTollFreeLnpOrderRequestJsonLnpOrderSubscriber Subscriber { get => _explicitNullValueSubscriber; set { _explicitNullValueSubscriber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriber"); else _explicitNullProperties?.Remove("subscriber"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ManualNanpTollFreeLnpOrderRequestJsonLnpOrderSubscriber _explicitNullValueSubscriber = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -28,7 +39,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static new global::Soenneker.Bandwidth.OpenApiClient.Models.ManualNanpTollFreeLnpOrderRequestJsonLnpOrder CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.ManualNanpTollFreeLnpOrderRequestJsonLnpOrder();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.ManualNanpTollFreeLnpOrderRequestJsonLnpOrder(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -49,7 +60,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ManualNanpTollFreeLnpOrderRequestJsonLnpOrderSubscriber>("subscriber", Subscriber);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ManualNanpTollFreeLnpOrderRequestJsonLnpOrderSubscriber>("subscriber", Subscriber);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

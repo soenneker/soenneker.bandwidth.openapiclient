@@ -66,6 +66,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.Validator
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.NotAllowedErrorResponseResponse.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.TooManyRequestsErrorResponseResponse.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.InternalErrorResponseResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.PortabilityCheckSuccessResponseResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.PortabilityCheckSuccessResponseResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

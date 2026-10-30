@@ -49,7 +49,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.DashNotifications.Notifications.Endp
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            var collectionResult = await RequestAdapter.SendCollectionAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationRecipient>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationRecipient.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var collectionResult = await RequestAdapter.SendCollectionAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationRecipient>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationRecipient.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();
         }
         /// <summary>
@@ -68,7 +68,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.DashNotifications.Notifications.Endp
         {
 #endif
             var requestInfo = ToPatchRequestInformation(requestConfiguration);
-            var collectionResult = await RequestAdapter.SendCollectionAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationRecipient>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationRecipient.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var collectionResult = await RequestAdapter.SendCollectionAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationRecipient>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationRecipient.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();
         }
         /// <summary>

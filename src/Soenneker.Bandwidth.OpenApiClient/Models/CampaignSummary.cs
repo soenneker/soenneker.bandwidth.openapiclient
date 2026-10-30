@@ -12,16 +12,37 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CampaignSummary : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("bandwidthId") is { } nullNodeBandwidthId && nullNodeBandwidthId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BandwidthId = null;
+            if (parseNode.GetChildNode("brandId") is { } nullNodeBrandId && nullNodeBrandId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BrandId = null;
+            if (parseNode.GetChildNode("campaignId") is { } nullNodeCampaignId && nullNodeCampaignId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CampaignId = null;
+            if (parseNode.GetChildNode("campaignName") is { } nullNodeCampaignName && nullNodeCampaignName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CampaignName = null;
+            if (parseNode.GetChildNode("createdDate") is { } nullNodeCreatedDate && nullNodeCreatedDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedDate = null;
+            if (parseNode.GetChildNode("customerProfileId") is { } nullNodeCustomerProfileId && nullNodeCustomerProfileId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerProfileId = null;
+            if (parseNode.GetChildNode("description") is { } nullNodeDescription && nullNodeDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Description = null;
+            if (parseNode.GetChildNode("modifiedDate") is { } nullNodeModifiedDate && nullNodeModifiedDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModifiedDate = null;
+            if (parseNode.GetChildNode("numberPool") is { } nullNodeNumberPool && nullNodeNumberPool.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NumberPool = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("usecase") is { } nullNodeUsecase && nullNodeUsecase.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Usecase = null;
+            if (parseNode.GetChildNode("vettingStatus") is { } nullNodeVettingStatus && nullNodeVettingStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VettingStatus = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The Bandwidth-generated identifier for this campaign. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the campaign.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BandwidthId { get; set; }
+        public string? BandwidthId { get => _explicitNullValueBandwidthId; set { _explicitNullValueBandwidthId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bandwidthId"); else _explicitNullProperties?.Remove("bandwidthId"); } }
+        private string? _explicitNullValueBandwidthId = default!;
 #nullable restore
 #else
-        public string BandwidthId { get; set; }
+        public string BandwidthId { get => _explicitNullValueBandwidthId; set { _explicitNullValueBandwidthId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bandwidthId"); else _explicitNullProperties?.Remove("bandwidthId"); } }
+        private string _explicitNullValueBandwidthId = default!;
 #endif
         /// <summary>The display name of the brand associated with this campaign.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -34,55 +55,71 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The TCR-generated identifier for this brand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BrandId { get; set; }
+        public string? BrandId { get => _explicitNullValueBrandId; set { _explicitNullValueBrandId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("brandId"); else _explicitNullProperties?.Remove("brandId"); } }
+        private string? _explicitNullValueBrandId = default!;
 #nullable restore
 #else
-        public string BrandId { get; set; }
+        public string BrandId { get => _explicitNullValueBrandId; set { _explicitNullValueBrandId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("brandId"); else _explicitNullProperties?.Remove("brandId"); } }
+        private string _explicitNullValueBrandId = default!;
 #endif
         /// <summary>The TCR-generated identifier for campaign. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the campaign.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CampaignId { get; set; }
+        public string? CampaignId { get => _explicitNullValueCampaignId; set { _explicitNullValueCampaignId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("campaignId"); else _explicitNullProperties?.Remove("campaignId"); } }
+        private string? _explicitNullValueCampaignId = default!;
 #nullable restore
 #else
-        public string CampaignId { get; set; }
+        public string CampaignId { get => _explicitNullValueCampaignId; set { _explicitNullValueCampaignId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("campaignId"); else _explicitNullProperties?.Remove("campaignId"); } }
+        private string _explicitNullValueCampaignId = default!;
 #endif
         /// <summary>A user-supplied name for this campaign. Because this name is not stored in TCR, imported campaigns will default to the campaign’s TCR ID, though this is editable via the Bandwidth APIs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CampaignName { get; set; }
+        public string? CampaignName { get => _explicitNullValueCampaignName; set { _explicitNullValueCampaignName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("campaignName"); else _explicitNullProperties?.Remove("campaignName"); } }
+        private string? _explicitNullValueCampaignName = default!;
 #nullable restore
 #else
-        public string CampaignName { get; set; }
+        public string CampaignName { get => _explicitNullValueCampaignName; set { _explicitNullValueCampaignName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("campaignName"); else _explicitNullProperties?.Remove("campaignName"); } }
+        private string _explicitNullValueCampaignName = default!;
 #endif
         /// <summary>The time the brand was created in the TCR system.</summary>
-        public DateTimeOffset? CreatedDate { get; set; }
+        public DateTimeOffset? CreatedDate { get => _explicitNullValueCreatedDate; set { _explicitNullValueCreatedDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdDate"); else _explicitNullProperties?.Remove("createdDate"); } }
+        private DateTimeOffset? _explicitNullValueCreatedDate = default!;
         /// <summary>Alphanumeric identifier of the customer profile to associate with this campaign</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CustomerProfileId { get; set; }
+        public string? CustomerProfileId { get => _explicitNullValueCustomerProfileId; set { _explicitNullValueCustomerProfileId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerProfileId"); else _explicitNullProperties?.Remove("customerProfileId"); } }
+        private string? _explicitNullValueCustomerProfileId = default!;
 #nullable restore
 #else
-        public string CustomerProfileId { get; set; }
+        public string CustomerProfileId { get => _explicitNullValueCustomerProfileId; set { _explicitNullValueCustomerProfileId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerProfileId"); else _explicitNullProperties?.Remove("customerProfileId"); } }
+        private string _explicitNullValueCustomerProfileId = default!;
 #endif
         /// <summary>Summary description of this campaign.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Description { get; set; }
+        public string? Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        private string? _explicitNullValueDescription = default!;
 #nullable restore
 #else
-        public string Description { get; set; }
+        public string Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        private string _explicitNullValueDescription = default!;
 #endif
         /// <summary>The time the brand was last modified in the Bandwidth system.</summary>
-        public DateTimeOffset? ModifiedDate { get; set; }
+        public DateTimeOffset? ModifiedDate { get => _explicitNullValueModifiedDate; set { _explicitNullValueModifiedDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modifiedDate"); else _explicitNullProperties?.Remove("modifiedDate"); } }
+        private DateTimeOffset? _explicitNullValueModifiedDate = default!;
         /// <summary>Does campaign utilize pool of phone numbers?</summary>
-        public bool? NumberPool { get; set; }
+        public bool? NumberPool { get => _explicitNullValueNumberPool; set { _explicitNullValueNumberPool = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("numberPool"); else _explicitNullProperties?.Remove("numberPool"); } }
+        private bool? _explicitNullValueNumberPool = default!;
         /// <summary>The status property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumCampaignStatus? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumCampaignStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.EnumCampaignStatus? _explicitNullValueStatus = default!;
         /// <summary>Campaign usecase. Must be of defined valid types</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumCampaignUsecases? Usecase { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumCampaignUsecases? Usecase { get => _explicitNullValueUsecase; set { _explicitNullValueUsecase = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usecase"); else _explicitNullProperties?.Remove("usecase"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.EnumCampaignUsecases? _explicitNullValueUsecase = default!;
         /// <summary>The overall vetting status of a campaign, based on `BANDWIDTH_DCA`, `DCA2_ACCEPTED`, `DCA2_READY`, and `PROXY` partner IDs in the `approvals` list.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumCampaignVettingStatus? VettingStatus { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumCampaignVettingStatus? VettingStatus { get => _explicitNullValueVettingStatus; set { _explicitNullValueVettingStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("vettingStatus"); else _explicitNullProperties?.Remove("vettingStatus"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.EnumCampaignVettingStatus? _explicitNullValueVettingStatus = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignSummary"/> and sets the default values.
         /// </summary>
@@ -99,7 +136,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignSummary CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignSummary();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.CampaignSummary(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -143,6 +180,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumCampaignStatus>("status", Status);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumCampaignUsecases>("usecase", Usecase);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumCampaignVettingStatus>("vettingStatus", VettingStatus);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -12,37 +12,62 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Approval : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("brandDailyCap") is { } nullNodeBrandDailyCap && nullNodeBrandDailyCap.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BrandDailyCap = null;
+            if (parseNode.GetChildNode("brandTier") is { } nullNodeBrandTier && nullNodeBrandTier.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BrandTier = null;
+            if (parseNode.GetChildNode("decision") is { } nullNodeDecision && nullNodeDecision.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Decision = null;
+            if (parseNode.GetChildNode("messageClass") is { } nullNodeMessageClass && nullNodeMessageClass.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessageClass = null;
+            if (parseNode.GetChildNode("mmsTpm") is { } nullNodeMmsTpm && nullNodeMmsTpm.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MmsTpm = null;
+            if (parseNode.GetChildNode("partnerId") is { } nullNodePartnerId && nullNodePartnerId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PartnerId = null;
+            if (parseNode.GetChildNode("reason") is { } nullNodeReason && nullNodeReason.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Reason = null;
+            if (parseNode.GetChildNode("tpm") is { } nullNodeTpm && nullNodeTpm.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tpm = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>T-Mobile daily message quota, applying across campaigns and CSPs.</summary>
-        public int? BrandDailyCap { get; set; }
+        public int? BrandDailyCap { get => _explicitNullValueBrandDailyCap; set { _explicitNullValueBrandDailyCap = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("brandDailyCap"); else _explicitNullProperties?.Remove("brandDailyCap"); } }
+        private int? _explicitNullValueBrandDailyCap = default!;
         /// <summary>T-Mobile daily message volume is restricted based on brand tier, applying across campaigns and CSPs.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumTmobileBrandTier? BrandTier { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumTmobileBrandTier? BrandTier { get => _explicitNullValueBrandTier; set { _explicitNullValueBrandTier = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("brandTier"); else _explicitNullProperties?.Remove("brandTier"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.EnumTmobileBrandTier? _explicitNullValueBrandTier = default!;
         /// <summary>The approval status for a connectivity partner or carrier. **Note** that these values differ as they are communicated by TCR for connectivity partners or carriers. We are standardizing on the values expressed for the connectivity partners, plus suspended (only carriers can suspend a campaign).</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumApprovalDecision? Decision { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumApprovalDecision? Decision { get => _explicitNullValueDecision; set { _explicitNullValueDecision = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("decision"); else _explicitNullProperties?.Remove("decision"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.EnumApprovalDecision? _explicitNullValueDecision = default!;
         /// <summary>AT&amp;T message class qualified by brand for a desired use case.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? MessageClass { get; set; }
+        public string? MessageClass { get => _explicitNullValueMessageClass; set { _explicitNullValueMessageClass = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messageClass"); else _explicitNullProperties?.Remove("messageClass"); } }
+        private string? _explicitNullValueMessageClass = default!;
 #nullable restore
 #else
-        public string MessageClass { get; set; }
+        public string MessageClass { get => _explicitNullValueMessageClass; set { _explicitNullValueMessageClass = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messageClass"); else _explicitNullProperties?.Remove("messageClass"); } }
+        private string _explicitNullValueMessageClass = default!;
 #endif
         /// <summary>AT&amp;T MMS message segment throughput per minute, qualified by the brand for a desired use case.</summary>
-        public int? MmsTpm { get; set; }
+        public int? MmsTpm { get => _explicitNullValueMmsTpm; set { _explicitNullValueMmsTpm = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("mmsTpm"); else _explicitNullProperties?.Remove("mmsTpm"); } }
+        private int? _explicitNullValueMmsTpm = default!;
         /// <summary>The carrier or connectivity partner from whom we need an approval to send messages under a specific campaign.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumPartnerId? PartnerId { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumPartnerId? PartnerId { get => _explicitNullValuePartnerId; set { _explicitNullValuePartnerId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("partnerId"); else _explicitNullProperties?.Remove("partnerId"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.EnumPartnerId? _explicitNullValuePartnerId = default!;
         /// <summary>If the campaign was declined, we expect to receive an explanation as to why the carrier rejected the campaign, and that will be provided here. If the reason is longer than 2,048 characters, it will be silently truncated.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Reason { get; set; }
+        public string? Reason { get => _explicitNullValueReason; set { _explicitNullValueReason = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reason"); else _explicitNullProperties?.Remove("reason"); } }
+        private string? _explicitNullValueReason = default!;
 #nullable restore
 #else
-        public string Reason { get; set; }
+        public string Reason { get => _explicitNullValueReason; set { _explicitNullValueReason = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reason"); else _explicitNullProperties?.Remove("reason"); } }
+        private string _explicitNullValueReason = default!;
 #endif
         /// <summary>AT&amp;T SMS message segment throughput per minute, qualified by the brand for a desired use case.</summary>
-        public int? Tpm { get; set; }
+        public int? Tpm { get => _explicitNullValueTpm; set { _explicitNullValueTpm = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tpm"); else _explicitNullProperties?.Remove("tpm"); } }
+        private int? _explicitNullValueTpm = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Approval"/> and sets the default values.
         /// </summary>
@@ -58,7 +83,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.Approval CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.Approval();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.Approval(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -93,6 +118,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumPartnerId>("partnerId", PartnerId);
             writer.WriteStringValue("reason", Reason);
             writer.WriteIntValue("tpm", Tpm);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

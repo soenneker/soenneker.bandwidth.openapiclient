@@ -36,7 +36,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.Sites.Item.I
         /// <summary>
         /// Retrieves all the telephone numbers currently in-service for the given Site.In this table are presented capabilities that are not universally available. The following request query parameters are only allowed for numbers from specific region/country:| Number Region | Request Query Parameter ||:--------------|:------------------------||NANP|city||NANP|tier||NANP|npaNxx||NANP|npaNxxx||NANP|lata||NANP|state||NANP|ratecenter|When the  query parameters listed in the table above are passed, only in service North American Numbering Plan phone numbers are returned.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberListResponse"/></returns>
+        /// <returns>A <see cref="Stream"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersErrorResponse">When receiving a 400 status code</exception>
@@ -44,11 +44,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.Sites.Item.I
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersErrorResponse">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberListResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.Sites.Item.InserviceNumbers.InserviceNumbersRequestBuilder.InserviceNumbersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.Sites.Item.InserviceNumbers.InserviceNumbersRequestBuilder.InserviceNumbersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberListResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.Sites.Item.InserviceNumbers.InserviceNumbersRequestBuilder.InserviceNumbersRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.Sites.Item.InserviceNumbers.InserviceNumbersRequestBuilder.InserviceNumbersRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -57,8 +57,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.MyNumbers.Accounts.Item.Sites.Item.I
                 { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersErrorResponse.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersErrorResponse.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.MyNumbersErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberListResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberListResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves all the telephone numbers currently in-service for the given Site.In this table are presented capabilities that are not universally available. The following request query parameters are only allowed for numbers from specific region/country:| Number Region | Request Query Parameter ||:--------------|:------------------------||NANP|city||NANP|tier||NANP|npaNxx||NANP|npaNxxx||NANP|lata||NANP|state||NANP|ratecenter|When the  query parameters listed in the table above are passed, only in service North American Numbering Plan phone numbers are returned.

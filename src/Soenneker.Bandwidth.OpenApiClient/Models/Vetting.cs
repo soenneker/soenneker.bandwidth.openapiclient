@@ -11,60 +11,94 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class Vetting : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("bandwidthId") is { } nullNodeBandwidthId && nullNodeBandwidthId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BandwidthId = null;
+            if (parseNode.GetChildNode("createdDate") is { } nullNodeCreatedDate && nullNodeCreatedDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedDate = null;
+            if (parseNode.GetChildNode("evpId") is { } nullNodeEvpId && nullNodeEvpId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EvpId = null;
+            if (parseNode.GetChildNode("reasons") is { } nullNodeReasons && nullNodeReasons.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Reasons = null;
+            if (parseNode.GetChildNode("vettedDate") is { } nullNodeVettedDate && nullNodeVettedDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VettedDate = null;
+            if (parseNode.GetChildNode("vettingClass") is { } nullNodeVettingClass && nullNodeVettingClass.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VettingClass = null;
+            if (parseNode.GetChildNode("vettingDetails") is { } nullNodeVettingDetails && nullNodeVettingDetails.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VettingDetails = null;
+            if (parseNode.GetChildNode("vettingId") is { } nullNodeVettingId && nullNodeVettingId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VettingId = null;
+            if (parseNode.GetChildNode("vettingScore") is { } nullNodeVettingScore && nullNodeVettingScore.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VettingScore = null;
+            if (parseNode.GetChildNode("vettingStatus") is { } nullNodeVettingStatus && nullNodeVettingStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VettingStatus = null;
+            if (parseNode.GetChildNode("vettingToken") is { } nullNodeVettingToken && nullNodeVettingToken.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VettingToken = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The Bandwidth-generated identifier for this entity. The TCR and Bandwidth identifiers are interchangeable in the Bandwidth APIs and either can be used to retrieve information about the entity.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BandwidthId { get; set; }
+        public string? BandwidthId { get => _explicitNullValueBandwidthId; set { _explicitNullValueBandwidthId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bandwidthId"); else _explicitNullProperties?.Remove("bandwidthId"); } }
+        private string? _explicitNullValueBandwidthId = default!;
 #nullable restore
 #else
-        public string BandwidthId { get; set; }
+        public string BandwidthId { get => _explicitNullValueBandwidthId; set { _explicitNullValueBandwidthId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bandwidthId"); else _explicitNullProperties?.Remove("bandwidthId"); } }
+        private string _explicitNullValueBandwidthId = default!;
 #endif
         /// <summary>The time the entity was created in the TCR system.</summary>
-        public DateTimeOffset? CreatedDate { get; set; }
+        public DateTimeOffset? CreatedDate { get => _explicitNullValueCreatedDate; set { _explicitNullValueCreatedDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdDate"); else _explicitNullProperties?.Remove("createdDate"); } }
+        private DateTimeOffset? _explicitNullValueCreatedDate = default!;
         /// <summary>The external vetting companies that can be used to vet brands. Aegis Mobile accepts standard, enhanced, political, Auth+, and RCS vetting requests; Campaign Verify (CV) vets federal political brands (import only); WMC Global supports standard vetting.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingProviderId? EvpId { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingProviderId? EvpId { get => _explicitNullValueEvpId; set { _explicitNullValueEvpId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("evpId"); else _explicitNullProperties?.Remove("evpId"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingProviderId? _explicitNullValueEvpId = default!;
         /// <summary>Reasons provided by the external vetting provider for the vetting outcome.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Reasons { get; set; }
+        public List<string>? Reasons { get => _explicitNullValueReasons; set { _explicitNullValueReasons = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reasons"); else _explicitNullProperties?.Remove("reasons"); } }
+        private List<string>? _explicitNullValueReasons = default!;
 #nullable restore
 #else
-        public List<string> Reasons { get; set; }
+        public List<string> Reasons { get => _explicitNullValueReasons; set { _explicitNullValueReasons = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reasons"); else _explicitNullProperties?.Remove("reasons"); } }
+        private List<string> _explicitNullValueReasons = default!;
 #endif
         /// <summary>The date the vetting was completed.</summary>
-        public DateTimeOffset? VettedDate { get; set; }
+        public DateTimeOffset? VettedDate { get => _explicitNullValueVettedDate; set { _explicitNullValueVettedDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("vettedDate"); else _explicitNullProperties?.Remove("vettedDate"); } }
+        private DateTimeOffset? _explicitNullValueVettedDate = default!;
         /// <summary>The type of external vetting represented by the vetting being appealed.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingClass? VettingClass { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingClass? VettingClass { get => _explicitNullValueVettingClass; set { _explicitNullValueVettingClass = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("vettingClass"); else _explicitNullProperties?.Remove("vettingClass"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingClass? _explicitNullValueVettingClass = default!;
         /// <summary>Additional details from the external vetting provider.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VettingVettingDetailsProperty? VettingDetails { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VettingVettingDetailsProperty? VettingDetails { get => _explicitNullValueVettingDetails; set { _explicitNullValueVettingDetails = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("vettingDetails"); else _explicitNullProperties?.Remove("vettingDetails"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.VettingVettingDetailsProperty? _explicitNullValueVettingDetails = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VettingVettingDetailsProperty VettingDetails { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VettingVettingDetailsProperty VettingDetails { get => _explicitNullValueVettingDetails; set { _explicitNullValueVettingDetails = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("vettingDetails"); else _explicitNullProperties?.Remove("vettingDetails"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.VettingVettingDetailsProperty _explicitNullValueVettingDetails = default!;
 #endif
         /// <summary>The identifier of the vetting from the external vetting provider.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? VettingId { get; set; }
+        public string? VettingId { get => _explicitNullValueVettingId; set { _explicitNullValueVettingId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("vettingId"); else _explicitNullProperties?.Remove("vettingId"); } }
+        private string? _explicitNullValueVettingId = default!;
 #nullable restore
 #else
-        public string VettingId { get; set; }
+        public string VettingId { get => _explicitNullValueVettingId; set { _explicitNullValueVettingId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("vettingId"); else _explicitNullProperties?.Remove("vettingId"); } }
+        private string _explicitNullValueVettingId = default!;
 #endif
         /// <summary>The score assigned by the external vetting provider.</summary>
-        public int? VettingScore { get; set; }
+        public int? VettingScore { get => _explicitNullValueVettingScore; set { _explicitNullValueVettingScore = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("vettingScore"); else _explicitNullProperties?.Remove("vettingScore"); } }
+        private int? _explicitNullValueVettingScore = default!;
         /// <summary>The status of the external vetting.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingStatus? VettingStatus { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingStatus? VettingStatus { get => _explicitNullValueVettingStatus; set { _explicitNullValueVettingStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("vettingStatus"); else _explicitNullProperties?.Remove("vettingStatus"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingStatus? _explicitNullValueVettingStatus = default!;
         /// <summary>The vetting token, required for Aegis vettings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? VettingToken { get; set; }
+        public string? VettingToken { get => _explicitNullValueVettingToken; set { _explicitNullValueVettingToken = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("vettingToken"); else _explicitNullProperties?.Remove("vettingToken"); } }
+        private string? _explicitNullValueVettingToken = default!;
 #nullable restore
 #else
-        public string VettingToken { get; set; }
+        public string VettingToken { get => _explicitNullValueVettingToken; set { _explicitNullValueVettingToken = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("vettingToken"); else _explicitNullProperties?.Remove("vettingToken"); } }
+        private string _explicitNullValueVettingToken = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Vetting"/> and sets the default values.
@@ -81,7 +115,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.Vetting CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.Vetting();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.Vetting(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -122,6 +156,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteIntValue("vettingScore", VettingScore);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingStatus>("vettingStatus", VettingStatus);
             writer.WriteStringValue("vettingToken", VettingToken);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

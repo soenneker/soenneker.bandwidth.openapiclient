@@ -12,7 +12,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class NewPhoneNumberOrderResponseOrderType : IComposedTypeWrapper, IParsable
-    {
+    , global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder {
+        // Preserve ambiguous union payloads without inventing a discriminator.
+        /// <summary>The complete payload when no unique typed union branch can be selected.</summary>
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode UnrecognizedValue { get; set; } = null!;
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalData { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -45,21 +50,30 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.NewPhoneNumberOrderResponseOrderType CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.NewPhoneNumberOrderResponseOrderType();
-            if("combinedSearchAndOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("CombinedSearchAndOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.CombinedSearchAndOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType();
+                
             }
-            else if("countryAndPhoneNumberTypeSearchAndOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("CountryAndPhoneNumberTypeSearchAndOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.CountryAndPhoneNumberTypeSearchAndOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.CountryAndPhoneNumberTypeSearchAndOrderType();
+                
             }
-            else if("existingPhoneNumberOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("ExistingPhoneNumberOrderType".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.ExistingPhoneNumberOrderType = new global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType();
+                
             }
-            return result;
+            
+            var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
+            bool matchesUnionBranch0 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("type") != null && (parseNode.GetChildNode("type")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag1 && ("existingPhoneNumberOrderType".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal))) && parseNode.GetChildNode("phoneNumbers") != null))();
+            bool matchesUnionBranch1 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("type") != null && (parseNode.GetChildNode("type")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag1 && ("combinedSearchAndOrderType".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal))) && parseNode.GetChildNode("quantity") != null))();
+            bool matchesUnionBranch2 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("type") != null && (parseNode.GetChildNode("type")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag1 && ("countryAndPhoneNumberTypeSearchAndOrderType".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal))) && parseNode.GetChildNode("countryCodeA3") != null && parseNode.GetChildNode("phoneNumberType") != null && (parseNode.GetChildNode("phoneNumberType")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag4 && ("GEOGRAPHIC".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal) || "NATIONAL".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal) || "MOBILE".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal) || "TOLL_FREE".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal) || "SHARED_COST".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal))) && parseNode.GetChildNode("areaCode") != null && parseNode.GetChildNode("city") != null && parseNode.GetChildNode("quantity") != null))();
+            if (result.CombinedSearchAndOrderType == null && result.CountryAndPhoneNumberTypeSearchAndOrderType == null && result.ExistingPhoneNumberOrderType == null && matchesUnionBranch0 && !matchesUnionBranch1 && !matchesUnionBranch2) result.ExistingPhoneNumberOrderType = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType(), parseNode);
+            if (result.CombinedSearchAndOrderType == null && result.CountryAndPhoneNumberTypeSearchAndOrderType == null && result.ExistingPhoneNumberOrderType == null && matchesUnionBranch1 && !matchesUnionBranch0 && !matchesUnionBranch2) result.CombinedSearchAndOrderType = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType(), parseNode);
+            if (result.CombinedSearchAndOrderType == null && result.CountryAndPhoneNumberTypeSearchAndOrderType == null && result.ExistingPhoneNumberOrderType == null && matchesUnionBranch2 && !matchesUnionBranch0 && !matchesUnionBranch1) result.CountryAndPhoneNumberTypeSearchAndOrderType = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.CountryAndPhoneNumberTypeSearchAndOrderType(), parseNode);
+            if (result.CombinedSearchAndOrderType == null && result.CountryAndPhoneNumberTypeSearchAndOrderType == null && result.ExistingPhoneNumberOrderType == null) result.UnrecognizedValue = unionPayload;
+return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -87,17 +101,26 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
+            if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
+            if (CombinedSearchAndOrderType == null && CountryAndPhoneNumberTypeSearchAndOrderType == null && ExistingPhoneNumberOrderType == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
+            if (CombinedSearchAndOrderType != null && CountryAndPhoneNumberTypeSearchAndOrderType == null && ExistingPhoneNumberOrderType == null) { if (CombinedSearchAndOrderType is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, CombinedSearchAndOrderType); return; }
+            if (CountryAndPhoneNumberTypeSearchAndOrderType != null && CombinedSearchAndOrderType == null && ExistingPhoneNumberOrderType == null) { if (CountryAndPhoneNumberTypeSearchAndOrderType is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, CountryAndPhoneNumberTypeSearchAndOrderType); return; }
+            if (ExistingPhoneNumberOrderType != null && CombinedSearchAndOrderType == null && CountryAndPhoneNumberTypeSearchAndOrderType == null) { if (ExistingPhoneNumberOrderType is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, ExistingPhoneNumberOrderType); return; }
+
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             if(CombinedSearchAndOrderType != null)
             {
+                if (CombinedSearchAndOrderType is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CombinedSearchAndOrderType>(null, CombinedSearchAndOrderType);
             }
             else if(CountryAndPhoneNumberTypeSearchAndOrderType != null)
             {
+                if (CountryAndPhoneNumberTypeSearchAndOrderType is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CountryAndPhoneNumberTypeSearchAndOrderType>(null, CountryAndPhoneNumberTypeSearchAndOrderType);
             }
             else if(ExistingPhoneNumberOrderType != null)
             {
+                if (ExistingPhoneNumberOrderType is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExistingPhoneNumberOrderType>(null, ExistingPhoneNumberOrderType);
             }
         }

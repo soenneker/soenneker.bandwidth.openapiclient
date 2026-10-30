@@ -11,35 +11,53 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ServiceActivationCheckerVoiceServices : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("inbound") is { } nullNodeInbound && nullNodeInbound.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Inbound = null;
+            if (parseNode.GetChildNode("outboundInternational") is { } nullNodeOutboundInternational && nullNodeOutboundInternational.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OutboundInternational = null;
+            if (parseNode.GetChildNode("outboundNational") is { } nullNodeOutboundNational && nullNodeOutboundNational.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OutboundNational = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The inbound property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServicesInbound? Inbound { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServicesInbound? Inbound { get => _explicitNullValueInbound; set { _explicitNullValueInbound = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inbound"); else _explicitNullProperties?.Remove("inbound"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServicesInbound? _explicitNullValueInbound = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServicesInbound Inbound { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServicesInbound Inbound { get => _explicitNullValueInbound; set { _explicitNullValueInbound = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inbound"); else _explicitNullProperties?.Remove("inbound"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServicesInbound _explicitNullValueInbound = default!;
 #endif
         /// <summary>The outboundInternational property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServicesOutboundInternational? OutboundInternational { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServicesOutboundInternational? OutboundInternational { get => _explicitNullValueOutboundInternational; set { _explicitNullValueOutboundInternational = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outboundInternational"); else _explicitNullProperties?.Remove("outboundInternational"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServicesOutboundInternational? _explicitNullValueOutboundInternational = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServicesOutboundInternational OutboundInternational { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServicesOutboundInternational OutboundInternational { get => _explicitNullValueOutboundInternational; set { _explicitNullValueOutboundInternational = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outboundInternational"); else _explicitNullProperties?.Remove("outboundInternational"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServicesOutboundInternational _explicitNullValueOutboundInternational = default!;
 #endif
         /// <summary>The outboundNational property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServicesOutboundNational? OutboundNational { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServicesOutboundNational? OutboundNational { get => _explicitNullValueOutboundNational; set { _explicitNullValueOutboundNational = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outboundNational"); else _explicitNullProperties?.Remove("outboundNational"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServicesOutboundNational? _explicitNullValueOutboundNational = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServicesOutboundNational OutboundNational { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServicesOutboundNational OutboundNational { get => _explicitNullValueOutboundNational; set { _explicitNullValueOutboundNational = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outboundNational"); else _explicitNullProperties?.Remove("outboundNational"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServicesOutboundNational _explicitNullValueOutboundNational = default!;
 #endif
         /// <summary>The status property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberServiceStatus? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberServiceStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberServiceStatus? _explicitNullValueStatus = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServices"/> and sets the default values.
         /// </summary>
@@ -55,7 +73,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServices CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServices();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServices(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -82,6 +100,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServicesOutboundInternational>("outboundInternational", OutboundInternational);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerVoiceServicesOutboundNational>("outboundNational", OutboundNational);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberServiceStatus>("status", Status);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

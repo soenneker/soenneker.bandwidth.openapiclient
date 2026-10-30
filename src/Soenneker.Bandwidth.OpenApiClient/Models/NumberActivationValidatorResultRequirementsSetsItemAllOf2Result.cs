@@ -12,24 +12,37 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class NumberActivationValidatorResultRequirementsSetsItemAllOf2Result : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("activatable") is { } nullNodeActivatable && nullNodeActivatable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Activatable = null;
+            if (parseNode.GetChildNode("notActivatable") is { } nullNodeNotActivatable && nullNodeNotActivatable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NotActivatable = null;
+        }
+
         /// <summary>Details of result of a number activation</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationResultData? Activatable { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationResultData? Activatable { get => _explicitNullValueActivatable; set { _explicitNullValueActivatable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activatable"); else _explicitNullProperties?.Remove("activatable"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationResultData? _explicitNullValueActivatable = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationResultData Activatable { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationResultData Activatable { get => _explicitNullValueActivatable; set { _explicitNullValueActivatable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activatable"); else _explicitNullProperties?.Remove("activatable"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationResultData _explicitNullValueActivatable = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Details of result of a number activation</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationResultData? NotActivatable { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationResultData? NotActivatable { get => _explicitNullValueNotActivatable; set { _explicitNullValueNotActivatable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notActivatable"); else _explicitNullProperties?.Remove("notActivatable"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationResultData? _explicitNullValueNotActivatable = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationResultData NotActivatable { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationResultData NotActivatable { get => _explicitNullValueNotActivatable; set { _explicitNullValueNotActivatable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notActivatable"); else _explicitNullProperties?.Remove("notActivatable"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationResultData _explicitNullValueNotActivatable = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResultRequirementsSetsItemAllOf2Result"/> and sets the default values.
@@ -46,7 +59,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResultRequirementsSetsItemAllOf2Result CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResultRequirementsSetsItemAllOf2Result();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationValidatorResultRequirementsSetsItemAllOf2Result(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,6 +82,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationResultData>("activatable", Activatable);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationResultData>("notActivatable", NotActivatable);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

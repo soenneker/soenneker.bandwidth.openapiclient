@@ -12,13 +12,24 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     public partial class Ipv4Endpoint : global::Soenneker.Bandwidth.OpenApiClient.Models.OrpEndpoint, IParsable
     #pragma warning restore CS1591
     {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public override void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            base.CaptureExplicitNulls(parseNode);
+            if (parseNode.GetChildNode("rewriteUser") is { } nullNodeRewriteUser && nullNodeRewriteUser.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RewriteUser = null;
+        }
+
         /// <summary>Overrides the user part of the SIP Request-URI  (e.g. `rewrite-user@endpoint`).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RewriteUser { get; set; }
+        public string? RewriteUser { get => _explicitNullValueRewriteUser; set { _explicitNullValueRewriteUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rewriteUser"); else _explicitNullProperties?.Remove("rewriteUser"); } }
+        private string? _explicitNullValueRewriteUser = default!;
 #nullable restore
 #else
-        public string RewriteUser { get; set; }
+        public string RewriteUser { get => _explicitNullValueRewriteUser; set { _explicitNullValueRewriteUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rewriteUser"); else _explicitNullProperties?.Remove("rewriteUser"); } }
+        private string _explicitNullValueRewriteUser = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -28,7 +39,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static new global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4Endpoint CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4Endpoint();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.Ipv4Endpoint(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -49,7 +60,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteStringValue("rewriteUser", RewriteUser);
+            writer.WriteStringValue("rewriteUser", RewriteUser);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

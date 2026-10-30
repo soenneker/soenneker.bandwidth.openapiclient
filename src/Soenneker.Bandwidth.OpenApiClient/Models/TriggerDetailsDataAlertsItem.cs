@@ -11,38 +11,60 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class TriggerDetailsDataAlertsItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("alertMethod") is { } nullNodeAlertMethod && nullNodeAlertMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AlertMethod = null;
+            if (parseNode.GetChildNode("alertTime") is { } nullNodeAlertTime && nullNodeAlertTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AlertTime = null;
+            if (parseNode.GetChildNode("psapFccId") is { } nullNodePsapFccId && nullNodePsapFccId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PsapFccId = null;
+            if (parseNode.GetChildNode("psapName") is { } nullNodePsapName && nullNodePsapName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PsapName = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("testContactInformation") is { } nullNodeTestContactInformation && nullNodeTestContactInformation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TestContactInformation = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The alertMethod property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TriggerDetailsDataAlertsItemAlertMethod? AlertMethod { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TriggerDetailsDataAlertsItemAlertMethod? AlertMethod { get => _explicitNullValueAlertMethod; set { _explicitNullValueAlertMethod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alertMethod"); else _explicitNullProperties?.Remove("alertMethod"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TriggerDetailsDataAlertsItemAlertMethod? _explicitNullValueAlertMethod = default!;
         /// <summary>The time the alert was sent.</summary>
-        public DateTimeOffset? AlertTime { get; set; }
+        public DateTimeOffset? AlertTime { get => _explicitNullValueAlertTime; set { _explicitNullValueAlertTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alertTime"); else _explicitNullProperties?.Remove("alertTime"); } }
+        private DateTimeOffset? _explicitNullValueAlertTime = default!;
         /// <summary>The FCC of the PSAP receiving the alert.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PsapFccId { get; set; }
+        public string? PsapFccId { get => _explicitNullValuePsapFccId; set { _explicitNullValuePsapFccId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("psapFccId"); else _explicitNullProperties?.Remove("psapFccId"); } }
+        private string? _explicitNullValuePsapFccId = default!;
 #nullable restore
 #else
-        public string PsapFccId { get; set; }
+        public string PsapFccId { get => _explicitNullValuePsapFccId; set { _explicitNullValuePsapFccId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("psapFccId"); else _explicitNullProperties?.Remove("psapFccId"); } }
+        private string _explicitNullValuePsapFccId = default!;
 #endif
         /// <summary>The name of the PSAP that will receive the alert.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PsapName { get; set; }
+        public string? PsapName { get => _explicitNullValuePsapName; set { _explicitNullValuePsapName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("psapName"); else _explicitNullProperties?.Remove("psapName"); } }
+        private string? _explicitNullValuePsapName = default!;
 #nullable restore
 #else
-        public string PsapName { get; set; }
+        public string PsapName { get => _explicitNullValuePsapName; set { _explicitNullValuePsapName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("psapName"); else _explicitNullProperties?.Remove("psapName"); } }
+        private string _explicitNullValuePsapName = default!;
 #endif
         /// <summary>The status property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TriggerDetailsDataAlertsItemStatus? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TriggerDetailsDataAlertsItemStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TriggerDetailsDataAlertsItemStatus? _explicitNullValueStatus = default!;
         /// <summary>The phone number or email address that will receive the test alert.This is only included if the alert is a test alert.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TestContactInformation { get; set; }
+        public string? TestContactInformation { get => _explicitNullValueTestContactInformation; set { _explicitNullValueTestContactInformation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("testContactInformation"); else _explicitNullProperties?.Remove("testContactInformation"); } }
+        private string? _explicitNullValueTestContactInformation = default!;
 #nullable restore
 #else
-        public string TestContactInformation { get; set; }
+        public string TestContactInformation { get => _explicitNullValueTestContactInformation; set { _explicitNullValueTestContactInformation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("testContactInformation"); else _explicitNullProperties?.Remove("testContactInformation"); } }
+        private string _explicitNullValueTestContactInformation = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TriggerDetailsDataAlertsItem"/> and sets the default values.
@@ -59,7 +81,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.TriggerDetailsDataAlertsItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.TriggerDetailsDataAlertsItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.TriggerDetailsDataAlertsItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -90,6 +112,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("psapName", PsapName);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TriggerDetailsDataAlertsItemStatus>("status", Status);
             writer.WriteStringValue("testContactInformation", TestContactInformation);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

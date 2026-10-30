@@ -11,33 +11,64 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PhoneNumberReputationHistoryDailyCheckEntry : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("attRiskRating") is { } nullNodeAttRiskRating && nullNodeAttRiskRating.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AttRiskRating = null;
+            if (parseNode.GetChildNode("carriersReputationSummary") is { } nullNodeCarriersReputationSummary && nullNodeCarriersReputationSummary.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CarriersReputationSummary = null;
+            if (parseNode.GetChildNode("fccRiskRating") is { } nullNodeFccRiskRating && nullNodeFccRiskRating.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FccRiskRating = null;
+            if (parseNode.GetChildNode("ftcRiskRating") is { } nullNodeFtcRiskRating && nullNodeFtcRiskRating.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FtcRiskRating = null;
+            if (parseNode.GetChildNode("ihsRiskRating") is { } nullNodeIhsRiskRating && nullNodeIhsRiskRating.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IhsRiskRating = null;
+            if (parseNode.GetChildNode("nomoroboRiskRating") is { } nullNodeNomoroboRiskRating && nullNodeNomoroboRiskRating.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NomoroboRiskRating = null;
+            if (parseNode.GetChildNode("robokillerRiskRating") is { } nullNodeRobokillerRiskRating && nullNodeRobokillerRiskRating.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RobokillerRiskRating = null;
+            if (parseNode.GetChildNode("scanTime") is { } nullNodeScanTime && nullNodeScanTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScanTime = null;
+            if (parseNode.GetChildNode("tmobileRiskRating") is { } nullNodeTmobileRiskRating && nullNodeTmobileRiskRating.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TmobileRiskRating = null;
+            if (parseNode.GetChildNode("ttsRiskRating") is { } nullNodeTtsRiskRating && nullNodeTtsRiskRating.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TtsRiskRating = null;
+            if (parseNode.GetChildNode("verizonRiskRating") is { } nullNodeVerizonRiskRating && nullNodeVerizonRiskRating.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VerizonRiskRating = null;
+            if (parseNode.GetChildNode("youmailRiskRating") is { } nullNodeYoumailRiskRating && nullNodeYoumailRiskRating.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) YoumailRiskRating = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The risk rating of the number.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? AttRiskRating { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? AttRiskRating { get => _explicitNullValueAttRiskRating; set { _explicitNullValueAttRiskRating = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("attRiskRating"); else _explicitNullProperties?.Remove("attRiskRating"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? _explicitNullValueAttRiskRating = default!;
         /// <summary>A summary of the number&apos;s reputation based on its status with the three main carriers, AT&amp;T, Verizon, and T-Mobile. This will be set to `FLAGGED` if the number is in a `FLAGGED` status with at least one of those carriers.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CarriersReputationSummaryEnum? CarriersReputationSummary { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CarriersReputationSummaryEnum? CarriersReputationSummary { get => _explicitNullValueCarriersReputationSummary; set { _explicitNullValueCarriersReputationSummary = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carriersReputationSummary"); else _explicitNullProperties?.Remove("carriersReputationSummary"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CarriersReputationSummaryEnum? _explicitNullValueCarriersReputationSummary = default!;
         /// <summary>The risk rating of the number.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? FccRiskRating { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? FccRiskRating { get => _explicitNullValueFccRiskRating; set { _explicitNullValueFccRiskRating = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fccRiskRating"); else _explicitNullProperties?.Remove("fccRiskRating"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? _explicitNullValueFccRiskRating = default!;
         /// <summary>The risk rating of the number.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? FtcRiskRating { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? FtcRiskRating { get => _explicitNullValueFtcRiskRating; set { _explicitNullValueFtcRiskRating = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ftcRiskRating"); else _explicitNullProperties?.Remove("ftcRiskRating"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? _explicitNullValueFtcRiskRating = default!;
         /// <summary>The risk rating of the number.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? IhsRiskRating { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? IhsRiskRating { get => _explicitNullValueIhsRiskRating; set { _explicitNullValueIhsRiskRating = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ihsRiskRating"); else _explicitNullProperties?.Remove("ihsRiskRating"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? _explicitNullValueIhsRiskRating = default!;
         /// <summary>The risk rating of the number.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? NomoroboRiskRating { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? NomoroboRiskRating { get => _explicitNullValueNomoroboRiskRating; set { _explicitNullValueNomoroboRiskRating = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nomoroboRiskRating"); else _explicitNullProperties?.Remove("nomoroboRiskRating"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? _explicitNullValueNomoroboRiskRating = default!;
         /// <summary>The risk rating of the number.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? RobokillerRiskRating { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? RobokillerRiskRating { get => _explicitNullValueRobokillerRiskRating; set { _explicitNullValueRobokillerRiskRating = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("robokillerRiskRating"); else _explicitNullProperties?.Remove("robokillerRiskRating"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? _explicitNullValueRobokillerRiskRating = default!;
         /// <summary>The date and time when this reputation scan was performed</summary>
-        public DateTimeOffset? ScanTime { get; set; }
+        public DateTimeOffset? ScanTime { get => _explicitNullValueScanTime; set { _explicitNullValueScanTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scanTime"); else _explicitNullProperties?.Remove("scanTime"); } }
+        private DateTimeOffset? _explicitNullValueScanTime = default!;
         /// <summary>The risk rating of the number.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? TmobileRiskRating { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? TmobileRiskRating { get => _explicitNullValueTmobileRiskRating; set { _explicitNullValueTmobileRiskRating = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tmobileRiskRating"); else _explicitNullProperties?.Remove("tmobileRiskRating"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? _explicitNullValueTmobileRiskRating = default!;
         /// <summary>The risk rating of the number.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? TtsRiskRating { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? TtsRiskRating { get => _explicitNullValueTtsRiskRating; set { _explicitNullValueTtsRiskRating = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ttsRiskRating"); else _explicitNullProperties?.Remove("ttsRiskRating"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? _explicitNullValueTtsRiskRating = default!;
         /// <summary>The risk rating of the number.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? VerizonRiskRating { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? VerizonRiskRating { get => _explicitNullValueVerizonRiskRating; set { _explicitNullValueVerizonRiskRating = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("verizonRiskRating"); else _explicitNullProperties?.Remove("verizonRiskRating"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? _explicitNullValueVerizonRiskRating = default!;
         /// <summary>The risk rating of the number.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? YoumailRiskRating { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? YoumailRiskRating { get => _explicitNullValueYoumailRiskRating; set { _explicitNullValueYoumailRiskRating = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("youmailRiskRating"); else _explicitNullProperties?.Remove("youmailRiskRating"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum? _explicitNullValueYoumailRiskRating = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberReputationHistoryDailyCheckEntry"/> and sets the default values.
         /// </summary>
@@ -53,7 +84,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberReputationHistoryDailyCheckEntry CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberReputationHistoryDailyCheckEntry();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberReputationHistoryDailyCheckEntry(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -96,6 +127,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum>("ttsRiskRating", TtsRiskRating);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum>("verizonRiskRating", VerizonRiskRating);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum>("youmailRiskRating", YoumailRiskRating);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

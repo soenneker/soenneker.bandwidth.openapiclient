@@ -55,6 +55,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveT
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerResponse400Json.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJson.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

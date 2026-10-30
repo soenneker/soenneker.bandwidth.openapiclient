@@ -12,7 +12,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PaginatedRdoFilter : IComposedTypeWrapper, IParsable
-    {
+    , global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder {
+        // Preserve ambiguous union payloads without inventing a discriminator.
+        /// <summary>The complete payload when no unique typed union branch can be selected.</summary>
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode UnrecognizedValue { get; set; } = null!;
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalData { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilterEnumeratedFilter"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -41,13 +46,20 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             var result = new global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilter();
             if("PaginatedRdoFilterEnumeratedFilter".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.PaginatedRdoFilterEnumeratedFilter = new global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilterEnumeratedFilter();
+                
             }
             else if("PaginatedRdoFilterValidationTypeFilter".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.PaginatedRdoFilterValidationTypeFilter = new global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilterValidationTypeFilter();
+                
             }
-            return result;
+            
+            var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
+            bool matchesUnionBranch0 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("filterName") != null && parseNode.GetChildNode("allowedValues") != null && parseNode.GetChildNode("operator") != null && (parseNode.GetChildNode("operator")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag3 && ("EQUAL".Equals(tag3.GetValue(), global::System.StringComparison.Ordinal) || "GREATER".Equals(tag3.GetValue(), global::System.StringComparison.Ordinal) || "LESSER".Equals(tag3.GetValue(), global::System.StringComparison.Ordinal) || "LESSER_OR_EQUAL".Equals(tag3.GetValue(), global::System.StringComparison.Ordinal) || "GREATER_OR_EQUAL".Equals(tag3.GetValue(), global::System.StringComparison.Ordinal) || "LIKE".Equals(tag3.GetValue(), global::System.StringComparison.Ordinal) || "IN".Equals(tag3.GetValue(), global::System.StringComparison.Ordinal) || "CONTAINS".Equals(tag3.GetValue(), global::System.StringComparison.Ordinal) || "STARTS_WITH".Equals(tag3.GetValue(), global::System.StringComparison.Ordinal) || "BETWEEN".Equals(tag3.GetValue(), global::System.StringComparison.Ordinal)))))();
+            bool matchesUnionBranch1 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("filterName") != null && parseNode.GetChildNode("validationType") != null && (parseNode.GetChildNode("validationType")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag2 && ("E164".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "REGEX".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "ISO8601".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "ISO8601_RANGE".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "ISO8601_YEAR_MONTH".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "ISO8601_DATE".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "STRING".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "INTEGER".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "ACCOUNT".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal))) && parseNode.GetChildNode("operator") != null && (parseNode.GetChildNode("operator")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag4 && ("EQUAL".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal) || "GREATER".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal) || "LESSER".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal) || "LESSER_OR_EQUAL".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal) || "GREATER_OR_EQUAL".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal) || "LIKE".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal) || "IN".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal) || "CONTAINS".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal) || "STARTS_WITH".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal) || "BETWEEN".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal)))))();
+            if (result.PaginatedRdoFilterEnumeratedFilter == null && result.PaginatedRdoFilterValidationTypeFilter == null && matchesUnionBranch0 && !matchesUnionBranch1) result.PaginatedRdoFilterEnumeratedFilter = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilterEnumeratedFilter(), parseNode);
+            if (result.PaginatedRdoFilterEnumeratedFilter == null && result.PaginatedRdoFilterValidationTypeFilter == null && matchesUnionBranch1 && !matchesUnionBranch0) result.PaginatedRdoFilterValidationTypeFilter = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilterValidationTypeFilter(), parseNode);
+            if (result.PaginatedRdoFilterEnumeratedFilter == null && result.PaginatedRdoFilterValidationTypeFilter == null) result.UnrecognizedValue = unionPayload;
+return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -71,13 +83,20 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
+            if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
+            if (PaginatedRdoFilterEnumeratedFilter == null && PaginatedRdoFilterValidationTypeFilter == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
+            if (PaginatedRdoFilterEnumeratedFilter != null && PaginatedRdoFilterValidationTypeFilter == null) { if (PaginatedRdoFilterEnumeratedFilter is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, PaginatedRdoFilterEnumeratedFilter); return; }
+            if (PaginatedRdoFilterValidationTypeFilter != null && PaginatedRdoFilterEnumeratedFilter == null) { if (PaginatedRdoFilterValidationTypeFilter is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, PaginatedRdoFilterValidationTypeFilter); return; }
+
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             if(PaginatedRdoFilterEnumeratedFilter != null)
             {
+                if (PaginatedRdoFilterEnumeratedFilter is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilterEnumeratedFilter>(null, PaginatedRdoFilterEnumeratedFilter);
             }
             else if(PaginatedRdoFilterValidationTypeFilter != null)
             {
+                if (PaginatedRdoFilterValidationTypeFilter is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilterValidationTypeFilter>(null, PaginatedRdoFilterValidationTypeFilter);
             }
         }

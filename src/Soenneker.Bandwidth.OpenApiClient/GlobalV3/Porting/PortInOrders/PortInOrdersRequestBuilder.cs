@@ -70,6 +70,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.PortInOrders
                 { "409", global::Soenneker.Bandwidth.OpenApiClient.Models.ConflictErrorResponseResponse.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.TooManyRequestsErrorResponseResponse.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.InternalErrorResponseResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ReturnPortInOrderSuccessResponseResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ReturnPortInOrderSuccessResponseResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -106,6 +108,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalV3.Porting.PortInOrders
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.NotAllowedErrorResponseResponse.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.TooManyRequestsErrorResponseResponse.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.InternalErrorResponseResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CreatedPortInOrderSuccessResponseResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CreatedPortInOrderSuccessResponseResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

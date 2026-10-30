@@ -12,99 +12,146 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class BulkPortinRequestJsonBulkPortin : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("accountNumber") is { } nullNodeAccountNumber && nullNodeAccountNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountNumber = null;
+            if (parseNode.GetChildNode("alternateSpid") is { } nullNodeAlternateSpid && nullNodeAlternateSpid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AlternateSpid = null;
+            if (parseNode.GetChildNode("billingTelephoneNumber") is { } nullNodeBillingTelephoneNumber && nullNodeBillingTelephoneNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BillingTelephoneNumber = null;
+            if (parseNode.GetChildNode("customerOrderId") is { } nullNodeCustomerOrderId && nullNodeCustomerOrderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerOrderId = null;
+            if (parseNode.GetChildNode("loaAuthorizingPerson") is { } nullNodeLoaAuthorizingPerson && nullNodeLoaAuthorizingPerson.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LoaAuthorizingPerson = null;
+            if (parseNode.GetChildNode("locationId") is { } nullNodeLocationId && nullNodeLocationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LocationId = null;
+            if (parseNode.GetChildNode("losingResellerName") is { } nullNodeLosingResellerName && nullNodeLosingResellerName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LosingResellerName = null;
+            if (parseNode.GetChildNode("pinNumber") is { } nullNodePinNumber && nullNodePinNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PinNumber = null;
+            if (parseNode.GetChildNode("requestedFocDate") is { } nullNodeRequestedFocDate && nullNodeRequestedFocDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RequestedFocDate = null;
+            if (parseNode.GetChildNode("retryValidation") is { } nullNodeRetryValidation && nullNodeRetryValidation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RetryValidation = null;
+            if (parseNode.GetChildNode("subAccountId") is { } nullNodeSubAccountId && nullNodeSubAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SubAccountId = null;
+            if (parseNode.GetChildNode("subscriber") is { } nullNodeSubscriber && nullNodeSubscriber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Subscriber = null;
+            if (parseNode.GetChildNode("targetRespOrgId") is { } nullNodeTargetRespOrgId && nullNodeTargetRespOrgId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TargetRespOrgId = null;
+            if (parseNode.GetChildNode("tnAttributes") is { } nullNodeTnAttributes && nullNodeTnAttributes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TnAttributes = null;
+            if (parseNode.GetChildNode("voiceConfigurationPackageId") is { } nullNodeVoiceConfigurationPackageId && nullNodeVoiceConfigurationPackageId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoiceConfigurationPackageId = null;
+        }
+
         /// <summary>Account number associated with the account on the losing carrier, often required for wireless ports, or enterprise ports. This will be unusual for bulk port-in requests that are expected to decompose into port-in requests from multiple carriers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AccountNumber { get; set; }
+        public string? AccountNumber { get => _explicitNullValueAccountNumber; set { _explicitNullValueAccountNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountNumber"); else _explicitNullProperties?.Remove("accountNumber"); } }
+        private string? _explicitNullValueAccountNumber = default!;
 #nullable restore
 #else
-        public string AccountNumber { get; set; }
+        public string AccountNumber { get => _explicitNullValueAccountNumber; set { _explicitNullValueAccountNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountNumber"); else _explicitNullProperties?.Remove("accountNumber"); } }
+        private string _explicitNullValueAccountNumber = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Unique customer AltSPID to be applied to the port-in requests. Can be changed only for DRAFT bulk port-in.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AlternateSpid { get; set; }
+        public string? AlternateSpid { get => _explicitNullValueAlternateSpid; set { _explicitNullValueAlternateSpid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alternateSpid"); else _explicitNullProperties?.Remove("alternateSpid"); } }
+        private string? _explicitNullValueAlternateSpid = default!;
 #nullable restore
 #else
-        public string AlternateSpid { get; set; }
+        public string AlternateSpid { get => _explicitNullValueAlternateSpid; set { _explicitNullValueAlternateSpid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alternateSpid"); else _explicitNullProperties?.Remove("alternateSpid"); } }
+        private string _explicitNullValueAlternateSpid = default!;
 #endif
         /// <summary>Account or Billing telephone number for order. This will be unusual for bulk port-in requests that are expected to decompose into port-in requests from multiple carriers, because the value will be different for each losing carrier.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BillingTelephoneNumber { get; set; }
+        public string? BillingTelephoneNumber { get => _explicitNullValueBillingTelephoneNumber; set { _explicitNullValueBillingTelephoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("billingTelephoneNumber"); else _explicitNullProperties?.Remove("billingTelephoneNumber"); } }
+        private string? _explicitNullValueBillingTelephoneNumber = default!;
 #nullable restore
 #else
-        public string BillingTelephoneNumber { get; set; }
+        public string BillingTelephoneNumber { get => _explicitNullValueBillingTelephoneNumber; set { _explicitNullValueBillingTelephoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("billingTelephoneNumber"); else _explicitNullProperties?.Remove("billingTelephoneNumber"); } }
+        private string _explicitNullValueBillingTelephoneNumber = default!;
 #endif
         /// <summary>Optional customer-defined reference ID for this order. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CustomerOrderId { get; set; }
+        public string? CustomerOrderId { get => _explicitNullValueCustomerOrderId; set { _explicitNullValueCustomerOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerOrderId"); else _explicitNullProperties?.Remove("customerOrderId"); } }
+        private string? _explicitNullValueCustomerOrderId = default!;
 #nullable restore
 #else
-        public string CustomerOrderId { get; set; }
+        public string CustomerOrderId { get => _explicitNullValueCustomerOrderId; set { _explicitNullValueCustomerOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerOrderId"); else _explicitNullProperties?.Remove("customerOrderId"); } }
+        private string _explicitNullValueCustomerOrderId = default!;
 #endif
         /// <summary>First and last name of person who authorized LOA.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LoaAuthorizingPerson { get; set; }
+        public string? LoaAuthorizingPerson { get => _explicitNullValueLoaAuthorizingPerson; set { _explicitNullValueLoaAuthorizingPerson = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("loaAuthorizingPerson"); else _explicitNullProperties?.Remove("loaAuthorizingPerson"); } }
+        private string? _explicitNullValueLoaAuthorizingPerson = default!;
 #nullable restore
 #else
-        public string LoaAuthorizingPerson { get; set; }
+        public string LoaAuthorizingPerson { get => _explicitNullValueLoaAuthorizingPerson; set { _explicitNullValueLoaAuthorizingPerson = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("loaAuthorizingPerson"); else _explicitNullProperties?.Remove("loaAuthorizingPerson"); } }
+        private string _explicitNullValueLoaAuthorizingPerson = default!;
 #endif
         /// <summary>This is the SIP Peer / Location ID made visible in the /accounts/{accountId}/sites/{siteId}/sipPeers API call.</summary>
-        public int? LocationId { get; set; }
+        public int? LocationId { get => _explicitNullValueLocationId; set { _explicitNullValueLocationId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("locationId"); else _explicitNullProperties?.Remove("locationId"); } }
+        private int? _explicitNullValueLocationId = default!;
         /// <summary>Name of the company serving the telephone numbers prior to the port. Some Canada ports may be rejected unless this information is supplied.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LosingResellerName { get; set; }
+        public string? LosingResellerName { get => _explicitNullValueLosingResellerName; set { _explicitNullValueLosingResellerName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("losingResellerName"); else _explicitNullProperties?.Remove("losingResellerName"); } }
+        private string? _explicitNullValueLosingResellerName = default!;
 #nullable restore
 #else
-        public string LosingResellerName { get; set; }
+        public string LosingResellerName { get => _explicitNullValueLosingResellerName; set { _explicitNullValueLosingResellerName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("losingResellerName"); else _explicitNullProperties?.Remove("losingResellerName"); } }
+        private string _explicitNullValueLosingResellerName = default!;
 #endif
         /// <summary>PIN Number, often required for wireless ports.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PinNumber { get; set; }
+        public string? PinNumber { get => _explicitNullValuePinNumber; set { _explicitNullValuePinNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pinNumber"); else _explicitNullProperties?.Remove("pinNumber"); } }
+        private string? _explicitNullValuePinNumber = default!;
 #nullable restore
 #else
-        public string PinNumber { get; set; }
+        public string PinNumber { get => _explicitNullValuePinNumber; set { _explicitNullValuePinNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pinNumber"); else _explicitNullProperties?.Remove("pinNumber"); } }
+        private string _explicitNullValuePinNumber = default!;
 #endif
         /// <summary>If present this will specify the date and time that the port-in is requested to happen. The actual time and date is subject to negotiation with the losing carriers.</summary>
-        public Date? RequestedFocDate { get; set; }
+        public Date? RequestedFocDate { get => _explicitNullValueRequestedFocDate; set { _explicitNullValueRequestedFocDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requestedFocDate"); else _explicitNullProperties?.Remove("requestedFocDate"); } }
+        private Date? _explicitNullValueRequestedFocDate = default!;
         /// <summary>Only allowed for PUT and PATCH requests. When telephone numbers are included in a bulk port-in order, Bandwidth accesses a vendor to determine if the numbers are portable, and who currently serves the numbers. In the event that we do not receive a response from our vendor after a number of retries, we give up and place the order in the INVALID_DRAFT_TNS state. This scenario can occur if our vendor is performing maintenance. Including RetryValidation with a value of true will cause the order to return to VALIDATE_DRAFT_TNS and we will repeat our attempts to retrieve the portability data from the vendor. This element is included in the synchronous response to the PUT or PATCH, when included in the request, but is not included in subsequent GET requests for the order.</summary>
-        public bool? RetryValidation { get; set; }
+        public bool? RetryValidation { get => _explicitNullValueRetryValidation; set { _explicitNullValueRetryValidation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("retryValidation"); else _explicitNullProperties?.Remove("retryValidation"); } }
+        private bool? _explicitNullValueRetryValidation = default!;
         /// <summary>This is the Site / Sub-Account ID made visible in the /accounts/{accountId}/sites API call.</summary>
-        public int? SubAccountId { get; set; }
+        public int? SubAccountId { get => _explicitNullValueSubAccountId; set { _explicitNullValueSubAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subAccountId"); else _explicitNullProperties?.Remove("subAccountId"); } }
+        private int? _explicitNullValueSubAccountId = default!;
         /// <summary>The subscriber property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberJson? Subscriber { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberJson? Subscriber { get => _explicitNullValueSubscriber; set { _explicitNullValueSubscriber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriber"); else _explicitNullProperties?.Remove("subscriber"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberJson? _explicitNullValueSubscriber = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberJson Subscriber { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberJson Subscriber { get => _explicitNullValueSubscriber; set { _explicitNullValueSubscriber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriber"); else _explicitNullProperties?.Remove("subscriber"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberJson _explicitNullValueSubscriber = default!;
 #endif
         /// <summary>For toll free port-ins, this value specifies the RespOrg ID that the toll free numbers should be ported to.  When porting to Bandwidth, the value is generally JYT01.  When specified in a bulk port-in, the value will be applied to all subtending toll free port-in orders, unless overridden in the subtending order.  The value should be 5 characters in length, consisting of digits a-z, A-Z, and 0-9.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TargetRespOrgId { get; set; }
+        public string? TargetRespOrgId { get => _explicitNullValueTargetRespOrgId; set { _explicitNullValueTargetRespOrgId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("targetRespOrgId"); else _explicitNullProperties?.Remove("targetRespOrgId"); } }
+        private string? _explicitNullValueTargetRespOrgId = default!;
 #nullable restore
 #else
-        public string TargetRespOrgId { get; set; }
+        public string TargetRespOrgId { get => _explicitNullValueTargetRespOrgId; set { _explicitNullValueTargetRespOrgId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("targetRespOrgId"); else _explicitNullProperties?.Remove("targetRespOrgId"); } }
+        private string _explicitNullValueTargetRespOrgId = default!;
 #endif
         /// <summary>Attributes to be assigned to the telephone number. Optional parameter. Possible values - `Protected`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnAttribute>? TnAttributes { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnAttribute>? TnAttributes { get => _explicitNullValueTnAttributes; set { _explicitNullValueTnAttributes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tnAttributes"); else _explicitNullProperties?.Remove("tnAttributes"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnAttribute>? _explicitNullValueTnAttributes = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnAttribute> TnAttributes { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnAttribute> TnAttributes { get => _explicitNullValueTnAttributes; set { _explicitNullValueTnAttributes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tnAttributes"); else _explicitNullProperties?.Remove("tnAttributes"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.TnAttribute> _explicitNullValueTnAttributes = default!;
 #endif
         /// <summary>VoiceConfigurationPackageId is the identifier of the voice configuration package containing the voice origination settings. When specified in a bulk port-in, the value will be applied to all subtending port-in orders, unless overriden in the subtending order.</summary>
-        public Guid? VoiceConfigurationPackageId { get; set; }
+        public Guid? VoiceConfigurationPackageId { get => _explicitNullValueVoiceConfigurationPackageId; set { _explicitNullValueVoiceConfigurationPackageId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceConfigurationPackageId"); else _explicitNullProperties?.Remove("voiceConfigurationPackageId"); } }
+        private Guid? _explicitNullValueVoiceConfigurationPackageId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinRequestJsonBulkPortin"/> and sets the default values.
         /// </summary>
@@ -120,7 +167,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinRequestJsonBulkPortin CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinRequestJsonBulkPortin();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinRequestJsonBulkPortin(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -169,6 +216,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("targetRespOrgId", TargetRespOrgId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnAttribute>("tnAttributes", TnAttributes);
             writer.WriteGuidValue("voiceConfigurationPackageId", VoiceConfigurationPackageId);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -11,35 +11,63 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetMoveTnsBulkOrderStatusResponseDataOrderDetailsItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("bypassMessagingCampaignBlock") is { } nullNodeBypassMessagingCampaignBlock && nullNodeBypassMessagingCampaignBlock.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BypassMessagingCampaignBlock = null;
+            if (parseNode.GetChildNode("bypassMessagingLossBlock") is { } nullNodeBypassMessagingLossBlock && nullNodeBypassMessagingLossBlock.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BypassMessagingLossBlock = null;
+            if (parseNode.GetChildNode("e911ServiceAction") is { } nullNodeE911ServiceAction && nullNodeE911ServiceAction.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) E911ServiceAction = null;
+            if (parseNode.GetChildNode("locationId") is { } nullNodeLocationId && nullNodeLocationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LocationId = null;
+            if (parseNode.GetChildNode("messagingService") is { } nullNodeMessagingService && nullNodeMessagingService.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessagingService = null;
+            if (parseNode.GetChildNode("orderIds") is { } nullNodeOrderIds && nullNodeOrderIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrderIds = null;
+            if (parseNode.GetChildNode("requirementsPackageId") is { } nullNodeRequirementsPackageId && nullNodeRequirementsPackageId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RequirementsPackageId = null;
+            if (parseNode.GetChildNode("sourceAccountId") is { } nullNodeSourceAccountId && nullNodeSourceAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SourceAccountId = null;
+            if (parseNode.GetChildNode("subAccountId") is { } nullNodeSubAccountId && nullNodeSubAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SubAccountId = null;
+            if (parseNode.GetChildNode("voiceConfigurationPackageId") is { } nullNodeVoiceConfigurationPackageId && nullNodeVoiceConfigurationPackageId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoiceConfigurationPackageId = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>A flag that determines whether to bypass the messaging campaign block.If set to **true** and the numbers are associated with a messaging campaign, the move TN request will succeed,but the campaign will be removed from the numbers during the move.If set to **false** and the numbers are associated with a messaging campaign, the move request will fail with an error.Default value is false.</summary>
-        public bool? BypassMessagingCampaignBlock { get; set; }
+        public bool? BypassMessagingCampaignBlock { get => _explicitNullValueBypassMessagingCampaignBlock; set { _explicitNullValueBypassMessagingCampaignBlock = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bypassMessagingCampaignBlock"); else _explicitNullProperties?.Remove("bypassMessagingCampaignBlock"); } }
+        private bool? _explicitNullValueBypassMessagingCampaignBlock = default!;
         /// <summary>A flag that determines whether to bypass the messaging loss block. If set to **true**, no error will occur when moving a number with messaging to a location or account that doesnot support messaging; messaging will simply be disabled in this case.If set to **false**, an error will be triggered if such a move is attempted, preventing the move from processing.Default value is false.</summary>
-        public bool? BypassMessagingLossBlock { get; set; }
+        public bool? BypassMessagingLossBlock { get => _explicitNullValueBypassMessagingLossBlock; set { _explicitNullValueBypassMessagingLossBlock = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bypassMessagingLossBlock"); else _explicitNullProperties?.Remove("bypassMessagingLossBlock"); } }
+        private bool? _explicitNullValueBypassMessagingLossBlock = default!;
         /// <summary>This parameter provides flexibility on handling the E911 service of a number when moving to a new account.The default is to “MOVE,” but that may not be possible, resulting in an error where DELETE is required.For example, if moving numbers to an account that uses PIDFLO for E911 then E911ServiceAction = DELETEis required, and the E911 service will need to be configured on the numbers after the move.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.E911ServiceAction? E911ServiceAction { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.E911ServiceAction? E911ServiceAction { get => _explicitNullValueE911ServiceAction; set { _explicitNullValueE911ServiceAction = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("e911ServiceAction"); else _explicitNullProperties?.Remove("e911ServiceAction"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.E911ServiceAction? _explicitNullValueE911ServiceAction = default!;
         /// <summary>The ID of the location to which the phone numbers will be moved.</summary>
-        public double? LocationId { get; set; }
+        public double? LocationId { get => _explicitNullValueLocationId; set { _explicitNullValueLocationId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("locationId"); else _explicitNullProperties?.Remove("locationId"); } }
+        private double? _explicitNullValueLocationId = default!;
         /// <summary>The action to be taken on the messaging service when moving numbers. This fieldensures that the destination account has compatible messaging settings to support moving numbers. If the validation passes, the numbers are moved without altering their existing messaging settings. However, if the validation fails, the order will be rejected with an error messaging indicating incompatible settings.If set to `useDestinationSettings`, this will apply the destination location&apos;s messaging settings to the number.If set to `useCurrentNumberSettings`, this will validate and apply whether the destination location can accept the numbers&apos; existing messaging settings.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingService? MessagingService { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingService? MessagingService { get => _explicitNullValueMessagingService; set { _explicitNullValueMessagingService = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messagingService"); else _explicitNullProperties?.Remove("messagingService"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingService? _explicitNullValueMessagingService = default!;
         /// <summary>A list of order IDs for child orders generated from this group of phone number configurations. If there were more than 5000phone numbers for one grouping of bulk order details, multiple child orders will be created.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Guid?>? OrderIds { get; set; }
+        public List<Guid?>? OrderIds { get => _explicitNullValueOrderIds; set { _explicitNullValueOrderIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderIds"); else _explicitNullProperties?.Remove("orderIds"); } }
+        private List<Guid?>? _explicitNullValueOrderIds = default!;
 #nullable restore
 #else
-        public List<Guid?> OrderIds { get; set; }
+        public List<Guid?> OrderIds { get => _explicitNullValueOrderIds; set { _explicitNullValueOrderIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderIds"); else _explicitNullProperties?.Remove("orderIds"); } }
+        private List<Guid?> _explicitNullValueOrderIds = default!;
 #endif
         /// <summary>The identifier of the requirements package containing the end user details for the telephone numbers. Thisis required if the numbers are being moved across accounts and if they are a part of a country and number typewhich has end user validation requirements. The provided requirements package must be approved and compatiblewith the telephone numbers being moved.</summary>
-        public Guid? RequirementsPackageId { get; set; }
+        public Guid? RequirementsPackageId { get => _explicitNullValueRequirementsPackageId; set { _explicitNullValueRequirementsPackageId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requirementsPackageId"); else _explicitNullProperties?.Remove("requirementsPackageId"); } }
+        private Guid? _explicitNullValueRequirementsPackageId = default!;
         /// <summary>ID of source account, in the case of moving numbers across accounts.</summary>
-        public double? SourceAccountId { get; set; }
+        public double? SourceAccountId { get => _explicitNullValueSourceAccountId; set { _explicitNullValueSourceAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceAccountId"); else _explicitNullProperties?.Remove("sourceAccountId"); } }
+        private double? _explicitNullValueSourceAccountId = default!;
         /// <summary>The ID of the sub-account to which the phone numbers will be moved.</summary>
-        public double? SubAccountId { get; set; }
+        public double? SubAccountId { get => _explicitNullValueSubAccountId; set { _explicitNullValueSubAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subAccountId"); else _explicitNullProperties?.Remove("subAccountId"); } }
+        private double? _explicitNullValueSubAccountId = default!;
         /// <summary>The identifier of the voice configuration package containing the voice origination settings. Upon activation, telephone numbers will be configured with the voice origination settings specified in the voice configurationpackage. This is required if the numbers currently have voice service and are being moved to another accountwhich has the voice configuration package feature.</summary>
-        public Guid? VoiceConfigurationPackageId { get; set; }
+        public Guid? VoiceConfigurationPackageId { get => _explicitNullValueVoiceConfigurationPackageId; set { _explicitNullValueVoiceConfigurationPackageId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceConfigurationPackageId"); else _explicitNullProperties?.Remove("voiceConfigurationPackageId"); } }
+        private Guid? _explicitNullValueVoiceConfigurationPackageId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseDataOrderDetailsItem"/> and sets the default values.
         /// </summary>
@@ -55,7 +83,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseDataOrderDetailsItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseDataOrderDetailsItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseDataOrderDetailsItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -94,6 +122,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteDoubleValue("sourceAccountId", SourceAccountId);
             writer.WriteDoubleValue("subAccountId", SubAccountId);
             writer.WriteGuidValue("voiceConfigurationPackageId", VoiceConfigurationPackageId);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

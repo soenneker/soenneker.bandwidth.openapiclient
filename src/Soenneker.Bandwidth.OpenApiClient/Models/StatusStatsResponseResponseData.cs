@@ -11,19 +11,31 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class StatusStatsResponseResponseData : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("carriersReputationSummaryCounts") is { } nullNodeCarriersReputationSummaryCounts && nullNodeCarriersReputationSummaryCounts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CarriersReputationSummaryCounts = null;
+            if (parseNode.GetChildNode("totalNumbers") is { } nullNodeTotalNumbers && nullNodeTotalNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TotalNumbers = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The carriersReputationSummaryCounts property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.StatusStatsResponseResponseDataCarriersReputationSummaryCounts? CarriersReputationSummaryCounts { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.StatusStatsResponseResponseDataCarriersReputationSummaryCounts? CarriersReputationSummaryCounts { get => _explicitNullValueCarriersReputationSummaryCounts; set { _explicitNullValueCarriersReputationSummaryCounts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carriersReputationSummaryCounts"); else _explicitNullProperties?.Remove("carriersReputationSummaryCounts"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.StatusStatsResponseResponseDataCarriersReputationSummaryCounts? _explicitNullValueCarriersReputationSummaryCounts = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.StatusStatsResponseResponseDataCarriersReputationSummaryCounts CarriersReputationSummaryCounts { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.StatusStatsResponseResponseDataCarriersReputationSummaryCounts CarriersReputationSummaryCounts { get => _explicitNullValueCarriersReputationSummaryCounts; set { _explicitNullValueCarriersReputationSummaryCounts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carriersReputationSummaryCounts"); else _explicitNullProperties?.Remove("carriersReputationSummaryCounts"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.StatusStatsResponseResponseDataCarriersReputationSummaryCounts _explicitNullValueCarriersReputationSummaryCounts = default!;
 #endif
         /// <summary>The total number of phone numbers matching the filters</summary>
-        public int? TotalNumbers { get; set; }
+        public int? TotalNumbers { get => _explicitNullValueTotalNumbers; set { _explicitNullValueTotalNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("totalNumbers"); else _explicitNullProperties?.Remove("totalNumbers"); } }
+        private int? _explicitNullValueTotalNumbers = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.StatusStatsResponseResponseData"/> and sets the default values.
         /// </summary>
@@ -39,7 +51,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.StatusStatsResponseResponseData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.StatusStatsResponseResponseData();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.StatusStatsResponseResponseData(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,6 +74,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.StatusStatsResponseResponseDataCarriersReputationSummaryCounts>("carriersReputationSummaryCounts", CarriersReputationSummaryCounts);
             writer.WriteIntValue("totalNumbers", TotalNumbers);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

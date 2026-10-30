@@ -13,17 +13,32 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ShortCodeCarrierInfo : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("activatedDate") is { } nullNodeActivatedDate && nullNodeActivatedDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ActivatedDate = null;
+            if (parseNode.GetChildNode("carrierId") is { } nullNodeCarrierId && nullNodeCarrierId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CarrierId = null;
+            if (parseNode.GetChildNode("modifiedDate") is { } nullNodeModifiedDate && nullNodeModifiedDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModifiedDate = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+        }
+
         /// <summary>The date the short code was activated for this carrier, this date only will be defined when the status of the carrier becomes ACTIVE.</summary>
-        public Date? ActivatedDate { get; set; }
+        public Date? ActivatedDate { get => _explicitNullValueActivatedDate; set { _explicitNullValueActivatedDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activatedDate"); else _explicitNullProperties?.Remove("activatedDate"); } }
+        private Date? _explicitNullValueActivatedDate = default!;
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Carrier identifier  (possible values ATT, TMOBILE, VERIZON).</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoCarrierId? CarrierId { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoCarrierId? CarrierId { get => _explicitNullValueCarrierId; set { _explicitNullValueCarrierId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carrierId"); else _explicitNullProperties?.Remove("carrierId"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoCarrierId? _explicitNullValueCarrierId = default!;
         /// <summary>The date the status was modified for this carrier</summary>
-        public Date? ModifiedDate { get; set; }
+        public Date? ModifiedDate { get => _explicitNullValueModifiedDate; set { _explicitNullValueModifiedDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modifiedDate"); else _explicitNullProperties?.Remove("modifiedDate"); } }
+        private Date? _explicitNullValueModifiedDate = default!;
         /// <summary>The status property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoStatus? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoStatus? _explicitNullValueStatus = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo"/> and sets the default values.
         /// </summary>
@@ -39,7 +54,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -66,6 +81,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoCarrierId>("carrierId", CarrierId);
             writer.WriteDateValue("modifiedDate", ModifiedDate);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoStatus>("status", Status);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

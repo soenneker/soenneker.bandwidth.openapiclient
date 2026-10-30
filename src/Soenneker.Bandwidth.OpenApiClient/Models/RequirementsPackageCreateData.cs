@@ -11,53 +11,83 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class RequirementsPackageCreateData : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("acknowledgements") is { } nullNodeAcknowledgements && nullNodeAcknowledgements.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Acknowledgements = null;
+            if (parseNode.GetChildNode("countryCodeA3") is { } nullNodeCountryCodeA3 && nullNodeCountryCodeA3.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CountryCodeA3 = null;
+            if (parseNode.GetChildNode("createdDateTime") is { } nullNodeCreatedDateTime && nullNodeCreatedDateTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedDateTime = null;
+            if (parseNode.GetChildNode("customReference") is { } nullNodeCustomReference && nullNodeCustomReference.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomReference = null;
+            if (parseNode.GetChildNode("endUserType") is { } nullNodeEndUserType && nullNodeEndUserType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EndUserType = null;
+            if (parseNode.GetChildNode("lineage") is { } nullNodeLineage && nullNodeLineage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Lineage = null;
+            if (parseNode.GetChildNode("phoneNumberType") is { } nullNodePhoneNumberType && nullNodePhoneNumberType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumberType = null;
+            if (parseNode.GetChildNode("requirementsPackageId") is { } nullNodeRequirementsPackageId && nullNodeRequirementsPackageId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RequirementsPackageId = null;
+            if (parseNode.GetChildNode("stateContext") is { } nullNodeStateContext && nullNodeStateContext.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StateContext = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("updatedDateTime") is { } nullNodeUpdatedDateTime && nullNodeUpdatedDateTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UpdatedDateTime = null;
+        }
+
         /// <summary>Captures the acknowledgments on requirements package submission. Mandatory when status is provided</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements? Acknowledgements { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements? Acknowledgements { get => _explicitNullValueAcknowledgements; set { _explicitNullValueAcknowledgements = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("acknowledgements"); else _explicitNullProperties?.Remove("acknowledgements"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements? _explicitNullValueAcknowledgements = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements Acknowledgements { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements Acknowledgements { get => _explicitNullValueAcknowledgements; set { _explicitNullValueAcknowledgements = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("acknowledgements"); else _explicitNullProperties?.Remove("acknowledgements"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements _explicitNullValueAcknowledgements = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Country code in ISO 3166-1 alpha-3 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CountryCodeA3 { get; set; }
+        public string? CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
+        private string? _explicitNullValueCountryCodeA3 = default!;
 #nullable restore
 #else
-        public string CountryCodeA3 { get; set; }
+        public string CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
+        private string _explicitNullValueCountryCodeA3 = default!;
 #endif
         /// <summary>The date and time this object was created in ISO 8601 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CreatedDateTime { get; set; }
+        public string? CreatedDateTime { get => _explicitNullValueCreatedDateTime; set { _explicitNullValueCreatedDateTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdDateTime"); else _explicitNullProperties?.Remove("createdDateTime"); } }
+        private string? _explicitNullValueCreatedDateTime = default!;
 #nullable restore
 #else
-        public string CreatedDateTime { get; set; }
+        public string CreatedDateTime { get => _explicitNullValueCreatedDateTime; set { _explicitNullValueCreatedDateTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdDateTime"); else _explicitNullProperties?.Remove("createdDateTime"); } }
+        private string _explicitNullValueCreatedDateTime = default!;
 #endif
         /// <summary>A custom reference name.It can be used for your own reference to the item to easily identify one of your customers,requirements package, enduser etc.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CustomReference { get; set; }
+        public string? CustomReference { get => _explicitNullValueCustomReference; set { _explicitNullValueCustomReference = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customReference"); else _explicitNullProperties?.Remove("customReference"); } }
+        private string? _explicitNullValueCustomReference = default!;
 #nullable restore
 #else
-        public string CustomReference { get; set; }
+        public string CustomReference { get => _explicitNullValueCustomReference; set { _explicitNullValueCustomReference = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customReference"); else _explicitNullProperties?.Remove("customReference"); } }
+        private string _explicitNullValueCustomReference = default!;
 #endif
         /// <summary>The type of end user</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum? EndUserType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum? EndUserType { get => _explicitNullValueEndUserType; set { _explicitNullValueEndUserType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endUserType"); else _explicitNullProperties?.Remove("endUserType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum? _explicitNullValueEndUserType = default!;
         /// <summary>The lineage property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage? Lineage { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage? Lineage { get => _explicitNullValueLineage; set { _explicitNullValueLineage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lineage"); else _explicitNullProperties?.Remove("lineage"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage? _explicitNullValueLineage = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage Lineage { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage Lineage { get => _explicitNullValueLineage; set { _explicitNullValueLineage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lineage"); else _explicitNullProperties?.Remove("lineage"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage _explicitNullValueLineage = default!;
 #endif
         /// <summary>The type of phone number.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum? PhoneNumberType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum? PhoneNumberType { get => _explicitNullValuePhoneNumberType; set { _explicitNullValuePhoneNumberType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumberType"); else _explicitNullProperties?.Remove("phoneNumberType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum? _explicitNullValuePhoneNumberType = default!;
         /// <summary>Remarks provided by the user or admin</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -69,28 +99,35 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Unique identifier for requirements package</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RequirementsPackageId { get; set; }
+        public string? RequirementsPackageId { get => _explicitNullValueRequirementsPackageId; set { _explicitNullValueRequirementsPackageId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requirementsPackageId"); else _explicitNullProperties?.Remove("requirementsPackageId"); } }
+        private string? _explicitNullValueRequirementsPackageId = default!;
 #nullable restore
 #else
-        public string RequirementsPackageId { get; set; }
+        public string RequirementsPackageId { get => _explicitNullValueRequirementsPackageId; set { _explicitNullValueRequirementsPackageId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requirementsPackageId"); else _explicitNullProperties?.Remove("requirementsPackageId"); } }
+        private string _explicitNullValueRequirementsPackageId = default!;
 #endif
         /// <summary>Any additional state specific context data associated with the package’s current status/state.Can be added by admin or system</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext? StateContext { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext? StateContext { get => _explicitNullValueStateContext; set { _explicitNullValueStateContext = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stateContext"); else _explicitNullProperties?.Remove("stateContext"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext? _explicitNullValueStateContext = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext StateContext { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext StateContext { get => _explicitNullValueStateContext; set { _explicitNullValueStateContext = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stateContext"); else _explicitNullProperties?.Remove("stateContext"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext _explicitNullValueStateContext = default!;
 #endif
         /// <summary>Status of the Requirements package</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStatusEnum? Status { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStatusEnum? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStatusEnum? _explicitNullValueStatus = default!;
         /// <summary>The date and time this object was last updated in ISO 8601 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? UpdatedDateTime { get; set; }
+        public string? UpdatedDateTime { get => _explicitNullValueUpdatedDateTime; set { _explicitNullValueUpdatedDateTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updatedDateTime"); else _explicitNullProperties?.Remove("updatedDateTime"); } }
+        private string? _explicitNullValueUpdatedDateTime = default!;
 #nullable restore
 #else
-        public string UpdatedDateTime { get; set; }
+        public string UpdatedDateTime { get => _explicitNullValueUpdatedDateTime; set { _explicitNullValueUpdatedDateTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updatedDateTime"); else _explicitNullProperties?.Remove("updatedDateTime"); } }
+        private string _explicitNullValueUpdatedDateTime = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateData"/> and sets the default values.
@@ -107,7 +144,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateData();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateData(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -149,6 +186,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext>("stateContext", StateContext);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStatusEnum>("status", Status);
             writer.WriteStringValue("updatedDateTime", UpdatedDateTime);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

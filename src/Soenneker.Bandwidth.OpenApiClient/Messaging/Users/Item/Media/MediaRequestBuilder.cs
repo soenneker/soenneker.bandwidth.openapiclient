@@ -80,6 +80,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Messaging.Users.Item.Media
                 { "415", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingRequestError.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             var collectionResult = await RequestAdapter.SendCollectionAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.Media>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.Media.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();

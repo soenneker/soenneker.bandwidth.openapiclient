@@ -12,46 +12,71 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class VoiceProvisioningPhoneNumberDetail : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("inboundActivated") is { } nullNodeInboundActivated && nullNodeInboundActivated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InboundActivated = null;
+            if (parseNode.GetChildNode("integrations") is { } nullNodeIntegrations && nullNodeIntegrations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Integrations = null;
+            if (parseNode.GetChildNode("outboundInternationalActivated") is { } nullNodeOutboundInternationalActivated && nullNodeOutboundInternationalActivated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OutboundInternationalActivated = null;
+            if (parseNode.GetChildNode("outboundNationalActivated") is { } nullNodeOutboundNationalActivated && nullNodeOutboundNationalActivated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OutboundNationalActivated = null;
+            if (parseNode.GetChildNode("override") is { } nullNodeOverride && nullNodeOverride.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Override = null;
+            if (parseNode.GetChildNode("phoneNumber") is { } nullNodePhoneNumber && nullNodePhoneNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumber = null;
+            if (parseNode.GetChildNode("voiceConfigurationPackage") is { } nullNodeVoiceConfigurationPackage && nullNodeVoiceConfigurationPackage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoiceConfigurationPackage = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Current state of inbound voice activation for the phone number.</summary>
-        public bool? InboundActivated { get; set; }
+        public bool? InboundActivated { get => _explicitNullValueInboundActivated; set { _explicitNullValueInboundActivated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inboundActivated"); else _explicitNullProperties?.Remove("inboundActivated"); } }
+        private bool? _explicitNullValueInboundActivated = default!;
         /// <summary>Voice integration provisioning details.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Integrations? Integrations { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.Integrations? Integrations { get => _explicitNullValueIntegrations; set { _explicitNullValueIntegrations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("integrations"); else _explicitNullProperties?.Remove("integrations"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.Integrations? _explicitNullValueIntegrations = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Integrations Integrations { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.Integrations Integrations { get => _explicitNullValueIntegrations; set { _explicitNullValueIntegrations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("integrations"); else _explicitNullProperties?.Remove("integrations"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.Integrations _explicitNullValueIntegrations = default!;
 #endif
         /// <summary>Current state of outbound international voice activation for the phone number.</summary>
-        public bool? OutboundInternationalActivated { get; set; }
+        public bool? OutboundInternationalActivated { get => _explicitNullValueOutboundInternationalActivated; set { _explicitNullValueOutboundInternationalActivated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outboundInternationalActivated"); else _explicitNullProperties?.Remove("outboundInternationalActivated"); } }
+        private bool? _explicitNullValueOutboundInternationalActivated = default!;
         /// <summary>Current state of outbound national voice activation for the phone number.</summary>
-        public bool? OutboundNationalActivated { get; set; }
+        public bool? OutboundNationalActivated { get => _explicitNullValueOutboundNationalActivated; set { _explicitNullValueOutboundNationalActivated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outboundNationalActivated"); else _explicitNullProperties?.Remove("outboundNationalActivated"); } }
+        private bool? _explicitNullValueOutboundNationalActivated = default!;
         /// <summary>TN override details.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.OverrideType? Override { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OverrideType? Override { get => _explicitNullValueOverride; set { _explicitNullValueOverride = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("override"); else _explicitNullProperties?.Remove("override"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.OverrideType? _explicitNullValueOverride = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.OverrideType Override { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OverrideType Override { get => _explicitNullValueOverride; set { _explicitNullValueOverride = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("override"); else _explicitNullProperties?.Remove("override"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.OverrideType _explicitNullValueOverride = default!;
 #endif
         /// <summary>An E164 formatted phone number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PhoneNumber { get; set; }
+        public string? PhoneNumber { get => _explicitNullValuePhoneNumber; set { _explicitNullValuePhoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumber"); else _explicitNullProperties?.Remove("phoneNumber"); } }
+        private string? _explicitNullValuePhoneNumber = default!;
 #nullable restore
 #else
-        public string PhoneNumber { get; set; }
+        public string PhoneNumber { get => _explicitNullValuePhoneNumber; set { _explicitNullValuePhoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumber"); else _explicitNullProperties?.Remove("phoneNumber"); } }
+        private string _explicitNullValuePhoneNumber = default!;
 #endif
         /// <summary>The response object representing a voice configuration package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersVoiceConfigurationPackage? VoiceConfigurationPackage { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersVoiceConfigurationPackage? VoiceConfigurationPackage { get => _explicitNullValueVoiceConfigurationPackage; set { _explicitNullValueVoiceConfigurationPackage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceConfigurationPackage"); else _explicitNullProperties?.Remove("voiceConfigurationPackage"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersVoiceConfigurationPackage? _explicitNullValueVoiceConfigurationPackage = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersVoiceConfigurationPackage VoiceConfigurationPackage { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersVoiceConfigurationPackage VoiceConfigurationPackage { get => _explicitNullValueVoiceConfigurationPackage; set { _explicitNullValueVoiceConfigurationPackage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceConfigurationPackage"); else _explicitNullProperties?.Remove("voiceConfigurationPackage"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersVoiceConfigurationPackage _explicitNullValueVoiceConfigurationPackage = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberDetail"/> and sets the default values.
@@ -68,7 +93,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberDetail CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberDetail();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceProvisioningPhoneNumberDetail(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -101,6 +126,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OverrideType>("override", Override);
             writer.WriteStringValue("phoneNumber", PhoneNumber);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoicePhoneNumbersVoiceConfigurationPackage>("voiceConfigurationPackage", VoiceConfigurationPackage);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

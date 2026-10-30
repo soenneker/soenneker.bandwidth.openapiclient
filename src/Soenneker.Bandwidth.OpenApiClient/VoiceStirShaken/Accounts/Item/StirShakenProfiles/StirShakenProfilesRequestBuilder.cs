@@ -78,6 +78,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceStirShaken.Accounts.Item.StirSh
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponse.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponse.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenProfilesListResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenProfilesListResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -117,6 +118,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceStirShaken.Accounts.Item.StirSh
                 { "409", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponse.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponse.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceStirShakenErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenProfilesResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenProfilesResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

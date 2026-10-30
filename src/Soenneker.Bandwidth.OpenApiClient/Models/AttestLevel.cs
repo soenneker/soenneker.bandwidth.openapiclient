@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
-    /// <summary>Attestation level. A (Full), B (Partial), or C (Gateway). Required for US/CAN hosted signing cert assignments. For FR hosted assignments, this can be null as the &apos;indirect&apos; profileType will dictate the attestLevel.</summary>
+    /// <summary>Attestation level. A (Full), B (Partial), or C (Gateway).Required when you create or replace an `INDIRECT` profile, in every region. For US and FR hosted signing, this is the attestation level used at call time.The value can be null in a response, because older profiles can have no attestation level.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum AttestLevel
     {

@@ -50,7 +50,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalBeta.Whitelist.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiResponse.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Allows you to retrieve all info about a specific number in your whitelisted inventory.
@@ -69,7 +69,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalBeta.Whitelist.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.WhitelistApiResponse.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Allows you to remove a number from your whitelisted inventory.

@@ -12,15 +12,28 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     public partial class AutomatedNanpTollFreeLnpOrderRequestJsonLnpOrder : global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderBasicJson, IParsable
     #pragma warning restore CS1591
     {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public override void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            base.CaptureExplicitNulls(parseNode);
+            if (parseNode.GetChildNode("acknowledgeAndOverrideAllWarnings") is { } nullNodeAcknowledgeAndOverrideAllWarnings && nullNodeAcknowledgeAndOverrideAllWarnings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AcknowledgeAndOverrideAllWarnings = null;
+            if (parseNode.GetChildNode("targetRespOrgId") is { } nullNodeTargetRespOrgId && nullNodeTargetRespOrgId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TargetRespOrgId = null;
+        }
+
         /// <summary>Set to `true` to acknowledge and override request warnings. Currently this applies to the FOC hold window warning (error 7910): set it to `true` to acknowledge that the `requestedFocDate` is later than the losing RespOrg&apos;s translation hold window (or the default 10 business days if the RespOrg has no configured window). The losing RespOrg is determined after the toll-free numbers are validated, so the order is accepted and is not rejected with error 7910. When the requested FOC date is outside the hold window, Bandwidth records a note on the order with the hold-window warning. Applies to toll-free port-ins with Toll-Free Automation only.</summary>
-        public bool? AcknowledgeAndOverrideAllWarnings { get; set; }
+        public bool? AcknowledgeAndOverrideAllWarnings { get => _explicitNullValueAcknowledgeAndOverrideAllWarnings; set { _explicitNullValueAcknowledgeAndOverrideAllWarnings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("acknowledgeAndOverrideAllWarnings"); else _explicitNullProperties?.Remove("acknowledgeAndOverrideAllWarnings"); } }
+        private bool? _explicitNullValueAcknowledgeAndOverrideAllWarnings = default!;
         /// <summary>This is the RespOrg ID that you want the toll free numbers ported to. Normally it will specify a Bandwidth RespOrg ID like JYT01, but it could be something else for RespOrg Exception customers. This field is mandatory for non-draft toll free port-in orders.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TargetRespOrgId { get; set; }
+        public string? TargetRespOrgId { get => _explicitNullValueTargetRespOrgId; set { _explicitNullValueTargetRespOrgId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("targetRespOrgId"); else _explicitNullProperties?.Remove("targetRespOrgId"); } }
+        private string? _explicitNullValueTargetRespOrgId = default!;
 #nullable restore
 #else
-        public string TargetRespOrgId { get; set; }
+        public string TargetRespOrgId { get => _explicitNullValueTargetRespOrgId; set { _explicitNullValueTargetRespOrgId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("targetRespOrgId"); else _explicitNullProperties?.Remove("targetRespOrgId"); } }
+        private string _explicitNullValueTargetRespOrgId = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -30,7 +43,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static new global::Soenneker.Bandwidth.OpenApiClient.Models.AutomatedNanpTollFreeLnpOrderRequestJsonLnpOrder CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.AutomatedNanpTollFreeLnpOrderRequestJsonLnpOrder();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.AutomatedNanpTollFreeLnpOrderRequestJsonLnpOrder(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -53,7 +66,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteBoolValue("acknowledgeAndOverrideAllWarnings", AcknowledgeAndOverrideAllWarnings);
-            writer.WriteStringValue("targetRespOrgId", TargetRespOrgId);
+            writer.WriteStringValue("targetRespOrgId", TargetRespOrgId);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

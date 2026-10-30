@@ -11,32 +11,48 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class JsonDldaOrder : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("customerOrderId") is { } nullNodeCustomerOrderId && nullNodeCustomerOrderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerOrderId = null;
+            if (parseNode.GetChildNode("deleteDldaPhoneNumberGroups") is { } nullNodeDeleteDldaPhoneNumberGroups && nullNodeDeleteDldaPhoneNumberGroups.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DeleteDldaPhoneNumberGroups = null;
+            if (parseNode.GetChildNode("dldaPhoneNumberGroups") is { } nullNodeDldaPhoneNumberGroups && nullNodeDldaPhoneNumberGroups.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DldaPhoneNumberGroups = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Order. Only alphanumeric values, dashes and spaces are allowed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CustomerOrderId { get; set; }
+        public string? CustomerOrderId { get => _explicitNullValueCustomerOrderId; set { _explicitNullValueCustomerOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerOrderId"); else _explicitNullProperties?.Remove("customerOrderId"); } }
+        private string? _explicitNullValueCustomerOrderId = default!;
 #nullable restore
 #else
-        public string CustomerOrderId { get; set; }
+        public string CustomerOrderId { get => _explicitNullValueCustomerOrderId; set { _explicitNullValueCustomerOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerOrderId"); else _explicitNullProperties?.Remove("customerOrderId"); } }
+        private string _explicitNullValueCustomerOrderId = default!;
 #endif
         /// <summary>The deleteDldaPhoneNumberGroups property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DeleteDldaPhoneNumberGroups { get; set; }
+        public string? DeleteDldaPhoneNumberGroups { get => _explicitNullValueDeleteDldaPhoneNumberGroups; set { _explicitNullValueDeleteDldaPhoneNumberGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deleteDldaPhoneNumberGroups"); else _explicitNullProperties?.Remove("deleteDldaPhoneNumberGroups"); } }
+        private string? _explicitNullValueDeleteDldaPhoneNumberGroups = default!;
 #nullable restore
 #else
-        public string DeleteDldaPhoneNumberGroups { get; set; }
+        public string DeleteDldaPhoneNumberGroups { get => _explicitNullValueDeleteDldaPhoneNumberGroups; set { _explicitNullValueDeleteDldaPhoneNumberGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deleteDldaPhoneNumberGroups"); else _explicitNullProperties?.Remove("deleteDldaPhoneNumberGroups"); } }
+        private string _explicitNullValueDeleteDldaPhoneNumberGroups = default!;
 #endif
         /// <summary>The dldaPhoneNumberGroups property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup>? DldaPhoneNumberGroups { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup>? DldaPhoneNumberGroups { get => _explicitNullValueDldaPhoneNumberGroups; set { _explicitNullValueDldaPhoneNumberGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dldaPhoneNumberGroups"); else _explicitNullProperties?.Remove("dldaPhoneNumberGroups"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup>? _explicitNullValueDldaPhoneNumberGroups = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup> DldaPhoneNumberGroups { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup> DldaPhoneNumberGroups { get => _explicitNullValueDldaPhoneNumberGroups; set { _explicitNullValueDldaPhoneNumberGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dldaPhoneNumberGroups"); else _explicitNullProperties?.Remove("dldaPhoneNumberGroups"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup> _explicitNullValueDldaPhoneNumberGroups = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrder"/> and sets the default values.
@@ -53,7 +69,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrder CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrder();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaOrder(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -78,6 +94,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("customerOrderId", CustomerOrderId);
             writer.WriteStringValue("deleteDldaPhoneNumberGroups", DeleteDldaPhoneNumberGroups);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonDldaPhoneNumberGroup>("dldaPhoneNumberGroups", DldaPhoneNumberGroups);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

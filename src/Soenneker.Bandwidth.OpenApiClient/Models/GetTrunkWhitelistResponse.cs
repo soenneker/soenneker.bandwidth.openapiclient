@@ -12,54 +12,82 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class GetTrunkWhitelistResponse : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("appliesToOrigination") is { } nullNodeAppliesToOrigination && nullNodeAppliesToOrigination.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppliesToOrigination = null;
+            if (parseNode.GetChildNode("appliesToTermination") is { } nullNodeAppliesToTermination && nullNodeAppliesToTermination.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppliesToTermination = null;
+            if (parseNode.GetChildNode("capabilityName") is { } nullNodeCapabilityName && nullNodeCapabilityName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CapabilityName = null;
+            if (parseNode.GetChildNode("capabilityPipeId") is { } nullNodeCapabilityPipeId && nullNodeCapabilityPipeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CapabilityPipeId = null;
+            if (parseNode.GetChildNode("e911Whitelists") is { } nullNodeE911Whitelists && nullNodeE911Whitelists.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) E911Whitelists = null;
+            if (parseNode.GetChildNode("originationDefault") is { } nullNodeOriginationDefault && nullNodeOriginationDefault.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OriginationDefault = null;
+            if (parseNode.GetChildNode("trunkId") is { } nullNodeTrunkId && nullNodeTrunkId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TrunkId = null;
+            if (parseNode.GetChildNode("voiceWhitelists") is { } nullNodeVoiceWhitelists && nullNodeVoiceWhitelists.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoiceWhitelists = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Indicates whether the capability applies to origination.</summary>
-        public bool? AppliesToOrigination { get; set; }
+        public bool? AppliesToOrigination { get => _explicitNullValueAppliesToOrigination; set { _explicitNullValueAppliesToOrigination = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appliesToOrigination"); else _explicitNullProperties?.Remove("appliesToOrigination"); } }
+        private bool? _explicitNullValueAppliesToOrigination = default!;
         /// <summary>Indicates whether the capability applies to termination.</summary>
-        public bool? AppliesToTermination { get; set; }
+        public bool? AppliesToTermination { get => _explicitNullValueAppliesToTermination; set { _explicitNullValueAppliesToTermination = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appliesToTermination"); else _explicitNullProperties?.Remove("appliesToTermination"); } }
+        private bool? _explicitNullValueAppliesToTermination = default!;
         /// <summary>The capability name associated with the trunk.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CapabilityName { get; set; }
+        public string? CapabilityName { get => _explicitNullValueCapabilityName; set { _explicitNullValueCapabilityName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("capabilityName"); else _explicitNullProperties?.Remove("capabilityName"); } }
+        private string? _explicitNullValueCapabilityName = default!;
 #nullable restore
 #else
-        public string CapabilityName { get; set; }
+        public string CapabilityName { get => _explicitNullValueCapabilityName; set { _explicitNullValueCapabilityName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("capabilityName"); else _explicitNullProperties?.Remove("capabilityName"); } }
+        private string _explicitNullValueCapabilityName = default!;
 #endif
         /// <summary>Unique identifier of the associated capability pipe.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CapabilityPipeId { get; set; }
+        public string? CapabilityPipeId { get => _explicitNullValueCapabilityPipeId; set { _explicitNullValueCapabilityPipeId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("capabilityPipeId"); else _explicitNullProperties?.Remove("capabilityPipeId"); } }
+        private string? _explicitNullValueCapabilityPipeId = default!;
 #nullable restore
 #else
-        public string CapabilityPipeId { get; set; }
+        public string CapabilityPipeId { get => _explicitNullValueCapabilityPipeId; set { _explicitNullValueCapabilityPipeId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("capabilityPipeId"); else _explicitNullProperties?.Remove("capabilityPipeId"); } }
+        private string _explicitNullValueCapabilityPipeId = default!;
 #endif
         /// <summary>List of E911 whitelist entries for emergency services.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.E911WhitelistEntry>? E911Whitelists { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.E911WhitelistEntry>? E911Whitelists { get => _explicitNullValueE911Whitelists; set { _explicitNullValueE911Whitelists = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("e911Whitelists"); else _explicitNullProperties?.Remove("e911Whitelists"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.E911WhitelistEntry>? _explicitNullValueE911Whitelists = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.E911WhitelistEntry> E911Whitelists { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.E911WhitelistEntry> E911Whitelists { get => _explicitNullValueE911Whitelists; set { _explicitNullValueE911Whitelists = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("e911Whitelists"); else _explicitNullProperties?.Remove("e911Whitelists"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.E911WhitelistEntry> _explicitNullValueE911Whitelists = default!;
 #endif
         /// <summary>Indicates whether this trunk is the default for origination.</summary>
-        public bool? OriginationDefault { get; set; }
+        public bool? OriginationDefault { get => _explicitNullValueOriginationDefault; set { _explicitNullValueOriginationDefault = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("originationDefault"); else _explicitNullProperties?.Remove("originationDefault"); } }
+        private bool? _explicitNullValueOriginationDefault = default!;
         /// <summary>Unique identifier of the trunk.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TrunkId { get; set; }
+        public string? TrunkId { get => _explicitNullValueTrunkId; set { _explicitNullValueTrunkId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("trunkId"); else _explicitNullProperties?.Remove("trunkId"); } }
+        private string? _explicitNullValueTrunkId = default!;
 #nullable restore
 #else
-        public string TrunkId { get; set; }
+        public string TrunkId { get => _explicitNullValueTrunkId; set { _explicitNullValueTrunkId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("trunkId"); else _explicitNullProperties?.Remove("trunkId"); } }
+        private string _explicitNullValueTrunkId = default!;
 #endif
         /// <summary>List of voice whitelist entries for the trunk.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceWhitelistEntry>? VoiceWhitelists { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceWhitelistEntry>? VoiceWhitelists { get => _explicitNullValueVoiceWhitelists; set { _explicitNullValueVoiceWhitelists = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceWhitelists"); else _explicitNullProperties?.Remove("voiceWhitelists"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceWhitelistEntry>? _explicitNullValueVoiceWhitelists = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceWhitelistEntry> VoiceWhitelists { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceWhitelistEntry> VoiceWhitelists { get => _explicitNullValueVoiceWhitelists; set { _explicitNullValueVoiceWhitelists = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceWhitelists"); else _explicitNullProperties?.Remove("voiceWhitelists"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceWhitelistEntry> _explicitNullValueVoiceWhitelists = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetTrunkWhitelistResponse"/> and sets the default values.
@@ -76,7 +104,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.GetTrunkWhitelistResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.GetTrunkWhitelistResponse();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.GetTrunkWhitelistResponse(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -111,6 +139,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteBoolValue("originationDefault", OriginationDefault);
             writer.WriteStringValue("trunkId", TrunkId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceWhitelistEntry>("voiceWhitelists", VoiceWhitelists);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

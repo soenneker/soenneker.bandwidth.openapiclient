@@ -16,6 +16,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.GlobalBeta
     public partial class GlobalBetaRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The whitelist property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.GlobalBeta.Whitelist.WhitelistRequestBuilder Whitelist
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.GlobalBeta.Whitelist.WhitelistRequestBuilder(PathParameters, RequestAdapter);

@@ -70,6 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceConfigService.V2.Accounts.Item.
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceErrorResponse.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceErrorResponse.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -105,6 +106,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceConfigService.V2.Accounts.Item.
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceErrorResponse.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceErrorResponse.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageResponseWithPhoneNumberCount>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageResponseWithPhoneNumberCount.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -142,6 +144,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceConfigService.V2.Accounts.Item.
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceErrorResponse.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceErrorResponse.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -179,6 +182,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceConfigService.V2.Accounts.Item.
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceErrorResponse.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceErrorResponse.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

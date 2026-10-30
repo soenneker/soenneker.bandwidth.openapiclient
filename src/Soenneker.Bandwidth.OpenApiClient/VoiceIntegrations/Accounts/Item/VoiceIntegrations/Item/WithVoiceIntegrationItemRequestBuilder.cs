@@ -59,6 +59,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceIntegrations.Accounts.Item.Voic
                 { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.ApiResponse.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.ApiResponse.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ApiResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ApiResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -88,6 +90,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceIntegrations.Accounts.Item.Voic
                 { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.ApiResponse.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.ApiResponse.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ApiResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ApiResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -119,6 +123,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.VoiceIntegrations.Accounts.Item.Voic
                 { "401", global::Soenneker.Bandwidth.OpenApiClient.Models.ApiResponse.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Bandwidth.OpenApiClient.Models.ApiResponse.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.ApiResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ApiResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ApiResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

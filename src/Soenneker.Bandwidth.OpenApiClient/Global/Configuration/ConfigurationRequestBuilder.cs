@@ -23,41 +23,49 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration
     public partial class ConfigurationRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The bulk property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Bulk.BulkRequestBuilder Bulk
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Bulk.BulkRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The capacitygroup property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Capacitygroup.CapacitygroupRequestBuilder Capacitygroup
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Capacitygroup.CapacitygroupRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The didConfiguration property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.DidConfiguration.DidConfigurationRequestBuilder DidConfiguration
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.DidConfiguration.DidConfigurationRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The faxuri property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Faxuri.FaxuriRequestBuilder Faxuri
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Faxuri.FaxuriRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The pop property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Pop.PopRequestBuilder Pop
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Pop.PopRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The smslink property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Smslink.SmslinkRequestBuilder Smslink
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Smslink.SmslinkRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The smslinkgroup property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Smslinkgroup.SmslinkgroupRequestBuilder Smslinkgroup
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Smslinkgroup.SmslinkgroupRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The voiceuri property</summary>
+        [Obsolete("")]
         public global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Voiceuri.VoiceuriRequestBuilder Voiceuri
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Voiceuri.VoiceuriRequestBuilder(PathParameters, RequestAdapter);

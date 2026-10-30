@@ -78,6 +78,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.PsapAlerts.Accounts.Item.Emergency.P
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.PsapAlertsErrorResponse.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.PsapAlertsErrorResponse.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.PsapAlertsErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ListIncidentsResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ListIncidentsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -115,6 +117,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.PsapAlerts.Accounts.Item.Emergency.P
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.PsapAlertsErrorResponse.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.PsapAlertsErrorResponse.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Bandwidth.OpenApiClient.Models.PsapAlertsErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.IncidentResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.IncidentResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

@@ -11,54 +11,82 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class Conference : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("activeMembers") is { } nullNodeActiveMembers && nullNodeActiveMembers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ActiveMembers = null;
+            if (parseNode.GetChildNode("completedTime") is { } nullNodeCompletedTime && nullNodeCompletedTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CompletedTime = null;
+            if (parseNode.GetChildNode("conferenceEventMethod") is { } nullNodeConferenceEventMethod && nullNodeConferenceEventMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConferenceEventMethod = null;
+            if (parseNode.GetChildNode("conferenceEventUrl") is { } nullNodeConferenceEventUrl && nullNodeConferenceEventUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConferenceEventUrl = null;
+            if (parseNode.GetChildNode("createdTime") is { } nullNodeCreatedTime && nullNodeCreatedTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedTime = null;
+            if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
+            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("tag") is { } nullNodeTag && nullNodeTag.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tag = null;
+        }
+
         /// <summary>A list of active members of the conference. Omitted if thisis a response to the [Get Conferences endpoint](/apis/voice#tag/Conferences/operation/listConferences).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ConferenceMember>? ActiveMembers { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ConferenceMember>? ActiveMembers { get => _explicitNullValueActiveMembers; set { _explicitNullValueActiveMembers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activeMembers"); else _explicitNullProperties?.Remove("activeMembers"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ConferenceMember>? _explicitNullValueActiveMembers = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ConferenceMember> ActiveMembers { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ConferenceMember> ActiveMembers { get => _explicitNullValueActiveMembers; set { _explicitNullValueActiveMembers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activeMembers"); else _explicitNullProperties?.Remove("activeMembers"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ConferenceMember> _explicitNullValueActiveMembers = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The time the conference was terminated, in ISO 8601 format.</summary>
-        public DateTimeOffset? CompletedTime { get; set; }
+        public DateTimeOffset? CompletedTime { get => _explicitNullValueCompletedTime; set { _explicitNullValueCompletedTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("completedTime"); else _explicitNullProperties?.Remove("completedTime"); } }
+        private DateTimeOffset? _explicitNullValueCompletedTime = default!;
         /// <summary>The HTTP method to use to deliver the callback. GET or POST. Default value is POST.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum? ConferenceEventMethod { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum? ConferenceEventMethod { get => _explicitNullValueConferenceEventMethod; set { _explicitNullValueConferenceEventMethod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("conferenceEventMethod"); else _explicitNullProperties?.Remove("conferenceEventMethod"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum? _explicitNullValueConferenceEventMethod = default!;
         /// <summary>The URL to send the conference-related events.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ConferenceEventUrl { get; set; }
+        public string? ConferenceEventUrl { get => _explicitNullValueConferenceEventUrl; set { _explicitNullValueConferenceEventUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("conferenceEventUrl"); else _explicitNullProperties?.Remove("conferenceEventUrl"); } }
+        private string? _explicitNullValueConferenceEventUrl = default!;
 #nullable restore
 #else
-        public string ConferenceEventUrl { get; set; }
+        public string ConferenceEventUrl { get => _explicitNullValueConferenceEventUrl; set { _explicitNullValueConferenceEventUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("conferenceEventUrl"); else _explicitNullProperties?.Remove("conferenceEventUrl"); } }
+        private string _explicitNullValueConferenceEventUrl = default!;
 #endif
         /// <summary>The time the conference was initiated, in ISO 8601 format.</summary>
-        public DateTimeOffset? CreatedTime { get; set; }
+        public DateTimeOffset? CreatedTime { get => _explicitNullValueCreatedTime; set { _explicitNullValueCreatedTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdTime"); else _explicitNullProperties?.Remove("createdTime"); } }
+        private DateTimeOffset? _explicitNullValueCreatedTime = default!;
         /// <summary>The Bandwidth-generated conference ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Id { get; set; }
+        public string? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        private string? _explicitNullValueId = default!;
 #nullable restore
 #else
-        public string Id { get; set; }
+        public string Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        private string _explicitNullValueId = default!;
 #endif
         /// <summary>The name of the conference, as specified by your application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string _explicitNullValueName = default!;
 #endif
         /// <summary>The custom string attached to the conference that will be sent with callbacks.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Tag { get; set; }
+        public string? Tag { get => _explicitNullValueTag; set { _explicitNullValueTag = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tag"); else _explicitNullProperties?.Remove("tag"); } }
+        private string? _explicitNullValueTag = default!;
 #nullable restore
 #else
-        public string Tag { get; set; }
+        public string Tag { get => _explicitNullValueTag; set { _explicitNullValueTag = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tag"); else _explicitNullProperties?.Remove("tag"); } }
+        private string _explicitNullValueTag = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Conference"/> and sets the default values.
@@ -75,7 +103,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.Conference CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.Conference();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.Conference(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -110,6 +138,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("tag", Tag);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -11,38 +11,65 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ListTriggersResponseData : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("acceptedCount") is { } nullNodeAcceptedCount && nullNodeAcceptedCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AcceptedCount = null;
+            if (parseNode.GetChildNode("alertId") is { } nullNodeAlertId && nullNodeAlertId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AlertId = null;
+            if (parseNode.GetChildNode("invalidCount") is { } nullNodeInvalidCount && nullNodeInvalidCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InvalidCount = null;
+            if (parseNode.GetChildNode("totalNumber") is { } nullNodeTotalNumber && nullNodeTotalNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TotalNumber = null;
+            if (parseNode.GetChildNode("triggerId") is { } nullNodeTriggerId && nullNodeTriggerId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TriggerId = null;
+            if (parseNode.GetChildNode("triggerStatus") is { } nullNodeTriggerStatus && nullNodeTriggerStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TriggerStatus = null;
+            if (parseNode.GetChildNode("triggerType") is { } nullNodeTriggerType && nullNodeTriggerType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TriggerType = null;
+            if (parseNode.GetChildNode("updated") is { } nullNodeUpdated && nullNodeUpdated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Updated = null;
+            if (parseNode.GetChildNode("user") is { } nullNodeUser && nullNodeUser.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) User = null;
+        }
+
         /// <summary>The number of PSAP Outage Alerts that were successfully sent.</summary>
-        public int? AcceptedCount { get; set; }
+        public int? AcceptedCount { get => _explicitNullValueAcceptedCount; set { _explicitNullValueAcceptedCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("acceptedCount"); else _explicitNullProperties?.Remove("acceptedCount"); } }
+        private int? _explicitNullValueAcceptedCount = default!;
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The unique identifier for the alert.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AlertId { get; set; }
+        public string? AlertId { get => _explicitNullValueAlertId; set { _explicitNullValueAlertId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alertId"); else _explicitNullProperties?.Remove("alertId"); } }
+        private string? _explicitNullValueAlertId = default!;
 #nullable restore
 #else
-        public string AlertId { get; set; }
+        public string AlertId { get => _explicitNullValueAlertId; set { _explicitNullValueAlertId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alertId"); else _explicitNullProperties?.Remove("alertId"); } }
+        private string _explicitNullValueAlertId = default!;
 #endif
         /// <summary>The number of PSAP Outage Alerts that failed to send.</summary>
-        public int? InvalidCount { get; set; }
+        public int? InvalidCount { get => _explicitNullValueInvalidCount; set { _explicitNullValueInvalidCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("invalidCount"); else _explicitNullProperties?.Remove("invalidCount"); } }
+        private int? _explicitNullValueInvalidCount = default!;
         /// <summary>The total number of PSAP Outage Alerts that were attempted to be sent or have been sent.</summary>
-        public int? TotalNumber { get; set; }
+        public int? TotalNumber { get => _explicitNullValueTotalNumber; set { _explicitNullValueTotalNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("totalNumber"); else _explicitNullProperties?.Remove("totalNumber"); } }
+        private int? _explicitNullValueTotalNumber = default!;
         /// <summary>The unique identifier for the PSAP Outage Alert Trigger.</summary>
-        public Guid? TriggerId { get; set; }
+        public Guid? TriggerId { get => _explicitNullValueTriggerId; set { _explicitNullValueTriggerId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("triggerId"); else _explicitNullProperties?.Remove("triggerId"); } }
+        private Guid? _explicitNullValueTriggerId = default!;
         /// <summary>The status of the trigger.- RECEIVED: The trigger has been received and is awaiting processing.- PROCESSING: The trigger is being processed.- COMPLETED: The trigger has been successfully processed and all alerts have been successfully sent.- FAILED: The trigger has finished processing, but all alerts have failed to send.- PARTIAL: The trigger has finished processing, but some alerts have failed to send.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ListTriggersResponseDataTriggerStatus? TriggerStatus { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ListTriggersResponseDataTriggerStatus? TriggerStatus { get => _explicitNullValueTriggerStatus; set { _explicitNullValueTriggerStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("triggerStatus"); else _explicitNullProperties?.Remove("triggerStatus"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ListTriggersResponseDataTriggerStatus? _explicitNullValueTriggerStatus = default!;
         /// <summary>The triggerType property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TriggerType? TriggerType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TriggerType? TriggerType { get => _explicitNullValueTriggerType; set { _explicitNullValueTriggerType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("triggerType"); else _explicitNullProperties?.Remove("triggerType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TriggerType? _explicitNullValueTriggerType = default!;
         /// <summary>The time the trigger was last updated.</summary>
-        public DateTimeOffset? Updated { get; set; }
+        public DateTimeOffset? Updated { get => _explicitNullValueUpdated; set { _explicitNullValueUpdated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updated"); else _explicitNullProperties?.Remove("updated"); } }
+        private DateTimeOffset? _explicitNullValueUpdated = default!;
         /// <summary>The user who triggered the PSAP Outage Alert.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? User { get; set; }
+        public string? User { get => _explicitNullValueUser; set { _explicitNullValueUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("user"); else _explicitNullProperties?.Remove("user"); } }
+        private string? _explicitNullValueUser = default!;
 #nullable restore
 #else
-        public string User { get; set; }
+        public string User { get => _explicitNullValueUser; set { _explicitNullValueUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("user"); else _explicitNullProperties?.Remove("user"); } }
+        private string _explicitNullValueUser = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ListTriggersResponseData"/> and sets the default values.
@@ -59,7 +86,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.ListTriggersResponseData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.ListTriggersResponseData();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.ListTriggersResponseData(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -96,6 +123,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TriggerType>("triggerType", TriggerType);
             writer.WriteDateTimeOffsetValue("updated", Updated);
             writer.WriteStringValue("user", User);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

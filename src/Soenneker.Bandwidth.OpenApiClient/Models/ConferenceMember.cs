@@ -11,45 +11,68 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ConferenceMember : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("callId") is { } nullNodeCallId && nullNodeCallId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallId = null;
+            if (parseNode.GetChildNode("callIdsToCoach") is { } nullNodeCallIdsToCoach && nullNodeCallIdsToCoach.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallIdsToCoach = null;
+            if (parseNode.GetChildNode("conferenceId") is { } nullNodeConferenceId && nullNodeConferenceId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConferenceId = null;
+            if (parseNode.GetChildNode("hold") is { } nullNodeHold && nullNodeHold.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Hold = null;
+            if (parseNode.GetChildNode("memberUrl") is { } nullNodeMemberUrl && nullNodeMemberUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MemberUrl = null;
+            if (parseNode.GetChildNode("mute") is { } nullNodeMute && nullNodeMute.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Mute = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The call id associated with the event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallId { get; set; }
+        public string? CallId { get => _explicitNullValueCallId; set { _explicitNullValueCallId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callId"); else _explicitNullProperties?.Remove("callId"); } }
+        private string? _explicitNullValueCallId = default!;
 #nullable restore
 #else
-        public string CallId { get; set; }
+        public string CallId { get => _explicitNullValueCallId; set { _explicitNullValueCallId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callId"); else _explicitNullProperties?.Remove("callId"); } }
+        private string _explicitNullValueCallId = default!;
 #endif
         /// <summary>If this member had a value set for `callIdsToCoach` in its [Conference](/docs/voice/bxml/conference) verb or this list was added with a previous PUT request to modify the member, this is that list of calls.If present in a PUT request, modifies the calls that this member is coaching. Has no effect if omitted. See the documentation for the [Conference](/docs/voice/bxml/conference) verb for more details about coaching.Note that this will not add the matching calls to the conference; each call must individually execute a Conference verb to join.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? CallIdsToCoach { get; set; }
+        public List<string>? CallIdsToCoach { get => _explicitNullValueCallIdsToCoach; set { _explicitNullValueCallIdsToCoach = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callIdsToCoach"); else _explicitNullProperties?.Remove("callIdsToCoach"); } }
+        private List<string>? _explicitNullValueCallIdsToCoach = default!;
 #nullable restore
 #else
-        public List<string> CallIdsToCoach { get; set; }
+        public List<string> CallIdsToCoach { get => _explicitNullValueCallIdsToCoach; set { _explicitNullValueCallIdsToCoach = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callIdsToCoach"); else _explicitNullProperties?.Remove("callIdsToCoach"); } }
+        private List<string> _explicitNullValueCallIdsToCoach = default!;
 #endif
         /// <summary>The unique, Bandwidth-generated ID of the conference that was recorded</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ConferenceId { get; set; }
+        public string? ConferenceId { get => _explicitNullValueConferenceId; set { _explicitNullValueConferenceId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("conferenceId"); else _explicitNullProperties?.Remove("conferenceId"); } }
+        private string? _explicitNullValueConferenceId = default!;
 #nullable restore
 #else
-        public string ConferenceId { get; set; }
+        public string ConferenceId { get => _explicitNullValueConferenceId; set { _explicitNullValueConferenceId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("conferenceId"); else _explicitNullProperties?.Remove("conferenceId"); } }
+        private string _explicitNullValueConferenceId = default!;
 #endif
         /// <summary>Whether or not this member is currently on hold. Members who are on hold are not able to hear or speak in the conference.If used in a PUT request, updates this member&apos;s hold status. Has no effect if omitted.</summary>
-        public bool? Hold { get; set; }
+        public bool? Hold { get => _explicitNullValueHold; set { _explicitNullValueHold = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hold"); else _explicitNullProperties?.Remove("hold"); } }
+        private bool? _explicitNullValueHold = default!;
         /// <summary>A URL that may be used to retrieve information about or updatethe state of this conference member. This is the URL of this member&apos;s[Get Conference Member](/apis/voice-apis/voice/#tag/Conferences/operation/getConferenceMember) endpointand [Modify Conference Member](/apis/voice-apis/voice/#tag/Conferences/operation/updateConferenceMember)endpoint.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? MemberUrl { get; set; }
+        public string? MemberUrl { get => _explicitNullValueMemberUrl; set { _explicitNullValueMemberUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("memberUrl"); else _explicitNullProperties?.Remove("memberUrl"); } }
+        private string? _explicitNullValueMemberUrl = default!;
 #nullable restore
 #else
-        public string MemberUrl { get; set; }
+        public string MemberUrl { get => _explicitNullValueMemberUrl; set { _explicitNullValueMemberUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("memberUrl"); else _explicitNullProperties?.Remove("memberUrl"); } }
+        private string _explicitNullValueMemberUrl = default!;
 #endif
         /// <summary>Whether or not this member is currently muted. Members who are muted are still able to hear other participants.If used in a PUT request, updates this member&apos;s mute status. Has no effect if omitted.</summary>
-        public bool? Mute { get; set; }
+        public bool? Mute { get => _explicitNullValueMute; set { _explicitNullValueMute = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("mute"); else _explicitNullProperties?.Remove("mute"); } }
+        private bool? _explicitNullValueMute = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ConferenceMember"/> and sets the default values.
         /// </summary>
@@ -65,7 +88,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.ConferenceMember CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.ConferenceMember();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.ConferenceMember(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -96,6 +119,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteBoolValue("hold", Hold);
             writer.WriteStringValue("memberUrl", MemberUrl);
             writer.WriteBoolValue("mute", Mute);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

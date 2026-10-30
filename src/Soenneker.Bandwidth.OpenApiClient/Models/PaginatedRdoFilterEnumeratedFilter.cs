@@ -12,29 +12,46 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PaginatedRdoFilterEnumeratedFilter : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("allowedValues") is { } nullNodeAllowedValues && nullNodeAllowedValues.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AllowedValues = null;
+            if (parseNode.GetChildNode("filterName") is { } nullNodeFilterName && nullNodeFilterName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FilterName = null;
+            if (parseNode.GetChildNode("operator") is { } nullNodeOperator && nullNodeOperator.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Operator = null;
+            if (parseNode.GetChildNode("required") is { } nullNodeRequired && nullNodeRequired.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Required = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Allowed values for this filter. The caller can supply one of the listed values.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? AllowedValues { get; set; }
+        public List<string>? AllowedValues { get => _explicitNullValueAllowedValues; set { _explicitNullValueAllowedValues = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowedValues"); else _explicitNullProperties?.Remove("allowedValues"); } }
+        private List<string>? _explicitNullValueAllowedValues = default!;
 #nullable restore
 #else
-        public List<string> AllowedValues { get; set; }
+        public List<string> AllowedValues { get => _explicitNullValueAllowedValues; set { _explicitNullValueAllowedValues = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowedValues"); else _explicitNullProperties?.Remove("allowedValues"); } }
+        private List<string> _explicitNullValueAllowedValues = default!;
 #endif
         /// <summary>The name of the filter field as used in the `queryCriteria` request body.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FilterName { get; set; }
+        public string? FilterName { get => _explicitNullValueFilterName; set { _explicitNullValueFilterName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filterName"); else _explicitNullProperties?.Remove("filterName"); } }
+        private string? _explicitNullValueFilterName = default!;
 #nullable restore
 #else
-        public string FilterName { get; set; }
+        public string FilterName { get => _explicitNullValueFilterName; set { _explicitNullValueFilterName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filterName"); else _explicitNullProperties?.Remove("filterName"); } }
+        private string _explicitNullValueFilterName = default!;
 #endif
         /// <summary>Comparison operator applied to `values` against `parameter`.  - `EQUAL` (`=`) — exact match; single value.  - `GREATER` (`&gt;`) — strictly greater than; single value.  - `LESSER` (`&lt;`) — strictly less than; single value.  - `LESSER_OR_EQUAL` (`&lt;=`) — less than or equal to; single value.  - `GREATER_OR_EQUAL` (`&gt;=`) — greater than or equal to; single value.  - `LIKE` — SQL-style pattern match; single value.  - `IN` — value matches any in the list; one or more values.  - `CONTAINS` — substring match; single value.  - `STARTS_WITH` — prefix match; single value.  - `BETWEEN` — inclusive range; exactly two values `[lower, upper]`.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedOperator? Operator { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedOperator? Operator { get => _explicitNullValueOperator; set { _explicitNullValueOperator = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operator"); else _explicitNullProperties?.Remove("operator"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedOperator? _explicitNullValueOperator = default!;
         /// <summary>Indicates whether this filter must be supplied by the caller.</summary>
-        public bool? Required { get; set; }
+        public bool? Required { get => _explicitNullValueRequired; set { _explicitNullValueRequired = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("required"); else _explicitNullProperties?.Remove("required"); } }
+        private bool? _explicitNullValueRequired = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilterEnumeratedFilter"/> and sets the default values.
         /// </summary>
@@ -50,7 +67,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilterEnumeratedFilter CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilterEnumeratedFilter();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedRdoFilterEnumeratedFilter(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -77,6 +94,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("filterName", FilterName);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedOperator>("operator", Operator);
             writer.WriteBoolValue("required", Required);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

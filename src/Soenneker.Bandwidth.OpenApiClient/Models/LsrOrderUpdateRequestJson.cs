@@ -12,82 +12,118 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class LsrOrderUpdateRequestJson : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("authorizingPerson") is { } nullNodeAuthorizingPerson && nullNodeAuthorizingPerson.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AuthorizingPerson = null;
+            if (parseNode.GetChildNode("billingPhoneNumber") is { } nullNodeBillingPhoneNumber && nullNodeBillingPhoneNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BillingPhoneNumber = null;
+            if (parseNode.GetChildNode("customerOrderId") is { } nullNodeCustomerOrderId && nullNodeCustomerOrderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerOrderId = null;
+            if (parseNode.GetChildNode("orderStatus") is { } nullNodeOrderStatus && nullNodeOrderStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrderStatus = null;
+            if (parseNode.GetChildNode("partialPort") is { } nullNodePartialPort && nullNodePartialPort.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PartialPort = null;
+            if (parseNode.GetChildNode("phoneNumbers") is { } nullNodePhoneNumbers && nullNodePhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumbers = null;
+            if (parseNode.GetChildNode("pon") is { } nullNodePon && nullNodePon.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pon = null;
+            if (parseNode.GetChildNode("requestedFocDate") is { } nullNodeRequestedFocDate && nullNodeRequestedFocDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RequestedFocDate = null;
+            if (parseNode.GetChildNode("spid") is { } nullNodeSpid && nullNodeSpid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Spid = null;
+            if (parseNode.GetChildNode("subscriber") is { } nullNodeSubscriber && nullNodeSubscriber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Subscriber = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Authorizing person.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AuthorizingPerson { get; set; }
+        public string? AuthorizingPerson { get => _explicitNullValueAuthorizingPerson; set { _explicitNullValueAuthorizingPerson = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authorizingPerson"); else _explicitNullProperties?.Remove("authorizingPerson"); } }
+        private string? _explicitNullValueAuthorizingPerson = default!;
 #nullable restore
 #else
-        public string AuthorizingPerson { get; set; }
+        public string AuthorizingPerson { get => _explicitNullValueAuthorizingPerson; set { _explicitNullValueAuthorizingPerson = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authorizingPerson"); else _explicitNullProperties?.Remove("authorizingPerson"); } }
+        private string _explicitNullValueAuthorizingPerson = default!;
 #endif
         /// <summary>The billing telephone number associated with the phone numbers being ported.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BillingPhoneNumber { get; set; }
+        public string? BillingPhoneNumber { get => _explicitNullValueBillingPhoneNumber; set { _explicitNullValueBillingPhoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("billingPhoneNumber"); else _explicitNullProperties?.Remove("billingPhoneNumber"); } }
+        private string? _explicitNullValueBillingPhoneNumber = default!;
 #nullable restore
 #else
-        public string BillingPhoneNumber { get; set; }
+        public string BillingPhoneNumber { get => _explicitNullValueBillingPhoneNumber; set { _explicitNullValueBillingPhoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("billingPhoneNumber"); else _explicitNullProperties?.Remove("billingPhoneNumber"); } }
+        private string _explicitNullValueBillingPhoneNumber = default!;
 #endif
         /// <summary>Optional customer-defined reference ID. Only alphanumeric values, dashes and spaces are allowed. Not unique.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CustomerOrderId { get; set; }
+        public string? CustomerOrderId { get => _explicitNullValueCustomerOrderId; set { _explicitNullValueCustomerOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerOrderId"); else _explicitNullProperties?.Remove("customerOrderId"); } }
+        private string? _explicitNullValueCustomerOrderId = default!;
 #nullable restore
 #else
-        public string CustomerOrderId { get; set; }
+        public string CustomerOrderId { get => _explicitNullValueCustomerOrderId; set { _explicitNullValueCustomerOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerOrderId"); else _explicitNullProperties?.Remove("customerOrderId"); } }
+        private string _explicitNullValueCustomerOrderId = default!;
 #endif
         /// <summary>Order status. Only CANCELLED can be set on PUT to cancel an order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? OrderStatus { get; set; }
+        public string? OrderStatus { get => _explicitNullValueOrderStatus; set { _explicitNullValueOrderStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderStatus"); else _explicitNullProperties?.Remove("orderStatus"); } }
+        private string? _explicitNullValueOrderStatus = default!;
 #nullable restore
 #else
-        public string OrderStatus { get; set; }
+        public string OrderStatus { get => _explicitNullValueOrderStatus; set { _explicitNullValueOrderStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderStatus"); else _explicitNullProperties?.Remove("orderStatus"); } }
+        private string _explicitNullValueOrderStatus = default!;
 #endif
         /// <summary>Must be set to true if not all telephone numbers associated with the billingPhoneNumber are being ported.</summary>
-        public bool? PartialPort { get; set; }
+        public bool? PartialPort { get => _explicitNullValuePartialPort; set { _explicitNullValuePartialPort = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("partialPort"); else _explicitNullProperties?.Remove("partialPort"); } }
+        private bool? _explicitNullValuePartialPort = default!;
         /// <summary>List of telephone numbers to port. Toll-free numbers are not allowed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? PhoneNumbers { get; set; }
+        public List<string>? PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
+        private List<string>? _explicitNullValuePhoneNumbers = default!;
 #nullable restore
 #else
-        public List<string> PhoneNumbers { get; set; }
+        public List<string> PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
+        private List<string> _explicitNullValuePhoneNumbers = default!;
 #endif
         /// <summary>Customer-specified order identifier. Alphanumeric values and &quot;#&quot;,&quot;-&quot;,&quot;_&quot; allowed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Pon { get; set; }
+        public string? Pon { get => _explicitNullValuePon; set { _explicitNullValuePon = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pon"); else _explicitNullProperties?.Remove("pon"); } }
+        private string? _explicitNullValuePon = default!;
 #nullable restore
 #else
-        public string Pon { get; set; }
+        public string Pon { get => _explicitNullValuePon; set { _explicitNullValuePon = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pon"); else _explicitNullProperties?.Remove("pon"); } }
+        private string _explicitNullValuePon = default!;
 #endif
         /// <summary>The FOC date requested. Format yyyy-MM-dd.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RequestedFocDate { get; set; }
+        public string? RequestedFocDate { get => _explicitNullValueRequestedFocDate; set { _explicitNullValueRequestedFocDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requestedFocDate"); else _explicitNullProperties?.Remove("requestedFocDate"); } }
+        private string? _explicitNullValueRequestedFocDate = default!;
 #nullable restore
 #else
-        public string RequestedFocDate { get; set; }
+        public string RequestedFocDate { get => _explicitNullValueRequestedFocDate; set { _explicitNullValueRequestedFocDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requestedFocDate"); else _explicitNullProperties?.Remove("requestedFocDate"); } }
+        private string _explicitNullValueRequestedFocDate = default!;
 #endif
         /// <summary>The NPAC SPID corresponding to the carrier that the phone numbers are porting to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Spid { get; set; }
+        public string? Spid { get => _explicitNullValueSpid; set { _explicitNullValueSpid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("spid"); else _explicitNullProperties?.Remove("spid"); } }
+        private string? _explicitNullValueSpid = default!;
 #nullable restore
 #else
-        public string Spid { get; set; }
+        public string Spid { get => _explicitNullValueSpid; set { _explicitNullValueSpid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("spid"); else _explicitNullProperties?.Remove("spid"); } }
+        private string _explicitNullValueSpid = default!;
 #endif
         /// <summary>The subscriber property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderUpdateRequestJsonSubscriber? Subscriber { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderUpdateRequestJsonSubscriber? Subscriber { get => _explicitNullValueSubscriber; set { _explicitNullValueSubscriber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriber"); else _explicitNullProperties?.Remove("subscriber"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderUpdateRequestJsonSubscriber? _explicitNullValueSubscriber = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderUpdateRequestJsonSubscriber Subscriber { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderUpdateRequestJsonSubscriber Subscriber { get => _explicitNullValueSubscriber; set { _explicitNullValueSubscriber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriber"); else _explicitNullProperties?.Remove("subscriber"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderUpdateRequestJsonSubscriber _explicitNullValueSubscriber = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderUpdateRequestJson"/> and sets the default values.
@@ -104,7 +140,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderUpdateRequestJson CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderUpdateRequestJson();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderUpdateRequestJson(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -143,6 +179,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("requestedFocDate", RequestedFocDate);
             writer.WriteStringValue("spid", Spid);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LsrOrderUpdateRequestJsonSubscriber>("subscriber", Subscriber);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

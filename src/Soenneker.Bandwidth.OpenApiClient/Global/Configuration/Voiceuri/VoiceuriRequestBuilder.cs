@@ -64,7 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Voiceuri
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ListVoiceUriResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ListVoiceUriResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ListVoiceUriResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ListVoiceUriResponse.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Allows you to either create a new Voice URI or update an existing one. If an existing voiceUriId is passed in the request, then an update will be performed. If no voiceUriId is passed, then a new Voice URI is created.
@@ -85,7 +85,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Voiceuri
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUriResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUriResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUriResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUriResponse.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// List Voice URIs

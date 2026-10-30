@@ -11,90 +11,129 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PortinsSubscriberJson : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("accountNumber") is { } nullNodeAccountNumber && nullNodeAccountNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountNumber = null;
+            if (parseNode.GetChildNode("addressId") is { } nullNodeAddressId && nullNodeAddressId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AddressId = null;
+            if (parseNode.GetChildNode("businessName") is { } nullNodeBusinessName && nullNodeBusinessName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BusinessName = null;
+            if (parseNode.GetChildNode("firstName") is { } nullNodeFirstName && nullNodeFirstName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FirstName = null;
+            if (parseNode.GetChildNode("lastName") is { } nullNodeLastName && nullNodeLastName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastName = null;
+            if (parseNode.GetChildNode("middleInitial") is { } nullNodeMiddleInitial && nullNodeMiddleInitial.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MiddleInitial = null;
+            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("pinNumber") is { } nullNodePinNumber && nullNodePinNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PinNumber = null;
+            if (parseNode.GetChildNode("serviceAddress") is { } nullNodeServiceAddress && nullNodeServiceAddress.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ServiceAddress = null;
+            if (parseNode.GetChildNode("subscriberType") is { } nullNodeSubscriberType && nullNodeSubscriberType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SubscriberType = null;
+            if (parseNode.GetChildNode("vatNumber") is { } nullNodeVatNumber && nullNodeVatNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VatNumber = null;
+        }
+
         /// <summary>The WirelessInfo.AccountNumber is sometimes required to authorize the port-out from the losing carrier. This is most common for telephone numbers that were formerly wireless. This element is not applicable for toll free port-ins.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AccountNumber { get; set; }
+        public string? AccountNumber { get => _explicitNullValueAccountNumber; set { _explicitNullValueAccountNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountNumber"); else _explicitNullProperties?.Remove("accountNumber"); } }
+        private string? _explicitNullValueAccountNumber = default!;
 #nullable restore
 #else
-        public string AccountNumber { get; set; }
+        public string AccountNumber { get => _explicitNullValueAccountNumber; set { _explicitNullValueAccountNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountNumber"); else _explicitNullProperties?.Remove("accountNumber"); } }
+        private string _explicitNullValueAccountNumber = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>UUID of the address created with the `/accounts/{accountId}/addresses` API endpoint.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AddressId { get; set; }
+        public string? AddressId { get => _explicitNullValueAddressId; set { _explicitNullValueAddressId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("addressId"); else _explicitNullProperties?.Remove("addressId"); } }
+        private string? _explicitNullValueAddressId = default!;
 #nullable restore
 #else
-        public string AddressId { get; set; }
+        public string AddressId { get => _explicitNullValueAddressId; set { _explicitNullValueAddressId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("addressId"); else _explicitNullProperties?.Remove("addressId"); } }
+        private string _explicitNullValueAddressId = default!;
 #endif
         /// <summary>The BusinessName is mandatory for non-toll free port-ins for which the SubscriberType is set to BUSINESS. The BusinessName may be up to 25 characters in length. This element is not applicable for toll free port-ins.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BusinessName { get; set; }
+        public string? BusinessName { get => _explicitNullValueBusinessName; set { _explicitNullValueBusinessName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("businessName"); else _explicitNullProperties?.Remove("businessName"); } }
+        private string? _explicitNullValueBusinessName = default!;
 #nullable restore
 #else
-        public string BusinessName { get; set; }
+        public string BusinessName { get => _explicitNullValueBusinessName; set { _explicitNullValueBusinessName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("businessName"); else _explicitNullProperties?.Remove("businessName"); } }
+        private string _explicitNullValueBusinessName = default!;
 #endif
         /// <summary>The FirstName value is applicable to non-toll free port-in orders in which the SubscriberType is set to RESIDENTIAL. The FirstName is always optional. The FirstName may be up to 25 characters in length.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FirstName { get; set; }
+        public string? FirstName { get => _explicitNullValueFirstName; set { _explicitNullValueFirstName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("firstName"); else _explicitNullProperties?.Remove("firstName"); } }
+        private string? _explicitNullValueFirstName = default!;
 #nullable restore
 #else
-        public string FirstName { get; set; }
+        public string FirstName { get => _explicitNullValueFirstName; set { _explicitNullValueFirstName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("firstName"); else _explicitNullProperties?.Remove("firstName"); } }
+        private string _explicitNullValueFirstName = default!;
 #endif
         /// <summary>The LastName value is mandatory for non-toll free port-in orders in which the SubscriberType is set to RESIDENTIAL. The LastName may be up to 25 characters in length.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LastName { get; set; }
+        public string? LastName { get => _explicitNullValueLastName; set { _explicitNullValueLastName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastName"); else _explicitNullProperties?.Remove("lastName"); } }
+        private string? _explicitNullValueLastName = default!;
 #nullable restore
 #else
-        public string LastName { get; set; }
+        public string LastName { get => _explicitNullValueLastName; set { _explicitNullValueLastName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastName"); else _explicitNullProperties?.Remove("lastName"); } }
+        private string _explicitNullValueLastName = default!;
 #endif
         /// <summary>The MiddleInitial value is applicable to non-toll free port-in orders in which the SubscriberType is set to RESIDENTIAL. The MiddleInitial is always optional. The MiddleInitial is 1 character in length.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? MiddleInitial { get; set; }
+        public string? MiddleInitial { get => _explicitNullValueMiddleInitial; set { _explicitNullValueMiddleInitial = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("middleInitial"); else _explicitNullProperties?.Remove("middleInitial"); } }
+        private string? _explicitNullValueMiddleInitial = default!;
 #nullable restore
 #else
-        public string MiddleInitial { get; set; }
+        public string MiddleInitial { get => _explicitNullValueMiddleInitial; set { _explicitNullValueMiddleInitial = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("middleInitial"); else _explicitNullProperties?.Remove("middleInitial"); } }
+        private string _explicitNullValueMiddleInitial = default!;
 #endif
         /// <summary>If the subscriber type is business, the subscriber name is the name of the business responsible for the numbers being ported. If the subscriber type is residential, the subscriber name is the name of the person responsible for the numbers being ported.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string _explicitNullValueName = default!;
 #endif
         /// <summary>Element of WirelessInfo. Not applicable to toll free port-ins. Cannot be SUPPed for Automated off-net port-ins. If you want to SUPP WirelessInfo, you must include both AccountNumber and PinNumber in the payload, even if you are not changing both.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PinNumber { get; set; }
+        public string? PinNumber { get => _explicitNullValuePinNumber; set { _explicitNullValuePinNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pinNumber"); else _explicitNullProperties?.Remove("pinNumber"); } }
+        private string? _explicitNullValuePinNumber = default!;
 #nullable restore
 #else
-        public string PinNumber { get; set; }
+        public string PinNumber { get => _explicitNullValuePinNumber; set { _explicitNullValuePinNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pinNumber"); else _explicitNullProperties?.Remove("pinNumber"); } }
+        private string _explicitNullValuePinNumber = default!;
 #endif
         /// <summary>The serviceAddress property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsAddressJson? ServiceAddress { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsAddressJson? ServiceAddress { get => _explicitNullValueServiceAddress; set { _explicitNullValueServiceAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("serviceAddress"); else _explicitNullProperties?.Remove("serviceAddress"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsAddressJson? _explicitNullValueServiceAddress = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsAddressJson ServiceAddress { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsAddressJson ServiceAddress { get => _explicitNullValueServiceAddress; set { _explicitNullValueServiceAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("serviceAddress"); else _explicitNullProperties?.Remove("serviceAddress"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsAddressJson _explicitNullValueServiceAddress = default!;
 #endif
         /// <summary>The SubscriberType is mandatory for all non-toll free port-in orders. The SubscriberType field may have values: BUSINESS or RESIDENTIAL.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsSubscriberJsonSubscriberType? SubscriberType { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsSubscriberJsonSubscriberType? SubscriberType { get => _explicitNullValueSubscriberType; set { _explicitNullValueSubscriberType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriberType"); else _explicitNullProperties?.Remove("subscriberType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsSubscriberJsonSubscriberType? _explicitNullValueSubscriberType = default!;
         /// <summary>The `VatNumber` is the value of the VAT number associated with the subscriber. This field is required when porting numbers for a subset of countries when the SubscriberType is `BUSINESS`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? VatNumber { get; set; }
+        public string? VatNumber { get => _explicitNullValueVatNumber; set { _explicitNullValueVatNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("vatNumber"); else _explicitNullProperties?.Remove("vatNumber"); } }
+        private string? _explicitNullValueVatNumber = default!;
 #nullable restore
 #else
-        public string VatNumber { get; set; }
+        public string VatNumber { get => _explicitNullValueVatNumber; set { _explicitNullValueVatNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("vatNumber"); else _explicitNullProperties?.Remove("vatNumber"); } }
+        private string _explicitNullValueVatNumber = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsSubscriberJson"/> and sets the default values.
@@ -111,7 +150,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsSubscriberJson CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsSubscriberJson();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsSubscriberJson(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -152,6 +191,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsAddressJson>("serviceAddress", ServiceAddress);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsSubscriberJsonSubscriberType>("subscriberType", SubscriberType);
             writer.WriteStringValue("vatNumber", VatNumber);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

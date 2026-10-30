@@ -12,85 +12,128 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class VoiceConfigurationPackageSearchResult : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("accountId") is { } nullNodeAccountId && nullNodeAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountId = null;
+            if (parseNode.GetChildNode("analyticEngine") is { } nullNodeAnalyticEngine && nullNodeAnalyticEngine.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AnalyticEngine = null;
+            if (parseNode.GetChildNode("callVerification") is { } nullNodeCallVerification && nullNodeCallVerification.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallVerification = null;
+            if (parseNode.GetChildNode("cnam") is { } nullNodeCnam && nullNodeCnam.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Cnam = null;
+            if (parseNode.GetChildNode("description") is { } nullNodeDescription && nullNodeDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Description = null;
+            if (parseNode.GetChildNode("httpVoiceV2ApplicationId") is { } nullNodeHttpVoiceV2ApplicationId && nullNodeHttpVoiceV2ApplicationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HttpVoiceV2ApplicationId = null;
+            if (parseNode.GetChildNode("incompatibilityReasons") is { } nullNodeIncompatibilityReasons && nullNodeIncompatibilityReasons.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IncompatibilityReasons = null;
+            if (parseNode.GetChildNode("isCompatible") is { } nullNodeIsCompatible && nullNodeIsCompatible.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsCompatible = null;
+            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("originationRoutePlan") is { } nullNodeOriginationRoutePlan && nullNodeOriginationRoutePlan.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OriginationRoutePlan = null;
+            if (parseNode.GetChildNode("phoneNumberCount") is { } nullNodePhoneNumberCount && nullNodePhoneNumberCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumberCount = null;
+            if (parseNode.GetChildNode("pindropIntegration") is { } nullNodePindropIntegration && nullNodePindropIntegration.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PindropIntegration = null;
+            if (parseNode.GetChildNode("stirShakenBehavior") is { } nullNodeStirShakenBehavior && nullNodeStirShakenBehavior.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StirShakenBehavior = null;
+            if (parseNode.GetChildNode("voiceConfigurationPackageId") is { } nullNodeVoiceConfigurationPackageId && nullNodeVoiceConfigurationPackageId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoiceConfigurationPackageId = null;
+        }
+
         /// <summary>The account ID for the phone numbers.</summary>
-        public int? AccountId { get; set; }
+        public int? AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
+        private int? _explicitNullValueAccountId = default!;
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Identity Auth Analytic Engine Name.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AnalyticEngine? AnalyticEngine { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AnalyticEngine? AnalyticEngine { get => _explicitNullValueAnalyticEngine; set { _explicitNullValueAnalyticEngine = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("analyticEngine"); else _explicitNullProperties?.Remove("analyticEngine"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.AnalyticEngine? _explicitNullValueAnalyticEngine = default!;
         /// <summary>Call Verification settings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallVerification? CallVerification { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallVerification? CallVerification { get => _explicitNullValueCallVerification; set { _explicitNullValueCallVerification = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callVerification"); else _explicitNullProperties?.Remove("callVerification"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CallVerification? _explicitNullValueCallVerification = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallVerification CallVerification { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallVerification CallVerification { get => _explicitNullValueCallVerification; set { _explicitNullValueCallVerification = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callVerification"); else _explicitNullProperties?.Remove("callVerification"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CallVerification _explicitNullValueCallVerification = default!;
 #endif
         /// <summary>Calling Name (CNAM) settings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Cnam? Cnam { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.Cnam? Cnam { get => _explicitNullValueCnam; set { _explicitNullValueCnam = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cnam"); else _explicitNullProperties?.Remove("cnam"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.Cnam? _explicitNullValueCnam = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Cnam Cnam { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.Cnam Cnam { get => _explicitNullValueCnam; set { _explicitNullValueCnam = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cnam"); else _explicitNullProperties?.Remove("cnam"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.Cnam _explicitNullValueCnam = default!;
 #endif
         /// <summary>The voice configuration package&apos;s description.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Description { get; set; }
+        public string? Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        private string? _explicitNullValueDescription = default!;
 #nullable restore
 #else
-        public string Description { get; set; }
+        public string Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        private string _explicitNullValueDescription = default!;
 #endif
         /// <summary>HTTP Voice V2 Application ID.</summary>
-        public Guid? HttpVoiceV2ApplicationId { get; set; }
+        public Guid? HttpVoiceV2ApplicationId { get => _explicitNullValueHttpVoiceV2ApplicationId; set { _explicitNullValueHttpVoiceV2ApplicationId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("httpVoiceV2ApplicationId"); else _explicitNullProperties?.Remove("httpVoiceV2ApplicationId"); } }
+        private Guid? _explicitNullValueHttpVoiceV2ApplicationId = default!;
         /// <summary>The reasons a voice configuration package is incompatible with the phone numbers in the search criteria. Populated when isCompatible is false; returned as null when the package is compatible or compatibility is not evaluated.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.IncompatibilityReason>? IncompatibilityReasons { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.IncompatibilityReason>? IncompatibilityReasons { get => _explicitNullValueIncompatibilityReasons; set { _explicitNullValueIncompatibilityReasons = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incompatibilityReasons"); else _explicitNullProperties?.Remove("incompatibilityReasons"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.IncompatibilityReason>? _explicitNullValueIncompatibilityReasons = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.IncompatibilityReason> IncompatibilityReasons { get; set; }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.IncompatibilityReason> IncompatibilityReasons { get => _explicitNullValueIncompatibilityReasons; set { _explicitNullValueIncompatibilityReasons = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incompatibilityReasons"); else _explicitNullProperties?.Remove("incompatibilityReasons"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.IncompatibilityReason> _explicitNullValueIncompatibilityReasons = default!;
 #endif
         /// <summary>Whether the voice configuration package is compatible with all phone numbers provided in the search criteria. Returned as null when the search criteria do not evaluate compatibility (searches without phoneNumber criteria). When a name filter is combined with phoneNumber criteria, only compatible packages are returned.</summary>
-        public bool? IsCompatible { get; set; }
+        public bool? IsCompatible { get => _explicitNullValueIsCompatible; set { _explicitNullValueIsCompatible = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isCompatible"); else _explicitNullProperties?.Remove("isCompatible"); } }
+        private bool? _explicitNullValueIsCompatible = default!;
         /// <summary>The voice configuration package&apos;s name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string _explicitNullValueName = default!;
 #endif
         /// <summary>Origination route plan for a voice configuration package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceOriginationRoutePlan? OriginationRoutePlan { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceOriginationRoutePlan? OriginationRoutePlan { get => _explicitNullValueOriginationRoutePlan; set { _explicitNullValueOriginationRoutePlan = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("originationRoutePlan"); else _explicitNullProperties?.Remove("originationRoutePlan"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceOriginationRoutePlan? _explicitNullValueOriginationRoutePlan = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceOriginationRoutePlan OriginationRoutePlan { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceOriginationRoutePlan OriginationRoutePlan { get => _explicitNullValueOriginationRoutePlan; set { _explicitNullValueOriginationRoutePlan = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("originationRoutePlan"); else _explicitNullProperties?.Remove("originationRoutePlan"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceOriginationRoutePlan _explicitNullValueOriginationRoutePlan = default!;
 #endif
         /// <summary>The number of phone numbers associated with the voice configuration package.</summary>
-        public int? PhoneNumberCount { get; set; }
+        public int? PhoneNumberCount { get => _explicitNullValuePhoneNumberCount; set { _explicitNullValuePhoneNumberCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumberCount"); else _explicitNullProperties?.Remove("phoneNumberCount"); } }
+        private int? _explicitNullValuePhoneNumberCount = default!;
         /// <summary>Pindrop Integration settings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PindropIntegration? PindropIntegration { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PindropIntegration? PindropIntegration { get => _explicitNullValuePindropIntegration; set { _explicitNullValuePindropIntegration = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pindropIntegration"); else _explicitNullProperties?.Remove("pindropIntegration"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.PindropIntegration? _explicitNullValuePindropIntegration = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PindropIntegration PindropIntegration { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PindropIntegration PindropIntegration { get => _explicitNullValuePindropIntegration; set { _explicitNullValuePindropIntegration = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pindropIntegration"); else _explicitNullProperties?.Remove("pindropIntegration"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.PindropIntegration _explicitNullValuePindropIntegration = default!;
 #endif
         /// <summary>Stir shaken behavior.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenBehavior? StirShakenBehavior { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenBehavior? StirShakenBehavior { get => _explicitNullValueStirShakenBehavior; set { _explicitNullValueStirShakenBehavior = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stirShakenBehavior"); else _explicitNullProperties?.Remove("stirShakenBehavior"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenBehavior? _explicitNullValueStirShakenBehavior = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenBehavior StirShakenBehavior { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenBehavior StirShakenBehavior { get => _explicitNullValueStirShakenBehavior; set { _explicitNullValueStirShakenBehavior = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stirShakenBehavior"); else _explicitNullProperties?.Remove("stirShakenBehavior"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenBehavior _explicitNullValueStirShakenBehavior = default!;
 #endif
         /// <summary>The voice configuration package&apos;s ID.</summary>
-        public Guid? VoiceConfigurationPackageId { get; set; }
+        public Guid? VoiceConfigurationPackageId { get => _explicitNullValueVoiceConfigurationPackageId; set { _explicitNullValueVoiceConfigurationPackageId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceConfigurationPackageId"); else _explicitNullProperties?.Remove("voiceConfigurationPackageId"); } }
+        private Guid? _explicitNullValueVoiceConfigurationPackageId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageSearchResult"/> and sets the default values.
         /// </summary>
@@ -106,7 +149,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageSearchResult CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageSearchResult();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackageSearchResult(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -153,6 +196,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PindropIntegration>("pindropIntegration", PindropIntegration);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenBehavior>("stirShakenBehavior", StirShakenBehavior);
             writer.WriteGuidValue("voiceConfigurationPackageId", VoiceConfigurationPackageId);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

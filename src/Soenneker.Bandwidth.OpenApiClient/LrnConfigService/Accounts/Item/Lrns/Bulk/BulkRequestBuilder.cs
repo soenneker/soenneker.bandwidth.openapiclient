@@ -67,6 +67,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.LrnConfigService.Accounts.Item.Lrns.
                 { "405", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorBody.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorBody.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorBody.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnBulkCreatedResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.LrnBulkCreatedResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

@@ -12,7 +12,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class RequirementsPackageLineage : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("parent") is { } nullNodeParent && nullNodeParent.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Parent = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Requirements packages cloned from this one (**requirementsPackageId**, **accountId** each). Only returned by Get Requirements Package with `verbose=true`.</summary>
@@ -26,10 +34,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Points to a requirements package involved in a clone relationship: the source it was cloned from, or one cloned from it.Identified by requirementsPackageId and accountId.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineageData? Parent { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineageData? Parent { get => _explicitNullValueParent; set { _explicitNullValueParent = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("parent"); else _explicitNullProperties?.Remove("parent"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineageData? _explicitNullValueParent = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineageData Parent { get; set; }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineageData Parent { get => _explicitNullValueParent; set { _explicitNullValueParent = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("parent"); else _explicitNullProperties?.Remove("parent"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineageData _explicitNullValueParent = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage"/> and sets the default values.
@@ -46,7 +56,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public static global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,6 +78,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineageData>("parent", Parent);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
