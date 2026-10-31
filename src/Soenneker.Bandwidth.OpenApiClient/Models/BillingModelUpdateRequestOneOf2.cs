@@ -41,15 +41,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public Guid? BillingModelId { get => _explicitNullValueBillingModelId; set { _explicitNullValueBillingModelId = value; AdditionalData?.Remove("billingModelId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("billingModelId"); else _explicitNullProperties?.Remove("billingModelId"); } }
         private Guid? _explicitNullValueBillingModelId = default!;
         /// <summary>The modelType property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2_modelType? ModelType { get => _explicitNullValueModelType; set { _explicitNullValueModelType = value; AdditionalData?.Remove("modelType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modelType"); else _explicitNullProperties?.Remove("modelType"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2_modelType? _explicitNullValueModelType = default!;
-#nullable restore
-#else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2_modelType ModelType { get => _explicitNullValueModelType; set { _explicitNullValueModelType = value; AdditionalData?.Remove("modelType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modelType"); else _explicitNullProperties?.Remove("modelType"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2_modelType _explicitNullValueModelType = default!;
-#endif
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MeteredModelType? ModelType { get => _explicitNullValueModelType; set { _explicitNullValueModelType = value; AdditionalData?.Remove("modelType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modelType"); else _explicitNullProperties?.Remove("modelType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.MeteredModelType? _explicitNullValueModelType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2"/> and sets the default values.
         /// </summary>
@@ -77,7 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "accountId", n => { AccountId = n.GetStringValue(); } },
                 { "billingModelId", n => { BillingModelId = n.GetGuidValue(); } },
-                { "modelType", n => { ModelType = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2_modelType>(global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2_modelType.CreateFromDiscriminatorValue); } },
+                { "modelType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MeteredModelType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueModelType = default; _explicitNullProperties?.Remove("modelType"); AdditionalData["modelType"] = unknown; } else { ModelType = parsed; AdditionalData.Remove("modelType"); } } },
             };
         }
         /// <summary>
@@ -89,7 +82,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("accountId", AccountId);
             writer.WriteGuidValue("billingModelId", BillingModelId);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2_modelType>("modelType", ModelType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MeteredModelType>("modelType", ModelType);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }

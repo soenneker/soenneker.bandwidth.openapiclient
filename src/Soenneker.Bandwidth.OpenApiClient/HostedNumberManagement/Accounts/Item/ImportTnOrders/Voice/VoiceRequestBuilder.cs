@@ -49,25 +49,25 @@ namespace Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item
         /// <summary>
         /// Retrieves the ImportVoiceTnOrder requests for the given account ID. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter (marked by &lt;b class=&quot;required&quot;&gt;*&lt;/b&gt; below) is provided, the order results will be limited to the last two years.
         /// </summary>
-        /// <returns>A <see cref="Stream"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ImportVoiceTnOrdersJsonResponseList"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportTnOrders.Voice.VoiceRequestBuilder.VoiceRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ImportVoiceTnOrdersJsonResponseList?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportTnOrders.Voice.VoiceRequestBuilder.VoiceRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportTnOrders.Voice.VoiceRequestBuilder.VoiceRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ImportVoiceTnOrdersJsonResponseList> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item.ImportTnOrders.Voice.VoiceRequestBuilder.VoiceRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ImportVoiceTnOrdersJsonResponseList>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ImportVoiceTnOrdersJsonResponseList.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates an ImportVoiceTnOrders request to add numbers under the given site ID and sipPeer ID as specified in the body.We can either provide the list of telephone numbers or the range(s) of telephone numbers in the request.A successfully submitted order will have a status of &quot;RECEIVED&quot;. A successfully completed order will have a status of &quot;COMPLETE&quot; if all of the telephone numbers were successfully imported and  &quot;PARTIAL&quot; if some of the telephone numbers were imported. A failed order with will have a staus of &quot;FAILED&quot; and no telephone numbers would have been imported.
         /// </summary>
-        /// <returns>A <see cref="Stream"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ImportVoiceTnOrderJsonResponse"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -75,11 +75,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ImportVoiceTnOrderJsonError">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.ImportVoiceTnOrderJsonRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ImportVoiceTnOrderJsonResponse?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.ImportVoiceTnOrderJsonRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.ImportVoiceTnOrderJsonRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ImportVoiceTnOrderJsonResponse> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.ImportVoiceTnOrderJsonRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -91,7 +91,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.HostedNumberManagement.Accounts.Item
                 { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ImportVoiceTnOrderJsonResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ImportVoiceTnOrderJsonResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves the ImportVoiceTnOrder requests for the given account ID. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter (marked by &lt;b class=&quot;required&quot;&gt;*&lt;/b&gt; below) is provided, the order results will be limited to the last two years.

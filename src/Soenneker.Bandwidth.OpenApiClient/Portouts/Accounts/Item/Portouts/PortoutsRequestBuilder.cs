@@ -55,7 +55,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portouts.Accounts.Item.Portouts
         /// <summary>
         /// Retrieves a list of port-out requests for the given account ID. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter (marked by &lt;b class=&quot;required&quot;&gt;*&lt;/b&gt; below) is provided, the order results will be limited to the last two years.
         /// </summary>
-        /// <returns>A <see cref="Stream"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PortOutsResponseJson"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PortoutsErrorResponse">When receiving a 400 status code</exception>
@@ -66,11 +66,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portouts.Accounts.Item.Portouts
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PortoutsErrorResponse">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Portouts.Accounts.Item.Portouts.PortoutsRequestBuilder.PortoutsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.PortOutsResponseJson?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Portouts.Accounts.Item.Portouts.PortoutsRequestBuilder.PortoutsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Portouts.Accounts.Item.Portouts.PortoutsRequestBuilder.PortoutsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.PortOutsResponseJson> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Portouts.Accounts.Item.Portouts.PortoutsRequestBuilder.PortoutsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -85,7 +85,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portouts.Accounts.Item.Portouts
                 { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.PortOutsResponseJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.PortOutsResponseJson.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a list of port-out requests for the given account ID. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter (marked by &lt;b class=&quot;required&quot;&gt;*&lt;/b&gt; below) is provided, the order results will be limited to the last two years.

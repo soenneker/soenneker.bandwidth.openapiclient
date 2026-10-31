@@ -43,15 +43,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public Guid? BillingModelId { get => _explicitNullValueBillingModelId; set { _explicitNullValueBillingModelId = value; AdditionalData?.Remove("billingModelId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("billingModelId"); else _explicitNullProperties?.Remove("billingModelId"); } }
         private Guid? _explicitNullValueBillingModelId = default!;
         /// <summary>The modelType property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf1_modelType? ModelType { get => _explicitNullValueModelType; set { _explicitNullValueModelType = value; AdditionalData?.Remove("modelType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modelType"); else _explicitNullProperties?.Remove("modelType"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf1_modelType? _explicitNullValueModelType = default!;
-#nullable restore
-#else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf1_modelType ModelType { get => _explicitNullValueModelType; set { _explicitNullValueModelType = value; AdditionalData?.Remove("modelType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modelType"); else _explicitNullProperties?.Remove("modelType"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf1_modelType _explicitNullValueModelType = default!;
-#endif
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CapacityModelType? ModelType { get => _explicitNullValueModelType; set { _explicitNullValueModelType = value; AdditionalData?.Remove("modelType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modelType"); else _explicitNullProperties?.Remove("modelType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CapacityModelType? _explicitNullValueModelType = default!;
         /// <summary>Must be in increments of 10.</summary>
         public int? VoiceCapacityThreshold { get => _explicitNullValueVoiceCapacityThreshold; set { _explicitNullValueVoiceCapacityThreshold = value; AdditionalData?.Remove("voiceCapacityThreshold"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceCapacityThreshold"); else _explicitNullProperties?.Remove("voiceCapacityThreshold"); } }
         private int? _explicitNullValueVoiceCapacityThreshold = default!;
@@ -82,7 +75,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "accountId", n => { AccountId = n.GetStringValue(); } },
                 { "billingModelId", n => { BillingModelId = n.GetGuidValue(); } },
-                { "modelType", n => { ModelType = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf1_modelType>(global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf1_modelType.CreateFromDiscriminatorValue); } },
+                { "modelType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CapacityModelType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueModelType = default; _explicitNullProperties?.Remove("modelType"); AdditionalData["modelType"] = unknown; } else { ModelType = parsed; AdditionalData.Remove("modelType"); } } },
                 { "voiceCapacityThreshold", n => { VoiceCapacityThreshold = n.GetIntValue(); } },
             };
         }
@@ -95,7 +88,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("accountId", AccountId);
             writer.WriteGuidValue("billingModelId", BillingModelId);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf1_modelType>("modelType", ModelType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CapacityModelType>("modelType", ModelType);
             writer.WriteIntValue("voiceCapacityThreshold", VoiceCapacityThreshold);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);

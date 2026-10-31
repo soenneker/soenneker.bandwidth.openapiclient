@@ -49,25 +49,25 @@ namespace Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortin
         /// <summary>
         /// Retrieves bulk port-in orders for the specified accountId.A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years. Please visit &lt;a href=&apos;/docs/numbers/porting/port-ins/bulkPortIns&apos;&gt;Guides and Tutorials&lt;/a&gt;
         /// </summary>
-        /// <returns>A <see cref="Stream"/></returns>
+        /// <returns>A <see cref="UntypedNode"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.BulkPortinsRequestBuilder.BulkPortinsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<UntypedNode?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.BulkPortinsRequestBuilder.BulkPortinsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.BulkPortinsRequestBuilder.BulkPortinsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<UntypedNode> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortins.BulkPortinsRequestBuilder.BulkPortinsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<UntypedNode>(requestInfo, UntypedNode.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &lt;p&gt;Creates a bulk port-in order to be used as a template for a collection of child port-in orders.  The template values will be cascaded to child port-ins that result from decomposing a collection of Telephone Numbers that span carriers, RespOrgs, or have attributes that drive the decomposition into a number of individual port-in orders.&lt;p&gt;&lt;/p&gt; Upon a successfully-submitted payload, the order will have a status of &quot;DRAFT&quot;, denoting that further modification to the template is expected.  For example, the next step is to use the /tnList endpoint to add a collection of telephone numbers to the bulk port-in order. The only valid value for the ProcessingStatus element in a POST is &apos;DRAFT&apos;, which is the default value. All parameters except for the URL parameter &quot;accountId&quot; are optional in the bulk port-in, although the rules for individual child port-ins described in the &lt;a href=&apos;/apis/numbers-apis/numbers/#tag/Porting/operation/CreatePortin&apos;&gt;POST /portins&lt;/a&gt; API still apply to the child port-ins that make up the bulk port-in. Enforcement of required fields in the child port-ins occurs when the bulk port-in is submitted (i.e. changed from a DRAFT status to IN_PROGRESS). Enforcement of required fields in the child port-ins occurs when the bulk port-in is submitted (i.e. changed from a DRAFT status to IN_PROGRESS). &lt;/p&gt;&lt;p&gt;Please visit &lt;a href=&apos;/docs/numbers/porting/port-ins/bulkPortIns&apos;&gt;Guides and Tutorials&lt;/a&gt;&lt;/p&gt;
         /// </summary>
-        /// <returns>A <see cref="Stream"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinResponseJson"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -75,11 +75,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortin
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinErrorResponseJson">When receiving a 409 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinRequestJson body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinResponseJson?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinRequestJson body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinRequestJson body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinResponseJson> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinRequestJson body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -91,7 +91,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.BulkPortins.Accounts.Item.BulkPortin
                 { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinResponseJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinResponseJson.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves bulk port-in orders for the specified accountId.A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years. Please visit &lt;a href=&apos;/docs/numbers/porting/port-ins/bulkPortIns&apos;&gt;Guides and Tutorials&lt;/a&gt;

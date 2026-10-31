@@ -49,17 +49,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Csrs
         /// <summary>
         /// Retrieves the CSR orders for the given account ID.Please visit &lt;a href=&apos;/docs/numbers/porting/port-ins/csrs&apos;&gt;Guides and Tutorials&lt;/a&gt;
         /// </summary>
-        /// <returns>A <see cref="Stream"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CsrResponsesJson"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CsrErrorResponseJson">When receiving a 400 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Csrs.CsrsRequestBuilder.CsrsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CsrResponsesJson?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Csrs.CsrsRequestBuilder.CsrsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Csrs.CsrsRequestBuilder.CsrsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CsrResponsesJson> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Csrs.CsrsRequestBuilder.CsrsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -69,23 +69,23 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Csrs
                 { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CsrResponsesJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CsrResponsesJson.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates the CSR order
         /// </summary>
-        /// <returns>A <see cref="Stream"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CsrOrderResponseJson"/></returns>
         /// <param name="body">JSON request body for creating or updating a CSR order.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CsrErrorResponseJson">When receiving a 400 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.CsrRequestJson body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CsrOrderResponseJson?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.CsrRequestJson body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.CsrRequestJson body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CsrOrderResponseJson> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.CsrRequestJson body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -96,7 +96,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Csrs
                 { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CsrOrderResponseJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CsrOrderResponseJson.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves the CSR orders for the given account ID.Please visit &lt;a href=&apos;/docs/numbers/porting/port-ins/csrs&apos;&gt;Guides and Tutorials&lt;/a&gt;

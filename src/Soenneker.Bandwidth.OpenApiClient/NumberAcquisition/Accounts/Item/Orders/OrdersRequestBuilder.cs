@@ -55,17 +55,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orde
         /// <summary>
         /// Retrieve order IDs and order details for previously attempted new phone number orders. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter (marked by &lt;b class=&quot;required&quot;&gt;*&lt;/b&gt; below) is provided, the order results will be limited to the last two years.&lt;p&gt;This request will return a list of the orders that match the criteria imposed by the provided query parameters.  The orders list contains a detailed description of each order.  Notice that the first elements of the payload provide link information that can be used to page through a paginated list of orders.  Pagination can be controlled by use of the size and page query parameters.&lt;/p&gt;&lt;p&gt;This order returns a &lt;code&gt;204: No Content&lt;/code&gt; when the endpoint finds no results matching the parameters provided.&lt;/p&gt;
         /// </summary>
-        /// <returns>A <see cref="Stream"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ListNewPhoneNumberOrders200ResponseJson"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionErrorResponseJson">When receiving a 400 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orders.OrdersRequestBuilder.OrdersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNewPhoneNumberOrders200ResponseJson?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orders.OrdersRequestBuilder.OrdersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orders.OrdersRequestBuilder.OrdersRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNewPhoneNumberOrders200ResponseJson> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orders.OrdersRequestBuilder.OrdersRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -75,23 +75,23 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orde
                 { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNewPhoneNumberOrders200ResponseJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.ListNewPhoneNumberOrders200ResponseJson.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &lt;span&gt;A POST to the /orders resource is used to request that the system provide one or more phone number(s) for use by the account. The post creates a new number order record to preserve the request, as well as the response of the Bandwidth App API to the request.  A well-formed POST on the /orders resource will create an order record, and return an order ID string that can be used to uniquely identify the new number order request. Capabilities that are not universally available are defined in the table below. The following request schemas and parameters are only allowed for numbers from specific region/country:| Number Region | Request Object Type | Request Parameter ||:--------------|:------------------|------------------||NANP|rateCenterSearchAndOrderType|-||NANP|areaCodeSearchAndOrderType|-||NANP|npaNxxSearchAndOrderType|-||NANP|tollFreeWildCharSearchAndOrderType|-||NANP|tollFreeVanitySearchAndOrderType|-||NANP|lataSearchAndOrderType|-||NANP|zipSearchAndOrderType|-||NANP|citySearchAndOrderType|-||NANP|stateSearchAndOrderType|-||NANP|combinedSearchAndOrderType|-||NANP|-|backOrderRequested||NANP|-|closeOrder||NANP|-|protected TnAttribute||NANP|-|reservationIdList in ExistingTelephoneNumberOrderType schema||International|countryAndPhoneNumberTypeSearchAndOrderType|backOrderRequested|&lt;p&gt;Please visit &lt;a href=&apos;/docs/numbers/guides/searchingForNumbers/&apos;&gt;Guides and Tutorials&lt;/a&gt; to learn more.&lt;/p&gt;
         /// </summary>
-        /// <returns>A <see cref="Stream"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJson"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder400ResponseSchemaJson">When receiving a 400 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrderRequestSchemaJson body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJson?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrderRequestSchemaJson body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrderRequestSchemaJson body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJson> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrderRequestSchemaJson body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -102,7 +102,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Orde
                 { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CreateNewPhoneNumberOrder201ResponseSchemaJson.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieve order IDs and order details for previously attempted new phone number orders. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter (marked by &lt;b class=&quot;required&quot;&gt;*&lt;/b&gt; below) is provided, the order results will be limited to the last two years.&lt;p&gt;This request will return a list of the orders that match the criteria imposed by the provided query parameters.  The orders list contains a detailed description of each order.  Notice that the first elements of the payload provide link information that can be used to page through a paginated list of orders.  Pagination can be controlled by use of the size and page query parameters.&lt;/p&gt;&lt;p&gt;This order returns a &lt;code&gt;204: No Content&lt;/code&gt; when the endpoint finds no results matching the parameters provided.&lt;/p&gt;

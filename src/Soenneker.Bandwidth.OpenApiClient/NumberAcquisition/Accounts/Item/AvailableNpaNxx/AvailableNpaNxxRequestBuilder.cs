@@ -36,18 +36,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Avai
         /// <summary>
         /// Retrieves the quantity of available phone numbers, grouped by NPA-NXX.
         /// </summary>
-        /// <returns>A <see cref="Stream"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AvailableNpaNxxSearchResponseJson"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionErrorResponseJson">When receiving a 400 status code</exception>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionErrorResponseJson">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.AvailableNpaNxx.AvailableNpaNxxRequestBuilder.AvailableNpaNxxRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.AvailableNpaNxxSearchResponseJson?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.AvailableNpaNxx.AvailableNpaNxxRequestBuilder.AvailableNpaNxxRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.AvailableNpaNxx.AvailableNpaNxxRequestBuilder.AvailableNpaNxxRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.AvailableNpaNxxSearchResponseJson> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.AvailableNpaNxx.AvailableNpaNxxRequestBuilder.AvailableNpaNxxRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -58,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberAcquisition.Accounts.Item.Avai
                 { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.AvailableNpaNxxSearchResponseJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.AvailableNpaNxxSearchResponseJson.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves the quantity of available phone numbers, grouped by NPA-NXX.

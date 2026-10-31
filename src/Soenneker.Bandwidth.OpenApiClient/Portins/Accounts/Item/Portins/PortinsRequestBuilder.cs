@@ -55,36 +55,36 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins
         /// <summary>
         /// Retrieves the port-in requests for the given account ID. &lt;p&gt;A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter (marked by &lt;b class=&quot;required&quot;&gt;*&lt;/b&gt; below) is provided, the order results will be limited to the last two years.&lt;/p&gt;
         /// </summary>
-        /// <returns>A <see cref="Stream"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsListResponseWrapperJson"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.PortinsRequestBuilder.PortinsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsListResponseWrapperJson?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.PortinsRequestBuilder.PortinsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.PortinsRequestBuilder.PortinsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsListResponseWrapperJson> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins.PortinsRequestBuilder.PortinsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsListResponseWrapperJson>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.PortinsListResponseWrapperJson.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a port-in order for the specified telephone number(s) and account number. &lt;br/&gt; Please visit &lt;a href=&apos;/docs/numbers/porting/port-ins/stand-alone-port-ins&apos;&gt;How to Create Port in&lt;/a&gt; guide. Also you can find more information about port types and numbers portability on &lt;a href=&apos;/docs/numbers/porting/port-ins/stand-alone-portins/lnpChecker&apos;&gt;How to check numbers portability&lt;/a&gt; guide
         /// </summary>
-        /// <returns>A <see cref="Stream"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreatePortin201Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderResponseJson">When receiving a 400 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.CreatePortinJsonRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CreatePortin201Response?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.CreatePortinJsonRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.CreatePortinJsonRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.CreatePortin201Response> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.CreatePortinJsonRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -95,7 +95,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Portins.Accounts.Item.Portins
                 { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CreatePortin201Response>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CreatePortin201Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves the port-in requests for the given account ID. &lt;p&gt;A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter (marked by &lt;b class=&quot;required&quot;&gt;*&lt;/b&gt; below) is provided, the order results will be limited to the last two years.&lt;/p&gt;

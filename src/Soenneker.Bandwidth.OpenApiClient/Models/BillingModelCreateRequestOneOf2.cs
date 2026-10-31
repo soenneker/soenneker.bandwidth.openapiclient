@@ -36,15 +36,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The modelType property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestOneOf2_modelType? ModelType { get => _explicitNullValueModelType; set { _explicitNullValueModelType = value; AdditionalData?.Remove("modelType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modelType"); else _explicitNullProperties?.Remove("modelType"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestOneOf2_modelType? _explicitNullValueModelType = default!;
-#nullable restore
-#else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestOneOf2_modelType ModelType { get => _explicitNullValueModelType; set { _explicitNullValueModelType = value; AdditionalData?.Remove("modelType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modelType"); else _explicitNullProperties?.Remove("modelType"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestOneOf2_modelType _explicitNullValueModelType = default!;
-#endif
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MeteredModelType? ModelType { get => _explicitNullValueModelType; set { _explicitNullValueModelType = value; AdditionalData?.Remove("modelType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modelType"); else _explicitNullProperties?.Remove("modelType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.MeteredModelType? _explicitNullValueModelType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestOneOf2"/> and sets the default values.
         /// </summary>
@@ -71,7 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "accountId", n => { AccountId = n.GetStringValue(); } },
-                { "modelType", n => { ModelType = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestOneOf2_modelType>(global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestOneOf2_modelType.CreateFromDiscriminatorValue); } },
+                { "modelType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MeteredModelType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueModelType = default; _explicitNullProperties?.Remove("modelType"); AdditionalData["modelType"] = unknown; } else { ModelType = parsed; AdditionalData.Remove("modelType"); } } },
             };
         }
         /// <summary>
@@ -82,7 +75,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("accountId", AccountId);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestOneOf2_modelType>("modelType", ModelType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MeteredModelType>("modelType", ModelType);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
