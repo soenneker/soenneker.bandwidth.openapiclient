@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("creditPackages") is { } nullNodeCreditPackages && nullNodeCreditPackages.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreditPackages = null;
+            if (parseNode.GetChildNode("creditPackages") is null) { _explicitNullValueCreditPackages = default!; _explicitNullProperties?.Remove("creditPackages"); }
+            else if (parseNode.GetChildNode("creditPackages") is { } nullNodeCreditPackages && nullNodeCreditPackages.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreditPackages = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The creditPackages property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreditPackage>? CreditPackages { get => _explicitNullValueCreditPackages; set { _explicitNullValueCreditPackages = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("creditPackages"); else _explicitNullProperties?.Remove("creditPackages"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreditPackage>? CreditPackages { get => _explicitNullValueCreditPackages; set { _explicitNullValueCreditPackages = value; AdditionalData?.Remove("creditPackages"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("creditPackages"); else _explicitNullProperties?.Remove("creditPackages"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreditPackage>? _explicitNullValueCreditPackages = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreditPackage> CreditPackages { get => _explicitNullValueCreditPackages; set { _explicitNullValueCreditPackages = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("creditPackages"); else _explicitNullProperties?.Remove("creditPackages"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreditPackage> CreditPackages { get => _explicitNullValueCreditPackages; set { _explicitNullValueCreditPackages = value; AdditionalData?.Remove("creditPackages"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("creditPackages"); else _explicitNullProperties?.Remove("creditPackages"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.CreditPackage> _explicitNullValueCreditPackages = default!;
 #endif
         /// <summary>

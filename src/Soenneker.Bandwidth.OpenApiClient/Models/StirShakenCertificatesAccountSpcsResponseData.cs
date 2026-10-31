@@ -18,9 +18,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("gan") is { } nullNodeGan && nullNodeGan.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Gan = null;
-            if (parseNode.GetChildNode("region") is { } nullNodeRegion && nullNodeRegion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Region = null;
-            if (parseNode.GetChildNode("spc") is { } nullNodeSpc && nullNodeSpc.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Spc = null;
+            if (parseNode.GetChildNode("gan") is null) { _explicitNullValueGan = default!; _explicitNullProperties?.Remove("gan"); }
+            else if (parseNode.GetChildNode("gan") is { } nullNodeGan && nullNodeGan.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Gan = null;
+            if (parseNode.GetChildNode("region") is null) { _explicitNullValueRegion = default!; _explicitNullProperties?.Remove("region"); }
+            else if (parseNode.GetChildNode("region") is { } nullNodeRegion && nullNodeRegion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Region = null;
+            if (parseNode.GetChildNode("spc") is null) { _explicitNullValueSpc = default!; _explicitNullProperties?.Remove("spc"); }
+            else if (parseNode.GetChildNode("spc") is { } nullNodeSpc && nullNodeSpc.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Spc = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -28,24 +31,24 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The Global Account Number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Gan { get => _explicitNullValueGan; set { _explicitNullValueGan = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("gan"); else _explicitNullProperties?.Remove("gan"); } }
+        public string? Gan { get => _explicitNullValueGan; set { _explicitNullValueGan = value; AdditionalData?.Remove("gan"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("gan"); else _explicitNullProperties?.Remove("gan"); } }
         private string? _explicitNullValueGan = default!;
 #nullable restore
 #else
-        public string Gan { get => _explicitNullValueGan; set { _explicitNullValueGan = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("gan"); else _explicitNullProperties?.Remove("gan"); } }
+        public string Gan { get => _explicitNullValueGan; set { _explicitNullValueGan = value; AdditionalData?.Remove("gan"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("gan"); else _explicitNullProperties?.Remove("gan"); } }
         private string _explicitNullValueGan = default!;
 #endif
         /// <summary>The region for the certificate.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegionAll? Region { get => _explicitNullValueRegion; set { _explicitNullValueRegion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("region"); else _explicitNullProperties?.Remove("region"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegionAll? Region { get => _explicitNullValueRegion; set { _explicitNullValueRegion = value; AdditionalData?.Remove("region"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("region"); else _explicitNullProperties?.Remove("region"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.RegionAll? _explicitNullValueRegion = default!;
         /// <summary>The Service Provider Code token.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Spc { get => _explicitNullValueSpc; set { _explicitNullValueSpc = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("spc"); else _explicitNullProperties?.Remove("spc"); } }
+        public string? Spc { get => _explicitNullValueSpc; set { _explicitNullValueSpc = value; AdditionalData?.Remove("spc"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("spc"); else _explicitNullProperties?.Remove("spc"); } }
         private string? _explicitNullValueSpc = default!;
 #nullable restore
 #else
-        public string Spc { get => _explicitNullValueSpc; set { _explicitNullValueSpc = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("spc"); else _explicitNullProperties?.Remove("spc"); } }
+        public string Spc { get => _explicitNullValueSpc; set { _explicitNullValueSpc = value; AdditionalData?.Remove("spc"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("spc"); else _explicitNullProperties?.Remove("spc"); } }
         private string _explicitNullValueSpc = default!;
 #endif
         /// <summary>
@@ -74,7 +77,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "gan", n => { Gan = n.GetStringValue(); } },
-                { "region", n => { Region = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegionAll>(); } },
+                { "region", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegionAll>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueRegion = default; _explicitNullProperties?.Remove("region"); AdditionalData["region"] = unknown; } else { Region = parsed; AdditionalData.Remove("region"); } } },
                 { "spc", n => { Spc = n.GetStringValue(); } },
             };
         }

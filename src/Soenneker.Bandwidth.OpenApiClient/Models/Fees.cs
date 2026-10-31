@@ -18,32 +18,36 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("cancellationFees") is { } nullNodeCancellationFees && nullNodeCancellationFees.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CancellationFees = null;
-            if (parseNode.GetChildNode("currency") is { } nullNodeCurrency && nullNodeCurrency.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Currency = null;
-            if (parseNode.GetChildNode("phoneNumberMonthlyFees") is { } nullNodePhoneNumberMonthlyFees && nullNodePhoneNumberMonthlyFees.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumberMonthlyFees = null;
-            if (parseNode.GetChildNode("portFees") is { } nullNodePortFees && nullNodePortFees.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PortFees = null;
+            if (parseNode.GetChildNode("cancellationFees") is null) { _explicitNullValueCancellationFees = default!; _explicitNullProperties?.Remove("cancellationFees"); }
+            else if (parseNode.GetChildNode("cancellationFees") is { } nullNodeCancellationFees && nullNodeCancellationFees.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CancellationFees = null;
+            if (parseNode.GetChildNode("currency") is null) { _explicitNullValueCurrency = default!; _explicitNullProperties?.Remove("currency"); }
+            else if (parseNode.GetChildNode("currency") is { } nullNodeCurrency && nullNodeCurrency.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Currency = null;
+            if (parseNode.GetChildNode("phoneNumberMonthlyFees") is null) { _explicitNullValuePhoneNumberMonthlyFees = default!; _explicitNullProperties?.Remove("phoneNumberMonthlyFees"); }
+            else if (parseNode.GetChildNode("phoneNumberMonthlyFees") is { } nullNodePhoneNumberMonthlyFees && nullNodePhoneNumberMonthlyFees.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumberMonthlyFees = null;
+            if (parseNode.GetChildNode("portFees") is null) { _explicitNullValuePortFees = default!; _explicitNullProperties?.Remove("portFees"); }
+            else if (parseNode.GetChildNode("portFees") is { } nullNodePortFees && nullNodePortFees.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PortFees = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Cancellation fees for a submitted number or a set of numbers.</summary>
-        public double? CancellationFees { get => _explicitNullValueCancellationFees; set { _explicitNullValueCancellationFees = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cancellationFees"); else _explicitNullProperties?.Remove("cancellationFees"); } }
+        public double? CancellationFees { get => _explicitNullValueCancellationFees; set { _explicitNullValueCancellationFees = value; AdditionalData?.Remove("cancellationFees"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cancellationFees"); else _explicitNullProperties?.Remove("cancellationFees"); } }
         private double? _explicitNullValueCancellationFees = default!;
         /// <summary>Currency of port-in fees, in ISO-4217 format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Currency { get => _explicitNullValueCurrency; set { _explicitNullValueCurrency = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currency"); else _explicitNullProperties?.Remove("currency"); } }
+        public string? Currency { get => _explicitNullValueCurrency; set { _explicitNullValueCurrency = value; AdditionalData?.Remove("currency"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currency"); else _explicitNullProperties?.Remove("currency"); } }
         private string? _explicitNullValueCurrency = default!;
 #nullable restore
 #else
-        public string Currency { get => _explicitNullValueCurrency; set { _explicitNullValueCurrency = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currency"); else _explicitNullProperties?.Remove("currency"); } }
+        public string Currency { get => _explicitNullValueCurrency; set { _explicitNullValueCurrency = value; AdditionalData?.Remove("currency"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currency"); else _explicitNullProperties?.Remove("currency"); } }
         private string _explicitNullValueCurrency = default!;
 #endif
         /// <summary>Monthly recurring charge for owning a number or a set of numbers.</summary>
-        public double? PhoneNumberMonthlyFees { get => _explicitNullValuePhoneNumberMonthlyFees; set { _explicitNullValuePhoneNumberMonthlyFees = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumberMonthlyFees"); else _explicitNullProperties?.Remove("phoneNumberMonthlyFees"); } }
+        public double? PhoneNumberMonthlyFees { get => _explicitNullValuePhoneNumberMonthlyFees; set { _explicitNullValuePhoneNumberMonthlyFees = value; AdditionalData?.Remove("phoneNumberMonthlyFees"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumberMonthlyFees"); else _explicitNullProperties?.Remove("phoneNumberMonthlyFees"); } }
         private double? _explicitNullValuePhoneNumberMonthlyFees = default!;
         /// <summary>Fees for porting-in a number or a set of numbers.</summary>
-        public double? PortFees { get => _explicitNullValuePortFees; set { _explicitNullValuePortFees = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("portFees"); else _explicitNullProperties?.Remove("portFees"); } }
+        public double? PortFees { get => _explicitNullValuePortFees; set { _explicitNullValuePortFees = value; AdditionalData?.Remove("portFees"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("portFees"); else _explicitNullProperties?.Remove("portFees"); } }
         private double? _explicitNullValuePortFees = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Fees"/> and sets the default values.

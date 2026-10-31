@@ -17,30 +17,25 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("region") is { } nullNodeRegion && nullNodeRegion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Region = null;
-            if (parseNode.GetChildNode("regionFr") is { } nullNodeRegionFr && nullNodeRegionFr.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RegionFr = null;
+            if (parseNode.GetChildNode("region") is null) { _explicitNullValueRegion = default!; _explicitNullProperties?.Remove("region"); }
+            else if (parseNode.GetChildNode("region") is { } nullNodeRegion && nullNodeRegion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Region = null;
+            if (parseNode.GetChildNode("regionFr") is null) { _explicitNullValueRegionFr = default!; _explicitNullProperties?.Remove("regionFr"); }
+            else if (parseNode.GetChildNode("regionFr") is { } nullNodeRegionFr && nullNodeRegionFr.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RegionFr = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The region property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Region { get => _explicitNullValueRegion; set { _explicitNullValueRegion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("region"); else _explicitNullProperties?.Remove("region"); } }
-        private string? _explicitNullValueRegion = default!;
-#nullable restore
-#else
-        public string Region { get => _explicitNullValueRegion; set { _explicitNullValueRegion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("region"); else _explicitNullProperties?.Remove("region"); } }
-        private string _explicitNullValueRegion = default!;
-#endif
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.FrRegion? Region { get => _explicitNullValueRegion; set { _explicitNullValueRegion = value; AdditionalData?.Remove("region"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("region"); else _explicitNullProperties?.Remove("region"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.FrRegion? _explicitNullValueRegion = default!;
         /// <summary>Contains stir/shaken certificate request data for the FR region</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionDataRegionFr? RegionFr { get => _explicitNullValueRegionFr; set { _explicitNullValueRegionFr = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("regionFr"); else _explicitNullProperties?.Remove("regionFr"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionDataRegionFr? RegionFr { get => _explicitNullValueRegionFr; set { _explicitNullValueRegionFr = value; AdditionalData?.Remove("regionFr"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("regionFr"); else _explicitNullProperties?.Remove("regionFr"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionDataRegionFr? _explicitNullValueRegionFr = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionDataRegionFr RegionFr { get => _explicitNullValueRegionFr; set { _explicitNullValueRegionFr = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("regionFr"); else _explicitNullProperties?.Remove("regionFr"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionDataRegionFr RegionFr { get => _explicitNullValueRegionFr; set { _explicitNullValueRegionFr = value; AdditionalData?.Remove("regionFr"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("regionFr"); else _explicitNullProperties?.Remove("regionFr"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionDataRegionFr _explicitNullValueRegionFr = default!;
 #endif
         /// <summary>
@@ -68,7 +63,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "region", n => { Region = n.GetStringValue(); } },
+                { "region", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FrRegion>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueRegion = default; _explicitNullProperties?.Remove("region"); AdditionalData["region"] = unknown; } else { Region = parsed; AdditionalData.Remove("region"); } } },
                 { "regionFr", n => { RegionFr = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionDataRegionFr>(global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionDataRegionFr.CreateFromDiscriminatorValue); } },
             };
         }
@@ -79,7 +74,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("region", Region);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FrRegion>("region", Region);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenCertificatesAccountPutRequestDataRegionDataRegionFr>("regionFr", RegionFr);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);

@@ -17,17 +17,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("evpId") is { } nullNodeEvpId && nullNodeEvpId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EvpId = null;
-            if (parseNode.GetChildNode("vettingClass") is { } nullNodeVettingClass && nullNodeVettingClass.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VettingClass = null;
+            if (parseNode.GetChildNode("evpId") is null) { _explicitNullValueEvpId = default!; _explicitNullProperties?.Remove("evpId"); }
+            else if (parseNode.GetChildNode("evpId") is { } nullNodeEvpId && nullNodeEvpId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EvpId = null;
+            if (parseNode.GetChildNode("vettingClass") is null) { _explicitNullValueVettingClass = default!; _explicitNullProperties?.Remove("vettingClass"); }
+            else if (parseNode.GetChildNode("vettingClass") is { } nullNodeVettingClass && nullNodeVettingClass.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VettingClass = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The external vetting companies that can be used to vet brands. Aegis Mobile accepts standard, enhanced, political, Auth+, and RCS vetting requests; Campaign Verify (CV) vets federal political brands (import only); WMC Global supports standard vetting.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingProviderId? EvpId { get => _explicitNullValueEvpId; set { _explicitNullValueEvpId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("evpId"); else _explicitNullProperties?.Remove("evpId"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingProviderId? EvpId { get => _explicitNullValueEvpId; set { _explicitNullValueEvpId = value; AdditionalData?.Remove("evpId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("evpId"); else _explicitNullProperties?.Remove("evpId"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingProviderId? _explicitNullValueEvpId = default!;
         /// <summary>The type of external vetting represented by the vetting being appealed.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingClass? VettingClass { get => _explicitNullValueVettingClass; set { _explicitNullValueVettingClass = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("vettingClass"); else _explicitNullProperties?.Remove("vettingClass"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingClass? VettingClass { get => _explicitNullValueVettingClass; set { _explicitNullValueVettingClass = value; AdditionalData?.Remove("vettingClass"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("vettingClass"); else _explicitNullProperties?.Remove("vettingClass"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingClass? _explicitNullValueVettingClass = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RequestVettingBody"/> and sets the default values.
@@ -54,8 +56,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "evpId", n => { EvpId = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingProviderId>(); } },
-                { "vettingClass", n => { VettingClass = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingClass>(); } },
+                { "evpId", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingProviderId>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueEvpId = default; _explicitNullProperties?.Remove("evpId"); AdditionalData["evpId"] = unknown; } else { EvpId = parsed; AdditionalData.Remove("evpId"); } } },
+                { "vettingClass", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumVettingClass>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueVettingClass = default; _explicitNullProperties?.Remove("vettingClass"); AdditionalData["vettingClass"] = unknown; } else { VettingClass = parsed; AdditionalData.Remove("vettingClass"); } } },
             };
         }
         /// <summary>

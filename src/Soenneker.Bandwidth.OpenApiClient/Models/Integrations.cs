@@ -18,34 +18,37 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("currentVoiceIntegrationId") is { } nullNodeCurrentVoiceIntegrationId && nullNodeCurrentVoiceIntegrationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CurrentVoiceIntegrationId = null;
-            if (parseNode.GetChildNode("tasks") is { } nullNodeTasks && nullNodeTasks.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tasks = null;
-            if (parseNode.GetChildNode("voiceIntegrationType") is { } nullNodeVoiceIntegrationType && nullNodeVoiceIntegrationType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoiceIntegrationType = null;
+            if (parseNode.GetChildNode("currentVoiceIntegrationId") is null) { _explicitNullValueCurrentVoiceIntegrationId = default!; _explicitNullProperties?.Remove("currentVoiceIntegrationId"); }
+            else if (parseNode.GetChildNode("currentVoiceIntegrationId") is { } nullNodeCurrentVoiceIntegrationId && nullNodeCurrentVoiceIntegrationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CurrentVoiceIntegrationId = null;
+            if (parseNode.GetChildNode("tasks") is null) { _explicitNullValueTasks = default!; _explicitNullProperties?.Remove("tasks"); }
+            else if (parseNode.GetChildNode("tasks") is { } nullNodeTasks && nullNodeTasks.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tasks = null;
+            if (parseNode.GetChildNode("voiceIntegrationType") is null) { _explicitNullValueVoiceIntegrationType = default!; _explicitNullProperties?.Remove("voiceIntegrationType"); }
+            else if (parseNode.GetChildNode("voiceIntegrationType") is { } nullNodeVoiceIntegrationType && nullNodeVoiceIntegrationType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoiceIntegrationType = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>A unique identifier referencing a voice integration.</summary>
-        public Guid? CurrentVoiceIntegrationId { get => _explicitNullValueCurrentVoiceIntegrationId; set { _explicitNullValueCurrentVoiceIntegrationId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentVoiceIntegrationId"); else _explicitNullProperties?.Remove("currentVoiceIntegrationId"); } }
+        public Guid? CurrentVoiceIntegrationId { get => _explicitNullValueCurrentVoiceIntegrationId; set { _explicitNullValueCurrentVoiceIntegrationId = value; AdditionalData?.Remove("currentVoiceIntegrationId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentVoiceIntegrationId"); else _explicitNullProperties?.Remove("currentVoiceIntegrationId"); } }
         private Guid? _explicitNullValueCurrentVoiceIntegrationId = default!;
         /// <summary>Async bulk provisioning task details.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TasksItem>? Tasks { get => _explicitNullValueTasks; set { _explicitNullValueTasks = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tasks"); else _explicitNullProperties?.Remove("tasks"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TasksItem>? Tasks { get => _explicitNullValueTasks; set { _explicitNullValueTasks = value; AdditionalData?.Remove("tasks"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tasks"); else _explicitNullProperties?.Remove("tasks"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.TasksItem>? _explicitNullValueTasks = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TasksItem> Tasks { get => _explicitNullValueTasks; set { _explicitNullValueTasks = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tasks"); else _explicitNullProperties?.Remove("tasks"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TasksItem> Tasks { get => _explicitNullValueTasks; set { _explicitNullValueTasks = value; AdditionalData?.Remove("tasks"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tasks"); else _explicitNullProperties?.Remove("tasks"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.TasksItem> _explicitNullValueTasks = default!;
 #endif
         /// <summary>The integration type associated with the phone number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? VoiceIntegrationType { get => _explicitNullValueVoiceIntegrationType; set { _explicitNullValueVoiceIntegrationType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceIntegrationType"); else _explicitNullProperties?.Remove("voiceIntegrationType"); } }
+        public string? VoiceIntegrationType { get => _explicitNullValueVoiceIntegrationType; set { _explicitNullValueVoiceIntegrationType = value; AdditionalData?.Remove("voiceIntegrationType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceIntegrationType"); else _explicitNullProperties?.Remove("voiceIntegrationType"); } }
         private string? _explicitNullValueVoiceIntegrationType = default!;
 #nullable restore
 #else
-        public string VoiceIntegrationType { get => _explicitNullValueVoiceIntegrationType; set { _explicitNullValueVoiceIntegrationType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceIntegrationType"); else _explicitNullProperties?.Remove("voiceIntegrationType"); } }
+        public string VoiceIntegrationType { get => _explicitNullValueVoiceIntegrationType; set { _explicitNullValueVoiceIntegrationType = value; AdditionalData?.Remove("voiceIntegrationType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceIntegrationType"); else _explicitNullProperties?.Remove("voiceIntegrationType"); } }
         private string _explicitNullValueVoiceIntegrationType = default!;
 #endif
         /// <summary>

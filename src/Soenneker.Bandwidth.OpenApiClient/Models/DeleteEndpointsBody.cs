@@ -18,7 +18,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("endpointIds") is { } nullNodeEndpointIds && nullNodeEndpointIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EndpointIds = null;
+            if (parseNode.GetChildNode("endpointIds") is null) { _explicitNullValueEndpointIds = default!; _explicitNullProperties?.Remove("endpointIds"); }
+            else if (parseNode.GetChildNode("endpointIds") is { } nullNodeEndpointIds && nullNodeEndpointIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EndpointIds = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The endpointIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? EndpointIds { get => _explicitNullValueEndpointIds; set { _explicitNullValueEndpointIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endpointIds"); else _explicitNullProperties?.Remove("endpointIds"); } }
+        public List<string>? EndpointIds { get => _explicitNullValueEndpointIds; set { _explicitNullValueEndpointIds = value; AdditionalData?.Remove("endpointIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endpointIds"); else _explicitNullProperties?.Remove("endpointIds"); } }
         private List<string>? _explicitNullValueEndpointIds = default!;
 #nullable restore
 #else
-        public List<string> EndpointIds { get => _explicitNullValueEndpointIds; set { _explicitNullValueEndpointIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endpointIds"); else _explicitNullProperties?.Remove("endpointIds"); } }
+        public List<string> EndpointIds { get => _explicitNullValueEndpointIds; set { _explicitNullValueEndpointIds = value; AdditionalData?.Remove("endpointIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endpointIds"); else _explicitNullProperties?.Remove("endpointIds"); } }
         private List<string> _explicitNullValueEndpointIds = default!;
 #endif
         /// <summary>

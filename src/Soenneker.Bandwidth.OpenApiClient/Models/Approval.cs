@@ -18,55 +18,63 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("brandDailyCap") is { } nullNodeBrandDailyCap && nullNodeBrandDailyCap.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BrandDailyCap = null;
-            if (parseNode.GetChildNode("brandTier") is { } nullNodeBrandTier && nullNodeBrandTier.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BrandTier = null;
-            if (parseNode.GetChildNode("decision") is { } nullNodeDecision && nullNodeDecision.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Decision = null;
-            if (parseNode.GetChildNode("messageClass") is { } nullNodeMessageClass && nullNodeMessageClass.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessageClass = null;
-            if (parseNode.GetChildNode("mmsTpm") is { } nullNodeMmsTpm && nullNodeMmsTpm.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MmsTpm = null;
-            if (parseNode.GetChildNode("partnerId") is { } nullNodePartnerId && nullNodePartnerId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PartnerId = null;
-            if (parseNode.GetChildNode("reason") is { } nullNodeReason && nullNodeReason.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Reason = null;
-            if (parseNode.GetChildNode("tpm") is { } nullNodeTpm && nullNodeTpm.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tpm = null;
+            if (parseNode.GetChildNode("brandDailyCap") is null) { _explicitNullValueBrandDailyCap = default!; _explicitNullProperties?.Remove("brandDailyCap"); }
+            else if (parseNode.GetChildNode("brandDailyCap") is { } nullNodeBrandDailyCap && nullNodeBrandDailyCap.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BrandDailyCap = null;
+            if (parseNode.GetChildNode("brandTier") is null) { _explicitNullValueBrandTier = default!; _explicitNullProperties?.Remove("brandTier"); }
+            else if (parseNode.GetChildNode("brandTier") is { } nullNodeBrandTier && nullNodeBrandTier.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BrandTier = null;
+            if (parseNode.GetChildNode("decision") is null) { _explicitNullValueDecision = default!; _explicitNullProperties?.Remove("decision"); }
+            else if (parseNode.GetChildNode("decision") is { } nullNodeDecision && nullNodeDecision.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Decision = null;
+            if (parseNode.GetChildNode("messageClass") is null) { _explicitNullValueMessageClass = default!; _explicitNullProperties?.Remove("messageClass"); }
+            else if (parseNode.GetChildNode("messageClass") is { } nullNodeMessageClass && nullNodeMessageClass.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessageClass = null;
+            if (parseNode.GetChildNode("mmsTpm") is null) { _explicitNullValueMmsTpm = default!; _explicitNullProperties?.Remove("mmsTpm"); }
+            else if (parseNode.GetChildNode("mmsTpm") is { } nullNodeMmsTpm && nullNodeMmsTpm.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MmsTpm = null;
+            if (parseNode.GetChildNode("partnerId") is null) { _explicitNullValuePartnerId = default!; _explicitNullProperties?.Remove("partnerId"); }
+            else if (parseNode.GetChildNode("partnerId") is { } nullNodePartnerId && nullNodePartnerId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PartnerId = null;
+            if (parseNode.GetChildNode("reason") is null) { _explicitNullValueReason = default!; _explicitNullProperties?.Remove("reason"); }
+            else if (parseNode.GetChildNode("reason") is { } nullNodeReason && nullNodeReason.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Reason = null;
+            if (parseNode.GetChildNode("tpm") is null) { _explicitNullValueTpm = default!; _explicitNullProperties?.Remove("tpm"); }
+            else if (parseNode.GetChildNode("tpm") is { } nullNodeTpm && nullNodeTpm.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tpm = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>T-Mobile daily message quota, applying across campaigns and CSPs.</summary>
-        public int? BrandDailyCap { get => _explicitNullValueBrandDailyCap; set { _explicitNullValueBrandDailyCap = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("brandDailyCap"); else _explicitNullProperties?.Remove("brandDailyCap"); } }
+        public int? BrandDailyCap { get => _explicitNullValueBrandDailyCap; set { _explicitNullValueBrandDailyCap = value; AdditionalData?.Remove("brandDailyCap"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("brandDailyCap"); else _explicitNullProperties?.Remove("brandDailyCap"); } }
         private int? _explicitNullValueBrandDailyCap = default!;
         /// <summary>T-Mobile daily message volume is restricted based on brand tier, applying across campaigns and CSPs.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumTmobileBrandTier? BrandTier { get => _explicitNullValueBrandTier; set { _explicitNullValueBrandTier = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("brandTier"); else _explicitNullProperties?.Remove("brandTier"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumTmobileBrandTier? BrandTier { get => _explicitNullValueBrandTier; set { _explicitNullValueBrandTier = value; AdditionalData?.Remove("brandTier"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("brandTier"); else _explicitNullProperties?.Remove("brandTier"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.EnumTmobileBrandTier? _explicitNullValueBrandTier = default!;
         /// <summary>The approval status for a connectivity partner or carrier. **Note** that these values differ as they are communicated by TCR for connectivity partners or carriers. We are standardizing on the values expressed for the connectivity partners, plus suspended (only carriers can suspend a campaign).</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumApprovalDecision? Decision { get => _explicitNullValueDecision; set { _explicitNullValueDecision = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("decision"); else _explicitNullProperties?.Remove("decision"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumApprovalDecision? Decision { get => _explicitNullValueDecision; set { _explicitNullValueDecision = value; AdditionalData?.Remove("decision"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("decision"); else _explicitNullProperties?.Remove("decision"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.EnumApprovalDecision? _explicitNullValueDecision = default!;
         /// <summary>AT&amp;T message class qualified by brand for a desired use case.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? MessageClass { get => _explicitNullValueMessageClass; set { _explicitNullValueMessageClass = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messageClass"); else _explicitNullProperties?.Remove("messageClass"); } }
+        public string? MessageClass { get => _explicitNullValueMessageClass; set { _explicitNullValueMessageClass = value; AdditionalData?.Remove("messageClass"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messageClass"); else _explicitNullProperties?.Remove("messageClass"); } }
         private string? _explicitNullValueMessageClass = default!;
 #nullable restore
 #else
-        public string MessageClass { get => _explicitNullValueMessageClass; set { _explicitNullValueMessageClass = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messageClass"); else _explicitNullProperties?.Remove("messageClass"); } }
+        public string MessageClass { get => _explicitNullValueMessageClass; set { _explicitNullValueMessageClass = value; AdditionalData?.Remove("messageClass"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messageClass"); else _explicitNullProperties?.Remove("messageClass"); } }
         private string _explicitNullValueMessageClass = default!;
 #endif
         /// <summary>AT&amp;T MMS message segment throughput per minute, qualified by the brand for a desired use case.</summary>
-        public int? MmsTpm { get => _explicitNullValueMmsTpm; set { _explicitNullValueMmsTpm = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("mmsTpm"); else _explicitNullProperties?.Remove("mmsTpm"); } }
+        public int? MmsTpm { get => _explicitNullValueMmsTpm; set { _explicitNullValueMmsTpm = value; AdditionalData?.Remove("mmsTpm"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("mmsTpm"); else _explicitNullProperties?.Remove("mmsTpm"); } }
         private int? _explicitNullValueMmsTpm = default!;
         /// <summary>The carrier or connectivity partner from whom we need an approval to send messages under a specific campaign.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumPartnerId? PartnerId { get => _explicitNullValuePartnerId; set { _explicitNullValuePartnerId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("partnerId"); else _explicitNullProperties?.Remove("partnerId"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumPartnerId? PartnerId { get => _explicitNullValuePartnerId; set { _explicitNullValuePartnerId = value; AdditionalData?.Remove("partnerId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("partnerId"); else _explicitNullProperties?.Remove("partnerId"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.EnumPartnerId? _explicitNullValuePartnerId = default!;
         /// <summary>If the campaign was declined, we expect to receive an explanation as to why the carrier rejected the campaign, and that will be provided here. If the reason is longer than 2,048 characters, it will be silently truncated.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Reason { get => _explicitNullValueReason; set { _explicitNullValueReason = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reason"); else _explicitNullProperties?.Remove("reason"); } }
+        public string? Reason { get => _explicitNullValueReason; set { _explicitNullValueReason = value; AdditionalData?.Remove("reason"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reason"); else _explicitNullProperties?.Remove("reason"); } }
         private string? _explicitNullValueReason = default!;
 #nullable restore
 #else
-        public string Reason { get => _explicitNullValueReason; set { _explicitNullValueReason = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reason"); else _explicitNullProperties?.Remove("reason"); } }
+        public string Reason { get => _explicitNullValueReason; set { _explicitNullValueReason = value; AdditionalData?.Remove("reason"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reason"); else _explicitNullProperties?.Remove("reason"); } }
         private string _explicitNullValueReason = default!;
 #endif
         /// <summary>AT&amp;T SMS message segment throughput per minute, qualified by the brand for a desired use case.</summary>
-        public int? Tpm { get => _explicitNullValueTpm; set { _explicitNullValueTpm = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tpm"); else _explicitNullProperties?.Remove("tpm"); } }
+        public int? Tpm { get => _explicitNullValueTpm; set { _explicitNullValueTpm = value; AdditionalData?.Remove("tpm"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tpm"); else _explicitNullProperties?.Remove("tpm"); } }
         private int? _explicitNullValueTpm = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.Approval"/> and sets the default values.
@@ -94,11 +102,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "brandDailyCap", n => { BrandDailyCap = n.GetIntValue(); } },
-                { "brandTier", n => { BrandTier = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumTmobileBrandTier>(); } },
-                { "decision", n => { Decision = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumApprovalDecision>(); } },
+                { "brandTier", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumTmobileBrandTier>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueBrandTier = default; _explicitNullProperties?.Remove("brandTier"); AdditionalData["brandTier"] = unknown; } else { BrandTier = parsed; AdditionalData.Remove("brandTier"); } } },
+                { "decision", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumApprovalDecision>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueDecision = default; _explicitNullProperties?.Remove("decision"); AdditionalData["decision"] = unknown; } else { Decision = parsed; AdditionalData.Remove("decision"); } } },
                 { "messageClass", n => { MessageClass = n.GetStringValue(); } },
                 { "mmsTpm", n => { MmsTpm = n.GetIntValue(); } },
-                { "partnerId", n => { PartnerId = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumPartnerId>(); } },
+                { "partnerId", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumPartnerId>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValuePartnerId = default; _explicitNullProperties?.Remove("partnerId"); AdditionalData["partnerId"] = unknown; } else { PartnerId = parsed; AdditionalData.Remove("partnerId"); } } },
                 { "reason", n => { Reason = n.GetStringValue(); } },
                 { "tpm", n => { Tpm = n.GetIntValue(); } },
             };

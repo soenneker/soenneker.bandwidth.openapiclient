@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("serviceActivationOrders") is { } nullNodeServiceActivationOrders && nullNodeServiceActivationOrders.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ServiceActivationOrders = null;
+            if (parseNode.GetChildNode("serviceActivationOrders") is null) { _explicitNullValueServiceActivationOrders = default!; _explicitNullProperties?.Remove("serviceActivationOrders"); }
+            else if (parseNode.GetChildNode("serviceActivationOrders") is { } nullNodeServiceActivationOrders && nullNodeServiceActivationOrders.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ServiceActivationOrders = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The serviceActivationOrders property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseDataServiceActivationOrdersItem>? ServiceActivationOrders { get => _explicitNullValueServiceActivationOrders; set { _explicitNullValueServiceActivationOrders = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("serviceActivationOrders"); else _explicitNullProperties?.Remove("serviceActivationOrders"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseDataServiceActivationOrdersItem>? ServiceActivationOrders { get => _explicitNullValueServiceActivationOrders; set { _explicitNullValueServiceActivationOrders = value; AdditionalData?.Remove("serviceActivationOrders"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("serviceActivationOrders"); else _explicitNullProperties?.Remove("serviceActivationOrders"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseDataServiceActivationOrdersItem>? _explicitNullValueServiceActivationOrders = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseDataServiceActivationOrdersItem> ServiceActivationOrders { get => _explicitNullValueServiceActivationOrders; set { _explicitNullValueServiceActivationOrders = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("serviceActivationOrders"); else _explicitNullProperties?.Remove("serviceActivationOrders"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseDataServiceActivationOrdersItem> ServiceActivationOrders { get => _explicitNullValueServiceActivationOrders; set { _explicitNullValueServiceActivationOrders = value; AdditionalData?.Remove("serviceActivationOrders"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("serviceActivationOrders"); else _explicitNullProperties?.Remove("serviceActivationOrders"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationOrderSearchResponseDataServiceActivationOrdersItem> _explicitNullValueServiceActivationOrders = default!;
 #endif
         /// <summary>

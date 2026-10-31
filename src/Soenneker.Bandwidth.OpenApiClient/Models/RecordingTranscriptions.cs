@@ -17,8 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("clips") is { } nullNodeClips && nullNodeClips.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Clips = null;
-            if (parseNode.GetChildNode("transcripts") is { } nullNodeTranscripts && nullNodeTranscripts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Transcripts = null;
+            if (parseNode.GetChildNode("clips") is null) { _explicitNullValueClips = default!; _explicitNullProperties?.Remove("clips"); }
+            else if (parseNode.GetChildNode("clips") is { } nullNodeClips && nullNodeClips.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Clips = null;
+            if (parseNode.GetChildNode("transcripts") is null) { _explicitNullValueTranscripts = default!; _explicitNullProperties?.Remove("transcripts"); }
+            else if (parseNode.GetChildNode("transcripts") is { } nullNodeTranscripts && nullNodeTranscripts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Transcripts = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,21 +28,21 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>A list of individual speech clips with speaker, timing, and confidence information.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RecordingTranscriptionClip>? Clips { get => _explicitNullValueClips; set { _explicitNullValueClips = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("clips"); else _explicitNullProperties?.Remove("clips"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RecordingTranscriptionClip>? Clips { get => _explicitNullValueClips; set { _explicitNullValueClips = value; AdditionalData?.Remove("clips"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("clips"); else _explicitNullProperties?.Remove("clips"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.RecordingTranscriptionClip>? _explicitNullValueClips = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RecordingTranscriptionClip> Clips { get => _explicitNullValueClips; set { _explicitNullValueClips = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("clips"); else _explicitNullProperties?.Remove("clips"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RecordingTranscriptionClip> Clips { get => _explicitNullValueClips; set { _explicitNullValueClips = value; AdditionalData?.Remove("clips"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("clips"); else _explicitNullProperties?.Remove("clips"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.RecordingTranscriptionClip> _explicitNullValueClips = default!;
 #endif
         /// <summary>The transcripts property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Transcription>? Transcripts { get => _explicitNullValueTranscripts; set { _explicitNullValueTranscripts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transcripts"); else _explicitNullProperties?.Remove("transcripts"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Transcription>? Transcripts { get => _explicitNullValueTranscripts; set { _explicitNullValueTranscripts = value; AdditionalData?.Remove("transcripts"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transcripts"); else _explicitNullProperties?.Remove("transcripts"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.Transcription>? _explicitNullValueTranscripts = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Transcription> Transcripts { get => _explicitNullValueTranscripts; set { _explicitNullValueTranscripts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transcripts"); else _explicitNullProperties?.Remove("transcripts"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Transcription> Transcripts { get => _explicitNullValueTranscripts; set { _explicitNullValueTranscripts = value; AdditionalData?.Remove("transcripts"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transcripts"); else _explicitNullProperties?.Remove("transcripts"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.Transcription> _explicitNullValueTranscripts = default!;
 #endif
         /// <summary>

@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("voiceUri") is { } nullNodeVoiceUri && nullNodeVoiceUri.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoiceUri = null;
+            if (parseNode.GetChildNode("voiceUri") is null) { _explicitNullValueVoiceUri = default!; _explicitNullProperties?.Remove("voiceUri"); }
+            else if (parseNode.GetChildNode("voiceUri") is { } nullNodeVoiceUri && nullNodeVoiceUri.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoiceUri = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The voiceUri property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUriBody? VoiceUri { get => _explicitNullValueVoiceUri; set { _explicitNullValueVoiceUri = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceUri"); else _explicitNullProperties?.Remove("voiceUri"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUriBody? VoiceUri { get => _explicitNullValueVoiceUri; set { _explicitNullValueVoiceUri = value; AdditionalData?.Remove("voiceUri"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceUri"); else _explicitNullProperties?.Remove("voiceUri"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUriBody? _explicitNullValueVoiceUri = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUriBody VoiceUri { get => _explicitNullValueVoiceUri; set { _explicitNullValueVoiceUri = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceUri"); else _explicitNullProperties?.Remove("voiceUri"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUriBody VoiceUri { get => _explicitNullValueVoiceUri; set { _explicitNullValueVoiceUri = value; AdditionalData?.Remove("voiceUri"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceUri"); else _explicitNullProperties?.Remove("voiceUri"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.SaveVoiceUriBody _explicitNullValueVoiceUri = default!;
 #endif
         /// <summary>

@@ -18,7 +18,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("requirementsSets") is { } nullNodeRequirementsSets && nullNodeRequirementsSets.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RequirementsSets = null;
+            if (parseNode.GetChildNode("requirementsSets") is null) { _explicitNullValueRequirementsSets = default!; _explicitNullProperties?.Remove("requirementsSets"); }
+            else if (parseNode.GetChildNode("requirementsSets") is { } nullNodeRequirementsSets && nullNodeRequirementsSets.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RequirementsSets = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The requirementsSets property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationRequirementsData>? RequirementsSets { get => _explicitNullValueRequirementsSets; set { _explicitNullValueRequirementsSets = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requirementsSets"); else _explicitNullProperties?.Remove("requirementsSets"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationRequirementsData>? RequirementsSets { get => _explicitNullValueRequirementsSets; set { _explicitNullValueRequirementsSets = value; AdditionalData?.Remove("requirementsSets"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requirementsSets"); else _explicitNullProperties?.Remove("requirementsSets"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationRequirementsData>? _explicitNullValueRequirementsSets = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationRequirementsData> RequirementsSets { get => _explicitNullValueRequirementsSets; set { _explicitNullValueRequirementsSets = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requirementsSets"); else _explicitNullProperties?.Remove("requirementsSets"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationRequirementsData> RequirementsSets { get => _explicitNullValueRequirementsSets; set { _explicitNullValueRequirementsSets = value; AdditionalData?.Remove("requirementsSets"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requirementsSets"); else _explicitNullProperties?.Remove("requirementsSets"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberActivationRequirementsData> _explicitNullValueRequirementsSets = default!;
 #endif
         /// <summary>

@@ -109,7 +109,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Regulation.Address
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Global.Regulation.Address.AddressRequestBuilder.AddressRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/global/regulation/address?pageNumber={pageNumber}&pageSize={pageSize}{&buildingNumber*,city*,companyName*,countryCodeA3*,customerReference*,firstName*,lastName*,linked*,regulationAddressId*,status*,streetName*,zipCode*}", PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, global::Soenneker.OpenApi.Generated.OpenApiServiceRoutes.Resolve("{+baseurl}/global/regulation/address?pageNumber={pageNumber}&pageSize={pageSize}{&buildingNumber*,city*,companyName*,countryCodeA3*,customerReference*,firstName*,lastName*,linked*,regulationAddressId*,status*,streetName*,zipCode*}", RequestAdapter.BaseUrl, "https://api.voxbone.com/v1", "/global/regulation/address", PathParameters.ContainsKey("request-raw-url")), PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -131,7 +131,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Regulation.Address
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PUT, global::Soenneker.OpenApi.Generated.OpenApiServiceRoutes.Resolve(UrlTemplate, RequestAdapter.BaseUrl, "https://api.voxbone.com/v1", "/global/regulation/address", PathParameters.ContainsKey("request-raw-url")), PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "multipart/form-data", body);

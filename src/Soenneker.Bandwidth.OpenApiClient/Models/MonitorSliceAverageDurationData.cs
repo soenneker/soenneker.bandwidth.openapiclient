@@ -17,13 +17,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("averageDuration") is { } nullNodeAverageDuration && nullNodeAverageDuration.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AverageDuration = null;
+            if (parseNode.GetChildNode("averageDuration") is null) { _explicitNullValueAverageDuration = default!; _explicitNullProperties?.Remove("averageDuration"); }
+            else if (parseNode.GetChildNode("averageDuration") is { } nullNodeAverageDuration && nullNodeAverageDuration.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AverageDuration = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Average call duration in seconds</summary>
-        public float? AverageDuration { get => _explicitNullValueAverageDuration; set { _explicitNullValueAverageDuration = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("averageDuration"); else _explicitNullProperties?.Remove("averageDuration"); } }
+        public float? AverageDuration { get => _explicitNullValueAverageDuration; set { _explicitNullValueAverageDuration = value; AdditionalData?.Remove("averageDuration"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("averageDuration"); else _explicitNullProperties?.Remove("averageDuration"); } }
         private float? _explicitNullValueAverageDuration = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorSliceAverageDurationData"/> and sets the default values.

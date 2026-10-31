@@ -18,8 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("globalMessages") is { } nullNodeGlobalMessages && nullNodeGlobalMessages.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) GlobalMessages = null;
-            if (parseNode.GetChildNode("message") is { } nullNodeMessageEscaped && nullNodeMessageEscaped.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessageEscaped = null;
+            if (parseNode.GetChildNode("globalMessages") is null) { _explicitNullValueGlobalMessages = default!; _explicitNullProperties?.Remove("globalMessages"); }
+            else if (parseNode.GetChildNode("globalMessages") is { } nullNodeGlobalMessages && nullNodeGlobalMessages.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) GlobalMessages = null;
+            if (parseNode.GetChildNode("message") is null) { _explicitNullValueMessageEscaped = default!; _explicitNullProperties?.Remove("message"); }
+            else if (parseNode.GetChildNode("message") is { } nullNodeMessageEscaped && nullNodeMessageEscaped.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessageEscaped = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,11 +29,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The globalMessages property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.InternalServerErrorResponseSchemaGlobalMessagesItem>? GlobalMessages { get => _explicitNullValueGlobalMessages; set { _explicitNullValueGlobalMessages = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("globalMessages"); else _explicitNullProperties?.Remove("globalMessages"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.InternalServerErrorResponseSchemaGlobalMessagesItem>? GlobalMessages { get => _explicitNullValueGlobalMessages; set { _explicitNullValueGlobalMessages = value; AdditionalData?.Remove("globalMessages"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("globalMessages"); else _explicitNullProperties?.Remove("globalMessages"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.InternalServerErrorResponseSchemaGlobalMessagesItem>? _explicitNullValueGlobalMessages = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.InternalServerErrorResponseSchemaGlobalMessagesItem> GlobalMessages { get => _explicitNullValueGlobalMessages; set { _explicitNullValueGlobalMessages = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("globalMessages"); else _explicitNullProperties?.Remove("globalMessages"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.InternalServerErrorResponseSchemaGlobalMessagesItem> GlobalMessages { get => _explicitNullValueGlobalMessages; set { _explicitNullValueGlobalMessages = value; AdditionalData?.Remove("globalMessages"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("globalMessages"); else _explicitNullProperties?.Remove("globalMessages"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.InternalServerErrorResponseSchemaGlobalMessagesItem> _explicitNullValueGlobalMessages = default!;
 #endif
         /// <summary>The primary error message.</summary>
@@ -39,11 +41,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The primary error message.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? MessageEscaped { get => _explicitNullValueMessageEscaped; set { _explicitNullValueMessageEscaped = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("message"); else _explicitNullProperties?.Remove("message"); } }
+        public string? MessageEscaped { get => _explicitNullValueMessageEscaped; set { _explicitNullValueMessageEscaped = value; AdditionalData?.Remove("message"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("message"); else _explicitNullProperties?.Remove("message"); } }
         private string? _explicitNullValueMessageEscaped = default!;
 #nullable restore
 #else
-        public string MessageEscaped { get => _explicitNullValueMessageEscaped; set { _explicitNullValueMessageEscaped = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("message"); else _explicitNullProperties?.Remove("message"); } }
+        public string MessageEscaped { get => _explicitNullValueMessageEscaped; set { _explicitNullValueMessageEscaped = value; AdditionalData?.Remove("message"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("message"); else _explicitNullProperties?.Remove("message"); } }
         private string _explicitNullValueMessageEscaped = default!;
 #endif
         /// <summary>

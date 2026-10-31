@@ -17,13 +17,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("smsEnabled") is { } nullNodeSmsEnabled && nullNodeSmsEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SmsEnabled = null;
+            if (parseNode.GetChildNode("smsEnabled") is null) { _explicitNullValueSmsEnabled = default!; _explicitNullProperties?.Remove("smsEnabled"); }
+            else if (parseNode.GetChildNode("smsEnabled") is { } nullNodeSmsEnabled && nullNodeSmsEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SmsEnabled = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether SMS is enabled for this number.</summary>
-        public bool? SmsEnabled { get => _explicitNullValueSmsEnabled; set { _explicitNullValueSmsEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("smsEnabled"); else _explicitNullProperties?.Remove("smsEnabled"); } }
+        public bool? SmsEnabled { get => _explicitNullValueSmsEnabled; set { _explicitNullValueSmsEnabled = value; AdditionalData?.Remove("smsEnabled"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("smsEnabled"); else _explicitNullProperties?.Remove("smsEnabled"); } }
         private bool? _explicitNullValueSmsEnabled = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestMessagingSettings"/> and sets the default values.

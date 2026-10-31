@@ -17,8 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("callRelease") is { } nullNodeCallRelease && nullNodeCallRelease.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallRelease = null;
-            if (parseNode.GetChildNode("failedCallCount") is { } nullNodeFailedCallCount && nullNodeFailedCallCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FailedCallCount = null;
+            if (parseNode.GetChildNode("callRelease") is null) { _explicitNullValueCallRelease = default!; _explicitNullProperties?.Remove("callRelease"); }
+            else if (parseNode.GetChildNode("callRelease") is { } nullNodeCallRelease && nullNodeCallRelease.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallRelease = null;
+            if (parseNode.GetChildNode("failedCallCount") is null) { _explicitNullValueFailedCallCount = default!; _explicitNullProperties?.Remove("failedCallCount"); }
+            else if (parseNode.GetChildNode("failedCallCount") is { } nullNodeFailedCallCount && nullNodeFailedCallCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FailedCallCount = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,15 +28,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>SIP response code indicating the reason for call failure</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallRelease { get => _explicitNullValueCallRelease; set { _explicitNullValueCallRelease = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callRelease"); else _explicitNullProperties?.Remove("callRelease"); } }
+        public string? CallRelease { get => _explicitNullValueCallRelease; set { _explicitNullValueCallRelease = value; AdditionalData?.Remove("callRelease"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callRelease"); else _explicitNullProperties?.Remove("callRelease"); } }
         private string? _explicitNullValueCallRelease = default!;
 #nullable restore
 #else
-        public string CallRelease { get => _explicitNullValueCallRelease; set { _explicitNullValueCallRelease = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callRelease"); else _explicitNullProperties?.Remove("callRelease"); } }
+        public string CallRelease { get => _explicitNullValueCallRelease; set { _explicitNullValueCallRelease = value; AdditionalData?.Remove("callRelease"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callRelease"); else _explicitNullProperties?.Remove("callRelease"); } }
         private string _explicitNullValueCallRelease = default!;
 #endif
         /// <summary>Number of failed calls</summary>
-        public int? FailedCallCount { get => _explicitNullValueFailedCallCount; set { _explicitNullValueFailedCallCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("failedCallCount"); else _explicitNullProperties?.Remove("failedCallCount"); } }
+        public int? FailedCallCount { get => _explicitNullValueFailedCallCount; set { _explicitNullValueFailedCallCount = value; AdditionalData?.Remove("failedCallCount"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("failedCallCount"); else _explicitNullProperties?.Remove("failedCallCount"); } }
         private int? _explicitNullValueFailedCallCount = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorSliceFailedCallsData"/> and sets the default values.

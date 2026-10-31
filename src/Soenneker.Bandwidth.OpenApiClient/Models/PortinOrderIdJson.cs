@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("portinOrderId") is { } nullNodePortinOrderId && nullNodePortinOrderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PortinOrderId = null;
+            if (parseNode.GetChildNode("portinOrderId") is null) { _explicitNullValuePortinOrderId = default!; _explicitNullProperties?.Remove("portinOrderId"); }
+            else if (parseNode.GetChildNode("portinOrderId") is { } nullNodePortinOrderId && nullNodePortinOrderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PortinOrderId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The OrderId associated with a child, or subtending, order associated with the bulk port-in.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PortinOrderId { get => _explicitNullValuePortinOrderId; set { _explicitNullValuePortinOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("portinOrderId"); else _explicitNullProperties?.Remove("portinOrderId"); } }
+        public string? PortinOrderId { get => _explicitNullValuePortinOrderId; set { _explicitNullValuePortinOrderId = value; AdditionalData?.Remove("portinOrderId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("portinOrderId"); else _explicitNullProperties?.Remove("portinOrderId"); } }
         private string? _explicitNullValuePortinOrderId = default!;
 #nullable restore
 #else
-        public string PortinOrderId { get => _explicitNullValuePortinOrderId; set { _explicitNullValuePortinOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("portinOrderId"); else _explicitNullProperties?.Remove("portinOrderId"); } }
+        public string PortinOrderId { get => _explicitNullValuePortinOrderId; set { _explicitNullValuePortinOrderId = value; AdditionalData?.Remove("portinOrderId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("portinOrderId"); else _explicitNullProperties?.Remove("portinOrderId"); } }
         private string _explicitNullValuePortinOrderId = default!;
 #endif
         /// <summary>

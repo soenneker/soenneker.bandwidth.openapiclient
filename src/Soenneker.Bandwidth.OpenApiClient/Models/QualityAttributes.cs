@@ -17,13 +17,20 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("avgMos") is { } nullNodeAvgMos && nullNodeAvgMos.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AvgMos = null;
-            if (parseNode.GetChildNode("codec") is { } nullNodeCodec && nullNodeCodec.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Codec = null;
-            if (parseNode.GetChildNode("jitter") is { } nullNodeJitter && nullNodeJitter.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Jitter = null;
-            if (parseNode.GetChildNode("maxMos") is { } nullNodeMaxMos && nullNodeMaxMos.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxMos = null;
-            if (parseNode.GetChildNode("minMos") is { } nullNodeMinMos && nullNodeMinMos.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MinMos = null;
-            if (parseNode.GetChildNode("packetLoss") is { } nullNodePacketLoss && nullNodePacketLoss.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PacketLoss = null;
-            if (parseNode.GetChildNode("rtt") is { } nullNodeRtt && nullNodeRtt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Rtt = null;
+            if (parseNode.GetChildNode("avgMos") is null) { _explicitNullValueAvgMos = default!; _explicitNullProperties?.Remove("avgMos"); }
+            else if (parseNode.GetChildNode("avgMos") is { } nullNodeAvgMos && nullNodeAvgMos.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AvgMos = null;
+            if (parseNode.GetChildNode("codec") is null) { _explicitNullValueCodec = default!; _explicitNullProperties?.Remove("codec"); }
+            else if (parseNode.GetChildNode("codec") is { } nullNodeCodec && nullNodeCodec.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Codec = null;
+            if (parseNode.GetChildNode("jitter") is null) { _explicitNullValueJitter = default!; _explicitNullProperties?.Remove("jitter"); }
+            else if (parseNode.GetChildNode("jitter") is { } nullNodeJitter && nullNodeJitter.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Jitter = null;
+            if (parseNode.GetChildNode("maxMos") is null) { _explicitNullValueMaxMos = default!; _explicitNullProperties?.Remove("maxMos"); }
+            else if (parseNode.GetChildNode("maxMos") is { } nullNodeMaxMos && nullNodeMaxMos.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxMos = null;
+            if (parseNode.GetChildNode("minMos") is null) { _explicitNullValueMinMos = default!; _explicitNullProperties?.Remove("minMos"); }
+            else if (parseNode.GetChildNode("minMos") is { } nullNodeMinMos && nullNodeMinMos.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MinMos = null;
+            if (parseNode.GetChildNode("packetLoss") is null) { _explicitNullValuePacketLoss = default!; _explicitNullProperties?.Remove("packetLoss"); }
+            else if (parseNode.GetChildNode("packetLoss") is { } nullNodePacketLoss && nullNodePacketLoss.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PacketLoss = null;
+            if (parseNode.GetChildNode("rtt") is null) { _explicitNullValueRtt = default!; _explicitNullProperties?.Remove("rtt"); }
+            else if (parseNode.GetChildNode("rtt") is { } nullNodeRtt && nullNodeRtt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Rtt = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -31,71 +38,71 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The average Mean Opinion Score between 1-5 used to predict the call quality. The MOS score will depend on Codec.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AvgMos { get => _explicitNullValueAvgMos; set { _explicitNullValueAvgMos = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("avgMos"); else _explicitNullProperties?.Remove("avgMos"); } }
+        public string? AvgMos { get => _explicitNullValueAvgMos; set { _explicitNullValueAvgMos = value; AdditionalData?.Remove("avgMos"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("avgMos"); else _explicitNullProperties?.Remove("avgMos"); } }
         private string? _explicitNullValueAvgMos = default!;
 #nullable restore
 #else
-        public string AvgMos { get => _explicitNullValueAvgMos; set { _explicitNullValueAvgMos = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("avgMos"); else _explicitNullProperties?.Remove("avgMos"); } }
+        public string AvgMos { get => _explicitNullValueAvgMos; set { _explicitNullValueAvgMos = value; AdditionalData?.Remove("avgMos"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("avgMos"); else _explicitNullProperties?.Remove("avgMos"); } }
         private string _explicitNullValueAvgMos = default!;
 #endif
         /// <summary>The delivery codec used for this call.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Codec { get => _explicitNullValueCodec; set { _explicitNullValueCodec = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("codec"); else _explicitNullProperties?.Remove("codec"); } }
+        public string? Codec { get => _explicitNullValueCodec; set { _explicitNullValueCodec = value; AdditionalData?.Remove("codec"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("codec"); else _explicitNullProperties?.Remove("codec"); } }
         private string? _explicitNullValueCodec = default!;
 #nullable restore
 #else
-        public string Codec { get => _explicitNullValueCodec; set { _explicitNullValueCodec = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("codec"); else _explicitNullProperties?.Remove("codec"); } }
+        public string Codec { get => _explicitNullValueCodec; set { _explicitNullValueCodec = value; AdditionalData?.Remove("codec"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("codec"); else _explicitNullProperties?.Remove("codec"); } }
         private string _explicitNullValueCodec = default!;
 #endif
         /// <summary>Variation in the delay of received packets measured in microseconds.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Jitter { get => _explicitNullValueJitter; set { _explicitNullValueJitter = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("jitter"); else _explicitNullProperties?.Remove("jitter"); } }
+        public string? Jitter { get => _explicitNullValueJitter; set { _explicitNullValueJitter = value; AdditionalData?.Remove("jitter"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("jitter"); else _explicitNullProperties?.Remove("jitter"); } }
         private string? _explicitNullValueJitter = default!;
 #nullable restore
 #else
-        public string Jitter { get => _explicitNullValueJitter; set { _explicitNullValueJitter = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("jitter"); else _explicitNullProperties?.Remove("jitter"); } }
+        public string Jitter { get => _explicitNullValueJitter; set { _explicitNullValueJitter = value; AdditionalData?.Remove("jitter"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("jitter"); else _explicitNullProperties?.Remove("jitter"); } }
         private string _explicitNullValueJitter = default!;
 #endif
         /// <summary>The maximum MOS score achieved on this call.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? MaxMos { get => _explicitNullValueMaxMos; set { _explicitNullValueMaxMos = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxMos"); else _explicitNullProperties?.Remove("maxMos"); } }
+        public string? MaxMos { get => _explicitNullValueMaxMos; set { _explicitNullValueMaxMos = value; AdditionalData?.Remove("maxMos"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxMos"); else _explicitNullProperties?.Remove("maxMos"); } }
         private string? _explicitNullValueMaxMos = default!;
 #nullable restore
 #else
-        public string MaxMos { get => _explicitNullValueMaxMos; set { _explicitNullValueMaxMos = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxMos"); else _explicitNullProperties?.Remove("maxMos"); } }
+        public string MaxMos { get => _explicitNullValueMaxMos; set { _explicitNullValueMaxMos = value; AdditionalData?.Remove("maxMos"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxMos"); else _explicitNullProperties?.Remove("maxMos"); } }
         private string _explicitNullValueMaxMos = default!;
 #endif
         /// <summary>The minimum MOS score determined on this call.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? MinMos { get => _explicitNullValueMinMos; set { _explicitNullValueMinMos = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("minMos"); else _explicitNullProperties?.Remove("minMos"); } }
+        public string? MinMos { get => _explicitNullValueMinMos; set { _explicitNullValueMinMos = value; AdditionalData?.Remove("minMos"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("minMos"); else _explicitNullProperties?.Remove("minMos"); } }
         private string? _explicitNullValueMinMos = default!;
 #nullable restore
 #else
-        public string MinMos { get => _explicitNullValueMinMos; set { _explicitNullValueMinMos = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("minMos"); else _explicitNullProperties?.Remove("minMos"); } }
+        public string MinMos { get => _explicitNullValueMinMos; set { _explicitNullValueMinMos = value; AdditionalData?.Remove("minMos"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("minMos"); else _explicitNullProperties?.Remove("minMos"); } }
         private string _explicitNullValueMinMos = default!;
 #endif
         /// <summary>A percentage for the number of packets that failed to reach their destination.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PacketLoss { get => _explicitNullValuePacketLoss; set { _explicitNullValuePacketLoss = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("packetLoss"); else _explicitNullProperties?.Remove("packetLoss"); } }
+        public string? PacketLoss { get => _explicitNullValuePacketLoss; set { _explicitNullValuePacketLoss = value; AdditionalData?.Remove("packetLoss"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("packetLoss"); else _explicitNullProperties?.Remove("packetLoss"); } }
         private string? _explicitNullValuePacketLoss = default!;
 #nullable restore
 #else
-        public string PacketLoss { get => _explicitNullValuePacketLoss; set { _explicitNullValuePacketLoss = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("packetLoss"); else _explicitNullProperties?.Remove("packetLoss"); } }
+        public string PacketLoss { get => _explicitNullValuePacketLoss; set { _explicitNullValuePacketLoss = value; AdditionalData?.Remove("packetLoss"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("packetLoss"); else _explicitNullProperties?.Remove("packetLoss"); } }
         private string _explicitNullValuePacketLoss = default!;
 #endif
         /// <summary>The Round Trip Time or Post Dial Delay measured in milliseconds.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Rtt { get => _explicitNullValueRtt; set { _explicitNullValueRtt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rtt"); else _explicitNullProperties?.Remove("rtt"); } }
+        public string? Rtt { get => _explicitNullValueRtt; set { _explicitNullValueRtt = value; AdditionalData?.Remove("rtt"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rtt"); else _explicitNullProperties?.Remove("rtt"); } }
         private string? _explicitNullValueRtt = default!;
 #nullable restore
 #else
-        public string Rtt { get => _explicitNullValueRtt; set { _explicitNullValueRtt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rtt"); else _explicitNullProperties?.Remove("rtt"); } }
+        public string Rtt { get => _explicitNullValueRtt; set { _explicitNullValueRtt = value; AdditionalData?.Remove("rtt"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rtt"); else _explicitNullProperties?.Remove("rtt"); } }
         private string _explicitNullValueRtt = default!;
 #endif
         /// <summary>

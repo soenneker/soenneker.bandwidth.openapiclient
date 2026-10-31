@@ -17,17 +17,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("currentCallQueueSize") is { } nullNodeCurrentCallQueueSize && nullNodeCurrentCallQueueSize.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CurrentCallQueueSize = null;
-            if (parseNode.GetChildNode("maxCallQueueSize") is { } nullNodeMaxCallQueueSize && nullNodeMaxCallQueueSize.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxCallQueueSize = null;
+            if (parseNode.GetChildNode("currentCallQueueSize") is null) { _explicitNullValueCurrentCallQueueSize = default!; _explicitNullProperties?.Remove("currentCallQueueSize"); }
+            else if (parseNode.GetChildNode("currentCallQueueSize") is { } nullNodeCurrentCallQueueSize && nullNodeCurrentCallQueueSize.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CurrentCallQueueSize = null;
+            if (parseNode.GetChildNode("maxCallQueueSize") is null) { _explicitNullValueMaxCallQueueSize = default!; _explicitNullProperties?.Remove("maxCallQueueSize"); }
+            else if (parseNode.GetChildNode("maxCallQueueSize") is { } nullNodeMaxCallQueueSize && nullNodeMaxCallQueueSize.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxCallQueueSize = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The number of calls currently enqueued.</summary>
-        public int? CurrentCallQueueSize { get => _explicitNullValueCurrentCallQueueSize; set { _explicitNullValueCurrentCallQueueSize = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentCallQueueSize"); else _explicitNullProperties?.Remove("currentCallQueueSize"); } }
+        public int? CurrentCallQueueSize { get => _explicitNullValueCurrentCallQueueSize; set { _explicitNullValueCurrentCallQueueSize = value; AdditionalData?.Remove("currentCallQueueSize"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentCallQueueSize"); else _explicitNullProperties?.Remove("currentCallQueueSize"); } }
         private int? _explicitNullValueCurrentCallQueueSize = default!;
         /// <summary>The maximum size of the queue before outgoing calls start being rejected.</summary>
-        public int? MaxCallQueueSize { get => _explicitNullValueMaxCallQueueSize; set { _explicitNullValueMaxCallQueueSize = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxCallQueueSize"); else _explicitNullProperties?.Remove("maxCallQueueSize"); } }
+        public int? MaxCallQueueSize { get => _explicitNullValueMaxCallQueueSize; set { _explicitNullValueMaxCallQueueSize = value; AdditionalData?.Remove("maxCallQueueSize"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxCallQueueSize"); else _explicitNullProperties?.Remove("maxCallQueueSize"); } }
         private int? _explicitNullValueMaxCallQueueSize = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.AccountStatistics"/> and sets the default values.

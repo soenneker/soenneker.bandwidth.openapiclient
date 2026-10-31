@@ -18,102 +18,113 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("accountId") is { } nullNodeAccountId && nullNodeAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountId = null;
-            if (parseNode.GetChildNode("analyticEngine") is { } nullNodeAnalyticEngine && nullNodeAnalyticEngine.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AnalyticEngine = null;
-            if (parseNode.GetChildNode("callVerification") is { } nullNodeCallVerification && nullNodeCallVerification.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallVerification = null;
-            if (parseNode.GetChildNode("cnam") is { } nullNodeCnam && nullNodeCnam.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Cnam = null;
-            if (parseNode.GetChildNode("description") is { } nullNodeDescription && nullNodeDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Description = null;
-            if (parseNode.GetChildNode("httpVoiceV2ApplicationId") is { } nullNodeHttpVoiceV2ApplicationId && nullNodeHttpVoiceV2ApplicationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HttpVoiceV2ApplicationId = null;
-            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
-            if (parseNode.GetChildNode("originationRoutePlan") is { } nullNodeOriginationRoutePlan && nullNodeOriginationRoutePlan.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OriginationRoutePlan = null;
-            if (parseNode.GetChildNode("pindropIntegration") is { } nullNodePindropIntegration && nullNodePindropIntegration.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PindropIntegration = null;
-            if (parseNode.GetChildNode("stirShakenBehavior") is { } nullNodeStirShakenBehavior && nullNodeStirShakenBehavior.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StirShakenBehavior = null;
-            if (parseNode.GetChildNode("voiceConfigurationPackageId") is { } nullNodeVoiceConfigurationPackageId && nullNodeVoiceConfigurationPackageId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoiceConfigurationPackageId = null;
+            if (parseNode.GetChildNode("accountId") is null) { _explicitNullValueAccountId = default!; _explicitNullProperties?.Remove("accountId"); }
+            else if (parseNode.GetChildNode("accountId") is { } nullNodeAccountId && nullNodeAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountId = null;
+            if (parseNode.GetChildNode("analyticEngine") is null) { _explicitNullValueAnalyticEngine = default!; _explicitNullProperties?.Remove("analyticEngine"); }
+            else if (parseNode.GetChildNode("analyticEngine") is { } nullNodeAnalyticEngine && nullNodeAnalyticEngine.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AnalyticEngine = null;
+            if (parseNode.GetChildNode("callVerification") is null) { _explicitNullValueCallVerification = default!; _explicitNullProperties?.Remove("callVerification"); }
+            else if (parseNode.GetChildNode("callVerification") is { } nullNodeCallVerification && nullNodeCallVerification.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallVerification = null;
+            if (parseNode.GetChildNode("cnam") is null) { _explicitNullValueCnam = default!; _explicitNullProperties?.Remove("cnam"); }
+            else if (parseNode.GetChildNode("cnam") is { } nullNodeCnam && nullNodeCnam.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Cnam = null;
+            if (parseNode.GetChildNode("description") is null) { _explicitNullValueDescription = default!; _explicitNullProperties?.Remove("description"); }
+            else if (parseNode.GetChildNode("description") is { } nullNodeDescription && nullNodeDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Description = null;
+            if (parseNode.GetChildNode("httpVoiceV2ApplicationId") is null) { _explicitNullValueHttpVoiceV2ApplicationId = default!; _explicitNullProperties?.Remove("httpVoiceV2ApplicationId"); }
+            else if (parseNode.GetChildNode("httpVoiceV2ApplicationId") is { } nullNodeHttpVoiceV2ApplicationId && nullNodeHttpVoiceV2ApplicationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HttpVoiceV2ApplicationId = null;
+            if (parseNode.GetChildNode("name") is null) { _explicitNullValueName = default!; _explicitNullProperties?.Remove("name"); }
+            else if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("originationRoutePlan") is null) { _explicitNullValueOriginationRoutePlan = default!; _explicitNullProperties?.Remove("originationRoutePlan"); }
+            else if (parseNode.GetChildNode("originationRoutePlan") is { } nullNodeOriginationRoutePlan && nullNodeOriginationRoutePlan.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OriginationRoutePlan = null;
+            if (parseNode.GetChildNode("pindropIntegration") is null) { _explicitNullValuePindropIntegration = default!; _explicitNullProperties?.Remove("pindropIntegration"); }
+            else if (parseNode.GetChildNode("pindropIntegration") is { } nullNodePindropIntegration && nullNodePindropIntegration.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PindropIntegration = null;
+            if (parseNode.GetChildNode("stirShakenBehavior") is null) { _explicitNullValueStirShakenBehavior = default!; _explicitNullProperties?.Remove("stirShakenBehavior"); }
+            else if (parseNode.GetChildNode("stirShakenBehavior") is { } nullNodeStirShakenBehavior && nullNodeStirShakenBehavior.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StirShakenBehavior = null;
+            if (parseNode.GetChildNode("voiceConfigurationPackageId") is null) { _explicitNullValueVoiceConfigurationPackageId = default!; _explicitNullProperties?.Remove("voiceConfigurationPackageId"); }
+            else if (parseNode.GetChildNode("voiceConfigurationPackageId") is { } nullNodeVoiceConfigurationPackageId && nullNodeVoiceConfigurationPackageId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoiceConfigurationPackageId = null;
         }
 
         /// <summary>The account ID for the phone numbers.</summary>
-        public int? AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
+        public int? AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; AdditionalData?.Remove("accountId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
         private int? _explicitNullValueAccountId = default!;
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Identity Auth Analytic Engine Name.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AnalyticEngine? AnalyticEngine { get => _explicitNullValueAnalyticEngine; set { _explicitNullValueAnalyticEngine = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("analyticEngine"); else _explicitNullProperties?.Remove("analyticEngine"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AnalyticEngine? AnalyticEngine { get => _explicitNullValueAnalyticEngine; set { _explicitNullValueAnalyticEngine = value; AdditionalData?.Remove("analyticEngine"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("analyticEngine"); else _explicitNullProperties?.Remove("analyticEngine"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.AnalyticEngine? _explicitNullValueAnalyticEngine = default!;
         /// <summary>Call Verification settings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallVerification? CallVerification { get => _explicitNullValueCallVerification; set { _explicitNullValueCallVerification = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callVerification"); else _explicitNullProperties?.Remove("callVerification"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallVerification? CallVerification { get => _explicitNullValueCallVerification; set { _explicitNullValueCallVerification = value; AdditionalData?.Remove("callVerification"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callVerification"); else _explicitNullProperties?.Remove("callVerification"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.CallVerification? _explicitNullValueCallVerification = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallVerification CallVerification { get => _explicitNullValueCallVerification; set { _explicitNullValueCallVerification = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callVerification"); else _explicitNullProperties?.Remove("callVerification"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallVerification CallVerification { get => _explicitNullValueCallVerification; set { _explicitNullValueCallVerification = value; AdditionalData?.Remove("callVerification"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callVerification"); else _explicitNullProperties?.Remove("callVerification"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.CallVerification _explicitNullValueCallVerification = default!;
 #endif
         /// <summary>Calling Name (CNAM) settings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Cnam? Cnam { get => _explicitNullValueCnam; set { _explicitNullValueCnam = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cnam"); else _explicitNullProperties?.Remove("cnam"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.Cnam? Cnam { get => _explicitNullValueCnam; set { _explicitNullValueCnam = value; AdditionalData?.Remove("cnam"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cnam"); else _explicitNullProperties?.Remove("cnam"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.Cnam? _explicitNullValueCnam = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Cnam Cnam { get => _explicitNullValueCnam; set { _explicitNullValueCnam = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cnam"); else _explicitNullProperties?.Remove("cnam"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.Cnam Cnam { get => _explicitNullValueCnam; set { _explicitNullValueCnam = value; AdditionalData?.Remove("cnam"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cnam"); else _explicitNullProperties?.Remove("cnam"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.Cnam _explicitNullValueCnam = default!;
 #endif
         /// <summary>The voice configuration package&apos;s description.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        public string? Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; AdditionalData?.Remove("description"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
         private string? _explicitNullValueDescription = default!;
 #nullable restore
 #else
-        public string Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        public string Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; AdditionalData?.Remove("description"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
         private string _explicitNullValueDescription = default!;
 #endif
         /// <summary>HTTP Voice V2 Application ID.</summary>
-        public Guid? HttpVoiceV2ApplicationId { get => _explicitNullValueHttpVoiceV2ApplicationId; set { _explicitNullValueHttpVoiceV2ApplicationId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("httpVoiceV2ApplicationId"); else _explicitNullProperties?.Remove("httpVoiceV2ApplicationId"); } }
+        public Guid? HttpVoiceV2ApplicationId { get => _explicitNullValueHttpVoiceV2ApplicationId; set { _explicitNullValueHttpVoiceV2ApplicationId = value; AdditionalData?.Remove("httpVoiceV2ApplicationId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("httpVoiceV2ApplicationId"); else _explicitNullProperties?.Remove("httpVoiceV2ApplicationId"); } }
         private Guid? _explicitNullValueHttpVoiceV2ApplicationId = default!;
         /// <summary>The voice configuration package&apos;s name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string _explicitNullValueName = default!;
 #endif
         /// <summary>Origination route plan for a voice configuration package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceOriginationRoutePlan? OriginationRoutePlan { get => _explicitNullValueOriginationRoutePlan; set { _explicitNullValueOriginationRoutePlan = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("originationRoutePlan"); else _explicitNullProperties?.Remove("originationRoutePlan"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceOriginationRoutePlan? OriginationRoutePlan { get => _explicitNullValueOriginationRoutePlan; set { _explicitNullValueOriginationRoutePlan = value; AdditionalData?.Remove("originationRoutePlan"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("originationRoutePlan"); else _explicitNullProperties?.Remove("originationRoutePlan"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceOriginationRoutePlan? _explicitNullValueOriginationRoutePlan = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceOriginationRoutePlan OriginationRoutePlan { get => _explicitNullValueOriginationRoutePlan; set { _explicitNullValueOriginationRoutePlan = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("originationRoutePlan"); else _explicitNullProperties?.Remove("originationRoutePlan"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceOriginationRoutePlan OriginationRoutePlan { get => _explicitNullValueOriginationRoutePlan; set { _explicitNullValueOriginationRoutePlan = value; AdditionalData?.Remove("originationRoutePlan"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("originationRoutePlan"); else _explicitNullProperties?.Remove("originationRoutePlan"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceOriginationRoutePlan _explicitNullValueOriginationRoutePlan = default!;
 #endif
         /// <summary>Pindrop Integration settings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PindropIntegration? PindropIntegration { get => _explicitNullValuePindropIntegration; set { _explicitNullValuePindropIntegration = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pindropIntegration"); else _explicitNullProperties?.Remove("pindropIntegration"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PindropIntegration? PindropIntegration { get => _explicitNullValuePindropIntegration; set { _explicitNullValuePindropIntegration = value; AdditionalData?.Remove("pindropIntegration"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pindropIntegration"); else _explicitNullProperties?.Remove("pindropIntegration"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.PindropIntegration? _explicitNullValuePindropIntegration = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PindropIntegration PindropIntegration { get => _explicitNullValuePindropIntegration; set { _explicitNullValuePindropIntegration = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pindropIntegration"); else _explicitNullProperties?.Remove("pindropIntegration"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PindropIntegration PindropIntegration { get => _explicitNullValuePindropIntegration; set { _explicitNullValuePindropIntegration = value; AdditionalData?.Remove("pindropIntegration"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pindropIntegration"); else _explicitNullProperties?.Remove("pindropIntegration"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.PindropIntegration _explicitNullValuePindropIntegration = default!;
 #endif
         /// <summary>Stir shaken behavior.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenBehavior? StirShakenBehavior { get => _explicitNullValueStirShakenBehavior; set { _explicitNullValueStirShakenBehavior = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stirShakenBehavior"); else _explicitNullProperties?.Remove("stirShakenBehavior"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenBehavior? StirShakenBehavior { get => _explicitNullValueStirShakenBehavior; set { _explicitNullValueStirShakenBehavior = value; AdditionalData?.Remove("stirShakenBehavior"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stirShakenBehavior"); else _explicitNullProperties?.Remove("stirShakenBehavior"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenBehavior? _explicitNullValueStirShakenBehavior = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenBehavior StirShakenBehavior { get => _explicitNullValueStirShakenBehavior; set { _explicitNullValueStirShakenBehavior = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stirShakenBehavior"); else _explicitNullProperties?.Remove("stirShakenBehavior"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenBehavior StirShakenBehavior { get => _explicitNullValueStirShakenBehavior; set { _explicitNullValueStirShakenBehavior = value; AdditionalData?.Remove("stirShakenBehavior"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stirShakenBehavior"); else _explicitNullProperties?.Remove("stirShakenBehavior"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenBehavior _explicitNullValueStirShakenBehavior = default!;
 #endif
         /// <summary>The voice configuration package&apos;s ID.</summary>
-        public Guid? VoiceConfigurationPackageId { get => _explicitNullValueVoiceConfigurationPackageId; set { _explicitNullValueVoiceConfigurationPackageId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceConfigurationPackageId"); else _explicitNullProperties?.Remove("voiceConfigurationPackageId"); } }
+        public Guid? VoiceConfigurationPackageId { get => _explicitNullValueVoiceConfigurationPackageId; set { _explicitNullValueVoiceConfigurationPackageId = value; AdditionalData?.Remove("voiceConfigurationPackageId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceConfigurationPackageId"); else _explicitNullProperties?.Remove("voiceConfigurationPackageId"); } }
         private Guid? _explicitNullValueVoiceConfigurationPackageId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigurationPackage"/> and sets the default values.
@@ -141,7 +152,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "accountId", n => { AccountId = n.GetIntValue(); } },
-                { "analyticEngine", n => { AnalyticEngine = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AnalyticEngine>(); } },
+                { "analyticEngine", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AnalyticEngine>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueAnalyticEngine = default; _explicitNullProperties?.Remove("analyticEngine"); AdditionalData["analyticEngine"] = unknown; } else { AnalyticEngine = parsed; AdditionalData.Remove("analyticEngine"); } } },
                 { "callVerification", n => { CallVerification = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallVerification>(global::Soenneker.Bandwidth.OpenApiClient.Models.CallVerification.CreateFromDiscriminatorValue); } },
                 { "cnam", n => { Cnam = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.Cnam>(global::Soenneker.Bandwidth.OpenApiClient.Models.Cnam.CreateFromDiscriminatorValue); } },
                 { "description", n => { Description = n.GetStringValue(); } },

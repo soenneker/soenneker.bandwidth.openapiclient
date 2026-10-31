@@ -17,17 +17,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("factorType") is { } nullNodeFactorType && nullNodeFactorType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FactorType = null;
-            if (parseNode.GetChildNode("provider") is { } nullNodeProvider && nullNodeProvider.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Provider = null;
+            if (parseNode.GetChildNode("factorType") is null) { _explicitNullValueFactorType = default!; _explicitNullProperties?.Remove("factorType"); }
+            else if (parseNode.GetChildNode("factorType") is { } nullNodeFactorType && nullNodeFactorType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FactorType = null;
+            if (parseNode.GetChildNode("provider") is null) { _explicitNullValueProvider = default!; _explicitNullProperties?.Remove("provider"); }
+            else if (parseNode.GetChildNode("provider") is { } nullNodeProvider && nullNodeProvider.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Provider = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The MFA factor type</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MfaFactorTypeEnum? FactorType { get => _explicitNullValueFactorType; set { _explicitNullValueFactorType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("factorType"); else _explicitNullProperties?.Remove("factorType"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MfaFactorTypeEnum? FactorType { get => _explicitNullValueFactorType; set { _explicitNullValueFactorType = value; AdditionalData?.Remove("factorType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("factorType"); else _explicitNullProperties?.Remove("factorType"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.MfaFactorTypeEnum? _explicitNullValueFactorType = default!;
         /// <summary>The MFA factor provider</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MfaProviderEnum? Provider { get => _explicitNullValueProvider; set { _explicitNullValueProvider = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("provider"); else _explicitNullProperties?.Remove("provider"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MfaProviderEnum? Provider { get => _explicitNullValueProvider; set { _explicitNullValueProvider = value; AdditionalData?.Remove("provider"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("provider"); else _explicitNullProperties?.Remove("provider"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.MfaProviderEnum? _explicitNullValueProvider = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EnrollUserMfaOtpRequest"/> and sets the default values.
@@ -54,8 +56,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "factorType", n => { FactorType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MfaFactorTypeEnum>(); } },
-                { "provider", n => { Provider = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MfaProviderEnum>(); } },
+                { "factorType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MfaFactorTypeEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueFactorType = default; _explicitNullProperties?.Remove("factorType"); AdditionalData["factorType"] = unknown; } else { FactorType = parsed; AdditionalData.Remove("factorType"); } } },
+                { "provider", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MfaProviderEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueProvider = default; _explicitNullProperties?.Remove("provider"); AdditionalData["provider"] = unknown; } else { Provider = parsed; AdditionalData.Remove("provider"); } } },
             };
         }
         /// <summary>

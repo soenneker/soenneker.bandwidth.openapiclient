@@ -17,54 +17,60 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("factorType") is { } nullNodeFactorType && nullNodeFactorType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FactorType = null;
-            if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
-            if (parseNode.GetChildNode("provider") is { } nullNodeProvider && nullNodeProvider.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Provider = null;
-            if (parseNode.GetChildNode("qrCode") is { } nullNodeQrCode && nullNodeQrCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) QrCode = null;
-            if (parseNode.GetChildNode("sharedSecret") is { } nullNodeSharedSecret && nullNodeSharedSecret.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SharedSecret = null;
-            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("factorType") is null) { _explicitNullValueFactorType = default!; _explicitNullProperties?.Remove("factorType"); }
+            else if (parseNode.GetChildNode("factorType") is { } nullNodeFactorType && nullNodeFactorType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FactorType = null;
+            if (parseNode.GetChildNode("id") is null) { _explicitNullValueId = default!; _explicitNullProperties?.Remove("id"); }
+            else if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
+            if (parseNode.GetChildNode("provider") is null) { _explicitNullValueProvider = default!; _explicitNullProperties?.Remove("provider"); }
+            else if (parseNode.GetChildNode("provider") is { } nullNodeProvider && nullNodeProvider.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Provider = null;
+            if (parseNode.GetChildNode("qrCode") is null) { _explicitNullValueQrCode = default!; _explicitNullProperties?.Remove("qrCode"); }
+            else if (parseNode.GetChildNode("qrCode") is { } nullNodeQrCode && nullNodeQrCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) QrCode = null;
+            if (parseNode.GetChildNode("sharedSecret") is null) { _explicitNullValueSharedSecret = default!; _explicitNullProperties?.Remove("sharedSecret"); }
+            else if (parseNode.GetChildNode("sharedSecret") is { } nullNodeSharedSecret && nullNodeSharedSecret.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SharedSecret = null;
+            if (parseNode.GetChildNode("status") is null) { _explicitNullValueStatus = default!; _explicitNullProperties?.Remove("status"); }
+            else if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The MFA factor type</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MfaFactorTypeEnum? FactorType { get => _explicitNullValueFactorType; set { _explicitNullValueFactorType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("factorType"); else _explicitNullProperties?.Remove("factorType"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MfaFactorTypeEnum? FactorType { get => _explicitNullValueFactorType; set { _explicitNullValueFactorType = value; AdditionalData?.Remove("factorType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("factorType"); else _explicitNullProperties?.Remove("factorType"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.MfaFactorTypeEnum? _explicitNullValueFactorType = default!;
         /// <summary>The unique identifier of the MFA Factor</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        public string? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; AdditionalData?.Remove("id"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
         private string? _explicitNullValueId = default!;
 #nullable restore
 #else
-        public string Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        public string Id { get => _explicitNullValueId; set { _explicitNullValueId = value; AdditionalData?.Remove("id"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
         private string _explicitNullValueId = default!;
 #endif
         /// <summary>The MFA factor provider</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MfaProviderEnum? Provider { get => _explicitNullValueProvider; set { _explicitNullValueProvider = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("provider"); else _explicitNullProperties?.Remove("provider"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MfaProviderEnum? Provider { get => _explicitNullValueProvider; set { _explicitNullValueProvider = value; AdditionalData?.Remove("provider"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("provider"); else _explicitNullProperties?.Remove("provider"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.MfaProviderEnum? _explicitNullValueProvider = default!;
         /// <summary>The qrCode property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MfaQrCode? QrCode { get => _explicitNullValueQrCode; set { _explicitNullValueQrCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("qrCode"); else _explicitNullProperties?.Remove("qrCode"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MfaQrCode? QrCode { get => _explicitNullValueQrCode; set { _explicitNullValueQrCode = value; AdditionalData?.Remove("qrCode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("qrCode"); else _explicitNullProperties?.Remove("qrCode"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.MfaQrCode? _explicitNullValueQrCode = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MfaQrCode QrCode { get => _explicitNullValueQrCode; set { _explicitNullValueQrCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("qrCode"); else _explicitNullProperties?.Remove("qrCode"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MfaQrCode QrCode { get => _explicitNullValueQrCode; set { _explicitNullValueQrCode = value; AdditionalData?.Remove("qrCode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("qrCode"); else _explicitNullProperties?.Remove("qrCode"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.MfaQrCode _explicitNullValueQrCode = default!;
 #endif
         /// <summary>The MFA factor&apos;s unique secret key for prover</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SharedSecret { get => _explicitNullValueSharedSecret; set { _explicitNullValueSharedSecret = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sharedSecret"); else _explicitNullProperties?.Remove("sharedSecret"); } }
+        public string? SharedSecret { get => _explicitNullValueSharedSecret; set { _explicitNullValueSharedSecret = value; AdditionalData?.Remove("sharedSecret"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sharedSecret"); else _explicitNullProperties?.Remove("sharedSecret"); } }
         private string? _explicitNullValueSharedSecret = default!;
 #nullable restore
 #else
-        public string SharedSecret { get => _explicitNullValueSharedSecret; set { _explicitNullValueSharedSecret = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sharedSecret"); else _explicitNullProperties?.Remove("sharedSecret"); } }
+        public string SharedSecret { get => _explicitNullValueSharedSecret; set { _explicitNullValueSharedSecret = value; AdditionalData?.Remove("sharedSecret"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sharedSecret"); else _explicitNullProperties?.Remove("sharedSecret"); } }
         private string _explicitNullValueSharedSecret = default!;
 #endif
         /// <summary>The enrollment status of the MFA factor</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MfaFactorStatusEnum? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MfaFactorStatusEnum? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; AdditionalData?.Remove("status"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.MfaFactorStatusEnum? _explicitNullValueStatus = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EnrollUserMfaFactorResponseData"/> and sets the default values.
@@ -91,12 +97,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "factorType", n => { FactorType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MfaFactorTypeEnum>(); } },
+                { "factorType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MfaFactorTypeEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueFactorType = default; _explicitNullProperties?.Remove("factorType"); AdditionalData["factorType"] = unknown; } else { FactorType = parsed; AdditionalData.Remove("factorType"); } } },
                 { "id", n => { Id = n.GetStringValue(); } },
-                { "provider", n => { Provider = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MfaProviderEnum>(); } },
+                { "provider", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MfaProviderEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueProvider = default; _explicitNullProperties?.Remove("provider"); AdditionalData["provider"] = unknown; } else { Provider = parsed; AdditionalData.Remove("provider"); } } },
                 { "qrCode", n => { QrCode = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MfaQrCode>(global::Soenneker.Bandwidth.OpenApiClient.Models.MfaQrCode.CreateFromDiscriminatorValue); } },
                 { "sharedSecret", n => { SharedSecret = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MfaFactorStatusEnum>(); } },
+                { "status", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MfaFactorStatusEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueStatus = default; _explicitNullProperties?.Remove("status"); AdditionalData["status"] = unknown; } else { Status = parsed; AdditionalData.Remove("status"); } } },
             };
         }
         /// <summary>

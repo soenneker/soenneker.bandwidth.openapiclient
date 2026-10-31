@@ -17,13 +17,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("numberCancelled") is { } nullNodeNumberCancelled && nullNodeNumberCancelled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NumberCancelled = null;
+            if (parseNode.GetChildNode("numberCancelled") is null) { _explicitNullValueNumberCancelled = default!; _explicitNullProperties?.Remove("numberCancelled"); }
+            else if (parseNode.GetChildNode("numberCancelled") is { } nullNodeNumberCancelled && nullNodeNumberCancelled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NumberCancelled = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Amount of DIDs successfully cancelled with request.</summary>
-        public int? NumberCancelled { get => _explicitNullValueNumberCancelled; set { _explicitNullValueNumberCancelled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("numberCancelled"); else _explicitNullProperties?.Remove("numberCancelled"); } }
+        public int? NumberCancelled { get => _explicitNullValueNumberCancelled; set { _explicitNullValueNumberCancelled = value; AdditionalData?.Remove("numberCancelled"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("numberCancelled"); else _explicitNullProperties?.Remove("numberCancelled"); } }
         private int? _explicitNullValueNumberCancelled = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CancelDidsResponse"/> and sets the default values.

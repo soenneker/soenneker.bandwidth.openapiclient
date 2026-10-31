@@ -18,7 +18,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("eq") is { } nullNodeEq && nullNodeEq.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Eq = null;
+            if (parseNode.GetChildNode("eq") is null) { _explicitNullValueEq = default!; _explicitNullProperties?.Remove("eq"); }
+            else if (parseNode.GetChildNode("eq") is { } nullNodeEq && nullNodeEq.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Eq = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Comma-separated list of audit log event types to match. Multiple values use OR logic.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Eq { get => _explicitNullValueEq; set { _explicitNullValueEq = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eq"); else _explicitNullProperties?.Remove("eq"); } }
+        public string? Eq { get => _explicitNullValueEq; set { _explicitNullValueEq = value; AdditionalData?.Remove("eq"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eq"); else _explicitNullProperties?.Remove("eq"); } }
         private string? _explicitNullValueEq = default!;
 #nullable restore
 #else
-        public string Eq { get => _explicitNullValueEq; set { _explicitNullValueEq = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eq"); else _explicitNullProperties?.Remove("eq"); } }
+        public string Eq { get => _explicitNullValueEq; set { _explicitNullValueEq = value; AdditionalData?.Remove("eq"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eq"); else _explicitNullProperties?.Remove("eq"); } }
         private string _explicitNullValueEq = default!;
 #endif
         /// <summary>

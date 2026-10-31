@@ -17,23 +17,40 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("allowedRegions") is { } nullNodeAllowedRegions && nullNodeAllowedRegions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AllowedRegions = null;
-            if (parseNode.GetChildNode("allowedSourceIps") is { } nullNodeAllowedSourceIps && nullNodeAllowedSourceIps.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AllowedSourceIps = null;
-            if (parseNode.GetChildNode("applicationId") is { } nullNodeApplicationId && nullNodeApplicationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ApplicationId = null;
-            if (parseNode.GetChildNode("applicationName") is { } nullNodeApplicationName && nullNodeApplicationName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ApplicationName = null;
-            if (parseNode.GetChildNode("callbackCreds") is { } nullNodeCallbackCreds && nullNodeCallbackCreds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallbackCreds = null;
-            if (parseNode.GetChildNode("callbackTimeout") is { } nullNodeCallbackTimeout && nullNodeCallbackTimeout.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallbackTimeout = null;
-            if (parseNode.GetChildNode("callInitiatedCallbackUrl") is { } nullNodeCallInitiatedCallbackUrl && nullNodeCallInitiatedCallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallInitiatedCallbackUrl = null;
-            if (parseNode.GetChildNode("callInitiatedFallbackCreds") is { } nullNodeCallInitiatedFallbackCreds && nullNodeCallInitiatedFallbackCreds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallInitiatedFallbackCreds = null;
-            if (parseNode.GetChildNode("callInitiatedFallbackMethod") is { } nullNodeCallInitiatedFallbackMethod && nullNodeCallInitiatedFallbackMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallInitiatedFallbackMethod = null;
-            if (parseNode.GetChildNode("callInitiatedFallbackUrl") is { } nullNodeCallInitiatedFallbackUrl && nullNodeCallInitiatedFallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallInitiatedFallbackUrl = null;
-            if (parseNode.GetChildNode("callInitiatedMethod") is { } nullNodeCallInitiatedMethod && nullNodeCallInitiatedMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallInitiatedMethod = null;
-            if (parseNode.GetChildNode("callStatusCallbackUrl") is { } nullNodeCallStatusCallbackUrl && nullNodeCallStatusCallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallStatusCallbackUrl = null;
-            if (parseNode.GetChildNode("callStatusMethod") is { } nullNodeCallStatusMethod && nullNodeCallStatusMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallStatusMethod = null;
-            if (parseNode.GetChildNode("inboundSipCallsEnabled") is { } nullNodeInboundSipCallsEnabled && nullNodeInboundSipCallsEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InboundSipCallsEnabled = null;
-            if (parseNode.GetChildNode("passwordAuthEnabled") is { } nullNodePasswordAuthEnabled && nullNodePasswordAuthEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PasswordAuthEnabled = null;
-            if (parseNode.GetChildNode("serviceType") is { } nullNodeServiceType && nullNodeServiceType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ServiceType = null;
-            if (parseNode.GetChildNode("sipUri") is { } nullNodeSipUri && nullNodeSipUri.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SipUri = null;
+            if (parseNode.GetChildNode("allowedRegions") is null) { _explicitNullValueAllowedRegions = default!; _explicitNullProperties?.Remove("allowedRegions"); }
+            else if (parseNode.GetChildNode("allowedRegions") is { } nullNodeAllowedRegions && nullNodeAllowedRegions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AllowedRegions = null;
+            if (parseNode.GetChildNode("allowedSourceIps") is null) { _explicitNullValueAllowedSourceIps = default!; _explicitNullProperties?.Remove("allowedSourceIps"); }
+            else if (parseNode.GetChildNode("allowedSourceIps") is { } nullNodeAllowedSourceIps && nullNodeAllowedSourceIps.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AllowedSourceIps = null;
+            if (parseNode.GetChildNode("applicationId") is null) { _explicitNullValueApplicationId = default!; _explicitNullProperties?.Remove("applicationId"); }
+            else if (parseNode.GetChildNode("applicationId") is { } nullNodeApplicationId && nullNodeApplicationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ApplicationId = null;
+            if (parseNode.GetChildNode("applicationName") is null) { _explicitNullValueApplicationName = default!; _explicitNullProperties?.Remove("applicationName"); }
+            else if (parseNode.GetChildNode("applicationName") is { } nullNodeApplicationName && nullNodeApplicationName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ApplicationName = null;
+            if (parseNode.GetChildNode("callbackCreds") is null) { _explicitNullValueCallbackCreds = default!; _explicitNullProperties?.Remove("callbackCreds"); }
+            else if (parseNode.GetChildNode("callbackCreds") is { } nullNodeCallbackCreds && nullNodeCallbackCreds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallbackCreds = null;
+            if (parseNode.GetChildNode("callbackTimeout") is null) { _explicitNullValueCallbackTimeout = default!; _explicitNullProperties?.Remove("callbackTimeout"); }
+            else if (parseNode.GetChildNode("callbackTimeout") is { } nullNodeCallbackTimeout && nullNodeCallbackTimeout.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallbackTimeout = null;
+            if (parseNode.GetChildNode("callInitiatedCallbackUrl") is null) { _explicitNullValueCallInitiatedCallbackUrl = default!; _explicitNullProperties?.Remove("callInitiatedCallbackUrl"); }
+            else if (parseNode.GetChildNode("callInitiatedCallbackUrl") is { } nullNodeCallInitiatedCallbackUrl && nullNodeCallInitiatedCallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallInitiatedCallbackUrl = null;
+            if (parseNode.GetChildNode("callInitiatedFallbackCreds") is null) { _explicitNullValueCallInitiatedFallbackCreds = default!; _explicitNullProperties?.Remove("callInitiatedFallbackCreds"); }
+            else if (parseNode.GetChildNode("callInitiatedFallbackCreds") is { } nullNodeCallInitiatedFallbackCreds && nullNodeCallInitiatedFallbackCreds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallInitiatedFallbackCreds = null;
+            if (parseNode.GetChildNode("callInitiatedFallbackMethod") is null) { _explicitNullValueCallInitiatedFallbackMethod = default!; _explicitNullProperties?.Remove("callInitiatedFallbackMethod"); }
+            else if (parseNode.GetChildNode("callInitiatedFallbackMethod") is { } nullNodeCallInitiatedFallbackMethod && nullNodeCallInitiatedFallbackMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallInitiatedFallbackMethod = null;
+            if (parseNode.GetChildNode("callInitiatedFallbackUrl") is null) { _explicitNullValueCallInitiatedFallbackUrl = default!; _explicitNullProperties?.Remove("callInitiatedFallbackUrl"); }
+            else if (parseNode.GetChildNode("callInitiatedFallbackUrl") is { } nullNodeCallInitiatedFallbackUrl && nullNodeCallInitiatedFallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallInitiatedFallbackUrl = null;
+            if (parseNode.GetChildNode("callInitiatedMethod") is null) { _explicitNullValueCallInitiatedMethod = default!; _explicitNullProperties?.Remove("callInitiatedMethod"); }
+            else if (parseNode.GetChildNode("callInitiatedMethod") is { } nullNodeCallInitiatedMethod && nullNodeCallInitiatedMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallInitiatedMethod = null;
+            if (parseNode.GetChildNode("callStatusCallbackUrl") is null) { _explicitNullValueCallStatusCallbackUrl = default!; _explicitNullProperties?.Remove("callStatusCallbackUrl"); }
+            else if (parseNode.GetChildNode("callStatusCallbackUrl") is { } nullNodeCallStatusCallbackUrl && nullNodeCallStatusCallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallStatusCallbackUrl = null;
+            if (parseNode.GetChildNode("callStatusMethod") is null) { _explicitNullValueCallStatusMethod = default!; _explicitNullProperties?.Remove("callStatusMethod"); }
+            else if (parseNode.GetChildNode("callStatusMethod") is { } nullNodeCallStatusMethod && nullNodeCallStatusMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallStatusMethod = null;
+            if (parseNode.GetChildNode("inboundSipCallsEnabled") is null) { _explicitNullValueInboundSipCallsEnabled = default!; _explicitNullProperties?.Remove("inboundSipCallsEnabled"); }
+            else if (parseNode.GetChildNode("inboundSipCallsEnabled") is { } nullNodeInboundSipCallsEnabled && nullNodeInboundSipCallsEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InboundSipCallsEnabled = null;
+            if (parseNode.GetChildNode("passwordAuthEnabled") is null) { _explicitNullValuePasswordAuthEnabled = default!; _explicitNullProperties?.Remove("passwordAuthEnabled"); }
+            else if (parseNode.GetChildNode("passwordAuthEnabled") is { } nullNodePasswordAuthEnabled && nullNodePasswordAuthEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PasswordAuthEnabled = null;
+            if (parseNode.GetChildNode("serviceType") is null) { _explicitNullValueServiceType = default!; _explicitNullProperties?.Remove("serviceType"); }
+            else if (parseNode.GetChildNode("serviceType") is { } nullNodeServiceType && nullNodeServiceType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ServiceType = null;
+            if (parseNode.GetChildNode("sipUri") is null) { _explicitNullValueSipUri = default!; _explicitNullProperties?.Remove("sipUri"); }
+            else if (parseNode.GetChildNode("sipUri") is { } nullNodeSipUri && nullNodeSipUri.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SipUri = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -41,150 +58,150 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The regions where calls to the application&apos;s default-realm SIP identity are permitted to authenticate. An application with no allowed regions cannot authenticate. Custom SIP domains use each SIP user&apos;s `allowedRegions` instead.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?>? AllowedRegions { get => _explicitNullValueAllowedRegions; set { _explicitNullValueAllowedRegions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowedRegions"); else _explicitNullProperties?.Remove("allowedRegions"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?>? AllowedRegions { get => _explicitNullValueAllowedRegions; set { _explicitNullValueAllowedRegions = value; AdditionalData?.Remove("allowedRegions"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowedRegions"); else _explicitNullProperties?.Remove("allowedRegions"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?>? _explicitNullValueAllowedRegions = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?> AllowedRegions { get => _explicitNullValueAllowedRegions; set { _explicitNullValueAllowedRegions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowedRegions"); else _explicitNullProperties?.Remove("allowedRegions"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?> AllowedRegions { get => _explicitNullValueAllowedRegions; set { _explicitNullValueAllowedRegions = value; AdditionalData?.Remove("allowedRegions"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowedRegions"); else _explicitNullProperties?.Remove("allowedRegions"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementRegion?> _explicitNullValueAllowedRegions = default!;
 #endif
         /// <summary>IPv4 CIDR blocks allowed to send SIP traffic to the application&apos;s default-realm SIP identity. An empty array means no IP restriction is applied. Maximum 25 entries. Custom SIP domains use IP access lists instead.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? AllowedSourceIps { get => _explicitNullValueAllowedSourceIps; set { _explicitNullValueAllowedSourceIps = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowedSourceIps"); else _explicitNullProperties?.Remove("allowedSourceIps"); } }
+        public List<string>? AllowedSourceIps { get => _explicitNullValueAllowedSourceIps; set { _explicitNullValueAllowedSourceIps = value; AdditionalData?.Remove("allowedSourceIps"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowedSourceIps"); else _explicitNullProperties?.Remove("allowedSourceIps"); } }
         private List<string>? _explicitNullValueAllowedSourceIps = default!;
 #nullable restore
 #else
-        public List<string> AllowedSourceIps { get => _explicitNullValueAllowedSourceIps; set { _explicitNullValueAllowedSourceIps = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowedSourceIps"); else _explicitNullProperties?.Remove("allowedSourceIps"); } }
+        public List<string> AllowedSourceIps { get => _explicitNullValueAllowedSourceIps; set { _explicitNullValueAllowedSourceIps = value; AdditionalData?.Remove("allowedSourceIps"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowedSourceIps"); else _explicitNullProperties?.Remove("allowedSourceIps"); } }
         private List<string> _explicitNullValueAllowedSourceIps = default!;
 #endif
         /// <summary>The unique ID of the application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ApplicationId { get => _explicitNullValueApplicationId; set { _explicitNullValueApplicationId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("applicationId"); else _explicitNullProperties?.Remove("applicationId"); } }
+        public string? ApplicationId { get => _explicitNullValueApplicationId; set { _explicitNullValueApplicationId = value; AdditionalData?.Remove("applicationId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("applicationId"); else _explicitNullProperties?.Remove("applicationId"); } }
         private string? _explicitNullValueApplicationId = default!;
 #nullable restore
 #else
-        public string ApplicationId { get => _explicitNullValueApplicationId; set { _explicitNullValueApplicationId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("applicationId"); else _explicitNullProperties?.Remove("applicationId"); } }
+        public string ApplicationId { get => _explicitNullValueApplicationId; set { _explicitNullValueApplicationId = value; AdditionalData?.Remove("applicationId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("applicationId"); else _explicitNullProperties?.Remove("applicationId"); } }
         private string _explicitNullValueApplicationId = default!;
 #endif
         /// <summary>The name of the application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ApplicationName { get => _explicitNullValueApplicationName; set { _explicitNullValueApplicationName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("applicationName"); else _explicitNullProperties?.Remove("applicationName"); } }
+        public string? ApplicationName { get => _explicitNullValueApplicationName; set { _explicitNullValueApplicationName = value; AdditionalData?.Remove("applicationName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("applicationName"); else _explicitNullProperties?.Remove("applicationName"); } }
         private string? _explicitNullValueApplicationName = default!;
 #nullable restore
 #else
-        public string ApplicationName { get => _explicitNullValueApplicationName; set { _explicitNullValueApplicationName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("applicationName"); else _explicitNullProperties?.Remove("applicationName"); } }
+        public string ApplicationName { get => _explicitNullValueApplicationName; set { _explicitNullValueApplicationName = value; AdditionalData?.Remove("applicationName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("applicationName"); else _explicitNullProperties?.Remove("applicationName"); } }
         private string _explicitNullValueApplicationName = default!;
 #endif
         /// <summary>The callbackCreds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds? CallbackCreds { get => _explicitNullValueCallbackCreds; set { _explicitNullValueCallbackCreds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackCreds"); else _explicitNullProperties?.Remove("callbackCreds"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds? CallbackCreds { get => _explicitNullValueCallbackCreds; set { _explicitNullValueCallbackCreds = value; AdditionalData?.Remove("callbackCreds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackCreds"); else _explicitNullProperties?.Remove("callbackCreds"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds? _explicitNullValueCallbackCreds = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds CallbackCreds { get => _explicitNullValueCallbackCreds; set { _explicitNullValueCallbackCreds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackCreds"); else _explicitNullProperties?.Remove("callbackCreds"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds CallbackCreds { get => _explicitNullValueCallbackCreds; set { _explicitNullValueCallbackCreds = value; AdditionalData?.Remove("callbackCreds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackCreds"); else _explicitNullProperties?.Remove("callbackCreds"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds _explicitNullValueCallbackCreds = default!;
 #endif
         /// <summary>The timeout in seconds for callbacks.</summary>
-        public int? CallbackTimeout { get => _explicitNullValueCallbackTimeout; set { _explicitNullValueCallbackTimeout = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackTimeout"); else _explicitNullProperties?.Remove("callbackTimeout"); } }
+        public int? CallbackTimeout { get => _explicitNullValueCallbackTimeout; set { _explicitNullValueCallbackTimeout = value; AdditionalData?.Remove("callbackTimeout"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackTimeout"); else _explicitNullProperties?.Remove("callbackTimeout"); } }
         private int? _explicitNullValueCallbackTimeout = default!;
         /// <summary>The URL to receive call initiated callbacks.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallInitiatedCallbackUrl { get => _explicitNullValueCallInitiatedCallbackUrl; set { _explicitNullValueCallInitiatedCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedCallbackUrl"); else _explicitNullProperties?.Remove("callInitiatedCallbackUrl"); } }
+        public string? CallInitiatedCallbackUrl { get => _explicitNullValueCallInitiatedCallbackUrl; set { _explicitNullValueCallInitiatedCallbackUrl = value; AdditionalData?.Remove("callInitiatedCallbackUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedCallbackUrl"); else _explicitNullProperties?.Remove("callInitiatedCallbackUrl"); } }
         private string? _explicitNullValueCallInitiatedCallbackUrl = default!;
 #nullable restore
 #else
-        public string CallInitiatedCallbackUrl { get => _explicitNullValueCallInitiatedCallbackUrl; set { _explicitNullValueCallInitiatedCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedCallbackUrl"); else _explicitNullProperties?.Remove("callInitiatedCallbackUrl"); } }
+        public string CallInitiatedCallbackUrl { get => _explicitNullValueCallInitiatedCallbackUrl; set { _explicitNullValueCallInitiatedCallbackUrl = value; AdditionalData?.Remove("callInitiatedCallbackUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedCallbackUrl"); else _explicitNullProperties?.Remove("callInitiatedCallbackUrl"); } }
         private string _explicitNullValueCallInitiatedCallbackUrl = default!;
 #endif
         /// <summary>The callInitiatedFallbackCreds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds? CallInitiatedFallbackCreds { get => _explicitNullValueCallInitiatedFallbackCreds; set { _explicitNullValueCallInitiatedFallbackCreds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedFallbackCreds"); else _explicitNullProperties?.Remove("callInitiatedFallbackCreds"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds? CallInitiatedFallbackCreds { get => _explicitNullValueCallInitiatedFallbackCreds; set { _explicitNullValueCallInitiatedFallbackCreds = value; AdditionalData?.Remove("callInitiatedFallbackCreds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedFallbackCreds"); else _explicitNullProperties?.Remove("callInitiatedFallbackCreds"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds? _explicitNullValueCallInitiatedFallbackCreds = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds CallInitiatedFallbackCreds { get => _explicitNullValueCallInitiatedFallbackCreds; set { _explicitNullValueCallInitiatedFallbackCreds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedFallbackCreds"); else _explicitNullProperties?.Remove("callInitiatedFallbackCreds"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds CallInitiatedFallbackCreds { get => _explicitNullValueCallInitiatedFallbackCreds; set { _explicitNullValueCallInitiatedFallbackCreds = value; AdditionalData?.Remove("callInitiatedFallbackCreds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedFallbackCreds"); else _explicitNullProperties?.Remove("callInitiatedFallbackCreds"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceApplicationManagementCallbackCreds _explicitNullValueCallInitiatedFallbackCreds = default!;
 #endif
         /// <summary>The HTTP method used for the call initiated fallback callback.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallInitiatedFallbackMethod { get => _explicitNullValueCallInitiatedFallbackMethod; set { _explicitNullValueCallInitiatedFallbackMethod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedFallbackMethod"); else _explicitNullProperties?.Remove("callInitiatedFallbackMethod"); } }
+        public string? CallInitiatedFallbackMethod { get => _explicitNullValueCallInitiatedFallbackMethod; set { _explicitNullValueCallInitiatedFallbackMethod = value; AdditionalData?.Remove("callInitiatedFallbackMethod"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedFallbackMethod"); else _explicitNullProperties?.Remove("callInitiatedFallbackMethod"); } }
         private string? _explicitNullValueCallInitiatedFallbackMethod = default!;
 #nullable restore
 #else
-        public string CallInitiatedFallbackMethod { get => _explicitNullValueCallInitiatedFallbackMethod; set { _explicitNullValueCallInitiatedFallbackMethod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedFallbackMethod"); else _explicitNullProperties?.Remove("callInitiatedFallbackMethod"); } }
+        public string CallInitiatedFallbackMethod { get => _explicitNullValueCallInitiatedFallbackMethod; set { _explicitNullValueCallInitiatedFallbackMethod = value; AdditionalData?.Remove("callInitiatedFallbackMethod"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedFallbackMethod"); else _explicitNullProperties?.Remove("callInitiatedFallbackMethod"); } }
         private string _explicitNullValueCallInitiatedFallbackMethod = default!;
 #endif
         /// <summary>The fallback URL to receive call initiated callbacks.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallInitiatedFallbackUrl { get => _explicitNullValueCallInitiatedFallbackUrl; set { _explicitNullValueCallInitiatedFallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedFallbackUrl"); else _explicitNullProperties?.Remove("callInitiatedFallbackUrl"); } }
+        public string? CallInitiatedFallbackUrl { get => _explicitNullValueCallInitiatedFallbackUrl; set { _explicitNullValueCallInitiatedFallbackUrl = value; AdditionalData?.Remove("callInitiatedFallbackUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedFallbackUrl"); else _explicitNullProperties?.Remove("callInitiatedFallbackUrl"); } }
         private string? _explicitNullValueCallInitiatedFallbackUrl = default!;
 #nullable restore
 #else
-        public string CallInitiatedFallbackUrl { get => _explicitNullValueCallInitiatedFallbackUrl; set { _explicitNullValueCallInitiatedFallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedFallbackUrl"); else _explicitNullProperties?.Remove("callInitiatedFallbackUrl"); } }
+        public string CallInitiatedFallbackUrl { get => _explicitNullValueCallInitiatedFallbackUrl; set { _explicitNullValueCallInitiatedFallbackUrl = value; AdditionalData?.Remove("callInitiatedFallbackUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedFallbackUrl"); else _explicitNullProperties?.Remove("callInitiatedFallbackUrl"); } }
         private string _explicitNullValueCallInitiatedFallbackUrl = default!;
 #endif
         /// <summary>The HTTP method used for call initiated callbacks.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallInitiatedMethod { get => _explicitNullValueCallInitiatedMethod; set { _explicitNullValueCallInitiatedMethod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedMethod"); else _explicitNullProperties?.Remove("callInitiatedMethod"); } }
+        public string? CallInitiatedMethod { get => _explicitNullValueCallInitiatedMethod; set { _explicitNullValueCallInitiatedMethod = value; AdditionalData?.Remove("callInitiatedMethod"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedMethod"); else _explicitNullProperties?.Remove("callInitiatedMethod"); } }
         private string? _explicitNullValueCallInitiatedMethod = default!;
 #nullable restore
 #else
-        public string CallInitiatedMethod { get => _explicitNullValueCallInitiatedMethod; set { _explicitNullValueCallInitiatedMethod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedMethod"); else _explicitNullProperties?.Remove("callInitiatedMethod"); } }
+        public string CallInitiatedMethod { get => _explicitNullValueCallInitiatedMethod; set { _explicitNullValueCallInitiatedMethod = value; AdditionalData?.Remove("callInitiatedMethod"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callInitiatedMethod"); else _explicitNullProperties?.Remove("callInitiatedMethod"); } }
         private string _explicitNullValueCallInitiatedMethod = default!;
 #endif
         /// <summary>The URL to receive call status callbacks.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallStatusCallbackUrl { get => _explicitNullValueCallStatusCallbackUrl; set { _explicitNullValueCallStatusCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callStatusCallbackUrl"); else _explicitNullProperties?.Remove("callStatusCallbackUrl"); } }
+        public string? CallStatusCallbackUrl { get => _explicitNullValueCallStatusCallbackUrl; set { _explicitNullValueCallStatusCallbackUrl = value; AdditionalData?.Remove("callStatusCallbackUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callStatusCallbackUrl"); else _explicitNullProperties?.Remove("callStatusCallbackUrl"); } }
         private string? _explicitNullValueCallStatusCallbackUrl = default!;
 #nullable restore
 #else
-        public string CallStatusCallbackUrl { get => _explicitNullValueCallStatusCallbackUrl; set { _explicitNullValueCallStatusCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callStatusCallbackUrl"); else _explicitNullProperties?.Remove("callStatusCallbackUrl"); } }
+        public string CallStatusCallbackUrl { get => _explicitNullValueCallStatusCallbackUrl; set { _explicitNullValueCallStatusCallbackUrl = value; AdditionalData?.Remove("callStatusCallbackUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callStatusCallbackUrl"); else _explicitNullProperties?.Remove("callStatusCallbackUrl"); } }
         private string _explicitNullValueCallStatusCallbackUrl = default!;
 #endif
         /// <summary>The HTTP method used for call status callbacks.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallStatusMethod { get => _explicitNullValueCallStatusMethod; set { _explicitNullValueCallStatusMethod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callStatusMethod"); else _explicitNullProperties?.Remove("callStatusMethod"); } }
+        public string? CallStatusMethod { get => _explicitNullValueCallStatusMethod; set { _explicitNullValueCallStatusMethod = value; AdditionalData?.Remove("callStatusMethod"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callStatusMethod"); else _explicitNullProperties?.Remove("callStatusMethod"); } }
         private string? _explicitNullValueCallStatusMethod = default!;
 #nullable restore
 #else
-        public string CallStatusMethod { get => _explicitNullValueCallStatusMethod; set { _explicitNullValueCallStatusMethod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callStatusMethod"); else _explicitNullProperties?.Remove("callStatusMethod"); } }
+        public string CallStatusMethod { get => _explicitNullValueCallStatusMethod; set { _explicitNullValueCallStatusMethod = value; AdditionalData?.Remove("callStatusMethod"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callStatusMethod"); else _explicitNullProperties?.Remove("callStatusMethod"); } }
         private string _explicitNullValueCallStatusMethod = default!;
 #endif
         /// <summary>Whether the application accepts inbound SIP calls on its default-realm SIP identity (`sip:{applicationId}@{auth_realm}`). Does not affect calls to custom SIP domains bound to the application.</summary>
-        public bool? InboundSipCallsEnabled { get => _explicitNullValueInboundSipCallsEnabled; set { _explicitNullValueInboundSipCallsEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inboundSipCallsEnabled"); else _explicitNullProperties?.Remove("inboundSipCallsEnabled"); } }
+        public bool? InboundSipCallsEnabled { get => _explicitNullValueInboundSipCallsEnabled; set { _explicitNullValueInboundSipCallsEnabled = value; AdditionalData?.Remove("inboundSipCallsEnabled"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inboundSipCallsEnabled"); else _explicitNullProperties?.Remove("inboundSipCallsEnabled"); } }
         private bool? _explicitNullValueInboundSipCallsEnabled = default!;
         /// <summary>Whether SIP digest authentication (407 challenge) is required for inbound SIP calls on the application&apos;s default-realm SIP identity. Custom SIP domains authenticate with per-user credentials from SIP Users instead.</summary>
-        public bool? PasswordAuthEnabled { get => _explicitNullValuePasswordAuthEnabled; set { _explicitNullValuePasswordAuthEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("passwordAuthEnabled"); else _explicitNullProperties?.Remove("passwordAuthEnabled"); } }
+        public bool? PasswordAuthEnabled { get => _explicitNullValuePasswordAuthEnabled; set { _explicitNullValuePasswordAuthEnabled = value; AdditionalData?.Remove("passwordAuthEnabled"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("passwordAuthEnabled"); else _explicitNullProperties?.Remove("passwordAuthEnabled"); } }
         private bool? _explicitNullValuePasswordAuthEnabled = default!;
         /// <summary>The service type of the application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ServiceType { get => _explicitNullValueServiceType; set { _explicitNullValueServiceType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("serviceType"); else _explicitNullProperties?.Remove("serviceType"); } }
+        public string? ServiceType { get => _explicitNullValueServiceType; set { _explicitNullValueServiceType = value; AdditionalData?.Remove("serviceType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("serviceType"); else _explicitNullProperties?.Remove("serviceType"); } }
         private string? _explicitNullValueServiceType = default!;
 #nullable restore
 #else
-        public string ServiceType { get => _explicitNullValueServiceType; set { _explicitNullValueServiceType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("serviceType"); else _explicitNullProperties?.Remove("serviceType"); } }
+        public string ServiceType { get => _explicitNullValueServiceType; set { _explicitNullValueServiceType = value; AdditionalData?.Remove("serviceType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("serviceType"); else _explicitNullProperties?.Remove("serviceType"); } }
         private string _explicitNullValueServiceType = default!;
 #endif
         /// <summary>The application&apos;s default-realm SIP URI (`sip:{applicationId}@{auth_realm}`). `null` when inbound SIP calls are disabled. Custom SIP domain hosts are listed in each SIP domain&apos;s `fqdns`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SipUri { get => _explicitNullValueSipUri; set { _explicitNullValueSipUri = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sipUri"); else _explicitNullProperties?.Remove("sipUri"); } }
+        public string? SipUri { get => _explicitNullValueSipUri; set { _explicitNullValueSipUri = value; AdditionalData?.Remove("sipUri"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sipUri"); else _explicitNullProperties?.Remove("sipUri"); } }
         private string? _explicitNullValueSipUri = default!;
 #nullable restore
 #else
-        public string SipUri { get => _explicitNullValueSipUri; set { _explicitNullValueSipUri = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sipUri"); else _explicitNullProperties?.Remove("sipUri"); } }
+        public string SipUri { get => _explicitNullValueSipUri; set { _explicitNullValueSipUri = value; AdditionalData?.Remove("sipUri"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sipUri"); else _explicitNullProperties?.Remove("sipUri"); } }
         private string _explicitNullValueSipUri = default!;
 #endif
         /// <summary>

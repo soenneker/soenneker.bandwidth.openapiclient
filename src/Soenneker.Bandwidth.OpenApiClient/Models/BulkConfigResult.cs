@@ -18,49 +18,54 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("didId") is { } nullNodeDidId && nullNodeDidId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DidId = null;
-            if (parseNode.GetChildNode("messages") is { } nullNodeMessages && nullNodeMessages.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Messages = null;
-            if (parseNode.GetChildNode("partialConfigurations") is { } nullNodePartialConfigurations && nullNodePartialConfigurations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PartialConfigurations = null;
-            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
-            if (parseNode.GetChildNode("updatedConfigurations") is { } nullNodeUpdatedConfigurations && nullNodeUpdatedConfigurations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UpdatedConfigurations = null;
+            if (parseNode.GetChildNode("didId") is null) { _explicitNullValueDidId = default!; _explicitNullProperties?.Remove("didId"); }
+            else if (parseNode.GetChildNode("didId") is { } nullNodeDidId && nullNodeDidId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DidId = null;
+            if (parseNode.GetChildNode("messages") is null) { _explicitNullValueMessages = default!; _explicitNullProperties?.Remove("messages"); }
+            else if (parseNode.GetChildNode("messages") is { } nullNodeMessages && nullNodeMessages.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Messages = null;
+            if (parseNode.GetChildNode("partialConfigurations") is null) { _explicitNullValuePartialConfigurations = default!; _explicitNullProperties?.Remove("partialConfigurations"); }
+            else if (parseNode.GetChildNode("partialConfigurations") is { } nullNodePartialConfigurations && nullNodePartialConfigurations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PartialConfigurations = null;
+            if (parseNode.GetChildNode("status") is null) { _explicitNullValueStatus = default!; _explicitNullProperties?.Remove("status"); }
+            else if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("updatedConfigurations") is null) { _explicitNullValueUpdatedConfigurations = default!; _explicitNullProperties?.Remove("updatedConfigurations"); }
+            else if (parseNode.GetChildNode("updatedConfigurations") is { } nullNodeUpdatedConfigurations && nullNodeUpdatedConfigurations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UpdatedConfigurations = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>This is the single DIDId to be configured. Returned in checkoutCart() and listDid().</summary>
-        public int? DidId { get => _explicitNullValueDidId; set { _explicitNullValueDidId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("didId"); else _explicitNullProperties?.Remove("didId"); } }
+        public int? DidId { get => _explicitNullValueDidId; set { _explicitNullValueDidId = value; AdditionalData?.Remove("didId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("didId"); else _explicitNullProperties?.Remove("didId"); } }
         private int? _explicitNullValueDidId = default!;
         /// <summary>List of configuration error messages, if any</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResultMessagesItem>? Messages { get => _explicitNullValueMessages; set { _explicitNullValueMessages = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messages"); else _explicitNullProperties?.Remove("messages"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResultMessagesItem>? Messages { get => _explicitNullValueMessages; set { _explicitNullValueMessages = value; AdditionalData?.Remove("messages"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messages"); else _explicitNullProperties?.Remove("messages"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResultMessagesItem>? _explicitNullValueMessages = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResultMessagesItem> Messages { get => _explicitNullValueMessages; set { _explicitNullValueMessages = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messages"); else _explicitNullProperties?.Remove("messages"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResultMessagesItem> Messages { get => _explicitNullValueMessages; set { _explicitNullValueMessages = value; AdditionalData?.Remove("messages"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messages"); else _explicitNullProperties?.Remove("messages"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResultMessagesItem> _explicitNullValueMessages = default!;
 #endif
         /// <summary>List of configuration options that couldn&apos;t be applied</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ConfigurationOption?>? PartialConfigurations { get => _explicitNullValuePartialConfigurations; set { _explicitNullValuePartialConfigurations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("partialConfigurations"); else _explicitNullProperties?.Remove("partialConfigurations"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ConfigurationOption?>? PartialConfigurations { get => _explicitNullValuePartialConfigurations; set { _explicitNullValuePartialConfigurations = value; AdditionalData?.Remove("partialConfigurations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("partialConfigurations"); else _explicitNullProperties?.Remove("partialConfigurations"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ConfigurationOption?>? _explicitNullValuePartialConfigurations = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ConfigurationOption?> PartialConfigurations { get => _explicitNullValuePartialConfigurations; set { _explicitNullValuePartialConfigurations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("partialConfigurations"); else _explicitNullProperties?.Remove("partialConfigurations"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ConfigurationOption?> PartialConfigurations { get => _explicitNullValuePartialConfigurations; set { _explicitNullValuePartialConfigurations = value; AdditionalData?.Remove("partialConfigurations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("partialConfigurations"); else _explicitNullProperties?.Remove("partialConfigurations"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ConfigurationOption?> _explicitNullValuePartialConfigurations = default!;
 #endif
         /// <summary>A &apos;SUCCESS&apos; message will indicate that the operation was performed successfully.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResultStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResultStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; AdditionalData?.Remove("status"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResultStatus? _explicitNullValueStatus = default!;
         /// <summary>List of configuration options that are successfully applied</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ConfigurationOption?>? UpdatedConfigurations { get => _explicitNullValueUpdatedConfigurations; set { _explicitNullValueUpdatedConfigurations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updatedConfigurations"); else _explicitNullProperties?.Remove("updatedConfigurations"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ConfigurationOption?>? UpdatedConfigurations { get => _explicitNullValueUpdatedConfigurations; set { _explicitNullValueUpdatedConfigurations = value; AdditionalData?.Remove("updatedConfigurations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updatedConfigurations"); else _explicitNullProperties?.Remove("updatedConfigurations"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ConfigurationOption?>? _explicitNullValueUpdatedConfigurations = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ConfigurationOption?> UpdatedConfigurations { get => _explicitNullValueUpdatedConfigurations; set { _explicitNullValueUpdatedConfigurations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updatedConfigurations"); else _explicitNullProperties?.Remove("updatedConfigurations"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ConfigurationOption?> UpdatedConfigurations { get => _explicitNullValueUpdatedConfigurations; set { _explicitNullValueUpdatedConfigurations = value; AdditionalData?.Remove("updatedConfigurations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updatedConfigurations"); else _explicitNullProperties?.Remove("updatedConfigurations"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ConfigurationOption?> _explicitNullValueUpdatedConfigurations = default!;
 #endif
         /// <summary>
@@ -91,7 +96,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "didId", n => { DidId = n.GetIntValue(); } },
                 { "messages", n => { Messages = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResultMessagesItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResultMessagesItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "partialConfigurations", n => { PartialConfigurations = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ConfigurationOption>()?.AsList(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResultStatus>(); } },
+                { "status", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkConfigResultStatus>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueStatus = default; _explicitNullProperties?.Remove("status"); AdditionalData["status"] = unknown; } else { Status = parsed; AdditionalData.Remove("status"); } } },
                 { "updatedConfigurations", n => { UpdatedConfigurations = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ConfigurationOption>()?.AsList(); } },
             };
         }

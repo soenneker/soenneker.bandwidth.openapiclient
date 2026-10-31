@@ -17,177 +17,200 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("accountId") is { } nullNodeAccountId && nullNodeAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountId = null;
-            if (parseNode.GetChildNode("attachmentCount") is { } nullNodeAttachmentCount && nullNodeAttachmentCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AttachmentCount = null;
-            if (parseNode.GetChildNode("bwLatency") is { } nullNodeBwLatency && nullNodeBwLatency.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BwLatency = null;
-            if (parseNode.GetChildNode("calledNumberCountryA3") is { } nullNodeCalledNumberCountryA3 && nullNodeCalledNumberCountryA3.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CalledNumberCountryA3 = null;
-            if (parseNode.GetChildNode("callingNumberCountryA3") is { } nullNodeCallingNumberCountryA3 && nullNodeCallingNumberCountryA3.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallingNumberCountryA3 = null;
-            if (parseNode.GetChildNode("campaignClass") is { } nullNodeCampaignClass && nullNodeCampaignClass.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CampaignClass = null;
-            if (parseNode.GetChildNode("campaignId") is { } nullNodeCampaignId && nullNodeCampaignId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CampaignId = null;
-            if (parseNode.GetChildNode("carrierLatency") is { } nullNodeCarrierLatency && nullNodeCarrierLatency.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CarrierLatency = null;
-            if (parseNode.GetChildNode("carrierName") is { } nullNodeCarrierName && nullNodeCarrierName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CarrierName = null;
-            if (parseNode.GetChildNode("destinationTn") is { } nullNodeDestinationTn && nullNodeDestinationTn.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DestinationTn = null;
-            if (parseNode.GetChildNode("errorCode") is { } nullNodeErrorCode && nullNodeErrorCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ErrorCode = null;
-            if (parseNode.GetChildNode("location") is { } nullNodeLocation && nullNodeLocation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Location = null;
-            if (parseNode.GetChildNode("messageDirection") is { } nullNodeMessageDirection && nullNodeMessageDirection.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessageDirection = null;
-            if (parseNode.GetChildNode("messageId") is { } nullNodeMessageId && nullNodeMessageId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessageId = null;
-            if (parseNode.GetChildNode("messageLength") is { } nullNodeMessageLength && nullNodeMessageLength.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessageLength = null;
-            if (parseNode.GetChildNode("messageSize") is { } nullNodeMessageSize && nullNodeMessageSize.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessageSize = null;
-            if (parseNode.GetChildNode("messageStatus") is { } nullNodeMessageStatus && nullNodeMessageStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessageStatus = null;
-            if (parseNode.GetChildNode("messageType") is { } nullNodeMessageType && nullNodeMessageType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessageType = null;
-            if (parseNode.GetChildNode("product") is { } nullNodeProduct && nullNodeProduct.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Product = null;
-            if (parseNode.GetChildNode("receiveTime") is { } nullNodeReceiveTime && nullNodeReceiveTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReceiveTime = null;
-            if (parseNode.GetChildNode("recipientCount") is { } nullNodeRecipientCount && nullNodeRecipientCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RecipientCount = null;
-            if (parseNode.GetChildNode("segmentCount") is { } nullNodeSegmentCount && nullNodeSegmentCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SegmentCount = null;
-            if (parseNode.GetChildNode("sourceTn") is { } nullNodeSourceTn && nullNodeSourceTn.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SourceTn = null;
+            if (parseNode.GetChildNode("accountId") is null) { _explicitNullValueAccountId = default!; _explicitNullProperties?.Remove("accountId"); }
+            else if (parseNode.GetChildNode("accountId") is { } nullNodeAccountId && nullNodeAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountId = null;
+            if (parseNode.GetChildNode("attachmentCount") is null) { _explicitNullValueAttachmentCount = default!; _explicitNullProperties?.Remove("attachmentCount"); }
+            else if (parseNode.GetChildNode("attachmentCount") is { } nullNodeAttachmentCount && nullNodeAttachmentCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AttachmentCount = null;
+            if (parseNode.GetChildNode("bwLatency") is null) { _explicitNullValueBwLatency = default!; _explicitNullProperties?.Remove("bwLatency"); }
+            else if (parseNode.GetChildNode("bwLatency") is { } nullNodeBwLatency && nullNodeBwLatency.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BwLatency = null;
+            if (parseNode.GetChildNode("calledNumberCountryA3") is null) { _explicitNullValueCalledNumberCountryA3 = default!; _explicitNullProperties?.Remove("calledNumberCountryA3"); }
+            else if (parseNode.GetChildNode("calledNumberCountryA3") is { } nullNodeCalledNumberCountryA3 && nullNodeCalledNumberCountryA3.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CalledNumberCountryA3 = null;
+            if (parseNode.GetChildNode("callingNumberCountryA3") is null) { _explicitNullValueCallingNumberCountryA3 = default!; _explicitNullProperties?.Remove("callingNumberCountryA3"); }
+            else if (parseNode.GetChildNode("callingNumberCountryA3") is { } nullNodeCallingNumberCountryA3 && nullNodeCallingNumberCountryA3.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallingNumberCountryA3 = null;
+            if (parseNode.GetChildNode("campaignClass") is null) { _explicitNullValueCampaignClass = default!; _explicitNullProperties?.Remove("campaignClass"); }
+            else if (parseNode.GetChildNode("campaignClass") is { } nullNodeCampaignClass && nullNodeCampaignClass.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CampaignClass = null;
+            if (parseNode.GetChildNode("campaignId") is null) { _explicitNullValueCampaignId = default!; _explicitNullProperties?.Remove("campaignId"); }
+            else if (parseNode.GetChildNode("campaignId") is { } nullNodeCampaignId && nullNodeCampaignId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CampaignId = null;
+            if (parseNode.GetChildNode("carrierLatency") is null) { _explicitNullValueCarrierLatency = default!; _explicitNullProperties?.Remove("carrierLatency"); }
+            else if (parseNode.GetChildNode("carrierLatency") is { } nullNodeCarrierLatency && nullNodeCarrierLatency.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CarrierLatency = null;
+            if (parseNode.GetChildNode("carrierName") is null) { _explicitNullValueCarrierName = default!; _explicitNullProperties?.Remove("carrierName"); }
+            else if (parseNode.GetChildNode("carrierName") is { } nullNodeCarrierName && nullNodeCarrierName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CarrierName = null;
+            if (parseNode.GetChildNode("destinationTn") is null) { _explicitNullValueDestinationTn = default!; _explicitNullProperties?.Remove("destinationTn"); }
+            else if (parseNode.GetChildNode("destinationTn") is { } nullNodeDestinationTn && nullNodeDestinationTn.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DestinationTn = null;
+            if (parseNode.GetChildNode("errorCode") is null) { _explicitNullValueErrorCode = default!; _explicitNullProperties?.Remove("errorCode"); }
+            else if (parseNode.GetChildNode("errorCode") is { } nullNodeErrorCode && nullNodeErrorCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ErrorCode = null;
+            if (parseNode.GetChildNode("location") is null) { _explicitNullValueLocation = default!; _explicitNullProperties?.Remove("location"); }
+            else if (parseNode.GetChildNode("location") is { } nullNodeLocation && nullNodeLocation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Location = null;
+            if (parseNode.GetChildNode("messageDirection") is null) { _explicitNullValueMessageDirection = default!; _explicitNullProperties?.Remove("messageDirection"); }
+            else if (parseNode.GetChildNode("messageDirection") is { } nullNodeMessageDirection && nullNodeMessageDirection.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessageDirection = null;
+            if (parseNode.GetChildNode("messageId") is null) { _explicitNullValueMessageId = default!; _explicitNullProperties?.Remove("messageId"); }
+            else if (parseNode.GetChildNode("messageId") is { } nullNodeMessageId && nullNodeMessageId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessageId = null;
+            if (parseNode.GetChildNode("messageLength") is null) { _explicitNullValueMessageLength = default!; _explicitNullProperties?.Remove("messageLength"); }
+            else if (parseNode.GetChildNode("messageLength") is { } nullNodeMessageLength && nullNodeMessageLength.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessageLength = null;
+            if (parseNode.GetChildNode("messageSize") is null) { _explicitNullValueMessageSize = default!; _explicitNullProperties?.Remove("messageSize"); }
+            else if (parseNode.GetChildNode("messageSize") is { } nullNodeMessageSize && nullNodeMessageSize.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessageSize = null;
+            if (parseNode.GetChildNode("messageStatus") is null) { _explicitNullValueMessageStatus = default!; _explicitNullProperties?.Remove("messageStatus"); }
+            else if (parseNode.GetChildNode("messageStatus") is { } nullNodeMessageStatus && nullNodeMessageStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessageStatus = null;
+            if (parseNode.GetChildNode("messageType") is null) { _explicitNullValueMessageType = default!; _explicitNullProperties?.Remove("messageType"); }
+            else if (parseNode.GetChildNode("messageType") is { } nullNodeMessageType && nullNodeMessageType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessageType = null;
+            if (parseNode.GetChildNode("product") is null) { _explicitNullValueProduct = default!; _explicitNullProperties?.Remove("product"); }
+            else if (parseNode.GetChildNode("product") is { } nullNodeProduct && nullNodeProduct.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Product = null;
+            if (parseNode.GetChildNode("receiveTime") is null) { _explicitNullValueReceiveTime = default!; _explicitNullProperties?.Remove("receiveTime"); }
+            else if (parseNode.GetChildNode("receiveTime") is { } nullNodeReceiveTime && nullNodeReceiveTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReceiveTime = null;
+            if (parseNode.GetChildNode("recipientCount") is null) { _explicitNullValueRecipientCount = default!; _explicitNullProperties?.Remove("recipientCount"); }
+            else if (parseNode.GetChildNode("recipientCount") is { } nullNodeRecipientCount && nullNodeRecipientCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RecipientCount = null;
+            if (parseNode.GetChildNode("segmentCount") is null) { _explicitNullValueSegmentCount = default!; _explicitNullProperties?.Remove("segmentCount"); }
+            else if (parseNode.GetChildNode("segmentCount") is { } nullNodeSegmentCount && nullNodeSegmentCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SegmentCount = null;
+            if (parseNode.GetChildNode("sourceTn") is null) { _explicitNullValueSourceTn = default!; _explicitNullProperties?.Remove("sourceTn"); }
+            else if (parseNode.GetChildNode("sourceTn") is { } nullNodeSourceTn && nullNodeSourceTn.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SourceTn = null;
         }
 
         /// <summary>The account id associated with this message.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
+        public string? AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; AdditionalData?.Remove("accountId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
         private string? _explicitNullValueAccountId = default!;
 #nullable restore
 #else
-        public string AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
+        public string AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; AdditionalData?.Remove("accountId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
         private string _explicitNullValueAccountId = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The number of attachments the message has.</summary>
-        public int? AttachmentCount { get => _explicitNullValueAttachmentCount; set { _explicitNullValueAttachmentCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("attachmentCount"); else _explicitNullProperties?.Remove("attachmentCount"); } }
+        public int? AttachmentCount { get => _explicitNullValueAttachmentCount; set { _explicitNullValueAttachmentCount = value; AdditionalData?.Remove("attachmentCount"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("attachmentCount"); else _explicitNullProperties?.Remove("attachmentCount"); } }
         private int? _explicitNullValueAttachmentCount = default!;
         /// <summary>The Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled.</summary>
-        public int? BwLatency { get => _explicitNullValueBwLatency; set { _explicitNullValueBwLatency = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bwLatency"); else _explicitNullProperties?.Remove("bwLatency"); } }
+        public int? BwLatency { get => _explicitNullValueBwLatency; set { _explicitNullValueBwLatency = value; AdditionalData?.Remove("bwLatency"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bwLatency"); else _explicitNullProperties?.Remove("bwLatency"); } }
         private int? _explicitNullValueBwLatency = default!;
         /// <summary>The A3 country code of the called number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CalledNumberCountryA3 { get => _explicitNullValueCalledNumberCountryA3; set { _explicitNullValueCalledNumberCountryA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("calledNumberCountryA3"); else _explicitNullProperties?.Remove("calledNumberCountryA3"); } }
+        public string? CalledNumberCountryA3 { get => _explicitNullValueCalledNumberCountryA3; set { _explicitNullValueCalledNumberCountryA3 = value; AdditionalData?.Remove("calledNumberCountryA3"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("calledNumberCountryA3"); else _explicitNullProperties?.Remove("calledNumberCountryA3"); } }
         private string? _explicitNullValueCalledNumberCountryA3 = default!;
 #nullable restore
 #else
-        public string CalledNumberCountryA3 { get => _explicitNullValueCalledNumberCountryA3; set { _explicitNullValueCalledNumberCountryA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("calledNumberCountryA3"); else _explicitNullProperties?.Remove("calledNumberCountryA3"); } }
+        public string CalledNumberCountryA3 { get => _explicitNullValueCalledNumberCountryA3; set { _explicitNullValueCalledNumberCountryA3 = value; AdditionalData?.Remove("calledNumberCountryA3"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("calledNumberCountryA3"); else _explicitNullProperties?.Remove("calledNumberCountryA3"); } }
         private string _explicitNullValueCalledNumberCountryA3 = default!;
 #endif
         /// <summary>The A3 country code of the calling number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallingNumberCountryA3 { get => _explicitNullValueCallingNumberCountryA3; set { _explicitNullValueCallingNumberCountryA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callingNumberCountryA3"); else _explicitNullProperties?.Remove("callingNumberCountryA3"); } }
+        public string? CallingNumberCountryA3 { get => _explicitNullValueCallingNumberCountryA3; set { _explicitNullValueCallingNumberCountryA3 = value; AdditionalData?.Remove("callingNumberCountryA3"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callingNumberCountryA3"); else _explicitNullProperties?.Remove("callingNumberCountryA3"); } }
         private string? _explicitNullValueCallingNumberCountryA3 = default!;
 #nullable restore
 #else
-        public string CallingNumberCountryA3 { get => _explicitNullValueCallingNumberCountryA3; set { _explicitNullValueCallingNumberCountryA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callingNumberCountryA3"); else _explicitNullProperties?.Remove("callingNumberCountryA3"); } }
+        public string CallingNumberCountryA3 { get => _explicitNullValueCallingNumberCountryA3; set { _explicitNullValueCallingNumberCountryA3 = value; AdditionalData?.Remove("callingNumberCountryA3"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callingNumberCountryA3"); else _explicitNullProperties?.Remove("callingNumberCountryA3"); } }
         private string _explicitNullValueCallingNumberCountryA3 = default!;
 #endif
         /// <summary>The campaign class of the message if it has one.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CampaignClass { get => _explicitNullValueCampaignClass; set { _explicitNullValueCampaignClass = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("campaignClass"); else _explicitNullProperties?.Remove("campaignClass"); } }
+        public string? CampaignClass { get => _explicitNullValueCampaignClass; set { _explicitNullValueCampaignClass = value; AdditionalData?.Remove("campaignClass"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("campaignClass"); else _explicitNullProperties?.Remove("campaignClass"); } }
         private string? _explicitNullValueCampaignClass = default!;
 #nullable restore
 #else
-        public string CampaignClass { get => _explicitNullValueCampaignClass; set { _explicitNullValueCampaignClass = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("campaignClass"); else _explicitNullProperties?.Remove("campaignClass"); } }
+        public string CampaignClass { get => _explicitNullValueCampaignClass; set { _explicitNullValueCampaignClass = value; AdditionalData?.Remove("campaignClass"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("campaignClass"); else _explicitNullProperties?.Remove("campaignClass"); } }
         private string _explicitNullValueCampaignClass = default!;
 #endif
         /// <summary>The campaign ID of the message if it has one.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CampaignId { get => _explicitNullValueCampaignId; set { _explicitNullValueCampaignId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("campaignId"); else _explicitNullProperties?.Remove("campaignId"); } }
+        public string? CampaignId { get => _explicitNullValueCampaignId; set { _explicitNullValueCampaignId = value; AdditionalData?.Remove("campaignId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("campaignId"); else _explicitNullProperties?.Remove("campaignId"); } }
         private string? _explicitNullValueCampaignId = default!;
 #nullable restore
 #else
-        public string CampaignId { get => _explicitNullValueCampaignId; set { _explicitNullValueCampaignId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("campaignId"); else _explicitNullProperties?.Remove("campaignId"); } }
+        public string CampaignId { get => _explicitNullValueCampaignId; set { _explicitNullValueCampaignId = value; AdditionalData?.Remove("campaignId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("campaignId"); else _explicitNullProperties?.Remove("campaignId"); } }
         private string _explicitNullValueCampaignId = default!;
 #endif
         /// <summary>The carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled.</summary>
-        public int? CarrierLatency { get => _explicitNullValueCarrierLatency; set { _explicitNullValueCarrierLatency = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carrierLatency"); else _explicitNullProperties?.Remove("carrierLatency"); } }
+        public int? CarrierLatency { get => _explicitNullValueCarrierLatency; set { _explicitNullValueCarrierLatency = value; AdditionalData?.Remove("carrierLatency"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carrierLatency"); else _explicitNullProperties?.Remove("carrierLatency"); } }
         private int? _explicitNullValueCarrierLatency = default!;
         /// <summary>The name of the carrier. Not currently supported for MMS coming soon.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CarrierName { get => _explicitNullValueCarrierName; set { _explicitNullValueCarrierName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carrierName"); else _explicitNullProperties?.Remove("carrierName"); } }
+        public string? CarrierName { get => _explicitNullValueCarrierName; set { _explicitNullValueCarrierName = value; AdditionalData?.Remove("carrierName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carrierName"); else _explicitNullProperties?.Remove("carrierName"); } }
         private string? _explicitNullValueCarrierName = default!;
 #nullable restore
 #else
-        public string CarrierName { get => _explicitNullValueCarrierName; set { _explicitNullValueCarrierName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carrierName"); else _explicitNullProperties?.Remove("carrierName"); } }
+        public string CarrierName { get => _explicitNullValueCarrierName; set { _explicitNullValueCarrierName = value; AdditionalData?.Remove("carrierName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carrierName"); else _explicitNullProperties?.Remove("carrierName"); } }
         private string _explicitNullValueCarrierName = default!;
 #endif
         /// <summary>The recipient phone number of the message.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DestinationTn { get => _explicitNullValueDestinationTn; set { _explicitNullValueDestinationTn = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("destinationTn"); else _explicitNullProperties?.Remove("destinationTn"); } }
+        public string? DestinationTn { get => _explicitNullValueDestinationTn; set { _explicitNullValueDestinationTn = value; AdditionalData?.Remove("destinationTn"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("destinationTn"); else _explicitNullProperties?.Remove("destinationTn"); } }
         private string? _explicitNullValueDestinationTn = default!;
 #nullable restore
 #else
-        public string DestinationTn { get => _explicitNullValueDestinationTn; set { _explicitNullValueDestinationTn = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("destinationTn"); else _explicitNullProperties?.Remove("destinationTn"); } }
+        public string DestinationTn { get => _explicitNullValueDestinationTn; set { _explicitNullValueDestinationTn = value; AdditionalData?.Remove("destinationTn"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("destinationTn"); else _explicitNullProperties?.Remove("destinationTn"); } }
         private string _explicitNullValueDestinationTn = default!;
 #endif
         /// <summary>The numeric error code of the message.</summary>
-        public int? ErrorCode { get => _explicitNullValueErrorCode; set { _explicitNullValueErrorCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorCode"); else _explicitNullProperties?.Remove("errorCode"); } }
+        public int? ErrorCode { get => _explicitNullValueErrorCode; set { _explicitNullValueErrorCode = value; AdditionalData?.Remove("errorCode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorCode"); else _explicitNullProperties?.Remove("errorCode"); } }
         private int? _explicitNullValueErrorCode = default!;
         /// <summary>The location ID associated with this message.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Location { get => _explicitNullValueLocation; set { _explicitNullValueLocation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("location"); else _explicitNullProperties?.Remove("location"); } }
+        public string? Location { get => _explicitNullValueLocation; set { _explicitNullValueLocation = value; AdditionalData?.Remove("location"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("location"); else _explicitNullProperties?.Remove("location"); } }
         private string? _explicitNullValueLocation = default!;
 #nullable restore
 #else
-        public string Location { get => _explicitNullValueLocation; set { _explicitNullValueLocation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("location"); else _explicitNullProperties?.Remove("location"); } }
+        public string Location { get => _explicitNullValueLocation; set { _explicitNullValueLocation = value; AdditionalData?.Remove("location"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("location"); else _explicitNullProperties?.Remove("location"); } }
         private string _explicitNullValueLocation = default!;
 #endif
         /// <summary>The direction of the message. One of INBOUND OUTBOUND.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ListMessageDirectionEnum? MessageDirection { get => _explicitNullValueMessageDirection; set { _explicitNullValueMessageDirection = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messageDirection"); else _explicitNullProperties?.Remove("messageDirection"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ListMessageDirectionEnum? MessageDirection { get => _explicitNullValueMessageDirection; set { _explicitNullValueMessageDirection = value; AdditionalData?.Remove("messageDirection"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messageDirection"); else _explicitNullProperties?.Remove("messageDirection"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.ListMessageDirectionEnum? _explicitNullValueMessageDirection = default!;
         /// <summary>The message id</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? MessageId { get => _explicitNullValueMessageId; set { _explicitNullValueMessageId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messageId"); else _explicitNullProperties?.Remove("messageId"); } }
+        public string? MessageId { get => _explicitNullValueMessageId; set { _explicitNullValueMessageId = value; AdditionalData?.Remove("messageId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messageId"); else _explicitNullProperties?.Remove("messageId"); } }
         private string? _explicitNullValueMessageId = default!;
 #nullable restore
 #else
-        public string MessageId { get => _explicitNullValueMessageId; set { _explicitNullValueMessageId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messageId"); else _explicitNullProperties?.Remove("messageId"); } }
+        public string MessageId { get => _explicitNullValueMessageId; set { _explicitNullValueMessageId = value; AdditionalData?.Remove("messageId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messageId"); else _explicitNullProperties?.Remove("messageId"); } }
         private string _explicitNullValueMessageId = default!;
 #endif
         /// <summary>The length of the message content.</summary>
-        public int? MessageLength { get => _explicitNullValueMessageLength; set { _explicitNullValueMessageLength = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messageLength"); else _explicitNullProperties?.Remove("messageLength"); } }
+        public int? MessageLength { get => _explicitNullValueMessageLength; set { _explicitNullValueMessageLength = value; AdditionalData?.Remove("messageLength"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messageLength"); else _explicitNullProperties?.Remove("messageLength"); } }
         private int? _explicitNullValueMessageLength = default!;
         /// <summary>The size of the message including message content and headers.</summary>
-        public int? MessageSize { get => _explicitNullValueMessageSize; set { _explicitNullValueMessageSize = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messageSize"); else _explicitNullProperties?.Remove("messageSize"); } }
+        public int? MessageSize { get => _explicitNullValueMessageSize; set { _explicitNullValueMessageSize = value; AdditionalData?.Remove("messageSize"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messageSize"); else _explicitNullProperties?.Remove("messageSize"); } }
         private int? _explicitNullValueMessageSize = default!;
         /// <summary>The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MessageStatusEnum? MessageStatus { get => _explicitNullValueMessageStatus; set { _explicitNullValueMessageStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messageStatus"); else _explicitNullProperties?.Remove("messageStatus"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MessageStatusEnum? MessageStatus { get => _explicitNullValueMessageStatus; set { _explicitNullValueMessageStatus = value; AdditionalData?.Remove("messageStatus"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messageStatus"); else _explicitNullProperties?.Remove("messageStatus"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.MessageStatusEnum? _explicitNullValueMessageStatus = default!;
         /// <summary>The type of message. Either SMS or MMS.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MessageTypeEnum? MessageType { get => _explicitNullValueMessageType; set { _explicitNullValueMessageType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messageType"); else _explicitNullProperties?.Remove("messageType"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MessageTypeEnum? MessageType { get => _explicitNullValueMessageType; set { _explicitNullValueMessageType = value; AdditionalData?.Remove("messageType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messageType"); else _explicitNullProperties?.Remove("messageType"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.MessageTypeEnum? _explicitNullValueMessageType = default!;
         /// <summary>The messaging product associated with the message.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Product { get => _explicitNullValueProduct; set { _explicitNullValueProduct = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("product"); else _explicitNullProperties?.Remove("product"); } }
+        public string? Product { get => _explicitNullValueProduct; set { _explicitNullValueProduct = value; AdditionalData?.Remove("product"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("product"); else _explicitNullProperties?.Remove("product"); } }
         private string? _explicitNullValueProduct = default!;
 #nullable restore
 #else
-        public string Product { get => _explicitNullValueProduct; set { _explicitNullValueProduct = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("product"); else _explicitNullProperties?.Remove("product"); } }
+        public string Product { get => _explicitNullValueProduct; set { _explicitNullValueProduct = value; AdditionalData?.Remove("product"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("product"); else _explicitNullProperties?.Remove("product"); } }
         private string _explicitNullValueProduct = default!;
 #endif
         /// <summary>The ISO 8601 datetime of the message.</summary>
-        public DateTimeOffset? ReceiveTime { get => _explicitNullValueReceiveTime; set { _explicitNullValueReceiveTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("receiveTime"); else _explicitNullProperties?.Remove("receiveTime"); } }
+        public DateTimeOffset? ReceiveTime { get => _explicitNullValueReceiveTime; set { _explicitNullValueReceiveTime = value; AdditionalData?.Remove("receiveTime"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("receiveTime"); else _explicitNullProperties?.Remove("receiveTime"); } }
         private DateTimeOffset? _explicitNullValueReceiveTime = default!;
         /// <summary>The number of recipients the message has.</summary>
-        public int? RecipientCount { get => _explicitNullValueRecipientCount; set { _explicitNullValueRecipientCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("recipientCount"); else _explicitNullProperties?.Remove("recipientCount"); } }
+        public int? RecipientCount { get => _explicitNullValueRecipientCount; set { _explicitNullValueRecipientCount = value; AdditionalData?.Remove("recipientCount"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("recipientCount"); else _explicitNullProperties?.Remove("recipientCount"); } }
         private int? _explicitNullValueRecipientCount = default!;
         /// <summary>The number of segments the user&apos;s message is broken into before sending over carrier networks.</summary>
-        public int? SegmentCount { get => _explicitNullValueSegmentCount; set { _explicitNullValueSegmentCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("segmentCount"); else _explicitNullProperties?.Remove("segmentCount"); } }
+        public int? SegmentCount { get => _explicitNullValueSegmentCount; set { _explicitNullValueSegmentCount = value; AdditionalData?.Remove("segmentCount"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("segmentCount"); else _explicitNullProperties?.Remove("segmentCount"); } }
         private int? _explicitNullValueSegmentCount = default!;
         /// <summary>The source phone number of the message.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SourceTn { get => _explicitNullValueSourceTn; set { _explicitNullValueSourceTn = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceTn"); else _explicitNullProperties?.Remove("sourceTn"); } }
+        public string? SourceTn { get => _explicitNullValueSourceTn; set { _explicitNullValueSourceTn = value; AdditionalData?.Remove("sourceTn"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceTn"); else _explicitNullProperties?.Remove("sourceTn"); } }
         private string? _explicitNullValueSourceTn = default!;
 #nullable restore
 #else
-        public string SourceTn { get => _explicitNullValueSourceTn; set { _explicitNullValueSourceTn = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceTn"); else _explicitNullProperties?.Remove("sourceTn"); } }
+        public string SourceTn { get => _explicitNullValueSourceTn; set { _explicitNullValueSourceTn = value; AdditionalData?.Remove("sourceTn"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceTn"); else _explicitNullProperties?.Remove("sourceTn"); } }
         private string _explicitNullValueSourceTn = default!;
 #endif
         /// <summary>
@@ -227,12 +250,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "destinationTn", n => { DestinationTn = n.GetStringValue(); } },
                 { "errorCode", n => { ErrorCode = n.GetIntValue(); } },
                 { "location", n => { Location = n.GetStringValue(); } },
-                { "messageDirection", n => { MessageDirection = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ListMessageDirectionEnum>(); } },
+                { "messageDirection", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ListMessageDirectionEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueMessageDirection = default; _explicitNullProperties?.Remove("messageDirection"); AdditionalData["messageDirection"] = unknown; } else { MessageDirection = parsed; AdditionalData.Remove("messageDirection"); } } },
                 { "messageId", n => { MessageId = n.GetStringValue(); } },
                 { "messageLength", n => { MessageLength = n.GetIntValue(); } },
                 { "messageSize", n => { MessageSize = n.GetIntValue(); } },
-                { "messageStatus", n => { MessageStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MessageStatusEnum>(); } },
-                { "messageType", n => { MessageType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MessageTypeEnum>(); } },
+                { "messageStatus", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MessageStatusEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueMessageStatus = default; _explicitNullProperties?.Remove("messageStatus"); AdditionalData["messageStatus"] = unknown; } else { MessageStatus = parsed; AdditionalData.Remove("messageStatus"); } } },
+                { "messageType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MessageTypeEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueMessageType = default; _explicitNullProperties?.Remove("messageType"); AdditionalData["messageType"] = unknown; } else { MessageType = parsed; AdditionalData.Remove("messageType"); } } },
                 { "product", n => { Product = n.GetStringValue(); } },
                 { "receiveTime", n => { ReceiveTime = n.GetDateTimeOffsetValue(); } },
                 { "recipientCount", n => { RecipientCount = n.GetIntValue(); } },

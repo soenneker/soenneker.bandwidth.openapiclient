@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("analyticEngines") is { } nullNodeAnalyticEngines && nullNodeAnalyticEngines.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AnalyticEngines = null;
+            if (parseNode.GetChildNode("analyticEngines") is null) { _explicitNullValueAnalyticEngines = default!; _explicitNullProperties?.Remove("analyticEngines"); }
+            else if (parseNode.GetChildNode("analyticEngines") is { } nullNodeAnalyticEngines && nullNodeAnalyticEngines.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AnalyticEngines = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>List of Identity Auth Analytic Engine Names.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AnalyticEngine?>? AnalyticEngines { get => _explicitNullValueAnalyticEngines; set { _explicitNullValueAnalyticEngines = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("analyticEngines"); else _explicitNullProperties?.Remove("analyticEngines"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AnalyticEngine?>? AnalyticEngines { get => _explicitNullValueAnalyticEngines; set { _explicitNullValueAnalyticEngines = value; AdditionalData?.Remove("analyticEngines"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("analyticEngines"); else _explicitNullProperties?.Remove("analyticEngines"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.AnalyticEngine?>? _explicitNullValueAnalyticEngines = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AnalyticEngine?> AnalyticEngines { get => _explicitNullValueAnalyticEngines; set { _explicitNullValueAnalyticEngines = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("analyticEngines"); else _explicitNullProperties?.Remove("analyticEngines"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AnalyticEngine?> AnalyticEngines { get => _explicitNullValueAnalyticEngines; set { _explicitNullValueAnalyticEngines = value; AdditionalData?.Remove("analyticEngines"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("analyticEngines"); else _explicitNullProperties?.Remove("analyticEngines"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.AnalyticEngine?> _explicitNullValueAnalyticEngines = default!;
 #endif
         /// <summary>

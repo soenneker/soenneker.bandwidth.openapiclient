@@ -17,8 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("customReference") is { } nullNodeCustomReference && nullNodeCustomReference.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomReference = null;
-            if (parseNode.GetChildNode("lineage") is { } nullNodeLineage && nullNodeLineage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Lineage = null;
+            if (parseNode.GetChildNode("customReference") is null) { _explicitNullValueCustomReference = default!; _explicitNullProperties?.Remove("customReference"); }
+            else if (parseNode.GetChildNode("customReference") is { } nullNodeCustomReference && nullNodeCustomReference.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomReference = null;
+            if (parseNode.GetChildNode("lineage") is null) { _explicitNullValueLineage = default!; _explicitNullProperties?.Remove("lineage"); }
+            else if (parseNode.GetChildNode("lineage") is { } nullNodeLineage && nullNodeLineage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Lineage = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,21 +28,21 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>A custom reference name.It can be used for your own reference to the item to easily identify one of your customers,requirements package, enduser etc.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CustomReference { get => _explicitNullValueCustomReference; set { _explicitNullValueCustomReference = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customReference"); else _explicitNullProperties?.Remove("customReference"); } }
+        public string? CustomReference { get => _explicitNullValueCustomReference; set { _explicitNullValueCustomReference = value; AdditionalData?.Remove("customReference"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customReference"); else _explicitNullProperties?.Remove("customReference"); } }
         private string? _explicitNullValueCustomReference = default!;
 #nullable restore
 #else
-        public string CustomReference { get => _explicitNullValueCustomReference; set { _explicitNullValueCustomReference = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customReference"); else _explicitNullProperties?.Remove("customReference"); } }
+        public string CustomReference { get => _explicitNullValueCustomReference; set { _explicitNullValueCustomReference = value; AdditionalData?.Remove("customReference"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customReference"); else _explicitNullProperties?.Remove("customReference"); } }
         private string _explicitNullValueCustomReference = default!;
 #endif
         /// <summary>Clone relationship for this requirements package. Omitted when no clone relationship exists.**parent** identifies the requirements package this one was cloned from.**children** lists the requirements packages cloned from this one.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage? Lineage { get => _explicitNullValueLineage; set { _explicitNullValueLineage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lineage"); else _explicitNullProperties?.Remove("lineage"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage? Lineage { get => _explicitNullValueLineage; set { _explicitNullValueLineage = value; AdditionalData?.Remove("lineage"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lineage"); else _explicitNullProperties?.Remove("lineage"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage? _explicitNullValueLineage = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage Lineage { get => _explicitNullValueLineage; set { _explicitNullValueLineage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lineage"); else _explicitNullProperties?.Remove("lineage"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage Lineage { get => _explicitNullValueLineage; set { _explicitNullValueLineage = value; AdditionalData?.Remove("lineage"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lineage"); else _explicitNullProperties?.Remove("lineage"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage _explicitNullValueLineage = default!;
 #endif
         /// <summary>

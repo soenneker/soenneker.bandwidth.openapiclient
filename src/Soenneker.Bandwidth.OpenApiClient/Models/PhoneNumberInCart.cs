@@ -17,8 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("digits") is { } nullNodeDigits && nullNodeDigits.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Digits = null;
-            if (parseNode.GetChildNode("holdingUntil") is { } nullNodeHoldingUntil && nullNodeHoldingUntil.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HoldingUntil = null;
+            if (parseNode.GetChildNode("digits") is null) { _explicitNullValueDigits = default!; _explicitNullProperties?.Remove("digits"); }
+            else if (parseNode.GetChildNode("digits") is { } nullNodeDigits && nullNodeDigits.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Digits = null;
+            if (parseNode.GetChildNode("holdingUntil") is null) { _explicitNullValueHoldingUntil = default!; _explicitNullProperties?.Remove("holdingUntil"); }
+            else if (parseNode.GetChildNode("holdingUntil") is { } nullNodeHoldingUntil && nullNodeHoldingUntil.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HoldingUntil = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,21 +28,21 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The phone number digits in E.164 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Digits { get => _explicitNullValueDigits; set { _explicitNullValueDigits = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("digits"); else _explicitNullProperties?.Remove("digits"); } }
+        public string? Digits { get => _explicitNullValueDigits; set { _explicitNullValueDigits = value; AdditionalData?.Remove("digits"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("digits"); else _explicitNullProperties?.Remove("digits"); } }
         private string? _explicitNullValueDigits = default!;
 #nullable restore
 #else
-        public string Digits { get => _explicitNullValueDigits; set { _explicitNullValueDigits = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("digits"); else _explicitNullProperties?.Remove("digits"); } }
+        public string Digits { get => _explicitNullValueDigits; set { _explicitNullValueDigits = value; AdditionalData?.Remove("digits"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("digits"); else _explicitNullProperties?.Remove("digits"); } }
         private string _explicitNullValueDigits = default!;
 #endif
         /// <summary>The timestamp of the time until the phone number will be held in cart in format &quot;YYYY-MM-DD HH:MM:SS Z&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? HoldingUntil { get => _explicitNullValueHoldingUntil; set { _explicitNullValueHoldingUntil = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("holdingUntil"); else _explicitNullProperties?.Remove("holdingUntil"); } }
+        public string? HoldingUntil { get => _explicitNullValueHoldingUntil; set { _explicitNullValueHoldingUntil = value; AdditionalData?.Remove("holdingUntil"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("holdingUntil"); else _explicitNullProperties?.Remove("holdingUntil"); } }
         private string? _explicitNullValueHoldingUntil = default!;
 #nullable restore
 #else
-        public string HoldingUntil { get => _explicitNullValueHoldingUntil; set { _explicitNullValueHoldingUntil = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("holdingUntil"); else _explicitNullProperties?.Remove("holdingUntil"); } }
+        public string HoldingUntil { get => _explicitNullValueHoldingUntil; set { _explicitNullValueHoldingUntil = value; AdditionalData?.Remove("holdingUntil"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("holdingUntil"); else _explicitNullProperties?.Remove("holdingUntil"); } }
         private string _explicitNullValueHoldingUntil = default!;
 #endif
         /// <summary>

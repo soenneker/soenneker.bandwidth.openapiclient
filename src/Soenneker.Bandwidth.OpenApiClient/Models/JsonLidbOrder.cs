@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("lidbOrder") is { } nullNodeLidbOrder && nullNodeLidbOrder.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LidbOrder = null;
+            if (parseNode.GetChildNode("lidbOrder") is null) { _explicitNullValueLidbOrder = default!; _explicitNullProperties?.Remove("lidbOrder"); }
+            else if (parseNode.GetChildNode("lidbOrder") is { } nullNodeLidbOrder && nullNodeLidbOrder.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LidbOrder = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The lidbOrder property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderPayload? LidbOrder { get => _explicitNullValueLidbOrder; set { _explicitNullValueLidbOrder = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lidbOrder"); else _explicitNullProperties?.Remove("lidbOrder"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderPayload? LidbOrder { get => _explicitNullValueLidbOrder; set { _explicitNullValueLidbOrder = value; AdditionalData?.Remove("lidbOrder"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lidbOrder"); else _explicitNullProperties?.Remove("lidbOrder"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderPayload? _explicitNullValueLidbOrder = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderPayload LidbOrder { get => _explicitNullValueLidbOrder; set { _explicitNullValueLidbOrder = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lidbOrder"); else _explicitNullProperties?.Remove("lidbOrder"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderPayload LidbOrder { get => _explicitNullValueLidbOrder; set { _explicitNullValueLidbOrder = value; AdditionalData?.Remove("lidbOrder"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lidbOrder"); else _explicitNullProperties?.Remove("lidbOrder"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbOrderPayload _explicitNullValueLidbOrder = default!;
 #endif
         /// <summary>

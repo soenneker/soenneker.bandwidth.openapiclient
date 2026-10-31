@@ -17,17 +17,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("addressType") is { } nullNodeAddressType && nullNodeAddressType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AddressType = null;
-            if (parseNode.GetChildNode("proofRequired") is { } nullNodeProofRequired && nullNodeProofRequired.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProofRequired = null;
+            if (parseNode.GetChildNode("addressType") is null) { _explicitNullValueAddressType = default!; _explicitNullProperties?.Remove("addressType"); }
+            else if (parseNode.GetChildNode("addressType") is { } nullNodeAddressType && nullNodeAddressType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AddressType = null;
+            if (parseNode.GetChildNode("proofRequired") is null) { _explicitNullValueProofRequired = default!; _explicitNullProperties?.Remove("proofRequired"); }
+            else if (parseNode.GetChildNode("proofRequired") is { } nullNodeProofRequired && nullNodeProofRequired.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProofRequired = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Type of address required.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModelAddressType? AddressType { get => _explicitNullValueAddressType; set { _explicitNullValueAddressType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("addressType"); else _explicitNullProperties?.Remove("addressType"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModelAddressType? AddressType { get => _explicitNullValueAddressType; set { _explicitNullValueAddressType = value; AdditionalData?.Remove("addressType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("addressType"); else _explicitNullProperties?.Remove("addressType"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModelAddressType? _explicitNullValueAddressType = default!;
         /// <summary>Whether a proof of address is required.</summary>
-        public bool? ProofRequired { get => _explicitNullValueProofRequired; set { _explicitNullValueProofRequired = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("proofRequired"); else _explicitNullProperties?.Remove("proofRequired"); } }
+        public bool? ProofRequired { get => _explicitNullValueProofRequired; set { _explicitNullValueProofRequired = value; AdditionalData?.Remove("proofRequired"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("proofRequired"); else _explicitNullProperties?.Remove("proofRequired"); } }
         private bool? _explicitNullValueProofRequired = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModel"/> and sets the default values.
@@ -55,7 +57,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "addressType", n => { AddressType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModelAddressType>(); } },
+                { "addressType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModelAddressType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueAddressType = default; _explicitNullProperties?.Remove("addressType"); AdditionalData["addressType"] = unknown; } else { AddressType = parsed; AdditionalData.Remove("addressType"); } } },
                 { "proofRequired", n => { ProofRequired = n.GetBoolValue(); } },
             };
         }

@@ -18,21 +18,25 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("accessHomingTandem") is { } nullNodeAccessHomingTandem && nullNodeAccessHomingTandem.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccessHomingTandem = null;
-            if (parseNode.GetChildNode("hostedVoice") is { } nullNodeHostedVoice && nullNodeHostedVoice.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HostedVoice = null;
-            if (parseNode.GetChildNode("lrnConfiguration") is { } nullNodeLrnConfiguration && nullNodeLrnConfiguration.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LrnConfiguration = null;
-            if (parseNode.GetChildNode("lrn") is { } nullNodeLrnProp && nullNodeLrnProp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LrnProp = null;
+            if (parseNode.GetChildNode("accessHomingTandem") is null) { _explicitNullValueAccessHomingTandem = default!; _explicitNullProperties?.Remove("accessHomingTandem"); }
+            else if (parseNode.GetChildNode("accessHomingTandem") is { } nullNodeAccessHomingTandem && nullNodeAccessHomingTandem.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccessHomingTandem = null;
+            if (parseNode.GetChildNode("hostedVoice") is null) { _explicitNullValueHostedVoice = default!; _explicitNullProperties?.Remove("hostedVoice"); }
+            else if (parseNode.GetChildNode("hostedVoice") is { } nullNodeHostedVoice && nullNodeHostedVoice.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HostedVoice = null;
+            if (parseNode.GetChildNode("lrnConfiguration") is null) { _explicitNullValueLrnConfiguration = default!; _explicitNullProperties?.Remove("lrnConfiguration"); }
+            else if (parseNode.GetChildNode("lrnConfiguration") is { } nullNodeLrnConfiguration && nullNodeLrnConfiguration.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LrnConfiguration = null;
+            if (parseNode.GetChildNode("lrn") is null) { _explicitNullValueLrnProp = default!; _explicitNullProperties?.Remove("lrn"); }
+            else if (parseNode.GetChildNode("lrn") is { } nullNodeLrnProp && nullNodeLrnProp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LrnProp = null;
         }
 
         /// <summary>Whether the accessHomingTandem feature is enabled on this LRN.Must be enabled on the LATA prior to being enabled on the LRN.</summary>
-        public bool? AccessHomingTandem { get => _explicitNullValueAccessHomingTandem; set { _explicitNullValueAccessHomingTandem = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accessHomingTandem"); else _explicitNullProperties?.Remove("accessHomingTandem"); } }
+        public bool? AccessHomingTandem { get => _explicitNullValueAccessHomingTandem; set { _explicitNullValueAccessHomingTandem = value; AdditionalData?.Remove("accessHomingTandem"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accessHomingTandem"); else _explicitNullProperties?.Remove("accessHomingTandem"); } }
         private bool? _explicitNullValueAccessHomingTandem = default!;
         /// <summary>The time the LRN was added to the account, as a UTC timestamp.</summary>
         public DateTimeOffset? Added { get; private set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether the hosted voice feature is enabled on this LRN.Must be enabled on the LATA prior to being enabled on the LRN.</summary>
-        public bool? HostedVoice { get => _explicitNullValueHostedVoice; set { _explicitNullValueHostedVoice = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hostedVoice"); else _explicitNullProperties?.Remove("hostedVoice"); } }
+        public bool? HostedVoice { get => _explicitNullValueHostedVoice; set { _explicitNullValueHostedVoice = value; AdditionalData?.Remove("hostedVoice"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hostedVoice"); else _explicitNullProperties?.Remove("hostedVoice"); } }
         private bool? _explicitNullValueHostedVoice = default!;
         /// <summary>Information about the LATA the LRN belongs to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -43,16 +47,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnLata> Lata { get; private set; }
 #endif
         /// <summary>The lrnConfiguration property</summary>
-        public Guid? LrnConfiguration { get => _explicitNullValueLrnConfiguration; set { _explicitNullValueLrnConfiguration = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lrnConfiguration"); else _explicitNullProperties?.Remove("lrnConfiguration"); } }
+        public Guid? LrnConfiguration { get => _explicitNullValueLrnConfiguration; set { _explicitNullValueLrnConfiguration = value; AdditionalData?.Remove("lrnConfiguration"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lrnConfiguration"); else _explicitNullProperties?.Remove("lrnConfiguration"); } }
         private Guid? _explicitNullValueLrnConfiguration = default!;
         /// <summary>A Location Routing Number (LRN), which may be expressed either as a full E.164 NANPA phone number (`+1` followed by the 10-digit NPA-NXX-XXXX), or as an entire A-block (`+1` followed by the 6-digit NPA-NXX, with no line/station number).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LrnProp { get => _explicitNullValueLrnProp; set { _explicitNullValueLrnProp = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lrn"); else _explicitNullProperties?.Remove("lrn"); } }
+        public string? LrnProp { get => _explicitNullValueLrnProp; set { _explicitNullValueLrnProp = value; AdditionalData?.Remove("lrn"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lrn"); else _explicitNullProperties?.Remove("lrn"); } }
         private string? _explicitNullValueLrnProp = default!;
 #nullable restore
 #else
-        public string LrnProp { get => _explicitNullValueLrnProp; set { _explicitNullValueLrnProp = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lrn"); else _explicitNullProperties?.Remove("lrn"); } }
+        public string LrnProp { get => _explicitNullValueLrnProp; set { _explicitNullValueLrnProp = value; AdditionalData?.Remove("lrn"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lrn"); else _explicitNullProperties?.Remove("lrn"); } }
         private string _explicitNullValueLrnProp = default!;
 #endif
         /// <summary>The name of the company that operates the LRN.</summary>

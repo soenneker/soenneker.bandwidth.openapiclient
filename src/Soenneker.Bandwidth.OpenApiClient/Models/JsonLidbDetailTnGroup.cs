@@ -17,10 +17,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("phoneNumbers") is { } nullNodePhoneNumbers && nullNodePhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumbers = null;
-            if (parseNode.GetChildNode("subscriberInformation") is { } nullNodeSubscriberInformation && nullNodeSubscriberInformation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SubscriberInformation = null;
-            if (parseNode.GetChildNode("useType") is { } nullNodeUseType && nullNodeUseType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UseType = null;
-            if (parseNode.GetChildNode("visibility") is { } nullNodeVisibility && nullNodeVisibility.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Visibility = null;
+            if (parseNode.GetChildNode("phoneNumbers") is null) { _explicitNullValuePhoneNumbers = default!; _explicitNullProperties?.Remove("phoneNumbers"); }
+            else if (parseNode.GetChildNode("phoneNumbers") is { } nullNodePhoneNumbers && nullNodePhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumbers = null;
+            if (parseNode.GetChildNode("subscriberInformation") is null) { _explicitNullValueSubscriberInformation = default!; _explicitNullProperties?.Remove("subscriberInformation"); }
+            else if (parseNode.GetChildNode("subscriberInformation") is { } nullNodeSubscriberInformation && nullNodeSubscriberInformation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SubscriberInformation = null;
+            if (parseNode.GetChildNode("useType") is null) { _explicitNullValueUseType = default!; _explicitNullProperties?.Remove("useType"); }
+            else if (parseNode.GetChildNode("useType") is { } nullNodeUseType && nullNodeUseType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UseType = null;
+            if (parseNode.GetChildNode("visibility") is null) { _explicitNullValueVisibility = default!; _explicitNullProperties?.Remove("visibility"); }
+            else if (parseNode.GetChildNode("visibility") is { } nullNodeVisibility && nullNodeVisibility.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Visibility = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -28,28 +32,28 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>A list of phone numbers that will all assume the SubscriberInformation that is listed in the payload. In an enterprise context it is not uncommon for all of the served telephone numbers to use the same string for the Subscriber Information.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonPhoneNumber>? PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonPhoneNumber>? PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; AdditionalData?.Remove("phoneNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonPhoneNumber>? _explicitNullValuePhoneNumbers = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonPhoneNumber> PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonPhoneNumber> PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; AdditionalData?.Remove("phoneNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonPhoneNumber> _explicitNullValuePhoneNumbers = default!;
 #endif
         /// <summary>This is the field that is displayed to the user receiving the phone call from the Telephone numbers in the TelephoneNumberList</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SubscriberInformation { get => _explicitNullValueSubscriberInformation; set { _explicitNullValueSubscriberInformation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriberInformation"); else _explicitNullProperties?.Remove("subscriberInformation"); } }
+        public string? SubscriberInformation { get => _explicitNullValueSubscriberInformation; set { _explicitNullValueSubscriberInformation = value; AdditionalData?.Remove("subscriberInformation"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriberInformation"); else _explicitNullProperties?.Remove("subscriberInformation"); } }
         private string? _explicitNullValueSubscriberInformation = default!;
 #nullable restore
 #else
-        public string SubscriberInformation { get => _explicitNullValueSubscriberInformation; set { _explicitNullValueSubscriberInformation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriberInformation"); else _explicitNullProperties?.Remove("subscriberInformation"); } }
+        public string SubscriberInformation { get => _explicitNullValueSubscriberInformation; set { _explicitNullValueSubscriberInformation = value; AdditionalData?.Remove("subscriberInformation"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriberInformation"); else _explicitNullProperties?.Remove("subscriberInformation"); } }
         private string _explicitNullValueSubscriberInformation = default!;
 #endif
         /// <summary>The useType property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroupUseType? UseType { get => _explicitNullValueUseType; set { _explicitNullValueUseType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("useType"); else _explicitNullProperties?.Remove("useType"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroupUseType? UseType { get => _explicitNullValueUseType; set { _explicitNullValueUseType = value; AdditionalData?.Remove("useType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("useType"); else _explicitNullProperties?.Remove("useType"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroupUseType? _explicitNullValueUseType = default!;
         /// <summary> If it is tagged as PRIVATE then the data will be provided, but the display will not be provided on a standard phone call.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroupVisibility? Visibility { get => _explicitNullValueVisibility; set { _explicitNullValueVisibility = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("visibility"); else _explicitNullProperties?.Remove("visibility"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroupVisibility? Visibility { get => _explicitNullValueVisibility; set { _explicitNullValueVisibility = value; AdditionalData?.Remove("visibility"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("visibility"); else _explicitNullProperties?.Remove("visibility"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroupVisibility? _explicitNullValueVisibility = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroup"/> and sets the default values.
@@ -78,8 +82,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonPhoneNumber>(global::Soenneker.Bandwidth.OpenApiClient.Models.JsonPhoneNumber.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "subscriberInformation", n => { SubscriberInformation = n.GetStringValue(); } },
-                { "useType", n => { UseType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroupUseType>(); } },
-                { "visibility", n => { Visibility = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroupVisibility>(); } },
+                { "useType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroupUseType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueUseType = default; _explicitNullProperties?.Remove("useType"); AdditionalData["useType"] = unknown; } else { UseType = parsed; AdditionalData.Remove("useType"); } } },
+                { "visibility", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroupVisibility>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueVisibility = default; _explicitNullProperties?.Remove("visibility"); AdditionalData["visibility"] = unknown; } else { Visibility = parsed; AdditionalData.Remove("visibility"); } } },
             };
         }
         /// <summary>

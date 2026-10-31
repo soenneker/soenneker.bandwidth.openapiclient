@@ -18,17 +18,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("identity") is { } nullNodeIdentity && nullNodeIdentity.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Identity = null;
-            if (parseNode.GetChildNode("verstat") is { } nullNodeVerstat && nullNodeVerstat.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Verstat = null;
+            if (parseNode.GetChildNode("identity") is null) { _explicitNullValueIdentity = default!; _explicitNullProperties?.Remove("identity"); }
+            else if (parseNode.GetChildNode("identity") is { } nullNodeIdentity && nullNodeIdentity.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Identity = null;
+            if (parseNode.GetChildNode("verstat") is null) { _explicitNullValueVerstat = default!; _explicitNullProperties?.Remove("verstat"); }
+            else if (parseNode.GetChildNode("verstat") is { } nullNodeVerstat && nullNodeVerstat.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Verstat = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The identity property</summary>
-        public bool? Identity { get => _explicitNullValueIdentity; set { _explicitNullValueIdentity = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("identity"); else _explicitNullProperties?.Remove("identity"); } }
+        public bool? Identity { get => _explicitNullValueIdentity; set { _explicitNullValueIdentity = value; AdditionalData?.Remove("identity"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("identity"); else _explicitNullProperties?.Remove("identity"); } }
         private bool? _explicitNullValueIdentity = default!;
         /// <summary>The verstat property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VerstatEnum? Verstat { get => _explicitNullValueVerstat; set { _explicitNullValueVerstat = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("verstat"); else _explicitNullProperties?.Remove("verstat"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VerstatEnum? Verstat { get => _explicitNullValueVerstat; set { _explicitNullValueVerstat = value; AdditionalData?.Remove("verstat"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("verstat"); else _explicitNullProperties?.Remove("verstat"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.VerstatEnum? _explicitNullValueVerstat = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenBehavior"/> and sets the default values.
@@ -56,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "identity", n => { Identity = n.GetBoolValue(); } },
-                { "verstat", n => { Verstat = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VerstatEnum>(); } },
+                { "verstat", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VerstatEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueVerstat = default; _explicitNullProperties?.Remove("verstat"); AdditionalData["verstat"] = unknown; } else { Verstat = parsed; AdditionalData.Remove("verstat"); } } },
             };
         }
         /// <summary>

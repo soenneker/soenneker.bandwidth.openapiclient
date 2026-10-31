@@ -18,17 +18,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("fraudRisk") is { } nullNodeFraudRisk && nullNodeFraudRisk.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FraudRisk = null;
-            if (parseNode.GetChildNode("spoofingRisk") is { } nullNodeSpoofingRisk && nullNodeSpoofingRisk.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SpoofingRisk = null;
+            if (parseNode.GetChildNode("fraudRisk") is null) { _explicitNullValueFraudRisk = default!; _explicitNullProperties?.Remove("fraudRisk"); }
+            else if (parseNode.GetChildNode("fraudRisk") is { } nullNodeFraudRisk && nullNodeFraudRisk.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FraudRisk = null;
+            if (parseNode.GetChildNode("spoofingRisk") is null) { _explicitNullValueSpoofingRisk = default!; _explicitNullProperties?.Remove("spoofingRisk"); }
+            else if (parseNode.GetChildNode("spoofingRisk") is { } nullNodeSpoofingRisk && nullNodeSpoofingRisk.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SpoofingRisk = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>A number between 0 and 100 that indicates the level of risk that a phone call is spam or is otherwise comingfrom a fraudulent source.</summary>
-        public double? FraudRisk { get => _explicitNullValueFraudRisk; set { _explicitNullValueFraudRisk = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fraudRisk"); else _explicitNullProperties?.Remove("fraudRisk"); } }
+        public double? FraudRisk { get => _explicitNullValueFraudRisk; set { _explicitNullValueFraudRisk = value; AdditionalData?.Remove("fraudRisk"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fraudRisk"); else _explicitNullProperties?.Remove("fraudRisk"); } }
         private double? _explicitNullValueFraudRisk = default!;
         /// <summary>A number between 0 and 100 that indicates the likelihood that the calling number on active phone call is being spoofed (with 0 being the lowest possible risk and 100 being the highest possible risk).</summary>
-        public double? SpoofingRisk { get => _explicitNullValueSpoofingRisk; set { _explicitNullValueSpoofingRisk = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("spoofingRisk"); else _explicitNullProperties?.Remove("spoofingRisk"); } }
+        public double? SpoofingRisk { get => _explicitNullValueSpoofingRisk; set { _explicitNullValueSpoofingRisk = value; AdditionalData?.Remove("spoofingRisk"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("spoofingRisk"); else _explicitNullProperties?.Remove("spoofingRisk"); } }
         private double? _explicitNullValueSpoofingRisk = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RiskScore"/> and sets the default values.

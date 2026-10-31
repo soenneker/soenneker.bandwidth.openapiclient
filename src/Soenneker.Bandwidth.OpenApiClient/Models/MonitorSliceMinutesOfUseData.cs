@@ -17,13 +17,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("minutesOfUse") is { } nullNodeMinutesOfUse && nullNodeMinutesOfUse.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MinutesOfUse = null;
+            if (parseNode.GetChildNode("minutesOfUse") is null) { _explicitNullValueMinutesOfUse = default!; _explicitNullProperties?.Remove("minutesOfUse"); }
+            else if (parseNode.GetChildNode("minutesOfUse") is { } nullNodeMinutesOfUse && nullNodeMinutesOfUse.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MinutesOfUse = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The minutesOfUse property</summary>
-        public float? MinutesOfUse { get => _explicitNullValueMinutesOfUse; set { _explicitNullValueMinutesOfUse = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("minutesOfUse"); else _explicitNullProperties?.Remove("minutesOfUse"); } }
+        public float? MinutesOfUse { get => _explicitNullValueMinutesOfUse; set { _explicitNullValueMinutesOfUse = value; AdditionalData?.Remove("minutesOfUse"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("minutesOfUse"); else _explicitNullProperties?.Remove("minutesOfUse"); } }
         private float? _explicitNullValueMinutesOfUse = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorSliceMinutesOfUseData"/> and sets the default values.

@@ -19,25 +19,29 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("activatedDate") is { } nullNodeActivatedDate && nullNodeActivatedDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ActivatedDate = null;
-            if (parseNode.GetChildNode("carrierId") is { } nullNodeCarrierId && nullNodeCarrierId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CarrierId = null;
-            if (parseNode.GetChildNode("modifiedDate") is { } nullNodeModifiedDate && nullNodeModifiedDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModifiedDate = null;
-            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("activatedDate") is null) { _explicitNullValueActivatedDate = default!; _explicitNullProperties?.Remove("activatedDate"); }
+            else if (parseNode.GetChildNode("activatedDate") is { } nullNodeActivatedDate && nullNodeActivatedDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ActivatedDate = null;
+            if (parseNode.GetChildNode("carrierId") is null) { _explicitNullValueCarrierId = default!; _explicitNullProperties?.Remove("carrierId"); }
+            else if (parseNode.GetChildNode("carrierId") is { } nullNodeCarrierId && nullNodeCarrierId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CarrierId = null;
+            if (parseNode.GetChildNode("modifiedDate") is null) { _explicitNullValueModifiedDate = default!; _explicitNullProperties?.Remove("modifiedDate"); }
+            else if (parseNode.GetChildNode("modifiedDate") is { } nullNodeModifiedDate && nullNodeModifiedDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModifiedDate = null;
+            if (parseNode.GetChildNode("status") is null) { _explicitNullValueStatus = default!; _explicitNullProperties?.Remove("status"); }
+            else if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
         }
 
         /// <summary>The date the short code was activated for this carrier, this date only will be defined when the status of the carrier becomes ACTIVE.</summary>
-        public Date? ActivatedDate { get => _explicitNullValueActivatedDate; set { _explicitNullValueActivatedDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activatedDate"); else _explicitNullProperties?.Remove("activatedDate"); } }
+        public Date? ActivatedDate { get => _explicitNullValueActivatedDate; set { _explicitNullValueActivatedDate = value; AdditionalData?.Remove("activatedDate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activatedDate"); else _explicitNullProperties?.Remove("activatedDate"); } }
         private Date? _explicitNullValueActivatedDate = default!;
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Carrier identifier  (possible values ATT, TMOBILE, VERIZON).</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoCarrierId? CarrierId { get => _explicitNullValueCarrierId; set { _explicitNullValueCarrierId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carrierId"); else _explicitNullProperties?.Remove("carrierId"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoCarrierId? CarrierId { get => _explicitNullValueCarrierId; set { _explicitNullValueCarrierId = value; AdditionalData?.Remove("carrierId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carrierId"); else _explicitNullProperties?.Remove("carrierId"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoCarrierId? _explicitNullValueCarrierId = default!;
         /// <summary>The date the status was modified for this carrier</summary>
-        public Date? ModifiedDate { get => _explicitNullValueModifiedDate; set { _explicitNullValueModifiedDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modifiedDate"); else _explicitNullProperties?.Remove("modifiedDate"); } }
+        public Date? ModifiedDate { get => _explicitNullValueModifiedDate; set { _explicitNullValueModifiedDate = value; AdditionalData?.Remove("modifiedDate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modifiedDate"); else _explicitNullProperties?.Remove("modifiedDate"); } }
         private Date? _explicitNullValueModifiedDate = default!;
         /// <summary>The status property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; AdditionalData?.Remove("status"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoStatus? _explicitNullValueStatus = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo"/> and sets the default values.
@@ -65,9 +69,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "activatedDate", n => { ActivatedDate = n.GetDateValue(); } },
-                { "carrierId", n => { CarrierId = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoCarrierId>(); } },
+                { "carrierId", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoCarrierId>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueCarrierId = default; _explicitNullProperties?.Remove("carrierId"); AdditionalData["carrierId"] = unknown; } else { CarrierId = parsed; AdditionalData.Remove("carrierId"); } } },
                 { "modifiedDate", n => { ModifiedDate = n.GetDateValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoStatus>(); } },
+                { "status", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfoStatus>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueStatus = default; _explicitNullProperties?.Remove("status"); AdditionalData["status"] = unknown; } else { Status = parsed; AdditionalData.Remove("status"); } } },
             };
         }
         /// <summary>

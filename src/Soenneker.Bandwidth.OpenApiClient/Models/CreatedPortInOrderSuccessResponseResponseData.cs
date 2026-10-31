@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("portIn") is { } nullNodePortIn && nullNodePortIn.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PortIn = null;
+            if (parseNode.GetChildNode("portIn") is null) { _explicitNullValuePortIn = default!; _explicitNullProperties?.Remove("portIn"); }
+            else if (parseNode.GetChildNode("portIn") is { } nullNodePortIn && nullNodePortIn.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PortIn = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Port-in order details for a number or a set of numbers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrder? PortIn { get => _explicitNullValuePortIn; set { _explicitNullValuePortIn = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("portIn"); else _explicitNullProperties?.Remove("portIn"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrder? PortIn { get => _explicitNullValuePortIn; set { _explicitNullValuePortIn = value; AdditionalData?.Remove("portIn"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("portIn"); else _explicitNullProperties?.Remove("portIn"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrder? _explicitNullValuePortIn = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrder PortIn { get => _explicitNullValuePortIn; set { _explicitNullValuePortIn = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("portIn"); else _explicitNullProperties?.Remove("portIn"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrder PortIn { get => _explicitNullValuePortIn; set { _explicitNullValuePortIn = value; AdditionalData?.Remove("portIn"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("portIn"); else _explicitNullProperties?.Remove("portIn"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrder _explicitNullValuePortIn = default!;
 #endif
         /// <summary>

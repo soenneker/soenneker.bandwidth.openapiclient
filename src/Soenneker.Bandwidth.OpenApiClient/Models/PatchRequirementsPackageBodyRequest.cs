@@ -17,23 +17,30 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("acknowledgements") is { } nullNodeAcknowledgements && nullNodeAcknowledgements.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Acknowledgements = null;
-            if (parseNode.GetChildNode("createdDateTime") is { } nullNodeCreatedDateTime && nullNodeCreatedDateTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedDateTime = null;
-            if (parseNode.GetChildNode("customReference") is { } nullNodeCustomReference && nullNodeCustomReference.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomReference = null;
-            if (parseNode.GetChildNode("requirementsPackageId") is { } nullNodeRequirementsPackageId && nullNodeRequirementsPackageId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RequirementsPackageId = null;
-            if (parseNode.GetChildNode("stateContext") is { } nullNodeStateContext && nullNodeStateContext.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StateContext = null;
-            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
-            if (parseNode.GetChildNode("updatedDateTime") is { } nullNodeUpdatedDateTime && nullNodeUpdatedDateTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UpdatedDateTime = null;
+            if (parseNode.GetChildNode("acknowledgements") is null) { _explicitNullValueAcknowledgements = default!; _explicitNullProperties?.Remove("acknowledgements"); }
+            else if (parseNode.GetChildNode("acknowledgements") is { } nullNodeAcknowledgements && nullNodeAcknowledgements.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Acknowledgements = null;
+            if (parseNode.GetChildNode("createdDateTime") is null) { _explicitNullValueCreatedDateTime = default!; _explicitNullProperties?.Remove("createdDateTime"); }
+            else if (parseNode.GetChildNode("createdDateTime") is { } nullNodeCreatedDateTime && nullNodeCreatedDateTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedDateTime = null;
+            if (parseNode.GetChildNode("customReference") is null) { _explicitNullValueCustomReference = default!; _explicitNullProperties?.Remove("customReference"); }
+            else if (parseNode.GetChildNode("customReference") is { } nullNodeCustomReference && nullNodeCustomReference.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomReference = null;
+            if (parseNode.GetChildNode("requirementsPackageId") is null) { _explicitNullValueRequirementsPackageId = default!; _explicitNullProperties?.Remove("requirementsPackageId"); }
+            else if (parseNode.GetChildNode("requirementsPackageId") is { } nullNodeRequirementsPackageId && nullNodeRequirementsPackageId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RequirementsPackageId = null;
+            if (parseNode.GetChildNode("stateContext") is null) { _explicitNullValueStateContext = default!; _explicitNullProperties?.Remove("stateContext"); }
+            else if (parseNode.GetChildNode("stateContext") is { } nullNodeStateContext && nullNodeStateContext.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StateContext = null;
+            if (parseNode.GetChildNode("status") is null) { _explicitNullValueStatus = default!; _explicitNullProperties?.Remove("status"); }
+            else if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("updatedDateTime") is null) { _explicitNullValueUpdatedDateTime = default!; _explicitNullProperties?.Remove("updatedDateTime"); }
+            else if (parseNode.GetChildNode("updatedDateTime") is { } nullNodeUpdatedDateTime && nullNodeUpdatedDateTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UpdatedDateTime = null;
         }
 
         /// <summary>Captures the acknowledgments on requirements package submission. Mandatory when status is provided</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements? Acknowledgements { get => _explicitNullValueAcknowledgements; set { _explicitNullValueAcknowledgements = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("acknowledgements"); else _explicitNullProperties?.Remove("acknowledgements"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements? Acknowledgements { get => _explicitNullValueAcknowledgements; set { _explicitNullValueAcknowledgements = value; AdditionalData?.Remove("acknowledgements"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("acknowledgements"); else _explicitNullProperties?.Remove("acknowledgements"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements? _explicitNullValueAcknowledgements = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements Acknowledgements { get => _explicitNullValueAcknowledgements; set { _explicitNullValueAcknowledgements = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("acknowledgements"); else _explicitNullProperties?.Remove("acknowledgements"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements Acknowledgements { get => _explicitNullValueAcknowledgements; set { _explicitNullValueAcknowledgements = value; AdditionalData?.Remove("acknowledgements"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("acknowledgements"); else _explicitNullProperties?.Remove("acknowledgements"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements _explicitNullValueAcknowledgements = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -49,21 +56,21 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The date and time this object was created in ISO 8601 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CreatedDateTime { get => _explicitNullValueCreatedDateTime; set { _explicitNullValueCreatedDateTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdDateTime"); else _explicitNullProperties?.Remove("createdDateTime"); } }
+        public string? CreatedDateTime { get => _explicitNullValueCreatedDateTime; set { _explicitNullValueCreatedDateTime = value; AdditionalData?.Remove("createdDateTime"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdDateTime"); else _explicitNullProperties?.Remove("createdDateTime"); } }
         private string? _explicitNullValueCreatedDateTime = default!;
 #nullable restore
 #else
-        public string CreatedDateTime { get => _explicitNullValueCreatedDateTime; set { _explicitNullValueCreatedDateTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdDateTime"); else _explicitNullProperties?.Remove("createdDateTime"); } }
+        public string CreatedDateTime { get => _explicitNullValueCreatedDateTime; set { _explicitNullValueCreatedDateTime = value; AdditionalData?.Remove("createdDateTime"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdDateTime"); else _explicitNullProperties?.Remove("createdDateTime"); } }
         private string _explicitNullValueCreatedDateTime = default!;
 #endif
         /// <summary>A custom reference name.It can be used for your own reference to the item to easily identify one of your customers,requirements package, enduser etc.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CustomReference { get => _explicitNullValueCustomReference; set { _explicitNullValueCustomReference = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customReference"); else _explicitNullProperties?.Remove("customReference"); } }
+        public string? CustomReference { get => _explicitNullValueCustomReference; set { _explicitNullValueCustomReference = value; AdditionalData?.Remove("customReference"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customReference"); else _explicitNullProperties?.Remove("customReference"); } }
         private string? _explicitNullValueCustomReference = default!;
 #nullable restore
 #else
-        public string CustomReference { get => _explicitNullValueCustomReference; set { _explicitNullValueCustomReference = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customReference"); else _explicitNullProperties?.Remove("customReference"); } }
+        public string CustomReference { get => _explicitNullValueCustomReference; set { _explicitNullValueCustomReference = value; AdditionalData?.Remove("customReference"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customReference"); else _explicitNullProperties?.Remove("customReference"); } }
         private string _explicitNullValueCustomReference = default!;
 #endif
         /// <summary>The type of end user</summary>
@@ -81,34 +88,34 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Unique identifier for requirements package</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RequirementsPackageId { get => _explicitNullValueRequirementsPackageId; set { _explicitNullValueRequirementsPackageId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requirementsPackageId"); else _explicitNullProperties?.Remove("requirementsPackageId"); } }
+        public string? RequirementsPackageId { get => _explicitNullValueRequirementsPackageId; set { _explicitNullValueRequirementsPackageId = value; AdditionalData?.Remove("requirementsPackageId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requirementsPackageId"); else _explicitNullProperties?.Remove("requirementsPackageId"); } }
         private string? _explicitNullValueRequirementsPackageId = default!;
 #nullable restore
 #else
-        public string RequirementsPackageId { get => _explicitNullValueRequirementsPackageId; set { _explicitNullValueRequirementsPackageId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requirementsPackageId"); else _explicitNullProperties?.Remove("requirementsPackageId"); } }
+        public string RequirementsPackageId { get => _explicitNullValueRequirementsPackageId; set { _explicitNullValueRequirementsPackageId = value; AdditionalData?.Remove("requirementsPackageId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requirementsPackageId"); else _explicitNullProperties?.Remove("requirementsPackageId"); } }
         private string _explicitNullValueRequirementsPackageId = default!;
 #endif
         /// <summary>Any additional state specific context data associated with the package’s current status/state.Can be added by admin or system</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext? StateContext { get => _explicitNullValueStateContext; set { _explicitNullValueStateContext = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stateContext"); else _explicitNullProperties?.Remove("stateContext"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext? StateContext { get => _explicitNullValueStateContext; set { _explicitNullValueStateContext = value; AdditionalData?.Remove("stateContext"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stateContext"); else _explicitNullProperties?.Remove("stateContext"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext? _explicitNullValueStateContext = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext StateContext { get => _explicitNullValueStateContext; set { _explicitNullValueStateContext = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stateContext"); else _explicitNullProperties?.Remove("stateContext"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext StateContext { get => _explicitNullValueStateContext; set { _explicitNullValueStateContext = value; AdditionalData?.Remove("stateContext"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stateContext"); else _explicitNullProperties?.Remove("stateContext"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext _explicitNullValueStateContext = default!;
 #endif
         /// <summary>Status of the Requirements package</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageBodyRequestStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageBodyRequestStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; AdditionalData?.Remove("status"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageBodyRequestStatus? _explicitNullValueStatus = default!;
         /// <summary>The date and time this object was last updated in ISO 8601 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? UpdatedDateTime { get => _explicitNullValueUpdatedDateTime; set { _explicitNullValueUpdatedDateTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updatedDateTime"); else _explicitNullProperties?.Remove("updatedDateTime"); } }
+        public string? UpdatedDateTime { get => _explicitNullValueUpdatedDateTime; set { _explicitNullValueUpdatedDateTime = value; AdditionalData?.Remove("updatedDateTime"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updatedDateTime"); else _explicitNullProperties?.Remove("updatedDateTime"); } }
         private string? _explicitNullValueUpdatedDateTime = default!;
 #nullable restore
 #else
-        public string UpdatedDateTime { get => _explicitNullValueUpdatedDateTime; set { _explicitNullValueUpdatedDateTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updatedDateTime"); else _explicitNullProperties?.Remove("updatedDateTime"); } }
+        public string UpdatedDateTime { get => _explicitNullValueUpdatedDateTime; set { _explicitNullValueUpdatedDateTime = value; AdditionalData?.Remove("updatedDateTime"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updatedDateTime"); else _explicitNullProperties?.Remove("updatedDateTime"); } }
         private string _explicitNullValueUpdatedDateTime = default!;
 #endif
         /// <summary>
@@ -145,7 +152,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "remarks", n => { Remarks = n.GetStringValue(); } },
                 { "requirementsPackageId", n => { RequirementsPackageId = n.GetStringValue(); } },
                 { "stateContext", n => { StateContext = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext>(global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext.CreateFromDiscriminatorValue); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageBodyRequestStatus>(); } },
+                { "status", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PatchRequirementsPackageBodyRequestStatus>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueStatus = default; _explicitNullProperties?.Remove("status"); AdditionalData["status"] = unknown; } else { Status = parsed; AdditionalData.Remove("status"); } } },
                 { "updatedDateTime", n => { UpdatedDateTime = n.GetStringValue(); } },
             };
         }

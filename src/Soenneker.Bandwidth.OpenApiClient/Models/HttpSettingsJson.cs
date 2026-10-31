@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("httpVoiceV2AppId") is { } nullNodeHttpVoiceV2AppId && nullNodeHttpVoiceV2AppId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HttpVoiceV2AppId = null;
+            if (parseNode.GetChildNode("httpVoiceV2AppId") is null) { _explicitNullValueHttpVoiceV2AppId = default!; _explicitNullProperties?.Remove("httpVoiceV2AppId"); }
+            else if (parseNode.GetChildNode("httpVoiceV2AppId") is { } nullNodeHttpVoiceV2AppId && nullNodeHttpVoiceV2AppId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HttpVoiceV2AppId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Application ID associated with the location</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? HttpVoiceV2AppId { get => _explicitNullValueHttpVoiceV2AppId; set { _explicitNullValueHttpVoiceV2AppId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("httpVoiceV2AppId"); else _explicitNullProperties?.Remove("httpVoiceV2AppId"); } }
+        public string? HttpVoiceV2AppId { get => _explicitNullValueHttpVoiceV2AppId; set { _explicitNullValueHttpVoiceV2AppId = value; AdditionalData?.Remove("httpVoiceV2AppId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("httpVoiceV2AppId"); else _explicitNullProperties?.Remove("httpVoiceV2AppId"); } }
         private string? _explicitNullValueHttpVoiceV2AppId = default!;
 #nullable restore
 #else
-        public string HttpVoiceV2AppId { get => _explicitNullValueHttpVoiceV2AppId; set { _explicitNullValueHttpVoiceV2AppId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("httpVoiceV2AppId"); else _explicitNullProperties?.Remove("httpVoiceV2AppId"); } }
+        public string HttpVoiceV2AppId { get => _explicitNullValueHttpVoiceV2AppId; set { _explicitNullValueHttpVoiceV2AppId = value; AdditionalData?.Remove("httpVoiceV2AppId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("httpVoiceV2AppId"); else _explicitNullProperties?.Remove("httpVoiceV2AppId"); } }
         private string _explicitNullValueHttpVoiceV2AppId = default!;
 #endif
         /// <summary>

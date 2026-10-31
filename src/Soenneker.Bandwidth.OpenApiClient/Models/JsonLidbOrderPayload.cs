@@ -17,8 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("customerOrderId") is { } nullNodeCustomerOrderId && nullNodeCustomerOrderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerOrderId = null;
-            if (parseNode.GetChildNode("lidbPhoneNumberGroups") is { } nullNodeLidbPhoneNumberGroups && nullNodeLidbPhoneNumberGroups.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LidbPhoneNumberGroups = null;
+            if (parseNode.GetChildNode("customerOrderId") is null) { _explicitNullValueCustomerOrderId = default!; _explicitNullProperties?.Remove("customerOrderId"); }
+            else if (parseNode.GetChildNode("customerOrderId") is { } nullNodeCustomerOrderId && nullNodeCustomerOrderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerOrderId = null;
+            if (parseNode.GetChildNode("lidbPhoneNumberGroups") is null) { _explicitNullValueLidbPhoneNumberGroups = default!; _explicitNullProperties?.Remove("lidbPhoneNumberGroups"); }
+            else if (parseNode.GetChildNode("lidbPhoneNumberGroups") is { } nullNodeLidbPhoneNumberGroups && nullNodeLidbPhoneNumberGroups.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LidbPhoneNumberGroups = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,21 +28,21 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Optional customer-defined reference ID for this order. Only alphanumeric values, dashes and spaces are allowed. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order receives its own unique Bandwidth-assigned `orderId`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CustomerOrderId { get => _explicitNullValueCustomerOrderId; set { _explicitNullValueCustomerOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerOrderId"); else _explicitNullProperties?.Remove("customerOrderId"); } }
+        public string? CustomerOrderId { get => _explicitNullValueCustomerOrderId; set { _explicitNullValueCustomerOrderId = value; AdditionalData?.Remove("customerOrderId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerOrderId"); else _explicitNullProperties?.Remove("customerOrderId"); } }
         private string? _explicitNullValueCustomerOrderId = default!;
 #nullable restore
 #else
-        public string CustomerOrderId { get => _explicitNullValueCustomerOrderId; set { _explicitNullValueCustomerOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerOrderId"); else _explicitNullProperties?.Remove("customerOrderId"); } }
+        public string CustomerOrderId { get => _explicitNullValueCustomerOrderId; set { _explicitNullValueCustomerOrderId = value; AdditionalData?.Remove("customerOrderId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerOrderId"); else _explicitNullProperties?.Remove("customerOrderId"); } }
         private string _explicitNullValueCustomerOrderId = default!;
 #endif
         /// <summary>The lidbPhoneNumberGroups property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroup>? LidbPhoneNumberGroups { get => _explicitNullValueLidbPhoneNumberGroups; set { _explicitNullValueLidbPhoneNumberGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lidbPhoneNumberGroups"); else _explicitNullProperties?.Remove("lidbPhoneNumberGroups"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroup>? LidbPhoneNumberGroups { get => _explicitNullValueLidbPhoneNumberGroups; set { _explicitNullValueLidbPhoneNumberGroups = value; AdditionalData?.Remove("lidbPhoneNumberGroups"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lidbPhoneNumberGroups"); else _explicitNullProperties?.Remove("lidbPhoneNumberGroups"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroup>? _explicitNullValueLidbPhoneNumberGroups = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroup> LidbPhoneNumberGroups { get => _explicitNullValueLidbPhoneNumberGroups; set { _explicitNullValueLidbPhoneNumberGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lidbPhoneNumberGroups"); else _explicitNullProperties?.Remove("lidbPhoneNumberGroups"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroup> LidbPhoneNumberGroups { get => _explicitNullValueLidbPhoneNumberGroups; set { _explicitNullValueLidbPhoneNumberGroups = value; AdditionalData?.Remove("lidbPhoneNumberGroups"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lidbPhoneNumberGroups"); else _explicitNullProperties?.Remove("lidbPhoneNumberGroups"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonLidbDetailTnGroup> _explicitNullValueLidbPhoneNumberGroups = default!;
 #endif
         /// <summary>

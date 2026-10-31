@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("biDirectionalTrunks") is { } nullNodeBiDirectionalTrunks && nullNodeBiDirectionalTrunks.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BiDirectionalTrunks = null;
+            if (parseNode.GetChildNode("biDirectionalTrunks") is null) { _explicitNullValueBiDirectionalTrunks = default!; _explicitNullProperties?.Remove("biDirectionalTrunks"); }
+            else if (parseNode.GetChildNode("biDirectionalTrunks") is { } nullNodeBiDirectionalTrunks && nullNodeBiDirectionalTrunks.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BiDirectionalTrunks = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The number of bi-directional (cloud) trunks allocated to the account.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BiDirectionalTrunks { get => _explicitNullValueBiDirectionalTrunks; set { _explicitNullValueBiDirectionalTrunks = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("biDirectionalTrunks"); else _explicitNullProperties?.Remove("biDirectionalTrunks"); } }
+        public string? BiDirectionalTrunks { get => _explicitNullValueBiDirectionalTrunks; set { _explicitNullValueBiDirectionalTrunks = value; AdditionalData?.Remove("biDirectionalTrunks"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("biDirectionalTrunks"); else _explicitNullProperties?.Remove("biDirectionalTrunks"); } }
         private string? _explicitNullValueBiDirectionalTrunks = default!;
 #nullable restore
 #else
-        public string BiDirectionalTrunks { get => _explicitNullValueBiDirectionalTrunks; set { _explicitNullValueBiDirectionalTrunks = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("biDirectionalTrunks"); else _explicitNullProperties?.Remove("biDirectionalTrunks"); } }
+        public string BiDirectionalTrunks { get => _explicitNullValueBiDirectionalTrunks; set { _explicitNullValueBiDirectionalTrunks = value; AdditionalData?.Remove("biDirectionalTrunks"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("biDirectionalTrunks"); else _explicitNullProperties?.Remove("biDirectionalTrunks"); } }
         private string _explicitNullValueBiDirectionalTrunks = default!;
 #endif
         /// <summary>

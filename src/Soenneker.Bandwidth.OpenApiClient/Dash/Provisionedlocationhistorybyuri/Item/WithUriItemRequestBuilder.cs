@@ -64,7 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Dash.Provisionedlocationhistorybyuri
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, global::Soenneker.OpenApi.Generated.OpenApiServiceRoutes.Resolve(UrlTemplate, RequestAdapter.BaseUrl, "https://service.dashcs.com/dash-api/xml/emergencyprovisioning/v1", "/dash/provisionedlocationhistorybyuri/{uri}", PathParameters.ContainsKey("request-raw-url")), PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "text/xml");
             return requestInfo;

@@ -17,14 +17,22 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("body") is { } nullNodeBody && nullNodeBody.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Body = null;
-            if (parseNode.GetChildNode("csid") is { } nullNodeCsid && nullNodeCsid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Csid = null;
-            if (parseNode.GetChildNode("deliveryMethod") is { } nullNodeDeliveryMethod && nullNodeDeliveryMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DeliveryMethod = null;
-            if (parseNode.GetChildNode("faxFileFormat") is { } nullNodeFaxFileFormat && nullNodeFaxFileFormat.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FaxFileFormat = null;
-            if (parseNode.GetChildNode("faxUriId") is { } nullNodeFaxUriId && nullNodeFaxUriId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FaxUriId = null;
-            if (parseNode.GetChildNode("subject") is { } nullNodeSubject && nullNodeSubject.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Subject = null;
-            if (parseNode.GetChildNode("uri") is { } nullNodeUri && nullNodeUri.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Uri = null;
-            if (parseNode.GetChildNode("useHtml") is { } nullNodeUseHtml && nullNodeUseHtml.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UseHtml = null;
+            if (parseNode.GetChildNode("body") is null) { _explicitNullValueBody = default!; _explicitNullProperties?.Remove("body"); }
+            else if (parseNode.GetChildNode("body") is { } nullNodeBody && nullNodeBody.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Body = null;
+            if (parseNode.GetChildNode("csid") is null) { _explicitNullValueCsid = default!; _explicitNullProperties?.Remove("csid"); }
+            else if (parseNode.GetChildNode("csid") is { } nullNodeCsid && nullNodeCsid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Csid = null;
+            if (parseNode.GetChildNode("deliveryMethod") is null) { _explicitNullValueDeliveryMethod = default!; _explicitNullProperties?.Remove("deliveryMethod"); }
+            else if (parseNode.GetChildNode("deliveryMethod") is { } nullNodeDeliveryMethod && nullNodeDeliveryMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DeliveryMethod = null;
+            if (parseNode.GetChildNode("faxFileFormat") is null) { _explicitNullValueFaxFileFormat = default!; _explicitNullProperties?.Remove("faxFileFormat"); }
+            else if (parseNode.GetChildNode("faxFileFormat") is { } nullNodeFaxFileFormat && nullNodeFaxFileFormat.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FaxFileFormat = null;
+            if (parseNode.GetChildNode("faxUriId") is null) { _explicitNullValueFaxUriId = default!; _explicitNullProperties?.Remove("faxUriId"); }
+            else if (parseNode.GetChildNode("faxUriId") is { } nullNodeFaxUriId && nullNodeFaxUriId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FaxUriId = null;
+            if (parseNode.GetChildNode("subject") is null) { _explicitNullValueSubject = default!; _explicitNullProperties?.Remove("subject"); }
+            else if (parseNode.GetChildNode("subject") is { } nullNodeSubject && nullNodeSubject.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Subject = null;
+            if (parseNode.GetChildNode("uri") is null) { _explicitNullValueUri = default!; _explicitNullProperties?.Remove("uri"); }
+            else if (parseNode.GetChildNode("uri") is { } nullNodeUri && nullNodeUri.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Uri = null;
+            if (parseNode.GetChildNode("useHtml") is null) { _explicitNullValueUseHtml = default!; _explicitNullProperties?.Remove("useHtml"); }
+            else if (parseNode.GetChildNode("useHtml") is { } nullNodeUseHtml && nullNodeUseHtml.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UseHtml = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -32,60 +40,60 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The content of the body field of the email if you use SMTP as a deliveyr method. Not used for HTTP_POST.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Body { get => _explicitNullValueBody; set { _explicitNullValueBody = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("body"); else _explicitNullProperties?.Remove("body"); } }
+        public string? Body { get => _explicitNullValueBody; set { _explicitNullValueBody = value; AdditionalData?.Remove("body"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("body"); else _explicitNullProperties?.Remove("body"); } }
         private string? _explicitNullValueBody = default!;
 #nullable restore
 #else
-        public string Body { get => _explicitNullValueBody; set { _explicitNullValueBody = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("body"); else _explicitNullProperties?.Remove("body"); } }
+        public string Body { get => _explicitNullValueBody; set { _explicitNullValueBody = value; AdditionalData?.Remove("body"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("body"); else _explicitNullProperties?.Remove("body"); } }
         private string _explicitNullValueBody = default!;
 #endif
         /// <summary>This to filter in/out the Fax URIs for which CSID (Called subscriber identification) is enabled.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Csid { get => _explicitNullValueCsid; set { _explicitNullValueCsid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("csid"); else _explicitNullProperties?.Remove("csid"); } }
+        public string? Csid { get => _explicitNullValueCsid; set { _explicitNullValueCsid = value; AdditionalData?.Remove("csid"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("csid"); else _explicitNullProperties?.Remove("csid"); } }
         private string? _explicitNullValueCsid = default!;
 #nullable restore
 #else
-        public string Csid { get => _explicitNullValueCsid; set { _explicitNullValueCsid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("csid"); else _explicitNullProperties?.Remove("csid"); } }
+        public string Csid { get => _explicitNullValueCsid; set { _explicitNullValueCsid = value; AdditionalData?.Remove("csid"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("csid"); else _explicitNullProperties?.Remove("csid"); } }
         private string _explicitNullValueCsid = default!;
 #endif
         /// <summary>This is the delivery method on which you want to filter your list of Fax URIs. The possible values are SMTP and HTTP_POST.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriBodyDeliveryMethod? DeliveryMethod { get => _explicitNullValueDeliveryMethod; set { _explicitNullValueDeliveryMethod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deliveryMethod"); else _explicitNullProperties?.Remove("deliveryMethod"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriBodyDeliveryMethod? DeliveryMethod { get => _explicitNullValueDeliveryMethod; set { _explicitNullValueDeliveryMethod = value; AdditionalData?.Remove("deliveryMethod"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deliveryMethod"); else _explicitNullProperties?.Remove("deliveryMethod"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriBodyDeliveryMethod? _explicitNullValueDeliveryMethod = default!;
         /// <summary>This is the file format on which you want to filter your list of Fax URIs. The possible values are Tiff and Pdf.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriBodyFaxFileFormat? FaxFileFormat { get => _explicitNullValueFaxFileFormat; set { _explicitNullValueFaxFileFormat = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("faxFileFormat"); else _explicitNullProperties?.Remove("faxFileFormat"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriBodyFaxFileFormat? FaxFileFormat { get => _explicitNullValueFaxFileFormat; set { _explicitNullValueFaxFileFormat = value; AdditionalData?.Remove("faxFileFormat"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("faxFileFormat"); else _explicitNullProperties?.Remove("faxFileFormat"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriBodyFaxFileFormat? _explicitNullValueFaxFileFormat = default!;
         /// <summary>The identifier of the fax uri.</summary>
-        public int? FaxUriId { get => _explicitNullValueFaxUriId; set { _explicitNullValueFaxUriId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("faxUriId"); else _explicitNullProperties?.Remove("faxUriId"); } }
+        public int? FaxUriId { get => _explicitNullValueFaxUriId; set { _explicitNullValueFaxUriId = value; AdditionalData?.Remove("faxUriId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("faxUriId"); else _explicitNullProperties?.Remove("faxUriId"); } }
         private int? _explicitNullValueFaxUriId = default!;
         /// <summary>The content of the subject field of the email if you use SMTP as a deliveyr method. Not used for HTTP_POST.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Subject { get => _explicitNullValueSubject; set { _explicitNullValueSubject = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subject"); else _explicitNullProperties?.Remove("subject"); } }
+        public string? Subject { get => _explicitNullValueSubject; set { _explicitNullValueSubject = value; AdditionalData?.Remove("subject"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subject"); else _explicitNullProperties?.Remove("subject"); } }
         private string? _explicitNullValueSubject = default!;
 #nullable restore
 #else
-        public string Subject { get => _explicitNullValueSubject; set { _explicitNullValueSubject = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subject"); else _explicitNullProperties?.Remove("subject"); } }
+        public string Subject { get => _explicitNullValueSubject; set { _explicitNullValueSubject = value; AdditionalData?.Remove("subject"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subject"); else _explicitNullProperties?.Remove("subject"); } }
         private string _explicitNullValueSubject = default!;
 #endif
         /// <summary>This is the URI on which you want to filter your list of Fax URIs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Uri { get => _explicitNullValueUri; set { _explicitNullValueUri = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("uri"); else _explicitNullProperties?.Remove("uri"); } }
+        public string? Uri { get => _explicitNullValueUri; set { _explicitNullValueUri = value; AdditionalData?.Remove("uri"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("uri"); else _explicitNullProperties?.Remove("uri"); } }
         private string? _explicitNullValueUri = default!;
 #nullable restore
 #else
-        public string Uri { get => _explicitNullValueUri; set { _explicitNullValueUri = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("uri"); else _explicitNullProperties?.Remove("uri"); } }
+        public string Uri { get => _explicitNullValueUri; set { _explicitNullValueUri = value; AdditionalData?.Remove("uri"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("uri"); else _explicitNullProperties?.Remove("uri"); } }
         private string _explicitNullValueUri = default!;
 #endif
         /// <summary>Indicates if HTML is used for the email body. Only used for SMTP.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? UseHtml { get => _explicitNullValueUseHtml; set { _explicitNullValueUseHtml = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("useHtml"); else _explicitNullProperties?.Remove("useHtml"); } }
+        public string? UseHtml { get => _explicitNullValueUseHtml; set { _explicitNullValueUseHtml = value; AdditionalData?.Remove("useHtml"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("useHtml"); else _explicitNullProperties?.Remove("useHtml"); } }
         private string? _explicitNullValueUseHtml = default!;
 #nullable restore
 #else
-        public string UseHtml { get => _explicitNullValueUseHtml; set { _explicitNullValueUseHtml = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("useHtml"); else _explicitNullProperties?.Remove("useHtml"); } }
+        public string UseHtml { get => _explicitNullValueUseHtml; set { _explicitNullValueUseHtml = value; AdditionalData?.Remove("useHtml"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("useHtml"); else _explicitNullProperties?.Remove("useHtml"); } }
         private string _explicitNullValueUseHtml = default!;
 #endif
         /// <summary>
@@ -115,8 +123,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "body", n => { Body = n.GetStringValue(); } },
                 { "csid", n => { Csid = n.GetStringValue(); } },
-                { "deliveryMethod", n => { DeliveryMethod = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriBodyDeliveryMethod>(); } },
-                { "faxFileFormat", n => { FaxFileFormat = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriBodyFaxFileFormat>(); } },
+                { "deliveryMethod", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriBodyDeliveryMethod>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueDeliveryMethod = default; _explicitNullProperties?.Remove("deliveryMethod"); AdditionalData["deliveryMethod"] = unknown; } else { DeliveryMethod = parsed; AdditionalData.Remove("deliveryMethod"); } } },
+                { "faxFileFormat", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriBodyFaxFileFormat>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueFaxFileFormat = default; _explicitNullProperties?.Remove("faxFileFormat"); AdditionalData["faxFileFormat"] = unknown; } else { FaxFileFormat = parsed; AdditionalData.Remove("faxFileFormat"); } } },
                 { "faxUriId", n => { FaxUriId = n.GetIntValue(); } },
                 { "subject", n => { Subject = n.GetStringValue(); } },
                 { "uri", n => { Uri = n.GetStringValue(); } },

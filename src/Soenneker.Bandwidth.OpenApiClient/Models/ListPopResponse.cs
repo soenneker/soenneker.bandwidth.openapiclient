@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("pops") is { } nullNodePops && nullNodePops.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pops = null;
+            if (parseNode.GetChildNode("pops") is null) { _explicitNullValuePops = default!; _explicitNullProperties?.Remove("pops"); }
+            else if (parseNode.GetChildNode("pops") is { } nullNodePops && nullNodePops.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pops = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The pops property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Pop>? Pops { get => _explicitNullValuePops; set { _explicitNullValuePops = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pops"); else _explicitNullProperties?.Remove("pops"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Pop>? Pops { get => _explicitNullValuePops; set { _explicitNullValuePops = value; AdditionalData?.Remove("pops"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pops"); else _explicitNullProperties?.Remove("pops"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.Pop>? _explicitNullValuePops = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Pop> Pops { get => _explicitNullValuePops; set { _explicitNullValuePops = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pops"); else _explicitNullProperties?.Remove("pops"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Pop> Pops { get => _explicitNullValuePops; set { _explicitNullValuePops = value; AdditionalData?.Remove("pops"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pops"); else _explicitNullProperties?.Remove("pops"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.Pop> _explicitNullValuePops = default!;
 #endif
         /// <summary>

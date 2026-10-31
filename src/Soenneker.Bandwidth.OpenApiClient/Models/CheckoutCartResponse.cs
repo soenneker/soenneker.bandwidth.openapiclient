@@ -17,8 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("productCheckoutList") is { } nullNodeProductCheckoutList && nullNodeProductCheckoutList.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProductCheckoutList = null;
-            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("productCheckoutList") is null) { _explicitNullValueProductCheckoutList = default!; _explicitNullProperties?.Remove("productCheckoutList"); }
+            else if (parseNode.GetChildNode("productCheckoutList") is { } nullNodeProductCheckoutList && nullNodeProductCheckoutList.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProductCheckoutList = null;
+            if (parseNode.GetChildNode("status") is null) { _explicitNullValueStatus = default!; _explicitNullProperties?.Remove("status"); }
+            else if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,15 +28,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The productCheckoutList property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckout>? ProductCheckoutList { get => _explicitNullValueProductCheckoutList; set { _explicitNullValueProductCheckoutList = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("productCheckoutList"); else _explicitNullProperties?.Remove("productCheckoutList"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckout>? ProductCheckoutList { get => _explicitNullValueProductCheckoutList; set { _explicitNullValueProductCheckoutList = value; AdditionalData?.Remove("productCheckoutList"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("productCheckoutList"); else _explicitNullProperties?.Remove("productCheckoutList"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckout>? _explicitNullValueProductCheckoutList = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckout> ProductCheckoutList { get => _explicitNullValueProductCheckoutList; set { _explicitNullValueProductCheckoutList = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("productCheckoutList"); else _explicitNullProperties?.Remove("productCheckoutList"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckout> ProductCheckoutList { get => _explicitNullValueProductCheckoutList; set { _explicitNullValueProductCheckoutList = value; AdditionalData?.Remove("productCheckoutList"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("productCheckoutList"); else _explicitNullProperties?.Remove("productCheckoutList"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckout> _explicitNullValueProductCheckoutList = default!;
 #endif
         /// <summary>A &apos;SUCCESS&apos; message will indicate that the operation was performed successfully.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CheckoutCartResponseStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CheckoutCartResponseStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; AdditionalData?.Remove("status"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.CheckoutCartResponseStatus? _explicitNullValueStatus = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CheckoutCartResponse"/> and sets the default values.
@@ -62,7 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "productCheckoutList", n => { ProductCheckoutList = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckout>(global::Soenneker.Bandwidth.OpenApiClient.Models.ProductCheckout.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CheckoutCartResponseStatus>(); } },
+                { "status", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CheckoutCartResponseStatus>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueStatus = default; _explicitNullProperties?.Remove("status"); AdditionalData["status"] = unknown; } else { Status = parsed; AdditionalData.Remove("status"); } } },
             };
         }
         /// <summary>

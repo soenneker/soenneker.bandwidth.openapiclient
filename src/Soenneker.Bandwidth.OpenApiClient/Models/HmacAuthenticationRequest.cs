@@ -18,7 +18,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("sharedSecretKey") is { } nullNodeSharedSecretKey && nullNodeSharedSecretKey.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SharedSecretKey = null;
+            if (parseNode.GetChildNode("sharedSecretKey") is null) { _explicitNullValueSharedSecretKey = default!; _explicitNullProperties?.Remove("sharedSecretKey"); }
+            else if (parseNode.GetChildNode("sharedSecretKey") is { } nullNodeSharedSecretKey && nullNodeSharedSecretKey.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SharedSecretKey = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>An ASCII string submitted by the user as a shared secret key for generating an HMAC header (`X-Bandwidth-Signature-SHA-256`) for callbacks.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SharedSecretKey { get => _explicitNullValueSharedSecretKey; set { _explicitNullValueSharedSecretKey = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sharedSecretKey"); else _explicitNullProperties?.Remove("sharedSecretKey"); } }
+        public string? SharedSecretKey { get => _explicitNullValueSharedSecretKey; set { _explicitNullValueSharedSecretKey = value; AdditionalData?.Remove("sharedSecretKey"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sharedSecretKey"); else _explicitNullProperties?.Remove("sharedSecretKey"); } }
         private string? _explicitNullValueSharedSecretKey = default!;
 #nullable restore
 #else
-        public string SharedSecretKey { get => _explicitNullValueSharedSecretKey; set { _explicitNullValueSharedSecretKey = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sharedSecretKey"); else _explicitNullProperties?.Remove("sharedSecretKey"); } }
+        public string SharedSecretKey { get => _explicitNullValueSharedSecretKey; set { _explicitNullValueSharedSecretKey = value; AdditionalData?.Remove("sharedSecretKey"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sharedSecretKey"); else _explicitNullProperties?.Remove("sharedSecretKey"); } }
         private string _explicitNullValueSharedSecretKey = default!;
 #endif
         /// <summary>

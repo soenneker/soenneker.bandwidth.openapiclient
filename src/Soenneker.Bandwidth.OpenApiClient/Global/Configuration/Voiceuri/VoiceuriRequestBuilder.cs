@@ -102,7 +102,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Voiceuri
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Voiceuri.VoiceuriRequestBuilder.VoiceuriRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/global/configuration/voiceuri?pageNumber={pageNumber}&pageSize={pageSize}{&backupUriId*,description*,uri*,voiceUriId*,voiceUriProtocol*}", PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, global::Soenneker.OpenApi.Generated.OpenApiServiceRoutes.Resolve("{+baseurl}/global/configuration/voiceuri?pageNumber={pageNumber}&pageSize={pageSize}{&backupUriId*,description*,uri*,voiceUriId*,voiceUriProtocol*}", RequestAdapter.BaseUrl, "https://api.voxbone.com/v1", "/global/configuration/voiceuri", PathParameters.ContainsKey("request-raw-url")), PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -124,7 +124,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Voiceuri
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PUT, global::Soenneker.OpenApi.Generated.OpenApiServiceRoutes.Resolve(UrlTemplate, RequestAdapter.BaseUrl, "https://api.voxbone.com/v1", "/global/configuration/voiceuri", PathParameters.ContainsKey("request-raw-url")), PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

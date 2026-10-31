@@ -17,9 +17,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("address") is { } nullNodeAddress && nullNodeAddress.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Address = null;
-            if (parseNode.GetChildNode("excludedFeatures") is { } nullNodeExcludedFeatures && nullNodeExcludedFeatures.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExcludedFeatures = null;
-            if (parseNode.GetChildNode("geoValidationStatus") is { } nullNodeGeoValidationStatus && nullNodeGeoValidationStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) GeoValidationStatus = null;
+            if (parseNode.GetChildNode("address") is null) { _explicitNullValueAddress = default!; _explicitNullProperties?.Remove("address"); }
+            else if (parseNode.GetChildNode("address") is { } nullNodeAddress && nullNodeAddress.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Address = null;
+            if (parseNode.GetChildNode("excludedFeatures") is null) { _explicitNullValueExcludedFeatures = default!; _explicitNullProperties?.Remove("excludedFeatures"); }
+            else if (parseNode.GetChildNode("excludedFeatures") is { } nullNodeExcludedFeatures && nullNodeExcludedFeatures.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExcludedFeatures = null;
+            if (parseNode.GetChildNode("geoValidationStatus") is null) { _explicitNullValueGeoValidationStatus = default!; _explicitNullProperties?.Remove("geoValidationStatus"); }
+            else if (parseNode.GetChildNode("geoValidationStatus") is { } nullNodeGeoValidationStatus && nullNodeGeoValidationStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) GeoValidationStatus = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,25 +30,25 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The address property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ValidateAddressResponseData? Address { get => _explicitNullValueAddress; set { _explicitNullValueAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("address"); else _explicitNullProperties?.Remove("address"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ValidateAddressResponseData? Address { get => _explicitNullValueAddress; set { _explicitNullValueAddress = value; AdditionalData?.Remove("address"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("address"); else _explicitNullProperties?.Remove("address"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.ValidateAddressResponseData? _explicitNullValueAddress = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ValidateAddressResponseData Address { get => _explicitNullValueAddress; set { _explicitNullValueAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("address"); else _explicitNullProperties?.Remove("address"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ValidateAddressResponseData Address { get => _explicitNullValueAddress; set { _explicitNullValueAddress = value; AdditionalData?.Remove("address"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("address"); else _explicitNullProperties?.Remove("address"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.ValidateAddressResponseData _explicitNullValueAddress = default!;
 #endif
         /// <summary>Excluded Features</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnsupportedFeaturesItem>? ExcludedFeatures { get => _explicitNullValueExcludedFeatures; set { _explicitNullValueExcludedFeatures = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("excludedFeatures"); else _explicitNullProperties?.Remove("excludedFeatures"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnsupportedFeaturesItem>? ExcludedFeatures { get => _explicitNullValueExcludedFeatures; set { _explicitNullValueExcludedFeatures = value; AdditionalData?.Remove("excludedFeatures"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("excludedFeatures"); else _explicitNullProperties?.Remove("excludedFeatures"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnsupportedFeaturesItem>? _explicitNullValueExcludedFeatures = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnsupportedFeaturesItem> ExcludedFeatures { get => _explicitNullValueExcludedFeatures; set { _explicitNullValueExcludedFeatures = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("excludedFeatures"); else _explicitNullProperties?.Remove("excludedFeatures"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnsupportedFeaturesItem> ExcludedFeatures { get => _explicitNullValueExcludedFeatures; set { _explicitNullValueExcludedFeatures = value; AdditionalData?.Remove("excludedFeatures"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("excludedFeatures"); else _explicitNullProperties?.Remove("excludedFeatures"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnsupportedFeaturesItem> _explicitNullValueExcludedFeatures = default!;
 #endif
         /// <summary>The geo validation status of the address.- `GEO_VALID`: The address is valid and geo validated.- `NOT_GEO_VALID`: The address is not valid or geo validated.- `NOT_GEO_VALIDATED`: The address has not been geo validated yet.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.GeoValidationStatusEnum? GeoValidationStatus { get => _explicitNullValueGeoValidationStatus; set { _explicitNullValueGeoValidationStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("geoValidationStatus"); else _explicitNullProperties?.Remove("geoValidationStatus"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.GeoValidationStatusEnum? GeoValidationStatus { get => _explicitNullValueGeoValidationStatus; set { _explicitNullValueGeoValidationStatus = value; AdditionalData?.Remove("geoValidationStatus"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("geoValidationStatus"); else _explicitNullProperties?.Remove("geoValidationStatus"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.GeoValidationStatusEnum? _explicitNullValueGeoValidationStatus = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ValidateAddressResponseDataProperty"/> and sets the default values.
@@ -74,7 +77,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "address", n => { Address = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ValidateAddressResponseData>(global::Soenneker.Bandwidth.OpenApiClient.Models.ValidateAddressResponseData.CreateFromDiscriminatorValue); } },
                 { "excludedFeatures", n => { ExcludedFeatures = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.UnsupportedFeaturesItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.UnsupportedFeaturesItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "geoValidationStatus", n => { GeoValidationStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GeoValidationStatusEnum>(); } },
+                { "geoValidationStatus", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.GeoValidationStatusEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueGeoValidationStatus = default; _explicitNullProperties?.Remove("geoValidationStatus"); AdditionalData["geoValidationStatus"] = unknown; } else { GeoValidationStatus = parsed; AdditionalData.Remove("geoValidationStatus"); } } },
             };
         }
         /// <summary>

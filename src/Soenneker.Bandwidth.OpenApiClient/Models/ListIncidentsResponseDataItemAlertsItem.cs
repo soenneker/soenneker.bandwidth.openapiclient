@@ -17,12 +17,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("alertId") is { } nullNodeAlertId && nullNodeAlertId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AlertId = null;
-            if (parseNode.GetChildNode("alertTime") is { } nullNodeAlertTime && nullNodeAlertTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AlertTime = null;
-            if (parseNode.GetChildNode("alertType") is { } nullNodeAlertType && nullNodeAlertType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AlertType = null;
-            if (parseNode.GetChildNode("causeOfOutage") is { } nullNodeCauseOfOutage && nullNodeCauseOfOutage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CauseOfOutage = null;
-            if (parseNode.GetChildNode("expectedRestorationTime") is { } nullNodeExpectedRestorationTime && nullNodeExpectedRestorationTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExpectedRestorationTime = null;
-            if (parseNode.GetChildNode("triggerId") is { } nullNodeTriggerId && nullNodeTriggerId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TriggerId = null;
+            if (parseNode.GetChildNode("alertId") is null) { _explicitNullValueAlertId = default!; _explicitNullProperties?.Remove("alertId"); }
+            else if (parseNode.GetChildNode("alertId") is { } nullNodeAlertId && nullNodeAlertId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AlertId = null;
+            if (parseNode.GetChildNode("alertTime") is null) { _explicitNullValueAlertTime = default!; _explicitNullProperties?.Remove("alertTime"); }
+            else if (parseNode.GetChildNode("alertTime") is { } nullNodeAlertTime && nullNodeAlertTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AlertTime = null;
+            if (parseNode.GetChildNode("alertType") is null) { _explicitNullValueAlertType = default!; _explicitNullProperties?.Remove("alertType"); }
+            else if (parseNode.GetChildNode("alertType") is { } nullNodeAlertType && nullNodeAlertType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AlertType = null;
+            if (parseNode.GetChildNode("causeOfOutage") is null) { _explicitNullValueCauseOfOutage = default!; _explicitNullProperties?.Remove("causeOfOutage"); }
+            else if (parseNode.GetChildNode("causeOfOutage") is { } nullNodeCauseOfOutage && nullNodeCauseOfOutage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CauseOfOutage = null;
+            if (parseNode.GetChildNode("expectedRestorationTime") is null) { _explicitNullValueExpectedRestorationTime = default!; _explicitNullProperties?.Remove("expectedRestorationTime"); }
+            else if (parseNode.GetChildNode("expectedRestorationTime") is { } nullNodeExpectedRestorationTime && nullNodeExpectedRestorationTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExpectedRestorationTime = null;
+            if (parseNode.GetChildNode("triggerId") is null) { _explicitNullValueTriggerId = default!; _explicitNullProperties?.Remove("triggerId"); }
+            else if (parseNode.GetChildNode("triggerId") is { } nullNodeTriggerId && nullNodeTriggerId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TriggerId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -30,40 +36,40 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The unique identifier for the alert.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AlertId { get => _explicitNullValueAlertId; set { _explicitNullValueAlertId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alertId"); else _explicitNullProperties?.Remove("alertId"); } }
+        public string? AlertId { get => _explicitNullValueAlertId; set { _explicitNullValueAlertId = value; AdditionalData?.Remove("alertId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alertId"); else _explicitNullProperties?.Remove("alertId"); } }
         private string? _explicitNullValueAlertId = default!;
 #nullable restore
 #else
-        public string AlertId { get => _explicitNullValueAlertId; set { _explicitNullValueAlertId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alertId"); else _explicitNullProperties?.Remove("alertId"); } }
+        public string AlertId { get => _explicitNullValueAlertId; set { _explicitNullValueAlertId = value; AdditionalData?.Remove("alertId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alertId"); else _explicitNullProperties?.Remove("alertId"); } }
         private string _explicitNullValueAlertId = default!;
 #endif
         /// <summary>The time the alert was sent.</summary>
-        public DateTimeOffset? AlertTime { get => _explicitNullValueAlertTime; set { _explicitNullValueAlertTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alertTime"); else _explicitNullProperties?.Remove("alertTime"); } }
+        public DateTimeOffset? AlertTime { get => _explicitNullValueAlertTime; set { _explicitNullValueAlertTime = value; AdditionalData?.Remove("alertTime"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alertTime"); else _explicitNullProperties?.Remove("alertTime"); } }
         private DateTimeOffset? _explicitNullValueAlertTime = default!;
         /// <summary>The alert type.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ListIncidentsResponseDataItemAlertsItemAlertType? AlertType { get => _explicitNullValueAlertType; set { _explicitNullValueAlertType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alertType"); else _explicitNullProperties?.Remove("alertType"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ListIncidentsResponseDataItemAlertsItemAlertType? AlertType { get => _explicitNullValueAlertType; set { _explicitNullValueAlertType = value; AdditionalData?.Remove("alertType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alertType"); else _explicitNullProperties?.Remove("alertType"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.ListIncidentsResponseDataItemAlertsItemAlertType? _explicitNullValueAlertType = default!;
         /// <summary>The best known cause of the outage. If left blank, the PSAP will be notified that the cause of the outage is unknown.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CauseOfOutage { get => _explicitNullValueCauseOfOutage; set { _explicitNullValueCauseOfOutage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("causeOfOutage"); else _explicitNullProperties?.Remove("causeOfOutage"); } }
+        public string? CauseOfOutage { get => _explicitNullValueCauseOfOutage; set { _explicitNullValueCauseOfOutage = value; AdditionalData?.Remove("causeOfOutage"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("causeOfOutage"); else _explicitNullProperties?.Remove("causeOfOutage"); } }
         private string? _explicitNullValueCauseOfOutage = default!;
 #nullable restore
 #else
-        public string CauseOfOutage { get => _explicitNullValueCauseOfOutage; set { _explicitNullValueCauseOfOutage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("causeOfOutage"); else _explicitNullProperties?.Remove("causeOfOutage"); } }
+        public string CauseOfOutage { get => _explicitNullValueCauseOfOutage; set { _explicitNullValueCauseOfOutage = value; AdditionalData?.Remove("causeOfOutage"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("causeOfOutage"); else _explicitNullProperties?.Remove("causeOfOutage"); } }
         private string _explicitNullValueCauseOfOutage = default!;
 #endif
         /// <summary>The expected time the outage will be resolved. This will be shared with the PSAPs. If left blank, the PSAP will be notified that the expected restoration time is unknown.</summary>
-        public DateTimeOffset? ExpectedRestorationTime { get => _explicitNullValueExpectedRestorationTime; set { _explicitNullValueExpectedRestorationTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expectedRestorationTime"); else _explicitNullProperties?.Remove("expectedRestorationTime"); } }
+        public DateTimeOffset? ExpectedRestorationTime { get => _explicitNullValueExpectedRestorationTime; set { _explicitNullValueExpectedRestorationTime = value; AdditionalData?.Remove("expectedRestorationTime"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expectedRestorationTime"); else _explicitNullProperties?.Remove("expectedRestorationTime"); } }
         private DateTimeOffset? _explicitNullValueExpectedRestorationTime = default!;
         /// <summary>The unique identifier for the PSAP Outage Alert Trigger.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TriggerId { get => _explicitNullValueTriggerId; set { _explicitNullValueTriggerId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("triggerId"); else _explicitNullProperties?.Remove("triggerId"); } }
+        public string? TriggerId { get => _explicitNullValueTriggerId; set { _explicitNullValueTriggerId = value; AdditionalData?.Remove("triggerId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("triggerId"); else _explicitNullProperties?.Remove("triggerId"); } }
         private string? _explicitNullValueTriggerId = default!;
 #nullable restore
 #else
-        public string TriggerId { get => _explicitNullValueTriggerId; set { _explicitNullValueTriggerId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("triggerId"); else _explicitNullProperties?.Remove("triggerId"); } }
+        public string TriggerId { get => _explicitNullValueTriggerId; set { _explicitNullValueTriggerId = value; AdditionalData?.Remove("triggerId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("triggerId"); else _explicitNullProperties?.Remove("triggerId"); } }
         private string _explicitNullValueTriggerId = default!;
 #endif
         /// <summary>
@@ -93,7 +99,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "alertId", n => { AlertId = n.GetStringValue(); } },
                 { "alertTime", n => { AlertTime = n.GetDateTimeOffsetValue(); } },
-                { "alertType", n => { AlertType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ListIncidentsResponseDataItemAlertsItemAlertType>(); } },
+                { "alertType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ListIncidentsResponseDataItemAlertsItemAlertType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueAlertType = default; _explicitNullProperties?.Remove("alertType"); AdditionalData["alertType"] = unknown; } else { AlertType = parsed; AdditionalData.Remove("alertType"); } } },
                 { "causeOfOutage", n => { CauseOfOutage = n.GetStringValue(); } },
                 { "expectedRestorationTime", n => { ExpectedRestorationTime = n.GetDateTimeOffsetValue(); } },
                 { "triggerId", n => { TriggerId = n.GetStringValue(); } },

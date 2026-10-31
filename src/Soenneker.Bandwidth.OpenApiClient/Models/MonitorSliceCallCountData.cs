@@ -17,13 +17,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("callCount") is { } nullNodeCallCount && nullNodeCallCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallCount = null;
+            if (parseNode.GetChildNode("callCount") is null) { _explicitNullValueCallCount = default!; _explicitNullProperties?.Remove("callCount"); }
+            else if (parseNode.GetChildNode("callCount") is { } nullNodeCallCount && nullNodeCallCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallCount = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The callCount property</summary>
-        public int? CallCount { get => _explicitNullValueCallCount; set { _explicitNullValueCallCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callCount"); else _explicitNullProperties?.Remove("callCount"); } }
+        public int? CallCount { get => _explicitNullValueCallCount; set { _explicitNullValueCallCount = value; AdditionalData?.Remove("callCount"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callCount"); else _explicitNullProperties?.Remove("callCount"); } }
         private int? _explicitNullValueCallCount = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorSliceCallCountData"/> and sets the default values.

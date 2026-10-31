@@ -17,12 +17,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("dropdownValues") is { } nullNodeDropdownValues && nullNodeDropdownValues.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DropdownValues = null;
-            if (parseNode.GetChildNode("filterName") is { } nullNodeFilterName && nullNodeFilterName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FilterName = null;
-            if (parseNode.GetChildNode("operator") is { } nullNodeOperator && nullNodeOperator.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Operator = null;
-            if (parseNode.GetChildNode("required") is { } nullNodeRequired && nullNodeRequired.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Required = null;
-            if (parseNode.GetChildNode("validationRegex") is { } nullNodeValidationRegex && nullNodeValidationRegex.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ValidationRegex = null;
-            if (parseNode.GetChildNode("validationType") is { } nullNodeValidationType && nullNodeValidationType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ValidationType = null;
+            if (parseNode.GetChildNode("dropdownValues") is null) { _explicitNullValueDropdownValues = default!; _explicitNullProperties?.Remove("dropdownValues"); }
+            else if (parseNode.GetChildNode("dropdownValues") is { } nullNodeDropdownValues && nullNodeDropdownValues.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DropdownValues = null;
+            if (parseNode.GetChildNode("filterName") is null) { _explicitNullValueFilterName = default!; _explicitNullProperties?.Remove("filterName"); }
+            else if (parseNode.GetChildNode("filterName") is { } nullNodeFilterName && nullNodeFilterName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FilterName = null;
+            if (parseNode.GetChildNode("operator") is null) { _explicitNullValueOperator = default!; _explicitNullProperties?.Remove("operator"); }
+            else if (parseNode.GetChildNode("operator") is { } nullNodeOperator && nullNodeOperator.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Operator = null;
+            if (parseNode.GetChildNode("required") is null) { _explicitNullValueRequired = default!; _explicitNullProperties?.Remove("required"); }
+            else if (parseNode.GetChildNode("required") is { } nullNodeRequired && nullNodeRequired.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Required = null;
+            if (parseNode.GetChildNode("validationRegex") is null) { _explicitNullValueValidationRegex = default!; _explicitNullProperties?.Remove("validationRegex"); }
+            else if (parseNode.GetChildNode("validationRegex") is { } nullNodeValidationRegex && nullNodeValidationRegex.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ValidationRegex = null;
+            if (parseNode.GetChildNode("validationType") is null) { _explicitNullValueValidationType = default!; _explicitNullProperties?.Remove("validationType"); }
+            else if (parseNode.GetChildNode("validationType") is { } nullNodeValidationType && nullNodeValidationType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ValidationType = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -30,41 +36,41 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The dropdownValues property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues>? DropdownValues { get => _explicitNullValueDropdownValues; set { _explicitNullValueDropdownValues = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dropdownValues"); else _explicitNullProperties?.Remove("dropdownValues"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues>? DropdownValues { get => _explicitNullValueDropdownValues; set { _explicitNullValueDropdownValues = value; AdditionalData?.Remove("dropdownValues"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dropdownValues"); else _explicitNullProperties?.Remove("dropdownValues"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues>? _explicitNullValueDropdownValues = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues> DropdownValues { get => _explicitNullValueDropdownValues; set { _explicitNullValueDropdownValues = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dropdownValues"); else _explicitNullProperties?.Remove("dropdownValues"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues> DropdownValues { get => _explicitNullValueDropdownValues; set { _explicitNullValueDropdownValues = value; AdditionalData?.Remove("dropdownValues"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dropdownValues"); else _explicitNullProperties?.Remove("dropdownValues"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues> _explicitNullValueDropdownValues = default!;
 #endif
         /// <summary>The filterName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FilterName { get => _explicitNullValueFilterName; set { _explicitNullValueFilterName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filterName"); else _explicitNullProperties?.Remove("filterName"); } }
+        public string? FilterName { get => _explicitNullValueFilterName; set { _explicitNullValueFilterName = value; AdditionalData?.Remove("filterName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filterName"); else _explicitNullProperties?.Remove("filterName"); } }
         private string? _explicitNullValueFilterName = default!;
 #nullable restore
 #else
-        public string FilterName { get => _explicitNullValueFilterName; set { _explicitNullValueFilterName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filterName"); else _explicitNullProperties?.Remove("filterName"); } }
+        public string FilterName { get => _explicitNullValueFilterName; set { _explicitNullValueFilterName = value; AdditionalData?.Remove("filterName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filterName"); else _explicitNullProperties?.Remove("filterName"); } }
         private string _explicitNullValueFilterName = default!;
 #endif
         /// <summary>The operator property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorType? Operator { get => _explicitNullValueOperator; set { _explicitNullValueOperator = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operator"); else _explicitNullProperties?.Remove("operator"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorType? Operator { get => _explicitNullValueOperator; set { _explicitNullValueOperator = value; AdditionalData?.Remove("operator"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operator"); else _explicitNullProperties?.Remove("operator"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorType? _explicitNullValueOperator = default!;
         /// <summary>The required property</summary>
-        public bool? Required { get => _explicitNullValueRequired; set { _explicitNullValueRequired = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("required"); else _explicitNullProperties?.Remove("required"); } }
+        public bool? Required { get => _explicitNullValueRequired; set { _explicitNullValueRequired = value; AdditionalData?.Remove("required"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("required"); else _explicitNullProperties?.Remove("required"); } }
         private bool? _explicitNullValueRequired = default!;
         /// <summary>The validationRegex property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ValidationRegex { get => _explicitNullValueValidationRegex; set { _explicitNullValueValidationRegex = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("validationRegex"); else _explicitNullProperties?.Remove("validationRegex"); } }
+        public string? ValidationRegex { get => _explicitNullValueValidationRegex; set { _explicitNullValueValidationRegex = value; AdditionalData?.Remove("validationRegex"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("validationRegex"); else _explicitNullProperties?.Remove("validationRegex"); } }
         private string? _explicitNullValueValidationRegex = default!;
 #nullable restore
 #else
-        public string ValidationRegex { get => _explicitNullValueValidationRegex; set { _explicitNullValueValidationRegex = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("validationRegex"); else _explicitNullProperties?.Remove("validationRegex"); } }
+        public string ValidationRegex { get => _explicitNullValueValidationRegex; set { _explicitNullValueValidationRegex = value; AdditionalData?.Remove("validationRegex"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("validationRegex"); else _explicitNullProperties?.Remove("validationRegex"); } }
         private string _explicitNullValueValidationRegex = default!;
 #endif
         /// <summary>The validation rule applied to a filter value; a value that does not satisfy its rule is rejected with a 400.- `E164`: a phone number in E.164 format, e.g. `&quot;+12345678901&quot;`.- `REGEX`: a string matching the filter&apos;s own `validationRegex`, e.g. `&quot;matchingValue&quot;`.- `ISO8601`: a full date-time with millisecond precision, e.g. `&quot;2023-12-30T23:59:59.000Z&quot;`.- `ISO8601_RANGE`: a start and end date-time (millisecond precision), used with `BETWEEN`, e.g. `[&quot;2023-12-01T00:00:00.000Z&quot;, &quot;2023-12-31T23:59:59.000Z&quot;]`.- `ISO8601_YEAR_MONTH`: a year and month, e.g. `&quot;2023-12&quot;`.- `ISO8601_DATE`: a calendar date, e.g. `&quot;2023-12-31&quot;`.- `STRING`: any string, e.g. `&quot;someString&quot;`.- `INTEGER`: an integer, e.g. `123`.- `ACCOUNT`: a customer account ID, e.g. `&quot;9900000&quot;`.The `ISO8601*` types are also bounded by the report&apos;s `maxMonthsBack`.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ValidationType? ValidationType { get => _explicitNullValueValidationType; set { _explicitNullValueValidationType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("validationType"); else _explicitNullProperties?.Remove("validationType"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ValidationType? ValidationType { get => _explicitNullValueValidationType; set { _explicitNullValueValidationType = value; AdditionalData?.Remove("validationType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("validationType"); else _explicitNullProperties?.Remove("validationType"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.ValidationType? _explicitNullValueValidationType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RdoFilter"/> and sets the default values.
@@ -93,10 +99,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "dropdownValues", n => { DropdownValues = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues>(global::Soenneker.Bandwidth.OpenApiClient.Models.DropdownValues.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "filterName", n => { FilterName = n.GetStringValue(); } },
-                { "operator", n => { Operator = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorType>(); } },
+                { "operator", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OperatorType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueOperator = default; _explicitNullProperties?.Remove("operator"); AdditionalData["operator"] = unknown; } else { Operator = parsed; AdditionalData.Remove("operator"); } } },
                 { "required", n => { Required = n.GetBoolValue(); } },
                 { "validationRegex", n => { ValidationRegex = n.GetStringValue(); } },
-                { "validationType", n => { ValidationType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ValidationType>(); } },
+                { "validationType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ValidationType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueValidationType = default; _explicitNullProperties?.Remove("validationType"); AdditionalData["validationType"] = unknown; } else { ValidationType = parsed; AdditionalData.Remove("validationType"); } } },
             };
         }
         /// <summary>

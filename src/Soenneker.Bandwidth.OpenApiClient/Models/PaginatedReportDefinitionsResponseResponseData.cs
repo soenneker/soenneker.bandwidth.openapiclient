@@ -18,7 +18,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("reportDefinitions") is { } nullNodeReportDefinitions && nullNodeReportDefinitions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReportDefinitions = null;
+            if (parseNode.GetChildNode("reportDefinitions") is null) { _explicitNullValueReportDefinitions = default!; _explicitNullProperties?.Remove("reportDefinitions"); }
+            else if (parseNode.GetChildNode("reportDefinitions") is { } nullNodeReportDefinitions && nullNodeReportDefinitions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReportDefinitions = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The list of report definitions available to your account.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedReportDefinitionObject>? ReportDefinitions { get => _explicitNullValueReportDefinitions; set { _explicitNullValueReportDefinitions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reportDefinitions"); else _explicitNullProperties?.Remove("reportDefinitions"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedReportDefinitionObject>? ReportDefinitions { get => _explicitNullValueReportDefinitions; set { _explicitNullValueReportDefinitions = value; AdditionalData?.Remove("reportDefinitions"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reportDefinitions"); else _explicitNullProperties?.Remove("reportDefinitions"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedReportDefinitionObject>? _explicitNullValueReportDefinitions = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedReportDefinitionObject> ReportDefinitions { get => _explicitNullValueReportDefinitions; set { _explicitNullValueReportDefinitions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reportDefinitions"); else _explicitNullProperties?.Remove("reportDefinitions"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedReportDefinitionObject> ReportDefinitions { get => _explicitNullValueReportDefinitions; set { _explicitNullValueReportDefinitions = value; AdditionalData?.Remove("reportDefinitions"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reportDefinitions"); else _explicitNullProperties?.Remove("reportDefinitions"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedReportDefinitionObject> _explicitNullValueReportDefinitions = default!;
 #endif
         /// <summary>

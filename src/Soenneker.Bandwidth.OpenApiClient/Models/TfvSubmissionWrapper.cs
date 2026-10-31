@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("submission") is { } nullNodeSubmission && nullNodeSubmission.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Submission = null;
+            if (parseNode.GetChildNode("submission") is null) { _explicitNullValueSubmission = default!; _explicitNullProperties?.Remove("submission"); }
+            else if (parseNode.GetChildNode("submission") is { } nullNodeSubmission && nullNodeSubmission.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Submission = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The submission property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VerificationUpdateRequest? Submission { get => _explicitNullValueSubmission; set { _explicitNullValueSubmission = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("submission"); else _explicitNullProperties?.Remove("submission"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VerificationUpdateRequest? Submission { get => _explicitNullValueSubmission; set { _explicitNullValueSubmission = value; AdditionalData?.Remove("submission"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("submission"); else _explicitNullProperties?.Remove("submission"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.VerificationUpdateRequest? _explicitNullValueSubmission = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VerificationUpdateRequest Submission { get => _explicitNullValueSubmission; set { _explicitNullValueSubmission = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("submission"); else _explicitNullProperties?.Remove("submission"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VerificationUpdateRequest Submission { get => _explicitNullValueSubmission; set { _explicitNullValueSubmission = value; AdditionalData?.Remove("submission"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("submission"); else _explicitNullProperties?.Remove("submission"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.VerificationUpdateRequest _explicitNullValueSubmission = default!;
 #endif
         /// <summary>

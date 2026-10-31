@@ -18,79 +18,88 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("dateOfLastModification") is { } nullNodeDateOfLastModification && nullNodeDateOfLastModification.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DateOfLastModification = null;
-            if (parseNode.GetChildNode("entityId") is { } nullNodeEntityId && nullNodeEntityId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EntityId = null;
-            if (parseNode.GetChildNode("eventType") is { } nullNodeEventType && nullNodeEventType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EventType = null;
-            if (parseNode.GetChildNode("notificationChannel") is { } nullNodeNotificationChannel && nullNodeNotificationChannel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NotificationChannel = null;
-            if (parseNode.GetChildNode("notifyStates") is { } nullNodeNotifyStates && nullNodeNotifyStates.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NotifyStates = null;
-            if (parseNode.GetChildNode("product") is { } nullNodeProduct && nullNodeProduct.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Product = null;
-            if (parseNode.GetChildNode("subscriptionId") is { } nullNodeSubscriptionId && nullNodeSubscriptionId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SubscriptionId = null;
-            if (parseNode.GetChildNode("subscriptionStatus") is { } nullNodeSubscriptionStatus && nullNodeSubscriptionStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SubscriptionStatus = null;
-            if (parseNode.GetChildNode("tags") is { } nullNodeTags && nullNodeTags.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tags = null;
+            if (parseNode.GetChildNode("dateOfLastModification") is null) { _explicitNullValueDateOfLastModification = default!; _explicitNullProperties?.Remove("dateOfLastModification"); }
+            else if (parseNode.GetChildNode("dateOfLastModification") is { } nullNodeDateOfLastModification && nullNodeDateOfLastModification.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DateOfLastModification = null;
+            if (parseNode.GetChildNode("entityId") is null) { _explicitNullValueEntityId = default!; _explicitNullProperties?.Remove("entityId"); }
+            else if (parseNode.GetChildNode("entityId") is { } nullNodeEntityId && nullNodeEntityId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EntityId = null;
+            if (parseNode.GetChildNode("eventType") is null) { _explicitNullValueEventType = default!; _explicitNullProperties?.Remove("eventType"); }
+            else if (parseNode.GetChildNode("eventType") is { } nullNodeEventType && nullNodeEventType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EventType = null;
+            if (parseNode.GetChildNode("notificationChannel") is null) { _explicitNullValueNotificationChannel = default!; _explicitNullProperties?.Remove("notificationChannel"); }
+            else if (parseNode.GetChildNode("notificationChannel") is { } nullNodeNotificationChannel && nullNodeNotificationChannel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NotificationChannel = null;
+            if (parseNode.GetChildNode("notifyStates") is null) { _explicitNullValueNotifyStates = default!; _explicitNullProperties?.Remove("notifyStates"); }
+            else if (parseNode.GetChildNode("notifyStates") is { } nullNodeNotifyStates && nullNodeNotifyStates.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NotifyStates = null;
+            if (parseNode.GetChildNode("product") is null) { _explicitNullValueProduct = default!; _explicitNullProperties?.Remove("product"); }
+            else if (parseNode.GetChildNode("product") is { } nullNodeProduct && nullNodeProduct.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Product = null;
+            if (parseNode.GetChildNode("subscriptionId") is null) { _explicitNullValueSubscriptionId = default!; _explicitNullProperties?.Remove("subscriptionId"); }
+            else if (parseNode.GetChildNode("subscriptionId") is { } nullNodeSubscriptionId && nullNodeSubscriptionId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SubscriptionId = null;
+            if (parseNode.GetChildNode("subscriptionStatus") is null) { _explicitNullValueSubscriptionStatus = default!; _explicitNullProperties?.Remove("subscriptionStatus"); }
+            else if (parseNode.GetChildNode("subscriptionStatus") is { } nullNodeSubscriptionStatus && nullNodeSubscriptionStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SubscriptionStatus = null;
+            if (parseNode.GetChildNode("tags") is null) { _explicitNullValueTags = default!; _explicitNullProperties?.Remove("tags"); }
+            else if (parseNode.GetChildNode("tags") is { } nullNodeTags && nullNodeTags.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tags = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Last Modified date</summary>
-        public DateTimeOffset? DateOfLastModification { get => _explicitNullValueDateOfLastModification; set { _explicitNullValueDateOfLastModification = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dateOfLastModification"); else _explicitNullProperties?.Remove("dateOfLastModification"); } }
+        public DateTimeOffset? DateOfLastModification { get => _explicitNullValueDateOfLastModification; set { _explicitNullValueDateOfLastModification = value; AdditionalData?.Remove("dateOfLastModification"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dateOfLastModification"); else _explicitNullProperties?.Remove("dateOfLastModification"); } }
         private DateTimeOffset? _explicitNullValueDateOfLastModification = default!;
         /// <summary>Unique Id of object/action processed which generates Event for Notification. eventType value is Required when this value is present. Must be alphanumeric, can contain dashes and underscores.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? EntityId { get => _explicitNullValueEntityId; set { _explicitNullValueEntityId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("entityId"); else _explicitNullProperties?.Remove("entityId"); } }
+        public string? EntityId { get => _explicitNullValueEntityId; set { _explicitNullValueEntityId = value; AdditionalData?.Remove("entityId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("entityId"); else _explicitNullProperties?.Remove("entityId"); } }
         private string? _explicitNullValueEntityId = default!;
 #nullable restore
 #else
-        public string EntityId { get => _explicitNullValueEntityId; set { _explicitNullValueEntityId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("entityId"); else _explicitNullProperties?.Remove("entityId"); } }
+        public string EntityId { get => _explicitNullValueEntityId; set { _explicitNullValueEntityId = value; AdditionalData?.Remove("entityId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("entityId"); else _explicitNullProperties?.Remove("entityId"); } }
         private string _explicitNullValueEntityId = default!;
 #endif
         /// <summary>The Event Type of the Subscription. This value is Required when entityId is present</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeEnum? EventType { get => _explicitNullValueEventType; set { _explicitNullValueEventType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eventType"); else _explicitNullProperties?.Remove("eventType"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeEnum? EventType { get => _explicitNullValueEventType; set { _explicitNullValueEventType = value; AdditionalData?.Remove("eventType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eventType"); else _explicitNullProperties?.Remove("eventType"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeEnum? _explicitNullValueEventType = default!;
         /// <summary>NOTE: When a request without the `Authorization` header is made to a callback url that supports basic authentication, then the expected behavior is:1. Response code is `401` or `407`. 2. Response headers should contain `WWW-Authenticate` or `Proxy-Authenticate` specifying basic authentication as a scheme. For example `WWW-Authenticate&quot;:&quot;Basic realm=&quot;Bandwidth API&quot;`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationChannel>? NotificationChannel { get => _explicitNullValueNotificationChannel; set { _explicitNullValueNotificationChannel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notificationChannel"); else _explicitNullProperties?.Remove("notificationChannel"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationChannel>? NotificationChannel { get => _explicitNullValueNotificationChannel; set { _explicitNullValueNotificationChannel = value; AdditionalData?.Remove("notificationChannel"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notificationChannel"); else _explicitNullProperties?.Remove("notificationChannel"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationChannel>? _explicitNullValueNotificationChannel = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationChannel> NotificationChannel { get => _explicitNullValueNotificationChannel; set { _explicitNullValueNotificationChannel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notificationChannel"); else _explicitNullProperties?.Remove("notificationChannel"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationChannel> NotificationChannel { get => _explicitNullValueNotificationChannel; set { _explicitNullValueNotificationChannel = value; AdditionalData?.Remove("notificationChannel"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notificationChannel"); else _explicitNullProperties?.Remove("notificationChannel"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationChannel> _explicitNullValueNotificationChannel = default!;
 #endif
         /// <summary>The notifyStates property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnum?>? NotifyStates { get => _explicitNullValueNotifyStates; set { _explicitNullValueNotifyStates = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notifyStates"); else _explicitNullProperties?.Remove("notifyStates"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnum?>? NotifyStates { get => _explicitNullValueNotifyStates; set { _explicitNullValueNotifyStates = value; AdditionalData?.Remove("notifyStates"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notifyStates"); else _explicitNullProperties?.Remove("notifyStates"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnum?>? _explicitNullValueNotifyStates = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnum?> NotifyStates { get => _explicitNullValueNotifyStates; set { _explicitNullValueNotifyStates = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notifyStates"); else _explicitNullProperties?.Remove("notifyStates"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnum?> NotifyStates { get => _explicitNullValueNotifyStates; set { _explicitNullValueNotifyStates = value; AdditionalData?.Remove("notifyStates"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notifyStates"); else _explicitNullProperties?.Remove("notifyStates"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnum?> _explicitNullValueNotifyStates = default!;
 #endif
         /// <summary>The Product of the Subscription</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ProductEnum? Product { get => _explicitNullValueProduct; set { _explicitNullValueProduct = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("product"); else _explicitNullProperties?.Remove("product"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ProductEnum? Product { get => _explicitNullValueProduct; set { _explicitNullValueProduct = value; AdditionalData?.Remove("product"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("product"); else _explicitNullProperties?.Remove("product"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.ProductEnum? _explicitNullValueProduct = default!;
         /// <summary>The subscriptionId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SubscriptionId { get => _explicitNullValueSubscriptionId; set { _explicitNullValueSubscriptionId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriptionId"); else _explicitNullProperties?.Remove("subscriptionId"); } }
+        public string? SubscriptionId { get => _explicitNullValueSubscriptionId; set { _explicitNullValueSubscriptionId = value; AdditionalData?.Remove("subscriptionId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriptionId"); else _explicitNullProperties?.Remove("subscriptionId"); } }
         private string? _explicitNullValueSubscriptionId = default!;
 #nullable restore
 #else
-        public string SubscriptionId { get => _explicitNullValueSubscriptionId; set { _explicitNullValueSubscriptionId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriptionId"); else _explicitNullProperties?.Remove("subscriptionId"); } }
+        public string SubscriptionId { get => _explicitNullValueSubscriptionId; set { _explicitNullValueSubscriptionId = value; AdditionalData?.Remove("subscriptionId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriptionId"); else _explicitNullProperties?.Remove("subscriptionId"); } }
         private string _explicitNullValueSubscriptionId = default!;
 #endif
         /// <summary>The Status of the Subscription</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionSubscriptionStatus? SubscriptionStatus { get => _explicitNullValueSubscriptionStatus; set { _explicitNullValueSubscriptionStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriptionStatus"); else _explicitNullProperties?.Remove("subscriptionStatus"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionSubscriptionStatus? SubscriptionStatus { get => _explicitNullValueSubscriptionStatus; set { _explicitNullValueSubscriptionStatus = value; AdditionalData?.Remove("subscriptionStatus"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriptionStatus"); else _explicitNullProperties?.Remove("subscriptionStatus"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionSubscriptionStatus? _explicitNullValueSubscriptionStatus = default!;
         /// <summary>Tag key and value must consist of alphanumeric characters, hyphens, and underscores</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Tag>? Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Tag>? Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; AdditionalData?.Remove("tags"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.Tag>? _explicitNullValueTags = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Tag> Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Tag> Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; AdditionalData?.Remove("tags"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.Tag> _explicitNullValueTags = default!;
 #endif
         /// <summary>
@@ -120,12 +129,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "dateOfLastModification", n => { DateOfLastModification = n.GetDateTimeOffsetValue(); } },
                 { "entityId", n => { EntityId = n.GetStringValue(); } },
-                { "eventType", n => { EventType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeEnum>(); } },
+                { "eventType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueEventType = default; _explicitNullProperties?.Remove("eventType"); AdditionalData["eventType"] = unknown; } else { EventType = parsed; AdditionalData.Remove("eventType"); } } },
                 { "notificationChannel", n => { NotificationChannel = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationChannel>(global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationChannel.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "notifyStates", n => { NotifyStates = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnum>()?.AsList(); } },
-                { "product", n => { Product = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductEnum>(); } },
+                { "product", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueProduct = default; _explicitNullProperties?.Remove("product"); AdditionalData["product"] = unknown; } else { Product = parsed; AdditionalData.Remove("product"); } } },
                 { "subscriptionId", n => { SubscriptionId = n.GetStringValue(); } },
-                { "subscriptionStatus", n => { SubscriptionStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionSubscriptionStatus>(); } },
+                { "subscriptionStatus", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionSubscriptionStatus>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueSubscriptionStatus = default; _explicitNullProperties?.Remove("subscriptionStatus"); AdditionalData["subscriptionStatus"] = unknown; } else { SubscriptionStatus = parsed; AdditionalData.Remove("subscriptionStatus"); } } },
                 { "tags", n => { Tags = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Tag>(global::Soenneker.Bandwidth.OpenApiClient.Models.Tag.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }

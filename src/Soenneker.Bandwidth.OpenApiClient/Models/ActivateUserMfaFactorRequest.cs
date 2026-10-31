@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("passCode") is { } nullNodePassCode && nullNodePassCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PassCode = null;
+            if (parseNode.GetChildNode("passCode") is null) { _explicitNullValuePassCode = default!; _explicitNullProperties?.Remove("passCode"); }
+            else if (parseNode.GetChildNode("passCode") is { } nullNodePassCode && nullNodePassCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PassCode = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>One Time PassCode</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PassCode { get => _explicitNullValuePassCode; set { _explicitNullValuePassCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("passCode"); else _explicitNullProperties?.Remove("passCode"); } }
+        public string? PassCode { get => _explicitNullValuePassCode; set { _explicitNullValuePassCode = value; AdditionalData?.Remove("passCode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("passCode"); else _explicitNullProperties?.Remove("passCode"); } }
         private string? _explicitNullValuePassCode = default!;
 #nullable restore
 #else
-        public string PassCode { get => _explicitNullValuePassCode; set { _explicitNullValuePassCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("passCode"); else _explicitNullProperties?.Remove("passCode"); } }
+        public string PassCode { get => _explicitNullValuePassCode; set { _explicitNullValuePassCode = value; AdditionalData?.Remove("passCode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("passCode"); else _explicitNullProperties?.Remove("passCode"); } }
         private string _explicitNullValuePassCode = default!;
 #endif
         /// <summary>

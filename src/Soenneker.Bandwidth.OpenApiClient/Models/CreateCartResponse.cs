@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("cart") is { } nullNodeCart && nullNodeCart.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Cart = null;
+            if (parseNode.GetChildNode("cart") is null) { _explicitNullValueCart = default!; _explicitNullProperties?.Remove("cart"); }
+            else if (parseNode.GetChildNode("cart") is { } nullNodeCart && nullNodeCart.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Cart = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The cart property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Cart? Cart { get => _explicitNullValueCart; set { _explicitNullValueCart = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cart"); else _explicitNullProperties?.Remove("cart"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.Cart? Cart { get => _explicitNullValueCart; set { _explicitNullValueCart = value; AdditionalData?.Remove("cart"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cart"); else _explicitNullProperties?.Remove("cart"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.Cart? _explicitNullValueCart = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.Cart Cart { get => _explicitNullValueCart; set { _explicitNullValueCart = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cart"); else _explicitNullProperties?.Remove("cart"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.Cart Cart { get => _explicitNullValueCart; set { _explicitNullValueCart = value; AdditionalData?.Remove("cart"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cart"); else _explicitNullProperties?.Remove("cart"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.Cart _explicitNullValueCart = default!;
 #endif
         /// <summary>

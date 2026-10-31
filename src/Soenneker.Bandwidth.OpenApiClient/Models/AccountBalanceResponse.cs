@@ -17,17 +17,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("accountBalance") is { } nullNodeAccountBalance && nullNodeAccountBalance.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountBalance = null;
+            if (parseNode.GetChildNode("accountBalance") is null) { _explicitNullValueAccountBalance = default!; _explicitNullProperties?.Remove("accountBalance"); }
+            else if (parseNode.GetChildNode("accountBalance") is { } nullNodeAccountBalance && nullNodeAccountBalance.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountBalance = null;
         }
 
         /// <summary>The accountBalance property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AccountBalanceBody? AccountBalance { get => _explicitNullValueAccountBalance; set { _explicitNullValueAccountBalance = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountBalance"); else _explicitNullProperties?.Remove("accountBalance"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AccountBalanceBody? AccountBalance { get => _explicitNullValueAccountBalance; set { _explicitNullValueAccountBalance = value; AdditionalData?.Remove("accountBalance"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountBalance"); else _explicitNullProperties?.Remove("accountBalance"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.AccountBalanceBody? _explicitNullValueAccountBalance = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AccountBalanceBody AccountBalance { get => _explicitNullValueAccountBalance; set { _explicitNullValueAccountBalance = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountBalance"); else _explicitNullProperties?.Remove("accountBalance"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AccountBalanceBody AccountBalance { get => _explicitNullValueAccountBalance; set { _explicitNullValueAccountBalance = value; AdditionalData?.Remove("accountBalance"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountBalance"); else _explicitNullProperties?.Remove("accountBalance"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.AccountBalanceBody _explicitNullValueAccountBalance = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>

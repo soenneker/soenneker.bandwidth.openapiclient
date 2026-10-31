@@ -66,7 +66,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.DashNotifications.Notifications.Noti
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.DashNotifications.Notifications.NotificationRecipients.Item.Associations.AssociationsRequestBuilder.AssociationsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, global::Soenneker.OpenApi.Generated.OpenApiServiceRoutes.Resolve(UrlTemplate, RequestAdapter.BaseUrl, "https://evs-api.bandwidth.com/api/v1", "/dash-notifications/notifications/notificationRecipients/{recipientId}/associations", PathParameters.ContainsKey("request-raw-url")), PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

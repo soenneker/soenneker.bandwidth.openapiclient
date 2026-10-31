@@ -17,78 +17,85 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("accountSpecific") is { } nullNodeAccountSpecific && nullNodeAccountSpecific.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountSpecific = null;
-            if (parseNode.GetChildNode("description") is { } nullNodeDescription && nullNodeDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Description = null;
-            if (parseNode.GetChildNode("filterableFields") is { } nullNodeFilterableFields && nullNodeFilterableFields.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FilterableFields = null;
-            if (parseNode.GetChildNode("friendlyName") is { } nullNodeFriendlyName && nullNodeFriendlyName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FriendlyName = null;
-            if (parseNode.GetChildNode("functionalDomain") is { } nullNodeFunctionalDomain && nullNodeFunctionalDomain.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FunctionalDomain = null;
-            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
-            if (parseNode.GetChildNode("supportedDeliveryTypes") is { } nullNodeSupportedDeliveryTypes && nullNodeSupportedDeliveryTypes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SupportedDeliveryTypes = null;
+            if (parseNode.GetChildNode("accountSpecific") is null) { _explicitNullValueAccountSpecific = default!; _explicitNullProperties?.Remove("accountSpecific"); }
+            else if (parseNode.GetChildNode("accountSpecific") is { } nullNodeAccountSpecific && nullNodeAccountSpecific.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountSpecific = null;
+            if (parseNode.GetChildNode("description") is null) { _explicitNullValueDescription = default!; _explicitNullProperties?.Remove("description"); }
+            else if (parseNode.GetChildNode("description") is { } nullNodeDescription && nullNodeDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Description = null;
+            if (parseNode.GetChildNode("filterableFields") is null) { _explicitNullValueFilterableFields = default!; _explicitNullProperties?.Remove("filterableFields"); }
+            else if (parseNode.GetChildNode("filterableFields") is { } nullNodeFilterableFields && nullNodeFilterableFields.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FilterableFields = null;
+            if (parseNode.GetChildNode("friendlyName") is null) { _explicitNullValueFriendlyName = default!; _explicitNullProperties?.Remove("friendlyName"); }
+            else if (parseNode.GetChildNode("friendlyName") is { } nullNodeFriendlyName && nullNodeFriendlyName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FriendlyName = null;
+            if (parseNode.GetChildNode("functionalDomain") is null) { _explicitNullValueFunctionalDomain = default!; _explicitNullProperties?.Remove("functionalDomain"); }
+            else if (parseNode.GetChildNode("functionalDomain") is { } nullNodeFunctionalDomain && nullNodeFunctionalDomain.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FunctionalDomain = null;
+            if (parseNode.GetChildNode("name") is null) { _explicitNullValueName = default!; _explicitNullProperties?.Remove("name"); }
+            else if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("supportedDeliveryTypes") is null) { _explicitNullValueSupportedDeliveryTypes = default!; _explicitNullProperties?.Remove("supportedDeliveryTypes"); }
+            else if (parseNode.GetChildNode("supportedDeliveryTypes") is { } nullNodeSupportedDeliveryTypes && nullNodeSupportedDeliveryTypes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SupportedDeliveryTypes = null;
         }
 
         /// <summary>Indicates if the event is account specific. If true, end users will be required to subscribed to specific account IDs. False is considered account agnostic system events.</summary>
-        public bool? AccountSpecific { get => _explicitNullValueAccountSpecific; set { _explicitNullValueAccountSpecific = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountSpecific"); else _explicitNullProperties?.Remove("accountSpecific"); } }
+        public bool? AccountSpecific { get => _explicitNullValueAccountSpecific; set { _explicitNullValueAccountSpecific = value; AdditionalData?.Remove("accountSpecific"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountSpecific"); else _explicitNullProperties?.Remove("accountSpecific"); } }
         private bool? _explicitNullValueAccountSpecific = default!;
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>A description of the subscription definition</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        public string? Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; AdditionalData?.Remove("description"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
         private string? _explicitNullValueDescription = default!;
 #nullable restore
 #else
-        public string Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        public string Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; AdditionalData?.Remove("description"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
         private string _explicitNullValueDescription = default!;
 #endif
         /// <summary>The fields that can be filtered on for the subscription definition</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField>? FilterableFields { get => _explicitNullValueFilterableFields; set { _explicitNullValueFilterableFields = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filterableFields"); else _explicitNullProperties?.Remove("filterableFields"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField>? FilterableFields { get => _explicitNullValueFilterableFields; set { _explicitNullValueFilterableFields = value; AdditionalData?.Remove("filterableFields"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filterableFields"); else _explicitNullProperties?.Remove("filterableFields"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField>? _explicitNullValueFilterableFields = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField> FilterableFields { get => _explicitNullValueFilterableFields; set { _explicitNullValueFilterableFields = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filterableFields"); else _explicitNullProperties?.Remove("filterableFields"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField> FilterableFields { get => _explicitNullValueFilterableFields; set { _explicitNullValueFilterableFields = value; AdditionalData?.Remove("filterableFields"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filterableFields"); else _explicitNullProperties?.Remove("filterableFields"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterableField> _explicitNullValueFilterableFields = default!;
 #endif
         /// <summary>A user friendly name for the subscription definition</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FriendlyName { get => _explicitNullValueFriendlyName; set { _explicitNullValueFriendlyName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("friendlyName"); else _explicitNullProperties?.Remove("friendlyName"); } }
+        public string? FriendlyName { get => _explicitNullValueFriendlyName; set { _explicitNullValueFriendlyName = value; AdditionalData?.Remove("friendlyName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("friendlyName"); else _explicitNullProperties?.Remove("friendlyName"); } }
         private string? _explicitNullValueFriendlyName = default!;
 #nullable restore
 #else
-        public string FriendlyName { get => _explicitNullValueFriendlyName; set { _explicitNullValueFriendlyName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("friendlyName"); else _explicitNullProperties?.Remove("friendlyName"); } }
+        public string FriendlyName { get => _explicitNullValueFriendlyName; set { _explicitNullValueFriendlyName = value; AdditionalData?.Remove("friendlyName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("friendlyName"); else _explicitNullProperties?.Remove("friendlyName"); } }
         private string _explicitNullValueFriendlyName = default!;
 #endif
         /// <summary>The functionalDomain property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FunctionalDomain { get => _explicitNullValueFunctionalDomain; set { _explicitNullValueFunctionalDomain = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("functionalDomain"); else _explicitNullProperties?.Remove("functionalDomain"); } }
+        public string? FunctionalDomain { get => _explicitNullValueFunctionalDomain; set { _explicitNullValueFunctionalDomain = value; AdditionalData?.Remove("functionalDomain"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("functionalDomain"); else _explicitNullProperties?.Remove("functionalDomain"); } }
         private string? _explicitNullValueFunctionalDomain = default!;
 #nullable restore
 #else
-        public string FunctionalDomain { get => _explicitNullValueFunctionalDomain; set { _explicitNullValueFunctionalDomain = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("functionalDomain"); else _explicitNullProperties?.Remove("functionalDomain"); } }
+        public string FunctionalDomain { get => _explicitNullValueFunctionalDomain; set { _explicitNullValueFunctionalDomain = value; AdditionalData?.Remove("functionalDomain"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("functionalDomain"); else _explicitNullProperties?.Remove("functionalDomain"); } }
         private string _explicitNullValueFunctionalDomain = default!;
 #endif
         /// <summary>The name which uniquely identifies the subscription definition</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string _explicitNullValueName = default!;
 #endif
         /// <summary>The supportedDeliveryTypes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DeliveryTypesEnum?>? SupportedDeliveryTypes { get => _explicitNullValueSupportedDeliveryTypes; set { _explicitNullValueSupportedDeliveryTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("supportedDeliveryTypes"); else _explicitNullProperties?.Remove("supportedDeliveryTypes"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DeliveryTypesEnum?>? SupportedDeliveryTypes { get => _explicitNullValueSupportedDeliveryTypes; set { _explicitNullValueSupportedDeliveryTypes = value; AdditionalData?.Remove("supportedDeliveryTypes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("supportedDeliveryTypes"); else _explicitNullProperties?.Remove("supportedDeliveryTypes"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.DeliveryTypesEnum?>? _explicitNullValueSupportedDeliveryTypes = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DeliveryTypesEnum?> SupportedDeliveryTypes { get => _explicitNullValueSupportedDeliveryTypes; set { _explicitNullValueSupportedDeliveryTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("supportedDeliveryTypes"); else _explicitNullProperties?.Remove("supportedDeliveryTypes"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DeliveryTypesEnum?> SupportedDeliveryTypes { get => _explicitNullValueSupportedDeliveryTypes; set { _explicitNullValueSupportedDeliveryTypes = value; AdditionalData?.Remove("supportedDeliveryTypes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("supportedDeliveryTypes"); else _explicitNullProperties?.Remove("supportedDeliveryTypes"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.DeliveryTypesEnum?> _explicitNullValueSupportedDeliveryTypes = default!;
 #endif
         /// <summary>

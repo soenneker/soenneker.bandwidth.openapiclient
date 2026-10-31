@@ -17,19 +17,32 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("additionalDenialReasons") is { } nullNodeAdditionalDenialReasons && nullNodeAdditionalDenialReasons.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AdditionalDenialReasons = null;
-            if (parseNode.GetChildNode("blocked") is { } nullNodeBlocked && nullNodeBlocked.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Blocked = null;
-            if (parseNode.GetChildNode("blockedReason") is { } nullNodeBlockedReason && nullNodeBlockedReason.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BlockedReason = null;
-            if (parseNode.GetChildNode("createdDateTime") is { } nullNodeCreatedDateTime && nullNodeCreatedDateTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedDateTime = null;
-            if (parseNode.GetChildNode("cvToken") is { } nullNodeCvToken && nullNodeCvToken.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CvToken = null;
-            if (parseNode.GetChildNode("declineReasonDescription") is { } nullNodeDeclineReasonDescription && nullNodeDeclineReasonDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DeclineReasonDescription = null;
-            if (parseNode.GetChildNode("denialStatusCode") is { } nullNodeDenialStatusCode && nullNodeDenialStatusCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DenialStatusCode = null;
-            if (parseNode.GetChildNode("internalTicketNumber") is { } nullNodeInternalTicketNumber && nullNodeInternalTicketNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InternalTicketNumber = null;
-            if (parseNode.GetChildNode("modifiedDateTime") is { } nullNodeModifiedDateTime && nullNodeModifiedDateTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModifiedDateTime = null;
-            if (parseNode.GetChildNode("phoneNumber") is { } nullNodePhoneNumber && nullNodePhoneNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumber = null;
-            if (parseNode.GetChildNode("resubmitAllowed") is { } nullNodeResubmitAllowed && nullNodeResubmitAllowed.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResubmitAllowed = null;
-            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
-            if (parseNode.GetChildNode("submission") is { } nullNodeSubmission && nullNodeSubmission.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Submission = null;
+            if (parseNode.GetChildNode("additionalDenialReasons") is null) { _explicitNullValueAdditionalDenialReasons = default!; _explicitNullProperties?.Remove("additionalDenialReasons"); }
+            else if (parseNode.GetChildNode("additionalDenialReasons") is { } nullNodeAdditionalDenialReasons && nullNodeAdditionalDenialReasons.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AdditionalDenialReasons = null;
+            if (parseNode.GetChildNode("blocked") is null) { _explicitNullValueBlocked = default!; _explicitNullProperties?.Remove("blocked"); }
+            else if (parseNode.GetChildNode("blocked") is { } nullNodeBlocked && nullNodeBlocked.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Blocked = null;
+            if (parseNode.GetChildNode("blockedReason") is null) { _explicitNullValueBlockedReason = default!; _explicitNullProperties?.Remove("blockedReason"); }
+            else if (parseNode.GetChildNode("blockedReason") is { } nullNodeBlockedReason && nullNodeBlockedReason.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BlockedReason = null;
+            if (parseNode.GetChildNode("createdDateTime") is null) { _explicitNullValueCreatedDateTime = default!; _explicitNullProperties?.Remove("createdDateTime"); }
+            else if (parseNode.GetChildNode("createdDateTime") is { } nullNodeCreatedDateTime && nullNodeCreatedDateTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedDateTime = null;
+            if (parseNode.GetChildNode("cvToken") is null) { _explicitNullValueCvToken = default!; _explicitNullProperties?.Remove("cvToken"); }
+            else if (parseNode.GetChildNode("cvToken") is { } nullNodeCvToken && nullNodeCvToken.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CvToken = null;
+            if (parseNode.GetChildNode("declineReasonDescription") is null) { _explicitNullValueDeclineReasonDescription = default!; _explicitNullProperties?.Remove("declineReasonDescription"); }
+            else if (parseNode.GetChildNode("declineReasonDescription") is { } nullNodeDeclineReasonDescription && nullNodeDeclineReasonDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DeclineReasonDescription = null;
+            if (parseNode.GetChildNode("denialStatusCode") is null) { _explicitNullValueDenialStatusCode = default!; _explicitNullProperties?.Remove("denialStatusCode"); }
+            else if (parseNode.GetChildNode("denialStatusCode") is { } nullNodeDenialStatusCode && nullNodeDenialStatusCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DenialStatusCode = null;
+            if (parseNode.GetChildNode("internalTicketNumber") is null) { _explicitNullValueInternalTicketNumber = default!; _explicitNullProperties?.Remove("internalTicketNumber"); }
+            else if (parseNode.GetChildNode("internalTicketNumber") is { } nullNodeInternalTicketNumber && nullNodeInternalTicketNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InternalTicketNumber = null;
+            if (parseNode.GetChildNode("modifiedDateTime") is null) { _explicitNullValueModifiedDateTime = default!; _explicitNullProperties?.Remove("modifiedDateTime"); }
+            else if (parseNode.GetChildNode("modifiedDateTime") is { } nullNodeModifiedDateTime && nullNodeModifiedDateTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModifiedDateTime = null;
+            if (parseNode.GetChildNode("phoneNumber") is null) { _explicitNullValuePhoneNumber = default!; _explicitNullProperties?.Remove("phoneNumber"); }
+            else if (parseNode.GetChildNode("phoneNumber") is { } nullNodePhoneNumber && nullNodePhoneNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumber = null;
+            if (parseNode.GetChildNode("resubmitAllowed") is null) { _explicitNullValueResubmitAllowed = default!; _explicitNullProperties?.Remove("resubmitAllowed"); }
+            else if (parseNode.GetChildNode("resubmitAllowed") is { } nullNodeResubmitAllowed && nullNodeResubmitAllowed.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResubmitAllowed = null;
+            if (parseNode.GetChildNode("status") is null) { _explicitNullValueStatus = default!; _explicitNullProperties?.Remove("status"); }
+            else if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("submission") is null) { _explicitNullValueSubmission = default!; _explicitNullProperties?.Remove("submission"); }
+            else if (parseNode.GetChildNode("submission") is { } nullNodeSubmission && nullNodeSubmission.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Submission = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -37,89 +50,89 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>An optional list of denial reasons in addition to declineReasonDescription when multiple reasons apply.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AdditionalDenialReason>? AdditionalDenialReasons { get => _explicitNullValueAdditionalDenialReasons; set { _explicitNullValueAdditionalDenialReasons = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("additionalDenialReasons"); else _explicitNullProperties?.Remove("additionalDenialReasons"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AdditionalDenialReason>? AdditionalDenialReasons { get => _explicitNullValueAdditionalDenialReasons; set { _explicitNullValueAdditionalDenialReasons = value; AdditionalData?.Remove("additionalDenialReasons"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("additionalDenialReasons"); else _explicitNullProperties?.Remove("additionalDenialReasons"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.AdditionalDenialReason>? _explicitNullValueAdditionalDenialReasons = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AdditionalDenialReason> AdditionalDenialReasons { get => _explicitNullValueAdditionalDenialReasons; set { _explicitNullValueAdditionalDenialReasons = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("additionalDenialReasons"); else _explicitNullProperties?.Remove("additionalDenialReasons"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AdditionalDenialReason> AdditionalDenialReasons { get => _explicitNullValueAdditionalDenialReasons; set { _explicitNullValueAdditionalDenialReasons = value; AdditionalData?.Remove("additionalDenialReasons"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("additionalDenialReasons"); else _explicitNullProperties?.Remove("additionalDenialReasons"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.AdditionalDenialReason> _explicitNullValueAdditionalDenialReasons = default!;
 #endif
         /// <summary>Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked.</summary>
-        public bool? Blocked { get => _explicitNullValueBlocked; set { _explicitNullValueBlocked = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blocked"); else _explicitNullProperties?.Remove("blocked"); } }
+        public bool? Blocked { get => _explicitNullValueBlocked; set { _explicitNullValueBlocked = value; AdditionalData?.Remove("blocked"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blocked"); else _explicitNullProperties?.Remove("blocked"); } }
         private bool? _explicitNullValueBlocked = default!;
         /// <summary>The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BlockedReason { get => _explicitNullValueBlockedReason; set { _explicitNullValueBlockedReason = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blockedReason"); else _explicitNullProperties?.Remove("blockedReason"); } }
+        public string? BlockedReason { get => _explicitNullValueBlockedReason; set { _explicitNullValueBlockedReason = value; AdditionalData?.Remove("blockedReason"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blockedReason"); else _explicitNullProperties?.Remove("blockedReason"); } }
         private string? _explicitNullValueBlockedReason = default!;
 #nullable restore
 #else
-        public string BlockedReason { get => _explicitNullValueBlockedReason; set { _explicitNullValueBlockedReason = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blockedReason"); else _explicitNullProperties?.Remove("blockedReason"); } }
+        public string BlockedReason { get => _explicitNullValueBlockedReason; set { _explicitNullValueBlockedReason = value; AdditionalData?.Remove("blockedReason"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blockedReason"); else _explicitNullProperties?.Remove("blockedReason"); } }
         private string _explicitNullValueBlockedReason = default!;
 #endif
         /// <summary>Date and time the verification request was created.</summary>
-        public DateTimeOffset? CreatedDateTime { get => _explicitNullValueCreatedDateTime; set { _explicitNullValueCreatedDateTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdDateTime"); else _explicitNullProperties?.Remove("createdDateTime"); } }
+        public DateTimeOffset? CreatedDateTime { get => _explicitNullValueCreatedDateTime; set { _explicitNullValueCreatedDateTime = value; AdditionalData?.Remove("createdDateTime"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdDateTime"); else _explicitNullProperties?.Remove("createdDateTime"); } }
         private DateTimeOffset? _explicitNullValueCreatedDateTime = default!;
         /// <summary>The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. Supplying an empty string will likely result in rejection.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CvToken { get => _explicitNullValueCvToken; set { _explicitNullValueCvToken = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cvToken"); else _explicitNullProperties?.Remove("cvToken"); } }
+        public string? CvToken { get => _explicitNullValueCvToken; set { _explicitNullValueCvToken = value; AdditionalData?.Remove("cvToken"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cvToken"); else _explicitNullProperties?.Remove("cvToken"); } }
         private string? _explicitNullValueCvToken = default!;
 #nullable restore
 #else
-        public string CvToken { get => _explicitNullValueCvToken; set { _explicitNullValueCvToken = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cvToken"); else _explicitNullProperties?.Remove("cvToken"); } }
+        public string CvToken { get => _explicitNullValueCvToken; set { _explicitNullValueCvToken = value; AdditionalData?.Remove("cvToken"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cvToken"); else _explicitNullProperties?.Remove("cvToken"); } }
         private string _explicitNullValueCvToken = default!;
 #endif
         /// <summary>Explanation for why a verification request was declined.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DeclineReasonDescription { get => _explicitNullValueDeclineReasonDescription; set { _explicitNullValueDeclineReasonDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("declineReasonDescription"); else _explicitNullProperties?.Remove("declineReasonDescription"); } }
+        public string? DeclineReasonDescription { get => _explicitNullValueDeclineReasonDescription; set { _explicitNullValueDeclineReasonDescription = value; AdditionalData?.Remove("declineReasonDescription"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("declineReasonDescription"); else _explicitNullProperties?.Remove("declineReasonDescription"); } }
         private string? _explicitNullValueDeclineReasonDescription = default!;
 #nullable restore
 #else
-        public string DeclineReasonDescription { get => _explicitNullValueDeclineReasonDescription; set { _explicitNullValueDeclineReasonDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("declineReasonDescription"); else _explicitNullProperties?.Remove("declineReasonDescription"); } }
+        public string DeclineReasonDescription { get => _explicitNullValueDeclineReasonDescription; set { _explicitNullValueDeclineReasonDescription = value; AdditionalData?.Remove("declineReasonDescription"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("declineReasonDescription"); else _explicitNullProperties?.Remove("declineReasonDescription"); } }
         private string _explicitNullValueDeclineReasonDescription = default!;
 #endif
         /// <summary>Reason code for denial.</summary>
-        public int? DenialStatusCode { get => _explicitNullValueDenialStatusCode; set { _explicitNullValueDenialStatusCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("denialStatusCode"); else _explicitNullProperties?.Remove("denialStatusCode"); } }
+        public int? DenialStatusCode { get => _explicitNullValueDenialStatusCode; set { _explicitNullValueDenialStatusCode = value; AdditionalData?.Remove("denialStatusCode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("denialStatusCode"); else _explicitNullProperties?.Remove("denialStatusCode"); } }
         private int? _explicitNullValueDenialStatusCode = default!;
         /// <summary>Unique identifier (UUID) generated by Bandwidth to assist in tracking the verification status of a toll-free number - included in all webhook payloads.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? InternalTicketNumber { get => _explicitNullValueInternalTicketNumber; set { _explicitNullValueInternalTicketNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("internalTicketNumber"); else _explicitNullProperties?.Remove("internalTicketNumber"); } }
+        public string? InternalTicketNumber { get => _explicitNullValueInternalTicketNumber; set { _explicitNullValueInternalTicketNumber = value; AdditionalData?.Remove("internalTicketNumber"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("internalTicketNumber"); else _explicitNullProperties?.Remove("internalTicketNumber"); } }
         private string? _explicitNullValueInternalTicketNumber = default!;
 #nullable restore
 #else
-        public string InternalTicketNumber { get => _explicitNullValueInternalTicketNumber; set { _explicitNullValueInternalTicketNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("internalTicketNumber"); else _explicitNullProperties?.Remove("internalTicketNumber"); } }
+        public string InternalTicketNumber { get => _explicitNullValueInternalTicketNumber; set { _explicitNullValueInternalTicketNumber = value; AdditionalData?.Remove("internalTicketNumber"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("internalTicketNumber"); else _explicitNullProperties?.Remove("internalTicketNumber"); } }
         private string _explicitNullValueInternalTicketNumber = default!;
 #endif
         /// <summary>Date and time the verification request was last modified.</summary>
-        public DateTimeOffset? ModifiedDateTime { get => _explicitNullValueModifiedDateTime; set { _explicitNullValueModifiedDateTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modifiedDateTime"); else _explicitNullProperties?.Remove("modifiedDateTime"); } }
+        public DateTimeOffset? ModifiedDateTime { get => _explicitNullValueModifiedDateTime; set { _explicitNullValueModifiedDateTime = value; AdditionalData?.Remove("modifiedDateTime"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modifiedDateTime"); else _explicitNullProperties?.Remove("modifiedDateTime"); } }
         private DateTimeOffset? _explicitNullValueModifiedDateTime = default!;
         /// <summary>Toll-free telephone number in E.164 format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PhoneNumber { get => _explicitNullValuePhoneNumber; set { _explicitNullValuePhoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumber"); else _explicitNullProperties?.Remove("phoneNumber"); } }
+        public string? PhoneNumber { get => _explicitNullValuePhoneNumber; set { _explicitNullValuePhoneNumber = value; AdditionalData?.Remove("phoneNumber"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumber"); else _explicitNullProperties?.Remove("phoneNumber"); } }
         private string? _explicitNullValuePhoneNumber = default!;
 #nullable restore
 #else
-        public string PhoneNumber { get => _explicitNullValuePhoneNumber; set { _explicitNullValuePhoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumber"); else _explicitNullProperties?.Remove("phoneNumber"); } }
+        public string PhoneNumber { get => _explicitNullValuePhoneNumber; set { _explicitNullValuePhoneNumber = value; AdditionalData?.Remove("phoneNumber"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumber"); else _explicitNullProperties?.Remove("phoneNumber"); } }
         private string _explicitNullValuePhoneNumber = default!;
 #endif
         /// <summary>Whether a Toll-Free Verification request qualifies for resubmission via PUT.</summary>
-        public bool? ResubmitAllowed { get => _explicitNullValueResubmitAllowed; set { _explicitNullValueResubmitAllowed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resubmitAllowed"); else _explicitNullProperties?.Remove("resubmitAllowed"); } }
+        public bool? ResubmitAllowed { get => _explicitNullValueResubmitAllowed; set { _explicitNullValueResubmitAllowed = value; AdditionalData?.Remove("resubmitAllowed"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resubmitAllowed"); else _explicitNullProperties?.Remove("resubmitAllowed"); } }
         private bool? _explicitNullValueResubmitAllowed = default!;
         /// <summary>The status property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TfvStatusEnum? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TfvStatusEnum? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; AdditionalData?.Remove("status"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.TfvStatusEnum? _explicitNullValueStatus = default!;
         /// <summary>The submission property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TfvSubmissionInfo? Submission { get => _explicitNullValueSubmission; set { _explicitNullValueSubmission = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("submission"); else _explicitNullProperties?.Remove("submission"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TfvSubmissionInfo? Submission { get => _explicitNullValueSubmission; set { _explicitNullValueSubmission = value; AdditionalData?.Remove("submission"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("submission"); else _explicitNullProperties?.Remove("submission"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.TfvSubmissionInfo? _explicitNullValueSubmission = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TfvSubmissionInfo Submission { get => _explicitNullValueSubmission; set { _explicitNullValueSubmission = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("submission"); else _explicitNullProperties?.Remove("submission"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TfvSubmissionInfo Submission { get => _explicitNullValueSubmission; set { _explicitNullValueSubmission = value; AdditionalData?.Remove("submission"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("submission"); else _explicitNullProperties?.Remove("submission"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.TfvSubmissionInfo _explicitNullValueSubmission = default!;
 #endif
         /// <summary>
@@ -158,7 +171,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "modifiedDateTime", n => { ModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "phoneNumber", n => { PhoneNumber = n.GetStringValue(); } },
                 { "resubmitAllowed", n => { ResubmitAllowed = n.GetBoolValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TfvStatusEnum>(); } },
+                { "status", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TfvStatusEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueStatus = default; _explicitNullProperties?.Remove("status"); AdditionalData["status"] = unknown; } else { Status = parsed; AdditionalData.Remove("status"); } } },
                 { "submission", n => { Submission = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TfvSubmissionInfo>(global::Soenneker.Bandwidth.OpenApiClient.Models.TfvSubmissionInfo.CreateFromDiscriminatorValue); } },
             };
         }

@@ -17,8 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("alt_issuers") is { } nullNodeAltIssuers && nullNodeAltIssuers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AltIssuers = null;
-            if (parseNode.GetChildNode("token_endpoint_auth_methods_supported") is { } nullNodeTokenEndpointAuthMethodsSupported && nullNodeTokenEndpointAuthMethodsSupported.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TokenEndpointAuthMethodsSupported = null;
+            if (parseNode.GetChildNode("alt_issuers") is null) { _explicitNullValueAltIssuers = default!; _explicitNullProperties?.Remove("alt_issuers"); }
+            else if (parseNode.GetChildNode("alt_issuers") is { } nullNodeAltIssuers && nullNodeAltIssuers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AltIssuers = null;
+            if (parseNode.GetChildNode("token_endpoint_auth_methods_supported") is null) { _explicitNullValueTokenEndpointAuthMethodsSupported = default!; _explicitNullProperties?.Remove("token_endpoint_auth_methods_supported"); }
+            else if (parseNode.GetChildNode("token_endpoint_auth_methods_supported") is { } nullNodeTokenEndpointAuthMethodsSupported && nullNodeTokenEndpointAuthMethodsSupported.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TokenEndpointAuthMethodsSupported = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +28,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>A list of alternate issuer URLs that can also verify minted tokens</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? AltIssuers { get => _explicitNullValueAltIssuers; set { _explicitNullValueAltIssuers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alt_issuers"); else _explicitNullProperties?.Remove("alt_issuers"); } }
+        public List<string>? AltIssuers { get => _explicitNullValueAltIssuers; set { _explicitNullValueAltIssuers = value; AdditionalData?.Remove("alt_issuers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alt_issuers"); else _explicitNullProperties?.Remove("alt_issuers"); } }
         private List<string>? _explicitNullValueAltIssuers = default!;
 #nullable restore
 #else
-        public List<string> AltIssuers { get => _explicitNullValueAltIssuers; set { _explicitNullValueAltIssuers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alt_issuers"); else _explicitNullProperties?.Remove("alt_issuers"); } }
+        public List<string> AltIssuers { get => _explicitNullValueAltIssuers; set { _explicitNullValueAltIssuers = value; AdditionalData?.Remove("alt_issuers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alt_issuers"); else _explicitNullProperties?.Remove("alt_issuers"); } }
         private List<string> _explicitNullValueAltIssuers = default!;
 #endif
         /// <summary>The URL of the issuer of a token. Should be the base API URL of the resource server</summary>
@@ -68,11 +70,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>A list of authentication methods supported by the token endpoint</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? TokenEndpointAuthMethodsSupported { get => _explicitNullValueTokenEndpointAuthMethodsSupported; set { _explicitNullValueTokenEndpointAuthMethodsSupported = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("token_endpoint_auth_methods_supported"); else _explicitNullProperties?.Remove("token_endpoint_auth_methods_supported"); } }
+        public List<string>? TokenEndpointAuthMethodsSupported { get => _explicitNullValueTokenEndpointAuthMethodsSupported; set { _explicitNullValueTokenEndpointAuthMethodsSupported = value; AdditionalData?.Remove("token_endpoint_auth_methods_supported"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("token_endpoint_auth_methods_supported"); else _explicitNullProperties?.Remove("token_endpoint_auth_methods_supported"); } }
         private List<string>? _explicitNullValueTokenEndpointAuthMethodsSupported = default!;
 #nullable restore
 #else
-        public List<string> TokenEndpointAuthMethodsSupported { get => _explicitNullValueTokenEndpointAuthMethodsSupported; set { _explicitNullValueTokenEndpointAuthMethodsSupported = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("token_endpoint_auth_methods_supported"); else _explicitNullProperties?.Remove("token_endpoint_auth_methods_supported"); } }
+        public List<string> TokenEndpointAuthMethodsSupported { get => _explicitNullValueTokenEndpointAuthMethodsSupported; set { _explicitNullValueTokenEndpointAuthMethodsSupported = value; AdditionalData?.Remove("token_endpoint_auth_methods_supported"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("token_endpoint_auth_methods_supported"); else _explicitNullProperties?.Remove("token_endpoint_auth_methods_supported"); } }
         private List<string> _explicitNullValueTokenEndpointAuthMethodsSupported = default!;
 #endif
         /// <summary>

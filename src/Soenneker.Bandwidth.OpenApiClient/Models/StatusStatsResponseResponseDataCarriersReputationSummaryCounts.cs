@@ -17,21 +17,24 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("CLEAN") is { } nullNodeCLEAN && nullNodeCLEAN.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CLEAN = null;
-            if (parseNode.GetChildNode("FLAGGED") is { } nullNodeFLAGGED && nullNodeFLAGGED.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FLAGGED = null;
-            if (parseNode.GetChildNode("STATUS_PENDING") is { } nullNodeSTATUSPENDING && nullNodeSTATUSPENDING.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) STATUSPENDING = null;
+            if (parseNode.GetChildNode("CLEAN") is null) { _explicitNullValueCLEAN = default!; _explicitNullProperties?.Remove("CLEAN"); }
+            else if (parseNode.GetChildNode("CLEAN") is { } nullNodeCLEAN && nullNodeCLEAN.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CLEAN = null;
+            if (parseNode.GetChildNode("FLAGGED") is null) { _explicitNullValueFLAGGED = default!; _explicitNullProperties?.Remove("FLAGGED"); }
+            else if (parseNode.GetChildNode("FLAGGED") is { } nullNodeFLAGGED && nullNodeFLAGGED.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FLAGGED = null;
+            if (parseNode.GetChildNode("STATUS_PENDING") is null) { _explicitNullValueSTATUSPENDING = default!; _explicitNullProperties?.Remove("STATUS_PENDING"); }
+            else if (parseNode.GetChildNode("STATUS_PENDING") is { } nullNodeSTATUSPENDING && nullNodeSTATUSPENDING.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) STATUSPENDING = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The number of phone numbers with the identity status &quot;CLEAN&quot;</summary>
-        public int? CLEAN { get => _explicitNullValueCLEAN; set { _explicitNullValueCLEAN = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("CLEAN"); else _explicitNullProperties?.Remove("CLEAN"); } }
+        public int? CLEAN { get => _explicitNullValueCLEAN; set { _explicitNullValueCLEAN = value; AdditionalData?.Remove("CLEAN"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("CLEAN"); else _explicitNullProperties?.Remove("CLEAN"); } }
         private int? _explicitNullValueCLEAN = default!;
         /// <summary>The number of phone numbers with the identity status &quot;REMEDIATION_DENIED&quot;</summary>
-        public int? FLAGGED { get => _explicitNullValueFLAGGED; set { _explicitNullValueFLAGGED = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("FLAGGED"); else _explicitNullProperties?.Remove("FLAGGED"); } }
+        public int? FLAGGED { get => _explicitNullValueFLAGGED; set { _explicitNullValueFLAGGED = value; AdditionalData?.Remove("FLAGGED"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("FLAGGED"); else _explicitNullProperties?.Remove("FLAGGED"); } }
         private int? _explicitNullValueFLAGGED = default!;
         /// <summary>The number of phone numbers with the identity status &quot;REGISTRATION_IN_PROGRESS&quot;</summary>
-        public int? STATUSPENDING { get => _explicitNullValueSTATUSPENDING; set { _explicitNullValueSTATUSPENDING = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("STATUS_PENDING"); else _explicitNullProperties?.Remove("STATUS_PENDING"); } }
+        public int? STATUSPENDING { get => _explicitNullValueSTATUSPENDING; set { _explicitNullValueSTATUSPENDING = value; AdditionalData?.Remove("STATUS_PENDING"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("STATUS_PENDING"); else _explicitNullProperties?.Remove("STATUS_PENDING"); } }
         private int? _explicitNullValueSTATUSPENDING = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.StatusStatsResponseResponseDataCarriersReputationSummaryCounts"/> and sets the default values.

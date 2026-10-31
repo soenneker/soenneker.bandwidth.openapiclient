@@ -17,32 +17,36 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("amountOfDidsMapped") is { } nullNodeAmountOfDidsMapped && nullNodeAmountOfDidsMapped.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AmountOfDidsMapped = null;
-            if (parseNode.GetChildNode("capacityGroupId") is { } nullNodeCapacityGroupId && nullNodeCapacityGroupId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CapacityGroupId = null;
-            if (parseNode.GetChildNode("description") is { } nullNodeDescription && nullNodeDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Description = null;
-            if (parseNode.GetChildNode("maximumCapacity") is { } nullNodeMaximumCapacity && nullNodeMaximumCapacity.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaximumCapacity = null;
+            if (parseNode.GetChildNode("amountOfDidsMapped") is null) { _explicitNullValueAmountOfDidsMapped = default!; _explicitNullProperties?.Remove("amountOfDidsMapped"); }
+            else if (parseNode.GetChildNode("amountOfDidsMapped") is { } nullNodeAmountOfDidsMapped && nullNodeAmountOfDidsMapped.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AmountOfDidsMapped = null;
+            if (parseNode.GetChildNode("capacityGroupId") is null) { _explicitNullValueCapacityGroupId = default!; _explicitNullProperties?.Remove("capacityGroupId"); }
+            else if (parseNode.GetChildNode("capacityGroupId") is { } nullNodeCapacityGroupId && nullNodeCapacityGroupId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CapacityGroupId = null;
+            if (parseNode.GetChildNode("description") is null) { _explicitNullValueDescription = default!; _explicitNullProperties?.Remove("description"); }
+            else if (parseNode.GetChildNode("description") is { } nullNodeDescription && nullNodeDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Description = null;
+            if (parseNode.GetChildNode("maximumCapacity") is null) { _explicitNullValueMaximumCapacity = default!; _explicitNullProperties?.Remove("maximumCapacity"); }
+            else if (parseNode.GetChildNode("maximumCapacity") is { } nullNodeMaximumCapacity && nullNodeMaximumCapacity.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaximumCapacity = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The amount of DIDs mapped to the capacity group.</summary>
-        public int? AmountOfDidsMapped { get => _explicitNullValueAmountOfDidsMapped; set { _explicitNullValueAmountOfDidsMapped = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("amountOfDidsMapped"); else _explicitNullProperties?.Remove("amountOfDidsMapped"); } }
+        public int? AmountOfDidsMapped { get => _explicitNullValueAmountOfDidsMapped; set { _explicitNullValueAmountOfDidsMapped = value; AdditionalData?.Remove("amountOfDidsMapped"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("amountOfDidsMapped"); else _explicitNullProperties?.Remove("amountOfDidsMapped"); } }
         private int? _explicitNullValueAmountOfDidsMapped = default!;
         /// <summary>The ID of the capacity group.</summary>
-        public int? CapacityGroupId { get => _explicitNullValueCapacityGroupId; set { _explicitNullValueCapacityGroupId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("capacityGroupId"); else _explicitNullProperties?.Remove("capacityGroupId"); } }
+        public int? CapacityGroupId { get => _explicitNullValueCapacityGroupId; set { _explicitNullValueCapacityGroupId = value; AdditionalData?.Remove("capacityGroupId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("capacityGroupId"); else _explicitNullProperties?.Remove("capacityGroupId"); } }
         private int? _explicitNullValueCapacityGroupId = default!;
         /// <summary>The description of the capacity group as defined during the creation or update of the capacity group.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        public string? Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; AdditionalData?.Remove("description"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
         private string? _explicitNullValueDescription = default!;
 #nullable restore
 #else
-        public string Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        public string Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; AdditionalData?.Remove("description"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
         private string _explicitNullValueDescription = default!;
 #endif
         /// <summary>The maximum capacity of the capacity group as defined during the creation or update of the capacity group.</summary>
-        public int? MaximumCapacity { get => _explicitNullValueMaximumCapacity; set { _explicitNullValueMaximumCapacity = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maximumCapacity"); else _explicitNullProperties?.Remove("maximumCapacity"); } }
+        public int? MaximumCapacity { get => _explicitNullValueMaximumCapacity; set { _explicitNullValueMaximumCapacity = value; AdditionalData?.Remove("maximumCapacity"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maximumCapacity"); else _explicitNullProperties?.Remove("maximumCapacity"); } }
         private int? _explicitNullValueMaximumCapacity = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CapacityGroupModel"/> and sets the default values.

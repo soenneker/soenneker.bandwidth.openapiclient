@@ -18,9 +18,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("orderId") is { } nullNodeOrderId && nullNodeOrderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrderId = null;
-            if (parseNode.GetChildNode("portinErrors") is { } nullNodePortinErrors && nullNodePortinErrors.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PortinErrors = null;
-            if (parseNode.GetChildNode("processingStatus") is { } nullNodeProcessingStatus && nullNodeProcessingStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProcessingStatus = null;
+            if (parseNode.GetChildNode("orderId") is null) { _explicitNullValueOrderId = default!; _explicitNullProperties?.Remove("orderId"); }
+            else if (parseNode.GetChildNode("orderId") is { } nullNodeOrderId && nullNodeOrderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrderId = null;
+            if (parseNode.GetChildNode("portinErrors") is null) { _explicitNullValuePortinErrors = default!; _explicitNullProperties?.Remove("portinErrors"); }
+            else if (parseNode.GetChildNode("portinErrors") is { } nullNodePortinErrors && nullNodePortinErrors.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PortinErrors = null;
+            if (parseNode.GetChildNode("processingStatus") is null) { _explicitNullValueProcessingStatus = default!; _explicitNullProperties?.Remove("processingStatus"); }
+            else if (parseNode.GetChildNode("processingStatus") is { } nullNodeProcessingStatus && nullNodeProcessingStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProcessingStatus = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -30,25 +33,25 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The orderId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? OrderId { get => _explicitNullValueOrderId; set { _explicitNullValueOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderId"); else _explicitNullProperties?.Remove("orderId"); } }
+        public string? OrderId { get => _explicitNullValueOrderId; set { _explicitNullValueOrderId = value; AdditionalData?.Remove("orderId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderId"); else _explicitNullProperties?.Remove("orderId"); } }
         private string? _explicitNullValueOrderId = default!;
 #nullable restore
 #else
-        public string OrderId { get => _explicitNullValueOrderId; set { _explicitNullValueOrderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderId"); else _explicitNullProperties?.Remove("orderId"); } }
+        public string OrderId { get => _explicitNullValueOrderId; set { _explicitNullValueOrderId = value; AdditionalData?.Remove("orderId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderId"); else _explicitNullProperties?.Remove("orderId"); } }
         private string _explicitNullValueOrderId = default!;
 #endif
         /// <summary>The portinErrors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinErrorsItem>? PortinErrors { get => _explicitNullValuePortinErrors; set { _explicitNullValuePortinErrors = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("portinErrors"); else _explicitNullProperties?.Remove("portinErrors"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinErrorsItem>? PortinErrors { get => _explicitNullValuePortinErrors; set { _explicitNullValuePortinErrors = value; AdditionalData?.Remove("portinErrors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("portinErrors"); else _explicitNullProperties?.Remove("portinErrors"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinErrorsItem>? _explicitNullValuePortinErrors = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinErrorsItem> PortinErrors { get => _explicitNullValuePortinErrors; set { _explicitNullValuePortinErrors = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("portinErrors"); else _explicitNullProperties?.Remove("portinErrors"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinErrorsItem> PortinErrors { get => _explicitNullValuePortinErrors; set { _explicitNullValuePortinErrors = value; AdditionalData?.Remove("portinErrors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("portinErrors"); else _explicitNullProperties?.Remove("portinErrors"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinErrorsItem> _explicitNullValuePortinErrors = default!;
 #endif
         /// <summary>The processingStatus property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.InvalidDraftTnsProcessingStatus? ProcessingStatus { get => _explicitNullValueProcessingStatus; set { _explicitNullValueProcessingStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("processingStatus"); else _explicitNullProperties?.Remove("processingStatus"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.InvalidDraftTnsProcessingStatus? ProcessingStatus { get => _explicitNullValueProcessingStatus; set { _explicitNullValueProcessingStatus = value; AdditionalData?.Remove("processingStatus"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("processingStatus"); else _explicitNullProperties?.Remove("processingStatus"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.InvalidDraftTnsProcessingStatus? _explicitNullValueProcessingStatus = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnListUpdateErrorResponseJson"/> and sets the default values.
@@ -77,7 +80,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "orderId", n => { OrderId = n.GetStringValue(); } },
                 { "portinErrors", n => { PortinErrors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinErrorsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.PortinErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.InvalidDraftTnsProcessingStatus>(); } },
+                { "processingStatus", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.InvalidDraftTnsProcessingStatus>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueProcessingStatus = default; _explicitNullProperties?.Remove("processingStatus"); AdditionalData["processingStatus"] = unknown; } else { ProcessingStatus = parsed; AdditionalData.Remove("processingStatus"); } } },
             };
         }
         /// <summary>

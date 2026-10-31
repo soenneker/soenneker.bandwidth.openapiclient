@@ -17,13 +17,20 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("alerts") is { } nullNodeAlerts && nullNodeAlerts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Alerts = null;
-            if (parseNode.GetChildNode("areasAffected") is { } nullNodeAreasAffected && nullNodeAreasAffected.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AreasAffected = null;
-            if (parseNode.GetChildNode("incidentId") is { } nullNodeIncidentId && nullNodeIncidentId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IncidentId = null;
-            if (parseNode.GetChildNode("lastUpdated") is { } nullNodeLastUpdated && nullNodeLastUpdated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastUpdated = null;
-            if (parseNode.GetChildNode("outageImpact") is { } nullNodeOutageImpact && nullNodeOutageImpact.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OutageImpact = null;
-            if (parseNode.GetChildNode("startTime") is { } nullNodeStartTime && nullNodeStartTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StartTime = null;
-            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("alerts") is null) { _explicitNullValueAlerts = default!; _explicitNullProperties?.Remove("alerts"); }
+            else if (parseNode.GetChildNode("alerts") is { } nullNodeAlerts && nullNodeAlerts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Alerts = null;
+            if (parseNode.GetChildNode("areasAffected") is null) { _explicitNullValueAreasAffected = default!; _explicitNullProperties?.Remove("areasAffected"); }
+            else if (parseNode.GetChildNode("areasAffected") is { } nullNodeAreasAffected && nullNodeAreasAffected.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AreasAffected = null;
+            if (parseNode.GetChildNode("incidentId") is null) { _explicitNullValueIncidentId = default!; _explicitNullProperties?.Remove("incidentId"); }
+            else if (parseNode.GetChildNode("incidentId") is { } nullNodeIncidentId && nullNodeIncidentId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IncidentId = null;
+            if (parseNode.GetChildNode("lastUpdated") is null) { _explicitNullValueLastUpdated = default!; _explicitNullProperties?.Remove("lastUpdated"); }
+            else if (parseNode.GetChildNode("lastUpdated") is { } nullNodeLastUpdated && nullNodeLastUpdated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastUpdated = null;
+            if (parseNode.GetChildNode("outageImpact") is null) { _explicitNullValueOutageImpact = default!; _explicitNullProperties?.Remove("outageImpact"); }
+            else if (parseNode.GetChildNode("outageImpact") is { } nullNodeOutageImpact && nullNodeOutageImpact.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OutageImpact = null;
+            if (parseNode.GetChildNode("startTime") is null) { _explicitNullValueStartTime = default!; _explicitNullProperties?.Remove("startTime"); }
+            else if (parseNode.GetChildNode("startTime") is { } nullNodeStartTime && nullNodeStartTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StartTime = null;
+            if (parseNode.GetChildNode("status") is null) { _explicitNullValueStatus = default!; _explicitNullProperties?.Remove("status"); }
+            else if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -31,44 +38,44 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The alerts property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListIncidentsResponseDataItemAlertsItem>? Alerts { get => _explicitNullValueAlerts; set { _explicitNullValueAlerts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alerts"); else _explicitNullProperties?.Remove("alerts"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListIncidentsResponseDataItemAlertsItem>? Alerts { get => _explicitNullValueAlerts; set { _explicitNullValueAlerts = value; AdditionalData?.Remove("alerts"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alerts"); else _explicitNullProperties?.Remove("alerts"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListIncidentsResponseDataItemAlertsItem>? _explicitNullValueAlerts = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListIncidentsResponseDataItemAlertsItem> Alerts { get => _explicitNullValueAlerts; set { _explicitNullValueAlerts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alerts"); else _explicitNullProperties?.Remove("alerts"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListIncidentsResponseDataItemAlertsItem> Alerts { get => _explicitNullValueAlerts; set { _explicitNullValueAlerts = value; AdditionalData?.Remove("alerts"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alerts"); else _explicitNullProperties?.Remove("alerts"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListIncidentsResponseDataItemAlertsItem> _explicitNullValueAlerts = default!;
 #endif
         /// <summary>The areas affected by the outage. This can be either a list of FCC IDs, US states, or USA</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? AreasAffected { get => _explicitNullValueAreasAffected; set { _explicitNullValueAreasAffected = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("areasAffected"); else _explicitNullProperties?.Remove("areasAffected"); } }
+        public List<string>? AreasAffected { get => _explicitNullValueAreasAffected; set { _explicitNullValueAreasAffected = value; AdditionalData?.Remove("areasAffected"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("areasAffected"); else _explicitNullProperties?.Remove("areasAffected"); } }
         private List<string>? _explicitNullValueAreasAffected = default!;
 #nullable restore
 #else
-        public List<string> AreasAffected { get => _explicitNullValueAreasAffected; set { _explicitNullValueAreasAffected = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("areasAffected"); else _explicitNullProperties?.Remove("areasAffected"); } }
+        public List<string> AreasAffected { get => _explicitNullValueAreasAffected; set { _explicitNullValueAreasAffected = value; AdditionalData?.Remove("areasAffected"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("areasAffected"); else _explicitNullProperties?.Remove("areasAffected"); } }
         private List<string> _explicitNullValueAreasAffected = default!;
 #endif
         /// <summary>A unique numeric identifier for the incident.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? IncidentId { get => _explicitNullValueIncidentId; set { _explicitNullValueIncidentId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incidentId"); else _explicitNullProperties?.Remove("incidentId"); } }
+        public string? IncidentId { get => _explicitNullValueIncidentId; set { _explicitNullValueIncidentId = value; AdditionalData?.Remove("incidentId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incidentId"); else _explicitNullProperties?.Remove("incidentId"); } }
         private string? _explicitNullValueIncidentId = default!;
 #nullable restore
 #else
-        public string IncidentId { get => _explicitNullValueIncidentId; set { _explicitNullValueIncidentId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incidentId"); else _explicitNullProperties?.Remove("incidentId"); } }
+        public string IncidentId { get => _explicitNullValueIncidentId; set { _explicitNullValueIncidentId = value; AdditionalData?.Remove("incidentId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incidentId"); else _explicitNullProperties?.Remove("incidentId"); } }
         private string _explicitNullValueIncidentId = default!;
 #endif
         /// <summary>The time the incident was last updated.</summary>
-        public DateTimeOffset? LastUpdated { get => _explicitNullValueLastUpdated; set { _explicitNullValueLastUpdated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastUpdated"); else _explicitNullProperties?.Remove("lastUpdated"); } }
+        public DateTimeOffset? LastUpdated { get => _explicitNullValueLastUpdated; set { _explicitNullValueLastUpdated = value; AdditionalData?.Remove("lastUpdated"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastUpdated"); else _explicitNullProperties?.Remove("lastUpdated"); } }
         private DateTimeOffset? _explicitNullValueLastUpdated = default!;
         /// <summary>The impact of the outage. This will be shared with the PSAPs to help them understand the impact of the outage.- CALL_COMPLETION: Users may be unable to complete 911 calls- CALL_QUALITY: Operators may experience call quality issues- CALL_QUALITY_AND_LOCATION_INFORMATION: Operators may experience call quality issues and loss of location information- LOCATION_INFORMATION: Operators may experience loss of location information</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.OutageImpact? OutageImpact { get => _explicitNullValueOutageImpact; set { _explicitNullValueOutageImpact = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outageImpact"); else _explicitNullProperties?.Remove("outageImpact"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OutageImpact? OutageImpact { get => _explicitNullValueOutageImpact; set { _explicitNullValueOutageImpact = value; AdditionalData?.Remove("outageImpact"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outageImpact"); else _explicitNullProperties?.Remove("outageImpact"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.OutageImpact? _explicitNullValueOutageImpact = default!;
         /// <summary>The time the incident started.</summary>
-        public DateTimeOffset? StartTime { get => _explicitNullValueStartTime; set { _explicitNullValueStartTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("startTime"); else _explicitNullProperties?.Remove("startTime"); } }
+        public DateTimeOffset? StartTime { get => _explicitNullValueStartTime; set { _explicitNullValueStartTime = value; AdditionalData?.Remove("startTime"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("startTime"); else _explicitNullProperties?.Remove("startTime"); } }
         private DateTimeOffset? _explicitNullValueStartTime = default!;
         /// <summary>The status of the incident.- CREATED: The incident has been created but no alerts have been triggered.- ACTIVE: Alerts have been triggered for the incident and it is ongoing.- RESOLVED: The incident has been resolved. No additional alerts can be created or triggered for this incident.- TESTING: The incident has been created and contains only test alerts. Test alerts are only used for testing and are not sent to the PSAPs. Test alerts are excluded           from the GET /incidents response, and can be retrieved using the includeTestAlerts query parameter via the GET /incidents/{incidentId} endpoint.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.IncidentStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.IncidentStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; AdditionalData?.Remove("status"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.IncidentStatus? _explicitNullValueStatus = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ListIncidentsResponseDataItem"/> and sets the default values.
@@ -99,9 +106,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "areasAffected", n => { AreasAffected = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "incidentId", n => { IncidentId = n.GetStringValue(); } },
                 { "lastUpdated", n => { LastUpdated = n.GetDateTimeOffsetValue(); } },
-                { "outageImpact", n => { OutageImpact = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OutageImpact>(); } },
+                { "outageImpact", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OutageImpact>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueOutageImpact = default; _explicitNullProperties?.Remove("outageImpact"); AdditionalData["outageImpact"] = unknown; } else { OutageImpact = parsed; AdditionalData.Remove("outageImpact"); } } },
                 { "startTime", n => { StartTime = n.GetDateTimeOffsetValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.IncidentStatus>(); } },
+                { "status", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.IncidentStatus>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueStatus = default; _explicitNullProperties?.Remove("status"); AdditionalData["status"] = unknown; } else { Status = parsed; AdditionalData.Remove("status"); } } },
             };
         }
         /// <summary>

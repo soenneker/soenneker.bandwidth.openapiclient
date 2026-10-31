@@ -17,42 +17,47 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("multipleCriteriaOperator") is { } nullNodeMultipleCriteriaOperator && nullNodeMultipleCriteriaOperator.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MultipleCriteriaOperator = null;
-            if (parseNode.GetChildNode("pageNumber") is { } nullNodePageNumber && nullNodePageNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PageNumber = null;
-            if (parseNode.GetChildNode("pageSize") is { } nullNodePageSize && nullNodePageSize.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PageSize = null;
-            if (parseNode.GetChildNode("queryCriteria") is { } nullNodeQueryCriteria && nullNodeQueryCriteria.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) QueryCriteria = null;
-            if (parseNode.GetChildNode("sort") is { } nullNodeSort && nullNodeSort.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Sort = null;
+            if (parseNode.GetChildNode("multipleCriteriaOperator") is null) { _explicitNullValueMultipleCriteriaOperator = default!; _explicitNullProperties?.Remove("multipleCriteriaOperator"); }
+            else if (parseNode.GetChildNode("multipleCriteriaOperator") is { } nullNodeMultipleCriteriaOperator && nullNodeMultipleCriteriaOperator.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MultipleCriteriaOperator = null;
+            if (parseNode.GetChildNode("pageNumber") is null) { _explicitNullValuePageNumber = default!; _explicitNullProperties?.Remove("pageNumber"); }
+            else if (parseNode.GetChildNode("pageNumber") is { } nullNodePageNumber && nullNodePageNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PageNumber = null;
+            if (parseNode.GetChildNode("pageSize") is null) { _explicitNullValuePageSize = default!; _explicitNullProperties?.Remove("pageSize"); }
+            else if (parseNode.GetChildNode("pageSize") is { } nullNodePageSize && nullNodePageSize.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PageSize = null;
+            if (parseNode.GetChildNode("queryCriteria") is null) { _explicitNullValueQueryCriteria = default!; _explicitNullProperties?.Remove("queryCriteria"); }
+            else if (parseNode.GetChildNode("queryCriteria") is { } nullNodeQueryCriteria && nullNodeQueryCriteria.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) QueryCriteria = null;
+            if (parseNode.GetChildNode("sort") is null) { _explicitNullValueSort = default!; _explicitNullProperties?.Remove("sort"); }
+            else if (parseNode.GetChildNode("sort") is { } nullNodeSort && nullNodeSort.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Sort = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The operator to use for multiple criteria.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestMultipleCriteriaOperator? MultipleCriteriaOperator { get => _explicitNullValueMultipleCriteriaOperator; set { _explicitNullValueMultipleCriteriaOperator = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("multipleCriteriaOperator"); else _explicitNullProperties?.Remove("multipleCriteriaOperator"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestMultipleCriteriaOperator? MultipleCriteriaOperator { get => _explicitNullValueMultipleCriteriaOperator; set { _explicitNullValueMultipleCriteriaOperator = value; AdditionalData?.Remove("multipleCriteriaOperator"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("multipleCriteriaOperator"); else _explicitNullProperties?.Remove("multipleCriteriaOperator"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestMultipleCriteriaOperator? _explicitNullValueMultipleCriteriaOperator = default!;
         /// <summary>Page number parameter.</summary>
-        public double? PageNumber { get => _explicitNullValuePageNumber; set { _explicitNullValuePageNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pageNumber"); else _explicitNullProperties?.Remove("pageNumber"); } }
+        public double? PageNumber { get => _explicitNullValuePageNumber; set { _explicitNullValuePageNumber = value; AdditionalData?.Remove("pageNumber"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pageNumber"); else _explicitNullProperties?.Remove("pageNumber"); } }
         private double? _explicitNullValuePageNumber = default!;
         /// <summary>Page Size parameter.</summary>
-        public double? PageSize { get => _explicitNullValuePageSize; set { _explicitNullValuePageSize = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pageSize"); else _explicitNullProperties?.Remove("pageSize"); } }
+        public double? PageSize { get => _explicitNullValuePageSize; set { _explicitNullValuePageSize = value; AdditionalData?.Remove("pageSize"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pageSize"); else _explicitNullProperties?.Remove("pageSize"); } }
         private double? _explicitNullValuePageSize = default!;
         /// <summary>The queryCriteria property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestQueryCriteriaItem>? QueryCriteria { get => _explicitNullValueQueryCriteria; set { _explicitNullValueQueryCriteria = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("queryCriteria"); else _explicitNullProperties?.Remove("queryCriteria"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestQueryCriteriaItem>? QueryCriteria { get => _explicitNullValueQueryCriteria; set { _explicitNullValueQueryCriteria = value; AdditionalData?.Remove("queryCriteria"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("queryCriteria"); else _explicitNullProperties?.Remove("queryCriteria"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestQueryCriteriaItem>? _explicitNullValueQueryCriteria = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestQueryCriteriaItem> QueryCriteria { get => _explicitNullValueQueryCriteria; set { _explicitNullValueQueryCriteria = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("queryCriteria"); else _explicitNullProperties?.Remove("queryCriteria"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestQueryCriteriaItem> QueryCriteria { get => _explicitNullValueQueryCriteria; set { _explicitNullValueQueryCriteria = value; AdditionalData?.Remove("queryCriteria"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("queryCriteria"); else _explicitNullProperties?.Remove("queryCriteria"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestQueryCriteriaItem> _explicitNullValueQueryCriteria = default!;
 #endif
         /// <summary>The sort property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort? Sort { get => _explicitNullValueSort; set { _explicitNullValueSort = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sort"); else _explicitNullProperties?.Remove("sort"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort? Sort { get => _explicitNullValueSort; set { _explicitNullValueSort = value; AdditionalData?.Remove("sort"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sort"); else _explicitNullProperties?.Remove("sort"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort? _explicitNullValueSort = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort Sort { get => _explicitNullValueSort; set { _explicitNullValueSort = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sort"); else _explicitNullProperties?.Remove("sort"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort Sort { get => _explicitNullValueSort; set { _explicitNullValueSort = value; AdditionalData?.Remove("sort"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sort"); else _explicitNullProperties?.Remove("sort"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestSort _explicitNullValueSort = default!;
 #endif
         /// <summary>
@@ -82,7 +87,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "multipleCriteriaOperator", n => { MultipleCriteriaOperator = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestMultipleCriteriaOperator>(); } },
+                { "multipleCriteriaOperator", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestMultipleCriteriaOperator>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueMultipleCriteriaOperator = default; _explicitNullProperties?.Remove("multipleCriteriaOperator"); AdditionalData["multipleCriteriaOperator"] = unknown; } else { MultipleCriteriaOperator = parsed; AdditionalData.Remove("multipleCriteriaOperator"); } } },
                 { "pageNumber", n => { PageNumber = n.GetDoubleValue(); } },
                 { "pageSize", n => { PageSize = n.GetDoubleValue(); } },
                 { "queryCriteria", n => { QueryCriteria = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestQueryCriteriaItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.SearchVoiceIntegrationsRequestQueryCriteriaItem.CreateFromDiscriminatorValue)?.AsList(); } },

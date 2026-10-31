@@ -17,38 +17,42 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("activatedPhoneNumbers") is { } nullNodeActivatedPhoneNumbers && nullNodeActivatedPhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ActivatedPhoneNumbers = null;
-            if (parseNode.GetChildNode("activationInProgress") is { } nullNodeActivationInProgress && nullNodeActivationInProgress.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ActivationInProgress = null;
-            if (parseNode.GetChildNode("autoActivationDate") is { } nullNodeAutoActivationDate && nullNodeAutoActivationDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AutoActivationDate = null;
-            if (parseNode.GetChildNode("notYetActivatedPhoneNumbers") is { } nullNodeNotYetActivatedPhoneNumbers && nullNodeNotYetActivatedPhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NotYetActivatedPhoneNumbers = null;
+            if (parseNode.GetChildNode("activatedPhoneNumbers") is null) { _explicitNullValueActivatedPhoneNumbers = default!; _explicitNullProperties?.Remove("activatedPhoneNumbers"); }
+            else if (parseNode.GetChildNode("activatedPhoneNumbers") is { } nullNodeActivatedPhoneNumbers && nullNodeActivatedPhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ActivatedPhoneNumbers = null;
+            if (parseNode.GetChildNode("activationInProgress") is null) { _explicitNullValueActivationInProgress = default!; _explicitNullProperties?.Remove("activationInProgress"); }
+            else if (parseNode.GetChildNode("activationInProgress") is { } nullNodeActivationInProgress && nullNodeActivationInProgress.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ActivationInProgress = null;
+            if (parseNode.GetChildNode("autoActivationDate") is null) { _explicitNullValueAutoActivationDate = default!; _explicitNullProperties?.Remove("autoActivationDate"); }
+            else if (parseNode.GetChildNode("autoActivationDate") is { } nullNodeAutoActivationDate && nullNodeAutoActivationDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AutoActivationDate = null;
+            if (parseNode.GetChildNode("notYetActivatedPhoneNumbers") is null) { _explicitNullValueNotYetActivatedPhoneNumbers = default!; _explicitNullProperties?.Remove("notYetActivatedPhoneNumbers"); }
+            else if (parseNode.GetChildNode("notYetActivatedPhoneNumbers") is { } nullNodeNotYetActivatedPhoneNumbers && nullNodeNotYetActivatedPhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NotYetActivatedPhoneNumbers = null;
         }
 
         /// <summary>List of phone numbers that have been activated for the port-in order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? ActivatedPhoneNumbers { get => _explicitNullValueActivatedPhoneNumbers; set { _explicitNullValueActivatedPhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activatedPhoneNumbers"); else _explicitNullProperties?.Remove("activatedPhoneNumbers"); } }
+        public List<string>? ActivatedPhoneNumbers { get => _explicitNullValueActivatedPhoneNumbers; set { _explicitNullValueActivatedPhoneNumbers = value; AdditionalData?.Remove("activatedPhoneNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activatedPhoneNumbers"); else _explicitNullProperties?.Remove("activatedPhoneNumbers"); } }
         private List<string>? _explicitNullValueActivatedPhoneNumbers = default!;
 #nullable restore
 #else
-        public List<string> ActivatedPhoneNumbers { get => _explicitNullValueActivatedPhoneNumbers; set { _explicitNullValueActivatedPhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activatedPhoneNumbers"); else _explicitNullProperties?.Remove("activatedPhoneNumbers"); } }
+        public List<string> ActivatedPhoneNumbers { get => _explicitNullValueActivatedPhoneNumbers; set { _explicitNullValueActivatedPhoneNumbers = value; AdditionalData?.Remove("activatedPhoneNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activatedPhoneNumbers"); else _explicitNullProperties?.Remove("activatedPhoneNumbers"); } }
         private List<string> _explicitNullValueActivatedPhoneNumbers = default!;
 #endif
         /// <summary>Indicates whether toll-free on-demand activation has been triggered but is not yet complete. When `true`, a duplicate activation request via PUT will be rejected with a 400 response.</summary>
-        public bool? ActivationInProgress { get => _explicitNullValueActivationInProgress; set { _explicitNullValueActivationInProgress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activationInProgress"); else _explicitNullProperties?.Remove("activationInProgress"); } }
+        public bool? ActivationInProgress { get => _explicitNullValueActivationInProgress; set { _explicitNullValueActivationInProgress = value; AdditionalData?.Remove("activationInProgress"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activationInProgress"); else _explicitNullProperties?.Remove("activationInProgress"); } }
         private bool? _explicitNullValueActivationInProgress = default!;
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The date when auto activation is requested. RFC 3339 format.</summary>
-        public DateTimeOffset? AutoActivationDate { get => _explicitNullValueAutoActivationDate; set { _explicitNullValueAutoActivationDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("autoActivationDate"); else _explicitNullProperties?.Remove("autoActivationDate"); } }
+        public DateTimeOffset? AutoActivationDate { get => _explicitNullValueAutoActivationDate; set { _explicitNullValueAutoActivationDate = value; AdditionalData?.Remove("autoActivationDate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("autoActivationDate"); else _explicitNullProperties?.Remove("autoActivationDate"); } }
         private DateTimeOffset? _explicitNullValueAutoActivationDate = default!;
         /// <summary>List of phone numbers that have not yet been activated for the port-in order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? NotYetActivatedPhoneNumbers { get => _explicitNullValueNotYetActivatedPhoneNumbers; set { _explicitNullValueNotYetActivatedPhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notYetActivatedPhoneNumbers"); else _explicitNullProperties?.Remove("notYetActivatedPhoneNumbers"); } }
+        public List<string>? NotYetActivatedPhoneNumbers { get => _explicitNullValueNotYetActivatedPhoneNumbers; set { _explicitNullValueNotYetActivatedPhoneNumbers = value; AdditionalData?.Remove("notYetActivatedPhoneNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notYetActivatedPhoneNumbers"); else _explicitNullProperties?.Remove("notYetActivatedPhoneNumbers"); } }
         private List<string>? _explicitNullValueNotYetActivatedPhoneNumbers = default!;
 #nullable restore
 #else
-        public List<string> NotYetActivatedPhoneNumbers { get => _explicitNullValueNotYetActivatedPhoneNumbers; set { _explicitNullValueNotYetActivatedPhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notYetActivatedPhoneNumbers"); else _explicitNullProperties?.Remove("notYetActivatedPhoneNumbers"); } }
+        public List<string> NotYetActivatedPhoneNumbers { get => _explicitNullValueNotYetActivatedPhoneNumbers; set { _explicitNullValueNotYetActivatedPhoneNumbers = value; AdditionalData?.Remove("notYetActivatedPhoneNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notYetActivatedPhoneNumbers"); else _explicitNullProperties?.Remove("notYetActivatedPhoneNumbers"); } }
         private List<string> _explicitNullValueNotYetActivatedPhoneNumbers = default!;
 #endif
         /// <summary>

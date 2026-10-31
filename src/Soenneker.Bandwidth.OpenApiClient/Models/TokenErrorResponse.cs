@@ -18,7 +18,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("err") is { } nullNodeErr && nullNodeErr.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Err = null;
+            if (parseNode.GetChildNode("err") is null) { _explicitNullValueErr = default!; _explicitNullProperties?.Remove("err"); }
+            else if (parseNode.GetChildNode("err") is { } nullNodeErr && nullNodeErr.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Err = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The err property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthError? Err { get => _explicitNullValueErr; set { _explicitNullValueErr = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("err"); else _explicitNullProperties?.Remove("err"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthError? Err { get => _explicitNullValueErr; set { _explicitNullValueErr = value; AdditionalData?.Remove("err"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("err"); else _explicitNullProperties?.Remove("err"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthError? _explicitNullValueErr = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthError Err { get => _explicitNullValueErr; set { _explicitNullValueErr = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("err"); else _explicitNullProperties?.Remove("err"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthError Err { get => _explicitNullValueErr; set { _explicitNullValueErr = value; AdditionalData?.Remove("err"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("err"); else _explicitNullProperties?.Remove("err"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthError _explicitNullValueErr = default!;
 #endif
         /// <summary>The type of token error</summary>

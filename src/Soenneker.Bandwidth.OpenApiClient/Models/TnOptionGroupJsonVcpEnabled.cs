@@ -17,22 +17,28 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("a2pSettings") is { } nullNodeA2pSettings && nullNodeA2pSettings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) A2pSettings = null;
-            if (parseNode.GetChildNode("nnid") is { } nullNodeNnid && nullNodeNnid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Nnid = null;
-            if (parseNode.GetChildNode("phoneNumbers") is { } nullNodePhoneNumbers && nullNodePhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumbers = null;
-            if (parseNode.GetChildNode("portOutPasscode") is { } nullNodePortOutPasscode && nullNodePortOutPasscode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PortOutPasscode = null;
-            if (parseNode.GetChildNode("protected") is { } nullNodeProtected && nullNodeProtected.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Protected = null;
-            if (parseNode.GetChildNode("sms") is { } nullNodeSms && nullNodeSms.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Sms = null;
+            if (parseNode.GetChildNode("a2pSettings") is null) { _explicitNullValueA2pSettings = default!; _explicitNullProperties?.Remove("a2pSettings"); }
+            else if (parseNode.GetChildNode("a2pSettings") is { } nullNodeA2pSettings && nullNodeA2pSettings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) A2pSettings = null;
+            if (parseNode.GetChildNode("nnid") is null) { _explicitNullValueNnid = default!; _explicitNullProperties?.Remove("nnid"); }
+            else if (parseNode.GetChildNode("nnid") is { } nullNodeNnid && nullNodeNnid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Nnid = null;
+            if (parseNode.GetChildNode("phoneNumbers") is null) { _explicitNullValuePhoneNumbers = default!; _explicitNullProperties?.Remove("phoneNumbers"); }
+            else if (parseNode.GetChildNode("phoneNumbers") is { } nullNodePhoneNumbers && nullNodePhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumbers = null;
+            if (parseNode.GetChildNode("portOutPasscode") is null) { _explicitNullValuePortOutPasscode = default!; _explicitNullProperties?.Remove("portOutPasscode"); }
+            else if (parseNode.GetChildNode("portOutPasscode") is { } nullNodePortOutPasscode && nullNodePortOutPasscode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PortOutPasscode = null;
+            if (parseNode.GetChildNode("protected") is null) { _explicitNullValueProtected = default!; _explicitNullProperties?.Remove("protected"); }
+            else if (parseNode.GetChildNode("protected") is { } nullNodeProtected && nullNodeProtected.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Protected = null;
+            if (parseNode.GetChildNode("sms") is null) { _explicitNullValueSms = default!; _explicitNullProperties?.Remove("sms"); }
+            else if (parseNode.GetChildNode("sms") is { } nullNodeSms && nullNodeSms.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Sms = null;
         }
 
         /// <summary>The a2pSettings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.A2PSettingsJson? A2pSettings { get => _explicitNullValueA2pSettings; set { _explicitNullValueA2pSettings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("a2pSettings"); else _explicitNullProperties?.Remove("a2pSettings"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.A2PSettingsJson? A2pSettings { get => _explicitNullValueA2pSettings; set { _explicitNullValueA2pSettings = value; AdditionalData?.Remove("a2pSettings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("a2pSettings"); else _explicitNullProperties?.Remove("a2pSettings"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.A2PSettingsJson? _explicitNullValueA2pSettings = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.A2PSettingsJson A2pSettings { get => _explicitNullValueA2pSettings; set { _explicitNullValueA2pSettings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("a2pSettings"); else _explicitNullProperties?.Remove("a2pSettings"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.A2PSettingsJson A2pSettings { get => _explicitNullValueA2pSettings; set { _explicitNullValueA2pSettings = value; AdditionalData?.Remove("a2pSettings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("a2pSettings"); else _explicitNullProperties?.Remove("a2pSettings"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.A2PSettingsJson _explicitNullValueA2pSettings = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -40,31 +46,31 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The nnid property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledNnid? Nnid { get => _explicitNullValueNnid; set { _explicitNullValueNnid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nnid"); else _explicitNullProperties?.Remove("nnid"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledNnid? Nnid { get => _explicitNullValueNnid; set { _explicitNullValueNnid = value; AdditionalData?.Remove("nnid"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nnid"); else _explicitNullProperties?.Remove("nnid"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledNnid? _explicitNullValueNnid = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledNnid Nnid { get => _explicitNullValueNnid; set { _explicitNullValueNnid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nnid"); else _explicitNullProperties?.Remove("nnid"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledNnid Nnid { get => _explicitNullValueNnid; set { _explicitNullValueNnid = value; AdditionalData?.Remove("nnid"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nnid"); else _explicitNullProperties?.Remove("nnid"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledNnid _explicitNullValueNnid = default!;
 #endif
         /// <summary>The phoneNumbers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
+        public List<string>? PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; AdditionalData?.Remove("phoneNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
         private List<string>? _explicitNullValuePhoneNumbers = default!;
 #nullable restore
 #else
-        public List<string> PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
+        public List<string> PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; AdditionalData?.Remove("phoneNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
         private List<string> _explicitNullValuePhoneNumbers = default!;
 #endif
         /// <summary>The portOutPasscode property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledPortOutPasscodeAnyOf2? PortOutPasscode { get => _explicitNullValuePortOutPasscode; set { _explicitNullValuePortOutPasscode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("portOutPasscode"); else _explicitNullProperties?.Remove("portOutPasscode"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledPortOutPasscodeAnyOf2? PortOutPasscode { get => _explicitNullValuePortOutPasscode; set { _explicitNullValuePortOutPasscode = value; AdditionalData?.Remove("portOutPasscode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("portOutPasscode"); else _explicitNullProperties?.Remove("portOutPasscode"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledPortOutPasscodeAnyOf2? _explicitNullValuePortOutPasscode = default!;
         /// <summary>The protected property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledProtected? Protected { get => _explicitNullValueProtected; set { _explicitNullValueProtected = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("protected"); else _explicitNullProperties?.Remove("protected"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledProtected? Protected { get => _explicitNullValueProtected; set { _explicitNullValueProtected = value; AdditionalData?.Remove("protected"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("protected"); else _explicitNullProperties?.Remove("protected"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledProtected? _explicitNullValueProtected = default!;
         /// <summary>The sms property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledSms? Sms { get => _explicitNullValueSms; set { _explicitNullValueSms = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sms"); else _explicitNullProperties?.Remove("sms"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledSms? Sms { get => _explicitNullValueSms; set { _explicitNullValueSms = value; AdditionalData?.Remove("sms"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sms"); else _explicitNullProperties?.Remove("sms"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledSms? _explicitNullValueSms = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabled"/> and sets the default values.
@@ -94,9 +100,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "a2pSettings", n => { A2pSettings = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.A2PSettingsJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.A2PSettingsJson.CreateFromDiscriminatorValue); } },
                 { "nnid", n => { Nnid = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledNnid>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledNnid.CreateFromDiscriminatorValue); } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "portOutPasscode", n => { PortOutPasscode = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledPortOutPasscodeAnyOf2>(); } },
-                { "protected", n => { Protected = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledProtected>(); } },
-                { "sms", n => { Sms = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledSms>(); } },
+                { "portOutPasscode", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledPortOutPasscodeAnyOf2>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValuePortOutPasscode = default; _explicitNullProperties?.Remove("portOutPasscode"); AdditionalData["portOutPasscode"] = unknown; } else { PortOutPasscode = parsed; AdditionalData.Remove("portOutPasscode"); } } },
+                { "protected", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledProtected>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueProtected = default; _explicitNullProperties?.Remove("protected"); AdditionalData["protected"] = unknown; } else { Protected = parsed; AdditionalData.Remove("protected"); } } },
+                { "sms", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnOptionGroupJsonVcpEnabledSms>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueSms = default; _explicitNullProperties?.Remove("sms"); AdditionalData["sms"] = unknown; } else { Sms = parsed; AdditionalData.Remove("sms"); } } },
             };
         }
         /// <summary>

@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("addressFields") is { } nullNodeAddressFields && nullNodeAddressFields.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AddressFields = null;
+            if (parseNode.GetChildNode("addressFields") is null) { _explicitNullValueAddressFields = default!; _explicitNullProperties?.Remove("addressFields"); }
+            else if (parseNode.GetChildNode("addressFields") is { } nullNodeAddressFields && nullNodeAddressFields.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AddressFields = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The addressFields property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressFieldSchema>? AddressFields { get => _explicitNullValueAddressFields; set { _explicitNullValueAddressFields = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("addressFields"); else _explicitNullProperties?.Remove("addressFields"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressFieldSchema>? AddressFields { get => _explicitNullValueAddressFields; set { _explicitNullValueAddressFields = value; AdditionalData?.Remove("addressFields"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("addressFields"); else _explicitNullProperties?.Remove("addressFields"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressFieldSchema>? _explicitNullValueAddressFields = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressFieldSchema> AddressFields { get => _explicitNullValueAddressFields; set { _explicitNullValueAddressFields = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("addressFields"); else _explicitNullProperties?.Remove("addressFields"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressFieldSchema> AddressFields { get => _explicitNullValueAddressFields; set { _explicitNullValueAddressFields = value; AdditionalData?.Remove("addressFields"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("addressFields"); else _explicitNullProperties?.Remove("addressFields"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.AddressFieldSchema> _explicitNullValueAddressFields = default!;
 #endif
         /// <summary>

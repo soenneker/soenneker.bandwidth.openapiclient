@@ -18,27 +18,30 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("pageNumber") is { } nullNodePageNumber && nullNodePageNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PageNumber = null;
-            if (parseNode.GetChildNode("pageSize") is { } nullNodePageSize && nullNodePageSize.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PageSize = null;
-            if (parseNode.GetChildNode("queryCriteria") is { } nullNodeQueryCriteria && nullNodeQueryCriteria.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) QueryCriteria = null;
+            if (parseNode.GetChildNode("pageNumber") is null) { _explicitNullValuePageNumber = default!; _explicitNullProperties?.Remove("pageNumber"); }
+            else if (parseNode.GetChildNode("pageNumber") is { } nullNodePageNumber && nullNodePageNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PageNumber = null;
+            if (parseNode.GetChildNode("pageSize") is null) { _explicitNullValuePageSize = default!; _explicitNullProperties?.Remove("pageSize"); }
+            else if (parseNode.GetChildNode("pageSize") is { } nullNodePageSize && nullNodePageSize.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PageSize = null;
+            if (parseNode.GetChildNode("queryCriteria") is null) { _explicitNullValueQueryCriteria = default!; _explicitNullProperties?.Remove("queryCriteria"); }
+            else if (parseNode.GetChildNode("queryCriteria") is { } nullNodeQueryCriteria && nullNodeQueryCriteria.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) QueryCriteria = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Zero-based index of the page to return.</summary>
-        public int? PageNumber { get => _explicitNullValuePageNumber; set { _explicitNullValuePageNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pageNumber"); else _explicitNullProperties?.Remove("pageNumber"); } }
+        public int? PageNumber { get => _explicitNullValuePageNumber; set { _explicitNullValuePageNumber = value; AdditionalData?.Remove("pageNumber"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pageNumber"); else _explicitNullProperties?.Remove("pageNumber"); } }
         private int? _explicitNullValuePageNumber = default!;
         /// <summary>Number of rows to return per page.</summary>
-        public int? PageSize { get => _explicitNullValuePageSize; set { _explicitNullValuePageSize = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pageSize"); else _explicitNullProperties?.Remove("pageSize"); } }
+        public int? PageSize { get => _explicitNullValuePageSize; set { _explicitNullValuePageSize = value; AdditionalData?.Remove("pageSize"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pageSize"); else _explicitNullProperties?.Remove("pageSize"); } }
         private int? _explicitNullValuePageSize = default!;
         /// <summary>List of criteria to apply to the report. At least one criterion is required;individual reports may require specific parameters — call`GET /v2/report-definitions/{reportDefinitionId}` to see whichparameters are marked `required: true` for that report.When a report supports more than one region (see `regions` on the reportdefinition), a `region` criterion must also be supplied.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedReportFilter>? QueryCriteria { get => _explicitNullValueQueryCriteria; set { _explicitNullValueQueryCriteria = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("queryCriteria"); else _explicitNullProperties?.Remove("queryCriteria"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedReportFilter>? QueryCriteria { get => _explicitNullValueQueryCriteria; set { _explicitNullValueQueryCriteria = value; AdditionalData?.Remove("queryCriteria"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("queryCriteria"); else _explicitNullProperties?.Remove("queryCriteria"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedReportFilter>? _explicitNullValueQueryCriteria = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedReportFilter> QueryCriteria { get => _explicitNullValueQueryCriteria; set { _explicitNullValueQueryCriteria = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("queryCriteria"); else _explicitNullProperties?.Remove("queryCriteria"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedReportFilter> QueryCriteria { get => _explicitNullValueQueryCriteria; set { _explicitNullValueQueryCriteria = value; AdditionalData?.Remove("queryCriteria"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("queryCriteria"); else _explicitNullProperties?.Remove("queryCriteria"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PaginatedReportFilter> _explicitNullValueQueryCriteria = default!;
 #endif
         /// <summary>

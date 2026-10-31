@@ -17,8 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("msgId") is { } nullNodeMsgId && nullNodeMsgId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MsgId = null;
-            if (parseNode.GetChildNode("numParts") is { } nullNodeNumParts && nullNodeNumParts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NumParts = null;
+            if (parseNode.GetChildNode("msgId") is null) { _explicitNullValueMsgId = default!; _explicitNullProperties?.Remove("msgId"); }
+            else if (parseNode.GetChildNode("msgId") is { } nullNodeMsgId && nullNodeMsgId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MsgId = null;
+            if (parseNode.GetChildNode("numParts") is null) { _explicitNullValueNumParts = default!; _explicitNullProperties?.Remove("numParts"); }
+            else if (parseNode.GetChildNode("numParts") is { } nullNodeNumParts && nullNodeNumParts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NumParts = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,15 +28,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>If message is accepted to be sent, message ID</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? MsgId { get => _explicitNullValueMsgId; set { _explicitNullValueMsgId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("msgId"); else _explicitNullProperties?.Remove("msgId"); } }
+        public string? MsgId { get => _explicitNullValueMsgId; set { _explicitNullValueMsgId = value; AdditionalData?.Remove("msgId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("msgId"); else _explicitNullProperties?.Remove("msgId"); } }
         private string? _explicitNullValueMsgId = default!;
 #nullable restore
 #else
-        public string MsgId { get => _explicitNullValueMsgId; set { _explicitNullValueMsgId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("msgId"); else _explicitNullProperties?.Remove("msgId"); } }
+        public string MsgId { get => _explicitNullValueMsgId; set { _explicitNullValueMsgId = value; AdditionalData?.Remove("msgId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("msgId"); else _explicitNullProperties?.Remove("msgId"); } }
         private string _explicitNullValueMsgId = default!;
 #endif
         /// <summary>Number of message segments</summary>
-        public int? NumParts { get => _explicitNullValueNumParts; set { _explicitNullValueNumParts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("numParts"); else _explicitNullProperties?.Remove("numParts"); } }
+        public int? NumParts { get => _explicitNullValueNumParts; set { _explicitNullValueNumParts = value; AdditionalData?.Remove("numParts"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("numParts"); else _explicitNullProperties?.Remove("numParts"); } }
         private int? _explicitNullValueNumParts = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SmsResponse"/> and sets the default values.

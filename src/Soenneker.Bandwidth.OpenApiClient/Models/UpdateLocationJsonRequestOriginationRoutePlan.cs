@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("originationRoutes") is { } nullNodeOriginationRoutes && nullNodeOriginationRoutes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OriginationRoutes = null;
+            if (parseNode.GetChildNode("originationRoutes") is null) { _explicitNullValueOriginationRoutes = default!; _explicitNullProperties?.Remove("originationRoutes"); }
+            else if (parseNode.GetChildNode("originationRoutes") is { } nullNodeOriginationRoutes && nullNodeOriginationRoutes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OriginationRoutes = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The originationRoutes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePayloadJson>? OriginationRoutes { get => _explicitNullValueOriginationRoutes; set { _explicitNullValueOriginationRoutes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("originationRoutes"); else _explicitNullProperties?.Remove("originationRoutes"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePayloadJson>? OriginationRoutes { get => _explicitNullValueOriginationRoutes; set { _explicitNullValueOriginationRoutes = value; AdditionalData?.Remove("originationRoutes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("originationRoutes"); else _explicitNullProperties?.Remove("originationRoutes"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePayloadJson>? _explicitNullValueOriginationRoutes = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePayloadJson> OriginationRoutes { get => _explicitNullValueOriginationRoutes; set { _explicitNullValueOriginationRoutes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("originationRoutes"); else _explicitNullProperties?.Remove("originationRoutes"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePayloadJson> OriginationRoutes { get => _explicitNullValueOriginationRoutes; set { _explicitNullValueOriginationRoutes = value; AdditionalData?.Remove("originationRoutes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("originationRoutes"); else _explicitNullProperties?.Remove("originationRoutes"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePayloadJson> _explicitNullValueOriginationRoutes = default!;
 #endif
         /// <summary>

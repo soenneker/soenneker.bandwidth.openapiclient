@@ -18,10 +18,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("addressInconsistencies") is { } nullNodeAddressInconsistencies && nullNodeAddressInconsistencies.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AddressInconsistencies = null;
-            if (parseNode.GetChildNode("description") is { } nullNodeDescription && nullNodeDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Description = null;
-            if (parseNode.GetChildNode("errorCode") is { } nullNodeErrorCode && nullNodeErrorCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ErrorCode = null;
-            if (parseNode.GetChildNode("recommendedAddress") is { } nullNodeRecommendedAddress && nullNodeRecommendedAddress.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RecommendedAddress = null;
+            if (parseNode.GetChildNode("addressInconsistencies") is null) { _explicitNullValueAddressInconsistencies = default!; _explicitNullProperties?.Remove("addressInconsistencies"); }
+            else if (parseNode.GetChildNode("addressInconsistencies") is { } nullNodeAddressInconsistencies && nullNodeAddressInconsistencies.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AddressInconsistencies = null;
+            if (parseNode.GetChildNode("description") is null) { _explicitNullValueDescription = default!; _explicitNullProperties?.Remove("description"); }
+            else if (parseNode.GetChildNode("description") is { } nullNodeDescription && nullNodeDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Description = null;
+            if (parseNode.GetChildNode("errorCode") is null) { _explicitNullValueErrorCode = default!; _explicitNullProperties?.Remove("errorCode"); }
+            else if (parseNode.GetChildNode("errorCode") is { } nullNodeErrorCode && nullNodeErrorCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ErrorCode = null;
+            if (parseNode.GetChildNode("recommendedAddress") is null) { _explicitNullValueRecommendedAddress = default!; _explicitNullProperties?.Remove("recommendedAddress"); }
+            else if (parseNode.GetChildNode("recommendedAddress") is { } nullNodeRecommendedAddress && nullNodeRecommendedAddress.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RecommendedAddress = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -29,36 +33,36 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Indicates discrepancies found in the provided address details</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AddressInconsistencies { get => _explicitNullValueAddressInconsistencies; set { _explicitNullValueAddressInconsistencies = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("addressInconsistencies"); else _explicitNullProperties?.Remove("addressInconsistencies"); } }
+        public string? AddressInconsistencies { get => _explicitNullValueAddressInconsistencies; set { _explicitNullValueAddressInconsistencies = value; AdditionalData?.Remove("addressInconsistencies"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("addressInconsistencies"); else _explicitNullProperties?.Remove("addressInconsistencies"); } }
         private string? _explicitNullValueAddressInconsistencies = default!;
 #nullable restore
 #else
-        public string AddressInconsistencies { get => _explicitNullValueAddressInconsistencies; set { _explicitNullValueAddressInconsistencies = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("addressInconsistencies"); else _explicitNullProperties?.Remove("addressInconsistencies"); } }
+        public string AddressInconsistencies { get => _explicitNullValueAddressInconsistencies; set { _explicitNullValueAddressInconsistencies = value; AdditionalData?.Remove("addressInconsistencies"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("addressInconsistencies"); else _explicitNullProperties?.Remove("addressInconsistencies"); } }
         private string _explicitNullValueAddressInconsistencies = default!;
 #endif
         /// <summary>Detailed explanation about error</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        public string? Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; AdditionalData?.Remove("description"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
         private string? _explicitNullValueDescription = default!;
 #nullable restore
 #else
-        public string Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        public string Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; AdditionalData?.Remove("description"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
         private string _explicitNullValueDescription = default!;
 #endif
         /// <summary>Numeric designation of corresponding error</summary>
-        public int? ErrorCode { get => _explicitNullValueErrorCode; set { _explicitNullValueErrorCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorCode"); else _explicitNullProperties?.Remove("errorCode"); } }
+        public int? ErrorCode { get => _explicitNullValueErrorCode; set { _explicitNullValueErrorCode = value; AdditionalData?.Remove("errorCode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorCode"); else _explicitNullProperties?.Remove("errorCode"); } }
         private int? _explicitNullValueErrorCode = default!;
         /// <summary>The primary error message.</summary>
         public override string Message { get => base.Message; }
         /// <summary>The recommendedAddress property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AddressJson? RecommendedAddress { get => _explicitNullValueRecommendedAddress; set { _explicitNullValueRecommendedAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("recommendedAddress"); else _explicitNullProperties?.Remove("recommendedAddress"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AddressJson? RecommendedAddress { get => _explicitNullValueRecommendedAddress; set { _explicitNullValueRecommendedAddress = value; AdditionalData?.Remove("recommendedAddress"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("recommendedAddress"); else _explicitNullProperties?.Remove("recommendedAddress"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.AddressJson? _explicitNullValueRecommendedAddress = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AddressJson RecommendedAddress { get => _explicitNullValueRecommendedAddress; set { _explicitNullValueRecommendedAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("recommendedAddress"); else _explicitNullProperties?.Remove("recommendedAddress"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AddressJson RecommendedAddress { get => _explicitNullValueRecommendedAddress; set { _explicitNullValueRecommendedAddress = value; AdditionalData?.Remove("recommendedAddress"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("recommendedAddress"); else _explicitNullProperties?.Remove("recommendedAddress"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.AddressJson _explicitNullValueRecommendedAddress = default!;
 #endif
         /// <summary>

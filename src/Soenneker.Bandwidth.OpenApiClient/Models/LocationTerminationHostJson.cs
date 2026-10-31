@@ -17,34 +17,37 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("customerTrafficAllowed") is { } nullNodeCustomerTrafficAllowed && nullNodeCustomerTrafficAllowed.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerTrafficAllowed = null;
-            if (parseNode.GetChildNode("hostName") is { } nullNodeHostName && nullNodeHostName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HostName = null;
-            if (parseNode.GetChildNode("port") is { } nullNodePort && nullNodePort.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Port = null;
+            if (parseNode.GetChildNode("customerTrafficAllowed") is null) { _explicitNullValueCustomerTrafficAllowed = default!; _explicitNullProperties?.Remove("customerTrafficAllowed"); }
+            else if (parseNode.GetChildNode("customerTrafficAllowed") is { } nullNodeCustomerTrafficAllowed && nullNodeCustomerTrafficAllowed.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerTrafficAllowed = null;
+            if (parseNode.GetChildNode("hostName") is null) { _explicitNullValueHostName = default!; _explicitNullProperties?.Remove("hostName"); }
+            else if (parseNode.GetChildNode("hostName") is { } nullNodeHostName && nullNodeHostName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HostName = null;
+            if (parseNode.GetChildNode("port") is null) { _explicitNullValuePort = default!; _explicitNullProperties?.Remove("port"); }
+            else if (parseNode.GetChildNode("port") is { } nullNodePort && nullNodePort.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Port = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>A TerminationHost can be configured to allow different customer traffic types.  Allowed values are LITE, DOMESTIC and ALL. This is an optional parameter</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CustomerTrafficAllowed? CustomerTrafficAllowed { get => _explicitNullValueCustomerTrafficAllowed; set { _explicitNullValueCustomerTrafficAllowed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerTrafficAllowed"); else _explicitNullProperties?.Remove("customerTrafficAllowed"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CustomerTrafficAllowed? CustomerTrafficAllowed { get => _explicitNullValueCustomerTrafficAllowed; set { _explicitNullValueCustomerTrafficAllowed = value; AdditionalData?.Remove("customerTrafficAllowed"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerTrafficAllowed"); else _explicitNullProperties?.Remove("customerTrafficAllowed"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.CustomerTrafficAllowed? _explicitNullValueCustomerTrafficAllowed = default!;
         /// <summary>The IP address or host name of the address to be used for the voiceHosts or voiceHostGroups addresses</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? HostName { get => _explicitNullValueHostName; set { _explicitNullValueHostName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hostName"); else _explicitNullProperties?.Remove("hostName"); } }
+        public string? HostName { get => _explicitNullValueHostName; set { _explicitNullValueHostName = value; AdditionalData?.Remove("hostName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hostName"); else _explicitNullProperties?.Remove("hostName"); } }
         private string? _explicitNullValueHostName = default!;
 #nullable restore
 #else
-        public string HostName { get => _explicitNullValueHostName; set { _explicitNullValueHostName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hostName"); else _explicitNullProperties?.Remove("hostName"); } }
+        public string HostName { get => _explicitNullValueHostName; set { _explicitNullValueHostName = value; AdditionalData?.Remove("hostName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hostName"); else _explicitNullProperties?.Remove("hostName"); } }
         private string _explicitNullValueHostName = default!;
 #endif
         /// <summary>Optional port number for voice and termination hosts. This is an optional parameter with default values that are dependent on the application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Port { get => _explicitNullValuePort; set { _explicitNullValuePort = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("port"); else _explicitNullProperties?.Remove("port"); } }
+        public string? Port { get => _explicitNullValuePort; set { _explicitNullValuePort = value; AdditionalData?.Remove("port"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("port"); else _explicitNullProperties?.Remove("port"); } }
         private string? _explicitNullValuePort = default!;
 #nullable restore
 #else
-        public string Port { get => _explicitNullValuePort; set { _explicitNullValuePort = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("port"); else _explicitNullProperties?.Remove("port"); } }
+        public string Port { get => _explicitNullValuePort; set { _explicitNullValuePort = value; AdditionalData?.Remove("port"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("port"); else _explicitNullProperties?.Remove("port"); } }
         private string _explicitNullValuePort = default!;
 #endif
         /// <summary>
@@ -72,7 +75,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "customerTrafficAllowed", n => { CustomerTrafficAllowed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CustomerTrafficAllowed>(); } },
+                { "customerTrafficAllowed", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CustomerTrafficAllowed>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueCustomerTrafficAllowed = default; _explicitNullProperties?.Remove("customerTrafficAllowed"); AdditionalData["customerTrafficAllowed"] = unknown; } else { CustomerTrafficAllowed = parsed; AdditionalData.Remove("customerTrafficAllowed"); } } },
                 { "hostName", n => { HostName = n.GetStringValue(); } },
                 { "port", n => { Port = n.GetStringValue(); } },
             };

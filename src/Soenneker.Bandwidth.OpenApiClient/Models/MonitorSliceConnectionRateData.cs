@@ -17,13 +17,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("connectionRate") is { } nullNodeConnectionRate && nullNodeConnectionRate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConnectionRate = null;
+            if (parseNode.GetChildNode("connectionRate") is null) { _explicitNullValueConnectionRate = default!; _explicitNullProperties?.Remove("connectionRate"); }
+            else if (parseNode.GetChildNode("connectionRate") is { } nullNodeConnectionRate && nullNodeConnectionRate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConnectionRate = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Connection rate as a percentage (0-100)</summary>
-        public float? ConnectionRate { get => _explicitNullValueConnectionRate; set { _explicitNullValueConnectionRate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("connectionRate"); else _explicitNullProperties?.Remove("connectionRate"); } }
+        public float? ConnectionRate { get => _explicitNullValueConnectionRate; set { _explicitNullValueConnectionRate = value; AdditionalData?.Remove("connectionRate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("connectionRate"); else _explicitNullProperties?.Remove("connectionRate"); } }
         private float? _explicitNullValueConnectionRate = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorSliceConnectionRateData"/> and sets the default values.

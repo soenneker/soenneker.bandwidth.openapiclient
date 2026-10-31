@@ -18,8 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("assetReferenceId") is { } nullNodeAssetReferenceId && nullNodeAssetReferenceId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AssetReferenceId = null;
-            if (parseNode.GetChildNode("assetType") is { } nullNodeAssetType && nullNodeAssetType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AssetType = null;
+            if (parseNode.GetChildNode("assetReferenceId") is null) { _explicitNullValueAssetReferenceId = default!; _explicitNullProperties?.Remove("assetReferenceId"); }
+            else if (parseNode.GetChildNode("assetReferenceId") is { } nullNodeAssetReferenceId && nullNodeAssetReferenceId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AssetReferenceId = null;
+            if (parseNode.GetChildNode("assetType") is null) { _explicitNullValueAssetType = default!; _explicitNullProperties?.Remove("assetType"); }
+            else if (parseNode.GetChildNode("assetType") is { } nullNodeAssetType && nullNodeAssetType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AssetType = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -43,15 +45,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Id of the referenced asset object</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AssetReferenceId { get => _explicitNullValueAssetReferenceId; set { _explicitNullValueAssetReferenceId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("assetReferenceId"); else _explicitNullProperties?.Remove("assetReferenceId"); } }
+        public string? AssetReferenceId { get => _explicitNullValueAssetReferenceId; set { _explicitNullValueAssetReferenceId = value; AdditionalData?.Remove("assetReferenceId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("assetReferenceId"); else _explicitNullProperties?.Remove("assetReferenceId"); } }
         private string? _explicitNullValueAssetReferenceId = default!;
 #nullable restore
 #else
-        public string AssetReferenceId { get => _explicitNullValueAssetReferenceId; set { _explicitNullValueAssetReferenceId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("assetReferenceId"); else _explicitNullProperties?.Remove("assetReferenceId"); } }
+        public string AssetReferenceId { get => _explicitNullValueAssetReferenceId; set { _explicitNullValueAssetReferenceId = value; AdditionalData?.Remove("assetReferenceId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("assetReferenceId"); else _explicitNullProperties?.Remove("assetReferenceId"); } }
         private string _explicitNullValueAssetReferenceId = default!;
 #endif
         /// <summary>Type of the asset</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AssetTypeEnum? AssetType { get => _explicitNullValueAssetType; set { _explicitNullValueAssetType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("assetType"); else _explicitNullProperties?.Remove("assetType"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AssetTypeEnum? AssetType { get => _explicitNullValueAssetType; set { _explicitNullValueAssetType = value; AdditionalData?.Remove("assetType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("assetType"); else _explicitNullProperties?.Remove("assetType"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.AssetTypeEnum? _explicitNullValueAssetType = default!;
         /// <summary>The date and time this object was created in ISO 8601 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -97,7 +99,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "assetId", n => { AssetId = n.GetStringValue(); } },
                 { "assetReferenceData", n => { AssetReferenceData = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetDataAssetReferenceData>(global::Soenneker.Bandwidth.OpenApiClient.Models.AssetGetDataAssetReferenceData.CreateFromDiscriminatorValue); } },
                 { "assetReferenceId", n => { AssetReferenceId = n.GetStringValue(); } },
-                { "assetType", n => { AssetType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AssetTypeEnum>(); } },
+                { "assetType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AssetTypeEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueAssetType = default; _explicitNullProperties?.Remove("assetType"); AdditionalData["assetType"] = unknown; } else { AssetType = parsed; AdditionalData.Remove("assetType"); } } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetStringValue(); } },
                 { "updatedDateTime", n => { UpdatedDateTime = n.GetStringValue(); } },
             };

@@ -18,9 +18,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("statusCounts") is { } nullNodeStatusCounts && nullNodeStatusCounts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StatusCounts = null;
-            if (parseNode.GetChildNode("timestamp") is { } nullNodeTimestamp && nullNodeTimestamp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Timestamp = null;
-            if (parseNode.GetChildNode("totalOrders") is { } nullNodeTotalOrders && nullNodeTotalOrders.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TotalOrders = null;
+            if (parseNode.GetChildNode("statusCounts") is null) { _explicitNullValueStatusCounts = default!; _explicitNullProperties?.Remove("statusCounts"); }
+            else if (parseNode.GetChildNode("statusCounts") is { } nullNodeStatusCounts && nullNodeStatusCounts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StatusCounts = null;
+            if (parseNode.GetChildNode("timestamp") is null) { _explicitNullValueTimestamp = default!; _explicitNullProperties?.Remove("timestamp"); }
+            else if (parseNode.GetChildNode("timestamp") is { } nullNodeTimestamp && nullNodeTimestamp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Timestamp = null;
+            if (parseNode.GetChildNode("totalOrders") is null) { _explicitNullValueTotalOrders = default!; _explicitNullProperties?.Remove("totalOrders"); }
+            else if (parseNode.GetChildNode("totalOrders") is { } nullNodeTotalOrders && nullNodeTotalOrders.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TotalOrders = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -28,18 +31,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Count of port-in orders by status.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortinStatisticsStatusCounts? StatusCounts { get => _explicitNullValueStatusCounts; set { _explicitNullValueStatusCounts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("statusCounts"); else _explicitNullProperties?.Remove("statusCounts"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortinStatisticsStatusCounts? StatusCounts { get => _explicitNullValueStatusCounts; set { _explicitNullValueStatusCounts = value; AdditionalData?.Remove("statusCounts"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("statusCounts"); else _explicitNullProperties?.Remove("statusCounts"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.PortinStatisticsStatusCounts? _explicitNullValueStatusCounts = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortinStatisticsStatusCounts StatusCounts { get => _explicitNullValueStatusCounts; set { _explicitNullValueStatusCounts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("statusCounts"); else _explicitNullProperties?.Remove("statusCounts"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortinStatisticsStatusCounts StatusCounts { get => _explicitNullValueStatusCounts; set { _explicitNullValueStatusCounts = value; AdditionalData?.Remove("statusCounts"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("statusCounts"); else _explicitNullProperties?.Remove("statusCounts"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.PortinStatisticsStatusCounts _explicitNullValueStatusCounts = default!;
 #endif
         /// <summary>The timestamp of when the statistics were generated.</summary>
-        public DateTimeOffset? Timestamp { get => _explicitNullValueTimestamp; set { _explicitNullValueTimestamp = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("timestamp"); else _explicitNullProperties?.Remove("timestamp"); } }
+        public DateTimeOffset? Timestamp { get => _explicitNullValueTimestamp; set { _explicitNullValueTimestamp = value; AdditionalData?.Remove("timestamp"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("timestamp"); else _explicitNullProperties?.Remove("timestamp"); } }
         private DateTimeOffset? _explicitNullValueTimestamp = default!;
         /// <summary>Total number of port-in orders.</summary>
-        public int? TotalOrders { get => _explicitNullValueTotalOrders; set { _explicitNullValueTotalOrders = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("totalOrders"); else _explicitNullProperties?.Remove("totalOrders"); } }
+        public int? TotalOrders { get => _explicitNullValueTotalOrders; set { _explicitNullValueTotalOrders = value; AdditionalData?.Remove("totalOrders"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("totalOrders"); else _explicitNullProperties?.Remove("totalOrders"); } }
         private int? _explicitNullValueTotalOrders = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PortinStatistics"/> and sets the default values.

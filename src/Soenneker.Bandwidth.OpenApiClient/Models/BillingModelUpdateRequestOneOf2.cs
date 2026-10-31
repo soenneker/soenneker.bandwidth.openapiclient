@@ -17,34 +17,37 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("accountId") is { } nullNodeAccountId && nullNodeAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountId = null;
-            if (parseNode.GetChildNode("billingModelId") is { } nullNodeBillingModelId && nullNodeBillingModelId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BillingModelId = null;
-            if (parseNode.GetChildNode("modelType") is { } nullNodeModelType && nullNodeModelType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModelType = null;
+            if (parseNode.GetChildNode("accountId") is null) { _explicitNullValueAccountId = default!; _explicitNullProperties?.Remove("accountId"); }
+            else if (parseNode.GetChildNode("accountId") is { } nullNodeAccountId && nullNodeAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountId = null;
+            if (parseNode.GetChildNode("billingModelId") is null) { _explicitNullValueBillingModelId = default!; _explicitNullProperties?.Remove("billingModelId"); }
+            else if (parseNode.GetChildNode("billingModelId") is { } nullNodeBillingModelId && nullNodeBillingModelId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BillingModelId = null;
+            if (parseNode.GetChildNode("modelType") is null) { _explicitNullValueModelType = default!; _explicitNullProperties?.Remove("modelType"); }
+            else if (parseNode.GetChildNode("modelType") is { } nullNodeModelType && nullNodeModelType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModelType = null;
         }
 
         /// <summary>The ID of the account.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
+        public string? AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; AdditionalData?.Remove("accountId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
         private string? _explicitNullValueAccountId = default!;
 #nullable restore
 #else
-        public string AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
+        public string AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; AdditionalData?.Remove("accountId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
         private string _explicitNullValueAccountId = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The unique identifier for the billing model.</summary>
-        public Guid? BillingModelId { get => _explicitNullValueBillingModelId; set { _explicitNullValueBillingModelId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("billingModelId"); else _explicitNullProperties?.Remove("billingModelId"); } }
+        public Guid? BillingModelId { get => _explicitNullValueBillingModelId; set { _explicitNullValueBillingModelId = value; AdditionalData?.Remove("billingModelId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("billingModelId"); else _explicitNullProperties?.Remove("billingModelId"); } }
         private Guid? _explicitNullValueBillingModelId = default!;
         /// <summary>The modelType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2_modelType? ModelType { get => _explicitNullValueModelType; set { _explicitNullValueModelType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modelType"); else _explicitNullProperties?.Remove("modelType"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2_modelType? ModelType { get => _explicitNullValueModelType; set { _explicitNullValueModelType = value; AdditionalData?.Remove("modelType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modelType"); else _explicitNullProperties?.Remove("modelType"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2_modelType? _explicitNullValueModelType = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2_modelType ModelType { get => _explicitNullValueModelType; set { _explicitNullValueModelType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modelType"); else _explicitNullProperties?.Remove("modelType"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2_modelType ModelType { get => _explicitNullValueModelType; set { _explicitNullValueModelType = value; AdditionalData?.Remove("modelType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modelType"); else _explicitNullProperties?.Remove("modelType"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2_modelType _explicitNullValueModelType = default!;
 #endif
         /// <summary>

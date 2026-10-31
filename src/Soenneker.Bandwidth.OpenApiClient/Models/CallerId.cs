@@ -17,23 +17,25 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("cliFormat") is { } nullNodeCliFormat && nullNodeCliFormat.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CliFormat = null;
-            if (parseNode.GetChildNode("cliValue") is { } nullNodeCliValue && nullNodeCliValue.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CliValue = null;
+            if (parseNode.GetChildNode("cliFormat") is null) { _explicitNullValueCliFormat = default!; _explicitNullProperties?.Remove("cliFormat"); }
+            else if (parseNode.GetChildNode("cliFormat") is { } nullNodeCliFormat && nullNodeCliFormat.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CliFormat = null;
+            if (parseNode.GetChildNode("cliValue") is null) { _explicitNullValueCliValue = default!; _explicitNullProperties?.Remove("cliValue"); }
+            else if (parseNode.GetChildNode("cliValue") is { } nullNodeCliValue && nullNodeCliValue.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CliValue = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The format can be RAW, E164, LOCALIZED and CLI_NONE. In case the format is E164 or LOCALIZED, then there should be a cliValue.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallerIdCliFormat? CliFormat { get => _explicitNullValueCliFormat; set { _explicitNullValueCliFormat = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cliFormat"); else _explicitNullProperties?.Remove("cliFormat"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallerIdCliFormat? CliFormat { get => _explicitNullValueCliFormat; set { _explicitNullValueCliFormat = value; AdditionalData?.Remove("cliFormat"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cliFormat"); else _explicitNullProperties?.Remove("cliFormat"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.CallerIdCliFormat? _explicitNullValueCliFormat = default!;
         /// <summary>If the value of cliFormat is E164 then the cliValue should be &apos;+&apos;, &apos;null&apos; or a numeric string (e.g. &apos;+123&apos;, &apos;+&apos;, &apos;123&apos;, etc.). If the cliFormat is LOCALIZED then the cliValue should be a country code a3 (e.g. &apos;RUS&apos;, &apos;FRA&apos;, &apos;USA&apos;, etc.).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CliValue { get => _explicitNullValueCliValue; set { _explicitNullValueCliValue = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cliValue"); else _explicitNullProperties?.Remove("cliValue"); } }
+        public string? CliValue { get => _explicitNullValueCliValue; set { _explicitNullValueCliValue = value; AdditionalData?.Remove("cliValue"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cliValue"); else _explicitNullProperties?.Remove("cliValue"); } }
         private string? _explicitNullValueCliValue = default!;
 #nullable restore
 #else
-        public string CliValue { get => _explicitNullValueCliValue; set { _explicitNullValueCliValue = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cliValue"); else _explicitNullProperties?.Remove("cliValue"); } }
+        public string CliValue { get => _explicitNullValueCliValue; set { _explicitNullValueCliValue = value; AdditionalData?.Remove("cliValue"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cliValue"); else _explicitNullProperties?.Remove("cliValue"); } }
         private string _explicitNullValueCliValue = default!;
 #endif
         /// <summary>
@@ -61,7 +63,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "cliFormat", n => { CliFormat = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallerIdCliFormat>(); } },
+                { "cliFormat", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallerIdCliFormat>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueCliFormat = default; _explicitNullProperties?.Remove("cliFormat"); AdditionalData["cliFormat"] = unknown; } else { CliFormat = parsed; AdditionalData.Remove("cliFormat"); } } },
                 { "cliValue", n => { CliValue = n.GetStringValue(); } },
             };
         }

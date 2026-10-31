@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("smsLinkGroups") is { } nullNodeSmsLinkGroups && nullNodeSmsLinkGroups.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SmsLinkGroups = null;
+            if (parseNode.GetChildNode("smsLinkGroups") is null) { _explicitNullValueSmsLinkGroups = default!; _explicitNullProperties?.Remove("smsLinkGroups"); }
+            else if (parseNode.GetChildNode("smsLinkGroups") is { } nullNodeSmsLinkGroups && nullNodeSmsLinkGroups.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SmsLinkGroups = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The smsLinkGroups property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkGroup>? SmsLinkGroups { get => _explicitNullValueSmsLinkGroups; set { _explicitNullValueSmsLinkGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("smsLinkGroups"); else _explicitNullProperties?.Remove("smsLinkGroups"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkGroup>? SmsLinkGroups { get => _explicitNullValueSmsLinkGroups; set { _explicitNullValueSmsLinkGroups = value; AdditionalData?.Remove("smsLinkGroups"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("smsLinkGroups"); else _explicitNullProperties?.Remove("smsLinkGroups"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkGroup>? _explicitNullValueSmsLinkGroups = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkGroup> SmsLinkGroups { get => _explicitNullValueSmsLinkGroups; set { _explicitNullValueSmsLinkGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("smsLinkGroups"); else _explicitNullProperties?.Remove("smsLinkGroups"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkGroup> SmsLinkGroups { get => _explicitNullValueSmsLinkGroups; set { _explicitNullValueSmsLinkGroups = value; AdditionalData?.Remove("smsLinkGroups"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("smsLinkGroups"); else _explicitNullProperties?.Remove("smsLinkGroups"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.SmsLinkGroup> _explicitNullValueSmsLinkGroups = default!;
 #endif
         /// <summary>

@@ -17,23 +17,30 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("activation") is { } nullNodeActivation && nullNodeActivation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Activation = null;
-            if (parseNode.GetChildNode("newNnid") is { } nullNodeNewNnid && nullNodeNewNnid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NewNnid = null;
-            if (parseNode.GetChildNode("notificationType") is { } nullNodeNotificationType && nullNodeNotificationType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NotificationType = null;
-            if (parseNode.GetChildNode("oldNnid") is { } nullNodeOldNnid && nullNodeOldNnid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OldNnid = null;
-            if (parseNode.GetChildNode("overwriterCarrier") is { } nullNodeOverwriterCarrier && nullNodeOverwriterCarrier.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OverwriterCarrier = null;
-            if (parseNode.GetChildNode("phoneNumber") is { } nullNodePhoneNumber && nullNodePhoneNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumber = null;
-            if (parseNode.GetChildNode("requestId") is { } nullNodeRequestId && nullNodeRequestId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RequestId = null;
+            if (parseNode.GetChildNode("activation") is null) { _explicitNullValueActivation = default!; _explicitNullProperties?.Remove("activation"); }
+            else if (parseNode.GetChildNode("activation") is { } nullNodeActivation && nullNodeActivation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Activation = null;
+            if (parseNode.GetChildNode("newNnid") is null) { _explicitNullValueNewNnid = default!; _explicitNullProperties?.Remove("newNnid"); }
+            else if (parseNode.GetChildNode("newNnid") is { } nullNodeNewNnid && nullNodeNewNnid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NewNnid = null;
+            if (parseNode.GetChildNode("notificationType") is null) { _explicitNullValueNotificationType = default!; _explicitNullProperties?.Remove("notificationType"); }
+            else if (parseNode.GetChildNode("notificationType") is { } nullNodeNotificationType && nullNodeNotificationType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NotificationType = null;
+            if (parseNode.GetChildNode("oldNnid") is null) { _explicitNullValueOldNnid = default!; _explicitNullProperties?.Remove("oldNnid"); }
+            else if (parseNode.GetChildNode("oldNnid") is { } nullNodeOldNnid && nullNodeOldNnid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OldNnid = null;
+            if (parseNode.GetChildNode("overwriterCarrier") is null) { _explicitNullValueOverwriterCarrier = default!; _explicitNullProperties?.Remove("overwriterCarrier"); }
+            else if (parseNode.GetChildNode("overwriterCarrier") is { } nullNodeOverwriterCarrier && nullNodeOverwriterCarrier.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OverwriterCarrier = null;
+            if (parseNode.GetChildNode("phoneNumber") is null) { _explicitNullValuePhoneNumber = default!; _explicitNullProperties?.Remove("phoneNumber"); }
+            else if (parseNode.GetChildNode("phoneNumber") is { } nullNodePhoneNumber && nullNodePhoneNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumber = null;
+            if (parseNode.GetChildNode("requestId") is null) { _explicitNullValueRequestId = default!; _explicitNullProperties?.Remove("requestId"); }
+            else if (parseNode.GetChildNode("requestId") is { } nullNodeRequestId && nullNodeRequestId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RequestId = null;
         }
 
         /// <summary>The date and time the overwrite was requested</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Activation { get => _explicitNullValueActivation; set { _explicitNullValueActivation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activation"); else _explicitNullProperties?.Remove("activation"); } }
+        public string? Activation { get => _explicitNullValueActivation; set { _explicitNullValueActivation = value; AdditionalData?.Remove("activation"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activation"); else _explicitNullProperties?.Remove("activation"); } }
         private string? _explicitNullValueActivation = default!;
 #nullable restore
 #else
-        public string Activation { get => _explicitNullValueActivation; set { _explicitNullValueActivation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activation"); else _explicitNullProperties?.Remove("activation"); } }
+        public string Activation { get => _explicitNullValueActivation; set { _explicitNullValueActivation = value; AdditionalData?.Remove("activation"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activation"); else _explicitNullProperties?.Remove("activation"); } }
         private string _explicitNullValueActivation = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -41,54 +48,54 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The NetNumber ID to be assigned to the phone number if the request is approved</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? NewNnid { get => _explicitNullValueNewNnid; set { _explicitNullValueNewNnid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newNnid"); else _explicitNullProperties?.Remove("newNnid"); } }
+        public string? NewNnid { get => _explicitNullValueNewNnid; set { _explicitNullValueNewNnid = value; AdditionalData?.Remove("newNnid"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newNnid"); else _explicitNullProperties?.Remove("newNnid"); } }
         private string? _explicitNullValueNewNnid = default!;
 #nullable restore
 #else
-        public string NewNnid { get => _explicitNullValueNewNnid; set { _explicitNullValueNewNnid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newNnid"); else _explicitNullProperties?.Remove("newNnid"); } }
+        public string NewNnid { get => _explicitNullValueNewNnid; set { _explicitNullValueNewNnid = value; AdditionalData?.Remove("newNnid"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newNnid"); else _explicitNullProperties?.Remove("newNnid"); } }
         private string _explicitNullValueNewNnid = default!;
 #endif
         /// <summary>The notificationType property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortoutRequestNotificationType? NotificationType { get => _explicitNullValueNotificationType; set { _explicitNullValueNotificationType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notificationType"); else _explicitNullProperties?.Remove("notificationType"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.PortoutRequestNotificationType? NotificationType { get => _explicitNullValueNotificationType; set { _explicitNullValueNotificationType = value; AdditionalData?.Remove("notificationType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notificationType"); else _explicitNullProperties?.Remove("notificationType"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.PortoutRequestNotificationType? _explicitNullValueNotificationType = default!;
         /// <summary>The current NetNumber ID assigned to the phone number</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? OldNnid { get => _explicitNullValueOldNnid; set { _explicitNullValueOldNnid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("oldNnid"); else _explicitNullProperties?.Remove("oldNnid"); } }
+        public string? OldNnid { get => _explicitNullValueOldNnid; set { _explicitNullValueOldNnid = value; AdditionalData?.Remove("oldNnid"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("oldNnid"); else _explicitNullProperties?.Remove("oldNnid"); } }
         private string? _explicitNullValueOldNnid = default!;
 #nullable restore
 #else
-        public string OldNnid { get => _explicitNullValueOldNnid; set { _explicitNullValueOldNnid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("oldNnid"); else _explicitNullProperties?.Remove("oldNnid"); } }
+        public string OldNnid { get => _explicitNullValueOldNnid; set { _explicitNullValueOldNnid = value; AdditionalData?.Remove("oldNnid"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("oldNnid"); else _explicitNullProperties?.Remove("oldNnid"); } }
         private string _explicitNullValueOldNnid = default!;
 #endif
         /// <summary>The name of the carrier requesting to take messaging from the phone number</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? OverwriterCarrier { get => _explicitNullValueOverwriterCarrier; set { _explicitNullValueOverwriterCarrier = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("overwriterCarrier"); else _explicitNullProperties?.Remove("overwriterCarrier"); } }
+        public string? OverwriterCarrier { get => _explicitNullValueOverwriterCarrier; set { _explicitNullValueOverwriterCarrier = value; AdditionalData?.Remove("overwriterCarrier"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("overwriterCarrier"); else _explicitNullProperties?.Remove("overwriterCarrier"); } }
         private string? _explicitNullValueOverwriterCarrier = default!;
 #nullable restore
 #else
-        public string OverwriterCarrier { get => _explicitNullValueOverwriterCarrier; set { _explicitNullValueOverwriterCarrier = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("overwriterCarrier"); else _explicitNullProperties?.Remove("overwriterCarrier"); } }
+        public string OverwriterCarrier { get => _explicitNullValueOverwriterCarrier; set { _explicitNullValueOverwriterCarrier = value; AdditionalData?.Remove("overwriterCarrier"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("overwriterCarrier"); else _explicitNullProperties?.Remove("overwriterCarrier"); } }
         private string _explicitNullValueOverwriterCarrier = default!;
 #endif
         /// <summary>Telephone Number in E.164 format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PhoneNumber { get => _explicitNullValuePhoneNumber; set { _explicitNullValuePhoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumber"); else _explicitNullProperties?.Remove("phoneNumber"); } }
+        public string? PhoneNumber { get => _explicitNullValuePhoneNumber; set { _explicitNullValuePhoneNumber = value; AdditionalData?.Remove("phoneNumber"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumber"); else _explicitNullProperties?.Remove("phoneNumber"); } }
         private string? _explicitNullValuePhoneNumber = default!;
 #nullable restore
 #else
-        public string PhoneNumber { get => _explicitNullValuePhoneNumber; set { _explicitNullValuePhoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumber"); else _explicitNullProperties?.Remove("phoneNumber"); } }
+        public string PhoneNumber { get => _explicitNullValuePhoneNumber; set { _explicitNullValuePhoneNumber = value; AdditionalData?.Remove("phoneNumber"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumber"); else _explicitNullProperties?.Remove("phoneNumber"); } }
         private string _explicitNullValuePhoneNumber = default!;
 #endif
         /// <summary>The unique ID assigned to the request</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RequestId { get => _explicitNullValueRequestId; set { _explicitNullValueRequestId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requestId"); else _explicitNullProperties?.Remove("requestId"); } }
+        public string? RequestId { get => _explicitNullValueRequestId; set { _explicitNullValueRequestId = value; AdditionalData?.Remove("requestId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requestId"); else _explicitNullProperties?.Remove("requestId"); } }
         private string? _explicitNullValueRequestId = default!;
 #nullable restore
 #else
-        public string RequestId { get => _explicitNullValueRequestId; set { _explicitNullValueRequestId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requestId"); else _explicitNullProperties?.Remove("requestId"); } }
+        public string RequestId { get => _explicitNullValueRequestId; set { _explicitNullValueRequestId = value; AdditionalData?.Remove("requestId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requestId"); else _explicitNullProperties?.Remove("requestId"); } }
         private string _explicitNullValueRequestId = default!;
 #endif
         /// <summary>
@@ -118,7 +125,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "activation", n => { Activation = n.GetStringValue(); } },
                 { "newNnid", n => { NewNnid = n.GetStringValue(); } },
-                { "notificationType", n => { NotificationType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PortoutRequestNotificationType>(); } },
+                { "notificationType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PortoutRequestNotificationType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueNotificationType = default; _explicitNullProperties?.Remove("notificationType"); AdditionalData["notificationType"] = unknown; } else { NotificationType = parsed; AdditionalData.Remove("notificationType"); } } },
                 { "oldNnid", n => { OldNnid = n.GetStringValue(); } },
                 { "overwriterCarrier", n => { OverwriterCarrier = n.GetStringValue(); } },
                 { "phoneNumber", n => { PhoneNumber = n.GetStringValue(); } },

@@ -17,17 +17,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("inboundCallCount") is { } nullNodeInboundCallCount && nullNodeInboundCallCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InboundCallCount = null;
-            if (parseNode.GetChildNode("outboundCallCount") is { } nullNodeOutboundCallCount && nullNodeOutboundCallCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OutboundCallCount = null;
+            if (parseNode.GetChildNode("inboundCallCount") is null) { _explicitNullValueInboundCallCount = default!; _explicitNullProperties?.Remove("inboundCallCount"); }
+            else if (parseNode.GetChildNode("inboundCallCount") is { } nullNodeInboundCallCount && nullNodeInboundCallCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InboundCallCount = null;
+            if (parseNode.GetChildNode("outboundCallCount") is null) { _explicitNullValueOutboundCallCount = default!; _explicitNullProperties?.Remove("outboundCallCount"); }
+            else if (parseNode.GetChildNode("outboundCallCount") is { } nullNodeOutboundCallCount && nullNodeOutboundCallCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OutboundCallCount = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Number of concurrent inbound calls</summary>
-        public int? InboundCallCount { get => _explicitNullValueInboundCallCount; set { _explicitNullValueInboundCallCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inboundCallCount"); else _explicitNullProperties?.Remove("inboundCallCount"); } }
+        public int? InboundCallCount { get => _explicitNullValueInboundCallCount; set { _explicitNullValueInboundCallCount = value; AdditionalData?.Remove("inboundCallCount"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inboundCallCount"); else _explicitNullProperties?.Remove("inboundCallCount"); } }
         private int? _explicitNullValueInboundCallCount = default!;
         /// <summary>Number of concurrent outbound calls</summary>
-        public int? OutboundCallCount { get => _explicitNullValueOutboundCallCount; set { _explicitNullValueOutboundCallCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outboundCallCount"); else _explicitNullProperties?.Remove("outboundCallCount"); } }
+        public int? OutboundCallCount { get => _explicitNullValueOutboundCallCount; set { _explicitNullValueOutboundCallCount = value; AdditionalData?.Remove("outboundCallCount"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outboundCallCount"); else _explicitNullProperties?.Remove("outboundCallCount"); } }
         private int? _explicitNullValueOutboundCallCount = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MonitorSliceConcurrentCallsData"/> and sets the default values.

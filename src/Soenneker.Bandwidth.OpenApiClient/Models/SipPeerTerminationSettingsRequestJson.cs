@@ -17,8 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("httpSettings") is { } nullNodeHttpSettings && nullNodeHttpSettings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HttpSettings = null;
-            if (parseNode.GetChildNode("voiceProtocol") is { } nullNodeVoiceProtocol && nullNodeVoiceProtocol.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoiceProtocol = null;
+            if (parseNode.GetChildNode("httpSettings") is null) { _explicitNullValueHttpSettings = default!; _explicitNullProperties?.Remove("httpSettings"); }
+            else if (parseNode.GetChildNode("httpSettings") is { } nullNodeHttpSettings && nullNodeHttpSettings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HttpSettings = null;
+            if (parseNode.GetChildNode("voiceProtocol") is null) { _explicitNullValueVoiceProtocol = default!; _explicitNullProperties?.Remove("voiceProtocol"); }
+            else if (parseNode.GetChildNode("voiceProtocol") is { } nullNodeVoiceProtocol && nullNodeVoiceProtocol.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoiceProtocol = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,15 +28,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The httpSettings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SipPeerHttpSettingsJson? HttpSettings { get => _explicitNullValueHttpSettings; set { _explicitNullValueHttpSettings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("httpSettings"); else _explicitNullProperties?.Remove("httpSettings"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SipPeerHttpSettingsJson? HttpSettings { get => _explicitNullValueHttpSettings; set { _explicitNullValueHttpSettings = value; AdditionalData?.Remove("httpSettings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("httpSettings"); else _explicitNullProperties?.Remove("httpSettings"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.SipPeerHttpSettingsJson? _explicitNullValueHttpSettings = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SipPeerHttpSettingsJson HttpSettings { get => _explicitNullValueHttpSettings; set { _explicitNullValueHttpSettings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("httpSettings"); else _explicitNullProperties?.Remove("httpSettings"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SipPeerHttpSettingsJson HttpSettings { get => _explicitNullValueHttpSettings; set { _explicitNullValueHttpSettings = value; AdditionalData?.Remove("httpSettings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("httpSettings"); else _explicitNullProperties?.Remove("httpSettings"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.SipPeerHttpSettingsJson _explicitNullValueHttpSettings = default!;
 #endif
         /// <summary>The voiceProtocol property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SipPeerTerminationSettingsRequestJsonVoiceProtocol? VoiceProtocol { get => _explicitNullValueVoiceProtocol; set { _explicitNullValueVoiceProtocol = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceProtocol"); else _explicitNullProperties?.Remove("voiceProtocol"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SipPeerTerminationSettingsRequestJsonVoiceProtocol? VoiceProtocol { get => _explicitNullValueVoiceProtocol; set { _explicitNullValueVoiceProtocol = value; AdditionalData?.Remove("voiceProtocol"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceProtocol"); else _explicitNullProperties?.Remove("voiceProtocol"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.SipPeerTerminationSettingsRequestJsonVoiceProtocol? _explicitNullValueVoiceProtocol = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SipPeerTerminationSettingsRequestJson"/> and sets the default values.
@@ -62,7 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "httpSettings", n => { HttpSettings = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SipPeerHttpSettingsJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.SipPeerHttpSettingsJson.CreateFromDiscriminatorValue); } },
-                { "voiceProtocol", n => { VoiceProtocol = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SipPeerTerminationSettingsRequestJsonVoiceProtocol>(); } },
+                { "voiceProtocol", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SipPeerTerminationSettingsRequestJsonVoiceProtocol>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueVoiceProtocol = default; _explicitNullProperties?.Remove("voiceProtocol"); AdditionalData["voiceProtocol"] = unknown; } else { VoiceProtocol = parsed; AdditionalData.Remove("voiceProtocol"); } } },
             };
         }
         /// <summary>

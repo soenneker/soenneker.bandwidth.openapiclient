@@ -18,7 +18,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("dldaOrderResponse") is { } nullNodeDldaOrderResponse && nullNodeDldaOrderResponse.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DldaOrderResponse = null;
+            if (parseNode.GetChildNode("dldaOrderResponse") is null) { _explicitNullValueDldaOrderResponse = default!; _explicitNullProperties?.Remove("dldaOrderResponse"); }
+            else if (parseNode.GetChildNode("dldaOrderResponse") is { } nullNodeDldaOrderResponse && nullNodeDldaOrderResponse.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DldaOrderResponse = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The dldaOrderResponse property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesResponseStatusJson? DldaOrderResponse { get => _explicitNullValueDldaOrderResponse; set { _explicitNullValueDldaOrderResponse = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dldaOrderResponse"); else _explicitNullProperties?.Remove("dldaOrderResponse"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesResponseStatusJson? DldaOrderResponse { get => _explicitNullValueDldaOrderResponse; set { _explicitNullValueDldaOrderResponse = value; AdditionalData?.Remove("dldaOrderResponse"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dldaOrderResponse"); else _explicitNullProperties?.Remove("dldaOrderResponse"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesResponseStatusJson? _explicitNullValueDldaOrderResponse = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesResponseStatusJson DldaOrderResponse { get => _explicitNullValueDldaOrderResponse; set { _explicitNullValueDldaOrderResponse = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dldaOrderResponse"); else _explicitNullProperties?.Remove("dldaOrderResponse"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesResponseStatusJson DldaOrderResponse { get => _explicitNullValueDldaOrderResponse; set { _explicitNullValueDldaOrderResponse = value; AdditionalData?.Remove("dldaOrderResponse"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dldaOrderResponse"); else _explicitNullProperties?.Remove("dldaOrderResponse"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesResponseStatusJson _explicitNullValueDldaOrderResponse = default!;
 #endif
         /// <summary>The primary error message.</summary>

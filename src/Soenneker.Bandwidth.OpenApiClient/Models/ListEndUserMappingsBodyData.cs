@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("endUserMappings") is { } nullNodeEndUserMappings && nullNodeEndUserMappings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EndUserMappings = null;
+            if (parseNode.GetChildNode("endUserMappings") is null) { _explicitNullValueEndUserMappings = default!; _explicitNullProperties?.Remove("endUserMappings"); }
+            else if (parseNode.GetChildNode("endUserMappings") is { } nullNodeEndUserMappings && nullNodeEndUserMappings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EndUserMappings = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The endUserMappings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserMapping>? EndUserMappings { get => _explicitNullValueEndUserMappings; set { _explicitNullValueEndUserMappings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endUserMappings"); else _explicitNullProperties?.Remove("endUserMappings"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserMapping>? EndUserMappings { get => _explicitNullValueEndUserMappings; set { _explicitNullValueEndUserMappings = value; AdditionalData?.Remove("endUserMappings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endUserMappings"); else _explicitNullProperties?.Remove("endUserMappings"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserMapping>? _explicitNullValueEndUserMappings = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserMapping> EndUserMappings { get => _explicitNullValueEndUserMappings; set { _explicitNullValueEndUserMappings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endUserMappings"); else _explicitNullProperties?.Remove("endUserMappings"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserMapping> EndUserMappings { get => _explicitNullValueEndUserMappings; set { _explicitNullValueEndUserMappings = value; AdditionalData?.Remove("endUserMappings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endUserMappings"); else _explicitNullProperties?.Remove("endUserMappings"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserMapping> _explicitNullValueEndUserMappings = default!;
 #endif
         /// <summary>

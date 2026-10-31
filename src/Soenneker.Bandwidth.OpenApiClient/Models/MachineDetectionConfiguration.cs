@@ -18,110 +18,125 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("callbackMethod") is { } nullNodeCallbackMethod && nullNodeCallbackMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallbackMethod = null;
-            if (parseNode.GetChildNode("callbackUrl") is { } nullNodeCallbackUrl && nullNodeCallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallbackUrl = null;
-            if (parseNode.GetChildNode("delayResult") is { } nullNodeDelayResult && nullNodeDelayResult.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DelayResult = null;
-            if (parseNode.GetChildNode("detectionTimeout") is { } nullNodeDetectionTimeout && nullNodeDetectionTimeout.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DetectionTimeout = null;
-            if (parseNode.GetChildNode("fallbackMethod") is { } nullNodeFallbackMethod && nullNodeFallbackMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FallbackMethod = null;
-            if (parseNode.GetChildNode("fallbackPassword") is { } nullNodeFallbackPassword && nullNodeFallbackPassword.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FallbackPassword = null;
-            if (parseNode.GetChildNode("fallbackUrl") is { } nullNodeFallbackUrl && nullNodeFallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FallbackUrl = null;
-            if (parseNode.GetChildNode("fallbackUsername") is { } nullNodeFallbackUsername && nullNodeFallbackUsername.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FallbackUsername = null;
-            if (parseNode.GetChildNode("machineSpeechEndThreshold") is { } nullNodeMachineSpeechEndThreshold && nullNodeMachineSpeechEndThreshold.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MachineSpeechEndThreshold = null;
-            if (parseNode.GetChildNode("mode") is { } nullNodeMode && nullNodeMode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Mode = null;
-            if (parseNode.GetChildNode("password") is { } nullNodePassword && nullNodePassword.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Password = null;
-            if (parseNode.GetChildNode("silenceTimeout") is { } nullNodeSilenceTimeout && nullNodeSilenceTimeout.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SilenceTimeout = null;
-            if (parseNode.GetChildNode("speechEndThreshold") is { } nullNodeSpeechEndThreshold && nullNodeSpeechEndThreshold.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SpeechEndThreshold = null;
-            if (parseNode.GetChildNode("speechThreshold") is { } nullNodeSpeechThreshold && nullNodeSpeechThreshold.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SpeechThreshold = null;
-            if (parseNode.GetChildNode("username") is { } nullNodeUsername && nullNodeUsername.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Username = null;
+            if (parseNode.GetChildNode("callbackMethod") is null) { _explicitNullValueCallbackMethod = default!; _explicitNullProperties?.Remove("callbackMethod"); }
+            else if (parseNode.GetChildNode("callbackMethod") is { } nullNodeCallbackMethod && nullNodeCallbackMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallbackMethod = null;
+            if (parseNode.GetChildNode("callbackUrl") is null) { _explicitNullValueCallbackUrl = default!; _explicitNullProperties?.Remove("callbackUrl"); }
+            else if (parseNode.GetChildNode("callbackUrl") is { } nullNodeCallbackUrl && nullNodeCallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallbackUrl = null;
+            if (parseNode.GetChildNode("delayResult") is null) { _explicitNullValueDelayResult = default!; _explicitNullProperties?.Remove("delayResult"); }
+            else if (parseNode.GetChildNode("delayResult") is { } nullNodeDelayResult && nullNodeDelayResult.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DelayResult = null;
+            if (parseNode.GetChildNode("detectionTimeout") is null) { _explicitNullValueDetectionTimeout = default!; _explicitNullProperties?.Remove("detectionTimeout"); }
+            else if (parseNode.GetChildNode("detectionTimeout") is { } nullNodeDetectionTimeout && nullNodeDetectionTimeout.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DetectionTimeout = null;
+            if (parseNode.GetChildNode("fallbackMethod") is null) { _explicitNullValueFallbackMethod = default!; _explicitNullProperties?.Remove("fallbackMethod"); }
+            else if (parseNode.GetChildNode("fallbackMethod") is { } nullNodeFallbackMethod && nullNodeFallbackMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FallbackMethod = null;
+            if (parseNode.GetChildNode("fallbackPassword") is null) { _explicitNullValueFallbackPassword = default!; _explicitNullProperties?.Remove("fallbackPassword"); }
+            else if (parseNode.GetChildNode("fallbackPassword") is { } nullNodeFallbackPassword && nullNodeFallbackPassword.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FallbackPassword = null;
+            if (parseNode.GetChildNode("fallbackUrl") is null) { _explicitNullValueFallbackUrl = default!; _explicitNullProperties?.Remove("fallbackUrl"); }
+            else if (parseNode.GetChildNode("fallbackUrl") is { } nullNodeFallbackUrl && nullNodeFallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FallbackUrl = null;
+            if (parseNode.GetChildNode("fallbackUsername") is null) { _explicitNullValueFallbackUsername = default!; _explicitNullProperties?.Remove("fallbackUsername"); }
+            else if (parseNode.GetChildNode("fallbackUsername") is { } nullNodeFallbackUsername && nullNodeFallbackUsername.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FallbackUsername = null;
+            if (parseNode.GetChildNode("machineSpeechEndThreshold") is null) { _explicitNullValueMachineSpeechEndThreshold = default!; _explicitNullProperties?.Remove("machineSpeechEndThreshold"); }
+            else if (parseNode.GetChildNode("machineSpeechEndThreshold") is { } nullNodeMachineSpeechEndThreshold && nullNodeMachineSpeechEndThreshold.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MachineSpeechEndThreshold = null;
+            if (parseNode.GetChildNode("mode") is null) { _explicitNullValueMode = default!; _explicitNullProperties?.Remove("mode"); }
+            else if (parseNode.GetChildNode("mode") is { } nullNodeMode && nullNodeMode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Mode = null;
+            if (parseNode.GetChildNode("password") is null) { _explicitNullValuePassword = default!; _explicitNullProperties?.Remove("password"); }
+            else if (parseNode.GetChildNode("password") is { } nullNodePassword && nullNodePassword.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Password = null;
+            if (parseNode.GetChildNode("silenceTimeout") is null) { _explicitNullValueSilenceTimeout = default!; _explicitNullProperties?.Remove("silenceTimeout"); }
+            else if (parseNode.GetChildNode("silenceTimeout") is { } nullNodeSilenceTimeout && nullNodeSilenceTimeout.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SilenceTimeout = null;
+            if (parseNode.GetChildNode("speechEndThreshold") is null) { _explicitNullValueSpeechEndThreshold = default!; _explicitNullProperties?.Remove("speechEndThreshold"); }
+            else if (parseNode.GetChildNode("speechEndThreshold") is { } nullNodeSpeechEndThreshold && nullNodeSpeechEndThreshold.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SpeechEndThreshold = null;
+            if (parseNode.GetChildNode("speechThreshold") is null) { _explicitNullValueSpeechThreshold = default!; _explicitNullProperties?.Remove("speechThreshold"); }
+            else if (parseNode.GetChildNode("speechThreshold") is { } nullNodeSpeechThreshold && nullNodeSpeechThreshold.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SpeechThreshold = null;
+            if (parseNode.GetChildNode("username") is null) { _explicitNullValueUsername = default!; _explicitNullProperties?.Remove("username"); }
+            else if (parseNode.GetChildNode("username") is { } nullNodeUsername && nullNodeUsername.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Username = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The HTTP method to use to deliver the callback. GET or POST. Default value is POST.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum? CallbackMethod { get => _explicitNullValueCallbackMethod; set { _explicitNullValueCallbackMethod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackMethod"); else _explicitNullProperties?.Remove("callbackMethod"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum? CallbackMethod { get => _explicitNullValueCallbackMethod; set { _explicitNullValueCallbackMethod = value; AdditionalData?.Remove("callbackMethod"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackMethod"); else _explicitNullProperties?.Remove("callbackMethod"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum? _explicitNullValueCallbackMethod = default!;
         /// <summary>The URL to send the &apos;machineDetectionComplete&apos; webhook when the detection is completed. Only for &apos;async&apos; mode.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallbackUrl { get => _explicitNullValueCallbackUrl; set { _explicitNullValueCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackUrl"); else _explicitNullProperties?.Remove("callbackUrl"); } }
+        public string? CallbackUrl { get => _explicitNullValueCallbackUrl; set { _explicitNullValueCallbackUrl = value; AdditionalData?.Remove("callbackUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackUrl"); else _explicitNullProperties?.Remove("callbackUrl"); } }
         private string? _explicitNullValueCallbackUrl = default!;
 #nullable restore
 #else
-        public string CallbackUrl { get => _explicitNullValueCallbackUrl; set { _explicitNullValueCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackUrl"); else _explicitNullProperties?.Remove("callbackUrl"); } }
+        public string CallbackUrl { get => _explicitNullValueCallbackUrl; set { _explicitNullValueCallbackUrl = value; AdditionalData?.Remove("callbackUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackUrl"); else _explicitNullProperties?.Remove("callbackUrl"); } }
         private string _explicitNullValueCallbackUrl = default!;
 #endif
         /// <summary>If set to &apos;true&apos; and if an answering machine is detected, the&apos;answering-machine&apos; callback will be delayed until the machine is donespeaking, or an end of message tone is detected, or until the &apos;detectionTimeout&apos; is exceeded. If false, the &apos;answering-machine&apos;result is sent immediately.</summary>
-        public bool? DelayResult { get => _explicitNullValueDelayResult; set { _explicitNullValueDelayResult = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("delayResult"); else _explicitNullProperties?.Remove("delayResult"); } }
+        public bool? DelayResult { get => _explicitNullValueDelayResult; set { _explicitNullValueDelayResult = value; AdditionalData?.Remove("delayResult"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("delayResult"); else _explicitNullProperties?.Remove("delayResult"); } }
         private bool? _explicitNullValueDelayResult = default!;
         /// <summary>The timeout used for the whole operation, in seconds. If noresult is determined in this period, a callback with a `timeout` resultis sent.</summary>
-        public double? DetectionTimeout { get => _explicitNullValueDetectionTimeout; set { _explicitNullValueDetectionTimeout = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("detectionTimeout"); else _explicitNullProperties?.Remove("detectionTimeout"); } }
+        public double? DetectionTimeout { get => _explicitNullValueDetectionTimeout; set { _explicitNullValueDetectionTimeout = value; AdditionalData?.Remove("detectionTimeout"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("detectionTimeout"); else _explicitNullProperties?.Remove("detectionTimeout"); } }
         private double? _explicitNullValueDetectionTimeout = default!;
         /// <summary>The HTTP method to use to deliver the callback. GET or POST. Default value is POST.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum? FallbackMethod { get => _explicitNullValueFallbackMethod; set { _explicitNullValueFallbackMethod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fallbackMethod"); else _explicitNullProperties?.Remove("fallbackMethod"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum? FallbackMethod { get => _explicitNullValueFallbackMethod; set { _explicitNullValueFallbackMethod = value; AdditionalData?.Remove("fallbackMethod"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fallbackMethod"); else _explicitNullProperties?.Remove("fallbackMethod"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum? _explicitNullValueFallbackMethod = default!;
         /// <summary>Basic auth password.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FallbackPassword { get => _explicitNullValueFallbackPassword; set { _explicitNullValueFallbackPassword = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fallbackPassword"); else _explicitNullProperties?.Remove("fallbackPassword"); } }
+        public string? FallbackPassword { get => _explicitNullValueFallbackPassword; set { _explicitNullValueFallbackPassword = value; AdditionalData?.Remove("fallbackPassword"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fallbackPassword"); else _explicitNullProperties?.Remove("fallbackPassword"); } }
         private string? _explicitNullValueFallbackPassword = default!;
 #nullable restore
 #else
-        public string FallbackPassword { get => _explicitNullValueFallbackPassword; set { _explicitNullValueFallbackPassword = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fallbackPassword"); else _explicitNullProperties?.Remove("fallbackPassword"); } }
+        public string FallbackPassword { get => _explicitNullValueFallbackPassword; set { _explicitNullValueFallbackPassword = value; AdditionalData?.Remove("fallbackPassword"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fallbackPassword"); else _explicitNullProperties?.Remove("fallbackPassword"); } }
         private string _explicitNullValueFallbackPassword = default!;
 #endif
         /// <summary>A fallback URL which, if provided, will be used to retry themachine detection complete webhook delivery in case `callbackUrl` failsto respond</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FallbackUrl { get => _explicitNullValueFallbackUrl; set { _explicitNullValueFallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fallbackUrl"); else _explicitNullProperties?.Remove("fallbackUrl"); } }
+        public string? FallbackUrl { get => _explicitNullValueFallbackUrl; set { _explicitNullValueFallbackUrl = value; AdditionalData?.Remove("fallbackUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fallbackUrl"); else _explicitNullProperties?.Remove("fallbackUrl"); } }
         private string? _explicitNullValueFallbackUrl = default!;
 #nullable restore
 #else
-        public string FallbackUrl { get => _explicitNullValueFallbackUrl; set { _explicitNullValueFallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fallbackUrl"); else _explicitNullProperties?.Remove("fallbackUrl"); } }
+        public string FallbackUrl { get => _explicitNullValueFallbackUrl; set { _explicitNullValueFallbackUrl = value; AdditionalData?.Remove("fallbackUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fallbackUrl"); else _explicitNullProperties?.Remove("fallbackUrl"); } }
         private string _explicitNullValueFallbackUrl = default!;
 #endif
         /// <summary>Basic auth username.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FallbackUsername { get => _explicitNullValueFallbackUsername; set { _explicitNullValueFallbackUsername = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fallbackUsername"); else _explicitNullProperties?.Remove("fallbackUsername"); } }
+        public string? FallbackUsername { get => _explicitNullValueFallbackUsername; set { _explicitNullValueFallbackUsername = value; AdditionalData?.Remove("fallbackUsername"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fallbackUsername"); else _explicitNullProperties?.Remove("fallbackUsername"); } }
         private string? _explicitNullValueFallbackUsername = default!;
 #nullable restore
 #else
-        public string FallbackUsername { get => _explicitNullValueFallbackUsername; set { _explicitNullValueFallbackUsername = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fallbackUsername"); else _explicitNullProperties?.Remove("fallbackUsername"); } }
+        public string FallbackUsername { get => _explicitNullValueFallbackUsername; set { _explicitNullValueFallbackUsername = value; AdditionalData?.Remove("fallbackUsername"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fallbackUsername"); else _explicitNullProperties?.Remove("fallbackUsername"); } }
         private string _explicitNullValueFallbackUsername = default!;
 #endif
         /// <summary>When an answering machine is detected, the amount of silence (in seconds) before assuming the message has finished playing.If not provided it will default to the speechEndThreshold value.</summary>
-        public double? MachineSpeechEndThreshold { get => _explicitNullValueMachineSpeechEndThreshold; set { _explicitNullValueMachineSpeechEndThreshold = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("machineSpeechEndThreshold"); else _explicitNullProperties?.Remove("machineSpeechEndThreshold"); } }
+        public double? MachineSpeechEndThreshold { get => _explicitNullValueMachineSpeechEndThreshold; set { _explicitNullValueMachineSpeechEndThreshold = value; AdditionalData?.Remove("machineSpeechEndThreshold"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("machineSpeechEndThreshold"); else _explicitNullProperties?.Remove("machineSpeechEndThreshold"); } }
         private double? _explicitNullValueMachineSpeechEndThreshold = default!;
         /// <summary>The machine detection mode. If set to &apos;async&apos;, the detectionresult will be sent in a &apos;machineDetectionComplete&apos; callback. If set to&apos;sync&apos;, the &apos;answer&apos; callback will wait for the machine detection to completeand will include its result.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.MachineDetectionModeEnum? Mode { get => _explicitNullValueMode; set { _explicitNullValueMode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("mode"); else _explicitNullProperties?.Remove("mode"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MachineDetectionModeEnum? Mode { get => _explicitNullValueMode; set { _explicitNullValueMode = value; AdditionalData?.Remove("mode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("mode"); else _explicitNullProperties?.Remove("mode"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.MachineDetectionModeEnum? _explicitNullValueMode = default!;
         /// <summary>Basic auth password.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Password { get => _explicitNullValuePassword; set { _explicitNullValuePassword = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("password"); else _explicitNullProperties?.Remove("password"); } }
+        public string? Password { get => _explicitNullValuePassword; set { _explicitNullValuePassword = value; AdditionalData?.Remove("password"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("password"); else _explicitNullProperties?.Remove("password"); } }
         private string? _explicitNullValuePassword = default!;
 #nullable restore
 #else
-        public string Password { get => _explicitNullValuePassword; set { _explicitNullValuePassword = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("password"); else _explicitNullProperties?.Remove("password"); } }
+        public string Password { get => _explicitNullValuePassword; set { _explicitNullValuePassword = value; AdditionalData?.Remove("password"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("password"); else _explicitNullProperties?.Remove("password"); } }
         private string _explicitNullValuePassword = default!;
 #endif
         /// <summary>If no speech is detected in this period, a callback with a &apos;silence&apos; result is sent.</summary>
-        public double? SilenceTimeout { get => _explicitNullValueSilenceTimeout; set { _explicitNullValueSilenceTimeout = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("silenceTimeout"); else _explicitNullProperties?.Remove("silenceTimeout"); } }
+        public double? SilenceTimeout { get => _explicitNullValueSilenceTimeout; set { _explicitNullValueSilenceTimeout = value; AdditionalData?.Remove("silenceTimeout"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("silenceTimeout"); else _explicitNullProperties?.Remove("silenceTimeout"); } }
         private double? _explicitNullValueSilenceTimeout = default!;
         /// <summary>Amount of silence (in seconds) before assuming the callee has finished speaking.</summary>
-        public double? SpeechEndThreshold { get => _explicitNullValueSpeechEndThreshold; set { _explicitNullValueSpeechEndThreshold = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("speechEndThreshold"); else _explicitNullProperties?.Remove("speechEndThreshold"); } }
+        public double? SpeechEndThreshold { get => _explicitNullValueSpeechEndThreshold; set { _explicitNullValueSpeechEndThreshold = value; AdditionalData?.Remove("speechEndThreshold"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("speechEndThreshold"); else _explicitNullProperties?.Remove("speechEndThreshold"); } }
         private double? _explicitNullValueSpeechEndThreshold = default!;
         /// <summary>When speech has ended and a result couldn&apos;t be determined basedon the audio content itself, this value is used to determine if the speakeris a machine based on the speech duration. If the length of the speechdetected is greater than or equal to this threshold, the result will be&apos;answering-machine&apos;. If the length of speech detected is below this threshold,the result will be &apos;human&apos;.</summary>
-        public double? SpeechThreshold { get => _explicitNullValueSpeechThreshold; set { _explicitNullValueSpeechThreshold = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("speechThreshold"); else _explicitNullProperties?.Remove("speechThreshold"); } }
+        public double? SpeechThreshold { get => _explicitNullValueSpeechThreshold; set { _explicitNullValueSpeechThreshold = value; AdditionalData?.Remove("speechThreshold"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("speechThreshold"); else _explicitNullProperties?.Remove("speechThreshold"); } }
         private double? _explicitNullValueSpeechThreshold = default!;
         /// <summary>Basic auth username.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Username { get => _explicitNullValueUsername; set { _explicitNullValueUsername = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("username"); else _explicitNullProperties?.Remove("username"); } }
+        public string? Username { get => _explicitNullValueUsername; set { _explicitNullValueUsername = value; AdditionalData?.Remove("username"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("username"); else _explicitNullProperties?.Remove("username"); } }
         private string? _explicitNullValueUsername = default!;
 #nullable restore
 #else
-        public string Username { get => _explicitNullValueUsername; set { _explicitNullValueUsername = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("username"); else _explicitNullProperties?.Remove("username"); } }
+        public string Username { get => _explicitNullValueUsername; set { _explicitNullValueUsername = value; AdditionalData?.Remove("username"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("username"); else _explicitNullProperties?.Remove("username"); } }
         private string _explicitNullValueUsername = default!;
 #endif
         /// <summary>
@@ -154,16 +169,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "callbackMethod", n => { CallbackMethod = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum>(); } },
+                { "callbackMethod", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueCallbackMethod = default; _explicitNullProperties?.Remove("callbackMethod"); AdditionalData["callbackMethod"] = unknown; } else { CallbackMethod = parsed; AdditionalData.Remove("callbackMethod"); } } },
                 { "callbackUrl", n => { CallbackUrl = n.GetStringValue(); } },
                 { "delayResult", n => { DelayResult = n.GetBoolValue(); } },
                 { "detectionTimeout", n => { DetectionTimeout = n.GetDoubleValue(); } },
-                { "fallbackMethod", n => { FallbackMethod = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum>(); } },
+                { "fallbackMethod", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueFallbackMethod = default; _explicitNullProperties?.Remove("fallbackMethod"); AdditionalData["fallbackMethod"] = unknown; } else { FallbackMethod = parsed; AdditionalData.Remove("fallbackMethod"); } } },
                 { "fallbackPassword", n => { FallbackPassword = n.GetStringValue(); } },
                 { "fallbackUrl", n => { FallbackUrl = n.GetStringValue(); } },
                 { "fallbackUsername", n => { FallbackUsername = n.GetStringValue(); } },
                 { "machineSpeechEndThreshold", n => { MachineSpeechEndThreshold = n.GetDoubleValue(); } },
-                { "mode", n => { Mode = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MachineDetectionModeEnum>(); } },
+                { "mode", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MachineDetectionModeEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueMode = default; _explicitNullProperties?.Remove("mode"); AdditionalData["mode"] = unknown; } else { Mode = parsed; AdditionalData.Remove("mode"); } } },
                 { "password", n => { Password = n.GetStringValue(); } },
                 { "silenceTimeout", n => { SilenceTimeout = n.GetDoubleValue(); } },
                 { "speechEndThreshold", n => { SpeechEndThreshold = n.GetDoubleValue(); } },

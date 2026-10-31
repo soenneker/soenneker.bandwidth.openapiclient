@@ -17,13 +17,20 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("callForward") is { } nullNodeCallForward && nullNodeCallForward.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallForward = null;
-            if (parseNode.GetChildNode("callingNameDisplay") is { } nullNodeCallingNameDisplay && nullNodeCallingNameDisplay.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallingNameDisplay = null;
-            if (parseNode.GetChildNode("messagingSettings") is { } nullNodeMessagingSettings && nullNodeMessagingSettings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessagingSettings = null;
-            if (parseNode.GetChildNode("phoneNumber") is { } nullNodePhoneNumber && nullNodePhoneNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumber = null;
-            if (parseNode.GetChildNode("rewriteUser") is { } nullNodeRewriteUser && nullNodeRewriteUser.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RewriteUser = null;
-            if (parseNode.GetChildNode("rpidFormat") is { } nullNodeRpidFormat && nullNodeRpidFormat.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RpidFormat = null;
-            if (parseNode.GetChildNode("tnAttributes") is { } nullNodeTnAttributes && nullNodeTnAttributes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TnAttributes = null;
+            if (parseNode.GetChildNode("callForward") is null) { _explicitNullValueCallForward = default!; _explicitNullProperties?.Remove("callForward"); }
+            else if (parseNode.GetChildNode("callForward") is { } nullNodeCallForward && nullNodeCallForward.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallForward = null;
+            if (parseNode.GetChildNode("callingNameDisplay") is null) { _explicitNullValueCallingNameDisplay = default!; _explicitNullProperties?.Remove("callingNameDisplay"); }
+            else if (parseNode.GetChildNode("callingNameDisplay") is { } nullNodeCallingNameDisplay && nullNodeCallingNameDisplay.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallingNameDisplay = null;
+            if (parseNode.GetChildNode("messagingSettings") is null) { _explicitNullValueMessagingSettings = default!; _explicitNullProperties?.Remove("messagingSettings"); }
+            else if (parseNode.GetChildNode("messagingSettings") is { } nullNodeMessagingSettings && nullNodeMessagingSettings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessagingSettings = null;
+            if (parseNode.GetChildNode("phoneNumber") is null) { _explicitNullValuePhoneNumber = default!; _explicitNullProperties?.Remove("phoneNumber"); }
+            else if (parseNode.GetChildNode("phoneNumber") is { } nullNodePhoneNumber && nullNodePhoneNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumber = null;
+            if (parseNode.GetChildNode("rewriteUser") is null) { _explicitNullValueRewriteUser = default!; _explicitNullProperties?.Remove("rewriteUser"); }
+            else if (parseNode.GetChildNode("rewriteUser") is { } nullNodeRewriteUser && nullNodeRewriteUser.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RewriteUser = null;
+            if (parseNode.GetChildNode("rpidFormat") is null) { _explicitNullValueRpidFormat = default!; _explicitNullProperties?.Remove("rpidFormat"); }
+            else if (parseNode.GetChildNode("rpidFormat") is { } nullNodeRpidFormat && nullNodeRpidFormat.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RpidFormat = null;
+            if (parseNode.GetChildNode("tnAttributes") is null) { _explicitNullValueTnAttributes = default!; _explicitNullProperties?.Remove("tnAttributes"); }
+            else if (parseNode.GetChildNode("tnAttributes") is { } nullNodeTnAttributes && nullNodeTnAttributes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TnAttributes = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -31,57 +38,57 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Call forwarding number in E.164 format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallForward { get => _explicitNullValueCallForward; set { _explicitNullValueCallForward = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callForward"); else _explicitNullProperties?.Remove("callForward"); } }
+        public string? CallForward { get => _explicitNullValueCallForward; set { _explicitNullValueCallForward = value; AdditionalData?.Remove("callForward"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callForward"); else _explicitNullProperties?.Remove("callForward"); } }
         private string? _explicitNullValueCallForward = default!;
 #nullable restore
 #else
-        public string CallForward { get => _explicitNullValueCallForward; set { _explicitNullValueCallForward = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callForward"); else _explicitNullProperties?.Remove("callForward"); } }
+        public string CallForward { get => _explicitNullValueCallForward; set { _explicitNullValueCallForward = value; AdditionalData?.Remove("callForward"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callForward"); else _explicitNullProperties?.Remove("callForward"); } }
         private string _explicitNullValueCallForward = default!;
 #endif
         /// <summary>Whether calling name display is enabled.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestCallingNameDisplay? CallingNameDisplay { get => _explicitNullValueCallingNameDisplay; set { _explicitNullValueCallingNameDisplay = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callingNameDisplay"); else _explicitNullProperties?.Remove("callingNameDisplay"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestCallingNameDisplay? CallingNameDisplay { get => _explicitNullValueCallingNameDisplay; set { _explicitNullValueCallingNameDisplay = value; AdditionalData?.Remove("callingNameDisplay"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callingNameDisplay"); else _explicitNullProperties?.Remove("callingNameDisplay"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestCallingNameDisplay? _explicitNullValueCallingNameDisplay = default!;
         /// <summary>The messagingSettings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestMessagingSettings? MessagingSettings { get => _explicitNullValueMessagingSettings; set { _explicitNullValueMessagingSettings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messagingSettings"); else _explicitNullProperties?.Remove("messagingSettings"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestMessagingSettings? MessagingSettings { get => _explicitNullValueMessagingSettings; set { _explicitNullValueMessagingSettings = value; AdditionalData?.Remove("messagingSettings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messagingSettings"); else _explicitNullProperties?.Remove("messagingSettings"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestMessagingSettings? _explicitNullValueMessagingSettings = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestMessagingSettings MessagingSettings { get => _explicitNullValueMessagingSettings; set { _explicitNullValueMessagingSettings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messagingSettings"); else _explicitNullProperties?.Remove("messagingSettings"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestMessagingSettings MessagingSettings { get => _explicitNullValueMessagingSettings; set { _explicitNullValueMessagingSettings = value; AdditionalData?.Remove("messagingSettings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messagingSettings"); else _explicitNullProperties?.Remove("messagingSettings"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestMessagingSettings _explicitNullValueMessagingSettings = default!;
 #endif
         /// <summary>The E.164 telephone number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PhoneNumber { get => _explicitNullValuePhoneNumber; set { _explicitNullValuePhoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumber"); else _explicitNullProperties?.Remove("phoneNumber"); } }
+        public string? PhoneNumber { get => _explicitNullValuePhoneNumber; set { _explicitNullValuePhoneNumber = value; AdditionalData?.Remove("phoneNumber"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumber"); else _explicitNullProperties?.Remove("phoneNumber"); } }
         private string? _explicitNullValuePhoneNumber = default!;
 #nullable restore
 #else
-        public string PhoneNumber { get => _explicitNullValuePhoneNumber; set { _explicitNullValuePhoneNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumber"); else _explicitNullProperties?.Remove("phoneNumber"); } }
+        public string PhoneNumber { get => _explicitNullValuePhoneNumber; set { _explicitNullValuePhoneNumber = value; AdditionalData?.Remove("phoneNumber"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumber"); else _explicitNullProperties?.Remove("phoneNumber"); } }
         private string _explicitNullValuePhoneNumber = default!;
 #endif
         /// <summary>Rewrite user setting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RewriteUser { get => _explicitNullValueRewriteUser; set { _explicitNullValueRewriteUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rewriteUser"); else _explicitNullProperties?.Remove("rewriteUser"); } }
+        public string? RewriteUser { get => _explicitNullValueRewriteUser; set { _explicitNullValueRewriteUser = value; AdditionalData?.Remove("rewriteUser"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rewriteUser"); else _explicitNullProperties?.Remove("rewriteUser"); } }
         private string? _explicitNullValueRewriteUser = default!;
 #nullable restore
 #else
-        public string RewriteUser { get => _explicitNullValueRewriteUser; set { _explicitNullValueRewriteUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rewriteUser"); else _explicitNullProperties?.Remove("rewriteUser"); } }
+        public string RewriteUser { get => _explicitNullValueRewriteUser; set { _explicitNullValueRewriteUser = value; AdditionalData?.Remove("rewriteUser"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rewriteUser"); else _explicitNullProperties?.Remove("rewriteUser"); } }
         private string _explicitNullValueRewriteUser = default!;
 #endif
         /// <summary>RPID format for the telephone number.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestRpidFormat? RpidFormat { get => _explicitNullValueRpidFormat; set { _explicitNullValueRpidFormat = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rpidFormat"); else _explicitNullProperties?.Remove("rpidFormat"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestRpidFormat? RpidFormat { get => _explicitNullValueRpidFormat; set { _explicitNullValueRpidFormat = value; AdditionalData?.Remove("rpidFormat"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rpidFormat"); else _explicitNullProperties?.Remove("rpidFormat"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestRpidFormat? _explicitNullValueRpidFormat = default!;
         /// <summary>TN attributes (NANP only). Valid values include Protected, External, Imported.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? TnAttributes { get => _explicitNullValueTnAttributes; set { _explicitNullValueTnAttributes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tnAttributes"); else _explicitNullProperties?.Remove("tnAttributes"); } }
+        public List<string>? TnAttributes { get => _explicitNullValueTnAttributes; set { _explicitNullValueTnAttributes = value; AdditionalData?.Remove("tnAttributes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tnAttributes"); else _explicitNullProperties?.Remove("tnAttributes"); } }
         private List<string>? _explicitNullValueTnAttributes = default!;
 #nullable restore
 #else
-        public List<string> TnAttributes { get => _explicitNullValueTnAttributes; set { _explicitNullValueTnAttributes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tnAttributes"); else _explicitNullProperties?.Remove("tnAttributes"); } }
+        public List<string> TnAttributes { get => _explicitNullValueTnAttributes; set { _explicitNullValueTnAttributes = value; AdditionalData?.Remove("tnAttributes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tnAttributes"); else _explicitNullProperties?.Remove("tnAttributes"); } }
         private List<string> _explicitNullValueTnAttributes = default!;
 #endif
         /// <summary>
@@ -110,11 +117,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "callForward", n => { CallForward = n.GetStringValue(); } },
-                { "callingNameDisplay", n => { CallingNameDisplay = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestCallingNameDisplay>(); } },
+                { "callingNameDisplay", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestCallingNameDisplay>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueCallingNameDisplay = default; _explicitNullProperties?.Remove("callingNameDisplay"); AdditionalData["callingNameDisplay"] = unknown; } else { CallingNameDisplay = parsed; AdditionalData.Remove("callingNameDisplay"); } } },
                 { "messagingSettings", n => { MessagingSettings = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestMessagingSettings>(global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestMessagingSettings.CreateFromDiscriminatorValue); } },
                 { "phoneNumber", n => { PhoneNumber = n.GetStringValue(); } },
                 { "rewriteUser", n => { RewriteUser = n.GetStringValue(); } },
-                { "rpidFormat", n => { RpidFormat = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestRpidFormat>(); } },
+                { "rpidFormat", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestRpidFormat>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueRpidFormat = default; _explicitNullProperties?.Remove("rpidFormat"); AdditionalData["rpidFormat"] = unknown; } else { RpidFormat = parsed; AdditionalData.Remove("rpidFormat"); } } },
                 { "tnAttributes", n => { TnAttributes = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }

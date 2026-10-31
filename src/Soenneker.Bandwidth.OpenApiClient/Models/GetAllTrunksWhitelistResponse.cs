@@ -18,7 +18,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("trunks") is { } nullNodeTrunks && nullNodeTrunks.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Trunks = null;
+            if (parseNode.GetChildNode("trunks") is null) { _explicitNullValueTrunks = default!; _explicitNullProperties?.Remove("trunks"); }
+            else if (parseNode.GetChildNode("trunks") is { } nullNodeTrunks && nullNodeTrunks.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Trunks = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>List of all trunk entries with their whitelist configurations.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkEntry>? Trunks { get => _explicitNullValueTrunks; set { _explicitNullValueTrunks = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("trunks"); else _explicitNullProperties?.Remove("trunks"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkEntry>? Trunks { get => _explicitNullValueTrunks; set { _explicitNullValueTrunks = value; AdditionalData?.Remove("trunks"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("trunks"); else _explicitNullProperties?.Remove("trunks"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkEntry>? _explicitNullValueTrunks = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkEntry> Trunks { get => _explicitNullValueTrunks; set { _explicitNullValueTrunks = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("trunks"); else _explicitNullProperties?.Remove("trunks"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkEntry> Trunks { get => _explicitNullValueTrunks; set { _explicitNullValueTrunks = value; AdditionalData?.Remove("trunks"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("trunks"); else _explicitNullProperties?.Remove("trunks"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.TrunkEntry> _explicitNullValueTrunks = default!;
 #endif
         /// <summary>

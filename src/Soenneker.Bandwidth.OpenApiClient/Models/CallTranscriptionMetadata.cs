@@ -17,9 +17,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("transcriptionId") is { } nullNodeTranscriptionId && nullNodeTranscriptionId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TranscriptionId = null;
-            if (parseNode.GetChildNode("transcriptionName") is { } nullNodeTranscriptionName && nullNodeTranscriptionName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TranscriptionName = null;
-            if (parseNode.GetChildNode("transcriptionUrl") is { } nullNodeTranscriptionUrl && nullNodeTranscriptionUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TranscriptionUrl = null;
+            if (parseNode.GetChildNode("transcriptionId") is null) { _explicitNullValueTranscriptionId = default!; _explicitNullProperties?.Remove("transcriptionId"); }
+            else if (parseNode.GetChildNode("transcriptionId") is { } nullNodeTranscriptionId && nullNodeTranscriptionId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TranscriptionId = null;
+            if (parseNode.GetChildNode("transcriptionName") is null) { _explicitNullValueTranscriptionName = default!; _explicitNullProperties?.Remove("transcriptionName"); }
+            else if (parseNode.GetChildNode("transcriptionName") is { } nullNodeTranscriptionName && nullNodeTranscriptionName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TranscriptionName = null;
+            if (parseNode.GetChildNode("transcriptionUrl") is null) { _explicitNullValueTranscriptionUrl = default!; _explicitNullProperties?.Remove("transcriptionUrl"); }
+            else if (parseNode.GetChildNode("transcriptionUrl") is { } nullNodeTranscriptionUrl && nullNodeTranscriptionUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TranscriptionUrl = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,31 +30,31 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The programmable voice API transcription ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TranscriptionId { get => _explicitNullValueTranscriptionId; set { _explicitNullValueTranscriptionId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transcriptionId"); else _explicitNullProperties?.Remove("transcriptionId"); } }
+        public string? TranscriptionId { get => _explicitNullValueTranscriptionId; set { _explicitNullValueTranscriptionId = value; AdditionalData?.Remove("transcriptionId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transcriptionId"); else _explicitNullProperties?.Remove("transcriptionId"); } }
         private string? _explicitNullValueTranscriptionId = default!;
 #nullable restore
 #else
-        public string TranscriptionId { get => _explicitNullValueTranscriptionId; set { _explicitNullValueTranscriptionId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transcriptionId"); else _explicitNullProperties?.Remove("transcriptionId"); } }
+        public string TranscriptionId { get => _explicitNullValueTranscriptionId; set { _explicitNullValueTranscriptionId = value; AdditionalData?.Remove("transcriptionId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transcriptionId"); else _explicitNullProperties?.Remove("transcriptionId"); } }
         private string _explicitNullValueTranscriptionId = default!;
 #endif
         /// <summary>The programmable voice API transcription name. This name could be provided by the user when creating the transcription.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TranscriptionName { get => _explicitNullValueTranscriptionName; set { _explicitNullValueTranscriptionName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transcriptionName"); else _explicitNullProperties?.Remove("transcriptionName"); } }
+        public string? TranscriptionName { get => _explicitNullValueTranscriptionName; set { _explicitNullValueTranscriptionName = value; AdditionalData?.Remove("transcriptionName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transcriptionName"); else _explicitNullProperties?.Remove("transcriptionName"); } }
         private string? _explicitNullValueTranscriptionName = default!;
 #nullable restore
 #else
-        public string TranscriptionName { get => _explicitNullValueTranscriptionName; set { _explicitNullValueTranscriptionName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transcriptionName"); else _explicitNullProperties?.Remove("transcriptionName"); } }
+        public string TranscriptionName { get => _explicitNullValueTranscriptionName; set { _explicitNullValueTranscriptionName = value; AdditionalData?.Remove("transcriptionName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transcriptionName"); else _explicitNullProperties?.Remove("transcriptionName"); } }
         private string _explicitNullValueTranscriptionName = default!;
 #endif
         /// <summary>A URL that may be used to retrieve the transcription itself. This points to the[Get Call Transcription](/apis/voice-apis/voice/#tag/Transcriptions/operation/getRealTimeTranscription) endpoint.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TranscriptionUrl { get => _explicitNullValueTranscriptionUrl; set { _explicitNullValueTranscriptionUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transcriptionUrl"); else _explicitNullProperties?.Remove("transcriptionUrl"); } }
+        public string? TranscriptionUrl { get => _explicitNullValueTranscriptionUrl; set { _explicitNullValueTranscriptionUrl = value; AdditionalData?.Remove("transcriptionUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transcriptionUrl"); else _explicitNullProperties?.Remove("transcriptionUrl"); } }
         private string? _explicitNullValueTranscriptionUrl = default!;
 #nullable restore
 #else
-        public string TranscriptionUrl { get => _explicitNullValueTranscriptionUrl; set { _explicitNullValueTranscriptionUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transcriptionUrl"); else _explicitNullProperties?.Remove("transcriptionUrl"); } }
+        public string TranscriptionUrl { get => _explicitNullValueTranscriptionUrl; set { _explicitNullValueTranscriptionUrl = value; AdditionalData?.Remove("transcriptionUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transcriptionUrl"); else _explicitNullProperties?.Remove("transcriptionUrl"); } }
         private string _explicitNullValueTranscriptionUrl = default!;
 #endif
         /// <summary>

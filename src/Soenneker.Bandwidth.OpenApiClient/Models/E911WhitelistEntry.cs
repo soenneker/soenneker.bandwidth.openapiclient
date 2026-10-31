@@ -18,7 +18,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("ipAddresses") is { } nullNodeIpAddresses && nullNodeIpAddresses.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IpAddresses = null;
+            if (parseNode.GetChildNode("ipAddresses") is null) { _explicitNullValueIpAddresses = default!; _explicitNullProperties?.Remove("ipAddresses"); }
+            else if (parseNode.GetChildNode("ipAddresses") is { } nullNodeIpAddresses && nullNodeIpAddresses.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IpAddresses = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>List of IP addresses for E911 emergency services. Each IP address must be in valid IPv4 format.Maximum of 10 IP addresses per entry.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? IpAddresses { get => _explicitNullValueIpAddresses; set { _explicitNullValueIpAddresses = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ipAddresses"); else _explicitNullProperties?.Remove("ipAddresses"); } }
+        public List<string>? IpAddresses { get => _explicitNullValueIpAddresses; set { _explicitNullValueIpAddresses = value; AdditionalData?.Remove("ipAddresses"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ipAddresses"); else _explicitNullProperties?.Remove("ipAddresses"); } }
         private List<string>? _explicitNullValueIpAddresses = default!;
 #nullable restore
 #else
-        public List<string> IpAddresses { get => _explicitNullValueIpAddresses; set { _explicitNullValueIpAddresses = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ipAddresses"); else _explicitNullProperties?.Remove("ipAddresses"); } }
+        public List<string> IpAddresses { get => _explicitNullValueIpAddresses; set { _explicitNullValueIpAddresses = value; AdditionalData?.Remove("ipAddresses"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ipAddresses"); else _explicitNullProperties?.Remove("ipAddresses"); } }
         private List<string> _explicitNullValueIpAddresses = default!;
 #endif
         /// <summary>

@@ -17,8 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("basicAuthentication") is { } nullNodeBasicAuthentication && nullNodeBasicAuthentication.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BasicAuthentication = null;
-            if (parseNode.GetChildNode("hmacAuthentication") is { } nullNodeHmacAuthentication && nullNodeHmacAuthentication.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HmacAuthentication = null;
+            if (parseNode.GetChildNode("basicAuthentication") is null) { _explicitNullValueBasicAuthentication = default!; _explicitNullProperties?.Remove("basicAuthentication"); }
+            else if (parseNode.GetChildNode("basicAuthentication") is { } nullNodeBasicAuthentication && nullNodeBasicAuthentication.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BasicAuthentication = null;
+            if (parseNode.GetChildNode("hmacAuthentication") is null) { _explicitNullValueHmacAuthentication = default!; _explicitNullProperties?.Remove("hmacAuthentication"); }
+            else if (parseNode.GetChildNode("hmacAuthentication") is { } nullNodeHmacAuthentication && nullNodeHmacAuthentication.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HmacAuthentication = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,21 +28,21 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The Username and Password to be used for basic authentication.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BasicAuthenticationRequest? BasicAuthentication { get => _explicitNullValueBasicAuthentication; set { _explicitNullValueBasicAuthentication = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("basicAuthentication"); else _explicitNullProperties?.Remove("basicAuthentication"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BasicAuthenticationRequest? BasicAuthentication { get => _explicitNullValueBasicAuthentication; set { _explicitNullValueBasicAuthentication = value; AdditionalData?.Remove("basicAuthentication"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("basicAuthentication"); else _explicitNullProperties?.Remove("basicAuthentication"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.BasicAuthenticationRequest? _explicitNullValueBasicAuthentication = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BasicAuthenticationRequest BasicAuthentication { get => _explicitNullValueBasicAuthentication; set { _explicitNullValueBasicAuthentication = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("basicAuthentication"); else _explicitNullProperties?.Remove("basicAuthentication"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BasicAuthenticationRequest BasicAuthentication { get => _explicitNullValueBasicAuthentication; set { _explicitNullValueBasicAuthentication = value; AdditionalData?.Remove("basicAuthentication"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("basicAuthentication"); else _explicitNullProperties?.Remove("basicAuthentication"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.BasicAuthenticationRequest _explicitNullValueBasicAuthentication = default!;
 #endif
         /// <summary>The `hmacAuthentication` object determines how webhook authentication is handled and captures HMAC details like the `sharedSecretKey`:- If omitted or `null`:    - No HMAC authentication is applied.    - Any existing `hmacAuthentication` is removed during updates.- If an empty object ({}) is provided:    - It is not valid for a create/POST request.    - For update/PUT requests, the existing hmacAuthentication remains unchanged.- If `sharedSecretKey` is provided:    - It is encrypted and used for HMAC authentication.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.HmacAuthenticationRequest? HmacAuthentication { get => _explicitNullValueHmacAuthentication; set { _explicitNullValueHmacAuthentication = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hmacAuthentication"); else _explicitNullProperties?.Remove("hmacAuthentication"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.HmacAuthenticationRequest? HmacAuthentication { get => _explicitNullValueHmacAuthentication; set { _explicitNullValueHmacAuthentication = value; AdditionalData?.Remove("hmacAuthentication"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hmacAuthentication"); else _explicitNullProperties?.Remove("hmacAuthentication"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.HmacAuthenticationRequest? _explicitNullValueHmacAuthentication = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.HmacAuthenticationRequest HmacAuthentication { get => _explicitNullValueHmacAuthentication; set { _explicitNullValueHmacAuthentication = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hmacAuthentication"); else _explicitNullProperties?.Remove("hmacAuthentication"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.HmacAuthenticationRequest HmacAuthentication { get => _explicitNullValueHmacAuthentication; set { _explicitNullValueHmacAuthentication = value; AdditionalData?.Remove("hmacAuthentication"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hmacAuthentication"); else _explicitNullProperties?.Remove("hmacAuthentication"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.HmacAuthenticationRequest _explicitNullValueHmacAuthentication = default!;
 #endif
         /// <summary>

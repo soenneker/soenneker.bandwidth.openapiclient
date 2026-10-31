@@ -17,8 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("addressCriteria") is { } nullNodeAddressCriteria && nullNodeAddressCriteria.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AddressCriteria = null;
-            if (parseNode.GetChildNode("featureName") is { } nullNodeFeatureName && nullNodeFeatureName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FeatureName = null;
+            if (parseNode.GetChildNode("addressCriteria") is null) { _explicitNullValueAddressCriteria = default!; _explicitNullProperties?.Remove("addressCriteria"); }
+            else if (parseNode.GetChildNode("addressCriteria") is { } nullNodeAddressCriteria && nullNodeAddressCriteria.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AddressCriteria = null;
+            if (parseNode.GetChildNode("featureName") is null) { _explicitNullValueFeatureName = default!; _explicitNullProperties?.Remove("featureName"); }
+            else if (parseNode.GetChildNode("featureName") is { } nullNodeFeatureName && nullNodeFeatureName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FeatureName = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,15 +28,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The addressCriteria property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnsupportedFeaturesItemAddressCriteriaItem>? AddressCriteria { get => _explicitNullValueAddressCriteria; set { _explicitNullValueAddressCriteria = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("addressCriteria"); else _explicitNullProperties?.Remove("addressCriteria"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnsupportedFeaturesItemAddressCriteriaItem>? AddressCriteria { get => _explicitNullValueAddressCriteria; set { _explicitNullValueAddressCriteria = value; AdditionalData?.Remove("addressCriteria"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("addressCriteria"); else _explicitNullProperties?.Remove("addressCriteria"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnsupportedFeaturesItemAddressCriteriaItem>? _explicitNullValueAddressCriteria = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnsupportedFeaturesItemAddressCriteriaItem> AddressCriteria { get => _explicitNullValueAddressCriteria; set { _explicitNullValueAddressCriteria = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("addressCriteria"); else _explicitNullProperties?.Remove("addressCriteria"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnsupportedFeaturesItemAddressCriteriaItem> AddressCriteria { get => _explicitNullValueAddressCriteria; set { _explicitNullValueAddressCriteria = value; AdditionalData?.Remove("addressCriteria"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("addressCriteria"); else _explicitNullProperties?.Remove("addressCriteria"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnsupportedFeaturesItemAddressCriteriaItem> _explicitNullValueAddressCriteria = default!;
 #endif
         /// <summary>A unique identifier for feature.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.FeatureNameEnum? FeatureName { get => _explicitNullValueFeatureName; set { _explicitNullValueFeatureName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("featureName"); else _explicitNullProperties?.Remove("featureName"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.FeatureNameEnum? FeatureName { get => _explicitNullValueFeatureName; set { _explicitNullValueFeatureName = value; AdditionalData?.Remove("featureName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("featureName"); else _explicitNullProperties?.Remove("featureName"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.FeatureNameEnum? _explicitNullValueFeatureName = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UnsupportedFeaturesItem"/> and sets the default values.
@@ -62,7 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "addressCriteria", n => { AddressCriteria = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.UnsupportedFeaturesItemAddressCriteriaItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.UnsupportedFeaturesItemAddressCriteriaItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "featureName", n => { FeatureName = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FeatureNameEnum>(); } },
+                { "featureName", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FeatureNameEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueFeatureName = default; _explicitNullProperties?.Remove("featureName"); AdditionalData["featureName"] = unknown; } else { FeatureName = parsed; AdditionalData.Remove("featureName"); } } },
             };
         }
         /// <summary>

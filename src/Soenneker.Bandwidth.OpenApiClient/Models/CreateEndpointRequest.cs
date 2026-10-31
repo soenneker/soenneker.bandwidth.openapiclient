@@ -17,12 +17,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("connectionMetadata") is { } nullNodeConnectionMetadata && nullNodeConnectionMetadata.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConnectionMetadata = null;
-            if (parseNode.GetChildNode("direction") is { } nullNodeDirection && nullNodeDirection.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Direction = null;
-            if (parseNode.GetChildNode("eventCallbackUrl") is { } nullNodeEventCallbackUrl && nullNodeEventCallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EventCallbackUrl = null;
-            if (parseNode.GetChildNode("eventFallbackUrl") is { } nullNodeEventFallbackUrl && nullNodeEventFallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EventFallbackUrl = null;
-            if (parseNode.GetChildNode("tag") is { } nullNodeTag && nullNodeTag.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tag = null;
-            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+            if (parseNode.GetChildNode("connectionMetadata") is null) { _explicitNullValueConnectionMetadata = default!; _explicitNullProperties?.Remove("connectionMetadata"); }
+            else if (parseNode.GetChildNode("connectionMetadata") is { } nullNodeConnectionMetadata && nullNodeConnectionMetadata.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConnectionMetadata = null;
+            if (parseNode.GetChildNode("direction") is null) { _explicitNullValueDirection = default!; _explicitNullProperties?.Remove("direction"); }
+            else if (parseNode.GetChildNode("direction") is { } nullNodeDirection && nullNodeDirection.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Direction = null;
+            if (parseNode.GetChildNode("eventCallbackUrl") is null) { _explicitNullValueEventCallbackUrl = default!; _explicitNullProperties?.Remove("eventCallbackUrl"); }
+            else if (parseNode.GetChildNode("eventCallbackUrl") is { } nullNodeEventCallbackUrl && nullNodeEventCallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EventCallbackUrl = null;
+            if (parseNode.GetChildNode("eventFallbackUrl") is null) { _explicitNullValueEventFallbackUrl = default!; _explicitNullProperties?.Remove("eventFallbackUrl"); }
+            else if (parseNode.GetChildNode("eventFallbackUrl") is { } nullNodeEventFallbackUrl && nullNodeEventFallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EventFallbackUrl = null;
+            if (parseNode.GetChildNode("tag") is null) { _explicitNullValueTag = default!; _explicitNullProperties?.Remove("tag"); }
+            else if (parseNode.GetChildNode("tag") is { } nullNodeTag && nullNodeTag.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tag = null;
+            if (parseNode.GetChildNode("type") is null) { _explicitNullValueType = default!; _explicitNullProperties?.Remove("type"); }
+            else if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -30,48 +36,48 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The connectionMetadata property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequestConnectionMetadata? ConnectionMetadata { get => _explicitNullValueConnectionMetadata; set { _explicitNullValueConnectionMetadata = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("connectionMetadata"); else _explicitNullProperties?.Remove("connectionMetadata"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequestConnectionMetadata? ConnectionMetadata { get => _explicitNullValueConnectionMetadata; set { _explicitNullValueConnectionMetadata = value; AdditionalData?.Remove("connectionMetadata"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("connectionMetadata"); else _explicitNullProperties?.Remove("connectionMetadata"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequestConnectionMetadata? _explicitNullValueConnectionMetadata = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequestConnectionMetadata ConnectionMetadata { get => _explicitNullValueConnectionMetadata; set { _explicitNullValueConnectionMetadata = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("connectionMetadata"); else _explicitNullProperties?.Remove("connectionMetadata"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequestConnectionMetadata ConnectionMetadata { get => _explicitNullValueConnectionMetadata; set { _explicitNullValueConnectionMetadata = value; AdditionalData?.Remove("connectionMetadata"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("connectionMetadata"); else _explicitNullProperties?.Remove("connectionMetadata"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequestConnectionMetadata _explicitNullValueConnectionMetadata = default!;
 #endif
         /// <summary>The direction property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointDirectionEnum? Direction { get => _explicitNullValueDirection; set { _explicitNullValueDirection = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("direction"); else _explicitNullProperties?.Remove("direction"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointDirectionEnum? Direction { get => _explicitNullValueDirection; set { _explicitNullValueDirection = value; AdditionalData?.Remove("direction"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("direction"); else _explicitNullProperties?.Remove("direction"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointDirectionEnum? _explicitNullValueDirection = default!;
         /// <summary>The URL to send event callbacks to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? EventCallbackUrl { get => _explicitNullValueEventCallbackUrl; set { _explicitNullValueEventCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eventCallbackUrl"); else _explicitNullProperties?.Remove("eventCallbackUrl"); } }
+        public string? EventCallbackUrl { get => _explicitNullValueEventCallbackUrl; set { _explicitNullValueEventCallbackUrl = value; AdditionalData?.Remove("eventCallbackUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eventCallbackUrl"); else _explicitNullProperties?.Remove("eventCallbackUrl"); } }
         private string? _explicitNullValueEventCallbackUrl = default!;
 #nullable restore
 #else
-        public string EventCallbackUrl { get => _explicitNullValueEventCallbackUrl; set { _explicitNullValueEventCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eventCallbackUrl"); else _explicitNullProperties?.Remove("eventCallbackUrl"); } }
+        public string EventCallbackUrl { get => _explicitNullValueEventCallbackUrl; set { _explicitNullValueEventCallbackUrl = value; AdditionalData?.Remove("eventCallbackUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eventCallbackUrl"); else _explicitNullProperties?.Remove("eventCallbackUrl"); } }
         private string _explicitNullValueEventCallbackUrl = default!;
 #endif
         /// <summary>The URL to send event fallbacks to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? EventFallbackUrl { get => _explicitNullValueEventFallbackUrl; set { _explicitNullValueEventFallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eventFallbackUrl"); else _explicitNullProperties?.Remove("eventFallbackUrl"); } }
+        public string? EventFallbackUrl { get => _explicitNullValueEventFallbackUrl; set { _explicitNullValueEventFallbackUrl = value; AdditionalData?.Remove("eventFallbackUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eventFallbackUrl"); else _explicitNullProperties?.Remove("eventFallbackUrl"); } }
         private string? _explicitNullValueEventFallbackUrl = default!;
 #nullable restore
 #else
-        public string EventFallbackUrl { get => _explicitNullValueEventFallbackUrl; set { _explicitNullValueEventFallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eventFallbackUrl"); else _explicitNullProperties?.Remove("eventFallbackUrl"); } }
+        public string EventFallbackUrl { get => _explicitNullValueEventFallbackUrl; set { _explicitNullValueEventFallbackUrl = value; AdditionalData?.Remove("eventFallbackUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eventFallbackUrl"); else _explicitNullProperties?.Remove("eventFallbackUrl"); } }
         private string _explicitNullValueEventFallbackUrl = default!;
 #endif
         /// <summary>A tag for the endpoint.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Tag { get => _explicitNullValueTag; set { _explicitNullValueTag = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tag"); else _explicitNullProperties?.Remove("tag"); } }
+        public string? Tag { get => _explicitNullValueTag; set { _explicitNullValueTag = value; AdditionalData?.Remove("tag"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tag"); else _explicitNullProperties?.Remove("tag"); } }
         private string? _explicitNullValueTag = default!;
 #nullable restore
 #else
-        public string Tag { get => _explicitNullValueTag; set { _explicitNullValueTag = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tag"); else _explicitNullProperties?.Remove("tag"); } }
+        public string Tag { get => _explicitNullValueTag; set { _explicitNullValueTag = value; AdditionalData?.Remove("tag"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tag"); else _explicitNullProperties?.Remove("tag"); } }
         private string _explicitNullValueTag = default!;
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointTypeEnum? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointTypeEnum? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; AdditionalData?.Remove("type"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointTypeEnum? _explicitNullValueType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequest"/> and sets the default values.
@@ -99,11 +105,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "connectionMetadata", n => { ConnectionMetadata = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequestConnectionMetadata>(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequestConnectionMetadata.CreateFromDiscriminatorValue); } },
-                { "direction", n => { Direction = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointDirectionEnum>(); } },
+                { "direction", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointDirectionEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueDirection = default; _explicitNullProperties?.Remove("direction"); AdditionalData["direction"] = unknown; } else { Direction = parsed; AdditionalData.Remove("direction"); } } },
                 { "eventCallbackUrl", n => { EventCallbackUrl = n.GetStringValue(); } },
                 { "eventFallbackUrl", n => { EventFallbackUrl = n.GetStringValue(); } },
                 { "tag", n => { Tag = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointTypeEnum>(); } },
+                { "type", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointTypeEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueType = default; _explicitNullProperties?.Remove("type"); AdditionalData["type"] = unknown; } else { Type = parsed; AdditionalData.Remove("type"); } } },
             };
         }
         /// <summary>

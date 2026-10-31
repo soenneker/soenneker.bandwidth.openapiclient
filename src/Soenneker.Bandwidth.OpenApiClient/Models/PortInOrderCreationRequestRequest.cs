@@ -19,11 +19,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("currentProviderName") is { } nullNodeCurrentProviderName && nullNodeCurrentProviderName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CurrentProviderName = null;
-            if (parseNode.GetChildNode("customerReference") is { } nullNodeCustomerReference && nullNodeCustomerReference.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerReference = null;
-            if (parseNode.GetChildNode("numbersOwner") is { } nullNodeNumbersOwner && nullNodeNumbersOwner.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NumbersOwner = null;
-            if (parseNode.GetChildNode("phoneNumbers") is { } nullNodePhoneNumbers && nullNodePhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumbers = null;
-            if (parseNode.GetChildNode("preferredPortInDate") is { } nullNodePreferredPortInDate && nullNodePreferredPortInDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PreferredPortInDate = null;
+            if (parseNode.GetChildNode("currentProviderName") is null) { _explicitNullValueCurrentProviderName = default!; _explicitNullProperties?.Remove("currentProviderName"); }
+            else if (parseNode.GetChildNode("currentProviderName") is { } nullNodeCurrentProviderName && nullNodeCurrentProviderName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CurrentProviderName = null;
+            if (parseNode.GetChildNode("customerReference") is null) { _explicitNullValueCustomerReference = default!; _explicitNullProperties?.Remove("customerReference"); }
+            else if (parseNode.GetChildNode("customerReference") is { } nullNodeCustomerReference && nullNodeCustomerReference.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerReference = null;
+            if (parseNode.GetChildNode("numbersOwner") is null) { _explicitNullValueNumbersOwner = default!; _explicitNullProperties?.Remove("numbersOwner"); }
+            else if (parseNode.GetChildNode("numbersOwner") is { } nullNodeNumbersOwner && nullNodeNumbersOwner.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NumbersOwner = null;
+            if (parseNode.GetChildNode("phoneNumbers") is null) { _explicitNullValuePhoneNumbers = default!; _explicitNullProperties?.Remove("phoneNumbers"); }
+            else if (parseNode.GetChildNode("phoneNumbers") is { } nullNodePhoneNumbers && nullNodePhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumbers = null;
+            if (parseNode.GetChildNode("preferredPortInDate") is null) { _explicitNullValuePreferredPortInDate = default!; _explicitNullProperties?.Remove("preferredPortInDate"); }
+            else if (parseNode.GetChildNode("preferredPortInDate") is { } nullNodePreferredPortInDate && nullNodePreferredPortInDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PreferredPortInDate = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -31,45 +36,45 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The losing carrier who&apos;s currently the operator on the number to be ported in.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CurrentProviderName { get => _explicitNullValueCurrentProviderName; set { _explicitNullValueCurrentProviderName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentProviderName"); else _explicitNullProperties?.Remove("currentProviderName"); } }
+        public string? CurrentProviderName { get => _explicitNullValueCurrentProviderName; set { _explicitNullValueCurrentProviderName = value; AdditionalData?.Remove("currentProviderName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentProviderName"); else _explicitNullProperties?.Remove("currentProviderName"); } }
         private string? _explicitNullValueCurrentProviderName = default!;
 #nullable restore
 #else
-        public string CurrentProviderName { get => _explicitNullValueCurrentProviderName; set { _explicitNullValueCurrentProviderName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentProviderName"); else _explicitNullProperties?.Remove("currentProviderName"); } }
+        public string CurrentProviderName { get => _explicitNullValueCurrentProviderName; set { _explicitNullValueCurrentProviderName = value; AdditionalData?.Remove("currentProviderName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentProviderName"); else _explicitNullProperties?.Remove("currentProviderName"); } }
         private string _explicitNullValueCurrentProviderName = default!;
 #endif
         /// <summary>Parameter that can be used for your own reference, e.g. to uniquely identify one of your customers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CustomerReference { get => _explicitNullValueCustomerReference; set { _explicitNullValueCustomerReference = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerReference"); else _explicitNullProperties?.Remove("customerReference"); } }
+        public string? CustomerReference { get => _explicitNullValueCustomerReference; set { _explicitNullValueCustomerReference = value; AdditionalData?.Remove("customerReference"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerReference"); else _explicitNullProperties?.Remove("customerReference"); } }
         private string? _explicitNullValueCustomerReference = default!;
 #nullable restore
 #else
-        public string CustomerReference { get => _explicitNullValueCustomerReference; set { _explicitNullValueCustomerReference = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerReference"); else _explicitNullProperties?.Remove("customerReference"); } }
+        public string CustomerReference { get => _explicitNullValueCustomerReference; set { _explicitNullValueCustomerReference = value; AdditionalData?.Remove("customerReference"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerReference"); else _explicitNullProperties?.Remove("customerReference"); } }
         private string _explicitNullValueCustomerReference = default!;
 #endif
         /// <summary>Owner of the numbers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner? NumbersOwner { get => _explicitNullValueNumbersOwner; set { _explicitNullValueNumbersOwner = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("numbersOwner"); else _explicitNullProperties?.Remove("numbersOwner"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner? NumbersOwner { get => _explicitNullValueNumbersOwner; set { _explicitNullValueNumbersOwner = value; AdditionalData?.Remove("numbersOwner"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("numbersOwner"); else _explicitNullProperties?.Remove("numbersOwner"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner? _explicitNullValueNumbersOwner = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner NumbersOwner { get => _explicitNullValueNumbersOwner; set { _explicitNullValueNumbersOwner = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("numbersOwner"); else _explicitNullProperties?.Remove("numbersOwner"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner NumbersOwner { get => _explicitNullValueNumbersOwner; set { _explicitNullValueNumbersOwner = value; AdditionalData?.Remove("numbersOwner"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("numbersOwner"); else _explicitNullProperties?.Remove("numbersOwner"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersOwner _explicitNullValueNumbersOwner = default!;
 #endif
         /// <summary>Array of telephone numbers in E.164 format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
+        public List<string>? PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; AdditionalData?.Remove("phoneNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
         private List<string>? _explicitNullValuePhoneNumbers = default!;
 #nullable restore
 #else
-        public List<string> PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
+        public List<string> PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; AdditionalData?.Remove("phoneNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
         private List<string> _explicitNullValuePhoneNumbers = default!;
 #endif
         /// <summary>Date that you prefer to have numbers become available in Bandwidth, must be in RFC 3339 format.</summary>
-        public Date? PreferredPortInDate { get => _explicitNullValuePreferredPortInDate; set { _explicitNullValuePreferredPortInDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("preferredPortInDate"); else _explicitNullProperties?.Remove("preferredPortInDate"); } }
+        public Date? PreferredPortInDate { get => _explicitNullValuePreferredPortInDate; set { _explicitNullValuePreferredPortInDate = value; AdditionalData?.Remove("preferredPortInDate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("preferredPortInDate"); else _explicitNullProperties?.Remove("preferredPortInDate"); } }
         private Date? _explicitNullValuePreferredPortInDate = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PortInOrderCreationRequestRequest"/> and sets the default values.

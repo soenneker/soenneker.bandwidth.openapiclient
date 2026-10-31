@@ -18,8 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("capabilityPipeId") is { } nullNodeCapabilityPipeId && nullNodeCapabilityPipeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CapabilityPipeId = null;
-            if (parseNode.GetChildNode("trunkId") is { } nullNodeTrunkId && nullNodeTrunkId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TrunkId = null;
+            if (parseNode.GetChildNode("capabilityPipeId") is null) { _explicitNullValueCapabilityPipeId = default!; _explicitNullProperties?.Remove("capabilityPipeId"); }
+            else if (parseNode.GetChildNode("capabilityPipeId") is { } nullNodeCapabilityPipeId && nullNodeCapabilityPipeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CapabilityPipeId = null;
+            if (parseNode.GetChildNode("trunkId") is null) { _explicitNullValueTrunkId = default!; _explicitNullProperties?.Remove("trunkId"); }
+            else if (parseNode.GetChildNode("trunkId") is { } nullNodeTrunkId && nullNodeTrunkId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TrunkId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,21 +29,21 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The capability pipe id associated with the selected trunk.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CapabilityPipeId { get => _explicitNullValueCapabilityPipeId; set { _explicitNullValueCapabilityPipeId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("capabilityPipeId"); else _explicitNullProperties?.Remove("capabilityPipeId"); } }
+        public string? CapabilityPipeId { get => _explicitNullValueCapabilityPipeId; set { _explicitNullValueCapabilityPipeId = value; AdditionalData?.Remove("capabilityPipeId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("capabilityPipeId"); else _explicitNullProperties?.Remove("capabilityPipeId"); } }
         private string? _explicitNullValueCapabilityPipeId = default!;
 #nullable restore
 #else
-        public string CapabilityPipeId { get => _explicitNullValueCapabilityPipeId; set { _explicitNullValueCapabilityPipeId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("capabilityPipeId"); else _explicitNullProperties?.Remove("capabilityPipeId"); } }
+        public string CapabilityPipeId { get => _explicitNullValueCapabilityPipeId; set { _explicitNullValueCapabilityPipeId = value; AdditionalData?.Remove("capabilityPipeId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("capabilityPipeId"); else _explicitNullProperties?.Remove("capabilityPipeId"); } }
         private string _explicitNullValueCapabilityPipeId = default!;
 #endif
         /// <summary>The trunk identifier selected for this endpoint.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TrunkId { get => _explicitNullValueTrunkId; set { _explicitNullValueTrunkId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("trunkId"); else _explicitNullProperties?.Remove("trunkId"); } }
+        public string? TrunkId { get => _explicitNullValueTrunkId; set { _explicitNullValueTrunkId = value; AdditionalData?.Remove("trunkId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("trunkId"); else _explicitNullProperties?.Remove("trunkId"); } }
         private string? _explicitNullValueTrunkId = default!;
 #nullable restore
 #else
-        public string TrunkId { get => _explicitNullValueTrunkId; set { _explicitNullValueTrunkId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("trunkId"); else _explicitNullProperties?.Remove("trunkId"); } }
+        public string TrunkId { get => _explicitNullValueTrunkId; set { _explicitNullValueTrunkId = value; AdditionalData?.Remove("trunkId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("trunkId"); else _explicitNullProperties?.Remove("trunkId"); } }
         private string _explicitNullValueTrunkId = default!;
 #endif
         /// <summary>

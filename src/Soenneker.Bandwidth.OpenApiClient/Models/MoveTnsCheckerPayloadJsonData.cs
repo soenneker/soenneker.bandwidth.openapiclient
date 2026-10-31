@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("validPhoneNumbers") is { } nullNodeValidPhoneNumbers && nullNodeValidPhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ValidPhoneNumbers = null;
+            if (parseNode.GetChildNode("validPhoneNumbers") is null) { _explicitNullValueValidPhoneNumbers = default!; _explicitNullProperties?.Remove("validPhoneNumbers"); }
+            else if (parseNode.GetChildNode("validPhoneNumbers") is { } nullNodeValidPhoneNumbers && nullNodeValidPhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ValidPhoneNumbers = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The validPhoneNumbers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? ValidPhoneNumbers { get => _explicitNullValueValidPhoneNumbers; set { _explicitNullValueValidPhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("validPhoneNumbers"); else _explicitNullProperties?.Remove("validPhoneNumbers"); } }
+        public List<string>? ValidPhoneNumbers { get => _explicitNullValueValidPhoneNumbers; set { _explicitNullValueValidPhoneNumbers = value; AdditionalData?.Remove("validPhoneNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("validPhoneNumbers"); else _explicitNullProperties?.Remove("validPhoneNumbers"); } }
         private List<string>? _explicitNullValueValidPhoneNumbers = default!;
 #nullable restore
 #else
-        public List<string> ValidPhoneNumbers { get => _explicitNullValueValidPhoneNumbers; set { _explicitNullValueValidPhoneNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("validPhoneNumbers"); else _explicitNullProperties?.Remove("validPhoneNumbers"); } }
+        public List<string> ValidPhoneNumbers { get => _explicitNullValueValidPhoneNumbers; set { _explicitNullValueValidPhoneNumbers = value; AdditionalData?.Remove("validPhoneNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("validPhoneNumbers"); else _explicitNullProperties?.Remove("validPhoneNumbers"); } }
         private List<string> _explicitNullValueValidPhoneNumbers = default!;
 #endif
         /// <summary>

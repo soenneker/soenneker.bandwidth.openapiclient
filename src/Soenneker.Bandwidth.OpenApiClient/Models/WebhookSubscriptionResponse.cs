@@ -17,30 +17,38 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("accountId") is { } nullNodeAccountId && nullNodeAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountId = null;
-            if (parseNode.GetChildNode("blocked") is { } nullNodeBlocked && nullNodeBlocked.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Blocked = null;
-            if (parseNode.GetChildNode("customName") is { } nullNodeCustomName && nullNodeCustomName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomName = null;
-            if (parseNode.GetChildNode("deliveryType") is { } nullNodeDeliveryType && nullNodeDeliveryType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DeliveryType = null;
-            if (parseNode.GetChildNode("filters") is { } nullNodeFilters && nullNodeFilters.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Filters = null;
-            if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
-            if (parseNode.GetChildNode("subscriptionDefinitionName") is { } nullNodeSubscriptionDefinitionName && nullNodeSubscriptionDefinitionName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SubscriptionDefinitionName = null;
-            if (parseNode.GetChildNode("webhookSubscription") is { } nullNodeWebhookSubscription && nullNodeWebhookSubscription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WebhookSubscription = null;
+            if (parseNode.GetChildNode("accountId") is null) { _explicitNullValueAccountId = default!; _explicitNullProperties?.Remove("accountId"); }
+            else if (parseNode.GetChildNode("accountId") is { } nullNodeAccountId && nullNodeAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountId = null;
+            if (parseNode.GetChildNode("blocked") is null) { _explicitNullValueBlocked = default!; _explicitNullProperties?.Remove("blocked"); }
+            else if (parseNode.GetChildNode("blocked") is { } nullNodeBlocked && nullNodeBlocked.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Blocked = null;
+            if (parseNode.GetChildNode("customName") is null) { _explicitNullValueCustomName = default!; _explicitNullProperties?.Remove("customName"); }
+            else if (parseNode.GetChildNode("customName") is { } nullNodeCustomName && nullNodeCustomName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomName = null;
+            if (parseNode.GetChildNode("deliveryType") is null) { _explicitNullValueDeliveryType = default!; _explicitNullProperties?.Remove("deliveryType"); }
+            else if (parseNode.GetChildNode("deliveryType") is { } nullNodeDeliveryType && nullNodeDeliveryType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DeliveryType = null;
+            if (parseNode.GetChildNode("filters") is null) { _explicitNullValueFilters = default!; _explicitNullProperties?.Remove("filters"); }
+            else if (parseNode.GetChildNode("filters") is { } nullNodeFilters && nullNodeFilters.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Filters = null;
+            if (parseNode.GetChildNode("id") is null) { _explicitNullValueId = default!; _explicitNullProperties?.Remove("id"); }
+            else if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
+            if (parseNode.GetChildNode("subscriptionDefinitionName") is null) { _explicitNullValueSubscriptionDefinitionName = default!; _explicitNullProperties?.Remove("subscriptionDefinitionName"); }
+            else if (parseNode.GetChildNode("subscriptionDefinitionName") is { } nullNodeSubscriptionDefinitionName && nullNodeSubscriptionDefinitionName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SubscriptionDefinitionName = null;
+            if (parseNode.GetChildNode("webhookSubscription") is null) { _explicitNullValueWebhookSubscription = default!; _explicitNullProperties?.Remove("webhookSubscription"); }
+            else if (parseNode.GetChildNode("webhookSubscription") is { } nullNodeWebhookSubscription && nullNodeWebhookSubscription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WebhookSubscription = null;
         }
 
         /// <summary>The account ID to create the subscription for</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
+        public string? AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; AdditionalData?.Remove("accountId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
         private string? _explicitNullValueAccountId = default!;
 #nullable restore
 #else
-        public string AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
+        public string AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; AdditionalData?.Remove("accountId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
         private string _explicitNullValueAccountId = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Indicates if the subscription is blocked. Webhook subscriptions that are blocked will not receive notifications until unblocked. A subscription can be unblocked by triggering a test notification which completes successfully. See Send Test Notification.</summary>
-        public bool? Blocked { get => _explicitNullValueBlocked; set { _explicitNullValueBlocked = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blocked"); else _explicitNullProperties?.Remove("blocked"); } }
+        public bool? Blocked { get => _explicitNullValueBlocked; set { _explicitNullValueBlocked = value; AdditionalData?.Remove("blocked"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blocked"); else _explicitNullProperties?.Remove("blocked"); } }
         private bool? _explicitNullValueBlocked = default!;
         /// <summary>The timestamp when the subscription was created</summary>
         public DateTimeOffset? CreatedAt { get; private set; }
@@ -55,37 +63,37 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The custom name for the subscription</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CustomName { get => _explicitNullValueCustomName; set { _explicitNullValueCustomName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customName"); else _explicitNullProperties?.Remove("customName"); } }
+        public string? CustomName { get => _explicitNullValueCustomName; set { _explicitNullValueCustomName = value; AdditionalData?.Remove("customName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customName"); else _explicitNullProperties?.Remove("customName"); } }
         private string? _explicitNullValueCustomName = default!;
 #nullable restore
 #else
-        public string CustomName { get => _explicitNullValueCustomName; set { _explicitNullValueCustomName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customName"); else _explicitNullProperties?.Remove("customName"); } }
+        public string CustomName { get => _explicitNullValueCustomName; set { _explicitNullValueCustomName = value; AdditionalData?.Remove("customName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customName"); else _explicitNullProperties?.Remove("customName"); } }
         private string _explicitNullValueCustomName = default!;
 #endif
         /// <summary>The delivery mechanism of the subscription</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.DeliveryTypesEnum? DeliveryType { get => _explicitNullValueDeliveryType; set { _explicitNullValueDeliveryType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deliveryType"); else _explicitNullProperties?.Remove("deliveryType"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.DeliveryTypesEnum? DeliveryType { get => _explicitNullValueDeliveryType; set { _explicitNullValueDeliveryType = value; AdditionalData?.Remove("deliveryType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deliveryType"); else _explicitNullProperties?.Remove("deliveryType"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.DeliveryTypesEnum? _explicitNullValueDeliveryType = default!;
         /// <summary>The filters to be applied to subscription</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria>? Filters { get => _explicitNullValueFilters; set { _explicitNullValueFilters = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filters"); else _explicitNullProperties?.Remove("filters"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria>? Filters { get => _explicitNullValueFilters; set { _explicitNullValueFilters = value; AdditionalData?.Remove("filters"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filters"); else _explicitNullProperties?.Remove("filters"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria>? _explicitNullValueFilters = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria> Filters { get => _explicitNullValueFilters; set { _explicitNullValueFilters = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filters"); else _explicitNullProperties?.Remove("filters"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria> Filters { get => _explicitNullValueFilters; set { _explicitNullValueFilters = value; AdditionalData?.Remove("filters"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filters"); else _explicitNullProperties?.Remove("filters"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria> _explicitNullValueFilters = default!;
 #endif
         /// <summary>The subscription ID (Bandwidth generated)</summary>
-        public Guid? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        public Guid? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; AdditionalData?.Remove("id"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
         private Guid? _explicitNullValueId = default!;
         /// <summary>The name for the subscription definition</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SubscriptionDefinitionName { get => _explicitNullValueSubscriptionDefinitionName; set { _explicitNullValueSubscriptionDefinitionName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriptionDefinitionName"); else _explicitNullProperties?.Remove("subscriptionDefinitionName"); } }
+        public string? SubscriptionDefinitionName { get => _explicitNullValueSubscriptionDefinitionName; set { _explicitNullValueSubscriptionDefinitionName = value; AdditionalData?.Remove("subscriptionDefinitionName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriptionDefinitionName"); else _explicitNullProperties?.Remove("subscriptionDefinitionName"); } }
         private string? _explicitNullValueSubscriptionDefinitionName = default!;
 #nullable restore
 #else
-        public string SubscriptionDefinitionName { get => _explicitNullValueSubscriptionDefinitionName; set { _explicitNullValueSubscriptionDefinitionName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriptionDefinitionName"); else _explicitNullProperties?.Remove("subscriptionDefinitionName"); } }
+        public string SubscriptionDefinitionName { get => _explicitNullValueSubscriptionDefinitionName; set { _explicitNullValueSubscriptionDefinitionName = value; AdditionalData?.Remove("subscriptionDefinitionName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriptionDefinitionName"); else _explicitNullProperties?.Remove("subscriptionDefinitionName"); } }
         private string _explicitNullValueSubscriptionDefinitionName = default!;
 #endif
         /// <summary>The timestamp when the subscription was last updated</summary>
@@ -101,11 +109,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The webhookSubscription property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponseAllOf2WebhookSubscription? WebhookSubscription { get => _explicitNullValueWebhookSubscription; set { _explicitNullValueWebhookSubscription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("webhookSubscription"); else _explicitNullProperties?.Remove("webhookSubscription"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponseAllOf2WebhookSubscription? WebhookSubscription { get => _explicitNullValueWebhookSubscription; set { _explicitNullValueWebhookSubscription = value; AdditionalData?.Remove("webhookSubscription"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("webhookSubscription"); else _explicitNullProperties?.Remove("webhookSubscription"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponseAllOf2WebhookSubscription? _explicitNullValueWebhookSubscription = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponseAllOf2WebhookSubscription WebhookSubscription { get => _explicitNullValueWebhookSubscription; set { _explicitNullValueWebhookSubscription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("webhookSubscription"); else _explicitNullProperties?.Remove("webhookSubscription"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponseAllOf2WebhookSubscription WebhookSubscription { get => _explicitNullValueWebhookSubscription; set { _explicitNullValueWebhookSubscription = value; AdditionalData?.Remove("webhookSubscription"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("webhookSubscription"); else _explicitNullProperties?.Remove("webhookSubscription"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.WebhookSubscriptionResponseAllOf2WebhookSubscription _explicitNullValueWebhookSubscription = default!;
 #endif
         /// <summary>
@@ -138,7 +146,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "createdBy", n => { CreatedBy = n.GetStringValue(); } },
                 { "customName", n => { CustomName = n.GetStringValue(); } },
-                { "deliveryType", n => { DeliveryType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DeliveryTypesEnum>(); } },
+                { "deliveryType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DeliveryTypesEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueDeliveryType = default; _explicitNullProperties?.Remove("deliveryType"); AdditionalData["deliveryType"] = unknown; } else { DeliveryType = parsed; AdditionalData.Remove("deliveryType"); } } },
                 { "filters", n => { Filters = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria>(global::Soenneker.Bandwidth.OpenApiClient.Models.FilterCriteria.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "id", n => { Id = n.GetGuidValue(); } },
                 { "subscriptionDefinitionName", n => { SubscriptionDefinitionName = n.GetStringValue(); } },

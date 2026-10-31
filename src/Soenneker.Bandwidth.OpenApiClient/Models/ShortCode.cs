@@ -18,29 +18,42 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("accountId") is { } nullNodeAccountId && nullNodeAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountId = null;
-            if (parseNode.GetChildNode("carrierStatuses") is { } nullNodeCarrierStatuses && nullNodeCarrierStatuses.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CarrierStatuses = null;
-            if (parseNode.GetChildNode("country") is { } nullNodeCountry && nullNodeCountry.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Country = null;
-            if (parseNode.GetChildNode("createdDateTime") is { } nullNodeCreatedDateTime && nullNodeCreatedDateTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedDateTime = null;
-            if (parseNode.GetChildNode("customerManagedLease") is { } nullNodeCustomerManagedLease && nullNodeCustomerManagedLease.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerManagedLease = null;
-            if (parseNode.GetChildNode("lease") is { } nullNodeLease && nullNodeLease.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Lease = null;
-            if (parseNode.GetChildNode("modifiedDateTime") is { } nullNodeModifiedDateTime && nullNodeModifiedDateTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModifiedDateTime = null;
-            if (parseNode.GetChildNode("shortCode") is { } nullNodeShortCodeProp && nullNodeShortCodeProp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ShortCodeProp = null;
-            if (parseNode.GetChildNode("sipPeerId") is { } nullNodeSipPeerId && nullNodeSipPeerId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SipPeerId = null;
-            if (parseNode.GetChildNode("siteId") is { } nullNodeSiteId && nullNodeSiteId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SiteId = null;
-            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
-            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
-            if (parseNode.GetChildNode("version") is { } nullNodeVersion && nullNodeVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Version = null;
+            if (parseNode.GetChildNode("accountId") is null) { _explicitNullValueAccountId = default!; _explicitNullProperties?.Remove("accountId"); }
+            else if (parseNode.GetChildNode("accountId") is { } nullNodeAccountId && nullNodeAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountId = null;
+            if (parseNode.GetChildNode("carrierStatuses") is null) { _explicitNullValueCarrierStatuses = default!; _explicitNullProperties?.Remove("carrierStatuses"); }
+            else if (parseNode.GetChildNode("carrierStatuses") is { } nullNodeCarrierStatuses && nullNodeCarrierStatuses.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CarrierStatuses = null;
+            if (parseNode.GetChildNode("country") is null) { _explicitNullValueCountry = default!; _explicitNullProperties?.Remove("country"); }
+            else if (parseNode.GetChildNode("country") is { } nullNodeCountry && nullNodeCountry.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Country = null;
+            if (parseNode.GetChildNode("createdDateTime") is null) { _explicitNullValueCreatedDateTime = default!; _explicitNullProperties?.Remove("createdDateTime"); }
+            else if (parseNode.GetChildNode("createdDateTime") is { } nullNodeCreatedDateTime && nullNodeCreatedDateTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedDateTime = null;
+            if (parseNode.GetChildNode("customerManagedLease") is null) { _explicitNullValueCustomerManagedLease = default!; _explicitNullProperties?.Remove("customerManagedLease"); }
+            else if (parseNode.GetChildNode("customerManagedLease") is { } nullNodeCustomerManagedLease && nullNodeCustomerManagedLease.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerManagedLease = null;
+            if (parseNode.GetChildNode("lease") is null) { _explicitNullValueLease = default!; _explicitNullProperties?.Remove("lease"); }
+            else if (parseNode.GetChildNode("lease") is { } nullNodeLease && nullNodeLease.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Lease = null;
+            if (parseNode.GetChildNode("modifiedDateTime") is null) { _explicitNullValueModifiedDateTime = default!; _explicitNullProperties?.Remove("modifiedDateTime"); }
+            else if (parseNode.GetChildNode("modifiedDateTime") is { } nullNodeModifiedDateTime && nullNodeModifiedDateTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModifiedDateTime = null;
+            if (parseNode.GetChildNode("shortCode") is null) { _explicitNullValueShortCodeProp = default!; _explicitNullProperties?.Remove("shortCode"); }
+            else if (parseNode.GetChildNode("shortCode") is { } nullNodeShortCodeProp && nullNodeShortCodeProp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ShortCodeProp = null;
+            if (parseNode.GetChildNode("sipPeerId") is null) { _explicitNullValueSipPeerId = default!; _explicitNullProperties?.Remove("sipPeerId"); }
+            else if (parseNode.GetChildNode("sipPeerId") is { } nullNodeSipPeerId && nullNodeSipPeerId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SipPeerId = null;
+            if (parseNode.GetChildNode("siteId") is null) { _explicitNullValueSiteId = default!; _explicitNullProperties?.Remove("siteId"); }
+            else if (parseNode.GetChildNode("siteId") is { } nullNodeSiteId && nullNodeSiteId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SiteId = null;
+            if (parseNode.GetChildNode("status") is null) { _explicitNullValueStatus = default!; _explicitNullProperties?.Remove("status"); }
+            else if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("type") is null) { _explicitNullValueType = default!; _explicitNullProperties?.Remove("type"); }
+            else if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+            if (parseNode.GetChildNode("version") is null) { _explicitNullValueVersion = default!; _explicitNullProperties?.Remove("version"); }
+            else if (parseNode.GetChildNode("version") is { } nullNodeVersion && nullNodeVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Version = null;
         }
 
         /// <summary>Account ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
+        public string? AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; AdditionalData?.Remove("accountId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
         private string? _explicitNullValueAccountId = default!;
 #nullable restore
 #else
-        public string AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
+        public string AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; AdditionalData?.Remove("accountId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
         private string _explicitNullValueAccountId = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -48,80 +61,80 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>List of objects each providing the registration status for an individual carrier.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo>? CarrierStatuses { get => _explicitNullValueCarrierStatuses; set { _explicitNullValueCarrierStatuses = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carrierStatuses"); else _explicitNullProperties?.Remove("carrierStatuses"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo>? CarrierStatuses { get => _explicitNullValueCarrierStatuses; set { _explicitNullValueCarrierStatuses = value; AdditionalData?.Remove("carrierStatuses"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carrierStatuses"); else _explicitNullProperties?.Remove("carrierStatuses"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo>? _explicitNullValueCarrierStatuses = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo> CarrierStatuses { get => _explicitNullValueCarrierStatuses; set { _explicitNullValueCarrierStatuses = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carrierStatuses"); else _explicitNullProperties?.Remove("carrierStatuses"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo> CarrierStatuses { get => _explicitNullValueCarrierStatuses; set { _explicitNullValueCarrierStatuses = value; AdditionalData?.Remove("carrierStatuses"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carrierStatuses"); else _explicitNullProperties?.Remove("carrierStatuses"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo> _explicitNullValueCarrierStatuses = default!;
 #endif
         /// <summary>The country the short code is registered in.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCountry? Country { get => _explicitNullValueCountry; set { _explicitNullValueCountry = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("country"); else _explicitNullProperties?.Remove("country"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCountry? Country { get => _explicitNullValueCountry; set { _explicitNullValueCountry = value; AdditionalData?.Remove("country"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("country"); else _explicitNullProperties?.Remove("country"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCountry? _explicitNullValueCountry = default!;
         /// <summary>The date and time this object was created in ISO 8601 format</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CreatedDateTime { get => _explicitNullValueCreatedDateTime; set { _explicitNullValueCreatedDateTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdDateTime"); else _explicitNullProperties?.Remove("createdDateTime"); } }
+        public string? CreatedDateTime { get => _explicitNullValueCreatedDateTime; set { _explicitNullValueCreatedDateTime = value; AdditionalData?.Remove("createdDateTime"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdDateTime"); else _explicitNullProperties?.Remove("createdDateTime"); } }
         private string? _explicitNullValueCreatedDateTime = default!;
 #nullable restore
 #else
-        public string CreatedDateTime { get => _explicitNullValueCreatedDateTime; set { _explicitNullValueCreatedDateTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdDateTime"); else _explicitNullProperties?.Remove("createdDateTime"); } }
+        public string CreatedDateTime { get => _explicitNullValueCreatedDateTime; set { _explicitNullValueCreatedDateTime = value; AdditionalData?.Remove("createdDateTime"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdDateTime"); else _explicitNullProperties?.Remove("createdDateTime"); } }
         private string _explicitNullValueCreatedDateTime = default!;
 #endif
         /// <summary>Flag indicating whether the customer is managing the short code lease.</summary>
-        public bool? CustomerManagedLease { get => _explicitNullValueCustomerManagedLease; set { _explicitNullValueCustomerManagedLease = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerManagedLease"); else _explicitNullProperties?.Remove("customerManagedLease"); } }
+        public bool? CustomerManagedLease { get => _explicitNullValueCustomerManagedLease; set { _explicitNullValueCustomerManagedLease = value; AdditionalData?.Remove("customerManagedLease"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerManagedLease"); else _explicitNullProperties?.Remove("customerManagedLease"); } }
         private bool? _explicitNullValueCustomerManagedLease = default!;
         /// <summary>The lease information for the short code number. This information only applies to Bandwidth managed short code leases (customerManagedLease set to false).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLeaseInfo? Lease { get => _explicitNullValueLease; set { _explicitNullValueLease = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lease"); else _explicitNullProperties?.Remove("lease"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLeaseInfo? Lease { get => _explicitNullValueLease; set { _explicitNullValueLease = value; AdditionalData?.Remove("lease"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lease"); else _explicitNullProperties?.Remove("lease"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLeaseInfo? _explicitNullValueLease = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLeaseInfo Lease { get => _explicitNullValueLease; set { _explicitNullValueLease = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lease"); else _explicitNullProperties?.Remove("lease"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLeaseInfo Lease { get => _explicitNullValueLease; set { _explicitNullValueLease = value; AdditionalData?.Remove("lease"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lease"); else _explicitNullProperties?.Remove("lease"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLeaseInfo _explicitNullValueLease = default!;
 #endif
         /// <summary>The date and time this object was modified in ISO 8601 format</summary>
-        public DateTimeOffset? ModifiedDateTime { get => _explicitNullValueModifiedDateTime; set { _explicitNullValueModifiedDateTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modifiedDateTime"); else _explicitNullProperties?.Remove("modifiedDateTime"); } }
+        public DateTimeOffset? ModifiedDateTime { get => _explicitNullValueModifiedDateTime; set { _explicitNullValueModifiedDateTime = value; AdditionalData?.Remove("modifiedDateTime"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modifiedDateTime"); else _explicitNullProperties?.Remove("modifiedDateTime"); } }
         private DateTimeOffset? _explicitNullValueModifiedDateTime = default!;
         /// <summary>The short code.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ShortCodeProp { get => _explicitNullValueShortCodeProp; set { _explicitNullValueShortCodeProp = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("shortCode"); else _explicitNullProperties?.Remove("shortCode"); } }
+        public string? ShortCodeProp { get => _explicitNullValueShortCodeProp; set { _explicitNullValueShortCodeProp = value; AdditionalData?.Remove("shortCode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("shortCode"); else _explicitNullProperties?.Remove("shortCode"); } }
         private string? _explicitNullValueShortCodeProp = default!;
 #nullable restore
 #else
-        public string ShortCodeProp { get => _explicitNullValueShortCodeProp; set { _explicitNullValueShortCodeProp = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("shortCode"); else _explicitNullProperties?.Remove("shortCode"); } }
+        public string ShortCodeProp { get => _explicitNullValueShortCodeProp; set { _explicitNullValueShortCodeProp = value; AdditionalData?.Remove("shortCode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("shortCode"); else _explicitNullProperties?.Remove("shortCode"); } }
         private string _explicitNullValueShortCodeProp = default!;
 #endif
         /// <summary>Location ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SipPeerId { get => _explicitNullValueSipPeerId; set { _explicitNullValueSipPeerId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sipPeerId"); else _explicitNullProperties?.Remove("sipPeerId"); } }
+        public string? SipPeerId { get => _explicitNullValueSipPeerId; set { _explicitNullValueSipPeerId = value; AdditionalData?.Remove("sipPeerId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sipPeerId"); else _explicitNullProperties?.Remove("sipPeerId"); } }
         private string? _explicitNullValueSipPeerId = default!;
 #nullable restore
 #else
-        public string SipPeerId { get => _explicitNullValueSipPeerId; set { _explicitNullValueSipPeerId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sipPeerId"); else _explicitNullProperties?.Remove("sipPeerId"); } }
+        public string SipPeerId { get => _explicitNullValueSipPeerId; set { _explicitNullValueSipPeerId = value; AdditionalData?.Remove("sipPeerId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sipPeerId"); else _explicitNullProperties?.Remove("sipPeerId"); } }
         private string _explicitNullValueSipPeerId = default!;
 #endif
         /// <summary>Sub-account ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SiteId { get => _explicitNullValueSiteId; set { _explicitNullValueSiteId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("siteId"); else _explicitNullProperties?.Remove("siteId"); } }
+        public string? SiteId { get => _explicitNullValueSiteId; set { _explicitNullValueSiteId = value; AdditionalData?.Remove("siteId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("siteId"); else _explicitNullProperties?.Remove("siteId"); } }
         private string? _explicitNullValueSiteId = default!;
 #nullable restore
 #else
-        public string SiteId { get => _explicitNullValueSiteId; set { _explicitNullValueSiteId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("siteId"); else _explicitNullProperties?.Remove("siteId"); } }
+        public string SiteId { get => _explicitNullValueSiteId; set { _explicitNullValueSiteId = value; AdditionalData?.Remove("siteId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("siteId"); else _explicitNullProperties?.Remove("siteId"); } }
         private string _explicitNullValueSiteId = default!;
 #endif
         /// <summary>If at least one carrier status is ACTIVE or PENDING, the status will be ACTIVE. If all carrier statues are INACTIVE, the status will be INACTIVE.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; AdditionalData?.Remove("status"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeStatus? _explicitNullValueStatus = default!;
         /// <summary>The lease type.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeTypeEnum? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeTypeEnum? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; AdditionalData?.Remove("type"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeTypeEnum? _explicitNullValueType = default!;
         /// <summary>An internal field that represents the current version of the short code data.</summary>
-        public int? Version { get => _explicitNullValueVersion; set { _explicitNullValueVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("version"); else _explicitNullProperties?.Remove("version"); } }
+        public int? Version { get => _explicitNullValueVersion; set { _explicitNullValueVersion = value; AdditionalData?.Remove("version"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("version"); else _explicitNullProperties?.Remove("version"); } }
         private int? _explicitNullValueVersion = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCode"/> and sets the default values.
@@ -150,7 +163,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "accountId", n => { AccountId = n.GetStringValue(); } },
                 { "carrierStatuses", n => { CarrierStatuses = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo>(global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCarrierInfo.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "country", n => { Country = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCountry>(); } },
+                { "country", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeCountry>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueCountry = default; _explicitNullProperties?.Remove("country"); AdditionalData["country"] = unknown; } else { Country = parsed; AdditionalData.Remove("country"); } } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetStringValue(); } },
                 { "customerManagedLease", n => { CustomerManagedLease = n.GetBoolValue(); } },
                 { "lease", n => { Lease = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLeaseInfo>(global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLeaseInfo.CreateFromDiscriminatorValue); } },
@@ -158,8 +171,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "shortCode", n => { ShortCodeProp = n.GetStringValue(); } },
                 { "sipPeerId", n => { SipPeerId = n.GetStringValue(); } },
                 { "siteId", n => { SiteId = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeStatus>(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeTypeEnum>(); } },
+                { "status", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeStatus>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueStatus = default; _explicitNullProperties?.Remove("status"); AdditionalData["status"] = unknown; } else { Status = parsed; AdditionalData.Remove("status"); } } },
+                { "type", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeTypeEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueType = default; _explicitNullProperties?.Remove("type"); AdditionalData["type"] = unknown; } else { Type = parsed; AdditionalData.Remove("type"); } } },
                 { "version", n => { Version = n.GetIntValue(); } },
             };
         }

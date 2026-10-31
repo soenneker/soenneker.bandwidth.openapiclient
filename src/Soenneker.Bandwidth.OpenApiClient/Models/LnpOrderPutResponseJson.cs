@@ -18,7 +18,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("lnpOrderResponse") is { } nullNodeLnpOrderResponse && nullNodeLnpOrderResponse.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LnpOrderResponse = null;
+            if (parseNode.GetChildNode("lnpOrderResponse") is null) { _explicitNullValueLnpOrderResponse = default!; _explicitNullProperties?.Remove("lnpOrderResponse"); }
+            else if (parseNode.GetChildNode("lnpOrderResponse") is { } nullNodeLnpOrderResponse && nullNodeLnpOrderResponse.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LnpOrderResponse = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The lnpOrderResponse property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderPutResponseJsonLnpOrderResponse? LnpOrderResponse { get => _explicitNullValueLnpOrderResponse; set { _explicitNullValueLnpOrderResponse = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lnpOrderResponse"); else _explicitNullProperties?.Remove("lnpOrderResponse"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderPutResponseJsonLnpOrderResponse? LnpOrderResponse { get => _explicitNullValueLnpOrderResponse; set { _explicitNullValueLnpOrderResponse = value; AdditionalData?.Remove("lnpOrderResponse"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lnpOrderResponse"); else _explicitNullProperties?.Remove("lnpOrderResponse"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderPutResponseJsonLnpOrderResponse? _explicitNullValueLnpOrderResponse = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderPutResponseJsonLnpOrderResponse LnpOrderResponse { get => _explicitNullValueLnpOrderResponse; set { _explicitNullValueLnpOrderResponse = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lnpOrderResponse"); else _explicitNullProperties?.Remove("lnpOrderResponse"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderPutResponseJsonLnpOrderResponse LnpOrderResponse { get => _explicitNullValueLnpOrderResponse; set { _explicitNullValueLnpOrderResponse = value; AdditionalData?.Remove("lnpOrderResponse"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lnpOrderResponse"); else _explicitNullProperties?.Remove("lnpOrderResponse"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.LnpOrderPutResponseJsonLnpOrderResponse _explicitNullValueLnpOrderResponse = default!;
 #endif
         /// <summary>The primary error message.</summary>

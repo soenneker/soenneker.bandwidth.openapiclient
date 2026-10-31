@@ -18,7 +18,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("TnAttribute") is { } nullNodeTnAttributeProp && nullNodeTnAttributeProp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TnAttributeProp = null;
+            if (parseNode.GetChildNode("TnAttribute") is null) { _explicitNullValueTnAttributeProp = default!; _explicitNullProperties?.Remove("TnAttribute"); }
+            else if (parseNode.GetChildNode("TnAttribute") is { } nullNodeTnAttributeProp && nullNodeTnAttributeProp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TnAttributeProp = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The TnAttribute property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TnAttributeProp { get => _explicitNullValueTnAttributeProp; set { _explicitNullValueTnAttributeProp = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("TnAttribute"); else _explicitNullProperties?.Remove("TnAttribute"); } }
+        public string? TnAttributeProp { get => _explicitNullValueTnAttributeProp; set { _explicitNullValueTnAttributeProp = value; AdditionalData?.Remove("TnAttribute"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("TnAttribute"); else _explicitNullProperties?.Remove("TnAttribute"); } }
         private string? _explicitNullValueTnAttributeProp = default!;
 #nullable restore
 #else
-        public string TnAttributeProp { get => _explicitNullValueTnAttributeProp; set { _explicitNullValueTnAttributeProp = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("TnAttribute"); else _explicitNullProperties?.Remove("TnAttribute"); } }
+        public string TnAttributeProp { get => _explicitNullValueTnAttributeProp; set { _explicitNullValueTnAttributeProp = value; AdditionalData?.Remove("TnAttribute"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("TnAttribute"); else _explicitNullProperties?.Remove("TnAttribute"); } }
         private string _explicitNullValueTnAttributeProp = default!;
 #endif
         /// <summary>

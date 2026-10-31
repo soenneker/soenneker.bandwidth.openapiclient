@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("capacityCartItem") is { } nullNodeCapacityCartItem && nullNodeCapacityCartItem.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CapacityCartItem = null;
+            if (parseNode.GetChildNode("capacityCartItem") is null) { _explicitNullValueCapacityCartItem = default!; _explicitNullProperties?.Remove("capacityCartItem"); }
+            else if (parseNode.GetChildNode("capacityCartItem") is { } nullNodeCapacityCartItem && nullNodeCapacityCartItem.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CapacityCartItem = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>CapacityCartItem corresponds to capacity (VoxTRUNK channels). Only one capacityCartItem can be added per request and capacity must be ordered in multiple of 10.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CapacityCartItem? CapacityCartItem { get => _explicitNullValueCapacityCartItem; set { _explicitNullValueCapacityCartItem = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("capacityCartItem"); else _explicitNullProperties?.Remove("capacityCartItem"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CapacityCartItem? CapacityCartItem { get => _explicitNullValueCapacityCartItem; set { _explicitNullValueCapacityCartItem = value; AdditionalData?.Remove("capacityCartItem"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("capacityCartItem"); else _explicitNullProperties?.Remove("capacityCartItem"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.CapacityCartItem? _explicitNullValueCapacityCartItem = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CapacityCartItem CapacityCartItem { get => _explicitNullValueCapacityCartItem; set { _explicitNullValueCapacityCartItem = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("capacityCartItem"); else _explicitNullProperties?.Remove("capacityCartItem"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CapacityCartItem CapacityCartItem { get => _explicitNullValueCapacityCartItem; set { _explicitNullValueCapacityCartItem = value; AdditionalData?.Remove("capacityCartItem"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("capacityCartItem"); else _explicitNullProperties?.Remove("capacityCartItem"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.CapacityCartItem _explicitNullValueCapacityCartItem = default!;
 #endif
         /// <summary>

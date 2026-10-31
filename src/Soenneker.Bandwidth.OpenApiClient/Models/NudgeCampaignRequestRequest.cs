@@ -17,8 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("description") is { } nullNodeDescription && nullNodeDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Description = null;
-            if (parseNode.GetChildNode("nudgeIntent") is { } nullNodeNudgeIntent && nullNodeNudgeIntent.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NudgeIntent = null;
+            if (parseNode.GetChildNode("description") is null) { _explicitNullValueDescription = default!; _explicitNullProperties?.Remove("description"); }
+            else if (parseNode.GetChildNode("description") is { } nullNodeDescription && nullNodeDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Description = null;
+            if (parseNode.GetChildNode("nudgeIntent") is null) { _explicitNullValueNudgeIntent = default!; _explicitNullProperties?.Remove("nudgeIntent"); }
+            else if (parseNode.GetChildNode("nudgeIntent") is { } nullNodeNudgeIntent && nullNodeNudgeIntent.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NudgeIntent = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,15 +28,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>A description of the reason for the nudge request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        public string? Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; AdditionalData?.Remove("description"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
         private string? _explicitNullValueDescription = default!;
 #nullable restore
 #else
-        public string Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        public string Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; AdditionalData?.Remove("description"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
         private string _explicitNullValueDescription = default!;
 #endif
         /// <summary>The intent of a campaign nudge request. Which action is awaiting review?</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumNudgeIntent? NudgeIntent { get => _explicitNullValueNudgeIntent; set { _explicitNullValueNudgeIntent = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nudgeIntent"); else _explicitNullProperties?.Remove("nudgeIntent"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EnumNudgeIntent? NudgeIntent { get => _explicitNullValueNudgeIntent; set { _explicitNullValueNudgeIntent = value; AdditionalData?.Remove("nudgeIntent"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nudgeIntent"); else _explicitNullProperties?.Remove("nudgeIntent"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.EnumNudgeIntent? _explicitNullValueNudgeIntent = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NudgeCampaignRequestRequest"/> and sets the default values.
@@ -62,7 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "nudgeIntent", n => { NudgeIntent = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumNudgeIntent>(); } },
+                { "nudgeIntent", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumNudgeIntent>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueNudgeIntent = default; _explicitNullProperties?.Remove("nudgeIntent"); AdditionalData["nudgeIntent"] = unknown; } else { NudgeIntent = parsed; AdditionalData.Remove("nudgeIntent"); } } },
             };
         }
         /// <summary>

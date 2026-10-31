@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("didCartItem") is { } nullNodeDidCartItem && nullNodeDidCartItem.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DidCartItem = null;
+            if (parseNode.GetChildNode("didCartItem") is null) { _explicitNullValueDidCartItem = default!; _explicitNullProperties?.Remove("didCartItem"); }
+            else if (parseNode.GetChildNode("didCartItem") is { } nullNodeDidCartItem && nullNodeDidCartItem.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DidCartItem = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>DidCartItem corresponds to DIDs</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.DidCartItem? DidCartItem { get => _explicitNullValueDidCartItem; set { _explicitNullValueDidCartItem = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("didCartItem"); else _explicitNullProperties?.Remove("didCartItem"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.DidCartItem? DidCartItem { get => _explicitNullValueDidCartItem; set { _explicitNullValueDidCartItem = value; AdditionalData?.Remove("didCartItem"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("didCartItem"); else _explicitNullProperties?.Remove("didCartItem"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.DidCartItem? _explicitNullValueDidCartItem = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.DidCartItem DidCartItem { get => _explicitNullValueDidCartItem; set { _explicitNullValueDidCartItem = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("didCartItem"); else _explicitNullProperties?.Remove("didCartItem"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.DidCartItem DidCartItem { get => _explicitNullValueDidCartItem; set { _explicitNullValueDidCartItem = value; AdditionalData?.Remove("didCartItem"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("didCartItem"); else _explicitNullProperties?.Remove("didCartItem"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.DidCartItem _explicitNullValueDidCartItem = default!;
 #endif
         /// <summary>

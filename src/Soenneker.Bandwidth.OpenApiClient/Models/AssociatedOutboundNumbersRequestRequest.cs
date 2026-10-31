@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("associatedOutboundNumbers") is { } nullNodeAssociatedOutboundNumbers && nullNodeAssociatedOutboundNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AssociatedOutboundNumbers = null;
+            if (parseNode.GetChildNode("associatedOutboundNumbers") is null) { _explicitNullValueAssociatedOutboundNumbers = default!; _explicitNullProperties?.Remove("associatedOutboundNumbers"); }
+            else if (parseNode.GetChildNode("associatedOutboundNumbers") is { } nullNodeAssociatedOutboundNumbers && nullNodeAssociatedOutboundNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AssociatedOutboundNumbers = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The associatedOutboundNumbers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumberRequestJson>? AssociatedOutboundNumbers { get => _explicitNullValueAssociatedOutboundNumbers; set { _explicitNullValueAssociatedOutboundNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("associatedOutboundNumbers"); else _explicitNullProperties?.Remove("associatedOutboundNumbers"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumberRequestJson>? AssociatedOutboundNumbers { get => _explicitNullValueAssociatedOutboundNumbers; set { _explicitNullValueAssociatedOutboundNumbers = value; AdditionalData?.Remove("associatedOutboundNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("associatedOutboundNumbers"); else _explicitNullProperties?.Remove("associatedOutboundNumbers"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumberRequestJson>? _explicitNullValueAssociatedOutboundNumbers = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumberRequestJson> AssociatedOutboundNumbers { get => _explicitNullValueAssociatedOutboundNumbers; set { _explicitNullValueAssociatedOutboundNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("associatedOutboundNumbers"); else _explicitNullProperties?.Remove("associatedOutboundNumbers"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumberRequestJson> AssociatedOutboundNumbers { get => _explicitNullValueAssociatedOutboundNumbers; set { _explicitNullValueAssociatedOutboundNumbers = value; AdditionalData?.Remove("associatedOutboundNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("associatedOutboundNumbers"); else _explicitNullProperties?.Remove("associatedOutboundNumbers"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumberRequestJson> _explicitNullValueAssociatedOutboundNumbers = default!;
 #endif
         /// <summary>

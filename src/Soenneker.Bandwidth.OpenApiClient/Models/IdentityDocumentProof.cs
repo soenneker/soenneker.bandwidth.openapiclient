@@ -18,11 +18,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("identityDocumentNumber") is { } nullNodeIdentityDocumentNumber && nullNodeIdentityDocumentNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IdentityDocumentNumber = null;
-            if (parseNode.GetChildNode("identityDocumentType") is { } nullNodeIdentityDocumentType && nullNodeIdentityDocumentType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IdentityDocumentType = null;
-            if (parseNode.GetChildNode("issuingAuthority") is { } nullNodeIssuingAuthority && nullNodeIssuingAuthority.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IssuingAuthority = null;
-            if (parseNode.GetChildNode("issuingDate") is { } nullNodeIssuingDate && nullNodeIssuingDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IssuingDate = null;
-            if (parseNode.GetChildNode("nationality") is { } nullNodeNationality && nullNodeNationality.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Nationality = null;
+            if (parseNode.GetChildNode("identityDocumentNumber") is null) { _explicitNullValueIdentityDocumentNumber = default!; _explicitNullProperties?.Remove("identityDocumentNumber"); }
+            else if (parseNode.GetChildNode("identityDocumentNumber") is { } nullNodeIdentityDocumentNumber && nullNodeIdentityDocumentNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IdentityDocumentNumber = null;
+            if (parseNode.GetChildNode("identityDocumentType") is null) { _explicitNullValueIdentityDocumentType = default!; _explicitNullProperties?.Remove("identityDocumentType"); }
+            else if (parseNode.GetChildNode("identityDocumentType") is { } nullNodeIdentityDocumentType && nullNodeIdentityDocumentType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IdentityDocumentType = null;
+            if (parseNode.GetChildNode("issuingAuthority") is null) { _explicitNullValueIssuingAuthority = default!; _explicitNullProperties?.Remove("issuingAuthority"); }
+            else if (parseNode.GetChildNode("issuingAuthority") is { } nullNodeIssuingAuthority && nullNodeIssuingAuthority.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IssuingAuthority = null;
+            if (parseNode.GetChildNode("issuingDate") is null) { _explicitNullValueIssuingDate = default!; _explicitNullProperties?.Remove("issuingDate"); }
+            else if (parseNode.GetChildNode("issuingDate") is { } nullNodeIssuingDate && nullNodeIssuingDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IssuingDate = null;
+            if (parseNode.GetChildNode("nationality") is null) { _explicitNullValueNationality = default!; _explicitNullProperties?.Remove("nationality"); }
+            else if (parseNode.GetChildNode("nationality") is { } nullNodeNationality && nullNodeNationality.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Nationality = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -30,44 +35,44 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Document number as seen on the ID proof document attached. Maximum length: 60. Mandatory for South Africa and Italy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? IdentityDocumentNumber { get => _explicitNullValueIdentityDocumentNumber; set { _explicitNullValueIdentityDocumentNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("identityDocumentNumber"); else _explicitNullProperties?.Remove("identityDocumentNumber"); } }
+        public string? IdentityDocumentNumber { get => _explicitNullValueIdentityDocumentNumber; set { _explicitNullValueIdentityDocumentNumber = value; AdditionalData?.Remove("identityDocumentNumber"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("identityDocumentNumber"); else _explicitNullProperties?.Remove("identityDocumentNumber"); } }
         private string? _explicitNullValueIdentityDocumentNumber = default!;
 #nullable restore
 #else
-        public string IdentityDocumentNumber { get => _explicitNullValueIdentityDocumentNumber; set { _explicitNullValueIdentityDocumentNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("identityDocumentNumber"); else _explicitNullProperties?.Remove("identityDocumentNumber"); } }
+        public string IdentityDocumentNumber { get => _explicitNullValueIdentityDocumentNumber; set { _explicitNullValueIdentityDocumentNumber = value; AdditionalData?.Remove("identityDocumentNumber"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("identityDocumentNumber"); else _explicitNullProperties?.Remove("identityDocumentNumber"); } }
         private string _explicitNullValueIdentityDocumentNumber = default!;
 #endif
         /// <summary>Mandatory for South Africa and Italy. Only BUSINESS_REGISTRATION is applicable for ZAF</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.IdentityDocumentProofIdentityDocumentType? IdentityDocumentType { get => _explicitNullValueIdentityDocumentType; set { _explicitNullValueIdentityDocumentType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("identityDocumentType"); else _explicitNullProperties?.Remove("identityDocumentType"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.IdentityDocumentProofIdentityDocumentType? IdentityDocumentType { get => _explicitNullValueIdentityDocumentType; set { _explicitNullValueIdentityDocumentType = value; AdditionalData?.Remove("identityDocumentType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("identityDocumentType"); else _explicitNullProperties?.Remove("identityDocumentType"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.IdentityDocumentProofIdentityDocumentType? _explicitNullValueIdentityDocumentType = default!;
         /// <summary>Name of the issuing authority as seen on the ID proof document attached. Maximum length: 60. Mandatory for Italy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? IssuingAuthority { get => _explicitNullValueIssuingAuthority; set { _explicitNullValueIssuingAuthority = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("issuingAuthority"); else _explicitNullProperties?.Remove("issuingAuthority"); } }
+        public string? IssuingAuthority { get => _explicitNullValueIssuingAuthority; set { _explicitNullValueIssuingAuthority = value; AdditionalData?.Remove("issuingAuthority"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("issuingAuthority"); else _explicitNullProperties?.Remove("issuingAuthority"); } }
         private string? _explicitNullValueIssuingAuthority = default!;
 #nullable restore
 #else
-        public string IssuingAuthority { get => _explicitNullValueIssuingAuthority; set { _explicitNullValueIssuingAuthority = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("issuingAuthority"); else _explicitNullProperties?.Remove("issuingAuthority"); } }
+        public string IssuingAuthority { get => _explicitNullValueIssuingAuthority; set { _explicitNullValueIssuingAuthority = value; AdditionalData?.Remove("issuingAuthority"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("issuingAuthority"); else _explicitNullProperties?.Remove("issuingAuthority"); } }
         private string _explicitNullValueIssuingAuthority = default!;
 #endif
         /// <summary>Issuing date as seen on the ID proof document attached. Maximum length: 10. Mandatory for Italy - Format is yyyy-mm-dd. Has to be a date in the past.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? IssuingDate { get => _explicitNullValueIssuingDate; set { _explicitNullValueIssuingDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("issuingDate"); else _explicitNullProperties?.Remove("issuingDate"); } }
+        public string? IssuingDate { get => _explicitNullValueIssuingDate; set { _explicitNullValueIssuingDate = value; AdditionalData?.Remove("issuingDate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("issuingDate"); else _explicitNullProperties?.Remove("issuingDate"); } }
         private string? _explicitNullValueIssuingDate = default!;
 #nullable restore
 #else
-        public string IssuingDate { get => _explicitNullValueIssuingDate; set { _explicitNullValueIssuingDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("issuingDate"); else _explicitNullProperties?.Remove("issuingDate"); } }
+        public string IssuingDate { get => _explicitNullValueIssuingDate; set { _explicitNullValueIssuingDate = value; AdditionalData?.Remove("issuingDate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("issuingDate"); else _explicitNullProperties?.Remove("issuingDate"); } }
         private string _explicitNullValueIssuingDate = default!;
 #endif
         /// <summary>Maximum length: 60. There is no specific format for this field. Either full country name or the ISO-3166-1 alpha-3 code is acceptable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Nationality { get => _explicitNullValueNationality; set { _explicitNullValueNationality = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nationality"); else _explicitNullProperties?.Remove("nationality"); } }
+        public string? Nationality { get => _explicitNullValueNationality; set { _explicitNullValueNationality = value; AdditionalData?.Remove("nationality"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nationality"); else _explicitNullProperties?.Remove("nationality"); } }
         private string? _explicitNullValueNationality = default!;
 #nullable restore
 #else
-        public string Nationality { get => _explicitNullValueNationality; set { _explicitNullValueNationality = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nationality"); else _explicitNullProperties?.Remove("nationality"); } }
+        public string Nationality { get => _explicitNullValueNationality; set { _explicitNullValueNationality = value; AdditionalData?.Remove("nationality"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nationality"); else _explicitNullProperties?.Remove("nationality"); } }
         private string _explicitNullValueNationality = default!;
 #endif
         /// <summary>
@@ -96,7 +101,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "identityDocumentNumber", n => { IdentityDocumentNumber = n.GetStringValue(); } },
-                { "identityDocumentType", n => { IdentityDocumentType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.IdentityDocumentProofIdentityDocumentType>(); } },
+                { "identityDocumentType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.IdentityDocumentProofIdentityDocumentType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueIdentityDocumentType = default; _explicitNullProperties?.Remove("identityDocumentType"); AdditionalData["identityDocumentType"] = unknown; } else { IdentityDocumentType = parsed; AdditionalData.Remove("identityDocumentType"); } } },
                 { "issuingAuthority", n => { IssuingAuthority = n.GetStringValue(); } },
                 { "issuingDate", n => { IssuingDate = n.GetStringValue(); } },
                 { "nationality", n => { Nationality = n.GetStringValue(); } },

@@ -18,7 +18,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("queryCriteria") is { } nullNodeQueryCriteria && nullNodeQueryCriteria.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) QueryCriteria = null;
+            if (parseNode.GetChildNode("queryCriteria") is null) { _explicitNullValueQueryCriteria = default!; _explicitNullProperties?.Remove("queryCriteria"); }
+            else if (parseNode.GetChildNode("queryCriteria") is { } nullNodeQueryCriteria && nullNodeQueryCriteria.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) QueryCriteria = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>List of query criteria for searching voice configuration packages. Only specific parameter combinations are allowed.**Supported `parameter` combinations:**- `phoneNumber`, `validVoiceConfig`- `phoneNumber`, `validVoiceConfig`, `name`- `phoneNumber`, `validVoiceConfigurationPackage`- `phoneNumber`, `validVoiceConfigurationPackage`, `name`- `voiceIntegrationId`- `voiceIntegrationId`, `name`- `name`- `trunkId`&gt; **Note:** The order of parameters in the `queryCriteria` array does not matter, but only the combinations listed above are valid.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria>? QueryCriteria { get => _explicitNullValueQueryCriteria; set { _explicitNullValueQueryCriteria = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("queryCriteria"); else _explicitNullProperties?.Remove("queryCriteria"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria>? QueryCriteria { get => _explicitNullValueQueryCriteria; set { _explicitNullValueQueryCriteria = value; AdditionalData?.Remove("queryCriteria"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("queryCriteria"); else _explicitNullProperties?.Remove("queryCriteria"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria>? _explicitNullValueQueryCriteria = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria> QueryCriteria { get => _explicitNullValueQueryCriteria; set { _explicitNullValueQueryCriteria = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("queryCriteria"); else _explicitNullProperties?.Remove("queryCriteria"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria> QueryCriteria { get => _explicitNullValueQueryCriteria; set { _explicitNullValueQueryCriteria = value; AdditionalData?.Remove("queryCriteria"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("queryCriteria"); else _explicitNullProperties?.Remove("queryCriteria"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.QueryCriteria> _explicitNullValueQueryCriteria = default!;
 #endif
         /// <summary>

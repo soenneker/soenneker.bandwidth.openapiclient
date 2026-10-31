@@ -18,17 +18,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
-            if (parseNode.GetChildNode("usageCategory") is { } nullNodeUsageCategory && nullNodeUsageCategory.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsageCategory = null;
+            if (parseNode.GetChildNode("type") is null) { _explicitNullValueType = default!; _explicitNullProperties?.Remove("type"); }
+            else if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+            if (parseNode.GetChildNode("usageCategory") is null) { _explicitNullValueUsageCategory = default!; _explicitNullProperties?.Remove("usageCategory"); }
+            else if (parseNode.GetChildNode("usageCategory") is { } nullNodeUsageCategory && nullNodeUsageCategory.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsageCategory = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>For UC Trunking accounts the Type parameter describes the kind of UC trunking that is provided. The Type parameter is one of Seats, Premise, or Cloud.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UcType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UcType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; AdditionalData?.Remove("type"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.UcType? _explicitNullValueType = default!;
         /// <summary>For UC Trunking accounts the UsageCategory parameter describes the kind of UC trunking that is provided. The UsageCategory parameter is one of UC250, UC500 or UC1000.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.UcUsageCategory? UsageCategory { get => _explicitNullValueUsageCategory; set { _explicitNullValueUsageCategory = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usageCategory"); else _explicitNullProperties?.Remove("usageCategory"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.UcUsageCategory? UsageCategory { get => _explicitNullValueUsageCategory; set { _explicitNullValueUsageCategory = value; AdditionalData?.Remove("usageCategory"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usageCategory"); else _explicitNullProperties?.Remove("usageCategory"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.UcUsageCategory? _explicitNullValueUsageCategory = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubAccountForUcJsonUcTrunkingConfiguration"/> and sets the default values.
@@ -55,8 +57,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UcType>(); } },
-                { "usageCategory", n => { UsageCategory = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UcUsageCategory>(); } },
+                { "type", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UcType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueType = default; _explicitNullProperties?.Remove("type"); AdditionalData["type"] = unknown; } else { Type = parsed; AdditionalData.Remove("type"); } } },
+                { "usageCategory", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UcUsageCategory>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueUsageCategory = default; _explicitNullProperties?.Remove("usageCategory"); AdditionalData["usageCategory"] = unknown; } else { UsageCategory = parsed; AdditionalData.Remove("usageCategory"); } } },
             };
         }
         /// <summary>

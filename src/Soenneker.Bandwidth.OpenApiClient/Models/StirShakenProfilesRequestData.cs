@@ -18,32 +18,36 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("attestLevel") is { } nullNodeAttestLevel && nullNodeAttestLevel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AttestLevel = null;
-            if (parseNode.GetChildNode("certificateId") is { } nullNodeCertificateId && nullNodeCertificateId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CertificateId = null;
-            if (parseNode.GetChildNode("profileType") is { } nullNodeProfileType && nullNodeProfileType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProfileType = null;
-            if (parseNode.GetChildNode("region") is { } nullNodeRegion && nullNodeRegion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Region = null;
+            if (parseNode.GetChildNode("attestLevel") is null) { _explicitNullValueAttestLevel = default!; _explicitNullProperties?.Remove("attestLevel"); }
+            else if (parseNode.GetChildNode("attestLevel") is { } nullNodeAttestLevel && nullNodeAttestLevel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AttestLevel = null;
+            if (parseNode.GetChildNode("certificateId") is null) { _explicitNullValueCertificateId = default!; _explicitNullProperties?.Remove("certificateId"); }
+            else if (parseNode.GetChildNode("certificateId") is { } nullNodeCertificateId && nullNodeCertificateId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CertificateId = null;
+            if (parseNode.GetChildNode("profileType") is null) { _explicitNullValueProfileType = default!; _explicitNullProperties?.Remove("profileType"); }
+            else if (parseNode.GetChildNode("profileType") is { } nullNodeProfileType && nullNodeProfileType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProfileType = null;
+            if (parseNode.GetChildNode("region") is null) { _explicitNullValueRegion = default!; _explicitNullProperties?.Remove("region"); }
+            else if (parseNode.GetChildNode("region") is { } nullNodeRegion && nullNodeRegion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Region = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Attestation level. A (Full), B (Partial), or C (Gateway).Required when you create or replace an `INDIRECT` profile, in every region. For US and FR hosted signing, this is the attestation level used at call time.The value can be null in a response, because older profiles can have no attestation level.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AttestLevel? AttestLevel { get => _explicitNullValueAttestLevel; set { _explicitNullValueAttestLevel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("attestLevel"); else _explicitNullProperties?.Remove("attestLevel"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AttestLevel? AttestLevel { get => _explicitNullValueAttestLevel; set { _explicitNullValueAttestLevel = value; AdditionalData?.Remove("attestLevel"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("attestLevel"); else _explicitNullProperties?.Remove("attestLevel"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.AttestLevel? _explicitNullValueAttestLevel = default!;
         /// <summary>The UUID for the certificate.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CertificateId { get => _explicitNullValueCertificateId; set { _explicitNullValueCertificateId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("certificateId"); else _explicitNullProperties?.Remove("certificateId"); } }
+        public string? CertificateId { get => _explicitNullValueCertificateId; set { _explicitNullValueCertificateId = value; AdditionalData?.Remove("certificateId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("certificateId"); else _explicitNullProperties?.Remove("certificateId"); } }
         private string? _explicitNullValueCertificateId = default!;
 #nullable restore
 #else
-        public string CertificateId { get => _explicitNullValueCertificateId; set { _explicitNullValueCertificateId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("certificateId"); else _explicitNullProperties?.Remove("certificateId"); } }
+        public string CertificateId { get => _explicitNullValueCertificateId; set { _explicitNullValueCertificateId = value; AdditionalData?.Remove("certificateId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("certificateId"); else _explicitNullProperties?.Remove("certificateId"); } }
         private string _explicitNullValueCertificateId = default!;
 #endif
         /// <summary>The attestation type.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ProfileType? ProfileType { get => _explicitNullValueProfileType; set { _explicitNullValueProfileType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("profileType"); else _explicitNullProperties?.Remove("profileType"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ProfileType? ProfileType { get => _explicitNullValueProfileType; set { _explicitNullValueProfileType = value; AdditionalData?.Remove("profileType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("profileType"); else _explicitNullProperties?.Remove("profileType"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.ProfileType? _explicitNullValueProfileType = default!;
         /// <summary>The region for the certificate.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegionAll? Region { get => _explicitNullValueRegion; set { _explicitNullValueRegion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("region"); else _explicitNullProperties?.Remove("region"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RegionAll? Region { get => _explicitNullValueRegion; set { _explicitNullValueRegion = value; AdditionalData?.Remove("region"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("region"); else _explicitNullProperties?.Remove("region"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.RegionAll? _explicitNullValueRegion = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.StirShakenProfilesRequestData"/> and sets the default values.
@@ -70,10 +74,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "attestLevel", n => { AttestLevel = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AttestLevel>(); } },
+                { "attestLevel", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AttestLevel>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueAttestLevel = default; _explicitNullProperties?.Remove("attestLevel"); AdditionalData["attestLevel"] = unknown; } else { AttestLevel = parsed; AdditionalData.Remove("attestLevel"); } } },
                 { "certificateId", n => { CertificateId = n.GetStringValue(); } },
-                { "profileType", n => { ProfileType = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ProfileType>(); } },
-                { "region", n => { Region = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegionAll>(); } },
+                { "profileType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ProfileType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueProfileType = default; _explicitNullProperties?.Remove("profileType"); AdditionalData["profileType"] = unknown; } else { ProfileType = parsed; AdditionalData.Remove("profileType"); } } },
+                { "region", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegionAll>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueRegion = default; _explicitNullProperties?.Remove("region"); AdditionalData["region"] = unknown; } else { Region = parsed; AdditionalData.Remove("region"); } } },
             };
         }
         /// <summary>

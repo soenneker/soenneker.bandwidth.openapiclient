@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("bulkPortin") is { } nullNodeBulkPortin && nullNodeBulkPortin.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BulkPortin = null;
+            if (parseNode.GetChildNode("bulkPortin") is null) { _explicitNullValueBulkPortin = default!; _explicitNullProperties?.Remove("bulkPortin"); }
+            else if (parseNode.GetChildNode("bulkPortin") is { } nullNodeBulkPortin && nullNodeBulkPortin.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BulkPortin = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The bulkPortin property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinRequestJsonBulkPortin? BulkPortin { get => _explicitNullValueBulkPortin; set { _explicitNullValueBulkPortin = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bulkPortin"); else _explicitNullProperties?.Remove("bulkPortin"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinRequestJsonBulkPortin? BulkPortin { get => _explicitNullValueBulkPortin; set { _explicitNullValueBulkPortin = value; AdditionalData?.Remove("bulkPortin"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bulkPortin"); else _explicitNullProperties?.Remove("bulkPortin"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinRequestJsonBulkPortin? _explicitNullValueBulkPortin = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinRequestJsonBulkPortin BulkPortin { get => _explicitNullValueBulkPortin; set { _explicitNullValueBulkPortin = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bulkPortin"); else _explicitNullProperties?.Remove("bulkPortin"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinRequestJsonBulkPortin BulkPortin { get => _explicitNullValueBulkPortin; set { _explicitNullValueBulkPortin = value; AdditionalData?.Remove("bulkPortin"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bulkPortin"); else _explicitNullProperties?.Remove("bulkPortin"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinRequestJsonBulkPortin _explicitNullValueBulkPortin = default!;
 #endif
         /// <summary>

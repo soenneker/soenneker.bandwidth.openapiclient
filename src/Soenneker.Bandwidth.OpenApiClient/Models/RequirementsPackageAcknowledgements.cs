@@ -18,13 +18,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("allDetailsAccurate") is { } nullNodeAllDetailsAccurate && nullNodeAllDetailsAccurate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AllDetailsAccurate = null;
+            if (parseNode.GetChildNode("allDetailsAccurate") is null) { _explicitNullValueAllDetailsAccurate = default!; _explicitNullProperties?.Remove("allDetailsAccurate"); }
+            else if (parseNode.GetChildNode("allDetailsAccurate") is { } nullNodeAllDetailsAccurate && nullNodeAllDetailsAccurate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AllDetailsAccurate = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Confirms that all provided information is accurate and valid for the end user attached to the requirements package.</summary>
-        public bool? AllDetailsAccurate { get => _explicitNullValueAllDetailsAccurate; set { _explicitNullValueAllDetailsAccurate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allDetailsAccurate"); else _explicitNullProperties?.Remove("allDetailsAccurate"); } }
+        public bool? AllDetailsAccurate { get => _explicitNullValueAllDetailsAccurate; set { _explicitNullValueAllDetailsAccurate = value; AdditionalData?.Remove("allDetailsAccurate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allDetailsAccurate"); else _explicitNullProperties?.Remove("allDetailsAccurate"); } }
         private bool? _explicitNullValueAllDetailsAccurate = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements"/> and sets the default values.

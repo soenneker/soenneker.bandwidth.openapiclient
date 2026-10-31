@@ -17,10 +17,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("hash1") is { } nullNodeHash1 && nullNodeHash1.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Hash1 = null;
-            if (parseNode.GetChildNode("hash1b") is { } nullNodeHash1b && nullNodeHash1b.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Hash1b = null;
-            if (parseNode.GetChildNode("httpVoiceV2AppId") is { } nullNodeHttpVoiceV2AppId && nullNodeHttpVoiceV2AppId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HttpVoiceV2AppId = null;
-            if (parseNode.GetChildNode("realm") is { } nullNodeRealm && nullNodeRealm.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Realm = null;
+            if (parseNode.GetChildNode("hash1") is null) { _explicitNullValueHash1 = default!; _explicitNullProperties?.Remove("hash1"); }
+            else if (parseNode.GetChildNode("hash1") is { } nullNodeHash1 && nullNodeHash1.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Hash1 = null;
+            if (parseNode.GetChildNode("hash1b") is null) { _explicitNullValueHash1b = default!; _explicitNullProperties?.Remove("hash1b"); }
+            else if (parseNode.GetChildNode("hash1b") is { } nullNodeHash1b && nullNodeHash1b.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Hash1b = null;
+            if (parseNode.GetChildNode("httpVoiceV2AppId") is null) { _explicitNullValueHttpVoiceV2AppId = default!; _explicitNullProperties?.Remove("httpVoiceV2AppId"); }
+            else if (parseNode.GetChildNode("httpVoiceV2AppId") is { } nullNodeHttpVoiceV2AppId && nullNodeHttpVoiceV2AppId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HttpVoiceV2AppId = null;
+            if (parseNode.GetChildNode("realm") is null) { _explicitNullValueRealm = default!; _explicitNullProperties?.Remove("realm"); }
+            else if (parseNode.GetChildNode("realm") is { } nullNodeRealm && nullNodeRealm.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Realm = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -28,41 +32,41 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Hash value #1 in MD5 representation</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Hash1 { get => _explicitNullValueHash1; set { _explicitNullValueHash1 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hash1"); else _explicitNullProperties?.Remove("hash1"); } }
+        public string? Hash1 { get => _explicitNullValueHash1; set { _explicitNullValueHash1 = value; AdditionalData?.Remove("hash1"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hash1"); else _explicitNullProperties?.Remove("hash1"); } }
         private string? _explicitNullValueHash1 = default!;
 #nullable restore
 #else
-        public string Hash1 { get => _explicitNullValueHash1; set { _explicitNullValueHash1 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hash1"); else _explicitNullProperties?.Remove("hash1"); } }
+        public string Hash1 { get => _explicitNullValueHash1; set { _explicitNullValueHash1 = value; AdditionalData?.Remove("hash1"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hash1"); else _explicitNullProperties?.Remove("hash1"); } }
         private string _explicitNullValueHash1 = default!;
 #endif
         /// <summary>Hash value #2 in MD5 representation</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Hash1b { get => _explicitNullValueHash1b; set { _explicitNullValueHash1b = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hash1b"); else _explicitNullProperties?.Remove("hash1b"); } }
+        public string? Hash1b { get => _explicitNullValueHash1b; set { _explicitNullValueHash1b = value; AdditionalData?.Remove("hash1b"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hash1b"); else _explicitNullProperties?.Remove("hash1b"); } }
         private string? _explicitNullValueHash1b = default!;
 #nullable restore
 #else
-        public string Hash1b { get => _explicitNullValueHash1b; set { _explicitNullValueHash1b = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hash1b"); else _explicitNullProperties?.Remove("hash1b"); } }
+        public string Hash1b { get => _explicitNullValueHash1b; set { _explicitNullValueHash1b = value; AdditionalData?.Remove("hash1b"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hash1b"); else _explicitNullProperties?.Remove("hash1b"); } }
         private string _explicitNullValueHash1b = default!;
 #endif
         /// <summary>Application id associated with subscriber</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? HttpVoiceV2AppId { get => _explicitNullValueHttpVoiceV2AppId; set { _explicitNullValueHttpVoiceV2AppId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("httpVoiceV2AppId"); else _explicitNullProperties?.Remove("httpVoiceV2AppId"); } }
+        public string? HttpVoiceV2AppId { get => _explicitNullValueHttpVoiceV2AppId; set { _explicitNullValueHttpVoiceV2AppId = value; AdditionalData?.Remove("httpVoiceV2AppId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("httpVoiceV2AppId"); else _explicitNullProperties?.Remove("httpVoiceV2AppId"); } }
         private string? _explicitNullValueHttpVoiceV2AppId = default!;
 #nullable restore
 #else
-        public string HttpVoiceV2AppId { get => _explicitNullValueHttpVoiceV2AppId; set { _explicitNullValueHttpVoiceV2AppId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("httpVoiceV2AppId"); else _explicitNullProperties?.Remove("httpVoiceV2AppId"); } }
+        public string HttpVoiceV2AppId { get => _explicitNullValueHttpVoiceV2AppId; set { _explicitNullValueHttpVoiceV2AppId = value; AdditionalData?.Remove("httpVoiceV2AppId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("httpVoiceV2AppId"); else _explicitNullProperties?.Remove("httpVoiceV2AppId"); } }
         private string _explicitNullValueHttpVoiceV2AppId = default!;
 #endif
         /// <summary>Subscriber realm</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Realm { get => _explicitNullValueRealm; set { _explicitNullValueRealm = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("realm"); else _explicitNullProperties?.Remove("realm"); } }
+        public string? Realm { get => _explicitNullValueRealm; set { _explicitNullValueRealm = value; AdditionalData?.Remove("realm"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("realm"); else _explicitNullProperties?.Remove("realm"); } }
         private string? _explicitNullValueRealm = default!;
 #nullable restore
 #else
-        public string Realm { get => _explicitNullValueRealm; set { _explicitNullValueRealm = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("realm"); else _explicitNullProperties?.Remove("realm"); } }
+        public string Realm { get => _explicitNullValueRealm; set { _explicitNullValueRealm = value; AdditionalData?.Remove("realm"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("realm"); else _explicitNullProperties?.Remove("realm"); } }
         private string _explicitNullValueRealm = default!;
 #endif
         /// <summary>

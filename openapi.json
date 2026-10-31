@@ -73524,7 +73524,7 @@
             "$ref": "#/components/schemas/Deletability"
           },
           "lineage": {
-            "$ref": "#/components/schemas/RequirementsPackageGetDataAllOf2Lineage"
+            "$ref": "#/components/schemas/RequirementsPackageCreateDataAllOf2Lineage"
           }
         }
       },
@@ -74435,7 +74435,7 @@
             "$ref": "#/components/schemas/Deletability"
           },
           "lineage": {
-            "$ref": "#/components/schemas/RequirementsPackageGetDataAllOf2Lineage"
+            "$ref": "#/components/schemas/RequirementsPackageCreateDataAllOf2Lineage"
           }
         }
       },
@@ -108829,7 +108829,7 @@
             "example": "2022-11-14T18:39:04.505Z"
           },
           "orderType": {
-            "$ref": "#/components/schemas/NewPhoneNumberOrderResponseOrderType"
+            "$ref": "#/components/schemas/NewPhoneNumberOrderOrderType"
           },
           "partialAllowed": {
             "type": [
@@ -111187,7 +111187,7 @@
             "example": "2022-11-14T18:39:04.505Z"
           },
           "orderType": {
-            "$ref": "#/components/schemas/NewPhoneNumberOrderResponseOrderType"
+            "$ref": "#/components/schemas/NewPhoneNumberOrderOrderType"
           },
           "partialAllowed": {
             "type": [
@@ -112849,7 +112849,7 @@
             "type": "string"
           },
           "Order": {
-            "$ref": "#/components/schemas/TnOrderUpdatedResponseOrderResponseOrder"
+            "$ref": "#/components/schemas/CreateNewPhoneNumberOrderRequestRequestXml"
           },
           "OrderCompleteDate": {
             "type": "string"
@@ -122073,7 +122073,7 @@
             "example": "OPR1"
           },
           "subscriber": {
-            "$ref": "#/components/schemas/LnpOrderSuppHostedTnLnpOrderSuppSubscriber"
+            "$ref": "#/components/schemas/LnpOrderSuppGlobalManualSubscriber"
           }
         }
       },
@@ -122125,7 +122125,7 @@
             "example": "OPR1"
           },
           "subscriber": {
-            "$ref": "#/components/schemas/LnpOrderSuppHostedTnJsonLnpOrderSuppSubscriber"
+            "$ref": "#/components/schemas/LnpOrderSuppGlobalManualJsonSubscriber"
           }
         }
       },
@@ -122731,7 +122731,7 @@
             "type": "string"
           },
           "subscriber": {
-            "$ref": "#/components/schemas/ManualGlobalLnpOrderResponseJsonSubscriber"
+            "$ref": "#/components/schemas/LnpOrderSuppGlobalManualJsonSubscriber"
           },
           "tags": {
             "type": "array",
@@ -125199,7 +125199,7 @@
             "example": "OPR1"
           },
           "subscriber": {
-            "$ref": "#/components/schemas/LnpOrderSuppHostedTnLnpOrderSuppSubscriber"
+            "$ref": "#/components/schemas/LnpOrderSuppGlobalManualSubscriber"
           }
         }
       },
@@ -125219,7 +125219,7 @@
             "example": "OPR1"
           },
           "subscriber": {
-            "$ref": "#/components/schemas/LnpOrderSuppHostedTnJsonLnpOrderSuppSubscriber"
+            "$ref": "#/components/schemas/LnpOrderSuppGlobalManualJsonSubscriber"
           }
         }
       },
@@ -125273,7 +125273,7 @@
             "format": "int32"
           },
           "Subscriber": {
-            "$ref": "#/components/schemas/ManualGlobalBetaLnpOrderRequestLnpOrderAllOf1Subscriber"
+            "$ref": "#/components/schemas/LnpOrderSuppGlobalManualSubscriber"
           },
           "Tags": {
             "type": "array",
@@ -125329,7 +125329,7 @@
             "format": "int32"
           },
           "subscriber": {
-            "$ref": "#/components/schemas/ManualGlobalBetaLnpOrderRequestJsonLnpOrderAllOf1Subscriber"
+            "$ref": "#/components/schemas/LnpOrderSuppGlobalManualJsonSubscriber"
           },
           "tags": {
             "type": "array",
@@ -125379,7 +125379,7 @@
             "format": "int32"
           },
           "Subscriber": {
-            "$ref": "#/components/schemas/ManualGlobalDraftLnpOrderRequestLnpOrderAllOf1Subscriber"
+            "$ref": "#/components/schemas/LnpOrderSuppGlobalManualSubscriber"
           },
           "Tags": {
             "type": "array",
@@ -125435,7 +125435,7 @@
             "format": "int32"
           },
           "subscriber": {
-            "$ref": "#/components/schemas/ManualGlobalDraftLnpOrderRequestJsonLnpOrderAllOf1Subscriber"
+            "$ref": "#/components/schemas/LnpOrderSuppGlobalManualJsonSubscriber"
           },
           "tags": {
             "type": "array",
@@ -125495,7 +125495,7 @@
             "format": "int32"
           },
           "Subscriber": {
-            "$ref": "#/components/schemas/ManualGlobalLarLnpOrderRequestLnpOrderAllOf1Subscriber"
+            "$ref": "#/components/schemas/LnpOrderSuppGlobalManualSubscriber"
           },
           "Tags": {
             "type": "array",
@@ -125565,7 +125565,7 @@
             "format": "int32"
           },
           "subscriber": {
-            "$ref": "#/components/schemas/ManualGlobalLarLnpOrderRequestJsonLnpOrderAllOf1Subscriber"
+            "$ref": "#/components/schemas/LnpOrderSuppGlobalManualJsonSubscriber"
           },
           "tags": {
             "type": "array",
@@ -126268,7 +126268,7 @@
             "format": "int32"
           },
           "Subscriber": {
-            "$ref": "#/components/schemas/ManualGlobalBetaLnpOrderRequestLnpOrderAllOf1Subscriber"
+            "$ref": "#/components/schemas/LnpOrderSuppGlobalManualSubscriber"
           },
           "Tags": {
             "type": "array",
@@ -126324,7 +126324,7 @@
             "format": "int32"
           },
           "subscriber": {
-            "$ref": "#/components/schemas/ManualGlobalBetaLnpOrderRequestJsonLnpOrderAllOf1Subscriber"
+            "$ref": "#/components/schemas/LnpOrderSuppGlobalManualJsonSubscriber"
           },
           "tags": {
             "type": "array",
@@ -126374,7 +126374,7 @@
             "format": "int32"
           },
           "Subscriber": {
-            "$ref": "#/components/schemas/ManualGlobalDraftLnpOrderRequestLnpOrderAllOf1Subscriber"
+            "$ref": "#/components/schemas/LnpOrderSuppGlobalManualSubscriber"
           },
           "Tags": {
             "type": "array",
@@ -126430,7 +126430,7 @@
             "format": "int32"
           },
           "subscriber": {
-            "$ref": "#/components/schemas/ManualGlobalDraftLnpOrderRequestJsonLnpOrderAllOf1Subscriber"
+            "$ref": "#/components/schemas/LnpOrderSuppGlobalManualJsonSubscriber"
           },
           "tags": {
             "type": "array",
@@ -126490,7 +126490,7 @@
             "format": "int32"
           },
           "Subscriber": {
-            "$ref": "#/components/schemas/ManualGlobalLarLnpOrderRequestLnpOrderAllOf1Subscriber"
+            "$ref": "#/components/schemas/LnpOrderSuppGlobalManualSubscriber"
           },
           "Tags": {
             "type": "array",
@@ -126560,7 +126560,7 @@
             "format": "int32"
           },
           "subscriber": {
-            "$ref": "#/components/schemas/ManualGlobalLarLnpOrderRequestJsonLnpOrderAllOf1Subscriber"
+            "$ref": "#/components/schemas/LnpOrderSuppGlobalManualJsonSubscriber"
           },
           "tags": {
             "type": "array",
@@ -127851,7 +127851,7 @@
             "$ref": "#/components/schemas/ManualGlobalLnpOrderResponseLnpOrderResponseStatus"
           },
           "subscriber": {
-            "$ref": "#/components/schemas/ManualGlobalLnpOrderResponseLnpOrderResponseSubscriber"
+            "$ref": "#/components/schemas/LnpOrderSuppGlobalManualSubscriber"
           },
           "tags": {
             "type": "array",
@@ -151608,7 +151608,8 @@
           {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/QueryCriteriaValuesOneOf3Item"
+              "type": "string",
+              "x-client-inline-scalar": true
             }
           }
         ],
@@ -151941,7 +151942,7 @@
             "example": "212"
           },
           "trunkInfo": {
-            "$ref": "#/components/schemas/TnEndpointRequestTrunkInfo"
+            "$ref": "#/components/schemas/FqdnEndpointRequestTrunkInfo"
           }
         },
         "description": "Telephone number (TN) endpoint request."
@@ -151974,7 +151975,7 @@
             "example": "212"
           },
           "trunkInfo": {
-            "$ref": "#/components/schemas/SipEndpointRequestTrunkInfo"
+            "$ref": "#/components/schemas/FqdnEndpointRequestTrunkInfo"
           }
         },
         "description": "SIP endpoint request."
@@ -152015,7 +152016,7 @@
             "example": "rewrite-user@example.com"
           },
           "trunkInfo": {
-            "$ref": "#/components/schemas/Ipv4EndpointRequestTrunkInfo"
+            "$ref": "#/components/schemas/FqdnEndpointRequestTrunkInfo"
           }
         },
         "description": "IPv4 endpoint request."
@@ -152056,7 +152057,7 @@
             "example": "rewrite-user@example.com"
           },
           "trunkInfo": {
-            "$ref": "#/components/schemas/IntegrationEndpointRequestTrunkInfo"
+            "$ref": "#/components/schemas/FqdnEndpointRequestTrunkInfo"
           }
         },
         "description": "Integration endpoint request."
@@ -152178,7 +152179,7 @@
             "example": 20
           },
           "trunkInfo": {
-            "$ref": "#/components/schemas/WeightedEndpointTrunkInfo"
+            "$ref": "#/components/schemas/FqdnEndpointRequestTrunkInfo"
           }
         },
         "additionalProperties": {
@@ -152666,7 +152667,8 @@
         ]
       },
       "QueryCriteriaValuesOneOf3Item": {
-        "type": "string"
+        "type": "string",
+        "x-client-inline-scalar": true
       },
       "VoiceConfigurationPackageSearchResultAllOf2": {
         "type": "object",
@@ -152790,13 +152792,7 @@
         "enum": [
           "TN"
         ],
-        "allOf": [
-          {
-            "enum": [
-              null
-            ]
-          }
-        ],
+        "x-client-original-const": "TN",
         "x-ms-enum": {
           "name": "TnType",
           "modelAsString": false,
@@ -152812,13 +152808,7 @@
         "enum": [
           "SIP"
         ],
-        "allOf": [
-          {
-            "enum": [
-              null
-            ]
-          }
-        ],
+        "x-client-original-const": "SIP",
         "x-ms-enum": {
           "name": "SipType",
           "modelAsString": false,
@@ -152834,13 +152824,7 @@
         "enum": [
           "IP_V4"
         ],
-        "allOf": [
-          {
-            "enum": [
-              null
-            ]
-          }
-        ],
+        "x-client-original-const": "IP_V4",
         "x-ms-enum": {
           "name": "IpV4Type",
           "modelAsString": false,
@@ -152856,13 +152840,7 @@
         "enum": [
           "INTEGRATION"
         ],
-        "allOf": [
-          {
-            "enum": [
-              null
-            ]
-          }
-        ],
+        "x-client-original-const": "INTEGRATION",
         "x-ms-enum": {
           "name": "IntegrationType",
           "modelAsString": false,
@@ -152878,13 +152856,7 @@
         "enum": [
           "FQDN"
         ],
-        "allOf": [
-          {
-            "enum": [
-              null
-            ]
-          }
-        ],
+        "x-client-original-const": "FQDN",
         "x-ms-enum": {
           "name": "FqdnType",
           "modelAsString": false,
@@ -152900,13 +152872,7 @@
         "enum": [
           "BOT"
         ],
-        "allOf": [
-          {
-            "enum": [
-              null
-            ]
-          }
-        ],
+        "x-client-original-const": "BOT",
         "x-ms-enum": {
           "name": "BotType",
           "modelAsString": false,
@@ -157861,13 +157827,7 @@
         "enum": [
           "FR"
         ],
-        "allOf": [
-          {
-            "enum": [
-              null
-            ]
-          }
-        ],
+        "x-client-original-const": "FR",
         "x-ms-enum": {
           "name": "FrRegion",
           "modelAsString": false,

@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("faxUri") is { } nullNodeFaxUri && nullNodeFaxUri.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FaxUri = null;
+            if (parseNode.GetChildNode("faxUri") is null) { _explicitNullValueFaxUri = default!; _explicitNullProperties?.Remove("faxUri"); }
+            else if (parseNode.GetChildNode("faxUri") is { } nullNodeFaxUri && nullNodeFaxUri.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FaxUri = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The faxUri property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriBody? FaxUri { get => _explicitNullValueFaxUri; set { _explicitNullValueFaxUri = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("faxUri"); else _explicitNullProperties?.Remove("faxUri"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriBody? FaxUri { get => _explicitNullValueFaxUri; set { _explicitNullValueFaxUri = value; AdditionalData?.Remove("faxUri"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("faxUri"); else _explicitNullProperties?.Remove("faxUri"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriBody? _explicitNullValueFaxUri = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriBody FaxUri { get => _explicitNullValueFaxUri; set { _explicitNullValueFaxUri = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("faxUri"); else _explicitNullProperties?.Remove("faxUri"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriBody FaxUri { get => _explicitNullValueFaxUri; set { _explicitNullValueFaxUri = value; AdditionalData?.Remove("faxUri"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("faxUri"); else _explicitNullProperties?.Remove("faxUri"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.SaveFaxUriBody _explicitNullValueFaxUri = default!;
 #endif
         /// <summary>

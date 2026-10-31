@@ -17,10 +17,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("countryCodeA3") is { } nullNodeCountryCodeA3 && nullNodeCountryCodeA3.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CountryCodeA3 = null;
-            if (parseNode.GetChildNode("operatorCode") is { } nullNodeOperatorCode && nullNodeOperatorCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OperatorCode = null;
-            if (parseNode.GetChildNode("operatorName") is { } nullNodeOperatorName && nullNodeOperatorName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OperatorName = null;
-            if (parseNode.GetChildNode("routingPrefixes") is { } nullNodeRoutingPrefixes && nullNodeRoutingPrefixes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RoutingPrefixes = null;
+            if (parseNode.GetChildNode("countryCodeA3") is null) { _explicitNullValueCountryCodeA3 = default!; _explicitNullProperties?.Remove("countryCodeA3"); }
+            else if (parseNode.GetChildNode("countryCodeA3") is { } nullNodeCountryCodeA3 && nullNodeCountryCodeA3.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CountryCodeA3 = null;
+            if (parseNode.GetChildNode("operatorCode") is null) { _explicitNullValueOperatorCode = default!; _explicitNullProperties?.Remove("operatorCode"); }
+            else if (parseNode.GetChildNode("operatorCode") is { } nullNodeOperatorCode && nullNodeOperatorCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OperatorCode = null;
+            if (parseNode.GetChildNode("operatorName") is null) { _explicitNullValueOperatorName = default!; _explicitNullProperties?.Remove("operatorName"); }
+            else if (parseNode.GetChildNode("operatorName") is { } nullNodeOperatorName && nullNodeOperatorName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OperatorName = null;
+            if (parseNode.GetChildNode("routingPrefixes") is null) { _explicitNullValueRoutingPrefixes = default!; _explicitNullProperties?.Remove("routingPrefixes"); }
+            else if (parseNode.GetChildNode("routingPrefixes") is { } nullNodeRoutingPrefixes && nullNodeRoutingPrefixes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RoutingPrefixes = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -28,41 +32,41 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>It used to store country code.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
+        public string? CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; AdditionalData?.Remove("countryCodeA3"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
         private string? _explicitNullValueCountryCodeA3 = default!;
 #nullable restore
 #else
-        public string CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
+        public string CountryCodeA3 { get => _explicitNullValueCountryCodeA3; set { _explicitNullValueCountryCodeA3 = value; AdditionalData?.Remove("countryCodeA3"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryCodeA3"); else _explicitNullProperties?.Remove("countryCodeA3"); } }
         private string _explicitNullValueCountryCodeA3 = default!;
 #endif
         /// <summary>It used to store operator code.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? OperatorCode { get => _explicitNullValueOperatorCode; set { _explicitNullValueOperatorCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operatorCode"); else _explicitNullProperties?.Remove("operatorCode"); } }
+        public string? OperatorCode { get => _explicitNullValueOperatorCode; set { _explicitNullValueOperatorCode = value; AdditionalData?.Remove("operatorCode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operatorCode"); else _explicitNullProperties?.Remove("operatorCode"); } }
         private string? _explicitNullValueOperatorCode = default!;
 #nullable restore
 #else
-        public string OperatorCode { get => _explicitNullValueOperatorCode; set { _explicitNullValueOperatorCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operatorCode"); else _explicitNullProperties?.Remove("operatorCode"); } }
+        public string OperatorCode { get => _explicitNullValueOperatorCode; set { _explicitNullValueOperatorCode = value; AdditionalData?.Remove("operatorCode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operatorCode"); else _explicitNullProperties?.Remove("operatorCode"); } }
         private string _explicitNullValueOperatorCode = default!;
 #endif
         /// <summary>It used to store operator name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? OperatorName { get => _explicitNullValueOperatorName; set { _explicitNullValueOperatorName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operatorName"); else _explicitNullProperties?.Remove("operatorName"); } }
+        public string? OperatorName { get => _explicitNullValueOperatorName; set { _explicitNullValueOperatorName = value; AdditionalData?.Remove("operatorName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operatorName"); else _explicitNullProperties?.Remove("operatorName"); } }
         private string? _explicitNullValueOperatorName = default!;
 #nullable restore
 #else
-        public string OperatorName { get => _explicitNullValueOperatorName; set { _explicitNullValueOperatorName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operatorName"); else _explicitNullProperties?.Remove("operatorName"); } }
+        public string OperatorName { get => _explicitNullValueOperatorName; set { _explicitNullValueOperatorName = value; AdditionalData?.Remove("operatorName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operatorName"); else _explicitNullProperties?.Remove("operatorName"); } }
         private string _explicitNullValueOperatorName = default!;
 #endif
         /// <summary>It used to store routing prefixes.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RoutingPrefixRequestPayload>? RoutingPrefixes { get => _explicitNullValueRoutingPrefixes; set { _explicitNullValueRoutingPrefixes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("routingPrefixes"); else _explicitNullProperties?.Remove("routingPrefixes"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RoutingPrefixRequestPayload>? RoutingPrefixes { get => _explicitNullValueRoutingPrefixes; set { _explicitNullValueRoutingPrefixes = value; AdditionalData?.Remove("routingPrefixes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("routingPrefixes"); else _explicitNullProperties?.Remove("routingPrefixes"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.RoutingPrefixRequestPayload>? _explicitNullValueRoutingPrefixes = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RoutingPrefixRequestPayload> RoutingPrefixes { get => _explicitNullValueRoutingPrefixes; set { _explicitNullValueRoutingPrefixes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("routingPrefixes"); else _explicitNullProperties?.Remove("routingPrefixes"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.RoutingPrefixRequestPayload> RoutingPrefixes { get => _explicitNullValueRoutingPrefixes; set { _explicitNullValueRoutingPrefixes = value; AdditionalData?.Remove("routingPrefixes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("routingPrefixes"); else _explicitNullProperties?.Remove("routingPrefixes"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.RoutingPrefixRequestPayload> _explicitNullValueRoutingPrefixes = default!;
 #endif
         /// <summary>

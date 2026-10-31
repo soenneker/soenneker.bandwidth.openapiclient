@@ -18,8 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("didGroups") is { } nullNodeDidGroups && nullNodeDidGroups.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DidGroups = null;
-            if (parseNode.GetChildNode("resultCount") is { } nullNodeResultCount && nullNodeResultCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResultCount = null;
+            if (parseNode.GetChildNode("didGroups") is null) { _explicitNullValueDidGroups = default!; _explicitNullProperties?.Remove("didGroups"); }
+            else if (parseNode.GetChildNode("didGroups") is { } nullNodeDidGroups && nullNodeDidGroups.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DidGroups = null;
+            if (parseNode.GetChildNode("resultCount") is null) { _explicitNullValueResultCount = default!; _explicitNullProperties?.Remove("resultCount"); }
+            else if (parseNode.GetChildNode("resultCount") is { } nullNodeResultCount && nullNodeResultCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResultCount = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,15 +29,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The didGroups property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroup>? DidGroups { get => _explicitNullValueDidGroups; set { _explicitNullValueDidGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("didGroups"); else _explicitNullProperties?.Remove("didGroups"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroup>? DidGroups { get => _explicitNullValueDidGroups; set { _explicitNullValueDidGroups = value; AdditionalData?.Remove("didGroups"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("didGroups"); else _explicitNullProperties?.Remove("didGroups"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroup>? _explicitNullValueDidGroups = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroup> DidGroups { get => _explicitNullValueDidGroups; set { _explicitNullValueDidGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("didGroups"); else _explicitNullProperties?.Remove("didGroups"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroup> DidGroups { get => _explicitNullValueDidGroups; set { _explicitNullValueDidGroups = value; AdditionalData?.Remove("didGroups"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("didGroups"); else _explicitNullProperties?.Remove("didGroups"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroup> _explicitNullValueDidGroups = default!;
 #endif
         /// <summary>The count for the item resulted from the request.</summary>
-        public int? ResultCount { get => _explicitNullValueResultCount; set { _explicitNullValueResultCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resultCount"); else _explicitNullProperties?.Remove("resultCount"); } }
+        public int? ResultCount { get => _explicitNullValueResultCount; set { _explicitNullValueResultCount = value; AdditionalData?.Remove("resultCount"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resultCount"); else _explicitNullProperties?.Remove("resultCount"); } }
         private int? _explicitNullValueResultCount = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ListDidGroupResponse"/> and sets the default values.

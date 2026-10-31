@@ -18,16 +18,26 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("bwContext") is { } nullNodeBwContext && nullNodeBwContext.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BwContext = null;
-            if (parseNode.GetChildNode("customerContext") is { } nullNodeCustomerContext && nullNodeCustomerContext.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerContext = null;
-            if (parseNode.GetChildNode("deduplicationId") is { } nullNodeDeduplicationId && nullNodeDeduplicationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DeduplicationId = null;
-            if (parseNode.GetChildNode("eventTime") is { } nullNodeEventTime && nullNodeEventTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EventTime = null;
-            if (parseNode.GetChildNode("eventType") is { } nullNodeEventTypeProp && nullNodeEventTypeProp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EventTypeProp = null;
-            if (parseNode.GetChildNode("http") is { } nullNodeHttp && nullNodeHttp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Http = null;
-            if (parseNode.GetChildNode("principal") is { } nullNodePrincipal && nullNodePrincipal.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Principal = null;
-            if (parseNode.GetChildNode("replayTime") is { } nullNodeReplayTime && nullNodeReplayTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReplayTime = null;
-            if (parseNode.GetChildNode("resource") is { } nullNodeResource && nullNodeResource.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Resource = null;
-            if (parseNode.GetChildNode("version") is { } nullNodeVersion && nullNodeVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Version = null;
+            if (parseNode.GetChildNode("bwContext") is null) { _explicitNullValueBwContext = default!; _explicitNullProperties?.Remove("bwContext"); }
+            else if (parseNode.GetChildNode("bwContext") is { } nullNodeBwContext && nullNodeBwContext.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BwContext = null;
+            if (parseNode.GetChildNode("customerContext") is null) { _explicitNullValueCustomerContext = default!; _explicitNullProperties?.Remove("customerContext"); }
+            else if (parseNode.GetChildNode("customerContext") is { } nullNodeCustomerContext && nullNodeCustomerContext.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerContext = null;
+            if (parseNode.GetChildNode("deduplicationId") is null) { _explicitNullValueDeduplicationId = default!; _explicitNullProperties?.Remove("deduplicationId"); }
+            else if (parseNode.GetChildNode("deduplicationId") is { } nullNodeDeduplicationId && nullNodeDeduplicationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DeduplicationId = null;
+            if (parseNode.GetChildNode("eventTime") is null) { _explicitNullValueEventTime = default!; _explicitNullProperties?.Remove("eventTime"); }
+            else if (parseNode.GetChildNode("eventTime") is { } nullNodeEventTime && nullNodeEventTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EventTime = null;
+            if (parseNode.GetChildNode("eventType") is null) { _explicitNullValueEventTypeProp = default!; _explicitNullProperties?.Remove("eventType"); }
+            else if (parseNode.GetChildNode("eventType") is { } nullNodeEventTypeProp && nullNodeEventTypeProp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EventTypeProp = null;
+            if (parseNode.GetChildNode("http") is null) { _explicitNullValueHttp = default!; _explicitNullProperties?.Remove("http"); }
+            else if (parseNode.GetChildNode("http") is { } nullNodeHttp && nullNodeHttp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Http = null;
+            if (parseNode.GetChildNode("principal") is null) { _explicitNullValuePrincipal = default!; _explicitNullProperties?.Remove("principal"); }
+            else if (parseNode.GetChildNode("principal") is { } nullNodePrincipal && nullNodePrincipal.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Principal = null;
+            if (parseNode.GetChildNode("replayTime") is null) { _explicitNullValueReplayTime = default!; _explicitNullProperties?.Remove("replayTime"); }
+            else if (parseNode.GetChildNode("replayTime") is { } nullNodeReplayTime && nullNodeReplayTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReplayTime = null;
+            if (parseNode.GetChildNode("resource") is null) { _explicitNullValueResource = default!; _explicitNullProperties?.Remove("resource"); }
+            else if (parseNode.GetChildNode("resource") is { } nullNodeResource && nullNodeResource.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Resource = null;
+            if (parseNode.GetChildNode("version") is null) { _explicitNullValueVersion = default!; _explicitNullProperties?.Remove("version"); }
+            else if (parseNode.GetChildNode("version") is { } nullNodeVersion && nullNodeVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Version = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -35,74 +45,74 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Additional context for the event specific to Bandwidth</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeBwContext? BwContext { get => _explicitNullValueBwContext; set { _explicitNullValueBwContext = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bwContext"); else _explicitNullProperties?.Remove("bwContext"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeBwContext? BwContext { get => _explicitNullValueBwContext; set { _explicitNullValueBwContext = value; AdditionalData?.Remove("bwContext"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bwContext"); else _explicitNullProperties?.Remove("bwContext"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeBwContext? _explicitNullValueBwContext = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeBwContext BwContext { get => _explicitNullValueBwContext; set { _explicitNullValueBwContext = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bwContext"); else _explicitNullProperties?.Remove("bwContext"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeBwContext BwContext { get => _explicitNullValueBwContext; set { _explicitNullValueBwContext = value; AdditionalData?.Remove("bwContext"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bwContext"); else _explicitNullProperties?.Remove("bwContext"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeBwContext _explicitNullValueBwContext = default!;
 #endif
         /// <summary>Customer-specific context that may be useful after retrieving the event, but not necessarily indexed</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContextProperty2? CustomerContext { get => _explicitNullValueCustomerContext; set { _explicitNullValueCustomerContext = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerContext"); else _explicitNullProperties?.Remove("customerContext"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContextProperty2? CustomerContext { get => _explicitNullValueCustomerContext; set { _explicitNullValueCustomerContext = value; AdditionalData?.Remove("customerContext"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerContext"); else _explicitNullProperties?.Remove("customerContext"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContextProperty2? _explicitNullValueCustomerContext = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContextProperty2 CustomerContext { get => _explicitNullValueCustomerContext; set { _explicitNullValueCustomerContext = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerContext"); else _explicitNullProperties?.Remove("customerContext"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContextProperty2 CustomerContext { get => _explicitNullValueCustomerContext; set { _explicitNullValueCustomerContext = value; AdditionalData?.Remove("customerContext"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerContext"); else _explicitNullProperties?.Remove("customerContext"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContextProperty2 _explicitNullValueCustomerContext = default!;
 #endif
         /// <summary>A unique identifier for the event to distinguish between a replay and a new event</summary>
-        public Guid? DeduplicationId { get => _explicitNullValueDeduplicationId; set { _explicitNullValueDeduplicationId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deduplicationId"); else _explicitNullProperties?.Remove("deduplicationId"); } }
+        public Guid? DeduplicationId { get => _explicitNullValueDeduplicationId; set { _explicitNullValueDeduplicationId = value; AdditionalData?.Remove("deduplicationId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deduplicationId"); else _explicitNullProperties?.Remove("deduplicationId"); } }
         private Guid? _explicitNullValueDeduplicationId = default!;
         /// <summary>The time the event was triggered</summary>
-        public DateTimeOffset? EventTime { get => _explicitNullValueEventTime; set { _explicitNullValueEventTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eventTime"); else _explicitNullProperties?.Remove("eventTime"); } }
+        public DateTimeOffset? EventTime { get => _explicitNullValueEventTime; set { _explicitNullValueEventTime = value; AdditionalData?.Remove("eventTime"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eventTime"); else _explicitNullProperties?.Remove("eventTime"); } }
         private DateTimeOffset? _explicitNullValueEventTime = default!;
         /// <summary>The eventType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? EventTypeProp { get => _explicitNullValueEventTypeProp; set { _explicitNullValueEventTypeProp = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eventType"); else _explicitNullProperties?.Remove("eventType"); } }
+        public string? EventTypeProp { get => _explicitNullValueEventTypeProp; set { _explicitNullValueEventTypeProp = value; AdditionalData?.Remove("eventType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eventType"); else _explicitNullProperties?.Remove("eventType"); } }
         private string? _explicitNullValueEventTypeProp = default!;
 #nullable restore
 #else
-        public string EventTypeProp { get => _explicitNullValueEventTypeProp; set { _explicitNullValueEventTypeProp = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eventType"); else _explicitNullProperties?.Remove("eventType"); } }
+        public string EventTypeProp { get => _explicitNullValueEventTypeProp; set { _explicitNullValueEventTypeProp = value; AdditionalData?.Remove("eventType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eventType"); else _explicitNullProperties?.Remove("eventType"); } }
         private string _explicitNullValueEventTypeProp = default!;
 #endif
         /// <summary>Attributes for the HTTP request/response associated with this event. Extracted from OTel Semantic Conventions v1.28.0</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeHttp? Http { get => _explicitNullValueHttp; set { _explicitNullValueHttp = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("http"); else _explicitNullProperties?.Remove("http"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeHttp? Http { get => _explicitNullValueHttp; set { _explicitNullValueHttp = value; AdditionalData?.Remove("http"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("http"); else _explicitNullProperties?.Remove("http"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeHttp? _explicitNullValueHttp = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeHttp Http { get => _explicitNullValueHttp; set { _explicitNullValueHttp = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("http"); else _explicitNullProperties?.Remove("http"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeHttp Http { get => _explicitNullValueHttp; set { _explicitNullValueHttp = value; AdditionalData?.Remove("http"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("http"); else _explicitNullProperties?.Remove("http"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeHttp _explicitNullValueHttp = default!;
 #endif
         /// <summary>The principal property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Principal { get => _explicitNullValuePrincipal; set { _explicitNullValuePrincipal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("principal"); else _explicitNullProperties?.Remove("principal"); } }
+        public string? Principal { get => _explicitNullValuePrincipal; set { _explicitNullValuePrincipal = value; AdditionalData?.Remove("principal"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("principal"); else _explicitNullProperties?.Remove("principal"); } }
         private string? _explicitNullValuePrincipal = default!;
 #nullable restore
 #else
-        public string Principal { get => _explicitNullValuePrincipal; set { _explicitNullValuePrincipal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("principal"); else _explicitNullProperties?.Remove("principal"); } }
+        public string Principal { get => _explicitNullValuePrincipal; set { _explicitNullValuePrincipal = value; AdditionalData?.Remove("principal"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("principal"); else _explicitNullProperties?.Remove("principal"); } }
         private string _explicitNullValuePrincipal = default!;
 #endif
         /// <summary>The time the event was replayed</summary>
-        public DateTimeOffset? ReplayTime { get => _explicitNullValueReplayTime; set { _explicitNullValueReplayTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("replayTime"); else _explicitNullProperties?.Remove("replayTime"); } }
+        public DateTimeOffset? ReplayTime { get => _explicitNullValueReplayTime; set { _explicitNullValueReplayTime = value; AdditionalData?.Remove("replayTime"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("replayTime"); else _explicitNullProperties?.Remove("replayTime"); } }
         private DateTimeOffset? _explicitNullValueReplayTime = default!;
         /// <summary>The resource property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Resource { get => _explicitNullValueResource; set { _explicitNullValueResource = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resource"); else _explicitNullProperties?.Remove("resource"); } }
+        public string? Resource { get => _explicitNullValueResource; set { _explicitNullValueResource = value; AdditionalData?.Remove("resource"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resource"); else _explicitNullProperties?.Remove("resource"); } }
         private string? _explicitNullValueResource = default!;
 #nullable restore
 #else
-        public string Resource { get => _explicitNullValueResource; set { _explicitNullValueResource = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resource"); else _explicitNullProperties?.Remove("resource"); } }
+        public string Resource { get => _explicitNullValueResource; set { _explicitNullValueResource = value; AdditionalData?.Remove("resource"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resource"); else _explicitNullProperties?.Remove("resource"); } }
         private string _explicitNullValueResource = default!;
 #endif
         /// <summary>The expected version of the event schema</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeVersion? Version { get => _explicitNullValueVersion; set { _explicitNullValueVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("version"); else _explicitNullProperties?.Remove("version"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeVersion? Version { get => _explicitNullValueVersion; set { _explicitNullValueVersion = value; AdditionalData?.Remove("version"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("version"); else _explicitNullProperties?.Remove("version"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeVersion? _explicitNullValueVersion = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EventType"/> and sets the default values.
@@ -138,7 +148,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "principal", n => { Principal = n.GetStringValue(); } },
                 { "replayTime", n => { ReplayTime = n.GetDateTimeOffsetValue(); } },
                 { "resource", n => { Resource = n.GetStringValue(); } },
-                { "version", n => { Version = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeVersion>(); } },
+                { "version", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeVersion>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueVersion = default; _explicitNullProperties?.Remove("version"); AdditionalData["version"] = unknown; } else { Version = parsed; AdditionalData.Remove("version"); } } },
             };
         }
         /// <summary>

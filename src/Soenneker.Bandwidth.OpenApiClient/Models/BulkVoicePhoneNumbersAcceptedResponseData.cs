@@ -17,13 +17,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("bulkId") is { } nullNodeBulkId && nullNodeBulkId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BulkId = null;
+            if (parseNode.GetChildNode("bulkId") is null) { _explicitNullValueBulkId = default!; _explicitNullProperties?.Remove("bulkId"); }
+            else if (parseNode.GetChildNode("bulkId") is { } nullNodeBulkId && nullNodeBulkId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BulkId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>UUID associated with async task for bulk provisioning voice phone numbers.</summary>
-        public Guid? BulkId { get => _explicitNullValueBulkId; set { _explicitNullValueBulkId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bulkId"); else _explicitNullProperties?.Remove("bulkId"); } }
+        public Guid? BulkId { get => _explicitNullValueBulkId; set { _explicitNullValueBulkId = value; AdditionalData?.Remove("bulkId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bulkId"); else _explicitNullProperties?.Remove("bulkId"); } }
         private Guid? _explicitNullValueBulkId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BulkVoicePhoneNumbersAcceptedResponseData"/> and sets the default values.

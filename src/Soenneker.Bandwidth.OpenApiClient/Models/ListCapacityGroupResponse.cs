@@ -17,8 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("capacityGroups") is { } nullNodeCapacityGroups && nullNodeCapacityGroups.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CapacityGroups = null;
-            if (parseNode.GetChildNode("resultCount") is { } nullNodeResultCount && nullNodeResultCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResultCount = null;
+            if (parseNode.GetChildNode("capacityGroups") is null) { _explicitNullValueCapacityGroups = default!; _explicitNullProperties?.Remove("capacityGroups"); }
+            else if (parseNode.GetChildNode("capacityGroups") is { } nullNodeCapacityGroups && nullNodeCapacityGroups.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CapacityGroups = null;
+            if (parseNode.GetChildNode("resultCount") is null) { _explicitNullValueResultCount = default!; _explicitNullProperties?.Remove("resultCount"); }
+            else if (parseNode.GetChildNode("resultCount") is { } nullNodeResultCount && nullNodeResultCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResultCount = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,15 +28,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The list of your capacity groups.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CapacityGroupModel>? CapacityGroups { get => _explicitNullValueCapacityGroups; set { _explicitNullValueCapacityGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("capacityGroups"); else _explicitNullProperties?.Remove("capacityGroups"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CapacityGroupModel>? CapacityGroups { get => _explicitNullValueCapacityGroups; set { _explicitNullValueCapacityGroups = value; AdditionalData?.Remove("capacityGroups"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("capacityGroups"); else _explicitNullProperties?.Remove("capacityGroups"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.CapacityGroupModel>? _explicitNullValueCapacityGroups = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CapacityGroupModel> CapacityGroups { get => _explicitNullValueCapacityGroups; set { _explicitNullValueCapacityGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("capacityGroups"); else _explicitNullProperties?.Remove("capacityGroups"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.CapacityGroupModel> CapacityGroups { get => _explicitNullValueCapacityGroups; set { _explicitNullValueCapacityGroups = value; AdditionalData?.Remove("capacityGroups"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("capacityGroups"); else _explicitNullProperties?.Remove("capacityGroups"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.CapacityGroupModel> _explicitNullValueCapacityGroups = default!;
 #endif
         /// <summary>Total number of results corresponding to the query.</summary>
-        public int? ResultCount { get => _explicitNullValueResultCount; set { _explicitNullValueResultCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resultCount"); else _explicitNullProperties?.Remove("resultCount"); } }
+        public int? ResultCount { get => _explicitNullValueResultCount; set { _explicitNullValueResultCount = value; AdditionalData?.Remove("resultCount"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resultCount"); else _explicitNullProperties?.Remove("resultCount"); } }
         private int? _explicitNullValueResultCount = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ListCapacityGroupResponse"/> and sets the default values.

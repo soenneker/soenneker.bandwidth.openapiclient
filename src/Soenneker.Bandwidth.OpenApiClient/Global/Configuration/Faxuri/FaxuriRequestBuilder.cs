@@ -104,7 +104,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Faxuri
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Faxuri.FaxuriRequestBuilder.FaxuriRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/global/configuration/faxuri?pageNumber={pageNumber}&pageSize={pageSize}{&csid*,deliveryMethod*,faxFileFormat*,faxUriId*,uri*}", PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, global::Soenneker.OpenApi.Generated.OpenApiServiceRoutes.Resolve("{+baseurl}/global/configuration/faxuri?pageNumber={pageNumber}&pageSize={pageSize}{&csid*,deliveryMethod*,faxFileFormat*,faxUriId*,uri*}", RequestAdapter.BaseUrl, "https://api.voxbone.com/v1", "/global/configuration/faxuri", PathParameters.ContainsKey("request-raw-url")), PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -128,7 +128,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Global.Configuration.Faxuri
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             if(string.IsNullOrEmpty(contentType)) throw new ArgumentNullException(nameof(contentType));
-            var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PUT, global::Soenneker.OpenApi.Generated.OpenApiServiceRoutes.Resolve(UrlTemplate, RequestAdapter.BaseUrl, "https://api.voxbone.com/v1", "/global/configuration/faxuri", PathParameters.ContainsKey("request-raw-url")), PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetStreamContent(body, contentType);

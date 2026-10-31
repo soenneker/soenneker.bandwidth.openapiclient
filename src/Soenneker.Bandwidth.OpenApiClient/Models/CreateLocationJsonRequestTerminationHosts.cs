@@ -18,7 +18,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("terminationHosts") is { } nullNodeTerminationHosts && nullNodeTerminationHosts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TerminationHosts = null;
+            if (parseNode.GetChildNode("terminationHosts") is null) { _explicitNullValueTerminationHosts = default!; _explicitNullProperties?.Remove("terminationHosts"); }
+            else if (parseNode.GetChildNode("terminationHosts") is { } nullNodeTerminationHosts && nullNodeTerminationHosts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TerminationHosts = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The terminationHosts property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationTerminationHostJson>? TerminationHosts { get => _explicitNullValueTerminationHosts; set { _explicitNullValueTerminationHosts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("terminationHosts"); else _explicitNullProperties?.Remove("terminationHosts"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationTerminationHostJson>? TerminationHosts { get => _explicitNullValueTerminationHosts; set { _explicitNullValueTerminationHosts = value; AdditionalData?.Remove("terminationHosts"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("terminationHosts"); else _explicitNullProperties?.Remove("terminationHosts"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationTerminationHostJson>? _explicitNullValueTerminationHosts = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationTerminationHostJson> TerminationHosts { get => _explicitNullValueTerminationHosts; set { _explicitNullValueTerminationHosts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("terminationHosts"); else _explicitNullProperties?.Remove("terminationHosts"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationTerminationHostJson> TerminationHosts { get => _explicitNullValueTerminationHosts; set { _explicitNullValueTerminationHosts = value; AdditionalData?.Remove("terminationHosts"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("terminationHosts"); else _explicitNullProperties?.Remove("terminationHosts"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.LocationTerminationHostJson> _explicitNullValueTerminationHosts = default!;
 #endif
         /// <summary>

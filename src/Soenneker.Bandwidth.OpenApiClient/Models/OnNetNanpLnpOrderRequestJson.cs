@@ -17,7 +17,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("lnpOrder") is { } nullNodeLnpOrder && nullNodeLnpOrder.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LnpOrder = null;
+            if (parseNode.GetChildNode("lnpOrder") is null) { _explicitNullValueLnpOrder = default!; _explicitNullProperties?.Remove("lnpOrder"); }
+            else if (parseNode.GetChildNode("lnpOrder") is { } nullNodeLnpOrder && nullNodeLnpOrder.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LnpOrder = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The lnpOrder property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.OnNetNanpLnpOrderRequestJsonLnpOrder? LnpOrder { get => _explicitNullValueLnpOrder; set { _explicitNullValueLnpOrder = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lnpOrder"); else _explicitNullProperties?.Remove("lnpOrder"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OnNetNanpLnpOrderRequestJsonLnpOrder? LnpOrder { get => _explicitNullValueLnpOrder; set { _explicitNullValueLnpOrder = value; AdditionalData?.Remove("lnpOrder"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lnpOrder"); else _explicitNullProperties?.Remove("lnpOrder"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.OnNetNanpLnpOrderRequestJsonLnpOrder? _explicitNullValueLnpOrder = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.OnNetNanpLnpOrderRequestJsonLnpOrder LnpOrder { get => _explicitNullValueLnpOrder; set { _explicitNullValueLnpOrder = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lnpOrder"); else _explicitNullProperties?.Remove("lnpOrder"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OnNetNanpLnpOrderRequestJsonLnpOrder LnpOrder { get => _explicitNullValueLnpOrder; set { _explicitNullValueLnpOrder = value; AdditionalData?.Remove("lnpOrder"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lnpOrder"); else _explicitNullProperties?.Remove("lnpOrder"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.OnNetNanpLnpOrderRequestJsonLnpOrder _explicitNullValueLnpOrder = default!;
 #endif
         /// <summary>

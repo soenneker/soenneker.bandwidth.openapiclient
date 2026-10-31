@@ -18,8 +18,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("requestMethod") is { } nullNodeRequestMethod && nullNodeRequestMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RequestMethod = null;
-            if (parseNode.GetChildNode("responseStatusCode") is { } nullNodeResponseStatusCode && nullNodeResponseStatusCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResponseStatusCode = null;
+            if (parseNode.GetChildNode("requestMethod") is null) { _explicitNullValueRequestMethod = default!; _explicitNullProperties?.Remove("requestMethod"); }
+            else if (parseNode.GetChildNode("requestMethod") is { } nullNodeRequestMethod && nullNodeRequestMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RequestMethod = null;
+            if (parseNode.GetChildNode("responseStatusCode") is null) { _explicitNullValueResponseStatusCode = default!; _explicitNullProperties?.Remove("responseStatusCode"); }
+            else if (parseNode.GetChildNode("responseStatusCode") is { } nullNodeResponseStatusCode && nullNodeResponseStatusCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResponseStatusCode = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,15 +29,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The HTTP request method</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RequestMethod { get => _explicitNullValueRequestMethod; set { _explicitNullValueRequestMethod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requestMethod"); else _explicitNullProperties?.Remove("requestMethod"); } }
+        public string? RequestMethod { get => _explicitNullValueRequestMethod; set { _explicitNullValueRequestMethod = value; AdditionalData?.Remove("requestMethod"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requestMethod"); else _explicitNullProperties?.Remove("requestMethod"); } }
         private string? _explicitNullValueRequestMethod = default!;
 #nullable restore
 #else
-        public string RequestMethod { get => _explicitNullValueRequestMethod; set { _explicitNullValueRequestMethod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requestMethod"); else _explicitNullProperties?.Remove("requestMethod"); } }
+        public string RequestMethod { get => _explicitNullValueRequestMethod; set { _explicitNullValueRequestMethod = value; AdditionalData?.Remove("requestMethod"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requestMethod"); else _explicitNullProperties?.Remove("requestMethod"); } }
         private string _explicitNullValueRequestMethod = default!;
 #endif
         /// <summary>The HTTP response status code</summary>
-        public int? ResponseStatusCode { get => _explicitNullValueResponseStatusCode; set { _explicitNullValueResponseStatusCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("responseStatusCode"); else _explicitNullProperties?.Remove("responseStatusCode"); } }
+        public int? ResponseStatusCode { get => _explicitNullValueResponseStatusCode; set { _explicitNullValueResponseStatusCode = value; AdditionalData?.Remove("responseStatusCode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("responseStatusCode"); else _explicitNullProperties?.Remove("responseStatusCode"); } }
         private int? _explicitNullValueResponseStatusCode = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeHttp"/> and sets the default values.

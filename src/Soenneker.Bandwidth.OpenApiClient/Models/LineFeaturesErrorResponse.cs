@@ -18,7 +18,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("fileFormatErrorMessage") is { } nullNodeFileFormatErrorMessage && nullNodeFileFormatErrorMessage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FileFormatErrorMessage = null;
+            if (parseNode.GetChildNode("fileFormatErrorMessage") is null) { _explicitNullValueFileFormatErrorMessage = default!; _explicitNullProperties?.Remove("fileFormatErrorMessage"); }
+            else if (parseNode.GetChildNode("fileFormatErrorMessage") is { } nullNodeFileFormatErrorMessage && nullNodeFileFormatErrorMessage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FileFormatErrorMessage = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Description of the file format error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FileFormatErrorMessage { get => _explicitNullValueFileFormatErrorMessage; set { _explicitNullValueFileFormatErrorMessage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fileFormatErrorMessage"); else _explicitNullProperties?.Remove("fileFormatErrorMessage"); } }
+        public string? FileFormatErrorMessage { get => _explicitNullValueFileFormatErrorMessage; set { _explicitNullValueFileFormatErrorMessage = value; AdditionalData?.Remove("fileFormatErrorMessage"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fileFormatErrorMessage"); else _explicitNullProperties?.Remove("fileFormatErrorMessage"); } }
         private string? _explicitNullValueFileFormatErrorMessage = default!;
 #nullable restore
 #else
-        public string FileFormatErrorMessage { get => _explicitNullValueFileFormatErrorMessage; set { _explicitNullValueFileFormatErrorMessage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fileFormatErrorMessage"); else _explicitNullProperties?.Remove("fileFormatErrorMessage"); } }
+        public string FileFormatErrorMessage { get => _explicitNullValueFileFormatErrorMessage; set { _explicitNullValueFileFormatErrorMessage = value; AdditionalData?.Remove("fileFormatErrorMessage"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fileFormatErrorMessage"); else _explicitNullProperties?.Remove("fileFormatErrorMessage"); } }
         private string _explicitNullValueFileFormatErrorMessage = default!;
 #endif
         /// <summary>The primary error message.</summary>

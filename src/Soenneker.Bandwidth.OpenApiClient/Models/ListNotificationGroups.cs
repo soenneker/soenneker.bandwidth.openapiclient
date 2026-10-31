@@ -18,7 +18,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("notificationGroups") is { } nullNodeNotificationGroups && nullNodeNotificationGroups.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NotificationGroups = null;
+            if (parseNode.GetChildNode("notificationGroups") is null) { _explicitNullValueNotificationGroups = default!; _explicitNullProperties?.Remove("notificationGroups"); }
+            else if (parseNode.GetChildNode("notificationGroups") is { } nullNodeNotificationGroups && nullNodeNotificationGroups.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NotificationGroups = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The notificationGroups property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationGroupsNotificationGroupsItem>? NotificationGroups { get => _explicitNullValueNotificationGroups; set { _explicitNullValueNotificationGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notificationGroups"); else _explicitNullProperties?.Remove("notificationGroups"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationGroupsNotificationGroupsItem>? NotificationGroups { get => _explicitNullValueNotificationGroups; set { _explicitNullValueNotificationGroups = value; AdditionalData?.Remove("notificationGroups"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notificationGroups"); else _explicitNullProperties?.Remove("notificationGroups"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationGroupsNotificationGroupsItem>? _explicitNullValueNotificationGroups = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationGroupsNotificationGroupsItem> NotificationGroups { get => _explicitNullValueNotificationGroups; set { _explicitNullValueNotificationGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notificationGroups"); else _explicitNullProperties?.Remove("notificationGroups"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationGroupsNotificationGroupsItem> NotificationGroups { get => _explicitNullValueNotificationGroups; set { _explicitNullValueNotificationGroups = value; AdditionalData?.Remove("notificationGroups"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notificationGroups"); else _explicitNullProperties?.Remove("notificationGroups"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListNotificationGroupsNotificationGroupsItem> _explicitNullValueNotificationGroups = default!;
 #endif
         /// <summary>

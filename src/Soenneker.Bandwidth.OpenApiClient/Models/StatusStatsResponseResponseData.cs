@@ -17,8 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("carriersReputationSummaryCounts") is { } nullNodeCarriersReputationSummaryCounts && nullNodeCarriersReputationSummaryCounts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CarriersReputationSummaryCounts = null;
-            if (parseNode.GetChildNode("totalNumbers") is { } nullNodeTotalNumbers && nullNodeTotalNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TotalNumbers = null;
+            if (parseNode.GetChildNode("carriersReputationSummaryCounts") is null) { _explicitNullValueCarriersReputationSummaryCounts = default!; _explicitNullProperties?.Remove("carriersReputationSummaryCounts"); }
+            else if (parseNode.GetChildNode("carriersReputationSummaryCounts") is { } nullNodeCarriersReputationSummaryCounts && nullNodeCarriersReputationSummaryCounts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CarriersReputationSummaryCounts = null;
+            if (parseNode.GetChildNode("totalNumbers") is null) { _explicitNullValueTotalNumbers = default!; _explicitNullProperties?.Remove("totalNumbers"); }
+            else if (parseNode.GetChildNode("totalNumbers") is { } nullNodeTotalNumbers && nullNodeTotalNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TotalNumbers = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,15 +28,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The carriersReputationSummaryCounts property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.StatusStatsResponseResponseDataCarriersReputationSummaryCounts? CarriersReputationSummaryCounts { get => _explicitNullValueCarriersReputationSummaryCounts; set { _explicitNullValueCarriersReputationSummaryCounts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carriersReputationSummaryCounts"); else _explicitNullProperties?.Remove("carriersReputationSummaryCounts"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.StatusStatsResponseResponseDataCarriersReputationSummaryCounts? CarriersReputationSummaryCounts { get => _explicitNullValueCarriersReputationSummaryCounts; set { _explicitNullValueCarriersReputationSummaryCounts = value; AdditionalData?.Remove("carriersReputationSummaryCounts"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carriersReputationSummaryCounts"); else _explicitNullProperties?.Remove("carriersReputationSummaryCounts"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.StatusStatsResponseResponseDataCarriersReputationSummaryCounts? _explicitNullValueCarriersReputationSummaryCounts = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.StatusStatsResponseResponseDataCarriersReputationSummaryCounts CarriersReputationSummaryCounts { get => _explicitNullValueCarriersReputationSummaryCounts; set { _explicitNullValueCarriersReputationSummaryCounts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carriersReputationSummaryCounts"); else _explicitNullProperties?.Remove("carriersReputationSummaryCounts"); } }
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.StatusStatsResponseResponseDataCarriersReputationSummaryCounts CarriersReputationSummaryCounts { get => _explicitNullValueCarriersReputationSummaryCounts; set { _explicitNullValueCarriersReputationSummaryCounts = value; AdditionalData?.Remove("carriersReputationSummaryCounts"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("carriersReputationSummaryCounts"); else _explicitNullProperties?.Remove("carriersReputationSummaryCounts"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.StatusStatsResponseResponseDataCarriersReputationSummaryCounts _explicitNullValueCarriersReputationSummaryCounts = default!;
 #endif
         /// <summary>The total number of phone numbers matching the filters</summary>
-        public int? TotalNumbers { get => _explicitNullValueTotalNumbers; set { _explicitNullValueTotalNumbers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("totalNumbers"); else _explicitNullProperties?.Remove("totalNumbers"); } }
+        public int? TotalNumbers { get => _explicitNullValueTotalNumbers; set { _explicitNullValueTotalNumbers = value; AdditionalData?.Remove("totalNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("totalNumbers"); else _explicitNullProperties?.Remove("totalNumbers"); } }
         private int? _explicitNullValueTotalNumbers = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.StatusStatsResponseResponseData"/> and sets the default values.

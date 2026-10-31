@@ -17,8 +17,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("focDates") is { } nullNodeFocDates && nullNodeFocDates.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FocDates = null;
-            if (parseNode.GetChildNode("unavailableFocDates") is { } nullNodeUnavailableFocDates && nullNodeUnavailableFocDates.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UnavailableFocDates = null;
+            if (parseNode.GetChildNode("focDates") is null) { _explicitNullValueFocDates = default!; _explicitNullProperties?.Remove("focDates"); }
+            else if (parseNode.GetChildNode("focDates") is { } nullNodeFocDates && nullNodeFocDates.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FocDates = null;
+            if (parseNode.GetChildNode("unavailableFocDates") is null) { _explicitNullValueUnavailableFocDates = default!; _explicitNullProperties?.Remove("unavailableFocDates"); }
+            else if (parseNode.GetChildNode("unavailableFocDates") is { } nullNodeUnavailableFocDates && nullNodeUnavailableFocDates.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UnavailableFocDates = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,21 +28,21 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The focDates property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.FocDateWindow>? FocDates { get => _explicitNullValueFocDates; set { _explicitNullValueFocDates = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("focDates"); else _explicitNullProperties?.Remove("focDates"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.FocDateWindow>? FocDates { get => _explicitNullValueFocDates; set { _explicitNullValueFocDates = value; AdditionalData?.Remove("focDates"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("focDates"); else _explicitNullProperties?.Remove("focDates"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.FocDateWindow>? _explicitNullValueFocDates = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.FocDateWindow> FocDates { get => _explicitNullValueFocDates; set { _explicitNullValueFocDates = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("focDates"); else _explicitNullProperties?.Remove("focDates"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.FocDateWindow> FocDates { get => _explicitNullValueFocDates; set { _explicitNullValueFocDates = value; AdditionalData?.Remove("focDates"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("focDates"); else _explicitNullProperties?.Remove("focDates"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.FocDateWindow> _explicitNullValueFocDates = default!;
 #endif
         /// <summary>Dates that fall strictly between the first and last `focDates` window but are not bookable,along with the reason. Always present on 200 responses; an empty array when there are no gaps.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnavailableFocDate>? UnavailableFocDates { get => _explicitNullValueUnavailableFocDates; set { _explicitNullValueUnavailableFocDates = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unavailableFocDates"); else _explicitNullProperties?.Remove("unavailableFocDates"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnavailableFocDate>? UnavailableFocDates { get => _explicitNullValueUnavailableFocDates; set { _explicitNullValueUnavailableFocDates = value; AdditionalData?.Remove("unavailableFocDates"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unavailableFocDates"); else _explicitNullProperties?.Remove("unavailableFocDates"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnavailableFocDate>? _explicitNullValueUnavailableFocDates = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnavailableFocDate> UnavailableFocDates { get => _explicitNullValueUnavailableFocDates; set { _explicitNullValueUnavailableFocDates = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unavailableFocDates"); else _explicitNullProperties?.Remove("unavailableFocDates"); } }
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnavailableFocDate> UnavailableFocDates { get => _explicitNullValueUnavailableFocDates; set { _explicitNullValueUnavailableFocDates = value; AdditionalData?.Remove("unavailableFocDates"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unavailableFocDates"); else _explicitNullProperties?.Remove("unavailableFocDates"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.UnavailableFocDate> _explicitNullValueUnavailableFocDates = default!;
 #endif
         /// <summary>
