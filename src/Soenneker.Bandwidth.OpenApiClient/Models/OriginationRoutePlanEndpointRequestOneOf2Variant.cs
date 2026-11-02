@@ -9,7 +9,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf5 : global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItem, IParsable
+    public partial class OriginationRoutePlanEndpointRequestOneOf2Variant : global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequest, IParsable
     #pragma warning restore CS1591
     {
         // Track explicitly assigned nulls separately from absent properties.
@@ -20,8 +20,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             base.CaptureExplicitNulls(parseNode);
             if (parseNode.GetChildNode("endpoint") is null) { _explicitNullValueEndpoint = default!; _explicitNullProperties?.Remove("endpoint"); }
             else if (parseNode.GetChildNode("endpoint") is { } nullNodeEndpoint && nullNodeEndpoint.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Endpoint = null;
-            if (parseNode.GetChildNode("rewriteUser") is null) { _explicitNullValueRewriteUser = default!; _explicitNullProperties?.Remove("rewriteUser"); }
-            else if (parseNode.GetChildNode("rewriteUser") is { } nullNodeRewriteUser && nullNodeRewriteUser.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RewriteUser = null;
+            if (parseNode.GetChildNode("prefix") is null) { _explicitNullValuePrefix = default!; _explicitNullProperties?.Remove("prefix"); }
+            else if (parseNode.GetChildNode("prefix") is { } nullNodePrefix && nullNodePrefix.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Prefix = null;
+            if (parseNode.GetChildNode("trunkInfo") is null) { _explicitNullValueTrunkInfo = default!; _explicitNullProperties?.Remove("trunkInfo"); }
+            else if (parseNode.GetChildNode("trunkInfo") is { } nullNodeTrunkInfo && nullNodeTrunkInfo.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TrunkInfo = null;
             if (parseNode.GetChildNode("weight") is null) { _explicitNullValueWeight = default!; _explicitNullProperties?.Remove("weight"); }
             else if (parseNode.GetChildNode("weight") is { } nullNodeWeight && nullNodeWeight.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Weight = null;
         }
@@ -36,28 +38,38 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string Endpoint { get => _explicitNullValueEndpoint; set { _explicitNullValueEndpoint = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endpoint"); else _explicitNullProperties?.Remove("endpoint"); } }
         private string _explicitNullValueEndpoint = default!;
 #endif
-        /// <summary>Overrides the user part of the SIP Request-URI (e.g. `rewrite-user@endpoint`).</summary>
+        /// <summary>ANI routing prefix for this endpoint (for example, `212`).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RewriteUser { get => _explicitNullValueRewriteUser; set { _explicitNullValueRewriteUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rewriteUser"); else _explicitNullProperties?.Remove("rewriteUser"); } }
-        private string? _explicitNullValueRewriteUser = default!;
+        public string? Prefix { get => _explicitNullValuePrefix; set { _explicitNullValuePrefix = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("prefix"); else _explicitNullProperties?.Remove("prefix"); } }
+        private string? _explicitNullValuePrefix = default!;
 #nullable restore
 #else
-        public string RewriteUser { get => _explicitNullValueRewriteUser; set { _explicitNullValueRewriteUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rewriteUser"); else _explicitNullProperties?.Remove("rewriteUser"); } }
-        private string _explicitNullValueRewriteUser = default!;
+        public string Prefix { get => _explicitNullValuePrefix; set { _explicitNullValuePrefix = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("prefix"); else _explicitNullProperties?.Remove("prefix"); } }
+        private string _explicitNullValuePrefix = default!;
 #endif
-        /// <summary>The weight property</summary>
+        /// <summary>Trunk selection information for an endpoint. This field is optional and nullable: it may be omitted in requests and responses when no trunk has been selected for an endpoint. When present it contains the trunk identifier and associated capability pipe id selected for this endpoint.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequestTrunkInfo? TrunkInfo { get => _explicitNullValueTrunkInfo; set { _explicitNullValueTrunkInfo = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("trunkInfo"); else _explicitNullProperties?.Remove("trunkInfo"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequestTrunkInfo? _explicitNullValueTrunkInfo = default!;
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequestTrunkInfo TrunkInfo { get => _explicitNullValueTrunkInfo; set { _explicitNullValueTrunkInfo = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("trunkInfo"); else _explicitNullProperties?.Remove("trunkInfo"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequestTrunkInfo _explicitNullValueTrunkInfo = default!;
+#endif
+        /// <summary>Weighted-routing weight.</summary>
         public int? Weight { get => _explicitNullValueWeight; set { _explicitNullValueWeight = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("weight"); else _explicitNullProperties?.Remove("weight"); } }
         private int? _explicitNullValueWeight = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf5"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf2Variant"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf5 CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf2Variant CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf5(), parseNode);
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf2Variant(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,7 +80,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "endpoint", n => { Endpoint = n.GetStringValue(); } },
-                { "rewriteUser", n => { RewriteUser = n.GetStringValue(); } },
+                { "prefix", n => { Prefix = n.GetStringValue(); } },
+                { "trunkInfo", n => { TrunkInfo = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequestTrunkInfo>(global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequestTrunkInfo.CreateFromDiscriminatorValue); } },
                 { "weight", n => { Weight = n.GetIntValue(); } },
             };
         }
@@ -81,7 +94,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("endpoint", Endpoint);
-            writer.WriteStringValue("rewriteUser", RewriteUser);
+            writer.WriteStringValue("prefix", Prefix);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequestTrunkInfo>("trunkInfo", TrunkInfo);
             writer.WriteIntValue("weight", Weight);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             
         }

@@ -52,12 +52,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
             return mappingValue switch
             {
-                "BOT" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOriginationRoutePlanEndpointRequestOneOf6(),
-                "FQDN" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOriginationRoutePlanEndpointRequestOneOf5(),
-                "INTEGRATION" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOriginationRoutePlanEndpointRequestOneOf4(),
-                "IP_V4" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOriginationRoutePlanEndpointRequestOneOf3(),
-                "SIP" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOriginationRoutePlanEndpointRequestOneOf2(),
-                "TN" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOriginationRoutePlanEndpointRequestOneOf1(),
+                "BOT" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf6Variant(),
+                "FQDN" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf5Variant(),
+                "INTEGRATION" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf4Variant(),
+                "IP_V4" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf3Variant(),
+                "SIP" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf2Variant(),
+                "TN" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequestOneOf1Variant(),
                 _ => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanEndpointRequest(),
             };
         }

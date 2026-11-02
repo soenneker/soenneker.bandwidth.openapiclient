@@ -65762,10 +65762,10 @@
         "discriminator": {
           "propertyName": "modelType",
           "mapping": {
-            "CAPACITY": "#/components/schemas/BillingModelCreateRequestBillingModelCreateRequestOneOf1",
-            "METERED": "#/components/schemas/BillingModelCreateRequestBillingModelCreateRequestOneOf2",
-            "BillingModelCreateRequestBillingModelCreateRequestOneOf1": "#/components/schemas/BillingModelCreateRequestBillingModelCreateRequestOneOf1",
-            "BillingModelCreateRequestBillingModelCreateRequestOneOf2": "#/components/schemas/BillingModelCreateRequestBillingModelCreateRequestOneOf2"
+            "CAPACITY": "#/components/schemas/BillingModelCreateRequestOneOf1Variant",
+            "METERED": "#/components/schemas/BillingModelCreateRequestOneOf2Variant",
+            "BillingModelCreateRequestOneOf1Variant": "#/components/schemas/BillingModelCreateRequestOneOf1Variant",
+            "BillingModelCreateRequestOneOf2Variant": "#/components/schemas/BillingModelCreateRequestOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -65799,10 +65799,10 @@
         "discriminator": {
           "propertyName": "modelType",
           "mapping": {
-            "CAPACITY": "#/components/schemas/BillingModelUpdateRequestBillingModelUpdateRequestOneOf1",
-            "METERED": "#/components/schemas/BillingModelUpdateRequestBillingModelUpdateRequestOneOf2",
-            "BillingModelUpdateRequestBillingModelUpdateRequestOneOf1": "#/components/schemas/BillingModelUpdateRequestBillingModelUpdateRequestOneOf1",
-            "BillingModelUpdateRequestBillingModelUpdateRequestOneOf2": "#/components/schemas/BillingModelUpdateRequestBillingModelUpdateRequestOneOf2"
+            "CAPACITY": "#/components/schemas/BillingModelUpdateRequestOneOf1Variant",
+            "METERED": "#/components/schemas/BillingModelUpdateRequestOneOf2Variant",
+            "BillingModelUpdateRequestOneOf1Variant": "#/components/schemas/BillingModelUpdateRequestOneOf1Variant",
+            "BillingModelUpdateRequestOneOf2Variant": "#/components/schemas/BillingModelUpdateRequestOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -65823,7 +65823,7 @@
           }
         }
       },
-      "BillingModelCreateRequestBillingModelCreateRequestOneOf1": {
+      "BillingModelCreateRequestOneOf1Variant": {
         "required": [
           "voiceCapacityThreshold",
           "accountId",
@@ -65852,7 +65852,7 @@
           }
         }
       },
-      "BillingModelCreateRequestBillingModelCreateRequestOneOf2": {
+      "BillingModelCreateRequestOneOf2Variant": {
         "required": [
           "accountId",
           "modelType"
@@ -65874,7 +65874,7 @@
           }
         }
       },
-      "BillingModelUpdateRequestBillingModelUpdateRequestOneOf1": {
+      "BillingModelUpdateRequestOneOf1Variant": {
         "required": [
           "voiceCapacityThreshold",
           "accountId",
@@ -65909,7 +65909,7 @@
           }
         }
       },
-      "BillingModelUpdateRequestBillingModelUpdateRequestOneOf2": {
+      "BillingModelUpdateRequestOneOf2Variant": {
         "required": [
           "accountId",
           "modelType",
@@ -143418,12 +143418,12 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "TN": "#/components/schemas/OriginationRoutePlanEndpointRequestOriginationRoutePlanEndpointRequestOneOf1",
-            "SIP": "#/components/schemas/OriginationRoutePlanEndpointRequestOriginationRoutePlanEndpointRequestOneOf2",
-            "IP_V4": "#/components/schemas/OriginationRoutePlanEndpointRequestOriginationRoutePlanEndpointRequestOneOf3",
-            "INTEGRATION": "#/components/schemas/OriginationRoutePlanEndpointRequestOriginationRoutePlanEndpointRequestOneOf4",
-            "FQDN": "#/components/schemas/OriginationRoutePlanEndpointRequestOriginationRoutePlanEndpointRequestOneOf5",
-            "BOT": "#/components/schemas/OriginationRoutePlanEndpointRequestOriginationRoutePlanEndpointRequestOneOf6"
+            "TN": "#/components/schemas/OriginationRoutePlanEndpointRequestOneOf1Variant",
+            "SIP": "#/components/schemas/OriginationRoutePlanEndpointRequestOneOf2Variant",
+            "IP_V4": "#/components/schemas/OriginationRoutePlanEndpointRequestOneOf3Variant",
+            "INTEGRATION": "#/components/schemas/OriginationRoutePlanEndpointRequestOneOf4Variant",
+            "FQDN": "#/components/schemas/OriginationRoutePlanEndpointRequestOneOf5Variant",
+            "BOT": "#/components/schemas/OriginationRoutePlanEndpointRequestOneOf6Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -146884,12 +146884,12 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "TN": "#/components/schemas/OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf1",
-            "SIP": "#/components/schemas/OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf2",
-            "IP_V4": "#/components/schemas/OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf3",
-            "INTEGRATION": "#/components/schemas/OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf4",
-            "FQDN": "#/components/schemas/OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf5",
-            "BOT": "#/components/schemas/OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf6"
+            "TN": "#/components/schemas/OriginationRoutePlanRouteEndpointsItemOneOf1Variant",
+            "SIP": "#/components/schemas/OriginationRoutePlanRouteEndpointsItemOneOf2Variant",
+            "IP_V4": "#/components/schemas/OriginationRoutePlanRouteEndpointsItemOneOf3Variant",
+            "INTEGRATION": "#/components/schemas/OriginationRoutePlanRouteEndpointsItemOneOf4Variant",
+            "FQDN": "#/components/schemas/OriginationRoutePlanRouteEndpointsItemOneOf5Variant",
+            "BOT": "#/components/schemas/OriginationRoutePlanRouteEndpointsItemOneOf6Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -151407,7 +151407,7 @@
           ]
         }
       },
-      "OriginationRoutePlanEndpointRequestOriginationRoutePlanEndpointRequestOneOf1": {
+      "OriginationRoutePlanEndpointRequestOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/OriginationRoutePlanEndpointRequest"
@@ -151464,7 +151464,7 @@
           }
         ]
       },
-      "OriginationRoutePlanEndpointRequestOriginationRoutePlanEndpointRequestOneOf2": {
+      "OriginationRoutePlanEndpointRequestOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/OriginationRoutePlanEndpointRequest"
@@ -151521,7 +151521,7 @@
           }
         ]
       },
-      "OriginationRoutePlanEndpointRequestOriginationRoutePlanEndpointRequestOneOf3": {
+      "OriginationRoutePlanEndpointRequestOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/OriginationRoutePlanEndpointRequest"
@@ -151586,7 +151586,7 @@
           }
         ]
       },
-      "OriginationRoutePlanEndpointRequestOriginationRoutePlanEndpointRequestOneOf4": {
+      "OriginationRoutePlanEndpointRequestOneOf4Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/OriginationRoutePlanEndpointRequest"
@@ -151651,7 +151651,7 @@
           }
         ]
       },
-      "OriginationRoutePlanEndpointRequestOriginationRoutePlanEndpointRequestOneOf5": {
+      "OriginationRoutePlanEndpointRequestOneOf5Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/OriginationRoutePlanEndpointRequest"
@@ -151716,7 +151716,7 @@
           }
         ]
       },
-      "OriginationRoutePlanEndpointRequestOriginationRoutePlanEndpointRequestOneOf6": {
+      "OriginationRoutePlanEndpointRequestOneOf6Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/OriginationRoutePlanEndpointRequest"
@@ -151769,7 +151769,7 @@
           }
         ]
       },
-      "OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf1": {
+      "OriginationRoutePlanRouteEndpointsItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/OriginationRoutePlanRouteEndpointsItem"
@@ -151807,7 +151807,7 @@
           }
         ]
       },
-      "OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf2": {
+      "OriginationRoutePlanRouteEndpointsItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/OriginationRoutePlanRouteEndpointsItem"
@@ -151845,7 +151845,7 @@
           }
         ]
       },
-      "OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf3": {
+      "OriginationRoutePlanRouteEndpointsItemOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/OriginationRoutePlanRouteEndpointsItem"
@@ -151888,7 +151888,7 @@
           }
         ]
       },
-      "OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf4": {
+      "OriginationRoutePlanRouteEndpointsItemOneOf4Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/OriginationRoutePlanRouteEndpointsItem"
@@ -151931,7 +151931,7 @@
           }
         ]
       },
-      "OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf5": {
+      "OriginationRoutePlanRouteEndpointsItemOneOf5Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/OriginationRoutePlanRouteEndpointsItem"
@@ -151974,7 +151974,7 @@
           }
         ]
       },
-      "OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf6": {
+      "OriginationRoutePlanRouteEndpointsItemOneOf6Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/OriginationRoutePlanRouteEndpointsItem"
@@ -218664,7 +218664,7 @@
       "type": "string",
       "format": "binary"
     },
-    "BillingModelCreateRequestBillingModelCreateRequestOneOf1AllOf2": {
+    "BillingModelCreateRequestOneOf1VariantAllOf2": {
       "required": [
         "voiceCapacityThreshold",
         "accountId",
@@ -218688,7 +218688,7 @@
         }
       }
     },
-    "BillingModelCreateRequestBillingModelCreateRequestOneOf2AllOf2": {
+    "BillingModelCreateRequestOneOf2VariantAllOf2": {
       "required": [
         "accountId",
         "modelType"
@@ -218705,7 +218705,7 @@
         }
       }
     },
-    "BillingModelUpdateRequestBillingModelUpdateRequestOneOf1AllOf2": {
+    "BillingModelUpdateRequestOneOf1VariantAllOf2": {
       "required": [
         "voiceCapacityThreshold",
         "accountId",
@@ -218735,7 +218735,7 @@
         }
       }
     },
-    "BillingModelUpdateRequestBillingModelUpdateRequestOneOf2AllOf2": {
+    "BillingModelUpdateRequestOneOf2VariantAllOf2": {
       "required": [
         "accountId",
         "modelType",

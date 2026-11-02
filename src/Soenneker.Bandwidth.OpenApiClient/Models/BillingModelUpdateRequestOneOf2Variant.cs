@@ -9,7 +9,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class BillingModelCreateRequestBillingModelCreateRequestOneOf1 : global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequest, IParsable
+    public partial class BillingModelUpdateRequestOneOf2Variant : global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequest, IParsable
     #pragma warning restore CS1591
     {
         // Track explicitly assigned nulls separately from absent properties.
@@ -20,8 +20,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             base.CaptureExplicitNulls(parseNode);
             if (parseNode.GetChildNode("accountId") is null) { _explicitNullValueAccountId = default!; _explicitNullProperties?.Remove("accountId"); }
             else if (parseNode.GetChildNode("accountId") is { } nullNodeAccountId && nullNodeAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountId = null;
-            if (parseNode.GetChildNode("voiceCapacityThreshold") is null) { _explicitNullValueVoiceCapacityThreshold = default!; _explicitNullProperties?.Remove("voiceCapacityThreshold"); }
-            else if (parseNode.GetChildNode("voiceCapacityThreshold") is { } nullNodeVoiceCapacityThreshold && nullNodeVoiceCapacityThreshold.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoiceCapacityThreshold = null;
+            if (parseNode.GetChildNode("billingModelId") is null) { _explicitNullValueBillingModelId = default!; _explicitNullProperties?.Remove("billingModelId"); }
+            else if (parseNode.GetChildNode("billingModelId") is { } nullNodeBillingModelId && nullNodeBillingModelId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BillingModelId = null;
         }
 
         /// <summary>The ID of the account.</summary>
@@ -34,18 +34,18 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
         private string _explicitNullValueAccountId = default!;
 #endif
-        /// <summary>Must be in increments of 10.</summary>
-        public int? VoiceCapacityThreshold { get => _explicitNullValueVoiceCapacityThreshold; set { _explicitNullValueVoiceCapacityThreshold = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceCapacityThreshold"); else _explicitNullProperties?.Remove("voiceCapacityThreshold"); } }
-        private int? _explicitNullValueVoiceCapacityThreshold = default!;
+        /// <summary>The unique identifier for the billing model.</summary>
+        public Guid? BillingModelId { get => _explicitNullValueBillingModelId; set { _explicitNullValueBillingModelId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("billingModelId"); else _explicitNullProperties?.Remove("billingModelId"); } }
+        private Guid? _explicitNullValueBillingModelId = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestBillingModelCreateRequestOneOf1"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2Variant"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestBillingModelCreateRequestOneOf1 CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2Variant CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelCreateRequestBillingModelCreateRequestOneOf1(), parseNode);
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2Variant(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -56,7 +56,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "accountId", n => { AccountId = n.GetStringValue(); } },
-                { "voiceCapacityThreshold", n => { VoiceCapacityThreshold = n.GetIntValue(); } },
+                { "billingModelId", n => { BillingModelId = n.GetGuidValue(); } },
             };
         }
         /// <summary>
@@ -68,7 +68,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("accountId", AccountId);
-            writer.WriteIntValue("voiceCapacityThreshold", VoiceCapacityThreshold);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            writer.WriteGuidValue("billingModelId", BillingModelId);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             
         }
     }

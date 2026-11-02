@@ -5,7 +5,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public enum OriginationRoutePlanEndpointRequestOriginationRoutePlanEndpointRequestOneOf3_type
+    public enum OriginationRoutePlanRouteEndpointsItemOneOf3Variant_type
     #pragma warning restore CS1591
     {
         [EnumMember(Value = "IP_V4")]

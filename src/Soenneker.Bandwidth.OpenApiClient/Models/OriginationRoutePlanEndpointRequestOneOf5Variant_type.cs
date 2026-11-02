@@ -5,12 +5,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public enum OriginationRoutePlanEndpointRequestOriginationRoutePlanEndpointRequestOneOf6_type
+    public enum OriginationRoutePlanEndpointRequestOneOf5Variant_type
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "BOT")]
+        [EnumMember(Value = "FQDN")]
         #pragma warning disable CS1591
-        Bot,
+        Fqdn,
         #pragma warning restore CS1591
     }
 }

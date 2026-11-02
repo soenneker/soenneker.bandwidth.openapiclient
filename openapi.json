@@ -62959,10 +62959,10 @@
         "discriminator": {
           "propertyName": "modelType",
           "mapping": {
-            "CAPACITY": "#/components/schemas/BillingModelCreateRequestBillingModelCreateRequestOneOf1",
-            "METERED": "#/components/schemas/BillingModelCreateRequestBillingModelCreateRequestOneOf2",
-            "BillingModelCreateRequestBillingModelCreateRequestOneOf1": "#/components/schemas/BillingModelCreateRequestBillingModelCreateRequestOneOf1",
-            "BillingModelCreateRequestBillingModelCreateRequestOneOf2": "#/components/schemas/BillingModelCreateRequestBillingModelCreateRequestOneOf2"
+            "CAPACITY": "#/components/schemas/BillingModelCreateRequestOneOf1Variant",
+            "METERED": "#/components/schemas/BillingModelCreateRequestOneOf2Variant",
+            "BillingModelCreateRequestOneOf1Variant": "#/components/schemas/BillingModelCreateRequestOneOf1Variant",
+            "BillingModelCreateRequestOneOf2Variant": "#/components/schemas/BillingModelCreateRequestOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -62996,10 +62996,10 @@
         "discriminator": {
           "propertyName": "modelType",
           "mapping": {
-            "CAPACITY": "#/components/schemas/BillingModelUpdateRequestBillingModelUpdateRequestOneOf1",
-            "METERED": "#/components/schemas/BillingModelUpdateRequestBillingModelUpdateRequestOneOf2",
-            "BillingModelUpdateRequestBillingModelUpdateRequestOneOf1": "#/components/schemas/BillingModelUpdateRequestBillingModelUpdateRequestOneOf1",
-            "BillingModelUpdateRequestBillingModelUpdateRequestOneOf2": "#/components/schemas/BillingModelUpdateRequestBillingModelUpdateRequestOneOf2"
+            "CAPACITY": "#/components/schemas/BillingModelUpdateRequestOneOf1Variant",
+            "METERED": "#/components/schemas/BillingModelUpdateRequestOneOf2Variant",
+            "BillingModelUpdateRequestOneOf1Variant": "#/components/schemas/BillingModelUpdateRequestOneOf1Variant",
+            "BillingModelUpdateRequestOneOf2Variant": "#/components/schemas/BillingModelUpdateRequestOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -63034,7 +63034,7 @@
           "type": "string"
         }
       },
-      "BillingModelCreateRequestBillingModelCreateRequestOneOf1": {
+      "BillingModelCreateRequestOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/BillingModelCreateRequest"
@@ -63078,7 +63078,7 @@
           }
         ]
       },
-      "BillingModelCreateRequestBillingModelCreateRequestOneOf2": {
+      "BillingModelCreateRequestOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/BillingModelCreateRequest"
@@ -63115,7 +63115,7 @@
           }
         ]
       },
-      "BillingModelUpdateRequestBillingModelUpdateRequestOneOf1": {
+      "BillingModelUpdateRequestOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/BillingModelUpdateRequest"
@@ -63165,7 +63165,7 @@
           }
         ]
       },
-      "BillingModelUpdateRequestBillingModelUpdateRequestOneOf2": {
+      "BillingModelUpdateRequestOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/BillingModelUpdateRequest"

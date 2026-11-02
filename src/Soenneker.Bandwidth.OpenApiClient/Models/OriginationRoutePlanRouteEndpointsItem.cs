@@ -51,12 +51,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
             return mappingValue switch
             {
-                "BOT" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf6(),
-                "FQDN" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf5(),
-                "INTEGRATION" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf4(),
-                "IP_V4" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf3(),
-                "SIP" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf2(),
-                "TN" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItemOriginationRoutePlanRouteEndpointsItemOneOf1(),
+                "BOT" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItemOneOf6Variant(),
+                "FQDN" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItemOneOf5Variant(),
+                "INTEGRATION" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItemOneOf4Variant(),
+                "IP_V4" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItemOneOf3Variant(),
+                "SIP" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItemOneOf2Variant(),
+                "TN" => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItemOneOf1Variant(),
                 _ => new global::Soenneker.Bandwidth.OpenApiClient.Models.OriginationRoutePlanRouteEndpointsItem(),
             };
         }

@@ -51,10 +51,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             var mappingValue = parseNode.GetChildNode("modelType")?.GetStringValue();
             return mappingValue switch
             {
-                "BillingModelUpdateRequestBillingModelUpdateRequestOneOf1" => new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestBillingModelUpdateRequestOneOf1(),
-                "BillingModelUpdateRequestBillingModelUpdateRequestOneOf2" => new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestBillingModelUpdateRequestOneOf2(),
-                "CAPACITY" => new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestBillingModelUpdateRequestOneOf1(),
-                "METERED" => new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestBillingModelUpdateRequestOneOf2(),
+                "BillingModelUpdateRequestOneOf1Variant" => new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf1Variant(),
+                "BillingModelUpdateRequestOneOf2Variant" => new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2Variant(),
+                "CAPACITY" => new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf1Variant(),
+                "METERED" => new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequestOneOf2Variant(),
                 _ => new global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelUpdateRequest(),
             };
         }
