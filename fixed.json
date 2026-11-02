@@ -74289,7 +74289,10 @@
           "lastName",
           "aeuid"
         ],
-        "type": "object",
+        "type": [
+          "null",
+          "object"
+        ],
         "properties": {
           "accountId": {
             "type": "string",
@@ -96720,7 +96723,10 @@
         }
       },
       "ReportCreatedResponseResponseData": {
-        "type": "object",
+        "type": [
+          "null",
+          "object"
+        ],
         "properties": {
           "reportId": {
             "type": "string",
@@ -154378,7 +154384,10 @@
         }
       },
       "CreateAuditLogReportRequestEventType": {
-        "type": "object",
+        "type": [
+          "null",
+          "object"
+        ],
         "properties": {
           "eq": {
             "type": "string",
