@@ -42,12 +42,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The errors array will always be empty for successful responses.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchemaErrorsItemProperty2>? Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; AdditionalData?.Remove("errors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
-        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchemaErrorsItemProperty2>? _explicitNullValueErrors = default!;
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchemaErrorsItem>? Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; AdditionalData?.Remove("errors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchemaErrorsItem>? _explicitNullValueErrors = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchemaErrorsItemProperty2> Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; AdditionalData?.Remove("errors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
-        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchemaErrorsItemProperty2> _explicitNullValueErrors = default!;
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchemaErrorsItem> Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; AdditionalData?.Remove("errors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchemaErrorsItem> _explicitNullValueErrors = default!;
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -95,7 +95,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignItemSchema>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignItemSchema.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchemaErrorsItemProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchemaErrorsItemProperty2.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchemaErrorsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchemaErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLinkSchemaItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLinkSchemaItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "page", n => { Page = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodePage>(global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodePage.CreateFromDiscriminatorValue); } },
             };
@@ -108,7 +108,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignItemSchema>("data", Data);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchemaErrorsItemProperty2>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ListCampaignsResponseSchemaErrorsItem>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodeLinkSchemaItem>("links", Links);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ShortCodePage>("page", Page);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);

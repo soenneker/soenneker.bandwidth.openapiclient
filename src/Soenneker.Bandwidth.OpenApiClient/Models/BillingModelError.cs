@@ -59,12 +59,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The meta property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelErrorMetaProperty? Meta { get => _explicitNullValueMeta; set { _explicitNullValueMeta = value; AdditionalData?.Remove("meta"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("meta"); else _explicitNullProperties?.Remove("meta"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelErrorMetaProperty? _explicitNullValueMeta = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelErrorMeta? Meta { get => _explicitNullValueMeta; set { _explicitNullValueMeta = value; AdditionalData?.Remove("meta"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("meta"); else _explicitNullProperties?.Remove("meta"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelErrorMeta? _explicitNullValueMeta = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelErrorMetaProperty Meta { get => _explicitNullValueMeta; set { _explicitNullValueMeta = value; AdditionalData?.Remove("meta"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("meta"); else _explicitNullProperties?.Remove("meta"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelErrorMetaProperty _explicitNullValueMeta = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelErrorMeta Meta { get => _explicitNullValueMeta; set { _explicitNullValueMeta = value; AdditionalData?.Remove("meta"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("meta"); else _explicitNullProperties?.Remove("meta"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelErrorMeta _explicitNullValueMeta = default!;
 #endif
         /// <summary>The source property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -114,7 +114,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "code", n => { Code = n.GetIntValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
-                { "meta", n => { Meta = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelErrorMetaProperty>(global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelErrorMetaProperty.CreateFromDiscriminatorValue); } },
+                { "meta", n => { Meta = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelErrorMeta>(global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelErrorMeta.CreateFromDiscriminatorValue); } },
                 { "source", n => { Source = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelErrorSource>(global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelErrorSource.CreateFromDiscriminatorValue); } },
                 { "type", n => { Type = n.GetStringValue(); } },
             };
@@ -129,7 +129,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteIntValue("code", Code);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("id", Id);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelErrorMetaProperty>("meta", Meta);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelErrorMeta>("meta", Meta);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.BillingModelErrorSource>("source", Source);
             writer.WriteStringValue("type", Type);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);

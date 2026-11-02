@@ -41,22 +41,22 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseErrorsItemProperty2>? Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; AdditionalData?.Remove("errors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
-        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseErrorsItemProperty2>? _explicitNullValueErrors = default!;
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseErrorsItem>? Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; AdditionalData?.Remove("errors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseErrorsItem>? _explicitNullValueErrors = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseErrorsItemProperty2> Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; AdditionalData?.Remove("errors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
-        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseErrorsItemProperty2> _explicitNullValueErrors = default!;
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseErrorsItem> Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; AdditionalData?.Remove("errors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseErrorsItem> _explicitNullValueErrors = default!;
 #endif
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseLinksItemProperty2>? Links { get => _explicitNullValueLinks; set { _explicitNullValueLinks = value; AdditionalData?.Remove("links"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("links"); else _explicitNullProperties?.Remove("links"); } }
-        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseLinksItemProperty2>? _explicitNullValueLinks = default!;
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseLinksItem>? Links { get => _explicitNullValueLinks; set { _explicitNullValueLinks = value; AdditionalData?.Remove("links"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("links"); else _explicitNullProperties?.Remove("links"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseLinksItem>? _explicitNullValueLinks = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseLinksItemProperty2> Links { get => _explicitNullValueLinks; set { _explicitNullValueLinks = value; AdditionalData?.Remove("links"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("links"); else _explicitNullProperties?.Remove("links"); } }
-        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseLinksItemProperty2> _explicitNullValueLinks = default!;
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseLinksItem> Links { get => _explicitNullValueLinks; set { _explicitNullValueLinks = value; AdditionalData?.Remove("links"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("links"); else _explicitNullProperties?.Remove("links"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseLinksItem> _explicitNullValueLinks = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponse"/> and sets the default values.
@@ -84,8 +84,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseData>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseData.CreateFromDiscriminatorValue); } },
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseErrorsItemProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseErrorsItemProperty2.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseLinksItemProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseLinksItemProperty2.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseErrorsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseLinksItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseLinksItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -96,8 +96,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseData>("data", Data);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseErrorsItemProperty2>("errors", Errors);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseLinksItemProperty2>("links", Links);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseErrorsItem>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionListResponseResponseLinksItem>("links", Links);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }

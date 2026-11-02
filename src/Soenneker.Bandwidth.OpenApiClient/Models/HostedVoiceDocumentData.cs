@@ -52,12 +52,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Field is a key value pair of attribute name and value.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentDataFieldsProperty2? Fields { get => _explicitNullValueFields; set { _explicitNullValueFields = value; AdditionalData?.Remove("fields"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fields"); else _explicitNullProperties?.Remove("fields"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentDataFieldsProperty2? _explicitNullValueFields = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentDataFields? Fields { get => _explicitNullValueFields; set { _explicitNullValueFields = value; AdditionalData?.Remove("fields"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fields"); else _explicitNullProperties?.Remove("fields"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentDataFields? _explicitNullValueFields = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentDataFieldsProperty2 Fields { get => _explicitNullValueFields; set { _explicitNullValueFields = value; AdditionalData?.Remove("fields"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fields"); else _explicitNullProperties?.Remove("fields"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentDataFieldsProperty2 _explicitNullValueFields = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentDataFields Fields { get => _explicitNullValueFields; set { _explicitNullValueFields = value; AdditionalData?.Remove("fields"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fields"); else _explicitNullProperties?.Remove("fields"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentDataFields _explicitNullValueFields = default!;
 #endif
         /// <summary>Unique name representing the type of document</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -96,7 +96,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "customReference", n => { CustomReference = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "fields", n => { Fields = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentDataFieldsProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentDataFieldsProperty2.CreateFromDiscriminatorValue); } },
+                { "fields", n => { Fields = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentDataFields>(global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentDataFields.CreateFromDiscriminatorValue); } },
                 { "type", n => { Type = n.GetStringValue(); } },
             };
         }
@@ -109,7 +109,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("customReference", CustomReference);
             writer.WriteStringValue("description", Description);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentDataFieldsProperty2>("fields", Fields);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.HostedVoiceDocumentDataFields>("fields", Fields);
             writer.WriteStringValue("type", Type);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);

@@ -40,15 +40,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string Endpoint { get => _explicitNullValueEndpoint; set { _explicitNullValueEndpoint = value; AdditionalData?.Remove("endpoint"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endpoint"); else _explicitNullProperties?.Remove("endpoint"); } }
         private string _explicitNullValueEndpoint = default!;
 #endif
-        /// <summary>The trunkInfo property</summary>
+        /// <summary>Trunk selection information for an endpoint. This field is optional and nullable: it may be omitted in requests and responses when no trunk has been selected for an endpoint. When present it contains the trunk identifier and associated capability pipe id selected for this endpoint.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceTrunkInfo? TrunkInfo { get => _explicitNullValueTrunkInfo; set { _explicitNullValueTrunkInfo = value; AdditionalData?.Remove("trunkInfo"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("trunkInfo"); else _explicitNullProperties?.Remove("trunkInfo"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceTrunkInfo? _explicitNullValueTrunkInfo = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequestTrunkInfo? TrunkInfo { get => _explicitNullValueTrunkInfo; set { _explicitNullValueTrunkInfo = value; AdditionalData?.Remove("trunkInfo"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("trunkInfo"); else _explicitNullProperties?.Remove("trunkInfo"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequestTrunkInfo? _explicitNullValueTrunkInfo = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceTrunkInfo TrunkInfo { get => _explicitNullValueTrunkInfo; set { _explicitNullValueTrunkInfo = value; AdditionalData?.Remove("trunkInfo"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("trunkInfo"); else _explicitNullProperties?.Remove("trunkInfo"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceTrunkInfo _explicitNullValueTrunkInfo = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequestTrunkInfo TrunkInfo { get => _explicitNullValueTrunkInfo; set { _explicitNullValueTrunkInfo = value; AdditionalData?.Remove("trunkInfo"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("trunkInfo"); else _explicitNullProperties?.Remove("trunkInfo"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequestTrunkInfo _explicitNullValueTrunkInfo = default!;
 #endif
         /// <summary>The type property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceEndpointTypeEnum? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; AdditionalData?.Remove("type"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
@@ -82,7 +82,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "endpoint", n => { Endpoint = n.GetStringValue(); } },
-                { "trunkInfo", n => { TrunkInfo = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceTrunkInfo>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceTrunkInfo.CreateFromDiscriminatorValue); } },
+                { "trunkInfo", n => { TrunkInfo = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequestTrunkInfo>(global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequestTrunkInfo.CreateFromDiscriminatorValue); } },
                 { "type", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceEndpointTypeEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueType = default; _explicitNullProperties?.Remove("type"); AdditionalData["type"] = unknown; } else { Type = parsed; AdditionalData.Remove("type"); } } },
                 { "weight", n => { Weight = n.GetIntValue(); } },
             };
@@ -95,7 +95,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("endpoint", Endpoint);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceTrunkInfo>("trunkInfo", TrunkInfo);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.FqdnEndpointRequestTrunkInfo>("trunkInfo", TrunkInfo);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceEndpointTypeEnum>("type", Type);
             writer.WriteIntValue("weight", Weight);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);

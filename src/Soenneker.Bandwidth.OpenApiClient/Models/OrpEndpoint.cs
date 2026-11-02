@@ -39,15 +39,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         private string _explicitNullValueEndpoint = default!;
 #endif
         /// <summary>SIP, IP_V4, or FQDN.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.OrpEndpointType?>? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; AdditionalData?.Remove("type"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
-        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.OrpEndpointType?>? _explicitNullValueType = default!;
-#nullable restore
-#else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.OrpEndpointType?> Type { get => _explicitNullValueType; set { _explicitNullValueType = value; AdditionalData?.Remove("type"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
-        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.OrpEndpointType?> _explicitNullValueType = default!;
-#endif
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.OrpEndpointType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; AdditionalData?.Remove("type"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.OrpEndpointType? _explicitNullValueType = default!;
         /// <summary>A positive integer that specifies the weighting of this ruleentry within a given priority group. All entries with the same priorityare weighted together using the weights as ratios.</summary>
         public int? Weight { get => _explicitNullValueWeight; set { _explicitNullValueWeight = value; AdditionalData?.Remove("weight"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("weight"); else _explicitNullProperties?.Remove("weight"); } }
         private int? _explicitNullValueWeight = default!;
@@ -87,7 +80,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "endpoint", n => { Endpoint = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.OrpEndpointType>()?.AsList(); } },
+                { "type", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OrpEndpointType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueType = default; _explicitNullProperties?.Remove("type"); AdditionalData["type"] = unknown; } else { Type = parsed; AdditionalData.Remove("type"); } } },
                 { "weight", n => { Weight = n.GetIntValue(); } },
             };
         }
@@ -99,7 +92,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("endpoint", Endpoint);
-            writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.OrpEndpointType>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.OrpEndpointType>("type", Type);
             writer.WriteIntValue("weight", Weight);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);

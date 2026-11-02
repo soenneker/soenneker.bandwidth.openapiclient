@@ -40,12 +40,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>A map from the type of source to a value for that type. The supported keys are: 1) POINTER (the value is a RFC6901 JSON pointer to a field in the request body); 2) PARAMETER (the value is a query parameter name); and 3) PATH (the value is a parameter name in the URI of the request). There will only be one entry in the source property, as each error is recorded separately in the errors array.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorEntrySourceProperty2? Source { get => _explicitNullValueSource; set { _explicitNullValueSource = value; AdditionalData?.Remove("source"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("source"); else _explicitNullProperties?.Remove("source"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorEntrySourceProperty2? _explicitNullValueSource = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorEntrySource? Source { get => _explicitNullValueSource; set { _explicitNullValueSource = value; AdditionalData?.Remove("source"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("source"); else _explicitNullProperties?.Remove("source"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorEntrySource? _explicitNullValueSource = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorEntrySourceProperty2 Source { get => _explicitNullValueSource; set { _explicitNullValueSource = value; AdditionalData?.Remove("source"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("source"); else _explicitNullProperties?.Remove("source"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorEntrySourceProperty2 _explicitNullValueSource = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorEntrySource Source { get => _explicitNullValueSource; set { _explicitNullValueSource = value; AdditionalData?.Remove("source"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("source"); else _explicitNullProperties?.Remove("source"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorEntrySource _explicitNullValueSource = default!;
 #endif
         /// <summary>A short, human-readable description of the type of error (e.g. &quot;bad request&quot;).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -83,7 +83,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "source", n => { Source = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorEntrySourceProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorEntrySourceProperty2.CreateFromDiscriminatorValue); } },
+                { "source", n => { Source = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorEntrySource>(global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorEntrySource.CreateFromDiscriminatorValue); } },
                 { "type", n => { Type = n.GetStringValue(); } },
             };
         }
@@ -95,7 +95,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorEntrySourceProperty2>("source", Source);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorEntrySource>("source", Source);
             writer.WriteStringValue("type", Type);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);

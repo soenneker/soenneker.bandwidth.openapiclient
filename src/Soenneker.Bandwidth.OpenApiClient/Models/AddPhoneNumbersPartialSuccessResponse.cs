@@ -31,12 +31,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AddPhoneNumbersPartialSuccessResponseDataProperty2? Data { get => _explicitNullValueData; set { _explicitNullValueData = value; AdditionalData?.Remove("data"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.AddPhoneNumbersPartialSuccessResponseDataProperty2? _explicitNullValueData = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AddPhoneNumbersPartialSuccessResponseData? Data { get => _explicitNullValueData; set { _explicitNullValueData = value; AdditionalData?.Remove("data"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.AddPhoneNumbersPartialSuccessResponseData? _explicitNullValueData = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AddPhoneNumbersPartialSuccessResponseDataProperty2 Data { get => _explicitNullValueData; set { _explicitNullValueData = value; AdditionalData?.Remove("data"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.AddPhoneNumbersPartialSuccessResponseDataProperty2 _explicitNullValueData = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AddPhoneNumbersPartialSuccessResponseData Data { get => _explicitNullValueData; set { _explicitNullValueData = value; AdditionalData?.Remove("data"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.AddPhoneNumbersPartialSuccessResponseData _explicitNullValueData = default!;
 #endif
         /// <summary>The errors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -83,7 +83,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddPhoneNumbersPartialSuccessResponseDataProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.AddPhoneNumbersPartialSuccessResponseDataProperty2.CreateFromDiscriminatorValue); } },
+                { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddPhoneNumbersPartialSuccessResponseData>(global::Soenneker.Bandwidth.OpenApiClient.Models.AddPhoneNumbersPartialSuccessResponseData.CreateFromDiscriminatorValue); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceError>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceError.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "links", n => { Links = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceLink>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceLink.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -95,7 +95,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddPhoneNumbersPartialSuccessResponseDataProperty2>("data", Data);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AddPhoneNumbersPartialSuccessResponseData>("data", Data);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceError>("errors", Errors);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceConfigServiceLink>("links", Links);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);

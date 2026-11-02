@@ -54,8 +54,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         private string _explicitNullValueEntityId = default!;
 #endif
         /// <summary>The Event Type of the Subscription. This value is Required when entityId is present</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeEnum? EventType { get => _explicitNullValueEventType; set { _explicitNullValueEventType = value; AdditionalData?.Remove("eventType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eventType"); else _explicitNullProperties?.Remove("eventType"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeEnum? _explicitNullValueEventType = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeEnumAnyOf1? EventType { get => _explicitNullValueEventType; set { _explicitNullValueEventType = value; AdditionalData?.Remove("eventType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eventType"); else _explicitNullProperties?.Remove("eventType"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeEnumAnyOf1? _explicitNullValueEventType = default!;
         /// <summary>NOTE: When a request without the `Authorization` header is made to a callback url that supports basic authentication, then the expected behavior is:1. Response code is `401` or `407`. 2. Response headers should contain `WWW-Authenticate` or `Proxy-Authenticate` specifying basic authentication as a scheme. For example `WWW-Authenticate&quot;:&quot;Basic realm=&quot;Bandwidth API&quot;`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -69,12 +69,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The notifyStates property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnum?>? NotifyStates { get => _explicitNullValueNotifyStates; set { _explicitNullValueNotifyStates = value; AdditionalData?.Remove("notifyStates"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notifyStates"); else _explicitNullProperties?.Remove("notifyStates"); } }
-        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnum?>? _explicitNullValueNotifyStates = default!;
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnumAnyOf1?>? NotifyStates { get => _explicitNullValueNotifyStates; set { _explicitNullValueNotifyStates = value; AdditionalData?.Remove("notifyStates"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notifyStates"); else _explicitNullProperties?.Remove("notifyStates"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnumAnyOf1?>? _explicitNullValueNotifyStates = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnum?> NotifyStates { get => _explicitNullValueNotifyStates; set { _explicitNullValueNotifyStates = value; AdditionalData?.Remove("notifyStates"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notifyStates"); else _explicitNullProperties?.Remove("notifyStates"); } }
-        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnum?> _explicitNullValueNotifyStates = default!;
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnumAnyOf1?> NotifyStates { get => _explicitNullValueNotifyStates; set { _explicitNullValueNotifyStates = value; AdditionalData?.Remove("notifyStates"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notifyStates"); else _explicitNullProperties?.Remove("notifyStates"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnumAnyOf1?> _explicitNullValueNotifyStates = default!;
 #endif
         /// <summary>The Product of the Subscription</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.ProductEnum? Product { get => _explicitNullValueProduct; set { _explicitNullValueProduct = value; AdditionalData?.Remove("product"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("product"); else _explicitNullProperties?.Remove("product"); } }
@@ -129,9 +129,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "dateOfLastModification", n => { DateOfLastModification = n.GetDateTimeOffsetValue(); } },
                 { "entityId", n => { EntityId = n.GetStringValue(); } },
-                { "eventType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueEventType = default; _explicitNullProperties?.Remove("eventType"); AdditionalData["eventType"] = unknown; } else { EventType = parsed; AdditionalData.Remove("eventType"); } } },
+                { "eventType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeEnumAnyOf1>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueEventType = default; _explicitNullProperties?.Remove("eventType"); AdditionalData["eventType"] = unknown; } else { EventType = parsed; AdditionalData.Remove("eventType"); } } },
                 { "notificationChannel", n => { NotificationChannel = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationChannel>(global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationChannel.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "notifyStates", n => { NotifyStates = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnum>()?.AsList(); } },
+                { "notifyStates", n => { NotifyStates = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnumAnyOf1>()?.AsList(); } },
                 { "product", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueProduct = default; _explicitNullProperties?.Remove("product"); AdditionalData["product"] = unknown; } else { Product = parsed; AdditionalData.Remove("product"); } } },
                 { "subscriptionId", n => { SubscriptionId = n.GetStringValue(); } },
                 { "subscriptionStatus", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionSubscriptionStatus>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueSubscriptionStatus = default; _explicitNullProperties?.Remove("subscriptionStatus"); AdditionalData["subscriptionStatus"] = unknown; } else { SubscriptionStatus = parsed; AdditionalData.Remove("subscriptionStatus"); } } },
@@ -147,9 +147,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("dateOfLastModification", DateOfLastModification);
             writer.WriteStringValue("entityId", EntityId);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeEnum>("eventType", EventType);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeEnumAnyOf1>("eventType", EventType);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NotificationChannel>("notificationChannel", NotificationChannel);
-            writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnum>("notifyStates", NotifyStates);
+            writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PortinEventStatusEnumAnyOf1>("notifyStates", NotifyStates);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ProductEnum>("product", Product);
             writer.WriteStringValue("subscriptionId", SubscriptionId);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriptionSubscriptionStatus>("subscriptionStatus", SubscriptionStatus);

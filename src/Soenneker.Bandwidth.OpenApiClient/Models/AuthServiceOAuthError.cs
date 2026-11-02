@@ -54,22 +54,22 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Additional metadata about the error</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorMeta? Meta { get => _explicitNullValueMeta; set { _explicitNullValueMeta = value; AdditionalData?.Remove("meta"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("meta"); else _explicitNullProperties?.Remove("meta"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorMeta? _explicitNullValueMeta = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorMeta? Meta { get => _explicitNullValueMeta; set { _explicitNullValueMeta = value; AdditionalData?.Remove("meta"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("meta"); else _explicitNullProperties?.Remove("meta"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorMeta? _explicitNullValueMeta = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorMeta Meta { get => _explicitNullValueMeta; set { _explicitNullValueMeta = value; AdditionalData?.Remove("meta"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("meta"); else _explicitNullProperties?.Remove("meta"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorMeta _explicitNullValueMeta = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorMeta Meta { get => _explicitNullValueMeta; set { _explicitNullValueMeta = value; AdditionalData?.Remove("meta"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("meta"); else _explicitNullProperties?.Remove("meta"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorMeta _explicitNullValueMeta = default!;
 #endif
         /// <summary>Information about the source of the error</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorSource? Source { get => _explicitNullValueSource; set { _explicitNullValueSource = value; AdditionalData?.Remove("source"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("source"); else _explicitNullProperties?.Remove("source"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorSource? _explicitNullValueSource = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorSource? Source { get => _explicitNullValueSource; set { _explicitNullValueSource = value; AdditionalData?.Remove("source"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("source"); else _explicitNullProperties?.Remove("source"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorSource? _explicitNullValueSource = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorSource Source { get => _explicitNullValueSource; set { _explicitNullValueSource = value; AdditionalData?.Remove("source"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("source"); else _explicitNullProperties?.Remove("source"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorSource _explicitNullValueSource = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorSource Source { get => _explicitNullValueSource; set { _explicitNullValueSource = value; AdditionalData?.Remove("source"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("source"); else _explicitNullProperties?.Remove("source"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorSource _explicitNullValueSource = default!;
 #endif
         /// <summary>A short human-readable summary of the problem encountered</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -108,8 +108,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             {
                 { "code", n => { Code = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "meta", n => { Meta = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorMeta>(global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorMeta.CreateFromDiscriminatorValue); } },
-                { "source", n => { Source = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorSource>(global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorSource.CreateFromDiscriminatorValue); } },
+                { "meta", n => { Meta = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorMeta>(global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorMeta.CreateFromDiscriminatorValue); } },
+                { "source", n => { Source = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorSource>(global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorSource.CreateFromDiscriminatorValue); } },
                 { "type", n => { Type = n.GetStringValue(); } },
             };
         }
@@ -122,8 +122,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("code", Code);
             writer.WriteStringValue("description", Description);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorMeta>("meta", Meta);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuthServiceOAuthErrorSource>("source", Source);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorMeta>("meta", Meta);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorSource>("source", Source);
             writer.WriteStringValue("type", Type);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);

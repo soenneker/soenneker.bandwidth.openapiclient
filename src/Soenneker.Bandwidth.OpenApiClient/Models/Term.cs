@@ -31,12 +31,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>the top unique keys and their counts</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TermKeysProperty2? Keys { get => _explicitNullValueKeys; set { _explicitNullValueKeys = value; AdditionalData?.Remove("keys"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("keys"); else _explicitNullProperties?.Remove("keys"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.TermKeysProperty2? _explicitNullValueKeys = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TermKeys? Keys { get => _explicitNullValueKeys; set { _explicitNullValueKeys = value; AdditionalData?.Remove("keys"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("keys"); else _explicitNullProperties?.Remove("keys"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TermKeys? _explicitNullValueKeys = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TermKeysProperty2 Keys { get => _explicitNullValueKeys; set { _explicitNullValueKeys = value; AdditionalData?.Remove("keys"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("keys"); else _explicitNullProperties?.Remove("keys"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.TermKeysProperty2 _explicitNullValueKeys = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TermKeys Keys { get => _explicitNullValueKeys; set { _explicitNullValueKeys = value; AdditionalData?.Remove("keys"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("keys"); else _explicitNullProperties?.Remove("keys"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TermKeys _explicitNullValueKeys = default!;
 #endif
         /// <summary>The name of the key</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -76,7 +76,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "keys", n => { Keys = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TermKeysProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.TermKeysProperty2.CreateFromDiscriminatorValue); } },
+                { "keys", n => { Keys = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TermKeys>(global::Soenneker.Bandwidth.OpenApiClient.Models.TermKeys.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "otherCount", n => { OtherCount = n.GetIntValue(); } },
             };
@@ -88,7 +88,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TermKeysProperty2>("keys", Keys);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TermKeys>("keys", Keys);
             writer.WriteStringValue("name", Name);
             writer.WriteIntValue("otherCount", OtherCount);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);

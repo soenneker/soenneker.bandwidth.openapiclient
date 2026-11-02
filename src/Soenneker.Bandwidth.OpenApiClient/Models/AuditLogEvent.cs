@@ -44,12 +44,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Event-specific metadata such as before and after state for update events. Content varies by event type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetailsProperty2? Details { get => _explicitNullValueDetails; set { _explicitNullValueDetails = value; AdditionalData?.Remove("details"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("details"); else _explicitNullProperties?.Remove("details"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetailsProperty2? _explicitNullValueDetails = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetails? Details { get => _explicitNullValueDetails; set { _explicitNullValueDetails = value; AdditionalData?.Remove("details"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("details"); else _explicitNullProperties?.Remove("details"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetails? _explicitNullValueDetails = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetailsProperty2 Details { get => _explicitNullValueDetails; set { _explicitNullValueDetails = value; AdditionalData?.Remove("details"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("details"); else _explicitNullProperties?.Remove("details"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetailsProperty2 _explicitNullValueDetails = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetails Details { get => _explicitNullValueDetails; set { _explicitNullValueDetails = value; AdditionalData?.Remove("details"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("details"); else _explicitNullProperties?.Remove("details"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetails _explicitNullValueDetails = default!;
 #endif
         /// <summary>Unique identifier for the audit log event</summary>
         public Guid? EventId { get => _explicitNullValueEventId; set { _explicitNullValueEventId = value; AdditionalData?.Remove("eventId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eventId"); else _explicitNullProperties?.Remove("eventId"); } }
@@ -86,7 +86,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "actor", n => { Actor = n.GetStringValue(); } },
-                { "details", n => { Details = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetailsProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetailsProperty2.CreateFromDiscriminatorValue); } },
+                { "details", n => { Details = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetails>(global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetails.CreateFromDiscriminatorValue); } },
                 { "eventId", n => { EventId = n.GetGuidValue(); } },
                 { "eventType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventTypeEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueEventType = default; _explicitNullProperties?.Remove("eventType"); AdditionalData["eventType"] = unknown; } else { EventType = parsed; AdditionalData.Remove("eventType"); } } },
                 { "occurredAt", n => { OccurredAt = n.GetDateTimeOffsetValue(); } },
@@ -100,7 +100,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("actor", Actor);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetailsProperty2>("details", Details);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventDetails>("details", Details);
             writer.WriteGuidValue("eventId", EventId);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AuditLogEventTypeEnum>("eventType", EventType);
             writer.WriteDateTimeOffsetValue("occurredAt", OccurredAt);

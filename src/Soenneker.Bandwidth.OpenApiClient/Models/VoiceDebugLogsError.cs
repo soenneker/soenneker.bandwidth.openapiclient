@@ -66,12 +66,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Application-specific metadata.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMetaProperty2? Meta { get => _explicitNullValueMeta; set { _explicitNullValueMeta = value; AdditionalData?.Remove("meta"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("meta"); else _explicitNullProperties?.Remove("meta"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMetaProperty2? _explicitNullValueMeta = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMeta? Meta { get => _explicitNullValueMeta; set { _explicitNullValueMeta = value; AdditionalData?.Remove("meta"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("meta"); else _explicitNullProperties?.Remove("meta"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMeta? _explicitNullValueMeta = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMetaProperty2 Meta { get => _explicitNullValueMeta; set { _explicitNullValueMeta = value; AdditionalData?.Remove("meta"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("meta"); else _explicitNullProperties?.Remove("meta"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMetaProperty2 _explicitNullValueMeta = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMeta Meta { get => _explicitNullValueMeta; set { _explicitNullValueMeta = value; AdditionalData?.Remove("meta"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("meta"); else _explicitNullProperties?.Remove("meta"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMeta _explicitNullValueMeta = default!;
 #endif
         /// <summary>Identifies the source of the error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -84,8 +84,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         private global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorSource _explicitNullValueSource = default!;
 #endif
         /// <summary>Machine-readable error category. Consistent across occurrences of the same problem.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; AdditionalData?.Remove("type"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorType? _explicitNullValueType = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; AdditionalData?.Remove("type"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorType? _explicitNullValueType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsError"/> and sets the default values.
         /// </summary>
@@ -114,9 +114,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "code", n => { Code = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
-                { "meta", n => { Meta = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMetaProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMetaProperty2.CreateFromDiscriminatorValue); } },
+                { "meta", n => { Meta = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMeta>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMeta.CreateFromDiscriminatorValue); } },
                 { "source", n => { Source = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorSource>(global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorSource.CreateFromDiscriminatorValue); } },
-                { "type", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueType = default; _explicitNullProperties?.Remove("type"); AdditionalData["type"] = unknown; } else { Type = parsed; AdditionalData.Remove("type"); } } },
+                { "type", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueType = default; _explicitNullProperties?.Remove("type"); AdditionalData["type"] = unknown; } else { Type = parsed; AdditionalData.Remove("type"); } } },
             };
         }
         /// <summary>
@@ -129,9 +129,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("code", Code);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("id", Id);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMetaProperty2>("meta", Meta);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorMeta>("meta", Meta);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorSource>("source", Source);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.VoiceDebugLogsErrorType>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ErrorType>("type", Type);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }

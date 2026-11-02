@@ -42,12 +42,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Each key of this errors object refers to a field of the submitted object (using dot notation for nested objects), with the field being a key to an array of one or more errors for that field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TfvErrorErrorsProperty2? Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; AdditionalData?.Remove("errors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.TfvErrorErrorsProperty2? _explicitNullValueErrors = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TfvErrorErrors? Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; AdditionalData?.Remove("errors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TfvErrorErrors? _explicitNullValueErrors = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.TfvErrorErrorsProperty2 Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; AdditionalData?.Remove("errors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.TfvErrorErrorsProperty2 _explicitNullValueErrors = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.TfvErrorErrors Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; AdditionalData?.Remove("errors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.TfvErrorErrors _explicitNullValueErrors = default!;
 #endif
         /// <summary>The primary error message.</summary>
         public override string Message { get => base.Message; }
@@ -87,7 +87,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "errors", n => { Errors = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TfvErrorErrorsProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.TfvErrorErrorsProperty2.CreateFromDiscriminatorValue); } },
+                { "errors", n => { Errors = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TfvErrorErrors>(global::Soenneker.Bandwidth.OpenApiClient.Models.TfvErrorErrors.CreateFromDiscriminatorValue); } },
                 { "type", n => { Type = n.GetStringValue(); } },
             };
         }
@@ -99,7 +99,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TfvErrorErrorsProperty2>("errors", Errors);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TfvErrorErrors>("errors", Errors);
             writer.WriteStringValue("type", Type);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);

@@ -104,12 +104,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The phoneNumbers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalPhoneNumber>? PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; AdditionalData?.Remove("phoneNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
-        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalPhoneNumber>? _explicitNullValuePhoneNumbers = default!;
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumber>? PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; AdditionalData?.Remove("phoneNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumber>? _explicitNullValuePhoneNumbers = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalPhoneNumber> PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; AdditionalData?.Remove("phoneNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
-        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalPhoneNumber> _explicitNullValuePhoneNumbers = default!;
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumber> PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; AdditionalData?.Remove("phoneNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumber> _explicitNullValuePhoneNumbers = default!;
 #endif
         /// <summary>The rate center can be defined as a zone (which can be equivalent to a city or the area of a city) e.g. the rate center of &apos;NEW YORK CITY ZONE 1&apos; would be &apos;NWYRCYZN01&apos;. The rate center is a notion usually used in north America.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -174,7 +174,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "didType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroupDidType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueDidType = default; _explicitNullProperties?.Remove("didType"); AdditionalData["didType"] = unknown; } else { DidType = parsed; AdditionalData.Remove("didType"); } } },
                 { "features", n => { Features = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Feature>(global::Soenneker.Bandwidth.OpenApiClient.Models.Feature.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "monthly100", n => { Monthly100 = n.GetIntValue(); } },
-                { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalPhoneNumber>(global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalPhoneNumber.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumber>(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumber.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "rateCenter", n => { RateCenter = n.GetStringValue(); } },
                 { "regulationRequirement", n => { RegulationRequirement = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModel>(global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModel.CreateFromDiscriminatorValue); } },
                 { "setup100", n => { Setup100 = n.GetIntValue(); } },
@@ -197,7 +197,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.DidGroupDidType>("didType", DidType);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Feature>("features", Features);
             writer.WriteIntValue("monthly100", Monthly100);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalPhoneNumber>("phoneNumbers", PhoneNumbers);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumber>("phoneNumbers", PhoneNumbers);
             writer.WriteStringValue("rateCenter", RateCenter);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RegulationRequirementModel>("regulationRequirement", RegulationRequirement);
             writer.WriteIntValue("setup100", Setup100);

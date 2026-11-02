@@ -39,8 +39,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         private string _explicitNullValueHref = default!;
 #endif
         /// <summary>The HTTP method used to access the resource.</summary>
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServiceLinkMethod? Method { get => _explicitNullValueMethod; set { _explicitNullValueMethod = value; AdditionalData?.Remove("method"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("method"); else _explicitNullProperties?.Remove("method"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServiceLinkMethod? _explicitNullValueMethod = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.LinkMethod? Method { get => _explicitNullValueMethod; set { _explicitNullValueMethod = value; AdditionalData?.Remove("method"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("method"); else _explicitNullProperties?.Remove("method"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.LinkMethod? _explicitNullValueMethod = default!;
         /// <summary>How the URL relates to the resource of the current request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -77,7 +77,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "href", n => { Href = n.GetStringValue(); } },
-                { "method", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServiceLinkMethod>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueMethod = default; _explicitNullProperties?.Remove("method"); AdditionalData["method"] = unknown; } else { Method = parsed; AdditionalData.Remove("method"); } } },
+                { "method", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LinkMethod>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueMethod = default; _explicitNullProperties?.Remove("method"); AdditionalData["method"] = unknown; } else { Method = parsed; AdditionalData.Remove("method"); } } },
                 { "rel", n => { Rel = n.GetStringValue(); } },
             };
         }
@@ -89,7 +89,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("href", Href);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LrnConfigServiceLinkMethod>("method", Method);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.LinkMethod>("method", Method);
             writer.WriteStringValue("rel", Rel);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);

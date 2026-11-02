@@ -43,8 +43,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public int? AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; AdditionalData?.Remove("accountId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
         private int? _explicitNullValueAccountId = default!;
         /// <summary>Assignment action performed on phone numbers.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
         public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderSummaryAction? Action { get => _explicitNullValueAction; set { _explicitNullValueAction = value; AdditionalData?.Remove("action"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("action"); else _explicitNullProperties?.Remove("action"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderSummaryAction? _explicitNullValueAction = default!;
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderSummaryAction Action { get => _explicitNullValueAction; set { _explicitNullValueAction = value; AdditionalData?.Remove("action"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("action"); else _explicitNullProperties?.Remove("action"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderSummaryAction _explicitNullValueAction = default!;
+#endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The customer-defined reference ID for this order, if one was provided at creation.</summary>
@@ -81,8 +88,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         private string _explicitNullValueOrderId = default!;
 #endif
         /// <summary>Terminal status of a numbers assignment order.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
         public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderSummaryOrderStatus? OrderStatus { get => _explicitNullValueOrderStatus; set { _explicitNullValueOrderStatus = value; AdditionalData?.Remove("orderStatus"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderStatus"); else _explicitNullProperties?.Remove("orderStatus"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderSummaryOrderStatus? _explicitNullValueOrderStatus = default!;
+#nullable restore
+#else
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderSummaryOrderStatus OrderStatus { get => _explicitNullValueOrderStatus; set { _explicitNullValueOrderStatus = value; AdditionalData?.Remove("orderStatus"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderStatus"); else _explicitNullProperties?.Remove("orderStatus"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderSummaryOrderStatus _explicitNullValueOrderStatus = default!;
+#endif
         /// <summary>The type of order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -132,12 +146,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "accountId", n => { AccountId = n.GetIntValue(); } },
-                { "action", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderSummaryAction>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueAction = default; _explicitNullProperties?.Remove("action"); AdditionalData["action"] = unknown; } else { Action = parsed; AdditionalData.Remove("action"); } } },
+                { "action", n => { Action = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderSummaryAction>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderSummaryAction.CreateFromDiscriminatorValue); } },
                 { "customerOrderId", n => { CustomerOrderId = n.GetStringValue(); } },
                 { "failedQuantity", n => { FailedQuantity = n.GetIntValue(); } },
                 { "orderDate", n => { OrderDate = n.GetStringValue(); } },
                 { "orderId", n => { OrderId = n.GetStringValue(); } },
-                { "orderStatus", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderSummaryOrderStatus>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueOrderStatus = default; _explicitNullProperties?.Remove("orderStatus"); AdditionalData["orderStatus"] = unknown; } else { OrderStatus = parsed; AdditionalData.Remove("orderStatus"); } } },
+                { "orderStatus", n => { OrderStatus = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderSummaryOrderStatus>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderSummaryOrderStatus.CreateFromDiscriminatorValue); } },
                 { "orderType", n => { OrderType = n.GetStringValue(); } },
                 { "totalQuantity", n => { TotalQuantity = n.GetIntValue(); } },
                 { "userId", n => { UserId = n.GetStringValue(); } },
@@ -151,12 +165,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("accountId", AccountId);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderSummaryAction>("action", Action);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderSummaryAction>("action", Action);
             writer.WriteStringValue("customerOrderId", CustomerOrderId);
             writer.WriteIntValue("failedQuantity", FailedQuantity);
             writer.WriteStringValue("orderDate", OrderDate);
             writer.WriteStringValue("orderId", OrderId);
-            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderSummaryOrderStatus>("orderStatus", OrderStatus);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderSummaryOrderStatus>("orderStatus", OrderStatus);
             writer.WriteStringValue("orderType", OrderType);
             writer.WriteIntValue("totalQuantity", TotalQuantity);
             writer.WriteStringValue("userId", UserId);

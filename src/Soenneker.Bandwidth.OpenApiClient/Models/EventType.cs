@@ -55,12 +55,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Customer-specific context that may be useful after retrieving the event, but not necessarily indexed</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContextProperty2? CustomerContext { get => _explicitNullValueCustomerContext; set { _explicitNullValueCustomerContext = value; AdditionalData?.Remove("customerContext"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerContext"); else _explicitNullProperties?.Remove("customerContext"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContextProperty2? _explicitNullValueCustomerContext = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContext? CustomerContext { get => _explicitNullValueCustomerContext; set { _explicitNullValueCustomerContext = value; AdditionalData?.Remove("customerContext"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerContext"); else _explicitNullProperties?.Remove("customerContext"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContext? _explicitNullValueCustomerContext = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContextProperty2 CustomerContext { get => _explicitNullValueCustomerContext; set { _explicitNullValueCustomerContext = value; AdditionalData?.Remove("customerContext"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerContext"); else _explicitNullProperties?.Remove("customerContext"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContextProperty2 _explicitNullValueCustomerContext = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContext CustomerContext { get => _explicitNullValueCustomerContext; set { _explicitNullValueCustomerContext = value; AdditionalData?.Remove("customerContext"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerContext"); else _explicitNullProperties?.Remove("customerContext"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContext _explicitNullValueCustomerContext = default!;
 #endif
         /// <summary>A unique identifier for the event to distinguish between a replay and a new event</summary>
         public Guid? DeduplicationId { get => _explicitNullValueDeduplicationId; set { _explicitNullValueDeduplicationId = value; AdditionalData?.Remove("deduplicationId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deduplicationId"); else _explicitNullProperties?.Remove("deduplicationId"); } }
@@ -140,7 +140,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "bwContext", n => { BwContext = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeBwContext>(global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeBwContext.CreateFromDiscriminatorValue); } },
-                { "customerContext", n => { CustomerContext = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContextProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContextProperty2.CreateFromDiscriminatorValue); } },
+                { "customerContext", n => { CustomerContext = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContext>(global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContext.CreateFromDiscriminatorValue); } },
                 { "deduplicationId", n => { DeduplicationId = n.GetGuidValue(); } },
                 { "eventTime", n => { EventTime = n.GetDateTimeOffsetValue(); } },
                 { "eventType", n => { EventTypeProp = n.GetStringValue(); } },
@@ -159,7 +159,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeBwContext>("bwContext", BwContext);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContextProperty2>("customerContext", CustomerContext);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EventTypeCustomerContext>("customerContext", CustomerContext);
             writer.WriteGuidValue("deduplicationId", DeduplicationId);
             writer.WriteDateTimeOffsetValue("eventTime", EventTime);
             writer.WriteStringValue("eventType", EventTypeProp);

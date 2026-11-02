@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
-    /// <summary>Only a subset of endpoint types are available for ACRs on an LRN Configuration.</summary>
+    /// <summary>SIP, IP_V4, or FQDN.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum OrpEndpointType
     {

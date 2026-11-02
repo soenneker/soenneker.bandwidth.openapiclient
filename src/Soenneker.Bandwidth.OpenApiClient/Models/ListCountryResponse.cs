@@ -28,12 +28,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The countries property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalCountry>? Countries { get => _explicitNullValueCountries; set { _explicitNullValueCountries = value; AdditionalData?.Remove("countries"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countries"); else _explicitNullProperties?.Remove("countries"); } }
-        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalCountry>? _explicitNullValueCountries = default!;
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Country>? Countries { get => _explicitNullValueCountries; set { _explicitNullValueCountries = value; AdditionalData?.Remove("countries"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countries"); else _explicitNullProperties?.Remove("countries"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.Country>? _explicitNullValueCountries = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalCountry> Countries { get => _explicitNullValueCountries; set { _explicitNullValueCountries = value; AdditionalData?.Remove("countries"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countries"); else _explicitNullProperties?.Remove("countries"); } }
-        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalCountry> _explicitNullValueCountries = default!;
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.Country> Countries { get => _explicitNullValueCountries; set { _explicitNullValueCountries = value; AdditionalData?.Remove("countries"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countries"); else _explicitNullProperties?.Remove("countries"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.Country> _explicitNullValueCountries = default!;
 #endif
         /// <summary>The resultCount property</summary>
         public int? ResultCount { get => _explicitNullValueResultCount; set { _explicitNullValueResultCount = value; AdditionalData?.Remove("resultCount"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resultCount"); else _explicitNullProperties?.Remove("resultCount"); } }
@@ -63,7 +63,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "countries", n => { Countries = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalCountry>(global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalCountry.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "countries", n => { Countries = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Country>(global::Soenneker.Bandwidth.OpenApiClient.Models.Country.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "resultCount", n => { ResultCount = n.GetIntValue(); } },
             };
         }
@@ -74,7 +74,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GlobalCountry>("countries", Countries);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.Country>("countries", Countries);
             writer.WriteIntValue("resultCount", ResultCount);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);

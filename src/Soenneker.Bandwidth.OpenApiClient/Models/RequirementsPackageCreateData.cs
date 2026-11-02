@@ -86,15 +86,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The type of end user</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum? EndUserType { get => _explicitNullValueEndUserType; set { _explicitNullValueEndUserType = value; AdditionalData?.Remove("endUserType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endUserType"); else _explicitNullProperties?.Remove("endUserType"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum? _explicitNullValueEndUserType = default!;
-        /// <summary>The lineage property</summary>
+        /// <summary>Clone relationship for this requirements package. Omitted when no clone relationship exists.**parent** identifies the requirements package this one was cloned from.**children** lists the requirements packages cloned from this one.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage? Lineage { get => _explicitNullValueLineage; set { _explicitNullValueLineage = value; AdditionalData?.Remove("lineage"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lineage"); else _explicitNullProperties?.Remove("lineage"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage? _explicitNullValueLineage = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateDataAllOf2Lineage? Lineage { get => _explicitNullValueLineage; set { _explicitNullValueLineage = value; AdditionalData?.Remove("lineage"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lineage"); else _explicitNullProperties?.Remove("lineage"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateDataAllOf2Lineage? _explicitNullValueLineage = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage Lineage { get => _explicitNullValueLineage; set { _explicitNullValueLineage = value; AdditionalData?.Remove("lineage"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lineage"); else _explicitNullProperties?.Remove("lineage"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage _explicitNullValueLineage = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateDataAllOf2Lineage Lineage { get => _explicitNullValueLineage; set { _explicitNullValueLineage = value; AdditionalData?.Remove("lineage"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lineage"); else _explicitNullProperties?.Remove("lineage"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateDataAllOf2Lineage _explicitNullValueLineage = default!;
 #endif
         /// <summary>The type of phone number.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum? PhoneNumberType { get => _explicitNullValuePhoneNumberType; set { _explicitNullValuePhoneNumberType = value; AdditionalData?.Remove("phoneNumberType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumberType"); else _explicitNullProperties?.Remove("phoneNumberType"); } }
@@ -170,7 +170,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "createdDateTime", n => { CreatedDateTime = n.GetStringValue(); } },
                 { "customReference", n => { CustomReference = n.GetStringValue(); } },
                 { "endUserType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueEndUserType = default; _explicitNullProperties?.Remove("endUserType"); AdditionalData["endUserType"] = unknown; } else { EndUserType = parsed; AdditionalData.Remove("endUserType"); } } },
-                { "lineage", n => { Lineage = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage>(global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage.CreateFromDiscriminatorValue); } },
+                { "lineage", n => { Lineage = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateDataAllOf2Lineage>(global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateDataAllOf2Lineage.CreateFromDiscriminatorValue); } },
                 { "phoneNumberType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValuePhoneNumberType = default; _explicitNullProperties?.Remove("phoneNumberType"); AdditionalData["phoneNumberType"] = unknown; } else { PhoneNumberType = parsed; AdditionalData.Remove("phoneNumberType"); } } },
                 { "remarks", n => { Remarks = n.GetStringValue(); } },
                 { "requirementsPackageId", n => { RequirementsPackageId = n.GetStringValue(); } },
@@ -191,7 +191,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("customReference", CustomReference);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndUserTypeEnum>("endUserType", EndUserType);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageLineage>("lineage", Lineage);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageCreateDataAllOf2Lineage>("lineage", Lineage);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTypeEnum>("phoneNumberType", PhoneNumberType);
             writer.WriteStringValue("requirementsPackageId", RequirementsPackageId);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageStateContext>("stateContext", StateContext);

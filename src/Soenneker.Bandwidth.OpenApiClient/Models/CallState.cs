@@ -178,12 +178,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>For inbound calls, the Bandwidth STIR/SHAKEN implementation will verify the information provided in the inbound invite request `Identity` header.The verification status is stored in the call state `stirShaken` property as follows.| Property          | Description ||:------------------|:------------|| verstat | (optional) The verification status indicating whether the verification was successful or not. Possible values are `TN-Validation-Passed` or `TN-Validation-Failed`. || attestationIndicator | (optional) The attestation level verified by Bandwidth. Possible values are `A` (full), `B` (partial) or `C` (gateway). || originatingId | (optional) A unique origination identifier. |Note that these are common properties but that the `stirShaken` object is free form and can contain other key-value pairs.More information: [Understanding STIR/SHAKEN](https://www.bandwidth.com/regulations/stir-shaken).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallStateStirShakenProperty2? StirShaken { get => _explicitNullValueStirShaken; set { _explicitNullValueStirShaken = value; AdditionalData?.Remove("stirShaken"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stirShaken"); else _explicitNullProperties?.Remove("stirShaken"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.CallStateStirShakenProperty2? _explicitNullValueStirShaken = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallStateStirShaken? StirShaken { get => _explicitNullValueStirShaken; set { _explicitNullValueStirShaken = value; AdditionalData?.Remove("stirShaken"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stirShaken"); else _explicitNullProperties?.Remove("stirShaken"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CallStateStirShaken? _explicitNullValueStirShaken = default!;
 #nullable restore
 #else
-        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallStateStirShakenProperty2 StirShaken { get => _explicitNullValueStirShaken; set { _explicitNullValueStirShaken = value; AdditionalData?.Remove("stirShaken"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stirShaken"); else _explicitNullProperties?.Remove("stirShaken"); } }
-        private global::Soenneker.Bandwidth.OpenApiClient.Models.CallStateStirShakenProperty2 _explicitNullValueStirShaken = default!;
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CallStateStirShaken StirShaken { get => _explicitNullValueStirShaken; set { _explicitNullValueStirShaken = value; AdditionalData?.Remove("stirShaken"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stirShaken"); else _explicitNullProperties?.Remove("stirShaken"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CallStateStirShaken _explicitNullValueStirShaken = default!;
 #endif
         /// <summary>The phone number that received the call, in E.164 format (e.g. +15555555555), or if the call was to a SIP URI, the SIP URI.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -236,7 +236,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "parentCallId", n => { ParentCallId = n.GetStringValue(); } },
                 { "startTime", n => { StartTime = n.GetDateTimeOffsetValue(); } },
                 { "state", n => { State = n.GetStringValue(); } },
-                { "stirShaken", n => { StirShaken = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallStateStirShakenProperty2>(global::Soenneker.Bandwidth.OpenApiClient.Models.CallStateStirShakenProperty2.CreateFromDiscriminatorValue); } },
+                { "stirShaken", n => { StirShaken = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallStateStirShaken>(global::Soenneker.Bandwidth.OpenApiClient.Models.CallStateStirShaken.CreateFromDiscriminatorValue); } },
                 { "to", n => { To = n.GetStringValue(); } },
             };
         }
@@ -263,7 +263,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("parentCallId", ParentCallId);
             writer.WriteDateTimeOffsetValue("startTime", StartTime);
             writer.WriteStringValue("state", State);
-            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallStateStirShakenProperty2>("stirShaken", StirShaken);
+            writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallStateStirShaken>("stirShaken", StirShaken);
             writer.WriteStringValue("to", To);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
