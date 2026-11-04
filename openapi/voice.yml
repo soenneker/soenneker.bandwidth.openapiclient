@@ -11685,48 +11685,18 @@ components:
         type: validation
         description: 'Invalid answerUrl: only http and https are allowed.'
   securitySchemes:
-    Basic:
-      type: http
-      scheme: basic
-      description: >-
-        Basic authentication is a simple authentication scheme built into the
-        HTTP protocol. To use it, send your HTTP requests with an
-        `Authorization` header that contains the word `Basic` followed by a
-        space and a Base64-encoded string `username:password`.
-
-
-        - Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`
     OAuth2:
       type: oauth2
+      description: >-
+        OAuth2 client credentials. For information on obtaining credentials, see
+        [Credentials
+        Management](https://dev.bandwidth.com/docs/account/credentials/management/).
       flows:
         clientCredentials:
           tokenUrl: https://api.bandwidth.com/api/v1/oauth2/token
           scopes: {}
-    Bearer:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: >-
-        Bearer authentication (also called token authentication) is an HTTP
-        authentication scheme that involves security tokens called bearer
-        tokens. The name “Bearer authentication” can be understood as “give
-        access to the bearer of this token.” The client must send this token in
-        the `Authorization` header when making requests to protected resources.
-
-
-        - Example: `Authorization: Bearer <token>`
-
-
-        Where `<token>` should be replaced with the token string without angle
-        brackets.
-
-
-        For more information, see the following guide:
-        [Credentials](https://dev.bandwidth.com/docs/account/credentials/management)
 security:
-  - Basic: []
   - OAuth2: []
-  - Bearer: []
 tags:
   - name: Calls
   - name: Conferences

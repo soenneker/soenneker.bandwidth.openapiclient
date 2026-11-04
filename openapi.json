@@ -3816,63 +3816,50 @@
             "example": "9900000"
           },
           {
-            "description": "The cursor to use for pagination. This is the value of the `next` link in the previous response.",
             "$ref": "#/components/parameters/brtc_afterCursor"
           },
           {
-            "description": "The maximum number of endpoints to return in the response.",
             "$ref": "#/components/parameters/brtc_limit"
           },
           {
-            "description": "The status of the endpoint.",
             "$ref": "#/components/parameters/endpointStatus"
           },
           {
-            "description": "The type of endpoint.",
             "$ref": "#/components/parameters/endpointType"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
             "$ref": "#/components/responses/listEndpointsResponse"
           },
           "400": {
-            "description": "Bad Request",
             "$ref": "#/components/responses/badRequestErrorResponse"
           },
           "401": {
-            "description": "Unauthorized",
             "$ref": "#/components/responses/unauthorizedErrorResponse"
           },
           "403": {
-            "description": "Forbidden",
             "$ref": "#/components/responses/forbiddenErrorResponse"
           },
           "404": {
-            "description": "Not Found",
             "$ref": "#/components/responses/notFoundErrorResponse"
           },
           "405": {
-            "description": "Method Not Allowed",
             "$ref": "#/components/responses/methodNotAllowedErrorResponse"
           },
           "415": {
-            "description": "Unsupported Media Type",
             "$ref": "#/components/responses/unsupportedMediaTypeErrorResponse"
           },
           "429": {
-            "description": "Too Many Requests",
             "$ref": "#/components/responses/tooManyRequestsErrorResponse"
           },
           "500": {
-            "description": "Service Unavailable",
             "$ref": "#/components/responses/serviceUnavailableErrorResponse"
           }
         },
         "security": [
           {
-            "brtc_Bearer": [ ]
+            "OAuth2": [ ]
           }
         ],
         "servers": [
@@ -3936,39 +3923,30 @@
         },
         "responses": {
           "201": {
-            "description": "Created",
             "$ref": "#/components/responses/createEndpointResponse"
           },
           "400": {
-            "description": "Bad Request",
             "$ref": "#/components/responses/badRequestErrorResponse"
           },
           "401": {
-            "description": "Unauthorized",
             "$ref": "#/components/responses/unauthorizedErrorResponse"
           },
           "403": {
-            "description": "Forbidden",
             "$ref": "#/components/responses/forbiddenErrorResponse"
           },
           "404": {
-            "description": "Not Found",
             "$ref": "#/components/responses/notFoundErrorResponse"
           },
           "405": {
-            "description": "Method Not Allowed",
             "$ref": "#/components/responses/methodNotAllowedErrorResponse"
           },
           "415": {
-            "description": "Unsupported Media Type",
             "$ref": "#/components/responses/unsupportedMediaTypeErrorResponse"
           },
           "429": {
-            "description": "Too Many Requests",
             "$ref": "#/components/responses/tooManyRequestsErrorResponse"
           },
           "500": {
-            "description": "Service Unavailable",
             "$ref": "#/components/responses/serviceUnavailableErrorResponse"
           },
           "200": {
@@ -3995,7 +3973,7 @@
         },
         "security": [
           {
-            "brtc_Bearer": [ ]
+            "OAuth2": [ ]
           }
         ],
         "servers": [
@@ -4068,45 +4046,36 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
             "$ref": "#/components/responses/getEndpointResponse"
           },
           "400": {
-            "description": "Bad Request",
             "$ref": "#/components/responses/badRequestErrorResponse"
           },
           "401": {
-            "description": "Unauthorized",
             "$ref": "#/components/responses/unauthorizedErrorResponse"
           },
           "403": {
-            "description": "Forbidden",
             "$ref": "#/components/responses/forbiddenErrorResponse"
           },
           "404": {
-            "description": "Not Found",
             "$ref": "#/components/responses/notFoundErrorResponse"
           },
           "405": {
-            "description": "Method Not Allowed",
             "$ref": "#/components/responses/methodNotAllowedErrorResponse"
           },
           "415": {
-            "description": "Unsupported Media Type",
             "$ref": "#/components/responses/unsupportedMediaTypeErrorResponse"
           },
           "429": {
-            "description": "Too Many Requests",
             "$ref": "#/components/responses/tooManyRequestsErrorResponse"
           },
           "500": {
-            "description": "Service Unavailable",
             "$ref": "#/components/responses/serviceUnavailableErrorResponse"
           }
         },
         "security": [
           {
-            "brtc_Bearer": [ ]
+            "OAuth2": [ ]
           }
         ],
         "servers": [
@@ -4180,41 +4149,33 @@
             "description": "No Content"
           },
           "400": {
-            "description": "Bad Request",
             "$ref": "#/components/responses/badRequestErrorResponse"
           },
           "401": {
-            "description": "Unauthorized",
             "$ref": "#/components/responses/unauthorizedErrorResponse"
           },
           "403": {
-            "description": "Forbidden",
             "$ref": "#/components/responses/forbiddenErrorResponse"
           },
           "404": {
-            "description": "Not Found",
             "$ref": "#/components/responses/notFoundErrorResponse"
           },
           "405": {
-            "description": "Method Not Allowed",
             "$ref": "#/components/responses/methodNotAllowedErrorResponse"
           },
           "415": {
-            "description": "Unsupported Media Type",
             "$ref": "#/components/responses/unsupportedMediaTypeErrorResponse"
           },
           "429": {
-            "description": "Too Many Requests",
             "$ref": "#/components/responses/tooManyRequestsErrorResponse"
           },
           "500": {
-            "description": "Service Unavailable",
             "$ref": "#/components/responses/serviceUnavailableErrorResponse"
           }
         },
         "security": [
           {
-            "brtc_Bearer": [ ]
+            "OAuth2": [ ]
           }
         ],
         "servers": [
@@ -4293,41 +4254,33 @@
             "description": "No Content"
           },
           "400": {
-            "description": "Bad Request",
             "$ref": "#/components/responses/badRequestErrorResponse"
           },
           "401": {
-            "description": "Unauthorized",
             "$ref": "#/components/responses/unauthorizedErrorResponse"
           },
           "403": {
-            "description": "Forbidden",
             "$ref": "#/components/responses/forbiddenErrorResponse"
           },
           "404": {
-            "description": "Not Found",
             "$ref": "#/components/responses/notFoundErrorResponse"
           },
           "405": {
-            "description": "Method Not Allowed",
             "$ref": "#/components/responses/methodNotAllowedErrorResponse"
           },
           "415": {
-            "description": "Unsupported Media Type",
             "$ref": "#/components/responses/unsupportedMediaTypeErrorResponse"
           },
           "429": {
-            "description": "Too Many Requests",
             "$ref": "#/components/responses/tooManyRequestsErrorResponse"
           },
           "500": {
-            "description": "Service Unavailable",
             "$ref": "#/components/responses/serviceUnavailableErrorResponse"
           }
         },
         "security": [
           {
-            "brtc_Bearer": [ ]
+            "OAuth2": [ ]
           }
         ],
         "servers": [
@@ -25403,10 +25356,7 @@
         },
         "security": [
           {
-            "messaging_Basic": [ ]
-          },
-          {
-            "OAuth2": [ ]
+            "messaging_OAuth2": [ ]
           }
         ],
         "servers": [
@@ -25508,10 +25458,7 @@
         },
         "security": [
           {
-            "messaging_Basic": [ ]
-          },
-          {
-            "OAuth2": [ ]
+            "messaging_OAuth2": [ ]
           }
         ],
         "servers": [
@@ -25620,10 +25567,7 @@
         },
         "security": [
           {
-            "messaging_Basic": [ ]
-          },
-          {
-            "OAuth2": [ ]
+            "messaging_OAuth2": [ ]
           }
         ],
         "servers": [
@@ -25723,10 +25667,7 @@
         },
         "security": [
           {
-            "messaging_Basic": [ ]
-          },
-          {
-            "OAuth2": [ ]
+            "messaging_OAuth2": [ ]
           }
         ],
         "servers": [
@@ -25899,10 +25840,7 @@
         },
         "security": [
           {
-            "messaging_Basic": [ ]
-          },
-          {
-            "OAuth2": [ ]
+            "messaging_OAuth2": [ ]
           }
         ],
         "servers": [
@@ -26014,10 +25952,7 @@
         },
         "security": [
           {
-            "messaging_Basic": [ ]
-          },
-          {
-            "OAuth2": [ ]
+            "messaging_OAuth2": [ ]
           }
         ],
         "servers": [
@@ -26131,10 +26066,7 @@
         },
         "security": [
           {
-            "messaging_Basic": [ ]
-          },
-          {
-            "OAuth2": [ ]
+            "messaging_OAuth2": [ ]
           }
         ],
         "servers": [
@@ -26223,9 +26155,6 @@
         },
         "security": [
           {
-            "multi_factor_auth_Basic": [ ]
-          },
-          {
             "multi_factor_auth_OAuth2": [ ]
           }
         ],
@@ -26308,9 +26237,6 @@
           }
         },
         "security": [
-          {
-            "multi_factor_auth_Basic": [ ]
-          },
           {
             "multi_factor_auth_OAuth2": [ ]
           }
@@ -26397,9 +26323,6 @@
           }
         },
         "security": [
-          {
-            "multi_factor_auth_Basic": [ ]
-          },
           {
             "multi_factor_auth_OAuth2": [ ]
           }
@@ -34922,23 +34845,17 @@
           }
         ],
         "requestBody": {
-          "description": "Synchronous phone number lookup request.",
           "$ref": "#/components/requestBodies/createSyncLookupRequest"
         },
         "responses": {
           "200": {
-            "description": "OK",
             "$ref": "#/components/responses/createSyncLookupResponse"
           },
           "default": {
-            "description": "Bad Request",
             "$ref": "#/components/responses/tnLookupDefaultResponse"
           }
         },
         "security": [
-          {
-            "phone_number_lookup_v2_Basic": [ ]
-          },
           {
             "phone_number_lookup_v2_OAuth2": [ ]
           }
@@ -35002,16 +34919,13 @@
           }
         ],
         "requestBody": {
-          "description": "Asynchronous bulk phone number lookup request.",
           "$ref": "#/components/requestBodies/createAsyncBulkLookupRequest"
         },
         "responses": {
           "202": {
-            "description": "Accepted",
             "$ref": "#/components/responses/createAsyncBulkLookupResponse"
           },
           "default": {
-            "description": "Bad Request",
             "$ref": "#/components/responses/tnLookupDefaultResponse"
           },
           "200": {
@@ -35032,9 +34946,6 @@
           }
         },
         "security": [
-          {
-            "phone_number_lookup_v2_Basic": [ ]
-          },
           {
             "phone_number_lookup_v2_OAuth2": [ ]
           }
@@ -35110,18 +35021,13 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
             "$ref": "#/components/responses/getAsyncBulkLookupResponse"
           },
           "default": {
-            "description": "Bad Request",
             "$ref": "#/components/responses/tnLookupDefaultResponse"
           }
         },
         "security": [
-          {
-            "phone_number_lookup_v2_Basic": [ ]
-          },
           {
             "phone_number_lookup_v2_OAuth2": [ ]
           }
@@ -47613,7 +47519,6 @@
           }
         ],
         "requestBody": {
-          "description": "Request for verification of a toll-free phone number.",
           "$ref": "#/components/requestBodies/requestTollFreeVerificationRequest"
         },
         "responses": {
@@ -47621,35 +47526,27 @@
             "description": "Accepted"
           },
           "400": {
-            "description": "Bad Request",
             "$ref": "#/components/responses/tfvPostBadRequestResponse"
           },
           "401": {
-            "description": "Unauthorized",
             "$ref": "#/components/responses/tfvUnauthorizedResponse"
           },
           "403": {
-            "description": "Forbidden",
             "$ref": "#/components/responses/tfvForbiddenResponse"
           },
           "405": {
-            "description": "Method Not Allowed",
             "$ref": "#/components/responses/tfvNotAllowedResponse"
           },
           "409": {
-            "description": "Conflict. A toll-free verification for the phone number is already in progress.",
             "$ref": "#/components/responses/tfvConflictResponse"
           },
           "429": {
-            "description": "Too Many Requests",
             "$ref": "#/components/responses/tfvTooManyRequestsResponse"
           },
           "500": {
-            "description": "Internal Server Error",
             "$ref": "#/components/responses/tfvServerErrorResponse"
           },
           "503": {
-            "description": "Service Unavailable",
             "$ref": "#/components/responses/tfvServiceUnavailableResponse"
           }
         },
@@ -47659,9 +47556,6 @@
           }
         },
         "security": [
-          {
-            "toll_free_verification_Basic": [ ]
-          },
           {
             "toll_free_verification_OAuth2": [ ]
           }
@@ -47741,46 +47635,34 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
             "$ref": "#/components/responses/getTollFreeVerificationStatusResponse"
           },
           "400": {
-            "description": "Bad Request",
             "$ref": "#/components/responses/tfvBadRequestResponse"
           },
           "401": {
-            "description": "Unauthorized",
             "$ref": "#/components/responses/tfvUnauthorizedResponse"
           },
           "403": {
-            "description": "Forbidden",
             "$ref": "#/components/responses/tfvForbiddenResponse"
           },
           "404": {
-            "description": "Cannot find the requested resource.",
             "$ref": "#/components/responses/tfvNotFoundResponse"
           },
           "405": {
-            "description": "Method Not Allowed",
             "$ref": "#/components/responses/tfvNotAllowedResponse"
           },
           "429": {
-            "description": "Too Many Requests",
             "$ref": "#/components/responses/tfvTooManyRequestsResponse"
           },
           "500": {
-            "description": "Internal Server Error",
             "$ref": "#/components/responses/tfvServerErrorResponse"
           },
           "503": {
-            "description": "Service Unavailable",
             "$ref": "#/components/responses/tfvServiceUnavailableResponse"
           }
         },
         "security": [
-          {
-            "toll_free_verification_Basic": [ ]
-          },
           {
             "toll_free_verification_OAuth2": [ ]
           }
@@ -47857,48 +47739,37 @@
           }
         ],
         "requestBody": {
-          "description": "Update a request for verification of a toll-free phone number.",
           "$ref": "#/components/requestBodies/updateTollFreeVerificationRequestRequest"
         },
         "responses": {
           "202": {
-            "description": "Accepted",
             "$ref": "#/components/responses/verifyPutResponse"
           },
           "400": {
-            "description": "Bad Request",
             "$ref": "#/components/responses/tfvPostBadRequestResponse"
           },
           "401": {
-            "description": "Unauthorized",
             "$ref": "#/components/responses/tfvUnauthorizedResponse"
           },
           "403": {
-            "description": "Forbidden",
             "$ref": "#/components/responses/tfvForbiddenResponse"
           },
           "404": {
-            "description": "Cannot find the requested resource.",
             "$ref": "#/components/responses/tfvNotFoundResponse"
           },
           "405": {
-            "description": "Method Not Allowed",
             "$ref": "#/components/responses/tfvNotAllowedResponse"
           },
           "409": {
-            "description": "Conflict. A toll-free verification for the phone number is already in progress.",
             "$ref": "#/components/responses/tfvConflictResponse"
           },
           "429": {
-            "description": "Too Many Requests",
             "$ref": "#/components/responses/tfvTooManyRequestsResponse"
           },
           "500": {
-            "description": "Internal Server Error",
             "$ref": "#/components/responses/tfvServerErrorResponse"
           },
           "503": {
-            "description": "Service Unavailable",
             "$ref": "#/components/responses/tfvServiceUnavailableResponse"
           }
         },
@@ -47908,9 +47779,6 @@
           }
         },
         "security": [
-          {
-            "toll_free_verification_Basic": [ ]
-          },
           {
             "toll_free_verification_OAuth2": [ ]
           }
@@ -47988,46 +47856,34 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content",
             "$ref": "#/components/responses/toll_free_verification_noContentResponse"
           },
           "400": {
-            "description": "Bad Request",
             "$ref": "#/components/responses/tfvBadRequestResponse"
           },
           "401": {
-            "description": "Unauthorized",
             "$ref": "#/components/responses/tfvUnauthorizedResponse"
           },
           "403": {
-            "description": "Forbidden",
             "$ref": "#/components/responses/tfvForbiddenResponse"
           },
           "404": {
-            "description": "Cannot find the requested resource.",
             "$ref": "#/components/responses/tfvNotFoundResponse"
           },
           "405": {
-            "description": "Method Not Allowed",
             "$ref": "#/components/responses/tfvNotAllowedResponse"
           },
           "429": {
-            "description": "Too Many Requests",
             "$ref": "#/components/responses/tfvTooManyRequestsResponse"
           },
           "500": {
-            "description": "Internal Server Error",
             "$ref": "#/components/responses/tfvServerErrorResponse"
           },
           "503": {
-            "description": "Service Unavailable",
             "$ref": "#/components/responses/tfvServiceUnavailableResponse"
           }
         },
         "security": [
-          {
-            "toll_free_verification_Basic": [ ]
-          },
           {
             "toll_free_verification_OAuth2": [ ]
           }
@@ -48092,42 +47948,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
             "$ref": "#/components/responses/listWebhookSubscriptionsResponse"
           },
           "400": {
-            "description": "Bad Request",
             "$ref": "#/components/responses/tfvPostBadRequestResponse"
           },
           "401": {
-            "description": "Unauthorized",
             "$ref": "#/components/responses/tfvUnauthorizedResponse"
           },
           "403": {
-            "description": "Forbidden",
             "$ref": "#/components/responses/tfvForbiddenResponse"
           },
           "405": {
-            "description": "Method Not Allowed",
             "$ref": "#/components/responses/tfvNotAllowedResponse"
           },
           "429": {
-            "description": "Too Many Requests",
             "$ref": "#/components/responses/tfvTooManyRequestsResponse"
           },
           "500": {
-            "description": "Internal Server Error",
             "$ref": "#/components/responses/tfvServerErrorResponse"
           },
           "503": {
-            "description": "Service Unavailable",
             "$ref": "#/components/responses/tfvServiceUnavailableResponse"
           }
         },
         "security": [
-          {
-            "toll_free_verification_Basic": [ ]
-          },
           {
             "toll_free_verification_OAuth2": [ ]
           }
@@ -48189,44 +48034,34 @@
           }
         ],
         "requestBody": {
-          "description": "Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to.",
           "$ref": "#/components/requestBodies/webhookSubscriptionRequest"
         },
         "responses": {
           "201": {
-            "description": "Created",
             "$ref": "#/components/responses/createWebhookSubscriptionResponse"
           },
           "400": {
-            "description": "Bad Request",
             "$ref": "#/components/responses/tfvBadRequestResponse"
           },
           "401": {
-            "description": "Unauthorized",
             "$ref": "#/components/responses/tfvUnauthorizedResponse"
           },
           "403": {
-            "description": "Forbidden",
             "$ref": "#/components/responses/tfvForbiddenResponse"
           },
           "404": {
-            "description": "Cannot find the requested resource.",
             "$ref": "#/components/responses/tfvNotFoundResponse"
           },
           "405": {
-            "description": "Method Not Allowed",
             "$ref": "#/components/responses/tfvNotAllowedResponse"
           },
           "429": {
-            "description": "Too Many Requests",
             "$ref": "#/components/responses/tfvTooManyRequestsResponse"
           },
           "500": {
-            "description": "Internal Server Error",
             "$ref": "#/components/responses/tfvServerErrorResponse"
           },
           "503": {
-            "description": "Service Unavailable",
             "$ref": "#/components/responses/tfvServiceUnavailableResponse"
           },
           "200": {
@@ -48242,9 +48077,6 @@
           }
         },
         "security": [
-          {
-            "toll_free_verification_Basic": [ ]
-          },
           {
             "toll_free_verification_OAuth2": [ ]
           }
@@ -48319,46 +48151,34 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content",
             "$ref": "#/components/responses/toll_free_verification_noContentResponse"
           },
           "400": {
-            "description": "Bad Request",
             "$ref": "#/components/responses/tfvBadRequestResponse"
           },
           "401": {
-            "description": "Unauthorized",
             "$ref": "#/components/responses/tfvUnauthorizedResponse"
           },
           "403": {
-            "description": "Forbidden",
             "$ref": "#/components/responses/tfvForbiddenResponse"
           },
           "404": {
-            "description": "Cannot find the requested resource.",
             "$ref": "#/components/responses/tfvNotFoundResponse"
           },
           "405": {
-            "description": "Method Not Allowed",
             "$ref": "#/components/responses/tfvNotAllowedResponse"
           },
           "429": {
-            "description": "Too Many Requests",
             "$ref": "#/components/responses/tfvTooManyRequestsResponse"
           },
           "500": {
-            "description": "Internal Server Error",
             "$ref": "#/components/responses/tfvServerErrorResponse"
           },
           "503": {
-            "description": "Service Unavailable",
             "$ref": "#/components/responses/tfvServiceUnavailableResponse"
           }
         },
         "security": [
-          {
-            "toll_free_verification_Basic": [ ]
-          },
           {
             "toll_free_verification_OAuth2": [ ]
           }
@@ -48430,51 +48250,38 @@
           }
         ],
         "requestBody": {
-          "description": "Information about a webhook that Bandwidth should send upon the completion of event customer is trying to subscribe to.",
           "$ref": "#/components/requestBodies/webhookSubscriptionRequest"
         },
         "responses": {
           "200": {
-            "description": "OK",
             "$ref": "#/components/responses/updateWebhookSubscriptionResponse"
           },
           "400": {
-            "description": "Bad Request",
             "$ref": "#/components/responses/tfvBadRequestResponse"
           },
           "401": {
-            "description": "Unauthorized",
             "$ref": "#/components/responses/tfvUnauthorizedResponse"
           },
           "403": {
-            "description": "Forbidden",
             "$ref": "#/components/responses/tfvForbiddenResponse"
           },
           "404": {
-            "description": "Cannot find the requested resource.",
             "$ref": "#/components/responses/tfvNotFoundResponse"
           },
           "405": {
-            "description": "Method Not Allowed",
             "$ref": "#/components/responses/tfvNotAllowedResponse"
           },
           "429": {
-            "description": "Too Many Requests",
             "$ref": "#/components/responses/tfvTooManyRequestsResponse"
           },
           "500": {
-            "description": "Internal Server Error",
             "$ref": "#/components/responses/tfvServerErrorResponse"
           },
           "503": {
-            "description": "Service Unavailable",
             "$ref": "#/components/responses/tfvServiceUnavailableResponse"
           }
         },
         "security": [
-          {
-            "toll_free_verification_Basic": [ ]
-          },
           {
             "toll_free_verification_OAuth2": [ ]
           }
@@ -48527,46 +48334,34 @@
         "operationId": "toll_free_verification_ListTollFreeUseCases",
         "responses": {
           "200": {
-            "description": "OK",
             "$ref": "#/components/responses/listTollFreeUseCasesResponse"
           },
           "400": {
-            "description": "Bad Request",
             "$ref": "#/components/responses/tfvBadRequestResponse"
           },
           "401": {
-            "description": "Unauthorized",
             "$ref": "#/components/responses/tfvUnauthorizedResponse"
           },
           "403": {
-            "description": "Forbidden",
             "$ref": "#/components/responses/tfvForbiddenResponse"
           },
           "404": {
-            "description": "Cannot find the requested resource.",
             "$ref": "#/components/responses/tfvNotFoundResponse"
           },
           "405": {
-            "description": "Method Not Allowed",
             "$ref": "#/components/responses/tfvNotAllowedResponse"
           },
           "429": {
-            "description": "Too Many Requests",
             "$ref": "#/components/responses/tfvTooManyRequestsResponse"
           },
           "500": {
-            "description": "Internal Server Error",
             "$ref": "#/components/responses/tfvServerErrorResponse"
           },
           "503": {
-            "description": "Service Unavailable",
             "$ref": "#/components/responses/tfvServiceUnavailableResponse"
           }
         },
         "security": [
-          {
-            "toll_free_verification_Basic": [ ]
-          },
           {
             "toll_free_verification_OAuth2": [ ]
           }
@@ -54043,13 +53838,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -54160,13 +53949,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -54268,13 +54051,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -54380,13 +54157,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -54494,13 +54265,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -54607,13 +54372,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -54715,13 +54474,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -54824,13 +54577,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -54935,13 +54682,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -55053,13 +54794,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -55172,13 +54907,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -55280,13 +55009,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -55398,13 +55121,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -55536,13 +55253,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -55646,13 +55357,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -55757,13 +55462,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -55865,13 +55564,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -55983,13 +55676,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -56099,13 +55786,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -56237,13 +55918,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -56353,13 +56028,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -56471,13 +56140,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -56590,13 +56253,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -56706,13 +56363,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -56804,13 +56455,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -56912,13 +56557,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -57030,13 +56669,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -57146,13 +56779,7 @@
         },
         "security": [
           {
-            "voice_Basic": [ ]
-          },
-          {
             "voice_OAuth2": [ ]
-          },
-          {
-            "voice_Bearer": [ ]
           }
         ],
         "servers": [
@@ -183161,8 +182788,7 @@
           ],
           "data": {
             "requestId": "004223a0-8b17-41b1-bf81-20732adf5590",
-            "status": "IN_PROGRESS",
-            "results": [ ]
+            "status": "IN_PROGRESS"
           },
           "errors": [ ]
         }
@@ -183408,6 +183034,7 @@
           "data": { },
           "errors": [
             {
+              "code": "1234",
               "type": "bad-request",
               "description": "Bad Request. Ensure that you have set the requestId as a URL path parameter."
             }
@@ -183425,8 +183052,7 @@
               "description": "You are not authorized to access this resource.",
               "code": "1"
             }
-          ],
-          "page": null
+          ]
         }
       },
       "forbiddenExample": {
@@ -183440,8 +183066,7 @@
               "description": "You do not have permission to access this resource.",
               "code": "2"
             }
-          ],
-          "page": null
+          ]
         }
       },
       "unsupportedMediaTypeExample": {
@@ -183451,6 +183076,7 @@
           "data": { },
           "errors": [
             {
+              "code": "1234",
               "type": "invalid-content-type",
               "description": "Invalid content-type. Ensure that your content-type header is set to application/json."
             }
@@ -183464,6 +183090,7 @@
           "data": { },
           "errors": [
             {
+              "code": "1234",
               "type": "not-found",
               "description": "RequestId not found. Ensure that the requestId used in the URL path is valid and maps to a previous request that was submitted."
             }
@@ -183477,6 +183104,7 @@
           "data": { },
           "errors": [
             {
+              "code": "1234",
               "type": "rate-limiting",
               "description": "Rate limit exceeded. Wait for the time specified in the Retry-After header before sending another request."
             }
@@ -194944,11 +194572,15 @@
         "scheme": "bearer",
         "bearerFormat": "JWT"
       },
-      "brtc_Bearer": {
-        "type": "http",
-        "description": "Bearer authentication (also called token authentication) is an HTTP authentication scheme that involves security tokens called bearer tokens.\nThe name “Bearer authentication” can be understood as “give access to the bearer of this token.”\nThe client must send this token in the `Authorization` header when making requests to protected resources.\n\n- Example: `Authorization: Bearer <token>`\n\nWhere `<token>` should be replaced with the token string without angle brackets.\n\nFor more information, see our [Credentials](/docs/credentials) documentation.",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
+      "OAuth2": {
+        "type": "oauth2",
+        "description": "OAuth2 client credentials. For information on obtaining credentials, see [Credentials Management](https://dev.bandwidth.com/docs/account/credentials/management/).",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://api.bandwidth.com/api/v1/oauth2/token",
+            "scopes": { }
+          }
+        }
       },
       "bulk_portins_Basic": {
         "type": "http",
@@ -195075,13 +194707,9 @@
         "scheme": "bearer",
         "bearerFormat": "JWT"
       },
-      "messaging_Basic": {
-        "type": "http",
-        "description": "Basic authentication is a simple authentication scheme built into the HTTP protocol. To use it, send your HTTP requests with an `Authorization` header that contains the word `Basic` followed by a space and a Base64-encoded string `username:password`.\n\n- Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`",
-        "scheme": "basic"
-      },
-      "OAuth2": {
+      "messaging_OAuth2": {
         "type": "oauth2",
+        "description": "OAuth2 client credentials. For information on obtaining credentials, see [Credentials Management](https://dev.bandwidth.com/docs/account/credentials/management/).",
         "flows": {
           "clientCredentials": {
             "tokenUrl": "https://api.bandwidth.com/api/v1/oauth2/token",
@@ -195089,13 +194717,9 @@
           }
         }
       },
-      "multi_factor_auth_Basic": {
-        "type": "http",
-        "description": "Basic authentication is a simple authentication scheme built into the HTTP protocol. To use it, send your HTTP requests with an `Authorization` header that contains the word `Basic` followed by a space and a Base64-encoded string `username:password`.\n\n- Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`",
-        "scheme": "basic"
-      },
       "multi_factor_auth_OAuth2": {
         "type": "oauth2",
+        "description": "OAuth2 client credentials. For information on obtaining credentials, see [Credentials Management](https://dev.bandwidth.com/docs/account/credentials/management/).",
         "flows": {
           "clientCredentials": {
             "tokenUrl": "https://api.bandwidth.com/api/v1/oauth2/token",
@@ -195136,13 +194760,9 @@
         "scheme": "bearer",
         "bearerFormat": "JWT"
       },
-      "phone_number_lookup_v2_Basic": {
-        "type": "http",
-        "description": "Basic authentication is a simple authentication scheme built into the HTTP protocol. To use it, send your HTTP requests with an `Authorization` header that contains the word `Basic` followed by a space and a Base64-encoded string `username:password`.\n\n- Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`",
-        "scheme": "basic"
-      },
       "phone_number_lookup_v2_OAuth2": {
         "type": "oauth2",
+        "description": "OAuth2 client credentials. For information on obtaining credentials, see [Credentials Management](https://dev.bandwidth.com/docs/account/credentials/management/).",
         "flows": {
           "clientCredentials": {
             "tokenUrl": "https://api.bandwidth.com/api/v1/oauth2/token",
@@ -195235,11 +194855,6 @@
           }
         }
       },
-      "toll_free_verification_Basic": {
-        "type": "http",
-        "description": "Basic authentication is a simple authentication scheme built into the HTTP protocol. To use it, send your HTTP requests with an `Authorization` header that contains the word `Basic` followed by a space and a Base64-encoded string `username:password`.\n\n- Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`",
-        "scheme": "basic"
-      },
       "toll_free_verification_OAuth2": {
         "type": "oauth2",
         "description": "OAuth2 client credentials. For information on obtaining credentials, see [Credentials Management](https://dev.bandwidth.com/docs/account/credentials/management/).",
@@ -195326,25 +194941,15 @@
         "scheme": "bearer",
         "bearerFormat": "JWT"
       },
-      "voice_Basic": {
-        "type": "http",
-        "description": "Basic authentication is a simple authentication scheme built into the HTTP protocol. To use it, send your HTTP requests with an `Authorization` header that contains the word `Basic` followed by a space and a Base64-encoded string `username:password`.\n\n- Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`",
-        "scheme": "basic"
-      },
       "voice_OAuth2": {
         "type": "oauth2",
+        "description": "OAuth2 client credentials. For information on obtaining credentials, see [Credentials Management](https://dev.bandwidth.com/docs/account/credentials/management/).",
         "flows": {
           "clientCredentials": {
             "tokenUrl": "https://api.bandwidth.com/api/v1/oauth2/token",
             "scopes": { }
           }
         }
-      },
-      "voice_Bearer": {
-        "type": "http",
-        "description": "Bearer authentication (also called token authentication) is an HTTP authentication scheme that involves security tokens called bearer tokens. The name “Bearer authentication” can be understood as “give access to the bearer of this token.” The client must send this token in the `Authorization` header when making requests to protected resources.\n\n- Example: `Authorization: Bearer <token>`\n\nWhere `<token>` should be replaced with the token string without angle brackets.\n\nFor more information, see the following guide: [Credentials](https://dev.bandwidth.com/docs/account/credentials/management)",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
       }
     },
     "callbacks": {
@@ -195373,7 +194978,7 @@
             },
             "security": [
               {
-                "brtc_Bearer": [ ]
+                "OAuth2": [ ]
               }
             ],
             "servers": [
@@ -195484,10 +195089,7 @@
             },
             "security": [
               {
-                "messaging_Basic": [ ]
-              },
-              {
-                "OAuth2": [ ]
+                "messaging_OAuth2": [ ]
               }
             ],
             "servers": [
@@ -195553,10 +195155,7 @@
             },
             "security": [
               {
-                "messaging_Basic": [ ]
-              },
-              {
-                "OAuth2": [ ]
+                "messaging_OAuth2": [ ]
               }
             ],
             "servers": [
@@ -195660,9 +195259,6 @@
               }
             },
             "security": [
-              {
-                "toll_free_verification_Basic": [ ]
-              },
               {
                 "toll_free_verification_OAuth2": [ ]
               }
