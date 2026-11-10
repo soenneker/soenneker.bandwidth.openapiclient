@@ -37,7 +37,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJsonData Data { get => _explicitNullValueData; set { _explicitNullValueData = value; AdditionalData?.Remove("data"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJsonData _explicitNullValueData = default!;
 #endif
-        /// <summary>The errors property</summary>
+        /// <summary>Always empty on a 200 response. Per-number validation errors are returned in `data.errors` instead.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsCheckerPayloadJsonErrorsItem>? Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; AdditionalData?.Remove("errors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }

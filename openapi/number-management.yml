@@ -253,6 +253,12 @@ paths:
         combination of details based on the desired
 
         destination and configuration of the TNs after the move.
+
+
+        This endpoint must be enabled on your account before use; a 404 response
+        for an account that has not been
+
+        enabled indicates this. Contact Bandwidth support to get started.
       operationId: createMoveTnsBulkOrder
       parameters:
         - $ref: '#/components/parameters/accountIdPathParam'
@@ -292,6 +298,12 @@ paths:
 
         which were supplied for the bulk move along with the child orders
         created for each set of details.
+
+
+        This endpoint must be enabled on your account before use; a 404 response
+        for an account that has not been
+
+        enabled indicates this. Contact Bandwidth support to get started.
       operationId: getMoveTnsBulkOrderStatus
       parameters:
         - $ref: '#/components/parameters/accountIdPathParam'
@@ -1998,8 +2010,13 @@ components:
               items:
                 type: string
                 description: E.164
+            errors:
+              $ref: '#/components/schemas/bulkMoveTnsErrors'
         errors:
           title: error
+          description: >-
+            Always empty on a 200 response. Per-number validation errors are
+            returned in `data.errors` instead.
           type: array
           items:
             type: object
@@ -2008,6 +2025,7 @@ components:
                 type: integer
               description:
                 type: string
+          example: []
     moveTnsCheckerRequestJson:
       type: object
       title: moveTnsCheckerRequestJson
@@ -2032,10 +2050,6 @@ components:
           $ref: '#/components/schemas/voiceConfigurationPackageId'
         requirementsPackageId:
           $ref: '#/components/schemas/requirementsPackageId'
-        bypassMessagingLossBlock:
-          $ref: '#/components/schemas/bypassMessagingLossBlock'
-        bypassMessagingCampaignBlock:
-          $ref: '#/components/schemas/bypassMessagingCampaignBlock'
     subAccountId:
       type: number
       example: 487
@@ -2061,14 +2075,18 @@ components:
         This parameter provides flexibility on handling the E911 service of a
         number when moving to a new account.
 
-        The default is to “MOVE,” but that may not be possible, resulting in an
-        error where DELETE is required.
+        It is only valid for cross-account moves — setting it on a
+        within-account move is rejected.
+
+        The default is to `MOVE`, but that may not be possible, resulting in an
+        error where `DELETE` is required.
 
         For example, if moving numbers to an account that uses PIDFLO for E911
-        then E911ServiceAction = DELETE
+        then `e911ServiceAction = DELETE` is required, and the E911 service will
+        need to be configured on the numbers after the move.
 
-        is required, and the E911 service will need to be configured on the
-        numbers after the move.
+        An explicit `MOVE` to a destination account that does not have the E911
+        product fails the move.
       enum:
         - MOVE
         - DELETE
@@ -2089,14 +2107,26 @@ components:
         messaging indicating incompatible settings.
 
 
-        If set to `useDestinationSettings`, this will apply the destination
+        If set to `USE_DESTINATION_SETTINGS`, this will apply the destination
         location's messaging settings to the number.
 
 
-        If set to `useCurrentNumberSettings`, this will validate and apply
-        whether the destination location 
+        If set to `USE_CURRENT_NUMBER_SETTINGS`, this will validate and apply
+        whether the destination location
 
-        can accept the numbers' existing messaging settings.
+        can accept the numbers' existing messaging settings. This validation is
+        request-level: a mismatch between the
+
+        source and destination locations' SMS, MMS, or A2P/P2P settings, or a
+        mismatch in the source and destination
+
+        accounts' NNIDs when `sourceAccountId` is set, rejects the entire
+        request. The enum value is matched
+
+        case-insensitively and ignoring underscores, so
+        `use_current_number_settings` and `UseCurrentNumberSettings`
+
+        are also accepted.
       enum:
         - USE_DESTINATION_SETTINGS
         - USE_CURRENT_NUMBER_SETTINGS
@@ -2108,7 +2138,7 @@ components:
       example: c7951e4f-6285-4b75-83e5-392558f59067
       description: >-
         The identifier of the voice configuration package containing the voice
-        origination settings. Upon activation, 
+        origination settings. Upon activation,
 
         telephone numbers will be configured with the voice origination settings
         specified in the voice configuration
@@ -2117,6 +2147,12 @@ components:
         and are being moved to another account
 
         which has the voice configuration package feature.
+
+
+        Moving numbers across accounts from a source account that has the voice
+        configuration package feature to a
+
+        destination account that does not is not currently allowed.
     requirementsPackageId:
       title: Requirements Package ID
       type: string
@@ -2133,48 +2169,13 @@ components:
         package must be approved and compatible
 
         with the telephone numbers being moved.
-    bypassMessagingLossBlock:
-      type: boolean
-      description: >-
-        A flag that determines whether to bypass the messaging loss block. 
-
-
-        If set to **true**, no error will occur when moving a number with
-        messaging to a location or account that does
-
-        not support messaging; messaging will simply be disabled in this case.
-
-
-        If set to **false**, an error will be triggered if such a move is
-        attempted, preventing the move from processing.
-
-
-        Default value is false.
-      example: false
-    bypassMessagingCampaignBlock:
-      type: boolean
-      description: >-
-        A flag that determines whether to bypass the messaging campaign block.
-
-
-        If set to **true** and the numbers are associated with a messaging
-        campaign, the move TN request will succeed,
-
-        but the campaign will be removed from the numbers during the move.
-
-
-        If set to **false** and the numbers are associated with a messaging
-        campaign, the move request will 
-
-        fail with an error.
-
-
-        Default value is false.
-      example: false
     sourceAccountId:
       type: number
       example: 9902975
-      description: ID of source account, in the case of moving numbers across accounts.
+      description: >-
+        ID of source account, in the case of moving numbers across accounts.
+        Omit this field for within-account moves — sending the destination
+        account's own ID in this field is rejected.
     migrateCampaign:
       type: boolean
       default: false
@@ -2182,11 +2183,27 @@ components:
         Flag for cross-account moves denoting whether any campaigns associated
         with phone numbers from the order should
 
-        also be migrated to the new account. If set to `true`, all phone numbers
-        from each involved campaign must be
+        also be migrated to the new account. Only valid for cross-account moves;
+        every `orderDetails` item must specify
 
-        moved in the same bulk order and the messaging settings of the source
-        and destination accounts must be the same.
+        `sourceAccountId`, and all items must share the same `sourceAccountId`.
+
+
+        If set to `true`, the request is validated against the following
+        requirements:
+          - Both the source and destination accounts must support campaign import.
+          - The source and destination accounts' CSP IDs must match.
+          - The source and destination accounts' NNIDs must match.
+          - If the source location has A2P messaging enabled, the destination location must also have it enabled.
+          - The source account must be the messaging owner of the numbers.
+          - Each involved campaign may contain at most 17,000 numbers, and all phone numbers belonging to a given
+            campaign must be included in the same bulk order.
+
+        A number whose campaign fails one of these checks is excluded from the
+        move and reported in `data.errors`;
+
+        the rest of the order proceeds.
+
 
         If set to `false`, the moved numbers will be removed from their current
         campaigns if they are moved to a new account.
@@ -2203,10 +2220,17 @@ components:
     orderIds:
       description: >-
         A list of order IDs for child orders generated from this group of phone
-        number configurations. If there were more than 5000
 
-        phone numbers for one grouping of bulk order details, multiple child
-        orders will be created.
+        number configurations. More than one child order may be created for a
+        single
+
+        `orderDetails` item: a grouping larger than 5,000 numbers is chunked,
+        and
+
+        NANP toll-free numbers or numbers moved with `migrateCampaign` are
+        always
+
+        split into separate child orders.
       items:
         type: string
         format: uuid
@@ -2233,14 +2257,17 @@ components:
         is in progress.
 
 
-        FAILED - This implies that the order did not pass synchronous validation
-        (Either number specific or non-number specific errors will be
-        displayed).
+        FAILED - The order was rejected at synchronous validation (no order
+        created), or every phone number in the order failed asynchronous
+        validation so that no child orders could be created.
 
 
         COMPLETE - All child orders have been processed and the order is
         complete. Review the statuses of each child order for details on the
-        outcome.
+        outcome. A COMPLETE order may still have a non-empty `data.errors` list
+        — this lists phone numbers that were excluded during asynchronous
+        validation and were not moved, even though the rest of the order
+        succeeded.
       enum:
         - RECEIVED
         - PROCESSING
@@ -2549,14 +2576,20 @@ components:
             moved
           type: integer
         SourceAccountId:
-          description: Id of source account, in the case of moving numbers across accounts
+          description: >-
+            Id of source account, in the case of moving numbers across accounts.
+            Omit this field for within-account moves — sending the destination
+            account's own ID in this field is rejected.
           type: integer
         E911ServiceAction:
           description: >-
-            Only valid when moving to a different account using SourceAccountId.
-            When set to move (default) the E911 service information (if applied
-            to the number) will be moved with the number to the new account.
-            When set to delete the E911 service will be removed from the number
+            Only valid when moving to a different account using
+            `SourceAccountId`; setting this field on a within-account move is
+            rejected. When set to `MOVE` (default) the E911 service information
+            (if applied to the number) will be moved with the number to the new
+            account. When set to `DELETE` the E911 service will be removed from
+            the number. An explicit `MOVE` to a destination account without the
+            E911 product fails the move.
           type: string
           enum:
             - MOVE
@@ -2762,22 +2795,69 @@ components:
             will be moved
           type: integer
         sourceAccountId:
-          description: Id of source account, in the case of moving numbers across accounts
+          description: >-
+            Id of source account, in the case of moving numbers across accounts.
+            Omit this field for within-account moves — sending the destination
+            account's own ID in this field is rejected.
           type: integer
         e911ServiceAction:
           description: >-
-            Only valid when moving to a different account using SourceAccountId.
-            When set to move (default) the E911 service information (if applied
-            to the number) will be moved with the number to the new account.
-            When set to delete the E911 service will be removed from the number
+            Only valid when moving to a different account using
+            `sourceAccountId`; setting this field on a within-account move is
+            rejected. When set to `MOVE` (default) the E911 service information
+            (if applied to the number) will be moved with the number to the new
+            account. When set to `DELETE` the E911 service will be removed from
+            the number. An explicit `MOVE` to a destination account without the
+            E911 product fails the move.
           type: string
           enum:
             - MOVE
             - DELETE
           default: MOVE
+        voiceConfigurationPackageId:
+          $ref: '#/components/schemas/voiceConfigurationPackageId'
+        requirementsPackageId:
+          $ref: '#/components/schemas/requirementsPackageId'
+        messagingService:
+          $ref: '#/components/schemas/messagingService'
     createMoveTnsBulkOrderRequest:
       properties:
         orderDetails:
+          description: >-
+            A list of phone number groupings to move, each with its own
+            destination
+
+            and configuration. The total number of unique phone numbers across
+            all
+
+            `orderDetails` items in a single bulk order is limited to 200,000;
+
+            exceeding it rejects the entire request (error
+
+            5095) with no order created. This is independent of the per-item
+
+            `phoneNumbers` list size.
+
+
+            Numbers are grouped into child orders by destination sub-account,
+
+            location, source account, `voiceConfigurationPackageId`,
+
+            `requirementsPackageId`, `e911ServiceAction`, `messagingService`,
+
+            country code, toll-free status, `migrateCampaign`, and campaign ID.
+
+            Identical `orderDetails` items are merged; a single
+
+            `orderDetails` item may still be split into more than one child
+            order —
+
+            NANP toll-free numbers and `migrateCampaign` numbers are always
+            split
+
+            into their own children, and any resulting group larger than 5,000
+
+            numbers is further chunked.
           items:
             properties:
               subAccountId:
@@ -2788,6 +2868,11 @@ components:
                 allOf:
                   - $ref: '#/components/schemas/phoneNumbers'
                   - maxItems: 20000
+                description: >-
+                  The list of phone numbers in this grouping, in E.164 format.
+                  This per-item limit is independent of the
+                  total-numbers-per-bulk-order limit; see `phoneNumbers` on the
+                  bulk order request.
               sourceAccountId:
                 $ref: '#/components/schemas/sourceAccountId'
               voiceConfigurationPackageId:
@@ -2798,10 +2883,6 @@ components:
                 $ref: '#/components/schemas/messagingService'
               e911ServiceAction:
                 $ref: '#/components/schemas/e911ServiceAction'
-              bypassMessagingLossBlock:
-                $ref: '#/components/schemas/bypassMessagingLossBlock'
-              bypassMessagingCampaignBlock:
-                $ref: '#/components/schemas/bypassMessagingCampaignBlock'
             required:
               - phoneNumbers
               - locationId
@@ -2842,10 +2923,6 @@ components:
                     $ref: '#/components/schemas/messagingService'
                   e911ServiceAction:
                     $ref: '#/components/schemas/e911ServiceAction'
-                  bypassMessagingLossBlock:
-                    $ref: '#/components/schemas/bypassMessagingLossBlock'
-                  bypassMessagingCampaignBlock:
-                    $ref: '#/components/schemas/bypassMessagingCampaignBlock'
                 type: object
               type: array
             childOrders:
@@ -2864,8 +2941,6 @@ components:
                     $ref: '#/components/schemas/childMoveTnsOrderStatus'
                 type: object
               type: array
-            migrateCampaign:
-              $ref: '#/components/schemas/migrateCampaign'
             customerOrderId:
               $ref: '#/components/schemas/customerOrderId'
             errors:
@@ -6169,11 +6244,9 @@ components:
       summary: Move TNs Bulk Order Request
       value:
         orderDetails:
-          - bypassMessagingCampaignBlock: true
-            bypassMessagingLossBlock: false
-            e911ServiceAction: DELETE
+          - e911ServiceAction: DELETE
             locationId: 483
-            messagingServiceAction: USE_CURRENT_NUMBER_SETTINGS
+            messagingService: USE_CURRENT_NUMBER_SETTINGS
             phoneNumbers:
               - '+12032081004'
               - '+12032081005'
@@ -6181,11 +6254,9 @@ components:
             sourceAccountId: 500025
             subAccountId: 123456
             voiceConfigurationPackageId: 26988a6a-8efb-4fb3-a595-d5caa43a8a2c
-          - bypassMessagingCampaignBlock: false
-            bypassMessagingLossBlock: true
-            e911ServiceAction: MOVE
+          - e911ServiceAction: MOVE
             locationId: 484
-            messagingServiceAction: USE_DESTINATION_SETTINGS
+            messagingService: USE_DESTINATION_SETTINGS
             phoneNumbers:
               - '+19195551000'
               - '+19195551001'
@@ -6342,10 +6413,8 @@ components:
               subAccountId: 13644
               voiceConfigurationPackageId: 26988a6a-8efb-4fb3-a595-d5caa43a8a2c
               requirementsPackageId: 2f013e5b-2225-4993-a2f2-fe679a13581e
-              bypassMessagingCampaignBlock: true
-              bypassMessagingLossBlock: false
               e911ServiceAction: DELETE
-              messagingServiceAction: USE_CURRENT_NUMBER_SETTINGS
+              messagingService: USE_CURRENT_NUMBER_SETTINGS
             - locationId: 538037
               orderIds:
                 - cb2358c8-e34d-4caa-aa15-6e48d2a16254
@@ -6353,10 +6422,8 @@ components:
               subAccountId: 13644
               voiceConfigurationPackageId: c488b879-952c-4095-87f1-2451cf9c5536
               requirementsPackageId: 5a7f3d8c-2512-4aa8-9fe3-a4382b6447bb
-              bypassMessagingCampaignBlock: false
-              bypassMessagingLossBlock: true
               e911ServiceAction: MOVE
-              messagingServiceAction: USE_DESTINATION_SETTINGS
+              messagingService: USE_DESTINATION_SETTINGS
           childOrders:
             - orderId: 0e9c7183-a19d-4713-bb17-e67697ca53f5
               orderStatus: FAILED
@@ -6491,15 +6558,18 @@ components:
         requirementsPackageId: 1b2c3d4e-5f6a-7b8c-9d0e-f1a2b3c4d5e6
         messagingService: USE_DESTINATION_SETTINGS
         e911ServiceAction: MOVE
-        bypassMessagingLossBlock: true
-        bypassMessagingCampaignBlock: false
     moveTnsCheckerResponseJsonExample200:
       summary: An example of a Move TNs Checker 200 Response in JSON.
       value:
         data:
           validPhoneNumbers:
             - '+12032081006'
-            - '+12032081007'
+          errors:
+            - code: '5312'
+              description: An order is already processing this TN.
+              meta:
+                phoneNumbers:
+                  - '+12032081007'
         errors: []
         links:
           - href: /v2/accounts/9902975/moveTnsChecker

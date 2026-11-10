@@ -25,8 +25,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             else if (parseNode.GetChildNode("errors") is { } nullNodeErrors && nullNodeErrors.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Errors = null;
             if (parseNode.GetChildNode("lastModifiedDate") is null) { _explicitNullValueLastModifiedDate = default!; _explicitNullProperties?.Remove("lastModifiedDate"); }
             else if (parseNode.GetChildNode("lastModifiedDate") is { } nullNodeLastModifiedDate && nullNodeLastModifiedDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastModifiedDate = null;
-            if (parseNode.GetChildNode("migrateCampaign") is null) { _explicitNullValueMigrateCampaign = default!; _explicitNullProperties?.Remove("migrateCampaign"); }
-            else if (parseNode.GetChildNode("migrateCampaign") is { } nullNodeMigrateCampaign && nullNodeMigrateCampaign.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MigrateCampaign = null;
             if (parseNode.GetChildNode("orderDate") is null) { _explicitNullValueOrderDate = default!; _explicitNullProperties?.Remove("orderDate"); }
             else if (parseNode.GetChildNode("orderDate") is { } nullNodeOrderDate && nullNodeOrderDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrderDate = null;
             if (parseNode.GetChildNode("orderDetails") is null) { _explicitNullValueOrderDetails = default!; _explicitNullProperties?.Remove("orderDetails"); }
@@ -74,9 +72,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The date/time when the order was last modified.</summary>
         public DateTimeOffset? LastModifiedDate { get => _explicitNullValueLastModifiedDate; set { _explicitNullValueLastModifiedDate = value; AdditionalData?.Remove("lastModifiedDate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastModifiedDate"); else _explicitNullProperties?.Remove("lastModifiedDate"); } }
         private DateTimeOffset? _explicitNullValueLastModifiedDate = default!;
-        /// <summary>Flag for cross-account moves denoting whether any campaigns associated with phone numbers from the order shouldalso be migrated to the new account. If set to `true`, all phone numbers from each involved campaign must bemoved in the same bulk order and the messaging settings of the source and destination accounts must be the same.If set to `false`, the moved numbers will be removed from their current campaigns if they are moved to a new account.</summary>
-        public bool? MigrateCampaign { get => _explicitNullValueMigrateCampaign; set { _explicitNullValueMigrateCampaign = value; AdditionalData?.Remove("migrateCampaign"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("migrateCampaign"); else _explicitNullProperties?.Remove("migrateCampaign"); } }
-        private bool? _explicitNullValueMigrateCampaign = default!;
         /// <summary>The date/time when the order was created.</summary>
         public DateTimeOffset? OrderDate { get => _explicitNullValueOrderDate; set { _explicitNullValueOrderDate = value; AdditionalData?.Remove("orderDate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderDate"); else _explicitNullProperties?.Remove("orderDate"); } }
         private DateTimeOffset? _explicitNullValueOrderDate = default!;
@@ -93,7 +88,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Unique identifier for the order that was created.</summary>
         public Guid? OrderId { get => _explicitNullValueOrderId; set { _explicitNullValueOrderId = value; AdditionalData?.Remove("orderId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderId"); else _explicitNullProperties?.Remove("orderId"); } }
         private Guid? _explicitNullValueOrderId = default!;
-        /// <summary>Processing status of the bulk Move TNs order.RECEIVED - Order has been received without any synchronous errors and will be processed through further validation.PROCESSING - Order has passed validation and is being processed asynchronously. Some child orders may have completed, but at least one is in progress.FAILED - This implies that the order did not pass synchronous validation (Either number specific or non-number specific errors will be displayed).COMPLETE - All child orders have been processed and the order is complete. Review the statuses of each child order for details on the outcome.</summary>
+        /// <summary>Processing status of the bulk Move TNs order.RECEIVED - Order has been received without any synchronous errors and will be processed through further validation.PROCESSING - Order has passed validation and is being processed asynchronously. Some child orders may have completed, but at least one is in progress.FAILED - The order was rejected at synchronous validation (no order created), or every phone number in the order failed asynchronous validation so that no child orders could be created.COMPLETE - All child orders have been processed and the order is complete. Review the statuses of each child order for details on the outcome. A COMPLETE order may still have a non-empty `data.errors` list — this lists phone numbers that were excluded during asynchronous validation and were not moved, even though the rest of the order succeeded.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.BulkMoveTnsOrderStatus? OrderStatus { get => _explicitNullValueOrderStatus; set { _explicitNullValueOrderStatus = value; AdditionalData?.Remove("orderStatus"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderStatus"); else _explicitNullProperties?.Remove("orderStatus"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.BulkMoveTnsOrderStatus? _explicitNullValueOrderStatus = default!;
         /// <summary>The ID of the user who created the order.</summary>
@@ -112,7 +107,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public GetMoveTnsBulkOrderStatusResponseData()
         {
             AdditionalData = new Dictionary<string, object>();
-            MigrateCampaign = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -136,7 +130,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "customerOrderId", n => { CustomerOrderId = n.GetStringValue(); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkMoveTnsErrorsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.BulkMoveTnsErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "lastModifiedDate", n => { LastModifiedDate = n.GetDateTimeOffsetValue(); } },
-                { "migrateCampaign", n => { MigrateCampaign = n.GetBoolValue(); } },
                 { "orderDate", n => { OrderDate = n.GetDateTimeOffsetValue(); } },
                 { "orderDetails", n => { OrderDetails = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseDataOrderDetailsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseDataOrderDetailsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "orderId", n => { OrderId = n.GetGuidValue(); } },
@@ -155,7 +148,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("customerOrderId", CustomerOrderId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkMoveTnsErrorsItem>("errors", Errors);
             writer.WriteDateTimeOffsetValue("lastModifiedDate", LastModifiedDate);
-            writer.WriteBoolValue("migrateCampaign", MigrateCampaign);
             writer.WriteDateTimeOffsetValue("orderDate", OrderDate);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponseDataOrderDetailsItem>("orderDetails", OrderDetails);
             writer.WriteGuidValue("orderId", OrderId);

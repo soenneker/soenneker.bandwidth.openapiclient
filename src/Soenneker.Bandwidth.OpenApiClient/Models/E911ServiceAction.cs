@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
-    /// <summary>This parameter provides flexibility on handling the E911 service of a number when moving to a new account.The default is to “MOVE,” but that may not be possible, resulting in an error where DELETE is required.For example, if moving numbers to an account that uses PIDFLO for E911 then E911ServiceAction = DELETEis required, and the E911 service will need to be configured on the numbers after the move.</summary>
+    /// <summary>This parameter provides flexibility on handling the E911 service of a number when moving to a new account.It is only valid for cross-account moves — setting it on a within-account move is rejected.The default is to `MOVE`, but that may not be possible, resulting in an error where `DELETE` is required.For example, if moving numbers to an account that uses PIDFLO for E911 then `e911ServiceAction = DELETE` is required, and the E911 service will need to be configured on the numbers after the move.An explicit `MOVE` to a destination account that does not have the E911 product fails the move.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum E911ServiceAction
     {

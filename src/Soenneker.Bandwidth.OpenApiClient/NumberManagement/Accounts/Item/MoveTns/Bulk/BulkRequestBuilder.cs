@@ -47,7 +47,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveT
         {
         }
         /// <summary>
-        /// This endpoint creates a bulk MoveTNs order which will generate a number of child MoveTNs orders and track theirprogress. The amount and details of the child orders will be determined based on the information provided in the`orderDetails` element. Each item there should include a unique combination of details based on the desireddestination and configuration of the TNs after the move.
+        /// This endpoint creates a bulk MoveTNs order which will generate a number of child MoveTNs orders and track theirprogress. The amount and details of the child orders will be determined based on the information provided in the`orderDetails` element. Each item there should include a unique combination of details based on the desireddestination and configuration of the TNs after the move.This endpoint must be enabled on your account before use; a 404 response for an account that has not beenenabled indicates this. Contact Bandwidth support to get started.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrder202Response"/></returns>
         /// <param name="body">The request body</param>
@@ -86,7 +86,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveT
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrder202Response>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.CreateMoveTnsBulkOrder202Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// This endpoint creates a bulk MoveTNs order which will generate a number of child MoveTNs orders and track theirprogress. The amount and details of the child orders will be determined based on the information provided in the`orderDetails` element. Each item there should include a unique combination of details based on the desireddestination and configuration of the TNs after the move.
+        /// This endpoint creates a bulk MoveTNs order which will generate a number of child MoveTNs orders and track theirprogress. The amount and details of the child orders will be determined based on the information provided in the`orderDetails` element. Each item there should include a unique combination of details based on the desireddestination and configuration of the TNs after the move.This endpoint must be enabled on your account before use; a 404 response for an account that has not beenenabled indicates this. Contact Bandwidth support to get started.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

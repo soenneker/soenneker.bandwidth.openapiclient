@@ -23557,6 +23557,386 @@
         }
       }
     },
+    "/insights/v1/report-schedules": {
+      "post": {
+        "tags": [
+          "Reporting v1"
+        ],
+        "summary": "Create Report Schedule",
+        "description": "Creates a report schedule: a report that Bandwidth runs for you automatically on a repeating timetable, so you do not have to request it by hand each time. For example, you could get last month\u0027s messaging usage report on the 1st of every month.\n\nYou choose the report (\u0060category\u0060, \u0060domain\u0060 and \u0060reportName\u0060), the accounts it covers, any filters, and when it should run (\u0060cronExpression\u0060, always in UTC). Once created, the schedule keeps running until you turn it off, delete it, or it reaches its optional \u0060endsAt\u0060 date. Use \u0060GET /v1/reportDefinitions\u0060 to see which reports are available to you.\n\nYou can also choose to be emailed when each report is ready (\u0060useNotifications\u0060). Who gets the email is managed in the Bandwidth Subscriptions service, not on the schedule.\n\nEach account can only have a limited number of schedules. If the limit has already been reached, the request is rejected with a \u0060422\u0060 response. Delete a schedule you no longer need to make room.\n\nThis API is only available to accounts that have access to the scheduled reports feature. Without it, requests are rejected with a \u0060403\u0060 response.",
+        "operationId": "InsightsCreateReportSchedule",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/reportScheduleBody"
+        },
+        "responses": {
+          "201": {
+            "description": "OK",
+            "$ref": "#/components/responses/reportScheduleResponse"
+          },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/insights_badRequestError"
+          },
+          "401": {
+            "description": "Unauthorized Account",
+            "$ref": "#/components/responses/insights_unauthorizedError"
+          },
+          "403": {
+            "description": "Unknown Account",
+            "$ref": "#/components/responses/insights_forbiddenError"
+          },
+          "404": {
+            "description": "Method Not Found",
+            "$ref": "#/components/responses/insights_notFoundError"
+          },
+          "405": {
+            "description": "Method Not Found",
+            "$ref": "#/components/responses/methodNotFoundError"
+          },
+          "422": {
+            "description": "Unprocessable Entity. The request was understood but cannot be carried out, for example because the account has reached the maximum number of report schedules.",
+            "$ref": "#/components/responses/unprocessableEntityError"
+          },
+          "429": {
+            "description": "Too Many Requests Error",
+            "$ref": "#/components/responses/insights_tooManyRequestsError"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/insights_internalServerError"
+          },
+          "502": {
+            "description": "Bad Gateway. Your change could not be saved because the schedule could not be synchronized with Bandwidth\u0027s scheduling system. Nothing was changed, so it is safe to try again shortly.",
+            "$ref": "#/components/responses/badGatewayError"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportScheduleResponseResponse"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
+          }
+        },
+        "security": [
+          {
+            "insights_Bearer": []
+          },
+          {
+            "insights_Basic": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://insights.bandwidth.com/api"
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Reporting v1"
+        ],
+        "summary": "List Report Schedules",
+        "description": "Lists all of the report schedules you have created, newest first. You can narrow the list with the filter query parameters and move through the results with \u0060limit\u0060 and \u0060offset\u0060. To look at just one schedule, use \u0060GET /v1/report-schedules/{scheduleId}\u0060 instead.",
+        "operationId": "InsightsListReportSchedules",
+        "parameters": [
+          {
+            "description": "Show only schedules for specific accounts. To include more than one account, separate the account IDs with commas (for example, \u0060123456,654321\u0060); a schedule is included if it matches any of them.",
+            "$ref": "#/components/parameters/accountIdsFilter"
+          },
+          {
+            "description": "Show only schedules for reports in this category (for example, USAGE or CHARGES). To include more than one category, separate them with commas (for example, \u0060USAGE,CHARGES\u0060); a schedule is included if it matches any of them. Leave out to see all categories.",
+            "$ref": "#/components/parameters/categoryFilter"
+          },
+          {
+            "description": "Show only schedules for reports in this product area (for example, MESSAGING or VOICE). To include more than one area, separate them with commas (for example, \u0060MESSAGING,VOICE\u0060); a schedule is included if it matches any of them. Leave out to see all areas.",
+            "$ref": "#/components/parameters/domainFilter"
+          },
+          {
+            "description": "Show only schedules that are turned on (\u0060true\u0060) or only schedules that are turned off (\u0060false\u0060). Leave out to see both.",
+            "$ref": "#/components/parameters/enabledFilter"
+          },
+          {
+            "description": "The maximum records to return per page.",
+            "$ref": "#/components/parameters/insights_limit"
+          },
+          {
+            "description": "Return records starting at the nth record.",
+            "$ref": "#/components/parameters/insights_offset"
+          },
+          {
+            "description": "Show only schedules for the report with this name (for example, MDRs or CDRs). To include more than one report, separate the names with commas (for example, \u0060MDRs,CDRs\u0060); a schedule is included if it matches any of them. Each whole name must match, but capital letters do not matter.",
+            "$ref": "#/components/parameters/reportNameFilter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "$ref": "#/components/responses/listReportScheduleResponse"
+          },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/insights_badRequestError"
+          },
+          "401": {
+            "description": "Unauthorized Account",
+            "$ref": "#/components/responses/insights_unauthorizedError"
+          },
+          "403": {
+            "description": "Unknown Account",
+            "$ref": "#/components/responses/insights_forbiddenError"
+          },
+          "404": {
+            "description": "Method Not Found",
+            "$ref": "#/components/responses/insights_notFoundError"
+          },
+          "405": {
+            "description": "Method Not Found",
+            "$ref": "#/components/responses/methodNotFoundError"
+          },
+          "429": {
+            "description": "Too Many Requests Error",
+            "$ref": "#/components/responses/insights_tooManyRequestsError"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/insights_internalServerError"
+          }
+        },
+        "security": [
+          {
+            "insights_Bearer": []
+          },
+          {
+            "insights_Basic": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://insights.bandwidth.com/api"
+          }
+        ]
+      }
+    },
+    "/insights/v1/report-schedules/{scheduleId}": {
+      "get": {
+        "tags": [
+          "Reporting v1"
+        ],
+        "summary": "Get Report Schedule",
+        "description": "Gets the details of a single report schedule, including when it will next run.",
+        "operationId": "InsightsGetReportSchedule",
+        "parameters": [
+          {
+            "name": "scheduleId",
+            "in": "path",
+            "description": "The ID of the report schedule, as returned when the schedule was created.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "6d4f848a-9543-4e18-b580-2621c9525892"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "$ref": "#/components/responses/reportScheduleResponse"
+          },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/insights_badRequestError"
+          },
+          "401": {
+            "description": "Unauthorized Account",
+            "$ref": "#/components/responses/insights_unauthorizedError"
+          },
+          "403": {
+            "description": "Unknown Account",
+            "$ref": "#/components/responses/insights_forbiddenError"
+          },
+          "404": {
+            "description": "Method Not Found",
+            "$ref": "#/components/responses/insights_notFoundError"
+          },
+          "405": {
+            "description": "Method Not Found",
+            "$ref": "#/components/responses/methodNotFoundError"
+          },
+          "429": {
+            "description": "Too Many Requests Error",
+            "$ref": "#/components/responses/insights_tooManyRequestsError"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/insights_internalServerError"
+          }
+        },
+        "security": [
+          {
+            "insights_Bearer": []
+          },
+          {
+            "insights_Basic": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://insights.bandwidth.com/api"
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Reporting v1"
+        ],
+        "summary": "Update Report Schedule",
+        "description": "Changes an existing report schedule. Include only the fields you want to change; anything you leave out stays the same. You cannot change which report is scheduled or which account owns the schedule.\n\nFilters work slightly differently: they are replaced, not merged. If you include \u0060filters\u0060, your list replaces the schedule\u0027s existing filters completely, so send every filter you want to keep (any you leave out are removed). If you leave \u0060filters\u0060 out of the request, the existing filters are not touched.",
+        "operationId": "InsightsUpdateReportSchedule",
+        "parameters": [
+          {
+            "name": "scheduleId",
+            "in": "path",
+            "description": "The ID of the report schedule, as returned when the schedule was created.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "6d4f848a-9543-4e18-b580-2621c9525892"
+            }
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/reportSchedulePatchBody"
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "$ref": "#/components/responses/reportScheduleResponse"
+          },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/insights_badRequestError"
+          },
+          "401": {
+            "description": "Unauthorized Account",
+            "$ref": "#/components/responses/insights_unauthorizedError"
+          },
+          "403": {
+            "description": "Unknown Account",
+            "$ref": "#/components/responses/insights_forbiddenError"
+          },
+          "404": {
+            "description": "Method Not Found",
+            "$ref": "#/components/responses/insights_notFoundError"
+          },
+          "405": {
+            "description": "Method Not Found",
+            "$ref": "#/components/responses/methodNotFoundError"
+          },
+          "429": {
+            "description": "Too Many Requests Error",
+            "$ref": "#/components/responses/insights_tooManyRequestsError"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/insights_internalServerError"
+          },
+          "502": {
+            "description": "Bad Gateway. Your change could not be saved because the schedule could not be synchronized with Bandwidth\u0027s scheduling system. Nothing was changed, so it is safe to try again shortly.",
+            "$ref": "#/components/responses/badGatewayError"
+          }
+        },
+        "security": [
+          {
+            "insights_Bearer": []
+          },
+          {
+            "insights_Basic": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://insights.bandwidth.com/api"
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Reporting v1"
+        ],
+        "summary": "Delete Report Schedule",
+        "description": "Deletes a report schedule so that no more reports are generated from it. Reports that were already generated are not affected.",
+        "operationId": "InsightsDeleteReportSchedule",
+        "parameters": [
+          {
+            "name": "scheduleId",
+            "in": "path",
+            "description": "The ID of the report schedule, as returned when the schedule was created.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "6d4f848a-9543-4e18-b580-2621c9525892"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content."
+          },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/insights_badRequestError"
+          },
+          "401": {
+            "description": "Unauthorized Account",
+            "$ref": "#/components/responses/insights_unauthorizedError"
+          },
+          "403": {
+            "description": "Unknown Account",
+            "$ref": "#/components/responses/insights_forbiddenError"
+          },
+          "404": {
+            "description": "Method Not Found",
+            "$ref": "#/components/responses/insights_notFoundError"
+          },
+          "405": {
+            "description": "Method Not Found",
+            "$ref": "#/components/responses/methodNotFoundError"
+          },
+          "429": {
+            "description": "Too Many Requests Error",
+            "$ref": "#/components/responses/insights_tooManyRequestsError"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/insights_internalServerError"
+          },
+          "502": {
+            "description": "Bad Gateway. Your change could not be saved because the schedule could not be synchronized with Bandwidth\u0027s scheduling system. Nothing was changed, so it is safe to try again shortly.",
+            "$ref": "#/components/responses/badGatewayError"
+          }
+        },
+        "security": [
+          {
+            "insights_Bearer": []
+          },
+          {
+            "insights_Basic": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://insights.bandwidth.com/api"
+          }
+        ]
+      }
+    },
     "/line-features/accounts/{accountId}/tnoptions": {
       "get": {
         "tags": [
@@ -33832,7 +34212,7 @@
           "Move TNs Bulk Orders"
         ],
         "summary": "Create Move TNs Bulk Order",
-        "description": "This endpoint creates a bulk MoveTNs order which will generate a number of child MoveTNs orders and track their\nprogress. The amount and details of the child orders will be determined based on the information provided in the\n\u0060orderDetails\u0060 element. Each item there should include a unique combination of details based on the desired\ndestination and configuration of the TNs after the move.",
+        "description": "This endpoint creates a bulk MoveTNs order which will generate a number of child MoveTNs orders and track their\nprogress. The amount and details of the child orders will be determined based on the information provided in the\n\u0060orderDetails\u0060 element. Each item there should include a unique combination of details based on the desired\ndestination and configuration of the TNs after the move.\n\nThis endpoint must be enabled on your account before use; a 404 response for an account that has not been\nenabled indicates this. Contact Bandwidth support to get started.",
         "operationId": "NumberManagementCreateMoveTnsBulkOrder",
         "parameters": [
           {
@@ -33921,7 +34301,7 @@
           "Move TNs Bulk Orders"
         ],
         "summary": "Get Move TNs Bulk Order Status",
-        "description": "This endpoint returns the state of the bulk order, along with summary information about the child\norders created from the bulk order submission. The response includes varying amounts of information based\non the status of the bulk order. The \u0060verbose\u0060 query param can be specified to include the original details\nwhich were supplied for the bulk move along with the child orders created for each set of details.",
+        "description": "This endpoint returns the state of the bulk order, along with summary information about the child\norders created from the bulk order submission. The response includes varying amounts of information based\non the status of the bulk order. The \u0060verbose\u0060 query param can be specified to include the original details\nwhich were supplied for the bulk move along with the child orders created for each set of details.\n\nThis endpoint must be enabled on your account before use; a 404 response for an account that has not been\nenabled indicates this. Contact Bandwidth support to get started.",
         "operationId": "NumberManagementGetMoveTnsBulkOrderStatus",
         "parameters": [
           {
@@ -90144,6 +90524,382 @@
           ]
         }
       },
+      "PageObject": {
+        "title": "Object that holds pagination information for a paginated response.",
+        "type": "object",
+        "properties": {
+          "pageSize": {
+            "type": "integer",
+            "description": "The number of items per page.",
+            "example": 10
+          },
+          "totalElements": {
+            "type": "integer",
+            "description": "The total number of items across all pages.",
+            "example": 40
+          },
+          "totalPages": {
+            "type": "integer",
+            "description": "The total number of pages available based on the page size and total elements.",
+            "example": 4
+          },
+          "pageNumber": {
+            "type": "integer",
+            "description": "The current page number. Counting starts at 0, so \u00600\u0060 is the first page, \u00601\u0060 is the second page, and so on.",
+            "example": 0
+          }
+        }
+      },
+      "ReportScheduleObject": {
+        "title": "Create Report Schedule Request",
+        "required": [
+          "category",
+          "domain",
+          "reportName",
+          "ownerAccountId",
+          "cronExpression"
+        ],
+        "type": "object",
+        "properties": {
+          "category": {
+            "description": "The category classification of the report definition.",
+            "$ref": "#/components/schemas/Category"
+          },
+          "domain": {
+            "description": "The product domain the report definition belongs to.",
+            "$ref": "#/components/schemas/Domain"
+          },
+          "reportName": {
+            "type": "string",
+            "description": "The name of the report to run on a schedule (for example, MDRs). Together with \u0060category\u0060 and \u0060domain\u0060, this identifies which report you are scheduling. Use \u0060GET /v1/reportDefinitions\u0060 to see the reports available to you.",
+            "example": "MDRs"
+          },
+          "ownerAccountId": {
+            "type": "string",
+            "description": "The account that owns this schedule. You must have access to this account. This is not the same as \u0060accountIds\u0060: \u0060ownerAccountId\u0060 is who manages the schedule, while \u0060accountIds\u0060 is whose data the report covers. It cannot be changed after the schedule is created.",
+            "example": "123456"
+          },
+          "scheduleName": {
+            "maxLength": 255,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "A friendly name for the schedule, to help you recognize it later (for example, \u0022Monthly messaging usage\u0022). Optional, up to 255 characters, and cannot contain line breaks or other control characters. An empty value is not accepted when creating a schedule.",
+            "example": "Monthly messaging usage"
+          },
+          "accountIds": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string",
+              "example": "123456"
+            },
+            "description": "The accounts whose data the report covers. These are the same account IDs you would use if you ran the report yourself. They are not necessarily the account that owns the schedule (see \u0060ownerAccountId\u0060). If omitted, defaults to the account(s) tied to the caller\u0027s token. Internal/admin callers must provide at least one account ID explicitly."
+          },
+          "filters": {
+            "$ref": "#/components/schemas/ReportScheduleObjectFiltersProperty"
+          },
+          "region": {
+            "description": "The region where the report will run. Defaults to the only available region. Required if multiple regions are available.",
+            "$ref": "#/components/schemas/ReportScheduleObjectRegion"
+          },
+          "cronExpression": {
+            "type": "string",
+            "description": "When the report should run, written as a cron expression. All times are in UTC. It has 6 fields, separated by spaces: minute, hour, day-of-month, month, day-of-week, year.\n\nTwo rules to keep in mind: exactly one of day-of-month and day-of-week must be \u0060?\u0060 (use \u0060?\u0060 for the one you are not setting), and the year must be \u0060*\u0060, because schedules repeat indefinitely. For example:\n\n- \u00600 9 * * ? *\u0060 runs at 09:00 UTC every day.\n- \u00600 14 ? * MON *\u0060 runs at 14:00 UTC every Monday.\n- \u00600 14 27 * ? *\u0060 runs at 14:00 UTC on the 27th of every month.\n- \u00600 9 1 1 ? *\u0060 runs at 09:00 UTC on 1 January every year.\n\nDay-of-week can be written as a name (\u0060MON\u0060) or a number, where \u00601\u0060 is Sunday, \u00602\u0060 is Monday, and so on up to \u00607\u0060 for Saturday (so \u00600 14 ? * 2 *\u0060 is the same as \u00600 14 ? * MON *\u0060).\n\nA report can run at most once a day, so schedules that run every hour or more often are not accepted. If you choose a numeric day of the month, it must be the 28th or earlier so that it exists in every month; use \u0060L\u0060 for the last day.\n\n\u0060minute\u0060 and \u0060hour\u0060 must each be a single number (for example \u00600 14\u0060), so a schedule fires once a day at most. The \u0060day-of-month\u0060, \u0060month\u0060, and \u0060day-of-week\u0060 fields also accept lists (\u0060MON,THU\u0060), ranges (\u0060MON-FRI\u0060), and step values (\u0060*/2\u0060). \u0060day-of-month\u0060 also accepts \u0060L\u0060 (last day of the month), so \u00600 14 L * ? *\u0060 runs at 14:00 UTC on the last day of every month.",
+            "example": "0 14 27 * ? *"
+          },
+          "startsAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The date and time (UTC) when the schedule should start running. Optional. If left out, the schedule starts as soon as it is created. This cannot be more than 4 minutes in the past.",
+            "format": "date-time",
+            "example": "2026-11-01T00:00:00Z"
+          },
+          "endsAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The date and time (UTC) when the schedule should stop running. Optional. If left out, the schedule keeps running until you disable or delete it. It must be in the future, after \u0060startsAt\u0060, and after the schedule\u0027s first run.",
+            "format": "date-time",
+            "example": "2027-11-01T00:00:00Z"
+          },
+          "enabled": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Turns the schedule on or off. When \u0060false\u0060, no new reports are generated until you turn it back on. Turning a schedule off takes effect immediately, including for a run that is due later the same day. For example, if a report is due at 13:00 and you turn the schedule off at 12:30, that 13:00 report will not be generated.",
+            "default": true,
+            "example": true
+          },
+          "useNotifications": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Whether to send an email when a scheduled report is ready. Defaults to \u0060false\u0060. The email addresses are not stored on the schedule. They come from the Bandwidth Subscriptions service, where you choose who receives scheduled report emails. To set up recipients, see https://dev.bandwidth.com/docs/account/subscriptions-overview/.",
+            "default": false,
+            "example": false
+          }
+        },
+        "description": "What you send to create a report schedule."
+      },
+      "ReportSchedulePatchObject": {
+        "title": "Update Report Schedule Request",
+        "type": "object",
+        "properties": {
+          "scheduleName": {
+            "maxLength": 255,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "A friendly name for the schedule, to help you recognize it later (for example, \u0022Monthly messaging usage\u0022). Optional, up to 255 characters, and cannot contain line breaks or other control characters. On update, send an empty value to remove the name.",
+            "example": "Monthly messaging usage"
+          },
+          "accountIds": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string",
+              "example": "123456"
+            },
+            "description": "The accounts whose data the report covers. These are the same account IDs you would use if you ran the report yourself. They are not necessarily the account that owns the schedule (see \u0060ownerAccountId\u0060). Sending \u0060null\u0060 has no effect; the schedule keeps its existing accounts."
+          },
+          "filters": {
+            "$ref": "#/components/schemas/ReportSchedulePatchObjectFiltersProperty"
+          },
+          "region": {
+            "description": "The region where the report will run. Defaults to the only available region. Required if multiple regions are available.",
+            "$ref": "#/components/schemas/ReportSchedulePatchObjectRegion"
+          },
+          "cronExpression": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "When the report should run, written as a cron expression. All times are in UTC. It has 6 fields, separated by spaces: minute, hour, day-of-month, month, day-of-week, year.\n\nTwo rules to keep in mind: exactly one of day-of-month and day-of-week must be \u0060?\u0060 (use \u0060?\u0060 for the one you are not setting), and the year must be \u0060*\u0060, because schedules repeat indefinitely. For example:\n\n- \u00600 9 * * ? *\u0060 runs at 09:00 UTC every day.\n- \u00600 14 ? * MON *\u0060 runs at 14:00 UTC every Monday.\n- \u00600 14 27 * ? *\u0060 runs at 14:00 UTC on the 27th of every month.\n- \u00600 9 1 1 ? *\u0060 runs at 09:00 UTC on 1 January every year.\n\nDay-of-week can be written as a name (\u0060MON\u0060) or a number, where \u00601\u0060 is Sunday, \u00602\u0060 is Monday, and so on up to \u00607\u0060 for Saturday (so \u00600 14 ? * 2 *\u0060 is the same as \u00600 14 ? * MON *\u0060).\n\nA report can run at most once a day, so schedules that run every hour or more often are not accepted. If you choose a numeric day of the month, it must be the 28th or earlier so that it exists in every month; use \u0060L\u0060 for the last day.\n\n\u0060minute\u0060 and \u0060hour\u0060 must each be a single number (for example \u00600 14\u0060), so a schedule fires once a day at most. The \u0060day-of-month\u0060, \u0060month\u0060, and \u0060day-of-week\u0060 fields also accept lists (\u0060MON,THU\u0060), ranges (\u0060MON-FRI\u0060), and step values (\u0060*/2\u0060). \u0060day-of-month\u0060 also accepts \u0060L\u0060 (last day of the month), so \u00600 14 L * ? *\u0060 runs at 14:00 UTC on the last day of every month.",
+            "example": "0 14 27 * ? *"
+          },
+          "startsAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The date and time (UTC) when the schedule should start running. Optional. If left out, the schedule starts as soon as it is created. This cannot be more than 4 minutes in the past. Sending \u0060null\u0060 has no effect; the schedule keeps its existing start time.",
+            "format": "date-time",
+            "example": "2026-11-01T00:00:00Z"
+          },
+          "endsAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The date and time (UTC) when the schedule should stop running. Optional. If left out, the schedule keeps running until you disable or delete it. It must be in the future, after \u0060startsAt\u0060, and after the schedule\u0027s first run. To remove an existing end date, use \u0060neverEnds\u0060 instead; sending \u0060null\u0060 does not remove it.",
+            "format": "date-time",
+            "example": "2027-11-01T00:00:00Z"
+          },
+          "neverEnds": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Set to \u0060true\u0060 to remove the end date so the schedule keeps running until you disable or delete it. Sending both \u0060endsAt\u0060 and \u0060neverEnds: true\u0060 in the same request is rejected with a 400. Sending \u0060false\u0060 is the same as leaving it out.",
+            "example": true
+          },
+          "enabled": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Turns the schedule on or off. When \u0060false\u0060, no new reports are generated until you turn it back on. Turning a schedule off takes effect immediately, including for a run that is due later the same day. For example, if a report is due at 13:00 and you turn the schedule off at 12:30, that 13:00 report will not be generated.",
+            "example": true
+          },
+          "useNotifications": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Whether to send an email when a scheduled report is ready. Defaults to \u0060false\u0060. Sending \u0060null\u0060 has no effect; the schedule keeps its current setting. The email addresses are not stored on the schedule. They come from the Bandwidth Subscriptions service, where you choose who receives scheduled report emails. To set up recipients, see https://dev.bandwidth.com/docs/account/subscriptions-overview/.",
+            "example": false
+          }
+        },
+        "description": "What you send to change an existing report schedule. Include only the fields you want to change; anything you leave out stays as it is. You cannot change which report is scheduled or which account owns the schedule."
+      },
+      "ReportScheduleResponseObject": {
+        "title": "Report Schedule Response",
+        "type": [
+          "null",
+          "object"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of the schedule. Bandwidth generates it when the schedule is created. Use it as the \u0060scheduleId\u0060 when you view, update, or delete the schedule.",
+            "format": "uuid",
+            "example": "6d4f848a-9543-4e18-b580-2621c9525892"
+          },
+          "ownerAccountId": {
+            "type": "string",
+            "description": "The account that owns this schedule.",
+            "example": "123456"
+          },
+          "scheduleName": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The friendly name you gave the schedule, if any.",
+            "example": "Monthly messaging usage"
+          },
+          "category": {
+            "description": "The category classification of the report definition.",
+            "$ref": "#/components/schemas/Category"
+          },
+          "domain": {
+            "description": "The product domain the report definition belongs to.",
+            "$ref": "#/components/schemas/Domain"
+          },
+          "reportName": {
+            "type": "string",
+            "description": "The name of the report that runs on this schedule. This is the report\u0027s name, not the name of the schedule (see \u0060scheduleName\u0060).",
+            "example": "MDRs"
+          },
+          "accountIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "123456"
+            },
+            "description": "The accounts whose data the report covers. These are the same account IDs you would use if you ran the report yourself. They are not necessarily the account that owns the schedule (see \u0060ownerAccountId\u0060).",
+            "example": [
+              "123456",
+              "654321"
+            ]
+          },
+          "filters": {
+            "$ref": "#/components/schemas/ReportScheduleResponseObjectFiltersProperty"
+          },
+          "region": {
+            "description": "The region where the report will run. Defaults to the only available region. Required if multiple regions are available.",
+            "$ref": "#/components/schemas/ReportScheduleResponseObjectRegion"
+          },
+          "cronExpression": {
+            "type": "string",
+            "description": "When the report should run, written as a cron expression. All times are in UTC. It has 6 fields, separated by spaces: minute, hour, day-of-month, month, day-of-week, year.\n\nTwo rules to keep in mind: exactly one of day-of-month and day-of-week must be \u0060?\u0060 (use \u0060?\u0060 for the one you are not setting), and the year must be \u0060*\u0060, because schedules repeat indefinitely. For example:\n\n- \u00600 9 * * ? *\u0060 runs at 09:00 UTC every day.\n- \u00600 14 ? * MON *\u0060 runs at 14:00 UTC every Monday.\n- \u00600 14 27 * ? *\u0060 runs at 14:00 UTC on the 27th of every month.\n- \u00600 9 1 1 ? *\u0060 runs at 09:00 UTC on 1 January every year.\n\nDay-of-week can be written as a name (\u0060MON\u0060) or a number, where \u00601\u0060 is Sunday, \u00602\u0060 is Monday, and so on up to \u00607\u0060 for Saturday (so \u00600 14 ? * 2 *\u0060 is the same as \u00600 14 ? * MON *\u0060).\n\nA report can run at most once a day, so schedules that run every hour or more often are not accepted. If you choose a numeric day of the month, it must be the 28th or earlier so that it exists in every month; use \u0060L\u0060 for the last day.\n\n\u0060minute\u0060 and \u0060hour\u0060 must each be a single number (for example \u00600 14\u0060), so a schedule fires once a day at most. The \u0060day-of-month\u0060, \u0060month\u0060, and \u0060day-of-week\u0060 fields also accept lists (\u0060MON,THU\u0060), ranges (\u0060MON-FRI\u0060), and step values (\u0060*/2\u0060). \u0060day-of-month\u0060 also accepts \u0060L\u0060 (last day of the month), so \u00600 14 L * ? *\u0060 runs at 14:00 UTC on the last day of every month.",
+            "example": "0 14 27 * ? *"
+          },
+          "startsAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "When the schedule starts running (UTC), if a start time was set.",
+            "format": "date-time",
+            "example": "2026-11-01T00:00:00.000Z"
+          },
+          "endsAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "When the schedule stops running (UTC). Empty if the schedule has no end date.",
+            "format": "date-time",
+            "example": "2027-11-01T00:00:00.000Z"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the schedule is turned on. When \u0060false\u0060, no new reports are generated.",
+            "example": true
+          },
+          "useNotifications": {
+            "type": "boolean",
+            "description": "Whether an email is sent when a scheduled report is ready. Recipients are managed in the Bandwidth Subscriptions service (https://dev.bandwidth.com/docs/account/subscriptions-overview/).",
+            "example": false
+          },
+          "status": {
+            "description": "The current state of the schedule, worked out by Bandwidth (you cannot set it directly). \u0060ACTIVE\u0060 means the schedule is running normally. \u0060DISABLED\u0060 means it has been turned off (\u0060enabled\u0060 is \u0060false\u0060). \u0060ENDED\u0060 means its end date (\u0060endsAt\u0060) has passed. An ended schedule shows as \u0060ENDED\u0060 even if it is also turned off. Setting a new future \u0060endsAt\u0060, or using \u0060neverEnds\u0060, brings it back.",
+            "$ref": "#/components/schemas/ScheduleStatus"
+          },
+          "nextRunAt": {
+            "description": "When the report will next run (UTC). Empty (\u0060null\u0060) unless \u0060status\u0060 is \u0060ACTIVE\u0060, so it is empty for \u0060DISABLED\u0060 and \u0060ENDED\u0060 schedules.",
+            "$ref": "#/components/schemas/NextRunAt"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "When the schedule was created (UTC).",
+            "format": "date-time",
+            "example": "2026-10-27T12:00:00.000Z"
+          },
+          "updatedAt": {
+            "description": "When the schedule was last changed (UTC). Empty if it has never been changed since it was created.",
+            "$ref": "#/components/schemas/UpdatedAt"
+          },
+          "user": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The username of the person who created the schedule. It is set when the schedule is created and cannot be changed. \u0060null\u0060 for schedules created before this field was recorded.",
+            "example": "Username"
+          }
+        },
+        "description": "A report schedule."
+      },
+      "ScheduleStatus": {
+        "enum": [
+          "ACTIVE",
+          "DISABLED",
+          "ENDED"
+        ],
+        "type": "string",
+        "description": "The current state of the schedule, worked out by Bandwidth (you cannot set it directly). \u0060ACTIVE\u0060 means the schedule is running normally. \u0060DISABLED\u0060 means it has been turned off (\u0060enabled\u0060 is \u0060false\u0060). \u0060ENDED\u0060 means its end date (\u0060endsAt\u0060) has passed. An ended schedule shows as \u0060ENDED\u0060 even if it is also turned off. Setting a new future \u0060endsAt\u0060, or using \u0060neverEnds\u0060, brings it back.",
+        "example": "ACTIVE",
+        "x-ms-enum": {
+          "name": "ScheduleStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "ACTIVE",
+              "name": "Active"
+            },
+            {
+              "value": "DISABLED",
+              "name": "Disabled"
+            },
+            {
+              "value": "ENDED",
+              "name": "Ended"
+            }
+          ]
+        }
+      },
+      "NextRunAt": {
+        "type": [
+          "null",
+          "string"
+        ],
+        "description": "When the report will next run (UTC). Empty (\u0060null\u0060) unless \u0060status\u0060 is \u0060ACTIVE\u0060, so it is empty for \u0060DISABLED\u0060 and \u0060ENDED\u0060 schedules.",
+        "format": "date-time",
+        "example": "2026-11-27T14:00:00.000Z"
+      },
+      "UpdatedAt": {
+        "type": [
+          "null",
+          "string"
+        ],
+        "description": "When the schedule was last changed (UTC). Empty if it has never been changed since it was created.",
+        "format": "date-time",
+        "example": "2026-10-28T09:30:00.000Z"
+      },
       "MonitorDirection": {
         "type": "object",
         "properties": {
@@ -90314,6 +91070,7 @@
               "type": "string",
               "example": "123456"
             },
+            "description": "The accounts whose data the scheduled report covers. These are the same account IDs you would provide when triggering a report directly, not the account(s) that own or administer the schedule.",
             "example": [
               "123456",
               "654321"
@@ -92200,6 +92957,103 @@
           }
         }
       },
+      "ReportScheduleResponseResponse": {
+        "required": [
+          "links",
+          "data",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InsightsLink"
+            },
+            "example": [
+              {
+                "rel": "self",
+                "href": "https://insights.bandwidth.com/api/v1/report-schedules/67a95525-4618-418b-ad8b-4ddd8562ad37"
+              }
+            ]
+          },
+          "data": {
+            "description": "A report schedule.",
+            "$ref": "#/components/schemas/ReportScheduleResponseObject"
+          },
+          "errors": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/InsightsApiError"
+            },
+            "example": []
+          }
+        }
+      },
+      "ListReportScheduleResponseResponse": {
+        "required": [
+          "page",
+          "links",
+          "data",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "page": {
+            "$ref": "#/components/schemas/PageObject"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InsightsLink"
+            },
+            "example": [
+              {
+                "rel": "self",
+                "href": "https://insights.bandwidth.com/api/v1/report-schedules?offset=100\u0026limit=100"
+              },
+              {
+                "rel": "next",
+                "href": "https://insights.bandwidth.com/api/v1/report-schedules?offset=200\u0026limit=100"
+              },
+              {
+                "rel": "prev",
+                "href": "https://insights.bandwidth.com/api/v1/report-schedules?offset=0\u0026limit=100"
+              },
+              {
+                "rel": "first",
+                "href": "https://insights.bandwidth.com/api/v1/report-schedules?limit=100"
+              },
+              {
+                "rel": "last",
+                "href": "https://insights.bandwidth.com/api/v1/report-schedules?offset=500\u0026limit=100"
+              }
+            ]
+          },
+          "data": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/ReportScheduleResponseObject"
+            }
+          },
+          "errors": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/InsightsApiError"
+            },
+            "example": []
+          }
+        }
+      },
       "ReportCreatedResponseResponse": {
         "required": [
           "links",
@@ -92839,6 +93693,84 @@
             },
             "example": []
           }
+        }
+      },
+      "ReportScheduleObjectRegion": {
+        "enum": [
+          "US",
+          "EU"
+        ],
+        "type": [
+          "null",
+          "string"
+        ],
+        "description": "The region where the report will run. Defaults to the only available region. Required if multiple regions are available.",
+        "example": "US",
+        "x-ms-enum": {
+          "name": "ReportScheduleObjectRegion",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "US",
+              "name": "Us"
+            },
+            {
+              "value": "EU",
+              "name": "Eu"
+            }
+          ]
+        }
+      },
+      "ReportSchedulePatchObjectRegion": {
+        "enum": [
+          "US",
+          "EU"
+        ],
+        "type": [
+          "null",
+          "string"
+        ],
+        "description": "The region where the report will run. Defaults to the only available region. Required if multiple regions are available.",
+        "example": "US",
+        "x-ms-enum": {
+          "name": "ReportSchedulePatchObjectRegion",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "US",
+              "name": "Us"
+            },
+            {
+              "value": "EU",
+              "name": "Eu"
+            }
+          ]
+        }
+      },
+      "ReportScheduleResponseObjectRegion": {
+        "enum": [
+          "US",
+          "EU"
+        ],
+        "type": [
+          "null",
+          "string"
+        ],
+        "description": "The region where the report will run. Defaults to the only available region. Required if multiple regions are available.",
+        "example": "US",
+        "x-ms-enum": {
+          "name": "ReportScheduleResponseObjectRegion",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "US",
+              "name": "Us"
+            },
+            {
+              "value": "EU",
+              "name": "Eu"
+            }
+          ]
         }
       },
       "PaginatedRdoFilterEnumeratedFilter": {
@@ -111426,7 +112358,9 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/MoveTnsCheckerPayloadJsonErrorsItem"
-            }
+            },
+            "description": "Always empty on a 200 response. Per-number validation errors are returned in \u0060data.errors\u0060 instead.",
+            "example": []
           }
         }
       },
@@ -111465,21 +112399,21 @@
           },
           "sourceAccountId": {
             "type": "number",
-            "description": "ID of source account, in the case of moving numbers across accounts.",
+            "description": "ID of source account, in the case of moving numbers across accounts. Omit this field for within-account moves \u2014 sending the destination account\u0027s own ID in this field is rejected.",
             "example": 9902975
           },
           "messagingService": {
-            "description": "The action to be taken on the messaging service when moving numbers. This field\nensures that the destination account has compatible messaging settings to support moving numbers. If the \nvalidation passes, the numbers are moved without altering their existing messaging settings. However, \nif the validation fails, the order will be rejected with an error messaging indicating incompatible settings.\n\nIf set to \u0060useDestinationSettings\u0060, this will apply the destination location\u0027s messaging settings to the number.\n\nIf set to \u0060useCurrentNumberSettings\u0060, this will validate and apply whether the destination location \ncan accept the numbers\u0027 existing messaging settings.",
+            "description": "The action to be taken on the messaging service when moving numbers. This field\nensures that the destination account has compatible messaging settings to support moving numbers. If the \nvalidation passes, the numbers are moved without altering their existing messaging settings. However, \nif the validation fails, the order will be rejected with an error messaging indicating incompatible settings.\n\nIf set to \u0060USE_DESTINATION_SETTINGS\u0060, this will apply the destination location\u0027s messaging settings to the number.\n\nIf set to \u0060USE_CURRENT_NUMBER_SETTINGS\u0060, this will validate and apply whether the destination location\ncan accept the numbers\u0027 existing messaging settings. This validation is request-level: a mismatch between the\nsource and destination locations\u0027 SMS, MMS, or A2P/P2P settings, or a mismatch in the source and destination\naccounts\u0027 NNIDs when \u0060sourceAccountId\u0060 is set, rejects the entire request. The enum value is matched\ncase-insensitively and ignoring underscores, so \u0060use_current_number_settings\u0060 and \u0060UseCurrentNumberSettings\u0060\nare also accepted.",
             "$ref": "#/components/schemas/MessagingService"
           },
           "e911ServiceAction": {
-            "description": "This parameter provides flexibility on handling the E911 service of a number when moving to a new account.\nThe default is to \u201CMOVE,\u201D but that may not be possible, resulting in an error where DELETE is required.\nFor example, if moving numbers to an account that uses PIDFLO for E911 then E911ServiceAction = DELETE\nis required, and the E911 service will need to be configured on the numbers after the move.",
+            "description": "This parameter provides flexibility on handling the E911 service of a number when moving to a new account.\nIt is only valid for cross-account moves \u2014 setting it on a within-account move is rejected.\nThe default is to \u0060MOVE\u0060, but that may not be possible, resulting in an error where \u0060DELETE\u0060 is required.\nFor example, if moving numbers to an account that uses PIDFLO for E911 then \u0060e911ServiceAction = DELETE\u0060 is required, and the E911 service will need to be configured on the numbers after the move.\nAn explicit \u0060MOVE\u0060 to a destination account that does not have the E911 product fails the move.",
             "$ref": "#/components/schemas/E911ServiceAction"
           },
           "voiceConfigurationPackageId": {
             "title": "Voice Configuration Package ID",
             "type": "string",
-            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation, \ntelephone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.",
+            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation,\ntelephone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.\n\nMoving numbers across accounts from a source account that has the voice configuration package feature to a\ndestination account that does not is not currently allowed.",
             "format": "uuid",
             "example": "c7951e4f-6285-4b75-83e5-392558f59067"
           },
@@ -111489,16 +112423,6 @@
             "description": "The identifier of the requirements package containing the end user details for the telephone numbers. This\nis required if the numbers are being moved across accounts and if they are a part of a country and number type\nwhich has end user validation requirements. The provided requirements package must be approved and compatible\nwith the telephone numbers being moved.",
             "format": "uuid",
             "example": "c7951e4f-6285-4b75-83e5-392558f59067"
-          },
-          "bypassMessagingLossBlock": {
-            "type": "boolean",
-            "description": "A flag that determines whether to bypass the messaging loss block. \n\nIf set to **true**, no error will occur when moving a number with messaging to a location or account that does\nnot support messaging; messaging will simply be disabled in this case.\n\nIf set to **false**, an error will be triggered if such a move is attempted, preventing the move from processing.\n\nDefault value is false.",
-            "example": false
-          },
-          "bypassMessagingCampaignBlock": {
-            "type": "boolean",
-            "description": "A flag that determines whether to bypass the messaging campaign block.\n\nIf set to **true** and the numbers are associated with a messaging campaign, the move TN request will succeed,\nbut the campaign will be removed from the numbers during the move.\n\nIf set to **false** and the numbers are associated with a messaging campaign, the move request will \nfail with an error.\n\nDefault value is false.",
-            "example": false
           }
         }
       },
@@ -111508,7 +112432,7 @@
           "DELETE"
         ],
         "type": "string",
-        "description": "This parameter provides flexibility on handling the E911 service of a number when moving to a new account.\nThe default is to \u201CMOVE,\u201D but that may not be possible, resulting in an error where DELETE is required.\nFor example, if moving numbers to an account that uses PIDFLO for E911 then E911ServiceAction = DELETE\nis required, and the E911 service will need to be configured on the numbers after the move.",
+        "description": "This parameter provides flexibility on handling the E911 service of a number when moving to a new account.\nIt is only valid for cross-account moves \u2014 setting it on a within-account move is rejected.\nThe default is to \u0060MOVE\u0060, but that may not be possible, resulting in an error where \u0060DELETE\u0060 is required.\nFor example, if moving numbers to an account that uses PIDFLO for E911 then \u0060e911ServiceAction = DELETE\u0060 is required, and the E911 service will need to be configured on the numbers after the move.\nAn explicit \u0060MOVE\u0060 to a destination account that does not have the E911 product fails the move.",
         "x-ms-enum": {
           "name": "E911ServiceAction",
           "modelAsString": false,
@@ -111530,7 +112454,7 @@
           "USE_CURRENT_NUMBER_SETTINGS"
         ],
         "type": "string",
-        "description": "The action to be taken on the messaging service when moving numbers. This field\nensures that the destination account has compatible messaging settings to support moving numbers. If the \nvalidation passes, the numbers are moved without altering their existing messaging settings. However, \nif the validation fails, the order will be rejected with an error messaging indicating incompatible settings.\n\nIf set to \u0060useDestinationSettings\u0060, this will apply the destination location\u0027s messaging settings to the number.\n\nIf set to \u0060useCurrentNumberSettings\u0060, this will validate and apply whether the destination location \ncan accept the numbers\u0027 existing messaging settings.",
+        "description": "The action to be taken on the messaging service when moving numbers. This field\nensures that the destination account has compatible messaging settings to support moving numbers. If the \nvalidation passes, the numbers are moved without altering their existing messaging settings. However, \nif the validation fails, the order will be rejected with an error messaging indicating incompatible settings.\n\nIf set to \u0060USE_DESTINATION_SETTINGS\u0060, this will apply the destination location\u0027s messaging settings to the number.\n\nIf set to \u0060USE_CURRENT_NUMBER_SETTINGS\u0060, this will validate and apply whether the destination location\ncan accept the numbers\u0027 existing messaging settings. This validation is request-level: a mismatch between the\nsource and destination locations\u0027 SMS, MMS, or A2P/P2P settings, or a mismatch in the source and destination\naccounts\u0027 NNIDs when \u0060sourceAccountId\u0060 is set, rejects the entire request. The enum value is matched\ncase-insensitively and ignoring underscores, so \u0060use_current_number_settings\u0060 and \u0060UseCurrentNumberSettings\u0060\nare also accepted.",
         "x-ms-enum": {
           "name": "MessagingService",
           "modelAsString": false,
@@ -111554,7 +112478,7 @@
           "FAILED"
         ],
         "type": "string",
-        "description": "Processing status of the bulk Move TNs order.\n\nRECEIVED - Order has been received without any synchronous errors and will be processed through further validation.\n\nPROCESSING - Order has passed validation and is being processed asynchronously. Some child orders may have completed, but at least one is in progress.\n\nFAILED - This implies that the order did not pass synchronous validation (Either number specific or non-number specific errors will be displayed).\n\nCOMPLETE - All child orders have been processed and the order is complete. Review the statuses of each child order for details on the outcome.",
+        "description": "Processing status of the bulk Move TNs order.\n\nRECEIVED - Order has been received without any synchronous errors and will be processed through further validation.\n\nPROCESSING - Order has passed validation and is being processed asynchronously. Some child orders may have completed, but at least one is in progress.\n\nFAILED - The order was rejected at synchronous validation (no order created), or every phone number in the order failed asynchronous validation so that no child orders could be created.\n\nCOMPLETE - All child orders have been processed and the order is complete. Review the statuses of each child order for details on the outcome. A COMPLETE order may still have a non-empty \u0060data.errors\u0060 list \u2014 this lists phone numbers that were excluded during asynchronous validation and were not moved, even though the rest of the order succeeded.",
         "x-ms-enum": {
           "name": "BulkMoveTnsOrderStatus",
           "modelAsString": false,
@@ -111956,10 +112880,10 @@
           },
           "SourceAccountId": {
             "type": "integer",
-            "description": "Id of source account, in the case of moving numbers across accounts"
+            "description": "Id of source account, in the case of moving numbers across accounts. Omit this field for within-account moves \u2014 sending the destination account\u0027s own ID in this field is rejected."
           },
           "E911ServiceAction": {
-            "description": "Only valid when moving to a different account using SourceAccountId. When set to move (default) the E911 service information (if applied to the number) will be moved with the number to the new account. When set to delete the E911 service will be removed from the number",
+            "description": "Only valid when moving to a different account using \u0060SourceAccountId\u0060; setting this field on a within-account move is rejected. When set to \u0060MOVE\u0060 (default) the E911 service information (if applied to the number) will be moved with the number to the new account. When set to \u0060DELETE\u0060 the E911 service will be removed from the number. An explicit \u0060MOVE\u0060 to a destination account without the E911 product fails the move.",
             "$ref": "#/components/schemas/MoveTnsOrderE911ServiceAction"
           }
         }
@@ -112165,11 +113089,29 @@
           },
           "sourceAccountId": {
             "type": "integer",
-            "description": "Id of source account, in the case of moving numbers across accounts"
+            "description": "Id of source account, in the case of moving numbers across accounts. Omit this field for within-account moves \u2014 sending the destination account\u0027s own ID in this field is rejected."
           },
           "e911ServiceAction": {
-            "description": "Only valid when moving to a different account using SourceAccountId. When set to move (default) the E911 service information (if applied to the number) will be moved with the number to the new account. When set to delete the E911 service will be removed from the number",
+            "description": "Only valid when moving to a different account using \u0060sourceAccountId\u0060; setting this field on a within-account move is rejected. When set to \u0060MOVE\u0060 (default) the E911 service information (if applied to the number) will be moved with the number to the new account. When set to \u0060DELETE\u0060 the E911 service will be removed from the number. An explicit \u0060MOVE\u0060 to a destination account without the E911 product fails the move.",
             "$ref": "#/components/schemas/MoveTnsOrderJsonRequestE911ServiceAction"
+          },
+          "voiceConfigurationPackageId": {
+            "title": "Voice Configuration Package ID",
+            "type": "string",
+            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation,\ntelephone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.\n\nMoving numbers across accounts from a source account that has the voice configuration package feature to a\ndestination account that does not is not currently allowed.",
+            "format": "uuid",
+            "example": "c7951e4f-6285-4b75-83e5-392558f59067"
+          },
+          "requirementsPackageId": {
+            "title": "Requirements Package ID",
+            "type": "string",
+            "description": "The identifier of the requirements package containing the end user details for the telephone numbers. This\nis required if the numbers are being moved across accounts and if they are a part of a country and number type\nwhich has end user validation requirements. The provided requirements package must be approved and compatible\nwith the telephone numbers being moved.",
+            "format": "uuid",
+            "example": "c7951e4f-6285-4b75-83e5-392558f59067"
+          },
+          "messagingService": {
+            "description": "The action to be taken on the messaging service when moving numbers. This field\nensures that the destination account has compatible messaging settings to support moving numbers. If the \nvalidation passes, the numbers are moved without altering their existing messaging settings. However, \nif the validation fails, the order will be rejected with an error messaging indicating incompatible settings.\n\nIf set to \u0060USE_DESTINATION_SETTINGS\u0060, this will apply the destination location\u0027s messaging settings to the number.\n\nIf set to \u0060USE_CURRENT_NUMBER_SETTINGS\u0060, this will validate and apply whether the destination location\ncan accept the numbers\u0027 existing messaging settings. This validation is request-level: a mismatch between the\nsource and destination locations\u0027 SMS, MMS, or A2P/P2P settings, or a mismatch in the source and destination\naccounts\u0027 NNIDs when \u0060sourceAccountId\u0060 is set, rejects the entire request. The enum value is matched\ncase-insensitively and ignoring underscores, so \u0060use_current_number_settings\u0060 and \u0060UseCurrentNumberSettings\u0060\nare also accepted.",
+            "$ref": "#/components/schemas/MessagingService"
           }
         }
       },
@@ -112184,7 +113126,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CreateMoveTnsBulkOrderRequestOrderDetailsItem"
-            }
+            },
+            "description": "A list of phone number groupings to move, each with its own destination\nand configuration. The total number of unique phone numbers across all\n\u0060orderDetails\u0060 items in a single bulk order is limited to 200,000;\nexceeding it rejects the entire request (error\n5095) with no order created. This is independent of the per-item\n\u0060phoneNumbers\u0060 list size.\n\nNumbers are grouped into child orders by destination sub-account,\nlocation, source account, \u0060voiceConfigurationPackageId\u0060,\n\u0060requirementsPackageId\u0060, \u0060e911ServiceAction\u0060, \u0060messagingService\u0060,\ncountry code, toll-free status, \u0060migrateCampaign\u0060, and campaign ID.\nIdentical \u0060orderDetails\u0060 items are merged; a single\n\u0060orderDetails\u0060 item may still be split into more than one child order \u2014\nNANP toll-free numbers and \u0060migrateCampaign\u0060 numbers are always split\ninto their own children, and any resulting group larger than 5,000\nnumbers is further chunked."
           },
           "customerOrderId": {
             "maxLength": 255,
@@ -112193,7 +113136,7 @@
           },
           "migrateCampaign": {
             "type": "boolean",
-            "description": "Flag for cross-account moves denoting whether any campaigns associated with phone numbers from the order should\nalso be migrated to the new account. If set to \u0060true\u0060, all phone numbers from each involved campaign must be\nmoved in the same bulk order and the messaging settings of the source and destination accounts must be the same.\nIf set to \u0060false\u0060, the moved numbers will be removed from their current campaigns if they are moved to a new account.",
+            "description": "Flag for cross-account moves denoting whether any campaigns associated with phone numbers from the order should\nalso be migrated to the new account. Only valid for cross-account moves; every \u0060orderDetails\u0060 item must specify\n\u0060sourceAccountId\u0060, and all items must share the same \u0060sourceAccountId\u0060.\n\nIf set to \u0060true\u0060, the request is validated against the following requirements:\n  - Both the source and destination accounts must support campaign import.\n  - The source and destination accounts\u0027 CSP IDs must match.\n  - The source and destination accounts\u0027 NNIDs must match.\n  - If the source location has A2P messaging enabled, the destination location must also have it enabled.\n  - The source account must be the messaging owner of the numbers.\n  - Each involved campaign may contain at most 17,000 numbers, and all phone numbers belonging to a given\n    campaign must be included in the same bulk order.\n\nA number whose campaign fails one of these checks is excluded from the move and reported in \u0060data.errors\u0060;\nthe rest of the order proceeds.\n\nIf set to \u0060false\u0060, the moved numbers will be removed from their current campaigns if they are moved to a new account.",
             "default": false
           }
         }
@@ -114671,7 +115614,8 @@
           {
             "maxItems": 20000
           }
-        ]
+        ],
+        "description": "The list of phone numbers in this grouping, in E.164 format. This per-item limit is independent of the total-numbers-per-bulk-order limit; see \u0060phoneNumbers\u0060 on the bulk order request."
       },
       "GroupDataBrandStatus": {
         "anyOf": [
@@ -114966,6 +115910,13 @@
               "type": "string",
               "description": "E.164"
             }
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BulkMoveTnsErrorsItem"
+            },
+            "description": "Errors which arose on the bulk order during validation. Any phone numbers which encounter errors at this point will not\nbe moved and will remain on their current account and location."
           }
         }
       },
@@ -115058,17 +116009,18 @@
             "example": 538036
           },
           "phoneNumbers": {
+            "description": "The list of phone numbers in this grouping, in E.164 format. This per-item limit is independent of the total-numbers-per-bulk-order limit; see \u0060phoneNumbers\u0060 on the bulk order request.",
             "$ref": "#/components/schemas/CreateMoveTnsBulkOrderRequestOrderDetailsItemPhoneNumbers"
           },
           "sourceAccountId": {
             "type": "number",
-            "description": "ID of source account, in the case of moving numbers across accounts.",
+            "description": "ID of source account, in the case of moving numbers across accounts. Omit this field for within-account moves \u2014 sending the destination account\u0027s own ID in this field is rejected.",
             "example": 9902975
           },
           "voiceConfigurationPackageId": {
             "title": "Voice Configuration Package ID",
             "type": "string",
-            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation, \ntelephone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.",
+            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation,\ntelephone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.\n\nMoving numbers across accounts from a source account that has the voice configuration package feature to a\ndestination account that does not is not currently allowed.",
             "format": "uuid",
             "example": "c7951e4f-6285-4b75-83e5-392558f59067"
           },
@@ -115080,22 +116032,12 @@
             "example": "c7951e4f-6285-4b75-83e5-392558f59067"
           },
           "messagingService": {
-            "description": "The action to be taken on the messaging service when moving numbers. This field\nensures that the destination account has compatible messaging settings to support moving numbers. If the \nvalidation passes, the numbers are moved without altering their existing messaging settings. However, \nif the validation fails, the order will be rejected with an error messaging indicating incompatible settings.\n\nIf set to \u0060useDestinationSettings\u0060, this will apply the destination location\u0027s messaging settings to the number.\n\nIf set to \u0060useCurrentNumberSettings\u0060, this will validate and apply whether the destination location \ncan accept the numbers\u0027 existing messaging settings.",
+            "description": "The action to be taken on the messaging service when moving numbers. This field\nensures that the destination account has compatible messaging settings to support moving numbers. If the \nvalidation passes, the numbers are moved without altering their existing messaging settings. However, \nif the validation fails, the order will be rejected with an error messaging indicating incompatible settings.\n\nIf set to \u0060USE_DESTINATION_SETTINGS\u0060, this will apply the destination location\u0027s messaging settings to the number.\n\nIf set to \u0060USE_CURRENT_NUMBER_SETTINGS\u0060, this will validate and apply whether the destination location\ncan accept the numbers\u0027 existing messaging settings. This validation is request-level: a mismatch between the\nsource and destination locations\u0027 SMS, MMS, or A2P/P2P settings, or a mismatch in the source and destination\naccounts\u0027 NNIDs when \u0060sourceAccountId\u0060 is set, rejects the entire request. The enum value is matched\ncase-insensitively and ignoring underscores, so \u0060use_current_number_settings\u0060 and \u0060UseCurrentNumberSettings\u0060\nare also accepted.",
             "$ref": "#/components/schemas/MessagingService"
           },
           "e911ServiceAction": {
-            "description": "This parameter provides flexibility on handling the E911 service of a number when moving to a new account.\nThe default is to \u201CMOVE,\u201D but that may not be possible, resulting in an error where DELETE is required.\nFor example, if moving numbers to an account that uses PIDFLO for E911 then E911ServiceAction = DELETE\nis required, and the E911 service will need to be configured on the numbers after the move.",
+            "description": "This parameter provides flexibility on handling the E911 service of a number when moving to a new account.\nIt is only valid for cross-account moves \u2014 setting it on a within-account move is rejected.\nThe default is to \u0060MOVE\u0060, but that may not be possible, resulting in an error where \u0060DELETE\u0060 is required.\nFor example, if moving numbers to an account that uses PIDFLO for E911 then \u0060e911ServiceAction = DELETE\u0060 is required, and the E911 service will need to be configured on the numbers after the move.\nAn explicit \u0060MOVE\u0060 to a destination account that does not have the E911 product fails the move.",
             "$ref": "#/components/schemas/E911ServiceAction"
-          },
-          "bypassMessagingLossBlock": {
-            "type": "boolean",
-            "description": "A flag that determines whether to bypass the messaging loss block. \n\nIf set to **true**, no error will occur when moving a number with messaging to a location or account that does\nnot support messaging; messaging will simply be disabled in this case.\n\nIf set to **false**, an error will be triggered if such a move is attempted, preventing the move from processing.\n\nDefault value is false.",
-            "example": false
-          },
-          "bypassMessagingCampaignBlock": {
-            "type": "boolean",
-            "description": "A flag that determines whether to bypass the messaging campaign block.\n\nIf set to **true** and the numbers are associated with a messaging campaign, the move TN request will succeed,\nbut the campaign will be removed from the numbers during the move.\n\nIf set to **false** and the numbers are associated with a messaging campaign, the move request will \nfail with an error.\n\nDefault value is false.",
-            "example": false
           }
         }
       },
@@ -115115,11 +116057,6 @@
               "$ref": "#/components/schemas/GetMoveTnsBulkOrderStatusResponseDataChildOrdersItem"
             },
             "description": "This childOrders list is returned when at least one child order has been created from the original bulk order request.\nThe full details for each child order can be retrieved from the [Fetch MoveTNs Order Status API](#tag/Move-TNs/operation/readMoveTnsOrder)."
-          },
-          "migrateCampaign": {
-            "type": "boolean",
-            "description": "Flag for cross-account moves denoting whether any campaigns associated with phone numbers from the order should\nalso be migrated to the new account. If set to \u0060true\u0060, all phone numbers from each involved campaign must be\nmoved in the same bulk order and the messaging settings of the source and destination accounts must be the same.\nIf set to \u0060false\u0060, the moved numbers will be removed from their current campaigns if they are moved to a new account.",
-            "default": false
           },
           "customerOrderId": {
             "maxLength": 255,
@@ -115151,7 +116088,7 @@
             "format": "uuid"
           },
           "orderStatus": {
-            "description": "Processing status of the bulk Move TNs order.\n\nRECEIVED - Order has been received without any synchronous errors and will be processed through further validation.\n\nPROCESSING - Order has passed validation and is being processed asynchronously. Some child orders may have completed, but at least one is in progress.\n\nFAILED - This implies that the order did not pass synchronous validation (Either number specific or non-number specific errors will be displayed).\n\nCOMPLETE - All child orders have been processed and the order is complete. Review the statuses of each child order for details on the outcome.",
+            "description": "Processing status of the bulk Move TNs order.\n\nRECEIVED - Order has been received without any synchronous errors and will be processed through further validation.\n\nPROCESSING - Order has passed validation and is being processed asynchronously. Some child orders may have completed, but at least one is in progress.\n\nFAILED - The order was rejected at synchronous validation (no order created), or every phone number in the order failed asynchronous validation so that no child orders could be created.\n\nCOMPLETE - All child orders have been processed and the order is complete. Review the statuses of each child order for details on the outcome. A COMPLETE order may still have a non-empty \u0060data.errors\u0060 list \u2014 this lists phone numbers that were excluded during asynchronous validation and were not moved, even though the rest of the order succeeded.",
             "$ref": "#/components/schemas/BulkMoveTnsOrderStatus"
           },
           "userId": {
@@ -115186,7 +116123,7 @@
             "format": "uuid"
           },
           "orderStatus": {
-            "description": "Processing status of the bulk Move TNs order.\n\nRECEIVED - Order has been received without any synchronous errors and will be processed through further validation.\n\nPROCESSING - Order has passed validation and is being processed asynchronously. Some child orders may have completed, but at least one is in progress.\n\nFAILED - This implies that the order did not pass synchronous validation (Either number specific or non-number specific errors will be displayed).\n\nCOMPLETE - All child orders have been processed and the order is complete. Review the statuses of each child order for details on the outcome.",
+            "description": "Processing status of the bulk Move TNs order.\n\nRECEIVED - Order has been received without any synchronous errors and will be processed through further validation.\n\nPROCESSING - Order has passed validation and is being processed asynchronously. Some child orders may have completed, but at least one is in progress.\n\nFAILED - The order was rejected at synchronous validation (no order created), or every phone number in the order failed asynchronous validation so that no child orders could be created.\n\nCOMPLETE - All child orders have been processed and the order is complete. Review the statuses of each child order for details on the outcome. A COMPLETE order may still have a non-empty \u0060data.errors\u0060 list \u2014 this lists phone numbers that were excluded during asynchronous validation and were not moved, even though the rest of the order succeeded.",
             "$ref": "#/components/schemas/BulkMoveTnsOrderStatus"
           },
           "userId": {
@@ -115646,7 +116583,7 @@
               "type": "string",
               "format": "uuid"
             },
-            "description": "A list of order IDs for child orders generated from this group of phone number configurations. If there were more than 5000\nphone numbers for one grouping of bulk order details, multiple child orders will be created."
+            "description": "A list of order IDs for child orders generated from this group of phone\nnumber configurations. More than one child order may be created for a single\n\u0060orderDetails\u0060 item: a grouping larger than 5,000 numbers is chunked, and\nNANP toll-free numbers or numbers moved with \u0060migrateCampaign\u0060 are always\nsplit into separate child orders."
           },
           "subAccountId": {
             "type": "number",
@@ -115660,13 +116597,13 @@
           },
           "sourceAccountId": {
             "type": "number",
-            "description": "ID of source account, in the case of moving numbers across accounts.",
+            "description": "ID of source account, in the case of moving numbers across accounts. Omit this field for within-account moves \u2014 sending the destination account\u0027s own ID in this field is rejected.",
             "example": 9902975
           },
           "voiceConfigurationPackageId": {
             "title": "Voice Configuration Package ID",
             "type": "string",
-            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation, \ntelephone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.",
+            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation,\ntelephone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.\n\nMoving numbers across accounts from a source account that has the voice configuration package feature to a\ndestination account that does not is not currently allowed.",
             "format": "uuid",
             "example": "c7951e4f-6285-4b75-83e5-392558f59067"
           },
@@ -115678,22 +116615,12 @@
             "example": "c7951e4f-6285-4b75-83e5-392558f59067"
           },
           "messagingService": {
-            "description": "The action to be taken on the messaging service when moving numbers. This field\nensures that the destination account has compatible messaging settings to support moving numbers. If the \nvalidation passes, the numbers are moved without altering their existing messaging settings. However, \nif the validation fails, the order will be rejected with an error messaging indicating incompatible settings.\n\nIf set to \u0060useDestinationSettings\u0060, this will apply the destination location\u0027s messaging settings to the number.\n\nIf set to \u0060useCurrentNumberSettings\u0060, this will validate and apply whether the destination location \ncan accept the numbers\u0027 existing messaging settings.",
+            "description": "The action to be taken on the messaging service when moving numbers. This field\nensures that the destination account has compatible messaging settings to support moving numbers. If the \nvalidation passes, the numbers are moved without altering their existing messaging settings. However, \nif the validation fails, the order will be rejected with an error messaging indicating incompatible settings.\n\nIf set to \u0060USE_DESTINATION_SETTINGS\u0060, this will apply the destination location\u0027s messaging settings to the number.\n\nIf set to \u0060USE_CURRENT_NUMBER_SETTINGS\u0060, this will validate and apply whether the destination location\ncan accept the numbers\u0027 existing messaging settings. This validation is request-level: a mismatch between the\nsource and destination locations\u0027 SMS, MMS, or A2P/P2P settings, or a mismatch in the source and destination\naccounts\u0027 NNIDs when \u0060sourceAccountId\u0060 is set, rejects the entire request. The enum value is matched\ncase-insensitively and ignoring underscores, so \u0060use_current_number_settings\u0060 and \u0060UseCurrentNumberSettings\u0060\nare also accepted.",
             "$ref": "#/components/schemas/MessagingService"
           },
           "e911ServiceAction": {
-            "description": "This parameter provides flexibility on handling the E911 service of a number when moving to a new account.\nThe default is to \u201CMOVE,\u201D but that may not be possible, resulting in an error where DELETE is required.\nFor example, if moving numbers to an account that uses PIDFLO for E911 then E911ServiceAction = DELETE\nis required, and the E911 service will need to be configured on the numbers after the move.",
+            "description": "This parameter provides flexibility on handling the E911 service of a number when moving to a new account.\nIt is only valid for cross-account moves \u2014 setting it on a within-account move is rejected.\nThe default is to \u0060MOVE\u0060, but that may not be possible, resulting in an error where \u0060DELETE\u0060 is required.\nFor example, if moving numbers to an account that uses PIDFLO for E911 then \u0060e911ServiceAction = DELETE\u0060 is required, and the E911 service will need to be configured on the numbers after the move.\nAn explicit \u0060MOVE\u0060 to a destination account that does not have the E911 product fails the move.",
             "$ref": "#/components/schemas/E911ServiceAction"
-          },
-          "bypassMessagingLossBlock": {
-            "type": "boolean",
-            "description": "A flag that determines whether to bypass the messaging loss block. \n\nIf set to **true**, no error will occur when moving a number with messaging to a location or account that does\nnot support messaging; messaging will simply be disabled in this case.\n\nIf set to **false**, an error will be triggered if such a move is attempted, preventing the move from processing.\n\nDefault value is false.",
-            "example": false
-          },
-          "bypassMessagingCampaignBlock": {
-            "type": "boolean",
-            "description": "A flag that determines whether to bypass the messaging campaign block.\n\nIf set to **true** and the numbers are associated with a messaging campaign, the move TN request will succeed,\nbut the campaign will be removed from the numbers during the move.\n\nIf set to **false** and the numbers are associated with a messaging campaign, the move request will \nfail with an error.\n\nDefault value is false.",
-            "example": false
           }
         }
       },
@@ -115894,7 +116821,7 @@
           "DELETE"
         ],
         "type": "string",
-        "description": "Only valid when moving to a different account using SourceAccountId. When set to move (default) the E911 service information (if applied to the number) will be moved with the number to the new account. When set to delete the E911 service will be removed from the number",
+        "description": "Only valid when moving to a different account using \u0060SourceAccountId\u0060; setting this field on a within-account move is rejected. When set to \u0060MOVE\u0060 (default) the E911 service information (if applied to the number) will be moved with the number to the new account. When set to \u0060DELETE\u0060 the E911 service will be removed from the number. An explicit \u0060MOVE\u0060 to a destination account without the E911 product fails the move.",
         "x-ms-enum": {
           "name": "MoveTnsOrderE911ServiceAction",
           "modelAsString": false,
@@ -115952,7 +116879,7 @@
           "DELETE"
         ],
         "type": "string",
-        "description": "Only valid when moving to a different account using SourceAccountId. When set to move (default) the E911 service information (if applied to the number) will be moved with the number to the new account. When set to delete the E911 service will be removed from the number",
+        "description": "Only valid when moving to a different account using \u0060sourceAccountId\u0060; setting this field on a within-account move is rejected. When set to \u0060MOVE\u0060 (default) the E911 service information (if applied to the number) will be moved with the number to the new account. When set to \u0060DELETE\u0060 the E911 service will be removed from the number. An explicit \u0060MOVE\u0060 to a destination account without the E911 product fails the move.",
         "x-ms-enum": {
           "name": "MoveTnsOrderJsonRequestE911ServiceAction",
           "modelAsString": false,
@@ -150339,6 +151266,63 @@
           "issueDate": "2020-11-23"
         }
       },
+      "ReportScheduleObjectFiltersProperty": {
+        "type": [
+          "null",
+          "object"
+        ],
+        "additionalProperties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": "Narrows down what the report includes (for example, a date range or a phone number). Each key is a filter name and each value is a list of the values to match. Use the Get Report Definitions endpoint to see which filters a report supports.\n\nBecause a schedule runs again and again, date filters can use placeholders that Bandwidth fills in each time the report runs, so you do not have to update the schedule every period. \u0060${}\u0060 stands for the current year, month, or day, and a number in the same braces moves it forward or back (for example \u0060${-1}\u0060 is one earlier). \u0060${END}\u0060 is the last day of the month. For example, a date range of \u0060\u0022${}-${-1}-01T00:00:00.000Z\u0022\u0060 to \u0060\u0022${}-${-1}-${END}T23:59:59.999Z\u0022\u0060 always means \u0022the whole of last month\u0022.",
+        "example": {
+          "callInviteTime": [
+            "${}-${-1}-01T00:00:00.000Z",
+            "${}-${-1}-${END}T23:59:59.999Z"
+          ]
+        }
+      },
+      "ReportSchedulePatchObjectFiltersProperty": {
+        "type": [
+          "null",
+          "object"
+        ],
+        "additionalProperties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": "Replaces the schedule\u0027s filters completely. Send an empty object (\u0060{}\u0060) to clear all filters, but only if the report has no required filters; otherwise the request is rejected with a 400, so include every required filter. Sending \u0060null\u0060 or leaving it out keeps the existing filters.",
+        "example": {
+          "callInviteTime": [
+            "${}-${-1}-01T00:00:00.000Z",
+            "${}-${-1}-${END}T23:59:59.999Z"
+          ]
+        }
+      },
+      "ReportScheduleResponseObjectFiltersProperty": {
+        "type": [
+          "null",
+          "object"
+        ],
+        "additionalProperties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": "Narrows down what the report includes (for example, a date range or a phone number). Each key is a filter name and each value is a list of the values to match. Use the Get Report Definitions endpoint to see which filters a report supports.\n\nBecause a schedule runs again and again, date filters can use placeholders that Bandwidth fills in each time the report runs, so you do not have to update the schedule every period. \u0060${}\u0060 stands for the current year, month, or day, and a number in the same braces moves it forward or back (for example \u0060${-1}\u0060 is one earlier). \u0060${END}\u0060 is the last day of the month. For example, a date range of \u0060\u0022${}-${-1}-01T00:00:00.000Z\u0022\u0060 to \u0060\u0022${}-${-1}-${END}T23:59:59.999Z\u0022\u0060 always means \u0022the whole of last month\u0022.",
+        "example": {
+          "callInviteTime": [
+            "${}-${-1}-01T00:00:00.000Z",
+            "${}-${-1}-${END}T23:59:59.999Z"
+          ]
+        }
+      },
       "ReportStatusObjectFiltersProperty": {
         "type": "object",
         "additionalProperties": {
@@ -158526,6 +159510,26 @@
           }
         }
       },
+      "reportScheduleResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReportScheduleResponseResponse"
+            }
+          }
+        }
+      },
+      "listReportScheduleResponse": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListReportScheduleResponseResponse"
+            }
+          }
+        }
+      },
       "reportCreatedResponse": {
         "description": "Accepted",
         "content": {
@@ -158542,6 +159546,11 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/ReportStatusResponseResponse"
+            },
+            "examples": {
+              "reportFailedExample": {
+                "$ref": "#/components/examples/reportFailedExample"
+              }
             }
           }
         }
@@ -158941,6 +159950,36 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/GetCallResponseResponse"
+            }
+          }
+        }
+      },
+      "badGatewayError": {
+        "description": "Bad Gateway. Your change could not be saved because the schedule could not be synchronized with Bandwidth\u0027s scheduling system. Nothing was changed, so it is safe to try again shortly.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/InsightsGenericError"
+            },
+            "examples": {
+              "scheduleSyncErrorExample": {
+                "$ref": "#/components/examples/scheduleSyncErrorExample"
+              }
+            }
+          }
+        }
+      },
+      "unprocessableEntityError": {
+        "description": "Unprocessable Entity. The request was understood but cannot be carried out, for example because the account has reached the maximum number of report schedules.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/InsightsGenericError"
+            },
+            "examples": {
+              "maxSchedulesReachedErrorExample": {
+                "$ref": "#/components/examples/maxSchedulesReachedErrorExample"
+              }
             }
           }
         }
@@ -172366,6 +173405,26 @@
           "$ref": "#/components/schemas/MonitorAccountId"
         }
       },
+      "enabledFilter": {
+        "name": "enabledFilter",
+        "in": "query",
+        "description": "Show only schedules that are turned on (\u0060true\u0060) or only schedules that are turned off (\u0060false\u0060). Leave out to see both.",
+        "schema": {
+          "type": "boolean"
+        },
+        "example": true
+      },
+      "scheduleIdPath": {
+        "name": "scheduleId",
+        "in": "path",
+        "description": "The ID of the report schedule, as returned when the schedule was created.",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "uuid",
+          "example": "6d4f848a-9543-4e18-b580-2621c9525892"
+        }
+      },
       "accountIds": {
         "name": "accountIds",
         "in": "query",
@@ -172376,6 +173435,22 @@
             "type": "string"
           }
         }
+      },
+      "accountIdsFilter": {
+        "name": "accountIdsFilter",
+        "in": "query",
+        "description": "Show only schedules for specific accounts. To include more than one account, separate the account IDs with commas (for example, \u0060123456,654321\u0060); a schedule is included if it matches any of them.",
+        "explode": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "example": [
+          "123456",
+          "654321"
+        ]
       },
       "categoryRequired": {
         "name": "category",
@@ -172401,6 +173476,38 @@
         "schema": {
           "$ref": "#/components/schemas/Domain"
         }
+      },
+      "categoryFilter": {
+        "name": "categoryFilter",
+        "in": "query",
+        "description": "Show only schedules for reports in this category (for example, USAGE or CHARGES). To include more than one category, separate them with commas (for example, \u0060USAGE,CHARGES\u0060); a schedule is included if it matches any of them. Leave out to see all categories.",
+        "explode": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/Category"
+          }
+        },
+        "example": [
+          "USAGE",
+          "CHARGES"
+        ]
+      },
+      "domainFilter": {
+        "name": "domainFilter",
+        "in": "query",
+        "description": "Show only schedules for reports in this product area (for example, MESSAGING or VOICE). To include more than one area, separate them with commas (for example, \u0060MESSAGING,VOICE\u0060); a schedule is included if it matches any of them. Leave out to see all areas.",
+        "explode": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/Domain"
+          }
+        },
+        "example": [
+          "MESSAGING",
+          "VOICE"
+        ]
       },
       "reportIdPath": {
         "name": "reportId",
@@ -172429,6 +173536,22 @@
         "schema": {
           "type": "string"
         }
+      },
+      "reportNameFilter": {
+        "name": "reportNameFilter",
+        "in": "query",
+        "description": "Show only schedules for the report with this name (for example, MDRs or CDRs). To include more than one report, separate the names with commas (for example, \u0060MDRs,CDRs\u0060); a schedule is included if it matches any of them. Each whole name must match, but capital letters do not matter.",
+        "explode": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "example": [
+          "MDRs",
+          "CDRs"
+        ]
       },
       "insights_accountId": {
         "name": "accountId",
@@ -182010,6 +183133,56 @@
           }
         }
       },
+      "maxSchedulesReachedErrorExample": {
+        "summary": "The account already has the maximum number of report schedules",
+        "value": {
+          "links": null,
+          "data": null,
+          "errors": [
+            {
+              "type": "max-schedules-reached",
+              "description": "Account 123456 has reached the maximum of 10 scheduled reports"
+            }
+          ]
+        }
+      },
+      "scheduleSyncErrorExample": {
+        "summary": "The schedule could not be synchronized with the scheduling system",
+        "value": {
+          "links": null,
+          "data": null,
+          "errors": [
+            {
+              "type": "schedule-sync-error",
+              "description": "The request could not be completed because the schedule could not be synchronized with the scheduling system. Please try again shortly."
+            }
+          ]
+        }
+      },
+      "reportFailedExample": {
+        "summary": "A report that failed to generate",
+        "description": "The request itself succeeds (200), but the report\u0027s \u0060status\u0060 is \u0060FAILED\u0060 and the \u0060errors\u0060 list explains what went wrong. The \u0060description\u0060 can also carry a more specific reason when one is available.",
+        "value": {
+          "links": [],
+          "data": {
+            "reportId": "67a95525-4618-418b-ad8b-4ddd8562ad37",
+            "requestedAt": "2024-01-18T17:38:37.041444Z",
+            "user": "Username",
+            "status": "FAILED",
+            "report": {
+              "category": "USAGE",
+              "domain": "MESSAGING",
+              "reportName": "MDRs"
+            }
+          },
+          "errors": [
+            {
+              "type": "report-failed",
+              "description": "An error was encountered while generating the report. Please try again and contact support if the problem continues."
+            }
+          ]
+        }
+      },
       "insights_badRequestErrorExample": {
         "summary": "An example of a generic Bad Request Error",
         "value": {
@@ -184910,11 +186083,9 @@
         "value": {
           "orderDetails": [
             {
-              "bypassMessagingCampaignBlock": true,
-              "bypassMessagingLossBlock": false,
               "e911ServiceAction": "DELETE",
               "locationId": 483,
-              "messagingServiceAction": "USE_CURRENT_NUMBER_SETTINGS",
+              "messagingService": "USE_CURRENT_NUMBER_SETTINGS",
               "phoneNumbers": [
                 "\u002B12032081004",
                 "\u002B12032081005"
@@ -184925,11 +186096,9 @@
               "voiceConfigurationPackageId": "26988a6a-8efb-4fb3-a595-d5caa43a8a2c"
             },
             {
-              "bypassMessagingCampaignBlock": false,
-              "bypassMessagingLossBlock": true,
               "e911ServiceAction": "MOVE",
               "locationId": 484,
-              "messagingServiceAction": "USE_DESTINATION_SETTINGS",
+              "messagingService": "USE_DESTINATION_SETTINGS",
               "phoneNumbers": [
                 "\u002B19195551000",
                 "\u002B19195551001",
@@ -185154,10 +186323,8 @@
                 "subAccountId": 13644,
                 "voiceConfigurationPackageId": "26988a6a-8efb-4fb3-a595-d5caa43a8a2c",
                 "requirementsPackageId": "2f013e5b-2225-4993-a2f2-fe679a13581e",
-                "bypassMessagingCampaignBlock": true,
-                "bypassMessagingLossBlock": false,
                 "e911ServiceAction": "DELETE",
-                "messagingServiceAction": "USE_CURRENT_NUMBER_SETTINGS"
+                "messagingService": "USE_CURRENT_NUMBER_SETTINGS"
               },
               {
                 "locationId": 538037,
@@ -185168,10 +186335,8 @@
                 "subAccountId": 13644,
                 "voiceConfigurationPackageId": "c488b879-952c-4095-87f1-2451cf9c5536",
                 "requirementsPackageId": "5a7f3d8c-2512-4aa8-9fe3-a4382b6447bb",
-                "bypassMessagingCampaignBlock": false,
-                "bypassMessagingLossBlock": true,
                 "e911ServiceAction": "MOVE",
-                "messagingServiceAction": "USE_DESTINATION_SETTINGS"
+                "messagingService": "USE_DESTINATION_SETTINGS"
               }
             ],
             "childOrders": [
@@ -185334,9 +186499,7 @@
           "voiceConfigurationPackageId": "c1dfbfd3-3099-4f7f-bf4c-4ff6b5f8ea85",
           "requirementsPackageId": "1b2c3d4e-5f6a-7b8c-9d0e-f1a2b3c4d5e6",
           "messagingService": "USE_DESTINATION_SETTINGS",
-          "e911ServiceAction": "MOVE",
-          "bypassMessagingLossBlock": true,
-          "bypassMessagingCampaignBlock": false
+          "e911ServiceAction": "MOVE"
         }
       },
       "moveTnsCheckerResponseJsonExample200": {
@@ -185344,8 +186507,18 @@
         "value": {
           "data": {
             "validPhoneNumbers": [
-              "\u002B12032081006",
-              "\u002B12032081007"
+              "\u002B12032081006"
+            ],
+            "errors": [
+              {
+                "code": "5312",
+                "description": "An order is already processing this TN.",
+                "meta": {
+                  "phoneNumbers": [
+                    "\u002B12032081007"
+                  ]
+                }
+              }
             ]
           },
           "errors": [],
@@ -196030,6 +197203,24 @@
           }
         }
       },
+      "reportScheduleBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReportScheduleObject"
+            }
+          }
+        }
+      },
+      "reportSchedulePatchBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReportSchedulePatchObject"
+            }
+          }
+        }
+      },
       "paginatedReportRequestBody": {
         "content": {
           "application/json": {
@@ -199515,7 +200706,7 @@
     },
     {
       "name": "Reporting v1",
-      "description": "Asynchronous report generation \u2014 create a report, poll its status, and download the file."
+      "description": "Asynchronous report generation \u2014 create a report, poll its status, and download the file. You can also schedule reports to run on a recurring basis."
     },
     {
       "name": "Reporting v2",
@@ -202697,6 +203888,34 @@
       "prefix": "insights",
       "metadata": {
         "x-client-unused-schemas": {
+          "ScheduleFilters": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Narrows down what the report includes (for example, a date range or a phone number). Each key is a filter name and each value is a list of the values to match. Use the Get Report Definitions endpoint to see which filters a report supports.\n\nBecause a schedule runs again and again, date filters can use placeholders that Bandwidth fills in each time the report runs, so you do not have to update the schedule every period. \u0060${}\u0060 stands for the current year, month, or day, and a number in the same braces moves it forward or back (for example \u0060${-1}\u0060 is one earlier). \u0060${END}\u0060 is the last day of the month. For example, a date range of \u0060\u0022${}-${-1}-01T00:00:00.000Z\u0022\u0060 to \u0060\u0022${}-${-1}-${END}T23:59:59.999Z\u0022\u0060 always means \u0022the whole of last month\u0022.",
+            "nullable": true,
+            "example": {
+              "callInviteTime": [
+                "${}-${-1}-01T00:00:00.000Z",
+                "${}-${-1}-${END}T23:59:59.999Z"
+              ]
+            }
+          },
+          "CronExpression": {
+            "type": "string",
+            "description": "When the report should run, written as a cron expression. All times are in UTC. It has 6 fields, separated by spaces: minute, hour, day-of-month, month, day-of-week, year.\n\nTwo rules to keep in mind: exactly one of day-of-month and day-of-week must be \u0060?\u0060 (use \u0060?\u0060 for the one you are not setting), and the year must be \u0060*\u0060, because schedules repeat indefinitely. For example:\n\n- \u00600 9 * * ? *\u0060 runs at 09:00 UTC every day.\n- \u00600 14 ? * MON *\u0060 runs at 14:00 UTC every Monday.\n- \u00600 14 27 * ? *\u0060 runs at 14:00 UTC on the 27th of every month.\n- \u00600 9 1 1 ? *\u0060 runs at 09:00 UTC on 1 January every year.\n\nDay-of-week can be written as a name (\u0060MON\u0060) or a number, where \u00601\u0060 is Sunday, \u00602\u0060 is Monday, and so on up to \u00607\u0060 for Saturday (so \u00600 14 ? * 2 *\u0060 is the same as \u00600 14 ? * MON *\u0060).\n\nA report can run at most once a day, so schedules that run every hour or more often are not accepted. If you choose a numeric day of the month, it must be the 28th or earlier so that it exists in every month; use \u0060L\u0060 for the last day.\n\n\u0060minute\u0060 and \u0060hour\u0060 must each be a single number (for example \u00600 14\u0060), so a schedule fires once a day at most. The \u0060day-of-month\u0060, \u0060month\u0060, and \u0060day-of-week\u0060 fields also accept lists (\u0060MON,THU\u0060), ranges (\u0060MON-FRI\u0060), and step values (\u0060*/2\u0060). \u0060day-of-month\u0060 also accepts \u0060L\u0060 (last day of the month), so \u00600 14 L * ? *\u0060 runs at 14:00 UTC on the last day of every month.",
+            "example": "0 14 27 * ? *"
+          },
+          "CreatedAt": {
+            "type": "string",
+            "description": "When the schedule was created (UTC).",
+            "format": "date-time",
+            "example": "2026-10-27T12:00:00.000Z"
+          },
           "PaginatedResultRow": {
             "type": "object",
             "description": "A single row of report results. The field names and types are dynamic and depend on the report definition. Use GET /v2/report-definitions/{reportDefinitionId} to discover available fields for a given report.\n"
@@ -202999,6 +204218,12 @@
           "ReportFileResponseResponseZip": {
             "type": "string",
             "format": "binary"
+          },
+          "ReportSchedulePatchObjectCronExpression": {
+            "type": "string",
+            "description": "When the report should run, written as a cron expression. All times are in UTC. It has 6 fields, separated by spaces: minute, hour, day-of-month, month, day-of-week, year.\n\nTwo rules to keep in mind: exactly one of day-of-month and day-of-week must be \u0060?\u0060 (use \u0060?\u0060 for the one you are not setting), and the year must be \u0060*\u0060, because schedules repeat indefinitely. For example:\n\n- \u00600 9 * * ? *\u0060 runs at 09:00 UTC every day.\n- \u00600 14 ? * MON *\u0060 runs at 14:00 UTC every Monday.\n- \u00600 14 27 * ? *\u0060 runs at 14:00 UTC on the 27th of every month.\n- \u00600 9 1 1 ? *\u0060 runs at 09:00 UTC on 1 January every year.\n\nDay-of-week can be written as a name (\u0060MON\u0060) or a number, where \u00601\u0060 is Sunday, \u00602\u0060 is Monday, and so on up to \u00607\u0060 for Saturday (so \u00600 14 ? * 2 *\u0060 is the same as \u00600 14 ? * MON *\u0060).\n\nA report can run at most once a day, so schedules that run every hour or more often are not accepted. If you choose a numeric day of the month, it must be the 28th or earlier so that it exists in every month; use \u0060L\u0060 for the last day.\n\n\u0060minute\u0060 and \u0060hour\u0060 must each be a single number (for example \u00600 14\u0060), so a schedule fires once a day at most. The \u0060day-of-month\u0060, \u0060month\u0060, and \u0060day-of-week\u0060 fields also accept lists (\u0060MON,THU\u0060), ranges (\u0060MON-FRI\u0060), and step values (\u0060*/2\u0060). \u0060day-of-month\u0060 also accepts \u0060L\u0060 (last day of the month), so \u00600 14 L * ? *\u0060 runs at 14:00 UTC on the last day of every month.",
+            "example": "0 14 27 * ? *",
+            "nullable": true
           },
           "MonitorSliceCallCountAllOf2": {
             "type": "object",
@@ -207029,7 +208254,7 @@
           "VoiceConfigurationPackageId": {
             "title": "Voice Configuration Package ID",
             "type": "string",
-            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation, \ntelephone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.",
+            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation,\ntelephone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.\n\nMoving numbers across accounts from a source account that has the voice configuration package feature to a\ndestination account that does not is not currently allowed.",
             "format": "uuid",
             "example": "c7951e4f-6285-4b75-83e5-392558f59067"
           },
@@ -207040,24 +208265,14 @@
             "format": "uuid",
             "example": "c7951e4f-6285-4b75-83e5-392558f59067"
           },
-          "BypassMessagingLossBlock": {
-            "type": "boolean",
-            "description": "A flag that determines whether to bypass the messaging loss block. \n\nIf set to **true**, no error will occur when moving a number with messaging to a location or account that does\nnot support messaging; messaging will simply be disabled in this case.\n\nIf set to **false**, an error will be triggered if such a move is attempted, preventing the move from processing.\n\nDefault value is false.",
-            "example": false
-          },
-          "BypassMessagingCampaignBlock": {
-            "type": "boolean",
-            "description": "A flag that determines whether to bypass the messaging campaign block.\n\nIf set to **true** and the numbers are associated with a messaging campaign, the move TN request will succeed,\nbut the campaign will be removed from the numbers during the move.\n\nIf set to **false** and the numbers are associated with a messaging campaign, the move request will \nfail with an error.\n\nDefault value is false.",
-            "example": false
-          },
           "SourceAccountId": {
             "type": "number",
-            "description": "ID of source account, in the case of moving numbers across accounts.",
+            "description": "ID of source account, in the case of moving numbers across accounts. Omit this field for within-account moves \u2014 sending the destination account\u0027s own ID in this field is rejected.",
             "example": 9902975
           },
           "MigrateCampaign": {
             "type": "boolean",
-            "description": "Flag for cross-account moves denoting whether any campaigns associated with phone numbers from the order should\nalso be migrated to the new account. If set to \u0060true\u0060, all phone numbers from each involved campaign must be\nmoved in the same bulk order and the messaging settings of the source and destination accounts must be the same.\nIf set to \u0060false\u0060, the moved numbers will be removed from their current campaigns if they are moved to a new account.",
+            "description": "Flag for cross-account moves denoting whether any campaigns associated with phone numbers from the order should\nalso be migrated to the new account. Only valid for cross-account moves; every \u0060orderDetails\u0060 item must specify\n\u0060sourceAccountId\u0060, and all items must share the same \u0060sourceAccountId\u0060.\n\nIf set to \u0060true\u0060, the request is validated against the following requirements:\n  - Both the source and destination accounts must support campaign import.\n  - The source and destination accounts\u0027 CSP IDs must match.\n  - The source and destination accounts\u0027 NNIDs must match.\n  - If the source location has A2P messaging enabled, the destination location must also have it enabled.\n  - The source account must be the messaging owner of the numbers.\n  - Each involved campaign may contain at most 17,000 numbers, and all phone numbers belonging to a given\n    campaign must be included in the same bulk order.\n\nA number whose campaign fails one of these checks is excluded from the move and reported in \u0060data.errors\u0060;\nthe rest of the order proceeds.\n\nIf set to \u0060false\u0060, the moved numbers will be removed from their current campaigns if they are moved to a new account.",
             "default": false
           },
           "LastModifiedDate": {
@@ -207078,7 +208293,7 @@
               "type": "string",
               "format": "uuid"
             },
-            "description": "A list of order IDs for child orders generated from this group of phone number configurations. If there were more than 5000\nphone numbers for one grouping of bulk order details, multiple child orders will be created."
+            "description": "A list of order IDs for child orders generated from this group of phone\nnumber configurations. More than one child order may be created for a single\n\u0060orderDetails\u0060 item: a grouping larger than 5,000 numbers is chunked, and\nNANP toll-free numbers or numbers moved with \u0060migrateCampaign\u0060 are always\nsplit into separate child orders."
           },
           "OrderId": {
             "type": "string",
@@ -216440,6 +217655,25 @@
         "TOLL-FREE"
       ]
     },
+    "ReportSchedulePatchObjectFilters": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "description": "Replaces the schedule\u0027s filters completely. Send an empty object (\u0060{}\u0060) to clear all filters, but only if the report has no required filters; otherwise the request is rejected with a 400, so include every required filter. Sending \u0060null\u0060 or leaving it out keeps the existing filters.",
+      "example": {
+        "callInviteTime": [
+          "${}-${-1}-01T00:00:00.000Z",
+          "${}-${-1}-${END}T23:59:59.999Z"
+        ]
+      }
+    },
     "ReportFileResponseResponseZipContent": {
       "type": "string",
       "format": "binary"
@@ -216508,6 +217742,44 @@
       "type": "array",
       "items": {
         "$ref": "#/components/schemas/MonitorSliceConcurrentCalls"
+      }
+    },
+    "ReportScheduleObjectFilters": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "description": "Narrows down what the report includes (for example, a date range or a phone number). Each key is a filter name and each value is a list of the values to match. Use the Get Report Definitions endpoint to see which filters a report supports.\n\nBecause a schedule runs again and again, date filters can use placeholders that Bandwidth fills in each time the report runs, so you do not have to update the schedule every period. \u0060${}\u0060 stands for the current year, month, or day, and a number in the same braces moves it forward or back (for example \u0060${-1}\u0060 is one earlier). \u0060${END}\u0060 is the last day of the month. For example, a date range of \u0060\u0022${}-${-1}-01T00:00:00.000Z\u0022\u0060 to \u0060\u0022${}-${-1}-${END}T23:59:59.999Z\u0022\u0060 always means \u0022the whole of last month\u0022.",
+      "example": {
+        "callInviteTime": [
+          "${}-${-1}-01T00:00:00.000Z",
+          "${}-${-1}-${END}T23:59:59.999Z"
+        ]
+      }
+    },
+    "ReportScheduleResponseObjectFilters": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "description": "Narrows down what the report includes (for example, a date range or a phone number). Each key is a filter name and each value is a list of the values to match. Use the Get Report Definitions endpoint to see which filters a report supports.\n\nBecause a schedule runs again and again, date filters can use placeholders that Bandwidth fills in each time the report runs, so you do not have to update the schedule every period. \u0060${}\u0060 stands for the current year, month, or day, and a number in the same braces moves it forward or back (for example \u0060${-1}\u0060 is one earlier). \u0060${END}\u0060 is the last day of the month. For example, a date range of \u0060\u0022${}-${-1}-01T00:00:00.000Z\u0022\u0060 to \u0060\u0022${}-${-1}-${END}T23:59:59.999Z\u0022\u0060 always means \u0022the whole of last month\u0022.",
+      "example": {
+        "callInviteTime": [
+          "${}-${-1}-01T00:00:00.000Z",
+          "${}-${-1}-${END}T23:59:59.999Z"
+        ]
       }
     },
     "ReportStatusObjectFilters": {

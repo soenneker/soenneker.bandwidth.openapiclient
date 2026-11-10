@@ -17,12 +17,24 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
+            if (parseNode.GetChildNode("errors") is null) { _explicitNullValueErrors = default!; _explicitNullProperties?.Remove("errors"); }
+            else if (parseNode.GetChildNode("errors") is { } nullNodeErrors && nullNodeErrors.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Errors = null;
             if (parseNode.GetChildNode("validPhoneNumbers") is null) { _explicitNullValueValidPhoneNumbers = default!; _explicitNullProperties?.Remove("validPhoneNumbers"); }
             else if (parseNode.GetChildNode("validPhoneNumbers") is { } nullNodeValidPhoneNumbers && nullNodeValidPhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ValidPhoneNumbers = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Errors which arose on the bulk order during validation. Any phone numbers which encounter errors at this point will notbe moved and will remain on their current account and location.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkMoveTnsErrorsItem>? Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; AdditionalData?.Remove("errors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkMoveTnsErrorsItem>? _explicitNullValueErrors = default!;
+#nullable restore
+#else
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkMoveTnsErrorsItem> Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; AdditionalData?.Remove("errors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkMoveTnsErrorsItem> _explicitNullValueErrors = default!;
+#endif
         /// <summary>The validPhoneNumbers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -58,6 +70,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkMoveTnsErrorsItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.BulkMoveTnsErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "validPhoneNumbers", n => { ValidPhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -68,6 +81,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BulkMoveTnsErrorsItem>("errors", Errors);
             writer.WriteCollectionOfPrimitiveValues<string>("validPhoneNumbers", ValidPhoneNumbers);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);

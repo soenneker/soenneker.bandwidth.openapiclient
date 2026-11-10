@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Bandwidth.OpenApiClient.Insights.V1.Monitors;
 using Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportDefinitions;
+using Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportSchedules;
 using Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports;
 using Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice;
 using System.Collections.Generic;
@@ -32,6 +33,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.Insights.V1
         public global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports.ReportsRequestBuilder Reports
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Reports.ReportsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The reportSchedules property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportSchedules.ReportSchedulesRequestBuilder ReportSchedules
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.ReportSchedules.ReportSchedulesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The voice property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Insights.V1.Voice.VoiceRequestBuilder Voice

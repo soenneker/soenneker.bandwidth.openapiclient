@@ -10380,9 +10380,12 @@ components:
               description: This is the date when Order Note was last modified.
               type: string
             UserId:
+              deprecated: true
               description: >-
-                The UserId is authenticated for access to the network via a
-                username string.
+                Deprecated. This field is no longer used. If provided, it is
+                accepted but ignored. The note author is taken from the
+                credentials of the authenticated user and returned in this
+                field.
               type: string
           type: object
       type: object
@@ -19363,7 +19366,7 @@ paths:
             examples:
               example:
                 description: example
-                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Note> \n\t<UserId>userId</UserId>      \n\t<!-- note the userId must match the logged-in user --> \n\t<Description>note text</Description> \n</Note>"
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Note> \n\t<Description>note text</Description> \n</Note>"
             schema:
               $ref: '#/components/schemas/Note'
       responses:
@@ -19375,17 +19378,6 @@ paths:
         '400':
           content:
             application/xml:
-              examples:
-                example:
-                  description: example
-                  value: |-
-                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-                    <NoteResponse>
-                        <ResponseStatus>
-                            <ErrorCode>12501</ErrorCode>
-                            <Description>Username is required</Description>
-                        </ResponseStatus>
-                    </NoteResponse>
               schema:
                 $ref: '#/components/schemas/NoteErrorResponse'
           description: >-
@@ -19423,7 +19415,7 @@ paths:
             examples:
               example:
                 description: example
-                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Note> \n\t<UserId>userId</UserId> \n\t<Description>note text</Description> \n</Note>"
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Note> \n\t<Description>note text</Description> \n</Note>"
             schema:
               $ref: '#/components/schemas/Note'
       responses:
@@ -19432,17 +19424,6 @@ paths:
         '400':
           content:
             application/xml:
-              examples:
-                example:
-                  description: example
-                  value: |-
-                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-                    <NoteResponse>
-                        <ResponseStatus>
-                            <ErrorCode>12501</ErrorCode>
-                            <Description>Username is required</Description>
-                        </ResponseStatus>
-                    </NoteResponse>
               schema:
                 $ref: '#/components/schemas/NoteErrorResponse'
           description: >-
@@ -21239,8 +21220,6 @@ paths:
                 value: |-
                   <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
                   <Note>
-                   <UserId>userId</UserId>
-                        <!-- note the userId must match the logged-in user -->
                    <Description>note text</Description>
                    </Note>
             schema:
@@ -21254,17 +21233,6 @@ paths:
         '400':
           content:
             application/xml:
-              examples:
-                example:
-                  description: example
-                  value: |-
-                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-                    <NoteResponse>
-                        <ResponseStatus>
-                            <ErrorCode>12501</ErrorCode>
-                            <Description>Username is required</Description>
-                        </ResponseStatus>
-                    </NoteResponse>
               schema:
                 $ref: '#/components/schemas/NoteErrorResponse'
           description: >-
@@ -21303,7 +21271,6 @@ paths:
                 value: |-
                   <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
                   <Note>
-                   <UserId>userId</UserId>
                    <Description>note text</Description>
                    </Note>
             schema:
@@ -21314,17 +21281,6 @@ paths:
         '400':
           content:
             application/xml:
-              examples:
-                example:
-                  description: example
-                  value: |-
-                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-                    <NoteResponse>
-                        <ResponseStatus>
-                            <ErrorCode>12501</ErrorCode>
-                            <Description>Username is required</Description>
-                        </ResponseStatus>
-                    </NoteResponse>
               schema:
                 $ref: '#/components/schemas/NoteErrorResponse'
           description: >-
@@ -21801,8 +21757,6 @@ paths:
                 value: |-
                   <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
                   <Note>
-                   <UserId>userId</UserId>
-                        <!-- note the userId must match the logged-in user -->
                    <Description>note text</Description>
                    </Note>
             schema:
@@ -21816,17 +21770,6 @@ paths:
         '400':
           content:
             application/xml:
-              examples:
-                example:
-                  description: example
-                  value: |-
-                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-                    <NoteResponse>
-                        <ResponseStatus>
-                            <ErrorCode>12501</ErrorCode>
-                            <Description>Username is required</Description>
-                        </ResponseStatus>
-                    </NoteResponse>
               schema:
                 $ref: '#/components/schemas/NoteErrorResponse'
           description: >-
@@ -21868,7 +21811,6 @@ paths:
                 value: |-
                   <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
                   <Note>
-                    <UserId>userId</UserId>
                     <Description>note text</Description>
                   </Note>
             schema:
@@ -21879,17 +21821,6 @@ paths:
         '400':
           content:
             application/xml:
-              examples:
-                example:
-                  description: example
-                  value: |-
-                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-                    <NoteResponse>
-                        <ResponseStatus>
-                            <ErrorCode>12501</ErrorCode>
-                            <Description>Username is required</Description>
-                        </ResponseStatus>
-                    </NoteResponse>
               schema:
                 $ref: '#/components/schemas/NoteErrorResponse'
           description: >-
@@ -28770,8 +28701,6 @@ paths:
                 value: |-
                   <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
                   <Note>
-                   <UserId>userId</UserId>
-                        <!-- note the userId must match the logged-in user -->
                    <Description>note text</Description>
                    </Note>
             schema:
@@ -28787,17 +28716,6 @@ paths:
         '400':
           content:
             application/xml:
-              examples:
-                example:
-                  description: example
-                  value: |-
-                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-                    <NoteResponse>
-                        <ResponseStatus>
-                            <ErrorCode>12501</ErrorCode>
-                            <Description>Username is required</Description>
-                        </ResponseStatus>
-                    </NoteResponse>
               schema:
                 $ref: '#/components/schemas/NoteErrorResponse'
           description: >-
@@ -28840,7 +28758,6 @@ paths:
                 value: |-
                   <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
                   <Note>
-                     <UserId>userId</UserId>
                      <Description>note text</Description>
                   </Note>
             schema:
@@ -28854,17 +28771,6 @@ paths:
         '400':
           content:
             application/xml:
-              examples:
-                example:
-                  description: example
-                  value: |-
-                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-                    <NoteResponse>
-                        <ResponseStatus>
-                            <ErrorCode>12501</ErrorCode>
-                            <Description>Username is required</Description>
-                        </ResponseStatus>
-                    </NoteResponse>
               schema:
                 $ref: '#/components/schemas/NoteErrorResponse'
           description: >-
@@ -30575,8 +30481,6 @@ paths:
                 value: |-
                   <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
                   <Note>
-                     <UserId>userId</UserId>
-                     <!-- note the userId must match the logged-in user -->
                      <Description>note text</Description>
                   </Note>
             schema:
@@ -30590,17 +30494,6 @@ paths:
         '400':
           content:
             application/xml:
-              examples:
-                example:
-                  description: example
-                  value: |-
-                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-                    <NoteResponse>
-                        <ResponseStatus>
-                            <ErrorCode>12501</ErrorCode>
-                            <Description>Username is required</Description>
-                        </ResponseStatus>
-                    </NoteResponse>
               schema:
                 $ref: '#/components/schemas/NoteErrorResponse'
           description: >-
@@ -30643,7 +30536,6 @@ paths:
                 value: |-
                   <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
                   <Note>
-                     <UserId>userId</UserId>
                      <Description>note text</Description>
                   </Note>
             schema:
@@ -30654,17 +30546,6 @@ paths:
         '400':
           content:
             application/xml:
-              examples:
-                example:
-                  description: example
-                  value: |-
-                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-                    <NoteResponse>
-                        <ResponseStatus>
-                            <ErrorCode>12501</ErrorCode>
-                            <Description>Username is required</Description>
-                        </ResponseStatus>
-                    </NoteResponse>
               schema:
                 $ref: '#/components/schemas/NoteErrorResponse'
           description: >-
@@ -32748,7 +32629,7 @@ paths:
             examples:
               example:
                 description: example
-                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Note>\n\t<UserId>userId</UserId>\n\t<!-- note the userId must match the logged-in user -->\n\t<Description>note text</Description>\n</Note>"
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Note>\n\t<Description>note text</Description>\n</Note>"
             schema:
               $ref: '#/components/schemas/Note'
       responses:
@@ -32762,17 +32643,6 @@ paths:
         '400':
           content:
             application/xml:
-              examples:
-                example:
-                  description: example
-                  value: |-
-                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-                    <NoteResponse>
-                        <ResponseStatus>
-                            <ErrorCode>12501</ErrorCode>
-                            <Description>Username is required</Description>
-                        </ResponseStatus>
-                    </NoteResponse>
               schema:
                 $ref: '#/components/schemas/NoteErrorResponse'
           description: >-
@@ -32807,7 +32677,7 @@ paths:
             examples:
               example:
                 description: example
-                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Note>\n\t<UserId>userId</UserId>\n\t<Description>note text</Description>\n</Note>"
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Note>\n\t<Description>note text</Description>\n</Note>"
             schema:
               $ref: '#/components/schemas/Note'
       responses:
@@ -32816,17 +32686,6 @@ paths:
         '400':
           content:
             application/xml:
-              examples:
-                example:
-                  description: example
-                  value: |-
-                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-                    <NoteResponse>
-                        <ResponseStatus>
-                            <ErrorCode>12501</ErrorCode>
-                            <Description>Username is required</Description>
-                        </ResponseStatus>
-                    </NoteResponse>
               schema:
                 $ref: '#/components/schemas/NoteErrorResponse'
           description: >-

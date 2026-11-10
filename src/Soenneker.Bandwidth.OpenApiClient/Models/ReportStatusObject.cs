@@ -35,7 +35,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             else if (parseNode.GetChildNode("useNotifications") is { } nullNodeUseNotifications && nullNodeUseNotifications.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UseNotifications = null;
         }
 
-        /// <summary>The accountIds property</summary>
+        /// <summary>The accounts whose data the scheduled report covers. These are the same account IDs you would provide when triggering a report directly, not the account(s) that own or administer the schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? AccountIds { get => _explicitNullValueAccountIds; set { _explicitNullValueAccountIds = value; AdditionalData?.Remove("accountIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountIds"); else _explicitNullProperties?.Remove("accountIds"); } }

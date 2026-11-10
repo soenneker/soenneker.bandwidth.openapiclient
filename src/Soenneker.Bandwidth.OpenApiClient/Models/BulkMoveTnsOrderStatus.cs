@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
-    /// <summary>Processing status of the bulk Move TNs order.RECEIVED - Order has been received without any synchronous errors and will be processed through further validation.PROCESSING - Order has passed validation and is being processed asynchronously. Some child orders may have completed, but at least one is in progress.FAILED - This implies that the order did not pass synchronous validation (Either number specific or non-number specific errors will be displayed).COMPLETE - All child orders have been processed and the order is complete. Review the statuses of each child order for details on the outcome.</summary>
+    /// <summary>Processing status of the bulk Move TNs order.RECEIVED - Order has been received without any synchronous errors and will be processed through further validation.PROCESSING - Order has passed validation and is being processed asynchronously. Some child orders may have completed, but at least one is in progress.FAILED - The order was rejected at synchronous validation (no order created), or every phone number in the order failed asynchronous validation so that no child orders could be created.COMPLETE - All child orders have been processed and the order is complete. Review the statuses of each child order for details on the outcome. A COMPLETE order may still have a non-empty `data.errors` list — this lists phone numbers that were excluded during asynchronous validation and were not moved, even though the rest of the order succeeded.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum BulkMoveTnsOrderStatus
     {

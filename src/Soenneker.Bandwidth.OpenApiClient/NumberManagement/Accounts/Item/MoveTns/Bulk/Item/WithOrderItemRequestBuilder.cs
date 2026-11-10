@@ -34,7 +34,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveT
         {
         }
         /// <summary>
-        /// This endpoint returns the state of the bulk order, along with summary information about the childorders created from the bulk order submission. The response includes varying amounts of information basedon the status of the bulk order. The `verbose` query param can be specified to include the original detailswhich were supplied for the bulk move along with the child orders created for each set of details.
+        /// This endpoint returns the state of the bulk order, along with summary information about the childorders created from the bulk order submission. The response includes varying amounts of information basedon the status of the bulk order. The `verbose` query param can be specified to include the original detailswhich were supplied for the bulk move along with the child orders created for each set of details.This endpoint must be enabled on your account before use; a 404 response for an account that has not beenenabled indicates this. Contact Bandwidth support to get started.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -71,7 +71,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveT
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.GetMoveTnsBulkOrderStatusResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// This endpoint returns the state of the bulk order, along with summary information about the childorders created from the bulk order submission. The response includes varying amounts of information basedon the status of the bulk order. The `verbose` query param can be specified to include the original detailswhich were supplied for the bulk move along with the child orders created for each set of details.
+        /// This endpoint returns the state of the bulk order, along with summary information about the childorders created from the bulk order submission. The response includes varying amounts of information basedon the status of the bulk order. The `verbose` query param can be specified to include the original detailswhich were supplied for the bulk move along with the child orders created for each set of details.This endpoint must be enabled on your account before use; a 404 response for an account that has not beenenabled indicates this. Contact Bandwidth support to get started.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -99,7 +99,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveT
             return new global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveTns.Bulk.Item.WithOrderItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// This endpoint returns the state of the bulk order, along with summary information about the childorders created from the bulk order submission. The response includes varying amounts of information basedon the status of the bulk order. The `verbose` query param can be specified to include the original detailswhich were supplied for the bulk move along with the child orders created for each set of details.
+        /// This endpoint returns the state of the bulk order, along with summary information about the childorders created from the bulk order submission. The response includes varying amounts of information basedon the status of the bulk order. The `verbose` query param can be specified to include the original detailswhich were supplied for the bulk move along with the child orders created for each set of details.This endpoint must be enabled on your account before use; a 404 response for an account that has not beenenabled indicates this. Contact Bandwidth support to get started.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithOrderItemRequestBuilderGetQueryParameters 

@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
-    /// <summary>Only valid when moving to a different account using SourceAccountId. When set to move (default) the E911 service information (if applied to the number) will be moved with the number to the new account. When set to delete the E911 service will be removed from the number</summary>
+    /// <summary>Only valid when moving to a different account using `sourceAccountId`; setting this field on a within-account move is rejected. When set to `MOVE` (default) the E911 service information (if applied to the number) will be moved with the number to the new account. When set to `DELETE` the E911 service will be removed from the number. An explicit `MOVE` to a destination account without the E911 product fails the move.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum MoveTnsOrderJsonRequestE911ServiceAction
     {
