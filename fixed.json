@@ -35357,6 +35357,367 @@
         ]
       }
     },
+    "/number-management/accounts/{accountId}/numberReputationManagement/brands": {
+      "post": {
+        "tags": [
+          "Number Reputation Management"
+        ],
+        "summary": "Create Brand",
+        "description": "Create a brand for the account. The brand\u0027s display name, logo and call reason are submitted to the carrier for vetting, and the brand starts in \u0060PENDING\u0060 status. Brand names must be unique within the account.",
+        "operationId": "NumberManagementCreateBrand",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "User\u0027s account ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "1234567"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/createBrandRequestBody"
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "$ref": "#/components/responses/createBrand201Response"
+          },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/number_management_badRequestError"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "$ref": "#/components/responses/number_management_unauthorizedError"
+          },
+          "403": {
+            "description": "Forbidden",
+            "$ref": "#/components/responses/number_management_forbiddenError"
+          },
+          "404": {
+            "description": "Not Found",
+            "$ref": "#/components/responses/number_management_notFoundError"
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "$ref": "#/components/responses/number_management_methodNotAllowedError"
+          },
+          "429": {
+            "description": "Too Many Requests Error",
+            "$ref": "#/components/responses/number_management_tooManyRequestsError"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/number_management_internalServerError"
+          },
+          "200": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateBrand201ResponseResponse"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
+          }
+        },
+        "security": [
+          {
+            "number_management_Basic": []
+          },
+          {
+            "number_management_Bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/v2",
+            "description": "Production"
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Number Reputation Management"
+        ],
+        "summary": "List Brands",
+        "description": "List the brands for the account, newest first by default. Results can be filtered by status, brand name, display name, call reason and creation time, and sorted by \u0060status\u0060, \u0060brandName\u0060 or \u0060createdAt\u0060 using \u0060field[sort]=ASC|DESC\u0060 (one sort field per request). Multiple filters are combined with AND; comma-separated \u0060eq\u0060 values are combined with OR.",
+        "operationId": "NumberManagementListBrands",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "User\u0027s account ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "1234567"
+          },
+          {
+            "description": "Filter and/or sort brands by brand name. Supports exact match (\u0060eq\u0060), case-insensitive substring match (\u0060contains\u0060), and sort direction (\u0060sort\u0060). \u0060eq\u0060 and \u0060contains\u0060 cannot be combined. Only one \u0060[sort]\u0060 parameter may be supplied per request; if none is supplied, results are sorted by \u0060createdAt\u0060 descending.",
+            "$ref": "#/components/parameters/brandNameQueryParam"
+          },
+          {
+            "description": "Filter brands by call reason. Supports exact match (\u0060eq\u0060) and case-insensitive substring match (\u0060contains\u0060). \u0060eq\u0060 and \u0060contains\u0060 cannot be combined.",
+            "$ref": "#/components/parameters/brandCallReasonQueryParam"
+          },
+          {
+            "description": "Filter and/or sort brands by creation time. Supports exact match (\u0060eq\u0060), inclusive range bounds (\u0060gte\u0060, \u0060lte\u0060), and sort direction (\u0060sort\u0060). Only one \u0060[sort]\u0060 parameter may be supplied per request; if none is supplied, results are sorted by \u0060createdAt\u0060 descending.",
+            "$ref": "#/components/parameters/brandCreatedAtQueryParam"
+          },
+          {
+            "description": "Filter brands by display name. Supports exact match (\u0060eq\u0060) and case-insensitive substring match (\u0060contains\u0060). \u0060eq\u0060 and \u0060contains\u0060 cannot be combined.",
+            "$ref": "#/components/parameters/brandDisplayNameQueryParam"
+          },
+          {
+            "description": "The number of the page to return. If not specified, the default page is 0.",
+            "$ref": "#/components/parameters/pageNumberQueryParam"
+          },
+          {
+            "description": "The number of records to return. If not specified, the default size is 500.",
+            "$ref": "#/components/parameters/pageSizeQueryParam"
+          },
+          {
+            "description": "Filter and/or sort brands by status. Supports exact match (\u0060eq\u0060) and sort direction (\u0060sort\u0060). Only one \u0060[sort]\u0060 parameter may be supplied per request; if none is supplied, results are sorted by \u0060createdAt\u0060 descending.",
+            "$ref": "#/components/parameters/brandStatusQueryParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "$ref": "#/components/responses/listBrands200Response"
+          },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/number_management_badRequestError"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "$ref": "#/components/responses/number_management_unauthorizedError"
+          },
+          "403": {
+            "description": "Forbidden",
+            "$ref": "#/components/responses/number_management_forbiddenError"
+          },
+          "404": {
+            "description": "Not Found",
+            "$ref": "#/components/responses/number_management_notFoundError"
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "$ref": "#/components/responses/number_management_methodNotAllowedError"
+          },
+          "429": {
+            "description": "Too Many Requests Error",
+            "$ref": "#/components/responses/number_management_tooManyRequestsError"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/number_management_internalServerError"
+          }
+        },
+        "security": [
+          {
+            "number_management_Basic": []
+          },
+          {
+            "number_management_Bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/v2",
+            "description": "Production"
+          }
+        ]
+      }
+    },
+    "/number-management/accounts/{accountId}/numberReputationManagement/brands/{brandId}": {
+      "get": {
+        "tags": [
+          "Number Reputation Management"
+        ],
+        "summary": "Get Brand",
+        "description": "Get a single brand by its ID, including its vetting status and associated NRM groups.",
+        "operationId": "NumberManagementGetBrand",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "User\u0027s account ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "1234567"
+          },
+          {
+            "name": "brandId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "$ref": "#/components/responses/getBrand200Response"
+          },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/number_management_badRequestError"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "$ref": "#/components/responses/number_management_unauthorizedError"
+          },
+          "403": {
+            "description": "Forbidden",
+            "$ref": "#/components/responses/number_management_forbiddenError"
+          },
+          "404": {
+            "description": "Not Found",
+            "$ref": "#/components/responses/number_management_notFoundError"
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "$ref": "#/components/responses/number_management_methodNotAllowedError"
+          },
+          "429": {
+            "description": "Too Many Requests Error",
+            "$ref": "#/components/responses/number_management_tooManyRequestsError"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/number_management_internalServerError"
+          }
+        },
+        "security": [
+          {
+            "number_management_Basic": []
+          },
+          {
+            "number_management_Bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/v2",
+            "description": "Production"
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Number Reputation Management"
+        ],
+        "summary": "Update Brand",
+        "description": "Add or remove NRM group associations for a brand. \u0060REMOVE\u0060 is applied synchronously and returns \u0060200 OK\u0060 with the updated groups. \u0060ADD\u0060 is processed asynchronously (the brand is activated on the group\u0027s phone numbers) and returns \u0060202 Accepted\u0060; the response lists the groups as accepted for processing.",
+        "operationId": "NumberManagementUpdateBrand",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "User\u0027s account ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "1234567"
+          },
+          {
+            "name": "brandId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/patchBrandRequestBody"
+        },
+        "responses": {
+          "200": {
+            "description": "OK \u2014 returned for REMOVE operations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateBrandSuccessResponse"
+                },
+                "x-client-original-success-schema": {
+                  "$ref": "#/components/schemas/PatchBrandGroups200ResponseResponse"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Accepted \u2014 returned for ADD operations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateBrandSuccessResponse"
+                },
+                "x-client-original-success-schema": {
+                  "$ref": "#/components/schemas/PatchBrandGroups202ResponseResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/number_management_badRequestError"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "$ref": "#/components/responses/number_management_unauthorizedError"
+          },
+          "403": {
+            "description": "Forbidden",
+            "$ref": "#/components/responses/number_management_forbiddenError"
+          },
+          "404": {
+            "description": "Not Found",
+            "$ref": "#/components/responses/number_management_notFoundError"
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "$ref": "#/components/responses/number_management_methodNotAllowedError"
+          },
+          "429": {
+            "description": "Too Many Requests Error",
+            "$ref": "#/components/responses/number_management_tooManyRequestsError"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/number_management_internalServerError"
+          }
+        },
+        "security": [
+          {
+            "number_management_Basic": []
+          },
+          {
+            "number_management_Bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/v2",
+            "description": "Production"
+          }
+        ]
+      }
+    },
     "/number-management/accounts/{accountId}/serviceActivationChecker": {
       "post": {
         "tags": [
@@ -115235,6 +115596,206 @@
           }
         }
       },
+      "SortOrderEnum": {
+        "enum": [
+          "ASC",
+          "DESC"
+        ],
+        "type": "string",
+        "description": "Sort direction. Case-insensitive; defaults to ASC.",
+        "x-ms-enum": {
+          "name": "SortOrderEnum",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "ASC",
+              "name": "Asc"
+            },
+            {
+              "value": "DESC",
+              "name": "Desc"
+            }
+          ]
+        }
+      },
+      "BrandGroupAssociation": {
+        "required": [
+          "groupId"
+        ],
+        "type": "object",
+        "properties": {
+          "groupId": {
+            "type": "integer",
+            "description": "The ID of the NRM group.",
+            "example": 1001
+          }
+        },
+        "description": "A reference to an NRM group associated with a brand."
+      },
+      "CreateBrandRequest": {
+        "required": [
+          "brandName",
+          "displayName"
+        ],
+        "type": "object",
+        "properties": {
+          "brandName": {
+            "type": "string",
+            "description": "The name of the brand. Must be unique within the account.",
+            "example": "Acme Corp"
+          },
+          "displayName": {
+            "maxLength": 32,
+            "minLength": 2,
+            "type": "string",
+            "description": "The caller name shown on the recipient\u0027s handset. 2-32 characters; letters, digits, spaces and \u0060,\u0026_-@*%[]:$!\u0027\u0060 only.",
+            "example": "Acme Billing"
+          },
+          "logoDocumentId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The ID of a previously uploaded document to use as the brand logo.",
+            "format": "uuid",
+            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+          },
+          "callReason": {
+            "maxLength": 60,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The reason for the call shown on the recipient\u0027s handset. Up to 60 characters; same allowed characters as \u0060displayName\u0060.",
+            "example": "Fraud Alert"
+          },
+          "groups": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/BrandGroupAssociation"
+            },
+            "description": "NRM groups to associate with the brand once it is approved."
+          }
+        }
+      },
+      "PatchBrandRequest": {
+        "required": [
+          "operation",
+          "groups"
+        ],
+        "type": "object",
+        "properties": {
+          "operation": {
+            "description": "The action to take with the specified phone numbers.",
+            "$ref": "#/components/schemas/ActionEnum"
+          },
+          "groups": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BrandGroupAssociation"
+            },
+            "description": "The NRM groups to add to or remove from the brand."
+          }
+        }
+      },
+      "BrandResponseDto": {
+        "required": [
+          "brandId",
+          "brandName",
+          "status",
+          "displayName",
+          "createdAt"
+        ],
+        "type": "object",
+        "properties": {
+          "brandId": {
+            "type": "string",
+            "description": "The unique ID of the brand.",
+            "format": "uuid",
+            "example": "b1a2c3d4-e5f6-7890-abcd-ef1234567890"
+          },
+          "brandName": {
+            "type": "string",
+            "description": "The name of the brand.",
+            "example": "Acme Corp"
+          },
+          "status": {
+            "description": "Approval status of the brand associated with this group with First Orion.\nPresent only when \u0060brandId\u0060 is populated.",
+            "$ref": "#/components/schemas/BrandStatusEnum"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "The caller name shown on the recipient\u0027s handset.",
+            "example": "Acme Billing"
+          },
+          "logoDocumentId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The ID of the document used as the brand logo. Omitted when no logo is set.",
+            "format": "uuid",
+            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+          },
+          "callReason": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The reason for the call shown on the recipient\u0027s handset. Omitted when not set.",
+            "example": "Fraud Alert"
+          },
+          "groups": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/BrandGroupAssociation"
+            },
+            "description": "NRM groups associated with the brand. Omitted when there are none."
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "When the brand was created.",
+            "format": "date-time",
+            "example": "2026-06-01T12:00:00Z"
+          }
+        }
+      },
+      "ListBrands200ResponseSchema": {
+        "required": [
+          "links",
+          "data",
+          "errors",
+          "page"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/BrandResponseDto"
+            }
+          },
+          "links": {
+            "$ref": "#/components/schemas/NumberManagementLinks"
+          },
+          "errors": {
+            "$ref": "#/components/schemas/NumberManagementErrors"
+          },
+          "page": {
+            "$ref": "#/components/schemas/NumberManagementPage"
+          }
+        }
+      },
       "BulkMoveTnsErrorsItem": {
         "type": "object",
         "properties": {
@@ -115428,6 +115989,82 @@
             "$ref": "#/components/schemas/ServiceActivationOrderSearchResponseVerbose"
           }
         ]
+      },
+      "CreateBrand201ResponseResponse": {
+        "required": [
+          "links",
+          "data",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/CreateBrand201ResponseResponseData"
+          },
+          "links": {
+            "$ref": "#/components/schemas/NumberManagementLinks"
+          },
+          "errors": {
+            "$ref": "#/components/schemas/NumberManagementErrors"
+          }
+        }
+      },
+      "GetBrand200ResponseResponse": {
+        "required": [
+          "links",
+          "data",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/GetBrand200ResponseResponseData"
+          },
+          "links": {
+            "$ref": "#/components/schemas/NumberManagementLinks"
+          },
+          "errors": {
+            "$ref": "#/components/schemas/NumberManagementErrors"
+          }
+        }
+      },
+      "PatchBrandGroups200ResponseResponse": {
+        "required": [
+          "links",
+          "data",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PatchBrandGroups200ResponseResponseData"
+          },
+          "links": {
+            "$ref": "#/components/schemas/NumberManagementLinks"
+          },
+          "errors": {
+            "$ref": "#/components/schemas/NumberManagementErrors"
+          }
+        }
+      },
+      "PatchBrandGroups202ResponseResponse": {
+        "required": [
+          "links",
+          "data",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PatchBrandGroups202ResponseResponseData"
+          },
+          "links": {
+            "$ref": "#/components/schemas/NumberManagementLinks"
+          },
+          "errors": {
+            "$ref": "#/components/schemas/NumberManagementErrors"
+          }
+        }
       },
       "NumbersAssignmentOrderRequestAction": {
         "enum": [
@@ -115821,6 +116458,232 @@
             "description": "The name of the customer the group belongs to",
             "example": "Customer A"
           }
+        }
+      },
+      "CreateBrand201ResponseResponseData": {
+        "required": [
+          "brandId",
+          "brandName",
+          "status",
+          "displayName",
+          "createdAt"
+        ],
+        "type": [
+          "null",
+          "object"
+        ],
+        "properties": {
+          "brandId": {
+            "type": "string",
+            "description": "The unique ID of the brand.",
+            "format": "uuid",
+            "example": "b1a2c3d4-e5f6-7890-abcd-ef1234567890"
+          },
+          "brandName": {
+            "type": "string",
+            "description": "The name of the brand.",
+            "example": "Acme Corp"
+          },
+          "status": {
+            "description": "Approval status of the brand associated with this group with First Orion.\nPresent only when \u0060brandId\u0060 is populated.",
+            "$ref": "#/components/schemas/BrandStatusEnum"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "The caller name shown on the recipient\u0027s handset.",
+            "example": "Acme Billing"
+          },
+          "logoDocumentId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The ID of the document used as the brand logo. Omitted when no logo is set.",
+            "format": "uuid",
+            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+          },
+          "callReason": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The reason for the call shown on the recipient\u0027s handset. Omitted when not set.",
+            "example": "Fraud Alert"
+          },
+          "groups": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/BrandGroupAssociation"
+            },
+            "description": "NRM groups associated with the brand. Omitted when there are none."
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "When the brand was created.",
+            "format": "date-time",
+            "example": "2026-06-01T12:00:00Z"
+          }
+        },
+        "x-client-original-nullable-union": {
+          "anyOf": [
+            {
+              "$ref": "#/components/schemas/CreateBrand201ResponseResponseDataAnyOf1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "GetBrand200ResponseResponseData": {
+        "required": [
+          "brandId",
+          "brandName",
+          "status",
+          "displayName",
+          "createdAt"
+        ],
+        "type": [
+          "null",
+          "object"
+        ],
+        "properties": {
+          "brandId": {
+            "type": "string",
+            "description": "The unique ID of the brand.",
+            "format": "uuid",
+            "example": "b1a2c3d4-e5f6-7890-abcd-ef1234567890"
+          },
+          "brandName": {
+            "type": "string",
+            "description": "The name of the brand.",
+            "example": "Acme Corp"
+          },
+          "status": {
+            "description": "Approval status of the brand associated with this group with First Orion.\nPresent only when \u0060brandId\u0060 is populated.",
+            "$ref": "#/components/schemas/BrandStatusEnum"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "The caller name shown on the recipient\u0027s handset.",
+            "example": "Acme Billing"
+          },
+          "logoDocumentId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The ID of the document used as the brand logo. Omitted when no logo is set.",
+            "format": "uuid",
+            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+          },
+          "callReason": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The reason for the call shown on the recipient\u0027s handset. Omitted when not set.",
+            "example": "Fraud Alert"
+          },
+          "groups": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/BrandGroupAssociation"
+            },
+            "description": "NRM groups associated with the brand. Omitted when there are none."
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "When the brand was created.",
+            "format": "date-time",
+            "example": "2026-06-01T12:00:00Z"
+          }
+        },
+        "x-client-original-nullable-union": {
+          "anyOf": [
+            {
+              "$ref": "#/components/schemas/GetBrand200ResponseResponseDataAnyOf1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "PatchBrandGroups200ResponseResponseData": {
+        "required": [
+          "brandId",
+          "groups"
+        ],
+        "type": [
+          "null",
+          "object"
+        ],
+        "properties": {
+          "brandId": {
+            "type": "string",
+            "description": "The unique ID of the brand.",
+            "format": "uuid",
+            "example": "b1a2c3d4-e5f6-7890-abcd-ef1234567890"
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BrandGroupAssociation"
+            },
+            "description": "The NRM groups associated with the brand after the update."
+          }
+        },
+        "x-client-original-nullable-union": {
+          "anyOf": [
+            {
+              "$ref": "#/components/schemas/PatchBrandGroups200ResponseResponseDataAnyOf1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "PatchBrandGroups202ResponseResponseData": {
+        "required": [
+          "brandId",
+          "groups"
+        ],
+        "type": [
+          "null",
+          "object"
+        ],
+        "properties": {
+          "brandId": {
+            "type": "string",
+            "description": "The unique ID of the brand.",
+            "format": "uuid",
+            "example": "b1a2c3d4-e5f6-7890-abcd-ef1234567890"
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BrandGroupAssociation"
+            },
+            "description": "The NRM groups associated with the brand after the update."
+          }
+        },
+        "x-client-original-nullable-union": {
+          "anyOf": [
+            {
+              "$ref": "#/components/schemas/PatchBrandGroups202ResponseResponseDataAnyOf1"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       },
       "GetPhoneNumbersTagsResponseData": {
@@ -116948,6 +117811,16 @@
             }
           ]
         }
+      },
+      "UpdateBrandSuccessResponse": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/PatchBrandGroups200ResponseResponse"
+          },
+          {
+            "$ref": "#/components/schemas/PatchBrandGroups202ResponseResponse"
+          }
+        ]
       },
       "CompletedLookupStatusEnum": {
         "enum": [
@@ -164212,6 +165085,56 @@
           }
         }
       },
+      "createBrand201Response": {
+        "description": "Created",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateBrand201ResponseResponse"
+            }
+          }
+        }
+      },
+      "listBrands200Response": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListBrands200ResponseSchema"
+            }
+          }
+        }
+      },
+      "getBrand200Response": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/GetBrand200ResponseResponse"
+            }
+          }
+        }
+      },
+      "patchBrandGroups200Response": {
+        "description": "OK \u2014 returned for REMOVE operations",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/PatchBrandGroups200ResponseResponse"
+            }
+          }
+        }
+      },
+      "patchBrandGroups202Response": {
+        "description": "Accepted \u2014 returned for ADD operations",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/PatchBrandGroups202ResponseResponse"
+            }
+          }
+        }
+      },
       "createSyncLookupResponse": {
         "description": "OK",
         "content": {
@@ -175583,6 +176506,128 @@
           "example": true
         }
       },
+      "brandIdPathParam": {
+        "name": "brandId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "brandStatusQueryParam": {
+        "name": "status",
+        "in": "query",
+        "description": "Filter and/or sort brands by status. Supports exact match (\u0060eq\u0060) and sort direction (\u0060sort\u0060). Only one \u0060[sort]\u0060 parameter may be supplied per request; if none is supplied, results are sorted by \u0060createdAt\u0060 descending.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "eq": {
+              "type": "string",
+              "description": "Exact match on brand status. One of \u0060PENDING\u0060, \u0060APPROVED\u0060, \u0060REJECTED\u0060. Accepts a comma-separated list of values for OR filtering (e.g. status[eq]=PENDING,APPROVED).",
+              "example": "PENDING,APPROVED"
+            },
+            "sort": {
+              "description": "Sort direction. Case-insensitive; defaults to ASC.",
+              "$ref": "#/components/schemas/SortOrderEnum"
+            }
+          }
+        }
+      },
+      "brandNameQueryParam": {
+        "name": "brandName",
+        "in": "query",
+        "description": "Filter and/or sort brands by brand name. Supports exact match (\u0060eq\u0060), case-insensitive substring match (\u0060contains\u0060), and sort direction (\u0060sort\u0060). \u0060eq\u0060 and \u0060contains\u0060 cannot be combined. Only one \u0060[sort]\u0060 parameter may be supplied per request; if none is supplied, results are sorted by \u0060createdAt\u0060 descending.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "eq": {
+              "type": "string",
+              "description": "Exact match on brand name. Accepts a comma-separated list of values for OR filtering (e.g. brandName[eq]=Acme Corp,Globex).",
+              "example": "Acme Corp,Globex"
+            },
+            "contains": {
+              "type": "string"
+            },
+            "sort": {
+              "description": "Sort direction. Case-insensitive; defaults to ASC.",
+              "$ref": "#/components/schemas/SortOrderEnum"
+            }
+          }
+        }
+      },
+      "brandDisplayNameQueryParam": {
+        "name": "displayName",
+        "in": "query",
+        "description": "Filter brands by display name. Supports exact match (\u0060eq\u0060) and case-insensitive substring match (\u0060contains\u0060). \u0060eq\u0060 and \u0060contains\u0060 cannot be combined.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "eq": {
+              "type": "string",
+              "description": "Exact match on display name. Accepts a comma-separated list of values for OR filtering (e.g. displayName[eq]=Acme Alerts,Globex Support).",
+              "example": "Acme Alerts,Globex Support"
+            },
+            "contains": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "brandCallReasonQueryParam": {
+        "name": "callReason",
+        "in": "query",
+        "description": "Filter brands by call reason. Supports exact match (\u0060eq\u0060) and case-insensitive substring match (\u0060contains\u0060). \u0060eq\u0060 and \u0060contains\u0060 cannot be combined.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "eq": {
+              "type": "string",
+              "description": "Exact match on call reason. Accepts a comma-separated list of values for OR filtering (e.g. callReason[eq]=Fraud Alert,Account Info).",
+              "example": "Fraud Alert,Account Info"
+            },
+            "contains": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "brandCreatedAtQueryParam": {
+        "name": "createdAt",
+        "in": "query",
+        "description": "Filter and/or sort brands by creation time. Supports exact match (\u0060eq\u0060), inclusive range bounds (\u0060gte\u0060, \u0060lte\u0060), and sort direction (\u0060sort\u0060). Only one \u0060[sort]\u0060 parameter may be supplied per request; if none is supplied, results are sorted by \u0060createdAt\u0060 descending.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "eq": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "gte": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "lte": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "sort": {
+              "description": "Sort direction. Case-insensitive; defaults to ASC.",
+              "$ref": "#/components/schemas/SortOrderEnum"
+            }
+          }
+        }
+      },
       "phone_number_lookup_v2_accountId": {
         "name": "accountId",
         "in": "path",
@@ -176983,7 +178028,7 @@
           "description": "Scheme for string query parameter"
         }
       },
-      "brandIdPathParam": {
+      "tendlc_brandIdPathParam": {
         "name": "brandId",
         "in": "path",
         "description": "This can be the TCR-assigned brand ID, the Bandwidth-assigned identifier for this brand, or the customer profile ID that is associated to the brand in the given account (the last two IDs can be used even before the brand is successfully submitted to TCR).",
@@ -198035,6 +199080,24 @@
         },
         "required": true
       },
+      "createBrandRequestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateBrandRequest"
+            }
+          }
+        }
+      },
+      "patchBrandRequestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/PatchBrandRequest"
+            }
+          }
+        }
+      },
       "createSyncLookupRequest": {
         "description": "Synchronous phone number lookup request.",
         "content": {
@@ -208415,6 +209478,28 @@
               }
             }
           },
+          "BrandGroupsResponseData": {
+            "required": [
+              "brandId",
+              "groups"
+            ],
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The unique ID of the brand.",
+                "format": "uuid",
+                "example": "b1a2c3d4-e5f6-7890-abcd-ef1234567890"
+              },
+              "groups": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/BrandGroupAssociation"
+                },
+                "description": "The NRM groups associated with the brand after the update."
+              }
+            }
+          },
           "CreateGroupRequestResellerAllOf2": {
             "required": [
               "customerId"
@@ -208577,6 +209662,178 @@
           "ExamplePayload": {
             "type": "object",
             "description": "Placeholder schema for path example refs"
+          },
+          "CreateBrand201ResponseResponseDataAnyOf1": {
+            "required": [
+              "brandId",
+              "brandName",
+              "status",
+              "displayName",
+              "createdAt"
+            ],
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The unique ID of the brand.",
+                "format": "uuid",
+                "example": "b1a2c3d4-e5f6-7890-abcd-ef1234567890"
+              },
+              "brandName": {
+                "type": "string",
+                "description": "The name of the brand.",
+                "example": "Acme Corp"
+              },
+              "status": {
+                "$ref": "#/components/schemas/BrandStatusEnum"
+              },
+              "displayName": {
+                "type": "string",
+                "description": "The caller name shown on the recipient\u0027s handset.",
+                "example": "Acme Billing"
+              },
+              "logoDocumentId": {
+                "type": [
+                  "null",
+                  "string"
+                ],
+                "description": "The ID of the document used as the brand logo. Omitted when no logo is set.",
+                "format": "uuid",
+                "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+              },
+              "callReason": {
+                "type": [
+                  "null",
+                  "string"
+                ],
+                "description": "The reason for the call shown on the recipient\u0027s handset. Omitted when not set.",
+                "example": "Fraud Alert"
+              },
+              "groups": {
+                "type": [
+                  "null",
+                  "array"
+                ],
+                "items": {
+                  "$ref": "#/components/schemas/BrandGroupAssociation"
+                },
+                "description": "NRM groups associated with the brand. Omitted when there are none."
+              },
+              "createdAt": {
+                "type": "string",
+                "description": "When the brand was created.",
+                "format": "date-time",
+                "example": "2026-06-01T12:00:00Z"
+              }
+            }
+          },
+          "GetBrand200ResponseResponseDataAnyOf1": {
+            "required": [
+              "brandId",
+              "brandName",
+              "status",
+              "displayName",
+              "createdAt"
+            ],
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The unique ID of the brand.",
+                "format": "uuid",
+                "example": "b1a2c3d4-e5f6-7890-abcd-ef1234567890"
+              },
+              "brandName": {
+                "type": "string",
+                "description": "The name of the brand.",
+                "example": "Acme Corp"
+              },
+              "status": {
+                "$ref": "#/components/schemas/BrandStatusEnum"
+              },
+              "displayName": {
+                "type": "string",
+                "description": "The caller name shown on the recipient\u0027s handset.",
+                "example": "Acme Billing"
+              },
+              "logoDocumentId": {
+                "type": [
+                  "null",
+                  "string"
+                ],
+                "description": "The ID of the document used as the brand logo. Omitted when no logo is set.",
+                "format": "uuid",
+                "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+              },
+              "callReason": {
+                "type": [
+                  "null",
+                  "string"
+                ],
+                "description": "The reason for the call shown on the recipient\u0027s handset. Omitted when not set.",
+                "example": "Fraud Alert"
+              },
+              "groups": {
+                "type": [
+                  "null",
+                  "array"
+                ],
+                "items": {
+                  "$ref": "#/components/schemas/BrandGroupAssociation"
+                },
+                "description": "NRM groups associated with the brand. Omitted when there are none."
+              },
+              "createdAt": {
+                "type": "string",
+                "description": "When the brand was created.",
+                "format": "date-time",
+                "example": "2026-06-01T12:00:00Z"
+              }
+            }
+          },
+          "PatchBrandGroups200ResponseResponseDataAnyOf1": {
+            "required": [
+              "brandId",
+              "groups"
+            ],
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The unique ID of the brand.",
+                "format": "uuid",
+                "example": "b1a2c3d4-e5f6-7890-abcd-ef1234567890"
+              },
+              "groups": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/BrandGroupAssociation"
+                },
+                "description": "The NRM groups associated with the brand after the update."
+              }
+            }
+          },
+          "PatchBrandGroups202ResponseResponseDataAnyOf1": {
+            "required": [
+              "brandId",
+              "groups"
+            ],
+            "type": "object",
+            "properties": {
+              "brandId": {
+                "type": "string",
+                "description": "The unique ID of the brand.",
+                "format": "uuid",
+                "example": "b1a2c3d4-e5f6-7890-abcd-ef1234567890"
+              },
+              "groups": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/BrandGroupAssociation"
+                },
+                "description": "The NRM groups associated with the brand after the update."
+              }
+            }
           },
           "TollFreeSettingsXmlResponseTollFreeSettingsResponseProperty": {
             "type": "object"

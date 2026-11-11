@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Bandwidth.OpenApiClient.Models;
+using Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumberReputationManagement.Brands;
 using Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumberReputationManagement.Customers;
 using Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumberReputationManagement.Groups;
 using Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumberReputationManagement.PhoneNumbers;
@@ -20,6 +21,11 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class NumberReputationManagementRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The brands property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumberReputationManagement.Brands.BrandsRequestBuilder Brands
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumberReputationManagement.Brands.BrandsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The customers property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumberReputationManagement.Customers.CustomersRequestBuilder Customers
         {

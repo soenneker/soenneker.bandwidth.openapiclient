@@ -678,6 +678,138 @@ paths:
           $ref: '#/components/responses/tooManyRequestsErrorCustomer'
         '500':
           $ref: '#/components/responses/internalServerErrorCustomer'
+  /accounts/{accountId}/numberReputationManagement/brands:
+    post:
+      tags:
+        - Number Reputation Management
+      operationId: createBrand
+      summary: Create Brand
+      description: >-
+        Create a brand for the account. The brand's display name, logo and call
+        reason are submitted to the carrier for vetting, and the brand starts in
+        `PENDING` status. Brand names must be unique within the account.
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/createBrandRequestBody'
+      responses:
+        '201':
+          $ref: '#/components/responses/createBrand201Response'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
+    get:
+      tags:
+        - Number Reputation Management
+      operationId: listBrands
+      summary: List Brands
+      description: >-
+        List the brands for the account, newest first by default. Results can be
+        filtered by status, brand name, display name, call reason and creation
+        time, and sorted by `status`, `brandName` or `createdAt` using
+        `field[sort]=ASC|DESC` (one sort field per request). Multiple filters
+        are combined with AND; comma-separated `eq` values are combined with OR.
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/brandStatusQueryParam'
+        - $ref: '#/components/parameters/brandNameQueryParam'
+        - $ref: '#/components/parameters/brandDisplayNameQueryParam'
+        - $ref: '#/components/parameters/brandCallReasonQueryParam'
+        - $ref: '#/components/parameters/brandCreatedAtQueryParam'
+        - $ref: '#/components/parameters/pageNumberQueryParam'
+        - $ref: '#/components/parameters/pageSizeQueryParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/listBrands200Response'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
+  /accounts/{accountId}/numberReputationManagement/brands/{brandId}:
+    get:
+      tags:
+        - Number Reputation Management
+      operationId: getBrand
+      summary: Get Brand
+      description: >-
+        Get a single brand by its ID, including its vetting status and
+        associated NRM groups.
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/brandIdPathParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/getBrand200Response'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
+    patch:
+      tags:
+        - Number Reputation Management
+      operationId: updateBrand
+      summary: Update Brand
+      description: >-
+        Add or remove NRM group associations for a brand. `REMOVE` is applied
+        synchronously and returns `200 OK` with the updated groups. `ADD` is
+        processed asynchronously (the brand is activated on the group's phone
+        numbers) and returns `202 Accepted`; the response lists the groups as
+        accepted for processing.
+      parameters:
+        - $ref: '#/components/parameters/accountIdPathParam'
+        - $ref: '#/components/parameters/brandIdPathParam'
+      requestBody:
+        $ref: '#/components/requestBodies/patchBrandRequestBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/patchBrandGroups200Response'
+        '202':
+          $ref: '#/components/responses/patchBrandGroups202Response'
+        '400':
+          $ref: '#/components/responses/badRequestError'
+        '401':
+          $ref: '#/components/responses/unauthorizedError'
+        '403':
+          $ref: '#/components/responses/forbiddenError'
+        '404':
+          $ref: '#/components/responses/notFoundError'
+        '405':
+          $ref: '#/components/responses/methodNotAllowedError'
+        '429':
+          $ref: '#/components/responses/tooManyRequestsError'
+        '500':
+          $ref: '#/components/responses/internalServerError'
   /accounts/{accountId}/serviceActivationChecker:
     post:
       tags:
@@ -4681,6 +4813,160 @@ components:
       properties:
         AssociatedOutboundNumbers:
           type: object
+    sortOrderEnum:
+      type: string
+      description: Sort direction. Case-insensitive; defaults to ASC.
+      default: ASC
+      enum:
+        - ASC
+        - DESC
+    brandGroupAssociation:
+      type: object
+      description: A reference to an NRM group associated with a brand.
+      required:
+        - groupId
+      properties:
+        groupId:
+          type: integer
+          description: The ID of the NRM group.
+          example: 1001
+    createBrandRequest:
+      type: object
+      required:
+        - brandName
+        - displayName
+      properties:
+        brandName:
+          type: string
+          description: The name of the brand. Must be unique within the account.
+          example: Acme Corp
+        displayName:
+          type: string
+          minLength: 2
+          maxLength: 32
+          description: >-
+            The caller name shown on the recipient's handset. 2-32 characters;
+            letters, digits, spaces and `,&_-@*%[]:$!'` only.
+          example: Acme Billing
+        logoDocumentId:
+          type: string
+          format: uuid
+          nullable: true
+          description: The ID of a previously uploaded document to use as the brand logo.
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        callReason:
+          type: string
+          maxLength: 60
+          nullable: true
+          description: >-
+            The reason for the call shown on the recipient's handset. Up to 60
+            characters; same allowed characters as `displayName`.
+          example: Fraud Alert
+        groups:
+          type: array
+          nullable: true
+          description: NRM groups to associate with the brand once it is approved.
+          items:
+            $ref: '#/components/schemas/brandGroupAssociation'
+    patchBrandRequest:
+      type: object
+      required:
+        - operation
+        - groups
+      properties:
+        operation:
+          $ref: '#/components/schemas/actionEnum'
+        groups:
+          type: array
+          minItems: 1
+          description: The NRM groups to add to or remove from the brand.
+          items:
+            $ref: '#/components/schemas/brandGroupAssociation'
+    brandResponseDto:
+      type: object
+      required:
+        - brandId
+        - brandName
+        - status
+        - displayName
+        - createdAt
+      properties:
+        brandId:
+          type: string
+          format: uuid
+          description: The unique ID of the brand.
+          example: b1a2c3d4-e5f6-7890-abcd-ef1234567890
+        brandName:
+          type: string
+          description: The name of the brand.
+          example: Acme Corp
+        status:
+          $ref: '#/components/schemas/brandStatusEnum'
+        displayName:
+          type: string
+          description: The caller name shown on the recipient's handset.
+          example: Acme Billing
+        logoDocumentId:
+          type: string
+          format: uuid
+          nullable: true
+          description: >-
+            The ID of the document used as the brand logo. Omitted when no logo
+            is set.
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        callReason:
+          type: string
+          nullable: true
+          description: >-
+            The reason for the call shown on the recipient's handset. Omitted
+            when not set.
+          example: Fraud Alert
+        groups:
+          type: array
+          nullable: true
+          description: NRM groups associated with the brand. Omitted when there are none.
+          items:
+            $ref: '#/components/schemas/brandGroupAssociation'
+        createdAt:
+          type: string
+          format: date-time
+          description: When the brand was created.
+          example: '2026-06-01T12:00:00Z'
+    brandGroupsResponseData:
+      type: object
+      required:
+        - brandId
+        - groups
+      properties:
+        brandId:
+          type: string
+          format: uuid
+          description: The unique ID of the brand.
+          example: b1a2c3d4-e5f6-7890-abcd-ef1234567890
+        groups:
+          type: array
+          description: The NRM groups associated with the brand after the update.
+          items:
+            $ref: '#/components/schemas/brandGroupAssociation'
+    listBrands200ResponseSchema:
+      type: object
+      required:
+        - links
+        - data
+        - errors
+        - page
+      properties:
+        data:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/brandResponseDto'
+        links:
+          $ref: '#/components/schemas/links'
+        errors:
+          $ref: '#/components/schemas/errors'
+        page:
+          $ref: '#/components/schemas/page'
   requestBodies:
     updatePhoneNumberTag:
       description: Update a phone number tag.
@@ -4783,6 +5069,16 @@ components:
             deactivateExample:
               $ref: '#/components/examples/serviceActivationOrderDeactivateExample'
       required: true
+    createBrandRequestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/createBrandRequest'
+    patchBrandRequestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/patchBrandRequest'
   responses:
     updatePhoneNumberTagsResponse:
       description: OK
@@ -5523,6 +5819,88 @@ components:
           examples:
             getServiceActivationOrderExample:
               $ref: '#/components/examples/getServiceActivationOrderExample'
+    createBrand201Response:
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - links
+              - data
+              - errors
+            properties:
+              data:
+                allOf:
+                  - $ref: '#/components/schemas/brandResponseDto'
+                nullable: true
+              links:
+                $ref: '#/components/schemas/links'
+              errors:
+                $ref: '#/components/schemas/errors'
+    listBrands200Response:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/listBrands200ResponseSchema'
+    getBrand200Response:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - links
+              - data
+              - errors
+            properties:
+              data:
+                allOf:
+                  - $ref: '#/components/schemas/brandResponseDto'
+                nullable: true
+              links:
+                $ref: '#/components/schemas/links'
+              errors:
+                $ref: '#/components/schemas/errors'
+    patchBrandGroups200Response:
+      description: OK — returned for REMOVE operations
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - links
+              - data
+              - errors
+            properties:
+              data:
+                allOf:
+                  - $ref: '#/components/schemas/brandGroupsResponseData'
+                nullable: true
+              links:
+                $ref: '#/components/schemas/links'
+              errors:
+                $ref: '#/components/schemas/errors'
+    patchBrandGroups202Response:
+      description: Accepted — returned for ADD operations
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - links
+              - data
+              - errors
+            properties:
+              data:
+                allOf:
+                  - $ref: '#/components/schemas/brandGroupsResponseData'
+                nullable: true
+              links:
+                $ref: '#/components/schemas/links'
+              errors:
+                $ref: '#/components/schemas/errors'
   parameters:
     tagNamePathParam:
       name: tagName
@@ -5907,6 +6285,130 @@ components:
       description: >-
         A flag to get detailed lists of the completed, failed, partial and
         missing requirements numbers of the orders returned in the response.
+    brandIdPathParam:
+      name: brandId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    brandStatusQueryParam:
+      name: status
+      in: query
+      required: false
+      description: >-
+        Filter and/or sort brands by status. Supports exact match (`eq`) and
+        sort direction (`sort`). Only one `[sort]` parameter may be supplied per
+        request; if none is supplied, results are sorted by `createdAt`
+        descending.
+      style: deepObject
+      explode: true
+      schema:
+        type: object
+        properties:
+          eq:
+            type: string
+            description: >-
+              Exact match on brand status. One of `PENDING`, `APPROVED`,
+              `REJECTED`. Accepts a comma-separated list of values for OR
+              filtering (e.g. status[eq]=PENDING,APPROVED).
+            example: PENDING,APPROVED
+          sort:
+            $ref: '#/components/schemas/sortOrderEnum'
+    brandNameQueryParam:
+      name: brandName
+      in: query
+      required: false
+      description: >-
+        Filter and/or sort brands by brand name. Supports exact match (`eq`),
+        case-insensitive substring match (`contains`), and sort direction
+        (`sort`). `eq` and `contains` cannot be combined. Only one `[sort]`
+        parameter may be supplied per request; if none is supplied, results are
+        sorted by `createdAt` descending.
+      style: deepObject
+      explode: true
+      schema:
+        type: object
+        properties:
+          eq:
+            type: string
+            description: >-
+              Exact match on brand name. Accepts a comma-separated list of
+              values for OR filtering (e.g. brandName[eq]=Acme Corp,Globex).
+            example: Acme Corp,Globex
+          contains:
+            type: string
+          sort:
+            $ref: '#/components/schemas/sortOrderEnum'
+    brandDisplayNameQueryParam:
+      name: displayName
+      in: query
+      required: false
+      description: >-
+        Filter brands by display name. Supports exact match (`eq`) and
+        case-insensitive substring match (`contains`). `eq` and `contains`
+        cannot be combined.
+      style: deepObject
+      explode: true
+      schema:
+        type: object
+        properties:
+          eq:
+            type: string
+            description: >-
+              Exact match on display name. Accepts a comma-separated list of
+              values for OR filtering (e.g. displayName[eq]=Acme Alerts,Globex
+              Support).
+            example: Acme Alerts,Globex Support
+          contains:
+            type: string
+    brandCallReasonQueryParam:
+      name: callReason
+      in: query
+      required: false
+      description: >-
+        Filter brands by call reason. Supports exact match (`eq`) and
+        case-insensitive substring match (`contains`). `eq` and `contains`
+        cannot be combined.
+      style: deepObject
+      explode: true
+      schema:
+        type: object
+        properties:
+          eq:
+            type: string
+            description: >-
+              Exact match on call reason. Accepts a comma-separated list of
+              values for OR filtering (e.g. callReason[eq]=Fraud Alert,Account
+              Info).
+            example: Fraud Alert,Account Info
+          contains:
+            type: string
+    brandCreatedAtQueryParam:
+      name: createdAt
+      in: query
+      required: false
+      description: >-
+        Filter and/or sort brands by creation time. Supports exact match (`eq`),
+        inclusive range bounds (`gte`, `lte`), and sort direction (`sort`). Only
+        one `[sort]` parameter may be supplied per request; if none is supplied,
+        results are sorted by `createdAt` descending.
+      style: deepObject
+      explode: true
+      schema:
+        type: object
+        properties:
+          eq:
+            type: string
+            format: date-time
+          gte:
+            type: string
+            format: date-time
+          lte:
+            type: string
+            format: date-time
+          sort:
+            $ref: '#/components/schemas/sortOrderEnum'
   examples:
     patchAddPhoneNumberTagRequest:
       summary: Add a tag to a list of phone numbers
