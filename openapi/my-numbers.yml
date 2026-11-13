@@ -1016,9 +1016,11 @@ paths:
         - $ref: '#/components/parameters/sizeQueryParam'
         - $ref: '#/components/parameters/countryCodeA3QueryParam'
         - $ref: '#/components/parameters/phoneNumberTypeQueryParam'
-        - $ref: '#/components/parameters/areaCodeQueryParam'
+        - $ref: '#/components/parameters/npaQueryParam'
         - $ref: '#/components/parameters/cityQueryParam'
         - $ref: '#/components/parameters/tierQueryParam'
+        - $ref: '#/components/parameters/siteIdQueryParam'
+        - $ref: '#/components/parameters/sippeerIdQueryParam'
         - description: The internal account id assigned to the customer that "owns" the TN.
           example: 5000125
           in: query
@@ -1042,17 +1044,7 @@ paths:
           required: false
           schema:
             type: string
-        - description: A service type value to filter the TNs returned in the payload.
-          example: E911
-          in: query
-          name: service
-          required: false
-          schema:
-            enum:
-              - E911
-              - Voice
-              - Hosted_E911
-            type: string
+        - $ref: '#/components/parameters/serviceQueryParam'
         - description: >-
             <p>The 6-digit prefix associated with the TN.</p><ul><li>Allowed
             number ranges for NPA are [2-9] for the first digit and [0-9] for
@@ -3118,6 +3110,16 @@ components:
         For more information, see the following guide:
         [Credentials](https://dev.bandwidth.com/docs/credentials)
   schemas:
+    tnServiceQueryType:
+      description: The service type associated with the phone number.
+      enum:
+        - VOICE
+        - HOSTED_VOICE
+        - MESSAGING
+        - HOSTED_MESSAGING
+        - E911
+        - HOSTED_E911
+      type: string
     siteTNsResponse:
       properties:
         SiteTNs:
@@ -4896,6 +4898,17 @@ components:
       schema:
         example: 5
         type: integer
+    serviceQueryParam:
+      description: >-
+        A service type value to filter the TNs returned in the payload. When
+        service is provided, the tier, city, lata, rateCenter, state and host
+        query parameters are not supported.
+      example: E911
+      in: query
+      name: service
+      required: false
+      schema:
+        $ref: '#/components/schemas/tnServiceQueryType'
     cityQueryParam:
       description: >-
         The name of the city. The system defaults to return all cities when the
@@ -4962,6 +4975,40 @@ components:
       required: false
       schema:
         example: 30
+        type: integer
+    npaQueryParam:
+      description: >-
+        The 3-digit area code (NPA) of a domestic North American Numbering Plan
+        phone number. This parameter only applies to domestic numbers and cannot
+        be used to search for the area code of an international number. The
+        system defaults to return all area codes when the query parameter is not
+        passed. The countryCodeA3 is a required parameter with npa.
+      in: query
+      name: npa
+      required: false
+      schema:
+        example: '435'
+        type: string
+    siteIdQueryParam:
+      description: >-
+        Returns only the phone numbers assigned to a location (SIP peer) in the
+        specified sub-account (site). Not supported when service is E911 or
+        Hosted E911.
+      example: 407
+      in: query
+      name: siteId
+      required: false
+      schema:
+        type: integer
+    sippeerIdQueryParam:
+      description: >-
+        Returns only the phone numbers assigned to the specified location (SIP
+        peer). Not supported when service is E911 or Hosted E911.
+      example: 12345
+      in: query
+      name: sippeerId
+      required: false
+      schema:
         type: integer
     SipPeerTnsPageQueryParam:
       description: The number of the paged results to be displayed.

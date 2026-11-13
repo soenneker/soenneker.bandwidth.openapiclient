@@ -35,7 +35,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.MyNumbers.Tns
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TnsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/my-numbers/tns{?accountId*,areaCode*,city*,countryCodeA3*,fullNumber*,host*,lata*,npaNxx*,npaNxxx*,page*,phoneNumberType*,rateCenter*,service*,size*,state*,tier*}", pathParameters)
+        public TnsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/my-numbers/tns{?accountId*,city*,countryCodeA3*,fullNumber*,host*,lata*,npa*,npaNxx*,npaNxxx*,page*,phoneNumberType*,rateCenter*,service*,sippeerId*,siteId*,size*,state*,tier*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.MyNumbers.Tns
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TnsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/my-numbers/tns{?accountId*,areaCode*,city*,countryCodeA3*,fullNumber*,host*,lata*,npaNxx*,npaNxxx*,page*,phoneNumberType*,rateCenter*,service*,size*,state*,tier*}", rawUrl)
+        public TnsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/my-numbers/tns{?accountId*,city*,countryCodeA3*,fullNumber*,host*,lata*,npa*,npaNxx*,npaNxxx*,page*,phoneNumberType*,rateCenter*,service*,sippeerId*,siteId*,size*,state*,tier*}", rawUrl)
         {
         }
         /// <summary>
@@ -157,16 +157,6 @@ namespace Soenneker.Bandwidth.OpenApiClient.MyNumbers.Tns
             /// <summary>The internal account id assigned to the customer that &quot;owns&quot; the TN.</summary>
             [QueryParameter("accountId")]
             public int? AccountId { get; set; }
-            /// <summary>The 1 to 6 digit area code associated with the phone number. The system defaults to return all area codes when the query parameter is not passed. The countryCodeA3 is a required parameter with areaCode.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            [QueryParameter("areaCode")]
-            public string? AreaCode { get; set; }
-#nullable restore
-#else
-            [QueryParameter("areaCode")]
-            public string AreaCode { get; set; }
-#endif
             /// <summary>The name of the city. The system defaults to return all cities when the query parameter is not passed. The countryCodeA3 is a required parameter with city. Some phone number types like TOLL_FREE may not have any associated cities.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -210,6 +200,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.MyNumbers.Tns
             /// <summary>A Rate Center search filter - all returned TNs will be in the entered Rate Center.  Typically this is a 3 or 5 digit value.</summary>
             [QueryParameter("lata")]
             public int? Lata { get; set; }
+            /// <summary>The 3-digit area code (NPA) of a domestic North American Numbering Plan phone number. This parameter only applies to domestic numbers and cannot be used to search for the area code of an international number. The system defaults to return all area codes when the query parameter is not passed. The countryCodeA3 is a required parameter with npa.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("npa")]
+            public string? Npa { get; set; }
+#nullable restore
+#else
+            [QueryParameter("npa")]
+            public string Npa { get; set; }
+#endif
             /// <summary>&lt;p&gt;The 6-digit prefix associated with the TN.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Allowed number ranges for NPA are [2-9] for the first digit and [0-9] for both the second and third digits.&lt;/li&gt;&lt;li&gt;Allowed number ranges for NXX are [2-9] for the first digit and [0-9] for both the second and third digits.&lt;/li&gt;&lt;/ul&gt;</summary>
             [QueryParameter("npaNxx")]
             public int? NpaNxx { get; set; }
@@ -232,9 +232,15 @@ namespace Soenneker.Bandwidth.OpenApiClient.MyNumbers.Tns
             [QueryParameter("rateCenter")]
             public string RateCenter { get; set; }
 #endif
-            /// <summary>A service type value to filter the TNs returned in the payload.</summary>
+            /// <summary>A service type value to filter the TNs returned in the payload. When service is provided, the tier, city, lata, rateCenter, state and host query parameters are not supported.</summary>
             [QueryParameter("service")]
-            public global::Soenneker.Bandwidth.OpenApiClient.Models.ListTnsByGetServiceParameter? Service { get; set; }
+            public global::Soenneker.Bandwidth.OpenApiClient.Models.TnServiceQueryType? Service { get; set; }
+            /// <summary>Returns only the phone numbers assigned to the specified location (SIP peer). Not supported when service is E911 or Hosted E911.</summary>
+            [QueryParameter("sippeerId")]
+            public int? SippeerId { get; set; }
+            /// <summary>Returns only the phone numbers assigned to a location (SIP peer) in the specified sub-account (site). Not supported when service is E911 or Hosted E911.</summary>
+            [QueryParameter("siteId")]
+            public int? SiteId { get; set; }
             /// <summary>The number of elements to retrieve</summary>
             [QueryParameter("size")]
             public int? Size { get; set; }

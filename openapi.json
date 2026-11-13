@@ -28157,10 +28157,6 @@
             "example": 5000125
           },
           {
-            "description": "The 1 to 6 digit area code associated with the phone number. The system defaults to return all area codes when the query parameter is not passed. The countryCodeA3 is a required parameter with areaCode.",
-            "$ref": "#/components/parameters/areaCodeQueryParam"
-          },
-          {
             "description": "The name of the city. The system defaults to return all cities when the query parameter is not passed. The countryCodeA3 is a required parameter with city. Some phone number types like TOLL_FREE may not have any associated cities.",
             "$ref": "#/components/parameters/cityQueryParam"
           },
@@ -28194,6 +28190,10 @@
               "type": "integer"
             },
             "example": 435
+          },
+          {
+            "description": "The 3-digit area code (NPA) of a domestic North American Numbering Plan phone number. This parameter only applies to domestic numbers and cannot be used to search for the area code of an international number. The system defaults to return all area codes when the query parameter is not passed. The countryCodeA3 is a required parameter with npa.",
+            "$ref": "#/components/parameters/npaQueryParam"
           },
           {
             "name": "npaNxx",
@@ -28230,13 +28230,16 @@
             "example": "PLANO"
           },
           {
-            "name": "service",
-            "in": "query",
-            "description": "A service type value to filter the TNs returned in the payload.",
-            "schema": {
-              "$ref": "#/components/schemas/ListTnsByGetServiceParameter"
-            },
-            "example": "E911"
+            "description": "A service type value to filter the TNs returned in the payload. When service is provided, the tier, city, lata, rateCenter, state and host query parameters are not supported.",
+            "$ref": "#/components/parameters/serviceQueryParam"
+          },
+          {
+            "description": "Returns only the phone numbers assigned to the specified location (SIP peer). Not supported when service is E911 or Hosted E911.",
+            "$ref": "#/components/parameters/sippeerIdQueryParam"
+          },
+          {
+            "description": "Returns only the phone numbers assigned to a location (SIP peer) in the specified sub-account (site). Not supported when service is E911 or Hosted E911.",
+            "$ref": "#/components/parameters/siteIdQueryParam"
           },
           {
             "description": "The number of elements to retrieve",
@@ -31130,7 +31133,7 @@
             "$ref": "#/components/parameters/nameQueryParam"
           },
           {
-            "$ref": "#/components/parameters/npaQueryParam"
+            "$ref": "#/components/parameters/number_acquisition_npaQueryParam"
           },
           {
             "$ref": "#/components/parameters/npaNxxQueryParam"
@@ -102204,6 +102207,44 @@
           }
         }
       },
+      "TnServiceQueryType": {
+        "enum": [
+          "VOICE",
+          "HOSTED_VOICE",
+          "MESSAGING",
+          "HOSTED_MESSAGING",
+          "E911",
+          "HOSTED_E911"
+        ],
+        "type": "string",
+        "description": "The service type associated with the phone number.",
+        "x-ms-enum": {
+          "name": "TnServiceQueryType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "VOICE",
+              "name": "Voice"
+            },
+            {
+              "value": "HOSTED_VOICE",
+              "name": "HostedVoice"
+            },
+            {
+              "value": "MESSAGING",
+              "name": "Messaging"
+            },
+            {
+              "value": "HOSTED_MESSAGING",
+              "name": "HostedMessaging"
+            },
+            {
+              "value": "HOSTED_E911",
+              "name": "HostedE911"
+            }
+          ]
+        }
+      },
       "TelephoneNumberDetailHistoryPayloadJson": {
         "title": "PhoneNumber",
         "type": "object",
@@ -103592,24 +103633,6 @@
             {
               "value": "DA",
               "name": "Da"
-            }
-          ]
-        }
-      },
-      "ListTnsByGetServiceParameter": {
-        "enum": [
-          "E911",
-          "Voice",
-          "Hosted_E911"
-        ],
-        "type": "string",
-        "x-ms-enum": {
-          "name": "ListTnsByGetServiceParameter",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "Hosted_E911",
-              "name": "HostedE911"
             }
           ]
         }
@@ -171524,6 +171547,15 @@
           "example": 5
         }
       },
+      "serviceQueryParam": {
+        "name": "service",
+        "in": "query",
+        "description": "A service type value to filter the TNs returned in the payload. When service is provided, the tier, city, lata, rateCenter, state and host query parameters are not supported.",
+        "schema": {
+          "$ref": "#/components/schemas/TnServiceQueryType"
+        },
+        "example": "E911"
+      },
       "cityQueryParam": {
         "name": "city",
         "in": "query",
@@ -171589,6 +171621,33 @@
           "type": "integer",
           "example": 30
         }
+      },
+      "npaQueryParam": {
+        "name": "npa",
+        "in": "query",
+        "description": "The 3-digit area code (NPA) of a domestic North American Numbering Plan phone number. This parameter only applies to domestic numbers and cannot be used to search for the area code of an international number. The system defaults to return all area codes when the query parameter is not passed. The countryCodeA3 is a required parameter with npa.",
+        "schema": {
+          "type": "string",
+          "example": "435"
+        }
+      },
+      "siteIdQueryParam": {
+        "name": "siteId",
+        "in": "query",
+        "description": "Returns only the phone numbers assigned to a location (SIP peer) in the specified sub-account (site). Not supported when service is E911 or Hosted E911.",
+        "schema": {
+          "type": "integer"
+        },
+        "example": 407
+      },
+      "sippeerIdQueryParam": {
+        "name": "sippeerId",
+        "in": "query",
+        "description": "Returns only the phone numbers assigned to the specified location (SIP peer). Not supported when service is E911 or Hosted E911.",
+        "schema": {
+          "type": "integer"
+        },
+        "example": 12345
       },
       "SipPeerTnsPageQueryParam": {
         "name": "page",
@@ -171875,7 +171934,7 @@
         },
         "example": 0
       },
-      "npaQueryParam": {
+      "number_acquisition_npaQueryParam": {
         "name": "npa",
         "in": "query",
         "description": "The 3 digit NPA or area code covered by the rate center.",
