@@ -44111,6 +44111,1108 @@
         ]
       }
     },
+    "/scim-protocol/Users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "List All Users",
+        "description": "Returns a paginated list of User resources; if none match, returns 200 with the same ListResponse envelope:\ntotalResults: 0 and an empty Resources array. Supports\nfiltering with the eq operator on userName; the value is matched against the user's primary email, which is\nthe userName of every SCIM-created user. A filtered request matching more than 100 users is rejected\nwith a 400 and scimType \"tooMany\"; unfiltered requests are paginated normally regardless of size.",
+        "operationId": "scim_protocol_ListUsers",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/attributes"
+          },
+          {
+            "$ref": "#/components/parameters/scim_protocol_count"
+          },
+          {
+            "$ref": "#/components/parameters/excludedAttributes"
+          },
+          {
+            "$ref": "#/components/parameters/filter"
+          },
+          {
+            "$ref": "#/components/parameters/startIndex"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/scimListResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/scimBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/scimUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/scimForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/scimNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/scimMethodNotAllowedResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/scimTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/scimInternalServerErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "scim_protocol_Bearer": [ ]
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/scim/v2"
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create Users",
+        "description": "Creates a new user with the default basicAccess role. Roles are managed through the /Groups endpoints; a roles\nattribute in the request body is rejected with a 400 and scimType \"invalidValue\". basicAccess is an ordinary role:\nit is never removed automatically, is listed as a Group, and can be revoked like any other Group membership\n(subject to the at-least-one-role rule). The new user is assigned to every account on the SCIM credential;\nthe request body carries no account information.",
+        "operationId": "scim_protocol_CreateUser",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/scimCreateUserRequest"
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/scimCreatedResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/scimBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/scimUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/scimForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/scimNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/scimMethodNotAllowedResponse"
+          },
+          "409": {
+            "$ref": "#/components/responses/scimConflictResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/scimTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/scimInternalServerErrorResponse"
+          },
+          "200": {
+            "description": "Created",
+            "headers": {
+              "Location": {
+                "description": "URI of the newly created user resource.",
+                "schema": {
+                  "type": "string",
+                  "example": "https://api.bandwidth.com/api/scim/v2/Users/2819c223-7f76-453a-919d-413861904646"
+                }
+              }
+            },
+            "content": {
+              "application/scim+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScimUser"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
+          }
+        },
+        "security": [
+          {
+            "scim_protocol_Bearer": [ ]
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/scim/v2"
+          }
+        ]
+      }
+    },
+    "/scim-protocol/Users/{userId}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get User",
+        "description": "Returns the User resource with the specific ID",
+        "operationId": "scim_protocol_GetUser",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Bandwidth-generated unique identifier of the user.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Bandwidth-generated unique identifier of the user.",
+              "example": "2819c223-7f76-453a-919d-413861904646"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/attributes"
+          },
+          {
+            "$ref": "#/components/parameters/excludedAttributes"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/scimUserResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/scimBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/scimUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/scimForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/scimNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/scimMethodNotAllowedResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/scimTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/scimInternalServerErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "scim_protocol_Bearer": [ ]
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/scim/v2"
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update User",
+        "description": "Partially modifies a User resource. The primary use is deprovisioning a user by setting active to false;\nprovisioning is handled via POST /Users.\n\nOperations may target an attribute with a path or supply a path-less value object. Supported paths, matched\ncase-insensitively, are active, name.givenName, name.familyName, emails, and phoneNumbers. The field userName\nis immutable after creation. Value-filter paths (e.g. emails[type eq \"work\"].value) and schema-URN-prefixed\npaths are not supported; any unsupported path returns a 400 with scimType \"invalidPath\".\n\nAttribute behavior, deviating from RFC 7644 §3.5.2 where noted:\n- roles: not supported. Roles are managed through the /Groups endpoints. A path of roles returns a 400 with\n  scimType \"invalidPath\", and a roles attribute in a path-less value object returns a 400 with scimType \"invalidValue\".\n- emails and phoneNumbers: each maps to a single value on the Bandwidth user, so add behaves as replace,\n  and remove is rejected with a 400 and scimType \"invalidValue\" instead of clearing the value.\n- active, name.givenName, name.familyName: add and replace are supported; remove is rejected with a 400\n  and scimType \"invalidValue\".",
+        "operationId": "scim_protocol_UpdateUser",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Bandwidth-generated unique identifier of the user.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Bandwidth-generated unique identifier of the user.",
+              "example": "2819c223-7f76-453a-919d-413861904646"
+            }
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/scimPatchUserRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/scimUserResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/scimBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/scimUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/scimForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/scimNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/scimMethodNotAllowedResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/scimTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/scimInternalServerErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "scim_protocol_Bearer": [ ]
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/scim/v2"
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Replace User",
+        "description": "Fully replaces a User resource with the provided payload. As a deviation from RFC 7644, omitted optional\nfields are preserved rather than cleared. Modifying an immutable field returns a 400; echoing the\nresource's own id back unchanged is permitted. The user's accounts are set to every account on the SCIM\ncredential, as on create.",
+        "operationId": "scim_protocol_ReplaceUser",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Bandwidth-generated unique identifier of the user.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Bandwidth-generated unique identifier of the user.",
+              "example": "2819c223-7f76-453a-919d-413861904646"
+            }
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/scimPutUserRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/scimUserResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/scimBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/scimUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/scimForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/scimNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/scimMethodNotAllowedResponse"
+          },
+          "409": {
+            "$ref": "#/components/responses/scimConflictResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/scimTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/scimInternalServerErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "scim_protocol_Bearer": [ ]
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/scim/v2"
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete User",
+        "description": "Permanently deletes a User. Implemented for SCIM compliance and expected to see almost no use — the\nsuggested way to deprovision an account is PATCH /Users/{userId} with active set to false.",
+        "operationId": "scim_protocol_DeleteUser",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Bandwidth-generated unique identifier of the user.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Bandwidth-generated unique identifier of the user.",
+              "example": "2819c223-7f76-453a-919d-413861904646"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/scimNoContentResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/scimBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/scimUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/scimForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/scimNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/scimMethodNotAllowedResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/scimTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/scimInternalServerErrorResponse"
+          },
+          "501": {
+            "$ref": "#/components/responses/scimNotImplementedResponse"
+          }
+        },
+        "security": [
+          {
+            "scim_protocol_Bearer": [ ]
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/scim/v2"
+          }
+        ]
+      }
+    },
+    "/scim-protocol/Me": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get Authenticated User",
+        "description": "Returns the User resource of the authenticated subject. /Me is the RFC 7644 §3.11 URI alias for that\nuser's own resource and returns the same representation as GET /Users/{userId}. Bandwidth's SCIM service\ntargets IdP-driven provisioning rather than self-service access, so prefer GET /Users/{userId} where the\nid is known.\n\nNote: not supported by Bandwidth's current implementation — requests are rejected with a 501 error.",
+        "operationId": "scim_protocol_GetMe",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/scimUserResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/scimBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/scimUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/scimForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/scimNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/scimMethodNotAllowedResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/scimTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/scimInternalServerErrorResponse"
+          },
+          "501": {
+            "$ref": "#/components/responses/scimNotImplementedResponse"
+          }
+        },
+        "security": [
+          {
+            "scim_protocol_Bearer": [ ]
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/scim/v2"
+          }
+        ]
+      }
+    },
+    "/scim-protocol/Groups": {
+      "get": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "List All Groups",
+        "description": "Returns a paginated list of Group resources; if no groups match, returns 200 with the same ListResponse envelope: \ntotalResults: 0 and an empty Resources array. Only roles available to your account are exposed as Groups. Supports filtering with the eq operator on displayName only. The field members is not returned by default; \nrequest it explicitly with attributes=members.",
+        "operationId": "scim_protocol_ListGroups",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/attributes"
+          },
+          {
+            "$ref": "#/components/parameters/scim_protocol_count"
+          },
+          {
+            "$ref": "#/components/parameters/excludedAttributes"
+          },
+          {
+            "$ref": "#/components/parameters/groupFilter"
+          },
+          {
+            "$ref": "#/components/parameters/startIndex"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/scimGroupListResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/scimBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/scimUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/scimForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/scimNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/scimMethodNotAllowedResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/scimTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/scimInternalServerErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "scim_protocol_Bearer": [ ]
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/scim/v2"
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Create Group",
+        "description": "Creates a new Group, adding a role to the role catalog. To assign users to a\ngroup that already exists, use PATCH /Groups/{groupId}.\n\nNote: not supported by Bandwidth's current implementation — requests are rejected with a 501 error.",
+        "operationId": "scim_protocol_CreateGroup",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/scimCreateGroupRequest"
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/scimGroupCreatedResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/scimBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/scimUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/scimForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/scimNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/scimMethodNotAllowedResponse"
+          },
+          "409": {
+            "$ref": "#/components/responses/scimConflictResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/scimTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/scimInternalServerErrorResponse"
+          },
+          "501": {
+            "$ref": "#/components/responses/scimNotImplementedResponse"
+          },
+          "200": {
+            "description": "Created",
+            "headers": {
+              "Location": {
+                "description": "URI of the newly created group resource.",
+                "schema": {
+                  "type": "string",
+                  "example": "https://api.bandwidth.com/api/scim/v2/Groups/httpVoice"
+                }
+              }
+            },
+            "content": {
+              "application/scim+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScimGroup"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
+          }
+        },
+        "security": [
+          {
+            "scim_protocol_Bearer": [ ]
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/scim/v2"
+          }
+        ]
+      }
+    },
+    "/scim-protocol/Groups/{groupId}": {
+      "get": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Get Group",
+        "description": "Returns the Group resource with the specified ID. The field members is not returned by default; request it\nexplicitly with attributes=members. Requests addressing a role that is not exposed as a Group return 404.",
+        "operationId": "scim_protocol_GetGroup",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "Identifier of the group; the identifier of the Bandwidth role the group projects.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Identifier of the group; the identifier of the Bandwidth role the group projects.",
+              "example": "httpVoice"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/attributes"
+          },
+          {
+            "$ref": "#/components/parameters/excludedAttributes"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/scimGroupResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/scimBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/scimUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/scimForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/scimNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/scimMethodNotAllowedResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/scimTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/scimInternalServerErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "scim_protocol_Bearer": [ ]
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/scim/v2"
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Replace Group",
+        "description": "Fully replaces a Group resource. Because the group's identity is managed by Bandwidth, members is the only\nmutable attribute: the provided list replaces the membership, assigning the role to new members and\nrevoking it from absent ones. Echoing id and displayName back unchanged is permitted; changing either is\nrejected with a 400 and scimType \"mutability\". As with PUT /Users/{userId}, omitted optional fields are\npreserved, so omitting members leaves the membership unchanged. A replacement that would strip a member's\nlast role is rejected with a 400 and scimType \"invalidValue\". Requests addressing a role that is not exposed\nas a Group return 404.\n\nIdPs commonly send this request when a group is first linked, with the IdP group's current membership. An\nempty members list revokes the role from every current holder the credential is authorized to modify, so\npopulate the IdP group before linking it.",
+        "operationId": "scim_protocol_ReplaceGroup",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "Identifier of the group; the identifier of the Bandwidth role the group projects.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Identifier of the group; the identifier of the Bandwidth role the group projects.",
+              "example": "httpVoice"
+            }
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/scimPutGroupRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/scimGroupResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/scimBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/scimUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/scimForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/scimNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/scimMethodNotAllowedResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/scimTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/scimInternalServerErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "scim_protocol_Bearer": [ ]
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/scim/v2"
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Update Group",
+        "description": "Partially modifies a Group resource — the primary path for IdP group push. The field members is the only mutable\nattribute: adding a user assigns the projected Bandwidth role, removing a user revokes it.\n\n- add: assigns the role to the users in value, merging with the current membership (de-duplicated).\n- replace: replaces the entire membership with the users in value.\n- remove: revokes the role from the users in value, or from all current members if value is omitted. The\n  filtered path form members[value eq \"<userId>\"] is also supported.\n\nAn operation that would strip a user's last role is rejected with a 400 and scimType \"invalidValue\"; to\ndeprovision a user, use PATCH /Users/{userId} with active set to false instead. The fields id and displayName are not\nmodifiable (400 with scimType \"mutability\"); any other path returns a 400 with scimType \"invalidPath\".\nRequests addressing a role that is not exposed as a Group return 404.",
+        "operationId": "scim_protocol_UpdateGroup",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "Identifier of the group; the identifier of the Bandwidth role the group projects.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Identifier of the group; the identifier of the Bandwidth role the group projects.",
+              "example": "httpVoice"
+            }
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/scimPatchGroupRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/scimGroupResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/scimBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/scimUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/scimForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/scimNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/scimMethodNotAllowedResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/scimTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/scimInternalServerErrorResponse"
+          }
+        },
+        "security": [
+          {
+            "scim_protocol_Bearer": [ ]
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/scim/v2"
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Delete Group",
+        "description": "Deletes the Group with the specified ID, removing the projected role from the role\ncatalog. To revoke the role from its members without deleting the group, remove them via\nPATCH /Groups/{groupId}. Requests addressing a role that is not exposed as a Group return 404.\n\nNote: not supported by Bandwidth's current implementation — requests are rejected with a 501 error.",
+        "operationId": "scim_protocol_DeleteGroup",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "Identifier of the group; the identifier of the Bandwidth role the group projects.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Identifier of the group; the identifier of the Bandwidth role the group projects.",
+              "example": "httpVoice"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/scimNoContentResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/scimBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/scimUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/scimForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/scimNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/scimMethodNotAllowedResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/scimTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/scimInternalServerErrorResponse"
+          },
+          "501": {
+            "$ref": "#/components/responses/scimNotImplementedResponse"
+          }
+        },
+        "security": [
+          {
+            "scim_protocol_Bearer": [ ]
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/scim/v2"
+          }
+        ]
+      }
+    },
+    "/scim-protocol/Bulk": {
+      "post": {
+        "tags": [
+          "Bulk"
+        ],
+        "summary": "Process Bulk Operations",
+        "description": "Combines multiple operations (POST, PUT, PATCH, DELETE against /Users and /Groups) into a single request,\nper RFC 7644 §3.7. A POST operation's bulkId is a temporary identifier that later operations in the same\nrequest may reference. Requests exceeding the maxOperations or maxPayloadSize limits announced in\nServiceProviderConfig are rejected with a 413.\n\nNote: not supported by Bandwidth's current implementation — requests are rejected with a 501 error, and\nServiceProviderConfig reports bulk.supported: false.",
+        "operationId": "scim_protocol_CreateBulkRequest",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/scimBulkRequest"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/scimBulkResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/scimBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/scimUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/scimForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/scimNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/scimMethodNotAllowedResponse"
+          },
+          "413": {
+            "$ref": "#/components/responses/scimPayloadTooLargeResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/scimTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/scimInternalServerErrorResponse"
+          },
+          "501": {
+            "$ref": "#/components/responses/scimNotImplementedResponse"
+          }
+        },
+        "security": [
+          {
+            "scim_protocol_Bearer": [ ]
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/scim/v2"
+          }
+        ]
+      }
+    },
+    "/scim-protocol/ServiceProviderConfig": {
+      "get": {
+        "tags": [
+          "Discovery"
+        ],
+        "summary": "List SCIM Features",
+        "description": "Describes the SCIM features supported by Bandwidth's service provider. No authentication required.",
+        "operationId": "scim_protocol_GetServiceProviderConfig",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/serviceProviderConfigResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/scimBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/scimUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/scimForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/scimNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/scimMethodNotAllowedResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/scimTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/scimInternalServerErrorResponse"
+          }
+        },
+        "security": [ ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/scim/v2"
+          }
+        ]
+      }
+    },
+    "/scim-protocol/ResourceTypes": {
+      "get": {
+        "tags": [
+          "Discovery"
+        ],
+        "summary": "List Available SCIM Resources",
+        "description": "Retrieves the types of resources available on Bandwidth's SCIM service. No authentication required.",
+        "operationId": "scim_protocol_ListResourceTypes",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/resourceTypesResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/scimBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/scimUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/scimForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/scimNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/scimMethodNotAllowedResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/scimTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/scimInternalServerErrorResponse"
+          }
+        },
+        "security": [ ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/scim/v2"
+          }
+        ]
+      }
+    },
+    "/scim-protocol/ResourceTypes/{resourceTypeId}": {
+      "get": {
+        "tags": [
+          "Discovery"
+        ],
+        "summary": "Get Resource Type",
+        "description": "Returns the ResourceType definition for a single resource type. No authentication required.",
+        "operationId": "scim_protocol_GetResourceType",
+        "parameters": [
+          {
+            "name": "resourceTypeId",
+            "in": "path",
+            "description": "Identifier for the Resource Type, either \"User\" or \"Group\"",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Identifier for the Resource Type, either \"User\" or \"Group\".",
+              "example": "User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/getResourceTypesResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/scimBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/scimUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/scimForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/scimNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/scimMethodNotAllowedResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/scimTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/scimInternalServerErrorResponse"
+          }
+        },
+        "security": [ ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/scim/v2"
+          }
+        ]
+      }
+    },
+    "/scim-protocol/Schemas": {
+      "get": {
+        "tags": [
+          "Discovery"
+        ],
+        "summary": "List Supported Schemas",
+        "description": "Retrieves the schemas supported by Bandwidth's SCIM service. No authentication required.",
+        "operationId": "scim_protocol_ListSchemas",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/schemasResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/scimBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/scimUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/scimForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/scimNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/scimMethodNotAllowedResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/scimTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/scimInternalServerErrorResponse"
+          }
+        },
+        "security": [ ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/scim/v2"
+          }
+        ]
+      }
+    },
+    "/scim-protocol/Schemas/{schemaId}": {
+      "get": {
+        "tags": [
+          "Discovery"
+        ],
+        "summary": "Get Schema",
+        "description": "Returns a single SCIM schema definition by ID. No authentication required.",
+        "operationId": "scim_protocol_GetSchema",
+        "parameters": [
+          {
+            "name": "schemaId",
+            "in": "path",
+            "description": "Identifier for the Schema, either the core User or core Group schema URN",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Identifier for the Schema, either the core User or core Group schema URN.",
+              "example": "urn:ietf:params:scim:schemas:core:2.0:User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/getSchemaResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/scimBadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/scimUnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/scimForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/scimNotFoundResponse"
+          },
+          "405": {
+            "$ref": "#/components/responses/scimMethodNotAllowedResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/scimTooManyRequestsResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/scimInternalServerErrorResponse"
+          }
+        },
+        "security": [ ],
+        "servers": [
+          {
+            "url": "https://api.bandwidth.com/api/scim/v2"
+          }
+        ]
+      }
+    },
     "/shortcodes/accounts/{accountId}/shortcodes": {
       "get": {
         "tags": [
@@ -127678,6 +128780,1929 @@
           ]
         }
       },
+      "ScimName": {
+        "required": [
+          "givenName",
+          "familyName"
+        ],
+        "type": "object",
+        "properties": {
+          "givenName": {
+            "type": "string",
+            "description": "Maps to Bandwidth FirstName.",
+            "example": "Barbara"
+          },
+          "familyName": {
+            "type": "string",
+            "description": "Maps to Bandwidth LastName.",
+            "example": "Jensen"
+          }
+        }
+      },
+      "ScimEmail": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Maps to Bandwidth email. Must match userName.",
+            "example": "bjensen@bandwidth.com",
+            "x-client-original-format": "email"
+          },
+          "type": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Type of email address (e.g., work, home).",
+            "example": "work"
+          },
+          "display": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Human-readable label for this email address.",
+            "example": "bjensen@bandwidth.com"
+          },
+          "primary": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Whether or not the email address is the user's primary",
+            "example": true
+          }
+        }
+      },
+      "ScimPhoneNumber": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Maps to Bandwidth Phone Number. E.164 format, which SCIM states as a SHOULD.",
+            "example": "+19195551234"
+          },
+          "type": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Type of phone number (e.g., work, mobile, home).",
+            "example": "work"
+          },
+          "display": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Human-readable label for this phone number.",
+            "example": "+1 (919) 555-1234"
+          },
+          "primary": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Whether or not the phone number is the user's primary",
+            "example": true
+          }
+        }
+      },
+      "ScimExternalId": {
+        "type": [
+          "null",
+          "string"
+        ],
+        "description": "Client-defined identifier. Accepted in requests for SCIM compatibility, but Bandwidth has never persisted\nit and never returns it in a response.",
+        "writeOnly": true,
+        "example": "701984"
+      },
+      "ScimCreateUserRequest": {
+        "required": [
+          "schemas",
+          "userName",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "urn:ietf:params:scim:schemas:core:2.0:User"
+            ]
+          },
+          "userName": {
+            "type": "string",
+            "description": "Unique identifier for the user, mapped to the Bandwidth UserId. Always an email address for SSO (SCIM-provisioned) users.",
+            "example": "bjensen@bandwidth.com",
+            "x-client-original-format": "email"
+          },
+          "name": {
+            "$ref": "#/components/schemas/ScimName"
+          },
+          "emails": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/ScimEmail"
+            }
+          },
+          "active": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Initial active state of the user. Defaults to true if omitted.",
+            "example": true
+          },
+          "externalId": {
+            "$ref": "#/components/schemas/ScimExternalId"
+          },
+          "phoneNumbers": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/ScimPhoneNumber"
+            }
+          }
+        }
+      },
+      "ScimPatchUserRequest": {
+        "required": [
+          "schemas",
+          "Operations"
+        ],
+        "type": "object",
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "urn:ietf:params:scim:api:messages:2.0:PatchOp"
+            ]
+          },
+          "Operations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimPatchUserRequestOperationsItem"
+            },
+            "description": "List of patch operations to apply to the User resource."
+          }
+        }
+      },
+      "ScimPutUserRequest": {
+        "required": [
+          "schemas",
+          "userName",
+          "name",
+          "active"
+        ],
+        "type": "object",
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "urn:ietf:params:scim:schemas:core:2.0:User"
+            ]
+          },
+          "userName": {
+            "type": "string",
+            "description": "Unique identifier for the user, mapped to the Bandwidth UserId. Always an email address for SSO (SCIM-provisioned) users.",
+            "example": "bjensen@bandwidth.com",
+            "x-client-original-format": "email"
+          },
+          "name": {
+            "$ref": "#/components/schemas/ScimName"
+          },
+          "emails": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/ScimEmail"
+            }
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Maps to Bandwidth Status. false = DEPROVISIONED (soft delete).",
+            "example": true
+          },
+          "externalId": {
+            "$ref": "#/components/schemas/ScimExternalId"
+          },
+          "phoneNumbers": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/ScimPhoneNumber"
+            }
+          }
+        }
+      },
+      "ScimListResponse": {
+        "required": [
+          "schemas",
+          "totalResults",
+          "Resources",
+          "startIndex",
+          "itemsPerPage"
+        ],
+        "type": "object",
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+            ]
+          },
+          "totalResults": {
+            "type": "integer",
+            "description": "Total number of matching results.",
+            "example": 1
+          },
+          "itemsPerPage": {
+            "type": "integer",
+            "description": "Number of results returned in this response.",
+            "example": 1
+          },
+          "startIndex": {
+            "type": "integer",
+            "description": "1-based index of the first result returned.",
+            "example": 1
+          },
+          "Resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimUser"
+            }
+          }
+        }
+      },
+      "ScimUser": {
+        "required": [
+          "schemas",
+          "id",
+          "meta",
+          "userName",
+          "name",
+          "emails",
+          "active"
+        ],
+        "type": "object",
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "urn:ietf:params:scim:schemas:core:2.0:User"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "description": "Bandwidth-generated unique identifier for the user. Never supplied by the SCIM client.",
+            "example": "2819c223-7f76-453a-919d-413861904646"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ScimUserMeta"
+          },
+          "externalId": {
+            "$ref": "#/components/schemas/ScimExternalId"
+          },
+          "userName": {
+            "type": "string",
+            "description": "Unique identifier for the user, mapped to the Bandwidth UserId. Always an email address for SSO (SCIM-provisioned) users.",
+            "example": "bjensen@bandwidth.com",
+            "x-client-original-format": "email"
+          },
+          "name": {
+            "$ref": "#/components/schemas/ScimName"
+          },
+          "emails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimEmail"
+            }
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Maps to Bandwidth Status. false = DEPROVISIONED (soft delete).",
+            "example": true
+          },
+          "phoneNumbers": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/ScimPhoneNumber"
+            }
+          },
+          "groups": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/ScimUserGroup"
+            },
+            "description": "Read-only projection of the user's roles as Group memberships. Ignored, not rejected, if present in a\nPUT or PATCH body; modify membership via the /Groups endpoints."
+          }
+        }
+      },
+      "ScimGroupMember": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The id of the member User resource.",
+            "example": "2819c223-7f76-453a-919d-413861904646"
+          },
+          "display": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Human-readable identifier of the member, the user's userName.",
+            "example": "bjensen@bandwidth.com"
+          },
+          "type": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Type of the member resource. Always \"User\" — nested groups are not supported.",
+            "example": "User"
+          }
+        },
+        "description": "A member of a Group. The RFC 7643 \"$ref\" sub-attribute is not supported and is never returned."
+      },
+      "ScimUserGroup": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The id of the Group, the identifier of the Bandwidth role.",
+            "example": "httpVoice"
+          },
+          "display": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Identifier of the Group (the Bandwidth role id). Role names are not resolved on User reads, so this\nequals value.",
+            "example": "httpVoice"
+          },
+          "type": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "How the user is a member of the group. Always \"direct\" — membership is direct role assignment.",
+            "example": "direct"
+          }
+        },
+        "description": "A Group membership entry on a User. The RFC 7643 \"$ref\" sub-attribute is not supported and is never\nreturned. Every role the user holds, including basicAccess, is projected here."
+      },
+      "ScimGroup": {
+        "required": [
+          "schemas",
+          "id",
+          "displayName",
+          "meta"
+        ],
+        "type": "object",
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "urn:ietf:params:scim:schemas:core:2.0:Group"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "description": "Identifier of the Bandwidth role this group projects. Never supplied by the SCIM client.",
+            "example": "httpVoice"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "Human-readable name of the group. Maps to the Bandwidth role name; not modifiable through SCIM.",
+            "example": "HTTP Voice"
+          },
+          "members": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/ScimGroupMember"
+            },
+            "description": "Users currently holding the projected role. Its returned characteristic is \"request\": on a query\n(GET) it is returned only when requested via the attributes query parameter, and in the response to\na PUT or PATCH that specifies it, it is always returned (RFC 7643 section 7). Membership is managed\nvia PATCH or PUT."
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ScimGroupMeta"
+          }
+        }
+      },
+      "ScimCreateGroupRequest": {
+        "required": [
+          "schemas",
+          "displayName"
+        ],
+        "type": "object",
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "urn:ietf:params:scim:schemas:core:2.0:Group"
+            ]
+          },
+          "displayName": {
+            "type": "string",
+            "description": "Human-readable name of the group. Maps to the Bandwidth role name; not modifiable through SCIM.",
+            "example": "HTTP Voice"
+          },
+          "members": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/ScimGroupMember"
+            },
+            "description": "Initial member list for the group. If omitted, the group is created with no members."
+          }
+        }
+      },
+      "ScimPutGroupRequest": {
+        "required": [
+          "schemas",
+          "displayName"
+        ],
+        "type": "object",
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "urn:ietf:params:scim:schemas:core:2.0:Group"
+            ]
+          },
+          "id": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "May echo the group's current id unchanged; any other value is rejected with a 400 \"mutability\" error.",
+            "example": "httpVoice"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "Human-readable name of the group. Maps to the Bandwidth role name; not modifiable through SCIM.",
+            "example": "HTTP Voice"
+          },
+          "members": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/ScimGroupMember"
+            },
+            "description": "Full replacement member list. If omitted, the membership is preserved unchanged."
+          }
+        }
+      },
+      "ScimPatchGroupRequest": {
+        "required": [
+          "schemas",
+          "Operations"
+        ],
+        "type": "object",
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "urn:ietf:params:scim:api:messages:2.0:PatchOp"
+            ]
+          },
+          "Operations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimPatchGroupRequestOperationsItem"
+            },
+            "description": "List of patch operations to apply to the Group resource."
+          }
+        }
+      },
+      "ScimGroupListResponse": {
+        "required": [
+          "schemas",
+          "totalResults",
+          "Resources",
+          "startIndex",
+          "itemsPerPage"
+        ],
+        "type": "object",
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+            ]
+          },
+          "totalResults": {
+            "type": "integer",
+            "description": "Total number of matching results.",
+            "example": 1
+          },
+          "itemsPerPage": {
+            "type": "integer",
+            "description": "Number of results returned in this response.",
+            "example": 1
+          },
+          "startIndex": {
+            "type": "integer",
+            "description": "1-based index of the first result returned.",
+            "example": 1
+          },
+          "Resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimGroup"
+            }
+          }
+        }
+      },
+      "ScimBulkMethod": {
+        "enum": [
+          "POST",
+          "PUT",
+          "PATCH",
+          "DELETE"
+        ],
+        "type": "string",
+        "description": "HTTP method for a bulk operation.",
+        "example": "POST",
+        "x-ms-enum": {
+          "name": "ScimBulkMethod",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "POST",
+              "name": "Post"
+            },
+            {
+              "value": "PUT",
+              "name": "Put"
+            },
+            {
+              "value": "PATCH",
+              "name": "Patch"
+            },
+            {
+              "value": "DELETE",
+              "name": "Delete"
+            }
+          ]
+        }
+      },
+      "ScimBulkOperation": {
+        "required": [
+          "method",
+          "path"
+        ],
+        "type": "object",
+        "properties": {
+          "method": {
+            "$ref": "#/components/schemas/ScimBulkMethod"
+          },
+          "bulkId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Client-defined temporary identifier, required for POST operations. Later operations in the same\nrequest may reference the new resource as \"bulkId:<value>\".",
+            "example": "qwerty"
+          },
+          "path": {
+            "type": "string",
+            "description": "Resource path the operation targets, relative to the base URL (e.g. /Users or /Users/{userId}).",
+            "example": "/Users"
+          },
+          "data": {
+            "description": "The operation's payload, matching the body the targeted endpoint accepts. Omitted for DELETE."
+          },
+          "version": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Resource version (ETag). ETags are not supported by this service and the value is ignored.",
+            "example": "W/\"e180ee84f0671b1\""
+          }
+        }
+      },
+      "ScimBulkRequest": {
+        "required": [
+          "schemas",
+          "Operations"
+        ],
+        "type": "object",
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "urn:ietf:params:scim:api:messages:2.0:BulkRequest"
+            ]
+          },
+          "failOnErrors": {
+            "type": [
+              "null",
+              "integer"
+            ],
+            "description": "Number of failures after which processing stops and the results so far are returned.",
+            "example": 1
+          },
+          "Operations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimBulkOperation"
+            },
+            "description": "Bulk operations to perform, processed in order."
+          }
+        }
+      },
+      "ScimBulkResponseOperation": {
+        "required": [
+          "method",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "URI of the resource the operation targeted or created.",
+            "example": "https://api.bandwidth.com/api/scim/v2/Users/2819c223-7f76-453a-919d-413861904646"
+          },
+          "method": {
+            "$ref": "#/components/schemas/ScimBulkMethod"
+          },
+          "bulkId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Echo of the client-defined bulkId for POST operations.",
+            "example": "qwerty"
+          },
+          "status": {
+            "type": "string",
+            "description": "HTTP status code of the individual operation, expressed as a JSON string.",
+            "example": "201"
+          },
+          "response": {
+            "description": "The operation's error body when it failed. Omitted for successful operations."
+          }
+        }
+      },
+      "ScimBulkResponse": {
+        "required": [
+          "schemas",
+          "Operations"
+        ],
+        "type": "object",
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "urn:ietf:params:scim:api:messages:2.0:BulkResponse"
+            ]
+          },
+          "Operations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimBulkResponseOperation"
+            },
+            "description": "Results of each bulk operation, in request order."
+          }
+        }
+      },
+      "ServiceProviderConfigResponse": {
+        "required": [
+          "schemas",
+          "patch",
+          "bulk",
+          "filter",
+          "changePassword",
+          "sort",
+          "etag",
+          "authenticationSchemes",
+          "meta"
+        ],
+        "type": "object",
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "urn:ietf:params:scim:schemas:core:2.0:ServiceProviderConfig"
+            ]
+          },
+          "patch": {
+            "$ref": "#/components/schemas/ServiceProviderConfigResponsePatch"
+          },
+          "bulk": {
+            "$ref": "#/components/schemas/ServiceProviderConfigResponseBulk"
+          },
+          "filter": {
+            "$ref": "#/components/schemas/ServiceProviderConfigResponseFilter"
+          },
+          "changePassword": {
+            "$ref": "#/components/schemas/ServiceProviderConfigResponseChangePassword"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/ServiceProviderConfigResponseSort"
+          },
+          "etag": {
+            "$ref": "#/components/schemas/ServiceProviderConfigResponseEtag"
+          },
+          "authenticationSchemes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServiceProviderConfigResponseAuthenticationSchemesItem"
+            }
+          },
+          "documentationUri": {
+            "type": "string",
+            "description": "URI pointing to general usage documentation for this SCIM service.",
+            "example": "https://dev.bandwidth.com/docs/account/users/scim"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ServiceProviderConfigResponseMeta"
+          }
+        }
+      },
+      "ResourceTypesResponse": {
+        "required": [
+          "schemas",
+          "totalResults",
+          "Resources"
+        ],
+        "type": "object",
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+            ]
+          },
+          "totalResults": {
+            "type": "integer",
+            "description": "The total number of resources being displayed",
+            "example": 2
+          },
+          "startIndex": {
+            "type": [
+              "null",
+              "integer"
+            ],
+            "description": "Starting index for listing resources",
+            "example": 1
+          },
+          "itemsPerPage": {
+            "type": [
+              "null",
+              "integer"
+            ],
+            "description": "Number of items displayed per page",
+            "example": 2
+          },
+          "Resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimResourceType"
+            }
+          }
+        }
+      },
+      "ScimResourceType": {
+        "required": [
+          "schemas",
+          "id",
+          "name",
+          "endpoint",
+          "schema",
+          "meta"
+        ],
+        "type": "object",
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Schema URI identifying this as a ResourceType resource.",
+            "example": [
+              "urn:ietf:params:scim:schemas:core:2.0:ResourceType"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "description": "Server-unique identifier for the resource type. Typically the same value as name.",
+            "example": "User"
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable name of the resource type, as referenced by meta.resourceType on instances.",
+            "example": "User"
+          },
+          "endpoint": {
+            "type": "string",
+            "description": "HTTP-addressable endpoint relative to the base URL.",
+            "example": "/Users"
+          },
+          "description": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Human-readable description of the resource type.",
+            "example": "Bandwidth user account managed via SCIM."
+          },
+          "schema": {
+            "type": "string",
+            "description": "URI of the primary schema for this resource type.",
+            "example": "urn:ietf:params:scim:schemas:core:2.0:User"
+          },
+          "schemaExtensions": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/ScimResourceTypeSchemaExtensionsItem"
+            },
+            "description": "Schema extensions for this resource type. Empty — enterprise extensions are out of scope.",
+            "example": [ ]
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ScimResourceTypeMeta"
+          }
+        }
+      },
+      "SchemasResponse": {
+        "required": [
+          "schemas",
+          "totalResults",
+          "Resources"
+        ],
+        "type": "object",
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+            ]
+          },
+          "totalResults": {
+            "type": "integer",
+            "description": "Total number of schema definitions returned.",
+            "example": 2
+          },
+          "startIndex": {
+            "type": [
+              "null",
+              "integer"
+            ],
+            "description": "1-based index of the first result.",
+            "example": 1
+          },
+          "itemsPerPage": {
+            "type": [
+              "null",
+              "integer"
+            ],
+            "description": "Number of schemas returned in this response.",
+            "example": 2
+          },
+          "Resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimSchema"
+            },
+            "description": "Array of Schema resource definitions."
+          }
+        }
+      },
+      "ScimSchemaSubAttribute": {
+        "required": [
+          "name",
+          "type",
+          "multiValued",
+          "required",
+          "mutability",
+          "returned",
+          "uniqueness"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the sub-attribute.",
+            "example": "givenName"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ScimAttributeType"
+          },
+          "multiValued": {
+            "type": "boolean",
+            "description": "Whether the sub-attribute may have multiple values.",
+            "example": false
+          },
+          "description": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Human-readable description of the sub-attribute.",
+            "example": "The given name of the user."
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether the sub-attribute is required.",
+            "example": false
+          },
+          "caseExact": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Whether the sub-attribute value is case sensitive.",
+            "example": false
+          },
+          "mutability": {
+            "$ref": "#/components/schemas/ScimAttributeMutability"
+          },
+          "returned": {
+            "$ref": "#/components/schemas/ScimAttributeReturned"
+          },
+          "uniqueness": {
+            "$ref": "#/components/schemas/ScimAttributeUniqueness"
+          },
+          "canonicalValues": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "Collection of suggested canonical values for the sub-attribute."
+          }
+        },
+        "description": "Sub-attribute definition for a complex attribute (RFC 7643 §7)."
+      },
+      "ScimSchemaAttribute": {
+        "required": [
+          "name",
+          "type",
+          "multiValued",
+          "required",
+          "mutability",
+          "returned",
+          "uniqueness"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the attribute.",
+            "example": "userName"
+          },
+          "description": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Human-readable description of the attribute.",
+            "example": "Unique identifier for the user."
+          },
+          "type": {
+            "$ref": "#/components/schemas/ScimAttributeType"
+          },
+          "multiValued": {
+            "type": "boolean",
+            "description": "Whether the attribute may have multiple values.",
+            "example": false
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether the attribute is required.",
+            "example": false
+          },
+          "caseExact": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Whether the attribute value is case sensitive.",
+            "example": false
+          },
+          "mutability": {
+            "$ref": "#/components/schemas/ScimAttributeMutability"
+          },
+          "returned": {
+            "$ref": "#/components/schemas/ScimAttributeReturned"
+          },
+          "uniqueness": {
+            "$ref": "#/components/schemas/ScimAttributeUniqueness"
+          },
+          "canonicalValues": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "Collection of suggested canonical values for the attribute."
+          },
+          "subAttributes": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/ScimSchemaSubAttribute"
+            },
+            "description": "Sub-attributes for complex attribute types (RFC 7643 §7)."
+          }
+        },
+        "description": "Attribute definition for a SCIM schema (RFC 7643 §7)."
+      },
+      "ScimSchema": {
+        "required": [
+          "schemas",
+          "id",
+          "name",
+          "attributes"
+        ],
+        "type": "object",
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Schema URI identifying this as a Schema resource.",
+            "example": [
+              "urn:ietf:params:scim:schemas:core:2.0:Schema"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique URI identifying the schema.",
+            "example": "urn:ietf:params:scim:schemas:core:2.0:User"
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable name of the schema.",
+            "example": "User"
+          },
+          "description": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Human-readable description of the schema.",
+            "example": "User account resource."
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimSchemaAttribute"
+            },
+            "description": "Attribute definitions for this schema."
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ScimSchemaMeta"
+          }
+        }
+      },
+      "ScimError": {
+        "required": [
+          "schemas",
+          "status",
+          "detail"
+        ],
+        "type": "object",
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "urn:ietf:params:scim:api:messages:2.0:Error"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "description": "HTTP status code expressed as a JSON string, per RFC 7644 §3.12.",
+            "example": "404"
+          },
+          "scimType": {
+            "$ref": "#/components/schemas/ScimErrorType"
+          },
+          "detail": {
+            "type": "string",
+            "description": "Human-readable description of the error.",
+            "example": "User not found"
+          }
+        }
+      },
+      "ScimPatchAddReplaceOp": {
+        "enum": [
+          "add",
+          "replace",
+          "ADD",
+          "REPLACE"
+        ],
+        "type": "string",
+        "description": "PATCH operations that require a value, values are case insensitive.",
+        "example": "add",
+        "x-ms-enum": {
+          "name": "ScimPatchAddReplaceOp",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "add",
+              "name": "Add"
+            },
+            {
+              "value": "replace",
+              "name": "Replace"
+            },
+            {
+              "value": "ADD",
+              "name": "Add1"
+            },
+            {
+              "value": "REPLACE",
+              "name": "Replace1"
+            }
+          ]
+        }
+      },
+      "ScimPatchRemoveOp": {
+        "enum": [
+          "remove",
+          "REMOVE"
+        ],
+        "type": "string",
+        "description": "PATCH operation that removes an attribute value, values are case insensitive.",
+        "example": "remove",
+        "x-ms-enum": {
+          "name": "ScimPatchRemoveOp",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "remove",
+              "name": "Remove"
+            },
+            {
+              "value": "REMOVE",
+              "name": "Remove1"
+            }
+          ]
+        }
+      },
+      "ScimAttributeType": {
+        "enum": [
+          "string",
+          "boolean",
+          "decimal",
+          "integer",
+          "dateTime",
+          "reference",
+          "complex"
+        ],
+        "type": "string",
+        "description": "Data type of the attribute. Values per RFC 7643.",
+        "example": "string",
+        "x-ms-enum": {
+          "name": "ScimAttributeType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "string",
+              "name": "StringValue"
+            },
+            {
+              "value": "boolean",
+              "name": "Boolean"
+            },
+            {
+              "value": "decimal",
+              "name": "DecimalValue"
+            },
+            {
+              "value": "integer",
+              "name": "Integer"
+            },
+            {
+              "value": "dateTime",
+              "name": "DateTime"
+            },
+            {
+              "value": "reference",
+              "name": "Reference"
+            },
+            {
+              "value": "complex",
+              "name": "Complex"
+            }
+          ]
+        }
+      },
+      "ScimAttributeMutability": {
+        "enum": [
+          "readOnly",
+          "readWrite",
+          "immutable",
+          "writeOnly"
+        ],
+        "type": "string",
+        "description": "The mutability of the attribute. Values per RFC 7643.",
+        "example": "readWrite",
+        "x-ms-enum": {
+          "name": "ScimAttributeMutability",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "readOnly",
+              "name": "ReadOnlyValue"
+            },
+            {
+              "value": "readWrite",
+              "name": "ReadWrite"
+            },
+            {
+              "value": "immutable",
+              "name": "Immutable"
+            },
+            {
+              "value": "writeOnly",
+              "name": "WriteOnly"
+            }
+          ]
+        }
+      },
+      "ScimAttributeReturned": {
+        "enum": [
+          "always",
+          "never",
+          "default",
+          "request"
+        ],
+        "type": "string",
+        "description": "When the attribute is returned in a response. Values per RFC 7643.",
+        "example": "default",
+        "x-ms-enum": {
+          "name": "ScimAttributeReturned",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "always",
+              "name": "Always"
+            },
+            {
+              "value": "never",
+              "name": "Never"
+            },
+            {
+              "value": "default",
+              "name": "DefaultValue"
+            },
+            {
+              "value": "request",
+              "name": "Request"
+            }
+          ]
+        }
+      },
+      "ScimAttributeUniqueness": {
+        "enum": [
+          "none",
+          "server",
+          "global"
+        ],
+        "type": "string",
+        "description": "How the service provider enforces uniqueness of attribute values. Values per RFC 7643.",
+        "example": "none",
+        "x-ms-enum": {
+          "name": "ScimAttributeUniqueness",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "none",
+              "name": "None"
+            },
+            {
+              "value": "server",
+              "name": "Server"
+            },
+            {
+              "value": "global",
+              "name": "Global"
+            }
+          ]
+        }
+      },
+      "ScimErrorType": {
+        "enum": [
+          "invalidFilter",
+          "tooMany",
+          "uniqueness",
+          "mutability",
+          "invalidSyntax",
+          "invalidPath",
+          "noTarget",
+          "invalidValue",
+          "invalidVers",
+          "sensitive"
+        ],
+        "type": [
+          "null",
+          "string"
+        ],
+        "description": "SCIM-defined error type for 400 responses.",
+        "x-ms-enum": {
+          "name": "ScimErrorType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "invalidFilter",
+              "name": "InvalidFilter"
+            },
+            {
+              "value": "tooMany",
+              "name": "TooMany"
+            },
+            {
+              "value": "uniqueness",
+              "name": "Uniqueness"
+            },
+            {
+              "value": "mutability",
+              "name": "Mutability"
+            },
+            {
+              "value": "invalidSyntax",
+              "name": "InvalidSyntax"
+            },
+            {
+              "value": "invalidPath",
+              "name": "InvalidPath"
+            },
+            {
+              "value": "noTarget",
+              "name": "NoTarget"
+            },
+            {
+              "value": "invalidValue",
+              "name": "InvalidValue"
+            },
+            {
+              "value": "invalidVers",
+              "name": "InvalidVers"
+            },
+            {
+              "value": "sensitive",
+              "name": "Sensitive"
+            }
+          ]
+        }
+      },
+      "ScimPatchUserRequestOperationsItem": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ScimPatchUserRequestOperationsItemOneOf1"
+          },
+          {
+            "$ref": "#/components/schemas/ScimPatchUserRequestOperationsItemOneOf2"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "op",
+          "mapping": {
+            "add": "#/components/schemas/ScimPatchUserRequestOperationsItemOneOf1",
+            "replace": "#/components/schemas/ScimPatchUserRequestOperationsItemOneOf1",
+            "ADD": "#/components/schemas/ScimPatchUserRequestOperationsItemOneOf1",
+            "REPLACE": "#/components/schemas/ScimPatchUserRequestOperationsItemOneOf1",
+            "remove": "#/components/schemas/ScimPatchUserRequestOperationsItemOneOf2",
+            "REMOVE": "#/components/schemas/ScimPatchUserRequestOperationsItemOneOf2",
+            "ScimPatchUserRequestOperationsItemOneOf1": "#/components/schemas/ScimPatchUserRequestOperationsItemOneOf1",
+            "ScimPatchUserRequestOperationsItemOneOf2": "#/components/schemas/ScimPatchUserRequestOperationsItemOneOf2"
+          }
+        }
+      },
+      "ScimPatchGroupRequestOperationsItem": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ScimPatchGroupRequestOperationsItemOneOf1"
+          },
+          {
+            "$ref": "#/components/schemas/ScimPatchGroupRequestOperationsItemOneOf2"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "op",
+          "mapping": {
+            "add": "#/components/schemas/ScimPatchGroupRequestOperationsItemOneOf1",
+            "replace": "#/components/schemas/ScimPatchGroupRequestOperationsItemOneOf1",
+            "ADD": "#/components/schemas/ScimPatchGroupRequestOperationsItemOneOf1",
+            "REPLACE": "#/components/schemas/ScimPatchGroupRequestOperationsItemOneOf1",
+            "remove": "#/components/schemas/ScimPatchGroupRequestOperationsItemOneOf2",
+            "REMOVE": "#/components/schemas/ScimPatchGroupRequestOperationsItemOneOf2",
+            "ScimPatchGroupRequestOperationsItemOneOf1": "#/components/schemas/ScimPatchGroupRequestOperationsItemOneOf1",
+            "ScimPatchGroupRequestOperationsItemOneOf2": "#/components/schemas/ScimPatchGroupRequestOperationsItemOneOf2"
+          }
+        }
+      },
+      "ScimPatchUserRequestOperationsItemOneOf1": {
+        "required": [
+          "op",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "op": {
+            "$ref": "#/components/schemas/ScimPatchAddReplaceOp"
+          },
+          "path": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "example": "active"
+          },
+          "value": { }
+        },
+        "description": "Add or replace operation — value is required."
+      },
+      "ScimPatchUserRequestOperationsItemOneOf2": {
+        "required": [
+          "op",
+          "path"
+        ],
+        "type": "object",
+        "properties": {
+          "op": {
+            "$ref": "#/components/schemas/ScimPatchRemoveOp"
+          },
+          "path": {
+            "type": "string",
+            "description": "Required for remove operations; if omitted, returns a 400 with scimType \"noTarget\" (RFC 7644 §3.5.2.2).",
+            "example": "active"
+          }
+        },
+        "description": "Remove operation — value must be omitted."
+      },
+      "ScimPatchGroupRequestOperationsItemOneOf1": {
+        "required": [
+          "op",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "op": {
+            "$ref": "#/components/schemas/ScimPatchAddReplaceOp"
+          },
+          "path": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "example": "members"
+          },
+          "value": { }
+        },
+        "description": "Add or replace operation — value is required."
+      },
+      "ScimPatchGroupRequestOperationsItemOneOf2": {
+        "required": [
+          "op",
+          "path"
+        ],
+        "type": "object",
+        "properties": {
+          "op": {
+            "$ref": "#/components/schemas/ScimPatchRemoveOp"
+          },
+          "path": {
+            "type": "string",
+            "description": "Required for remove operations; if omitted, returns a 400 with scimType \"noTarget\" (RFC 7644 §3.5.2.2).",
+            "example": "members"
+          },
+          "value": { }
+        },
+        "description": "Remove operation — removes the members in value, or all members if value is omitted."
+      },
+      "ScimUserMeta": {
+        "required": [
+          "resourceType",
+          "location"
+        ],
+        "type": "object",
+        "properties": {
+          "resourceType": {
+            "type": "string",
+            "example": "User"
+          },
+          "created": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time",
+            "example": "2026-01-01T12:00:00Z"
+          },
+          "lastModified": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time",
+            "example": "2026-01-01T12:00:00Z"
+          },
+          "location": {
+            "type": "string",
+            "description": "URI of the user resource.",
+            "example": "https://api.bandwidth.com/api/scim/v2/Users/2819c223-7f76-453a-919d-413861904646"
+          }
+        }
+      },
+      "ScimGroupMeta": {
+        "required": [
+          "resourceType",
+          "location"
+        ],
+        "type": "object",
+        "properties": {
+          "resourceType": {
+            "type": "string",
+            "example": "Group"
+          },
+          "created": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time",
+            "example": "2026-01-01T12:00:00Z"
+          },
+          "lastModified": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time",
+            "example": "2026-01-01T12:00:00Z"
+          },
+          "location": {
+            "type": "string",
+            "description": "URI of the group resource.",
+            "example": "https://api.bandwidth.com/api/scim/v2/Groups/httpVoice"
+          }
+        }
+      },
+      "ServiceProviderConfigResponsePatch": {
+        "required": [
+          "supported"
+        ],
+        "type": "object",
+        "properties": {
+          "supported": {
+            "type": "boolean",
+            "description": "Indicates whether PATCH operations are supported",
+            "example": true
+          }
+        }
+      },
+      "ServiceProviderConfigResponseBulk": {
+        "required": [
+          "supported",
+          "maxOperations",
+          "maxPayloadSize"
+        ],
+        "type": "object",
+        "properties": {
+          "supported": {
+            "type": "boolean",
+            "description": "Indicates whether BULK operations are supported",
+            "example": false
+          },
+          "maxOperations": {
+            "type": "integer",
+            "description": "Max number of supported operations",
+            "example": 0
+          },
+          "maxPayloadSize": {
+            "type": "integer",
+            "description": "Max size of the JSON payload",
+            "example": 0
+          }
+        }
+      },
+      "ServiceProviderConfigResponseFilter": {
+        "required": [
+          "supported",
+          "maxResults"
+        ],
+        "type": "object",
+        "properties": {
+          "supported": {
+            "type": "boolean",
+            "description": "Indicates whether FILTER operations are supported",
+            "example": true
+          },
+          "maxResults": {
+            "type": "integer",
+            "description": "Maximum number of results that can be displayed when filtering",
+            "example": 100
+          }
+        }
+      },
+      "ServiceProviderConfigResponseChangePassword": {
+        "required": [
+          "supported"
+        ],
+        "type": "object",
+        "properties": {
+          "supported": {
+            "type": "boolean",
+            "description": "Indicates whether the change password operation is supported",
+            "example": false
+          }
+        }
+      },
+      "ServiceProviderConfigResponseSort": {
+        "required": [
+          "supported"
+        ],
+        "type": "object",
+        "properties": {
+          "supported": {
+            "type": "boolean",
+            "description": "Indicates whether the sort operation is supported",
+            "example": false
+          }
+        }
+      },
+      "ServiceProviderConfigResponseEtag": {
+        "required": [
+          "supported"
+        ],
+        "type": "object",
+        "properties": {
+          "supported": {
+            "type": "boolean",
+            "description": "Indicates whether etags are supported",
+            "example": false
+          }
+        }
+      },
+      "ServiceProviderConfigResponseAuthenticationSchemesItem": {
+        "required": [
+          "type",
+          "name",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of authentication being used",
+            "example": "oauthbearertoken"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the authentication being used",
+            "example": "OAuth Bearer Token"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the authentication schemes",
+            "example": "Authentication scheme using the OAuth Bearer Token Standard"
+          },
+          "specUri": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "URI pointing to the authentication scheme's specification.",
+            "example": "https://www.rfc-editor.org/info/rfc6750"
+          },
+          "documentationUri": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "URI pointing to usage documentation for the authentication scheme.",
+            "example": "https://dev.bandwidth.com/docs/account/users/scim"
+          },
+          "primary": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Indicates whether this is the preferred authentication scheme.",
+            "example": true
+          }
+        }
+      },
+      "ServiceProviderConfigResponseMeta": {
+        "required": [
+          "location",
+          "resourceType",
+          "created",
+          "lastModified"
+        ],
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "description": "Location of the ServiceProviderConfig",
+            "example": "https://example.com/v2/ServiceProviderConfig"
+          },
+          "resourceType": {
+            "type": "string",
+            "description": "Type of resource being fetched",
+            "example": "ServiceProviderConfig"
+          },
+          "created": {
+            "type": "string",
+            "description": "When the ServiceProviderConfig was created",
+            "format": "date-time",
+            "example": "2026-06-01T00:00:00Z"
+          },
+          "lastModified": {
+            "type": "string",
+            "description": "When the ServiceProviderConfig was last modified",
+            "format": "date-time",
+            "example": "2026-06-01T00:00:00Z"
+          }
+        }
+      },
+      "ScimResourceTypeSchemaExtensionsItem": {
+        "required": [
+          "schema",
+          "required"
+        ],
+        "type": "object",
+        "properties": {
+          "schema": {
+            "type": "string",
+            "description": "URI of the schema extension."
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Indicates whether the schema extension is required for this resource type."
+          }
+        }
+      },
+      "ScimResourceTypeMeta": {
+        "required": [
+          "location",
+          "resourceType"
+        ],
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "description": "URI of this ResourceType resource.",
+            "example": "https://api.bandwidth.com/api/scim/v2/ResourceTypes/User"
+          },
+          "resourceType": {
+            "type": "string",
+            "description": "Always \"ResourceType\" for entries in this response.",
+            "example": "ResourceType"
+          },
+          "created": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "DateTime the resource type definition was created.",
+            "format": "date-time",
+            "example": "2026-06-01T00:00:00Z"
+          },
+          "lastModified": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "DateTime the resource type definition was last modified.",
+            "format": "date-time",
+            "example": "2026-06-01T00:00:00Z"
+          }
+        }
+      },
+      "ScimSchemaMeta": {
+        "required": [
+          "location",
+          "resourceType"
+        ],
+        "type": "object",
+        "properties": {
+          "resourceType": {
+            "type": "string",
+            "example": "Schema"
+          },
+          "location": {
+            "type": "string",
+            "description": "URI of this Schema resource.",
+            "example": "https://api.bandwidth.com/api/scim/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:User"
+          },
+          "created": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time",
+            "example": "2026-06-01T00:00:00Z"
+          },
+          "lastModified": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time",
+            "example": "2026-06-01T00:00:00Z"
+          }
+        }
+      },
       "AdminFeedbackSchema": {
         "type": "object",
         "properties": {
@@ -163742,6 +166767,343 @@
           }
         }
       },
+      "scimUserResponse": {
+        "description": "OK",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimUser"
+            }
+          }
+        }
+      },
+      "scimCreatedResponse": {
+        "description": "Created",
+        "headers": {
+          "Location": {
+            "description": "URI of the newly created user resource.",
+            "schema": {
+              "type": "string",
+              "example": "https://api.bandwidth.com/api/scim/v2/Users/2819c223-7f76-453a-919d-413861904646"
+            }
+          }
+        },
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimUser"
+            }
+          }
+        }
+      },
+      "scimListResponse": {
+        "description": "OK",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimListResponse"
+            }
+          }
+        }
+      },
+      "scimGroupCreatedResponse": {
+        "description": "Created",
+        "headers": {
+          "Location": {
+            "description": "URI of the newly created group resource.",
+            "schema": {
+              "type": "string",
+              "example": "https://api.bandwidth.com/api/scim/v2/Groups/httpVoice"
+            }
+          }
+        },
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimGroup"
+            }
+          }
+        }
+      },
+      "scimGroupResponse": {
+        "description": "OK",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimGroup"
+            }
+          }
+        }
+      },
+      "scimGroupListResponse": {
+        "description": "OK",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimGroupListResponse"
+            }
+          }
+        }
+      },
+      "scimBulkResponse": {
+        "description": "OK",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimBulkResponse"
+            }
+          }
+        }
+      },
+      "serviceProviderConfigResponse": {
+        "description": "OK",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ServiceProviderConfigResponse"
+            }
+          }
+        }
+      },
+      "resourceTypesResponse": {
+        "description": "OK",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ResourceTypesResponse"
+            },
+            "examples": {
+              "resourceTypes": {
+                "$ref": "#/components/examples/scimResourceTypesListExample"
+              }
+            }
+          }
+        }
+      },
+      "getResourceTypesResponse": {
+        "description": "OK",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimResourceType"
+            },
+            "examples": {
+              "user": {
+                "$ref": "#/components/examples/scimUserResourceTypeExample"
+              },
+              "group": {
+                "$ref": "#/components/examples/scimGroupResourceTypeExample"
+              }
+            }
+          }
+        }
+      },
+      "schemasResponse": {
+        "description": "OK",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/SchemasResponse"
+            },
+            "examples": {
+              "schemas": {
+                "$ref": "#/components/examples/scimSchemasListExample"
+              }
+            }
+          }
+        }
+      },
+      "getSchemaResponse": {
+        "description": "OK",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimSchema"
+            },
+            "examples": {
+              "userSchema": {
+                "$ref": "#/components/examples/scimUserSchemaExample"
+              },
+              "groupSchema": {
+                "$ref": "#/components/examples/scimGroupSchemaExample"
+              }
+            }
+          }
+        }
+      },
+      "scimNoContentResponse": {
+        "description": "No Content"
+      },
+      "scimBadRequestResponse": {
+        "description": "Bad Request",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimError"
+            },
+            "examples": {
+              "badRequest": {
+                "$ref": "#/components/examples/scimBadRequestExample"
+              },
+              "scimProvisioningDisabled": {
+                "$ref": "#/components/examples/scimProvisioningDisabledExample"
+              }
+            }
+          }
+        }
+      },
+      "scimUnauthorizedResponse": {
+        "description": "Unauthorized",
+        "headers": {
+          "WWW-Authenticate": {
+            "description": "Indicates the authentication scheme required to access the resource, per RFC 7235 §4.1.",
+            "schema": {
+              "type": "string",
+              "example": "Bearer realm=\"https://api.bandwidth.com/api/scim/v2\", error=\"invalid_token\""
+            }
+          }
+        },
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimError"
+            },
+            "examples": {
+              "unauthorized": {
+                "$ref": "#/components/examples/scimUnauthorizedExample"
+              }
+            }
+          }
+        }
+      },
+      "scimForbiddenResponse": {
+        "description": "Forbidden",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimError"
+            },
+            "examples": {
+              "forbidden": {
+                "$ref": "#/components/examples/scimForbiddenExample"
+              }
+            }
+          }
+        }
+      },
+      "scimNotFoundResponse": {
+        "description": "Not Found",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimError"
+            },
+            "examples": {
+              "notFound": {
+                "$ref": "#/components/examples/scimNotFoundExample"
+              }
+            }
+          }
+        }
+      },
+      "scimConflictResponse": {
+        "description": "Conflict",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimError"
+            },
+            "examples": {
+              "conflict": {
+                "$ref": "#/components/examples/scimConflictExample"
+              }
+            }
+          }
+        }
+      },
+      "scimMethodNotAllowedResponse": {
+        "description": "Method Not Allowed",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimError"
+            },
+            "examples": {
+              "methodNotAllowed": {
+                "$ref": "#/components/examples/scimMethodNotAllowedExample"
+              }
+            }
+          }
+        }
+      },
+      "scimPayloadTooLargeResponse": {
+        "description": "Payload Too Large",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimError"
+            },
+            "examples": {
+              "payloadTooLarge": {
+                "$ref": "#/components/examples/scimPayloadTooLargeExample"
+              }
+            }
+          }
+        }
+      },
+      "scimTooManyRequestsResponse": {
+        "description": "Too Many Requests. Retryable; returned when the upstream identity store rate-limits the request.",
+        "headers": {
+          "Retry-After": {
+            "description": "The number of seconds to wait before retrying the request.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        },
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimError"
+            },
+            "examples": {
+              "tooManyRequests": {
+                "$ref": "#/components/examples/scimTooManyRequestsExample"
+              }
+            }
+          }
+        }
+      },
+      "scimInternalServerErrorResponse": {
+        "description": "Internal Server Error. Retryable; also returned for upstream failures the client cannot correct, such as a Group operation on an account too large to enumerate.",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimError"
+            },
+            "examples": {
+              "internalServerError": {
+                "$ref": "#/components/examples/scimInternalServerErrorExample"
+              }
+            }
+          }
+        }
+      },
+      "scimNotImplementedResponse": {
+        "description": "Not Implemented",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimError"
+            },
+            "examples": {
+              "notImplemented": {
+                "$ref": "#/components/examples/scimNotImplementedExample"
+              }
+            }
+          }
+        }
+      },
       "adminFeedbackResponse": {
         "description": "Created",
         "content": {
@@ -173302,6 +176664,109 @@
           "example": true
         }
       },
+      "userId": {
+        "name": "userId",
+        "in": "path",
+        "description": "Bandwidth-generated unique identifier of the user.",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "description": "Bandwidth-generated unique identifier of the user.",
+          "example": "2819c223-7f76-453a-919d-413861904646"
+        }
+      },
+      "scim_protocol_groupId": {
+        "name": "groupId",
+        "in": "path",
+        "description": "Identifier of the group; the identifier of the Bandwidth role the group projects.",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "description": "Identifier of the group; the identifier of the Bandwidth role the group projects.",
+          "example": "httpVoice"
+        }
+      },
+      "resourceTypeId": {
+        "name": "resourceTypeId",
+        "in": "path",
+        "description": "Identifier for the Resource Type, either \"User\" or \"Group\"",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "description": "Identifier for the Resource Type, either \"User\" or \"Group\".",
+          "example": "User"
+        }
+      },
+      "schemaId": {
+        "name": "schemaId",
+        "in": "path",
+        "description": "Identifier for the Schema, either the core User or core Group schema URN",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "description": "Identifier for the Schema, either the core User or core Group schema URN.",
+          "example": "urn:ietf:params:scim:schemas:core:2.0:User"
+        }
+      },
+      "filter": {
+        "name": "filter",
+        "in": "query",
+        "description": "Filter expression using the eq operator on userName only (e.g. `userName eq \"user@example.com\"`). The value is matched against the user's primary email. Any other attribute or operator returns a 400 with scimType \"invalidFilter\"; matching more than 100 users returns a 400 with scimType \"tooMany\".",
+        "schema": {
+          "type": "string",
+          "description": "Filter expression using the eq operator on userName only (e.g. `userName eq \"user@example.com\"`). The value is matched against the user's primary email. Any other attribute or operator returns a 400 with scimType \"invalidFilter\"; matching more than 100 users returns a 400 with scimType \"tooMany\"."
+        }
+      },
+      "groupFilter": {
+        "name": "filter",
+        "in": "query",
+        "description": "Filter expression using the eq operator on displayName only (e.g. `displayName eq \"HTTP Voice\"`). Any other attribute or operator returns a 400 with scimType \"invalidFilter\".",
+        "schema": {
+          "type": "string",
+          "description": "Filter expression using the eq operator on displayName only (e.g. `displayName eq \"HTTP Voice\"`). Any other attribute or operator returns a 400 with scimType \"invalidFilter\"."
+        }
+      },
+      "startIndex": {
+        "name": "startIndex",
+        "in": "query",
+        "description": "1-based index of the first result to return.",
+        "schema": {
+          "minimum": 1,
+          "type": "integer",
+          "description": "1-based index of the first result to return.",
+          "default": 1
+        }
+      },
+      "scim_protocol_count": {
+        "name": "count",
+        "in": "query",
+        "description": "Maximum number of results to return per page. Capped at 100.",
+        "schema": {
+          "maximum": 100,
+          "minimum": 0,
+          "type": "integer",
+          "description": "Maximum number of results to return per page. Capped at 100.",
+          "default": 100
+        }
+      },
+      "attributes": {
+        "name": "attributes",
+        "in": "query",
+        "description": "Comma-separated list of attribute names to include in the response. All other attributes are omitted.",
+        "schema": {
+          "type": "string",
+          "description": "Comma-separated list of attribute names to include in the response. All other attributes are omitted."
+        }
+      },
+      "excludedAttributes": {
+        "name": "excludedAttributes",
+        "in": "query",
+        "description": "Attributes from the User object to be excluded from the list response.",
+        "schema": {
+          "type": "string",
+          "description": "Attributes from the User object to be excluded from the list response."
+        }
+      },
       "shortcodes_accountIdPathParam": {
         "name": "accountId",
         "in": "path",
@@ -174417,7 +177882,7 @@
         },
         "example": "7bt57JcsVYJrN9K1OcV1Nu"
       },
-      "userId": {
+      "user_management_userId": {
         "name": "userId",
         "in": "path",
         "description": "Unique identifier of the user",
@@ -187474,6 +190939,349 @@
           }
         }
       },
+      "scimBadRequestExample": {
+        "summary": "Bad Request",
+        "value": {
+          "schemas": [
+            "urn:ietf:params:scim:api:messages:2.0:Error"
+          ],
+          "status": "400",
+          "scimType": "invalidValue",
+          "detail": "Request body is missing required field: userName"
+        }
+      },
+      "scimProvisioningDisabledExample": {
+        "summary": "Bad Request",
+        "value": {
+          "schemas": [
+            "urn:ietf:params:scim:api:messages:2.0:Error"
+          ],
+          "status": "400",
+          "detail": "SCIM provisioning is not enabled for this account"
+        }
+      },
+      "scimUnauthorizedExample": {
+        "summary": "Unauthorized",
+        "value": {
+          "schemas": [
+            "urn:ietf:params:scim:api:messages:2.0:Error"
+          ],
+          "status": "401",
+          "detail": "Authorization token is missing or invalid"
+        }
+      },
+      "scimForbiddenExample": {
+        "summary": "Forbidden",
+        "value": {
+          "schemas": [
+            "urn:ietf:params:scim:api:messages:2.0:Error"
+          ],
+          "status": "403",
+          "detail": "Insufficient permissions to perform this action"
+        }
+      },
+      "scimNotFoundExample": {
+        "summary": "Not Found",
+        "value": {
+          "schemas": [
+            "urn:ietf:params:scim:api:messages:2.0:Error"
+          ],
+          "status": "404",
+          "detail": "User not found"
+        }
+      },
+      "scimConflictExample": {
+        "summary": "Conflict",
+        "value": {
+          "schemas": [
+            "urn:ietf:params:scim:api:messages:2.0:Error"
+          ],
+          "status": "409",
+          "scimType": "uniqueness",
+          "detail": "User already exists with userName: bjensen@bandwidth.com"
+        }
+      },
+      "scimMethodNotAllowedExample": {
+        "summary": "Method Not Allowed",
+        "value": {
+          "schemas": [
+            "urn:ietf:params:scim:api:messages:2.0:Error"
+          ],
+          "status": "405",
+          "detail": "Method not allowed"
+        }
+      },
+      "scimPayloadTooLargeExample": {
+        "summary": "Payload Too Large",
+        "value": {
+          "schemas": [
+            "urn:ietf:params:scim:api:messages:2.0:Error"
+          ],
+          "status": "413",
+          "detail": "The bulk request exceeds maxOperations or maxPayloadSize. See ServiceProviderConfig for the current limits."
+        }
+      },
+      "scimTooManyRequestsExample": {
+        "summary": "Too Many Requests",
+        "value": {
+          "schemas": [
+            "urn:ietf:params:scim:api:messages:2.0:Error"
+          ],
+          "status": "429",
+          "detail": "Too many requests. Refer to the Retry-After header for retry timing."
+        }
+      },
+      "scimInternalServerErrorExample": {
+        "summary": "Internal Server Error",
+        "value": {
+          "schemas": [
+            "urn:ietf:params:scim:api:messages:2.0:Error"
+          ],
+          "status": "500",
+          "detail": "An unexpected error occurred. Contact Bandwidth support if this persists."
+        }
+      },
+      "scimNotImplementedExample": {
+        "summary": "Not Implemented",
+        "value": {
+          "schemas": [
+            "urn:ietf:params:scim:api:messages:2.0:Error"
+          ],
+          "status": "501",
+          "detail": "This operation is not supported by the Bandwidth SCIM service. See the endpoint documentation for supported alternatives."
+        }
+      },
+      "scimUserResourceTypeExample": {
+        "summary": "User Resource Type",
+        "value": {
+          "schemas": [
+            "urn:ietf:params:scim:schemas:core:2.0:ResourceType"
+          ],
+          "id": "User",
+          "name": "User",
+          "endpoint": "/Users",
+          "description": "Bandwidth user account managed via SCIM.",
+          "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+          "schemaExtensions": [ ],
+          "meta": {
+            "location": "https://api.bandwidth.com/api/scim/v2/ResourceTypes/User",
+            "resourceType": "ResourceType"
+          }
+        }
+      },
+      "scimGroupResourceTypeExample": {
+        "summary": "Group Resource Type",
+        "value": {
+          "schemas": [
+            "urn:ietf:params:scim:schemas:core:2.0:ResourceType"
+          ],
+          "id": "Group",
+          "name": "Group",
+          "endpoint": "/Groups",
+          "description": "Projection of a Bandwidth role; members are the users holding the role.",
+          "schema": "urn:ietf:params:scim:schemas:core:2.0:Group",
+          "schemaExtensions": [ ],
+          "meta": {
+            "location": "https://api.bandwidth.com/api/scim/v2/ResourceTypes/Group",
+            "resourceType": "ResourceType"
+          }
+        }
+      },
+      "scimResourceTypesListExample": {
+        "summary": "User and Group Resource Types",
+        "value": {
+          "schemas": [
+            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+          ],
+          "totalResults": 2,
+          "startIndex": 1,
+          "itemsPerPage": 2,
+          "Resources": [
+            {
+              "schemas": [
+                "urn:ietf:params:scim:schemas:core:2.0:ResourceType"
+              ],
+              "id": "User",
+              "name": "User",
+              "endpoint": "/Users",
+              "description": "Bandwidth user account managed via SCIM.",
+              "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+              "schemaExtensions": [ ],
+              "meta": {
+                "location": "https://api.bandwidth.com/api/scim/v2/ResourceTypes/User",
+                "resourceType": "ResourceType"
+              }
+            },
+            {
+              "schemas": [
+                "urn:ietf:params:scim:schemas:core:2.0:ResourceType"
+              ],
+              "id": "Group",
+              "name": "Group",
+              "endpoint": "/Groups",
+              "description": "Projection of a Bandwidth role; members are the users holding the role.",
+              "schema": "urn:ietf:params:scim:schemas:core:2.0:Group",
+              "schemaExtensions": [ ],
+              "meta": {
+                "location": "https://api.bandwidth.com/api/scim/v2/ResourceTypes/Group",
+                "resourceType": "ResourceType"
+              }
+            }
+          ]
+        }
+      },
+      "scimUserSchemaExample": {
+        "summary": "User Schema (Attributes Truncated for Brevity)",
+        "value": {
+          "schemas": [
+            "urn:ietf:params:scim:schemas:core:2.0:Schema"
+          ],
+          "id": "urn:ietf:params:scim:schemas:core:2.0:User",
+          "name": "User",
+          "description": "User account resource.",
+          "attributes": [
+            {
+              "name": "userName",
+              "type": "string",
+              "multiValued": false,
+              "description": "Unique identifier for the user, mapped to the Bandwidth UserId.",
+              "required": true,
+              "caseExact": false,
+              "mutability": "readWrite",
+              "returned": "default",
+              "uniqueness": "server"
+            }
+          ],
+          "meta": {
+            "resourceType": "Schema",
+            "location": "https://api.bandwidth.com/api/scim/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:User"
+          }
+        }
+      },
+      "scimGroupSchemaExample": {
+        "summary": "Group Schema",
+        "value": {
+          "schemas": [
+            "urn:ietf:params:scim:schemas:core:2.0:Schema"
+          ],
+          "id": "urn:ietf:params:scim:schemas:core:2.0:Group",
+          "name": "Group",
+          "description": "Group resource; a projection of a Bandwidth role.",
+          "attributes": [
+            {
+              "name": "displayName",
+              "type": "string",
+              "multiValued": false,
+              "description": "Human-readable name of the group; the Bandwidth role name. Immutable: echoing the current value is allowed, changing it returns 400 mutability.",
+              "required": true,
+              "caseExact": false,
+              "mutability": "immutable",
+              "returned": "default",
+              "uniqueness": "none"
+            },
+            {
+              "name": "members",
+              "type": "complex",
+              "multiValued": true,
+              "description": "Users holding the projected role. The only mutable attribute of a Group.",
+              "required": false,
+              "mutability": "readWrite",
+              "returned": "request",
+              "uniqueness": "none",
+              "subAttributes": [
+                {
+                  "name": "value",
+                  "type": "string",
+                  "multiValued": false,
+                  "description": "The id of the member User resource.",
+                  "required": true,
+                  "caseExact": true,
+                  "mutability": "readWrite",
+                  "returned": "default",
+                  "uniqueness": "none"
+                }
+              ]
+            }
+          ],
+          "meta": {
+            "resourceType": "Schema",
+            "location": "https://api.bandwidth.com/api/scim/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:Group"
+          }
+        }
+      },
+      "scimSchemasListExample": {
+        "summary": "User and Group Schemas (Attributes Truncated for Brevity)",
+        "value": {
+          "schemas": [
+            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+          ],
+          "totalResults": 2,
+          "startIndex": 1,
+          "itemsPerPage": 2,
+          "Resources": [
+            {
+              "schemas": [
+                "urn:ietf:params:scim:schemas:core:2.0:Schema"
+              ],
+              "id": "urn:ietf:params:scim:schemas:core:2.0:User",
+              "name": "User",
+              "description": "User account resource.",
+              "attributes": [
+                {
+                  "name": "userName",
+                  "type": "string",
+                  "multiValued": false,
+                  "description": "Unique identifier for the user, mapped to the Bandwidth UserId.",
+                  "required": true,
+                  "caseExact": false,
+                  "mutability": "readWrite",
+                  "returned": "default",
+                  "uniqueness": "server"
+                }
+              ],
+              "meta": {
+                "resourceType": "Schema",
+                "location": "https://api.bandwidth.com/api/scim/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:User"
+              }
+            },
+            {
+              "schemas": [
+                "urn:ietf:params:scim:schemas:core:2.0:Schema"
+              ],
+              "id": "urn:ietf:params:scim:schemas:core:2.0:Group",
+              "name": "Group",
+              "description": "Group resource; a projection of a Bandwidth role.",
+              "attributes": [
+                {
+                  "name": "displayName",
+                  "type": "string",
+                  "multiValued": false,
+                  "description": "Human-readable name of the group; the Bandwidth role name. Immutable: echoing the current value is allowed, changing it returns 400 mutability.",
+                  "required": true,
+                  "caseExact": false,
+                  "mutability": "immutable",
+                  "returned": "default",
+                  "uniqueness": "none"
+                },
+                {
+                  "name": "members",
+                  "type": "complex",
+                  "multiValued": true,
+                  "description": "Users holding the projected role. The only mutable attribute of a Group.",
+                  "required": false,
+                  "mutability": "readWrite",
+                  "returned": "request",
+                  "uniqueness": "none"
+                }
+              ],
+              "meta": {
+                "resourceType": "Schema",
+                "location": "https://api.bandwidth.com/api/scim/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:Group"
+              }
+            }
+          ]
+        }
+      },
       "adminFeedbackResponseExample": {
         "value": {
           "data": {
@@ -195444,6 +199252,76 @@
           }
         }
       },
+      "scimCreateUserRequest": {
+        "description": "Create user with SCIM protocol request body",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimCreateUserRequest"
+            }
+          }
+        }
+      },
+      "scimPatchUserRequest": {
+        "description": "Patch a User with SCIM protocol request body, usually used for deprovisioning",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimPatchUserRequest"
+            }
+          }
+        }
+      },
+      "scimPutUserRequest": {
+        "description": "Fully replace a User resource.",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimPutUserRequest"
+            }
+          }
+        }
+      },
+      "scimCreateGroupRequest": {
+        "description": "Create group with SCIM protocol request body",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimCreateGroupRequest"
+            }
+          }
+        }
+      },
+      "scimPutGroupRequest": {
+        "description": "Fully replace a Group resource's membership.",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimPutGroupRequest"
+            }
+          }
+        }
+      },
+      "scimPatchGroupRequest": {
+        "description": "Patch a Group with SCIM protocol request body, the primary path for IdP group push.",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimPatchGroupRequest"
+            }
+          }
+        }
+      },
+      "scimBulkRequest": {
+        "description": "Perform multiple resource operations in a single request.",
+        "content": {
+          "application/scim+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScimBulkRequest"
+            }
+          }
+        }
+      },
       "adminFeedbackRequest": {
         "description": "Admin-only endpoint to provide feedback on a short code campaign. This will not change the state of a campaign.",
         "content": {
@@ -197057,6 +200935,12 @@
         "scheme": "bearer",
         "bearerFormat": "JWT"
       },
+      "scim_protocol_Bearer": {
+        "type": "http",
+        "description": "OAuth 2.0 access token (JWT) obtained from the Bandwidth token endpoint (/api/v1/oauth2/token).",
+        "scheme": "bearer",
+        "bearerFormat": "jwt"
+      },
       "shortcodes_Basic": {
         "type": "http",
         "description": "Basic authentication is a simple authentication scheme built into the HTTP protocol. To use it, send your  HTTP requests with an Authorization header that contains the word Basic followed by a space and a base64-encoded string `username:password`. Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`.",
@@ -197828,6 +201712,18 @@
       "description": "Operations for PSAP Outage Alert Triggers"
     },
     {
+      "name": "Users"
+    },
+    {
+      "name": "Groups"
+    },
+    {
+      "name": "Bulk"
+    },
+    {
+      "name": "Discovery"
+    },
+    {
       "name": "Short Codes"
     },
     {
@@ -197847,9 +201743,6 @@
     },
     {
       "name": "Toll-Free Verification"
-    },
-    {
-      "name": "Users"
     },
     {
       "name": "Roles"
@@ -208175,6 +212068,77 @@
           "ErrorResponseData": {
             "type": "object",
             "nullable": true
+          },
+          "ExamplePayload": {
+            "type": "object",
+            "description": "Placeholder schema for path example refs"
+          }
+        }
+      }
+    },
+    {
+      "prefix": "scim-protocol",
+      "metadata": {
+        "x-client-unused-schemas": {
+          "ScimUserName": {
+            "type": "string",
+            "description": "Unique identifier for the user, mapped to the Bandwidth UserId. Always an email address for SSO (SCIM-provisioned) users.",
+            "example": "bjensen@bandwidth.com",
+            "x-client-original-format": "email"
+          },
+          "ScimGroupDisplayName": {
+            "type": "string",
+            "description": "Human-readable name of the group. Maps to the Bandwidth role name; not modifiable through SCIM.",
+            "example": "HTTP Voice"
+          },
+          "ScimUserId": {
+            "type": "string",
+            "description": "Bandwidth-generated unique identifier of the user.",
+            "example": "2819c223-7f76-453a-919d-413861904646"
+          },
+          "ScimResourceTypeId": {
+            "type": "string",
+            "description": "Identifier for the Resource Type, either \"User\" or \"Group\".",
+            "example": "User"
+          },
+          "ScimSchemaId": {
+            "type": "string",
+            "description": "Identifier for the Schema, either the core User or core Group schema URN.",
+            "example": "urn:ietf:params:scim:schemas:core:2.0:User"
+          },
+          "ScimGroupId": {
+            "type": "string",
+            "description": "Identifier of the group; the identifier of the Bandwidth role the group projects.",
+            "example": "httpVoice"
+          },
+          "ScimGroupFilter": {
+            "type": "string",
+            "description": "Filter expression using the eq operator on displayName only (e.g. `displayName eq \"HTTP Voice\"`). Any other attribute or operator returns a 400 with scimType \"invalidFilter\"."
+          },
+          "ScimFilter": {
+            "type": "string",
+            "description": "Filter expression using the eq operator on userName only (e.g. `userName eq \"user@example.com\"`). The value is matched against the user's primary email. Any other attribute or operator returns a 400 with scimType \"invalidFilter\"; matching more than 100 users returns a 400 with scimType \"tooMany\"."
+          },
+          "ScimStartIndex": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "1-based index of the first result to return.",
+            "default": 1
+          },
+          "ScimCount": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Maximum number of results to return per page. Capped at 100.",
+            "default": 100
+          },
+          "ScimAttributes": {
+            "type": "string",
+            "description": "Comma-separated list of attribute names to include in the response. All other attributes are omitted."
+          },
+          "ScimExcludedAttributes": {
+            "type": "string",
+            "description": "Attributes from the User object to be excluded from the list response."
           },
           "ExamplePayload": {
             "type": "object",

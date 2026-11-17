@@ -40,6 +40,7 @@ using Soenneker.Bandwidth.OpenApiClient.Portins;
 using Soenneker.Bandwidth.OpenApiClient.Portouts;
 using Soenneker.Bandwidth.OpenApiClient.ProductSettings;
 using Soenneker.Bandwidth.OpenApiClient.PsapAlerts;
+using Soenneker.Bandwidth.OpenApiClient.ScimProtocol;
 using Soenneker.Bandwidth.OpenApiClient.Shortcodes;
 using Soenneker.Bandwidth.OpenApiClient.Subscriptions;
 using Soenneker.Bandwidth.OpenApiClient.Tendlc;
@@ -234,6 +235,11 @@ namespace Soenneker.Bandwidth.OpenApiClient
         public global::Soenneker.Bandwidth.OpenApiClient.PsapAlerts.PsapAlertsRequestBuilder PsapAlerts
         {
             get => new global::Soenneker.Bandwidth.OpenApiClient.PsapAlerts.PsapAlertsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The scimProtocol property</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.ScimProtocol.ScimProtocolRequestBuilder ScimProtocol
+        {
+            get => new global::Soenneker.Bandwidth.OpenApiClient.ScimProtocol.ScimProtocolRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The shortcodes property</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Shortcodes.ShortcodesRequestBuilder Shortcodes
