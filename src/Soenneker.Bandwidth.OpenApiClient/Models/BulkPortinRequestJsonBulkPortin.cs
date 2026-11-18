@@ -42,6 +42,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             else if (parseNode.GetChildNode("subAccountId") is { } nullNodeSubAccountId && nullNodeSubAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SubAccountId = null;
             if (parseNode.GetChildNode("subscriber") is null) { _explicitNullValueSubscriber = default!; _explicitNullProperties?.Remove("subscriber"); }
             else if (parseNode.GetChildNode("subscriber") is { } nullNodeSubscriber && nullNodeSubscriber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Subscriber = null;
+            if (parseNode.GetChildNode("tags") is null) { _explicitNullValueTags = default!; _explicitNullProperties?.Remove("tags"); }
+            else if (parseNode.GetChildNode("tags") is { } nullNodeTags && nullNodeTags.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tags = null;
             if (parseNode.GetChildNode("targetRespOrgId") is null) { _explicitNullValueTargetRespOrgId = default!; _explicitNullProperties?.Remove("targetRespOrgId"); }
             else if (parseNode.GetChildNode("targetRespOrgId") is { } nullNodeTargetRespOrgId && nullNodeTargetRespOrgId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TargetRespOrgId = null;
             if (parseNode.GetChildNode("tnAttributes") is null) { _explicitNullValueTnAttributes = default!; _explicitNullProperties?.Remove("tnAttributes"); }
@@ -144,6 +146,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberJson Subscriber { get => _explicitNullValueSubscriber; set { _explicitNullValueSubscriber = value; AdditionalData?.Remove("subscriber"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriber"); else _explicitNullProperties?.Remove("subscriber"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberJson _explicitNullValueSubscriber = default!;
 #endif
+        /// <summary>Tags to associate with the phone numbers being ported in on order completion. The tags are applied to all subtending port-in orders. No duplicate tag names are allowed within an order, and a maximum of 10 tags may be specified. An empty array is not allowed on create.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag>? Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; AdditionalData?.Remove("tags"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag>? _explicitNullValueTags = default!;
+#nullable restore
+#else
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag> Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; AdditionalData?.Remove("tags"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag> _explicitNullValueTags = default!;
+#endif
         /// <summary>For toll free port-ins, this value specifies the RespOrg ID that the toll free numbers should be ported to.  When porting to Bandwidth, the value is generally JYT01.  When specified in a bulk port-in, the value will be applied to all subtending toll free port-in orders, unless overridden in the subtending order.  The value should be 5 characters in length, consisting of digits a-z, A-Z, and 0-9.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -204,6 +216,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "retryValidation", n => { RetryValidation = n.GetBoolValue(); } },
                 { "subAccountId", n => { SubAccountId = n.GetIntValue(); } },
                 { "subscriber", n => { Subscriber = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberJson.CreateFromDiscriminatorValue); } },
+                { "tags", n => { Tags = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag>(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "targetRespOrgId", n => { TargetRespOrgId = n.GetStringValue(); } },
                 { "tnAttributes", n => { TnAttributes = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnAttribute>(global::Soenneker.Bandwidth.OpenApiClient.Models.TnAttribute.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "voiceConfigurationPackageId", n => { VoiceConfigurationPackageId = n.GetGuidValue(); } },
@@ -228,6 +241,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteBoolValue("retryValidation", RetryValidation);
             writer.WriteIntValue("subAccountId", SubAccountId);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberJson>("subscriber", Subscriber);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag>("tags", Tags);
             writer.WriteStringValue("targetRespOrgId", TargetRespOrgId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TnAttribute>("tnAttributes", TnAttributes);
             writer.WriteGuidValue("voiceConfigurationPackageId", VoiceConfigurationPackageId);

@@ -37,6 +37,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             else if (parseNode.GetChildNode("subAccountId") is { } nullNodeSubAccountId && nullNodeSubAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SubAccountId = null;
             if (parseNode.GetChildNode("subscriber") is null) { _explicitNullValueSubscriber = default!; _explicitNullProperties?.Remove("subscriber"); }
             else if (parseNode.GetChildNode("subscriber") is { } nullNodeSubscriber && nullNodeSubscriber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Subscriber = null;
+            if (parseNode.GetChildNode("tags") is null) { _explicitNullValueTags = default!; _explicitNullProperties?.Remove("tags"); }
+            else if (parseNode.GetChildNode("tags") is { } nullNodeTags && nullNodeTags.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tags = null;
         }
 
         /// <summary>Account number associated with the account on the losing carrier, often required for wireless ports, or enterprise ports. This will be unusual for bulk port-in requests that are expected to decompose into port-in requests from multiple carriers.</summary>
@@ -127,6 +129,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberPatchJson Subscriber { get => _explicitNullValueSubscriber; set { _explicitNullValueSubscriber = value; AdditionalData?.Remove("subscriber"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscriber"); else _explicitNullProperties?.Remove("subscriber"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberPatchJson _explicitNullValueSubscriber = default!;
 #endif
+        /// <summary>Tags to associate with the phone numbers being ported in on order completion, applied to the bulk port-in and to all of its subtending port-in orders. If `tags` is not present, existing tags are left unchanged. If present, the tags replace all tags on the bulk port-in and on its subtending port-in orders, including any tags a subtending order was given individually. Send an empty array or `null` to remove all tags. A maximum of 10 tags may be specified. Cancelled subtending port-in orders are not updated. If a subtending port-in order fails validation for the change, the PATCH is rejected with a 400 identifying that order and no changes are made. Subtending port-in orders are updated asynchronously after the PATCH is accepted, so a GET on one right after the PATCH may briefly show its old tags, and a failure after the PATCH is accepted is not covered by the validation above.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag>? Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; AdditionalData?.Remove("tags"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag>? _explicitNullValueTags = default!;
+#nullable restore
+#else
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag> Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; AdditionalData?.Remove("tags"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag> _explicitNullValueTags = default!;
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.BulkPortinPatchJson"/> and sets the default values.
         /// </summary>
@@ -162,6 +174,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "requestedFocDate", n => { RequestedFocDate = n.GetDateTimeOffsetValue(); } },
                 { "subAccountId", n => { SubAccountId = n.GetIntValue(); } },
                 { "subscriber", n => { Subscriber = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberPatchJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberPatchJson.CreateFromDiscriminatorValue); } },
+                { "tags", n => { Tags = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag>(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -181,6 +194,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteDateTimeOffsetValue("requestedFocDate", RequestedFocDate);
             writer.WriteIntValue("subAccountId", SubAccountId);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.SubscriberPatchJson>("subscriber", Subscriber);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag>("tags", Tags);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -4586,6 +4586,20 @@ components:
           type: string
           xml:
             name: LosingResellerName
+        tags:
+          allOf:
+            - $ref: '#/components/schemas/PhoneNumberTags'
+          description: >-
+            Tags to associate with the phone numbers being ported in on order
+            completion. The tags are applied to all subtending port-in orders.
+            No duplicate tag names are allowed within an order, and a maximum of
+            10 tags may be specified. An empty array is not allowed on create.
+            On PUT, omit Tags to keep the existing tags, or send an empty array
+            to remove them.
+          nullable: true
+          type: array
+          xml:
+            name: Tags
       type: object
     BulkPortinErrorResponse:
       properties:
@@ -4694,6 +4708,22 @@ components:
           type: string
           xml:
             name: LosingResellerName
+        tags:
+          allOf:
+            - $ref: '#/components/schemas/TagsPatch'
+          description: >-
+            Tags to associate with the phone numbers being ported in on order
+            completion, applied to the bulk port-in and to all of its subtending
+            port-in orders. If `Tags` is not present, existing tags are left
+            unchanged. If present, the tags replace all tags on the bulk port-in
+            and on its subtending port-in orders, including any tags a
+            subtending order was given individually. To remove all tags, send
+            `<Tags delete="true"/>` or an empty `<Tags/>` element. A maximum of
+            10 tags may be specified.
+          nullable: true
+          type: object
+          xml:
+            name: Tags
       type: object
     BulkPortinPatchErrorResponse:
       properties:
@@ -13600,6 +13630,36 @@ components:
               type: integer
           type: object
       type: object
+    TagsPatch:
+      description: >-
+        Patch for the tags of a bulk port-in. Omit the Tags element to leave the
+        existing tags unchanged. Send Tag elements to replace all existing tags,
+        or remove all tags with `delete="true"` or an empty Tags element.
+      properties:
+        delete:
+          description: >-
+            Set to true to remove all tags from the bulk port-in and its
+            subtending port-in orders. Cannot be combined with Tag elements;
+            such a request is rejected with a 400.
+          example: true
+          type: boolean
+          xml:
+            attribute: true
+        tags:
+          description: >-
+            The tags that replace all existing tags on the bulk port-in and its
+            subtending port-in orders. An empty Tags element with no Tag
+            elements and no delete attribute also removes all tags.
+          example:
+            - tagName: customerId
+              tagValue: 11111111-1111-1111-1111-111111111111
+          items:
+            $ref: '#/components/schemas/PhoneNumberTag'
+          maxItems: 10
+          type: array
+          xml:
+            name: Tag
+      type: object
     TelephoneDetailsAreaCodes:
       properties:
         TelephoneDetailsReports:
@@ -18598,7 +18658,7 @@ paths:
             examples:
               example:
                 description: example
-                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<BulkPortin> \n\t<CustomerOrderId>Order Id for all child orders</CustomerOrderId> \n\t<RequestedFocDate>2021-06-30Z</RequestedFocDate>\n\t<SiteId>14020</SiteId> \n\t<PeerId>521434</PeerId> \n\t<TargetRespOrgId>JYT01</TargetRespOrgId>\n</BulkPortin>"
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<BulkPortin> \n\t<CustomerOrderId>Order Id for all child orders</CustomerOrderId> \n\t<RequestedFocDate>2021-06-30Z</RequestedFocDate>\n\t<SiteId>14020</SiteId> \n\t<PeerId>521434</PeerId> \n\t<TargetRespOrgId>JYT01</TargetRespOrgId>\n\t<Tags>\n\t\t<Tag>\n\t\t\t<TagName>customerId</TagName>\n\t\t\t<TagValue>11111111-1111-1111-1111-111111111111</TagValue>\n\t\t</Tag>\n\t</Tags>\n</BulkPortin>"
             schema:
               $ref: '#/components/schemas/BulkPortinRequest'
       responses:
@@ -18624,6 +18684,12 @@ paths:
                             <LastModifiedDate>2021-06-21T19:42:34.760Z</LastModifiedDate>
                             <OrderCreateDate>2021-06-21T19:42:34.760Z</OrderCreateDate>
                             <OrderId>3233e096-1ce5-4a58-ba77-02a5ee1c0ef4</OrderId>
+                            <Tags>
+                                <Tag>
+                                    <TagName>customerId</TagName>
+                                    <TagValue>11111111-1111-1111-1111-111111111111</TagValue>
+                                </Tag>
+                            </Tags>
                         </BulkPortin>
                     </BulkPortinResponse>
               schema:
@@ -18791,7 +18857,7 @@ paths:
               examples:
                 example:
                   description: example
-                  value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<BulkPortinResponse> \n\t<BulkPortin> \n\t\t<CustomerOrderId>Order Id for all child orders</CustomerOrderId>\n\t\t<RequestedFocDate>2021-06-30T00:00:00.000Z</RequestedFocDate>\n\t\t<SiteId>14020</SiteId> \n\t\t<PeerId>521434</PeerId> \n\t\t<ProcessingStatus>DRAFT</ProcessingStatus> \n\t\t<LosingResellerName>My Current Provider Name</LosingResellerName> \n\t\t<AccountId>9900572</AccountId> \n\t\t<TargetRespOrgId>JYT01</TargetRespOrgId> \n\t\t<CreatedByUser>testuser</CreatedByUser> \n\t\t<LastModifiedBy>testuser</LastModifiedBy> \n\t\t<LastModifiedDate>2021-06-21T19:42:34.760Z</LastModifiedDate>\n\t\t<OrderCreateDate>2021-06-21T19:42:34.760Z</OrderCreateDate> \n\t</BulkPortin> \n</BulkPortinResponse>"
+                  value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<BulkPortinResponse> \n\t<BulkPortin> \n\t\t<CustomerOrderId>Order Id for all child orders</CustomerOrderId>\n\t\t<RequestedFocDate>2021-06-30T00:00:00.000Z</RequestedFocDate>\n\t\t<SiteId>14020</SiteId> \n\t\t<PeerId>521434</PeerId> \n\t\t<ProcessingStatus>DRAFT</ProcessingStatus> \n\t\t<LosingResellerName>My Current Provider Name</LosingResellerName> \n\t\t<AccountId>9900572</AccountId> \n\t\t<TargetRespOrgId>JYT01</TargetRespOrgId> \n\t\t<CreatedByUser>testuser</CreatedByUser> \n\t\t<LastModifiedBy>testuser</LastModifiedBy> \n\t\t<LastModifiedDate>2021-06-21T19:42:34.760Z</LastModifiedDate>\n\t\t<OrderCreateDate>2021-06-21T19:42:34.760Z</OrderCreateDate> \n\t\t<Tags>\n\t\t\t<Tag>\n\t\t\t\t<TagName>customerId</TagName>\n\t\t\t\t<TagValue>11111111-1111-1111-1111-111111111111</TagValue>\n\t\t\t</Tag>\n\t\t</Tags> \n\t</BulkPortin> \n</BulkPortinResponse>"
               schema:
                 $ref: '#/components/schemas/BulkPortinResponse'
           description: >-
@@ -18823,6 +18889,10 @@ paths:
             examples:
               In progress:
                 value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<BulkPortin>\n\t<ProcessingStatus>IN_PROGRESS</ProcessingStatus>\n</BulkPortin>"
+              Remove all tags:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<BulkPortin>\n\t<Tags delete=\"true\"/>\n</BulkPortin>"
+              Replace tags on the bulk port-in and its child port-ins:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<BulkPortin>\n\t<Tags>\n\t\t<Tag>\n\t\t\t<TagName>customerId</TagName>\n\t\t\t<TagValue>22222222-2222-2222-2222-222222222222</TagValue>\n\t\t</Tag>\n\t</Tags>\n</BulkPortin>"
               Simple Request:
                 value: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<BulkPortin>\n\t<CustomerOrderId>Order Id for all child orders</CustomerOrderId>\n\t<RequestedFocDate>2021-06-30Z</RequestedFocDate>\n\t<TargetRespOrgId>JYT99</TargetRespOrgId>\n\t<SiteId>14020</SiteId>\n\t<PeerId delete=\"true\"/>\n</BulkPortin>"
               Updated requested FOC date:
@@ -18930,6 +19000,12 @@ paths:
                       <TargetRespOrgId>JYT01</TargetRespOrgId>
                       <SiteId>14020</SiteId>
                       <PeerId>521434</PeerId>
+                      <Tags>
+                          <Tag>
+                              <TagName>customerId</TagName>
+                              <TagValue>11111111-1111-1111-1111-111111111111</TagValue>
+                          </Tag>
+                      </Tags>
                   </BulkPortin>
             schema:
               $ref: '#/components/schemas/BulkPortinRequest'

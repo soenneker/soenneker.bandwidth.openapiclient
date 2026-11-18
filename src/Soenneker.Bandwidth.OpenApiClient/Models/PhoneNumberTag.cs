@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     /// <summary>
-    /// A tag to associate with the phone numbers being ordered.
+    /// A tag to associate with the phone numbers being ported.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PhoneNumberTag : IAdditionalDataHolder, IParsable

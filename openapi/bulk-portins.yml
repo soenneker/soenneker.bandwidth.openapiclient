@@ -878,6 +878,11 @@ components:
             configuration package containing the voice origination settings.
             When specified in a bulk port-in, the value will be applied to all
             subtending port-in orders, unless overriden in the subtending order.
+        Tags:
+          allOf:
+            - $ref: '#/components/schemas/phoneNumberTagsXml'
+          xml:
+            name: Tags
         LastModifiedDate:
           description: >-
             The date and time on which the order was last modified, including
@@ -902,6 +907,98 @@ components:
       properties:
         TnAttribute:
           type: string
+    phoneNumberTag:
+      description: A tag to associate with the phone numbers being ported.
+      properties:
+        tagName:
+          $ref: '#/components/schemas/tagName'
+        tagValue:
+          $ref: '#/components/schemas/tagValue'
+      required:
+        - tagName
+        - tagValue
+      type: object
+    phoneNumberTagXml:
+      description: A tag to associate with the phone numbers being ported.
+      properties:
+        TagName:
+          $ref: '#/components/schemas/tagName'
+        TagValue:
+          $ref: '#/components/schemas/tagValue'
+      required:
+        - TagName
+        - TagValue
+      type: object
+      xml:
+        name: Tag
+    phoneNumberTags:
+      description: >-
+        Tags to associate with the phone numbers being ported in on order
+        completion. The tags are applied to all subtending port-in orders. No
+        duplicate tag names are allowed within an order, and a maximum of 10
+        tags may be specified. An empty array is not allowed on create.
+      type: array
+      maxItems: 10
+      items:
+        $ref: '#/components/schemas/phoneNumberTag'
+    phoneNumberTagsXml:
+      description: >-
+        Tags to associate with the phone numbers being ported in on order
+        completion. The tags are applied to all subtending port-in orders. No
+        duplicate tag names are allowed within an order, and a maximum of 10
+        tags may be specified. An empty Tags element is not allowed on create.
+      type: array
+      maxItems: 10
+      items:
+        $ref: '#/components/schemas/phoneNumberTagXml'
+      xml:
+        name: Tags
+        wrapped: true
+    tagName:
+      type: string
+      description: >-
+        Name of a tag to associate with a phone number. Only alphanumeric
+        values, dashes and underscores are allowed. Between 1 and 255
+        characters. Is case sensitive.
+      example: customerId
+      pattern: ^[A-Za-z0-9_-]+$
+      minLength: 1
+      maxLength: 255
+    tagValue:
+      type: string
+      description: >-
+        Value of a tag to associate with a phone number. Only alphanumeric
+        values, dashes and underscores are allowed. Between 1 and 255
+        characters. Is case sensitive.
+      example: 11111111-1111-1111-1111-111111111111
+      pattern: ^[A-Za-z0-9_-]+$
+      minLength: 1
+      maxLength: 255
+    tagsPatch:
+      type: object
+      description: >-
+        Patch for the tags of a bulk port-in. Omit the Tags element to leave the
+        existing tags unchanged. Send Tag elements to replace all existing tags,
+        or remove all tags with `delete="true"` or an empty Tags element.
+      properties:
+        delete:
+          type: boolean
+          example: true
+          description: >-
+            Set to true to remove all tags from the bulk port-in and its
+            subtending port-in orders. Cannot be combined with Tag elements;
+            such a request is rejected with a 400.
+          xml:
+            attribute: true
+        Tag:
+          type: array
+          maxItems: 10
+          description: >-
+            The tags that replace all existing tags on the bulk port-in and its
+            subtending port-in orders. An empty Tags element with no Tag
+            elements and no delete attribute also removes all tags.
+          items:
+            $ref: '#/components/schemas/phoneNumberTagXml'
     subscriber:
       type: object
       properties:
@@ -1032,6 +1129,26 @@ components:
             parameter. Possible values - `Protected`.
           allOf:
             - $ref: '#/components/schemas/tnAttributesPatch'
+        Tags:
+          description: >-
+            Tags to associate with the phone numbers being ported in on order
+            completion, applied to the bulk port-in and to all of its subtending
+            port-in orders. If `Tags` is not present, existing tags are left
+            unchanged. If present, the tags replace all tags on the bulk port-in
+            and on its subtending port-in orders, including any tags a
+            subtending order was given individually. To remove all tags, send
+            `<Tags delete="true"/>` or an empty `<Tags/>` element.
+            `delete="true"` cannot be combined with `Tag` elements (400, error
+            7924). A maximum of 10 tags may be specified. Cancelled subtending
+            port-in orders are not updated. If a subtending port-in order fails
+            validation for the change, the PATCH is rejected with a 400
+            identifying that order and no changes are made. Subtending port-in
+            orders are updated asynchronously after the PATCH is accepted, so a
+            GET on one right after the PATCH may briefly show its old tags, and
+            a failure after the PATCH is accepted is not covered by the
+            validation above.
+          allOf:
+            - $ref: '#/components/schemas/tagsPatch'
         TargetRespOrgId:
           type: string
           minLength: 5
@@ -1123,6 +1240,27 @@ components:
           description: >-
             This is the SIP Peer / Location ID made visible in the
             /accounts/{accountId}/sites/{siteId}/sipPeers
+        tags:
+          description: >-
+            Tags to associate with the phone numbers being ported in on order
+            completion, applied to the bulk port-in and to all of its subtending
+            port-in orders. If `tags` is not present, existing tags are left
+            unchanged. If present, the tags replace all tags on the bulk port-in
+            and on its subtending port-in orders, including any tags a
+            subtending order was given individually. Send an empty array or
+            `null` to remove all tags. A maximum of 10 tags may be specified.
+            Cancelled subtending port-in orders are not updated. If a subtending
+            port-in order fails validation for the change, the PATCH is rejected
+            with a 400 identifying that order and no changes are made.
+            Subtending port-in orders are updated asynchronously after the PATCH
+            is accepted, so a GET on one right after the PATCH may briefly show
+            its old tags, and a failure after the PATCH is accepted is not
+            covered by the validation above.
+          type: array
+          nullable: true
+          maxItems: 10
+          items:
+            $ref: '#/components/schemas/phoneNumberTag'
     bulkPortinHistoryErrorResponse:
       type: object
       properties:
@@ -1204,6 +1342,11 @@ components:
                 parameter. Possible values - `Protected`.
               items:
                 $ref: '#/components/schemas/tnAttribute'
+            Tags:
+              allOf:
+                - $ref: '#/components/schemas/phoneNumberTagsXml'
+              xml:
+                name: Tags
             TargetRespOrgId:
               type: string
               minLength: 5
@@ -1309,6 +1452,8 @@ components:
                 parameter. Possible values - `Protected`.
               items:
                 $ref: '#/components/schemas/tnAttribute'
+            tags:
+              $ref: '#/components/schemas/phoneNumberTags'
             targetRespOrgId:
               type: string
               minLength: 5
@@ -1685,6 +1830,8 @@ components:
             configuration package containing the voice origination settings.
             When specified in a bulk port-in, the value will be applied to all
             subtending port-in orders, unless overriden in the subtending order.
+        tags:
+          $ref: '#/components/schemas/phoneNumberTags'
         lastModifiedDate:
           description: >-
             The date and time on which the order was last modified, including
@@ -2934,6 +3081,14 @@ components:
             Updated requested FOC date:
               value:
                 requestedFocDate: 2021-06-22T15:30:00.000Z
+            Updated tags:
+              value:
+                tags:
+                  - tagName: team
+                    tagValue: porting
+            Removed tags:
+              value:
+                tags: []
           schema:
             $ref: '#/components/schemas/bulkPortinPatchJson'
         application/xml:
@@ -2957,6 +3112,21 @@ components:
               value: |-
                 <BulkPortin>
                   <RequestedFocDate>2021-06-22T11:30:00-04:00</RequestedFocDate>
+                </BulkPortin>
+            Updated tags:
+              value: |-
+                <BulkPortin>
+                  <Tags>
+                    <Tag>
+                      <TagName>team</TagName>
+                      <TagValue>porting</TagValue>
+                    </Tag>
+                  </Tags>
+                </BulkPortin>
+            Removed tags:
+              value: |-
+                <BulkPortin>
+                  <Tags delete="true"/>
                 </BulkPortin>
           schema:
             $ref: '#/components/schemas/bulkPortinPatchRequest'
@@ -3433,6 +3603,12 @@ components:
           <PeerId>521434</PeerId>
           <TargetRespOrgId>JYT01</TargetRespOrgId>
           <VoiceConfigurationPackageId>6611bc44-9f34-4c5c-97d5-51e666eb982e</VoiceConfigurationPackageId>
+          <Tags>
+            <Tag>
+              <TagName>customerId</TagName>
+              <TagValue>11111111-1111-1111-1111-111111111111</TagValue>
+            </Tag>
+          </Tags>
         </BulkPortin>
     bulkPortinRequestExampleJson:
       description: Bulk Port-in Request Example JSON
@@ -3443,6 +3619,9 @@ components:
         locationId: 521434
         targetRespOrgId: JYT01
         voiceConfigurationPackageId: 6611bc44-9f34-4c5c-97d5-51e666eb982e
+        tags:
+          - tagName: customerId
+            tagValue: 11111111-1111-1111-1111-111111111111
     bulkPortinResponseExample:
       description: Create Bulk Port-in Response Example
       value: |-
@@ -3459,6 +3638,12 @@ components:
                 <LastModifiedBy>testuser</LastModifiedBy>
                 <TargetRespOrgId>JYT01</TargetRespOrgId>
                 <VoiceConfigurationPackageId>6611bc44-9f34-4c5c-97d5-51e666eb982e</VoiceConfigurationPackageId>
+                <Tags>
+                  <Tag>
+                    <TagName>customerId</TagName>
+                    <TagValue>11111111-1111-1111-1111-111111111111</TagValue>
+                  </Tag>
+                </Tags>
                 <LastModifiedDate>2021-06-21T19:42:34.760Z</LastModifiedDate>
                 <OrderCreateDate>2021-06-21T19:42:34.760Z</OrderCreateDate>
                 <OrderId>3233e096-1ce5-4a58-ba77-02a5ee1c0ef4</OrderId>
@@ -3477,6 +3662,9 @@ components:
         lastModifiedBy: testuser
         targetRespOrgId: JYT01
         voiceConfigurationPackageId: 6611bc44-9f34-4c5c-97d5-51e666eb982e
+        tags:
+          - tagName: customerId
+            tagValue: 11111111-1111-1111-1111-111111111111
         lastModifiedDate: 2021-06-21T19:42:34.760Z
         orderCreateDate: 2021-06-21T19:42:34.760Z
         orderId: 3233e096-1ce5-4a58-ba77-02a5ee1c0ef4
@@ -3536,6 +3724,12 @@ components:
             <LosingResellerName>My Current Provider Name</LosingResellerName> 
             <TargetRespOrgId>JYT01</TargetRespOrgId> 
             <VoiceConfigurationPackageId>6611bc44-9f34-4c5c-97d5-51e666eb982e</VoiceConfigurationPackageId> 
+            <Tags>
+              <Tag>
+                <TagName>customerId</TagName>
+                <TagValue>11111111-1111-1111-1111-111111111111</TagValue>
+              </Tag>
+            </Tags>
             <CreatedByUser>testuser</CreatedByUser>
             <LastModifiedBy>testuser</LastModifiedBy>
             <LastModifiedDate>2021-06-21T19:42:34.760Z</LastModifiedDate>
@@ -3563,6 +3757,9 @@ components:
         losingResellerName: My Current Provider Name
         targetRespOrgId: JYT01
         voiceConfigurationPackageId: 6611bc44-9f34-4c5c-97d5-51e666eb982e
+        tags:
+          - tagName: customerId
+            tagValue: 11111111-1111-1111-1111-111111111111
         createdByUser: testuser
         lastModifiedBy: testuser
         lastModifiedDate: 2021-06-21T19:42:34.760Z
@@ -3587,6 +3784,12 @@ components:
             </Subscriber>
             <TargetRespOrgId>JYT01</TargetRespOrgId>
             <VoiceConfigurationPackageId>6611bc44-9f34-4c5c-97d5-51e666eb982e</VoiceConfigurationPackageId>
+            <Tags>
+              <Tag>
+                <TagName>customerId</TagName>
+                <TagValue>11111111-1111-1111-1111-111111111111</TagValue>
+              </Tag>
+            </Tags>
             <SiteId>14020</SiteId>
             <PeerId>521434</PeerId>
         </BulkPortin>
@@ -3606,6 +3809,9 @@ components:
             zip: '54923'
         targetRespOrgId: JYT01
         voiceConfigurationPackageId: 6611bc44-9f34-4c5c-97d5-51e666eb982e
+        tags:
+          - tagName: customerId
+            tagValue: 11111111-1111-1111-1111-111111111111
         subAccountId: 14020
         locationId: 521434
     bulkPortinUpdateResponseExample:

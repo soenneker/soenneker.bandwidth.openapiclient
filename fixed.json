@@ -68464,6 +68464,18 @@
             "type": "string",
             "description": "VoiceConfigurationPackageId is the identifier of the voice configuration package containing the voice origination settings. When specified in a bulk port-in, the value will be applied to all subtending port-in orders, unless overriden in the subtending order."
           },
+          "Tags": {
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PhoneNumberTagXml"
+            },
+            "description": "Tags to associate with the phone numbers being ported in on order completion. The tags are applied to all subtending port-in orders. No duplicate tag names are allowed within an order, and a maximum of 10 tags may be specified. An empty Tags element is not allowed on create.",
+            "xml": {
+              "name": "Tags",
+              "wrapped": true
+            }
+          },
           "LastModifiedDate": {
             "type": "string",
             "description": "The date and time on which the order was last modified, including status updates."
@@ -68486,6 +68498,61 @@
           }
         },
         "description": "The TnAttributes field specifies line attributes that will apply to the ported in telephone numbers. If present, TnAttributes may have a value of PROTECTED. This element is not applicable for off-net and toll free port-types."
+      },
+      "PhoneNumberTag": {
+        "required": [
+          "tagName",
+          "tagValue"
+        ],
+        "type": "object",
+        "properties": {
+          "tagName": {
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]\u002B$",
+            "type": "string",
+            "description": "Name of a tag to associate with a phone number. Only alphanumeric values, dashes and underscores are allowed. Between 1 and 255 characters. Is case sensitive.",
+            "example": "customerId"
+          },
+          "tagValue": {
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]\u002B$",
+            "type": "string",
+            "description": "Value of a tag to associate with a phone number. Only alphanumeric values, dashes and underscores are allowed. Between 1 and 255 characters. Is case sensitive.",
+            "example": "11111111-1111-1111-1111-111111111111"
+          }
+        },
+        "description": "A tag to associate with the phone numbers being ported."
+      },
+      "PhoneNumberTagXml": {
+        "required": [
+          "TagName",
+          "TagValue"
+        ],
+        "type": "object",
+        "properties": {
+          "TagName": {
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]\u002B$",
+            "type": "string",
+            "description": "Name of a tag to associate with a phone number. Only alphanumeric values, dashes and underscores are allowed. Between 1 and 255 characters. Is case sensitive.",
+            "example": "customerId"
+          },
+          "TagValue": {
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]\u002B$",
+            "type": "string",
+            "description": "Value of a tag to associate with a phone number. Only alphanumeric values, dashes and underscores are allowed. Between 1 and 255 characters. Is case sensitive.",
+            "example": "11111111-1111-1111-1111-111111111111"
+          }
+        },
+        "description": "A tag to associate with the phone numbers being ported.",
+        "xml": {
+          "name": "Tag"
+        }
       },
       "Subscriber": {
         "type": "object",
@@ -68601,6 +68668,10 @@
             "description": "Attributes to be assigned to the telephone number. Optional parameter. Possible values - \u0060Protected\u0060.",
             "$ref": "#/components/schemas/BulkPortinPatchTnAttributes"
           },
+          "Tags": {
+            "description": "Tags to associate with the phone numbers being ported in on order completion, applied to the bulk port-in and to all of its subtending port-in orders. If \u0060Tags\u0060 is not present, existing tags are left unchanged. If present, the tags replace all tags on the bulk port-in and on its subtending port-in orders, including any tags a subtending order was given individually. To remove all tags, send \u0060\u003CTags delete=\u0022true\u0022/\u003E\u0060 or an empty \u0060\u003CTags/\u003E\u0060 element. \u0060delete=\u0022true\u0022\u0060 cannot be combined with \u0060Tag\u0060 elements (400, error 7924). A maximum of 10 tags may be specified. Cancelled subtending port-in orders are not updated. If a subtending port-in order fails validation for the change, the PATCH is rejected with a 400 identifying that order and no changes are made. Subtending port-in orders are updated asynchronously after the PATCH is accepted, so a GET on one right after the PATCH may briefly show its old tags, and a failure after the PATCH is accepted is not covered by the validation above.",
+            "$ref": "#/components/schemas/BulkPortinPatchTags"
+          },
           "TargetRespOrgId": {
             "maxLength": 5,
             "minLength": 5,
@@ -68671,6 +68742,17 @@
           },
           "locationId": {
             "description": "This is the SIP Peer / Location ID made visible in the /accounts/{accountId}/sites/{siteId}/sipPeers"
+          },
+          "tags": {
+            "maxItems": 10,
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/PhoneNumberTag"
+            },
+            "description": "Tags to associate with the phone numbers being ported in on order completion, applied to the bulk port-in and to all of its subtending port-in orders. If \u0060tags\u0060 is not present, existing tags are left unchanged. If present, the tags replace all tags on the bulk port-in and on its subtending port-in orders, including any tags a subtending order was given individually. Send an empty array or \u0060null\u0060 to remove all tags. A maximum of 10 tags may be specified. Cancelled subtending port-in orders are not updated. If a subtending port-in order fails validation for the change, the PATCH is rejected with a 400 identifying that order and no changes are made. Subtending port-in orders are updated asynchronously after the PATCH is accepted, so a GET on one right after the PATCH may briefly show its old tags, and a failure after the PATCH is accepted is not covered by the validation above."
           }
         }
       },
@@ -68907,6 +68989,14 @@
           "voiceConfigurationPackageId": {
             "type": "string",
             "description": "VoiceConfigurationPackageId is the identifier of the voice configuration package containing the voice origination settings. When specified in a bulk port-in, the value will be applied to all subtending port-in orders, unless overriden in the subtending order."
+          },
+          "tags": {
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PhoneNumberTag"
+            },
+            "description": "Tags to associate with the phone numbers being ported in on order completion. The tags are applied to all subtending port-in orders. No duplicate tag names are allowed within an order, and a maximum of 10 tags may be specified. An empty array is not allowed on create."
           },
           "lastModifiedDate": {
             "type": "string",
@@ -69554,6 +69644,28 @@
         },
         "description": "Attributes to be assigned to the telephone number. Optional parameter. Possible values - \u0060Protected\u0060."
       },
+      "BulkPortinPatchTags": {
+        "type": "object",
+        "properties": {
+          "delete": {
+            "type": "boolean",
+            "description": "Set to true to remove all tags from the bulk port-in and its subtending port-in orders. Cannot be combined with Tag elements; such a request is rejected with a 400.",
+            "xml": {
+              "attribute": true
+            },
+            "example": true
+          },
+          "Tag": {
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PhoneNumberTagXml"
+            },
+            "description": "The tags that replace all existing tags on the bulk port-in and its subtending port-in orders. An empty Tags element with no Tag elements and no delete attribute also removes all tags."
+          }
+        },
+        "description": "Tags to associate with the phone numbers being ported in on order completion, applied to the bulk port-in and to all of its subtending port-in orders. If \u0060Tags\u0060 is not present, existing tags are left unchanged. If present, the tags replace all tags on the bulk port-in and on its subtending port-in orders, including any tags a subtending order was given individually. To remove all tags, send \u0060\u003CTags delete=\u0022true\u0022/\u003E\u0060 or an empty \u0060\u003CTags/\u003E\u0060 element. \u0060delete=\u0022true\u0022\u0060 cannot be combined with \u0060Tag\u0060 elements (400, error 7924). A maximum of 10 tags may be specified. Cancelled subtending port-in orders are not updated. If a subtending port-in order fails validation for the change, the PATCH is rejected with a 400 identifying that order and no changes are made. Subtending port-in orders are updated asynchronously after the PATCH is accepted, so a GET on one right after the PATCH may briefly show its old tags, and a failure after the PATCH is accepted is not covered by the validation above."
+      },
       "AddressPatchHousePrefix": {
         "type": "object",
         "properties": {
@@ -69811,6 +69923,18 @@
             },
             "description": "Attributes to be assigned to the telephone number. Optional parameter. Possible values - \u0060Protected\u0060."
           },
+          "Tags": {
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PhoneNumberTagXml"
+            },
+            "description": "Tags to associate with the phone numbers being ported in on order completion. The tags are applied to all subtending port-in orders. No duplicate tag names are allowed within an order, and a maximum of 10 tags may be specified. An empty Tags element is not allowed on create.",
+            "xml": {
+              "name": "Tags",
+              "wrapped": true
+            }
+          },
           "TargetRespOrgId": {
             "maxLength": 5,
             "minLength": 5,
@@ -69890,6 +70014,14 @@
               "$ref": "#/components/schemas/TnAttribute"
             },
             "description": "Attributes to be assigned to the telephone number. Optional parameter. Possible values - \u0060Protected\u0060."
+          },
+          "tags": {
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PhoneNumberTag"
+            },
+            "description": "Tags to associate with the phone numbers being ported in on order completion. The tags are applied to all subtending port-in orders. No duplicate tag names are allowed within an order, and a maximum of 10 tags may be specified. An empty array is not allowed on create."
           },
           "targetRespOrgId": {
             "maxLength": 5,
@@ -107529,7 +107661,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -107897,7 +108029,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -107944,7 +108076,7 @@
         },
         "description": "A list of voice integration identifiers to associate with the phone numbers upon activation, \nwhich will configure them with the specified voice integration settings.\nThis creates a number syncing request that can be tracked with the bulkNumberSyncId."
       },
-      "PhoneNumberTag": {
+      "NumberAcquisitionPhoneNumberTag": {
         "required": [
           "tagName",
           "tagValue"
@@ -107964,7 +108096,7 @@
         },
         "description": "A tag to associate with the phone numbers being ordered."
       },
-      "PhoneNumberTagXml": {
+      "NumberAcquisitionPhoneNumberTagXml": {
         "required": [
           "TagName",
           "TagValue"
@@ -108078,7 +108210,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -108179,7 +108311,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -108274,7 +108406,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -108372,7 +108504,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -108467,7 +108599,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -108562,7 +108694,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -108657,7 +108789,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -108752,7 +108884,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -108850,7 +108982,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -108945,7 +109077,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -109096,7 +109228,7 @@
           "tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTag"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTag"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account."
           }
@@ -109281,7 +109413,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -109696,7 +109828,7 @@
           "tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTag"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTag"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account."
           }
@@ -110998,7 +111130,7 @@
           "tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTag"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTag"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account."
           },
@@ -111164,7 +111296,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -111261,7 +111393,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -111358,7 +111490,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -111455,7 +111587,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -111552,7 +111684,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -111649,7 +111781,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -111746,7 +111878,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -111843,7 +111975,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -111940,7 +112072,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -112037,7 +112169,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -112134,7 +112266,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -112231,7 +112363,7 @@
           "Tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTagXml"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTagXml"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account.",
             "xml": {
@@ -112404,7 +112536,7 @@
           "tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PhoneNumberTag"
+              "$ref": "#/components/schemas/NumberAcquisitionPhoneNumberTag"
             },
             "description": "Tags to associate with the phone numbers being ordered on order completion. For \u0060PARTIAL\u0060 or \u0060FAILED\u0060 orders, the tags will not be applied to phone numbers which are not successfully added to your account."
           }
@@ -185378,7 +185510,7 @@
       },
       "bulkPortinRequestExample": {
         "description": "Bulk Port-in Request Example",
-        "value": "\u003C?xml version=\\\u00221.0\\\u0022 encoding=\\\u0022UTF-8\\\u0022 standalone=\\\u0022yes\\\u0022?\u003E\n\u003CBulkPortin\u003E \n  \u003CCustomerOrderId\u003EOrder Id for all child orders\u003C/CustomerOrderId\u003E\n  \u003CRequestedFocDate\u003E2021-06-30Z\u003C/RequestedFocDate\u003E\n  \u003CSiteId\u003E14020\u003C/SiteId\u003E\n  \u003CPeerId\u003E521434\u003C/PeerId\u003E\n  \u003CTargetRespOrgId\u003EJYT01\u003C/TargetRespOrgId\u003E\n  \u003CVoiceConfigurationPackageId\u003E6611bc44-9f34-4c5c-97d5-51e666eb982e\u003C/VoiceConfigurationPackageId\u003E\n\u003C/BulkPortin\u003E"
+        "value": "\u003C?xml version=\\\u00221.0\\\u0022 encoding=\\\u0022UTF-8\\\u0022 standalone=\\\u0022yes\\\u0022?\u003E\n\u003CBulkPortin\u003E \n  \u003CCustomerOrderId\u003EOrder Id for all child orders\u003C/CustomerOrderId\u003E\n  \u003CRequestedFocDate\u003E2021-06-30Z\u003C/RequestedFocDate\u003E\n  \u003CSiteId\u003E14020\u003C/SiteId\u003E\n  \u003CPeerId\u003E521434\u003C/PeerId\u003E\n  \u003CTargetRespOrgId\u003EJYT01\u003C/TargetRespOrgId\u003E\n  \u003CVoiceConfigurationPackageId\u003E6611bc44-9f34-4c5c-97d5-51e666eb982e\u003C/VoiceConfigurationPackageId\u003E\n  \u003CTags\u003E\n    \u003CTag\u003E\n      \u003CTagName\u003EcustomerId\u003C/TagName\u003E\n      \u003CTagValue\u003E11111111-1111-1111-1111-111111111111\u003C/TagValue\u003E\n    \u003C/Tag\u003E\n  \u003C/Tags\u003E\n\u003C/BulkPortin\u003E"
       },
       "bulkPortinRequestExampleJson": {
         "description": "Bulk Port-in Request Example JSON",
@@ -185388,12 +185520,18 @@
           "subAccountId": 14020,
           "locationId": 521434,
           "targetRespOrgId": "JYT01",
-          "voiceConfigurationPackageId": "6611bc44-9f34-4c5c-97d5-51e666eb982e"
+          "voiceConfigurationPackageId": "6611bc44-9f34-4c5c-97d5-51e666eb982e",
+          "tags": [
+            {
+              "tagName": "customerId",
+              "tagValue": "11111111-1111-1111-1111-111111111111"
+            }
+          ]
         }
       },
       "bulkPortinResponseExample": {
         "description": "Create Bulk Port-in Response Example",
-        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CBulkPortinResponse\u003E\n    \u003CBulkPortin\u003E\n        \u003CCustomerOrderId\u003EOrder Id for all child orders\u003C/CustomerOrderId\u003E\n        \u003CRequestedFocDate\u003E2021-06-30T00:00:00.000Z\u003C/RequestedFocDate\u003E\n        \u003CSiteId\u003E14020\u003C/SiteId\u003E\n        \u003CPeerId\u003E521434\u003C/PeerId\u003E\n        \u003CProcessingStatus\u003EDRAFT\u003C/ProcessingStatus\u003E\n        \u003CAccountId\u003E9900572\u003C/AccountId\u003E\n        \u003CCreatedByUser\u003Etestuser\u003C/CreatedByUser\u003E\n        \u003CLastModifiedBy\u003Etestuser\u003C/LastModifiedBy\u003E\n        \u003CTargetRespOrgId\u003EJYT01\u003C/TargetRespOrgId\u003E\n        \u003CVoiceConfigurationPackageId\u003E6611bc44-9f34-4c5c-97d5-51e666eb982e\u003C/VoiceConfigurationPackageId\u003E\n        \u003CLastModifiedDate\u003E2021-06-21T19:42:34.760Z\u003C/LastModifiedDate\u003E\n        \u003COrderCreateDate\u003E2021-06-21T19:42:34.760Z\u003C/OrderCreateDate\u003E\n        \u003COrderId\u003E3233e096-1ce5-4a58-ba77-02a5ee1c0ef4\u003C/OrderId\u003E\n    \u003C/BulkPortin\u003E\n\u003C/BulkPortinResponse\u003E"
+        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CBulkPortinResponse\u003E\n    \u003CBulkPortin\u003E\n        \u003CCustomerOrderId\u003EOrder Id for all child orders\u003C/CustomerOrderId\u003E\n        \u003CRequestedFocDate\u003E2021-06-30T00:00:00.000Z\u003C/RequestedFocDate\u003E\n        \u003CSiteId\u003E14020\u003C/SiteId\u003E\n        \u003CPeerId\u003E521434\u003C/PeerId\u003E\n        \u003CProcessingStatus\u003EDRAFT\u003C/ProcessingStatus\u003E\n        \u003CAccountId\u003E9900572\u003C/AccountId\u003E\n        \u003CCreatedByUser\u003Etestuser\u003C/CreatedByUser\u003E\n        \u003CLastModifiedBy\u003Etestuser\u003C/LastModifiedBy\u003E\n        \u003CTargetRespOrgId\u003EJYT01\u003C/TargetRespOrgId\u003E\n        \u003CVoiceConfigurationPackageId\u003E6611bc44-9f34-4c5c-97d5-51e666eb982e\u003C/VoiceConfigurationPackageId\u003E\n        \u003CTags\u003E\n          \u003CTag\u003E\n            \u003CTagName\u003EcustomerId\u003C/TagName\u003E\n            \u003CTagValue\u003E11111111-1111-1111-1111-111111111111\u003C/TagValue\u003E\n          \u003C/Tag\u003E\n        \u003C/Tags\u003E\n        \u003CLastModifiedDate\u003E2021-06-21T19:42:34.760Z\u003C/LastModifiedDate\u003E\n        \u003COrderCreateDate\u003E2021-06-21T19:42:34.760Z\u003C/OrderCreateDate\u003E\n        \u003COrderId\u003E3233e096-1ce5-4a58-ba77-02a5ee1c0ef4\u003C/OrderId\u003E\n    \u003C/BulkPortin\u003E\n\u003C/BulkPortinResponse\u003E"
       },
       "bulkPortinResponseExampleJson": {
         "description": "Create Bulk Port-in Response Example JSON",
@@ -185408,6 +185546,12 @@
           "lastModifiedBy": "testuser",
           "targetRespOrgId": "JYT01",
           "voiceConfigurationPackageId": "6611bc44-9f34-4c5c-97d5-51e666eb982e",
+          "tags": [
+            {
+              "tagName": "customerId",
+              "tagValue": "11111111-1111-1111-1111-111111111111"
+            }
+          ],
           "lastModifiedDate": "2021-06-21T19:42:34.760Z",
           "orderCreateDate": "2021-06-21T19:42:34.760Z",
           "orderId": "3233e096-1ce5-4a58-ba77-02a5ee1c0ef4"
@@ -185437,7 +185581,7 @@
       },
       "bulkPortin200ResponseExample": {
         "description": "Bulk Port-in Successful Response Example",
-        "value": "\u003C?xml version=\\\u00221.0\\\u0022 encoding=\\\u0022UTF-8\\\u0022 standalone=\\\u0022yes\\\u0022?\u003E\n\u003CBulkPortinResponse\u003E\n  \u003CBulkPortin\u003E\n    \u003CCustomerOrderId\u003EOrder Id for all child orders\u003C/CustomerOrderId\u003E\n    \u003CRequestedFocDate\u003E2021-06-30T00:00:00.000Z\u003C/RequestedFocDate\u003E\n    \u003CSiteId\u003E14020\u003C/SiteId\u003E\n    \u003CPeerId\u003E521434\u003C/PeerId\u003E\n    \u003CProcessingStatus\u003EDRAFT\u003C/ProcessingStatus\u003E\n    \u003CAccountId\u003E9900572\u003C/AccountId\u003E\n    \u003CSubscriber\u003E\n        \u003CSubscriberType\u003EBUSINESS\u003C/SubscriberType\u003E\n        \u003CBusinessName\u003EPorting Inc.\u003C/BusinessName\u003E\n        \u003CServiceAddress\u003E\n            \u003CHouseNumber\u003E123\u003C/HouseNumber\u003E\n            \u003CStreetName\u003EMaple Ave\u003C/StreetName\u003E\n            \u003CCity\u003EHometown\u003C/City\u003E\n            \u003CStateCode\u003EMO\u003C/StateCode\u003E\n            \u003CZip\u003E54923\u003C/Zip\u003E\n        \u003C/ServiceAddress\u003E\n    \u003C/Subscriber\u003E\n    \u003CLosingResellerName\u003EMy Current Provider Name\u003C/LosingResellerName\u003E \n    \u003CTargetRespOrgId\u003EJYT01\u003C/TargetRespOrgId\u003E \n    \u003CVoiceConfigurationPackageId\u003E6611bc44-9f34-4c5c-97d5-51e666eb982e\u003C/VoiceConfigurationPackageId\u003E \n    \u003CCreatedByUser\u003Etestuser\u003C/CreatedByUser\u003E\n    \u003CLastModifiedBy\u003Etestuser\u003C/LastModifiedBy\u003E\n    \u003CLastModifiedDate\u003E2021-06-21T19:42:34.760Z\u003C/LastModifiedDate\u003E\n    \u003COrderCreateDate\u003E2021-06-21T19:42:34.760Z\u003C/OrderCreateDate\u003E\n  \u003C/BulkPortin\u003E\n\u003C/BulkPortinResponse\u003E"
+        "value": "\u003C?xml version=\\\u00221.0\\\u0022 encoding=\\\u0022UTF-8\\\u0022 standalone=\\\u0022yes\\\u0022?\u003E\n\u003CBulkPortinResponse\u003E\n  \u003CBulkPortin\u003E\n    \u003CCustomerOrderId\u003EOrder Id for all child orders\u003C/CustomerOrderId\u003E\n    \u003CRequestedFocDate\u003E2021-06-30T00:00:00.000Z\u003C/RequestedFocDate\u003E\n    \u003CSiteId\u003E14020\u003C/SiteId\u003E\n    \u003CPeerId\u003E521434\u003C/PeerId\u003E\n    \u003CProcessingStatus\u003EDRAFT\u003C/ProcessingStatus\u003E\n    \u003CAccountId\u003E9900572\u003C/AccountId\u003E\n    \u003CSubscriber\u003E\n        \u003CSubscriberType\u003EBUSINESS\u003C/SubscriberType\u003E\n        \u003CBusinessName\u003EPorting Inc.\u003C/BusinessName\u003E\n        \u003CServiceAddress\u003E\n            \u003CHouseNumber\u003E123\u003C/HouseNumber\u003E\n            \u003CStreetName\u003EMaple Ave\u003C/StreetName\u003E\n            \u003CCity\u003EHometown\u003C/City\u003E\n            \u003CStateCode\u003EMO\u003C/StateCode\u003E\n            \u003CZip\u003E54923\u003C/Zip\u003E\n        \u003C/ServiceAddress\u003E\n    \u003C/Subscriber\u003E\n    \u003CLosingResellerName\u003EMy Current Provider Name\u003C/LosingResellerName\u003E \n    \u003CTargetRespOrgId\u003EJYT01\u003C/TargetRespOrgId\u003E \n    \u003CVoiceConfigurationPackageId\u003E6611bc44-9f34-4c5c-97d5-51e666eb982e\u003C/VoiceConfigurationPackageId\u003E \n    \u003CTags\u003E\n      \u003CTag\u003E\n        \u003CTagName\u003EcustomerId\u003C/TagName\u003E\n        \u003CTagValue\u003E11111111-1111-1111-1111-111111111111\u003C/TagValue\u003E\n      \u003C/Tag\u003E\n    \u003C/Tags\u003E\n    \u003CCreatedByUser\u003Etestuser\u003C/CreatedByUser\u003E\n    \u003CLastModifiedBy\u003Etestuser\u003C/LastModifiedBy\u003E\n    \u003CLastModifiedDate\u003E2021-06-21T19:42:34.760Z\u003C/LastModifiedDate\u003E\n    \u003COrderCreateDate\u003E2021-06-21T19:42:34.760Z\u003C/OrderCreateDate\u003E\n  \u003C/BulkPortin\u003E\n\u003C/BulkPortinResponse\u003E"
       },
       "bulkPortin200ResponseExampleJson": {
         "description": "Bulk Port-in Successful Response Example JSON",
@@ -185462,6 +185606,12 @@
           "losingResellerName": "My Current Provider Name",
           "targetRespOrgId": "JYT01",
           "voiceConfigurationPackageId": "6611bc44-9f34-4c5c-97d5-51e666eb982e",
+          "tags": [
+            {
+              "tagName": "customerId",
+              "tagValue": "11111111-1111-1111-1111-111111111111"
+            }
+          ],
           "createdByUser": "testuser",
           "lastModifiedBy": "testuser",
           "lastModifiedDate": "2021-06-21T19:42:34.760Z",
@@ -185470,7 +185620,7 @@
       },
       "bulkPortinUpdateRequestExample": {
         "description": "Bulk Port-in Update Request Example",
-        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CBulkPortin\u003E\n    \u003CCustomerOrderId\u003EOrder Id for all child orders\u003C/CustomerOrderId\u003E\n    \u003CRequestedFocDate\u003E2021-06-30Z\u003C/RequestedFocDate\u003E\n    \u003CSubscriber\u003E\n        \u003CSubscriberType\u003EBUSINESS\u003C/SubscriberType\u003E\n        \u003CBusinessName\u003EPorting Inc.\u003C/BusinessName\u003E\n        \u003CServiceAddress\u003E\n            \u003CHouseNumber\u003E123\u003C/HouseNumber\u003E\n            \u003CStreetName\u003EMaple Ave\u003C/StreetName\u003E\n            \u003CCity\u003EHometown\u003C/City\u003E\n            \u003CStateCode\u003EMO\u003C/StateCode\u003E\n            \u003CZip\u003E54923\u003C/Zip\u003E\n        \u003C/ServiceAddress\u003E\n    \u003C/Subscriber\u003E\n    \u003CTargetRespOrgId\u003EJYT01\u003C/TargetRespOrgId\u003E\n    \u003CVoiceConfigurationPackageId\u003E6611bc44-9f34-4c5c-97d5-51e666eb982e\u003C/VoiceConfigurationPackageId\u003E\n    \u003CSiteId\u003E14020\u003C/SiteId\u003E\n    \u003CPeerId\u003E521434\u003C/PeerId\u003E\n\u003C/BulkPortin\u003E"
+        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CBulkPortin\u003E\n    \u003CCustomerOrderId\u003EOrder Id for all child orders\u003C/CustomerOrderId\u003E\n    \u003CRequestedFocDate\u003E2021-06-30Z\u003C/RequestedFocDate\u003E\n    \u003CSubscriber\u003E\n        \u003CSubscriberType\u003EBUSINESS\u003C/SubscriberType\u003E\n        \u003CBusinessName\u003EPorting Inc.\u003C/BusinessName\u003E\n        \u003CServiceAddress\u003E\n            \u003CHouseNumber\u003E123\u003C/HouseNumber\u003E\n            \u003CStreetName\u003EMaple Ave\u003C/StreetName\u003E\n            \u003CCity\u003EHometown\u003C/City\u003E\n            \u003CStateCode\u003EMO\u003C/StateCode\u003E\n            \u003CZip\u003E54923\u003C/Zip\u003E\n        \u003C/ServiceAddress\u003E\n    \u003C/Subscriber\u003E\n    \u003CTargetRespOrgId\u003EJYT01\u003C/TargetRespOrgId\u003E\n    \u003CVoiceConfigurationPackageId\u003E6611bc44-9f34-4c5c-97d5-51e666eb982e\u003C/VoiceConfigurationPackageId\u003E\n    \u003CTags\u003E\n      \u003CTag\u003E\n        \u003CTagName\u003EcustomerId\u003C/TagName\u003E\n        \u003CTagValue\u003E11111111-1111-1111-1111-111111111111\u003C/TagValue\u003E\n      \u003C/Tag\u003E\n    \u003C/Tags\u003E\n    \u003CSiteId\u003E14020\u003C/SiteId\u003E\n    \u003CPeerId\u003E521434\u003C/PeerId\u003E\n\u003C/BulkPortin\u003E"
       },
       "bulkPortinUpdateRequestExampleJson": {
         "description": "Bulk Port-in Update Request Example JSON",
@@ -185490,6 +185640,12 @@
           },
           "targetRespOrgId": "JYT01",
           "voiceConfigurationPackageId": "6611bc44-9f34-4c5c-97d5-51e666eb982e",
+          "tags": [
+            {
+              "tagName": "customerId",
+              "tagValue": "11111111-1111-1111-1111-111111111111"
+            }
+          ],
           "subAccountId": 14020,
           "locationId": 521434
         }
@@ -201536,6 +201692,21 @@
                 "value": {
                   "requestedFocDate": "2021-06-22T15:30:00.000Z"
                 }
+              },
+              "Updated tags": {
+                "value": {
+                  "tags": [
+                    {
+                      "tagName": "team",
+                      "tagValue": "porting"
+                    }
+                  ]
+                }
+              },
+              "Removed tags": {
+                "value": {
+                  "tags": []
+                }
               }
             }
           },
@@ -201552,6 +201723,12 @@
               },
               "Updated requested FOC date": {
                 "value": "\u003CBulkPortin\u003E\n  \u003CRequestedFocDate\u003E2021-06-22T11:30:00-04:00\u003C/RequestedFocDate\u003E\n\u003C/BulkPortin\u003E"
+              },
+              "Updated tags": {
+                "value": "\u003CBulkPortin\u003E\n  \u003CTags\u003E\n    \u003CTag\u003E\n      \u003CTagName\u003Eteam\u003C/TagName\u003E\n      \u003CTagValue\u003Eporting\u003C/TagValue\u003E\n    \u003C/Tag\u003E\n  \u003C/Tags\u003E\n\u003C/BulkPortin\u003E"
+              },
+              "Removed tags": {
+                "value": "\u003CBulkPortin\u003E\n  \u003CTags delete=\u0022true\u0022/\u003E\n\u003C/BulkPortin\u003E"
               }
             }
           }
@@ -207592,6 +207769,64 @@
           }
         ],
         "x-client-unused-schemas": {
+          "PhoneNumberTags": {
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PhoneNumberTag"
+            },
+            "description": "Tags to associate with the phone numbers being ported in on order completion. The tags are applied to all subtending port-in orders. No duplicate tag names are allowed within an order, and a maximum of 10 tags may be specified. An empty array is not allowed on create."
+          },
+          "PhoneNumberTagsXml": {
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PhoneNumberTagXml"
+            },
+            "description": "Tags to associate with the phone numbers being ported in on order completion. The tags are applied to all subtending port-in orders. No duplicate tag names are allowed within an order, and a maximum of 10 tags may be specified. An empty Tags element is not allowed on create.",
+            "xml": {
+              "name": "Tags",
+              "wrapped": true
+            }
+          },
+          "TagName": {
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]\u002B$",
+            "type": "string",
+            "description": "Name of a tag to associate with a phone number. Only alphanumeric values, dashes and underscores are allowed. Between 1 and 255 characters. Is case sensitive.",
+            "example": "customerId"
+          },
+          "TagValue": {
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]\u002B$",
+            "type": "string",
+            "description": "Value of a tag to associate with a phone number. Only alphanumeric values, dashes and underscores are allowed. Between 1 and 255 characters. Is case sensitive.",
+            "example": "11111111-1111-1111-1111-111111111111"
+          },
+          "TagsPatch": {
+            "type": "object",
+            "properties": {
+              "delete": {
+                "type": "boolean",
+                "description": "Set to true to remove all tags from the bulk port-in and its subtending port-in orders. Cannot be combined with Tag elements; such a request is rejected with a 400.",
+                "xml": {
+                  "attribute": true
+                },
+                "example": true
+              },
+              "Tag": {
+                "maxItems": 10,
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PhoneNumberTagXml"
+                },
+                "description": "The tags that replace all existing tags on the bulk port-in and its subtending port-in orders. An empty Tags element with no Tag elements and no delete attribute also removes all tags."
+              }
+            },
+            "description": "Patch for the tags of a bulk port-in. Omit the Tags element to leave the existing tags unchanged. Send Tag elements to replace all existing tags, or remove all tags with \u0060delete=\u0022true\u0022\u0060 or an empty Tags element."
+          },
           "StringPatch": {
             "type": "object",
             "properties": {
@@ -207678,6 +207913,30 @@
             "type": "array",
             "items": {
               "type": "string"
+            }
+          },
+          "BulkPortinTags": {
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PhoneNumberTagXml"
+            },
+            "description": "Tags to associate with the phone numbers being ported in on order completion. The tags are applied to all subtending port-in orders. No duplicate tag names are allowed within an order, and a maximum of 10 tags may be specified. An empty Tags element is not allowed on create.",
+            "xml": {
+              "name": "Tags",
+              "wrapped": true
+            }
+          },
+          "BulkPortinRequestBulkPortinTags": {
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PhoneNumberTagXml"
+            },
+            "description": "Tags to associate with the phone numbers being ported in on order completion. The tags are applied to all subtending port-in orders. No duplicate tag names are allowed within an order, and a maximum of 10 tags may be specified. An empty Tags element is not allowed on create.",
+            "xml": {
+              "name": "Tags",
+              "wrapped": true
             }
           },
           "ExamplePayload": {

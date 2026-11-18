@@ -148,12 +148,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Tags to associate with the phone numbers being ordered on order completion. For `PARTIAL` or `FAILED` orders, the tags will not be applied to phone numbers which are not successfully added to your account.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag>? Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; AdditionalData?.Remove("tags"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
-        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag>? _explicitNullValueTags = default!;
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionPhoneNumberTag>? Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; AdditionalData?.Remove("tags"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionPhoneNumberTag>? _explicitNullValueTags = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag> Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; AdditionalData?.Remove("tags"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
-        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag> _explicitNullValueTags = default!;
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionPhoneNumberTag> Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; AdditionalData?.Remove("tags"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionPhoneNumberTag> _explicitNullValueTags = default!;
 #endif
         /// <summary>The voiceConfigurationPackageId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -218,7 +218,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "phoneNumberAttributes", n => { PhoneNumberAttributes = n.GetCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NewPhoneNumberOrderResponsePhoneNumberAttributesItem>()?.AsList(); } },
                 { "requirementsPackageId", n => { RequirementsPackageId = n.GetStringValue(); } },
                 { "subAccountId", n => { SubAccountId = n.GetIntValue(); } },
-                { "tags", n => { Tags = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag>(global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "tags", n => { Tags = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionPhoneNumberTag>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionPhoneNumberTag.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "voiceConfigurationPackageId", n => { VoiceConfigurationPackageId = n.GetStringValue(); } },
                 { "voiceIntegrationIds", n => { VoiceIntegrationIds = n.GetCollectionOfPrimitiveValues<Guid?>()?.AsList(); } },
             };
@@ -243,7 +243,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteCollectionOfEnumValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NewPhoneNumberOrderResponsePhoneNumberAttributesItem>("phoneNumberAttributes", PhoneNumberAttributes);
             writer.WriteStringValue("requirementsPackageId", RequirementsPackageId);
             writer.WriteIntValue("subAccountId", SubAccountId);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.PhoneNumberTag>("tags", Tags);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberAcquisitionPhoneNumberTag>("tags", Tags);
             writer.WriteStringValue("voiceConfigurationPackageId", VoiceConfigurationPackageId);
             writer.WriteCollectionOfPrimitiveValues<Guid?>("voiceIntegrationIds", VoiceIntegrationIds);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
