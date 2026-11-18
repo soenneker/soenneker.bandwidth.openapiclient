@@ -141,7 +141,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(11)
             {
                 { "acknowledgements", n => { Acknowledgements = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements>(global::Soenneker.Bandwidth.OpenApiClient.Models.RequirementsPackageAcknowledgements.CreateFromDiscriminatorValue); } },
                 { "countryCodeA3", n => { CountryCodeA3 = n.GetStringValue(); } },

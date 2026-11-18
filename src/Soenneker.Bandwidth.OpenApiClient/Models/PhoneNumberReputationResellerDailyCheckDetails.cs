@@ -155,7 +155,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(18)
             {
                 { "attRiskRating", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.RiskRatingEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueAttRiskRating = default; _explicitNullProperties?.Remove("attRiskRating"); AdditionalData["attRiskRating"] = unknown; } else { AttRiskRating = parsed; AdditionalData.Remove("attRiskRating"); } } },
                 { "carriersReputationSummary", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CarriersReputationSummaryEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueCarriersReputationSummary = default; _explicitNullProperties?.Remove("carriersReputationSummary"); AdditionalData["carriersReputationSummary"] = unknown; } else { CarriersReputationSummary = parsed; AdditionalData.Remove("carriersReputationSummary"); } } },

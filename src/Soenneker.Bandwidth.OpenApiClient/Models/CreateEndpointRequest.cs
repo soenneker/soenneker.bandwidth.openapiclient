@@ -102,7 +102,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(6)
             {
                 { "connectionMetadata", n => { ConnectionMetadata = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequestConnectionMetadata>(global::Soenneker.Bandwidth.OpenApiClient.Models.CreateEndpointRequestConnectionMetadata.CreateFromDiscriminatorValue); } },
                 { "direction", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EndpointDirectionEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueDirection = default; _explicitNullProperties?.Remove("direction"); AdditionalData["direction"] = unknown; } else { Direction = parsed; AdditionalData.Remove("direction"); } } },

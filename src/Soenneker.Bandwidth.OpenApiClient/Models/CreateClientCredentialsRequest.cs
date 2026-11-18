@@ -85,7 +85,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "accountScope", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AccountScopeEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueAccountScope = default; _explicitNullProperties?.Remove("accountScope"); AdditionalData["accountScope"] = unknown; } else { AccountScope = parsed; AdditionalData.Remove("accountScope"); } } },
                 { "accounts", n => { Accounts = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },

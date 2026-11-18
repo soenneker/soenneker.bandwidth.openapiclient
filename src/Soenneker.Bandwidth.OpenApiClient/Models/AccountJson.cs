@@ -266,7 +266,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(22)
             {
                 { "accountId", n => { AccountId = n.GetIntValue(); } },
                 { "accountRelationship", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AccountRelationship>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueAccountRelationship = default; _explicitNullProperties?.Remove("accountRelationship"); AdditionalData["accountRelationship"] = unknown; } else { AccountRelationship = parsed; AdditionalData.Remove("accountRelationship"); } } },

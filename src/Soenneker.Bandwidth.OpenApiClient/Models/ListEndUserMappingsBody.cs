@@ -93,7 +93,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndUserMappingsBodyData>(global::Soenneker.Bandwidth.OpenApiClient.Models.ListEndUserMappingsBodyData.CreateFromDiscriminatorValue); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningError>(global::Soenneker.Bandwidth.OpenApiClient.Models.EmergencyProvisioningError.CreateFromDiscriminatorValue)?.AsList(); } },

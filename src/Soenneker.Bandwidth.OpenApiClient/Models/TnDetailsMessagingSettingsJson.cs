@@ -102,7 +102,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(6)
             {
                 { "a2pState", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TnDetailsMessagingSettingsJsonA2PState>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueA2pState = default; _explicitNullProperties?.Remove("a2pState"); AdditionalData["a2pState"] = unknown; } else { A2pState = parsed; AdditionalData.Remove("a2pState"); } } },
                 { "campaignFullyProvisioned", n => { CampaignFullyProvisioned = n.GetBoolValue(); } },

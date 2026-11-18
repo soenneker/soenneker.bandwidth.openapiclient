@@ -81,7 +81,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(6)
             {
                 { "billingType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UcTrunkingBillingType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueBillingType = default; _explicitNullProperties?.Remove("billingType"); AdditionalData["billingType"] = unknown; } else { BillingType = parsed; AdditionalData.Remove("billingType"); } } },
                 { "customerTrafficAllowed", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.UcTrunkingCustomerTrafficAllowed>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueCustomerTrafficAllowed = default; _explicitNullProperties?.Remove("customerTrafficAllowed"); AdditionalData["customerTrafficAllowed"] = unknown; } else { CustomerTrafficAllowed = parsed; AdditionalData.Remove("customerTrafficAllowed"); } } },

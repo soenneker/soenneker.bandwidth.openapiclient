@@ -171,7 +171,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(14)
             {
                 { "accountId", n => { AccountId = n.GetIntValue(); } },
                 { "analyticEngine", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AnalyticEngine>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueAnalyticEngine = default; _explicitNullProperties?.Remove("analyticEngine"); AdditionalData["analyticEngine"] = unknown; } else { AnalyticEngine = parsed; AdditionalData.Remove("analyticEngine"); } } },

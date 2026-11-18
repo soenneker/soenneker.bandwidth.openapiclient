@@ -95,7 +95,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(6)
             {
                 { "alertMethod", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.TriggerDetailsDataAlertsItemAlertMethod>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueAlertMethod = default; _explicitNullProperties?.Remove("alertMethod"); AdditionalData["alertMethod"] = unknown; } else { AlertMethod = parsed; AdditionalData.Remove("alertMethod"); } } },
                 { "alertTime", n => { AlertTime = n.GetDateTimeOffsetValue(); } },

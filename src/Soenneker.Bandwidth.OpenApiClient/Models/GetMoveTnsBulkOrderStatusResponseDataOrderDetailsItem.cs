@@ -91,7 +91,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(8)
             {
                 { "e911ServiceAction", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.E911ServiceAction>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueE911ServiceAction = default; _explicitNullProperties?.Remove("e911ServiceAction"); AdditionalData["e911ServiceAction"] = unknown; } else { E911ServiceAction = parsed; AdditionalData.Remove("e911ServiceAction"); } } },
                 { "locationId", n => { LocationId = n.GetDoubleValue(); } },

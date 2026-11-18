@@ -49,10 +49,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             else if (parseNode.GetChildNode("fallbackUsername") is { } nullNodeFallbackUsername && nullNodeFallbackUsername.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FallbackUsername = null;
             if (parseNode.GetChildNode("from") is null) { _explicitNullValueFrom = default!; _explicitNullProperties?.Remove("from"); }
             else if (parseNode.GetChildNode("from") is { } nullNodeFrom && nullNodeFrom.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) From = null;
+            if (parseNode.GetChildNode("identity") is null) { _explicitNullValueIdentity = default!; _explicitNullProperties?.Remove("identity"); }
+            else if (parseNode.GetChildNode("identity") is { } nullNodeIdentity && nullNodeIdentity.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Identity = null;
             if (parseNode.GetChildNode("password") is null) { _explicitNullValuePassword = default!; _explicitNullProperties?.Remove("password"); }
             else if (parseNode.GetChildNode("password") is { } nullNodePassword && nullNodePassword.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Password = null;
             if (parseNode.GetChildNode("priority") is null) { _explicitNullValuePriority = default!; _explicitNullProperties?.Remove("priority"); }
             else if (parseNode.GetChildNode("priority") is { } nullNodePriority && nullNodePriority.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Priority = null;
+            if (parseNode.GetChildNode("requestedAttestationLevel") is null) { _explicitNullValueRequestedAttestationLevel = default!; _explicitNullProperties?.Remove("requestedAttestationLevel"); }
+            else if (parseNode.GetChildNode("requestedAttestationLevel") is { } nullNodeRequestedAttestationLevel && nullNodeRequestedAttestationLevel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RequestedAttestationLevel = null;
             if (parseNode.GetChildNode("tag") is null) { _explicitNullValueTag = default!; _explicitNullProperties?.Remove("tag"); }
             else if (parseNode.GetChildNode("tag") is { } nullNodeTag && nullNodeTag.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tag = null;
             if (parseNode.GetChildNode("to") is null) { _explicitNullValueTo = default!; _explicitNullProperties?.Remove("to"); }
@@ -181,6 +185,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string From { get => _explicitNullValueFrom; set { _explicitNullValueFrom = value; AdditionalData?.Remove("from"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("from"); else _explicitNullProperties?.Remove("from"); } }
         private string _explicitNullValueFrom = default!;
 #endif
+        /// <summary>The `identity` value provided in the Create Call request, if any.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Identity { get => _explicitNullValueIdentity; set { _explicitNullValueIdentity = value; AdditionalData?.Remove("identity"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("identity"); else _explicitNullProperties?.Remove("identity"); } }
+        private string? _explicitNullValueIdentity = default!;
+#nullable restore
+#else
+        public string Identity { get => _explicitNullValueIdentity; set { _explicitNullValueIdentity = value; AdditionalData?.Remove("identity"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("identity"); else _explicitNullProperties?.Remove("identity"); } }
+        private string _explicitNullValueIdentity = default!;
+#endif
         /// <summary>Basic auth password.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -194,6 +208,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>The priority of this call over other calls from your account.</summary>
         public int? Priority { get => _explicitNullValuePriority; set { _explicitNullValuePriority = value; AdditionalData?.Remove("priority"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("priority"); else _explicitNullProperties?.Remove("priority"); } }
         private int? _explicitNullValuePriority = default!;
+        /// <summary>The STIR/SHAKEN attestation level Bandwidth signs the call with: `A` (full), `B` (partial), or `C` (gateway).</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateCallResponseRequestedAttestationLevel? RequestedAttestationLevel { get => _explicitNullValueRequestedAttestationLevel; set { _explicitNullValueRequestedAttestationLevel = value; AdditionalData?.Remove("requestedAttestationLevel"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requestedAttestationLevel"); else _explicitNullProperties?.Remove("requestedAttestationLevel"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CreateCallResponseRequestedAttestationLevel? _explicitNullValueRequestedAttestationLevel = default!;
         /// <summary>Custom tag value.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -247,7 +264,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(23)
             {
                 { "accountId", n => { AccountId = n.GetStringValue(); } },
                 { "answerFallbackMethod", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueAnswerFallbackMethod = default; _explicitNullProperties?.Remove("answerFallbackMethod"); AdditionalData["answerFallbackMethod"] = unknown; } else { AnswerFallbackMethod = parsed; AdditionalData.Remove("answerFallbackMethod"); } } },
@@ -265,8 +282,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "fallbackPassword", n => { FallbackPassword = n.GetStringValue(); } },
                 { "fallbackUsername", n => { FallbackUsername = n.GetStringValue(); } },
                 { "from", n => { From = n.GetStringValue(); } },
+                { "identity", n => { Identity = n.GetStringValue(); } },
                 { "password", n => { Password = n.GetStringValue(); } },
                 { "priority", n => { Priority = n.GetIntValue(); } },
+                { "requestedAttestationLevel", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateCallResponseRequestedAttestationLevel>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueRequestedAttestationLevel = default; _explicitNullProperties?.Remove("requestedAttestationLevel"); AdditionalData["requestedAttestationLevel"] = unknown; } else { RequestedAttestationLevel = parsed; AdditionalData.Remove("requestedAttestationLevel"); } } },
                 { "tag", n => { Tag = n.GetStringValue(); } },
                 { "to", n => { To = n.GetStringValue(); } },
                 { "username", n => { Username = n.GetStringValue(); } },
@@ -295,8 +314,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("fallbackPassword", FallbackPassword);
             writer.WriteStringValue("fallbackUsername", FallbackUsername);
             writer.WriteStringValue("from", From);
+            writer.WriteStringValue("identity", Identity);
             writer.WriteStringValue("password", Password);
             writer.WriteIntValue("priority", Priority);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateCallResponseRequestedAttestationLevel>("requestedAttestationLevel", RequestedAttestationLevel);
             writer.WriteStringValue("tag", Tag);
             writer.WriteStringValue("to", To);
             writer.WriteStringValue("username", Username);

@@ -293,7 +293,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(23)
             {
                 { "altBusinessId", n => { AltBusinessId = n.GetStringValue(); } },
                 { "altBusinessIdType", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumAltBusinessIdType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueAltBusinessIdType = default; _explicitNullProperties?.Remove("altBusinessIdType"); AdditionalData["altBusinessIdType"] = unknown; } else { AltBusinessIdType = parsed; AdditionalData.Remove("altBusinessIdType"); } } },

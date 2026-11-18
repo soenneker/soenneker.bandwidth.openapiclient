@@ -105,7 +105,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(5)
             {
                 { "dldaOrderResponses", n => { DldaOrderResponses = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesResponseDldaOrderResponsesItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesResponseDldaOrderResponsesItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "e911OrderResponses", n => { E911OrderResponses = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesResponseE911OrderResponsesItem>(global::Soenneker.Bandwidth.OpenApiClient.Models.LineFeaturesResponseE911OrderResponsesItem.CreateFromDiscriminatorValue)?.AsList(); } },

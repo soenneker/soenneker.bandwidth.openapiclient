@@ -158,7 +158,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(13)
             {
                 { "additionalDenialReasons", n => { AdditionalDenialReasons = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.AdditionalDenialReason>(global::Soenneker.Bandwidth.OpenApiClient.Models.AdditionalDenialReason.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "blocked", n => { Blocked = n.GetBoolValue(); } },

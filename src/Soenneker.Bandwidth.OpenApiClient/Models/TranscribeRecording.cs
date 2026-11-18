@@ -109,7 +109,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(7)
             {
                 { "callbackMethod", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueCallbackMethod = default; _explicitNullProperties?.Remove("callbackMethod"); AdditionalData["callbackMethod"] = unknown; } else { CallbackMethod = parsed; AdditionalData.Remove("callbackMethod"); } } },
                 { "callbackTimeout", n => { CallbackTimeout = n.GetDoubleValue(); } },

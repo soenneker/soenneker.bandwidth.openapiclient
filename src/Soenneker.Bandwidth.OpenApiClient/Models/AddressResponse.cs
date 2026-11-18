@@ -1095,7 +1095,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(91)
             {
                 { "address", n => { Address = n.GetStringValue(); } },
                 { "addressLine1", n => { AddressLine1 = n.GetStringValue(); } },

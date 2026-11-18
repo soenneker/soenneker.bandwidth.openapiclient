@@ -92,7 +92,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.ReportScheduleResponseObject>(global::Soenneker.Bandwidth.OpenApiClient.Models.ReportScheduleResponseObject.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsApiError>(global::Soenneker.Bandwidth.OpenApiClient.Models.InsightsApiError.CreateFromDiscriminatorValue)?.AsList(); } },

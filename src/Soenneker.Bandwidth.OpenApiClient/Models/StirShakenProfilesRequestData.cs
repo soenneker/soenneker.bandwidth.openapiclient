@@ -72,7 +72,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "attestLevel", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.AttestLevel>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueAttestLevel = default; _explicitNullProperties?.Remove("attestLevel"); AdditionalData["attestLevel"] = unknown; } else { AttestLevel = parsed; AdditionalData.Remove("attestLevel"); } } },
                 { "certificateId", n => { CertificateId = n.GetStringValue(); } },

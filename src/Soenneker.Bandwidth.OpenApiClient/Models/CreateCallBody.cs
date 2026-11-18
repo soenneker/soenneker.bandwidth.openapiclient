@@ -43,6 +43,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             else if (parseNode.GetChildNode("fallbackUsername") is { } nullNodeFallbackUsername && nullNodeFallbackUsername.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FallbackUsername = null;
             if (parseNode.GetChildNode("from") is null) { _explicitNullValueFrom = default!; _explicitNullProperties?.Remove("from"); }
             else if (parseNode.GetChildNode("from") is { } nullNodeFrom && nullNodeFrom.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) From = null;
+            if (parseNode.GetChildNode("identity") is null) { _explicitNullValueIdentity = default!; _explicitNullProperties?.Remove("identity"); }
+            else if (parseNode.GetChildNode("identity") is { } nullNodeIdentity && nullNodeIdentity.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Identity = null;
             if (parseNode.GetChildNode("machineDetection") is null) { _explicitNullValueMachineDetection = default!; _explicitNullProperties?.Remove("machineDetection"); }
             else if (parseNode.GetChildNode("machineDetection") is { } nullNodeMachineDetection && nullNodeMachineDetection.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MachineDetection = null;
             if (parseNode.GetChildNode("password") is null) { _explicitNullValuePassword = default!; _explicitNullProperties?.Remove("password"); }
@@ -51,6 +53,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             else if (parseNode.GetChildNode("priority") is { } nullNodePriority && nullNodePriority.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Priority = null;
             if (parseNode.GetChildNode("privacy") is null) { _explicitNullValuePrivacy = default!; _explicitNullProperties?.Remove("privacy"); }
             else if (parseNode.GetChildNode("privacy") is { } nullNodePrivacy && nullNodePrivacy.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Privacy = null;
+            if (parseNode.GetChildNode("requestedAttestationLevel") is null) { _explicitNullValueRequestedAttestationLevel = default!; _explicitNullProperties?.Remove("requestedAttestationLevel"); }
+            else if (parseNode.GetChildNode("requestedAttestationLevel") is { } nullNodeRequestedAttestationLevel && nullNodeRequestedAttestationLevel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RequestedAttestationLevel = null;
             if (parseNode.GetChildNode("tag") is null) { _explicitNullValueTag = default!; _explicitNullProperties?.Remove("tag"); }
             else if (parseNode.GetChildNode("tag") is { } nullNodeTag && nullNodeTag.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tag = null;
             if (parseNode.GetChildNode("to") is null) { _explicitNullValueTo = default!; _explicitNullProperties?.Remove("to"); }
@@ -158,6 +162,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string From { get => _explicitNullValueFrom; set { _explicitNullValueFrom = value; AdditionalData?.Remove("from"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("from"); else _explicitNullProperties?.Remove("from"); } }
         private string _explicitNullValueFrom = default!;
 #endif
+        /// <summary>A complete SIP `Identity` header value that you signed yourself. It must be a valid STIR/SHAKENPASSporT and may not exceed 2000 characters. Bandwidth sends it unmodified on the outbound call anddoes not sign the call. Bandwidth checks only the format and size of the value, not the signature.Applies to outbound calls to US destinations only.Cannot be combined with `requestedAttestationLevel`. A request that includes both, or a value that is too longor not in the expected format, is rejected with a `400`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Identity { get => _explicitNullValueIdentity; set { _explicitNullValueIdentity = value; AdditionalData?.Remove("identity"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("identity"); else _explicitNullProperties?.Remove("identity"); } }
+        private string? _explicitNullValueIdentity = default!;
+#nullable restore
+#else
+        public string Identity { get => _explicitNullValueIdentity; set { _explicitNullValueIdentity = value; AdditionalData?.Remove("identity"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("identity"); else _explicitNullProperties?.Remove("identity"); } }
+        private string _explicitNullValueIdentity = default!;
+#endif
         /// <summary>The machine detection request used to perform &lt;a href=&apos;/docs/voice/guides/machineDetection&apos;&gt;machine detection&lt;/a&gt; on the call. Currently, there is an issue where decimal values are not getting processed correctly. Please use whole number values. We are working to resolve this issue. Please contact Bandwidth Support if you need more information.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -184,6 +198,9 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <summary>Hide the calling number. The `displayName` field can be used to customize the displayed name.</summary>
         public bool? Privacy { get => _explicitNullValuePrivacy; set { _explicitNullValuePrivacy = value; AdditionalData?.Remove("privacy"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privacy"); else _explicitNullProperties?.Remove("privacy"); } }
         private bool? _explicitNullValuePrivacy = default!;
+        /// <summary>The STIR/SHAKEN attestation level Bandwidth signs the call with: `A` (full), `B` (partial), or `C` (gateway).</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.CreateCallBodyRequestedAttestationLevel? RequestedAttestationLevel { get => _explicitNullValueRequestedAttestationLevel; set { _explicitNullValueRequestedAttestationLevel = value; AdditionalData?.Remove("requestedAttestationLevel"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requestedAttestationLevel"); else _explicitNullProperties?.Remove("requestedAttestationLevel"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.CreateCallBodyRequestedAttestationLevel? _explicitNullValueRequestedAttestationLevel = default!;
         /// <summary>A custom string that will be sent with all webhooks for thiscall unless overwritten by a future &lt;a href=&apos;/docs/voice/bxml/tag&apos;&gt;`&lt;Tag&gt;`&lt;/a&gt;verb or `tag` attribute on another verb, or cleared.May be cleared by setting `tag=&quot;&quot;`Max length 4096 characters.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -250,7 +267,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(23)
             {
                 { "answerFallbackMethod", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CallbackMethodEnum>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueAnswerFallbackMethod = default; _explicitNullProperties?.Remove("answerFallbackMethod"); AdditionalData["answerFallbackMethod"] = unknown; } else { AnswerFallbackMethod = parsed; AdditionalData.Remove("answerFallbackMethod"); } } },
                 { "answerFallbackUrl", n => { AnswerFallbackUrl = n.GetStringValue(); } },
@@ -265,10 +282,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
                 { "fallbackPassword", n => { FallbackPassword = n.GetStringValue(); } },
                 { "fallbackUsername", n => { FallbackUsername = n.GetStringValue(); } },
                 { "from", n => { From = n.GetStringValue(); } },
+                { "identity", n => { Identity = n.GetStringValue(); } },
                 { "machineDetection", n => { MachineDetection = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MachineDetectionConfiguration>(global::Soenneker.Bandwidth.OpenApiClient.Models.MachineDetectionConfiguration.CreateFromDiscriminatorValue); } },
                 { "password", n => { Password = n.GetStringValue(); } },
                 { "priority", n => { Priority = n.GetIntValue(); } },
                 { "privacy", n => { Privacy = n.GetBoolValue(); } },
+                { "requestedAttestationLevel", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateCallBodyRequestedAttestationLevel>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueRequestedAttestationLevel = default; _explicitNullProperties?.Remove("requestedAttestationLevel"); AdditionalData["requestedAttestationLevel"] = unknown; } else { RequestedAttestationLevel = parsed; AdditionalData.Remove("requestedAttestationLevel"); } } },
                 { "tag", n => { Tag = n.GetStringValue(); } },
                 { "to", n => { To = n.GetStringValue(); } },
                 { "username", n => { Username = n.GetStringValue(); } },
@@ -295,10 +314,12 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteStringValue("fallbackPassword", FallbackPassword);
             writer.WriteStringValue("fallbackUsername", FallbackUsername);
             writer.WriteStringValue("from", From);
+            writer.WriteStringValue("identity", Identity);
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MachineDetectionConfiguration>("machineDetection", MachineDetection);
             writer.WriteStringValue("password", Password);
             writer.WriteIntValue("priority", Priority);
             writer.WriteBoolValue("privacy", Privacy);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.CreateCallBodyRequestedAttestationLevel>("requestedAttestationLevel", RequestedAttestationLevel);
             writer.WriteStringValue("tag", Tag);
             writer.WriteStringValue("to", To);
             writer.WriteStringValue("username", Username);

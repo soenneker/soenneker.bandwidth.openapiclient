@@ -431,7 +431,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(38)
             {
                 { "attestationIndicator", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.ExternalVoiceResourceAttestationIndicator>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueAttestationIndicator = default; _explicitNullProperties?.Remove("attestationIndicator"); AdditionalData["attestationIndicator"] = unknown; } else { AttestationIndicator = parsed; AdditionalData.Remove("attestationIndicator"); } } },
                 { "callForwarded", n => { CallForwarded = n.GetBoolValue(); } },

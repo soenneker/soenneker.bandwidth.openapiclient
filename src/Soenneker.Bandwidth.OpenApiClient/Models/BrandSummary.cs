@@ -154,7 +154,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(12)
             {
                 { "accounts", n => { Accounts = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAccount>(global::Soenneker.Bandwidth.OpenApiClient.Models.BrandAccount.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "authenticationStatus", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.EnumBusinessAuthenticationStatus>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueAuthenticationStatus = default; _explicitNullProperties?.Remove("authenticationStatus"); AdditionalData["authenticationStatus"] = unknown; } else { AuthenticationStatus = parsed; AdditionalData.Remove("authenticationStatus"); } } },
