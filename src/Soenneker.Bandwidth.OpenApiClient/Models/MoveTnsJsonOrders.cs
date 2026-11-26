@@ -19,6 +19,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if (parseNode.GetChildNode("links") is null) { _explicitNullValueLinks = default!; _explicitNullProperties?.Remove("links"); }
             else if (parseNode.GetChildNode("links") is { } nullNodeLinks && nullNodeLinks.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Links = null;
+            if (parseNode.GetChildNode("moveTnsOrder") is null) { _explicitNullValueMoveTnsOrder = default!; _explicitNullProperties?.Remove("moveTnsOrder"); }
+            else if (parseNode.GetChildNode("moveTnsOrder") is { } nullNodeMoveTnsOrder && nullNodeMoveTnsOrder.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MoveTnsOrder = null;
             if (parseNode.GetChildNode("orders") is null) { _explicitNullValueOrders = default!; _explicitNullProperties?.Remove("orders"); }
             else if (parseNode.GetChildNode("orders") is { } nullNodeOrders && nullNodeOrders.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Orders = null;
             if (parseNode.GetChildNode("totalCount") is null) { _explicitNullValueTotalCount = default!; _explicitNullProperties?.Remove("totalCount"); }
@@ -27,7 +29,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The links property</summary>
+        /// <summary>Links to other pages of results.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementPaginationLinks? Links { get => _explicitNullValueLinks; set { _explicitNullValueLinks = value; AdditionalData?.Remove("links"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("links"); else _explicitNullProperties?.Remove("links"); } }
@@ -37,7 +39,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementPaginationLinks Links { get => _explicitNullValueLinks; set { _explicitNullValueLinks = value; AdditionalData?.Remove("links"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("links"); else _explicitNullProperties?.Remove("links"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementPaginationLinks _explicitNullValueLinks = default!;
 #endif
-        /// <summary>The orders property</summary>
+        /// <summary>Full order details. Returned instead of `orders` when `orderDetails` is true.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload>? MoveTnsOrder { get => _explicitNullValueMoveTnsOrder; set { _explicitNullValueMoveTnsOrder = value; AdditionalData?.Remove("moveTnsOrder"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moveTnsOrder"); else _explicitNullProperties?.Remove("moveTnsOrder"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload>? _explicitNullValueMoveTnsOrder = default!;
+#nullable restore
+#else
+        public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload> MoveTnsOrder { get => _explicitNullValueMoveTnsOrder; set { _explicitNullValueMoveTnsOrder = value; AdditionalData?.Remove("moveTnsOrder"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moveTnsOrder"); else _explicitNullProperties?.Remove("moveTnsOrder"); } }
+        private List<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload> _explicitNullValueMoveTnsOrder = default!;
+#endif
+        /// <summary>Order summaries. Returned when `orderDetails` is false (the default).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderSummaryJson>? Orders { get => _explicitNullValueOrders; set { _explicitNullValueOrders = value; AdditionalData?.Remove("orders"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orders"); else _explicitNullProperties?.Remove("orders"); } }
@@ -47,7 +59,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderSummaryJson> Orders { get => _explicitNullValueOrders; set { _explicitNullValueOrders = value; AdditionalData?.Remove("orders"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orders"); else _explicitNullProperties?.Remove("orders"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderSummaryJson> _explicitNullValueOrders = default!;
 #endif
-        /// <summary>The totalCount property</summary>
+        /// <summary>Total number of orders that match the query, across all pages.</summary>
         public int? TotalCount { get => _explicitNullValueTotalCount; set { _explicitNullValueTotalCount = value; AdditionalData?.Remove("totalCount"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("totalCount"); else _explicitNullProperties?.Remove("totalCount"); } }
         private int? _explicitNullValueTotalCount = default!;
         /// <summary>
@@ -73,9 +85,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "links", n => { Links = n.GetObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementPaginationLinks>(global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementPaginationLinks.CreateFromDiscriminatorValue); } },
+                { "moveTnsOrder", n => { MoveTnsOrder = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload>(global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "orders", n => { Orders = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderSummaryJson>(global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderSummaryJson.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "totalCount", n => { TotalCount = n.GetIntValue(); } },
             };
@@ -88,6 +101,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementPaginationLinks>("links", Links);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload>("moveTnsOrder", MoveTnsOrder);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderSummaryJson>("orders", Orders);
             writer.WriteIntValue("totalCount", TotalCount);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);

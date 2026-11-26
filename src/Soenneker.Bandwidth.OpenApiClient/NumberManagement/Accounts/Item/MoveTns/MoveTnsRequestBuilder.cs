@@ -41,7 +41,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveT
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MoveTnsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/number-management/accounts/{accountId}/moveTns{?createdDateFrom*,createdDateTo*,customerOrderId*,modifiedDateFrom*,modifiedDateTo*,pageNumber*,pageSize*,status*,tn*}", pathParameters)
+        public MoveTnsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/number-management/accounts/{accountId}/moveTns{?createdDateFrom*,createdDateTo*,customerOrderId*,modifiedDateFrom*,modifiedDateTo*,orderDetails*,page*,size*,status*,tn*}", pathParameters)
         {
         }
         /// <summary>
@@ -49,15 +49,16 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveT
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MoveTnsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/number-management/accounts/{accountId}/moveTns{?createdDateFrom*,createdDateTo*,customerOrderId*,modifiedDateFrom*,modifiedDateTo*,pageNumber*,pageSize*,status*,tn*}", rawUrl)
+        public MoveTnsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/number-management/accounts/{accountId}/moveTns{?createdDateFrom*,createdDateTo*,customerOrderId*,modifiedDateFrom*,modifiedDateTo*,orderDetails*,page*,size*,status*,tn*}", rawUrl)
         {
         }
         /// <summary>
-        /// Retrieves the moveTns orders for the given account ID. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years
+        /// Retrieves the Move TNs orders for the given account ID. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsJsonOrders"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonErrorResponse">When receiving a 400 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsJsonOrders?> GetAsync(Action<RequestConfiguration<global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveTns.MoveTnsRequestBuilder.MoveTnsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -68,16 +69,22 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveT
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsJsonOrders>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsJsonOrders.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsJsonOrders>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsJsonOrders.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Creates a MoveTnsOrder request to move numbers to the given site/sub-account ID and SIP peer/location ID as specified in the body. A successfully submitted order will have a status of &quot;RECEIVED&quot;.A successfully completed order will have a status of &quot;COMPLETE&quot; if all of the telephone numbers were successfully moved and &quot;PARTIAL&quot; if some of the telephone numbers were moved. A failed order will have a status of &quot;FAILED&quot; and no telephone numbers would have been moved.&lt;/p&gt;&lt;p&gt;Numbers can be moved to sub-accounts (or sites) and locations (or SIP peers) of a different account (if the user has access to both accounts and the proper roles). This can be done by specifying the SourceAccountId parameter. The user can also specify how to handle E911 service on the number (if it exists) using the optional e911ServiceAction parameter
+        /// Creates a Move TNs order request to move numbers to the given site/sub-account ID and SIP peer/location ID as specified in the body. A successfully submitted order will have a status of &quot;RECEIVED&quot;.A successfully completed order will have a status of &quot;COMPLETE&quot; if all of the phone numbers were successfully moved and &quot;PARTIAL&quot; if some of the phone numbers were moved. A failed order will have a status of &quot;FAILED&quot; and no phone numbers would have been moved.Numbers can be moved to sub-accounts (or sites) and locations (or SIP peers) of a different account (if the user has access to both accounts and the proper roles). This can be done by specifying the `SourceAccountId` (XML) or `sourceAccountId` (JSON) field. The user can also specify how to handle E911 service on the number (if it exists) using the optional `E911ServiceAction` (XML) or `e911ServiceAction` (JSON) field.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.PostMoveTnsResponse400Response">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonErrorResponse">When receiving a 400 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload?> PostAsync(global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -91,14 +98,14 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveT
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.PostMoveTnsResponse400Response.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonErrorResponse.CreateFromDiscriminatorValue },
                 { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayload.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieves the moveTns orders for the given account ID. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years
+        /// Retrieves the Move TNs orders for the given account ID. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -117,7 +124,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveT
             return requestInfo;
         }
         /// <summary>
-        /// Creates a MoveTnsOrder request to move numbers to the given site/sub-account ID and SIP peer/location ID as specified in the body. A successfully submitted order will have a status of &quot;RECEIVED&quot;.A successfully completed order will have a status of &quot;COMPLETE&quot; if all of the telephone numbers were successfully moved and &quot;PARTIAL&quot; if some of the telephone numbers were moved. A failed order will have a status of &quot;FAILED&quot; and no telephone numbers would have been moved.&lt;/p&gt;&lt;p&gt;Numbers can be moved to sub-accounts (or sites) and locations (or SIP peers) of a different account (if the user has access to both accounts and the proper roles). This can be done by specifying the SourceAccountId parameter. The user can also specify how to handle E911 service on the number (if it exists) using the optional e911ServiceAction parameter
+        /// Creates a Move TNs order request to move numbers to the given site/sub-account ID and SIP peer/location ID as specified in the body. A successfully submitted order will have a status of &quot;RECEIVED&quot;.A successfully completed order will have a status of &quot;COMPLETE&quot; if all of the phone numbers were successfully moved and &quot;PARTIAL&quot; if some of the phone numbers were moved. A failed order will have a status of &quot;FAILED&quot; and no phone numbers would have been moved.Numbers can be moved to sub-accounts (or sites) and locations (or SIP peers) of a different account (if the user has access to both accounts and the proper roles). This can be done by specifying the `SourceAccountId` (XML) or `sourceAccountId` (JSON) field. The user can also specify how to handle E911 service on the number (if it exists) using the optional `E911ServiceAction` (XML) or `e911ServiceAction` (JSON) field.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -148,7 +155,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveT
             return new global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveTns.MoveTnsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieves the moveTns orders for the given account ID. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years
+        /// Retrieves the Move TNs orders for the given account ID. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class MoveTnsRequestBuilderGetQueryParameters 
@@ -183,7 +190,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveT
             [QueryParameter("customerOrderId")]
             public string CustomerOrderId { get; set; }
 #endif
-            /// <summary>For Date-based searches, the starting date of a date range (inclusive) that will be used to find Import Tn Orders that were modified within the date range. It is in the form yyyy-MM-dd.</summary>
+            /// <summary>For Date-based searches, the starting date of a date range (inclusive) that will be used to find Move TNs orders that were modified within the date range. It is in the form yyyy-MM-dd.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("modifiedDateFrom")]
@@ -193,7 +200,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveT
             [QueryParameter("modifiedDateFrom")]
             public string ModifiedDateFrom { get; set; }
 #endif
-            /// <summary>For Date-based searches, the ending date of a date range (inclusive) that will be used to find Import Tn Orders that were modified within the date range. It is in the form yyyy-MM-dd.</summary>
+            /// <summary>For Date-based searches, the ending date of a date range (inclusive) that will be used to find Move TNs orders that were modified within the date range. It is in the form yyyy-MM-dd.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("modifiedDateTo")]
@@ -203,13 +210,23 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveT
             [QueryParameter("modifiedDateTo")]
             public string ModifiedDateTo { get; set; }
 #endif
-            /// <summary>The number of the page to return. If not specified, the default page is 0.</summary>
-            [QueryParameter("pageNumber")]
-            public int? PageNumber { get; set; }
-            /// <summary>The number of records to return. If not specified, the default size is 500.</summary>
-            [QueryParameter("pageSize")]
-            public int? PageSize { get; set; }
-            /// <summary>The status of the moveTnsOrder being searched for</summary>
+            /// <summary>When true, the full details of each order are returned instead of the order summary. Defaults to false.</summary>
+            [QueryParameter("orderDetails")]
+            public bool? OrderDetails { get; set; }
+            /// <summary>The number of the page to return. If not specified, the default page is 1.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("page")]
+            public string? Page { get; set; }
+#nullable restore
+#else
+            [QueryParameter("page")]
+            public string Page { get; set; }
+#endif
+            /// <summary>The number of order records to return. If not specified, the default size is 500.</summary>
+            [QueryParameter("size")]
+            public int? Size { get; set; }
+            /// <summary>The status of the Move TNs order being searched for.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("status")]
@@ -219,7 +236,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.MoveT
             [QueryParameter("status")]
             public string Status { get; set; }
 #endif
-            /// <summary>A Telephone Number (TN) that is referenced in the order</summary>
+            /// <summary>A Phone Number (TN) that is referenced in the order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("tn")]

@@ -16,7 +16,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Sites
     public partial class TnsRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Bandwidth.OpenApiClient.numberManagement.accounts.item.sites.item.sippeers.item.tns.item collection</summary>
-        /// <param name="position">A E.164 telephone number.</param>
+        /// <param name="position">A E.164 phone number.</param>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Sites.Item.Sippeers.Item.Tns.Item.WithTnItemRequestBuilder"/></returns>
         public global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Sites.Item.Sippeers.Item.Tns.Item.WithTnItemRequestBuilder this[string position]
         {

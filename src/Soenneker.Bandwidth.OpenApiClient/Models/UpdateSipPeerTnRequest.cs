@@ -58,7 +58,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestMessagingSettings MessagingSettings { get => _explicitNullValueMessagingSettings; set { _explicitNullValueMessagingSettings = value; AdditionalData?.Remove("messagingSettings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messagingSettings"); else _explicitNullProperties?.Remove("messagingSettings"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestMessagingSettings _explicitNullValueMessagingSettings = default!;
 #endif
-        /// <summary>The E.164 telephone number.</summary>
+        /// <summary>The E.164 phone number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PhoneNumber { get => _explicitNullValuePhoneNumber; set { _explicitNullValuePhoneNumber = value; AdditionalData?.Remove("phoneNumber"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumber"); else _explicitNullProperties?.Remove("phoneNumber"); } }
@@ -78,7 +78,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string RewriteUser { get => _explicitNullValueRewriteUser; set { _explicitNullValueRewriteUser = value; AdditionalData?.Remove("rewriteUser"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rewriteUser"); else _explicitNullProperties?.Remove("rewriteUser"); } }
         private string _explicitNullValueRewriteUser = default!;
 #endif
-        /// <summary>RPID format for the telephone number.</summary>
+        /// <summary>RPID format for the phone number.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestRpidFormat? RpidFormat { get => _explicitNullValueRpidFormat; set { _explicitNullValueRpidFormat = value; AdditionalData?.Remove("rpidFormat"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rpidFormat"); else _explicitNullProperties?.Remove("rpidFormat"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnRequestRpidFormat? _explicitNullValueRpidFormat = default!;
         /// <summary>TN attributes (NANP only). Valid values include Protected, External, Imported.</summary>

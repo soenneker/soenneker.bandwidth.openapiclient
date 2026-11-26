@@ -34,7 +34,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Sites
         {
         }
         /// <summary>
-        /// Update settings for a TN allocated to their account.The following request body parameters are only allowed for numbers from specific region/country:| Number Region | Request Body Parameter ||:--------------|:------------------------|| NANP | tnAttributes || NANP | callingNameDisplay |
+        /// Update settings for a TN allocated to their account.The following request body parameters are only allowed for numbers from specific region/country:| Number Region | Request Body Parameter ||:--------------|:------------------------|| NANP | `tnAttributes` || NANP | `callingNameDisplay` |Possible `400` error codes:- 13513: Call Forwarding number is not a valid 10-digit telephone number- 13514: Number Format is invalid for telephone number- 13575: CallingNameDisplay is invalid. Valid values are: &apos;true&apos;, &apos;false&apos;- 13576: Account has no CallForwarding or CNAM product feature- 13536: Telephone number does not exist on the specified Account, Site, and SIP PeerA `409 Conflict` means a potential conflict was found because TN settings are appliedasynchronously. This typically occurs when updating TN properties without changing messagingsettings. Use `POST /accounts/{accountId}/tnOptions` for property-only updates.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -61,7 +61,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Sites
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.UpdateSipPeerTnResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Update settings for a TN allocated to their account.The following request body parameters are only allowed for numbers from specific region/country:| Number Region | Request Body Parameter ||:--------------|:------------------------|| NANP | tnAttributes || NANP | callingNameDisplay |
+        /// Update settings for a TN allocated to their account.The following request body parameters are only allowed for numbers from specific region/country:| Number Region | Request Body Parameter ||:--------------|:------------------------|| NANP | `tnAttributes` || NANP | `callingNameDisplay` |Possible `400` error codes:- 13513: Call Forwarding number is not a valid 10-digit telephone number- 13514: Number Format is invalid for telephone number- 13575: CallingNameDisplay is invalid. Valid values are: &apos;true&apos;, &apos;false&apos;- 13576: Account has no CallForwarding or CNAM product feature- 13536: Telephone number does not exist on the specified Account, Site, and SIP PeerA `409 Conflict` means a potential conflict was found because TN settings are appliedasynchronously. This typically occurs when updating TN properties without changing messagingsettings. Use `POST /accounts/{accountId}/tnOptions` for property-only updates.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

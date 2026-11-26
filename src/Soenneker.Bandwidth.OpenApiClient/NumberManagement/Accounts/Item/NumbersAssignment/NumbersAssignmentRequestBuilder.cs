@@ -19,7 +19,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
     public partial class NumbersAssignmentRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Bandwidth.OpenApiClient.numberManagement.accounts.item.numbersAssignment.item collection</summary>
-        /// <param name="position">Telephone Numbers Assignment order id</param>
+        /// <param name="position">Phone Numbers Assignment order ID</param>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumbersAssignment.Item.WithOrderItemRequestBuilder"/></returns>
         public global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumbersAssignment.Item.WithOrderItemRequestBuilder this[string position]
         {
@@ -47,7 +47,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
         {
         }
         /// <summary>
-        /// Retrieve a list of the TelephoneNumbersAssignment orders that are associated with the account. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years.
+        /// Retrieve a list of the Phone Numbers Assignment orders that are associated with the account. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years. Unrecognized query parameters are not treated as errors; they are ignored.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderListResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderListResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderListResponse.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Create a TelephoneNumbersAssignment order to register the assignment status of a list of telephone numbers.
+        /// Create a Phone Numbers Assignment order to register the assignment status of a list of phone numbers.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -92,7 +92,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve a list of the TelephoneNumbersAssignment orders that are associated with the account. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years.
+        /// Retrieve a list of the Phone Numbers Assignment orders that are associated with the account. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years. Unrecognized query parameters are not treated as errors; they are ignored.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -111,7 +111,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             return requestInfo;
         }
         /// <summary>
-        /// Create a TelephoneNumbersAssignment order to register the assignment status of a list of telephone numbers.
+        /// Create a Phone Numbers Assignment order to register the assignment status of a list of phone numbers.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -142,7 +142,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             return new global::Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.NumbersAssignment.NumbersAssignmentRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieve a list of the TelephoneNumbersAssignment orders that are associated with the account. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years.
+        /// Retrieve a list of the Phone Numbers Assignment orders that are associated with the account. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years. Unrecognized query parameters are not treated as errors; they are ignored.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class NumbersAssignmentRequestBuilderGetQueryParameters 
@@ -170,7 +170,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             [QueryParameter("createdDateTo")]
             public string CreatedDateTo { get; set; }
 #endif
-            /// <summary>The Customer Order ID is an ID assigned by the account owner to provide a reference number for the TelephoneNumbersAssignment order.</summary>
+            /// <summary>The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Phone Numbers Assignment order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("customerOrderId")]
@@ -180,7 +180,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             [QueryParameter("customerOrderId")]
             public string CustomerOrderId { get; set; }
 #endif
-            /// <summary>For Date-based searches, the starting date of a date range (inclusive) that will be used to find TelephoneNumbersAssignment Orders that were modified within the date range. It is in the form yyyy-MM-dd.</summary>
+            /// <summary>For Date-based searches, the starting date of a date range (inclusive) that will be used to find Phone Numbers Assignment orders that were modified within the date range. It is in the form yyyy-MM-dd.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("modifiedDateFrom")]
@@ -190,7 +190,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             [QueryParameter("modifiedDateFrom")]
             public string ModifiedDateFrom { get; set; }
 #endif
-            /// <summary>For Date-based searches, the ending date of a date range (inclusive) that will be used to find TelephoneNumbersAssignment Orders that were modified within the date range. It is in the form yyyy-MM-dd.</summary>
+            /// <summary>For Date-based searches, the ending date of a date range (inclusive) that will be used to find Phone Numbers Assignment orders that were modified within the date range. It is in the form yyyy-MM-dd.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("modifiedDateTo")]
@@ -200,7 +200,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             [QueryParameter("modifiedDateTo")]
             public string ModifiedDateTo { get; set; }
 #endif
-            /// <summary>This search parameter represents the internal Bandwidth App API ID that has been assigned to the TelephoneNumbersAssignment Order.  This parameter is the first few characters of the internal ID - the entire ID does not need to be specified.</summary>
+            /// <summary>This search parameter represents the internal Bandwidth App API ID that has been assigned to the Phone Numbers Assignment order.  This parameter is the first few characters of the internal ID - the entire ID does not need to be specified.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("orderIdFragment")]
@@ -210,7 +210,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             [QueryParameter("orderIdFragment")]
             public string OrderIdFragment { get; set; }
 #endif
-            /// <summary>The status of the TelephoneNumbersAssignment order being searched for.  COMPLETE, PARTIAL, and FAILED are &apos;terminal&apos; states indicating that the order has finished all processing.</summary>
+            /// <summary>The status of the Phone Numbers Assignment order being searched for.  COMPLETE, PARTIAL, and FAILED are &apos;terminal&apos; states indicating that the order has finished all processing.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("status")]
@@ -220,7 +220,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             [QueryParameter("status")]
             public global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderStatus[] Status { get; set; }
 #endif
-            /// <summary>A Telephone Number (TN) that is referenced in the order</summary>
+            /// <summary>A Phone Number (TN) that is referenced in the order</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("tn")]

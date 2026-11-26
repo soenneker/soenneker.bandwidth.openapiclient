@@ -9,7 +9,7 @@ using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     /// <summary>
-    /// BadRequest
+    /// Bad request response.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ServiceActivationCheckerBadRequestResponse : ApiException, IAdditionalDataHolder, IParsable

@@ -129,7 +129,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class PhoneNumbersRequestBuilderGetQueryParameters 
         {
-            /// <summary>Filter by carriersReputationSummary. Allowed values are `STATUS_PENDING`, `FLAGGED`, `CLEAN`. If omitted, all values will be included</summary>
+            /// <summary>Filter by `carriersReputationSummary`. Allowed values are `STATUS_PENDING`, `FLAGGED`, `CLEAN`. If omitted, all values will be included</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("carriersReputationSummary")]

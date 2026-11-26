@@ -19,6 +19,8 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if (parseNode.GetChildNode("accountId") is null) { _explicitNullValueAccountId = default!; _explicitNullProperties?.Remove("accountId"); }
             else if (parseNode.GetChildNode("accountId") is { } nullNodeAccountId && nullNodeAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountId = null;
+            if (parseNode.GetChildNode("customerOrderId") is null) { _explicitNullValueCustomerOrderId = default!; _explicitNullProperties?.Remove("customerOrderId"); }
+            else if (parseNode.GetChildNode("customerOrderId") is { } nullNodeCustomerOrderId && nullNodeCustomerOrderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerOrderId = null;
             if (parseNode.GetChildNode("lastModifiedDate") is null) { _explicitNullValueLastModifiedDate = default!; _explicitNullProperties?.Remove("lastModifiedDate"); }
             else if (parseNode.GetChildNode("lastModifiedDate") is { } nullNodeLastModifiedDate && nullNodeLastModifiedDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastModifiedDate = null;
             if (parseNode.GetChildNode("orderDate") is null) { _explicitNullValueOrderDate = default!; _explicitNullProperties?.Remove("orderDate"); }
@@ -37,12 +39,22 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             else if (parseNode.GetChildNode("userId") is { } nullNodeUserId && nullNodeUserId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserId = null;
         }
 
-        /// <summary>The accountId property</summary>
+        /// <summary>ID of the account that owns the order.</summary>
         public int? AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; AdditionalData?.Remove("accountId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
         private int? _explicitNullValueAccountId = default!;
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The lastModifiedDate property</summary>
+        /// <summary>The customer-defined reference ID for this order, if one was provided at creation. Not unique — Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned `orderId`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CustomerOrderId { get => _explicitNullValueCustomerOrderId; set { _explicitNullValueCustomerOrderId = value; AdditionalData?.Remove("customerOrderId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerOrderId"); else _explicitNullProperties?.Remove("customerOrderId"); } }
+        private string? _explicitNullValueCustomerOrderId = default!;
+#nullable restore
+#else
+        public string CustomerOrderId { get => _explicitNullValueCustomerOrderId; set { _explicitNullValueCustomerOrderId = value; AdditionalData?.Remove("customerOrderId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerOrderId"); else _explicitNullProperties?.Remove("customerOrderId"); } }
+        private string _explicitNullValueCustomerOrderId = default!;
+#endif
+        /// <summary>Date and time the order was last modified.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LastModifiedDate { get => _explicitNullValueLastModifiedDate; set { _explicitNullValueLastModifiedDate = value; AdditionalData?.Remove("lastModifiedDate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastModifiedDate"); else _explicitNullProperties?.Remove("lastModifiedDate"); } }
@@ -52,7 +64,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string LastModifiedDate { get => _explicitNullValueLastModifiedDate; set { _explicitNullValueLastModifiedDate = value; AdditionalData?.Remove("lastModifiedDate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastModifiedDate"); else _explicitNullProperties?.Remove("lastModifiedDate"); } }
         private string _explicitNullValueLastModifiedDate = default!;
 #endif
-        /// <summary>The orderDate property</summary>
+        /// <summary>Date and time the order was created.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OrderDate { get => _explicitNullValueOrderDate; set { _explicitNullValueOrderDate = value; AdditionalData?.Remove("orderDate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderDate"); else _explicitNullProperties?.Remove("orderDate"); } }
@@ -62,7 +74,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string OrderDate { get => _explicitNullValueOrderDate; set { _explicitNullValueOrderDate = value; AdditionalData?.Remove("orderDate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderDate"); else _explicitNullProperties?.Remove("orderDate"); } }
         private string _explicitNullValueOrderDate = default!;
 #endif
-        /// <summary>The orderId property</summary>
+        /// <summary>Bandwidth-assigned ID of the order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OrderId { get => _explicitNullValueOrderId; set { _explicitNullValueOrderId = value; AdditionalData?.Remove("orderId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderId"); else _explicitNullProperties?.Remove("orderId"); } }
@@ -72,7 +84,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string OrderId { get => _explicitNullValueOrderId; set { _explicitNullValueOrderId = value; AdditionalData?.Remove("orderId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderId"); else _explicitNullProperties?.Remove("orderId"); } }
         private string _explicitNullValueOrderId = default!;
 #endif
-        /// <summary>The orderStatus property</summary>
+        /// <summary>Current status of the order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OrderStatus { get => _explicitNullValueOrderStatus; set { _explicitNullValueOrderStatus = value; AdditionalData?.Remove("orderStatus"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderStatus"); else _explicitNullProperties?.Remove("orderStatus"); } }
@@ -82,7 +94,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string OrderStatus { get => _explicitNullValueOrderStatus; set { _explicitNullValueOrderStatus = value; AdditionalData?.Remove("orderStatus"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderStatus"); else _explicitNullProperties?.Remove("orderStatus"); } }
         private string _explicitNullValueOrderStatus = default!;
 #endif
-        /// <summary>The orderType property</summary>
+        /// <summary>Type of the order. Always `move_tns` for Move TNs orders.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OrderType { get => _explicitNullValueOrderType; set { _explicitNullValueOrderType = value; AdditionalData?.Remove("orderType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderType"); else _explicitNullProperties?.Remove("orderType"); } }
@@ -92,13 +104,13 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string OrderType { get => _explicitNullValueOrderType; set { _explicitNullValueOrderType = value; AdditionalData?.Remove("orderType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderType"); else _explicitNullProperties?.Remove("orderType"); } }
         private string _explicitNullValueOrderType = default!;
 #endif
-        /// <summary>The phoneNumberCount property</summary>
+        /// <summary>Number of phone numbers in the order.</summary>
         public int? PhoneNumberCount { get => _explicitNullValuePhoneNumberCount; set { _explicitNullValuePhoneNumberCount = value; AdditionalData?.Remove("phoneNumberCount"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumberCount"); else _explicitNullProperties?.Remove("phoneNumberCount"); } }
         private int? _explicitNullValuePhoneNumberCount = default!;
-        /// <summary>The sourceAccountId property</summary>
+        /// <summary>ID of the account the phone numbers were moved from, for moves across accounts.</summary>
         public int? SourceAccountId { get => _explicitNullValueSourceAccountId; set { _explicitNullValueSourceAccountId = value; AdditionalData?.Remove("sourceAccountId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceAccountId"); else _explicitNullProperties?.Remove("sourceAccountId"); } }
         private int? _explicitNullValueSourceAccountId = default!;
-        /// <summary>The userId property</summary>
+        /// <summary>The user who created the order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? UserId { get => _explicitNullValueUserId; set { _explicitNullValueUserId = value; AdditionalData?.Remove("userId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userId"); else _explicitNullProperties?.Remove("userId"); } }
@@ -131,9 +143,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(9)
+            return new Dictionary<string, Action<IParseNode>>(10)
             {
                 { "accountId", n => { AccountId = n.GetIntValue(); } },
+                { "customerOrderId", n => { CustomerOrderId = n.GetStringValue(); } },
                 { "lastModifiedDate", n => { LastModifiedDate = n.GetStringValue(); } },
                 { "orderDate", n => { OrderDate = n.GetStringValue(); } },
                 { "orderId", n => { OrderId = n.GetStringValue(); } },
@@ -152,6 +165,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("accountId", AccountId);
+            writer.WriteStringValue("customerOrderId", CustomerOrderId);
             writer.WriteStringValue("lastModifiedDate", LastModifiedDate);
             writer.WriteStringValue("orderDate", OrderDate);
             writer.WriteStringValue("orderId", OrderId);

@@ -23,12 +23,20 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             else if (parseNode.GetChildNode("createdByUser") is { } nullNodeCreatedByUser && nullNodeCreatedByUser.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedByUser = null;
             if (parseNode.GetChildNode("customerOrderId") is null) { _explicitNullValueCustomerOrderId = default!; _explicitNullProperties?.Remove("customerOrderId"); }
             else if (parseNode.GetChildNode("customerOrderId") is { } nullNodeCustomerOrderId && nullNodeCustomerOrderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomerOrderId = null;
+            if (parseNode.GetChildNode("e911ServiceAction") is null) { _explicitNullValueE911ServiceAction = default!; _explicitNullProperties?.Remove("e911ServiceAction"); }
+            else if (parseNode.GetChildNode("e911ServiceAction") is { } nullNodeE911ServiceAction && nullNodeE911ServiceAction.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) E911ServiceAction = null;
             if (parseNode.GetChildNode("errors") is null) { _explicitNullValueErrors = default!; _explicitNullProperties?.Remove("errors"); }
             else if (parseNode.GetChildNode("errors") is { } nullNodeErrors && nullNodeErrors.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Errors = null;
+            if (parseNode.GetChildNode("lastModifiedBy") is null) { _explicitNullValueLastModifiedBy = default!; _explicitNullProperties?.Remove("lastModifiedBy"); }
+            else if (parseNode.GetChildNode("lastModifiedBy") is { } nullNodeLastModifiedBy && nullNodeLastModifiedBy.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastModifiedBy = null;
             if (parseNode.GetChildNode("lastModifiedDate") is null) { _explicitNullValueLastModifiedDate = default!; _explicitNullProperties?.Remove("lastModifiedDate"); }
             else if (parseNode.GetChildNode("lastModifiedDate") is { } nullNodeLastModifiedDate && nullNodeLastModifiedDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastModifiedDate = null;
             if (parseNode.GetChildNode("locationId") is null) { _explicitNullValueLocationId = default!; _explicitNullProperties?.Remove("locationId"); }
             else if (parseNode.GetChildNode("locationId") is { } nullNodeLocationId && nullNodeLocationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LocationId = null;
+            if (parseNode.GetChildNode("messagingService") is null) { _explicitNullValueMessagingService = default!; _explicitNullProperties?.Remove("messagingService"); }
+            else if (parseNode.GetChildNode("messagingService") is { } nullNodeMessagingService && nullNodeMessagingService.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessagingService = null;
+            if (parseNode.GetChildNode("name") is null) { _explicitNullValueName = default!; _explicitNullProperties?.Remove("name"); }
+            else if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
             if (parseNode.GetChildNode("orderCreateDate") is null) { _explicitNullValueOrderCreateDate = default!; _explicitNullProperties?.Remove("orderCreateDate"); }
             else if (parseNode.GetChildNode("orderCreateDate") is { } nullNodeOrderCreateDate && nullNodeOrderCreateDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrderCreateDate = null;
             if (parseNode.GetChildNode("orderId") is null) { _explicitNullValueOrderId = default!; _explicitNullProperties?.Remove("orderId"); }
@@ -37,20 +45,24 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             else if (parseNode.GetChildNode("orderStatus") is { } nullNodeOrderStatus && nullNodeOrderStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrderStatus = null;
             if (parseNode.GetChildNode("phoneNumbers") is null) { _explicitNullValuePhoneNumbers = default!; _explicitNullProperties?.Remove("phoneNumbers"); }
             else if (parseNode.GetChildNode("phoneNumbers") is { } nullNodePhoneNumbers && nullNodePhoneNumbers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PhoneNumbers = null;
+            if (parseNode.GetChildNode("requirementsPackageId") is null) { _explicitNullValueRequirementsPackageId = default!; _explicitNullProperties?.Remove("requirementsPackageId"); }
+            else if (parseNode.GetChildNode("requirementsPackageId") is { } nullNodeRequirementsPackageId && nullNodeRequirementsPackageId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RequirementsPackageId = null;
             if (parseNode.GetChildNode("sourceAccountId") is null) { _explicitNullValueSourceAccountId = default!; _explicitNullProperties?.Remove("sourceAccountId"); }
             else if (parseNode.GetChildNode("sourceAccountId") is { } nullNodeSourceAccountId && nullNodeSourceAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SourceAccountId = null;
             if (parseNode.GetChildNode("subAccountId") is null) { _explicitNullValueSubAccountId = default!; _explicitNullProperties?.Remove("subAccountId"); }
             else if (parseNode.GetChildNode("subAccountId") is { } nullNodeSubAccountId && nullNodeSubAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SubAccountId = null;
+            if (parseNode.GetChildNode("voiceConfigurationPackageId") is null) { _explicitNullValueVoiceConfigurationPackageId = default!; _explicitNullProperties?.Remove("voiceConfigurationPackageId"); }
+            else if (parseNode.GetChildNode("voiceConfigurationPackageId") is { } nullNodeVoiceConfigurationPackageId && nullNodeVoiceConfigurationPackageId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VoiceConfigurationPackageId = null;
             if (parseNode.GetChildNode("warnings") is null) { _explicitNullValueWarnings = default!; _explicitNullProperties?.Remove("warnings"); }
             else if (parseNode.GetChildNode("warnings") is { } nullNodeWarnings && nullNodeWarnings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Warnings = null;
         }
 
-        /// <summary>The accountId property</summary>
+        /// <summary>ID of the account that owns the order.</summary>
         public int? AccountId { get => _explicitNullValueAccountId; set { _explicitNullValueAccountId = value; AdditionalData?.Remove("accountId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountId"); else _explicitNullProperties?.Remove("accountId"); } }
         private int? _explicitNullValueAccountId = default!;
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The createdByUser property</summary>
+        /// <summary>The user who created the order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CreatedByUser { get => _explicitNullValueCreatedByUser; set { _explicitNullValueCreatedByUser = value; AdditionalData?.Remove("createdByUser"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdByUser"); else _explicitNullProperties?.Remove("createdByUser"); } }
@@ -70,7 +82,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string CustomerOrderId { get => _explicitNullValueCustomerOrderId; set { _explicitNullValueCustomerOrderId = value; AdditionalData?.Remove("customerOrderId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customerOrderId"); else _explicitNullProperties?.Remove("customerOrderId"); } }
         private string _explicitNullValueCustomerOrderId = default!;
 #endif
-        /// <summary>The errors property</summary>
+        /// <summary>This parameter provides flexibility on handling the E911 service of a number when moving to a new account.It is only valid for cross-account moves — setting it on a within-account move is rejected.The default is to `MOVE`, but that may not be possible, resulting in an error where `DELETE` is required.For example, if moving numbers to an account that uses PIDFLO for E911 then `e911ServiceAction = DELETE` is required, and the E911 service will need to be configured on the numbers after the move.An explicit `MOVE` to a destination account that does not have the E911 product fails the move.</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.E911ServiceAction? E911ServiceAction { get => _explicitNullValueE911ServiceAction; set { _explicitNullValueE911ServiceAction = value; AdditionalData?.Remove("e911ServiceAction"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("e911ServiceAction"); else _explicitNullProperties?.Remove("e911ServiceAction"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.E911ServiceAction? _explicitNullValueE911ServiceAction = default!;
+        /// <summary>Errors found while processing the order, each with the phone numbers it applies to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TelephoneNumberGroupJsonError>? Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; AdditionalData?.Remove("errors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
@@ -80,7 +95,17 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.TelephoneNumberGroupJsonError> Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; AdditionalData?.Remove("errors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.TelephoneNumberGroupJsonError> _explicitNullValueErrors = default!;
 #endif
-        /// <summary>The lastModifiedDate property</summary>
+        /// <summary>The user who last modified the order.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LastModifiedBy { get => _explicitNullValueLastModifiedBy; set { _explicitNullValueLastModifiedBy = value; AdditionalData?.Remove("lastModifiedBy"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastModifiedBy"); else _explicitNullProperties?.Remove("lastModifiedBy"); } }
+        private string? _explicitNullValueLastModifiedBy = default!;
+#nullable restore
+#else
+        public string LastModifiedBy { get => _explicitNullValueLastModifiedBy; set { _explicitNullValueLastModifiedBy = value; AdditionalData?.Remove("lastModifiedBy"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastModifiedBy"); else _explicitNullProperties?.Remove("lastModifiedBy"); } }
+        private string _explicitNullValueLastModifiedBy = default!;
+#endif
+        /// <summary>Date and time the order was last modified.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LastModifiedDate { get => _explicitNullValueLastModifiedDate; set { _explicitNullValueLastModifiedDate = value; AdditionalData?.Remove("lastModifiedDate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastModifiedDate"); else _explicitNullProperties?.Remove("lastModifiedDate"); } }
@@ -90,10 +115,23 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string LastModifiedDate { get => _explicitNullValueLastModifiedDate; set { _explicitNullValueLastModifiedDate = value; AdditionalData?.Remove("lastModifiedDate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastModifiedDate"); else _explicitNullProperties?.Remove("lastModifiedDate"); } }
         private string _explicitNullValueLastModifiedDate = default!;
 #endif
-        /// <summary>The locationId property</summary>
+        /// <summary>ID of the destination location (SIP peer) the phone numbers were moved to.</summary>
         public int? LocationId { get => _explicitNullValueLocationId; set { _explicitNullValueLocationId = value; AdditionalData?.Remove("locationId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("locationId"); else _explicitNullProperties?.Remove("locationId"); } }
         private int? _explicitNullValueLocationId = default!;
-        /// <summary>The orderCreateDate property</summary>
+        /// <summary>The action to be taken on the messaging service when moving numbers. This fieldensures that the destination account has compatible messaging settings to support moving numbers. If the validation passes, the numbers are moved without altering their existing messaging settings. However, if the validation fails, the order will be rejected with an error messaging indicating incompatible settings.If set to `USE_DESTINATION_SETTINGS`, this will apply the destination location&apos;s messaging settings to the number.If set to `USE_CURRENT_NUMBER_SETTINGS`, this will validate and apply whether the destination locationcan accept the numbers&apos; existing messaging settings. This validation is request-level: a mismatch between thesource and destination locations&apos; SMS, MMS, or A2P/P2P settings, or a mismatch in the source and destinationaccounts&apos; NNIDs when `sourceAccountId` is set, rejects the entire request. The enum value is matchedcase-insensitively and ignoring underscores, so `use_current_number_settings` and `UseCurrentNumberSettings`are also accepted.</summary>
+        public global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingService? MessagingService { get => _explicitNullValueMessagingService; set { _explicitNullValueMessagingService = value; AdditionalData?.Remove("messagingService"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("messagingService"); else _explicitNullProperties?.Remove("messagingService"); } }
+        private global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingService? _explicitNullValueMessagingService = default!;
+        /// <summary>Name of the order, if one was provided at creation.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string? _explicitNullValueName = default!;
+#nullable restore
+#else
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string _explicitNullValueName = default!;
+#endif
+        /// <summary>Date and time the order was created.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OrderCreateDate { get => _explicitNullValueOrderCreateDate; set { _explicitNullValueOrderCreateDate = value; AdditionalData?.Remove("orderCreateDate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderCreateDate"); else _explicitNullProperties?.Remove("orderCreateDate"); } }
@@ -103,7 +141,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string OrderCreateDate { get => _explicitNullValueOrderCreateDate; set { _explicitNullValueOrderCreateDate = value; AdditionalData?.Remove("orderCreateDate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderCreateDate"); else _explicitNullProperties?.Remove("orderCreateDate"); } }
         private string _explicitNullValueOrderCreateDate = default!;
 #endif
-        /// <summary>The orderId property</summary>
+        /// <summary>Bandwidth-assigned ID of the order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OrderId { get => _explicitNullValueOrderId; set { _explicitNullValueOrderId = value; AdditionalData?.Remove("orderId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderId"); else _explicitNullProperties?.Remove("orderId"); } }
@@ -113,10 +151,10 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string OrderId { get => _explicitNullValueOrderId; set { _explicitNullValueOrderId = value; AdditionalData?.Remove("orderId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderId"); else _explicitNullProperties?.Remove("orderId"); } }
         private string _explicitNullValueOrderId = default!;
 #endif
-        /// <summary>The orderStatus property</summary>
+        /// <summary>Current status of the order.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayloadOrderStatus? OrderStatus { get => _explicitNullValueOrderStatus; set { _explicitNullValueOrderStatus = value; AdditionalData?.Remove("orderStatus"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orderStatus"); else _explicitNullProperties?.Remove("orderStatus"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayloadOrderStatus? _explicitNullValueOrderStatus = default!;
-        /// <summary>The phoneNumbers property</summary>
+        /// <summary>Phone numbers in the order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; AdditionalData?.Remove("phoneNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
@@ -126,13 +164,19 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public List<string> PhoneNumbers { get => _explicitNullValuePhoneNumbers; set { _explicitNullValuePhoneNumbers = value; AdditionalData?.Remove("phoneNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phoneNumbers"); else _explicitNullProperties?.Remove("phoneNumbers"); } }
         private List<string> _explicitNullValuePhoneNumbers = default!;
 #endif
-        /// <summary>The sourceAccountId property</summary>
+        /// <summary>The identifier of the requirements package containing the end user details for the phone numbers. Thisis required if the numbers are being moved across accounts and if they are a part of a country and number typewhich has end user validation requirements. The provided requirements package must be approved and compatiblewith the phone numbers being moved.</summary>
+        public Guid? RequirementsPackageId { get => _explicitNullValueRequirementsPackageId; set { _explicitNullValueRequirementsPackageId = value; AdditionalData?.Remove("requirementsPackageId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requirementsPackageId"); else _explicitNullProperties?.Remove("requirementsPackageId"); } }
+        private Guid? _explicitNullValueRequirementsPackageId = default!;
+        /// <summary>ID of the account the phone numbers were moved from, for moves across accounts.</summary>
         public int? SourceAccountId { get => _explicitNullValueSourceAccountId; set { _explicitNullValueSourceAccountId = value; AdditionalData?.Remove("sourceAccountId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceAccountId"); else _explicitNullProperties?.Remove("sourceAccountId"); } }
         private int? _explicitNullValueSourceAccountId = default!;
-        /// <summary>The subAccountId property</summary>
+        /// <summary>ID of the destination sub-account (site) the phone numbers were moved to.</summary>
         public int? SubAccountId { get => _explicitNullValueSubAccountId; set { _explicitNullValueSubAccountId = value; AdditionalData?.Remove("subAccountId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subAccountId"); else _explicitNullProperties?.Remove("subAccountId"); } }
         private int? _explicitNullValueSubAccountId = default!;
-        /// <summary>The warnings property</summary>
+        /// <summary>The identifier of the voice configuration package containing the voice origination settings. Upon activation,phone numbers will be configured with the voice origination settings specified in the voice configurationpackage. This is required if the numbers currently have voice service and are being moved to another accountwhich has the voice configuration package feature.Moving numbers across accounts from a source account that has the voice configuration package feature to adestination account that does not is not currently allowed.</summary>
+        public Guid? VoiceConfigurationPackageId { get => _explicitNullValueVoiceConfigurationPackageId; set { _explicitNullValueVoiceConfigurationPackageId = value; AdditionalData?.Remove("voiceConfigurationPackageId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("voiceConfigurationPackageId"); else _explicitNullProperties?.Remove("voiceConfigurationPackageId"); } }
+        private Guid? _explicitNullValueVoiceConfigurationPackageId = default!;
+        /// <summary>Warnings about phone numbers in the order that may need attention.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonWarning>? Warnings { get => _explicitNullValueWarnings; set { _explicitNullValueWarnings = value; AdditionalData?.Remove("warnings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("warnings"); else _explicitNullProperties?.Remove("warnings"); } }
@@ -165,20 +209,26 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(13)
+            return new Dictionary<string, Action<IParseNode>>(19)
             {
                 { "accountId", n => { AccountId = n.GetIntValue(); } },
                 { "createdByUser", n => { CreatedByUser = n.GetStringValue(); } },
                 { "customerOrderId", n => { CustomerOrderId = n.GetStringValue(); } },
+                { "e911ServiceAction", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.E911ServiceAction>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueE911ServiceAction = default; _explicitNullProperties?.Remove("e911ServiceAction"); AdditionalData["e911ServiceAction"] = unknown; } else { E911ServiceAction = parsed; AdditionalData.Remove("e911ServiceAction"); } } },
                 { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TelephoneNumberGroupJsonError>(global::Soenneker.Bandwidth.OpenApiClient.Models.TelephoneNumberGroupJsonError.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetStringValue(); } },
                 { "lastModifiedDate", n => { LastModifiedDate = n.GetStringValue(); } },
                 { "locationId", n => { LocationId = n.GetIntValue(); } },
+                { "messagingService", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingService>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueMessagingService = default; _explicitNullProperties?.Remove("messagingService"); AdditionalData["messagingService"] = unknown; } else { MessagingService = parsed; AdditionalData.Remove("messagingService"); } } },
+                { "name", n => { Name = n.GetStringValue(); } },
                 { "orderCreateDate", n => { OrderCreateDate = n.GetStringValue(); } },
                 { "orderId", n => { OrderId = n.GetStringValue(); } },
                 { "orderStatus", n => { var parsed = n.GetEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayloadOrderStatus>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueOrderStatus = default; _explicitNullProperties?.Remove("orderStatus"); AdditionalData["orderStatus"] = unknown; } else { OrderStatus = parsed; AdditionalData.Remove("orderStatus"); } } },
                 { "phoneNumbers", n => { PhoneNumbers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "requirementsPackageId", n => { RequirementsPackageId = n.GetGuidValue(); } },
                 { "sourceAccountId", n => { SourceAccountId = n.GetIntValue(); } },
                 { "subAccountId", n => { SubAccountId = n.GetIntValue(); } },
+                { "voiceConfigurationPackageId", n => { VoiceConfigurationPackageId = n.GetGuidValue(); } },
                 { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonWarning>(global::Soenneker.Bandwidth.OpenApiClient.Models.JsonWarning.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -192,15 +242,21 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
             writer.WriteIntValue("accountId", AccountId);
             writer.WriteStringValue("createdByUser", CreatedByUser);
             writer.WriteStringValue("customerOrderId", CustomerOrderId);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.E911ServiceAction>("e911ServiceAction", E911ServiceAction);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.TelephoneNumberGroupJsonError>("errors", Errors);
+            writer.WriteStringValue("lastModifiedBy", LastModifiedBy);
             writer.WriteStringValue("lastModifiedDate", LastModifiedDate);
             writer.WriteIntValue("locationId", LocationId);
+            writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MessagingService>("messagingService", MessagingService);
+            writer.WriteStringValue("name", Name);
             writer.WriteStringValue("orderCreateDate", OrderCreateDate);
             writer.WriteStringValue("orderId", OrderId);
             writer.WriteEnumValue<global::Soenneker.Bandwidth.OpenApiClient.Models.MoveTnsOrderJsonResponsePayloadOrderStatus>("orderStatus", OrderStatus);
             writer.WriteCollectionOfPrimitiveValues<string>("phoneNumbers", PhoneNumbers);
+            writer.WriteGuidValue("requirementsPackageId", RequirementsPackageId);
             writer.WriteIntValue("sourceAccountId", SourceAccountId);
             writer.WriteIntValue("subAccountId", SubAccountId);
+            writer.WriteGuidValue("voiceConfigurationPackageId", VoiceConfigurationPackageId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Bandwidth.OpenApiClient.Models.JsonWarning>("warnings", Warnings);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);

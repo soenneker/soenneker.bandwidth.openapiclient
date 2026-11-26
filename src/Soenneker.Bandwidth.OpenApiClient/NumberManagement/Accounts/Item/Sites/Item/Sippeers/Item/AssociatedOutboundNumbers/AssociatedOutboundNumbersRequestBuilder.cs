@@ -72,7 +72,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Sites
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementAssociatedOutboundNumbersResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementAssociatedOutboundNumbersResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Submit a list of outbound numbers to associate with this SIP peer location. Maximum 250 numbers per request.
+        /// Submit a list of outbound numbers to associate with this SIP peer location. Maximum 250 numbers per request. The request returns 200 even when some numbers fail; check `errors` in the response for the numbers that could not be associated and why.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementAssociatedOutboundNumbersResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -118,7 +118,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Sites
             return requestInfo;
         }
         /// <summary>
-        /// Submit a list of outbound numbers to associate with this SIP peer location. Maximum 250 numbers per request.
+        /// Submit a list of outbound numbers to associate with this SIP peer location. Maximum 250 numbers per request. The request returns 200 even when some numbers fail; check `errors` in the response for the numbers that could not be associated and why.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

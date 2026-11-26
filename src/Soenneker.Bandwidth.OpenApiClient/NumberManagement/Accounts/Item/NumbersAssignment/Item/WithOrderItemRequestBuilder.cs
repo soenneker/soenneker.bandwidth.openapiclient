@@ -34,7 +34,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
         {
         }
         /// <summary>
-        /// Retrieve information about a TelephoneNumbersAssignment order with specified ID.
+        /// Retrieve information about a Phone Numbers Assignment order with specified ID.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -59,7 +59,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Numbe
             return await RequestAdapter.SendAsync<global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderResponse>(requestInfo, global::Soenneker.Bandwidth.OpenApiClient.Models.NumbersAssignmentOrderResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve information about a TelephoneNumbersAssignment order with specified ID.
+        /// Retrieve information about a Phone Numbers Assignment order with specified ID.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

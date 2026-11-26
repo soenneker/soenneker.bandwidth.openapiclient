@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
     /// <summary>
-    /// ServiceActivationOrderSearchResponse
+    /// Service activation order search response.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ServiceActivationOrderSearchResponse : IAdditionalDataHolder, IParsable

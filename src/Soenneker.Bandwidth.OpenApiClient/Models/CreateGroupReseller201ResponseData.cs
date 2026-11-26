@@ -49,7 +49,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public string BrandId { get => _explicitNullValueBrandId; set { _explicitNullValueBrandId = value; AdditionalData?.Remove("brandId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("brandId"); else _explicitNullProperties?.Remove("brandId"); } }
         private string _explicitNullValueBrandId = default!;
 #endif
-        /// <summary>Approval status of the associated brand with First Orion. Present only when brandId is populated.</summary>
+        /// <summary>Approval status of the associated brand with First Orion. Present only when `brandId` is populated.</summary>
         public global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnum? BrandStatus { get => _explicitNullValueBrandStatus; set { _explicitNullValueBrandStatus = value; AdditionalData?.Remove("brandStatus"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("brandStatus"); else _explicitNullProperties?.Remove("brandStatus"); } }
         private global::Soenneker.Bandwidth.OpenApiClient.Models.BrandStatusEnum? _explicitNullValueBrandStatus = default!;
         /// <summary>The date and time the group was created.</summary>

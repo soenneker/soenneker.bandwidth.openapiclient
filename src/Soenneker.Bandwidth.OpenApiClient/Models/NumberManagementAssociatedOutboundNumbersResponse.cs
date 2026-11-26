@@ -39,7 +39,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.Models
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementAssociatedOutboundNumber> AssociatedOutboundNumbers { get => _explicitNullValueAssociatedOutboundNumbers; set { _explicitNullValueAssociatedOutboundNumbers = value; AdditionalData?.Remove("associatedOutboundNumbers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("associatedOutboundNumbers"); else _explicitNullProperties?.Remove("associatedOutboundNumbers"); } }
         private List<global::Soenneker.Bandwidth.OpenApiClient.Models.NumberManagementAssociatedOutboundNumber> _explicitNullValueAssociatedOutboundNumbers = default!;
 #endif
-        /// <summary>The errors property</summary>
+        /// <summary>Numbers that could not be associated, each with the reason.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.Bandwidth.OpenApiClient.Models.AssociatedOutboundNumberError>? Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; AdditionalData?.Remove("errors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }

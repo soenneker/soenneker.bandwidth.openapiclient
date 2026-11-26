@@ -3,10 +3,9 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Bandwidth.OpenApiClient.Models
 {
+    /// <summary>The service the warning relates to.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public enum JsonWarningType
-    #pragma warning restore CS1591
     {
         [EnumMember(Value = "SMS")]
         #pragma warning disable CS1591

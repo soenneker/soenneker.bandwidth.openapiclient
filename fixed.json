@@ -33683,8 +33683,8 @@
         "tags": [
           "Move TNs"
         ],
-        "summary": "List Move Telephone Numbers orders",
-        "description": "Retrieves the moveTns orders for the given account ID. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years",
+        "summary": "List Move TNs orders",
+        "description": "Retrieves the Move TNs orders for the given account ID. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years.",
         "operationId": "NumberManagementReadMoveTnsOrders",
         "parameters": [
           {
@@ -33710,71 +33710,48 @@
             "$ref": "#/components/parameters/number_management_customerOrderIdQueryParam"
           },
           {
-            "description": "For Date-based searches, the starting date of a date range (inclusive) that will be used to find Import Tn Orders that were modified within the date range. It is in the form yyyy-MM-dd.",
+            "description": "For Date-based searches, the starting date of a date range (inclusive) that will be used to find Move TNs orders that were modified within the date range. It is in the form yyyy-MM-dd.",
             "$ref": "#/components/parameters/number_management_modifiedDateFromQueryParam"
           },
           {
-            "description": "For Date-based searches, the ending date of a date range (inclusive) that will be used to find Import Tn Orders that were modified within the date range. It is in the form yyyy-MM-dd.",
+            "description": "For Date-based searches, the ending date of a date range (inclusive) that will be used to find Move TNs orders that were modified within the date range. It is in the form yyyy-MM-dd.",
             "$ref": "#/components/parameters/number_management_modifiedDateToQueryParam"
           },
           {
-            "description": "The number of the page to return. If not specified, the default page is 0.",
-            "$ref": "#/components/parameters/pageNumberQueryParam"
+            "description": "When true, the full details of each order are returned instead of the order summary. Defaults to false.",
+            "$ref": "#/components/parameters/orderDetailsQueryParam"
           },
           {
-            "description": "The number of records to return. If not specified, the default size is 500.",
-            "$ref": "#/components/parameters/pageSizeQueryParam"
+            "description": "The number of the page to return. If not specified, the default page is 1.",
+            "$ref": "#/components/parameters/number_management_pageQueryParam"
           },
           {
-            "description": "The status of the moveTnsOrder being searched for",
+            "description": "The number of order records to return. If not specified, the default size is 500.",
+            "$ref": "#/components/parameters/number_management_sizeQueryParam"
+          },
+          {
+            "description": "The status of the Move TNs order being searched for.",
             "$ref": "#/components/parameters/number_management_statusQueryParam"
           },
           {
-            "description": "A Telephone Number (TN) that is referenced in the order",
+            "description": "A Phone Number (TN) that is referenced in the order.",
             "$ref": "#/components/parameters/telephoneNumberQueryParam"
           }
         ],
         "responses": {
           "200": {
-            "description": "The descriptive payload for the moveTnsOrder query provides information about the orders found by the query, including the data associated with the order, the state of the order, a list of the successfully imported Telephone Numbers, and description of any encountered errors",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MoveTnsJsonOrders"
                 },
                 "examples": {
-                  "example": {
-                    "value": {
-                      "totalCount": 5,
-                      "links": {
-                        "first": "https://api.bandwidth.com/api/v2/accounts/12346160/moveTns?page=1\u0026size=2",
-                        "next": "https://api.bandwidth.com/api/v2/accounts/12346160/moveTns?page=e0ad355f-9e0c-45a0-a8cb-9a98eae0661f\u0026size=2"
-                      },
-                      "orders": [
-                        {
-                          "accountId": 12346160,
-                          "orderId": "4bf48140-59ba-45d0-8d52-661574781ab0",
-                          "userId": "systemUser",
-                          "lastModifiedDate": "2025-05-27T11:16:37.967Z",
-                          "phoneNumberCount": 1,
-                          "orderType": "move_tns",
-                          "orderDate": "2025-05-27T11:16:37.648Z",
-                          "orderStatus": "COMPLETE",
-                          "sourceAccountId": 12346159
-                        },
-                        {
-                          "accountId": 12346160,
-                          "orderId": "c17efbb9-9cb6-4bd3-9326-566bad84cb09",
-                          "userId": "systemUser",
-                          "lastModifiedDate": "2025-05-27T04:07:59.327Z",
-                          "phoneNumberCount": 1,
-                          "orderType": "move_tns",
-                          "orderDate": "2025-05-27T04:07:59.256Z",
-                          "orderStatus": "FAILED",
-                          "sourceAccountId": 12346159
-                        }
-                      ]
-                    }
+                  "summaries": {
+                    "$ref": "#/components/examples/moveTnsOrdersSummaryJsonExample"
+                  },
+                  "details": {
+                    "$ref": "#/components/examples/moveTnsOrdersDetailsJsonExample"
                   }
                 }
               }
@@ -33785,12 +33762,39 @@
                   "$ref": "#/components/schemas/MoveTnsOrders"
                 },
                 "examples": {
-                  "example": {
-                    "$ref": "#/components/examples/getMoveTnsResponse200XmlExample"
+                  "summaries": {
+                    "$ref": "#/components/examples/moveTnsOrdersSummaryXmlExample"
+                  },
+                  "details": {
+                    "$ref": "#/components/examples/moveTnsOrdersDetailsXmlExample"
                   }
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/getMoveTnsOrdersResponse400"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "$ref": "#/components/responses/moveTnsUnauthorizedResponse"
+          },
+          "403": {
+            "description": "Forbidden",
+            "$ref": "#/components/responses/moveTnsForbiddenResponse"
+          },
+          "404": {
+            "description": "Not Found",
+            "$ref": "#/components/responses/moveTnsAccountNotFoundResponse"
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "$ref": "#/components/responses/moveTnsTooManyRequestsResponse"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/moveTnsInternalServerErrorResponse"
           }
         },
         "security": [
@@ -33812,8 +33816,8 @@
         "tags": [
           "Move TNs"
         ],
-        "summary": "Move Telephone Numbers",
-        "description": "Creates a MoveTnsOrder request to move numbers to the given site/sub-account ID and SIP peer/location ID as specified in the body. A successfully submitted order will have a status of \u0022RECEIVED\u0022.\nA successfully completed order will have a status of \u0022COMPLETE\u0022 if all of the telephone numbers were successfully moved and \u0022PARTIAL\u0022 if some of the telephone numbers were moved. A failed order will have a status of \u0022FAILED\u0022 and no telephone numbers would have been moved.\u003C/p\u003E\n\n\u003Cp\u003ENumbers can be moved to sub-accounts (or sites) and locations (or SIP peers) of a different account (if the user has access to both accounts and the proper roles). This can be done by specifying the SourceAccountId parameter. The user can also specify how to handle E911 service on the number (if it exists) using the optional e911ServiceAction parameter",
+        "summary": "Move Phone Numbers",
+        "description": "Creates a Move TNs order request to move numbers to the given site/sub-account ID and SIP peer/location ID as specified in the body. A successfully submitted order will have a status of \u0022RECEIVED\u0022.\nA successfully completed order will have a status of \u0022COMPLETE\u0022 if all of the phone numbers were successfully moved and \u0022PARTIAL\u0022 if some of the phone numbers were moved. A failed order will have a status of \u0022FAILED\u0022 and no phone numbers would have been moved.\n\nNumbers can be moved to sub-accounts (or sites) and locations (or SIP peers) of a different account (if the user has access to both accounts and the proper roles). This can be done by specifying the \u0060SourceAccountId\u0060 (XML) or \u0060sourceAccountId\u0060 (JSON) field. The user can also specify how to handle E911 service on the number (if it exists) using the optional \u0060E911ServiceAction\u0060 (XML) or \u0060e911ServiceAction\u0060 (JSON) field.",
         "operationId": "NumberManagementCreateMoveTnsOrder",
         "parameters": [
           {
@@ -33832,30 +33836,15 @@
         },
         "responses": {
           "201": {
-            "description": "The order has been created. An order ID will be specified in the payload and header",
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MoveTnsOrderJsonResponsePayload"
                 },
                 "examples": {
-                  "example": {
-                    "value": {
-                      "orderId": "4bf48140-59ba-45d0-8d52-661574781ab0",
-                      "accountId": 9900012,
-                      "sourceAccountId": 9900013,
-                      "lastModifiedDate": "2025-05-27T11:16:37.967Z",
-                      "createdByUser": "systemUser",
-                      "subAccountId": 487,
-                      "orderCreateDate": "2025-05-27T11:16:37.648Z",
-                      "phoneNumbers": [
-                        "\u002B18012141003"
-                      ],
-                      "orderStatus": "RECEIVED",
-                      "errors": [],
-                      "warnings": [],
-                      "locationId": 500026
-                    }
+                  "received": {
+                    "$ref": "#/components/examples/moveTnsOrderCreatedJsonExample"
                   }
                 }
               }
@@ -33866,42 +33855,47 @@
                   "$ref": "#/components/schemas/MoveTnsOrderResponse"
                 },
                 "examples": {
-                  "example": {
-                    "$ref": "#/components/examples/postMoveTnsResponse201XmlExample"
+                  "received": {
+                    "$ref": "#/components/examples/moveTnsOrderCreatedXmlExample"
                   }
                 }
               }
             }
           },
           "400": {
-            "description": "The order failed. One of the input parameters is invalid. The error text and an error code will be provided in the ErrorList element",
+            "description": "Bad Request",
             "$ref": "#/components/responses/postMoveTnsResponse400"
           },
+          "401": {
+            "description": "Unauthorized",
+            "$ref": "#/components/responses/moveTnsUnauthorizedResponse"
+          },
+          "403": {
+            "description": "Forbidden",
+            "$ref": "#/components/responses/moveTnsForbiddenResponse"
+          },
+          "404": {
+            "description": "Not Found",
+            "$ref": "#/components/responses/moveTnsAccountNotFoundResponse"
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "$ref": "#/components/responses/moveTnsTooManyRequestsResponse"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/moveTnsInternalServerErrorResponse"
+          },
           "200": {
-            "description": "The order has been created. An order ID will be specified in the payload and header",
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MoveTnsOrderJsonResponsePayload"
                 },
                 "examples": {
-                  "example": {
-                    "value": {
-                      "orderId": "4bf48140-59ba-45d0-8d52-661574781ab0",
-                      "accountId": 9900012,
-                      "sourceAccountId": 9900013,
-                      "lastModifiedDate": "2025-05-27T11:16:37.967Z",
-                      "createdByUser": "systemUser",
-                      "subAccountId": 487,
-                      "orderCreateDate": "2025-05-27T11:16:37.648Z",
-                      "phoneNumbers": [
-                        "\u002B18012141003"
-                      ],
-                      "orderStatus": "RECEIVED",
-                      "errors": [],
-                      "warnings": [],
-                      "locationId": 500026
-                    }
+                  "received": {
+                    "$ref": "#/components/examples/moveTnsOrderCreatedJsonExample"
                   }
                 }
               }
@@ -33912,8 +33906,8 @@
                   "$ref": "#/components/schemas/MoveTnsOrderResponse"
                 },
                 "examples": {
-                  "example": {
-                    "$ref": "#/components/examples/postMoveTnsResponse201XmlExample"
+                  "received": {
+                    "$ref": "#/components/examples/moveTnsOrderCreatedXmlExample"
                   }
                 }
               }
@@ -33942,8 +33936,8 @@
         "tags": [
           "Move TNs"
         ],
-        "summary": "Fetch Move Telephone Numbers order status",
-        "description": "Retrieve information about a MoveTnsOrder with specified ID",
+        "summary": "Fetch Move TNs order status",
+        "description": "Retrieve information about a Move TNs order with specified ID.",
         "operationId": "NumberManagementReadMoveTnsOrder",
         "parameters": [
           {
@@ -33969,80 +33963,24 @@
         ],
         "responses": {
           "200": {
-            "description": "The information has been successfully retrieved and displayed in the payload",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MoveTnsOrderJsonResponsePayload"
                 },
                 "examples": {
-                  "moveTnsSuccess": {
-                    "value": {
-                      "orderId": "4bf48140-59ba-45d0-8d52-661574781ab0",
-                      "accountId": 9900012,
-                      "sourceAccountId": 9900013,
-                      "lastModifiedDate": "2025-05-27T11:16:37.967Z",
-                      "createdByUser": "systemUser",
-                      "subAccountId": 487,
-                      "orderCreateDate": "2025-05-27T11:16:37.648Z",
-                      "phoneNumbers": [
-                        "\u002B18012141003"
-                      ],
-                      "orderStatus": "COMPLETE",
-                      "errors": [],
-                      "warnings": [],
-                      "locationId": 500026
-                    }
+                  "complete": {
+                    "$ref": "#/components/examples/moveTnsOrderCompleteJsonExample"
                   },
-                  "moveTnsSuccessWithWarning": {
-                    "value": {
-                      "orderId": "d1f266c1-1819-4a82-ad77-399bb2e7c2a0",
-                      "accountId": 12346181,
-                      "lastModifiedDate": "2025-05-30T08:15:31.383Z",
-                      "createdByUser": "systemUser",
-                      "subAccountId": 508,
-                      "orderCreateDate": "2025-05-30T08:15:30.883Z",
-                      "phoneNumbers": [
-                        "\u002B18012141002"
-                      ],
-                      "orderStatus": "COMPLETE",
-                      "sourceAccountId": 12346159,
-                      "e911ServiceAction": "MOVE",
-                      "errors": [],
-                      "warnings": [
-                        {
-                          "phoneNumber": "\u002B18012141002",
-                          "description": "E911 provisioning failed."
-                        }
-                      ],
-                      "locationId": 500047
-                    }
+                  "completeWithWarning": {
+                    "$ref": "#/components/examples/moveTnsOrderCompleteWithWarningJsonExample"
                   },
-                  "moveTnsFailure": {
-                    "value": {
-                      "orderId": "e2e5c8f4-70fa-4c4a-b69a-386abee8c1c4",
-                      "accountId": 12346160,
-                      "lastModifiedDate": "2025-05-29T11:33:44.644Z",
-                      "createdByUser": "systemUser",
-                      "subAccountId": 487,
-                      "orderCreateDate": "2025-05-29T11:33:41.496Z",
-                      "phoneNumbers": [
-                        "\u002B18012141002"
-                      ],
-                      "orderStatus": "FAILED",
-                      "sourceAccountId": 12346159,
-                      "errors": [
-                        {
-                          "code": 5312,
-                          "description": "An order is already processing this TN.",
-                          "phoneNumbers": [
-                            "\u002B18012141002"
-                          ]
-                        }
-                      ],
-                      "warnings": [],
-                      "locationId": 500026
-                    }
+                  "partial": {
+                    "$ref": "#/components/examples/moveTnsOrderPartialJsonExample"
+                  },
+                  "failed": {
+                    "$ref": "#/components/examples/moveTnsOrderFailedJsonExample"
                   }
                 }
               }
@@ -34053,16 +33991,45 @@
                   "$ref": "#/components/schemas/MoveTnsOrderPayload"
                 },
                 "examples": {
-                  "example": {
-                    "$ref": "#/components/examples/getMoveTnsOrderResponseXmlExample"
+                  "complete": {
+                    "$ref": "#/components/examples/moveTnsOrderCompleteXmlExample"
+                  },
+                  "completeWithWarning": {
+                    "$ref": "#/components/examples/moveTnsOrderCompleteWithWarningXmlExample"
+                  },
+                  "partial": {
+                    "$ref": "#/components/examples/moveTnsOrderPartialXmlExample"
+                  },
+                  "failed": {
+                    "$ref": "#/components/examples/moveTnsOrderFailedXmlExample"
                   }
                 }
               }
             }
           },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/getMoveTnsOrderResponse400"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "$ref": "#/components/responses/moveTnsUnauthorizedResponse"
+          },
+          "403": {
+            "description": "Forbidden",
+            "$ref": "#/components/responses/moveTnsForbiddenResponse"
+          },
           "404": {
-            "description": "Data not found for the requested orderId",
+            "description": "Not Found",
             "$ref": "#/components/responses/getMoveTnsOrderByOrderIdResponse404"
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "$ref": "#/components/responses/moveTnsTooManyRequestsResponse"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/moveTnsInternalServerErrorResponse"
           }
         },
         "security": [
@@ -34086,8 +34053,8 @@
         "tags": [
           "Move TNs"
         ],
-        "summary": "Fetch Move Telephone Numbers order history",
-        "description": "Retrieves the history of the specified MoveTnsOrder",
+        "summary": "Fetch Move TNs order history",
+        "description": "Retrieves the history of the specified Move TNs order.",
         "operationId": "NumberManagementReadMoveTnsOrderHistory",
         "parameters": [
           {
@@ -34113,15 +34080,15 @@
         ],
         "responses": {
           "200": {
-            "description": "The history has been successfully retrieved and displayed in the payload",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NumberManagementOrderHistoryJson"
                 },
                 "examples": {
-                  "example": {
-                    "$ref": "#/components/examples/getMoveTnsOrderHistoryResponseJsonExample"
+                  "history": {
+                    "$ref": "#/components/examples/moveTnsOrderHistoryJsonExample"
                   }
                 }
               }
@@ -34132,16 +34099,36 @@
                   "$ref": "#/components/schemas/OrderHistoryWrapper"
                 },
                 "examples": {
-                  "example": {
-                    "$ref": "#/components/examples/getMoveTnsOrderHistoryResponseXmlExample"
+                  "history": {
+                    "$ref": "#/components/examples/moveTnsOrderHistoryXmlExample"
                   }
                 }
               }
             }
           },
+          "400": {
+            "description": "Bad Request",
+            "$ref": "#/components/responses/getMoveTnsOrderResponse400"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "$ref": "#/components/responses/moveTnsUnauthorizedResponse"
+          },
+          "403": {
+            "description": "Forbidden",
+            "$ref": "#/components/responses/moveTnsForbiddenResponse"
+          },
           "404": {
-            "description": "Data not found for the requested orderId",
+            "description": "Not Found",
             "$ref": "#/components/responses/getMoveTnsOrderByOrderIdResponse404"
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "$ref": "#/components/responses/moveTnsTooManyRequestsResponse"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "$ref": "#/components/responses/moveTnsInternalServerErrorResponse"
           }
         },
         "security": [
@@ -34189,7 +34176,7 @@
             "$ref": "#/components/responses/postMoveTnsCheckerResponse200"
           },
           "400": {
-            "description": "The request failed. One of the input parameters is invalid. The error text and an error code will be provided in the ErrorList element",
+            "description": "The request failed. One of the input parameters is invalid. The error text and an error code will be provided in the ErrorList element.",
             "$ref": "#/components/responses/postMoveTnsCheckerResponse400"
           }
         },
@@ -34476,7 +34463,7 @@
         },
         "responses": {
           "201": {
-            "description": "Create Group Response",
+            "description": "Created",
             "$ref": "#/components/responses/createGroupResponse"
           },
           "400": {
@@ -34508,7 +34495,7 @@
             "$ref": "#/components/responses/number_management_internalServerError"
           },
           "200": {
-            "description": "Create Group Response",
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
@@ -34802,7 +34789,7 @@
             "example": "1234567"
           },
           {
-            "description": "Filter by carriersReputationSummary. Allowed values are \u0060STATUS_PENDING\u0060, \u0060FLAGGED\u0060, \u0060CLEAN\u0060. If omitted, all values will be included",
+            "description": "Filter by \u0060carriersReputationSummary\u0060. Allowed values are \u0060STATUS_PENDING\u0060, \u0060FLAGGED\u0060, \u0060CLEAN\u0060. If omitted, all values will be included",
             "$ref": "#/components/parameters/carriersReputationSummaryQueryParam"
           },
           {
@@ -35066,7 +35053,7 @@
             "example": "1234567"
           },
           {
-            "description": "Filter by carriersReputationSummary. Allowed values are \u0060STATUS_PENDING\u0060, \u0060FLAGGED\u0060, \u0060CLEAN\u0060. If omitted, all values will be included",
+            "description": "Filter by \u0060carriersReputationSummary\u0060. Allowed values are \u0060STATUS_PENDING\u0060, \u0060FLAGGED\u0060, \u0060CLEAN\u0060. If omitted, all values will be included",
             "$ref": "#/components/parameters/carriersReputationSummaryQueryParam"
           },
           {
@@ -35252,7 +35239,7 @@
             "$ref": "#/components/responses/conflictErrorCustomer"
           },
           "429": {
-            "description": "Too Many Requests Error",
+            "description": "Too Many Requests",
             "$ref": "#/components/responses/tooManyRequestsErrorCustomer"
           },
           "500": {
@@ -35336,7 +35323,7 @@
             "$ref": "#/components/responses/conflictErrorCustomer"
           },
           "429": {
-            "description": "Too Many Requests Error",
+            "description": "Too Many Requests",
             "$ref": "#/components/responses/tooManyRequestsErrorCustomer"
           },
           "500": {
@@ -35750,7 +35737,7 @@
             "$ref": "#/components/responses/serviceActivationCheckerOk"
           },
           "400": {
-            "description": "Bad Request.",
+            "description": "Bad Request",
             "$ref": "#/components/responses/serviceActivationCheckerBadRequest"
           },
           "401": {
@@ -35832,7 +35819,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Ok",
+            "description": "OK",
             "$ref": "#/components/responses/serviceActivationSearch"
           },
           "400": {
@@ -35884,7 +35871,7 @@
           "Service Activation"
         ],
         "summary": "Creates a service activation order",
-        "description": "Creates a service activation order to activate service on a list of telephone numbers.",
+        "description": "Creates a service activation order to activate service on a list of phone numbers.",
         "operationId": "NumberManagementServiceActivationOrder",
         "parameters": [
           {
@@ -35977,7 +35964,7 @@
           "Service Activation"
         ],
         "summary": "Gets a service activation order",
-        "description": "Gets a service activation order with the specified orderId.",
+        "description": "Gets a service activation order with the specified order ID.",
         "operationId": "NumberManagementServiceActivationOrderGet",
         "parameters": [
           {
@@ -36003,7 +35990,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Ok",
+            "description": "OK",
             "$ref": "#/components/responses/serviceActivationOrderDetails"
           },
           "400": {
@@ -36056,8 +36043,8 @@
         "tags": [
           "Numbers Assignment"
         ],
-        "summary": "List Telephone Numbers Assignment Orders",
-        "description": "Retrieve a list of the TelephoneNumbersAssignment orders that are associated with the account. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years.",
+        "summary": "List Phone Numbers Assignment Orders",
+        "description": "Retrieve a list of the Phone Numbers Assignment orders that are associated with the account. A maximum of 1,000 orders can be retrieved per request. If no date range or specific query parameter is provided, the order results will be limited to the last two years. Unrecognized query parameters are not treated as errors; they are ignored.",
         "operationId": "NumberManagementReadTelephoneNumbersAssignmentOrders",
         "parameters": [
           {
@@ -36100,7 +36087,7 @@
           {
             "name": "customerOrderId",
             "in": "query",
-            "description": "The Customer Order ID is an ID assigned by the account owner to provide a reference number for the TelephoneNumbersAssignment order.",
+            "description": "The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Phone Numbers Assignment order.",
             "schema": {
               "type": "string"
             },
@@ -36109,7 +36096,7 @@
           {
             "name": "modifiedDateFrom",
             "in": "query",
-            "description": "For Date-based searches, the starting date of a date range (inclusive) that will be used to find TelephoneNumbersAssignment Orders that were modified within the date range. It is in the form yyyy-MM-dd.",
+            "description": "For Date-based searches, the starting date of a date range (inclusive) that will be used to find Phone Numbers Assignment orders that were modified within the date range. It is in the form yyyy-MM-dd.",
             "schema": {
               "type": "string"
             },
@@ -36118,7 +36105,7 @@
           {
             "name": "modifiedDateTo",
             "in": "query",
-            "description": "For Date-based searches, the ending date of a date range (inclusive) that will be used to find TelephoneNumbersAssignment Orders that were modified within the date range. It is in the form yyyy-MM-dd.",
+            "description": "For Date-based searches, the ending date of a date range (inclusive) that will be used to find Phone Numbers Assignment orders that were modified within the date range. It is in the form yyyy-MM-dd.",
             "schema": {
               "type": "string"
             },
@@ -36127,7 +36114,7 @@
           {
             "name": "orderIdFragment",
             "in": "query",
-            "description": "This search parameter represents the internal Bandwidth App API ID that has been assigned to the TelephoneNumbersAssignment Order.  This parameter is the first few characters of the internal ID - the entire ID does not need to be specified.",
+            "description": "This search parameter represents the internal Bandwidth App API ID that has been assigned to the Phone Numbers Assignment order.  This parameter is the first few characters of the internal ID - the entire ID does not need to be specified.",
             "schema": {
               "type": "string"
             },
@@ -36136,7 +36123,7 @@
           {
             "name": "status",
             "in": "query",
-            "description": "The status of the TelephoneNumbersAssignment order being searched for.  COMPLETE, PARTIAL, and FAILED are \u0027terminal\u0027 states indicating that the order has finished all processing.",
+            "description": "The status of the Phone Numbers Assignment order being searched for.  COMPLETE, PARTIAL, and FAILED are \u0027terminal\u0027 states indicating that the order has finished all processing.",
             "schema": {
               "type": "array",
               "items": {
@@ -36150,7 +36137,7 @@
           {
             "name": "tn",
             "in": "query",
-            "description": "A Telephone Number (TN) that is referenced in the order",
+            "description": "A Phone Number (TN) that is referenced in the order",
             "schema": {
               "type": "string"
             },
@@ -36159,7 +36146,7 @@
         ],
         "responses": {
           "200": {
-            "description": "The descriptive payload for the TelephoneNumbersAssignment Orders query provides information about the TelephoneNumbersAssignment Orders, including the data associated with the order, the state of the order, and a list of the successfully uploaded Telephone Numbers, and descriptions of any encountered errors.",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -36223,7 +36210,7 @@
             }
           },
           "400": {
-            "description": "Bad Request \u003Cbr\u003E If any errors are found in the processing of the query string a 400 will be returned.  Note that parameters that are not recognized are not considered errors, and are just ignored."
+            "description": "Bad Request"
           }
         },
         "security": [
@@ -36245,8 +36232,8 @@
         "tags": [
           "Numbers Assignment"
         ],
-        "summary": "Telephone Numbers Assignment Order",
-        "description": "Create a TelephoneNumbersAssignment order to register the assignment status of a list of telephone numbers.",
+        "summary": "Phone Numbers Assignment Order",
+        "description": "Create a Phone Numbers Assignment order to register the assignment status of a list of phone numbers.",
         "operationId": "NumberManagementCreateTelephoneNumbersAssignmentOrder",
         "parameters": [
           {
@@ -36296,7 +36283,7 @@
         },
         "responses": {
           "201": {
-            "description": "Created \u003Cbr\u003EA 201 response indicates that an order has been created.",
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
@@ -36349,7 +36336,7 @@
             }
           },
           "400": {
-            "description": "Bad Request \u003Cbr\u003E A 400 response Indicates that the order could not be created.\nError text and an error code will be provided in the ErrorList element.",
+            "description": "Bad Request",
             "content": {
               "application/xml": {
                 "schema": {
@@ -36378,7 +36365,7 @@
             }
           },
           "200": {
-            "description": "Created \u003Cbr\u003EA 201 response indicates that an order has been created.",
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
@@ -36453,8 +36440,8 @@
         "tags": [
           "Numbers Assignment"
         ],
-        "summary": "Fetching Telephone Numbers Assignment Order status",
-        "description": "Retrieve information about a TelephoneNumbersAssignment order with specified ID.",
+        "summary": "Fetching Phone Numbers Assignment Order status",
+        "description": "Retrieve information about a Phone Numbers Assignment order with specified ID.",
         "operationId": "NumberManagementReadTelephoneNumbersAssignmentOrder",
         "parameters": [
           {
@@ -36470,7 +36457,7 @@
           {
             "name": "orderId",
             "in": "path",
-            "description": "Telephone Numbers Assignment order id",
+            "description": "Phone Numbers Assignment order ID",
             "required": true,
             "schema": {
               "type": "string"
@@ -36480,7 +36467,7 @@
         ],
         "responses": {
           "200": {
-            "description": "The descriptive payload for the TelephoneNumbersAssignment query provides a broad range of information about the TelephoneNumbersAssignment order identified in the URL.",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -36533,7 +36520,7 @@
             }
           },
           "404": {
-            "description": "NOT FOUND - the order id does not exist in the system",
+            "description": "Not Found",
             "content": {
               "application/xml": {
                 "schema": {
@@ -36676,7 +36663,7 @@
           "Location Phone Numbers"
         ],
         "summary": "Update SIP peer TN settings",
-        "description": "Update settings for a TN allocated to their account.\n\nThe following request body parameters are only allowed for numbers from specific region/country:\n| Number Region | Request Body Parameter |\n|:--------------|:------------------------|\n| NANP | tnAttributes |\n| NANP | callingNameDisplay |",
+        "description": "Update settings for a TN allocated to their account.\n\nThe following request body parameters are only allowed for numbers from specific region/country:\n| Number Region | Request Body Parameter |\n|:--------------|:------------------------|\n| NANP | \u0060tnAttributes\u0060 |\n| NANP | \u0060callingNameDisplay\u0060 |\n\nPossible \u0060400\u0060 error codes:\n- 13513: Call Forwarding number is not a valid 10-digit telephone number\n- 13514: Number Format is invalid for telephone number\n- 13575: CallingNameDisplay is invalid. Valid values are: \u0027true\u0027, \u0027false\u0027\n- 13576: Account has no CallForwarding or CNAM product feature\n- 13536: Telephone number does not exist on the specified Account, Site, and SIP Peer\n\nA \u0060409 Conflict\u0060 means a potential conflict was found because TN settings are applied\nasynchronously. This typically occurs when updating TN properties without changing messaging\nsettings. Use \u0060POST /accounts/{accountId}/tnOptions\u0060 for property-only updates.",
         "operationId": "NumberManagementUpdateSipPeerTnSettings",
         "parameters": [
           {
@@ -36712,7 +36699,7 @@
           {
             "name": "tn",
             "in": "path",
-            "description": "A E.164 telephone number.",
+            "description": "A E.164 phone number.",
             "required": true,
             "schema": {
               "type": "string"
@@ -36722,6 +36709,16 @@
         ],
         "requestBody": {
           "content": {
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/NumberManagementUpdateSipPeerTnSettingsXmlRequest"
+              },
+              "examples": {
+                "example": {
+                  "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CSipPeerTelephoneNumber\u003E\n   \u003CFullNumber\u003E\u002B12052160156\u003C/FullNumber\u003E\n   \u003CRPIDFormat\u003E10digit\u003C/RPIDFormat\u003E\n   \u003CRewriteUser\u003Efalse\u003C/RewriteUser\u003E\n   \u003CCallForward\u003E\u002B17042661720\u003C/CallForward\u003E\n   \u003CCallingNameDisplay\u003Etrue\u003C/CallingNameDisplay\u003E\n   \u003CTnAttributes\u003E\n      \u003CTnAttribute\u003EProtected\u003C/TnAttribute\u003E\n   \u003C/TnAttributes\u003E\n   \u003CMessagingSettings\u003E\n      \u003CSmsEnabled\u003Etrue\u003C/SmsEnabled\u003E\n   \u003C/MessagingSettings\u003E\n\u003C/SipPeerTelephoneNumber\u003E"
+                }
+              }
+            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateSipPeerTnRequest"
@@ -36740,23 +36737,13 @@
                   "smsEnabled": true
                 }
               }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/NumberManagementUpdateSipPeerTnSettingsXmlRequest"
-              },
-              "examples": {
-                "example": {
-                  "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CSipPeerTelephoneNumber\u003E\n   \u003CFullNumber\u003E\u002B12052160156\u003C/FullNumber\u003E\n   \u003CRPIDFormat\u003E10digit\u003C/RPIDFormat\u003E\n   \u003CRewriteUser\u003Efalse\u003C/RewriteUser\u003E\n   \u003CCallForward\u003E\u002B17042661720\u003C/CallForward\u003E\n   \u003CCallingNameDisplay\u003Etrue\u003C/CallingNameDisplay\u003E\n   \u003CTnAttributes\u003E\n      \u003CTnAttribute\u003EProtected\u003C/TnAttribute\u003E\n   \u003C/TnAttributes\u003E\n   \u003CMessagingSettings\u003E\n      \u003CSmsEnabled\u003Etrue\u003C/SmsEnabled\u003E\n   \u003C/MessagingSettings\u003E\n\u003C/SipPeerTelephoneNumber\u003E"
-                }
-              }
             }
           },
           "required": true
         },
         "responses": {
           "200": {
-            "description": "OK \u2014 request successful, may include warnings.",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -36788,7 +36775,7 @@
             }
           },
           "400": {
-            "description": "Bad Request. Possible error codes:\n- 13513: Call Forwarding number is not a valid 10-digit telephone number\n- 13514: Number Format is invalid for telephone number\n- 13575: CallingNameDisplay is invalid. Valid values are: \u0027true\u0027, \u0027false\u0027\n- 13576: Account has no CallForwarding or CNAM product feature\n- 13536: Telephone number does not exist on the specified Account, Site, and SIP Peer",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -36807,7 +36794,7 @@
             "description": "Not Found"
           },
           "409": {
-            "description": "Conflict \u2014 due to asynchronous nature of TN settings, a potential conflict was identified. This typically occurs when updating TN properties without changing messaging settings. Use \u0060POST /accounts/{accountId}/tnOptions\u0060 for property-only updates."
+            "description": "Conflict"
           }
         },
         "security": [
@@ -36957,7 +36944,7 @@
           "Location Phone Numbers"
         ],
         "summary": "Associate outbound numbers with a location",
-        "description": "Submit a list of outbound numbers to associate with this SIP peer location. Maximum 250 numbers per request.",
+        "description": "Submit a list of outbound numbers to associate with this SIP peer location. Maximum 250 numbers per request. The request returns 200 even when some numbers fail; check \u0060errors\u0060 in the response for the numbers that could not be associated and why.",
         "operationId": "NumberManagementAddSipPeerAssociatedOutboundNumbers",
         "parameters": [
           {
@@ -36993,6 +36980,16 @@
         ],
         "requestBody": {
           "content": {
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/AssociatedOutboundNumbersXmlRequest"
+              },
+              "examples": {
+                "example": {
+                  "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CAssociatedOutboundNumbers\u003E\n  \u003CAssociatedOutboundNumber\u003E\n    \u003Cnumber\u003E\u002B18005551234\u003C/number\u003E\n  \u003C/AssociatedOutboundNumber\u003E\n  \u003CAssociatedOutboundNumber\u003E\n    \u003Cnumber\u003E\u002B18005551235\u003C/number\u003E\n  \u003C/AssociatedOutboundNumber\u003E\n\u003C/AssociatedOutboundNumbers\u003E"
+                }
+              }
+            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AssociatedOutboundNumbersRequest"
@@ -37007,23 +37004,13 @@
                   }
                 ]
               }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/AssociatedOutboundNumbersXmlRequest"
-              },
-              "examples": {
-                "example": {
-                  "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CAssociatedOutboundNumbers\u003E\n  \u003CAssociatedOutboundNumber\u003E\n    \u003Cnumber\u003E\u002B18005551234\u003C/number\u003E\n  \u003C/AssociatedOutboundNumber\u003E\n  \u003CAssociatedOutboundNumber\u003E\n    \u003Cnumber\u003E\u002B18005551235\u003C/number\u003E\n  \u003C/AssociatedOutboundNumber\u003E\n\u003C/AssociatedOutboundNumbers\u003E"
-                }
-              }
             }
           },
           "required": true
         },
         "responses": {
           "200": {
-            "description": "OK \u2014 numbers processed; check response for per-number errors.",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -37142,7 +37129,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK \u2014 the outbound number has been successfully deleted."
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request",
@@ -113611,7 +113598,7 @@
         "properties": {
           "TelephoneNumber": {
             "type": "string",
-            "description": "Telephone Number in E.164 format."
+            "description": "Phone Number in E.164 format."
           }
         }
       },
@@ -113655,12 +113642,15 @@
         "type": "object",
         "properties": {
           "ErrorCode": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Bandwidth error code."
           },
           "Description": {
-            "type": "string"
+            "type": "string",
+            "description": "Description of the error."
           }
-        }
+        },
+        "description": "Error status returned when the request fails."
       },
       "NumbersAssignmentOrderRequest": {
         "title": "NumbersAssignmentOrderRequest",
@@ -114105,18 +114095,23 @@
         "type": "object",
         "properties": {
           "first": {
-            "type": "string"
+            "type": "string",
+            "description": "Link to the first page of results, formatted as \u0060\u003CURL\u003E;rel=\u0022first\u0022;\u0060."
           },
           "next": {
-            "type": "string"
+            "type": "string",
+            "description": "Link to the next page of results, formatted as \u0060\u003CURL\u003E;rel=\u0022next\u0022;\u0060."
           },
           "previous": {
-            "type": "string"
+            "type": "string",
+            "description": "Link to the previous page of results, formatted as \u0060\u003CURL\u003E;rel=\u0022previous\u0022;\u0060."
           },
           "last": {
-            "type": "string"
+            "type": "string",
+            "description": "Link to the last page of results, formatted as \u0060\u003CURL\u003E;rel=\u0022last\u0022;\u0060."
           }
-        }
+        },
+        "description": "Links to other pages of results."
       },
       "MoveTnsCheckerResponse400Json": {
         "type": "object",
@@ -114213,14 +114208,14 @@
           "voiceConfigurationPackageId": {
             "title": "Voice Configuration Package ID",
             "type": "string",
-            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation,\ntelephone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.\n\nMoving numbers across accounts from a source account that has the voice configuration package feature to a\ndestination account that does not is not currently allowed.",
+            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation,\nphone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.\n\nMoving numbers across accounts from a source account that has the voice configuration package feature to a\ndestination account that does not is not currently allowed.",
             "format": "uuid",
             "example": "c7951e4f-6285-4b75-83e5-392558f59067"
           },
           "requirementsPackageId": {
             "title": "Requirements Package ID",
             "type": "string",
-            "description": "The identifier of the requirements package containing the end user details for the telephone numbers. This\nis required if the numbers are being moved across accounts and if they are a part of a country and number type\nwhich has end user validation requirements. The provided requirements package must be approved and compatible\nwith the telephone numbers being moved.",
+            "description": "The identifier of the requirements package containing the end user details for the phone numbers. This\nis required if the numbers are being moved across accounts and if they are a part of a country and number type\nwhich has end user validation requirements. The provided requirements package must be approved and compatible\nwith the phone numbers being moved.",
             "format": "uuid",
             "example": "c7951e4f-6285-4b75-83e5-392558f59067"
           }
@@ -114453,10 +114448,12 @@
         "type": "object",
         "properties": {
           "Code": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Error code."
           },
           "Description": {
-            "type": "string"
+            "type": "string",
+            "description": "Description of the error."
           },
           "TelephoneNumbers": {
             "type": "array",
@@ -114466,6 +114463,7 @@
                 "name": "TelephoneNumber"
               }
             },
+            "description": "Phone numbers the error applies to.",
             "xml": {
               "wrapped": true
             }
@@ -114476,7 +114474,8 @@
         "type": "object",
         "properties": {
           "TotalCount": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Total number of orders that match the query, across all pages."
           },
           "Links": {
             "$ref": "#/components/schemas/NumberManagementPaginationLinks"
@@ -114484,16 +114483,28 @@
           "MoveTnsOrderSummary": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/NumberManagementOrderSummary"
-            }
+              "$ref": "#/components/schemas/MoveTnsOrderSummary"
+            },
+            "description": "Order summaries. Returned when \u0060orderDetails\u0060 is false (the default)."
+          },
+          "MoveTnsOrder": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MoveTnsOrderPayload"
+            },
+            "description": "Full order details. Returned instead of \u0060MoveTnsOrderSummary\u0060 when \u0060orderDetails\u0060 is true."
           }
+        },
+        "xml": {
+          "name": "MoveTnsOrders"
         }
       },
       "MoveTnsJsonOrders": {
         "type": "object",
         "properties": {
           "totalCount": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Total number of orders that match the query, across all pages."
           },
           "links": {
             "$ref": "#/components/schemas/NumberManagementPaginationLinks"
@@ -114502,46 +114513,15 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/MoveTnsOrderSummaryJson"
-            }
-          }
-        }
-      },
-      "NumberManagementOrderSummary": {
-        "type": "object",
-        "properties": {
-          "AccountId": {
-            "type": "integer"
+            },
+            "description": "Order summaries. Returned when \u0060orderDetails\u0060 is false (the default)."
           },
-          "UserId": {
-            "type": "string"
-          },
-          "OrderId": {
-            "type": "string"
-          },
-          "LastModifiedDate": {
-            "type": "string"
-          },
-          "CountOfTNs": {
-            "type": "integer"
-          },
-          "LastModifiedNote": {
-            "$ref": "#/components/schemas/NumberManagementNote"
-          },
-          "SuppCount": {
-            "type": "integer"
-          },
-          "OrderType": {
-            "type": "string"
-          },
-          "CustomerOrderId": {
-            "type": "string",
-            "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique \u2014 Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned \u0060orderId\u0060."
-          },
-          "OrderDate": {
-            "type": "string"
-          },
-          "OrderStatus": {
-            "type": "string"
+          "moveTnsOrder": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MoveTnsOrderJsonResponsePayload"
+            },
+            "description": "Full order details. Returned instead of \u0060orders\u0060 when \u0060orderDetails\u0060 is true."
           }
         }
       },
@@ -114549,31 +114529,44 @@
         "type": "object",
         "properties": {
           "accountId": {
-            "type": "integer"
+            "type": "integer",
+            "description": "ID of the account that owns the order."
           },
           "sourceAccountId": {
-            "type": "integer"
+            "type": "integer",
+            "description": "ID of the account the phone numbers were moved from, for moves across accounts."
           },
           "userId": {
-            "type": "string"
+            "type": "string",
+            "description": "The user who created the order."
           },
           "orderId": {
-            "type": "string"
+            "type": "string",
+            "description": "Bandwidth-assigned ID of the order."
+          },
+          "customerOrderId": {
+            "type": "string",
+            "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique \u2014 Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned \u0060orderId\u0060."
           },
           "lastModifiedDate": {
-            "type": "string"
+            "type": "string",
+            "description": "Date and time the order was last modified."
           },
           "phoneNumberCount": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Number of phone numbers in the order."
           },
           "orderType": {
-            "type": "string"
+            "type": "string",
+            "description": "Type of the order. Always \u0060move_tns\u0060 for Move TNs orders."
           },
           "orderDate": {
-            "type": "string"
+            "type": "string",
+            "description": "Date and time the order was created."
           },
           "orderStatus": {
-            "type": "string"
+            "type": "string",
+            "description": "Current status of the order."
           }
         }
       },
@@ -114582,53 +114575,95 @@
         "type": "object",
         "properties": {
           "orderId": {
-            "type": "string"
+            "type": "string",
+            "description": "Bandwidth-assigned ID of the order."
           },
           "accountId": {
-            "type": "integer"
+            "type": "integer",
+            "description": "ID of the account that owns the order."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the order, if one was provided at creation."
           },
           "lastModifiedDate": {
-            "type": "string"
+            "type": "string",
+            "description": "Date and time the order was last modified."
+          },
+          "lastModifiedBy": {
+            "type": "string",
+            "description": "The user who last modified the order."
           },
           "createdByUser": {
-            "type": "string"
+            "type": "string",
+            "description": "The user who created the order."
           },
           "customerOrderId": {
             "type": "string",
             "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique \u2014 Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned \u0060orderId\u0060."
           },
           "subAccountId": {
-            "type": "integer"
+            "type": "integer",
+            "description": "ID of the destination sub-account (site) the phone numbers were moved to."
           },
           "sourceAccountId": {
-            "type": "integer"
+            "type": "integer",
+            "description": "ID of the account the phone numbers were moved from, for moves across accounts."
           },
           "locationId": {
-            "type": "integer"
+            "type": "integer",
+            "description": "ID of the destination location (SIP peer) the phone numbers were moved to."
+          },
+          "e911ServiceAction": {
+            "description": "This parameter provides flexibility on handling the E911 service of a number when moving to a new account.\nIt is only valid for cross-account moves \u2014 setting it on a within-account move is rejected.\nThe default is to \u0060MOVE\u0060, but that may not be possible, resulting in an error where \u0060DELETE\u0060 is required.\nFor example, if moving numbers to an account that uses PIDFLO for E911 then \u0060e911ServiceAction = DELETE\u0060 is required, and the E911 service will need to be configured on the numbers after the move.\nAn explicit \u0060MOVE\u0060 to a destination account that does not have the E911 product fails the move.",
+            "$ref": "#/components/schemas/E911ServiceAction"
+          },
+          "messagingService": {
+            "description": "The action to be taken on the messaging service when moving numbers. This field\nensures that the destination account has compatible messaging settings to support moving numbers. If the \nvalidation passes, the numbers are moved without altering their existing messaging settings. However, \nif the validation fails, the order will be rejected with an error messaging indicating incompatible settings.\n\nIf set to \u0060USE_DESTINATION_SETTINGS\u0060, this will apply the destination location\u0027s messaging settings to the number.\n\nIf set to \u0060USE_CURRENT_NUMBER_SETTINGS\u0060, this will validate and apply whether the destination location\ncan accept the numbers\u0027 existing messaging settings. This validation is request-level: a mismatch between the\nsource and destination locations\u0027 SMS, MMS, or A2P/P2P settings, or a mismatch in the source and destination\naccounts\u0027 NNIDs when \u0060sourceAccountId\u0060 is set, rejects the entire request. The enum value is matched\ncase-insensitively and ignoring underscores, so \u0060use_current_number_settings\u0060 and \u0060UseCurrentNumberSettings\u0060\nare also accepted.",
+            "$ref": "#/components/schemas/MessagingService"
+          },
+          "voiceConfigurationPackageId": {
+            "title": "Voice Configuration Package ID",
+            "type": "string",
+            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation,\nphone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.\n\nMoving numbers across accounts from a source account that has the voice configuration package feature to a\ndestination account that does not is not currently allowed.",
+            "format": "uuid",
+            "example": "c7951e4f-6285-4b75-83e5-392558f59067"
+          },
+          "requirementsPackageId": {
+            "title": "Requirements Package ID",
+            "type": "string",
+            "description": "The identifier of the requirements package containing the end user details for the phone numbers. This\nis required if the numbers are being moved across accounts and if they are a part of a country and number type\nwhich has end user validation requirements. The provided requirements package must be approved and compatible\nwith the phone numbers being moved.",
+            "format": "uuid",
+            "example": "c7951e4f-6285-4b75-83e5-392558f59067"
           },
           "orderCreateDate": {
-            "type": "string"
+            "type": "string",
+            "description": "Date and time the order was created."
           },
           "phoneNumbers": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "description": "Phone numbers in the order."
           },
           "orderStatus": {
+            "description": "Current status of the order.",
             "$ref": "#/components/schemas/MoveTnsOrderJsonResponsePayloadOrderStatus"
           },
           "errors": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TelephoneNumberGroupJsonError"
-            }
+            },
+            "description": "Errors found while processing the order, each with the phone numbers it applies to."
           },
           "warnings": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/JsonWarning"
-            }
+            },
+            "description": "Warnings about phone numbers in the order that may need attention."
           }
         }
       },
@@ -114636,9 +114671,11 @@
         "type": "object",
         "properties": {
           "phoneNumber": {
-            "type": "string"
+            "type": "string",
+            "description": "The phone number the warning applies to."
           },
           "type": {
+            "description": "The service the warning relates to.",
             "$ref": "#/components/schemas/JsonWarningType"
           },
           "description": {
@@ -114663,11 +114700,11 @@
             "items": {
               "$ref": "#/components/schemas/MoveTnsOrderTelephoneNumbersItem"
             },
-            "description": "List of telephone numbers to be moved. Maximum of 5,000 allowed per POST"
+            "description": "List of phone numbers to be moved. Maximum of 5,000 allowed per POST."
           },
           "SiteId": {
             "type": "integer",
-            "description": "A site id to which telephone number will be moved"
+            "description": "The ID of the site (sub-account) to which the phone number will be moved."
           },
           "CustomerOrderId": {
             "pattern": "^[a-zA-Z0-9 -]{1,255}$",
@@ -114676,15 +114713,37 @@
           },
           "SipPeerId": {
             "type": "integer",
-            "description": "A sippeer id of provided site to which telephone number will be moved"
+            "description": "The ID of the SIP peer (location), in the given site, to which the phone number will be moved."
           },
           "SourceAccountId": {
             "type": "integer",
-            "description": "Id of source account, in the case of moving numbers across accounts. Omit this field for within-account moves \u2014 sending the destination account\u0027s own ID in this field is rejected."
+            "description": "The ID of the source account, in the case of moving numbers across accounts. Omit this field for within-account moves \u2014 sending the destination account\u0027s own ID in this field is rejected."
           },
           "E911ServiceAction": {
             "description": "Only valid when moving to a different account using \u0060SourceAccountId\u0060; setting this field on a within-account move is rejected. When set to \u0060MOVE\u0060 (default) the E911 service information (if applied to the number) will be moved with the number to the new account. When set to \u0060DELETE\u0060 the E911 service will be removed from the number. An explicit \u0060MOVE\u0060 to a destination account without the E911 product fails the move.",
             "$ref": "#/components/schemas/MoveTnsOrderE911ServiceAction"
+          },
+          "Name": {
+            "type": "string",
+            "description": "Optional name for the order."
+          },
+          "MessagingService": {
+            "description": "The action to be taken on the messaging service when moving numbers. This field\nensures that the destination account has compatible messaging settings to support moving numbers. If the \nvalidation passes, the numbers are moved without altering their existing messaging settings. However, \nif the validation fails, the order will be rejected with an error messaging indicating incompatible settings.\n\nIf set to \u0060USE_DESTINATION_SETTINGS\u0060, this will apply the destination location\u0027s messaging settings to the number.\n\nIf set to \u0060USE_CURRENT_NUMBER_SETTINGS\u0060, this will validate and apply whether the destination location\ncan accept the numbers\u0027 existing messaging settings. This validation is request-level: a mismatch between the\nsource and destination locations\u0027 SMS, MMS, or A2P/P2P settings, or a mismatch in the source and destination\naccounts\u0027 NNIDs when \u0060sourceAccountId\u0060 is set, rejects the entire request. The enum value is matched\ncase-insensitively and ignoring underscores, so \u0060use_current_number_settings\u0060 and \u0060UseCurrentNumberSettings\u0060\nare also accepted.",
+            "$ref": "#/components/schemas/MessagingService"
+          },
+          "VoiceConfigurationPackageId": {
+            "title": "Voice Configuration Package ID",
+            "type": "string",
+            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation,\nphone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.\n\nMoving numbers across accounts from a source account that has the voice configuration package feature to a\ndestination account that does not is not currently allowed.",
+            "format": "uuid",
+            "example": "c7951e4f-6285-4b75-83e5-392558f59067"
+          },
+          "RequirementsPackageId": {
+            "title": "Requirements Package ID",
+            "type": "string",
+            "description": "The identifier of the requirements package containing the end user details for the phone numbers. This\nis required if the numbers are being moved across accounts and if they are a part of a country and number type\nwhich has end user validation requirements. The provided requirements package must be approved and compatible\nwith the phone numbers being moved.",
+            "format": "uuid",
+            "example": "c7951e4f-6285-4b75-83e5-392558f59067"
           }
         }
       },
@@ -114709,32 +114768,70 @@
         "type": "object",
         "properties": {
           "OrderId": {
-            "type": "string"
+            "type": "string",
+            "description": "Bandwidth-assigned ID of the order."
           },
           "AccountId": {
-            "type": "integer"
+            "type": "integer",
+            "description": "ID of the account that owns the order."
+          },
+          "Name": {
+            "type": "string",
+            "description": "Name of the order, if one was provided at creation."
           },
           "LastModifiedDate": {
-            "type": "string"
+            "type": "string",
+            "description": "Date and time the order was last modified."
+          },
+          "LastModifiedBy": {
+            "type": "string",
+            "description": "The user who last modified the order."
           },
           "CreatedByUser": {
-            "type": "string"
+            "type": "string",
+            "description": "The user who created the order."
           },
           "CustomerOrderId": {
             "type": "string",
             "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique \u2014 Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned \u0060orderId\u0060."
           },
           "SiteId": {
-            "type": "integer"
+            "type": "integer",
+            "description": "ID of the destination sub-account (site) the phone numbers are moved to."
           },
           "SourceAccountId": {
-            "type": "integer"
+            "type": "integer",
+            "description": "ID of the account the phone numbers were moved from, for moves across accounts."
           },
           "SipPeerId": {
-            "type": "integer"
+            "type": "integer",
+            "description": "ID of the destination location (SIP peer) the phone numbers are moved to."
+          },
+          "E911ServiceAction": {
+            "description": "This parameter provides flexibility on handling the E911 service of a number when moving to a new account.\nIt is only valid for cross-account moves \u2014 setting it on a within-account move is rejected.\nThe default is to \u0060MOVE\u0060, but that may not be possible, resulting in an error where \u0060DELETE\u0060 is required.\nFor example, if moving numbers to an account that uses PIDFLO for E911 then \u0060e911ServiceAction = DELETE\u0060 is required, and the E911 service will need to be configured on the numbers after the move.\nAn explicit \u0060MOVE\u0060 to a destination account that does not have the E911 product fails the move.",
+            "$ref": "#/components/schemas/E911ServiceAction"
+          },
+          "MessagingService": {
+            "description": "The action to be taken on the messaging service when moving numbers. This field\nensures that the destination account has compatible messaging settings to support moving numbers. If the \nvalidation passes, the numbers are moved without altering their existing messaging settings. However, \nif the validation fails, the order will be rejected with an error messaging indicating incompatible settings.\n\nIf set to \u0060USE_DESTINATION_SETTINGS\u0060, this will apply the destination location\u0027s messaging settings to the number.\n\nIf set to \u0060USE_CURRENT_NUMBER_SETTINGS\u0060, this will validate and apply whether the destination location\ncan accept the numbers\u0027 existing messaging settings. This validation is request-level: a mismatch between the\nsource and destination locations\u0027 SMS, MMS, or A2P/P2P settings, or a mismatch in the source and destination\naccounts\u0027 NNIDs when \u0060sourceAccountId\u0060 is set, rejects the entire request. The enum value is matched\ncase-insensitively and ignoring underscores, so \u0060use_current_number_settings\u0060 and \u0060UseCurrentNumberSettings\u0060\nare also accepted.",
+            "$ref": "#/components/schemas/MessagingService"
+          },
+          "VoiceConfigurationPackageId": {
+            "title": "Voice Configuration Package ID",
+            "type": "string",
+            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation,\nphone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.\n\nMoving numbers across accounts from a source account that has the voice configuration package feature to a\ndestination account that does not is not currently allowed.",
+            "format": "uuid",
+            "example": "c7951e4f-6285-4b75-83e5-392558f59067"
+          },
+          "RequirementsPackageId": {
+            "title": "Requirements Package ID",
+            "type": "string",
+            "description": "The identifier of the requirements package containing the end user details for the phone numbers. This\nis required if the numbers are being moved across accounts and if they are a part of a country and number type\nwhich has end user validation requirements. The provided requirements package must be approved and compatible\nwith the phone numbers being moved.",
+            "format": "uuid",
+            "example": "c7951e4f-6285-4b75-83e5-392558f59067"
           },
           "OrderCreateDate": {
-            "type": "string"
+            "type": "string",
+            "description": "Date and time the order was created."
           },
           "TelephoneNumbers": {
             "type": "array",
@@ -114744,11 +114841,13 @@
                 "name": "TelephoneNumber"
               }
             },
+            "description": "Phone numbers in the order.",
             "xml": {
               "wrapped": true
             }
           },
           "ProcessingStatus": {
+            "description": "Current status of the order.",
             "$ref": "#/components/schemas/MoveTnsOrderPayloadProcessingStatus"
           },
           "Errors": {
@@ -114756,10 +114855,24 @@
             "items": {
               "$ref": "#/components/schemas/TelephoneNumberGroupError"
             },
+            "description": "Errors found while processing the order, each with the phone numbers it applies to.",
+            "xml": {
+              "wrapped": true
+            }
+          },
+          "Warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MoveTnsWarning"
+            },
+            "description": "Warnings about phone numbers in the order that may need attention.",
             "xml": {
               "wrapped": true
             }
           }
+        },
+        "xml": {
+          "name": "MoveTnsOrder"
         }
       },
       "MoveTnsOrderPayload404XmlResponse": {
@@ -114767,10 +114880,12 @@
         "type": "object",
         "properties": {
           "Code": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Error code."
           },
           "Description": {
-            "type": "string"
+            "type": "string",
+            "description": "Description of the error."
           }
         }
       },
@@ -114779,10 +114894,12 @@
         "type": "object",
         "properties": {
           "code": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Error code."
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "description": "Description of the error."
           }
         }
       },
@@ -114791,24 +114908,19 @@
         "type": "object",
         "properties": {
           "code": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Error code."
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "description": "Description of the error."
           },
           "phoneNumbers": {
             "type": "array",
             "items": {
               "type": "string"
-            }
-          }
-        }
-      },
-      "NumberManagementNote": {
-        "type": "object",
-        "properties": {
-          "Note": {
-            "$ref": "#/components/schemas/NumberManagementNoteNote"
+            },
+            "description": "Phone numbers the error applies to."
           }
         }
       },
@@ -114852,7 +114964,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/OrderHistoryJsonOrderHistoryItem"
-            }
+            },
+            "description": "Order history entries, one per event."
           }
         }
       },
@@ -114872,11 +114985,11 @@
             "items": {
               "type": "string"
             },
-            "description": "List of telephone numbers to be moved. Maximum of 5,000 allowed per POST"
+            "description": "List of phone numbers to be moved. Maximum of 5,000 allowed per POST."
           },
           "subAccountId": {
             "type": "integer",
-            "description": "A subAccountId to which telephone number will be moved"
+            "description": "The ID of the sub-account (site) to which the phone number will be moved."
           },
           "customerOrderId": {
             "pattern": "^[a-zA-Z0-9 -]{1,255}$",
@@ -114885,11 +114998,11 @@
           },
           "locationId": {
             "type": "integer",
-            "description": "A locationId id of provided subAccount to which telephone number will be moved"
+            "description": "The ID of the location (SIP peer), in the given sub-account, to which the phone number will be moved."
           },
           "sourceAccountId": {
             "type": "integer",
-            "description": "Id of source account, in the case of moving numbers across accounts. Omit this field for within-account moves \u2014 sending the destination account\u0027s own ID in this field is rejected."
+            "description": "The ID of the source account, in the case of moving numbers across accounts. Omit this field for within-account moves \u2014 sending the destination account\u0027s own ID in this field is rejected."
           },
           "e911ServiceAction": {
             "description": "Only valid when moving to a different account using \u0060sourceAccountId\u0060; setting this field on a within-account move is rejected. When set to \u0060MOVE\u0060 (default) the E911 service information (if applied to the number) will be moved with the number to the new account. When set to \u0060DELETE\u0060 the E911 service will be removed from the number. An explicit \u0060MOVE\u0060 to a destination account without the E911 product fails the move.",
@@ -114898,20 +115011,24 @@
           "voiceConfigurationPackageId": {
             "title": "Voice Configuration Package ID",
             "type": "string",
-            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation,\ntelephone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.\n\nMoving numbers across accounts from a source account that has the voice configuration package feature to a\ndestination account that does not is not currently allowed.",
+            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation,\nphone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.\n\nMoving numbers across accounts from a source account that has the voice configuration package feature to a\ndestination account that does not is not currently allowed.",
             "format": "uuid",
             "example": "c7951e4f-6285-4b75-83e5-392558f59067"
           },
           "requirementsPackageId": {
             "title": "Requirements Package ID",
             "type": "string",
-            "description": "The identifier of the requirements package containing the end user details for the telephone numbers. This\nis required if the numbers are being moved across accounts and if they are a part of a country and number type\nwhich has end user validation requirements. The provided requirements package must be approved and compatible\nwith the telephone numbers being moved.",
+            "description": "The identifier of the requirements package containing the end user details for the phone numbers. This\nis required if the numbers are being moved across accounts and if they are a part of a country and number type\nwhich has end user validation requirements. The provided requirements package must be approved and compatible\nwith the phone numbers being moved.",
             "format": "uuid",
             "example": "c7951e4f-6285-4b75-83e5-392558f59067"
           },
           "messagingService": {
             "description": "The action to be taken on the messaging service when moving numbers. This field\nensures that the destination account has compatible messaging settings to support moving numbers. If the \nvalidation passes, the numbers are moved without altering their existing messaging settings. However, \nif the validation fails, the order will be rejected with an error messaging indicating incompatible settings.\n\nIf set to \u0060USE_DESTINATION_SETTINGS\u0060, this will apply the destination location\u0027s messaging settings to the number.\n\nIf set to \u0060USE_CURRENT_NUMBER_SETTINGS\u0060, this will validate and apply whether the destination location\ncan accept the numbers\u0027 existing messaging settings. This validation is request-level: a mismatch between the\nsource and destination locations\u0027 SMS, MMS, or A2P/P2P settings, or a mismatch in the source and destination\naccounts\u0027 NNIDs when \u0060sourceAccountId\u0060 is set, rejects the entire request. The enum value is matched\ncase-insensitively and ignoring underscores, so \u0060use_current_number_settings\u0060 and \u0060UseCurrentNumberSettings\u0060\nare also accepted.",
             "$ref": "#/components/schemas/MessagingService"
+          },
+          "name": {
+            "type": "string",
+            "description": "Optional name for the order."
           }
         }
       },
@@ -115564,7 +115681,7 @@
             "example": "b1a2c3d4-e5f6-7890-abcd-ef1234567890"
           },
           "brandStatus": {
-            "description": "Approval status of the associated brand with First Orion. Present only when brandId is populated.\n",
+            "description": "Approval status of the associated brand with First Orion. Present only when \u0060brandId\u0060 is populated.\n",
             "$ref": "#/components/schemas/GroupDataBrandStatus"
           }
         },
@@ -116490,7 +116607,7 @@
             }
           }
         },
-        "description": "ServiceActivationCheckerRequest"
+        "description": "Service activation checker request."
       },
       "ServiceActivationCheckerResponse": {
         "required": [
@@ -116530,7 +116647,7 @@
             }
           }
         },
-        "description": "BadRequest"
+        "description": "Bad request response."
       },
       "ServiceActivationCheckerServiceType": {
         "type": "object",
@@ -116590,7 +116707,7 @@
             "$ref": "#/components/schemas/ServiceActivationActions"
           }
         },
-        "description": "ServiceActivationOrder"
+        "description": "Service activation order."
       },
       "ServiceActivationOrderResponse": {
         "required": [
@@ -116616,7 +116733,7 @@
             }
           }
         },
-        "description": "ServiceActivationOrder"
+        "description": "Service activation order."
       },
       "ServiceActivationOrderSearchResponse": {
         "type": "object",
@@ -116640,7 +116757,7 @@
             "$ref": "#/components/schemas/ServiceActivationOrderSearchResponsePage"
           }
         },
-        "description": "ServiceActivationOrderSearchResponse"
+        "description": "Service activation order search response."
       },
       "ServiceActivationOrderSearchResponseVerbose": {
         "type": "object",
@@ -116664,7 +116781,7 @@
             "$ref": "#/components/schemas/ServiceActivationOrderSearchResponseVerbosePage"
           }
         },
-        "description": "ServiceActivationOrderSearchResponse"
+        "description": "Service activation order search response."
       },
       "PhoneNumberServiceStatus": {
         "enum": [
@@ -116896,10 +117013,10 @@
         "properties": {
           "phoneNumber": {
             "type": "string",
-            "description": "The E.164 telephone number."
+            "description": "The E.164 phone number."
           },
           "rpidFormat": {
-            "description": "RPID format for the telephone number.",
+            "description": "RPID format for the phone number.",
             "$ref": "#/components/schemas/UpdateSipPeerTnRequestRpidFormat"
           },
           "rewriteUser": {
@@ -116940,7 +117057,7 @@
         "properties": {
           "phoneNumber": {
             "type": "string",
-            "description": "The telephone number that generated the warning."
+            "description": "The phone number that generated the warning."
           },
           "description": {
             "type": "string",
@@ -116970,7 +117087,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/AssociatedOutboundNumberError"
-            }
+            },
+            "description": "Numbers that could not be associated, each with the reason."
           }
         }
       },
@@ -117033,6 +117151,106 @@
           "AssociatedOutboundNumbers": {
             "$ref": "#/components/schemas/AssociatedOutboundNumbersXmlRequestAssociatedOutboundNumbers"
           }
+        }
+      },
+      "MoveTnsOrderSummary": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "integer",
+            "description": "ID of the account that owns the order."
+          },
+          "SourceAccountId": {
+            "type": "integer",
+            "description": "ID of the account the phone numbers were moved from, for moves across accounts."
+          },
+          "CountOfTNs": {
+            "type": "integer",
+            "description": "Number of phone numbers in the order."
+          },
+          "CustomerOrderId": {
+            "type": "string",
+            "description": "The customer-defined reference ID for this order, if one was provided at creation. Not unique \u2014 Bandwidth applies no uniqueness constraint, so multiple orders may share the same value. Each order has a distinct Bandwidth-assigned \u0060orderId\u0060."
+          },
+          "userId": {
+            "type": "string",
+            "description": "The user who created the order."
+          },
+          "lastModifiedDate": {
+            "type": "string",
+            "description": "Date and time the order was last modified."
+          },
+          "OrderDate": {
+            "type": "string",
+            "description": "Date and time the order was created."
+          },
+          "OrderType": {
+            "type": "string",
+            "description": "Type of the order. Always \u0060move_tns\u0060 for Move TNs orders."
+          },
+          "OrderStatus": {
+            "type": "string",
+            "description": "Current status of the order."
+          },
+          "OrderId": {
+            "type": "string",
+            "description": "Bandwidth-assigned ID of the order."
+          }
+        },
+        "xml": {
+          "name": "MoveTnsOrderSummary"
+        }
+      },
+      "MoveTnsWarning": {
+        "type": "object",
+        "properties": {
+          "TelephoneNumber": {
+            "type": "string",
+            "description": "The phone number the warning applies to."
+          },
+          "Description": {
+            "type": "string",
+            "description": "Details about the issue which may require user attention."
+          }
+        },
+        "xml": {
+          "name": "Warning"
+        }
+      },
+      "MoveTnsOrderErrorResponse": {
+        "type": "object",
+        "properties": {
+          "ResponseStatus": {
+            "$ref": "#/components/schemas/NumberManagementResponseStatus"
+          }
+        },
+        "xml": {
+          "name": "MoveTnsOrderResponse"
+        }
+      },
+      "MoveTnsOrderJsonErrorResponse": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "integer",
+            "description": "Numeric code that identifies the error."
+          },
+          "description": {
+            "type": "string",
+            "description": "Human-readable description of the error."
+          }
+        }
+      },
+      "MoveTnsOrderReportErrorResponse": {
+        "type": "object",
+        "properties": {
+          "ResponseStatus": {
+            "$ref": "#/components/schemas/NumberManagementResponseStatus"
+          }
+        },
+        "description": "Error body of the Move TNs order list, order and history GETs.",
+        "xml": {
+          "name": "MoveTnsOrderReportResponse"
         }
       },
       "SortOrderEnum": {
@@ -117286,18 +117504,6 @@
             "$ref": "#/components/schemas/CreateGroupRequestReseller"
           }
         ]
-      },
-      "PostMoveTnsResponse400Response": {
-        "type": "object",
-        "properties": {
-          "errorCode": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "description": {
-            "type": "string"
-          }
-        }
       },
       "CreateGroupResponseResponse": {
         "anyOf": [
@@ -117702,7 +117908,7 @@
             "type": "null"
           }
         ],
-        "description": "Approval status of the associated brand with First Orion. Present only when brandId is populated.\n"
+        "description": "Approval status of the associated brand with First Orion. Present only when \u0060brandId\u0060 is populated.\n"
       },
       "CreateGroupReseller201ResponseData": {
         "required": [
@@ -117755,7 +117961,7 @@
             "example": "b1a2c3d4-e5f6-7890-abcd-ef1234567890"
           },
           "brandStatus": {
-            "description": "Approval status of the associated brand with First Orion. Present only when brandId is populated.\n",
+            "description": "Approval status of the associated brand with First Orion. Present only when \u0060brandId\u0060 is populated.\n",
             "$ref": "#/components/schemas/GroupDataBrandStatus"
           },
           "customerId": {
@@ -117817,7 +118023,7 @@
             "example": "b1a2c3d4-e5f6-7890-abcd-ef1234567890"
           },
           "brandStatus": {
-            "description": "Approval status of the associated brand with First Orion. Present only when brandId is populated.\n",
+            "description": "Approval status of the associated brand with First Orion. Present only when \u0060brandId\u0060 is populated.\n",
             "$ref": "#/components/schemas/GroupDataBrandStatus"
           },
           "customerId": {
@@ -117884,7 +118090,7 @@
             "example": "b1a2c3d4-e5f6-7890-abcd-ef1234567890"
           },
           "brandStatus": {
-            "description": "Approval status of the associated brand with First Orion. Present only when brandId is populated.\n",
+            "description": "Approval status of the associated brand with First Orion. Present only when \u0060brandId\u0060 is populated.\n",
             "$ref": "#/components/schemas/GroupDataBrandStatus"
           },
           "customerId": {
@@ -118186,7 +118392,7 @@
         "properties": {
           "href": {
             "type": "string",
-            "description": "URI of the link",
+            "description": "URI of the link.",
             "example": "/self/uri"
           },
           "rel": {
@@ -118196,7 +118402,7 @@
           },
           "method": {
             "type": "string",
-            "description": "HTTP method to be used",
+            "description": "HTTP method to be used.",
             "example": "POST"
           }
         }
@@ -118210,7 +118416,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "description": "E.164"
+              "description": "E.164."
             }
           },
           "errors": {
@@ -118238,28 +118444,7 @@
         "properties": {
           "TelephoneNumber": {
             "type": "integer",
-            "description": "Ten digit phone number with no dots or dashes"
-          }
-        }
-      },
-      "NumberManagementNoteNote": {
-        "type": "object",
-        "properties": {
-          "Id": {
-            "type": "string",
-            "description": "This is the Order Note identifier that is automatically generated by system."
-          },
-          "UserId": {
-            "type": "string",
-            "description": "The UserId is authenticated for access to the network via a username string."
-          },
-          "Description": {
-            "type": "string",
-            "description": "This is the Order Note description."
-          },
-          "LastDateModifier": {
-            "type": "string",
-            "description": "This is the date when Order Note was last modified."
+            "description": "Ten digit phone number with no dots or dashes."
           }
         }
       },
@@ -118269,7 +118454,8 @@
           "OrderHistory": {
             "$ref": "#/components/schemas/NumberManagementOrderHistory"
           }
-        }
+        },
+        "description": "History of the order."
       },
       "OrderHistoryJsonOrderHistoryItem": {
         "type": "object",
@@ -118322,14 +118508,14 @@
           "voiceConfigurationPackageId": {
             "title": "Voice Configuration Package ID",
             "type": "string",
-            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation,\ntelephone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.\n\nMoving numbers across accounts from a source account that has the voice configuration package feature to a\ndestination account that does not is not currently allowed.",
+            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation,\nphone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.\n\nMoving numbers across accounts from a source account that has the voice configuration package feature to a\ndestination account that does not is not currently allowed.",
             "format": "uuid",
             "example": "c7951e4f-6285-4b75-83e5-392558f59067"
           },
           "requirementsPackageId": {
             "title": "Requirements Package ID",
             "type": "string",
-            "description": "The identifier of the requirements package containing the end user details for the telephone numbers. This\nis required if the numbers are being moved across accounts and if they are a part of a country and number type\nwhich has end user validation requirements. The provided requirements package must be approved and compatible\nwith the telephone numbers being moved.",
+            "description": "The identifier of the requirements package containing the end user details for the phone numbers. This\nis required if the numbers are being moved across accounts and if they are a part of a country and number type\nwhich has end user validation requirements. The provided requirements package must be approved and compatible\nwith the phone numbers being moved.",
             "format": "uuid",
             "example": "c7951e4f-6285-4b75-83e5-392558f59067"
           },
@@ -118905,14 +119091,14 @@
           "voiceConfigurationPackageId": {
             "title": "Voice Configuration Package ID",
             "type": "string",
-            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation,\ntelephone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.\n\nMoving numbers across accounts from a source account that has the voice configuration package feature to a\ndestination account that does not is not currently allowed.",
+            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation,\nphone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.\n\nMoving numbers across accounts from a source account that has the voice configuration package feature to a\ndestination account that does not is not currently allowed.",
             "format": "uuid",
             "example": "c7951e4f-6285-4b75-83e5-392558f59067"
           },
           "requirementsPackageId": {
             "title": "Requirements Package ID",
             "type": "string",
-            "description": "The identifier of the requirements package containing the end user details for the telephone numbers. This\nis required if the numbers are being moved across accounts and if they are a part of a country and number type\nwhich has end user validation requirements. The provided requirements package must be approved and compatible\nwith the telephone numbers being moved.",
+            "description": "The identifier of the requirements package containing the end user details for the phone numbers. This\nis required if the numbers are being moved across accounts and if they are a part of a country and number type\nwhich has end user validation requirements. The provided requirements package must be approved and compatible\nwith the phone numbers being moved.",
             "format": "uuid",
             "example": "c7951e4f-6285-4b75-83e5-392558f59067"
           },
@@ -119073,6 +119259,7 @@
           "FAILED"
         ],
         "type": "string",
+        "description": "Current status of the order.",
         "x-ms-enum": {
           "name": "MoveTnsOrderJsonResponsePayloadOrderStatus",
           "modelAsString": false,
@@ -119106,6 +119293,7 @@
           "E911"
         ],
         "type": "string",
+        "description": "The service the warning relates to.",
         "x-ms-enum": {
           "name": "JsonWarningType",
           "modelAsString": false,
@@ -119148,6 +119336,7 @@
           "FAILED"
         ],
         "type": "string",
+        "description": "Current status of the order.",
         "x-ms-enum": {
           "name": "MoveTnsOrderPayloadProcessingStatus",
           "modelAsString": false,
@@ -119205,7 +119394,7 @@
           "false"
         ],
         "type": "string",
-        "description": "RPID format for the telephone number.",
+        "description": "RPID format for the phone number.",
         "x-ms-enum": {
           "name": "UpdateSipPeerTnRequestRpidFormat",
           "modelAsString": false,
@@ -155159,9 +155348,6 @@
           "$ref": "#/components/schemas/Media"
         }
       },
-      "PostMoveTnsResponse400ResponseXmlContent": {
-        "description": "Fallback media schema"
-      },
       "ListPortinTns400ResponseResponseXmlContent": {
         "description": "Fallback media schema"
       },
@@ -167577,15 +167763,18 @@
         }
       },
       "getMoveTnsResponse200": {
-        "description": "The descriptive payload for the moveTnsOrder query provides information about the orders found by the query, including the data associated with the order, the state of the order, a list of the successfully imported Telephone Numbers, and description of any encountered errors",
+        "description": "OK",
         "content": {
           "application/xml": {
             "schema": {
               "$ref": "#/components/schemas/MoveTnsOrders"
             },
             "examples": {
-              "example": {
-                "$ref": "#/components/examples/getMoveTnsResponse200XmlExample"
+              "summaries": {
+                "$ref": "#/components/examples/moveTnsOrdersSummaryXmlExample"
+              },
+              "details": {
+                "$ref": "#/components/examples/moveTnsOrdersDetailsXmlExample"
               }
             }
           },
@@ -167594,53 +167783,26 @@
               "$ref": "#/components/schemas/MoveTnsJsonOrders"
             },
             "examples": {
-              "example": {
-                "value": {
-                  "totalCount": 5,
-                  "links": {
-                    "first": "https://api.bandwidth.com/api/v2/accounts/12346160/moveTns?page=1\u0026size=2",
-                    "next": "https://api.bandwidth.com/api/v2/accounts/12346160/moveTns?page=e0ad355f-9e0c-45a0-a8cb-9a98eae0661f\u0026size=2"
-                  },
-                  "orders": [
-                    {
-                      "accountId": 12346160,
-                      "orderId": "4bf48140-59ba-45d0-8d52-661574781ab0",
-                      "userId": "systemUser",
-                      "lastModifiedDate": "2025-05-27T11:16:37.967Z",
-                      "phoneNumberCount": 1,
-                      "orderType": "move_tns",
-                      "orderDate": "2025-05-27T11:16:37.648Z",
-                      "orderStatus": "COMPLETE",
-                      "sourceAccountId": 12346159
-                    },
-                    {
-                      "accountId": 12346160,
-                      "orderId": "c17efbb9-9cb6-4bd3-9326-566bad84cb09",
-                      "userId": "systemUser",
-                      "lastModifiedDate": "2025-05-27T04:07:59.327Z",
-                      "phoneNumberCount": 1,
-                      "orderType": "move_tns",
-                      "orderDate": "2025-05-27T04:07:59.256Z",
-                      "orderStatus": "FAILED",
-                      "sourceAccountId": 12346159
-                    }
-                  ]
-                }
+              "summaries": {
+                "$ref": "#/components/examples/moveTnsOrdersSummaryJsonExample"
+              },
+              "details": {
+                "$ref": "#/components/examples/moveTnsOrdersDetailsJsonExample"
               }
             }
           }
         }
       },
       "postMoveTnsResponse201": {
-        "description": "The order has been created. An order ID will be specified in the payload and header",
+        "description": "Created",
         "content": {
           "application/xml": {
             "schema": {
               "$ref": "#/components/schemas/MoveTnsOrderResponse"
             },
             "examples": {
-              "example": {
-                "$ref": "#/components/examples/postMoveTnsResponse201XmlExample"
+              "received": {
+                "$ref": "#/components/examples/moveTnsOrderCreatedXmlExample"
               }
             }
           },
@@ -167649,67 +167811,69 @@
               "$ref": "#/components/schemas/MoveTnsOrderJsonResponsePayload"
             },
             "examples": {
-              "example": {
-                "value": {
-                  "orderId": "4bf48140-59ba-45d0-8d52-661574781ab0",
-                  "accountId": 9900012,
-                  "sourceAccountId": 9900013,
-                  "lastModifiedDate": "2025-05-27T11:16:37.967Z",
-                  "createdByUser": "systemUser",
-                  "subAccountId": 487,
-                  "orderCreateDate": "2025-05-27T11:16:37.648Z",
-                  "phoneNumbers": [
-                    "\u002B18012141003"
-                  ],
-                  "orderStatus": "RECEIVED",
-                  "errors": [],
-                  "warnings": [],
-                  "locationId": 500026
-                }
+              "received": {
+                "$ref": "#/components/examples/moveTnsOrderCreatedJsonExample"
               }
             }
           }
         }
       },
       "postMoveTnsResponse400": {
-        "description": "The order failed. One of the input parameters is invalid. The error text and an error code will be provided in the ErrorList element",
+        "description": "Bad Request",
         "content": {
           "application/xml": {
             "schema": {
-              "$ref": "#/components/schemas/PostMoveTnsResponse400ResponseXmlContent"
+              "$ref": "#/components/schemas/MoveTnsOrderErrorResponse"
             },
             "examples": {
-              "example": {
-                "$ref": "#/components/examples/postMoveTnsResponse400XmlExample"
+              "invalidSite": {
+                "$ref": "#/components/examples/createMoveTnsOrderInvalidSiteXmlExample"
+              },
+              "invalidSipPeer": {
+                "$ref": "#/components/examples/createMoveTnsOrderInvalidSipPeerXmlExample"
+              },
+              "requirementsPackageRequired": {
+                "$ref": "#/components/examples/createMoveTnsOrderRequirementsPackageRequiredXmlExample"
               }
             }
           },
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/PostMoveTnsResponse400Response"
+              "$ref": "#/components/schemas/MoveTnsOrderJsonErrorResponse"
             },
             "examples": {
-              "example": {
-                "value": {
-                  "errorCode": 1003,
-                  "description": "subAccountId is required"
-                }
+              "invalidSite": {
+                "$ref": "#/components/examples/createMoveTnsOrderInvalidSiteJsonExample"
+              },
+              "invalidSipPeer": {
+                "$ref": "#/components/examples/createMoveTnsOrderInvalidSipPeerJsonExample"
+              },
+              "requirementsPackageRequired": {
+                "$ref": "#/components/examples/createMoveTnsOrderRequirementsPackageRequiredJsonExample"
               }
-            },
-            "x-schema-inferred-from-examples": true
+            }
           }
         }
       },
       "getMoveTnsOrderByOrderIdResponse200": {
-        "description": "The information has been successfully retrieved and displayed in the payload",
+        "description": "OK",
         "content": {
           "application/xml": {
             "schema": {
               "$ref": "#/components/schemas/MoveTnsOrderPayload"
             },
             "examples": {
-              "example": {
-                "$ref": "#/components/examples/getMoveTnsOrderResponseXmlExample"
+              "complete": {
+                "$ref": "#/components/examples/moveTnsOrderCompleteXmlExample"
+              },
+              "completeWithWarning": {
+                "$ref": "#/components/examples/moveTnsOrderCompleteWithWarningXmlExample"
+              },
+              "partial": {
+                "$ref": "#/components/examples/moveTnsOrderPartialXmlExample"
+              },
+              "failed": {
+                "$ref": "#/components/examples/moveTnsOrderFailedXmlExample"
               }
             }
           },
@@ -167718,88 +167882,32 @@
               "$ref": "#/components/schemas/MoveTnsOrderJsonResponsePayload"
             },
             "examples": {
-              "moveTnsSuccess": {
-                "value": {
-                  "orderId": "4bf48140-59ba-45d0-8d52-661574781ab0",
-                  "accountId": 9900012,
-                  "sourceAccountId": 9900013,
-                  "lastModifiedDate": "2025-05-27T11:16:37.967Z",
-                  "createdByUser": "systemUser",
-                  "subAccountId": 487,
-                  "orderCreateDate": "2025-05-27T11:16:37.648Z",
-                  "phoneNumbers": [
-                    "\u002B18012141003"
-                  ],
-                  "orderStatus": "COMPLETE",
-                  "errors": [],
-                  "warnings": [],
-                  "locationId": 500026
-                }
+              "complete": {
+                "$ref": "#/components/examples/moveTnsOrderCompleteJsonExample"
               },
-              "moveTnsSuccessWithWarning": {
-                "value": {
-                  "orderId": "d1f266c1-1819-4a82-ad77-399bb2e7c2a0",
-                  "accountId": 12346181,
-                  "lastModifiedDate": "2025-05-30T08:15:31.383Z",
-                  "createdByUser": "systemUser",
-                  "subAccountId": 508,
-                  "orderCreateDate": "2025-05-30T08:15:30.883Z",
-                  "phoneNumbers": [
-                    "\u002B18012141002"
-                  ],
-                  "orderStatus": "COMPLETE",
-                  "sourceAccountId": 12346159,
-                  "e911ServiceAction": "MOVE",
-                  "errors": [],
-                  "warnings": [
-                    {
-                      "phoneNumber": "\u002B18012141002",
-                      "description": "E911 provisioning failed."
-                    }
-                  ],
-                  "locationId": 500047
-                }
+              "completeWithWarning": {
+                "$ref": "#/components/examples/moveTnsOrderCompleteWithWarningJsonExample"
               },
-              "moveTnsFailure": {
-                "value": {
-                  "orderId": "e2e5c8f4-70fa-4c4a-b69a-386abee8c1c4",
-                  "accountId": 12346160,
-                  "lastModifiedDate": "2025-05-29T11:33:44.644Z",
-                  "createdByUser": "systemUser",
-                  "subAccountId": 487,
-                  "orderCreateDate": "2025-05-29T11:33:41.496Z",
-                  "phoneNumbers": [
-                    "\u002B18012141002"
-                  ],
-                  "orderStatus": "FAILED",
-                  "sourceAccountId": 12346159,
-                  "errors": [
-                    {
-                      "code": 5312,
-                      "description": "An order is already processing this TN.",
-                      "phoneNumbers": [
-                        "\u002B18012141002"
-                      ]
-                    }
-                  ],
-                  "warnings": [],
-                  "locationId": 500026
-                }
+              "partial": {
+                "$ref": "#/components/examples/moveTnsOrderPartialJsonExample"
+              },
+              "failed": {
+                "$ref": "#/components/examples/moveTnsOrderFailedJsonExample"
               }
             }
           }
         }
       },
       "getMoveTnsOrderByOrderIdResponse404": {
-        "description": "Data not found for the requested orderId",
+        "description": "Not Found",
         "content": {
           "application/xml": {
             "schema": {
               "$ref": "#/components/schemas/MoveTnsOrderPayload404XmlResponse"
             },
             "examples": {
-              "example": {
-                "$ref": "#/components/examples/moveTnsOrderPayload404XmlExample"
+              "orderNotFound": {
+                "$ref": "#/components/examples/moveTnsOrderNotFoundXmlExample"
               }
             }
           },
@@ -167808,11 +167916,8 @@
               "$ref": "#/components/schemas/MoveTnsOrderPayload404JsonResponse"
             },
             "examples": {
-              "example": {
-                "value": {
-                  "code": 404,
-                  "description": "Order with such id was not found."
-                }
+              "orderNotFound": {
+                "$ref": "#/components/examples/moveTnsOrderNotFoundJsonExample"
               }
             }
           }
@@ -167834,7 +167939,7 @@
         }
       },
       "postMoveTnsCheckerResponse400": {
-        "description": "The request failed. One of the input parameters is invalid. The error text and an error code will be provided in the ErrorList element",
+        "description": "The request failed. One of the input parameters is invalid. The error text and an error code will be provided in the ErrorList element.",
         "content": {
           "application/json": {
             "schema": {
@@ -167849,15 +167954,15 @@
         }
       },
       "getMoveTnsOrderHistoryResponse200": {
-        "description": "The history has been successfully retrieved and displayed in the payload",
+        "description": "OK",
         "content": {
           "application/xml": {
             "schema": {
               "$ref": "#/components/schemas/NumberManagementOrderHistoryWrapper"
             },
             "examples": {
-              "example": {
-                "$ref": "#/components/examples/getMoveTnsOrderHistoryResponseXmlExample"
+              "history": {
+                "$ref": "#/components/examples/moveTnsOrderHistoryXmlExample"
               }
             }
           },
@@ -167866,8 +167971,8 @@
               "$ref": "#/components/schemas/NumberManagementOrderHistoryJson"
             },
             "examples": {
-              "example": {
-                "$ref": "#/components/examples/getMoveTnsOrderHistoryResponseJsonExample"
+              "history": {
+                "$ref": "#/components/examples/moveTnsOrderHistoryJsonExample"
               }
             }
           }
@@ -168266,7 +168371,7 @@
         }
       },
       "tooManyRequestsErrorCustomer": {
-        "description": "Too Many Requests Error",
+        "description": "Too Many Requests",
         "content": {
           "application/json": {
             "schema": {
@@ -168341,7 +168446,7 @@
         }
       },
       "createGroupResponse": {
-        "description": "Create Group Response",
+        "description": "Created",
         "content": {
           "application/json": {
             "schema": {
@@ -168478,7 +168583,7 @@
         }
       },
       "serviceActivationCheckerBadRequest": {
-        "description": "Bad Request.",
+        "description": "Bad Request",
         "content": {
           "application/json": {
             "schema": {
@@ -168493,7 +168598,7 @@
         }
       },
       "serviceActivationSearch": {
-        "description": "Ok",
+        "description": "OK",
         "content": {
           "application/json": {
             "schema": {
@@ -168526,7 +168631,7 @@
         }
       },
       "serviceActivationOrderDetails": {
-        "description": "Ok",
+        "description": "OK",
         "content": {
           "application/json": {
             "schema": {
@@ -168539,6 +168644,71 @@
             }
           }
         }
+      },
+      "getMoveTnsOrdersResponse400": {
+        "description": "Bad Request",
+        "content": {
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/MoveTnsOrderReportErrorResponse"
+            },
+            "examples": {
+              "invalidStatus": {
+                "$ref": "#/components/examples/readMoveTnsOrdersInvalidStatusXmlExample"
+              }
+            }
+          },
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/MoveTnsOrderJsonErrorResponse"
+            },
+            "examples": {
+              "invalidStatus": {
+                "$ref": "#/components/examples/readMoveTnsOrdersInvalidStatusJsonExample"
+              }
+            }
+          }
+        }
+      },
+      "getMoveTnsOrderResponse400": {
+        "description": "Bad Request",
+        "content": {
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/MoveTnsOrderReportErrorResponse"
+            },
+            "examples": {
+              "invalidOrderId": {
+                "$ref": "#/components/examples/readMoveTnsOrderInvalidOrderIdXmlExample"
+              }
+            }
+          },
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/MoveTnsOrderJsonErrorResponse"
+            },
+            "examples": {
+              "invalidOrderId": {
+                "$ref": "#/components/examples/readMoveTnsOrderInvalidOrderIdJsonExample"
+              }
+            }
+          }
+        }
+      },
+      "moveTnsUnauthorizedResponse": {
+        "description": "Unauthorized"
+      },
+      "moveTnsForbiddenResponse": {
+        "description": "Forbidden"
+      },
+      "moveTnsAccountNotFoundResponse": {
+        "description": "Not Found"
+      },
+      "moveTnsTooManyRequestsResponse": {
+        "description": "Too Many Requests"
+      },
+      "moveTnsInternalServerErrorResponse": {
+        "description": "Internal Server Error"
       },
       "createBrand201Response": {
         "description": "Created",
@@ -180104,7 +180274,7 @@
       "number_management_statusQueryParam": {
         "name": "status",
         "in": "query",
-        "description": "The status of the moveTnsOrder being searched for",
+        "description": "The status of the Move TNs order being searched for.",
         "schema": {
           "type": "string"
         },
@@ -180113,7 +180283,7 @@
       "telephoneNumberQueryParam": {
         "name": "tn",
         "in": "query",
-        "description": "A Telephone Number (TN) that is referenced in the order",
+        "description": "A Phone Number (TN) that is referenced in the order.",
         "schema": {
           "type": "string"
         },
@@ -180149,7 +180319,7 @@
       "number_management_modifiedDateFromQueryParam": {
         "name": "modifiedDateFrom",
         "in": "query",
-        "description": "For Date-based searches, the starting date of a date range (inclusive) that will be used to find Import Tn Orders that were modified within the date range. It is in the form yyyy-MM-dd.",
+        "description": "For Date-based searches, the starting date of a date range (inclusive) that will be used to find Move TNs orders that were modified within the date range. It is in the form yyyy-MM-dd.",
         "schema": {
           "type": "string"
         },
@@ -180158,7 +180328,7 @@
       "number_management_modifiedDateToQueryParam": {
         "name": "modifiedDateTo",
         "in": "query",
-        "description": "For Date-based searches, the ending date of a date range (inclusive) that will be used to find Import Tn Orders that were modified within the date range. It is in the form yyyy-MM-dd.",
+        "description": "For Date-based searches, the ending date of a date range (inclusive) that will be used to find Move TNs orders that were modified within the date range. It is in the form yyyy-MM-dd.",
         "schema": {
           "type": "string"
         },
@@ -180215,6 +180385,25 @@
         },
         "example": "1"
       },
+      "orderDetailsQueryParam": {
+        "name": "orderDetails",
+        "in": "query",
+        "description": "When true, the full details of each order are returned instead of the order summary. Defaults to false.",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        },
+        "example": true
+      },
+      "number_management_sizeQueryParam": {
+        "name": "size",
+        "in": "query",
+        "description": "The number of order records to return. If not specified, the default size is 500.",
+        "schema": {
+          "type": "integer"
+        },
+        "example": 2
+      },
       "pageNumberQueryParam": {
         "name": "pageNumber",
         "in": "query",
@@ -180255,14 +180444,14 @@
       "carriersReputationSummaryQueryParam": {
         "name": "carriersReputationSummary",
         "in": "query",
-        "description": "Filter by carriersReputationSummary. Allowed values are \u0060STATUS_PENDING\u0060, \u0060FLAGGED\u0060, \u0060CLEAN\u0060. If omitted, all values will be included",
+        "description": "Filter by \u0060carriersReputationSummary\u0060. Allowed values are \u0060STATUS_PENDING\u0060, \u0060FLAGGED\u0060, \u0060CLEAN\u0060. If omitted, all values will be included",
         "style": "deepObject",
         "explode": true,
         "schema": {
           "properties": {
             "eq": {
               "type": "string",
-              "description": "A comma-separated list of carriersReputationSummary values to filter byAllowed values are \u0060STATUS_PENDING\u0060, \u0060FLAGGED\u0060, \u0060CLEAN\u0060. If omitted, all values will be included",
+              "description": "A comma-separated list of \u0060carriersReputationSummary\u0060 values to filter by. Allowed values are \u0060STATUS_PENDING\u0060, \u0060FLAGGED\u0060, \u0060CLEAN\u0060. If omitted, all values will be included",
               "example": "STATUS_PENDING,FLAGGED"
             }
           }
@@ -180375,7 +180564,7 @@
           "properties": {
             "eq": {
               "type": "string",
-              "description": "Exact match on brand name. Accepts a comma-separated list of values for OR filtering (e.g. brandName[eq]=Acme Corp,Globex).",
+              "description": "Exact match on brand name. Accepts a comma-separated list of values for OR filtering (e.g. \u0060brandName[eq]=Acme Corp,Globex\u0060).",
               "example": "Acme Corp,Globex"
             },
             "contains": {
@@ -180399,7 +180588,7 @@
           "properties": {
             "eq": {
               "type": "string",
-              "description": "Exact match on display name. Accepts a comma-separated list of values for OR filtering (e.g. displayName[eq]=Acme Alerts,Globex Support).",
+              "description": "Exact match on display name. Accepts a comma-separated list of values for OR filtering (e.g. \u0060displayName[eq]=Acme Alerts,Globex Support\u0060).",
               "example": "Acme Alerts,Globex Support"
             },
             "contains": {
@@ -180419,7 +180608,7 @@
           "properties": {
             "eq": {
               "type": "string",
-              "description": "Exact match on call reason. Accepts a comma-separated list of values for OR filtering (e.g. callReason[eq]=Fraud Alert,Account Info).",
+              "description": "Exact match on call reason. Accepts a comma-separated list of values for OR filtering (e.g. \u0060callReason[eq]=Fraud Alert,Account Info\u0060).",
               "example": "Fraud Alert,Account Info"
             },
             "contains": {
@@ -191060,24 +191249,6 @@
           ]
         }
       },
-      "postMoveTnsResponse201XmlExample": {
-        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022?\u003E\n\u003CMoveTnsOrderResponse\u003E\n   \u003CMoveTnsOrder\u003E\n      \u003COrderCreateDate\u003E2020-09-15T16:36:22.076Z\u003C/OrderCreateDate\u003E\n      \u003CAccountId\u003E9999999\u003C/AccountId\u003E\n      \u003CSourceAccountId\u003E6555555\u003C/SourceAccountId\u003E\n      \u003CCreatedByUser\u003EsystemUser\u003C/CreatedByUser\u003E\n      \u003COrderId\u003E093a9f9b-1a78-4e47-b6e2-776a484596f4\u003C/OrderId\u003E\n      \u003CLastModifiedDate\u003E2020-09-15T16:36:22.096Z\u003C/LastModifiedDate\u003E\n      \u003CSiteId\u003E483\u003C/SiteId\u003E\n      \u003CTelephoneNumbers\u003E\n         \u003CTelephoneNumber\u003E\u002B12032081004\u003C/TelephoneNumber\u003E\n         \u003CTelephoneNumber\u003E\u002B12032081005\u003C/TelephoneNumber\u003E\n      \u003C/TelephoneNumbers\u003E\n      \u003CProcessingStatus\u003ERECEIVED\u003C/ProcessingStatus\u003E\n      \u003CSipPeerId\u003E500025\u003C/SipPeerId\u003E\n   \u003C/MoveTnsOrder\u003E\n\u003C/MoveTnsOrderResponse\u003E"
-      },
-      "getMoveTnsOrderResponseXmlExample": {
-        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022?\u003E\n\u003CMoveTnsOrder\u003E\n   \u003COrderCreateDate\u003E2020-08-10T02:58:04.615Z\u003C/OrderCreateDate\u003E\n   \u003CAccountId\u003E9900012\u003C/AccountId\u003E\n   \u003CSourceAccountId\u003E9900013\u003C/SourceAccountId\u003E\n   \u003CCreatedByUser\u003Ejdb\u003C/CreatedByUser\u003E\n   \u003COrderId\u003Ebf1305b8-8998-1111-2222-51ba3ce52d4e\u003C/OrderId\u003E\n   \u003CCustomerOrderId\u003E123-456-789-abc\u003C/CustomerOrderId\u003E\n   \u003CLastModifiedDate\u003E2018-01-09T02:58:05.298Z\u003C/LastModifiedDate\u003E\n   \u003CSiteId\u003E65487\u003C/SiteId\u003E\n   \u003CSipPeerId\u003E885544\u003C/SipPeerId\u003E\n   \u003CTelephoneNumbers\u003E\n      \u003CTelephoneNumber\u003E\u002B12106078250\u003C/TelephoneNumber\u003E\n      \u003CTelephoneNumber\u003E\u002B12109678273\u003C/TelephoneNumber\u003E\n      \u003CTelephoneNumber\u003E\u002B12109678331\u003C/TelephoneNumber\u003E\n      \u003CTelephoneNumber\u003E\u002B12109678337\u003C/TelephoneNumber\u003E\n      \u003CTelephoneNumber\u003E\u002B12266401468\u003C/TelephoneNumber\u003E\n      \u003CTelephoneNumber\u003E\u002B12262665583\u003C/TelephoneNumber\u003E\n   \u003C/TelephoneNumbers\u003E\n   \u003CProcessingStatus\u003EPARTIAL\u003C/ProcessingStatus\u003E\n   \u003CErrors\u003E\n      \u003CError\u003E\n         \u003CCode\u003E7518\u003C/Code\u003E\n         \u003CDescription\u003ETelephone Number Not Active.\u003C/Description\u003E\n         \u003CTelephoneNumbers\u003E\n            \u003CTelephoneNumber\u003E\u002B12262665583\u003C/TelephoneNumber\u003E\n         \u003C/TelephoneNumbers\u003E\n      \u003C/Error\u003E\n   \u003C/Errors\u003E\n\u003C/MoveTnsOrder\u003E"
-      },
-      "moveTnsOrderPayload404XmlExample": {
-        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CErrorResponse\u003E\n    \u003CirisStatus\u003E\n        \u003CCode\u003E404\u003C/Code\u003E\n        \u003CDescription\u003EOrder with such id was not found.\u003C/Description\u003E\n    \u003C/irisStatus\u003E\n\u003C/ErrorResponse\u003E"
-      },
-      "postMoveTnsResponse400XmlExample": {
-        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CMoveTnsOrderResponse\u003E\n    \u003CResponseStatus\u003E\n        \u003CErrorCode\u003E1003\u003C/ErrorCode\u003E\n        \u003CDescription\u003ESiteId is required\u003C/Description\u003E\n    \u003C/ResponseStatus\u003E\n\u003C/MoveTnsOrderResponse\u003E"
-      },
-      "getMoveTnsResponse200XmlExample": {
-        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CMoveTnsOrders\u003E\n   \u003CTotalCount\u003E2\u003C/TotalCount\u003E\n   \u003CLinks\u003E\n        \u003Cfirst\u003ELink=\u0026lt;https://api.bandwidth.com/api/v2/accounts/12346160/moveTns?page=1\u0026amp;size=1\u003E;rel=\u0022first\u0022;\u003C/first\u003E\n        \u003Cnext\u003ELink=\u0026lt;https://api.bandwidth.com/api/v2/accounts/12346160/moveTns?page=fe3c18b8-0307-4de7-928e-0ddd77295190\u0026amp;size=1\u003E;rel=\u0022next\u0022;\u003C/next\u003E\n   \u003C/Links\u003E\n   \u003CMoveTnsOrderSummary\u003E\n      \u003CaccountId\u003E1234567\u003C/accountId\u003E\n      \u003CSourceAccountId\u003E15\u003C/SourceAccountId\u003E\n      \u003CCountOfTNs\u003E1\u003C/CountOfTNs\u003E\n      \u003CCustomerOrderId\u003ECustomerOrderId\u003C/CustomerOrderId\u003E\n      \u003CuserId\u003EsystemUser\u003C/userId\u003E\n      \u003ClastModifiedDate\u003E2022-01-24T11:08:09.770Z\u003C/lastModifiedDate\u003E\n      \u003COrderDate\u003E2022-01-24T11:08:09.770Z\u003C/OrderDate\u003E\n      \u003COrderType\u003Emove_tns\u003C/OrderType\u003E\n      \u003COrderStatus\u003ECOMPLETE\u003C/OrderStatus\u003E\n      \u003COrderId\u003E211a103c-5f9c-4117-8833-c574bdc390fd\u003C/OrderId\u003E\n   \u003C/MoveTnsOrderSummary\u003E\n   \u003CMoveTnsOrderSummary\u003E\n      \u003CaccountId\u003E14\u003C/accountId\u003E\n      \u003CSourceAccountId\u003E15\u003C/SourceAccountId\u003E\n      \u003CCountOfTNs\u003E2\u003C/CountOfTNs\u003E\n      \u003CCustomerOrderId\u003ECustomerOrderId\u003C/CustomerOrderId\u003E\n      \u003CuserId\u003EsystemUser\u003C/userId\u003E\n      \u003ClastModifiedDate\u003E2022-01-24T10:43:16.934Z\u003C/lastModifiedDate\u003E\n      \u003COrderDate\u003E2022-01-24T10:43:16.934Z\u003C/OrderDate\u003E\n      \u003COrderType\u003Emove_tns\u003C/OrderType\u003E\n      \u003COrderStatus\u003EPARTIAL\u003C/OrderStatus\u003E\n      \u003COrderId\u003E8dc32f09-2329-4c73-b702-526f46b02712\u003C/OrderId\u003E\n   \u003C/MoveTnsOrderSummary\u003E\n\u003C/MoveTnsOrders\u003E"
-      },
-      "postMoveTnsOrderRequestXmlExample": {
-        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022?\u003E\n\u003CMoveTnsOrder\u003E\n   \u003CCustomerOrderId\u003EICPA123ABC\u003C/CustomerOrderId\u003E\n   \u003CSourceAccountId\u003E12346159\u003C/SourceAccountId\u003E\n   \u003CE911ServiceAction\u003Emove\u003C/E911ServiceAction\u003E\n   \u003CSiteId\u003E743\u003C/SiteId\u003E\n   \u003CSipPeerId\u003E303716\u003C/SipPeerId\u003E\n   \u003CTelephoneNumbers\u003E\n      \u003CTelephoneNumber\u003E\u002B19199918388\u003C/TelephoneNumber\u003E\n      \u003CTelephoneNumber\u003E\u002B14158714245\u003C/TelephoneNumber\u003E\n      \u003CTelephoneNumber\u003E\u002B14352154439\u003C/TelephoneNumber\u003E\n      \u003CTelephoneNumber\u003E\u002B14352154466\u003C/TelephoneNumber\u003E\n   \u003C/TelephoneNumbers\u003E\n\u003C/MoveTnsOrder\u003E"
-      },
       "createMoveTnsBulkOrderRequestExample": {
         "summary": "Move TNs Bulk Order Request",
         "value": {
@@ -191454,34 +191625,6 @@
               "href": "https://api.bandwidth.com/api/v2/accounts/6777777/moveTns/bulk/80eb8180-9543-4bb7-ada1-c4b8ff5df2de",
               "method": "GET",
               "rel": "bulkOrder"
-            }
-          ]
-        }
-      },
-      "getMoveTnsOrderHistoryResponseXmlExample": {
-        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022?\u003E\n\u003COrderHistoryWrapper\u003E\n   \u003COrderHistory\u003E\n      \u003COrderDate\u003E2020-09-17T08:56:39.607Z\u003C/OrderDate\u003E\n      \u003CNote\u003EMove TNs order has been received by the system.\u003C/Note\u003E\n      \u003CAuthor\u003Eadmin\u003C/Author\u003E\n      \u003CStatus\u003Ereceived\u003C/Status\u003E\n   \u003C/OrderHistory\u003E\n   \u003COrderHistory\u003E\n      \u003COrderDate\u003E2020-09-17T08:56:39.743Z\u003C/OrderDate\u003E\n      \u003CNote\u003EMove TNs order processing has started.\u003C/Note\u003E\n      \u003CAuthor\u003Eadmin\u003C/Author\u003E\n      \u003CStatus\u003Eprocessing\u003C/Status\u003E\n   \u003C/OrderHistory\u003E\n   \u003COrderHistory\u003E\n      \u003COrderDate\u003E2020-09-17T08:56:39.820Z\u003C/OrderDate\u003E\n      \u003CNote\u003EMove TNs order is complete.\u003C/Note\u003E\n      \u003CAuthor\u003Eadmin\u003C/Author\u003E\n      \u003CStatus\u003Ecomplete\u003C/Status\u003E\n   \u003C/OrderHistory\u003E\n\u003C/OrderHistoryWrapper\u003E"
-      },
-      "getMoveTnsOrderHistoryResponseJsonExample": {
-        "summary": "An example of a get Move TNs Order History response in JSON.",
-        "value": {
-          "orderHistory": [
-            {
-              "orderDate": "2015-06-16T14:03:10.225Z",
-              "note": "Move TNs order is received.",
-              "author": "admin",
-              "status": "RECEIVED"
-            },
-            {
-              "orderDate": "2015-06-16T14:03:10.330Z",
-              "note": "Move TNs order is processing.",
-              "author": "admin",
-              "status": "PROCESSING"
-            },
-            {
-              "orderDate": "2015-06-16T14:03:10.789Z",
-              "note": "Move TNs order is partial.",
-              "author": "admin",
-              "status": "PARTIAL"
             }
           ]
         }
@@ -192993,6 +193136,393 @@
               "href": "https://api.bandwidth.com/api/v2/accounts/1234/serviceActivationChecker",
               "method": "POST",
               "rel": "self"
+            }
+          ]
+        }
+      },
+      "moveTnsOrderRequestXmlExample": {
+        "summary": "Move numbers across accounts",
+        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CMoveTnsOrder\u003E\n   \u003CName\u003EQ3 number consolidation\u003C/Name\u003E\n   \u003CCustomerOrderId\u003EICPA123ABC\u003C/CustomerOrderId\u003E\n   \u003CSourceAccountId\u003E12346159\u003C/SourceAccountId\u003E\n   \u003CSiteId\u003E487\u003C/SiteId\u003E\n   \u003CSipPeerId\u003E500026\u003C/SipPeerId\u003E\n   \u003CE911ServiceAction\u003EMOVE\u003C/E911ServiceAction\u003E\n   \u003CMessagingService\u003EUSE_DESTINATION_SETTINGS\u003C/MessagingService\u003E\n   \u003CVoiceConfigurationPackageId\u003Ec7951e4f-6285-4b75-83e5-392558f59067\u003C/VoiceConfigurationPackageId\u003E\n   \u003CRequirementsPackageId\u003E3f2a9c1e-8b4d-4e6a-9f1c-2d7e5b8a0c94\u003C/RequirementsPackageId\u003E\n   \u003CTelephoneNumbers\u003E\n      \u003CTelephoneNumber\u003E\u002B18012141003\u003C/TelephoneNumber\u003E\n      \u003CTelephoneNumber\u003E\u002B18012141004\u003C/TelephoneNumber\u003E\n   \u003C/TelephoneNumbers\u003E\n\u003C/MoveTnsOrder\u003E"
+      },
+      "moveTnsOrderRequestJsonExample": {
+        "summary": "Move numbers across accounts",
+        "value": {
+          "name": "Q3 number consolidation",
+          "customerOrderId": "ICPA123ABC",
+          "sourceAccountId": 12346159,
+          "subAccountId": 487,
+          "locationId": 500026,
+          "e911ServiceAction": "MOVE",
+          "messagingService": "USE_DESTINATION_SETTINGS",
+          "voiceConfigurationPackageId": "c7951e4f-6285-4b75-83e5-392558f59067",
+          "requirementsPackageId": "3f2a9c1e-8b4d-4e6a-9f1c-2d7e5b8a0c94",
+          "phoneNumbers": [
+            "\u002B18012141003",
+            "\u002B18012141004"
+          ]
+        }
+      },
+      "moveTnsOrderCreatedXmlExample": {
+        "summary": "Order received",
+        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CMoveTnsOrderResponse\u003E\n   \u003CMoveTnsOrder\u003E\n      \u003COrderId\u003E4bf48140-59ba-45d0-8d52-661574781ab0\u003C/OrderId\u003E\n      \u003CAccountId\u003E12346160\u003C/AccountId\u003E\n      \u003CCreatedByUser\u003Ejsmith\u003C/CreatedByUser\u003E\n      \u003CLastModifiedBy\u003Ejsmith\u003C/LastModifiedBy\u003E\n      \u003COrderCreateDate\u003E2025-05-27T11:16:37.648Z\u003C/OrderCreateDate\u003E\n      \u003CLastModifiedDate\u003E2025-05-27T11:16:37.967Z\u003C/LastModifiedDate\u003E\n      \u003CName\u003EQ3 number consolidation\u003C/Name\u003E\n      \u003CCustomerOrderId\u003EICPA123ABC\u003C/CustomerOrderId\u003E\n      \u003CSourceAccountId\u003E12346159\u003C/SourceAccountId\u003E\n      \u003CSiteId\u003E487\u003C/SiteId\u003E\n      \u003CSipPeerId\u003E500026\u003C/SipPeerId\u003E\n      \u003CE911ServiceAction\u003EMOVE\u003C/E911ServiceAction\u003E\n      \u003CMessagingService\u003EUSE_DESTINATION_SETTINGS\u003C/MessagingService\u003E\n      \u003CVoiceConfigurationPackageId\u003Ec7951e4f-6285-4b75-83e5-392558f59067\u003C/VoiceConfigurationPackageId\u003E\n      \u003CRequirementsPackageId\u003E3f2a9c1e-8b4d-4e6a-9f1c-2d7e5b8a0c94\u003C/RequirementsPackageId\u003E\n      \u003CTelephoneNumbers\u003E\n         \u003CTelephoneNumber\u003E\u002B18012141003\u003C/TelephoneNumber\u003E\n         \u003CTelephoneNumber\u003E\u002B18012141004\u003C/TelephoneNumber\u003E\n      \u003C/TelephoneNumbers\u003E\n      \u003CProcessingStatus\u003ERECEIVED\u003C/ProcessingStatus\u003E\n   \u003C/MoveTnsOrder\u003E\n\u003C/MoveTnsOrderResponse\u003E"
+      },
+      "moveTnsOrderCreatedJsonExample": {
+        "summary": "Order received",
+        "value": {
+          "orderId": "4bf48140-59ba-45d0-8d52-661574781ab0",
+          "accountId": 12346160,
+          "createdByUser": "jsmith",
+          "lastModifiedBy": "jsmith",
+          "orderCreateDate": "2025-05-27T11:16:37.648Z",
+          "lastModifiedDate": "2025-05-27T11:16:37.967Z",
+          "name": "Q3 number consolidation",
+          "customerOrderId": "ICPA123ABC",
+          "sourceAccountId": 12346159,
+          "subAccountId": 487,
+          "locationId": 500026,
+          "e911ServiceAction": "MOVE",
+          "messagingService": "USE_DESTINATION_SETTINGS",
+          "voiceConfigurationPackageId": "c7951e4f-6285-4b75-83e5-392558f59067",
+          "requirementsPackageId": "3f2a9c1e-8b4d-4e6a-9f1c-2d7e5b8a0c94",
+          "phoneNumbers": [
+            "\u002B18012141003",
+            "\u002B18012141004"
+          ],
+          "orderStatus": "RECEIVED",
+          "errors": [],
+          "warnings": []
+        }
+      },
+      "moveTnsOrderCompleteXmlExample": {
+        "summary": "Order complete",
+        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CMoveTnsOrder\u003E\n   \u003COrderId\u003E4bf48140-59ba-45d0-8d52-661574781ab0\u003C/OrderId\u003E\n   \u003CAccountId\u003E12346160\u003C/AccountId\u003E\n   \u003CCreatedByUser\u003Ejsmith\u003C/CreatedByUser\u003E\n   \u003CLastModifiedBy\u003Ejsmith\u003C/LastModifiedBy\u003E\n   \u003COrderCreateDate\u003E2025-05-27T11:16:37.648Z\u003C/OrderCreateDate\u003E\n   \u003CLastModifiedDate\u003E2025-05-27T11:16:37.967Z\u003C/LastModifiedDate\u003E\n   \u003CName\u003EQ3 number consolidation\u003C/Name\u003E\n   \u003CCustomerOrderId\u003EICPA123ABC\u003C/CustomerOrderId\u003E\n   \u003CSourceAccountId\u003E12346159\u003C/SourceAccountId\u003E\n   \u003CSiteId\u003E487\u003C/SiteId\u003E\n   \u003CSipPeerId\u003E500026\u003C/SipPeerId\u003E\n   \u003CE911ServiceAction\u003EMOVE\u003C/E911ServiceAction\u003E\n   \u003CMessagingService\u003EUSE_DESTINATION_SETTINGS\u003C/MessagingService\u003E\n   \u003CVoiceConfigurationPackageId\u003Ec7951e4f-6285-4b75-83e5-392558f59067\u003C/VoiceConfigurationPackageId\u003E\n   \u003CRequirementsPackageId\u003E3f2a9c1e-8b4d-4e6a-9f1c-2d7e5b8a0c94\u003C/RequirementsPackageId\u003E\n   \u003CTelephoneNumbers\u003E\n      \u003CTelephoneNumber\u003E\u002B18012141003\u003C/TelephoneNumber\u003E\n      \u003CTelephoneNumber\u003E\u002B18012141004\u003C/TelephoneNumber\u003E\n   \u003C/TelephoneNumbers\u003E\n   \u003CProcessingStatus\u003ECOMPLETE\u003C/ProcessingStatus\u003E\n\u003C/MoveTnsOrder\u003E"
+      },
+      "moveTnsOrderCompleteJsonExample": {
+        "summary": "Order complete",
+        "value": {
+          "orderId": "4bf48140-59ba-45d0-8d52-661574781ab0",
+          "accountId": 12346160,
+          "createdByUser": "jsmith",
+          "lastModifiedBy": "jsmith",
+          "orderCreateDate": "2025-05-27T11:16:37.648Z",
+          "lastModifiedDate": "2025-05-27T11:16:37.967Z",
+          "name": "Q3 number consolidation",
+          "customerOrderId": "ICPA123ABC",
+          "sourceAccountId": 12346159,
+          "subAccountId": 487,
+          "locationId": 500026,
+          "e911ServiceAction": "MOVE",
+          "messagingService": "USE_DESTINATION_SETTINGS",
+          "voiceConfigurationPackageId": "c7951e4f-6285-4b75-83e5-392558f59067",
+          "requirementsPackageId": "3f2a9c1e-8b4d-4e6a-9f1c-2d7e5b8a0c94",
+          "phoneNumbers": [
+            "\u002B18012141003",
+            "\u002B18012141004"
+          ],
+          "orderStatus": "COMPLETE",
+          "errors": [],
+          "warnings": []
+        }
+      },
+      "moveTnsOrderCompleteWithWarningXmlExample": {
+        "summary": "Order complete with an E911 warning",
+        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CMoveTnsOrder\u003E\n   \u003COrderId\u003E4bf48140-59ba-45d0-8d52-661574781ab0\u003C/OrderId\u003E\n   \u003CAccountId\u003E12346160\u003C/AccountId\u003E\n   \u003CCreatedByUser\u003Ejsmith\u003C/CreatedByUser\u003E\n   \u003CLastModifiedBy\u003Ejsmith\u003C/LastModifiedBy\u003E\n   \u003COrderCreateDate\u003E2025-05-27T11:16:37.648Z\u003C/OrderCreateDate\u003E\n   \u003CLastModifiedDate\u003E2025-05-27T11:16:37.967Z\u003C/LastModifiedDate\u003E\n   \u003CName\u003EQ3 number consolidation\u003C/Name\u003E\n   \u003CCustomerOrderId\u003EICPA123ABC\u003C/CustomerOrderId\u003E\n   \u003CSourceAccountId\u003E12346159\u003C/SourceAccountId\u003E\n   \u003CSiteId\u003E487\u003C/SiteId\u003E\n   \u003CSipPeerId\u003E500026\u003C/SipPeerId\u003E\n   \u003CE911ServiceAction\u003EMOVE\u003C/E911ServiceAction\u003E\n   \u003CMessagingService\u003EUSE_DESTINATION_SETTINGS\u003C/MessagingService\u003E\n   \u003CVoiceConfigurationPackageId\u003Ec7951e4f-6285-4b75-83e5-392558f59067\u003C/VoiceConfigurationPackageId\u003E\n   \u003CRequirementsPackageId\u003E3f2a9c1e-8b4d-4e6a-9f1c-2d7e5b8a0c94\u003C/RequirementsPackageId\u003E\n   \u003CTelephoneNumbers\u003E\n      \u003CTelephoneNumber\u003E\u002B18012141003\u003C/TelephoneNumber\u003E\n      \u003CTelephoneNumber\u003E\u002B18012141004\u003C/TelephoneNumber\u003E\n   \u003C/TelephoneNumbers\u003E\n   \u003CProcessingStatus\u003ECOMPLETE\u003C/ProcessingStatus\u003E\n   \u003CWarnings\u003E\n      \u003CWarning\u003E\n         \u003CTelephoneNumber\u003E\u002B18012141003\u003C/TelephoneNumber\u003E\n         \u003CDescription\u003EE911 provisioning failed.\u003C/Description\u003E\n      \u003C/Warning\u003E\n   \u003C/Warnings\u003E\n\u003C/MoveTnsOrder\u003E"
+      },
+      "moveTnsOrderCompleteWithWarningJsonExample": {
+        "summary": "Order complete with an E911 warning",
+        "value": {
+          "orderId": "4bf48140-59ba-45d0-8d52-661574781ab0",
+          "accountId": 12346160,
+          "createdByUser": "jsmith",
+          "lastModifiedBy": "jsmith",
+          "orderCreateDate": "2025-05-27T11:16:37.648Z",
+          "lastModifiedDate": "2025-05-27T11:16:37.967Z",
+          "name": "Q3 number consolidation",
+          "customerOrderId": "ICPA123ABC",
+          "sourceAccountId": 12346159,
+          "subAccountId": 487,
+          "locationId": 500026,
+          "e911ServiceAction": "MOVE",
+          "messagingService": "USE_DESTINATION_SETTINGS",
+          "voiceConfigurationPackageId": "c7951e4f-6285-4b75-83e5-392558f59067",
+          "requirementsPackageId": "3f2a9c1e-8b4d-4e6a-9f1c-2d7e5b8a0c94",
+          "phoneNumbers": [
+            "\u002B18012141003",
+            "\u002B18012141004"
+          ],
+          "orderStatus": "COMPLETE",
+          "errors": [],
+          "warnings": [
+            {
+              "phoneNumber": "\u002B18012141003",
+              "description": "E911 provisioning failed."
+            }
+          ]
+        }
+      },
+      "moveTnsOrderPartialXmlExample": {
+        "summary": "Order partially complete",
+        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CMoveTnsOrder\u003E\n   \u003COrderId\u003E4bf48140-59ba-45d0-8d52-661574781ab0\u003C/OrderId\u003E\n   \u003CAccountId\u003E12346160\u003C/AccountId\u003E\n   \u003CCreatedByUser\u003Ejsmith\u003C/CreatedByUser\u003E\n   \u003CLastModifiedBy\u003Ejsmith\u003C/LastModifiedBy\u003E\n   \u003COrderCreateDate\u003E2025-05-27T11:16:37.648Z\u003C/OrderCreateDate\u003E\n   \u003CLastModifiedDate\u003E2025-05-27T11:16:37.967Z\u003C/LastModifiedDate\u003E\n   \u003CName\u003EQ3 number consolidation\u003C/Name\u003E\n   \u003CCustomerOrderId\u003EICPA123ABC\u003C/CustomerOrderId\u003E\n   \u003CSourceAccountId\u003E12346159\u003C/SourceAccountId\u003E\n   \u003CSiteId\u003E487\u003C/SiteId\u003E\n   \u003CSipPeerId\u003E500026\u003C/SipPeerId\u003E\n   \u003CE911ServiceAction\u003EMOVE\u003C/E911ServiceAction\u003E\n   \u003CMessagingService\u003EUSE_DESTINATION_SETTINGS\u003C/MessagingService\u003E\n   \u003CVoiceConfigurationPackageId\u003Ec7951e4f-6285-4b75-83e5-392558f59067\u003C/VoiceConfigurationPackageId\u003E\n   \u003CRequirementsPackageId\u003E3f2a9c1e-8b4d-4e6a-9f1c-2d7e5b8a0c94\u003C/RequirementsPackageId\u003E\n   \u003CTelephoneNumbers\u003E\n      \u003CTelephoneNumber\u003E\u002B18012141003\u003C/TelephoneNumber\u003E\n      \u003CTelephoneNumber\u003E\u002B18012141004\u003C/TelephoneNumber\u003E\n   \u003C/TelephoneNumbers\u003E\n   \u003CProcessingStatus\u003EPARTIAL\u003C/ProcessingStatus\u003E\n   \u003CErrors\u003E\n      \u003CError\u003E\n         \u003CCode\u003E5312\u003C/Code\u003E\n         \u003CDescription\u003EAn order is already processing this TN.\u003C/Description\u003E\n         \u003CTelephoneNumbers\u003E\n            \u003CTelephoneNumber\u003E\u002B18012141004\u003C/TelephoneNumber\u003E\n         \u003C/TelephoneNumbers\u003E\n      \u003C/Error\u003E\n   \u003C/Errors\u003E\n\u003C/MoveTnsOrder\u003E"
+      },
+      "moveTnsOrderPartialJsonExample": {
+        "summary": "Order partially complete",
+        "value": {
+          "orderId": "4bf48140-59ba-45d0-8d52-661574781ab0",
+          "accountId": 12346160,
+          "createdByUser": "jsmith",
+          "lastModifiedBy": "jsmith",
+          "orderCreateDate": "2025-05-27T11:16:37.648Z",
+          "lastModifiedDate": "2025-05-27T11:16:37.967Z",
+          "name": "Q3 number consolidation",
+          "customerOrderId": "ICPA123ABC",
+          "sourceAccountId": 12346159,
+          "subAccountId": 487,
+          "locationId": 500026,
+          "e911ServiceAction": "MOVE",
+          "messagingService": "USE_DESTINATION_SETTINGS",
+          "voiceConfigurationPackageId": "c7951e4f-6285-4b75-83e5-392558f59067",
+          "requirementsPackageId": "3f2a9c1e-8b4d-4e6a-9f1c-2d7e5b8a0c94",
+          "phoneNumbers": [
+            "\u002B18012141003",
+            "\u002B18012141004"
+          ],
+          "orderStatus": "PARTIAL",
+          "errors": [
+            {
+              "code": 5312,
+              "description": "An order is already processing this TN.",
+              "phoneNumbers": [
+                "\u002B18012141004"
+              ]
+            }
+          ],
+          "warnings": []
+        }
+      },
+      "moveTnsOrderFailedXmlExample": {
+        "summary": "Order failed",
+        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CMoveTnsOrder\u003E\n   \u003COrderId\u003E4bf48140-59ba-45d0-8d52-661574781ab0\u003C/OrderId\u003E\n   \u003CAccountId\u003E12346160\u003C/AccountId\u003E\n   \u003CCreatedByUser\u003Ejsmith\u003C/CreatedByUser\u003E\n   \u003CLastModifiedBy\u003Ejsmith\u003C/LastModifiedBy\u003E\n   \u003COrderCreateDate\u003E2025-05-27T11:16:37.648Z\u003C/OrderCreateDate\u003E\n   \u003CLastModifiedDate\u003E2025-05-27T11:16:37.967Z\u003C/LastModifiedDate\u003E\n   \u003CName\u003EQ3 number consolidation\u003C/Name\u003E\n   \u003CCustomerOrderId\u003EICPA123ABC\u003C/CustomerOrderId\u003E\n   \u003CSourceAccountId\u003E12346159\u003C/SourceAccountId\u003E\n   \u003CSiteId\u003E487\u003C/SiteId\u003E\n   \u003CSipPeerId\u003E500026\u003C/SipPeerId\u003E\n   \u003CE911ServiceAction\u003EMOVE\u003C/E911ServiceAction\u003E\n   \u003CMessagingService\u003EUSE_DESTINATION_SETTINGS\u003C/MessagingService\u003E\n   \u003CVoiceConfigurationPackageId\u003Ec7951e4f-6285-4b75-83e5-392558f59067\u003C/VoiceConfigurationPackageId\u003E\n   \u003CRequirementsPackageId\u003E3f2a9c1e-8b4d-4e6a-9f1c-2d7e5b8a0c94\u003C/RequirementsPackageId\u003E\n   \u003CTelephoneNumbers\u003E\n      \u003CTelephoneNumber\u003E\u002B18012141003\u003C/TelephoneNumber\u003E\n      \u003CTelephoneNumber\u003E\u002B18012141004\u003C/TelephoneNumber\u003E\n   \u003C/TelephoneNumbers\u003E\n   \u003CProcessingStatus\u003EFAILED\u003C/ProcessingStatus\u003E\n   \u003CErrors\u003E\n      \u003CError\u003E\n         \u003CCode\u003E5312\u003C/Code\u003E\n         \u003CDescription\u003EAn order is already processing this TN.\u003C/Description\u003E\n         \u003CTelephoneNumbers\u003E\n            \u003CTelephoneNumber\u003E\u002B18012141003\u003C/TelephoneNumber\u003E\n            \u003CTelephoneNumber\u003E\u002B18012141004\u003C/TelephoneNumber\u003E\n         \u003C/TelephoneNumbers\u003E\n      \u003C/Error\u003E\n   \u003C/Errors\u003E\n\u003C/MoveTnsOrder\u003E"
+      },
+      "moveTnsOrderFailedJsonExample": {
+        "summary": "Order failed",
+        "value": {
+          "orderId": "4bf48140-59ba-45d0-8d52-661574781ab0",
+          "accountId": 12346160,
+          "createdByUser": "jsmith",
+          "lastModifiedBy": "jsmith",
+          "orderCreateDate": "2025-05-27T11:16:37.648Z",
+          "lastModifiedDate": "2025-05-27T11:16:37.967Z",
+          "name": "Q3 number consolidation",
+          "customerOrderId": "ICPA123ABC",
+          "sourceAccountId": 12346159,
+          "subAccountId": 487,
+          "locationId": 500026,
+          "e911ServiceAction": "MOVE",
+          "messagingService": "USE_DESTINATION_SETTINGS",
+          "voiceConfigurationPackageId": "c7951e4f-6285-4b75-83e5-392558f59067",
+          "requirementsPackageId": "3f2a9c1e-8b4d-4e6a-9f1c-2d7e5b8a0c94",
+          "phoneNumbers": [
+            "\u002B18012141003",
+            "\u002B18012141004"
+          ],
+          "orderStatus": "FAILED",
+          "errors": [
+            {
+              "code": 5312,
+              "description": "An order is already processing this TN.",
+              "phoneNumbers": [
+                "\u002B18012141003",
+                "\u002B18012141004"
+              ]
+            }
+          ],
+          "warnings": []
+        }
+      },
+      "moveTnsOrdersSummaryXmlExample": {
+        "summary": "Order summaries (default)",
+        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CMoveTnsOrders\u003E\n   \u003CTotalCount\u003E5\u003C/TotalCount\u003E\n   \u003CLinks\u003E\n      \u003Cfirst\u003ELink=\u0026lt;https://api.bandwidth.com/api/v2/accounts/12346160/moveTns?page=1\u0026amp;size=2\u0026gt;;rel=\u0022first\u0022;\u003C/first\u003E\n      \u003Cnext\u003ELink=\u0026lt;https://api.bandwidth.com/api/v2/accounts/12346160/moveTns?page=e0ad355f-9e0c-45a0-a8cb-9a98eae0661f\u0026amp;size=2\u0026gt;;rel=\u0022next\u0022;\u003C/next\u003E\n   \u003C/Links\u003E\n   \u003CMoveTnsOrderSummary\u003E\n      \u003CaccountId\u003E12346160\u003C/accountId\u003E\n      \u003CSourceAccountId\u003E12346159\u003C/SourceAccountId\u003E\n      \u003CCountOfTNs\u003E2\u003C/CountOfTNs\u003E\n      \u003CCustomerOrderId\u003EICPA123ABC\u003C/CustomerOrderId\u003E\n      \u003CuserId\u003Ejsmith\u003C/userId\u003E\n      \u003ClastModifiedDate\u003E2025-05-27T11:16:37.967Z\u003C/lastModifiedDate\u003E\n      \u003COrderDate\u003E2025-05-27T11:16:37.648Z\u003C/OrderDate\u003E\n      \u003COrderType\u003Emove_tns\u003C/OrderType\u003E\n      \u003COrderStatus\u003ECOMPLETE\u003C/OrderStatus\u003E\n      \u003COrderId\u003E4bf48140-59ba-45d0-8d52-661574781ab0\u003C/OrderId\u003E\n   \u003C/MoveTnsOrderSummary\u003E\n   \u003CMoveTnsOrderSummary\u003E\n      \u003CaccountId\u003E12346160\u003C/accountId\u003E\n      \u003CSourceAccountId\u003E12346159\u003C/SourceAccountId\u003E\n      \u003CCountOfTNs\u003E1\u003C/CountOfTNs\u003E\n      \u003CCustomerOrderId\u003EICPA124ABC\u003C/CustomerOrderId\u003E\n      \u003CuserId\u003Ejsmith\u003C/userId\u003E\n      \u003ClastModifiedDate\u003E2025-05-27T04:07:59.327Z\u003C/lastModifiedDate\u003E\n      \u003COrderDate\u003E2025-05-27T04:07:59.256Z\u003C/OrderDate\u003E\n      \u003COrderType\u003Emove_tns\u003C/OrderType\u003E\n      \u003COrderStatus\u003EFAILED\u003C/OrderStatus\u003E\n      \u003COrderId\u003Ec17efbb9-9cb6-4bd3-9326-566bad84cb09\u003C/OrderId\u003E\n   \u003C/MoveTnsOrderSummary\u003E\n\u003C/MoveTnsOrders\u003E"
+      },
+      "moveTnsOrdersSummaryJsonExample": {
+        "summary": "Order summaries (default)",
+        "value": {
+          "totalCount": 5,
+          "links": {
+            "first": "Link=\u003Chttps://api.bandwidth.com/api/v2/accounts/12346160/moveTns?page=1\u0026size=2\u003E;rel=\u0022first\u0022;",
+            "next": "Link=\u003Chttps://api.bandwidth.com/api/v2/accounts/12346160/moveTns?page=e0ad355f-9e0c-45a0-a8cb-9a98eae0661f\u0026size=2\u003E;rel=\u0022next\u0022;"
+          },
+          "orders": [
+            {
+              "accountId": 12346160,
+              "sourceAccountId": 12346159,
+              "phoneNumberCount": 2,
+              "customerOrderId": "ICPA123ABC",
+              "userId": "jsmith",
+              "lastModifiedDate": "2025-05-27T11:16:37.967Z",
+              "orderDate": "2025-05-27T11:16:37.648Z",
+              "orderType": "move_tns",
+              "orderStatus": "COMPLETE",
+              "orderId": "4bf48140-59ba-45d0-8d52-661574781ab0"
+            },
+            {
+              "accountId": 12346160,
+              "sourceAccountId": 12346159,
+              "phoneNumberCount": 1,
+              "customerOrderId": "ICPA124ABC",
+              "userId": "jsmith",
+              "lastModifiedDate": "2025-05-27T04:07:59.327Z",
+              "orderDate": "2025-05-27T04:07:59.256Z",
+              "orderType": "move_tns",
+              "orderStatus": "FAILED",
+              "orderId": "c17efbb9-9cb6-4bd3-9326-566bad84cb09"
+            }
+          ]
+        }
+      },
+      "moveTnsOrdersDetailsXmlExample": {
+        "summary": "Full order details (\u0060orderDetails=true\u0060)",
+        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CMoveTnsOrders\u003E\n   \u003CTotalCount\u003E5\u003C/TotalCount\u003E\n   \u003CLinks\u003E\n      \u003Cfirst\u003ELink=\u0026lt;https://api.bandwidth.com/api/v2/accounts/12346160/moveTns?page=1\u0026amp;size=2\u0026gt;;rel=\u0022first\u0022;\u003C/first\u003E\n      \u003Cnext\u003ELink=\u0026lt;https://api.bandwidth.com/api/v2/accounts/12346160/moveTns?page=e0ad355f-9e0c-45a0-a8cb-9a98eae0661f\u0026amp;size=2\u0026gt;;rel=\u0022next\u0022;\u003C/next\u003E\n   \u003C/Links\u003E\n   \u003CMoveTnsOrder\u003E\n      \u003COrderId\u003E4bf48140-59ba-45d0-8d52-661574781ab0\u003C/OrderId\u003E\n      \u003CAccountId\u003E12346160\u003C/AccountId\u003E\n      \u003CCreatedByUser\u003Ejsmith\u003C/CreatedByUser\u003E\n      \u003CLastModifiedBy\u003Ejsmith\u003C/LastModifiedBy\u003E\n      \u003COrderCreateDate\u003E2025-05-27T11:16:37.648Z\u003C/OrderCreateDate\u003E\n      \u003CLastModifiedDate\u003E2025-05-27T11:16:37.967Z\u003C/LastModifiedDate\u003E\n      \u003CName\u003EQ3 number consolidation\u003C/Name\u003E\n      \u003CCustomerOrderId\u003EICPA123ABC\u003C/CustomerOrderId\u003E\n      \u003CSourceAccountId\u003E12346159\u003C/SourceAccountId\u003E\n      \u003CSiteId\u003E487\u003C/SiteId\u003E\n      \u003CSipPeerId\u003E500026\u003C/SipPeerId\u003E\n      \u003CE911ServiceAction\u003EMOVE\u003C/E911ServiceAction\u003E\n      \u003CMessagingService\u003EUSE_DESTINATION_SETTINGS\u003C/MessagingService\u003E\n      \u003CVoiceConfigurationPackageId\u003Ec7951e4f-6285-4b75-83e5-392558f59067\u003C/VoiceConfigurationPackageId\u003E\n      \u003CRequirementsPackageId\u003E3f2a9c1e-8b4d-4e6a-9f1c-2d7e5b8a0c94\u003C/RequirementsPackageId\u003E\n      \u003CTelephoneNumbers\u003E\n         \u003CTelephoneNumber\u003E\u002B18012141003\u003C/TelephoneNumber\u003E\n         \u003CTelephoneNumber\u003E\u002B18012141004\u003C/TelephoneNumber\u003E\n      \u003C/TelephoneNumbers\u003E\n      \u003CProcessingStatus\u003EPARTIAL\u003C/ProcessingStatus\u003E\n      \u003CErrors\u003E\n         \u003CError\u003E\n            \u003CCode\u003E5312\u003C/Code\u003E\n            \u003CDescription\u003EAn order is already processing this TN.\u003C/Description\u003E\n            \u003CTelephoneNumbers\u003E\n               \u003CTelephoneNumber\u003E\u002B18012141004\u003C/TelephoneNumber\u003E\n            \u003C/TelephoneNumbers\u003E\n         \u003C/Error\u003E\n      \u003C/Errors\u003E\n      \u003CWarnings\u003E\n         \u003CWarning\u003E\n            \u003CTelephoneNumber\u003E\u002B18012141003\u003C/TelephoneNumber\u003E\n            \u003CDescription\u003EE911 provisioning failed.\u003C/Description\u003E\n         \u003C/Warning\u003E\n      \u003C/Warnings\u003E\n   \u003C/MoveTnsOrder\u003E\n\u003C/MoveTnsOrders\u003E"
+      },
+      "moveTnsOrdersDetailsJsonExample": {
+        "summary": "Full order details (\u0060orderDetails=true\u0060)",
+        "value": {
+          "totalCount": 5,
+          "links": {
+            "first": "Link=\u003Chttps://api.bandwidth.com/api/v2/accounts/12346160/moveTns?page=1\u0026size=2\u003E;rel=\u0022first\u0022;",
+            "next": "Link=\u003Chttps://api.bandwidth.com/api/v2/accounts/12346160/moveTns?page=e0ad355f-9e0c-45a0-a8cb-9a98eae0661f\u0026size=2\u003E;rel=\u0022next\u0022;"
+          },
+          "moveTnsOrder": [
+            {
+              "orderId": "4bf48140-59ba-45d0-8d52-661574781ab0",
+              "accountId": 12346160,
+              "createdByUser": "jsmith",
+              "lastModifiedBy": "jsmith",
+              "orderCreateDate": "2025-05-27T11:16:37.648Z",
+              "lastModifiedDate": "2025-05-27T11:16:37.967Z",
+              "name": "Q3 number consolidation",
+              "customerOrderId": "ICPA123ABC",
+              "sourceAccountId": 12346159,
+              "subAccountId": 487,
+              "locationId": 500026,
+              "e911ServiceAction": "MOVE",
+              "messagingService": "USE_DESTINATION_SETTINGS",
+              "voiceConfigurationPackageId": "c7951e4f-6285-4b75-83e5-392558f59067",
+              "requirementsPackageId": "3f2a9c1e-8b4d-4e6a-9f1c-2d7e5b8a0c94",
+              "phoneNumbers": [
+                "\u002B18012141003",
+                "\u002B18012141004"
+              ],
+              "orderStatus": "PARTIAL",
+              "errors": [
+                {
+                  "code": 5312,
+                  "description": "An order is already processing this TN.",
+                  "phoneNumbers": [
+                    "\u002B18012141004"
+                  ]
+                }
+              ],
+              "warnings": [
+                {
+                  "phoneNumber": "\u002B18012141003",
+                  "description": "E911 provisioning failed."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "createMoveTnsOrderInvalidSiteXmlExample": {
+        "summary": "Invalid destination sub-account",
+        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CMoveTnsOrderResponse\u003E\n   \u003CResponseStatus\u003E\n      \u003CErrorCode\u003E5016\u003C/ErrorCode\u003E\n      \u003CDescription\u003EThe SiteId submitted is invalid.\u003C/Description\u003E\n   \u003C/ResponseStatus\u003E\n\u003C/MoveTnsOrderResponse\u003E"
+      },
+      "createMoveTnsOrderInvalidSiteJsonExample": {
+        "summary": "Invalid destination sub-account",
+        "value": {
+          "errorCode": 5016,
+          "description": "The SiteId submitted is invalid."
+        }
+      },
+      "createMoveTnsOrderInvalidSipPeerXmlExample": {
+        "summary": "Invalid destination location",
+        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CMoveTnsOrderResponse\u003E\n   \u003CResponseStatus\u003E\n      \u003CErrorCode\u003E5023\u003C/ErrorCode\u003E\n      \u003CDescription\u003ESIP peer submitted is invalid.\u003C/Description\u003E\n   \u003C/ResponseStatus\u003E\n\u003C/MoveTnsOrderResponse\u003E"
+      },
+      "createMoveTnsOrderInvalidSipPeerJsonExample": {
+        "summary": "Invalid destination location",
+        "value": {
+          "errorCode": 5023,
+          "description": "SIP peer submitted is invalid."
+        }
+      },
+      "createMoveTnsOrderRequirementsPackageRequiredXmlExample": {
+        "summary": "Requirements package missing on a cross-account move",
+        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CMoveTnsOrderResponse\u003E\n   \u003CResponseStatus\u003E\n      \u003CErrorCode\u003E5311\u003C/ErrorCode\u003E\n      \u003CDescription\u003ERequirementsPackageId is required when TNs are attached to a requirements package and are being moved to a new account.\u003C/Description\u003E\n   \u003C/ResponseStatus\u003E\n\u003C/MoveTnsOrderResponse\u003E"
+      },
+      "createMoveTnsOrderRequirementsPackageRequiredJsonExample": {
+        "summary": "Requirements package missing on a cross-account move",
+        "value": {
+          "errorCode": 5311,
+          "description": "RequirementsPackageId is required when TNs are attached to a requirements package and are being moved to a new account."
+        }
+      },
+      "readMoveTnsOrdersInvalidStatusXmlExample": {
+        "summary": "Invalid status filter",
+        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CMoveTnsOrderReportResponse\u003E\n   \u003CResponseStatus\u003E\n      \u003CErrorCode\u003E15620\u003C/ErrorCode\u003E\n      \u003CDescription\u003EInvalid \u0027status\u0027. Valid values: RECEIVED, PROCESSING, COMPLETE, PARTIAL, FAILED\u003C/Description\u003E\n   \u003C/ResponseStatus\u003E\n\u003C/MoveTnsOrderReportResponse\u003E"
+      },
+      "readMoveTnsOrdersInvalidStatusJsonExample": {
+        "summary": "Invalid status filter",
+        "value": {
+          "errorCode": 15620,
+          "description": "Invalid \u0027status\u0027. Valid values: RECEIVED, PROCESSING, COMPLETE, PARTIAL, FAILED"
+        }
+      },
+      "readMoveTnsOrderInvalidOrderIdXmlExample": {
+        "summary": "Order ID is not a UUID",
+        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CMoveTnsOrderReportResponse\u003E\n   \u003CResponseStatus\u003E\n      \u003CErrorCode\u003E1008\u003C/ErrorCode\u003E\n      \u003CDescription\u003E\u0027not-a-uuid\u0027 is not a valid UUID\u003C/Description\u003E\n   \u003C/ResponseStatus\u003E\n\u003C/MoveTnsOrderReportResponse\u003E"
+      },
+      "readMoveTnsOrderInvalidOrderIdJsonExample": {
+        "summary": "Order ID is not a UUID",
+        "value": {
+          "errorCode": 1008,
+          "description": "\u0027not-a-uuid\u0027 is not a valid UUID"
+        }
+      },
+      "moveTnsOrderNotFoundXmlExample": {
+        "summary": "Order not found",
+        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003CErrorResponse\u003E\n   \u003CirisStatus\u003E\n      \u003CCode\u003E404\u003C/Code\u003E\n      \u003CDescription\u003EOrder with such id was not found.\u003C/Description\u003E\n   \u003C/irisStatus\u003E\n\u003C/ErrorResponse\u003E"
+      },
+      "moveTnsOrderNotFoundJsonExample": {
+        "summary": "Order not found",
+        "value": {
+          "code": 404,
+          "description": "Order with such id was not found."
+        }
+      },
+      "moveTnsOrderHistoryXmlExample": {
+        "summary": "Order history",
+        "value": "\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022 standalone=\u0022yes\u0022?\u003E\n\u003COrderHistoryWrapper\u003E\n   \u003COrderHistory\u003E\n      \u003COrderDate\u003E2025-05-27T11:16:37.648Z\u003C/OrderDate\u003E\n      \u003CNote\u003EMove TNs order has been received by the system.\u003C/Note\u003E\n      \u003CAuthor\u003Ejsmith\u003C/Author\u003E\n      \u003CStatus\u003ERECEIVED\u003C/Status\u003E\n   \u003C/OrderHistory\u003E\n   \u003COrderHistory\u003E\n      \u003COrderDate\u003E2025-05-27T11:16:37.712Z\u003C/OrderDate\u003E\n      \u003CNote\u003EMove TNs order processing has started.\u003C/Note\u003E\n      \u003CAuthor\u003Ejsmith\u003C/Author\u003E\n      \u003CStatus\u003EPROCESSING\u003C/Status\u003E\n   \u003C/OrderHistory\u003E\n   \u003COrderHistory\u003E\n      \u003COrderDate\u003E2025-05-27T11:16:37.967Z\u003C/OrderDate\u003E\n      \u003CNote\u003EMove TNs order is complete.\u003C/Note\u003E\n      \u003CAuthor\u003Ejsmith\u003C/Author\u003E\n      \u003CStatus\u003ECOMPLETE\u003C/Status\u003E\n   \u003C/OrderHistory\u003E\n\u003C/OrderHistoryWrapper\u003E"
+      },
+      "moveTnsOrderHistoryJsonExample": {
+        "summary": "Order history",
+        "value": {
+          "orderHistory": [
+            {
+              "orderDate": "2025-05-27T11:16:37.648Z",
+              "note": "Move TNs order has been received by the system.",
+              "author": "jsmith",
+              "status": "RECEIVED"
+            },
+            {
+              "orderDate": "2025-05-27T11:16:37.712Z",
+              "note": "Move TNs order processing has started.",
+              "author": "jsmith",
+              "status": "PROCESSING"
+            },
+            {
+              "orderDate": "2025-05-27T11:16:37.967Z",
+              "note": "Move TNs order is complete.",
+              "author": "jsmith",
+              "status": "COMPLETE"
             }
           ]
         }
@@ -203264,8 +203794,8 @@
               "$ref": "#/components/schemas/MoveTnsOrderRequest"
             },
             "examples": {
-              "example": {
-                "$ref": "#/components/examples/postMoveTnsOrderRequestXmlExample"
+              "moveAcrossAccounts": {
+                "$ref": "#/components/examples/moveTnsOrderRequestXmlExample"
               }
             }
           },
@@ -203274,19 +203804,13 @@
               "$ref": "#/components/schemas/MoveTnsOrderJsonRequest"
             },
             "examples": {
-              "example": {
-                "value": {
-                  "sourceAccountId": 12346159,
-                  "subAccountId": 487,
-                  "locationId": 500076,
-                  "phoneNumbers": [
-                    "\u002B18012141003"
-                  ]
-                }
+              "moveAcrossAccounts": {
+                "$ref": "#/components/examples/moveTnsOrderRequestJsonExample"
               }
             }
           }
-        }
+        },
+        "required": true
       },
       "createMoveTnsBulkOrderRequest": {
         "content": {
@@ -206240,7 +206764,7 @@
     },
     {
       "name": "Move TNs",
-      "description": "Manage orders for moving telephone numbers across sub-accounts and locations."
+      "description": "Manage orders for moving phone numbers across sub-accounts and locations."
     },
     {
       "name": "Move TNs Bulk Orders",
@@ -206260,7 +206784,7 @@
     },
     {
       "name": "Numbers Assignment",
-      "description": "Manage telephone number assignment orders to register assignment status of telephone numbers."
+      "description": "Manage phone number assignment orders to register assignment status of phone numbers."
     },
     {
       "name": "Toll Free Settings",
@@ -206268,7 +206792,7 @@
     },
     {
       "name": "Location Phone Numbers",
-      "description": "Manage telephone number settings and associations within SIP peer locations."
+      "description": "Manage phone number settings and associations within SIP peer locations."
     },
     {
       "name": "Phone Number Lookup"
@@ -213803,14 +214327,14 @@
           "VoiceConfigurationPackageId": {
             "title": "Voice Configuration Package ID",
             "type": "string",
-            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation,\ntelephone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.\n\nMoving numbers across accounts from a source account that has the voice configuration package feature to a\ndestination account that does not is not currently allowed.",
+            "description": "The identifier of the voice configuration package containing the voice origination settings. Upon activation,\nphone numbers will be configured with the voice origination settings specified in the voice configuration\npackage. This is required if the numbers currently have voice service and are being moved to another account\nwhich has the voice configuration package feature.\n\nMoving numbers across accounts from a source account that has the voice configuration package feature to a\ndestination account that does not is not currently allowed.",
             "format": "uuid",
             "example": "c7951e4f-6285-4b75-83e5-392558f59067"
           },
           "RequirementsPackageId": {
             "title": "Requirements Package ID",
             "type": "string",
-            "description": "The identifier of the requirements package containing the end user details for the telephone numbers. This\nis required if the numbers are being moved across accounts and if they are a part of a country and number type\nwhich has end user validation requirements. The provided requirements package must be approved and compatible\nwith the telephone numbers being moved.",
+            "description": "The identifier of the requirements package containing the end user details for the phone numbers. This\nis required if the numbers are being moved across accounts and if they are a part of a country and number type\nwhich has end user validation requirements. The provided requirements package must be approved and compatible\nwith the phone numbers being moved.",
             "format": "uuid",
             "example": "c7951e4f-6285-4b75-83e5-392558f59067"
           },
@@ -225430,9 +225954,6 @@
       "type": "string",
       "description": "Successful Operation",
       "format": "binary"
-    },
-    "PostMoveTnsResponse400ResponseXml": {
-      "description": "Fallback media schema"
     },
     "ListPortinTns400ResponseResponseXml": {
       "description": "Fallback media schema"

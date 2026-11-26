@@ -37,7 +37,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Servi
         /// Accepts a list of phone numbers and returns the service activation status for each phone number. If service is not able to be activated, missing requirements will also be returned.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerResponse"/></returns>
-        /// <param name="body">ServiceActivationCheckerRequest</param>
+        /// <param name="body">Service activation checker request.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Bandwidth.OpenApiClient.Models.ServiceActivationCheckerBadRequestResponse">When receiving a 400 status code</exception>
@@ -76,7 +76,7 @@ namespace Soenneker.Bandwidth.OpenApiClient.NumberManagement.Accounts.Item.Servi
         /// Accepts a list of phone numbers and returns the service activation status for each phone number. If service is not able to be activated, missing requirements will also be returned.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">ServiceActivationCheckerRequest</param>
+        /// <param name="body">Service activation checker request.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
